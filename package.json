@@ -1,0 +1,27 @@
+{
+  "name": "kingrichard-budget",
+  "version": "1.0.0",
+  "description": "budgeting like royalty",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ncluff003/KingRichard-Budget.git"
+  },
+  "keywords": [
+    "Budget",
+    "Royalty",
+    "Robin",
+    "Hood",
+    "King",
+    "Richard"
+  ],
+  "author": "Nathan Cluff",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ncluff003/KingRichard-Budget/issues"
+  },
+  "homepage": "https://github.com/ncluff003/KingRichard-Budget#readme"
+}
