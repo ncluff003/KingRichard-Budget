@@ -1,0 +1,13 @@
+@use "../../../Public/SCSS/Utilities/Mixins" as *;
+
+/////////////////////////////////////////////////
+////       Grid For Mobile Portrait View
+.gridMobilePort {
+    display: grid;
+   // Grid Layout Order - Height / Width / Grid-Columns & Their Spans / Grid-Rows & Their Spans / Grid-Column-Gap / Grid-Row-Gap
+   @include gridLayout(100vh, 100vw, repeat(10, 1fr), repeat(12, 1fr), 0, 0);
+      }
+
+/////////////////////////////////////////////////
+////   Grid Placement For Mobile Portrait View
+@include gridPlacement(10, 10, 12, 12);

@@ -1,0 +1,16 @@
+@use "../../../Public/SCSS/Utilities/Mixins" as *;
+
+/////////////////////////////////////////////////
+////            Grid For Desktop
+.gridDesktop {
+    display: grid;
+    position: relative;
+   // Grid Layout Order - Height / Width / Grid-Columns & Their Spans / Grid-Rows & Their Spans / Grid-Column-Gap / Grid-Row-Gap
+   @include gridLayout(100vh, 100vw, repeat(24, 1fr), repeat(18, 1fr), 0, 0);
+
+   // Grid Placement Order - Number of Columns / Column Span Lengths / Number of Rows / Row Span Lengths
+   /////////////////////////////////////////////////
+   ////        Grid Placement For Desktops
+   @include gridPlacement(24, 24, 18, 18);
+}
+

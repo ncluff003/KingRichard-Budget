@@ -4,7 +4,16 @@
   "description": "budgeting like royalty",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "BundleJS": "webpack --config ./KingRichard-Budget/webpack.config.js --mode production",
+    "CompileSass": "sass ./Public/SCSS:./Public/DIST/CSS Public/SCSS/Main/main.scss:./Public/DIST/CSS/kingrichard.comp.css --style=expanded --embed-sources",
+    "PrefixCSS": "postcss --use=autoprefixer -b \"last 20 versions\" ./Public/DIST/CSS/kingrichard.comp.css -o ./Public/DIST/CSS/kingrichard.prefix.css",
+    "CompressCSS": "sass ./Public/DIST/CSS/kingrichard.prefix.css:./Public/DIST/CSS/kingrichard.css --style=compressed --embed-sources",
+    "BuildCSS": "npm-run-all CompileSass PrefixCSS CompressCSS ",
+    "BundleDevJS": "webpack serve --open --config ./webpack.config.js --mode development",
+    "LocalServer": "nodemon Backend_JS/Server.js -e ejs,js,css,html,jpg,png,scss",
+    "WatchSCSS": "onchange '**/*.scss' -- npm-run-all BuildCSS",
+    "WatchJS": "onchange '**/*.js' -- npm-run-all BundleDevJS",
+    "Start": "npm-run-all --parallel LocalServer WatchSCSS WatchJS"
   },
   "repository": {
     "type": "git",
@@ -23,5 +32,67 @@
   "bugs": {
     "url": "https://github.com/ncluff003/KingRichard-Budget/issues"
   },
-  "homepage": "https://github.com/ncluff003/KingRichard-Budget#readme"
+  "homepage": "https://github.com/ncluff003/KingRichard-Budget#readme",
+  "devDependencies": {
+    "@babel/core": "^7.14.8",
+    "@babel/node": "^7.14.7",
+    "@babel/preset-env": "^7.14.8",
+    "@csstools/postcss-sass": "^4.0.0",
+    "autoprefixer": "^10.3.1",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^8.2.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "concat": "^1.0.3",
+    "dart-sass": "^1.25.0",
+    "eslint": "^7.31.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "html-webpack-plugin": "^5.3.2",
+    "jsxobj": "^1.1.0",
+    "mongoose": "^5.13.3",
+    "ndb": "^1.1.5",
+    "nodemailer-mailgun-transport": "^2.1.3",
+    "nodemon": "^2.0.12",
+    "npm": "^7.20.2",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.3.6",
+    "postcss-cli": "^8.3.1",
+    "postcss-import": "^14.0.2",
+    "postcss-scss": "^4.0.0",
+    "postman": "^0.2.0",
+    "prettier": "^2.3.2",
+    "prettier-space-parenthesis": "^1.3.201",
+    "reload": "^3.2.0",
+    "sass": "^1.36.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^22.0.0",
+    "watch": "^1.0.2",
+    "webpack": "^5.47.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2",
+    "xoauth2": "^1.2.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "core-js": "^3.15.2",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.12.1",
+    "html-to-text": "^8.0.0",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.6.3",
+    "pug": "^3.0.2",
+    "require.js": "^1.0.0",
+    "slugify": "^1.6.0",
+    "validator": "^13.6.0"
+  },
+  "engines": {
+    "node": ">= 10.0.0"
+  }
 }

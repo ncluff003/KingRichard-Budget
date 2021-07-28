@@ -1,0 +1,20 @@
+@use "../../../Public/SCSS/Utilities/Mixins" as *;
+@use "../../../Public/SCSS/Utilities/Variables" as *;
+
+ ////////////////////////////////////////////////
+ //  Vertical Flex Container
+
+ .vertical-flex-container {
+
+   ////////////////////////////////////////////////
+   //  Navigation
+   
+   ////////////////////////////////////////////////
+   //  Flex Section
+
+   .flex-section {
+       @include SizeAndPositioning(relative, 100vh, 100vw, flex, center, center, 0, 0, 0);
+       background-color: $colorSuperLightGrey;
+   }
+
+}

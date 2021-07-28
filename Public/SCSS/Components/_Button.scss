@@ -1,0 +1,86 @@
+@use "../../../Public/SCSS/Utilities/Mixins" as *;
+@use "../../../Public/SCSS/Utilities/Variables" as *;
+
+ ////////////////////////////////////////////////
+ //  Vertical Flex Container
+
+ .vertical-flex-container {
+
+  ////////////////////////////////////////////////
+  //  Navigation
+  
+  ////////////////////////////////////////////////
+  //  Flex Section
+
+  .flex-section {
+      .grid-container {
+        .introduction-button-container {
+          .introduction-button {
+            @include SizeAndPositioning(relative, 60%, 27.5%, flex, center, center, 0, 0, 0);
+            border: .2rem solid rgba($secondaryColor, .8);
+            border-radius: 5rem;
+            transition: transform 1s, opacity 1s, background-color .5s, color .5s;
+
+            &--hiddenLeft {
+              @include SizeAndPositioning(relative, 60%, 30%, flex, center, center, 0, 0, 0);
+              opacity: 0;
+              transform: translateX(-25rem);
+              visibility: hidden;
+            }
+            &--hiddenDown {
+              @include SizeAndPositioning(relative, 60%, 30%, flex, center, center, 0, 0, 0);
+              opacity: 0;
+              transform: translateY(25rem);
+              visibility: hidden;
+            }
+            
+            &--hiddenRight {
+              @include SizeAndPositioning(relative, 60%, 30%, flex, center, center, 0, 0, 0);
+              opacity: 0;
+              transform: translateX(25rem);
+              visibility: hidden;
+            }
+
+            &:hover {
+              background-color: $secondaryColor;
+              border: .2rem groove $secondaryColor;
+            }
+
+            &:active {
+              background-color: $primaryColor;
+              border: .2rem inset $primaryColor;
+            }
+          }
+        }
+        .showcase-grid {
+          button {
+            @include SizeAndPositioning(absolute, 7.5rem, 7.5rem, flex, center, center, 0, 0, 0);
+            background-color: rgba($colorLightestGrey, .2);
+            border: .2rem groove rgba($colorDarkGrey, .8);
+            border-radius: 50%;
+            z-index: 10;
+            &:hover {
+              cursor: pointer;
+              border: .2rem groove $colorDarkGrey;
+              color: $colorLighterGrey;
+              background-color: $colorDarkerGrey;
+            }
+            transition: border .5s, color .5s, background-color .5s;
+          }
+          .card-button-left {
+            // @extend .showcase-grid, :button;
+            left: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+          .card-button-right {
+            // @extend .showcase-grid, :button;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+        }
+      }
+  }
+
+}

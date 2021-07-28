@@ -1,0 +1,139 @@
+@use "../../../Public/SCSS/Utilities/Mixins" as *;
+@use "../../../Public/SCSS/Utilities/Variables" as *;
+
+////////////////////////////////////////////////
+//  Vertical Flex Container
+
+.vertical-flex-container {
+
+  ////////////////////////////////////////////////
+  //  Navigation
+ 
+  ////////////////////////////////////////////////
+  //  Flex Section
+  .flex-section {
+
+    .grid-container {
+
+      .contact-form {
+        @include SizeAndPositioning (relative, 100%, 100%, flex, space-evenly, center, 0, 0, 0);
+        flex-direction: column;
+
+        &-message-container {
+          @include SizeAndPositioning (relative, 10%, 100%, flex, space-evenly, center, 0, 0, 0);
+        }
+
+        &-name-container {
+          @include SizeAndPositioning (relative, 10%, 100%, flex, space-evenly, center, 0, 0, 0);
+          margin: 4rem 0 2rem;
+          &--first-name, &--last-name{
+            @include SizeAndPositioning (relative, 100%, 40%, flex, center, center, 0, 0, 0);
+            flex-direction: column-reverse;
+            .first-name, .last-name {
+              @include SizeAndPositioning (relative, 100%, 100%, flex, center, center, 0, 0, 0);
+              background-color: transparent;
+              border: .3rem groove rgba($secondaryColor, .75);
+              padding: 1rem;
+              &:focus::-webkit-input-placeholder, &:focus::placeholder {
+                opacity: 1;
+              }
+              &:not(:placeholder-shown) + label, &:focus + label {
+                transform: translate(-13.5rem, -3.75rem) scale(.85);
+              }
+              &-label {
+                @include SizeAndPositioning (absolute, 40%, 30%, flex, center, center, 0, 0, 0);
+                transition: transform .75s;
+                transform: translate(-12.5rem, 0);
+              }
+            }
+          }
+        }
+        
+        &-email-container {
+          @include SizeAndPositioning (relative, 10%, 86.75%, flex, center, center, 0, 0, 0);
+          flex-direction: column-reverse;
+          margin: 2rem 0 2rem;
+          .email {
+            @include SizeAndPositioning (relative, 100%, 100%, flex, center, center, 0, 0, 0);
+            background-color: transparent;
+            border: .3rem groove rgba($secondaryColor, .75);
+            padding: 1rem;
+            &:focus::-webkit-input-placeholder, &:focus::placeholder {
+              opacity: 1;
+            }
+            &:not(:placeholder-shown) + label, &:focus + label {
+              transform: translate(-34.75rem, -3.75rem) scale(.85);
+            }
+            &-label {
+              @include SizeAndPositioning (absolute, 40%, 30%, flex, center, center, 0, 0, 0);
+              transition: transform .75s;
+              transform: translate(-33.5rem, 0);
+            }
+          }
+        }
+        &-text-message-container {
+          @include SizeAndPositioning (relative, 35%, 86.75%, flex, center, center, 0, 0, 0);
+          flex-direction: column-reverse;
+          margin: 2rem 0 2rem;
+          .message {
+            @include SizeAndPositioning (relative, 100%, 100%, flex, center, center, 0, 0, 0);
+            background-color: transparent;
+            border: .3rem groove rgba($secondaryColor, .75);
+            padding: 1rem;
+            &:focus::-webkit-input-placeholder, &:focus::placeholder {
+              opacity: 1;
+            }
+            &:not(:placeholder-shown) + label, &:focus + label {
+              transform: translate(-37.5rem, -12.35rem) scale(.85);
+            }
+            &-label {
+              @include SizeAndPositioning (absolute, 20%, 15%, flex, center, center, 0, 0, 0);
+              transition: transform .75s;
+              transform: translate(-36.5rem, -8.6rem);
+            }
+            resize: none;
+          }
+        }
+        &-submit-container {
+          @include SizeAndPositioning (relative, 15%, 100%, flex, center, center, 0, 0, 0);
+          margin: 2rem 0 4rem;
+          .submit-message-button {
+            @include SizeAndPositioning (relative, 100%, 30%, flex, center, center, 0, 0, 0);
+            background-color: rgba($secondaryColor, .8);
+            border: .3rem groove rgba($secondaryColor, .75);
+            transition: background-color .5s, border .5s, color .5s;
+            &:hover {
+              cursor: pointer;
+              background-color: $secondaryColor;
+              border: .3rem groove $secondaryColor;
+            }
+            &:active {
+              background-color: $primaryColor;
+              border: .3rem groove $primaryColor;
+              outline: none;
+            }
+          }
+        }
+
+        .input-good {
+          border: .3rem groove #008013;
+        }
+        .input-bad {
+          border: .3rem groove #CF352E;
+        }
+        .input-warning {
+          border: .3rem groove $primaryColor;
+        }
+
+        ::-webkit-input-placeholder, ::placeholder {
+          opacity: 0;
+          transition: all .75s;
+        }
+
+      }
+
+    }
+
+ }
+ 
+}

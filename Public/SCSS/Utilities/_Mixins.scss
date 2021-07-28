@@ -1,0 +1,103 @@
+//  Parametric Mixin That Needs The Height | Width | Column Template | Row Template | Column Gap | Row Gap
+@mixin gridLayout($height, $width, $columns, $rows, $columnGap, $rowGap){
+height: $height;
+width: $width;
+-ms-grid-template-columns: $columns;
+-ms-grid-template-rows: $rows;
+-ms-grid-column-gap: $columnGap;
+-ms-grid-row-gap: $rowGap;
+-o-grid-template-columns: $columns;
+-o-grid-template-rows: $rows;
+-o-grid-column-gap: $columnGap;
+-o-grid-row-gap: $rowGap;
+-webkit-grid-template-columns: $columns;
+-webkit-grid-template-rows: $rows;
+-webkit-grid-column-gap: $columnGap;
+-webkit-grid-row-gap: $rowGap;
+grid-template-columns: $columns;
+grid-template-rows: $rows;
+grid-column-gap: $columnGap;
+grid-row-gap: $rowGap;
+}
+
+// Parametric Mixin For Grid Placement.  It Needs: Number of Columns | Column Span | Number of Rows | Row Span
+@mixin gridPlacement($columns, $columnSpan, $rows, $rowSpan){
+    .column {
+        $x:1;
+        @while $x <= $columns {
+            @if($columnSpan >= 1){
+                &_#{$x}-#{$columnSpan}{
+                    -ms-grid-column: $x / span $columnSpan;
+                    -o-grid-column: $x / span $columnSpan;
+                    -webkit-grid-column: $x / span $columnSpan;
+                    grid-column: $x / span $columnSpan;
+                }
+                $columnSpan: $columnSpan - 1;
+            }
+
+            @if($columnSpan < 1){                                
+                $x: $x + 1;
+                $columnSpan: $columns;
+                }
+            }
+        }
+
+    .row {
+        $y:1;
+        @while $y <= $rows {
+
+            @if($rowSpan >= 1){
+                &_#{$y}-#{$rowSpan}{
+                -ms-grid-row: $y / span $rowSpan;
+                -o-grid-row: $y / span $rowSpan;
+                -webkit-grid-row: $y / span $rowSpan;
+                grid-row: $y / span $rowSpan;
+            }
+                $rowSpan: $rowSpan - 1;
+            }
+            @if($rowSpan < 1){
+
+                $y: $y + 1;
+                $rowSpan: $rows;
+            }
+        }
+    }
+}
+
+@mixin SizingItem($position, $height, $width){
+    position: $position;
+    height: $height;
+    width: $width;
+}
+
+@mixin SizeAndPositioning($position, $height, $width, $display, $justify, $align, $horizontal, $vertical, $rotate){
+    position: $position;
+    height: $height;
+    width: $width;
+    display: $display;
+    justify-content: $justify;
+    align-items: $align;
+    transform: rotate($rotate) translate($horizontal, $vertical);
+}
+
+@mixin CreateCircle($position, $circleHeight, $circleWidth, $childHeight, $childWidth) {
+    position: $position;
+    height: $circleHeight;
+    width: $circleWidth;
+    border-radius: 50%;
+
+    > * {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        top: 50%;
+        left: 50%;
+        margin-top: (-($childWidth / 2) + 6.25rem);
+        margin-left: -($childWidth / 2);
+        height: $childHeight;
+        width: $childWidth;
+        transition: transform 2s;
+    }
+}

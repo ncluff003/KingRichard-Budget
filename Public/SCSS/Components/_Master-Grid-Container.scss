@@ -1,0 +1,17 @@
+@use "../../../Public/SCSS/Utilities/Mixins" as *;
+@use "../../../Public/SCSS/Utilities/Variables" as *;
+
+////////////////////////////////////////////////
+//  Master Flex Container
+
+.master-flex-container {
+  ////////////////////////////////////////////////
+  //  Navigation
+
+  .master-grid-container {
+    position: relative;
+    display: grid;
+    @include gridLayout(100vh, 100vw, repeat(24, 1fr), repeat(18, 1fr), 0, 0);
+    @include gridPlacement(24, 24, 18, 18);
+  }
+}

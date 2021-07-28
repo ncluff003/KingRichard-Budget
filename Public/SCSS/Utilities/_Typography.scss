@@ -1,0 +1,287 @@
+@use "../../../Public/SCSS/Utilities/Variables" as *;
+
+/////////////////////////////////
+// Base
+
+html {
+    font-family: Purely Me, Century Gothic, Verdana, Sans-Serif;
+    font-variant-ligatures: none;
+}
+
+ ////////////////////////////////////////////////
+ //  Vertical Flex Container
+
+ .vertical-flex-container {
+
+   ////////////////////////////////////////////////
+   //  Navigation
+
+   .navigation {
+    color: rgba($secondaryColor, .75);
+       &__logo {
+
+        &__logoText {
+            font-size: 2.4rem;
+        }
+
+       }
+
+       ////////////////////////////////////////////////
+       //  Navigation Links
+
+       &__links {
+            font-size: 2rem;
+            &--linkItem {
+                &__link {
+                    text-decoration: none;
+                    color: rgba($secondaryColor, .75);
+                    &:visited {
+                        color: rgba($secondaryColor, .75);
+                    }
+                    &--sticky {
+                        color: rgba($colorOffWhite, .75);
+                    &:visited {
+                        color: rgba($colorOffWhite, .75);
+                    }
+                    }
+                }
+            }
+       }
+
+       &--sticky {
+           color: rgba($colorOffWhite, .75);
+       }
+
+   }
+
+   .flex-section {
+
+    .grid-container {
+
+        .typing-text-container {
+
+            font-size: 7rem;
+            text-align: center;
+            color: $secondaryColor;
+
+        }
+
+        .introduction-button-container {
+
+            font-size: 1.6rem;
+
+            .introduction-button {
+
+                text-decoration: none;
+
+                    &:link, &:visited {
+
+                        color: rgba($secondaryColor, .8);
+
+                    }
+
+                    &:hover {
+
+                        cursor: pointer;
+                        color: $colorOffWhite;
+
+                    }
+
+                    &:active {
+
+                        color: $colorDarkestGrey;
+
+                    }
+
+            }
+
+        }
+
+        .about-me-container {
+            
+            &__option-slider {
+
+                &--option {
+
+                    .about-typing-text-container {
+
+                        font-size: 7rem;
+                        text-align: center;
+                        color: $secondaryColor;
+            
+                    }
+
+                }
+
+            }
+
+            &__option-navigation {
+                font-size: 2.4rem;
+                color: rgba($colorDarkestGrey, .5);
+                i {
+                    margin: 0 1rem;
+                }
+            }
+        }
+
+        .section-header {
+
+            font-size: 8rem;
+            color: $secondaryColor;
+
+        }
+
+        .showcase-grid {
+
+            .skill-card {
+
+                .skill-image-container {
+                    font-size: 15rem;
+                    color: $colorOffWhite;                    
+                }
+
+                .skill-title-container {
+                    font-size: 3rem;
+                    color: $secondaryColor;
+                }
+            }
+
+            button {
+                font-size: 3rem;
+                color: rgba($colorDarkerGrey, .8);
+            }
+            .card-button-left, .card-button-right {
+                &:hover {
+                    color: $colorLightestGrey;  
+                }
+            }
+
+            .project-card {
+                &-cover {
+                    &-title-container {
+                        font-size: 3rem;
+                        color: $colorOffWhite;
+                    }
+
+                }
+                &-content {
+                    &-description-container {
+                        font-size: 1.8rem;
+                        color: $secondaryColor;
+                    }
+                    &-link-container {
+                        &--link {
+                            font-size: 1.4rem;
+                            text-decoration: none;
+                            &, &:visited {
+                                color: rgba($secondaryColor, .8);
+                            }
+                            &:hover {
+                                color: $colorOffWhite;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .project-count {
+            font-size: 3rem;
+            color: $secondaryColor;
+        }
+
+        .contact-form {
+
+            font-size: 2rem;
+            color: $secondaryColor;
+    
+            &-message-container {
+              &--error {
+                  color: #CF352E;
+              }
+              &--success {
+                  color: #008013;
+              }
+            }
+    
+            &-name-container {
+              margin: 3rem 0 1.5rem;
+              &--first-name, &--last-name{
+                flex-direction: column-reverse;
+                .first-name, .last-name {
+                  background-color: transparent;
+                  border: .3rem groove rgba($secondaryColor, .75);
+                  color: $secondaryColor;
+                  &-label {
+                  }
+                }
+              }
+            }
+            
+            &-email-container {
+              flex-direction: column-reverse;
+              margin: 1.5rem 0 1.5rem;
+              .email {
+                background-color: transparent;
+                border: .3rem groove rgba($secondaryColor, .75);
+                color: $secondaryColor;
+                &-label {
+                }
+              }
+            }
+            &-text-message-container {
+              flex-direction: column-reverse;
+              margin: 1.5rem 0 1.5rem;
+              .message {
+                background-color: transparent;
+                border: .3rem groove rgba($secondaryColor, .75);
+                color: $secondaryColor;
+                &-label {
+                }
+              }
+            }
+            &-submit-container {
+              margin: 1.5rem 0 3rem;
+              .submit-message-button {
+                background-color: rgba($secondaryColor, .8);
+                border: .3rem groove rgba($secondaryColor, .75);
+                color: rgba($colorOffWhite, .75);
+                &:hover{
+                    color: $colorOffWhite;
+                }
+                &:active {
+                    color: $colorDarkestGrey;
+                }
+              }
+            }
+
+            .input-good {
+                color: #008013;
+                & + label{
+                    color: #008013;
+                }
+              }
+              .input-bad {
+                color: #CF352E;
+                & + label{
+                    color: #CF352E;
+                }
+              }
+              .input-warning {
+                color: $primaryColor;
+                & + label{
+                    color: $primaryColor;
+                }
+              }
+    
+          }
+
+    }
+
+   }
+
+}
+
+.current-link {
+    color: rgba($primaryColor, .8);
+}

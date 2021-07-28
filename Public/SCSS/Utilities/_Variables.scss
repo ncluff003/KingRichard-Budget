@@ -1,0 +1,111 @@
+@use "../Vendors/scss/variables";
+$fa-font-path: "../../webfonts/" !default;
+
+/////////////////////////////
+//         COLORS
+
+/////////////////////////////
+//      Primary Color
+$primaryColor: #FFD700;
+$primaryColorLight: lighten($primaryColor, 10%);
+$primaryColorLighter: lighten($primaryColor, 20%);
+$primaryColorDark:darken($primaryColor, 10%);
+$primaryColorDarker: darken($primaryColor, 20%);
+
+/////////////////////////////
+//     Secondary Color
+$secondaryColor: #0047AB;
+$secondaryColorLight: lighten($secondaryColor, 10%);
+$secondaryColorLighter: lighten($secondaryColor, 20%);
+$secondaryColorDark: darken($secondaryColor, 10%);
+$secondaryColorDarker: darken($secondaryColor, 20%);
+
+
+/////////////////////////////
+//     Tertiary Color
+$tertiaryColor: #dd561c;
+$tertiaryColorLight: lighten($tertiaryColor, 10%);
+$tertiaryColorLighter: lighten($tertiaryColor, 20%);
+$tertiaryColorDark: darken($tertiaryColor, 10%);
+$tertiaryColorDarker: darken($tertiaryColor, 20%);
+
+
+/////////////////////////////
+//    Quaternary Color
+$quaternaryColor: #8A2BE0;
+$quaternaryColorLight: Lighten($quaternaryColor, 10%);
+$quaternaryColorLighter: lighten($quaternaryColor, 20%);
+$quaternaryColorDark: darken($quaternaryColor, 10%);
+$quaternaryColorDarker: darken($quaternaryColor, 20%);
+
+/////////////////////////////
+//    Quinary Color
+
+$quinaryColor: #9C73FF;
+$quinaryColorLight: lighten(#9C73FF, 10%);
+$quinaryColorLighter: lighten(#9C73FF, 20%);
+$quinaryColorDark: darken(#9C73FF, 10%);
+$quinaryColorDarker: darken(#9C73FF, 20%);
+
+/////////////////////////////
+//    Senary Color
+
+$senaryColor: #FFC062;
+$senaryColorLight: lighten(#FFC062, 10%);
+$senaryColorLighter: lighten(#FFC062, 20%);
+$senaryColorDark: darken(#FFC062, 10%);
+$senaryColorDarker: darken(#FFC062, 20%);
+
+//   Septenary Color
+
+$septenaryColor: #66E7FF;
+$septenaryColorLight: lighten(#66E7FF, 10%);
+$septenaryColorLighter: lighten(#66E7FF, 20%);
+$septenaryColorDark: darken(#66E7FF, 10%);
+$septenaryColorDarker: darken(#66E7FF, 20%);
+
+/////////////////////////////
+//       Color Black
+$colorBlack: #000000;
+
+
+/////////////////////////////
+//       Color Greyscale
+$colorDarkestGrey: #111111;
+$colorDarkerGrey: #333333;
+$colorDarkGrey: #555555;
+$colorGrey: #777777;
+$colorLightGrey: #999999;
+$colorLighterGrey: #bbbbbb;
+$colorLightestGrey: #dddddd;
+
+
+/////////////////////////////
+//       Color White
+$colorWhite: #FFFFFF;
+$colorOffWhite: #FAFAFA;
+
+///////////////////////////////////
+//       Alternate Colors
+
+$colorSilver: #C0C0C0;
+$colorSuperLightGrey: #f2f2f2ff;
+
+
+///////////////////////////////////
+//       Clipped Paths
+
+$ClippedAbout_Left: 0 0, .1% .3%, .2% .6%, .3% .9%, .4% 1.2%, .5% 1.5%, .6% 1.8%, .7% 2.1%, .8% 2.4%, .9% 2.7%, 1% 3%, 1.1% 3.3%, 1.2% 3.6%, 1.3% 3.9%, 1.4% 4.2%, 1.5% 4.5%, 1.6% 4.8%, 1.7% 5.1%, 1.8% 5.4%, 1.9% 5.7%, 2% 6%, 2.1% 6.3%, 2.2% 6.6%, 2.3% 6.9%, 2.4% 7.2%, 2.7% 8.1%, 3% 9%, 3.3% 9.9%, 3.6% 10.8%, 3.9% 11.7%, 4.2% 12.6%, 4.5% 13.5%, 4.8% 14.4%, 5.1% 15.3%, 5.4% 16.2%, 5.7% 17.1%, 6% 18%, 6.3% 18.9%, 6.7% 19.8%, 7.1% 20.7%, 7.5% 21.6%, 7.9% 22.5%, 8.4% 23.4%, 8.9% 24.3%, 9.4% 25.2%, 10% 26.1%, 10.6% 27%, 11.3% 27.9%, 12% 28.8%, 12.7% 29.7%, 13.5% 30.6%, 14.3% 31.5%, 15.1% 32.4%, 16% 33.3%, 16.9% 34.2%, 17.8% 35.1%, 18.8% 36%, 19.8% 36.9%, 20.8% 37.8%, 21.9% 38.7%, 23.1% 39.6%, 24.4% 40.5%, 25.8% 41.4%, 27.3% 42.3%, 28.8% 43.2%, 30.4% 44.1%, 32.1% 45%, 33.9% 45.9%, 35.8% 46.8%, 37.8% 47.7%, 39.9% 48.6%, 42.1% 49.5%, 44.4% 50.4%, 46.8% 51.3%, 49.3% 52.2%, 51.8% 53.1%, 54.3% 54%, 56.7% 54.9%, 59% 55.8%, 61.2% 56.7%, 63.3% 57.6%, 65.3% 58.5%, 67.3% 59.4%, 69.2% 60.3%, 71.1% 61.2%, 72.9% 62.1%, 74.7% 63%, 76.4% 63.9%, 78% 64.8%, 79.5% 65.7%, 80.9% 66.6%, 82.2% 67.5%, 83.4% 68.4%, 84.5% 69.3%, 85.5% 70.2%, 86.4% 71.1%, 87.2% 72%, 87.9% 72.9%, 88.6% 73.8%, 89.3% 74.7%, 89.9% 75.6%, 90.5% 76.5%, 91.1% 77.4%, 91.7% 78.3%, 92.3% 79.2%, 92.9% 80.1%, 93.5% 81%, 94% 81.9%, 94.5% 82.8%, 94.9% 83.7%, 95.3% 84.6%, 95.7% 85.5%, 96.1% 86.4%, 96.5% 87.3%, 96.9% 88.2%, 97.2% 89.1%, 97.5% 90%, 97.8% 90.9%, 98.1% 91.8%, 98.4% 92.7%, 98.7% 93.6%, 99% 94.5%, 99.2% 95.4%, 99.4% 96.3%, 99.6% 97.2%, 99.8% 98.1%, 99.9% 99%, 100% 100%, 100% 0;
+
+$ClippedAbout_Right: 0 100%, .1% 99%, .2% 98.1%, .4% 97.2%, .6% 96.3%, .8% 95.4%, 1% 94.5%, 1.3% 93.6%, 1.6% 92.7%, 1.9% 91.8%, 2.2% 90.9%, 2.5% 90%, 2.8% 89.1%, 3.1% 88.2%, 3.5% 87.3%, 3.9% 86.4%, 4.3% 85.5%, 4.7% 84.6%, 5.1% 83.7%, 5.5% 82.8%, 6% 81.9%, 6.5% 81%, 7.1% 80.1%, 7.7% 79.2%, 8.3% 78.3%, 8.9% 77.4%, 9.5% 76.5%, 10.1% 75.6%, 10.7% 74.7%, 11.4% 73.8%, 12.1% 72.9%, 12.8% 72%, 13.6% 71.1%, 14.5% 70.2%, 15.5% 69.3%, 16.6% 68.4%, 17.8% 67.5%, 19.1% 66.6%, 20.5% 65.7%, 22% 64.8%, 23.6% 63.9%, 25.3% 63%, 27.1% 62.1%, 28.9% 61.2%, 30.8% 60.3%, 32.7% 59.4%, 34.7% 58.5%, 36.7% 57.6%, 38.8% 56.7%, 41% 55.8%, 43.3% 54.9%, 45.7% 54%, 48.2% 53.1%, 50.7% 52.2%, 53.2% 51.3%, 55.6% 50.4%, 57.9% 49.5%, 60.1% 48.6%, 62.2% 47.7%, 64.2% 46.8%, 66.1% 45.9%, 67.9% 45%, 69.6% 44.1%, 71.2% 43.2%, 72.7% 42.3%, 74.2% 41.4%, 75.6% 40.5%, 76.9% 39.6%, 78.1% 38.7%, 79.2% 37.8%, 80.2% 36.9%, 81.2% 36%, 82.2% 35.1%, 83.1% 34.2%, 84% 33.3%, 84.9% 32.4%, 85.7% 31.5%, 86.5% 30.6%, 87.3% 29.7%, 88% 28.8%, 88.7% 27.9%, 89.4% 27%, 90% 26.1%, 90.6% 25.2%, 91.1% 24.3%, 91.6% 23.4%, 92.1% 22.5%, 92.5% 21.6%, 92.9% 20.7%, 93.3% 19.8%, 93.7% 18.9%, 94% 18%, 94.3% 17.1%, 94.6% 16.2%, 94.9% 15.3%, 95.2% 14.4%, 95.5% 13.5%, 95.8% 12.6%, 96.1% 11.7%, 96.4% 10.8%, 96.7% 9.9%, 97% 9%, 97.3% 8.1%, 97.6% 7.2%, 97.7% 6.9%, 97.8% 6.6%, 97.9% 6.3%, 98% 6%, 98.1% 5.7%, 98.2% 5.4%, 98.3% 5.1%, 98.4% 4.8%, 98.5% 4.5%, 98.6% 4.2%, 98.7% 3.9%, 98.8% 3.6%, 98.9% 3.3%, 99% 3%, 99.1% 2.7%, 99.2% 2.4%, 99.3% 2.1%, 99.4% 1.8%, 99.5% 1.5%, 99.6% 1.2%, 99.7% 0.9%, 99.8% .6%, 99.9% .3%, 100% 0, 0 0;
+
+///////////////////////////////////
+//       Custom Fonts
+
+@font-face {
+  font-family: Purely Me;
+  src: url('./purely_me_regular-webfont.woff2') format('woff2'),
+  url('./purely_me_regular-webfont.woff') format('woff'),
+  url('./Purely_Me_Regular.eot'),
+  url('./Purely_Me_Regular.ttf');
+}
