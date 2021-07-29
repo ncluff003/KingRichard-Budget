@@ -8,174 +8,174 @@ html {
   font-variant-ligatures: none;
 }
 
-.vertical-flex-container .navigation {
-  color: rgba(0, 71, 171, 0.75);
+.master-flex-container .master-grid-container .navigation_logo-container_logo {
+  fill: #FAFAFA;
 }
-.vertical-flex-container .navigation__logo__logoText {
+.master-flex-container .master-grid-container .navigation_logo-container_logo-text {
   font-size: 2.4rem;
+  color: #FAFAFA;
 }
-.vertical-flex-container .navigation__links {
-  font-size: 2rem;
+.master-flex-container .master-grid-container .navigation_user-login_login, .master-flex-container .master-grid-container .navigation_user-login_signup {
+  font-size: 1.4rem;
+  color: rgba(250, 250, 250, 0.8);
 }
-.vertical-flex-container .navigation__links--linkItem__link {
-  text-decoration: none;
-  color: rgba(0, 71, 171, 0.75);
+.master-flex-container .master-grid-container .navigation_user-login_login:hover, .master-flex-container .master-grid-container .navigation_user-login_signup:hover {
+  color: #333333;
 }
-.vertical-flex-container .navigation__links--linkItem__link:visited {
-  color: rgba(0, 71, 171, 0.75);
+.master-flex-container .master-grid-container .king-richard-main-text {
+  color: #822aba;
+  font-size: 14rem;
 }
-.vertical-flex-container .navigation__links--linkItem__link--sticky {
-  color: rgba(250, 250, 250, 0.75);
+.master-flex-container .master-grid-container .king-richard-sub-text {
+  color: #822aba;
+  font-size: 5rem;
 }
-.vertical-flex-container .navigation__links--linkItem__link--sticky:visited {
-  color: rgba(250, 250, 250, 0.75);
-}
-.vertical-flex-container .navigation--sticky {
-  color: rgba(250, 250, 250, 0.75);
-}
-.vertical-flex-container .flex-section .grid-container .typing-text-container {
+.master-flex-container .flex-section .grid-container .typing-text-container {
   font-size: 7rem;
   text-align: center;
   color: #0047AB;
 }
-.vertical-flex-container .flex-section .grid-container .introduction-button-container {
+.master-flex-container .flex-section .grid-container .introduction-button-container {
   font-size: 1.6rem;
 }
-.vertical-flex-container .flex-section .grid-container .introduction-button-container .introduction-button {
+.master-flex-container .flex-section .grid-container .introduction-button-container .introduction-button {
   text-decoration: none;
 }
-.vertical-flex-container .flex-section .grid-container .introduction-button-container .introduction-button:link, .vertical-flex-container .flex-section .grid-container .introduction-button-container .introduction-button:visited {
+.master-flex-container .flex-section .grid-container .introduction-button-container .introduction-button:link, .master-flex-container .flex-section .grid-container .introduction-button-container .introduction-button:visited {
   color: rgba(0, 71, 171, 0.8);
 }
-.vertical-flex-container .flex-section .grid-container .introduction-button-container .introduction-button:hover {
+.master-flex-container .flex-section .grid-container .introduction-button-container .introduction-button:hover {
   cursor: pointer;
   color: #FAFAFA;
 }
-.vertical-flex-container .flex-section .grid-container .introduction-button-container .introduction-button:active {
+.master-flex-container .flex-section .grid-container .introduction-button-container .introduction-button:active {
   color: #111111;
 }
-.vertical-flex-container .flex-section .grid-container .about-me-container__option-slider--option .about-typing-text-container {
+.master-flex-container .flex-section .grid-container .about-me-container__option-slider--option .about-typing-text-container {
   font-size: 7rem;
   text-align: center;
   color: #0047AB;
 }
-.vertical-flex-container .flex-section .grid-container .about-me-container__option-navigation {
+.master-flex-container .flex-section .grid-container .about-me-container__option-navigation {
   font-size: 2.4rem;
   color: rgba(17, 17, 17, 0.5);
 }
-.vertical-flex-container .flex-section .grid-container .about-me-container__option-navigation i {
+.master-flex-container .flex-section .grid-container .about-me-container__option-navigation i {
   margin: 0 1rem;
 }
-.vertical-flex-container .flex-section .grid-container .section-header {
+.master-flex-container .flex-section .grid-container .section-header {
   font-size: 8rem;
   color: #0047AB;
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid .skill-card .skill-image-container {
+.master-flex-container .flex-section .grid-container .showcase-grid .skill-card .skill-image-container {
   font-size: 15rem;
   color: #FAFAFA;
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid .skill-card .skill-title-container {
+.master-flex-container .flex-section .grid-container .showcase-grid .skill-card .skill-title-container {
   font-size: 3rem;
   color: #0047AB;
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid button {
+.master-flex-container .flex-section .grid-container .showcase-grid button {
   font-size: 3rem;
   color: rgba(51, 51, 51, 0.8);
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid .card-button-left:hover, .vertical-flex-container .flex-section .grid-container .showcase-grid .card-button-right:hover {
+.master-flex-container .flex-section .grid-container .showcase-grid .card-button-left:hover,
+.master-flex-container .flex-section .grid-container .showcase-grid .card-button-right:hover {
   color: #dddddd;
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid .project-card-cover-title-container {
+.master-flex-container .flex-section .grid-container .showcase-grid .project-card-cover-title-container {
   font-size: 3rem;
   color: #FAFAFA;
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid .project-card-content-description-container {
+.master-flex-container .flex-section .grid-container .showcase-grid .project-card-content-description-container {
   font-size: 1.8rem;
   color: #0047AB;
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid .project-card-content-link-container--link {
+.master-flex-container .flex-section .grid-container .showcase-grid .project-card-content-link-container--link {
   font-size: 1.4rem;
   text-decoration: none;
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid .project-card-content-link-container--link, .vertical-flex-container .flex-section .grid-container .showcase-grid .project-card-content-link-container--link:visited {
+.master-flex-container .flex-section .grid-container .showcase-grid .project-card-content-link-container--link, .master-flex-container .flex-section .grid-container .showcase-grid .project-card-content-link-container--link:visited {
   color: rgba(0, 71, 171, 0.8);
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid .project-card-content-link-container--link:hover {
+.master-flex-container .flex-section .grid-container .showcase-grid .project-card-content-link-container--link:hover {
   color: #FAFAFA;
 }
-.vertical-flex-container .flex-section .grid-container .project-count {
+.master-flex-container .flex-section .grid-container .project-count {
   font-size: 3rem;
   color: #0047AB;
 }
-.vertical-flex-container .flex-section .grid-container .contact-form {
+.master-flex-container .flex-section .grid-container .contact-form {
   font-size: 2rem;
   color: #0047AB;
 }
-.vertical-flex-container .flex-section .grid-container .contact-form-message-container--error {
-  color: #CF352E;
+.master-flex-container .flex-section .grid-container .contact-form-message-container--error {
+  color: #cf352e;
 }
-.vertical-flex-container .flex-section .grid-container .contact-form-message-container--success {
+.master-flex-container .flex-section .grid-container .contact-form-message-container--success {
   color: #008013;
 }
-.vertical-flex-container .flex-section .grid-container .contact-form-name-container {
+.master-flex-container .flex-section .grid-container .contact-form-name-container {
   margin: 3rem 0 1.5rem;
 }
-.vertical-flex-container .flex-section .grid-container .contact-form-name-container--first-name, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--last-name {
+.master-flex-container .flex-section .grid-container .contact-form-name-container--first-name, .master-flex-container .flex-section .grid-container .contact-form-name-container--last-name {
   flex-direction: column-reverse;
 }
-.vertical-flex-container .flex-section .grid-container .contact-form-name-container--first-name .first-name, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--first-name .last-name, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--last-name .first-name, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--last-name .last-name {
+.master-flex-container .flex-section .grid-container .contact-form-name-container--first-name .first-name,
+.master-flex-container .flex-section .grid-container .contact-form-name-container--first-name .last-name, .master-flex-container .flex-section .grid-container .contact-form-name-container--last-name .first-name,
+.master-flex-container .flex-section .grid-container .contact-form-name-container--last-name .last-name {
   background-color: transparent;
   border: 0.3rem groove rgba(0, 71, 171, 0.75);
   color: #0047AB;
 }
-.vertical-flex-container .flex-section .grid-container .contact-form-email-container {
-  flex-direction: column-reverse;
-  margin: 1.5rem 0 1.5rem;
-}
-.vertical-flex-container .flex-section .grid-container .contact-form-email-container .email {
-  background-color: transparent;
-  border: 0.3rem groove rgba(0, 71, 171, 0.75);
-  color: #0047AB;
-}
-.vertical-flex-container .flex-section .grid-container .contact-form-text-message-container {
+.master-flex-container .flex-section .grid-container .contact-form-email-container {
   flex-direction: column-reverse;
   margin: 1.5rem 0 1.5rem;
 }
-.vertical-flex-container .flex-section .grid-container .contact-form-text-message-container .message {
+.master-flex-container .flex-section .grid-container .contact-form-email-container .email {
   background-color: transparent;
   border: 0.3rem groove rgba(0, 71, 171, 0.75);
   color: #0047AB;
 }
-.vertical-flex-container .flex-section .grid-container .contact-form-submit-container {
+.master-flex-container .flex-section .grid-container .contact-form-text-message-container {
+  flex-direction: column-reverse;
+  margin: 1.5rem 0 1.5rem;
+}
+.master-flex-container .flex-section .grid-container .contact-form-text-message-container .message {
+  background-color: transparent;
+  border: 0.3rem groove rgba(0, 71, 171, 0.75);
+  color: #0047AB;
+}
+.master-flex-container .flex-section .grid-container .contact-form-submit-container {
   margin: 1.5rem 0 3rem;
 }
-.vertical-flex-container .flex-section .grid-container .contact-form-submit-container .submit-message-button {
+.master-flex-container .flex-section .grid-container .contact-form-submit-container .submit-message-button {
   background-color: rgba(0, 71, 171, 0.8);
   border: 0.3rem groove rgba(0, 71, 171, 0.75);
   color: rgba(250, 250, 250, 0.75);
 }
-.vertical-flex-container .flex-section .grid-container .contact-form-submit-container .submit-message-button:hover {
+.master-flex-container .flex-section .grid-container .contact-form-submit-container .submit-message-button:hover {
   color: #FAFAFA;
 }
-.vertical-flex-container .flex-section .grid-container .contact-form-submit-container .submit-message-button:active {
+.master-flex-container .flex-section .grid-container .contact-form-submit-container .submit-message-button:active {
   color: #111111;
 }
-.vertical-flex-container .flex-section .grid-container .contact-form .input-good {
+.master-flex-container .flex-section .grid-container .contact-form .input-good {
   color: #008013;
 }
-.vertical-flex-container .flex-section .grid-container .contact-form .input-good + label {
+.master-flex-container .flex-section .grid-container .contact-form .input-good + label {
   color: #008013;
 }
-.vertical-flex-container .flex-section .grid-container .contact-form .input-bad {
-  color: #CF352E;
+.master-flex-container .flex-section .grid-container .contact-form .input-bad {
+  color: #cf352e;
 }
-.vertical-flex-container .flex-section .grid-container .contact-form .input-bad + label {
-  color: #CF352E;
+.master-flex-container .flex-section .grid-container .contact-form .input-bad + label {
+  color: #cf352e;
 }
-.vertical-flex-container .flex-section .grid-container .contact-form .input-warning {
+.master-flex-container .flex-section .grid-container .contact-form .input-warning {
   color: #FFD700;
 }
-.vertical-flex-container .flex-section .grid-container .contact-form .input-warning + label {
+.master-flex-container .flex-section .grid-container .contact-form .input-warning + label {
   color: #FFD700;
 }
 
@@ -31576,15 +31576,31 @@ html {
   background-color: #822aba;
   border-bottom: 0.2rem groove #FFD700;
 }
-.master-flex-container .navigation_user-login {
+.master-flex-container .navigation_logo-container {
   position: relative;
-  height: 100%;
-  width: 20%;
+  height: 4.983rem;
+  width: 15%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   transform: rotate(0) translate(0, 0);
-  border-left: 0.2rem solid #FAFAFA;
+}
+.master-flex-container .navigation_logo-container_logo {
+  position: relative;
+  height: 70%;
+  width: 20%;
+}
+.master-flex-container .navigation_logo-container_logo-text {
+  transform: translate(-2rem, 0);
+}
+.master-flex-container .navigation_user-login {
+  position: relative;
+  height: 100%;
+  width: 12.5%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
 }
 
 .master-flex-container {
@@ -37029,91 +37045,26 @@ html {
   grid-row: 18/span 1;
 }
 
-.vertical-flex-container .flex-section .grid-container .introduction-button-container .introduction-button {
+.master-flex-container .master-grid-container .navigation_user-login_login, .master-flex-container .master-grid-container .navigation_user-login_signup {
   position: relative;
-  height: 60%;
-  width: 27.5%;
+  height: 70%;
+  width: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
   transform: rotate(0) translate(0, 0);
-  border: 0.2rem solid rgba(0, 71, 171, 0.8);
+  background-color: transparent;
+  border: 0.2rem outset rgba(250, 250, 250, 0.8);
   border-radius: 5rem;
-  transition: transform 1s, opacity 1s, background-color 0.5s, color 0.5s;
+  transition: background-color 0.5s, color 0.5s;
 }
-.vertical-flex-container .flex-section .grid-container .introduction-button-container .introduction-button--hiddenLeft {
-  position: relative;
-  height: 60%;
-  width: 30%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  opacity: 0;
-  transform: translateX(-25rem);
-  visibility: hidden;
+.master-flex-container .master-grid-container .navigation_user-login_login:hover, .master-flex-container .master-grid-container .navigation_user-login_signup:hover {
+  cursor: pointer;
+  background-color: #FAFAFA;
 }
-.vertical-flex-container .flex-section .grid-container .introduction-button-container .introduction-button--hiddenDown {
-  position: relative;
-  height: 60%;
-  width: 30%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  opacity: 0;
-  transform: translateY(25rem);
-  visibility: hidden;
-}
-.vertical-flex-container .flex-section .grid-container .introduction-button-container .introduction-button--hiddenRight {
-  position: relative;
-  height: 60%;
-  width: 30%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  opacity: 0;
-  transform: translateX(25rem);
-  visibility: hidden;
-}
-.vertical-flex-container .flex-section .grid-container .introduction-button-container .introduction-button:hover {
-  background-color: #0047AB;
-  border: 0.2rem groove #0047AB;
-}
-.vertical-flex-container .flex-section .grid-container .introduction-button-container .introduction-button:active {
+.master-flex-container .master-grid-container .navigation_user-login_login:active, .master-flex-container .master-grid-container .navigation_user-login_signup:active {
   background-color: #FFD700;
   border: 0.2rem inset #FFD700;
-}
-.vertical-flex-container .flex-section .grid-container .showcase-grid button {
-  position: absolute;
-  height: 7.5rem;
-  width: 7.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  background-color: rgba(221, 221, 221, 0.2);
-  border: 0.2rem groove rgba(85, 85, 85, 0.8);
-  border-radius: 50%;
-  z-index: 10;
-  transition: border 0.5s, color 0.5s, background-color 0.5s;
-}
-.vertical-flex-container .flex-section .grid-container .showcase-grid button:hover {
-  cursor: pointer;
-  border: 0.2rem groove #555555;
-  color: #bbbbbb;
-  background-color: #333333;
-}
-.vertical-flex-container .flex-section .grid-container .showcase-grid .card-button-left {
-  left: 5%;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.vertical-flex-container .flex-section .grid-container .showcase-grid .card-button-right {
-  right: 5%;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 .vertical-flex-container .flex-section .grid-container .contact-form {
@@ -37374,13 +37325,32 @@ body {
   overflow-x: hidden;
 }
 
-.vertical-flex-container {
+.master-flex-container {
   background-color: #111111;
 }
-.vertical-flex-container .flex-section:not(:first-of-type) {
-  border-top: 0.2rem groove rgba(51, 51, 51, 0.8);
+.master-flex-container .master-grid-container .king-richard-logo {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  opacity: 0.5;
 }
-.vertical-flex-container .flex-section .grid-container .typing-text-container {
+.master-flex-container .master-grid-container .king-richard-main-text {
+  align-self: center;
+  justify-self: flex-start;
+  transform: translate(-4rem, 0);
+  opacity: 0.5;
+}
+.master-flex-container .master-grid-container .king-richard-sub-text {
+  align-self: center;
+  justify-self: flex-end;
+  transform: translate(-10.25rem, -1rem);
+  opacity: 0.5;
+}
+.master-flex-container .master-grid-container .typing-text-container {
   position: relative;
   height: 100%;
   width: 100%;
@@ -37390,7 +37360,7 @@ body {
   transform: rotate(0) translate(0, 0);
   padding: 0 5rem;
 }
-.vertical-flex-container .flex-section .grid-container .typing-text-container .typing-text--cursor {
+.master-flex-container .master-grid-container .typing-text-container .typing-text--cursor {
   position: relative;
   height: 50%;
   width: 0.8rem;
@@ -37398,7 +37368,7 @@ body {
   margin-left: 1rem;
   animation: blink 0.75s step-end infinite;
 }
-.vertical-flex-container .flex-section .grid-container .introduction-button-container {
+.master-flex-container .master-grid-container .introduction-button-container {
   position: relative;
   height: 100%;
   width: 100%;
@@ -37407,7 +37377,7 @@ body {
   align-items: center;
   transform: rotate(0) translate(0, 0);
 }
-.vertical-flex-container .flex-section .grid-container .about-me-container {
+.master-flex-container .master-grid-container .about-me-container {
   position: relative;
   height: 100%;
   width: 100%;
@@ -37417,7 +37387,7 @@ body {
   transform: rotate(0) translate(0, 0);
   flex-direction: column;
 }
-.vertical-flex-container .flex-section .grid-container .about-me-container__option-slider {
+.master-flex-container .master-grid-container .about-me-container__option-slider {
   position: relative;
   height: 75%;
   width: 100%;
@@ -37428,7 +37398,7 @@ body {
   flex-direction: row;
   overflow: hidden;
 }
-.vertical-flex-container .flex-section .grid-container .about-me-container__option-slider--option {
+.master-flex-container .master-grid-container .about-me-container__option-slider--option {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -37438,7 +37408,7 @@ body {
   transform: rotate(0) translate(0, 0);
   top: 0;
 }
-.vertical-flex-container .flex-section .grid-container .about-me-container__option-slider--option .about-typing-text-container {
+.master-flex-container .master-grid-container .about-me-container__option-slider--option .about-typing-text-container {
   position: relative;
   height: 30.14%;
   width: 100%;
@@ -37448,7 +37418,7 @@ body {
   transform: rotate(0) translate(0, 0);
   padding: 0 5rem;
 }
-.vertical-flex-container .flex-section .grid-container .about-me-container__option-slider--option .about-typing-text-container .about-typing-text--cursor {
+.master-flex-container .master-grid-container .about-me-container__option-slider--option .about-typing-text-container .about-typing-text--cursor {
   position: relative;
   height: 70%;
   width: 0.8rem;
@@ -37456,18 +37426,18 @@ body {
   margin-left: 1rem;
   animation: blink 0.75s step-end infinite;
 }
-.vertical-flex-container .flex-section .grid-container .about-me-container__option-slider--option .about-me-video {
+.master-flex-container .master-grid-container .about-me-container__option-slider--option .about-me-video {
   position: relative;
   height: 100%;
   width: 60%;
 }
-.vertical-flex-container .flex-section .grid-container .about-me-container__option-slider--option--2 {
+.master-flex-container .master-grid-container .about-me-container__option-slider--option--2 {
   transform: translateX(100%);
 }
-.vertical-flex-container .flex-section .grid-container .about-me-container__option-slider--option--1, .vertical-flex-container .flex-section .grid-container .about-me-container__option-slider--option--2 {
+.master-flex-container .master-grid-container .about-me-container__option-slider--option--1, .master-flex-container .master-grid-container .about-me-container__option-slider--option--2 {
   transition: transform 1s;
 }
-.vertical-flex-container .flex-section .grid-container .about-me-container__option-navigation {
+.master-flex-container .master-grid-container .about-me-container__option-navigation {
   position: relative;
   height: 25%;
   width: 100%;
@@ -37477,7 +37447,7 @@ body {
   transform: rotate(0) translate(0, 0);
   padding: 3rem;
 }
-.vertical-flex-container .flex-section .grid-container .about-me-container__option-navigation__dot {
+.master-flex-container .master-grid-container .about-me-container__option-navigation__dot {
   position: relative;
   height: 2rem;
   width: 2rem;
@@ -37486,17 +37456,17 @@ body {
   background-color: rgba(119, 119, 119, 0.5);
   margin: 0 1rem;
 }
-.vertical-flex-container .flex-section .grid-container .about-me-container__option-navigation__dot:hover {
+.master-flex-container .master-grid-container .about-me-container__option-navigation__dot:hover {
   cursor: pointer;
   background-color: rgba(85, 85, 85, 0.8);
 }
-.vertical-flex-container .flex-section .grid-container .about-me-container__option-navigation__dot--active {
+.master-flex-container .master-grid-container .about-me-container__option-navigation__dot--active {
   background-color: #333333;
 }
-.vertical-flex-container .flex-section .grid-container .about-me-container__option-navigation__dot--active:hover {
+.master-flex-container .master-grid-container .about-me-container__option-navigation__dot--active:hover {
   background-color: #333333;
 }
-.vertical-flex-container .flex-section .grid-container .section-header {
+.master-flex-container .master-grid-container .section-header {
   position: relative;
   height: 100%;
   width: 100%;
@@ -37505,7 +37475,7 @@ body {
   align-items: center;
   transform: rotate(0) translate(0, 0);
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid {
+.master-flex-container .master-grid-container .showcase-grid {
   position: relative;
   height: 100%;
   width: 100%;
@@ -37534,19 +37504,19 @@ body {
   overflow: hidden;
   justify-items: center;
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid .column_1-1 {
+.master-flex-container .master-grid-container .showcase-grid .column_1-1 {
   -ms-grid-column: 1/span 1;
   -o-grid-column: 1/span 1;
   -webkit-grid-column: 1/span 1;
   grid-column: 1/span 1;
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid .row_1-1 {
+.master-flex-container .master-grid-container .showcase-grid .row_1-1 {
   -ms-grid-row: 1/span 1;
   -o-grid-row: 1/span 1;
   -webkit-grid-row: 1/span 1;
   grid-row: 1/span 1;
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid .skill-card {
+.master-flex-container .master-grid-container .showcase-grid .skill-card {
   position: relative;
   height: 60%;
   width: 24rem;
@@ -37563,11 +37533,11 @@ body {
   margin: 0 2rem;
   transition: opacity 1s, transform 1s;
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid .skill-card--current {
+.master-flex-container .master-grid-container .showcase-grid .skill-card--current {
   justify-self: center;
   transform: translateY(-8%);
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid .skill-card .skill-image-container {
+.master-flex-container .master-grid-container .showcase-grid .skill-card .skill-image-container {
   position: relative;
   height: 75%;
   width: 100%;
@@ -37578,7 +37548,7 @@ body {
   margin-bottom: 2rem;
   background-color: #0047AB;
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid .skill-card .skill-title-container {
+.master-flex-container .master-grid-container .showcase-grid .skill-card .skill-title-container {
   position: relative;
   height: 25%;
   width: 100%;
@@ -37587,12 +37557,12 @@ body {
   align-items: center;
   transform: rotate(0) translate(0, 0);
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid .skill-card:hover, .vertical-flex-container .flex-section .grid-container .showcase-grid .skill-card:active {
+.master-flex-container .master-grid-container .showcase-grid .skill-card:hover, .master-flex-container .master-grid-container .showcase-grid .skill-card:active {
   cursor: pointer;
   opacity: 1;
   left: 0;
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid .project-card {
+.master-flex-container .master-grid-container .showcase-grid .project-card {
   position: relative;
   height: 80%;
   width: 60%;
@@ -37604,7 +37574,7 @@ body {
   padding: 4rem;
   transition: opacity 1s, transform 1s;
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid .project-card-cover {
+.master-flex-container .master-grid-container .showcase-grid .project-card-cover {
   position: relative;
   height: 100%;
   width: 45%;
@@ -37614,7 +37584,7 @@ body {
   transform: rotate(0) translate(0, 0);
   flex-direction: column;
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid .project-card-cover-image-container {
+.master-flex-container .master-grid-container .showcase-grid .project-card-cover-image-container {
   position: relative;
   height: 75%;
   width: 100%;
@@ -37624,13 +37594,13 @@ body {
   transform: rotate(0) translate(0, 0);
   background-color: rgba(250, 250, 250, 0.25);
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid .project-card-cover-image-container img {
+.master-flex-container .master-grid-container .showcase-grid .project-card-cover-image-container img {
   position: relative;
   height: 100%;
   width: 100%;
   object-fit: cover;
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid .project-card-cover-title-container {
+.master-flex-container .master-grid-container .showcase-grid .project-card-cover-title-container {
   position: relative;
   height: 25%;
   width: 100%;
@@ -37639,7 +37609,7 @@ body {
   align-items: center;
   transform: rotate(0) translate(0, 0);
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid .project-card-content {
+.master-flex-container .master-grid-container .showcase-grid .project-card-content {
   position: relative;
   height: 100%;
   width: 55%;
@@ -37650,7 +37620,7 @@ body {
   flex-direction: column;
   padding-left: 4rem;
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid .project-card-content-description-container {
+.master-flex-container .master-grid-container .showcase-grid .project-card-content-description-container {
   position: relative;
   height: 75%;
   width: 100%;
@@ -37660,7 +37630,7 @@ body {
   transform: rotate(0) translate(0, 0);
   background-color: rgba(250, 250, 250, 0.5);
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid .project-card-content-link-container {
+.master-flex-container .master-grid-container .showcase-grid .project-card-content-link-container {
   position: relative;
   height: 25%;
   width: 100%;
@@ -37669,7 +37639,7 @@ body {
   align-items: center;
   transform: rotate(0) translate(0, 0);
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid .project-card-content-link-container--link {
+.master-flex-container .master-grid-container .showcase-grid .project-card-content-link-container--link {
   position: relative;
   height: 60%;
   width: 40%;
@@ -37682,12 +37652,12 @@ body {
   transform: translateY(1rem);
   background-color: transparent;
 }
-.vertical-flex-container .flex-section .grid-container .showcase-grid .project-card-content-link-container--link:hover {
+.master-flex-container .master-grid-container .showcase-grid .project-card-content-link-container--link:hover {
   cursor: pointer;
   background-color: #0047AB;
   transition: background-color 0.5s, color 0.5s;
 }
-.vertical-flex-container .flex-section .grid-container .dots {
+.master-flex-container .master-grid-container .dots {
   position: relative;
   height: 100%;
   width: 100%;
@@ -37696,7 +37666,7 @@ body {
   align-items: center;
   transform: rotate(0) translate(0, 0);
 }
-.vertical-flex-container .flex-section .grid-container .dots__dot {
+.master-flex-container .master-grid-container .dots__dot {
   position: relative;
   height: 2rem;
   width: 2rem;
@@ -37705,10 +37675,10 @@ body {
   border-radius: 50%;
   margin: 0 2rem;
 }
-.vertical-flex-container .flex-section .grid-container .dots__dot--active {
+.master-flex-container .master-grid-container .dots__dot--active {
   background-color: #333333;
 }
-.vertical-flex-container .flex-section .grid-container .project-count {
+.master-flex-container .master-grid-container .project-count {
   position: relative;
   height: 100%;
   width: 100%;
