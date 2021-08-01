@@ -10,8 +10,8 @@
 
   .navigation {
     @include SizeAndPositioning(relative, 100%, 100vw, flex, space-between, center, 0, 0, 0);
-    background-color: #822aba;
-    border-bottom: 0.2rem groove $primaryColor;
+    background-color: $primaryColor;
+    border-bottom: 0.2rem groove $secondaryColor;
     &_logo-container {
       @include SizeAndPositioning(relative, 4.983rem, 15%, flex, space-evenly, center, 0, 0, 0);
       &_logo {
@@ -23,6 +23,54 @@
     }
     &_user-login {
       @include SizeAndPositioning(relative, 100%, 12.5%, flex, space-evenly, center, 0, 0, 0);
+    }
+    &_login-form-container {
+      @include SizeAndPositioning(relative, 100%, 100%, flex, center, center, 0, 0, 0);
+      .login-form {
+        @include SizeAndPositioning(relative, 100%, 100%, flex, space-evenly, center, 0, 0, 0);
+        background-color: $primaryColor;
+        flex-direction: column;
+        border-bottom-left-radius: 2rem;
+        padding: 2rem;
+
+        .username-container,
+        .password-container,
+        .submit-container {
+          @include SizeAndPositioning(relative, 30%, 75%, flex, center, center, 0, 0, 0);
+          .username,
+          .password,
+          .submit {
+            border-radius: 1rem;
+            padding: 1rem;
+          }
+          .username,
+          .submit {
+            @include SizeAndPositioning(relative, 75%, 100%, flex, center, center, 0, 0, 0);
+          }
+          .password {
+            @include SizeAndPositioning(relative, 75%, 75%, flex, center, center, 0, 0, 0);
+          }
+          .password-show {
+            @include SizeAndPositioning(relative, 70%, 17.5%, flex, center, center, 0, 0, 0);
+            flex-direction: column;
+            margin-left: 1rem;
+            background-color: transparent;
+            border: none;
+            &--hidden {
+              display: flex;
+            }
+            &--shown {
+              display: none;
+            }
+            &--shown,
+            &--hidden {
+              &:hover {
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

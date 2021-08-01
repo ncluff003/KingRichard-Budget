@@ -9,11 +9,11 @@ html {
 }
 
 .master-flex-container .master-grid-container .navigation_logo-container_logo {
-  fill: #FAFAFA;
+  fill: #fafafa;
 }
 .master-flex-container .master-grid-container .navigation_logo-container_logo-text {
   font-size: 2.4rem;
-  color: #FAFAFA;
+  color: #fafafa;
 }
 .master-flex-container .master-grid-container .navigation_user-login_login, .master-flex-container .master-grid-container .navigation_user-login_signup {
   font-size: 1.4rem;
@@ -21,6 +21,30 @@ html {
 }
 .master-flex-container .master-grid-container .navigation_user-login_login:hover, .master-flex-container .master-grid-container .navigation_user-login_signup:hover {
   color: #333333;
+}
+.master-flex-container .master-grid-container .navigation_login-form-container .login-form .username-container .username,
+.master-flex-container .master-grid-container .navigation_login-form-container .login-form .username-container .password,
+.master-flex-container .master-grid-container .navigation_login-form-container .login-form .username-container .submit,
+.master-flex-container .master-grid-container .navigation_login-form-container .login-form .password-container .username,
+.master-flex-container .master-grid-container .navigation_login-form-container .login-form .password-container .password,
+.master-flex-container .master-grid-container .navigation_login-form-container .login-form .password-container .submit,
+.master-flex-container .master-grid-container .navigation_login-form-container .login-form .submit-container .username,
+.master-flex-container .master-grid-container .navigation_login-form-container .login-form .submit-container .password,
+.master-flex-container .master-grid-container .navigation_login-form-container .login-form .submit-container .submit {
+  font-size: 2rem;
+}
+.master-flex-container .master-grid-container .navigation_login-form-container .login-form .username-container .password-show,
+.master-flex-container .master-grid-container .navigation_login-form-container .login-form .password-container .password-show,
+.master-flex-container .master-grid-container .navigation_login-form-container .login-form .submit-container .password-show {
+  font-size: 3rem;
+  color: #fafafa;
+}
+.master-flex-container .master-grid-container .navigation_login-form-container .login-form .username-container .password-show--shown:hover, .master-flex-container .master-grid-container .navigation_login-form-container .login-form .username-container .password-show--hidden:hover,
+.master-flex-container .master-grid-container .navigation_login-form-container .login-form .password-container .password-show--shown:hover,
+.master-flex-container .master-grid-container .navigation_login-form-container .login-form .password-container .password-show--hidden:hover,
+.master-flex-container .master-grid-container .navigation_login-form-container .login-form .submit-container .password-show--shown:hover,
+.master-flex-container .master-grid-container .navigation_login-form-container .login-form .submit-container .password-show--hidden:hover {
+  color: #ffd700;
 }
 .master-flex-container .master-grid-container .king-richard-main-text {
   color: #822aba;
@@ -33,7 +57,7 @@ html {
 .master-flex-container .flex-section .grid-container .typing-text-container {
   font-size: 7rem;
   text-align: center;
-  color: #0047AB;
+  color: #ffd700;
 }
 .master-flex-container .flex-section .grid-container .introduction-button-container {
   font-size: 1.6rem;
@@ -42,11 +66,11 @@ html {
   text-decoration: none;
 }
 .master-flex-container .flex-section .grid-container .introduction-button-container .introduction-button:link, .master-flex-container .flex-section .grid-container .introduction-button-container .introduction-button:visited {
-  color: rgba(0, 71, 171, 0.8);
+  color: rgba(255, 215, 0, 0.8);
 }
 .master-flex-container .flex-section .grid-container .introduction-button-container .introduction-button:hover {
   cursor: pointer;
-  color: #FAFAFA;
+  color: #fafafa;
 }
 .master-flex-container .flex-section .grid-container .introduction-button-container .introduction-button:active {
   color: #111111;
@@ -54,7 +78,7 @@ html {
 .master-flex-container .flex-section .grid-container .about-me-container__option-slider--option .about-typing-text-container {
   font-size: 7rem;
   text-align: center;
-  color: #0047AB;
+  color: #ffd700;
 }
 .master-flex-container .flex-section .grid-container .about-me-container__option-navigation {
   font-size: 2.4rem;
@@ -65,15 +89,15 @@ html {
 }
 .master-flex-container .flex-section .grid-container .section-header {
   font-size: 8rem;
-  color: #0047AB;
+  color: #ffd700;
 }
 .master-flex-container .flex-section .grid-container .showcase-grid .skill-card .skill-image-container {
   font-size: 15rem;
-  color: #FAFAFA;
+  color: #fafafa;
 }
 .master-flex-container .flex-section .grid-container .showcase-grid .skill-card .skill-title-container {
   font-size: 3rem;
-  color: #0047AB;
+  color: #ffd700;
 }
 .master-flex-container .flex-section .grid-container .showcase-grid button {
   font-size: 3rem;
@@ -85,29 +109,29 @@ html {
 }
 .master-flex-container .flex-section .grid-container .showcase-grid .project-card-cover-title-container {
   font-size: 3rem;
-  color: #FAFAFA;
+  color: #fafafa;
 }
 .master-flex-container .flex-section .grid-container .showcase-grid .project-card-content-description-container {
   font-size: 1.8rem;
-  color: #0047AB;
+  color: #ffd700;
 }
 .master-flex-container .flex-section .grid-container .showcase-grid .project-card-content-link-container--link {
   font-size: 1.4rem;
   text-decoration: none;
 }
 .master-flex-container .flex-section .grid-container .showcase-grid .project-card-content-link-container--link, .master-flex-container .flex-section .grid-container .showcase-grid .project-card-content-link-container--link:visited {
-  color: rgba(0, 71, 171, 0.8);
+  color: rgba(255, 215, 0, 0.8);
 }
 .master-flex-container .flex-section .grid-container .showcase-grid .project-card-content-link-container--link:hover {
-  color: #FAFAFA;
+  color: #fafafa;
 }
 .master-flex-container .flex-section .grid-container .project-count {
   font-size: 3rem;
-  color: #0047AB;
+  color: #ffd700;
 }
 .master-flex-container .flex-section .grid-container .contact-form {
   font-size: 2rem;
-  color: #0047AB;
+  color: #ffd700;
 }
 .master-flex-container .flex-section .grid-container .contact-form-message-container--error {
   color: #cf352e;
@@ -125,8 +149,8 @@ html {
 .master-flex-container .flex-section .grid-container .contact-form-name-container--first-name .last-name, .master-flex-container .flex-section .grid-container .contact-form-name-container--last-name .first-name,
 .master-flex-container .flex-section .grid-container .contact-form-name-container--last-name .last-name {
   background-color: transparent;
-  border: 0.3rem groove rgba(0, 71, 171, 0.75);
-  color: #0047AB;
+  border: 0.3rem groove rgba(255, 215, 0, 0.75);
+  color: #ffd700;
 }
 .master-flex-container .flex-section .grid-container .contact-form-email-container {
   flex-direction: column-reverse;
@@ -134,8 +158,8 @@ html {
 }
 .master-flex-container .flex-section .grid-container .contact-form-email-container .email {
   background-color: transparent;
-  border: 0.3rem groove rgba(0, 71, 171, 0.75);
-  color: #0047AB;
+  border: 0.3rem groove rgba(255, 215, 0, 0.75);
+  color: #ffd700;
 }
 .master-flex-container .flex-section .grid-container .contact-form-text-message-container {
   flex-direction: column-reverse;
@@ -143,19 +167,19 @@ html {
 }
 .master-flex-container .flex-section .grid-container .contact-form-text-message-container .message {
   background-color: transparent;
-  border: 0.3rem groove rgba(0, 71, 171, 0.75);
-  color: #0047AB;
+  border: 0.3rem groove rgba(255, 215, 0, 0.75);
+  color: #ffd700;
 }
 .master-flex-container .flex-section .grid-container .contact-form-submit-container {
   margin: 1.5rem 0 3rem;
 }
 .master-flex-container .flex-section .grid-container .contact-form-submit-container .submit-message-button {
-  background-color: rgba(0, 71, 171, 0.8);
-  border: 0.3rem groove rgba(0, 71, 171, 0.75);
+  background-color: rgba(255, 215, 0, 0.8);
+  border: 0.3rem groove rgba(255, 215, 0, 0.75);
   color: rgba(250, 250, 250, 0.75);
 }
 .master-flex-container .flex-section .grid-container .contact-form-submit-container .submit-message-button:hover {
-  color: #FAFAFA;
+  color: #fafafa;
 }
 .master-flex-container .flex-section .grid-container .contact-form-submit-container .submit-message-button:active {
   color: #111111;
@@ -173,14 +197,14 @@ html {
   color: #cf352e;
 }
 .master-flex-container .flex-section .grid-container .contact-form .input-warning {
-  color: #FFD700;
+  color: #822aba;
 }
 .master-flex-container .flex-section .grid-container .contact-form .input-warning + label {
-  color: #FFD700;
+  color: #822aba;
 }
 
 .current-link {
-  color: rgba(255, 215, 0, 0.8);
+  color: rgba(130, 42, 186, 0.8);
 }
 
 @keyframes blink {
@@ -31574,7 +31598,7 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
   background-color: #822aba;
-  border-bottom: 0.2rem groove #FFD700;
+  border-bottom: 0.2rem groove #ffd700;
 }
 .master-flex-container .navigation_logo-container {
   position: relative;
@@ -31601,6 +31625,108 @@ html {
   justify-content: space-evenly;
   align-items: center;
   transform: rotate(0) translate(0, 0);
+}
+.master-flex-container .navigation_login-form-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-flex-container .navigation_login-form-container .login-form {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: #822aba;
+  flex-direction: column;
+  border-bottom-left-radius: 2rem;
+  padding: 2rem;
+}
+.master-flex-container .navigation_login-form-container .login-form .username-container,
+.master-flex-container .navigation_login-form-container .login-form .password-container,
+.master-flex-container .navigation_login-form-container .login-form .submit-container {
+  position: relative;
+  height: 30%;
+  width: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-flex-container .navigation_login-form-container .login-form .username-container .username,
+.master-flex-container .navigation_login-form-container .login-form .username-container .password,
+.master-flex-container .navigation_login-form-container .login-form .username-container .submit,
+.master-flex-container .navigation_login-form-container .login-form .password-container .username,
+.master-flex-container .navigation_login-form-container .login-form .password-container .password,
+.master-flex-container .navigation_login-form-container .login-form .password-container .submit,
+.master-flex-container .navigation_login-form-container .login-form .submit-container .username,
+.master-flex-container .navigation_login-form-container .login-form .submit-container .password,
+.master-flex-container .navigation_login-form-container .login-form .submit-container .submit {
+  border-radius: 1rem;
+  padding: 1rem;
+}
+.master-flex-container .navigation_login-form-container .login-form .username-container .username,
+.master-flex-container .navigation_login-form-container .login-form .username-container .submit,
+.master-flex-container .navigation_login-form-container .login-form .password-container .username,
+.master-flex-container .navigation_login-form-container .login-form .password-container .submit,
+.master-flex-container .navigation_login-form-container .login-form .submit-container .username,
+.master-flex-container .navigation_login-form-container .login-form .submit-container .submit {
+  position: relative;
+  height: 75%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-flex-container .navigation_login-form-container .login-form .username-container .password,
+.master-flex-container .navigation_login-form-container .login-form .password-container .password,
+.master-flex-container .navigation_login-form-container .login-form .submit-container .password {
+  position: relative;
+  height: 75%;
+  width: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-flex-container .navigation_login-form-container .login-form .username-container .password-show,
+.master-flex-container .navigation_login-form-container .login-form .password-container .password-show,
+.master-flex-container .navigation_login-form-container .login-form .submit-container .password-show {
+  position: relative;
+  height: 70%;
+  width: 17.5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  flex-direction: column;
+  margin-left: 1rem;
+  background-color: transparent;
+  border: none;
+}
+.master-flex-container .navigation_login-form-container .login-form .username-container .password-show--hidden,
+.master-flex-container .navigation_login-form-container .login-form .password-container .password-show--hidden,
+.master-flex-container .navigation_login-form-container .login-form .submit-container .password-show--hidden {
+  display: flex;
+}
+.master-flex-container .navigation_login-form-container .login-form .username-container .password-show--shown,
+.master-flex-container .navigation_login-form-container .login-form .password-container .password-show--shown,
+.master-flex-container .navigation_login-form-container .login-form .submit-container .password-show--shown {
+  display: none;
+}
+.master-flex-container .navigation_login-form-container .login-form .username-container .password-show--shown:hover, .master-flex-container .navigation_login-form-container .login-form .username-container .password-show--hidden:hover,
+.master-flex-container .navigation_login-form-container .login-form .password-container .password-show--shown:hover,
+.master-flex-container .navigation_login-form-container .login-form .password-container .password-show--hidden:hover,
+.master-flex-container .navigation_login-form-container .login-form .submit-container .password-show--shown:hover,
+.master-flex-container .navigation_login-form-container .login-form .submit-container .password-show--hidden:hover {
+  cursor: pointer;
 }
 
 .master-flex-container {
@@ -37060,11 +37186,11 @@ html {
 }
 .master-flex-container .master-grid-container .navigation_user-login_login:hover, .master-flex-container .master-grid-container .navigation_user-login_signup:hover {
   cursor: pointer;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
 }
 .master-flex-container .master-grid-container .navigation_user-login_login:active, .master-flex-container .master-grid-container .navigation_user-login_signup:active {
-  background-color: #FFD700;
-  border: 0.2rem inset #FFD700;
+  background-color: #822aba;
+  border: 0.2rem inset #822aba;
 }
 
 .vertical-flex-container .flex-section .grid-container .contact-form {
@@ -37115,7 +37241,7 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
   background-color: transparent;
-  border: 0.3rem groove rgba(0, 71, 171, 0.75);
+  border: 0.3rem groove rgba(255, 215, 0, 0.75);
   padding: 1rem;
 }
 .vertical-flex-container .flex-section .grid-container .contact-form-name-container--first-name .first-name:focus::-webkit-input-placeholder, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--first-name .first-name:focus::placeholder, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--first-name .last-name:focus::-webkit-input-placeholder, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--first-name .last-name:focus::placeholder, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--last-name .first-name:focus::-webkit-input-placeholder, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--last-name .first-name:focus::placeholder, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--last-name .last-name:focus::-webkit-input-placeholder, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--last-name .last-name:focus::placeholder {
@@ -37155,7 +37281,7 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
   background-color: transparent;
-  border: 0.3rem groove rgba(0, 71, 171, 0.75);
+  border: 0.3rem groove rgba(255, 215, 0, 0.75);
   padding: 1rem;
 }
 .vertical-flex-container .flex-section .grid-container .contact-form-email-container .email:focus::-webkit-input-placeholder, .vertical-flex-container .flex-section .grid-container .contact-form-email-container .email:focus::placeholder {
@@ -37195,7 +37321,7 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
   background-color: transparent;
-  border: 0.3rem groove rgba(0, 71, 171, 0.75);
+  border: 0.3rem groove rgba(255, 215, 0, 0.75);
   padding: 1rem;
   resize: none;
 }
@@ -37234,18 +37360,18 @@ html {
   justify-content: center;
   align-items: center;
   transform: rotate(0) translate(0, 0);
-  background-color: rgba(0, 71, 171, 0.8);
-  border: 0.3rem groove rgba(0, 71, 171, 0.75);
+  background-color: rgba(255, 215, 0, 0.8);
+  border: 0.3rem groove rgba(255, 215, 0, 0.75);
   transition: background-color 0.5s, border 0.5s, color 0.5s;
 }
 .vertical-flex-container .flex-section .grid-container .contact-form-submit-container .submit-message-button:hover {
   cursor: pointer;
-  background-color: #0047AB;
-  border: 0.3rem groove #0047AB;
+  background-color: #ffd700;
+  border: 0.3rem groove #ffd700;
 }
 .vertical-flex-container .flex-section .grid-container .contact-form-submit-container .submit-message-button:active {
-  background-color: #FFD700;
-  border: 0.3rem groove #FFD700;
+  background-color: #822aba;
+  border: 0.3rem groove #822aba;
   outline: none;
 }
 .vertical-flex-container .flex-section .grid-container .contact-form .input-good {
@@ -37255,7 +37381,7 @@ html {
   border: 0.3rem groove #CF352E;
 }
 .vertical-flex-container .flex-section .grid-container .contact-form .input-warning {
-  border: 0.3rem groove #FFD700;
+  border: 0.3rem groove #822aba;
 }
 .vertical-flex-container .flex-section .grid-container .contact-form ::-webkit-input-placeholder, .vertical-flex-container .flex-section .grid-container .contact-form ::placeholder {
   opacity: 0;
@@ -37328,6 +37454,17 @@ body {
 .master-flex-container {
   background-color: #111111;
 }
+.master-flex-container .master-grid-container .signup-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  flex-direction: column;
+  background-color: rgba(130, 42, 186, 0.8);
+}
 .master-flex-container .master-grid-container .king-richard-logo {
   position: relative;
   height: 100%;
@@ -37364,7 +37501,7 @@ body {
   position: relative;
   height: 50%;
   width: 0.8rem;
-  background-color: #0047AB;
+  background-color: #ffd700;
   margin-left: 1rem;
   animation: blink 0.75s step-end infinite;
 }
@@ -37422,7 +37559,7 @@ body {
   position: relative;
   height: 70%;
   width: 0.8rem;
-  background-color: #0047AB;
+  background-color: #ffd700;
   margin-left: 1rem;
   animation: blink 0.75s step-end infinite;
 }
@@ -37546,7 +37683,7 @@ body {
   align-items: center;
   transform: rotate(0) translate(0, 0);
   margin-bottom: 2rem;
-  background-color: #0047AB;
+  background-color: #ffd700;
 }
 .master-flex-container .master-grid-container .showcase-grid .skill-card .skill-title-container {
   position: relative;
@@ -37647,14 +37784,14 @@ body {
   justify-content: center;
   align-items: center;
   transform: rotate(0) translate(0, 0);
-  border: 0.2rem groove rgba(0, 71, 171, 0.8);
+  border: 0.2rem groove rgba(255, 215, 0, 0.8);
   border-radius: 5rem;
   transform: translateY(1rem);
   background-color: transparent;
 }
 .master-flex-container .master-grid-container .showcase-grid .project-card-content-link-container--link:hover {
   cursor: pointer;
-  background-color: #0047AB;
+  background-color: #ffd700;
   transition: background-color 0.5s, color 0.5s;
 }
 .master-flex-container .master-grid-container .dots {

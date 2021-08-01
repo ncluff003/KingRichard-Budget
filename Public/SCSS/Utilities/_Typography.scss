@@ -38,13 +38,36 @@ html {
           }
         }
       }
+      &_login-form-container {
+        .login-form {
+          .username-container,
+          .password-container,
+          .submit-container {
+            .username,
+            .password,
+            .submit {
+              font-size: 2rem;
+            }
+            .password-show {
+              font-size: 3rem;
+              color: $colorOffWhite;
+              &--shown,
+              &--hidden {
+                &:hover {
+                  color: $secondaryColor;
+                }
+              }
+            }
+          }
+        }
+      }
     }
     .king-richard-main-text {
-      color: #822aba;
+      color: $primaryColor;
       font-size: 14rem;
     }
     .king-richard-sub-text {
-      color: #822aba;
+      color: $primaryColor;
       font-size: 5rem;
     }
   }
