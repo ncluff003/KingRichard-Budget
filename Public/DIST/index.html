@@ -7,12 +7,13 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" href="KingRichard_FavIcon.ico" type="image/x-icon" />
     <title>King Richard</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/DIST/CSS/kingrichard.css" />
-    <script type="module" src="/Bundle.js" defer></script>
-  <script defer src="DIST/Bundle.js?a2ee671fe61c30cc2b67"></script></head>
+    <script type="module" src="/DIST/Bundle.js" defer></script>
+  <script defer src="DIST/Bundle.js?1a64c5a2e5991ca29880"></script></head>
   <body>
     <!--[if lt IE 7]>
       <p class="browsehappy">
@@ -21,7 +22,72 @@
       </p>
     <![endif]-->
     <section class="master-flex-container">
-      <section class="master-grid-container"></section>
+      <section class="master-grid-container">
+        <nav class="navigation column_1-24 row_1-1">
+          <section class="navigation_logo-container">
+            <img src="./KingRichard-Logo-White.svg" alt="King Richard Logo" class="navigation_logo-container_logo" />
+            <p class="navigation_logo-container_logo-text">King Richard</p>
+          </section>
+          <section class="navigation_user-login">
+            <button class="navigation_user-login_login">Login</button>
+            <button class="navigation_user-login_signup">Signup</button>
+          </section>
+        </nav>
+        <section class="navigation_login-form-container column_21-4 row_2-5">
+          <form action="" class="login-form">
+            <div class="username-container">
+              <input type="text" name="username" id="username" class="username" />
+              <label for="username" class="username-label"></label>
+            </div>
+            <div class="password-container">
+              <input type="password" name="password" id="password" class="password" />
+              <label for="password" class="password-label"></label>
+              <button class="password-show">
+                <i class="far fa-eye password-show--hidden"></i>
+                <i class="far fa-eye-slash password-show--shown"></i>
+              </button>
+            </div>
+            <div class="submit-container">
+              <button type="submit" class="submit">Submit</button>
+            </div>
+          </form>
+        </section>
+        <img src="./KingRichard-Logo.svg" alt="King Richard Logo" class="king-richard-logo column_4-6 row_4-13" />
+        <h1 class="king-richard-main-text column_11-12 row_9-4">King Richard</h1>
+        <h3 class="king-richard-sub-text column_11-12 row_12-2">Budget Like Royalty</h3>
+        <section class="signup-form-container column_1-24 row_2-17">
+          <form action="" class="signup-form">
+            <section class="signup-form_questions-and-submit-container">
+              <section class="signup-form_questions-and-submit-container--question">
+                <input type="text" class="question first-name q1" placeholder="Gandalf" autocomplete="off" required />
+                <label for="" class="question-label first-name-label q1">What is your first name?</label>
+                <input type="text" class="question last-name" placeholder="White" autocomplete="off" required />
+                <label for="" class="question-label last-name-label">What is your last name?</label>
+                <input type="password" class="question password" placeholder="password" autocomplete="off" required />
+                <label for="" class="question-label password-label">What would you want to be your password?</label>
+                <input
+                  type="password"
+                  class="question repeat-password"
+                  placeholder="password"
+                  autocomplete="off"
+                  required
+                />
+                <label for="" class="question-label repeat-password-label">Please repeat the password you chose?</label>
+                <input
+                  type="email"
+                  class="question email"
+                  placeholder="gandalfthewhite@email.com"
+                  autocomplete="off"
+                  required
+                />
+                <label for="" class="question-label email-label">What email could we have?</label>
+              </section>
+              <button class="signup-form_questions-and-submit-container--continue">Continue</button>
+            </section>
+            <section class="signup-form_response-container"></section>
+          </form>
+        </section>
+      </section>
     </section>
   </body>
 </html>

@@ -77,11 +77,6 @@ body {
   //  Navigation
 
   .master-grid-container {
-    .signup-container {
-      @include SizeAndPositioning(relative, 100%, 100%, flex, center, center, 0, 0, 0);
-      flex-direction: column;
-      background-color: rgba($primaryColor, 0.8);
-    }
     .king-richard-logo {
       @include SizeAndPositioning(relative, 100%, 100%, flex, center, center, 0, 0, 0);
       opacity: 0.5;

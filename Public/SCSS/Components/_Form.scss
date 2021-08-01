@@ -4,136 +4,67 @@
 ////////////////////////////////////////////////
 //  Vertical Flex Container
 
-.vertical-flex-container {
-
+.master-flex-container {
   ////////////////////////////////////////////////
   //  Navigation
- 
-  ////////////////////////////////////////////////
-  //  Flex Section
-  .flex-section {
 
-    .grid-container {
-
-      .contact-form {
-        @include SizeAndPositioning (relative, 100%, 100%, flex, space-evenly, center, 0, 0, 0);
+  .master-grid-container {
+    .signup-form-container {
+      @include SizeAndPositioning(relative, 100%, 100%, flex, center, center, 0, 0, 0);
+      flex-direction: column;
+      background-color: rgba($primaryColor, 0.8);
+      .signup-form {
+        @include SizeAndPositioning(relative, 20%, 65%, flex, space-evenly, center, 0, 0, 0);
         flex-direction: column;
-
-        &-message-container {
-          @include SizeAndPositioning (relative, 10%, 100%, flex, space-evenly, center, 0, 0, 0);
-        }
-
-        &-name-container {
-          @include SizeAndPositioning (relative, 10%, 100%, flex, space-evenly, center, 0, 0, 0);
-          margin: 4rem 0 2rem;
-          &--first-name, &--last-name{
-            @include SizeAndPositioning (relative, 100%, 40%, flex, center, center, 0, 0, 0);
-            flex-direction: column-reverse;
-            .first-name, .last-name {
-              @include SizeAndPositioning (relative, 100%, 100%, flex, center, center, 0, 0, 0);
+        &_questions-and-submit-container {
+          @include SizeAndPositioning(relative, 85%, 100%, flex, center, center, 0, 0, 0);
+          &--question {
+            @include SizeAndPositioning(relative, 100%, 90%, flex, center, center, 0, 0, 0);
+            background-color: rgba($colorDarkestGrey, 0.6);
+            .question {
+              @include SizeAndPositioning(relative, 100%, 100%, flex, center, center, 0, 0, 0);
               background-color: transparent;
-              border: .3rem groove rgba($secondaryColor, .75);
-              padding: 1rem;
-              &:focus::-webkit-input-placeholder, &:focus::placeholder {
-                opacity: 1;
+              border: none;
+              border-bottom: 0.2rem inset rgba($colorOffWhite, 0.8);
+              padding: 2rem;
+              &:not(:placeholder-shown) + label,
+              &:focus + label {
+                transform: translate(-9rem, -10rem) scale(0.85);
               }
-              &:not(:placeholder-shown) + label, &:focus + label {
-                transform: translate(-13.5rem, -3.75rem) scale(.85);
+              &:focus {
+                border-bottom: 0.2rem inset $secondaryColor;
+                outline: transparent;
+                &::-webkit-input-placeholder,
+                &::placeholder {
+                  opacity: 1;
+                }
               }
-              &-label {
-                @include SizeAndPositioning (absolute, 40%, 30%, flex, center, center, 0, 0, 0);
-                transition: transform .75s;
-                transform: translate(-12.5rem, 0);
-              }
+              z-index: 10;
+            }
+            .question-label {
+              @include SizeAndPositioning(absolute, 100%, 100%, flex, flex-start, center, 0, 0, 0);
+              padding: 2rem;
+              z-index: 9;
+              transition: transform 1s;
             }
           }
-        }
-        
-        &-email-container {
-          @include SizeAndPositioning (relative, 10%, 86.75%, flex, center, center, 0, 0, 0);
-          flex-direction: column-reverse;
-          margin: 2rem 0 2rem;
-          .email {
-            @include SizeAndPositioning (relative, 100%, 100%, flex, center, center, 0, 0, 0);
-            background-color: transparent;
-            border: .3rem groove rgba($secondaryColor, .75);
-            padding: 1rem;
-            &:focus::-webkit-input-placeholder, &:focus::placeholder {
-              opacity: 1;
-            }
-            &:not(:placeholder-shown) + label, &:focus + label {
-              transform: translate(-34.75rem, -3.75rem) scale(.85);
-            }
-            &-label {
-              @include SizeAndPositioning (absolute, 40%, 30%, flex, center, center, 0, 0, 0);
-              transition: transform .75s;
-              transform: translate(-33.5rem, 0);
-            }
+          &--continue {
+            @include SizeAndPositioning(relative, 100%, 10%, flex, center, center, 0, 0, 0);
+            background-color: rgba($tertiaryColor, 0.8);
+            border: none;
+            border-top-right-radius: 2rem;
+            border-bottom-right-radius: 2rem;
+          }
+          .q1 {
+            display: flex;
           }
         }
-        &-text-message-container {
-          @include SizeAndPositioning (relative, 35%, 86.75%, flex, center, center, 0, 0, 0);
-          flex-direction: column-reverse;
-          margin: 2rem 0 2rem;
-          .message {
-            @include SizeAndPositioning (relative, 100%, 100%, flex, center, center, 0, 0, 0);
-            background-color: transparent;
-            border: .3rem groove rgba($secondaryColor, .75);
-            padding: 1rem;
-            &:focus::-webkit-input-placeholder, &:focus::placeholder {
-              opacity: 1;
-            }
-            &:not(:placeholder-shown) + label, &:focus + label {
-              transform: translate(-37.5rem, -12.35rem) scale(.85);
-            }
-            &-label {
-              @include SizeAndPositioning (absolute, 20%, 15%, flex, center, center, 0, 0, 0);
-              transition: transform .75s;
-              transform: translate(-36.5rem, -8.6rem);
-            }
-            resize: none;
-          }
-        }
-        &-submit-container {
-          @include SizeAndPositioning (relative, 15%, 100%, flex, center, center, 0, 0, 0);
-          margin: 2rem 0 4rem;
-          .submit-message-button {
-            @include SizeAndPositioning (relative, 100%, 30%, flex, center, center, 0, 0, 0);
-            background-color: rgba($secondaryColor, .8);
-            border: .3rem groove rgba($secondaryColor, .75);
-            transition: background-color .5s, border .5s, color .5s;
-            &:hover {
-              cursor: pointer;
-              background-color: $secondaryColor;
-              border: .3rem groove $secondaryColor;
-            }
-            &:active {
-              background-color: $primaryColor;
-              border: .3rem groove $primaryColor;
-              outline: none;
-            }
-          }
-        }
-
-        .input-good {
-          border: .3rem groove #008013;
-        }
-        .input-bad {
-          border: .3rem groove #CF352E;
-        }
-        .input-warning {
-          border: .3rem groove $primaryColor;
-        }
-
-        ::-webkit-input-placeholder, ::placeholder {
-          opacity: 0;
-          transition: all .75s;
-        }
-
       }
-
+      ::-webkit-input-placeholder,
+      ::placeholder {
+        opacity: 0;
+        transition: all 0.75s;
+      }
     }
-
- }
- 
+  }
 }

@@ -54,6 +54,21 @@ html {
   color: #822aba;
   font-size: 5rem;
 }
+.master-flex-container .master-grid-container .signup-form-container .signup-form_questions-and-submit-container--question .question {
+  font-size: 4rem;
+  color: #fafafa;
+}
+.master-flex-container .master-grid-container .signup-form-container .signup-form_questions-and-submit-container--question .question:focus + label {
+  color: #ffd700;
+}
+.master-flex-container .master-grid-container .signup-form-container .signup-form_questions-and-submit-container--question .question-label {
+  font-size: 4rem;
+  color: #fafafa;
+}
+.master-flex-container .master-grid-container .signup-form-container .signup-form_questions-and-submit-container--continue {
+  font-size: 2rem;
+  color: #fafafa;
+}
 .master-flex-container .flex-section .grid-container .typing-text-container {
   font-size: 7rem;
   text-align: center;
@@ -37193,46 +37208,47 @@ html {
   border: 0.2rem inset #822aba;
 }
 
-.vertical-flex-container .flex-section .grid-container .contact-form {
+.master-flex-container .master-grid-container .signup-form-container {
   position: relative;
   height: 100%;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  flex-direction: column;
+  background-color: rgba(130, 42, 186, 0.8);
+}
+.master-flex-container .master-grid-container .signup-form-container .signup-form {
+  position: relative;
+  height: 20%;
+  width: 65%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   transform: rotate(0) translate(0, 0);
   flex-direction: column;
 }
-.vertical-flex-container .flex-section .grid-container .contact-form-message-container {
+.master-flex-container .master-grid-container .signup-form-container .signup-form_questions-and-submit-container {
   position: relative;
-  height: 10%;
+  height: 85%;
   width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-}
-.vertical-flex-container .flex-section .grid-container .contact-form-name-container {
-  position: relative;
-  height: 10%;
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  margin: 4rem 0 2rem;
-}
-.vertical-flex-container .flex-section .grid-container .contact-form-name-container--first-name, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--last-name {
-  position: relative;
-  height: 100%;
-  width: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
   transform: rotate(0) translate(0, 0);
-  flex-direction: column-reverse;
 }
-.vertical-flex-container .flex-section .grid-container .contact-form-name-container--first-name .first-name, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--first-name .last-name, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--last-name .first-name, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--last-name .last-name {
+.master-flex-container .master-grid-container .signup-form-container .signup-form_questions-and-submit-container--question {
+  position: relative;
+  height: 100%;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: rgba(17, 17, 17, 0.6);
+}
+.master-flex-container .master-grid-container .signup-form-container .signup-form_questions-and-submit-container--question .question {
   position: relative;
   height: 100%;
   width: 100%;
@@ -37241,149 +37257,51 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
   background-color: transparent;
-  border: 0.3rem groove rgba(255, 215, 0, 0.75);
-  padding: 1rem;
+  border: none;
+  border-bottom: 0.2rem inset rgba(250, 250, 250, 0.8);
+  padding: 2rem;
+  z-index: 10;
 }
-.vertical-flex-container .flex-section .grid-container .contact-form-name-container--first-name .first-name:focus::-webkit-input-placeholder, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--first-name .first-name:focus::placeholder, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--first-name .last-name:focus::-webkit-input-placeholder, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--first-name .last-name:focus::placeholder, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--last-name .first-name:focus::-webkit-input-placeholder, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--last-name .first-name:focus::placeholder, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--last-name .last-name:focus::-webkit-input-placeholder, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--last-name .last-name:focus::placeholder {
+.master-flex-container .master-grid-container .signup-form-container .signup-form_questions-and-submit-container--question .question:not(:placeholder-shown) + label, .master-flex-container .master-grid-container .signup-form-container .signup-form_questions-and-submit-container--question .question:focus + label {
+  transform: translate(-9rem, -10rem) scale(0.85);
+}
+.master-flex-container .master-grid-container .signup-form-container .signup-form_questions-and-submit-container--question .question:focus {
+  border-bottom: 0.2rem inset #ffd700;
+  outline: transparent;
+}
+.master-flex-container .master-grid-container .signup-form-container .signup-form_questions-and-submit-container--question .question:focus::-webkit-input-placeholder, .master-flex-container .master-grid-container .signup-form-container .signup-form_questions-and-submit-container--question .question:focus::placeholder {
   opacity: 1;
 }
-.vertical-flex-container .flex-section .grid-container .contact-form-name-container--first-name .first-name:not(:placeholder-shown) + label, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--first-name .first-name:focus + label, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--first-name .last-name:not(:placeholder-shown) + label, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--first-name .last-name:focus + label, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--last-name .first-name:not(:placeholder-shown) + label, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--last-name .first-name:focus + label, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--last-name .last-name:not(:placeholder-shown) + label, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--last-name .last-name:focus + label {
-  transform: translate(-13.5rem, -3.75rem) scale(0.85);
-}
-.vertical-flex-container .flex-section .grid-container .contact-form-name-container--first-name .first-name-label, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--first-name .last-name-label, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--last-name .first-name-label, .vertical-flex-container .flex-section .grid-container .contact-form-name-container--last-name .last-name-label {
+.master-flex-container .master-grid-container .signup-form-container .signup-form_questions-and-submit-container--question .question-label {
   position: absolute;
-  height: 40%;
-  width: 30%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  transition: transform 0.75s;
-  transform: translate(-12.5rem, 0);
-}
-.vertical-flex-container .flex-section .grid-container .contact-form-email-container {
-  position: relative;
-  height: 10%;
-  width: 86.75%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  flex-direction: column-reverse;
-  margin: 2rem 0 2rem;
-}
-.vertical-flex-container .flex-section .grid-container .contact-form-email-container .email {
-  position: relative;
   height: 100%;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   transform: rotate(0) translate(0, 0);
-  background-color: transparent;
-  border: 0.3rem groove rgba(255, 215, 0, 0.75);
-  padding: 1rem;
+  padding: 2rem;
+  z-index: 9;
+  transition: transform 1s;
 }
-.vertical-flex-container .flex-section .grid-container .contact-form-email-container .email:focus::-webkit-input-placeholder, .vertical-flex-container .flex-section .grid-container .contact-form-email-container .email:focus::placeholder {
-  opacity: 1;
-}
-.vertical-flex-container .flex-section .grid-container .contact-form-email-container .email:not(:placeholder-shown) + label, .vertical-flex-container .flex-section .grid-container .contact-form-email-container .email:focus + label {
-  transform: translate(-34.75rem, -3.75rem) scale(0.85);
-}
-.vertical-flex-container .flex-section .grid-container .contact-form-email-container .email-label {
-  position: absolute;
-  height: 40%;
-  width: 30%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  transition: transform 0.75s;
-  transform: translate(-33.5rem, 0);
-}
-.vertical-flex-container .flex-section .grid-container .contact-form-text-message-container {
-  position: relative;
-  height: 35%;
-  width: 86.75%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  flex-direction: column-reverse;
-  margin: 2rem 0 2rem;
-}
-.vertical-flex-container .flex-section .grid-container .contact-form-text-message-container .message {
+.master-flex-container .master-grid-container .signup-form-container .signup-form_questions-and-submit-container--continue {
   position: relative;
   height: 100%;
-  width: 100%;
+  width: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
   transform: rotate(0) translate(0, 0);
-  background-color: transparent;
-  border: 0.3rem groove rgba(255, 215, 0, 0.75);
-  padding: 1rem;
-  resize: none;
+  background-color: rgba(56, 217, 39, 0.8);
+  border: none;
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
 }
-.vertical-flex-container .flex-section .grid-container .contact-form-text-message-container .message:focus::-webkit-input-placeholder, .vertical-flex-container .flex-section .grid-container .contact-form-text-message-container .message:focus::placeholder {
-  opacity: 1;
-}
-.vertical-flex-container .flex-section .grid-container .contact-form-text-message-container .message:not(:placeholder-shown) + label, .vertical-flex-container .flex-section .grid-container .contact-form-text-message-container .message:focus + label {
-  transform: translate(-37.5rem, -12.35rem) scale(0.85);
-}
-.vertical-flex-container .flex-section .grid-container .contact-form-text-message-container .message-label {
-  position: absolute;
-  height: 20%;
-  width: 15%;
+.master-flex-container .master-grid-container .signup-form-container .signup-form_questions-and-submit-container .q1 {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  transition: transform 0.75s;
-  transform: translate(-36.5rem, -8.6rem);
 }
-.vertical-flex-container .flex-section .grid-container .contact-form-submit-container {
-  position: relative;
-  height: 15%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  margin: 2rem 0 4rem;
-}
-.vertical-flex-container .flex-section .grid-container .contact-form-submit-container .submit-message-button {
-  position: relative;
-  height: 100%;
-  width: 30%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  background-color: rgba(255, 215, 0, 0.8);
-  border: 0.3rem groove rgba(255, 215, 0, 0.75);
-  transition: background-color 0.5s, border 0.5s, color 0.5s;
-}
-.vertical-flex-container .flex-section .grid-container .contact-form-submit-container .submit-message-button:hover {
-  cursor: pointer;
-  background-color: #ffd700;
-  border: 0.3rem groove #ffd700;
-}
-.vertical-flex-container .flex-section .grid-container .contact-form-submit-container .submit-message-button:active {
-  background-color: #822aba;
-  border: 0.3rem groove #822aba;
-  outline: none;
-}
-.vertical-flex-container .flex-section .grid-container .contact-form .input-good {
-  border: 0.3rem groove #008013;
-}
-.vertical-flex-container .flex-section .grid-container .contact-form .input-bad {
-  border: 0.3rem groove #CF352E;
-}
-.vertical-flex-container .flex-section .grid-container .contact-form .input-warning {
-  border: 0.3rem groove #822aba;
-}
-.vertical-flex-container .flex-section .grid-container .contact-form ::-webkit-input-placeholder, .vertical-flex-container .flex-section .grid-container .contact-form ::placeholder {
+.master-flex-container .master-grid-container .signup-form-container ::-webkit-input-placeholder,
+.master-flex-container .master-grid-container .signup-form-container ::placeholder {
   opacity: 0;
   transition: all 0.75s;
 }
@@ -37453,17 +37371,6 @@ body {
 
 .master-flex-container {
   background-color: #111111;
-}
-.master-flex-container .master-grid-container .signup-container {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  flex-direction: column;
-  background-color: rgba(130, 42, 186, 0.8);
 }
 .master-flex-container .master-grid-container .king-richard-logo {
   position: relative;

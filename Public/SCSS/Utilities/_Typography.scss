@@ -70,6 +70,29 @@ html {
       color: $primaryColor;
       font-size: 5rem;
     }
+    .signup-form-container {
+      .signup-form {
+        &_questions-and-submit-container {
+          &--question {
+            .question {
+              font-size: 4rem;
+              color: $colorOffWhite;
+              &:focus + label {
+                color: $secondaryColor;
+              }
+            }
+            .question-label {
+              font-size: 4rem;
+              color: $colorOffWhite;
+            }
+          }
+          &--continue {
+            font-size: 2rem;
+            color: $colorOffWhite;
+          }
+        }
+      }
+    }
   }
 
   .flex-section {
