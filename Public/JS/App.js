@@ -24,10 +24,18 @@ const loginButton = document.querySelector(`.navigation_user-login_login`);
 const signupFormContainer = document.querySelector('.signup-form-container');
 const loginFormContainer = document.querySelector(`.navigation_login-form-container`);
 
+const getFocus = (element) => {
+  element.focus();
+};
+
 signupButton.addEventListener(`click`, function () {
   signupFormContainer.classList.toggle(`signup-form-container--shown`);
+  const firstName = document.querySelector(`.first-name`);
+  getFocus(firstName);
 });
 
 loginButton.addEventListener(`click`, function () {
   loginFormContainer.classList.toggle(`navigation_login-form-container--shown`);
+  const userName = document.querySelector(`.username`);
+  getFocus(userName);
 });

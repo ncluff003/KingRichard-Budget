@@ -23,11 +23,20 @@ var signupButton = document.querySelector(".navigation_user-login_signup");
 var loginButton = document.querySelector(".navigation_user-login_login");
 var signupFormContainer = document.querySelector('.signup-form-container');
 var loginFormContainer = document.querySelector(".navigation_login-form-container");
+
+var getFocus = function getFocus(element) {
+  element.focus();
+};
+
 signupButton.addEventListener("click", function () {
   signupFormContainer.classList.toggle("signup-form-container--shown");
+  var firstName = document.querySelector(".first-name");
+  getFocus(firstName);
 });
 loginButton.addEventListener("click", function () {
   loginFormContainer.classList.toggle("navigation_login-form-container--shown");
+  var userName = document.querySelector(".username");
+  getFocus(userName);
 });
 /******/ })()
 ;
