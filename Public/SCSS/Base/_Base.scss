@@ -8,15 +8,14 @@ I was thinking of iterating through the objects that were created.
 
     MUSTDO : Finish JavaScript lessons & ALL projects inside the course.  ** TOP PRIORITY **
     MUSTDO : Finish Node.js lessons & ALL projects inside the course.  ** TOP PRIORITY **
-    MUSTDO : Review statements for clarity of what I want to say.
-    MUSTDO : Review mission statement for the employers / clients.
-    MUSTDO : Record video for employers / clients.
-    MUSTDO : Build more cards with my other skills, including ones like Inkscape.
-    MUSTDO : Ponder about and make the content for my personal site's project card.
-    MUSTDO : Link my project card link to my personal site. ( # for now, but later on it will be purenspiration.com )
-    MUSTDO : Configure Webpack to compile my JavaScript so I can use it in my Production branch of my project.
-    MUSTDO : Eventually, add html-webpack-plugin using npm install, and put it as a dev dependency.  Then put 'plugins: [ new HtmlWebpackPlugin() ] in webpack config file under module.exports
-    MUSTDO : FIgure out how my mixin works for creating CSS Grids, so I can speak on that.
+    MUSTDO : Implement functionality of my signup form so it does the following: 
+      - Validates the input given against the required input.
+      - Moves on to the next question if it is not the last, otherwise, submit the form.
+      - Make sure it gives the user an error if it is essential.
+    MUSTDO : Implement Functionality for the Login & Signup buttons in the navigation to open the forms.
+    MUSTDO : Implement the functionality for the closing button on the signup form.
+    MUSTDO : Implement the Login button to 'toggle' the login form.
+    
     
     
     //////////////////////////////////

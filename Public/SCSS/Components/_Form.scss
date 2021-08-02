@@ -10,22 +10,26 @@
 
   .master-grid-container {
     .signup-form-container {
-      @include SizeAndPositioning(relative, 100%, 100%, flex, center, center, 0, 0, 0);
+      @include SizeAndPositioning(relative, 100%, 0, none, center, center, 0, 0, 0);
       flex-direction: column;
       background-color: rgba($primaryColor, 0.8);
       .signup-form {
         @include SizeAndPositioning(relative, 20%, 65%, flex, space-evenly, center, 0, 0, 0);
         flex-direction: column;
         &_questions-and-submit-container {
-          @include SizeAndPositioning(relative, 85%, 100%, flex, center, center, 0, 0, 0);
+          @include SizeAndPositioning(relative, 70%, 100%, flex, center, center, 0, 0, 0);
           &--question {
             @include SizeAndPositioning(relative, 100%, 90%, flex, center, center, 0, 0, 0);
             background-color: rgba($colorDarkestGrey, 0.6);
+            border-top-left-radius: 2rem;
             .question {
               @include SizeAndPositioning(relative, 100%, 100%, flex, center, center, 0, 0, 0);
               background-color: transparent;
               border: none;
-              border-bottom: 0.2rem inset rgba($colorOffWhite, 0.8);
+              border-top: 0.2rem inset rgba($colorDarkestGrey, 0.8);
+              border-left: 0.2rem inset rgba($colorDarkestGrey, 0.8);
+              border-bottom: 0.2rem groove rgba($colorOffWhite, 0.8);
+              border-top-left-radius: 2rem;
               padding: 2rem;
               &:not(:placeholder-shown) + label,
               &:focus + label {
@@ -40,6 +44,12 @@
                 }
               }
               z-index: 10;
+              &--warning {
+                border: 0.2rem inset rgba($secondaryColor, 0.7);
+              }
+              &--error {
+                border: 0.2rem inset rgba($colorError, 0.7);
+              }
             }
             .question-label {
               @include SizeAndPositioning(absolute, 100%, 100%, flex, flex-start, center, 0, 0, 0);
@@ -52,11 +62,29 @@
             @include SizeAndPositioning(relative, 100%, 10%, flex, center, center, 0, 0, 0);
             background-color: rgba($tertiaryColor, 0.8);
             border: none;
+            border-top: 0.2rem inset rgba($colorDarkestGrey, 0.8);
+            border-right: 0.2rem inset rgba($colorDarkestGrey, 0.8);
+            border-bottom: 0.2rem inset rgba($colorDarkestGrey, 0.8);
+            border-left: 0.2rem groove rgba($colorOffWhite, 0.8);
             border-top-right-radius: 2rem;
             border-bottom-right-radius: 2rem;
           }
-          .q1 {
-            display: flex;
+        }
+        &_response-container {
+          @include SizeAndPositioning(relative, 30%, 90%, flex, flex-start, center, 0, 0, 0);
+          align-self: flex-start;
+          background-color: rgba($colorDarkerGrey, 0.6);
+          padding: 2rem;
+          border-left: 0.2rem inset rgba($colorDarkestGrey, 0.8);
+          border-bottom: 0.2rem inset rgba($colorDarkestGrey, 0.8);
+          border-right: 0.2rem inset rgba($colorDarkestGrey, 0.8);
+          border-bottom-left-radius: 2rem;
+          border-bottom-right-radius: 2rem;
+          &--warning {
+            background-color: rgba($secondaryColor, 0.7);
+          }
+          &--error {
+            background-color: rgba($colorError, 0.7);
           }
         }
       }
@@ -64,6 +92,30 @@
       ::placeholder {
         opacity: 0;
         transition: all 0.75s;
+      }
+      &--close {
+        @include SizeAndPositioning(absolute, 8rem, 8rem, flex, center, center, 0, 0, 0);
+        top: 4rem;
+        left: 4rem;
+        .close-window {
+          @include SizingItem(relative, 100%, 100%);
+          transition: color 1s;
+          &:hover {
+            cursor: pointer;
+          }
+          &--hover {
+            @include SizingItem(relative, 100%, 100%);
+            display: none;
+            transition: color 1s;
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      &--shown {
+        display: flex;
+        width: 100%;
       }
     }
   }

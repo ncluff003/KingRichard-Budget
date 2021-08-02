@@ -42,10 +42,10 @@ html {
         .login-form {
           .username-container,
           .password-container,
-          .submit-container {
+          .login-container {
             .username,
             .password,
-            .submit {
+            .login {
               font-size: 2rem;
             }
             .password-show {
@@ -80,16 +80,50 @@ html {
               &:focus + label {
                 color: $secondaryColor;
               }
+              &--warning {
+                color: $secondaryColor;
+              }
+              &--error {
+                color: $colorError;
+              }
             }
             .question-label {
               font-size: 4rem;
               color: $colorOffWhite;
+              &--warning {
+                color: $secondaryColor;
+              }
+              &--error {
+                color: $colorError;
+              }
             }
           }
           &--continue {
             font-size: 2rem;
             color: $colorOffWhite;
           }
+        }
+        &_response-container {
+          font-size: 2rem;
+          color: $colorOffWhite;
+          &--warning {
+            color: $colorDarkestGrey;
+          }
+          &--error {
+            color: $colorOffWhite;
+          }
+        }
+      }
+      &--close {
+        color: rgba($colorOffWhite, 0.8);
+        .close-window {
+          font-size: 6rem;
+          &--hover {
+            font-size: 6rem;
+          }
+        }
+        &:hover {
+          color: $colorOffWhite;
         }
       }
     }
