@@ -7,11 +7,24 @@ const signupButton = document.querySelector(`.navigation_user-login_signup`);
 const loginButton = document.querySelector(`.navigation_user-login_login`);
 const signupFormContainer = document.querySelector('.signup-form-container');
 const loginFormContainer = document.querySelector(`.navigation_login-form-container`);
+const passwordInput = document.querySelector(`.password`);
+const passwordButton = document.querySelector(`.password-show`);
+const passwordButtonIcon1 = document.querySelector(`.fa-eye`);
+const passwordButtonIcon2 = document.querySelector(`.fa-eye-slash`);
 class App {
   constructor() {
     console.log(questions);
-    this._watchButtons(loginButton, signupButton, buttonContinue);
+    this._watchButtons(loginButton, signupButton, buttonContinue, passwordButton);
     this._setupNewUserQuestions(questions, questionLabels);
+  }
+
+  _showPasswordIcon(element) {
+    element.classList.add(`password-show--shown`);
+    element.classList.remove(`password-show--hidden`);
+  }
+  _hidePasswordIcon(element) {
+    element.classList.add(`password-show--hidden`);
+    element.classList.remove(`password-show--shown`);
   }
 
   _setupNewUserQuestions(questionArray, questionLabels) {
@@ -24,7 +37,7 @@ class App {
     });
   }
 
-  _watchButtons(loginButton, signupButton, continueButton) {
+  _watchButtons(loginButton, signupButton, continueButton, passwordButton) {
     continueButton.addEventListener(`click`, function (e) {
       e.preventDefault();
       console.log(questions[0].value);
@@ -38,6 +51,16 @@ class App {
       loginFormContainer.classList.toggle(`navigation_login-form-container--shown`);
       const userName = document.querySelector(`.username`);
       app._getFocus(userName);
+    });
+    passwordButton.addEventListener(`click`, function (e) {
+      e.preventDefault();
+      passwordInput.type === `password` ? (passwordInput.type = `text`) : (passwordInput.type = `password`);
+      passwordInput.type === `password`
+        ? app._hidePasswordIcon(passwordButtonIcon1)
+        : app._showPasswordIcon(passwordButtonIcon1);
+      passwordInput.type === `password`
+        ? app._showPasswordIcon(passwordButtonIcon2)
+        : app._hidePasswordIcon(passwordButtonIcon2);
     });
   }
 

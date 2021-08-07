@@ -37351,9 +37351,10 @@ I was thinking of iterating through the objects that were created.
       - Validates the input given against the required input.
       - Moves on to the next question if it is not the last, otherwise, submit the form.
       - Make sure it gives the user an error if it is essential.
-    MUSTDO : Implement Functionality for the Login & Signup buttons in the navigation to open the forms.
-    MUSTDO : Implement the functionality for the closing button on the signup form.
-    MUSTDO : Implement the Login button to 'toggle' the login form.
+    MUSTDO : Implement a way for the Login Form & Signup form to show & hide the password.
+    MUSTDO : Understand MVC architecture so I can implement that in both my personal website & budget.  Then, I can start with that file architecture from the get go.
+    MUSTDO : After Login is validated, I want the person's profile page to load.
+    MUSTDO : After a Signup is completed & validated, i want a profile page to be created AND loaded with that user's information.
 
 
 
