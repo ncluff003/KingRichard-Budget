@@ -9,7 +9,24 @@ const url = require('url');
 const express = require('express');
 const path = require('path');
 const dotenv = require('dotenv');
+const mongoose = require(`mongoose`);
 const reload = require('reload');
+
+// Third Party Configuration Files
+dotenv.config({
+  path: `./config.env`,
+});
+
+console.log(process.env.DB);
+const DB = process.env.DB.replace(`<PASSWORD>`, process.env.DBPASSWORD).replace(`<DATABASE>`, process.env.DBNAME);
+mongoose
+  .connect(DB, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log(`DB Connection Successful`));
 
 ////////////////////////////////////////////
 //  Middleware
