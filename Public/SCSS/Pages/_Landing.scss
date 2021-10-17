@@ -1,0 +1,27 @@
+@use "../../../Public/SCSS/Utilities/Mixins" as *;
+@use "../../../Public/SCSS/Utilities/Variables" as *;
+
+////////////////////////////////////////////////
+//  Master Flex Container
+
+.master-flex-container {
+  ////////////////////////////////////////////////
+  //  Background
+  .background-logo {
+    @include SizeAndPositioning(relative, auto, 60%, flex, center, center, 0, 0, 0);
+  }
+  .background-header {
+    @include SizeAndPositioning(relative, 100%, 100%, flex, center, flex-start, 0, 0, 0);
+    flex-direction: column;
+    &__main {
+      @include SizeAndPositioning(relative, 60%, 100%, flex, flex-start, center, 0, 0, 0);
+    }
+    &__sub {
+      @include SizeAndPositioning(relative, 40%, 100%, flex, flex-end, center, -15rem, 2rem, 0);
+    }
+  }
+  .form-container {
+    @include SizeAndPositioning(relative, 100%, 100%, flex, center, center, 0, 0, 0);
+    background-color: rgba($primaryColorDark, 0.9);
+  }
+}

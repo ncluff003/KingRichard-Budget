@@ -1,12 +1,12 @@
 ////////////////////////////////////////////
-//// Utilities
+// Utilities
 @use "../../../Public/SCSS/Utilities/Mixins";
 @use "../../../Public/SCSS/Utilities/Variables";
 @use "../../../Public/SCSS/Utilities/Typography";
 @use "../../../Public/SCSS/Utilities/Animations";
 
 //////////////////////////////////////////////
-//// Layo//ut
+// Layout
 
 @use "../../../Public/SCSS/Layout/GridTV";
 @use "../../../Public/SCSS/Layout/GridDesktop";
@@ -16,7 +16,7 @@
 @use "../../../Public/SCSS/Layout/GridMobileLand";
 
 //////////////////////////////////////////////
-//// Comp//onents
+// Components
 
 @use "../../../Public/SCSS/Components/Navigation";
 @use "../../../Public/SCSS/Components/Master-Flex-Container";
@@ -26,20 +26,21 @@
 @use "../../../Public/SCSS/Components/Form";
 
 ////////////////////////////////////////////
-//// Main
+// Main
 
 ////////////////////////////////////////////
-//// Pages
+// Pages
+@use "../../../Public/SCSS/Pages";
 
 ////////////////////////////////////////////
-//// Themes
+// Themes
 
 ////////////////////////////////////////////
-//// Base
+// Base
 @use "../../../Public/SCSS/Base/Base";
 
 ////////////////////////////////////////////
-//// Vendors
+// Vendors
 @use "../Vendors/scss/fontawesome.scss";
 @use "../Vendors/scss/fa-solid.scss";
 @use "../Vendors/scss/fa-brands.scss";

@@ -1,0 +1,37 @@
+////////////////////////////////////////////
+//  Core Modules
+
+////////////////////////////////////////////
+//  Third Party Modules
+
+////////////////////////////////////////////
+//  Third Party Module Instances
+
+////////////////////////////////////////////
+//  Third Party Middleware
+
+////////////////////////////////////////////
+//  Third Party Config Files
+
+////////////////////////////////////////////
+//  My Middleware
+const catchAsync = require(`./../Utilities/catchAsync`);
+
+////////////////////////////////////////////
+//  Routing Middleware
+
+////////////////////////////////////////////
+//  My Modules
+const Validate = require(`./../Models/validatorModel`);
+////////////////////////////////////////////
+//  Exported Controllers
+exports.validateSignup = catchAsync(async (request, response) => {
+  console.log(request.body);
+});
+
+exports.signup = catchAsync(async (request, response) => {
+  response.status(200).json({
+    status: 'Success',
+    message: `${request.body}`,
+  });
+});

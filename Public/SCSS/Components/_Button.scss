@@ -12,21 +12,36 @@
     ////////////////////////////////////////////////
     //  Navigation
     .navigation {
-      &_user-login {
-        &_login,
-        &_signup {
-          @include SizeAndPositioning(relative, 70%, 40%, flex, center, center, 0, 0, 0);
-          background-color: transparent;
-          border: 0.2rem outset rgba($colorOffWhite, 0.8);
+      &__landing-navigation {
+        &__login,
+        &__signup {
+          @include SizeAndPositioning(relative, 100%, 12.5%, flex, space-between, center, 0, 0, 0);
           border-radius: 5rem;
-          transition: background-color 0.5s, color 0.5s;
+          background-color: transparent;
+          border: 0.2rem solid rgba($colorOffWhite, 0.75);
+          transition: color 0.5s, background-color 0.5s;
+          &-icon {
+            position: relative;
+            transform: translate(-0.3rem, 0);
+          }
           &:hover {
+            border: 0.2rem solid $colorOffWhite;
+            background: $tertiaryColor;
             cursor: pointer;
-            background-color: $colorOffWhite;
           }
           &:active {
-            background-color: $primaryColor;
-            border: 0.2rem inset $primaryColor;
+            background-color: $secondaryColor;
+          }
+        }
+        &__login {
+          margin-right: 2rem;
+          &-text {
+            transform: translate(-2.3rem, 0);
+          }
+        }
+        &__signup {
+          &-text {
+            transform: translate(-1.6rem, 0);
           }
         }
       }

@@ -1,0 +1,85 @@
+doctype html
+// [if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]
+// [if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]
+// [if IE 8]>         <html class="no-js lt-ie9"> <![endif]
+// [if gt IE 8]>      <html class="no-js"> <!--<![endif]
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    link(rel='shortcut icon' href='KingRichard_FavIcon.ico' type='image/x-icon')
+    title King Richard
+    meta(name='description' content='')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    link(rel='stylesheet' href='/DIST/CSS/kingrichard.css')
+    script(type='module' src='/DIST/Bundle.js' defer)
+  body
+    //
+      [if lt IE 7]>
+      <p class="browsehappy">
+      You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your
+      experience.
+      </p>
+      <![endif]
+    section.master-flex-container.r__master-flex-container
+      section.master-grid-container.r__master-grid-container
+        nav.navigation.column_1-24.row_1-1.r__navigation
+          div.logo-container.r__logo-container
+            img.logo-container__logo.r__logo-container__logo(src="/KingRichard-Logo-White.svg")
+            p.logo-container__logo-text.r__logo-container__logo-text King Richard
+          block Navigation
+          ul.navigation__landing-navigation.r__navigation__landing-navigation
+            button.navigation__landing-navigation__login.r__navigation__landing-navigation__login
+              i.fas.fa-user-circle.navigation__landing-navigation__login-icon.r__navigation__landing-navigation__login-icon
+              p.navigation__landing-navigation__login-text.r__navigation__landing-navigation__login-text Login
+            button.navigation__landing-navigation__signup.r__navigation__landing-navigation__signup
+              i.fas.fa-user-circle.navigation__landing-navigation__signup-icon.r__navigation__landing-navigation__signup-icon
+              p.navigation__landing-navigation__signup-text.r__navigation__landing-navigation__signup-text Signup
+        img.background-logo.r__background-logo.column_3-10.row_4-8(src="/KingRichard-Logo.svg")
+        section.background-header.r__background-header.column_10-14.row_9-3
+          header.background-header__main.r__background-header__main King Richard
+          p.background-header__sub.r__background-header__sub Budget Like Royalty
+        block Unique-Content
+        div.form-container.r__form-container.column_1-24.row_2-17
+          form.login-form.r__login-form(action="" method="GET")
+            section.login-form__form-section.r__login-form__form-section
+              input.login-form__form-section__input.login-form__form-section__input--rounded-top#username(type="text" name="username" placeholder="Username" required)
+              label.login-form__form-section__label#username-label(for="username") Please Enter Your Username
+            section.login-form__form-section.r__login-form__form-section
+              input.login-form__form-section__input#login-password(type="password" name="login-password" placeholder="Password" required)
+              label.login-form__form-section__label#password-label(for="login-password") Please Enter Your Password
+            section.login-form__form-section--message.r__login-form__form-section--message
+              div.login-form__form-section--message__message-container.r__login-form__form-section--message__message-container Error Response
+              button.login-form__form-section--message__form-button.r__login-form__form-section--message__form-button(type="submit") Login
+        div.form-container.r__form-container.column_1-24.row_2-17
+          form.signup-form.r__signup-form(action="/signup" method="POST")
+            section.signup-form__form-section.r__signup-form__form-section
+              input.signup-form__form-section__input.signup-form__form-section__input--rounded-top#first-name(type="text" name="first-name" placeholder="First Name" pattern="^[A-Za-z]+$" required)
+              label.signup-form__form-section__label#first-name-label(for="first-name") Please Enter Your First Name
+            section.signup-form__form-section.r__signup-form__form-section
+              input.signup-form__form-section__input.signup-form__form-section__input#last-name(type="text" name="last-name" placeholder="Last Name" pattern="^[A-Za-z]+$" required)
+              label.signup-form__form-section__label#last-name-label(for="last-name") Please Enter Your Last Name
+            section.signup-form__form-section.r__signup-form__form-section
+              input.signup-form__form-section__input.signup-form__form-section__input#user-name(type="text" name="user-name" placeholder="Username" pattern="^[A-Z][A-Za-z0-9]*$" required)
+              label.signup-form__form-section__label#user-name-label(for="user-name") Please Enter Your Username
+            section.signup-form__form-section--message.r__signup-form__form-section--message
+              div.signup-form__form-section--message__message-container.r__signup-form__form-section--message__message-container Error Response
+              button.signup-form__form-section--message__form-button.r__signup-form__form-section--message__form-button(type="submit") Continue
+            section.signup-form__form-section.r__signup-form__form-section
+              input.signup-form__form-section__input.signup-form__form-section__input--rounded-top#email(type="text" name="email" placeholder="Email" required)
+              label.signup-form__form-section__label#email-label(for="email") Please Enter Your Email
+            section.signup-form__form-section.r__signup-form__form-section
+              input.signup-form__form-section__input.signup-form__form-section__input#repeat-email(type="text" name="repeat-email" placeholder="Repeat Email" required)
+              label.signup-form__form-section__label#repeat-email-label(for="repeat-email") Please Repeat Your Email
+            section.signup-form__form-section--message.r__signup-form__form-section--message
+              div.signup-form__form-section--message__message-container.r__signup-form__form-section--message__message-container Error Response
+              button.signup-form__form-section--message__form-button.r__signup-form__form-section--message__form-button(type="submit") Continue
+            section.signup-form__form-section.r__signup-form__form-section
+              input.signup-form__form-section__input.signup-form__form-section__input--rounded-top#password(type="password" name="password" placeholder="Password" required)
+              label.signup-form__form-section__label#password-label(for="password") Please Enter Your Password
+            section.signup-form__form-section.r__signup-form__form-section
+              input.signup-form__form-section__input.signup-form__form-section__input#repeat-password(type="password" name="repeat-password" placeholder="Repeat Password" required)
+              label.signup-form__form-section__label#repeat-password-label(for="repeat-password") Please Repeat Your Password
+            section.signup-form__form-section--message.r__signup-form__form-section--message
+              div.signup-form__form-section--message__message-container.r__signup-form__form-section--message__message-container Error Response
+              button.signup-form__form-section--message__form-button.r__signup-form__form-section--message__form-button(type="submit") Submit

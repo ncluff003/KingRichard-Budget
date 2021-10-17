@@ -9,73 +9,19 @@
   //  Navigation
 
   .navigation {
-    @include SizeAndPositioning(relative, 100%, 100vw, flex, space-between, center, 0, 0, 0);
+    @include SizeAndPositioning(relative, 4.983rem, 100vw, flex, space-between, center, 0, 0, 0);
     background-color: $primaryColor;
-    border-bottom: 0.2rem groove $secondaryColor;
-    &_logo-container {
-      @include SizeAndPositioning(relative, 4.983rem, 15%, flex, space-evenly, center, 0, 0, 0);
-      &_logo {
-        @include SizingItem(relative, 70%, 20%);
-      }
-      &_logo-text {
-        transform: translate(-2rem, 0);
+    border-bottom: 0.3rem groove $secondaryColor;
+    padding: 0 3rem;
+    .logo-container {
+      @include SizeAndPositioning(relative, 100%, 50%, flex, flex-start, center, 0, 0, 0);
+      &__logo {
+        @include SizingItem(relative, 80%, auto);
+        margin-right: 2rem;
       }
     }
-    &_user-login {
-      @include SizeAndPositioning(relative, 100%, 12.5%, flex, space-evenly, center, 0, 0, 0);
-    }
-    &_login-form-container {
-      @include SizeAndPositioning(relative, 0, 100%, none, center, center, 0, 0, 0);
-      transition: height 0.5s;
-      .login-form {
-        @include SizeAndPositioning(relative, 100%, 100%, flex, space-evenly, center, 0, 0, 0);
-        background-color: $primaryColor;
-        flex-direction: column;
-        border-bottom-left-radius: 2rem;
-        padding: 2rem;
-
-        .username-container,
-        .password-container,
-        .login-container {
-          @include SizeAndPositioning(relative, 30%, 75%, flex, center, center, 0, 0, 0);
-          .username,
-          .password,
-          .login {
-            border-radius: 1rem;
-            padding: 1rem;
-          }
-          .username,
-          .login {
-            @include SizeAndPositioning(relative, 75%, 100%, flex, center, center, 0, 0, 0);
-          }
-          .password {
-            @include SizeAndPositioning(relative, 75%, 75%, flex, center, center, 0, 0, 0);
-          }
-          .password-show {
-            @include SizeAndPositioning(relative, 70%, 17.5%, flex, center, center, 0, 0, 0);
-            flex-direction: column;
-            margin-left: 1rem;
-            background-color: transparent;
-            border: none;
-            &--hidden {
-              display: flex;
-            }
-            &--shown {
-              display: none;
-            }
-            &--shown,
-            &--hidden {
-              &:hover {
-                cursor: pointer;
-              }
-            }
-          }
-        }
-      }
-      &--shown {
-        display: flex;
-        height: 100%;
-      }
+    &__landing-navigation {
+      @include SizeAndPositioning(relative, 80%, 50%, flex, flex-end, center, 0, 0, 0);
     }
   }
 }

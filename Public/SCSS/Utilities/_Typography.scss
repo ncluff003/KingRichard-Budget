@@ -15,236 +15,70 @@ html {
   .master-grid-container {
     ////////////////////////////////////////////////
     //  Navigation
-
     .navigation {
-      &_logo-container {
-        &_logo {
+      .logo-container {
+        &__logo {
           fill: $colorOffWhite;
         }
-        &_logo-text {
+        &__logo-text {
           font-size: 2.4rem;
           color: $colorOffWhite;
         }
       }
-      &_user-login {
-        ////////////////////////////////////////////////
-        //  Navigation Links
-        &_login,
-        &_signup {
-          font-size: 1.4rem;
-          color: rgba($colorOffWhite, 0.8);
-          &:hover {
-            color: $colorDarkerGrey;
-          }
-        }
-      }
-      &_login-form-container {
-        .login-form {
-          .username-container,
-          .password-container,
-          .login-container {
-            .username,
-            .password,
-            .login {
-              font-size: 2rem;
-            }
-            .password-show {
-              font-size: 3rem;
-              color: $colorOffWhite;
-              &--shown,
-              &--hidden {
-                &:hover {
-                  color: $secondaryColor;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    .king-richard-main-text {
-      color: $primaryColor;
-      font-size: 14rem;
-    }
-    .king-richard-sub-text {
-      color: $primaryColor;
-      font-size: 5rem;
-    }
-    .signup-form-container {
-      .signup-form {
-        &_questions-and-submit-container {
-          &--question {
-            .question {
-              font-size: 4rem;
-              color: $colorOffWhite;
-              &:focus + label {
-                color: $secondaryColor;
-              }
-              &--warning {
-                color: $secondaryColor;
-              }
-              &--error {
-                color: $colorError;
-              }
-            }
-            .question-label {
-              font-size: 4rem;
-              color: $colorOffWhite;
-              &--warning {
-                color: $secondaryColor;
-              }
-              &--error {
-                color: $colorError;
-              }
-            }
-          }
-          &--continue {
-            font-size: 2rem;
-            color: $colorOffWhite;
-          }
-        }
-        &_response-container {
-          font-size: 2rem;
-          color: $colorOffWhite;
-          &--warning {
-            color: $colorDarkestGrey;
-          }
-          &--error {
-            color: $colorOffWhite;
-          }
-        }
-      }
-      &--close {
-        color: rgba($colorOffWhite, 0.8);
-        .close-window {
-          font-size: 6rem;
-          &--hover {
-            font-size: 6rem;
-          }
-        }
-        &:hover {
-          color: $colorOffWhite;
-        }
-      }
-    }
-  }
-
-  .flex-section {
-    .grid-container {
-      .typing-text-container {
-        font-size: 7rem;
-        text-align: center;
-        color: $secondaryColor;
-      }
-
-      .introduction-button-container {
+      &__landing-navigation {
         font-size: 1.6rem;
-
-        .introduction-button {
-          text-decoration: none;
-
-          &:link,
-          &:visited {
-            color: rgba($secondaryColor, 0.8);
+        &__login,
+        &__signup {
+          color: rgba($colorOffWhite, 0.85);
+          &-icon {
+            font-size: 3.6rem;
+            color: $colorOffWhite;
           }
-
           &:hover {
-            cursor: pointer;
             color: $colorOffWhite;
           }
-
-          &:active {
-            color: $colorDarkestGrey;
-          }
         }
       }
-
-      .about-me-container {
-        &__option-slider {
-          &--option {
-            .about-typing-text-container {
-              font-size: 7rem;
-              text-align: center;
-              color: $secondaryColor;
-            }
-          }
-        }
-
-        &__option-navigation {
-          font-size: 2.4rem;
-          color: rgba($colorDarkestGrey, 0.5);
-          i {
-            margin: 0 1rem;
-          }
-        }
+    }
+    .background-header {
+      color: $primaryColor;
+      &__main {
+        font-size: 15rem;
       }
-
-      .section-header {
-        font-size: 8rem;
-        color: $secondaryColor;
+      &__sub {
+        font-size: 5rem;
       }
-
-      .showcase-grid {
-        .skill-card {
-          .skill-image-container {
-            font-size: 15rem;
+    }
+    .form-container {
+      .login-form,
+      .signup-form {
+        &__form-section {
+          color: $colorOffWhite;
+          &__input {
+            font-size: 5rem;
             color: $colorOffWhite;
           }
-
-          .skill-title-container {
+          &__label {
             font-size: 3rem;
-            color: $secondaryColor;
           }
-        }
-
-        button {
-          font-size: 3rem;
-          color: rgba($colorDarkerGrey, 0.8);
-        }
-        .card-button-left,
-        .card-button-right {
-          &:hover {
-            color: $colorLightestGrey;
-          }
-        }
-
-        .project-card {
-          &-cover {
-            &-title-container {
-              font-size: 3rem;
-              color: $colorOffWhite;
+          &--message {
+            font-size: 2rem;
+            &__message-container {
+              font-size: 1.4rem;
+              text-align: center;
+              color: rgba($colorOffWhite, 0.85);
             }
-          }
-          &-content {
-            &-description-container {
-              font-size: 1.8rem;
-              color: $secondaryColor;
-            }
-            &-link-container {
-              &--link {
-                font-size: 1.4rem;
-                text-decoration: none;
-                &,
-                &:visited {
-                  color: rgba($secondaryColor, 0.8);
-                }
-                &:hover {
-                  color: $colorOffWhite;
-                }
+            &__form-button {
+              color: rgba($colorOffWhite, 0.85);
+              &:hover {
+                cursor: pointer;
+                background-color: $tertiaryColor;
+                color: $colorOffWhite;
               }
             }
           }
         }
       }
-
-      .project-count {
-        font-size: 3rem;
-        color: $secondaryColor;
-      }
     }
   }
-}
-
-.current-link {
-  color: rgba($primaryColor, 0.8);
 }

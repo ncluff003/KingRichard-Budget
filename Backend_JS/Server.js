@@ -12,12 +12,21 @@ const dotenv = require('dotenv');
 const mongoose = require(`mongoose`);
 const reload = require('reload');
 
+////////////////////////////////////////////
+//  Uncaught Exception Handler
+process.on(`uncaughtException`, (error) => {
+  console.log(error.name, error.message);
+  console.log(`UNHANDLED EXCEPTION 💥 -- Shutting Down...`);
+  server.close(() => {
+    process.exit(1);
+  });
+});
+
 // Third Party Configuration Files
 dotenv.config({
   path: `./config.env`,
 });
 
-console.log(process.env.DB);
 const DB = process.env.DB.replace(`<PASSWORD>`, process.env.DBPASSWORD).replace(`<DATABASE>`, process.env.DBNAME);
 mongoose
   .connect(DB, {
@@ -41,8 +50,17 @@ const PORT = 2222;
 
 ////////////////////////////////////////////
 //  Start Server
-App.listen(PORT, () => {
+const server = App.listen(PORT, () => {
   console.log(`App listening at port ${PORT}`);
 });
 
 reload(App);
+
+// This is how to handle a more graceful shutdown.
+process.on(`unhandledRejection`, (error) => {
+  console.log(error.name, error.message);
+  console.log(`UNHANDLED REJECTION 💥 -- Shutting Down...`);
+  server.close(() => {
+    process.exit(1);
+  });
+});

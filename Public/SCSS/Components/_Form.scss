@@ -2,120 +2,79 @@
 @use "../../../Public/SCSS/Utilities/Variables" as *;
 
 ////////////////////////////////////////////////
-//  Vertical Flex Container
+//  Master Flex Container
 
 .master-flex-container {
-  ////////////////////////////////////////////////
-  //  Navigation
-
   .master-grid-container {
-    .signup-form-container {
-      @include SizeAndPositioning(relative, 100%, 0, none, center, center, 0, 0, 0);
-      flex-direction: column;
-      background-color: rgba($primaryColor, 0.8);
+    .form-container {
+      @include SizeAndPositioning(relative, 100%, 0%, flex, center, center, 0, 0, 0);
+      background-color: rgba($primaryColorDark, 0.9);
+      opacity: 0;
+      .login-form,
       .signup-form {
-        @include SizeAndPositioning(relative, 20%, 65%, flex, space-evenly, center, 0, 0, 0);
+        @include SizeAndPositioning(relative, 100%, 45%, flex, center, center, 0, 0, 0);
         flex-direction: column;
-        &_questions-and-submit-container {
-          @include SizeAndPositioning(relative, 70%, 100%, flex, center, center, 0, 0, 0);
-          &--question {
-            @include SizeAndPositioning(relative, 100%, 90%, flex, center, center, 0, 0, 0);
-            background-color: rgba($colorDarkestGrey, 0.6);
-            border-top-left-radius: 2rem;
-            .question {
-              @include SizeAndPositioning(relative, 100%, 100%, flex, center, center, 0, 0, 0);
-              background-color: transparent;
-              border: none;
-              border-top: 0.2rem inset rgba($colorDarkestGrey, 0.8);
-              border-left: 0.2rem inset rgba($colorDarkestGrey, 0.8);
-              border-bottom: 0.2rem groove rgba($colorOffWhite, 0.8);
-              border-top-left-radius: 2rem;
-              padding: 2rem;
-              &:not(:placeholder-shown) + label,
-              &:focus + label {
-                transform: translate(-9rem, -10rem) scale(0.85);
-              }
-              &:focus {
-                border-bottom: 0.2rem inset $secondaryColor;
-                outline: transparent;
-                &::-webkit-input-placeholder,
-                &::placeholder {
-                  opacity: 1;
-                }
-              }
-              z-index: 10;
-              &--warning {
-                border: 0.2rem inset rgba($secondaryColor, 0.7);
-              }
-              &--error {
-                border: 0.2rem inset rgba($colorError, 0.7);
-              }
+        &__form-section {
+          @include SizeAndPositioning(relative, 12.5%, 100%, none, center, center, 0, 0, 0);
+          margin-top: 4rem;
+          &__input {
+            @include SizeAndPositioning(relative, 100%, 100%, flex, center, flex-start, 0, 0, 0);
+            border: 0.2rem solid rgba($tertiaryColor, 0.95);
+            background-color: rgba($colorDarkestGrey, 0.75);
+            padding-left: 4rem;
+            &::-webkit-input-placeholder {
+              opacity: 0;
             }
-            .question-label {
-              @include SizeAndPositioning(absolute, 100%, 100%, flex, flex-start, center, 0, 0, 0);
-              padding: 2rem;
-              z-index: 9;
-              transition: transform 1s;
+            &:focus::-webkit-input-placeholder {
+              opacity: 1;
+            }
+            &:not(:placeholder-shown) + label,
+            &:focus + label {
+              transform: translate(-13.25rem, -7rem) scale(0.65);
+            }
+            &--rounded-top {
+              border-top-left-radius: 2.5rem;
+              border-top-right-radius: 2.5rem;
+            }
+            &:focus {
+              outline: none;
+            }
+            &:invalid {
+              border: 0.3rem solid rgba(#cf352e, 0.75);
+            }
+            &:valid {
+              border: 0.3rem solid $tertiaryColor;
             }
           }
-          &--continue {
-            @include SizeAndPositioning(relative, 100%, 10%, flex, center, center, 0, 0, 0);
-            background-color: rgba($tertiaryColor, 0.8);
-            border: none;
-            border-top: 0.2rem inset rgba($colorDarkestGrey, 0.8);
-            border-right: 0.2rem inset rgba($colorDarkestGrey, 0.8);
-            border-bottom: 0.2rem inset rgba($colorDarkestGrey, 0.8);
-            border-left: 0.2rem groove rgba($colorOffWhite, 0.8);
-            border-top-right-radius: 2rem;
-            border-bottom-right-radius: 2rem;
+          &__label {
+            @include SizeAndPositioning(absolute, 100%, 100%, flex, flex-start, center, 0, 0, 0);
+            padding-left: 4rem;
+            transition: transform 0.5s, opacity 0.5s;
           }
-        }
-        &_response-container {
-          @include SizeAndPositioning(relative, 30%, 90%, flex, flex-start, center, 0, 0, 0);
-          align-self: flex-start;
-          background-color: rgba($colorDarkerGrey, 0.6);
-          padding: 2rem;
-          border-left: 0.2rem inset rgba($colorDarkestGrey, 0.8);
-          border-bottom: 0.2rem inset rgba($colorDarkestGrey, 0.8);
-          border-right: 0.2rem inset rgba($colorDarkestGrey, 0.8);
-          border-bottom-left-radius: 2rem;
-          border-bottom-right-radius: 2rem;
-          &--warning {
-            background-color: rgba($secondaryColor, 0.7);
-          }
-          &--error {
-            background-color: rgba($colorError, 0.7);
-          }
-        }
-      }
-      ::-webkit-input-placeholder,
-      ::placeholder {
-        opacity: 0;
-        transition: all 0.75s;
-      }
-      &--close {
-        @include SizeAndPositioning(absolute, 8rem, 8rem, flex, center, center, 0, 0, 0);
-        top: 4rem;
-        left: 4rem;
-        .close-window {
-          @include SizingItem(relative, 100%, 100%);
-          transition: color 1s;
-          &:hover {
-            cursor: pointer;
-          }
-          &--hover {
-            @include SizingItem(relative, 100%, 100%);
-            display: none;
-            transition: color 1s;
-            &:hover {
-              cursor: pointer;
+          &--message {
+            @include SizeAndPositioning(relative, 7.5%, 100%, none, center, center, 0, 0, 0);
+            &__message-container {
+              @include SizeAndPositioning(relative, 100%, 75%, flex, center, center, 0, 0, 0);
+              border: 0.2rem solid rgba($tertiaryColor, 0.95);
+              background-color: rgba($colorDarkestGrey, 0.75);
+            }
+            &__form-button {
+              @include SizeAndPositioning(relative, 100%, 25%, flex, center, center, 0, 0, 0);
+              border: 0.2rem solid rgba($tertiaryColor, 0.95);
+              background-color: rgba($tertiaryColor, 0.95);
+              transition: background-color 0.5s;
+              &:hover {
+                cursor: pointer;
+                background-color: $tertiaryColor;
+              }
             }
           }
         }
       }
-      &--shown {
-        display: flex;
+      &--open {
         width: 100%;
+        opacity: 1;
+        transition: width 0.5s, opacity 1s;
       }
     }
   }
