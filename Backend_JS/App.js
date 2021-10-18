@@ -31,10 +31,12 @@ App.use(compression());
 ////////////////////////////////////////////
 //  Routing Middleware
 const appRouter = require(`./Routes/appRoutes`);
+const userRouter = require('./Routes/userRoutes');
 
 ////////////////////////////////////////////
 //  My Middleware
 App.use(`/`, appRouter);
+App.use(`/users`, userRouter);
 
 ////////////////////////////////////////////
 //  My Modules

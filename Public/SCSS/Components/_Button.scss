@@ -14,7 +14,8 @@
     .navigation {
       &__landing-navigation {
         &__login,
-        &__signup {
+        &__signup,
+        &__user {
           @include SizeAndPositioning(relative, 100%, 12.5%, flex, space-between, center, 0, 0, 0);
           border-radius: 5rem;
           background-color: transparent;
@@ -42,6 +43,20 @@
         &__signup {
           &-text {
             transform: translate(-1.6rem, 0);
+          }
+        }
+        &__user {
+          width: min-content;
+          padding: 1rem 1rem 1rem 5rem;
+          margin-right: 2rem;
+          &-icon {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translate(-0.6rem, -50%);
+          }
+          &-text {
+            transform: translate(-1.2rem, 0.1rem);
           }
         }
       }

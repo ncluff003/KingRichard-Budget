@@ -28,7 +28,8 @@ html {
       &__landing-navigation {
         font-size: 1.6rem;
         &__login,
-        &__signup {
+        &__signup,
+        &__user {
           color: rgba($colorOffWhite, 0.85);
           &-icon {
             font-size: 3.6rem;
@@ -74,6 +75,60 @@ html {
                 cursor: pointer;
                 background-color: $tertiaryColor;
                 color: $colorOffWhite;
+              }
+            }
+          }
+        }
+      }
+    }
+    ///////////////////////////
+    // Logged In | Signed Up
+
+    .app-background {
+      .app-container {
+        &__header--landing {
+          font-size: 2.25rem;
+          color: $colorOffWhite;
+        }
+        .budget-card-container {
+          .fa-arrow-alt-circle-left,
+          .fa-arrow-alt-circle-right {
+            font-size: 6rem;
+            color: rgba($colorOffWhite, 0.85);
+            &:hover {
+              cursor: pointer;
+              color: $tertiaryColor;
+            }
+            &:active {
+              color: $secondaryColor;
+            }
+          }
+          &__cards-container {
+            .budget-card {
+              &--create {
+                &__icon,
+                &__text {
+                  color: rgba($colorOffWhite, 0.5);
+                }
+                &__icon {
+                  font-size: 10rem;
+                  font-weight: bold;
+                }
+                &__text {
+                  font-size: 3rem;
+                }
+                &:hover {
+                  .budget-card--create__icon,
+                  .budget-card--create__text {
+                    color: $colorOffWhite;
+                  }
+                }
+                &:active {
+                  .budget-card--create__icon,
+                  .budget-card--create__text {
+                    color: $colorOffWhite;
+                  }
+                }
               }
             }
           }

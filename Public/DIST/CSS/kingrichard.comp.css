@@ -18,14 +18,14 @@ html {
 .master-flex-container .master-grid-container .navigation__landing-navigation {
   font-size: 1.6rem;
 }
-.master-flex-container .master-grid-container .navigation__landing-navigation__login, .master-flex-container .master-grid-container .navigation__landing-navigation__signup {
+.master-flex-container .master-grid-container .navigation__landing-navigation__login, .master-flex-container .master-grid-container .navigation__landing-navigation__signup, .master-flex-container .master-grid-container .navigation__landing-navigation__user {
   color: rgba(250, 250, 250, 0.85);
 }
-.master-flex-container .master-grid-container .navigation__landing-navigation__login-icon, .master-flex-container .master-grid-container .navigation__landing-navigation__signup-icon {
+.master-flex-container .master-grid-container .navigation__landing-navigation__login-icon, .master-flex-container .master-grid-container .navigation__landing-navigation__signup-icon, .master-flex-container .master-grid-container .navigation__landing-navigation__user-icon {
   font-size: 3.6rem;
   color: #fafafa;
 }
-.master-flex-container .master-grid-container .navigation__landing-navigation__login:hover, .master-flex-container .master-grid-container .navigation__landing-navigation__signup:hover {
+.master-flex-container .master-grid-container .navigation__landing-navigation__login:hover, .master-flex-container .master-grid-container .navigation__landing-navigation__signup:hover, .master-flex-container .master-grid-container .navigation__landing-navigation__user:hover {
   color: #fafafa;
 }
 .master-flex-container .master-grid-container .background-header {
@@ -68,6 +68,42 @@ html {
 .master-flex-container .master-grid-container .form-container .signup-form__form-section--message__form-button:hover {
   cursor: pointer;
   background-color: #38d927;
+  color: #fafafa;
+}
+.master-flex-container .master-grid-container .app-background .app-container__header--landing {
+  font-size: 2.25rem;
+  color: #fafafa;
+}
+.master-flex-container .master-grid-container .app-background .app-container .budget-card-container .fa-arrow-alt-circle-left,
+.master-flex-container .master-grid-container .app-background .app-container .budget-card-container .fa-arrow-alt-circle-right {
+  font-size: 6rem;
+  color: rgba(250, 250, 250, 0.85);
+}
+.master-flex-container .master-grid-container .app-background .app-container .budget-card-container .fa-arrow-alt-circle-left:hover,
+.master-flex-container .master-grid-container .app-background .app-container .budget-card-container .fa-arrow-alt-circle-right:hover {
+  cursor: pointer;
+  color: #38d927;
+}
+.master-flex-container .master-grid-container .app-background .app-container .budget-card-container .fa-arrow-alt-circle-left:active,
+.master-flex-container .master-grid-container .app-background .app-container .budget-card-container .fa-arrow-alt-circle-right:active {
+  color: #ffd700;
+}
+.master-flex-container .master-grid-container .app-background .app-container .budget-card-container__cards-container .budget-card--create__icon, .master-flex-container .master-grid-container .app-background .app-container .budget-card-container__cards-container .budget-card--create__text {
+  color: rgba(250, 250, 250, 0.5);
+}
+.master-flex-container .master-grid-container .app-background .app-container .budget-card-container__cards-container .budget-card--create__icon {
+  font-size: 10rem;
+  font-weight: bold;
+}
+.master-flex-container .master-grid-container .app-background .app-container .budget-card-container__cards-container .budget-card--create__text {
+  font-size: 3rem;
+}
+.master-flex-container .master-grid-container .app-background .app-container .budget-card-container__cards-container .budget-card--create:hover .budget-card--create__icon,
+.master-flex-container .master-grid-container .app-background .app-container .budget-card-container__cards-container .budget-card--create:hover .budget-card--create__text {
+  color: #fafafa;
+}
+.master-flex-container .master-grid-container .app-background .app-container .budget-card-container__cards-container .budget-card--create:active .budget-card--create__icon,
+.master-flex-container .master-grid-container .app-background .app-container .budget-card-container__cards-container .budget-card--create:active .budget-card--create__text {
   color: #fafafa;
 }
 
@@ -31453,49 +31489,151 @@ html {
   grid-row: 10/span 1;
 }
 
-.master-flex-container .navigation {
+.master-flex-container .master-grid-container .form-container .app-container,
+.master-flex-container .master-grid-container .app-background .app-container {
   position: relative;
-  height: 4.983rem;
-  width: 100vw;
+  height: 100%;
+  width: 40%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   transform: rotate(0) translate(0, 0);
-  background-color: #822aba;
-  border-bottom: 0.3rem groove #ffd700;
-  padding: 0 3rem;
+  flex-direction: column;
 }
-.master-flex-container .navigation .logo-container {
+.master-flex-container .master-grid-container .form-container .app-container__header--landing,
+.master-flex-container .master-grid-container .app-background .app-container__header--landing {
   position: relative;
-  height: 100%;
-  width: 50%;
+  height: min-content;
+  width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   transform: rotate(0) translate(0, 0);
-}
-.master-flex-container .navigation .logo-container__logo {
-  position: relative;
-  height: 80%;
-  width: auto;
-  margin-right: 2rem;
-}
-.master-flex-container .navigation__landing-navigation {
-  position: relative;
-  height: 80%;
-  width: 50%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
+  padding: 3rem;
 }
 
-.master-flex-container {
+.master-flex-container .master-grid-container .form-container .app-container .budget-card-container,
+.master-flex-container .master-grid-container .app-background .app-container .budget-card-container {
   position: relative;
-  width: 100vw;
-  height: 100%;
+  height: 70%;
+  width: 100%;
   display: flex;
+  justify-content: space-around;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  margin-bottom: 10rem;
+}
+.master-flex-container .master-grid-container .form-container .app-container .budget-card-container .fa-arrow-alt-circle-left,
+.master-flex-container .master-grid-container .form-container .app-container .budget-card-container .fa-arrow-alt-circle-right,
+.master-flex-container .master-grid-container .app-background .app-container .budget-card-container .fa-arrow-alt-circle-left,
+.master-flex-container .master-grid-container .app-background .app-container .budget-card-container .fa-arrow-alt-circle-right {
+  -webkit-text-stroke: 0.2rem #822aba;
+  -moz-text-stroke: 0.2rem #822aba;
+  transition: color 0.5s, -webkit-text-stroke 0.5s;
+}
+.master-flex-container .master-grid-container .form-container .app-container .budget-card-container .fa-arrow-alt-circle-left:hover,
+.master-flex-container .master-grid-container .form-container .app-container .budget-card-container .fa-arrow-alt-circle-right:hover,
+.master-flex-container .master-grid-container .app-background .app-container .budget-card-container .fa-arrow-alt-circle-left:hover,
+.master-flex-container .master-grid-container .app-background .app-container .budget-card-container .fa-arrow-alt-circle-right:hover {
+  -webkit-text-stroke: 0.2rem #fafafa;
+  -moz-text-stroke: 0.2rem #fafafa;
+}
+.master-flex-container .master-grid-container .form-container .app-container .budget-card-container .fa-arrow-alt-circle-left:active,
+.master-flex-container .master-grid-container .form-container .app-container .budget-card-container .fa-arrow-alt-circle-right:active,
+.master-flex-container .master-grid-container .app-background .app-container .budget-card-container .fa-arrow-alt-circle-left:active,
+.master-flex-container .master-grid-container .app-background .app-container .budget-card-container .fa-arrow-alt-circle-right:active {
+  -webkit-text-stroke: 0.2rem #fafafa;
+  -moz-text-stroke: 0.2rem #fafafa;
+}
+.master-flex-container .master-grid-container .form-container .app-container .budget-card-container__cards-container,
+.master-flex-container .master-grid-container .app-background .app-container .budget-card-container__cards-container {
+  position: relative;
+  height: 80%;
+  width: 40%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
   flex-direction: column;
+}
+.master-flex-container .master-grid-container .form-container .app-container .budget-card-container__cards-container .budget-card--create,
+.master-flex-container .master-grid-container .app-background .app-container .budget-card-container__cards-container .budget-card--create {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  flex-direction: column;
+  border: 0.2rem groove rgba(250, 250, 250, 0.5);
+  border-radius: 3rem;
+  transition: background-color 0.25s, color 0.25s, border 0.25s;
+}
+.master-flex-container .master-grid-container .form-container .app-container .budget-card-container__cards-container .budget-card--create__icon, .master-flex-container .master-grid-container .form-container .app-container .budget-card-container__cards-container .budget-card--create__text,
+.master-flex-container .master-grid-container .app-background .app-container .budget-card-container__cards-container .budget-card--create__icon,
+.master-flex-container .master-grid-container .app-background .app-container .budget-card-container__cards-container .budget-card--create__text {
+  margin: 1rem 0;
+}
+.master-flex-container .master-grid-container .form-container .app-container .budget-card-container__cards-container .budget-card--create:hover,
+.master-flex-container .master-grid-container .app-background .app-container .budget-card-container__cards-container .budget-card--create:hover {
+  border: 0.2rem groove #fafafa;
+  background-color: #38d927;
+  cursor: pointer;
+}
+.master-flex-container .master-grid-container .form-container .app-container .budget-card-container__cards-container .budget-card--create:active,
+.master-flex-container .master-grid-container .app-background .app-container .budget-card-container__cards-container .budget-card--create:active {
+  border: 0.2rem groove #fafafa;
+  background-color: #ffd700;
+}
+
+.master-flex-container .master-grid-container .navigation__landing-navigation__login, .master-flex-container .master-grid-container .navigation__landing-navigation__signup, .master-flex-container .master-grid-container .navigation__landing-navigation__user {
+  position: relative;
+  height: 100%;
+  width: 12.5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border-radius: 5rem;
+  background-color: transparent;
+  border: 0.2rem solid rgba(250, 250, 250, 0.75);
+  transition: color 0.5s, background-color 0.5s;
+}
+.master-flex-container .master-grid-container .navigation__landing-navigation__login-icon, .master-flex-container .master-grid-container .navigation__landing-navigation__signup-icon, .master-flex-container .master-grid-container .navigation__landing-navigation__user-icon {
+  position: relative;
+  transform: translate(-0.3rem, 0);
+}
+.master-flex-container .master-grid-container .navigation__landing-navigation__login:hover, .master-flex-container .master-grid-container .navigation__landing-navigation__signup:hover, .master-flex-container .master-grid-container .navigation__landing-navigation__user:hover {
+  border: 0.2rem solid #fafafa;
+  background: #38d927;
+  cursor: pointer;
+}
+.master-flex-container .master-grid-container .navigation__landing-navigation__login:active, .master-flex-container .master-grid-container .navigation__landing-navigation__signup:active, .master-flex-container .master-grid-container .navigation__landing-navigation__user:active {
+  background-color: #ffd700;
+}
+.master-flex-container .master-grid-container .navigation__landing-navigation__login {
+  margin-right: 2rem;
+}
+.master-flex-container .master-grid-container .navigation__landing-navigation__login-text {
+  transform: translate(-2.3rem, 0);
+}
+.master-flex-container .master-grid-container .navigation__landing-navigation__signup-text {
+  transform: translate(-1.6rem, 0);
+}
+.master-flex-container .master-grid-container .navigation__landing-navigation__user {
+  width: min-content;
+  padding: 1rem 1rem 1rem 5rem;
+  margin-right: 2rem;
+}
+.master-flex-container .master-grid-container .navigation__landing-navigation__user-icon {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-0.6rem, -50%);
+}
+.master-flex-container .master-grid-container .navigation__landing-navigation__user-text {
+  transform: translate(-1.2rem, 0.1rem);
 }
 
 .vertical-flex-container .flex-section {
@@ -31507,6 +31645,148 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
   background-color: #f2f2f2ff;
+}
+
+.master-flex-container .master-grid-container .form-container {
+  position: relative;
+  height: 100%;
+  width: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: rgba(101, 33, 144, 0.9);
+  opacity: 0;
+}
+.master-flex-container .master-grid-container .form-container .login-form,
+.master-flex-container .master-grid-container .form-container .signup-form {
+  position: relative;
+  height: 100%;
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  flex-direction: column;
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section {
+  position: relative;
+  height: 12.5%;
+  width: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  margin-top: 4rem;
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section__input,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section__input {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  transform: rotate(0) translate(0, 0);
+  border: 0.2rem solid rgba(56, 217, 39, 0.95);
+  background-color: rgba(17, 17, 17, 0.75);
+  padding-left: 4rem;
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section__input::-webkit-input-placeholder,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section__input::-webkit-input-placeholder {
+  opacity: 0;
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section__input:focus::-webkit-input-placeholder,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section__input:focus::-webkit-input-placeholder {
+  opacity: 1;
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section__input:not(:placeholder-shown) + label, .master-flex-container .master-grid-container .form-container .login-form__form-section__input:focus + label,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section__input:not(:placeholder-shown) + label,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section__input:focus + label {
+  transform: translate(-13.25rem, -7rem) scale(0.65);
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section__input--rounded-top,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section__input--rounded-top {
+  border-top-left-radius: 2.5rem;
+  border-top-right-radius: 2.5rem;
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section__input:focus,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section__input:focus {
+  outline: none;
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section__input:invalid,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section__input:invalid {
+  border: 0.3rem solid rgba(207, 53, 46, 0.75);
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section__input:valid,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section__input:valid {
+  border: 0.3rem solid #38d927;
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section__label,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section__label {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  padding-left: 4rem;
+  transition: transform 0.5s, opacity 0.5s;
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section--message,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section--message {
+  position: relative;
+  height: 7.5%;
+  width: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section--message__message-container,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section--message__message-container {
+  position: relative;
+  height: 100%;
+  width: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.2rem solid rgba(56, 217, 39, 0.95);
+  background-color: rgba(17, 17, 17, 0.75);
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section--message__form-button,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section--message__form-button {
+  position: relative;
+  height: 100%;
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.2rem solid rgba(56, 217, 39, 0.95);
+  background-color: rgba(56, 217, 39, 0.95);
+  transition: background-color 0.5s;
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section--message__form-button:hover,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section--message__form-button:hover {
+  cursor: pointer;
+  background-color: #38d927;
+}
+.master-flex-container .master-grid-container .form-container--open {
+  width: 100%;
+  opacity: 1;
+  transition: width 0.5s, opacity 1s;
+}
+
+.master-flex-container {
+  position: relative;
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .master-flex-container .master-grid-container {
@@ -36932,176 +37212,44 @@ html {
   grid-row: 18/span 1;
 }
 
-.master-flex-container .master-grid-container .navigation__landing-navigation__login, .master-flex-container .master-grid-container .navigation__landing-navigation__signup {
+.master-flex-container .navigation {
   position: relative;
-  height: 100%;
-  width: 12.5%;
+  height: 4.983rem;
+  width: 100vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
   transform: rotate(0) translate(0, 0);
-  border-radius: 5rem;
-  background-color: transparent;
-  border: 0.2rem solid rgba(250, 250, 250, 0.75);
-  transition: color 0.5s, background-color 0.5s;
+  background-color: #822aba;
+  border-bottom: 0.3rem groove #ffd700;
+  padding: 0 3rem;
 }
-.master-flex-container .master-grid-container .navigation__landing-navigation__login-icon, .master-flex-container .master-grid-container .navigation__landing-navigation__signup-icon {
-  position: relative;
-  transform: translate(-0.3rem, 0);
-}
-.master-flex-container .master-grid-container .navigation__landing-navigation__login:hover, .master-flex-container .master-grid-container .navigation__landing-navigation__signup:hover {
-  border: 0.2rem solid #fafafa;
-  background: #38d927;
-  cursor: pointer;
-}
-.master-flex-container .master-grid-container .navigation__landing-navigation__login:active, .master-flex-container .master-grid-container .navigation__landing-navigation__signup:active {
-  background-color: #ffd700;
-}
-.master-flex-container .master-grid-container .navigation__landing-navigation__login {
-  margin-right: 2rem;
-}
-.master-flex-container .master-grid-container .navigation__landing-navigation__login-text {
-  transform: translate(-2.3rem, 0);
-}
-.master-flex-container .master-grid-container .navigation__landing-navigation__signup-text {
-  transform: translate(-1.6rem, 0);
-}
-
-.master-flex-container .master-grid-container .form-container {
+.master-flex-container .navigation .logo-container {
   position: relative;
   height: 100%;
-  width: 0%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  background-color: rgba(101, 33, 144, 0.9);
-  opacity: 0;
-}
-.master-flex-container .master-grid-container .form-container .login-form,
-.master-flex-container .master-grid-container .form-container .signup-form {
-  position: relative;
-  height: 100%;
-  width: 45%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  flex-direction: column;
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section {
-  position: relative;
-  height: 12.5%;
-  width: 100%;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  margin-top: 4rem;
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section__input,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section__input {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  transform: rotate(0) translate(0, 0);
-  border: 0.2rem solid rgba(56, 217, 39, 0.95);
-  background-color: rgba(17, 17, 17, 0.75);
-  padding-left: 4rem;
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section__input::-webkit-input-placeholder,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section__input::-webkit-input-placeholder {
-  opacity: 0;
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section__input:focus::-webkit-input-placeholder,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section__input:focus::-webkit-input-placeholder {
-  opacity: 1;
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section__input:not(:placeholder-shown) + label, .master-flex-container .master-grid-container .form-container .login-form__form-section__input:focus + label,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section__input:not(:placeholder-shown) + label,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section__input:focus + label {
-  transform: translate(-13.25rem, -7rem) scale(0.65);
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section__input--rounded-top,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section__input--rounded-top {
-  border-top-left-radius: 2.5rem;
-  border-top-right-radius: 2.5rem;
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section__input:focus,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section__input:focus {
-  outline: none;
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section__input:invalid,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section__input:invalid {
-  border: 0.3rem solid rgba(207, 53, 46, 0.75);
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section__input:valid,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section__input:valid {
-  border: 0.3rem solid #38d927;
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section__label,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section__label {
-  position: absolute;
-  height: 100%;
-  width: 100%;
+  width: 50%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   transform: rotate(0) translate(0, 0);
-  padding-left: 4rem;
-  transition: transform 0.5s, opacity 0.5s;
 }
-.master-flex-container .master-grid-container .form-container .login-form__form-section--message,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section--message {
+.master-flex-container .navigation .logo-container__logo {
   position: relative;
-  height: 7.5%;
-  width: 100%;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
+  height: 80%;
+  width: auto;
+  margin-right: 2rem;
 }
-.master-flex-container .master-grid-container .form-container .login-form__form-section--message__message-container,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section--message__message-container {
+.master-flex-container .navigation__landing-navigation {
   position: relative;
-  height: 100%;
-  width: 75%;
+  height: 80%;
+  width: 50%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   transform: rotate(0) translate(0, 0);
-  border: 0.2rem solid rgba(56, 217, 39, 0.95);
-  background-color: rgba(17, 17, 17, 0.75);
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section--message__form-button,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section--message__form-button {
-  position: relative;
-  height: 100%;
-  width: 25%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  border: 0.2rem solid rgba(56, 217, 39, 0.95);
-  background-color: rgba(56, 217, 39, 0.95);
-  transition: background-color 0.5s;
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section--message__form-button:hover,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section--message__form-button:hover {
-  cursor: pointer;
-  background-color: #38d927;
-}
-.master-flex-container .master-grid-container .form-container--open {
-  width: 100%;
-  opacity: 1;
-  transition: width 0.5s, opacity 1s;
 }
 
-.master-flex-container .background-logo {
+.master-flex-container .master-grid-container .background-logo {
   position: relative;
   height: auto;
   width: 60%;
@@ -37110,7 +37258,7 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
 }
-.master-flex-container .background-header {
+.master-flex-container .master-grid-container .background-header {
   position: relative;
   height: 100%;
   width: 100%;
@@ -37120,7 +37268,7 @@ html {
   transform: rotate(0) translate(0, 0);
   flex-direction: column;
 }
-.master-flex-container .background-header__main {
+.master-flex-container .master-grid-container .background-header__main {
   position: relative;
   height: 60%;
   width: 100%;
@@ -37129,7 +37277,7 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
 }
-.master-flex-container .background-header__sub {
+.master-flex-container .master-grid-container .background-header__sub {
   position: relative;
   height: 40%;
   width: 100%;
@@ -37138,7 +37286,7 @@ html {
   align-items: center;
   transform: rotate(0) translate(-15rem, 2rem);
 }
-.master-flex-container .form-container {
+.master-flex-container .master-grid-container .form-container {
   position: relative;
   height: 100%;
   width: 100%;
@@ -37149,45 +37297,90 @@ html {
   background-color: rgba(101, 33, 144, 0.9);
 }
 
+.master-flex-container .master-grid-container .background-logo {
+  position: relative;
+  height: auto;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-flex-container .master-grid-container .background-header {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  transform: rotate(0) translate(0, 0);
+  flex-direction: column;
+}
+.master-flex-container .master-grid-container .background-header__main {
+  position: relative;
+  height: 60%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-flex-container .master-grid-container .background-header__sub {
+  position: relative;
+  height: 40%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  transform: rotate(0) translate(-15rem, 2rem);
+}
+.master-flex-container .master-grid-container .form-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: rgba(101, 33, 144, 0.9);
+}
+.master-flex-container .master-grid-container .app-background {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: rgba(101, 33, 144, 0.8);
+}
+
 /*
 I was thinking of iterating through the objects that were created.
     //////////////////////////////////
     /// To Do List:
 
-    MUSTDO : Finish JavaScript lessons & ALL projects inside the course.  ** TOP PRIORITY **
-    MUSTDO : Finish Node.js lessons & ALL projects inside the course.  ** TOP PRIORITY **
-    MUSTDO : Implement functionality of my signup form so it does the following: 
-      - Validates the input given against the required input.
-      - Moves on to the next question if it is not the last, otherwise, submit the form.
-      - Make sure it gives the user an error if it is essential.
-    MUSTDO : Implement a way for the Login Form & Signup form to show & hide the password.
-    MUSTDO : Understand MVC architecture so I can implement that in both my personal website & budget.  Then, I can start with that file architecture from the get go.
-    MUSTDO : After Login is validated, I want the person's profile page to load.
-    MUSTDO : After a Signup is completed & validated, i want a profile page to be created AND loaded with that user's information.
-
+    MUSTDO : With Users getting into Database, now I have to have the App Logged In page come up with the appropriate user and greeting.  This will include the user's budgets that have been created, along with the create budget card.  Technically, this is ALMOST done, but the created budgets will come later, and the greeting is next to be done.  ** TOP PRIORITY **
+    MUSTDO : Get Login Form to do the same as the Signup form for the already signed up users.  In other words, bring up the App Logged In page with everything else that the sign up form brings up on that page. ** TOP PRIORITY **
+    MUSTDO : Have both the login form and signup form change the logged in URL to /app.  That way, it then will use that router from then on.  I do not want it to stick on /users/login or /users/signup url's.  That will NOT work for this app.  ** TOP PRIORITY **
 
 
     //////////////////////////////////
     /// Glitches To Fix
 
-    GLITCH : Form Placeholder Does Not Show In FireFox.
-    GLITCH : My Custom Font Purely Me Does Not Get Used In My Site Outside Of Dissenter & My Computer.
+    GLITCH : 
 
 
     //////////////////////////////////
     /// Adjustments To Make
 
-    ADJUST : Remove Arrow Functions from Methods.
-    ADJUST : Refactor Code to make it so functions / methods only use up to 5 parameters max.
-    ADJUST : Do not worry about the length of the code if you are chaining methods or something very similar.
+    ADJUST : 
 
 
     //////////////////////////////////
     /// Features To Implement
 
-    FEATURE : Get form to be fully functional and send an email containing the message to my personal email.  Do so without doing something insecure.
-    FEATURE : Allow keyboard arrows to control the 'More About Me' section.
-    FEATURE : Allow for the user to go to the end or the beginning after getting to the end of the items. ( All that is left is the 'More About Me' section.
+    FEATURE : 
 
 */
 *,

@@ -1,0 +1,20 @@
+extends base
+  
+block Navigation
+  ul.navigation__landing-navigation.r__navigation__landing-navigation
+    button.navigation__landing-navigation__user.r__navigation__landing-navigation__user
+      i.fas.fa-user-circle.navigation__landing-navigation__user-icon.r__navigation__landing-navigation__user-icon
+      p.navigation__landing-navigation__user-text.r__navigation__landing-navigation__user-text #{data.user.firstname}
+
+block Unique-Content
+  section.app-background.r__app-background.column_1-24.row_2-17
+    section.app-container.r__app-container
+      header.app-container__header--landing
+        h1.app-container__header--landing__title= `${data.calendar.getGreeting()} ${data.user.firstname} ${data.user.lastname}`
+      section.budget-card-container.r__budget-card-container
+        i.fas.fa-arrow-alt-circle-left
+        div.budget-card-container__cards-container
+          section.budget-card--create
+            i.fas.fa-plus.budget-card--create__icon
+            p.budget-card--create__text Create Budget
+        i.fas.fa-arrow-alt-circle-right

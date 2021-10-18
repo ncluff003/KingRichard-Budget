@@ -6,40 +6,27 @@ I was thinking of iterating through the objects that were created.
     //////////////////////////////////
     /// To Do List:
 
-    MUSTDO : Finish JavaScript lessons & ALL projects inside the course.  ** TOP PRIORITY **
-    MUSTDO : Finish Node.js lessons & ALL projects inside the course.  ** TOP PRIORITY **
-    MUSTDO : Implement functionality of my signup form so it does the following: 
-      - Validates the input given against the required input.
-      - Moves on to the next question if it is not the last, otherwise, submit the form.
-      - Make sure it gives the user an error if it is essential.
-    MUSTDO : Implement a way for the Login Form & Signup form to show & hide the password.
-    MUSTDO : Understand MVC architecture so I can implement that in both my personal website & budget.  Then, I can start with that file architecture from the get go.
-    MUSTDO : After Login is validated, I want the person's profile page to load.
-    MUSTDO : After a Signup is completed & validated, i want a profile page to be created AND loaded with that user's information.
-    
+    MUSTDO : With Users getting into Database, now I have to have the App Logged In page come up with the appropriate user and greeting.  This will include the user's budgets that have been created, along with the create budget card.  Technically, this is ALMOST done, but the created budgets will come later, and the greeting is next to be done.  ** TOP PRIORITY **
+    MUSTDO : Get Login Form to do the same as the Signup form for the already signed up users.  In other words, bring up the App Logged In page with everything else that the sign up form brings up on that page. ** TOP PRIORITY **
+    MUSTDO : Have both the login form and signup form change the logged in URL to /app.  That way, it then will use that router from then on.  I do not want it to stick on /users/login or /users/signup url's.  That will NOT work for this app.  ** TOP PRIORITY **
     
     
     //////////////////////////////////
     /// Glitches To Fix
 
-    GLITCH : Form Placeholder Does Not Show In FireFox.
-    GLITCH : My Custom Font Purely Me Does Not Get Used In My Site Outside Of Dissenter & My Computer.
+    GLITCH : 
 
 
     //////////////////////////////////
     /// Adjustments To Make
 
-    ADJUST : Remove Arrow Functions from Methods.
-    ADJUST : Refactor Code to make it so functions / methods only use up to 5 parameters max.
-    ADJUST : Do not worry about the length of the code if you are chaining methods or something very similar.
+    ADJUST : 
 
 
     //////////////////////////////////
     /// Features To Implement
 
-    FEATURE : Get form to be fully functional and send an email containing the message to my personal email.  Do so without doing something insecure.
-    FEATURE : Allow keyboard arrows to control the 'More About Me' section.
-    FEATURE : Allow for the user to go to the end or the beginning after getting to the end of the items. ( All that is left is the 'More About Me' section.
+    FEATURE : 
 
 */
 

@@ -1,0 +1,61 @@
+@use "../../../Public/SCSS/Utilities/Mixins" as *;
+@use "../../../Public/SCSS/Utilities/Variables" as *;
+
+////////////////////////////////////////////////
+//  Master Flex Container
+
+.master-flex-container {
+  .master-grid-container {
+    ////////////////////////////////////////////////
+    //  Background
+    .form-container,
+    .app-background {
+      .app-container {
+        .budget-card-container {
+          @include SizeAndPositioning(relative, 70%, 100%, flex, space-around, center, 0, 0, 0);
+          margin-bottom: 10rem;
+          .fa-arrow-alt-circle-left,
+          .fa-arrow-alt-circle-right {
+            -webkit-text-stroke: 0.2rem $primaryColor;
+            -moz-text-stroke: 0.2rem $primaryColor;
+            transition: color 0.5s, -webkit-text-stroke 0.5s;
+            &:hover {
+              -webkit-text-stroke: 0.2rem $colorOffWhite;
+              -moz-text-stroke: 0.2rem $colorOffWhite;
+            }
+            &:active {
+              -webkit-text-stroke: 0.2rem $colorOffWhite;
+              -moz-text-stroke: 0.2rem $colorOffWhite;
+            }
+          }
+          &__cards-container {
+            @include SizeAndPositioning(relative, 80%, 40%, flex, space-evenly, center, 0, 0, 0);
+            flex-direction: column;
+            .budget-card {
+              &--create {
+                @include SizeAndPositioning(relative, 100%, 100%, flex, center, center, 0, 0, 0);
+                flex-direction: column;
+                border: 0.2rem groove rgba($colorOffWhite, 0.5);
+                border-radius: 3rem;
+                transition: background-color 0.25s, color 0.25s, border 0.25s;
+                &__icon,
+                &__text {
+                  margin: 1rem 0;
+                }
+                &:hover {
+                  border: 0.2rem groove $colorOffWhite;
+                  background-color: $tertiaryColor;
+                  cursor: pointer;
+                }
+                &:active {
+                  border: 0.2rem groove $colorOffWhite;
+                  background-color: $secondaryColor;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

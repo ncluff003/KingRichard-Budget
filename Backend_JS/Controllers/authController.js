@@ -23,15 +23,42 @@ const catchAsync = require(`./../Utilities/catchAsync`);
 ////////////////////////////////////////////
 //  My Modules
 const Validate = require(`./../Models/validatorModel`);
+const Calendar = require(`./../Utilities/Calendar`);
+////////////////////////////////////////////
+//  My Models
+const User = require(`./../Models/userModel`);
 ////////////////////////////////////////////
 //  Exported Controllers
-exports.validateSignup = catchAsync(async (request, response) => {
-  console.log(request.body);
+exports.renderAppLoggedIn = catchAsync(async (request, response, next) => {
+  response.status(200).render(`loggedIn`, {
+    title: `Pure 'N' Spiration | ${request.user.firstname}'s Profile'`,
+  });
 });
 
-exports.signup = catchAsync(async (request, response) => {
-  response.status(200).json({
-    status: 'Success',
-    message: `${request.body}`,
+exports.validateSignup = catchAsync(async (request, response, next) => {
+  console.log(request.body);
+  // response.status(200).json({
+  //   status: `Success`,
+  //   message: `User Validated`,
+  // });
+  next();
+});
+
+exports.signup = catchAsync(async (request, response, next) => {
+  const newUser = await User.create(request.body);
+  request.user = newUser;
+
+  // response.status(201).json({
+  //   status: `Success`,
+  //   data: {
+  //     user: newUser,
+  //   },
+  // });
+  response.status(201).render(`loggedIn`, {
+    title: `Pure 'N' Spiration | ${request.user.firstname}'s Profile'`,
+    data: {
+      user: newUser,
+      calendar: Calendar,
+    },
   });
 });

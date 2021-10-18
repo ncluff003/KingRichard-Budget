@@ -19,14 +19,14 @@ html {
 .master-flex-container .master-grid-container .navigation__landing-navigation {
   font-size: 1.6rem;
 }
-.master-flex-container .master-grid-container .navigation__landing-navigation__login, .master-flex-container .master-grid-container .navigation__landing-navigation__signup {
+.master-flex-container .master-grid-container .navigation__landing-navigation__login, .master-flex-container .master-grid-container .navigation__landing-navigation__signup, .master-flex-container .master-grid-container .navigation__landing-navigation__user {
   color: rgba(250, 250, 250, 0.85);
 }
-.master-flex-container .master-grid-container .navigation__landing-navigation__login-icon, .master-flex-container .master-grid-container .navigation__landing-navigation__signup-icon {
+.master-flex-container .master-grid-container .navigation__landing-navigation__login-icon, .master-flex-container .master-grid-container .navigation__landing-navigation__signup-icon, .master-flex-container .master-grid-container .navigation__landing-navigation__user-icon {
   font-size: 3.6rem;
   color: #fafafa;
 }
-.master-flex-container .master-grid-container .navigation__landing-navigation__login:hover, .master-flex-container .master-grid-container .navigation__landing-navigation__signup:hover {
+.master-flex-container .master-grid-container .navigation__landing-navigation__login:hover, .master-flex-container .master-grid-container .navigation__landing-navigation__signup:hover, .master-flex-container .master-grid-container .navigation__landing-navigation__user:hover {
   color: #fafafa;
 }
 .master-flex-container .master-grid-container .background-header {
@@ -57,6 +57,8 @@ html {
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section--message__message-container,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section--message__message-container {
+  font-size: 1.4rem;
+  text-align: center;
   color: rgba(250, 250, 250, 0.85);
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section--message__form-button,
@@ -31470,10 +31472,32 @@ html {
   grid-row: 10/span 1;
 }
 
-.master-flex-container .navigation {
+.master-flex-container .form-container .app-container,
+.master-flex-container .app-background .app-container {
   position: relative;
-  height: 4.983rem;
-  width: 100vw;
+  height: 100%;
+  width: 40%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transform: rotate(0) translate(0, 0);
+          transform: rotate(0) translate(0, 0);
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.master-flex-container .master-grid-container .navigation__landing-navigation__login, .master-flex-container .master-grid-container .navigation__landing-navigation__signup, .master-flex-container .master-grid-container .navigation__landing-navigation__user {
+  position: relative;
+  height: 100%;
+  width: 12.5%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -31485,60 +31509,53 @@ html {
           align-items: center;
   -webkit-transform: rotate(0) translate(0, 0);
           transform: rotate(0) translate(0, 0);
-  background-color: #822aba;
-  border-bottom: 0.3rem groove #ffd700;
-  padding: 0 3rem;
+  border-radius: 5rem;
+  background-color: transparent;
+  border: 0.2rem solid rgba(250, 250, 250, 0.75);
+  -webkit-transition: color 0.5s, background-color 0.5s;
+  transition: color 0.5s, background-color 0.5s;
 }
-.master-flex-container .navigation .logo-container {
+.master-flex-container .master-grid-container .navigation__landing-navigation__login-icon, .master-flex-container .master-grid-container .navigation__landing-navigation__signup-icon, .master-flex-container .master-grid-container .navigation__landing-navigation__user-icon {
   position: relative;
-  height: 100%;
-  width: 50%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-transform: rotate(0) translate(0, 0);
-          transform: rotate(0) translate(0, 0);
+  -webkit-transform: translate(-0.3rem, 0);
+          transform: translate(-0.3rem, 0);
 }
-.master-flex-container .navigation .logo-container__logo {
-  position: relative;
-  height: 80%;
-  width: auto;
+.master-flex-container .master-grid-container .navigation__landing-navigation__login:hover, .master-flex-container .master-grid-container .navigation__landing-navigation__signup:hover, .master-flex-container .master-grid-container .navigation__landing-navigation__user:hover {
+  border: 0.2rem solid #fafafa;
+  background: #38d927;
+  cursor: pointer;
+}
+.master-flex-container .master-grid-container .navigation__landing-navigation__login:active, .master-flex-container .master-grid-container .navigation__landing-navigation__signup:active, .master-flex-container .master-grid-container .navigation__landing-navigation__user:active {
+  background-color: #ffd700;
+}
+.master-flex-container .master-grid-container .navigation__landing-navigation__login {
   margin-right: 2rem;
 }
-.master-flex-container .navigation__landing-navigation {
-  position: relative;
-  height: 80%;
-  width: 50%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-transform: rotate(0) translate(0, 0);
-          transform: rotate(0) translate(0, 0);
+.master-flex-container .master-grid-container .navigation__landing-navigation__login-text {
+  -webkit-transform: translate(-2.3rem, 0);
+          transform: translate(-2.3rem, 0);
 }
-
-.master-flex-container {
-  position: relative;
-  width: 100vw;
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+.master-flex-container .master-grid-container .navigation__landing-navigation__signup-text {
+  -webkit-transform: translate(-1.6rem, 0);
+          transform: translate(-1.6rem, 0);
+}
+.master-flex-container .master-grid-container .navigation__landing-navigation__user {
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  padding: 1rem 1rem 1rem 5rem;
+  margin-right: 2rem;
+}
+.master-flex-container .master-grid-container .navigation__landing-navigation__user-icon {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  -webkit-transform: translate(-0.6rem, -50%);
+          transform: translate(-0.6rem, -50%);
+}
+.master-flex-container .master-grid-container .navigation__landing-navigation__user-text {
+  -webkit-transform: translate(-1.2rem, 0.1rem);
+          transform: translate(-1.2rem, 0.1rem);
 }
 
 .vertical-flex-container .flex-section {
@@ -31557,6 +31574,220 @@ html {
   -webkit-transform: rotate(0) translate(0, 0);
           transform: rotate(0) translate(0, 0);
   background-color: #f2f2f2ff;
+}
+
+.master-flex-container .master-grid-container .form-container {
+  position: relative;
+  height: 100%;
+  width: 0%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transform: rotate(0) translate(0, 0);
+          transform: rotate(0) translate(0, 0);
+  background-color: rgba(101, 33, 144, 0.9);
+  opacity: 0;
+}
+.master-flex-container .master-grid-container .form-container .login-form,
+.master-flex-container .master-grid-container .form-container .signup-form {
+  position: relative;
+  height: 100%;
+  width: 45%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transform: rotate(0) translate(0, 0);
+          transform: rotate(0) translate(0, 0);
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section {
+  position: relative;
+  height: 12.5%;
+  width: 100%;
+  display: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transform: rotate(0) translate(0, 0);
+          transform: rotate(0) translate(0, 0);
+  margin-top: 4rem;
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section__input,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section__input {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-transform: rotate(0) translate(0, 0);
+          transform: rotate(0) translate(0, 0);
+  border: 0.2rem solid rgba(56, 217, 39, 0.95);
+  background-color: rgba(17, 17, 17, 0.75);
+  padding-left: 4rem;
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section__input::-webkit-input-placeholder,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section__input::-webkit-input-placeholder {
+  opacity: 0;
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section__input:focus::-webkit-input-placeholder,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section__input:focus::-webkit-input-placeholder {
+  opacity: 1;
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section__input:not(:-moz-placeholder-shown) + label, .master-flex-container .master-grid-container .form-container .signup-form__form-section__input:not(:-moz-placeholder-shown) + label {
+  transform: translate(-13.25rem, -7rem) scale(0.65);
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section__input:not(:-ms-input-placeholder) + label, .master-flex-container .master-grid-container .form-container .signup-form__form-section__input:not(:-ms-input-placeholder) + label {
+  transform: translate(-13.25rem, -7rem) scale(0.65);
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section__input:not(:placeholder-shown) + label, .master-flex-container .master-grid-container .form-container .login-form__form-section__input:focus + label,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section__input:not(:placeholder-shown) + label,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section__input:focus + label {
+  -webkit-transform: translate(-13.25rem, -7rem) scale(0.65);
+          transform: translate(-13.25rem, -7rem) scale(0.65);
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section__input--rounded-top,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section__input--rounded-top {
+  border-top-left-radius: 2.5rem;
+  border-top-right-radius: 2.5rem;
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section__input:focus,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section__input:focus {
+  outline: none;
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section__input:invalid,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section__input:invalid {
+  border: 0.3rem solid rgba(207, 53, 46, 0.75);
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section__input:valid,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section__input:valid {
+  border: 0.3rem solid #38d927;
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section__label,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section__label {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transform: rotate(0) translate(0, 0);
+          transform: rotate(0) translate(0, 0);
+  padding-left: 4rem;
+  -webkit-transition: opacity 0.5s, -webkit-transform 0.5s;
+  transition: opacity 0.5s, -webkit-transform 0.5s;
+  transition: transform 0.5s, opacity 0.5s;
+  transition: transform 0.5s, opacity 0.5s, -webkit-transform 0.5s;
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section--message,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section--message {
+  position: relative;
+  height: 7.5%;
+  width: 100%;
+  display: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transform: rotate(0) translate(0, 0);
+          transform: rotate(0) translate(0, 0);
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section--message__message-container,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section--message__message-container {
+  position: relative;
+  height: 100%;
+  width: 75%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transform: rotate(0) translate(0, 0);
+          transform: rotate(0) translate(0, 0);
+  border: 0.2rem solid rgba(56, 217, 39, 0.95);
+  background-color: rgba(17, 17, 17, 0.75);
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section--message__form-button,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section--message__form-button {
+  position: relative;
+  height: 100%;
+  width: 25%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transform: rotate(0) translate(0, 0);
+          transform: rotate(0) translate(0, 0);
+  border: 0.2rem solid rgba(56, 217, 39, 0.95);
+  background-color: rgba(56, 217, 39, 0.95);
+  -webkit-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section--message__form-button:hover,
+.master-flex-container .master-grid-container .form-container .signup-form__form-section--message__form-button:hover {
+  cursor: pointer;
+  background-color: #38d927;
+}
+.master-flex-container .master-grid-container .form-container--open {
+  width: 100%;
+  opacity: 1;
+  -webkit-transition: width 0.5s, opacity 1s;
+  transition: width 0.5s, opacity 1s;
+}
+
+.master-flex-container {
+  position: relative;
+  width: 100vw;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .master-flex-container .master-grid-container {
@@ -36982,10 +37213,10 @@ html {
   grid-row: 18/span 1;
 }
 
-.master-flex-container .master-grid-container .navigation__landing-navigation__login, .master-flex-container .master-grid-container .navigation__landing-navigation__signup {
+.master-flex-container .navigation {
   position: relative;
-  height: 100%;
-  width: 12.5%;
+  height: 4.983rem;
+  width: 100vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -36997,153 +37228,14 @@ html {
           align-items: center;
   -webkit-transform: rotate(0) translate(0, 0);
           transform: rotate(0) translate(0, 0);
-  border-radius: 5rem;
-  background-color: transparent;
-  border: 0.2rem solid rgba(250, 250, 250, 0.75);
-  -webkit-transition: color 0.5s, background-color 0.5s;
-  transition: color 0.5s, background-color 0.5s;
+  background-color: #822aba;
+  border-bottom: 0.3rem groove #ffd700;
+  padding: 0 3rem;
 }
-.master-flex-container .master-grid-container .navigation__landing-navigation__login-icon, .master-flex-container .master-grid-container .navigation__landing-navigation__signup-icon {
-  position: relative;
-  -webkit-transform: translate(-0.3rem, 0);
-          transform: translate(-0.3rem, 0);
-}
-.master-flex-container .master-grid-container .navigation__landing-navigation__login:hover, .master-flex-container .master-grid-container .navigation__landing-navigation__signup:hover {
-  border: 0.2rem solid #fafafa;
-  background: #38d927;
-  cursor: pointer;
-}
-.master-flex-container .master-grid-container .navigation__landing-navigation__login {
-  margin-right: 2rem;
-}
-.master-flex-container .master-grid-container .navigation__landing-navigation__login-text {
-  -webkit-transform: translate(-2.3rem, 0);
-          transform: translate(-2.3rem, 0);
-}
-.master-flex-container .master-grid-container .navigation__landing-navigation__signup-text {
-  -webkit-transform: translate(-1.6rem, 0);
-          transform: translate(-1.6rem, 0);
-}
-
-.master-flex-container .master-grid-container .form-container {
-  position: relative;
-  height: 0%;
-  width: 0%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-transform: rotate(0) translate(0, 0);
-          transform: rotate(0) translate(0, 0);
-  background-color: rgba(101, 33, 144, 0.9);
-  opacity: 0;
-}
-.master-flex-container .master-grid-container .form-container .login-form,
-.master-flex-container .master-grid-container .form-container .signup-form {
+.master-flex-container .navigation .logo-container {
   position: relative;
   height: 100%;
-  width: 30%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-transform: rotate(0) translate(0, 0);
-          transform: rotate(0) translate(0, 0);
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section {
-  position: relative;
-  height: 12.5%;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-transform: rotate(0) translate(0, 0);
-          transform: rotate(0) translate(0, 0);
-  margin-top: 4rem;
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section__input,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section__input {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-transform: rotate(0) translate(0, 0);
-          transform: rotate(0) translate(0, 0);
-  border: 0.2rem solid rgba(56, 217, 39, 0.95);
-  background-color: rgba(17, 17, 17, 0.75);
-  padding-left: 4rem;
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section__input::-webkit-input-placeholder,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section__input::-webkit-input-placeholder {
-  opacity: 0;
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section__input:focus::-webkit-input-placeholder,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section__input:focus::-webkit-input-placeholder {
-  opacity: 1;
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section__input:not(:-moz-placeholder-shown) + label, .master-flex-container .master-grid-container .form-container .signup-form__form-section__input:not(:-moz-placeholder-shown) + label {
-  transform: translate(-10.25rem, -7rem) scale(0.65);
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section__input:not(:-ms-input-placeholder) + label, .master-flex-container .master-grid-container .form-container .signup-form__form-section__input:not(:-ms-input-placeholder) + label {
-  transform: translate(-10.25rem, -7rem) scale(0.65);
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section__input:not(:placeholder-shown) + label, .master-flex-container .master-grid-container .form-container .login-form__form-section__input:focus + label,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section__input:not(:placeholder-shown) + label,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section__input:focus + label {
-  -webkit-transform: translate(-10.25rem, -7rem) scale(0.65);
-          transform: translate(-10.25rem, -7rem) scale(0.65);
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section__input--rounded-top,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section__input--rounded-top {
-  border-top-left-radius: 2.5rem;
-  border-top-right-radius: 2.5rem;
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section__input:focus,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section__input:focus {
-  outline: none;
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section__input:invalid,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section__input:invalid {
-  border: 0.3rem solid rgba(207, 53, 46, 0.75);
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section__input:valid,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section__input:valid {
-  border: 0.3rem solid #38d927;
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section__label,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section__label {
-  position: absolute;
-  height: 100%;
-  width: 100%;
+  width: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -37155,73 +37247,28 @@ html {
           align-items: center;
   -webkit-transform: rotate(0) translate(0, 0);
           transform: rotate(0) translate(0, 0);
-  padding-left: 4rem;
-  -webkit-transition: opacity 0.5s, -webkit-transform 0.5s;
-  transition: opacity 0.5s, -webkit-transform 0.5s;
-  transition: transform 0.5s, opacity 0.5s;
-  transition: transform 0.5s, opacity 0.5s, -webkit-transform 0.5s;
 }
-.master-flex-container .master-grid-container .form-container .login-form__form-section--message,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section--message {
+.master-flex-container .navigation .logo-container__logo {
   position: relative;
-  height: 7.5%;
-  width: 100%;
+  height: 80%;
+  width: auto;
+  margin-right: 2rem;
+}
+.master-flex-container .navigation__landing-navigation {
+  position: relative;
+  height: 80%;
+  width: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-transform: rotate(0) translate(0, 0);
           transform: rotate(0) translate(0, 0);
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section--message__message-container,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section--message__message-container {
-  position: relative;
-  height: 100%;
-  width: 75%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-transform: rotate(0) translate(0, 0);
-          transform: rotate(0) translate(0, 0);
-  border: 0.2rem solid rgba(56, 217, 39, 0.95);
-  background-color: rgba(17, 17, 17, 0.75);
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section--message__form-button,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section--message__form-button {
-  position: relative;
-  height: 100%;
-  width: 25%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-transform: rotate(0) translate(0, 0);
-          transform: rotate(0) translate(0, 0);
-  border: 0.2rem solid rgba(56, 217, 39, 0.95);
-  background-color: rgba(56, 217, 39, 0.95);
-  -webkit-transition: background-color 0.5s;
-  transition: background-color 0.5s;
-}
-.master-flex-container .master-grid-container .form-container .login-form__form-section--message__form-button:hover,
-.master-flex-container .master-grid-container .form-container .signup-form__form-section--message__form-button:hover {
-  cursor: pointer;
-  background-color: #38d927;
 }
 
 .master-flex-container .background-logo {
@@ -37315,40 +37362,26 @@ I was thinking of iterating through the objects that were created.
     //////////////////////////////////
     /// To Do List:
 
-    MUSTDO : Finish JavaScript lessons & ALL projects inside the course.  ** TOP PRIORITY **
-    MUSTDO : Finish Node.js lessons & ALL projects inside the course.  ** TOP PRIORITY **
-    MUSTDO : Implement functionality of my signup form so it does the following: 
-      - Validates the input given against the required input.
-      - Moves on to the next question if it is not the last, otherwise, submit the form.
-      - Make sure it gives the user an error if it is essential.
-    MUSTDO : Implement a way for the Login Form & Signup form to show & hide the password.
-    MUSTDO : Understand MVC architecture so I can implement that in both my personal website & budget.  Then, I can start with that file architecture from the get go.
-    MUSTDO : After Login is validated, I want the person's profile page to load.
-    MUSTDO : After a Signup is completed & validated, i want a profile page to be created AND loaded with that user's information.
+    MUSTDO : Watch video of Jonas getting either Tours or Users into Database to have an idea of what is needed for me, since my DB Connection is successful.  ** TOP PRIORITY **
 
 
 
     //////////////////////////////////
     /// Glitches To Fix
 
-    GLITCH : Form Placeholder Does Not Show In FireFox.
-    GLITCH : My Custom Font Purely Me Does Not Get Used In My Site Outside Of Dissenter & My Computer.
+    GLITCH : 
 
 
     //////////////////////////////////
     /// Adjustments To Make
 
-    ADJUST : Remove Arrow Functions from Methods.
-    ADJUST : Refactor Code to make it so functions / methods only use up to 5 parameters max.
-    ADJUST : Do not worry about the length of the code if you are chaining methods or something very similar.
+    ADJUST : 
 
 
     //////////////////////////////////
     /// Features To Implement
 
-    FEATURE : Get form to be fully functional and send an email containing the message to my personal email.  Do so without doing something insecure.
-    FEATURE : Allow keyboard arrows to control the 'More About Me' section.
-    FEATURE : Allow for the user to go to the end or the beginning after getting to the end of the items. ( All that is left is the 'More About Me' section.
+    FEATURE : 
 
 */
 *,
