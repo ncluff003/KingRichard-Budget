@@ -32,7 +32,7 @@ html {
         &__user {
           color: rgba($colorOffWhite, 0.85);
           &-icon {
-            font-size: 3.6rem;
+            font-size: 3.8rem;
             color: $colorOffWhite;
           }
           &:hover {
@@ -80,6 +80,10 @@ html {
           }
         }
       }
+      .form-page-number {
+        font-size: 4rem;
+        color: $colorOffWhite;
+      }
     }
     ///////////////////////////
     // Logged In | Signed Up
@@ -87,7 +91,7 @@ html {
     .app-background {
       .app-container {
         &__header--landing {
-          font-size: 2.25rem;
+          font-size: 2rem;
           color: $colorOffWhite;
         }
         .budget-card-container {

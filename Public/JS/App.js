@@ -16,6 +16,7 @@ import { Validate } from './Validate';
         if (i === 0) {
           b.addEventListener('click', (e) => {
             e.preventDefault();
+            signupFormPage++;
             if (!Validate.isName(signupInputs[0].value)) {
               textContent = `Your first name must only contain letters!`;
               signupErrors[0].textContent = textContent;
@@ -40,13 +41,14 @@ import { Validate } from './Validate';
             signupForm[signupFormPage].forEach((p) => {
               p.style.display = 'flex';
             });
-            signupFormPage++;
+            formPage.textContent = `${signupFormPage + 1} / 3`;
           });
         }
 
         if (i === 1) {
           b.addEventListener('click', (e) => {
             e.preventDefault();
+            signupFormPage++;
             if (!Validate.isEmail(signupInputs[3].value)) {
               textContent = `Please provide a valid email address!`;
               signupErrors[1].textContent = textContent;
@@ -68,11 +70,12 @@ import { Validate } from './Validate';
             signupForm[signupFormPage].forEach((p) => {
               p.style.display = 'flex';
             });
+            formPage.textContent = `${signupFormPage + 1} / 3`;
           });
         }
         if (i === 2) {
           b.addEventListener('click', (e) => {
-            // e.preventDefault();
+            e.preventDefault();
             if (!Validate.is_Eight_Character_One_Upper_Lower_Number_Special(signupInputs[5].value)) {
               textContent = `Password either does not match or have the following: 8 Characters, 1 Upper Case, 1 Lower Case, 1 Number, 1 Special Character (!, @, $, %, &, _, -).`;
               signupErrors[2].textContent = textContent;
@@ -97,7 +100,9 @@ import { Validate } from './Validate';
             signupForm[signupFormPage].forEach((p) => {
               p.style.display = 'none';
             });
+            formPage.style.opacity = 0;
             signupFormPage = 0;
+            signup.submit();
           });
         }
       });
@@ -111,6 +116,13 @@ import { Validate } from './Validate';
           clicked.closest('button').classList.contains('navigation__landing-navigation__login') ||
           clicked.closest('button').classList.contains('r__navigation__landing-navigation__login')
         ) {
+          loginFormSections.forEach((lfs) => {
+            return (lfs.style.display = `flex`);
+          });
+          loginFormMessageSections.forEach((lfms) => {
+            return (lfms.style.display = `flex`);
+          });
+          console.log(loginFormSections, loginFormMessageSections);
           return landingForms[0].classList.toggle('form-container--open');
         }
         if (
@@ -129,7 +141,7 @@ import { Validate } from './Validate';
       });
     }
     _setUpSignupForm() {
-      formSections.forEach((fs, i) => {
+      signupFormSections.forEach((fs, i) => {
         if (i < 3) {
           signupPageOne.push(fs);
         } else if (i > 2 && i < 5) {
@@ -138,7 +150,7 @@ import { Validate } from './Validate';
           signupPageThree.push(fs);
         }
       });
-      formMessageSections.forEach((fms, i) => {
+      signupFormMessageSections.forEach((fms, i) => {
         if (i === 0) {
           signupPageOne.push(fms);
         } else if (i === 1) {
@@ -154,8 +166,10 @@ import { Validate } from './Validate';
   const loginButton = document.querySelector('.navigation__landing-navigation__login');
   const signupButton = document.querySelector('.navigation__landing-navigation__signup');
   const landingForms = document.querySelectorAll('.form-container');
-  const formSections = document.querySelectorAll('.signup-form__form-section');
-  const formMessageSections = document.querySelectorAll('.signup-form__form-section--message');
+  const loginFormSections = document.querySelectorAll('.login-form__form-section');
+  const loginFormMessageSections = document.querySelectorAll('.login-form__form-section--message');
+  const signupFormSections = document.querySelectorAll('.signup-form__form-section');
+  const signupFormMessageSections = document.querySelectorAll('.signup-form__form-section--message');
   const signupPageOne = [];
   const signupPageTwo = [];
   const signupPageThree = [];
@@ -164,5 +178,7 @@ import { Validate } from './Validate';
   const signupFormButtons = document.querySelectorAll('.signup-form__form-section--message__form-button');
   const signupInputs = document.querySelectorAll('.signup-form__form-section__input');
   const signupErrors = document.querySelectorAll('.signup-form__form-section--message__message-container');
+  let formPage = document.querySelector(`.form-page-number`);
+  const signup = document.querySelector(`.signup-form`);
   const app = new App();
 })();

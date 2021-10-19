@@ -21,10 +21,6 @@
         @include SizeAndPositioning(relative, 40%, 100%, flex, flex-end, center, -15rem, 2rem, 0);
       }
     }
-    .form-container {
-      @include SizeAndPositioning(relative, 100%, 100%, flex, center, center, 0, 0, 0);
-      background-color: rgba($primaryColorDark, 0.9);
-    }
     .app-background {
       @include SizeAndPositioning(relative, 100%, 100%, flex, center, center, 0, 0, 0);
       background-color: rgba($primaryColorDark, 0.8);

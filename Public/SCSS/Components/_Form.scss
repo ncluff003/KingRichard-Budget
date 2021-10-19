@@ -7,7 +7,7 @@
 .master-flex-container {
   .master-grid-container {
     .form-container {
-      @include SizeAndPositioning(relative, 100%, 0%, flex, center, center, 0, 0, 0);
+      @include SizeAndPositioning(relative, 100%, 0%, none, center, center, 0, 0, 0);
       background-color: rgba($primaryColorDark, 0.9);
       opacity: 0;
       .login-form,
@@ -26,6 +26,12 @@
               opacity: 0;
             }
             &:focus::-webkit-input-placeholder {
+              opacity: 1;
+            }
+            &::-moz-placeholder {
+              opacity: 0;
+            }
+            &:focus::-moz-placeholder {
               opacity: 1;
             }
             &:not(:placeholder-shown) + label,
@@ -74,7 +80,11 @@
       &--open {
         width: 100%;
         opacity: 1;
+        display: flex;
         transition: width 0.5s, opacity 1s;
+      }
+      .form-page-number {
+        margin-top: 3rem;
       }
     }
   }

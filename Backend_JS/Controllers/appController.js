@@ -27,7 +27,7 @@ const catchAsync = require(`./../Utilities/catchAsync`);
 //  Exported Controllers
 exports.renderApp = catchAsync(async (request, response) => {
   response.status(200).render(`base`, {
-    title: `Pure 'N' Spiration | Home`,
+    title: `King Richard`,
     errorMessage: '',
     successMessage: '',
   });
