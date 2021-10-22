@@ -10,8 +10,15 @@
       @include SizeAndPositioning(relative, 100%, 0%, none, center, center, 0, 0, 0);
       background-color: rgba($primaryColorDark, 0.9);
       opacity: 0;
+      #closeForgottenForm {
+        @include SizeAndPositioning(absolute, 7.5rem, 7.5rem, flex, center, center, 0, 0, 0);
+        top: 2rem;
+        right: 2rem;
+        transition: color 0.5s;
+      }
       .login-form,
-      .signup-form {
+      .signup-form,
+      .forgotten-form {
         @include SizeAndPositioning(relative, 100%, 45%, flex, center, center, 0, 0, 0);
         flex-direction: column;
         &__form-section {
@@ -65,14 +72,18 @@
               background-color: rgba($colorDarkestGrey, 0.75);
             }
             &__form-button {
-              @include SizeAndPositioning(relative, 100%, 25%, flex, center, center, 0, 0, 0);
+              @include SizeAndPositioning(relative, 100%, 24.375%, flex, center, center, 0, 0, 0);
               border: 0.2rem solid rgba($tertiaryColor, 0.95);
-              background-color: rgba($tertiaryColor, 0.95);
+              background-color: rgba($tertiaryColor, 0.75);
               transition: background-color 0.5s;
+              padding: 1rem;
               &:hover {
                 cursor: pointer;
                 background-color: $tertiaryColor;
               }
+            }
+            #loginButtonOne {
+              margin: 0 0.3% 0 0.325%;
             }
           }
         }

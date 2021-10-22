@@ -51,8 +51,17 @@ html {
       }
     }
     .form-container {
+      #closeForgottenForm {
+        font-size: 4rem;
+        color: rgba($colorOffWhite, 0.75);
+        &:hover {
+          cursor: pointer;
+          color: $colorOffWhite;
+        }
+      }
       .login-form,
-      .signup-form {
+      .signup-form,
+      .forgotten-form {
         &__form-section {
           color: $colorOffWhite;
           &__input {
@@ -63,7 +72,7 @@ html {
             font-size: 3rem;
           }
           &--message {
-            font-size: 2rem;
+            font-size: 1.8rem;
             &__message-container {
               font-size: 1.4rem;
               text-align: center;

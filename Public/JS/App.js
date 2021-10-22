@@ -1,4 +1,5 @@
 import { Validate } from './Validate';
+import login from './Login';
 
 ///////////////////////////////////////////////
 // APP
@@ -8,6 +9,36 @@ import { Validate } from './Validate';
       this._setUpSignupForm();
       this._watchLandingNavigationButtons();
       this._watchSignupFormButtons();
+      this._watchForgottenEmailForm();
+    }
+
+    _watchForgottenEmailForm() {
+      const forgot = document.querySelectorAll(`.forgotten-form__form-section--message__form-button`)[1];
+      forgot.addEventListener(`click`, (e) => {
+        e.preventDefault();
+        console.log(landingForms);
+        landingForms[1].style.display = `none`;
+        landingForms[0].style.display = `flex`;
+        landingForms[0].style.width = `100%`;
+        landingForms[0].style.opacity = 1;
+        forgottenFormSections.forEach((ffs) => {
+          ffs.style.display = 'flex';
+        });
+        forgottenFormMessageSections.forEach((ffms) => {
+          ffms.style.display = 'flex';
+        });
+        const forgotEmailButton = document.getElementById('forgottenEmailSubmit');
+        forgotEmailButton.style.width = '25%';
+        forgotEmailButton.addEventListener('click', (e) => {
+          const forgotForm = document.querySelector('.forgotten-form');
+          forgotForm.submit();
+        });
+        const closeForgotForm = document.getElementById('closeForgottenForm').addEventListener('click', (e) => {
+          e.preventDefault();
+          landingForms[1].style.display = `flex`;
+          landingForms[0].style.display = `none`;
+        });
+      });
     }
 
     _watchSignupFormButtons() {
@@ -123,7 +154,7 @@ import { Validate } from './Validate';
             return (lfms.style.display = `flex`);
           });
           console.log(loginFormSections, loginFormMessageSections);
-          return landingForms[0].classList.toggle('form-container--open');
+          return landingForms[1].classList.toggle('form-container--open');
         }
         if (
           clicked.closest('button').classList.contains('navigation__landing-navigation__signup') ||
@@ -132,8 +163,8 @@ import { Validate } from './Validate';
           signupForm[signupFormPage].forEach((p, i) => {
             p.style.display = 'flex';
           });
-          landingForms[1].classList.toggle('form-container--open');
-          if (landingForms[1].style.opacity === 1) {
+          landingForms[2].classList.toggle('form-container--open');
+          if (landingForms[2].style.opacity === 1) {
             signupFormPage = 0;
           }
           return;
@@ -166,6 +197,8 @@ import { Validate } from './Validate';
   const loginButton = document.querySelector('.navigation__landing-navigation__login');
   const signupButton = document.querySelector('.navigation__landing-navigation__signup');
   const landingForms = document.querySelectorAll('.form-container');
+  const forgottenFormSections = document.querySelectorAll('.forgotten-form__form-section');
+  const forgottenFormMessageSections = document.querySelectorAll('.forgotten-form__form-section--message');
   const loginFormSections = document.querySelectorAll('.login-form__form-section');
   const loginFormMessageSections = document.querySelectorAll('.login-form__form-section--message');
   const signupFormSections = document.querySelectorAll('.signup-form__form-section');

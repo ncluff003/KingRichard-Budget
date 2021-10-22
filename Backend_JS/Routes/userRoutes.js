@@ -17,12 +17,18 @@ const router = express.Router();
 
 ////////////////////////////////////////////
 //  My Middleware
+const appController = require(`./../Controllers/appController`);
 const authController = require(`./../Controllers/authController`);
 
 ////////////////////////////////////////////
 //  Routing Middleware
-router.route(`/signup`).post(authController.validateSignup, authController.signup, authController.renderAppLoggedIn);
-router.route(`/login`).post(authController.login, authController.renderAppLoggedIn);
+router.route(`/signup`).post(authController.validateSignup, authController.signup);
+router
+  .route(`/login`)
+  .get(authController.renderAppLoggedIn)
+  .post(authController.login, authController.renderAppLoggedIn);
+router.route(`/forgotPassword`).post(authController.forgotPassword, appController.renderApp);
+router.route(`/resetPassword`).post(authController.resetPassword);
 // router.route(`/about`).get(appController.introduceMe);
 // router.route(`/projects`).get(appController.viewMyWork);
 // router.route(`/contact`).get(appController.contactMe).post(messageController.validateEmail, messageController.emailMe);

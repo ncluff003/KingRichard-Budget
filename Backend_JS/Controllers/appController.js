@@ -16,6 +16,7 @@
 ////////////////////////////////////////////
 //  My Middleware
 const catchAsync = require(`./../Utilities/catchAsync`);
+const AppError = require(`./../Utilities/appError`);
 
 ////////////////////////////////////////////
 //  Routing Middleware
@@ -25,6 +26,7 @@ const catchAsync = require(`./../Utilities/catchAsync`);
 
 ////////////////////////////////////////////
 //  Exported Controllers
+
 exports.renderApp = catchAsync(async (request, response) => {
   response.status(200).render(`base`, {
     title: `King Richard`,

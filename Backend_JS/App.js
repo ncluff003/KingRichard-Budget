@@ -8,6 +8,7 @@ const path = require('path');
 // const helmet = require('helmet');
 const xss = require('xss-clean');
 const hpp = require('hpp');
+const cookierParser = require('cookie-parser');
 const compression = require('compression');
 
 ////////////////////////////////////////////
@@ -24,17 +25,26 @@ App.set(`views`, path.join(__dirname, `Views`));
 // App.use(helmet());
 App.use(express.static(path.resolve(`${__dirname}/../`, `Public/`)));
 App.use(express.urlencoded({ extended: true, limit: '10kb' }));
+App.use(express.json());
+App.use(cookierParser());
 App.use(xss());
 App.use(hpp());
 App.use(compression());
 
 ////////////////////////////////////////////
-//  Routing Middleware
+//  My Middleware
+App.use((request, response, next) => {
+  console.log(request.headers);
+  next();
+});
+
+////////////////////////////////////////////
+//  Routers
 const appRouter = require(`./Routes/appRoutes`);
 const userRouter = require('./Routes/userRoutes');
 
 ////////////////////////////////////////////
-//  My Middleware
+//  Routing Middleware
 App.use(`/`, appRouter);
 App.use(`/users`, userRouter);
 
@@ -43,9 +53,6 @@ App.use(`/users`, userRouter);
 
 ////////////////////////////////////////////
 //  Exported Controllers
-
-////////////////////////////////////////////
-//  My Middleware
 
 ////////////////////////////////////////////
 //  App Global Error Handling Middleware
