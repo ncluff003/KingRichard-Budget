@@ -72,7 +72,7 @@
               background-color: rgba($colorDarkestGrey, 0.75);
             }
             &__form-button {
-              @include SizeAndPositioning(relative, 100%, 24.375%, flex, center, center, 0, 0, 0);
+              @include SizeAndPositioning(relative, 100%, 25%, flex, center, center, 0, 0, 0);
               border: 0.2rem solid rgba($tertiaryColor, 0.95);
               background-color: rgba($tertiaryColor, 0.75);
               transition: background-color 0.5s;
@@ -80,6 +80,10 @@
               &:hover {
                 cursor: pointer;
                 background-color: $tertiaryColor;
+              }
+              &:nth-of-type(3),
+              &:nth-of-type(4) {
+                width: 24.375%;
               }
             }
             #loginButtonOne {

@@ -1,0 +1,41 @@
+@use "../../../Public/SCSS/Utilities/Mixins" as *;
+@use "../../../Public/SCSS/Utilities/Variables" as *;
+
+////////////////////////////////////////////////
+//  Master Flex Container
+
+.master-flex-container {
+  .master-grid-container {
+    ////////////////////////////////////////////////
+    //  Background
+    .user-profile-background {
+      .user-profile-card {
+        @include SizeAndPositioning(relative, 85%, 25%, flex, space-evenly, center, 0, 0, 0);
+        flex-direction: column;
+        border: 0.4rem groove $primaryColorDark;
+        border-radius: 5rem;
+        padding: 3rem;
+        &__first-impression {
+          @include SizeAndPositioning(relative, 25%, 100%, flex, space-evenly, center, 0, 0, 0);
+        }
+        &__user-info {
+          @include SizeAndPositioning(relative, 75%, 100%, flex, center, center, 0, 0, 0);
+          flex-direction: column;
+          &__row,
+          &__row--hidden {
+            @include SizeAndPositioning(relative, 7.5rem, 100%, flex, space-evenly, center, 0, 0, 0);
+            &__button {
+              @include SizeAndPositioning(relative, 90%, 30%, flex, center, center, 0, 0, 0);
+            }
+            &-info {
+              @include SizeAndPositioning(relative, 90%, 69%, flex, center, center, 0, 0, 0);
+              &--text {
+                @include SizingItem(relative, 100%, 100%);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -134,11 +134,30 @@ exports.login = catchAsync(async (request, response, next) => {
 });
 
 exports.validateSignup = catchAsync(async (request, response, next) => {
+  const formBody = request.body;
   console.log(request.body);
-  // response.status(200).json({
-  //   status: `Success`,
-  //   message: `User Validated`,
-  // });
+  if (!Validate.isName(formBody.firstname)) return next(new AppError(`First name must be only letters.`, 400));
+  if (!Validate.isName(formBody.lastname)) return next(new AppError(`Last name must be only letters.`, 400));
+  if (!Validate.isUsername(formBody.username))
+    return next(new AppError(`Username must start with a capital and contain letters and/or numbers..`, 400));
+  if (!Validate.isEmail(formBody.email)) return next(new AppError(`Please provide a valid email address.`, 400));
+  if (!Validate.isEmail(formBody.emailConfirmed))
+    return next(new AppError(`Please provide a valid email address.`, 400));
+  if (!Validate.is_Eight_Character_One_Upper_Lower_Number_Special(formBody.password))
+    return next(
+      new AppError(
+        `Passwords must contain at least 8 characters, amongst them being at least 1 capital letter, 1 lower case letter, 1 number, & 1 special symbol.  The special symbols may be the following: !, @, $, &, -, _, and &.`,
+        400,
+      ),
+    );
+  if (!Validate.is_Eight_Character_One_Upper_Lower_Number_Special(formBody.passwordConfirmed))
+    return next(
+      new AppError(
+        `Passwords must contain at least 8 characters, amongst them being at least 1 capital letter, 1 lower case letter, 1 number, & 1 special symbol.  The special symbols may be the following: !, @, $, &, -, _, and &.`,
+        400,
+      ),
+    );
+  console.log(`Signup Successful.`);
   next();
 });
 

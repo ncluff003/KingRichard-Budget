@@ -98,6 +98,7 @@ import login from './Login';
             signupForm[1].forEach((p) => {
               p.style.display = 'none';
             });
+            console.log(signupFormPage);
             signupForm[signupFormPage].forEach((p) => {
               p.style.display = 'flex';
             });

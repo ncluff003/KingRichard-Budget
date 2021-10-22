@@ -22,7 +22,7 @@ html {
   color: rgba(250, 250, 250, 0.85);
 }
 .master-flex-container .master-grid-container .navigation__landing-navigation__login-icon, .master-flex-container .master-grid-container .navigation__landing-navigation__signup-icon, .master-flex-container .master-grid-container .navigation__landing-navigation__user-icon {
-  font-size: 3.8rem;
+  font-size: 3.7rem;
   color: #fafafa;
 }
 .master-flex-container .master-grid-container .navigation__landing-navigation__login:hover, .master-flex-container .master-grid-container .navigation__landing-navigation__signup:hover, .master-flex-container .master-grid-container .navigation__landing-navigation__user:hover {
@@ -31531,6 +31531,71 @@ html {
   padding: 3rem;
 }
 
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card {
+  position: relative;
+  height: 85%;
+  width: 25%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  flex-direction: column;
+  border: 0.4rem groove #652190;
+  border-radius: 5rem;
+  padding: 3rem;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__first-impression {
+  position: relative;
+  height: 25%;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info {
+  position: relative;
+  height: 75%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  flex-direction: column;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row, .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row--hidden {
+  position: relative;
+  height: 7.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row__button, .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row--hidden__button {
+  position: relative;
+  height: 90%;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row-info, .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row--hidden-info {
+  position: relative;
+  height: 90%;
+  width: 69%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row-info--text, .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row--hidden-info--text {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
 .master-flex-container .master-grid-container .form-container .app-container .budget-card-container,
 .master-flex-container .master-grid-container .app-background .app-container .budget-card-container {
   position: relative;
@@ -31817,7 +31882,7 @@ html {
 .master-flex-container .master-grid-container .form-container .forgotten-form__form-section--message__form-button {
   position: relative;
   height: 100%;
-  width: 24.375%;
+  width: 25%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31832,6 +31897,13 @@ html {
 .master-flex-container .master-grid-container .form-container .forgotten-form__form-section--message__form-button:hover {
   cursor: pointer;
   background-color: #38d927;
+}
+.master-flex-container .master-grid-container .form-container .login-form__form-section--message__form-button:nth-of-type(3), .master-flex-container .master-grid-container .form-container .login-form__form-section--message__form-button:nth-of-type(4),
+.master-flex-container .master-grid-container .form-container .signup-form__form-section--message__form-button:nth-of-type(3),
+.master-flex-container .master-grid-container .form-container .signup-form__form-section--message__form-button:nth-of-type(4),
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section--message__form-button:nth-of-type(3),
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section--message__form-button:nth-of-type(4) {
+  width: 24.375%;
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section--message #loginButtonOne,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section--message #loginButtonOne,
@@ -37400,6 +37472,16 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
   background-color: rgba(101, 33, 144, 0.8);
+}
+.master-flex-container .master-grid-container .user-profile-background {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: rgba(17, 17, 17, 0.975);
 }
 
 /*

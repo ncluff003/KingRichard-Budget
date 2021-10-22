@@ -4196,6 +4196,7 @@ __webpack_require__.r(__webpack_exports__);
               signupForm[1].forEach(function (p) {
                 p.style.display = 'none';
               });
+              console.log(signupFormPage);
               signupForm[signupFormPage].forEach(function (p) {
                 p.style.display = 'flex';
               });
