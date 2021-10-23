@@ -63,6 +63,7 @@ const userSchema = new mongoose.Schema({
   },
   photo: {
     type: String,
+    default: `user-circle.svg`,
   },
   latterDaySaint: {
     type: Boolean,

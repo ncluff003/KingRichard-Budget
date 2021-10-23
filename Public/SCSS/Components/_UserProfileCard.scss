@@ -10,22 +10,84 @@
     //  Background
     .user-profile-background {
       .user-profile-card {
-        @include SizeAndPositioning(relative, 85%, 25%, flex, space-evenly, center, 0, 0, 0);
+        @include SizeAndPositioning(relative, 85%, 30%, flex, space-evenly, center, 0, 0, 0);
         flex-direction: column;
         border: 0.4rem groove $primaryColorDark;
+        background-color: rgba($primaryColorDark, 0.75);
         border-radius: 5rem;
         padding: 3rem;
         &__first-impression {
-          @include SizeAndPositioning(relative, 25%, 100%, flex, space-evenly, center, 0, 0, 0);
+          @include SizeAndPositioning(relative, 33.3%, 100%, flex, space-evenly, center, 0, 0, 0);
+          border: 0.3rem solid $primaryColorDark;
+          border-radius: 3rem;
+          background-color: $primaryColorDarker;
+          margin-bottom: 1rem;
+          padding: 2rem;
+          &__image-container {
+            @include SizeAndPositioning(relative, 100%, 37.5%, flex, center, center, 0, 0, 0);
+            border-radius: 50%;
+            background-color: transparent;
+            z-index: 10;
+            img {
+              @include SizeAndPositioning(relative, 100%, 100%, flex, center, center, 0, 0, 0);
+              border-radius: 50%;
+              border: 0.3rem solid $colorOffWhite;
+            }
+
+            &__update-photo-button {
+              @include SizeAndPositioning(absolute, 3.6rem, 14rem, flex, space-evenly, center, 0, 0, 0);
+              top: 80%;
+              left: 100%;
+              background-color: transparent;
+              padding: 0.5rem;
+              border: 0.2rem solid rgba($colorOffWhite, 0.75);
+              border-radius: 2.5rem;
+              transition: background-color 0.5s, border 0.5s, color 0.5s;
+              &:hover {
+                cursor: pointer;
+                border: 0.2rem solid $colorOffWhite;
+                background-color: $colorOffWhite;
+              }
+            }
+          }
+          &__name-container {
+            @include SizeAndPositioning(relative, 100%, 50%, flex, center, flex-start, 0, 0, 0);
+            flex-direction: column;
+            background-color: transparent;
+            padding: 2rem;
+            &--first {
+              margin-bottom: 0.5rem;
+            }
+          }
         }
         &__user-info {
-          @include SizeAndPositioning(relative, 75%, 100%, flex, center, center, 0, 0, 0);
+          @include SizeAndPositioning(relative, 66.7%, 100%, flex, center, center, 0, 0, 0);
           flex-direction: column;
           &__row,
           &__row--hidden {
-            @include SizeAndPositioning(relative, 7.5rem, 100%, flex, space-evenly, center, 0, 0, 0);
+            @include SizeAndPositioning(relative, 48%, 100%, flex, space-evenly, center, 0, 0, 0);
+            border-radius: 3rem;
+            margin: 2rem 0 1rem;
             &__button {
-              @include SizeAndPositioning(relative, 90%, 30%, flex, center, center, 0, 0, 0);
+              @include SizeAndPositioning(relative, 100%, 40%, flex, center, center, 0, 0, 0);
+              flex-direction: column;
+              background-color: rgba($primaryColorDark, 0.75);
+              border: 0.3rem groove rgba($primaryColor, 0.75);
+              border-radius: 3rem;
+              // margin: 0 2rem;
+              transition: background-color 0.5s, border 0.5s, color 0.5s;
+              &--icon {
+                margin-bottom: 1rem;
+              }
+              &:hover {
+                cursor: pointer;
+                background-color: $tertiaryColorDark;
+                border: 0.3rem groove $tertiaryColor;
+              }
+              &:active {
+                background-color: $secondaryColor;
+                border: 0.3rem groove $secondaryColorLight;
+              }
             }
             &-info {
               @include SizeAndPositioning(relative, 90%, 69%, flex, center, center, 0, 0, 0);

@@ -148,5 +148,57 @@ html {
         }
       }
     }
+    .user-profile-background {
+      .user-profile-card {
+        &__first-impression {
+          color: $colorOffWhite;
+          &__image-container {
+            &__update-photo-button {
+              color: rgba($colorOffWhite, 0.75);
+              &--icon {
+                font-size: 2rem;
+              }
+              &--text {
+                font-size: 1.6rem;
+              }
+              &:hover {
+                color: $primaryColor;
+              }
+            }
+          }
+          &__name-container {
+            font-size: 3.6rem;
+            &--last {
+              font-size: 2.4rem;
+            }
+          }
+        }
+        &__user-info {
+          &__row,
+          &__row--hidden {
+            &__button {
+              color: rgba($colorOffWhite, 0.75);
+              &--icon {
+                font-size: 4rem;
+              }
+              &--text {
+                font-size: 2rem;
+              }
+              &:hover {
+                color: $colorOffWhite;
+              }
+              &:active {
+                color: $colorDarkerGrey;
+              }
+            }
+            &-info {
+              &--text {
+                color: rgba($colorOffWhite, 0.75);
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

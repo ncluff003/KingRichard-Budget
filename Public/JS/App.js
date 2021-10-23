@@ -1,4 +1,5 @@
 import { Validate } from './Validate';
+import * as AppLoggedIn from './App-LoggedIn';
 import login from './Login';
 
 ///////////////////////////////////////////////
@@ -9,36 +10,39 @@ import login from './Login';
       this._setUpSignupForm();
       this._watchLandingNavigationButtons();
       this._watchSignupFormButtons();
+      AppLoggedIn._watchUserButton();
       this._watchForgottenEmailForm();
     }
 
     _watchForgottenEmailForm() {
       const forgot = document.querySelectorAll(`.forgotten-form__form-section--message__form-button`)[1];
-      forgot.addEventListener(`click`, (e) => {
-        e.preventDefault();
-        console.log(landingForms);
-        landingForms[1].style.display = `none`;
-        landingForms[0].style.display = `flex`;
-        landingForms[0].style.width = `100%`;
-        landingForms[0].style.opacity = 1;
-        forgottenFormSections.forEach((ffs) => {
-          ffs.style.display = 'flex';
-        });
-        forgottenFormMessageSections.forEach((ffms) => {
-          ffms.style.display = 'flex';
-        });
-        const forgotEmailButton = document.getElementById('forgottenEmailSubmit');
-        forgotEmailButton.style.width = '25%';
-        forgotEmailButton.addEventListener('click', (e) => {
-          const forgotForm = document.querySelector('.forgotten-form');
-          forgotForm.submit();
-        });
-        const closeForgotForm = document.getElementById('closeForgottenForm').addEventListener('click', (e) => {
+      if (forgot) {
+        forgot.addEventListener(`click`, (e) => {
           e.preventDefault();
-          landingForms[1].style.display = `flex`;
-          landingForms[0].style.display = `none`;
+          console.log(landingForms);
+          landingForms[1].style.display = `none`;
+          landingForms[0].style.display = `flex`;
+          landingForms[0].style.width = `100%`;
+          landingForms[0].style.opacity = 1;
+          forgottenFormSections.forEach((ffs) => {
+            ffs.style.display = 'flex';
+          });
+          forgottenFormMessageSections.forEach((ffms) => {
+            ffms.style.display = 'flex';
+          });
+          const forgotEmailButton = document.getElementById('forgottenEmailSubmit');
+          forgotEmailButton.style.width = '25%';
+          forgotEmailButton.addEventListener('click', (e) => {
+            const forgotForm = document.querySelector('.forgotten-form');
+            forgotForm.submit();
+          });
+          const closeForgotForm = document.getElementById('closeForgottenForm').addEventListener('click', (e) => {
+            e.preventDefault();
+            landingForms[1].style.display = `flex`;
+            landingForms[0].style.display = `none`;
+          });
         });
-      });
+      }
     }
 
     _watchSignupFormButtons() {

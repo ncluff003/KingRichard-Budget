@@ -23,11 +23,17 @@
     }
     .app-background {
       @include SizeAndPositioning(relative, 100%, 100%, flex, center, center, 0, 0, 0);
-      background-color: rgba($primaryColorDark, 0.8);
+      background-color: rgba($primaryColorDarker, 0.8);
     }
     .user-profile-background {
-      @include SizeAndPositioning(relative, 100%, 100%, flex, center, center, 0, 0, 0);
-      background-color: rgba($colorDarkestGrey, 0.975);
+      @include SizeAndPositioning(relative, 0, 0, flex, center, center, 0, 0, 0);
+      opacity: 0;
+      background-color: rgba($primaryColor, 0.975);
+      &--open {
+        height: 100%;
+        width: 100%;
+        opacity: 1;
+      }
     }
   }
 }

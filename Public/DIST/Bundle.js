@@ -2254,6 +2254,34 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./Public/JS/App-LoggedIn.js":
+/*!***********************************!*\
+  !*** ./Public/JS/App-LoggedIn.js ***!
+  \***********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "_watchUserButton": function() { return /* binding */ _watchUserButton; }
+/* harmony export */ });
+// Opening The Profile Page
+var userButton = document.querySelector('.navigation__landing-navigation__user');
+var profileBackground = document.querySelector('.user-profile-background');
+var profileCard = document.querySelector('.user-profile-card');
+var _watchUserButton = function _watchUserButton() {
+  userButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    console.log("Button is working.");
+    profileBackground.classList.toggle('user-profile-background--open');
+    setTimeout(function () {
+      profileCard.style.display = 'flex';
+    }, 1500);
+  });
+};
+
+/***/ }),
+
 /***/ "./Public/JS/Login.js":
 /*!****************************!*\
   !*** ./Public/JS/Login.js ***!
@@ -4079,7 +4107,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
 /* harmony import */ var _Validate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Validate */ "./Public/JS/Validate.js");
-/* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Login */ "./Public/JS/Login.js");
+/* harmony import */ var _App_LoggedIn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./App-LoggedIn */ "./Public/JS/App-LoggedIn.js");
+/* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Login */ "./Public/JS/Login.js");
+
 
 
 
@@ -4097,6 +4127,8 @@ __webpack_require__.r(__webpack_exports__);
 
       this._watchSignupFormButtons();
 
+      _App_LoggedIn__WEBPACK_IMPORTED_MODULE_3__._watchUserButton();
+
       this._watchForgottenEmailForm();
     }
 
@@ -4104,31 +4136,34 @@ __webpack_require__.r(__webpack_exports__);
       key: "_watchForgottenEmailForm",
       value: function _watchForgottenEmailForm() {
         var forgot = document.querySelectorAll(".forgotten-form__form-section--message__form-button")[1];
-        forgot.addEventListener("click", function (e) {
-          e.preventDefault();
-          console.log(landingForms);
-          landingForms[1].style.display = "none";
-          landingForms[0].style.display = "flex";
-          landingForms[0].style.width = "100%";
-          landingForms[0].style.opacity = 1;
-          forgottenFormSections.forEach(function (ffs) {
-            ffs.style.display = 'flex';
-          });
-          forgottenFormMessageSections.forEach(function (ffms) {
-            ffms.style.display = 'flex';
-          });
-          var forgotEmailButton = document.getElementById('forgottenEmailSubmit');
-          forgotEmailButton.style.width = '25%';
-          forgotEmailButton.addEventListener('click', function (e) {
-            var forgotForm = document.querySelector('.forgotten-form');
-            forgotForm.submit();
-          });
-          var closeForgotForm = document.getElementById('closeForgottenForm').addEventListener('click', function (e) {
+
+        if (forgot) {
+          forgot.addEventListener("click", function (e) {
             e.preventDefault();
-            landingForms[1].style.display = "flex";
-            landingForms[0].style.display = "none";
+            console.log(landingForms);
+            landingForms[1].style.display = "none";
+            landingForms[0].style.display = "flex";
+            landingForms[0].style.width = "100%";
+            landingForms[0].style.opacity = 1;
+            forgottenFormSections.forEach(function (ffs) {
+              ffs.style.display = 'flex';
+            });
+            forgottenFormMessageSections.forEach(function (ffms) {
+              ffms.style.display = 'flex';
+            });
+            var forgotEmailButton = document.getElementById('forgottenEmailSubmit');
+            forgotEmailButton.style.width = '25%';
+            forgotEmailButton.addEventListener('click', function (e) {
+              var forgotForm = document.querySelector('.forgotten-form');
+              forgotForm.submit();
+            });
+            var closeForgotForm = document.getElementById('closeForgottenForm').addEventListener('click', function (e) {
+              e.preventDefault();
+              landingForms[1].style.display = "flex";
+              landingForms[0].style.display = "none";
+            });
           });
-        });
+        }
       }
     }, {
       key: "_watchSignupFormButtons",

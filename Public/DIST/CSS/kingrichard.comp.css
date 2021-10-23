@@ -125,6 +125,45 @@ html {
 .master-flex-container .master-grid-container .app-background .app-container .budget-card-container__cards-container .budget-card--create:active .budget-card--create__text {
   color: #fafafa;
 }
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__first-impression {
+  color: #fafafa;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__first-impression__image-container__update-photo-button {
+  color: rgba(250, 250, 250, 0.75);
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__first-impression__image-container__update-photo-button--icon {
+  font-size: 2rem;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__first-impression__image-container__update-photo-button--text {
+  font-size: 1.6rem;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__first-impression__image-container__update-photo-button:hover {
+  color: #822aba;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__first-impression__name-container {
+  font-size: 3.6rem;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__first-impression__name-container--last {
+  font-size: 2.4rem;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row__button, .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row--hidden__button {
+  color: rgba(250, 250, 250, 0.75);
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row__button--icon, .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row--hidden__button--icon {
+  font-size: 4rem;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row__button--text, .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row--hidden__button--text {
+  font-size: 2rem;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row__button:hover, .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row--hidden__button:hover {
+  color: #fafafa;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row__button:active, .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row--hidden__button:active {
+  color: #333333;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row-info--text, .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row--hidden-info--text {
+  color: rgba(250, 250, 250, 0.75);
+}
 
 @keyframes blink {
   0% {
@@ -31534,28 +31573,93 @@ html {
 .master-flex-container .master-grid-container .user-profile-background .user-profile-card {
   position: relative;
   height: 85%;
-  width: 25%;
+  width: 30%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   transform: rotate(0) translate(0, 0);
   flex-direction: column;
   border: 0.4rem groove #652190;
+  background-color: rgba(101, 33, 144, 0.75);
   border-radius: 5rem;
   padding: 3rem;
 }
 .master-flex-container .master-grid-container .user-profile-background .user-profile-card__first-impression {
   position: relative;
-  height: 25%;
+  height: 33.3%;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   transform: rotate(0) translate(0, 0);
+  border: 0.3rem solid #652190;
+  border-radius: 3rem;
+  background-color: #481767;
+  margin-bottom: 1rem;
+  padding: 2rem;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__first-impression__image-container {
+  position: relative;
+  height: 100%;
+  width: 37.5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border-radius: 50%;
+  background-color: transparent;
+  z-index: 10;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__first-impression__image-container img {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border-radius: 50%;
+  border: 0.3rem solid #fafafa;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__first-impression__image-container__update-photo-button {
+  position: absolute;
+  height: 3.6rem;
+  width: 14rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  top: 80%;
+  left: 100%;
+  background-color: transparent;
+  padding: 0.5rem;
+  border: 0.2rem solid rgba(250, 250, 250, 0.75);
+  border-radius: 2.5rem;
+  transition: background-color 0.5s, border 0.5s, color 0.5s;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__first-impression__image-container__update-photo-button:hover {
+  cursor: pointer;
+  border: 0.2rem solid #fafafa;
+  background-color: #fafafa;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__first-impression__name-container {
+  position: relative;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  transform: rotate(0) translate(0, 0);
+  flex-direction: column;
+  background-color: transparent;
+  padding: 2rem;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__first-impression__name-container--first {
+  margin-bottom: 0.5rem;
 }
 .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info {
   position: relative;
-  height: 75%;
+  height: 66.7%;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -31565,21 +31669,40 @@ html {
 }
 .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row, .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row--hidden {
   position: relative;
-  height: 7.5rem;
+  height: 48%;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   transform: rotate(0) translate(0, 0);
+  border-radius: 3rem;
+  margin: 2rem 0 1rem;
 }
 .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row__button, .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row--hidden__button {
   position: relative;
-  height: 90%;
-  width: 30%;
+  height: 100%;
+  width: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
   transform: rotate(0) translate(0, 0);
+  flex-direction: column;
+  background-color: rgba(101, 33, 144, 0.75);
+  border: 0.3rem groove rgba(130, 42, 186, 0.75);
+  border-radius: 3rem;
+  transition: background-color 0.5s, border 0.5s, color 0.5s;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row__button--icon, .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row--hidden__button--icon {
+  margin-bottom: 1rem;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row__button:hover, .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row--hidden__button:hover {
+  cursor: pointer;
+  background-color: #2cae1f;
+  border: 0.3rem groove #38d927;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row__button:active, .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row--hidden__button:active {
+  background-color: #ffd700;
+  border: 0.3rem groove #ffdf33;
 }
 .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row-info, .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row--hidden-info {
   position: relative;
@@ -37471,17 +37594,23 @@ html {
   justify-content: center;
   align-items: center;
   transform: rotate(0) translate(0, 0);
-  background-color: rgba(101, 33, 144, 0.8);
+  background-color: rgba(72, 23, 103, 0.8);
 }
 .master-flex-container .master-grid-container .user-profile-background {
   position: relative;
-  height: 100%;
-  width: 100%;
+  height: 0;
+  width: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   transform: rotate(0) translate(0, 0);
-  background-color: rgba(17, 17, 17, 0.975);
+  opacity: 0;
+  background-color: rgba(130, 42, 186, 0.975);
+}
+.master-flex-container .master-grid-container .user-profile-background--open {
+  height: 100%;
+  width: 100%;
+  opacity: 1;
 }
 
 /*
