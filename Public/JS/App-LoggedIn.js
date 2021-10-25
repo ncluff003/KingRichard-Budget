@@ -25,8 +25,17 @@ const userProfileSection = document.querySelector('.user-profile-card__user-info
 const userProfileSectionHeader = document.querySelector(
   '.user-profile-card__user-info__profile-option-container__header',
 );
-const changePasswordFormContainer = document.querySelector(
+const personalInformationContainer = document.querySelector(
+  '.unique-profile-content-container.unique-profile-content-container__personal-information',
+);
+const passwordManagementContainer = document.querySelector(
   '.unique-profile-content-container.unique-profile-content-container__password-management',
+);
+const communicationsContainer = document.querySelector(
+  '.unique-profile-content-container.unique-profile-content-container__communications',
+);
+const accountManagementContainer = document.querySelector(
+  '.unique-profile-content-container.unique-profile-content-container__account-management',
 );
 const backButton = document.querySelector('.back-button');
 const passwordManagementButtons = document.querySelectorAll(
@@ -39,25 +48,24 @@ profileSectionButtons.forEach((psb) => {
   psb.addEventListener('click', (e) => {
     e.preventDefault();
     const clicked = e.target;
+    backButton.addEventListener(`click`, (e) => {
+      personalInformationContainer.style.display = 'none';
+      passwordManagementContainer.style.display = 'none';
+      communicationsContainer.style.display = 'none';
+      accountManagementContainer.style.display = 'none';
+      userProfileSection.style.display = 'none';
+      changePasswordForm.style.display = 'none';
+      profileSectionRows.forEach((row) => {
+        row.style.display = 'flex';
+      });
+    });
     if (clicked.closest('button') === profileSectionButtons[0]) {
       profileSectionRows.forEach((row) => {
         row.style.display = 'none';
       });
+      personalInformationContainer.style.display = 'flex';
       userProfileSectionHeader.textContent = clicked.closest('button').textContent;
       userProfileSection.style.display = 'flex';
-      changePasswordFormContainer.style.display = 'flex';
-      passwordManagementButtons[0].addEventListener('click', (e) => {
-        e.preventDefault();
-        changePasswordForm.style.display = 'flex';
-      });
-      backButton.addEventListener(`click`, (e) => {
-        changePasswordFormContainer.style.display = 'none';
-        userProfileSection.style.display = 'none';
-        changePasswordForm.style.display = 'none';
-        profileSectionRows.forEach((row) => {
-          row.style.display = 'flex';
-        });
-      });
       return console.log(clicked.closest('button').textContent);
     }
     if (clicked.closest('button') === profileSectionButtons[1]) {
@@ -66,11 +74,10 @@ profileSectionButtons.forEach((psb) => {
       });
       userProfileSectionHeader.textContent = clicked.closest('button').textContent;
       userProfileSection.style.display = 'flex';
-      backButton.addEventListener(`click`, (e) => {
-        userProfileSection.style.display = 'none';
-        profileSectionRows.forEach((row) => {
-          row.style.display = 'flex';
-        });
+      passwordManagementContainer.style.display = 'flex';
+      passwordManagementButtons[0].addEventListener('click', (e) => {
+        e.preventDefault();
+        changePasswordForm.style.display = 'flex';
       });
       return console.log(clicked.closest('button').textContent);
     }
@@ -78,28 +85,18 @@ profileSectionButtons.forEach((psb) => {
       profileSectionRows.forEach((row) => {
         row.style.display = 'none';
       });
+      communicationsContainer.style.display = 'flex';
       userProfileSectionHeader.textContent = clicked.closest('button').textContent;
       userProfileSection.style.display = 'flex';
-      backButton.addEventListener(`click`, (e) => {
-        userProfileSection.style.display = 'none';
-        profileSectionRows.forEach((row) => {
-          row.style.display = 'flex';
-        });
-      });
       return console.log(clicked.closest('button').textContent);
     }
     if (clicked.closest('button') === profileSectionButtons[3]) {
       profileSectionRows.forEach((row) => {
         row.style.display = 'none';
       });
+      accountManagementContainer.style.display = 'flex';
       userProfileSectionHeader.textContent = clicked.closest('button').textContent;
       userProfileSection.style.display = 'flex';
-      backButton.addEventListener(`click`, (e) => {
-        userProfileSection.style.display = 'none';
-        profileSectionRows.forEach((row) => {
-          row.style.display = 'flex';
-        });
-      });
       return console.log(clicked.closest('button').textContent);
     }
   });

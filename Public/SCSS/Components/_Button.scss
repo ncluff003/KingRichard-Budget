@@ -98,23 +98,46 @@
                     background-color: $secondaryColor;
                   }
                 }
-              }
-              .change-password-form {
-                &__button {
-                  @include SizeAndPositioning(relative, 7rem, 50%, flex, center, center, 0, 0, 0);
-                  margin-top: 2rem;
-                  background-color: rgba($primaryColorDark, 0.8);
-                  border: 0.2rem solid rgba($primaryColor, 0.8);
-                  border-radius: 1.5rem;
-                  transition: background-color 0.5s, border 0.5s, color 0.5s;
-                  &:hover {
-                    background-color: $tertiaryColorDark;
-                    border: 0.2rem solid $tertiaryColor;
-                    cursor: pointer;
+                .change-password-form {
+                  &__button {
+                    @include SizeAndPositioning(relative, 7rem, 50%, flex, center, center, 0, 0, 0);
+                    margin-top: 2rem;
+                    background-color: rgba($primaryColorDark, 0.8);
+                    border: 0.2rem solid rgba($primaryColor, 0.8);
+                    border-radius: 1.5rem;
+                    transition: background-color 0.5s, border 0.5s, color 0.5s;
+                    &:hover {
+                      background-color: $tertiaryColorDark;
+                      border: 0.2rem solid $tertiaryColor;
+                      cursor: pointer;
+                    }
+                    &:active {
+                      background-color: $secondaryColorDark;
+                      border: 0.2rem solid $secondaryColor;
+                    }
                   }
-                  &:active {
-                    background-color: $secondaryColorDark;
-                    border: 0.2rem solid $secondaryColor;
+                }
+              }
+              .unique-profile-content-container.unique-profile-content-container__personal-information {
+                .personal-information-form {
+                  &__form-section {
+                    .personal-information-form__button {
+                      @include SizeAndPositioning(relative, 90%, 15%, flex, space-evenly, center, 0, 0, 0);
+                      flex-direction: column;
+                      background-color: rgba($primaryColorDark, 0.8);
+                      border: 0.2rem solid rgba($primaryColor, 0.8);
+                      border-radius: 1.5rem;
+                      transition: background-color 0.5s, border 0.5s, color 0.5s;
+                      &:hover {
+                        background-color: $tertiaryColorDark;
+                        border: 0.2rem solid $tertiaryColor;
+                        cursor: pointer;
+                      }
+                      &:active {
+                        background-color: $secondaryColorDark;
+                        border: 0.2rem solid $secondaryColor;
+                      }
+                    }
                   }
                 }
               }

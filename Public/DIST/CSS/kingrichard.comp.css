@@ -212,6 +212,29 @@ html {
 .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form__button:active {
   color: #333333;
 }
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section {
+  font-size: 1.6rem;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section .personal-information-form__button {
+  font-size: 2rem;
+  color: rgba(250, 250, 250, 0.8);
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section .personal-information-form__button:hover {
+  color: #fafafa;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section .personal-information-form__button:active {
+  color: #333333;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section__input-container__input {
+  color: rgba(250, 250, 250, 0.85);
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section__input-container__input:focus {
+  border: 0.2rem solid #822aba;
+  color: #fafafa;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section__input-container__label {
+  color: rgba(250, 250, 250, 0.85);
+}
 
 @keyframes blink {
   0% {
@@ -31965,7 +31988,7 @@ html {
   border: 0.2rem solid #ffd700;
   background-color: #ffd700;
 }
-.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .change-password-form__button {
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form__button {
   position: relative;
   height: 7rem;
   width: 50%;
@@ -31979,12 +32002,35 @@ html {
   border-radius: 1.5rem;
   transition: background-color 0.5s, border 0.5s, color 0.5s;
 }
-.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .change-password-form__button:hover {
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form__button:hover {
   background-color: #2cae1f;
   border: 0.2rem solid #38d927;
   cursor: pointer;
 }
-.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .change-password-form__button:active {
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form__button:active {
+  background-color: #ccac00;
+  border: 0.2rem solid #ffd700;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section .personal-information-form__button {
+  position: relative;
+  height: 90%;
+  width: 15%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  flex-direction: column;
+  background-color: rgba(101, 33, 144, 0.8);
+  border: 0.2rem solid rgba(130, 42, 186, 0.8);
+  border-radius: 1.5rem;
+  transition: background-color 0.5s, border 0.5s, color 0.5s;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section .personal-information-form__button:hover {
+  background-color: #2cae1f;
+  border: 0.2rem solid #38d927;
+  cursor: pointer;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section .personal-information-form__button:active {
   background-color: #ccac00;
   border: 0.2rem solid #ffd700;
 }
@@ -32188,7 +32234,10 @@ html {
 .master-flex-container .master-grid-container .form-container .form-page-number {
   margin-top: 3rem;
 }
-.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management {
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__account-management {
   position: relative;
   height: 100%;
   width: 100%;
@@ -32200,7 +32249,14 @@ html {
   overflow-x: hidden;
   overflow-y: auto;
 }
-.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form {
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .personal-information-form,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .change-password-form,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .change-password-form,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .personal-information-form,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__account-management .change-password-form,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__account-management .personal-information-form {
   position: relative;
   height: 50rem;
   width: 100%;
@@ -32210,7 +32266,14 @@ html {
   transform: rotate(0) translate(0, 0);
   flex-direction: column;
 }
-.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form__form-section {
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form__form-section,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .personal-information-form__form-section,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .change-password-form__form-section,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .change-password-form__form-section,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .personal-information-form__form-section,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__account-management .change-password-form__form-section,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__account-management .personal-information-form__form-section {
   position: relative;
   height: 7rem;
   width: 100%;
@@ -32221,7 +32284,14 @@ html {
   flex-direction: column;
   margin-top: 2.5rem;
 }
-.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form__form-section__input {
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form__form-section__input,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .personal-information-form__form-section__input,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .change-password-form__form-section__input,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section__input,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .change-password-form__form-section__input,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .personal-information-form__form-section__input,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__account-management .change-password-form__form-section__input,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__account-management .personal-information-form__form-section__input {
   position: relative;
   height: 100%;
   width: 100%;
@@ -32234,26 +32304,82 @@ html {
   border: 0.2rem solid rgba(130, 42, 186, 0.8);
   border-radius: 1.5rem;
 }
-.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form__form-section__input:focus {
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form__form-section__input:focus,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .personal-information-form__form-section__input:focus,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .change-password-form__form-section__input:focus,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section__input:focus,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .change-password-form__form-section__input:focus,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .personal-information-form__form-section__input:focus,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__account-management .change-password-form__form-section__input:focus,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__account-management .personal-information-form__form-section__input:focus {
   border: 0.2rem solid #822aba;
   outline: none;
 }
-.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form__form-section__input::-webkit-input-placeholder {
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form__form-section__input::-webkit-input-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .personal-information-form__form-section__input::-webkit-input-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .change-password-form__form-section__input::-webkit-input-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section__input::-webkit-input-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .change-password-form__form-section__input::-webkit-input-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .personal-information-form__form-section__input::-webkit-input-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__account-management .change-password-form__form-section__input::-webkit-input-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__account-management .personal-information-form__form-section__input::-webkit-input-placeholder {
   opacity: 0;
 }
-.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form__form-section__input:focus::-webkit-input-placeholder {
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form__form-section__input:focus::-webkit-input-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .personal-information-form__form-section__input:focus::-webkit-input-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .change-password-form__form-section__input:focus::-webkit-input-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section__input:focus::-webkit-input-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .change-password-form__form-section__input:focus::-webkit-input-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .personal-information-form__form-section__input:focus::-webkit-input-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__account-management .change-password-form__form-section__input:focus::-webkit-input-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__account-management .personal-information-form__form-section__input:focus::-webkit-input-placeholder {
   opacity: 1;
 }
-.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form__form-section__input::-moz-placeholder {
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form__form-section__input::-moz-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .personal-information-form__form-section__input::-moz-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .change-password-form__form-section__input::-moz-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section__input::-moz-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .change-password-form__form-section__input::-moz-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .personal-information-form__form-section__input::-moz-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__account-management .change-password-form__form-section__input::-moz-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__account-management .personal-information-form__form-section__input::-moz-placeholder {
   opacity: 0;
 }
-.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form__form-section__input:focus::-moz-placeholder {
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form__form-section__input:focus::-moz-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .personal-information-form__form-section__input:focus::-moz-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .change-password-form__form-section__input:focus::-moz-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section__input:focus::-moz-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .change-password-form__form-section__input:focus::-moz-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .personal-information-form__form-section__input:focus::-moz-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__account-management .change-password-form__form-section__input:focus::-moz-placeholder,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__account-management .personal-information-form__form-section__input:focus::-moz-placeholder {
   opacity: 1;
 }
-.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form__form-section__input:not(:placeholder-shown) + label, .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form__form-section__input:focus + label {
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form__form-section__input:not(:placeholder-shown) + label, .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form__form-section__input:focus + label,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .personal-information-form__form-section__input:not(:placeholder-shown) + label,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .personal-information-form__form-section__input:focus + label,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .change-password-form__form-section__input:not(:placeholder-shown) + label,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .change-password-form__form-section__input:focus + label,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section__input:not(:placeholder-shown) + label,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section__input:focus + label,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .change-password-form__form-section__input:not(:placeholder-shown) + label,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .change-password-form__form-section__input:focus + label,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .personal-information-form__form-section__input:not(:placeholder-shown) + label,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .personal-information-form__form-section__input:focus + label,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__account-management .change-password-form__form-section__input:not(:placeholder-shown) + label,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__account-management .change-password-form__form-section__input:focus + label,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__account-management .personal-information-form__form-section__input:not(:placeholder-shown) + label,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__account-management .personal-information-form__form-section__input:focus + label {
   transform: translate(-7rem, -8rem) scale(0.7);
 }
-.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form__form-section__label {
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form__form-section__label,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .personal-information-form__form-section__label,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .change-password-form__form-section__label,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section__label,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .change-password-form__form-section__label,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .personal-information-form__form-section__label,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__account-management .change-password-form__form-section__label,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__account-management .personal-information-form__form-section__label {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -32266,7 +32392,79 @@ html {
   -moz-transform: translate(0, -50%);
   transition: transform 0.5s, opacity 0.5s;
 }
-.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form__form-section__label:hover {
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .change-password-form__form-section__label:hover,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management .personal-information-form__form-section__label:hover,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .change-password-form__form-section__label:hover,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section__label:hover,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .change-password-form__form-section__label:hover,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .personal-information-form__form-section__label:hover,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__account-management .change-password-form__form-section__label:hover,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__account-management .personal-information-form__form-section__label:hover {
+  cursor: pointer;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form {
+  display: flex;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section {
+  flex-direction: row;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section__input-container {
+  position: relative;
+  height: 100%;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  flex-direction: column;
+  margin-left: 2rem;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section__input-container__input {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  padding-left: 2rem;
+  background-color: rgba(17, 17, 17, 0.75);
+  border: 0.2rem solid rgba(130, 42, 186, 0.8);
+  border-radius: 1.5rem;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section__input-container__input:focus {
+  border: 0.2rem solid #822aba;
+  outline: none;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section__input-container__input::-webkit-input-placeholder {
+  opacity: 0;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section__input-container__input:focus::-webkit-input-placeholder {
+  opacity: 1;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section__input-container__input::-moz-placeholder {
+  opacity: 0;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section__input-container__input:focus::-moz-placeholder {
+  opacity: 1;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section__input-container__input:not(:placeholder-shown) + label, .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section__input-container__input:focus + label {
+  transform: translate(-7rem, -8rem) scale(0.7);
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section__input-container__label {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, -50%);
+  top: 50%;
+  left: 2rem;
+  -moz-transform: translate(0, -50%);
+  transition: transform 0.5s, opacity 0.5s;
+}
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section__input-container__label:hover {
   cursor: pointer;
 }
 

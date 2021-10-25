@@ -107,13 +107,17 @@
         &__user-info {
           &__profile-option-container {
             &__content {
-              .unique-profile-content-container.unique-profile-content-container__password-management {
+              .unique-profile-content-container.unique-profile-content-container__password-management,
+              .unique-profile-content-container.unique-profile-content-container__personal-information,
+              .unique-profile-content-container.unique-profile-content-container__communications,
+              .unique-profile-content-container.unique-profile-content-container__account-management {
                 @include SizeAndPositioning(relative, 100%, 100%, none, center, center, 0, 0, 0);
                 // @include SizeAndPositioning(relative, 100%, 100%, flex, flex-start, center, 0, 0, 0);
                 flex-direction: column;
                 overflow-x: hidden;
                 overflow-y: auto;
-                .change-password-form {
+                .change-password-form,
+                .personal-information-form {
                   @include SizeAndPositioning(relative, 50rem, 100%, none, space-evenly, center, 0, 0, 0);
                   flex-direction: column;
                   &__form-section {
@@ -156,6 +160,56 @@
                         cursor: pointer;
                       }
                       transition: transform 0.5s, opacity 0.5s;
+                    }
+                  }
+                }
+              }
+              .unique-profile-content-container.unique-profile-content-container__personal-information {
+                .personal-information-form {
+                  display: flex;
+                  &__form-section {
+                    flex-direction: row;
+                    &__input-container {
+                      @include SizeAndPositioning(relative, 100%, 80%, flex, center, center, 0, 0, 0);
+                      flex-direction: column;
+                      margin-left: 2rem;
+                      &__input {
+                        @include SizeAndPositioning(relative, 100%, 100%, flex, flex-start, center, 0, 0, 0);
+                        padding-left: 2rem;
+                        background-color: rgba($colorDarkestGrey, 0.75);
+                        border: 0.2rem solid rgba($primaryColor, 0.8);
+                        border-radius: 1.5rem;
+                        &:focus {
+                          border: 0.2rem solid $primaryColor;
+                          outline: none;
+                        }
+                        &::-webkit-input-placeholder {
+                          opacity: 0;
+                        }
+                        &:focus::-webkit-input-placeholder {
+                          opacity: 1;
+                        }
+                        &::-moz-placeholder {
+                          opacity: 0;
+                        }
+                        &:focus::-moz-placeholder {
+                          opacity: 1;
+                        }
+                        &:not(:placeholder-shown) + label,
+                        &:focus + label {
+                          transform: translate(-7rem, -8rem) scale(0.7);
+                        }
+                      }
+                      &__label {
+                        @include SizeAndPositioning(absolute, 100%, 100%, flex, flex-start, center, 0, -50%, 0);
+                        top: 50%;
+                        left: 2rem;
+                        -moz-transform: translate(0, -50%);
+                        &:hover {
+                          cursor: pointer;
+                        }
+                        transition: transform 0.5s, opacity 0.5s;
+                      }
                     }
                   }
                 }

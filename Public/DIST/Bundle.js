@@ -2288,7 +2288,10 @@ var profileSectionRows = document.querySelectorAll('.user-profile-card__user-inf
 var profileSectionButtons = document.querySelectorAll('.user-profile-card__user-info__row__button');
 var userProfileSection = document.querySelector('.user-profile-card__user-info__profile-option-container');
 var userProfileSectionHeader = document.querySelector('.user-profile-card__user-info__profile-option-container__header');
-var changePasswordFormContainer = document.querySelector('.unique-profile-content-container.unique-profile-content-container__password-management');
+var personalInformationContainer = document.querySelector('.unique-profile-content-container.unique-profile-content-container__personal-information');
+var passwordManagementContainer = document.querySelector('.unique-profile-content-container.unique-profile-content-container__password-management');
+var communicationsContainer = document.querySelector('.unique-profile-content-container.unique-profile-content-container__communications');
+var accountManagementContainer = document.querySelector('.unique-profile-content-container.unique-profile-content-container__account-management');
 var backButton = document.querySelector('.back-button');
 var passwordManagementButtons = document.querySelectorAll('.unique-profile-content-container__password-management__button');
 var changePasswordForm = document.querySelector('.change-password-form');
@@ -2297,26 +2300,25 @@ profileSectionButtons.forEach(function (psb) {
   psb.addEventListener('click', function (e) {
     e.preventDefault();
     var clicked = e.target;
+    backButton.addEventListener("click", function (e) {
+      personalInformationContainer.style.display = 'none';
+      passwordManagementContainer.style.display = 'none';
+      communicationsContainer.style.display = 'none';
+      accountManagementContainer.style.display = 'none';
+      userProfileSection.style.display = 'none';
+      changePasswordForm.style.display = 'none';
+      profileSectionRows.forEach(function (row) {
+        row.style.display = 'flex';
+      });
+    });
 
     if (clicked.closest('button') === profileSectionButtons[0]) {
       profileSectionRows.forEach(function (row) {
         row.style.display = 'none';
       });
+      personalInformationContainer.style.display = 'flex';
       userProfileSectionHeader.textContent = clicked.closest('button').textContent;
       userProfileSection.style.display = 'flex';
-      changePasswordFormContainer.style.display = 'flex';
-      passwordManagementButtons[0].addEventListener('click', function (e) {
-        e.preventDefault();
-        changePasswordForm.style.display = 'flex';
-      });
-      backButton.addEventListener("click", function (e) {
-        changePasswordFormContainer.style.display = 'none';
-        userProfileSection.style.display = 'none';
-        changePasswordForm.style.display = 'none';
-        profileSectionRows.forEach(function (row) {
-          row.style.display = 'flex';
-        });
-      });
       return console.log(clicked.closest('button').textContent);
     }
 
@@ -2326,11 +2328,10 @@ profileSectionButtons.forEach(function (psb) {
       });
       userProfileSectionHeader.textContent = clicked.closest('button').textContent;
       userProfileSection.style.display = 'flex';
-      backButton.addEventListener("click", function (e) {
-        userProfileSection.style.display = 'none';
-        profileSectionRows.forEach(function (row) {
-          row.style.display = 'flex';
-        });
+      passwordManagementContainer.style.display = 'flex';
+      passwordManagementButtons[0].addEventListener('click', function (e) {
+        e.preventDefault();
+        changePasswordForm.style.display = 'flex';
       });
       return console.log(clicked.closest('button').textContent);
     }
@@ -2339,14 +2340,9 @@ profileSectionButtons.forEach(function (psb) {
       profileSectionRows.forEach(function (row) {
         row.style.display = 'none';
       });
+      communicationsContainer.style.display = 'flex';
       userProfileSectionHeader.textContent = clicked.closest('button').textContent;
       userProfileSection.style.display = 'flex';
-      backButton.addEventListener("click", function (e) {
-        userProfileSection.style.display = 'none';
-        profileSectionRows.forEach(function (row) {
-          row.style.display = 'flex';
-        });
-      });
       return console.log(clicked.closest('button').textContent);
     }
 
@@ -2354,14 +2350,9 @@ profileSectionButtons.forEach(function (psb) {
       profileSectionRows.forEach(function (row) {
         row.style.display = 'none';
       });
+      accountManagementContainer.style.display = 'flex';
       userProfileSectionHeader.textContent = clicked.closest('button').textContent;
       userProfileSection.style.display = 'flex';
-      backButton.addEventListener("click", function (e) {
-        userProfileSection.style.display = 'none';
-        profileSectionRows.forEach(function (row) {
-          row.style.display = 'flex';
-        });
-      });
       return console.log(clicked.closest('button').textContent);
     }
   });

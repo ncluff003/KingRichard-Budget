@@ -251,6 +251,35 @@ html {
                   }
                 }
               }
+              .unique-profile-content-container.unique-profile-content-container__personal-information {
+                .personal-information-form {
+                  &__form-section {
+                    font-size: 1.6rem;
+                    .personal-information-form__button {
+                      font-size: 2rem;
+                      color: rgba($colorOffWhite, 0.8);
+                      &:hover {
+                        color: $colorOffWhite;
+                      }
+                      &:active {
+                        color: $colorDarkerGrey;
+                      }
+                    }
+                    &__input-container {
+                      &__input {
+                        color: rgba($colorOffWhite, 0.85);
+                        &:focus {
+                          border: 0.2rem solid $primaryColor;
+                          color: $colorOffWhite;
+                        }
+                      }
+                      &__label {
+                        color: rgba($colorOffWhite, 0.85);
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }
