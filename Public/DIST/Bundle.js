@@ -2278,7 +2278,41 @@ var _watchUserButton = function _watchUserButton() {
       profileCard.style.display = 'flex';
     }, 1500);
   });
-};
+}; // Activating Correct Card Section
+
+var passwordManagement = false;
+var communications = false;
+var personalInformation = false;
+var accountManagement = false;
+var profileSectionButtons = document.querySelectorAll('.user-profile-card__user-info__row__button');
+var userProfileSectionHeader = document.querySelector('.user-profile-card__user-info__profile-option-container__header');
+console.log(profileSectionButtons);
+profileSectionButtons.forEach(function (psb) {
+  psb.addEventListener('click', function (e) {
+    e.preventDefault();
+    var clicked = e.target;
+
+    if (clicked.closest('button') === profileSectionButtons[0]) {
+      userProfileSectionHeader.textContent = clicked.closest('button').textContent;
+      return console.log(clicked.closest('button').textContent);
+    }
+
+    if (clicked.closest('button') === profileSectionButtons[1]) {
+      userProfileSectionHeader.textContent = clicked.closest('button').textContent;
+      return console.log(clicked.closest('button').textContent);
+    }
+
+    if (clicked.closest('button') === profileSectionButtons[2]) {
+      userProfileSectionHeader.textContent = clicked.closest('button').textContent;
+      return console.log(clicked.closest('button').textContent);
+    }
+
+    if (clicked.closest('button') === profileSectionButtons[3]) {
+      userProfileSectionHeader.textContent = clicked.closest('button').textContent;
+      return console.log(clicked.closest('button').textContent);
+    }
+  });
+});
 
 /***/ }),
 

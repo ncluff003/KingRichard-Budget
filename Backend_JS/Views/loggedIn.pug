@@ -1,10 +1,6 @@
 extends base
   
-block Navigation
-  ul.navigation__landing-navigation.r__navigation__landing-navigation
-    button.navigation__landing-navigation__user.r__navigation__landing-navigation__user
-      i.fas.fa-user-circle.navigation__landing-navigation__user-icon.r__navigation__landing-navigation__user-icon
-      p.navigation__landing-navigation__user-text.r__navigation__landing-navigation__user-text #{data.user.firstname}
+include _Navigation-LoggedIn
 
 block Unique-Content
   section.app-background.r__app-background.column_1-24.row_2-17
@@ -18,32 +14,8 @@ block Unique-Content
             i.fas.fa-plus.budget-card--create__icon
             p.budget-card--create__text Create Budget
         i.fas.fa-arrow-alt-circle-right
-  section.user-profile-background.r__user-profile-background.column_1-24.row_2-17 
-    section.user-profile-card.r__user-profile-card
-      section.user-profile-card__first-impression
-        section.user-profile-card__first-impression__image-container
-          img.user-profile-card__first-impression__image-container--image(src=`/DIST/CSS/Images/Users/${data.user.photo}` alt=`Photo of ${data.user.firstname} ${data.user.lastname}`)
-          button.user-profile-card__first-impression__image-container__update-photo-button
-            i.fas.fa-camera.user-profile-card__first-impression__image-container__update-photo-button--icon
-            p.user-profile-card__first-impression__update-photo-button--text Update Photo        
-        section.user-profile-card__first-impression__name-container
-          p.user-profile-card__first-impression__name-container--first #{data.user.firstname}
-          p.user-profile-card__first-impression__name-container--last #{data.user.lastname}
-      section.user-profile-card__user-info
-        section.user-profile-card__user-info__row
-          button.user-profile-card__user-info__row__button
-            i.fas.fa-user-alt.user-profile-card__user-info__row__button--icon
-            p.user-profile-card__user-info__row__button--text Personal Information
-          button.user-profile-card__user-info__row__button
-            i.fas.fa-lock.user-profile-card__user-info__row__button--icon
-            p.user-profile-card__user-info__row__button--text Password Management
-        section.user-profile-card__user-info__row
-          button.user-profile-card__user-info__row__button
-            i.fas.fa-mobile-alt.user-profile-card__user-info__row__button--icon
-            p.user-profile-card__user-info__row__button--text Communications
-          button.user-profile-card__user-info__row__button
-            i.fas.fa-id-card.user-profile-card__user-info__row__button--icon
-            p.user-profile-card__user-info__row__button--text Account Management
+  include _User-Profile
+  
           //- section.user-profile-card__user-info__row-info
           //-   input.user-profile-card__user-info__row-info--text(placeholder=`(000) 000 - 000` type='tel' pattern="\([0-9]{3}\) [0-9]{3} \- [0-9]{4}") 
           //- button.user-profile-card__user-info__row__button

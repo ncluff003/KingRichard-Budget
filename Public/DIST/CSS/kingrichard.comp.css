@@ -138,7 +138,7 @@ html {
   font-size: 1.6rem;
 }
 .master-flex-container .master-grid-container .user-profile-background .user-profile-card__first-impression__image-container__update-photo-button:hover {
-  color: #822aba;
+  color: #fafafa;
 }
 .master-flex-container .master-grid-container .user-profile-background .user-profile-card__first-impression__name-container {
   font-size: 3.6rem;
@@ -154,6 +154,7 @@ html {
 }
 .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row__button--text, .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row--hidden__button--text {
   font-size: 2rem;
+  text-align: center;
 }
 .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row__button:hover, .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__row--hidden__button:hover {
   color: #fafafa;
@@ -31640,7 +31641,7 @@ html {
 .master-flex-container .master-grid-container .user-profile-background .user-profile-card__first-impression__image-container__update-photo-button:hover {
   cursor: pointer;
   border: 0.2rem solid #fafafa;
-  background-color: #fafafa;
+  background-color: #2cae1f;
 }
 .master-flex-container .master-grid-container .user-profile-background .user-profile-card__first-impression__name-container {
   position: relative;
@@ -31809,7 +31810,8 @@ html {
 }
 .master-flex-container .master-grid-container .navigation__landing-navigation__login-icon, .master-flex-container .master-grid-container .navigation__landing-navigation__signup-icon, .master-flex-container .master-grid-container .navigation__landing-navigation__user-icon {
   position: relative;
-  transform: translate(-0.3rem, 0);
+  transform: translate(-0.3rem, -0.2rem);
+  -moz-transform: translate(-0.3rem, 0);
 }
 .master-flex-container .master-grid-container .navigation__landing-navigation__login:hover, .master-flex-container .master-grid-container .navigation__landing-navigation__signup:hover, .master-flex-container .master-grid-container .navigation__landing-navigation__user:hover {
   border: 0.2rem solid #fafafa;

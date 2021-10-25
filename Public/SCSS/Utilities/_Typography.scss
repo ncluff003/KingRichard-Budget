@@ -162,7 +162,7 @@ html {
                 font-size: 1.6rem;
               }
               &:hover {
-                color: $primaryColor;
+                color: $colorOffWhite;
               }
             }
           }
@@ -183,6 +183,7 @@ html {
               }
               &--text {
                 font-size: 2rem;
+                text-align: center;
               }
               &:hover {
                 color: $colorOffWhite;
