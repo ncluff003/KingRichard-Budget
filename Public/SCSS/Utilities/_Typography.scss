@@ -204,6 +204,13 @@ html {
               color: $colorOffWhite;
             }
             &__content {
+              .back-button {
+                font-size: 1.6rem;
+                color: rgba($colorOffWhite, 0.5);
+                &:hover {
+                  color: $colorOffWhite;
+                }
+              }
               .unique-profile-content-container.unique-profile-content-container__password-management {
                 .unique-profile-content-container__password-management__button {
                   font-size: 1.6rem;
@@ -216,6 +223,31 @@ html {
                   }
                   &:active {
                     color: $colorDarkerGrey;
+                  }
+                }
+                .change-password-form {
+                  &__form-section {
+                    font-size: 2rem;
+                    &__input {
+                      color: rgba($colorOffWhite, 0.85);
+                      &:focus {
+                        border: 0.2rem solid $primaryColor;
+                        color: $colorOffWhite;
+                      }
+                    }
+                    &__label {
+                      color: rgba($colorOffWhite, 0.85);
+                    }
+                  }
+                  &__button {
+                    font-size: 2rem;
+                    color: rgba($colorOffWhite, 0.85);
+                    &:hover {
+                      color: $colorOffWhite;
+                    }
+                    &:active {
+                      color: $colorDarkerGrey;
+                    }
                   }
                 }
               }

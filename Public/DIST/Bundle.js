@@ -2284,8 +2284,14 @@ var passwordManagement = false;
 var communications = false;
 var personalInformation = false;
 var accountManagement = false;
+var profileSectionRows = document.querySelectorAll('.user-profile-card__user-info__row');
 var profileSectionButtons = document.querySelectorAll('.user-profile-card__user-info__row__button');
+var userProfileSection = document.querySelector('.user-profile-card__user-info__profile-option-container');
 var userProfileSectionHeader = document.querySelector('.user-profile-card__user-info__profile-option-container__header');
+var changePasswordFormContainer = document.querySelector('.unique-profile-content-container.unique-profile-content-container__password-management');
+var backButton = document.querySelector('.back-button');
+var passwordManagementButtons = document.querySelectorAll('.unique-profile-content-container__password-management__button');
+var changePasswordForm = document.querySelector('.change-password-form');
 console.log(profileSectionButtons);
 profileSectionButtons.forEach(function (psb) {
   psb.addEventListener('click', function (e) {
@@ -2293,22 +2299,69 @@ profileSectionButtons.forEach(function (psb) {
     var clicked = e.target;
 
     if (clicked.closest('button') === profileSectionButtons[0]) {
+      profileSectionRows.forEach(function (row) {
+        row.style.display = 'none';
+      });
       userProfileSectionHeader.textContent = clicked.closest('button').textContent;
+      userProfileSection.style.display = 'flex';
+      changePasswordFormContainer.style.display = 'flex';
+      passwordManagementButtons[0].addEventListener('click', function (e) {
+        e.preventDefault();
+        changePasswordForm.style.display = 'flex';
+      });
+      backButton.addEventListener("click", function (e) {
+        changePasswordFormContainer.style.display = 'none';
+        userProfileSection.style.display = 'none';
+        changePasswordForm.style.display = 'none';
+        profileSectionRows.forEach(function (row) {
+          row.style.display = 'flex';
+        });
+      });
       return console.log(clicked.closest('button').textContent);
     }
 
     if (clicked.closest('button') === profileSectionButtons[1]) {
+      profileSectionRows.forEach(function (row) {
+        row.style.display = 'none';
+      });
       userProfileSectionHeader.textContent = clicked.closest('button').textContent;
+      userProfileSection.style.display = 'flex';
+      backButton.addEventListener("click", function (e) {
+        userProfileSection.style.display = 'none';
+        profileSectionRows.forEach(function (row) {
+          row.style.display = 'flex';
+        });
+      });
       return console.log(clicked.closest('button').textContent);
     }
 
     if (clicked.closest('button') === profileSectionButtons[2]) {
+      profileSectionRows.forEach(function (row) {
+        row.style.display = 'none';
+      });
       userProfileSectionHeader.textContent = clicked.closest('button').textContent;
+      userProfileSection.style.display = 'flex';
+      backButton.addEventListener("click", function (e) {
+        userProfileSection.style.display = 'none';
+        profileSectionRows.forEach(function (row) {
+          row.style.display = 'flex';
+        });
+      });
       return console.log(clicked.closest('button').textContent);
     }
 
     if (clicked.closest('button') === profileSectionButtons[3]) {
+      profileSectionRows.forEach(function (row) {
+        row.style.display = 'none';
+      });
       userProfileSectionHeader.textContent = clicked.closest('button').textContent;
+      userProfileSection.style.display = 'flex';
+      backButton.addEventListener("click", function (e) {
+        userProfileSection.style.display = 'none';
+        profileSectionRows.forEach(function (row) {
+          row.style.display = 'flex';
+        });
+      });
       return console.log(clicked.closest('button').textContent);
     }
   });
