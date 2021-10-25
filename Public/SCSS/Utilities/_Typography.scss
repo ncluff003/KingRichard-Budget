@@ -198,6 +198,29 @@ html {
               }
             }
           }
+          &__profile-option-container {
+            &__header {
+              font-size: 3rem;
+              color: $colorOffWhite;
+            }
+            &__content {
+              .unique-profile-content-container.unique-profile-content-container__password-management {
+                .unique-profile-content-container__password-management__button {
+                  font-size: 1.6rem;
+                  color: rgba($colorOffWhite, 0.75);
+                  &--icon {
+                    font-size: 2.6rem;
+                  }
+                  &:hover {
+                    color: $colorOffWhite;
+                  }
+                  &:active {
+                    color: $colorDarkerGrey;
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

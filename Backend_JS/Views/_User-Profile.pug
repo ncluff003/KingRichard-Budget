@@ -24,3 +24,20 @@ section.user-profile-background.r__user-profile-background.column_1-24.row_2-17
         section.user-profile-card__user-info__profile-option-container 
           header.user-profile-card__user-info__profile-option-container__header Sample Title 
           section.user-profile-card__user-info__profile-option-container__content
+            section.unique-profile-content-container.unique-profile-content-container__password-management 
+              button.unique-profile-content-container__password-management__button 
+                i.fas.fa-key.unique-profile-content-container__password-management__button--icon 
+                p.unique-profile-content-container__password-management__button--text Change Password
+              button.unique-profile-content-container__password-management__button 
+                i.fas.fa-key.unique-profile-content-container__password-management__button--icon 
+                p.unique-profile-content-container__password-management__button--text 2-Factor Auth Setup
+              form.change-password-form
+                section.change-password-form__form-section.r__change-password-form__form-section
+                  input.change-password-form__form-section__input.change-password-form__form-section__input--rounded-top#currentPassword(type="password" name="currentPassword" placeholder="Current Password"  required)
+                  label.change-password-form__form-section__label#currentPasswordLabel(for="currentPassword") Please Enter Current Password
+                section.change-password-form__form-section.r__change-password-form__form-section
+                  input.change-password-form__form-section__input.change-password-form__form-section__input--rounded-top#newPassword(type="password" name="newPassword" placeholder="New Password"  required)
+                  label.change-password-form__form-section__label#newPasswordLabel(for="currentPassword") Please Enter New Password
+                section.change-password-form__form-section.r__change-password-form__form-section
+                  input.change-password-form__form-section__input.change-password-form__form-section__input--rounded-top#newPasswordConfirmed(type="password" name="newPasswordConfirmed" placeholder="Confirm New Password"  required)
+                  label.change-password-form__form-section__label#newPasswordConfirmedLabel(for="currentPassword") Please Confirm New Password

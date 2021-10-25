@@ -65,7 +65,8 @@
           flex-direction: column;
           &__row,
           &__row--hidden {
-            @include SizeAndPositioning(relative, 48%, 100%, flex, space-evenly, center, 0, 0, 0);
+            // @include SizeAndPositioning(relative, 48%, 100%, flex, space-evenly, center, 0, 0, 0);
+            @include SizeAndPositioning(relative, 48%, 100%, none, space-evenly, center, 0, 0, 0);
             border-radius: 3rem;
             margin: 2rem 0 1rem;
             &__button {
@@ -94,6 +95,22 @@
               &--text {
                 @include SizingItem(relative, 100%, 100%);
               }
+            }
+          }
+          &__profile-option-container {
+            @include SizeAndPositioning(relative, 100%, 100%, flex, space-evenly, center, 0, 0, 0);
+            flex-direction: column;
+            background-color: $primaryColorDarker;
+            border: 0.3rem solid $primaryColorDark;
+            border-radius: 3rem;
+            padding: 3rem;
+            &__header {
+              @include SizeAndPositioning(relative, 20%, 100%, flex, center, center, 0, 0, 0);
+              background-color: rgba($tertiaryColor, 0.25);
+              border-radius: 1.5rem;
+            }
+            &__content {
+              @include SizeAndPositioning(relative, 80%, 100%, flex, center, center, 0, 0, 0);
             }
           }
         }

@@ -62,5 +62,35 @@
         }
       }
     }
+    .user-profile-background {
+      .user-profile-card {
+        &__user-info {
+          &__profile-option-container {
+            &__content {
+              .unique-profile-content-container.unique-profile-content-container__password-management {
+                .unique-profile-content-container__password-management__button {
+                  // @include SizeAndPositioning(relative, 25%, 65%, flex, space-evenly, center, 0, 0, 0);
+                  @include SizeAndPositioning(relative, 25%, 65%, none, space-evenly, center, 0, 0, 0);
+                  background-color: transparent;
+                  border: 0.2rem solid rgba($colorOffWhite, 0.75);
+                  border-radius: 1.5rem;
+                  transition: background-color 0.5s, border 0.5s, color 0.5s;
+                  margin: 0.5rem 0;
+                  &:hover {
+                    cursor: pointer;
+                    border: 0.2rem solid $tertiaryColor;
+                    background-color: $tertiaryColorDark;
+                  }
+                  &:active {
+                    border: 0.2rem solid $secondaryColor;
+                    background-color: $secondaryColor;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

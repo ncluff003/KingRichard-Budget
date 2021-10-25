@@ -102,5 +102,21 @@
         margin-top: 3rem;
       }
     }
+    .user-profile-background {
+      .user-profile-card {
+        &__user-info {
+          &__profile-option-container {
+            &__content {
+              .unique-profile-content-container.unique-profile-content-container__password-management {
+                @include SizeAndPositioning(relative, 100%, 100%, flex, center, center, 0, 0, 0);
+                flex-direction: column;
+                .change-password-form {
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
