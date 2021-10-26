@@ -165,6 +165,7 @@
                 }
               }
               .unique-profile-content-container.unique-profile-content-container__personal-information {
+                justify-content: flex-start;
                 .personal-information-form {
                   display: flex;
                   &__form-section {
@@ -197,7 +198,7 @@
                         }
                         &:not(:placeholder-shown) + label,
                         &:focus + label {
-                          transform: translate(-7rem, -8rem) scale(0.7);
+                          transform: translate(-6rem, -8rem) scale(0.7);
                         }
                       }
                       &__label {
@@ -209,6 +210,73 @@
                           cursor: pointer;
                         }
                         transition: transform 0.5s, opacity 0.5s;
+                      }
+                    }
+                    &--lds {
+                      @include SizeAndPositioning(relative, 7rem, 100%, flex, space-evenly, center, 0, 0, 0);
+                      margin-top: 2rem;
+                      .personal-information-form__toggle-switch {
+                        @include SizeAndPositioning(relative, 85%, 32.5%, flex, flex-start, center, 0, 0, 0);
+                        padding: 0.35rem;
+                        background-color: rgba($primaryColorDarker, 0.25);
+                        border: 0.3rem groove $primaryColor;
+                        border-radius: 8rem;
+                        transition: border 0.5s, background-color 0.5s, color 0.5s;
+                        &:hover {
+                          cursor: pointer;
+                        }
+                        &--toggled {
+                          border: 0.3rem groove rgba($tertiaryColor, 0.8);
+                          background-color: rgba($tertiaryColor, 0.8);
+                          &:hover {
+                            cursor: pointer;
+                            border: 0.3rem groove $tertiaryColor;
+                            .personal-information-form__toggle-switch__switch {
+                              background-color: $tertiaryColor;
+                            }
+                          }
+                        }
+                        &__text--no {
+                          @include SizeAndPositioning(relative, 100%, 30%, flex, center, center, 3rem, 0, 0);
+                          transition: border 0.5s, background-color 0.5s, color 0.5s, opacity 0.5s;
+                          &--reposition {
+                            position: absolute;
+                          }
+                          &--removed {
+                            display: none;
+                          }
+                          &--toggled {
+                            opacity: 0;
+                          }
+                        }
+                        &__text--yes {
+                          @include SizeAndPositioning(absolute, 90%, 95%, none, center, center, -50%, -50%, 0);
+                          border-radius: 4rem;
+                          top: 50%;
+                          left: 50%;
+                          opacity: 0;
+                          transition: border 0.5s, background-color 0.5s, color 0.5s, width 0.5s;
+                          &--displayed {
+                            display: flex;
+                          }
+                          &--toggled {
+                            opacity: 1;
+                          }
+                        }
+                        &__switch--toggled {
+                          transform: translate(185%, 0);
+                          border: 0.3rem groove $tertiaryColor;
+                          background-color: rgba($tertiaryColor, 0.8);
+                          &-full {
+                            transform: translate(0, 0);
+                            width: 100%;
+                            transform-origin: right;
+                            &:hover {
+                              cursor: pointer;
+                              background-color: $tertiaryColor;
+                            }
+                          }
+                        }
                       }
                     }
                   }

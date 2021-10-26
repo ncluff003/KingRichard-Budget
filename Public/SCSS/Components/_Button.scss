@@ -120,8 +120,10 @@
               }
               .unique-profile-content-container.unique-profile-content-container__personal-information {
                 .personal-information-form {
-                  &__form-section {
-                    .personal-information-form__button {
+                  &__form-section,
+                  &__form-section--lds {
+                    .personal-information-form__button,
+                    .personal-information-form__button--lds {
                       @include SizeAndPositioning(relative, 90%, 15%, flex, space-evenly, center, 0, 0, 0);
                       flex-direction: column;
                       background-color: rgba($primaryColorDark, 0.8);
@@ -136,6 +138,34 @@
                       &:active {
                         background-color: $secondaryColorDark;
                         border: 0.2rem solid $secondaryColor;
+                      }
+                      &--lds {
+                        flex-direction: row;
+                        width: 40%;
+                        padding: 1rem;
+                      }
+                    }
+                    .personal-information-form__toggle-switch {
+                      &__switch {
+                        @include SizeAndPositioning(relative, 100%, 35%, flex, center, center, 0, 0, 0);
+                        border: 0.3rem groove rgba($primaryColorDark, 0.8);
+                        background-color: rgba($primaryColor, 0.8);
+                        border-radius: 4rem;
+                        transform-origin: left;
+                        transition: border 0.5s, background-color 0.5s, color 0.5s, transform 0.5s,
+                          width 0.5s ease-in-out;
+                      }
+                      &__glow {
+                        @include SizeAndPositioning(absolute, 85%, 90%, flex, center, center, -50%, -50%, 0);
+                        border-radius: 4rem;
+                        box-shadow: 0 0 2.5rem $tertiaryColor;
+                        top: 50%;
+                        left: 50%;
+                        z-index: 5;
+                        opacity: 0;
+                        &--lit-up {
+                          opacity: 1;
+                        }
                       }
                     }
                   }

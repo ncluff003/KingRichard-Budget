@@ -253,9 +253,11 @@ html {
               }
               .unique-profile-content-container.unique-profile-content-container__personal-information {
                 .personal-information-form {
-                  &__form-section {
+                  &__form-section,
+                  &__form-section--lds {
                     font-size: 1.6rem;
-                    .personal-information-form__button {
+                    .personal-information-form__button,
+                    .personal-information-form__button--lds {
                       font-size: 2rem;
                       color: rgba($colorOffWhite, 0.8);
                       &:hover {
@@ -263,6 +265,20 @@ html {
                       }
                       &:active {
                         color: $colorDarkerGrey;
+                      }
+                      &__text {
+                        font-size: 1.4rem;
+                      }
+                      &--lds {
+                      }
+                    }
+                    .personal-information-form__toggle-switch {
+                      color: rgba($colorOffWhite, 0.8);
+                      &:hover {
+                        .personal-information-form__toggle-switch__text--no,
+                        .personal-information-form__toggle-switch__text--yes {
+                          color: $colorOffWhite;
+                        }
                       }
                     }
                     &__input-container {

@@ -61,7 +61,7 @@
           }
         }
         &__user-info {
-          @include SizeAndPositioning(relative, 66.7%, 100%, flex, center, center, 0, 0, 0);
+          @include SizeAndPositioning(relative, 65%, 100%, flex, center, center, 0, 0, 0);
           flex-direction: column;
           &__row,
           &__row--hidden {

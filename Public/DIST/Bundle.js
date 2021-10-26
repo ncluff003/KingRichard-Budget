@@ -2295,6 +2295,8 @@ var accountManagementContainer = document.querySelector('.unique-profile-content
 var backButton = document.querySelector('.back-button');
 var passwordManagementButtons = document.querySelectorAll('.unique-profile-content-container__password-management__button');
 var changePasswordForm = document.querySelector('.change-password-form');
+var isLatterDaySaint = false;
+var latterDaySwitchActivated = false;
 console.log(profileSectionButtons);
 profileSectionButtons.forEach(function (psb) {
   psb.addEventListener('click', function (e) {
@@ -2319,6 +2321,33 @@ profileSectionButtons.forEach(function (psb) {
       personalInformationContainer.style.display = 'flex';
       userProfileSectionHeader.textContent = clicked.closest('button').textContent;
       userProfileSection.style.display = 'flex';
+      var ldsSwitch = document.querySelector('.personal-information-form__toggle-switch');
+      var ldsSwitchToggle = document.querySelector('.personal-information-form__toggle-switch__switch');
+      var ldsSwitchToggleNo = document.querySelector('.personal-information-form__toggle-switch__text--no');
+      var ldsSwitchToggleYes = document.querySelector('.personal-information-form__toggle-switch__text--yes');
+      var ldsSwitchToggleGlow = document.querySelector('.personal-information-form__toggle-switch__glow');
+      ldsSwitch.addEventListener('click', function (e) {
+        ldsSwitchToggle.classList.toggle('personal-information-form__toggle-switch__switch--toggled');
+        ldsSwitchToggleNo.classList.toggle('personal-information-form__toggle-switch__text--no--toggled');
+        latterDaySwitchActivated === false ? latterDaySwitchActivated = true : latterDaySwitchActivated = false;
+        latterDaySwitchActivated === false ? isLatterDaySaint = false : isLatterDaySaint = true;
+        console.log(latterDaySwitchActivated, isLatterDaySaint);
+        setTimeout(function () {
+          ldsSwitch.classList.toggle('personal-information-form__toggle-switch--toggled');
+          ldsSwitchToggle.classList.toggle('personal-information-form__toggle-switch__switch--toggled-full');
+          ldsSwitchToggleYes.classList.toggle('personal-information-form__toggle-switch__text--yes--displayed');
+        }, 450);
+        setTimeout(function () {
+          ldsSwitchToggleYes.classList.toggle('personal-information-form__toggle-switch__text--yes--toggled');
+        }, 500);
+        setTimeout(function () {
+          ldsSwitchToggleGlow.classList.toggle('personal-information-form__toggle-switch__glow--lit-up');
+          ldsSwitchToggleNo.classList.toggle('personal-information-form__toggle-switch__text--no--removed');
+        }, 750);
+        setTimeout(function () {
+          ldsSwitchToggleNo.classList.toggle('personal-information-form__toggle-switch__text--no--repositioned');
+        }, 1000);
+      });
       return console.log(clicked.closest('button').textContent);
     }
 
