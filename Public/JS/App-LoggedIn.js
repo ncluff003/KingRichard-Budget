@@ -37,13 +37,24 @@ const communicationsContainer = document.querySelector(
 const accountManagementContainer = document.querySelector(
   '.unique-profile-content-container.unique-profile-content-container__account-management',
 );
+
+// Navigating backwards
 const backButton = document.querySelector('.back-button');
+
+// Personal Information Variables
+let isLatterDaySaint = false;
+let latterDaySwitchActivated = false;
+
+const ldsInfoButton = document.querySelector('.personal-information-form__icon');
+const ldsInfoModal = document.querySelector('.personal-information-modal');
+const ldsInfoModalClose = document.querySelector('.personal-information-modal__close');
+
+// Password Management Variables
 const passwordManagementButtons = document.querySelectorAll(
   '.unique-profile-content-container__password-management__button',
 );
 const changePasswordForm = document.querySelector('.change-password-form');
-let isLatterDaySaint = false;
-let latterDaySwitchActivated = false;
+
 console.log(profileSectionButtons);
 
 profileSectionButtons.forEach((psb) => {
@@ -95,6 +106,14 @@ profileSectionButtons.forEach((psb) => {
         setTimeout(() => {
           ldsSwitchToggleNo.classList.toggle('personal-information-form__toggle-switch__text--no--repositioned');
         }, 1000);
+      });
+      ldsInfoButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        ldsInfoModal.style.display = 'flex';
+        ldsInfoModalClose.addEventListener('click', (e) => {
+          e.preventDefault();
+          ldsInfoModal.style.display = 'none';
+        });
       });
       return console.log(clicked.closest('button').textContent);
     }

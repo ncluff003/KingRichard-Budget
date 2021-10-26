@@ -123,7 +123,8 @@
                   &__form-section,
                   &__form-section--lds {
                     .personal-information-form__button,
-                    .personal-information-form__button--lds {
+                    .personal-information-form__button--lds,
+                    .personal-information-form__button__save {
                       @include SizeAndPositioning(relative, 90%, 15%, flex, space-evenly, center, 0, 0, 0);
                       flex-direction: column;
                       background-color: rgba($primaryColorDark, 0.8);
@@ -139,10 +140,14 @@
                         background-color: $secondaryColorDark;
                         border: 0.2rem solid $secondaryColor;
                       }
-                      &--lds {
+                      &--lds,
+                      &__save {
                         flex-direction: row;
                         width: 40%;
                         padding: 1rem;
+                      }
+                      &__save {
+                        width: 50%;
                       }
                     }
                     .personal-information-form__toggle-switch {
@@ -167,6 +172,9 @@
                           opacity: 1;
                         }
                       }
+                    }
+                    .personal-information-form__icon {
+                      transition: color 0.5s;
                     }
                   }
                 }

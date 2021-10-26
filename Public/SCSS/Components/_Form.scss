@@ -282,6 +282,21 @@
                   }
                 }
               }
+              .personal-information-modal {
+                @include SizeAndPositioning(absolute, 60%, 100%, none, center, center, 0, -50%, 0);
+                background-color: rgba($tertiaryColorDarker, 0.95);
+                border: 0.4rem solid $tertiaryColor;
+                top: 50%;
+                border-radius: 3rem;
+                padding: 3rem;
+                &__close {
+                  @include SizeAndPositioning(relative, 4rem, 4rem, flex, center, center, 1.4rem, -5.4rem, 0);
+                  transition: color 0.5s;
+                  &:hover {
+                    cursor: pointer;
+                  }
+                }
+              }
             }
           }
         }

@@ -2291,12 +2291,18 @@ var userProfileSectionHeader = document.querySelector('.user-profile-card__user-
 var personalInformationContainer = document.querySelector('.unique-profile-content-container.unique-profile-content-container__personal-information');
 var passwordManagementContainer = document.querySelector('.unique-profile-content-container.unique-profile-content-container__password-management');
 var communicationsContainer = document.querySelector('.unique-profile-content-container.unique-profile-content-container__communications');
-var accountManagementContainer = document.querySelector('.unique-profile-content-container.unique-profile-content-container__account-management');
-var backButton = document.querySelector('.back-button');
-var passwordManagementButtons = document.querySelectorAll('.unique-profile-content-container__password-management__button');
-var changePasswordForm = document.querySelector('.change-password-form');
+var accountManagementContainer = document.querySelector('.unique-profile-content-container.unique-profile-content-container__account-management'); // Navigating backwards
+
+var backButton = document.querySelector('.back-button'); // Personal Information Variables
+
 var isLatterDaySaint = false;
 var latterDaySwitchActivated = false;
+var ldsInfoButton = document.querySelector('.personal-information-form__icon');
+var ldsInfoModal = document.querySelector('.personal-information-modal');
+var ldsInfoModalClose = document.querySelector('.personal-information-modal__close'); // Password Management Variables
+
+var passwordManagementButtons = document.querySelectorAll('.unique-profile-content-container__password-management__button');
+var changePasswordForm = document.querySelector('.change-password-form');
 console.log(profileSectionButtons);
 profileSectionButtons.forEach(function (psb) {
   psb.addEventListener('click', function (e) {
@@ -2347,6 +2353,14 @@ profileSectionButtons.forEach(function (psb) {
         setTimeout(function () {
           ldsSwitchToggleNo.classList.toggle('personal-information-form__toggle-switch__text--no--repositioned');
         }, 1000);
+      });
+      ldsInfoButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        ldsInfoModal.style.display = 'flex';
+        ldsInfoModalClose.addEventListener('click', function (e) {
+          e.preventDefault();
+          ldsInfoModal.style.display = 'none';
+        });
       });
       return console.log(clicked.closest('button').textContent);
     }
