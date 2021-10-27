@@ -2272,7 +2272,6 @@ var profileCard = document.querySelector('.user-profile-card');
 var _watchUserButton = function _watchUserButton() {
   userButton.addEventListener("click", function (e) {
     e.preventDefault();
-    console.log("Button is working.");
     profileBackground.classList.toggle('user-profile-background--open');
     setTimeout(function () {
       profileCard.style.display = 'flex';
@@ -2303,7 +2302,6 @@ var ldsInfoModalClose = document.querySelector('.personal-information-modal__clo
 
 var passwordManagementButtons = document.querySelectorAll('.unique-profile-content-container__password-management__button');
 var changePasswordForm = document.querySelector('.change-password-form');
-console.log(profileSectionButtons);
 profileSectionButtons.forEach(function (psb) {
   psb.addEventListener('click', function (e) {
     e.preventDefault();
@@ -2332,28 +2330,38 @@ profileSectionButtons.forEach(function (psb) {
       var ldsSwitchToggleNo = document.querySelector('.personal-information-form__toggle-switch__text--no');
       var ldsSwitchToggleYes = document.querySelector('.personal-information-form__toggle-switch__text--yes');
       var ldsSwitchToggleGlow = document.querySelector('.personal-information-form__toggle-switch__glow');
+      var formEditButtons = document.querySelectorAll('.personal-information-form__button');
+      var formEditInputs = document.querySelectorAll('.personal-information-form__form-section__input-container__input'); // Edit Inputs Activation
+
+      formEditButtons.forEach(function (b, i) {
+        b.addEventListener('click', function (e) {
+          e.preventDefault();
+          formEditInputs[i].toggleAttribute('readonly');
+        });
+      }); // Latter Day Saint Switch Animation
+
       ldsSwitch.addEventListener('click', function (e) {
         ldsSwitchToggle.classList.toggle('personal-information-form__toggle-switch__switch--toggled');
         ldsSwitchToggleNo.classList.toggle('personal-information-form__toggle-switch__text--no--toggled');
         latterDaySwitchActivated === false ? latterDaySwitchActivated = true : latterDaySwitchActivated = false;
         latterDaySwitchActivated === false ? isLatterDaySaint = false : isLatterDaySaint = true;
-        console.log(latterDaySwitchActivated, isLatterDaySaint);
         setTimeout(function () {
           ldsSwitch.classList.toggle('personal-information-form__toggle-switch--toggled');
           ldsSwitchToggle.classList.toggle('personal-information-form__toggle-switch__switch--toggled-full');
           ldsSwitchToggleYes.classList.toggle('personal-information-form__toggle-switch__text--yes--displayed');
-        }, 450);
+        }, 200);
         setTimeout(function () {
           ldsSwitchToggleYes.classList.toggle('personal-information-form__toggle-switch__text--yes--toggled');
-        }, 500);
+        }, 250);
         setTimeout(function () {
           ldsSwitchToggleGlow.classList.toggle('personal-information-form__toggle-switch__glow--lit-up');
           ldsSwitchToggleNo.classList.toggle('personal-information-form__toggle-switch__text--no--removed');
-        }, 750);
+        }, 300);
         setTimeout(function () {
           ldsSwitchToggleNo.classList.toggle('personal-information-form__toggle-switch__text--no--repositioned');
-        }, 1000);
-      });
+        }, 750);
+      }); // Modal For Latter Day Saint Switch
+
       ldsInfoButton.addEventListener('click', function (e) {
         e.preventDefault();
         ldsInfoModal.style.display = 'flex';
@@ -2362,7 +2370,7 @@ profileSectionButtons.forEach(function (psb) {
           ldsInfoModal.style.display = 'none';
         });
       });
-      return console.log(clicked.closest('button').textContent);
+      return;
     }
 
     if (clicked.closest('button') === profileSectionButtons[1]) {
@@ -2376,7 +2384,7 @@ profileSectionButtons.forEach(function (psb) {
         e.preventDefault();
         changePasswordForm.style.display = 'flex';
       });
-      return console.log(clicked.closest('button').textContent);
+      return;
     }
 
     if (clicked.closest('button') === profileSectionButtons[2]) {
@@ -2386,7 +2394,7 @@ profileSectionButtons.forEach(function (psb) {
       communicationsContainer.style.display = 'flex';
       userProfileSectionHeader.textContent = clicked.closest('button').textContent;
       userProfileSection.style.display = 'flex';
-      return console.log(clicked.closest('button').textContent);
+      return;
     }
 
     if (clicked.closest('button') === profileSectionButtons[3]) {
@@ -2396,7 +2404,7 @@ profileSectionButtons.forEach(function (psb) {
       accountManagementContainer.style.display = 'flex';
       userProfileSectionHeader.textContent = clicked.closest('button').textContent;
       userProfileSection.style.display = 'flex';
-      return console.log(clicked.closest('button').textContent);
+      return;
     }
   });
 });

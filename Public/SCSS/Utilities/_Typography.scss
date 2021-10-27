@@ -251,14 +251,18 @@ html {
                   }
                 }
               }
-              .unique-profile-content-container.unique-profile-content-container__personal-information {
-                .personal-information-form {
+              .unique-profile-content-container.unique-profile-content-container__personal-information,
+              .unique-profile-content-container.unique-profile-content-container__communications {
+                .personal-information-form,
+                .communications-form {
                   &__form-section,
                   &__form-section--lds {
                     font-size: 1.6rem;
                     .personal-information-form__button,
                     .personal-information-form__button--lds,
-                    .personal-information-form__button__save {
+                    .personal-information-form__button__save,
+                    .communications-form__button,
+                    .communications-form__button__save {
                       font-size: 2rem;
                       color: rgba($colorOffWhite, 0.8);
                       &:hover {

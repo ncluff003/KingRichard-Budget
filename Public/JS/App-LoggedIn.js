@@ -6,7 +6,6 @@ const profileCard = document.querySelector('.user-profile-card');
 export const _watchUserButton = () => {
   userButton.addEventListener(`click`, (e) => {
     e.preventDefault();
-    console.log(`Button is working.`);
     profileBackground.classList.toggle('user-profile-background--open');
     setTimeout(() => {
       profileCard.style.display = 'flex';
@@ -55,8 +54,6 @@ const passwordManagementButtons = document.querySelectorAll(
 );
 const changePasswordForm = document.querySelector('.change-password-form');
 
-console.log(profileSectionButtons);
-
 profileSectionButtons.forEach((psb) => {
   psb.addEventListener('click', (e) => {
     e.preventDefault();
@@ -85,28 +82,43 @@ profileSectionButtons.forEach((psb) => {
       const ldsSwitchToggleNo = document.querySelector('.personal-information-form__toggle-switch__text--no');
       const ldsSwitchToggleYes = document.querySelector('.personal-information-form__toggle-switch__text--yes');
       const ldsSwitchToggleGlow = document.querySelector('.personal-information-form__toggle-switch__glow');
+      const formEditButtons = document.querySelectorAll('.personal-information-form__button');
+      const formEditInputs = document.querySelectorAll(
+        '.personal-information-form__form-section__input-container__input',
+      );
+
+      // Edit Inputs Activation
+      formEditButtons.forEach((b, i) => {
+        b.addEventListener('click', (e) => {
+          e.preventDefault();
+          formEditInputs[i].toggleAttribute('readonly');
+        });
+      });
+
+      // Latter Day Saint Switch Animation
       ldsSwitch.addEventListener('click', (e) => {
         ldsSwitchToggle.classList.toggle('personal-information-form__toggle-switch__switch--toggled');
         ldsSwitchToggleNo.classList.toggle('personal-information-form__toggle-switch__text--no--toggled');
         latterDaySwitchActivated === false ? (latterDaySwitchActivated = true) : (latterDaySwitchActivated = false);
         latterDaySwitchActivated === false ? (isLatterDaySaint = false) : (isLatterDaySaint = true);
-        console.log(latterDaySwitchActivated, isLatterDaySaint);
         setTimeout(() => {
           ldsSwitch.classList.toggle('personal-information-form__toggle-switch--toggled');
           ldsSwitchToggle.classList.toggle('personal-information-form__toggle-switch__switch--toggled-full');
           ldsSwitchToggleYes.classList.toggle('personal-information-form__toggle-switch__text--yes--displayed');
-        }, 450);
+        }, 200);
         setTimeout(() => {
           ldsSwitchToggleYes.classList.toggle('personal-information-form__toggle-switch__text--yes--toggled');
-        }, 500);
+        }, 250);
         setTimeout(() => {
           ldsSwitchToggleGlow.classList.toggle('personal-information-form__toggle-switch__glow--lit-up');
           ldsSwitchToggleNo.classList.toggle('personal-information-form__toggle-switch__text--no--removed');
-        }, 750);
+        }, 300);
         setTimeout(() => {
           ldsSwitchToggleNo.classList.toggle('personal-information-form__toggle-switch__text--no--repositioned');
-        }, 1000);
+        }, 750);
       });
+
+      // Modal For Latter Day Saint Switch
       ldsInfoButton.addEventListener('click', (e) => {
         e.preventDefault();
         ldsInfoModal.style.display = 'flex';
@@ -115,7 +127,8 @@ profileSectionButtons.forEach((psb) => {
           ldsInfoModal.style.display = 'none';
         });
       });
-      return console.log(clicked.closest('button').textContent);
+
+      return;
     }
     if (clicked.closest('button') === profileSectionButtons[1]) {
       profileSectionRows.forEach((row) => {
@@ -128,7 +141,7 @@ profileSectionButtons.forEach((psb) => {
         e.preventDefault();
         changePasswordForm.style.display = 'flex';
       });
-      return console.log(clicked.closest('button').textContent);
+      return;
     }
     if (clicked.closest('button') === profileSectionButtons[2]) {
       profileSectionRows.forEach((row) => {
@@ -137,7 +150,7 @@ profileSectionButtons.forEach((psb) => {
       communicationsContainer.style.display = 'flex';
       userProfileSectionHeader.textContent = clicked.closest('button').textContent;
       userProfileSection.style.display = 'flex';
-      return console.log(clicked.closest('button').textContent);
+      return;
     }
     if (clicked.closest('button') === profileSectionButtons[3]) {
       profileSectionRows.forEach((row) => {
@@ -146,7 +159,7 @@ profileSectionButtons.forEach((psb) => {
       accountManagementContainer.style.display = 'flex';
       userProfileSectionHeader.textContent = clicked.closest('button').textContent;
       userProfileSection.style.display = 'flex';
-      return console.log(clicked.closest('button').textContent);
+      return;
     }
   });
 });

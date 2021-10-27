@@ -67,11 +67,6 @@ section.user-profile-background.r__user-profile-background.column_1-24.row_2-17
             section.personal-information-modal 
               header.personal-information-modal__header No personal affiliation is neccesary.  Faith based options are availabe to be used if you are a Latter Day Saint.
               i.fas.fa-window-close.personal-information-modal__close
-
-                  
-                  //- section.personal-information-form__form-section__input-container.r__personal-information-form__form-section__input-container
-                  //-   input.personal-information-form__form-section__input-container__input.personal-information-form__form-section__input-container__input#username(type="text" name="username" placeholder="Username" value=`${data.user.username}` readonly="true" required)
-                  //-   label.personal-information-form__form-section__input-container__label#usernameLabel(for="username") Enter Your Preferred Username
             section.unique-profile-content-container.unique-profile-content-container__password-management 
               button.unique-profile-content-container__password-management__button 
                 i.fas.fa-key.unique-profile-content-container__password-management__button--icon 
@@ -91,4 +86,30 @@ section.user-profile-background.r__user-profile-background.column_1-24.row_2-17
                   label.change-password-form__form-section__label#newPasswordConfirmedLabel(for="newPasswordConfirmed") Please Confirm New Password
                 button.change-password-form__button.change-password-form__button#submitNewPassword(type="submit") Submit
             section.unique-profile-content-container.unique-profile-content-container__communications
+              form.communications-form
+                section.communications-form__form-section.r__communications-form__form-section
+                  button.communications-form__button 
+                    i.fas.fa-user-edit.communications-form__button__icon
+                    p.communications-form__button__text Edit
+                  section.communications-form__form-section__input-container.r__communications-form__form-section__input-container
+                    input.communications-form__form-section__input-container__input.communications-form__form-section__input-container__input#email(type="text" name="email" placeholder="Email" value=`${data.user.email}` readonly="true" required)
+                    label.communications-form__form-section__input-container__label#emailLabel(for="email") Enter Your Current Email
+                section.communications-form__form-section.r__communications-form__form-section
+                  button.communications-form__button 
+                    i.fas.fa-user-edit.communications-form__button__icon
+                    p.communications-form__button__text Edit
+                  section.communications-form__form-section__input-container.r__communications-form__form-section__input-container
+                    input.communications-form__form-section__input-container__input.communications-form__form-section__input-container__input#newEmail(type="text" name="newEmail" placeholder="New Email" readonly="true" required)
+                    label.communications-form__form-section__input-container__label#newEmailLabel(for="newEmail") Enter Your New Email
+                section.communications-form__form-section.r__communications-form__form-section
+                  button.communications-form__button 
+                    i.fas.fa-user-edit.communications-form__button__icon
+                    p.communications-form__button__text Edit
+                  section.communications-form__form-section__input-container.r__communications-form__form-section__input-container
+                    input.communications-form__form-section__input-container__input.communications-form__form-section__input-container__input#newEmailConfirmed(type="text" name="newEmailConfirmed" placeholder="New Email Confirmation" readonly="true" required)
+                    label.communications-form__form-section__input-container__label#newEmailConfirmedLabel(for="newEmailConfirmed") Please Confirm Your New Email
+                section.communications-form__form-section.r__communications-form__form-section
+                  button.communications-form__button__save
+                    i.fas.fa-id-card.communications-form__button__save__icon--save
+                    p.communications-form__button__save__text--save Save
             section.unique-profile-content-container.unique-profile-content-container__account-management

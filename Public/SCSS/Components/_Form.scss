@@ -117,7 +117,8 @@
                 overflow-x: hidden;
                 overflow-y: auto;
                 .change-password-form,
-                .personal-information-form {
+                .personal-information-form,
+                .communications-form {
                   @include SizeAndPositioning(relative, 50rem, 100%, none, space-evenly, center, 0, 0, 0);
                   flex-direction: column;
                   &__form-section {
@@ -164,9 +165,11 @@
                   }
                 }
               }
-              .unique-profile-content-container.unique-profile-content-container__personal-information {
+              .unique-profile-content-container.unique-profile-content-container__personal-information,
+              .unique-profile-content-container.unique-profile-content-container__communications {
                 justify-content: flex-start;
-                .personal-information-form {
+                .personal-information-form,
+                .communications-form {
                   display: flex;
                   &__form-section {
                     flex-direction: row;
@@ -221,7 +224,7 @@
                         background-color: rgba($primaryColorDarker, 0.25);
                         border: 0.3rem groove $primaryColor;
                         border-radius: 8rem;
-                        transition: border 0.5s, background-color 0.5s, color 0.5s;
+                        transition: border 0.25s, background-color 0.25s, color 0.25s;
                         &:hover {
                           cursor: pointer;
                         }
@@ -238,7 +241,7 @@
                         }
                         &__text--no {
                           @include SizeAndPositioning(relative, 100%, 30%, flex, center, center, 3rem, 0, 0);
-                          transition: border 0.5s, background-color 0.5s, color 0.5s, opacity 0.5s;
+                          transition: border 0.25s, background-color 0.25s, color 0.25s, opacity 0.25s;
                           &--reposition {
                             position: absolute;
                           }
@@ -255,7 +258,7 @@
                           top: 50%;
                           left: 50%;
                           opacity: 0;
-                          transition: border 0.5s, background-color 0.5s, color 0.5s, width 0.5s;
+                          transition: border 0.25s, background-color 0.25s, color 0.25s, width 0.25s;
                           &--displayed {
                             display: flex;
                           }
