@@ -256,15 +256,18 @@ html {
                 .personal-information-form,
                 .communications-form {
                   &__form-section,
-                  &__form-section--lds {
+                  &__form-section--lds,
+                  &__form-section--comms {
                     font-size: 1.6rem;
                     .personal-information-form__button,
                     .personal-information-form__button--lds,
                     .personal-information-form__button__save,
                     .communications-form__button,
+                    .communications-form__button--comms,
                     .communications-form__button__save {
                       font-size: 2rem;
                       color: rgba($colorOffWhite, 0.8);
+                      text-align: center;
                       &:hover {
                         color: $colorOffWhite;
                       }
@@ -295,6 +298,9 @@ html {
                           color: $colorOffWhite;
                         }
                       }
+                    }
+                    .communications-form__comm-switch {
+                      color: $colorOffWhite;
                     }
                     &__input-container {
                       &__input {

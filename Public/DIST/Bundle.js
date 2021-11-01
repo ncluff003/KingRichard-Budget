@@ -2302,6 +2302,29 @@ var ldsInfoModalClose = document.querySelector('.personal-information-modal__clo
 
 var passwordManagementButtons = document.querySelectorAll('.unique-profile-content-container__password-management__button');
 var changePasswordForm = document.querySelector('.change-password-form');
+
+var formatPhoneNumber = function formatPhoneNumber(value) {
+  if (!value) return value;
+  var phoneNumber = value.replace(/[^\d]/g, '');
+  var phoneNumberLength = phoneNumber.length;
+
+  if (phoneNumberLength <= 3) {
+    console.log(phoneNumber);
+    return phoneNumber;
+  }
+
+  console.log(phoneNumberLength);
+
+  if (phoneNumberLength >= 4 && phoneNumberLength < 7) {
+    console.log("(".concat(phoneNumber.slice(0, 3), ") ").concat(phoneNumber.slice(3, 6)));
+    return "(".concat(phoneNumber.slice(0, 3), ") ").concat(phoneNumber.slice(3, 6));
+  }
+
+  var formattedNumber = "(".concat(phoneNumber.slice(0, 3), ") ").concat(phoneNumber.slice(3, 6), " - ").concat(phoneNumber.slice(6));
+  console.log(phoneNumber, formattedNumber);
+  return formattedNumber;
+};
+
 profileSectionButtons.forEach(function (psb) {
   psb.addEventListener('click', function (e) {
     e.preventDefault();
@@ -2330,13 +2353,13 @@ profileSectionButtons.forEach(function (psb) {
       var ldsSwitchToggleNo = document.querySelector('.personal-information-form__toggle-switch__text--no');
       var ldsSwitchToggleYes = document.querySelector('.personal-information-form__toggle-switch__text--yes');
       var ldsSwitchToggleGlow = document.querySelector('.personal-information-form__toggle-switch__glow');
-      var formEditButtons = document.querySelectorAll('.personal-information-form__button');
-      var formEditInputs = document.querySelectorAll('.personal-information-form__form-section__input-container__input'); // Edit Inputs Activation
+      var personalFormEditButtons = document.querySelectorAll('.personal-information-form__button');
+      var personalFormEditInputs = document.querySelectorAll('.personal-information-form__form-section__input-container__input'); // Edit Inputs Activation
 
-      formEditButtons.forEach(function (b, i) {
+      personalFormEditButtons.forEach(function (b, i) {
         b.addEventListener('click', function (e) {
           e.preventDefault();
-          formEditInputs[i].toggleAttribute('readonly');
+          personalFormEditInputs[i].toggleAttribute('readonly');
         });
       }); // Latter Day Saint Switch Animation
 
@@ -2394,6 +2417,32 @@ profileSectionButtons.forEach(function (psb) {
       communicationsContainer.style.display = 'flex';
       userProfileSectionHeader.textContent = clicked.closest('button').textContent;
       userProfileSection.style.display = 'flex';
+      var communicationFormEditButtons = document.querySelectorAll('.communications-form__button');
+      var communicationFormEditInputs = document.querySelectorAll('.communications-form__form-section__input-container__input');
+      console.log(communicationFormEditButtons); // Edit Inputs Activation
+
+      communicationFormEditButtons.forEach(function (b, i) {
+        b.addEventListener('click', function (e) {
+          e.preventDefault();
+          communicationFormEditInputs[i].toggleAttribute('readonly');
+        });
+
+        if (i === 3) {
+          communicationFormEditInputs[i].addEventListener('keyup', function (e) {
+            e.preventDefault();
+            var value = communicationFormEditInputs[i].value;
+            communicationFormEditInputs[i].value = formatPhoneNumber(value);
+          });
+        }
+
+        if (i === 4) {
+          communicationFormEditInputs[i].addEventListener('keyup', function (e) {
+            e.preventDefault();
+            var value = communicationFormEditInputs[i].value;
+            communicationFormEditInputs[i].value = formatPhoneNumber(value);
+          });
+        }
+      });
       return;
     }
 

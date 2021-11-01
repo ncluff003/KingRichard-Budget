@@ -9,7 +9,7 @@
     "PrefixCSS": "postcss --use=autoprefixer -b \"last 20 versions\" ./Public/DIST/CSS/kingrichard.comp.css -o ./Public/DIST/CSS/kingrichard.prefix.css",
     "CompressCSS": "sass ./Public/DIST/CSS/kingrichard.prefix.css:./Public/DIST/CSS/kingrichard.css --style=compressed --embed-sources",
     "BuildCSS": "npm-run-all CompileSass PrefixCSS CompressCSS ",
-    "BundleDevJS": "webpack serve --open --config ./webpack.config.js --mode development",
+    "BundleDevJS": "webpack serve --open --config ./webpack.config.js --mode development --content-base Backend_JS/ --inline --hot",
     "LocalServer": "nodemon Backend_JS/Server.js -e ejs,js,css,html,jpg,png,scss",
     "WatchSCSS": "onchange '**/*.scss' -- npm-run-all BuildCSS",
     "WatchJS": "onchange '**/*.js' -- npm-run-all BundleDevJS",

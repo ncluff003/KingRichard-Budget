@@ -35,6 +35,16 @@ const userSchema = new mongoose.Schema({
     required: [true, `Every user must confirm their email address`],
     validate: [validator.isEmail, `Please repeat your valid email above.`],
   },
+  phoneNumber: {
+    type: String,
+  },
+  phoneNumberConfirmed: {
+    type: String,
+  },
+  communicationPreference: {
+    type: String,
+    default: 'Email',
+  },
   password: {
     type: String,
     required: [true, `Every user must choose a password`],

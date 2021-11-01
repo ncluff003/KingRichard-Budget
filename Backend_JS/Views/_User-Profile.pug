@@ -51,7 +51,7 @@ section.user-profile-background.r__user-profile-background.column_1-24.row_2-17
                     input.personal-information-form__form-section__input-container__input.personal-information-form__form-section__input-container__input#username(type="text" name="username" placeholder="Username" value=`${data.user.username}` readonly="true" required)
                     label.personal-information-form__form-section__input-container__label#usernameLabel(for="username") Enter Your Preferred Username
                 section.personal-information-form__form-section--lds.r__personal-information-form__form-section--lds
-                  button.personal-information-form__button--lds 
+                  div.personal-information-form__button--lds 
                     i.fas.fa-place-of-worship.personal-information-form__button__icon
                     p.personal-information-form__button__text Latter Day Saint?
                   section.personal-information-form__toggle-switch
@@ -92,22 +92,47 @@ section.user-profile-background.r__user-profile-background.column_1-24.row_2-17
                     i.fas.fa-user-edit.communications-form__button__icon
                     p.communications-form__button__text Edit
                   section.communications-form__form-section__input-container.r__communications-form__form-section__input-container
-                    input.communications-form__form-section__input-container__input.communications-form__form-section__input-container__input#email(type="text" name="email" placeholder="Email" value=`${data.user.email}` readonly="true" required)
+                    input.communications-form__form-section__input-container__input.communications-form__form-section__input-container__input#email(type="email" name="email" placeholder="Email" value=`${data.user.email}` readonly="true" required)
                     label.communications-form__form-section__input-container__label#emailLabel(for="email") Enter Your Current Email
                 section.communications-form__form-section.r__communications-form__form-section
                   button.communications-form__button 
                     i.fas.fa-user-edit.communications-form__button__icon
                     p.communications-form__button__text Edit
                   section.communications-form__form-section__input-container.r__communications-form__form-section__input-container
-                    input.communications-form__form-section__input-container__input.communications-form__form-section__input-container__input#newEmail(type="text" name="newEmail" placeholder="New Email" readonly="true" required)
+                    input.communications-form__form-section__input-container__input.communications-form__form-section__input-container__input#newEmail(type="email" name="newEmail" placeholder="New Email" readonly="true" required)
                     label.communications-form__form-section__input-container__label#newEmailLabel(for="newEmail") Enter Your New Email
                 section.communications-form__form-section.r__communications-form__form-section
                   button.communications-form__button 
                     i.fas.fa-user-edit.communications-form__button__icon
                     p.communications-form__button__text Edit
                   section.communications-form__form-section__input-container.r__communications-form__form-section__input-container
-                    input.communications-form__form-section__input-container__input.communications-form__form-section__input-container__input#newEmailConfirmed(type="text" name="newEmailConfirmed" placeholder="New Email Confirmation" readonly="true" required)
+                    input.communications-form__form-section__input-container__input.communications-form__form-section__input-container__input#newEmailConfirmed(type="email" name="newEmailConfirmed" placeholder="New Email Confirmation" readonly="true" required)
                     label.communications-form__form-section__input-container__label#newEmailConfirmedLabel(for="newEmailConfirmed") Please Confirm Your New Email
+                section.communications-form__form-section.r__communications-form__form-section
+                  button.communications-form__button 
+                    i.fas.fa-user-edit.communications-form__button__icon
+                    p.communications-form__button__text Edit
+                  section.communications-form__form-section__input-container.r__communications-form__form-section__input-container
+                    input.communications-form__form-section__input-container__input.communications-form__form-section__input-container__input#phone(type="tel" name="phone" placeholder="(000) 000-0000" readonly="true" maxlength="16" pattern="^\([0-9]{3}\) [0-9]{3}\-[0-9]{4}$" required)
+                    label.communications-form__form-section__input-container__label#phoneLabel(for="phone") Please Enter Your Phone Number
+                section.communications-form__form-section.r__communications-form__form-section
+                  button.communications-form__button 
+                    i.fas.fa-user-edit.communications-form__button__icon
+                    p.communications-form__button__text Edit
+                  section.communications-form__form-section__input-container.r__communications-form__form-section__input-container
+                    input.communications-form__form-section__input-container__input.communications-form__form-section__input-container__input#phoneConfirmed(type="tel" name="phoneConfirmed" placeholder="(000) 000-0000" readonly="true" maxlength="16" pattern="^\([0-9]{3}\) [0-9]{3}\-[0-9]{4}$" required)
+                    label.communications-form__form-section__input-container__label#phoneConfirmedLabel(for="phoneConfirmed") Please Confirm Your Phone Number
+                section.communications-form__form-section--comms.r__communications-form__form-section--comms
+                  div.communications-form__button--comms
+                    i.fas.fa-mobile-alt.communications-form__button__icon
+                    p.communications-form__button__text Communication Preference?
+                  section.communications-form__comm-switch 
+                    section.communications-form__comm-switch--email 
+                      i.far.fa-envelope.communications-form__comm-switch--email__icon
+                      p.communications-form__comm-switch--email__text Email
+                    section.communications-form__comm-switch--text 
+                      i.fas.fa-mobile-alt.communications-form__comm-switch--text__icon
+                      p.communications-form__comm-switch--text__text Text
                 section.communications-form__form-section.r__communications-form__form-section
                   button.communications-form__button__save
                     i.fas.fa-id-card.communications-form__button__save__icon--save

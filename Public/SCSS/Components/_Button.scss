@@ -123,11 +123,13 @@
                 .personal-information-form,
                 .communications-form {
                   &__form-section,
-                  &__form-section--lds {
+                  &__form-section--lds,
+                  &__form-section--comms {
                     .personal-information-form__button,
                     .personal-information-form__button--lds,
                     .personal-information-form__button__save,
                     .communications-form__button,
+                    .communications-form__button--comms,
                     .communications-form__button__save {
                       @include SizeAndPositioning(relative, 90%, 15%, flex, space-evenly, center, 0, 0, 0);
                       flex-direction: column;
@@ -145,6 +147,7 @@
                         border: 0.2rem solid $secondaryColor;
                       }
                       &--lds,
+                      &--comms,
                       &__save {
                         flex-direction: row;
                         width: 40%;

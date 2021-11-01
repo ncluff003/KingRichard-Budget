@@ -54,6 +54,24 @@ const passwordManagementButtons = document.querySelectorAll(
 );
 const changePasswordForm = document.querySelector('.change-password-form');
 
+const formatPhoneNumber = (value) => {
+  if (!value) return value;
+  let phoneNumber = value.replace(/[^\d]/g, '');
+  let phoneNumberLength = phoneNumber.length;
+  if (phoneNumberLength <= 3) {
+    console.log(phoneNumber);
+    return phoneNumber;
+  }
+  console.log(phoneNumberLength);
+  if (phoneNumberLength >= 4 && phoneNumberLength < 7) {
+    console.log(`(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}`);
+    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}`;
+  }
+  let formattedNumber = `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)} - ${phoneNumber.slice(6)}`;
+  console.log(phoneNumber, formattedNumber);
+  return formattedNumber;
+};
+
 profileSectionButtons.forEach((psb) => {
   psb.addEventListener('click', (e) => {
     e.preventDefault();
@@ -82,16 +100,16 @@ profileSectionButtons.forEach((psb) => {
       const ldsSwitchToggleNo = document.querySelector('.personal-information-form__toggle-switch__text--no');
       const ldsSwitchToggleYes = document.querySelector('.personal-information-form__toggle-switch__text--yes');
       const ldsSwitchToggleGlow = document.querySelector('.personal-information-form__toggle-switch__glow');
-      const formEditButtons = document.querySelectorAll('.personal-information-form__button');
-      const formEditInputs = document.querySelectorAll(
+      const personalFormEditButtons = document.querySelectorAll('.personal-information-form__button');
+      const personalFormEditInputs = document.querySelectorAll(
         '.personal-information-form__form-section__input-container__input',
       );
 
       // Edit Inputs Activation
-      formEditButtons.forEach((b, i) => {
+      personalFormEditButtons.forEach((b, i) => {
         b.addEventListener('click', (e) => {
           e.preventDefault();
-          formEditInputs[i].toggleAttribute('readonly');
+          personalFormEditInputs[i].toggleAttribute('readonly');
         });
       });
 
@@ -150,6 +168,33 @@ profileSectionButtons.forEach((psb) => {
       communicationsContainer.style.display = 'flex';
       userProfileSectionHeader.textContent = clicked.closest('button').textContent;
       userProfileSection.style.display = 'flex';
+
+      const communicationFormEditButtons = document.querySelectorAll('.communications-form__button');
+      const communicationFormEditInputs = document.querySelectorAll(
+        '.communications-form__form-section__input-container__input',
+      );
+      console.log(communicationFormEditButtons);
+      // Edit Inputs Activation
+      communicationFormEditButtons.forEach((b, i) => {
+        b.addEventListener('click', (e) => {
+          e.preventDefault();
+          communicationFormEditInputs[i].toggleAttribute('readonly');
+        });
+        if (i === 3) {
+          communicationFormEditInputs[i].addEventListener('keyup', (e) => {
+            e.preventDefault();
+            let value = communicationFormEditInputs[i].value;
+            communicationFormEditInputs[i].value = formatPhoneNumber(value);
+          });
+        }
+        if (i === 4) {
+          communicationFormEditInputs[i].addEventListener('keyup', (e) => {
+            e.preventDefault();
+            let value = communicationFormEditInputs[i].value;
+            communicationFormEditInputs[i].value = formatPhoneNumber(value);
+          });
+        }
+      });
       return;
     }
     if (clicked.closest('button') === profileSectionButtons[3]) {
