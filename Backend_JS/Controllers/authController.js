@@ -10,6 +10,7 @@ const jwt = require(`jsonwebtoken`);
 
 ////////////////////////////////////////////
 //  Third Party Middleware
+const crypto = require('crypto');
 
 ////////////////////////////////////////////
 //  Third Party Config Files
@@ -18,6 +19,7 @@ const jwt = require(`jsonwebtoken`);
 //  My Middleware
 const catchAsync = require(`./../Utilities/catchAsync`);
 const AppError = require(`./../Utilities/appError`);
+const sendEmail = require(`./../Utilities/Email`);
 
 ////////////////////////////////////////////
 //  Routing Middleware
@@ -45,12 +47,17 @@ const signToken = (id) => {
 exports.protect = catchAsync(async (req, res, next) => {
   // 1) Getting token and check of it's there
   let token;
-  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')
+  ) {
     token = req.headers.authorization.split(' ')[1];
   }
 
   if (!token) {
-    return next(new AppError('You are not logged in! Please log in to get access.', 401));
+    return next(
+      new AppError('You are not logged in! Please log in to get access.', 401),
+    );
   }
 
   // 2) Verification token
@@ -59,12 +66,19 @@ exports.protect = catchAsync(async (req, res, next) => {
   // 3) Check if user still exists
   const currentUser = await User.findById(decoded.id);
   if (!currentUser) {
-    return next(new AppError('The user belonging to this token does no longer exist.', 401));
+    return next(
+      new AppError(
+        'The user belonging to this token does no longer exist.',
+        401,
+      ),
+    );
   }
 
   // 4) Check if user changed password after the token was issued
   if (currentUser.changedPasswordAfter(decoded.iat)) {
-    return next(new AppError('User recently changed password! Please log in again.', 401));
+    return next(
+      new AppError('User recently changed password! Please log in again.', 401),
+    );
   }
 
   // GRANT ACCESS TO PROTECTED ROUTE
@@ -76,7 +90,8 @@ exports.renderAppLoggedIn = catchAsync(async (request, response, next) => {
   const { username, password } = request.locals;
 
   // Check if Username & Password Exist
-  if (!username || !password) return next(new AppError(`Please provide username and password!`), 400);
+  if (!username || !password)
+    return next(new AppError(`Please provide username and password!`), 400);
   // Check if User exists right along with Username & Password is correct.
   const user = await User.findOne({ username }).select('+password');
   console.log(user);
@@ -106,7 +121,8 @@ exports.login = catchAsync(async (request, response, next) => {
   console.log(loginUsername, loginPassword, username, password);
 
   // Check if Username & Password Exist
-  if (!username || !password) return next(new AppError(`Please provide username and password!`), 400);
+  if (!username || !password)
+    return next(new AppError(`Please provide username and password!`), 400);
   // Check if User exists right along with Username & Password is correct.
   const user = await User.findOne({ username }).select('+password');
   console.log(user);
@@ -136,21 +152,37 @@ exports.login = catchAsync(async (request, response, next) => {
 exports.validateSignup = catchAsync(async (request, response, next) => {
   const formBody = request.body;
   console.log(request.body);
-  if (!Validate.isName(formBody.firstname)) return next(new AppError(`First name must be only letters.`, 400));
-  if (!Validate.isName(formBody.lastname)) return next(new AppError(`Last name must be only letters.`, 400));
+  if (!Validate.isName(formBody.firstname))
+    return next(new AppError(`First name must be only letters.`, 400));
+  if (!Validate.isName(formBody.lastname))
+    return next(new AppError(`Last name must be only letters.`, 400));
   if (!Validate.isUsername(formBody.username))
-    return next(new AppError(`Username must start with a capital and contain letters and/or numbers..`, 400));
-  if (!Validate.isEmail(formBody.email)) return next(new AppError(`Please provide a valid email address.`, 400));
+    return next(
+      new AppError(
+        `Username must start with a capital and contain letters and/or numbers..`,
+        400,
+      ),
+    );
+  if (!Validate.isEmail(formBody.email))
+    return next(new AppError(`Please provide a valid email address.`, 400));
   if (!Validate.isEmail(formBody.emailConfirmed))
     return next(new AppError(`Please provide a valid email address.`, 400));
-  if (!Validate.is_Eight_Character_One_Upper_Lower_Number_Special(formBody.password))
+  if (
+    !Validate.is_Eight_Character_One_Upper_Lower_Number_Special(
+      formBody.password,
+    )
+  )
     return next(
       new AppError(
         `Passwords must contain at least 8 characters, amongst them being at least 1 capital letter, 1 lower case letter, 1 number, & 1 special symbol.  The special symbols may be the following: !, @, $, &, -, _, and &.`,
         400,
       ),
     );
-  if (!Validate.is_Eight_Character_One_Upper_Lower_Number_Special(formBody.passwordConfirmed))
+  if (
+    !Validate.is_Eight_Character_One_Upper_Lower_Number_Special(
+      formBody.passwordConfirmed,
+    )
+  )
     return next(
       new AppError(
         `Passwords must contain at least 8 characters, amongst them being at least 1 capital letter, 1 lower case letter, 1 number, & 1 special symbol.  The special symbols may be the following: !, @, $, &, -, _, and &.`,
@@ -184,6 +216,8 @@ exports.signup = catchAsync(async (request, response, next) => {
   //   },
   // });
 
+  await new sendEmail(newUser).sendWelcome();
+
   response.status(201).render(`loggedIn`, {
     title: `King Richard | Home`,
     token,
@@ -194,16 +228,69 @@ exports.signup = catchAsync(async (request, response, next) => {
   });
 });
 
-exports.resetPassword = catchAsync(async (request, response, next) => {});
-
 // I will need to put this as part of the login form.
 exports.forgotPassword = catchAsync(async (request, response, next) => {
   const email = request.body.forgottenEmail;
   const user = await User.findOne({ email });
-  if (!user) return next(new AppError(`There is no user with that email address.`, 404));
-  console.log(user);
+  if (!user)
+    return next(new AppError(`There is no user with that email address.`, 404));
 
   const resetToken = user.createPasswordResetToken();
   await user.save({ validateBeforeSave: false });
+
+  console.log(user);
+  try {
+    const resetURL = `${request.protocol}://${request.get(
+      'host',
+    )}/users/resetPassword/${resetToken}`;
+    await new sendEmail(user, resetURL).sendResetPassword();
+
+    return response.status(200).json({
+      status: `Success`,
+      message: `Token Sent To Email`,
+    });
+  } catch (error) {
+    user.passwordResetToken = undefined;
+    user.passwordResetExpires = undefined;
+    await user.save({ validateBeforeSave: false });
+    return next(
+      new AppError(
+        `There was an error sending the email.  Try again later.`,
+        500,
+      ),
+    );
+  }
+
   next();
+});
+
+exports.resetPassword = catchAsync(async (request, response, next) => {
+  // Get User Based On Token
+  const hashedToken = crypto
+    .createHash('sha256')
+    .update(request.params.token)
+    .digest('hex');
+
+  const user = await User.findOne({
+    passwordResetToken: hashedToken,
+    passwordResetExpires: { $gt: Date.now() },
+  });
+
+  // If User Exists & Token Not Expired, Set New Password
+  if (!user) return next(new AppError(`Token is invalid or has expired`, 400));
+
+  // Update ChangedPasswordAt Property For New User
+  user.password = request.body.password;
+  user.passwordConfirmed = request.body.passwordConfirmed;
+  user.passwordResetToken = undefined;
+  user.passwordResetExpires = undefined;
+  await user.save();
+  // Log In User
+  const token = signToken(user._id);
+
+  response.status(200).json({
+    status: `Success`,
+    token: token,
+    protocol: `${request.protocol}`,
+  });
 });

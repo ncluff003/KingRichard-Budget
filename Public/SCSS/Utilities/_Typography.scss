@@ -211,8 +211,10 @@ html {
                   color: $colorOffWhite;
                 }
               }
-              .unique-profile-content-container.unique-profile-content-container__password-management {
-                .unique-profile-content-container__password-management__button {
+              .unique-profile-content-container.unique-profile-content-container__password-management,
+              .unique-profile-content-container.unique-profile-content-container__account-management {
+                .unique-profile-content-container__password-management__button,
+                .unique-profile-content-container__account-management__button {
                   font-size: 1.6rem;
                   color: rgba($colorOffWhite, 0.75);
                   &--icon {

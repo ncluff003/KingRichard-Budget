@@ -2418,8 +2418,7 @@ profileSectionButtons.forEach(function (psb) {
       userProfileSectionHeader.textContent = clicked.closest('button').textContent;
       userProfileSection.style.display = 'flex';
       var communicationFormEditButtons = document.querySelectorAll('.communications-form__button');
-      var communicationFormEditInputs = document.querySelectorAll('.communications-form__form-section__input-container__input');
-      console.log(communicationFormEditButtons); // Edit Inputs Activation
+      var communicationFormEditInputs = document.querySelectorAll('.communications-form__form-section__input-container__input'); // Edit Inputs Activation
 
       communicationFormEditButtons.forEach(function (b, i) {
         b.addEventListener('click', function (e) {
@@ -4305,9 +4304,9 @@ __webpack_require__.r(__webpack_exports__);
 
       this._watchSignupFormButtons();
 
-      _App_LoggedIn__WEBPACK_IMPORTED_MODULE_3__._watchUserButton();
-
       this._watchForgottenEmailForm();
+
+      _App_LoggedIn__WEBPACK_IMPORTED_MODULE_3__._watchUserButton();
     }
 
     (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__.default)(App, [{
@@ -4318,7 +4317,6 @@ __webpack_require__.r(__webpack_exports__);
         if (forgot) {
           forgot.addEventListener("click", function (e) {
             e.preventDefault();
-            console.log(landingForms);
             landingForms[1].style.display = "none";
             landingForms[0].style.display = "flex";
             landingForms[0].style.width = "100%";

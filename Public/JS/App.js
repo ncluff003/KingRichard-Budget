@@ -10,8 +10,8 @@ import login from './Login';
       this._setUpSignupForm();
       this._watchLandingNavigationButtons();
       this._watchSignupFormButtons();
-      AppLoggedIn._watchUserButton();
       this._watchForgottenEmailForm();
+      AppLoggedIn._watchUserButton();
     }
 
     _watchForgottenEmailForm() {
@@ -19,7 +19,6 @@ import login from './Login';
       if (forgot) {
         forgot.addEventListener(`click`, (e) => {
           e.preventDefault();
-          console.log(landingForms);
           landingForms[1].style.display = `none`;
           landingForms[0].style.display = `flex`;
           landingForms[0].style.width = `100%`;

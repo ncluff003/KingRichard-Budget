@@ -173,7 +173,6 @@ profileSectionButtons.forEach((psb) => {
       const communicationFormEditInputs = document.querySelectorAll(
         '.communications-form__form-section__input-container__input',
       );
-      console.log(communicationFormEditButtons);
       // Edit Inputs Activation
       communicationFormEditButtons.forEach((b, i) => {
         b.addEventListener('click', (e) => {
