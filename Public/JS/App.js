@@ -1,5 +1,6 @@
 import { Validate } from './Validate';
 import * as AppLoggedIn from './App-LoggedIn';
+import { updatePassword } from './Update-Password';
 import login from './Login';
 
 ///////////////////////////////////////////////
@@ -11,7 +12,19 @@ import login from './Login';
       this._watchLandingNavigationButtons();
       this._watchSignupFormButtons();
       this._watchForgottenEmailForm();
+      this._checkForAndWatchForPasswordResetForm();
       AppLoggedIn._watchUserButton();
+    }
+
+    _checkForAndWatchForPasswordResetForm() {
+      if (!passwordResetForm) return;
+      const passwordSubmit = document.getElementById('passwordSubmit');
+      passwordSubmit.addEventListener('click', (e) => {
+        e.preventDefault();
+        const password = document.getElementById('password').value;
+        const passwordConfirmed = document.getElementById('passwordConfirmed').value;
+        updatePassword(password, passwordConfirmed);
+      });
     }
 
     _watchForgottenEmailForm() {
@@ -217,5 +230,6 @@ import login from './Login';
   const signupErrors = document.querySelectorAll('.signup-form__form-section--message__message-container');
   let formPage = document.querySelector(`.form-page-number`);
   const signup = document.querySelector(`.signup-form`);
+  const passwordResetForm = document.querySelector('.password-reset-form');
   const app = new App();
 })();

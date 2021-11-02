@@ -37,55 +37,93 @@ html {
 .master-flex-container .master-grid-container .background-header__sub {
   font-size: 5rem;
 }
-.master-flex-container .master-grid-container .form-container #closeForgottenForm {
+.master-flex-container .master-grid-container .form-container #closeForgottenForm,
+.master-flex-container .master-grid-container .form-container--password-reset #closeForgottenForm {
   font-size: 4rem;
   color: rgba(250, 250, 250, 0.75);
 }
-.master-flex-container .master-grid-container .form-container #closeForgottenForm:hover {
+.master-flex-container .master-grid-container .form-container #closeForgottenForm:hover,
+.master-flex-container .master-grid-container .form-container--password-reset #closeForgottenForm:hover {
   cursor: pointer;
   color: #fafafa;
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section,
-.master-flex-container .master-grid-container .form-container .forgotten-form__form-section {
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section,
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section,
+.master-flex-container .master-grid-container .form-container--password-reset .login-form__form-section,
+.master-flex-container .master-grid-container .form-container--password-reset .signup-form__form-section,
+.master-flex-container .master-grid-container .form-container--password-reset .forgotten-form__form-section,
+.master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section {
   color: #fafafa;
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section__input,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section__input,
-.master-flex-container .master-grid-container .form-container .forgotten-form__form-section__input {
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section__input,
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section__input,
+.master-flex-container .master-grid-container .form-container--password-reset .login-form__form-section__input,
+.master-flex-container .master-grid-container .form-container--password-reset .signup-form__form-section__input,
+.master-flex-container .master-grid-container .form-container--password-reset .forgotten-form__form-section__input,
+.master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section__input {
   font-size: 5rem;
   color: #fafafa;
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section__label,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section__label,
-.master-flex-container .master-grid-container .form-container .forgotten-form__form-section__label {
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section__label,
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section__label,
+.master-flex-container .master-grid-container .form-container--password-reset .login-form__form-section__label,
+.master-flex-container .master-grid-container .form-container--password-reset .signup-form__form-section__label,
+.master-flex-container .master-grid-container .form-container--password-reset .forgotten-form__form-section__label,
+.master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section__label {
   font-size: 3rem;
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section--message,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section--message,
-.master-flex-container .master-grid-container .form-container .forgotten-form__form-section--message {
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section--message,
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section--message,
+.master-flex-container .master-grid-container .form-container--password-reset .login-form__form-section--message,
+.master-flex-container .master-grid-container .form-container--password-reset .signup-form__form-section--message,
+.master-flex-container .master-grid-container .form-container--password-reset .forgotten-form__form-section--message,
+.master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section--message {
   font-size: 1.8rem;
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section--message__message-container,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section--message__message-container,
-.master-flex-container .master-grid-container .form-container .forgotten-form__form-section--message__message-container {
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section--message__message-container,
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section--message__message-container,
+.master-flex-container .master-grid-container .form-container--password-reset .login-form__form-section--message__message-container,
+.master-flex-container .master-grid-container .form-container--password-reset .signup-form__form-section--message__message-container,
+.master-flex-container .master-grid-container .form-container--password-reset .forgotten-form__form-section--message__message-container,
+.master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section--message__message-container {
   font-size: 1.4rem;
   text-align: center;
   color: rgba(250, 250, 250, 0.85);
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section--message__form-button,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section--message__form-button,
-.master-flex-container .master-grid-container .form-container .forgotten-form__form-section--message__form-button {
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section--message__form-button,
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section--message__form-button,
+.master-flex-container .master-grid-container .form-container--password-reset .login-form__form-section--message__form-button,
+.master-flex-container .master-grid-container .form-container--password-reset .signup-form__form-section--message__form-button,
+.master-flex-container .master-grid-container .form-container--password-reset .forgotten-form__form-section--message__form-button,
+.master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section--message__form-button {
   color: rgba(250, 250, 250, 0.85);
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section--message__form-button:hover,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section--message__form-button:hover,
-.master-flex-container .master-grid-container .form-container .forgotten-form__form-section--message__form-button:hover {
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section--message__form-button:hover,
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section--message__form-button:hover,
+.master-flex-container .master-grid-container .form-container--password-reset .login-form__form-section--message__form-button:hover,
+.master-flex-container .master-grid-container .form-container--password-reset .signup-form__form-section--message__form-button:hover,
+.master-flex-container .master-grid-container .form-container--password-reset .forgotten-form__form-section--message__form-button:hover,
+.master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section--message__form-button:hover {
   cursor: pointer;
   background-color: #38d927;
   color: #fafafa;
 }
-.master-flex-container .master-grid-container .form-container .form-page-number {
+.master-flex-container .master-grid-container .form-container .form-page-number,
+.master-flex-container .master-grid-container .form-container--password-reset .form-page-number {
   font-size: 4rem;
   color: #fafafa;
 }
@@ -33217,7 +33255,8 @@ html {
 }
 .master-flex-container .master-grid-container .form-container .login-form,
 .master-flex-container .master-grid-container .form-container .signup-form,
-.master-flex-container .master-grid-container .form-container .forgotten-form {
+.master-flex-container .master-grid-container .form-container .forgotten-form,
+.master-flex-container .master-grid-container .form-container .password-reset-form {
   position: relative;
   height: 100%;
   width: 45%;
@@ -33229,7 +33268,8 @@ html {
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section,
-.master-flex-container .master-grid-container .form-container .forgotten-form__form-section {
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section,
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section {
   position: relative;
   height: 12.5%;
   width: 100%;
@@ -33241,7 +33281,8 @@ html {
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section__input,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section__input,
-.master-flex-container .master-grid-container .form-container .forgotten-form__form-section__input {
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section__input,
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section__input {
   position: relative;
   height: 100%;
   width: 100%;
@@ -33255,55 +33296,66 @@ html {
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section__input::-webkit-input-placeholder,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section__input::-webkit-input-placeholder,
-.master-flex-container .master-grid-container .form-container .forgotten-form__form-section__input::-webkit-input-placeholder {
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section__input::-webkit-input-placeholder,
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section__input::-webkit-input-placeholder {
   opacity: 0;
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section__input:focus::-webkit-input-placeholder,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section__input:focus::-webkit-input-placeholder,
-.master-flex-container .master-grid-container .form-container .forgotten-form__form-section__input:focus::-webkit-input-placeholder {
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section__input:focus::-webkit-input-placeholder,
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section__input:focus::-webkit-input-placeholder {
   opacity: 1;
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section__input::-moz-placeholder,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section__input::-moz-placeholder,
-.master-flex-container .master-grid-container .form-container .forgotten-form__form-section__input::-moz-placeholder {
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section__input::-moz-placeholder,
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section__input::-moz-placeholder {
   opacity: 0;
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section__input:focus::-moz-placeholder,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section__input:focus::-moz-placeholder,
-.master-flex-container .master-grid-container .form-container .forgotten-form__form-section__input:focus::-moz-placeholder {
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section__input:focus::-moz-placeholder,
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section__input:focus::-moz-placeholder {
   opacity: 1;
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section__input:not(:placeholder-shown) + label, .master-flex-container .master-grid-container .form-container .login-form__form-section__input:focus + label,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section__input:not(:placeholder-shown) + label,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section__input:focus + label,
 .master-flex-container .master-grid-container .form-container .forgotten-form__form-section__input:not(:placeholder-shown) + label,
-.master-flex-container .master-grid-container .form-container .forgotten-form__form-section__input:focus + label {
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section__input:focus + label,
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section__input:not(:placeholder-shown) + label,
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section__input:focus + label {
   transform: translate(-13.25rem, -7rem) scale(0.65);
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section__input--rounded-top,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section__input--rounded-top,
-.master-flex-container .master-grid-container .form-container .forgotten-form__form-section__input--rounded-top {
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section__input--rounded-top,
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section__input--rounded-top {
   border-top-left-radius: 2.5rem;
   border-top-right-radius: 2.5rem;
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section__input:focus,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section__input:focus,
-.master-flex-container .master-grid-container .form-container .forgotten-form__form-section__input:focus {
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section__input:focus,
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section__input:focus {
   outline: none;
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section__input:invalid,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section__input:invalid,
-.master-flex-container .master-grid-container .form-container .forgotten-form__form-section__input:invalid {
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section__input:invalid,
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section__input:invalid {
   border: 0.3rem solid rgba(207, 53, 46, 0.75);
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section__input:valid,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section__input:valid,
-.master-flex-container .master-grid-container .form-container .forgotten-form__form-section__input:valid {
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section__input:valid,
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section__input:valid {
   border: 0.3rem solid #38d927;
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section__label,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section__label,
-.master-flex-container .master-grid-container .form-container .forgotten-form__form-section__label {
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section__label,
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section__label {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -33316,7 +33368,8 @@ html {
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section--message,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section--message,
-.master-flex-container .master-grid-container .form-container .forgotten-form__form-section--message {
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section--message,
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section--message {
   position: relative;
   height: 7.5%;
   width: 100%;
@@ -33327,7 +33380,8 @@ html {
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section--message__message-container,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section--message__message-container,
-.master-flex-container .master-grid-container .form-container .forgotten-form__form-section--message__message-container {
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section--message__message-container,
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section--message__message-container {
   position: relative;
   height: 100%;
   width: 75%;
@@ -33340,7 +33394,8 @@ html {
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section--message__form-button,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section--message__form-button,
-.master-flex-container .master-grid-container .form-container .forgotten-form__form-section--message__form-button {
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section--message__form-button,
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section--message__form-button {
   position: relative;
   height: 100%;
   width: 25%;
@@ -33355,7 +33410,8 @@ html {
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section--message__form-button:hover,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section--message__form-button:hover,
-.master-flex-container .master-grid-container .form-container .forgotten-form__form-section--message__form-button:hover {
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section--message__form-button:hover,
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section--message__form-button:hover {
   cursor: pointer;
   background-color: #38d927;
 }
@@ -33363,12 +33419,15 @@ html {
 .master-flex-container .master-grid-container .form-container .signup-form__form-section--message__form-button:nth-of-type(3),
 .master-flex-container .master-grid-container .form-container .signup-form__form-section--message__form-button:nth-of-type(4),
 .master-flex-container .master-grid-container .form-container .forgotten-form__form-section--message__form-button:nth-of-type(3),
-.master-flex-container .master-grid-container .form-container .forgotten-form__form-section--message__form-button:nth-of-type(4) {
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section--message__form-button:nth-of-type(4),
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section--message__form-button:nth-of-type(3),
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section--message__form-button:nth-of-type(4) {
   width: 24.375%;
 }
 .master-flex-container .master-grid-container .form-container .login-form__form-section--message #loginButtonOne,
 .master-flex-container .master-grid-container .form-container .signup-form__form-section--message #loginButtonOne,
-.master-flex-container .master-grid-container .form-container .forgotten-form__form-section--message #loginButtonOne {
+.master-flex-container .master-grid-container .form-container .forgotten-form__form-section--message #loginButtonOne,
+.master-flex-container .master-grid-container .form-container .password-reset-form__form-section--message #loginButtonOne {
   margin: 0 0.3% 0 0.325%;
 }
 .master-flex-container .master-grid-container .form-container--open {
@@ -33379,6 +33438,130 @@ html {
 }
 .master-flex-container .master-grid-container .form-container .form-page-number {
   margin-top: 3rem;
+}
+.master-flex-container .master-grid-container .form-container--password-reset {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: rgba(101, 33, 144, 0.9);
+}
+.master-flex-container .master-grid-container .form-container--password-reset .password-reset-form {
+  position: relative;
+  height: 100%;
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  flex-direction: column;
+}
+.master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section {
+  position: relative;
+  height: 12.5%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  margin-top: 4rem;
+}
+.master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section__input {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  transform: rotate(0) translate(0, 0);
+  border: 0.2rem solid rgba(56, 217, 39, 0.95);
+  background-color: rgba(17, 17, 17, 0.75);
+  padding-left: 4rem;
+}
+.master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section__input::-webkit-input-placeholder {
+  opacity: 0;
+}
+.master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section__input:focus::-webkit-input-placeholder {
+  opacity: 1;
+}
+.master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section__input::-moz-placeholder {
+  opacity: 0;
+}
+.master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section__input:focus::-moz-placeholder {
+  opacity: 1;
+}
+.master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section__input:not(:placeholder-shown) + label, .master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section__input:focus + label {
+  transform: translate(-13.25rem, -7rem) scale(0.65);
+}
+.master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section__input--rounded-top {
+  border-top-left-radius: 2.5rem;
+  border-top-right-radius: 2.5rem;
+}
+.master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section__input:focus {
+  outline: none;
+}
+.master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section__input:invalid {
+  border: 0.3rem solid rgba(207, 53, 46, 0.75);
+}
+.master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section__input:valid {
+  border: 0.3rem solid #38d927;
+}
+.master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section__label {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  padding-left: 4rem;
+  transition: transform 0.5s, opacity 0.5s;
+}
+.master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section--message {
+  position: relative;
+  height: 7.5%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section--message__message-container {
+  position: relative;
+  height: 100%;
+  width: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.2rem solid rgba(56, 217, 39, 0.95);
+  background-color: rgba(17, 17, 17, 0.75);
+}
+.master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section--message__form-button {
+  position: relative;
+  height: 100%;
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.2rem solid rgba(56, 217, 39, 0.95);
+  background-color: rgba(56, 217, 39, 0.75);
+  transition: background-color 0.5s;
+  padding: 1rem;
+}
+.master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section--message__form-button:hover {
+  cursor: pointer;
+  background-color: #38d927;
+}
+.master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section--message__form-button:nth-of-type(3), .master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section--message__form-button:nth-of-type(4) {
+  width: 24.375%;
+}
+.master-flex-container .master-grid-container .form-container--password-reset .password-reset-form__form-section--message #loginButtonOne {
+  margin: 0 0.3% 0 0.325%;
 }
 .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__password-management,
 .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information,

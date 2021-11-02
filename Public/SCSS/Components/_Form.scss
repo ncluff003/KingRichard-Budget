@@ -18,7 +18,8 @@
       }
       .login-form,
       .signup-form,
-      .forgotten-form {
+      .forgotten-form,
+      .password-reset-form {
         @include SizeAndPositioning(relative, 100%, 45%, flex, center, center, 0, 0, 0);
         flex-direction: column;
         &__form-section {
@@ -100,6 +101,84 @@
       }
       .form-page-number {
         margin-top: 3rem;
+      }
+      &--password-reset {
+        @include SizeAndPositioning(relative, 100%, 100%, flex, center, center, 0, 0, 0);
+        background-color: rgba($primaryColorDark, 0.9);
+        .password-reset-form {
+          @include SizeAndPositioning(relative, 100%, 45%, flex, center, center, 0, 0, 0);
+          flex-direction: column;
+          &__form-section {
+            @include SizeAndPositioning(relative, 12.5%, 100%, flex, center, center, 0, 0, 0);
+            margin-top: 4rem;
+            &__input {
+              @include SizeAndPositioning(relative, 100%, 100%, flex, center, flex-start, 0, 0, 0);
+              border: 0.2rem solid rgba($tertiaryColor, 0.95);
+              background-color: rgba($colorDarkestGrey, 0.75);
+              padding-left: 4rem;
+              &::-webkit-input-placeholder {
+                opacity: 0;
+              }
+              &:focus::-webkit-input-placeholder {
+                opacity: 1;
+              }
+              &::-moz-placeholder {
+                opacity: 0;
+              }
+              &:focus::-moz-placeholder {
+                opacity: 1;
+              }
+              &:not(:placeholder-shown) + label,
+              &:focus + label {
+                transform: translate(-13.25rem, -7rem) scale(0.65);
+              }
+              &--rounded-top {
+                border-top-left-radius: 2.5rem;
+                border-top-right-radius: 2.5rem;
+              }
+              &:focus {
+                outline: none;
+              }
+              &:invalid {
+                border: 0.3rem solid rgba(#cf352e, 0.75);
+              }
+              &:valid {
+                border: 0.3rem solid $tertiaryColor;
+              }
+            }
+            &__label {
+              @include SizeAndPositioning(absolute, 100%, 100%, flex, flex-start, center, 0, 0, 0);
+              padding-left: 4rem;
+              transition: transform 0.5s, opacity 0.5s;
+            }
+            &--message {
+              @include SizeAndPositioning(relative, 7.5%, 100%, flex, center, center, 0, 0, 0);
+              &__message-container {
+                @include SizeAndPositioning(relative, 100%, 75%, flex, center, center, 0, 0, 0);
+                border: 0.2rem solid rgba($tertiaryColor, 0.95);
+                background-color: rgba($colorDarkestGrey, 0.75);
+              }
+              &__form-button {
+                @include SizeAndPositioning(relative, 100%, 25%, flex, center, center, 0, 0, 0);
+                border: 0.2rem solid rgba($tertiaryColor, 0.95);
+                background-color: rgba($tertiaryColor, 0.75);
+                transition: background-color 0.5s;
+                padding: 1rem;
+                &:hover {
+                  cursor: pointer;
+                  background-color: $tertiaryColor;
+                }
+                &:nth-of-type(3),
+                &:nth-of-type(4) {
+                  width: 24.375%;
+                }
+              }
+              #loginButtonOne {
+                margin: 0 0.3% 0 0.325%;
+              }
+            }
+          }
+        }
       }
     }
     .user-profile-background {

@@ -50,7 +50,8 @@ html {
         font-size: 5rem;
       }
     }
-    .form-container {
+    .form-container,
+    .form-container--password-reset {
       #closeForgottenForm {
         font-size: 4rem;
         color: rgba($colorOffWhite, 0.75);
@@ -61,7 +62,8 @@ html {
       }
       .login-form,
       .signup-form,
-      .forgotten-form {
+      .forgotten-form,
+      .password-reset-form {
         &__form-section {
           color: $colorOffWhite;
           &__input {

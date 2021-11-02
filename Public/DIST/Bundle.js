@@ -2533,6 +2533,77 @@ var login = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./Public/JS/Update-Password.js":
+/*!**************************************!*\
+  !*** ./Public/JS/Update-Password.js ***!
+  \**************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "updatePassword": function() { return /* binding */ updatePassword; }
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+var updatePassword = /*#__PURE__*/function () {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(password, passwordConfirmed) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_2___default()({
+              method: "PATCH",
+              url: "/users/resetPassword/".concat(window.location.href.split('/')[5]),
+              data: qs__WEBPACK_IMPORTED_MODULE_3___default().stringify({
+                password: password,
+                passwordConfirmed: passwordConfirmed
+              })
+            });
+
+          case 3:
+            response = _context.sent;
+
+            if (response.statusText === 'OK') {
+              window.location.assign("/");
+            }
+
+            console.log(response);
+            _context.next = 11;
+            break;
+
+          case 8:
+            _context.prev = 8;
+            _context.t0 = _context["catch"](0);
+            console.log(_context.t0);
+
+          case 11:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 8]]);
+  }));
+
+  return function updatePassword(_x, _x2) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+/***/ }),
+
 /***/ "./Public/JS/Validate.js":
 /*!*******************************!*\
   !*** ./Public/JS/Validate.js ***!
@@ -4285,7 +4356,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
 /* harmony import */ var _Validate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Validate */ "./Public/JS/Validate.js");
 /* harmony import */ var _App_LoggedIn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./App-LoggedIn */ "./Public/JS/App-LoggedIn.js");
-/* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Login */ "./Public/JS/Login.js");
+/* harmony import */ var _Update_Password__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Update-Password */ "./Public/JS/Update-Password.js");
+/* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Login */ "./Public/JS/Login.js");
+
 
 
 
@@ -4306,10 +4379,24 @@ __webpack_require__.r(__webpack_exports__);
 
       this._watchForgottenEmailForm();
 
+      this._checkForAndWatchForPasswordResetForm();
+
       _App_LoggedIn__WEBPACK_IMPORTED_MODULE_3__._watchUserButton();
     }
 
     (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__.default)(App, [{
+      key: "_checkForAndWatchForPasswordResetForm",
+      value: function _checkForAndWatchForPasswordResetForm() {
+        if (!passwordResetForm) return;
+        var passwordSubmit = document.getElementById('passwordSubmit');
+        passwordSubmit.addEventListener('click', function (e) {
+          e.preventDefault();
+          var password = document.getElementById('password').value;
+          var passwordConfirmed = document.getElementById('passwordConfirmed').value;
+          (0,_Update_Password__WEBPACK_IMPORTED_MODULE_4__.updatePassword)(password, passwordConfirmed);
+        });
+      }
+    }, {
       key: "_watchForgottenEmailForm",
       value: function _watchForgottenEmailForm() {
         var forgot = document.querySelectorAll(".forgotten-form__form-section--message__form-button")[1];
@@ -4529,6 +4616,7 @@ __webpack_require__.r(__webpack_exports__);
   var signupErrors = document.querySelectorAll('.signup-form__form-section--message__message-container');
   var formPage = document.querySelector(".form-page-number");
   var signup = document.querySelector(".signup-form");
+  var passwordResetForm = document.querySelector('.password-reset-form');
   var app = new App();
 })();
 }();

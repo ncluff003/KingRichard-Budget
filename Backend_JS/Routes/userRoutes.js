@@ -22,17 +22,16 @@ const authController = require(`./../Controllers/authController`);
 
 ////////////////////////////////////////////
 //  Routing Middleware
-router
-  .route(`/signup`)
-  .post(authController.validateSignup, authController.signup);
+router.route(`/signup`).post(authController.validateSignup, authController.signup);
 router
   .route(`/login`)
   .get(authController.renderAppLoggedIn)
   .post(authController.login, authController.renderAppLoggedIn);
+router.route(`/forgotPassword`).post(authController.forgotPassword, appController.renderApp);
 router
-  .route(`/forgotPassword`)
-  .post(authController.forgotPassword, appController.renderApp);
-router.route(`/resetPassword/:token`).patch(authController.resetPassword);
+  .route(`/resetPassword/:token`)
+  .get(authController.renderPasswordReset)
+  .patch(authController.resetPassword, authController.renderAppLoggedIn);
 // router.route(`/about`).get(appController.introduceMe);
 // router.route(`/projects`).get(appController.viewMyWork);
 // router.route(`/contact`).get(appController.contactMe).post(messageController.validateEmail, messageController.emailMe);
