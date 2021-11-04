@@ -33,14 +33,17 @@ style.
     border-collapse: separate;
     mso-table-lspace: 0pt;
     mso-table-rspace: 0pt;
-    width: 100%; }
+    width: 100%; 
+    display: flex;
+    justify-content: center;
+    }
     table td {
       font-family: Purely Me;
       font-size: 14px;
       vertical-align: top; 
   }
   .body {
-    background-color: #222222;
+    background-color: #FAFAFA;
     width: 100%; 
     display: flex;
     justify-content: center;
@@ -62,7 +65,7 @@ style.
     padding: 10px; 
   }
   .main {
-    background: #0047ABBB;
+    background: #33333333;
     border-radius: 3px;
     width: 100%;
   }
@@ -71,153 +74,82 @@ style.
     padding: 20px; 
   }
 
+  .company-header {
+    position: relative;
+    height: 150px;
+    width: 100%;
+    padding: 3rem 3rem 3rem 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .company-header__logo {
+    position: relative;
+    height: 100%;
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: 0;
+  }
+
+  .welcome-company-header__logo {
+    width: 100%;
+  }
+
+  .company-header__logo-image {
+    position: relative;
+    height: 100%;
+    width: auto;
+  }
+
+  .company-header__logo-text {
+    position: relative;
+    font-size: 4rem;
+    color: #822aba;
+    margin: 0;
+  }
+
+  .salutations {   
+    font-size: 2.4rem;
+    color: #333333;
+    margin-left: -2rem;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .content-section {
+    padding: 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .opening-statement, .main-statement { 
+    text-indent: 1rem;
+    color: #333333;
+    padding: 0 1rem;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .disclaimer {
+    margin: 2rem 0 0 0;
+    padding: 0 4rem;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #888888;
+    line-height: 1.5;
+  }
+
+  .welcome-disclaimer {
+    margin: 0;
+  }
+
   .flex-container {
     display: flex;
     flex-direction: column;
     height: 100%;
-  }
-
-  .email-header {
-    height: 100px;
-    width: 600px;
-    background-color: transparent;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    font-size: 1.6rem;
-  }
-
-  .email-header .name {
-    margin-bottom: 0;
-    font-size: 22px;
-    margin-left: 1rem;
-    color: #FFD700;
-    width: 55%;
-  }
-
-  .timeAndDate {
-    height: 100%;
-    width: 45.5%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-start;
-  }
-
-  .timeAndDate .date-stamp, .timeAndDate .time-stamp {
-    font-size: 13px;
-    margin: 0;
-    margin-right: 1rem; 
-    color: #FAFAFAAA;
-  }
-
-  .message-body {
-    padding: 2rem 4rem 1rem;
-    padding: 1rem;
-    color: #FAFAFAAA;
-    border: none;
-  }
-
-  .message-body .paragraph {
-    text-indent: 2.5rem;
-  }
-
-  .message-body p a:active, .message-body p a:visited {
-    text-decoration: none;
-    color: #FAFAFAAA;
-  }
-
-  .salutations {
-    grid-column: 1 / span 1;
-    grid-row: 1 / span 1;
-    justify-self: flex-end;
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    
-    color: #FFD700;
-  }
-
-  .from-container {
-    grid-column: 1 / span 1;
-    grid-row: 2 / span 1;
-    justify-self: flex-end;
-    margin-right: 3rem;
-    font-size: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-end;
-    transform: translate(-13rem, -.5rem);
-    color: #FFD700;
-  }
-
-  .mail-detail-content .from-container {
-    grid-column: 1 / span 1;
-    grid-row: 2 / span 1;
-    justify-self: flex-end;
-    margin-right: 3rem;
-    font-size: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-end;
-    transform: translate(-7rem, -1rem);
-    color: #FFD700;
-  }
-
-  .from-container .from {
-    font-size: 18px;
-  }
-
-  .from-container .from-position {
-    font-size: 12px;
-    transform: translateY(-1.2rem);
-  }
-
-  .from-container .from-organization {
-    font-size: 12px;
-    transform: translateY(-2.4rem);
-  }
-
-  .from-container .from-email {
-    font-size: 12px;
-    transform: translateY(-3.6rem);
-  }
-
-  .mail-detail-content .from-container .from {
-    margin: .6rem 0;
-  }
-
-  .mail-detail-content .from-container .from-position {
-    transform: translateY(-1.2rem);
-    margin: .6rem 0;
-  }
-
-  .mail-detail-content .from-container .from-organization {
-    transform: translateY(-2.4rem);
-    margin: .6rem 0;
-  }
-
-  .mail-detail-content .from-container .from-email {
-    transform: translateY(-3.6rem);
-    margin: .6rem 0;
-    a[href] {
-      text-decoration: none;
-      color: #FFD700;
-    }
-  }
-
-  .horizontal-line {
-    height: 0;
-    width: 100%;
-    border: .2rem groove #0047AB;
-  }
-
-  .content-block {
-    padding-bottom: 10px;
-    padding-top: 10px;
   }
   .footer {
     clear: both;
@@ -274,7 +206,9 @@ style.
   }
   .btn {
     box-sizing: border-box;
-    width: 100%; }
+    width: 100%;
+    margin-top: 3rem;
+  }
     .btn > tbody > tr > td {
       padding-bottom: 15px; }
     .btn table {
@@ -284,29 +218,37 @@ style.
       background-color: #ffffff;
       border-radius: 5px;
       text-align: center; 
+      margin-top: 3rem;
   }
     .btn a {
       background-color: #ffffff;
-      border: solid 1px #55c57a;
+      border: solid 2px #822aba;
       border-radius: 5px;
       box-sizing: border-box;
-      color: #55c57a;
+      color: #822aba;
       cursor: pointer;
       display: inline-block;
       font-size: 14px;
       font-weight: bold;
-      margin: 0;
+      margin: 0 auto;
       padding: 12px 25px;
       text-decoration: none;
       text-transform: capitalize; 
   }
   .btn-primary table td {
-    background-color: #55c57a; 
+    background-color: #822aba44;
+    margin-top: 3rem; 
   }
   .btn-primary a {
-    background-color: #55c57a;
-    border-color: #55c57a;
-    color: #ffffff; 
+    margin: 0 auto;
+    background-color: #822aba;
+    border-color: #690ca3;
+    color: #ffffff;
+    transition: background-color .5s, border .5s, color .5s;
+  }
+  .btn-primary a:hover {
+    background-color: #38d927;
+    border-color: #16c803;
   }
   .last {
     margin-bottom: 0; 

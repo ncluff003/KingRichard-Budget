@@ -1,3 +1,5 @@
+import { updateMe } from './Update-User';
+
 // Opening The Profile Page
 const userButton = document.querySelector('.navigation__landing-navigation__user');
 const profileBackground = document.querySelector('.user-profile-background');
@@ -145,7 +147,19 @@ profileSectionButtons.forEach((psb) => {
           ldsInfoModal.style.display = 'none';
         });
       });
-
+      const saveButton = document.querySelector('.personal-information-form__button__save');
+      saveButton.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const firstname = personalFormEditInputs[0].value;
+        const lastname = personalFormEditInputs[1].value;
+        const username = personalFormEditInputs[2].value;
+        await updateMe({
+          firstname: firstname,
+          lastname: lastname,
+          username: username,
+          latterDaySaint: isLatterDaySaint,
+        });
+      });
       return;
     }
     if (clicked.closest('button') === profileSectionButtons[1]) {
@@ -194,6 +208,9 @@ profileSectionButtons.forEach((psb) => {
           });
         }
       });
+      const email = document.getElementsByClassName('communications-form__form-section__input-container__input')[0]
+        .value;
+      // Get User Communication Preference
       return;
     }
     if (clicked.closest('button') === profileSectionButtons[3]) {

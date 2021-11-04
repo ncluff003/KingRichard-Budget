@@ -1,0 +1,64 @@
+section.unique-profile-content-container.unique-profile-content-container__communications
+  form.communications-form
+    section.communications-form__form-section.r__communications-form__form-section
+      button.communications-form__button 
+        i.fas.fa-user-edit.communications-form__button__icon
+        p.communications-form__button__text Edit
+      section.communications-form__form-section__input-container.r__communications-form__form-section__input-container
+        input.communications-form__form-section__input-container__input.communications-form__form-section__input-container__input#email(type="email" name="email" placeholder="Email" value=`${data.user.email}` readonly="true")
+        label.communications-form__form-section__input-container__label#emailLabel(for="email") Enter Your Current Email
+    section.communications-form__form-section.r__communications-form__form-section
+      button.communications-form__button 
+        i.fas.fa-user-edit.communications-form__button__icon
+        p.communications-form__button__text Edit
+      section.communications-form__form-section__input-container.r__communications-form__form-section__input-container
+        input.communications-form__form-section__input-container__input.communications-form__form-section__input-container__input#newEmail(type="email" name="newEmail" placeholder="New Email" readonly="true")
+        label.communications-form__form-section__input-container__label#newEmailLabel(for="newEmail") Enter Your New Email
+    section.communications-form__form-section.r__communications-form__form-section
+      button.communications-form__button 
+        i.fas.fa-user-edit.communications-form__button__icon
+        p.communications-form__button__text Edit
+      section.communications-form__form-section__input-container.r__communications-form__form-section__input-container
+        input.communications-form__form-section__input-container__input.communications-form__form-section__input-container__input#newEmailConfirmed(type="email" name="newEmailConfirmed" placeholder="New Email Confirmation" readonly="true")
+        label.communications-form__form-section__input-container__label#newEmailConfirmedLabel(for="newEmailConfirmed") Please Confirm Your New Email
+    section.communications-form__form-section.r__communications-form__form-section
+      button.communications-form__button 
+        i.fas.fa-user-edit.communications-form__button__icon
+        p.communications-form__button__text Edit
+      section.communications-form__form-section__input-container.r__communications-form__form-section__input-container
+        input.communications-form__form-section__input-container__input.communications-form__form-section__input-container__input#phone(type="tel" name="phone" placeholder="(000) 000-0000" readonly="true" maxlength="16" pattern="^\([0-9]{3}\) [0-9]{3}\-[0-9]{4}$")
+        label.communications-form__form-section__input-container__label#phoneLabel(for="phone") Please Enter Your Phone Number
+    section.communications-form__form-section.r__communications-form__form-section
+      button.communications-form__button 
+        i.fas.fa-user-edit.communications-form__button__icon
+        p.communications-form__button__text Edit
+      section.communications-form__form-section__input-container.r__communications-form__form-section__input-container
+        input.communications-form__form-section__input-container__input.communications-form__form-section__input-container__input#phoneConfirmed(type="tel" name="phoneConfirmed" placeholder="(000) 000-0000" readonly="true" maxlength="16" pattern="^\([0-9]{3}\) [0-9]{3}\-[0-9]{4}$")
+        label.communications-form__form-section__input-container__label#phoneConfirmedLabel(for="phoneConfirmed") Please Confirm Your Phone Number
+    section.communications-form__form-section--comms.r__communications-form__form-section--comms
+      div.communications-form__button--comms
+        i.fas.fa-mobile-alt.communications-form__button__icon
+        p.communications-form__button__text Communication Preference?
+      - let commPreference = `${data.user.communicationPreference}`;
+      - let textPreferred = false;
+      - if (data.user.communicationPreference === `Email`) textPreferred = false;
+      if !textPreferred
+        section.communications-form__comm-switch#commSwitch
+          section.communications-form__comm-switch--email 
+            i.far.fa-envelope.communications-form__comm-switch--email__icon
+            p.communications-form__comm-switch--email__text Email 
+          section.communications-form__comm-switch--text 
+            i.fas.fa-mobile-alt.communications-form__comm-switch--text__icon
+            p.communications-form__comm-switch--text__text Text
+      else 
+        section.communications-form__comm-switch.communications-form__comm-switch--text-preference#commSwitch
+          section.communications-form__comm-switch--email 
+            i.far.fa-envelope.communications-form__comm-switch--email__icon
+            p.communications-form__comm-switch--email__text Email 
+          section.communications-form__comm-switch--text 
+            i.fas.fa-mobile-alt.communications-form__comm-switch--text__icon
+            p.communications-form__comm-switch--text__text Text
+    section.communications-form__form-section.r__communications-form__form-section
+      button.communications-form__button__save
+        i.fas.fa-id-card.communications-form__button__save__icon--save
+        p.communications-form__button__save__text--save Save

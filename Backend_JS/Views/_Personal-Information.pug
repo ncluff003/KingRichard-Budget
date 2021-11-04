@@ -1,0 +1,40 @@
+section.unique-profile-content-container.unique-profile-content-container__personal-information
+  form.personal-information-form
+    section.personal-information-form__form-section.r__personal-information-form__form-section
+      button.personal-information-form__button 
+        i.fas.fa-user-edit.personal-information-form__button__icon
+        p.personal-information-form__button__text Edit
+      section.personal-information-form__form-section__input-container.r__personal-information-form__form-section__input-container
+        input.personal-information-form__form-section__input-container__input.personal-information-form__form-section__input-container__input#firstname(type="text" name="firstname" placeholder="First Name" value=`${data.user.firstname}` readonly="true")
+        label.personal-information-form__form-section__input-container__label#firstnameLabel(for="firstname") Enter Your Preferred First Name
+    section.personal-information-form__form-section.r__personal-information-form__form-section
+      button.personal-information-form__button 
+        i.fas.fa-user-edit.personal-information-form__button__icon
+        p.personal-information-form__button__text Edit
+      section.personal-information-form__form-section__input-container.r__personal-information-form__form-section__input-container
+        input.personal-information-form__form-section__input-container__input.personal-information-form__form-section__input-container__input#lastname(type="text" name="lastname" placeholder="Last Name" value=`${data.user.lastname}` readonly="true")
+        label.personal-information-form__form-section__input-container__label#lastnameLabel(for="lastname") Enter Your Preferred Last Name
+    section.personal-information-form__form-section.r__personal-information-form__form-section
+      button.personal-information-form__button 
+        i.fas.fa-user-edit.personal-information-form__button__icon
+        p.personal-information-form__button__text Edit
+      section.personal-information-form__form-section__input-container.r__personal-information-form__form-section__input-container
+        input.personal-information-form__form-section__input-container__input.personal-information-form__form-section__input-container__input#username(type="text" name="username" placeholder="Username" value=`${data.user.username}` readonly="true")
+        label.personal-information-form__form-section__input-container__label#usernameLabel(for="username") Enter Your Preferred Username
+    section.personal-information-form__form-section--lds.r__personal-information-form__form-section--lds
+      div.personal-information-form__button--lds 
+        i.fas.fa-place-of-worship.personal-information-form__button__icon
+        p.personal-information-form__button__text Latter Day Saint?
+      section.personal-information-form__toggle-switch
+        section.personal-information-form__toggle-switch__glow
+        section.personal-information-form__toggle-switch__switch 
+        p.personal-information-form__toggle-switch__text--no NO
+        p.personal-information-form__toggle-switch__text--yes YES
+      i.fas.fa-info-circle.personal-information-form__icon
+    section.personal-information-form__form-section.r__personal-information-form__form-section
+      button.personal-information-form__button__save
+        i.fas.fa-id-card.personal-information-form__button__save__icon--save
+        p.personal-information-form__button__save__text--save Save
+section.personal-information-modal 
+  header.personal-information-modal__header No personal affiliation is neccesary.  Faith based options are availabe to be used if you are a Latter Day Saint.
+  i.fas.fa-window-close.personal-information-modal__close

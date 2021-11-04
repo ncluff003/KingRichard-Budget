@@ -303,7 +303,8 @@ html {
                         }
                       }
                     }
-                    .communications-form__comm-switch {
+                    .communications-form__comm-switch,
+                    .communications-form__comm-switch--text-preference {
                       color: $colorOffWhite;
                     }
                     &__input-container {

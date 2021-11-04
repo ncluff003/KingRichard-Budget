@@ -2265,7 +2265,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "_watchUserButton": function() { return /* binding */ _watchUserButton; }
 /* harmony export */ });
-// Opening The Profile Page
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
+
+
+ // Opening The Profile Page
+
 var userButton = document.querySelector('.navigation__landing-navigation__user');
 var profileBackground = document.querySelector('.user-profile-background');
 var profileCard = document.querySelector('.user-profile-card');
@@ -2393,6 +2400,38 @@ profileSectionButtons.forEach(function (psb) {
           ldsInfoModal.style.display = 'none';
         });
       });
+      var saveButton = document.querySelector('.personal-information-form__button__save');
+      saveButton.addEventListener('click', /*#__PURE__*/function () {
+        var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(e) {
+          var firstname, lastname, username;
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  e.preventDefault();
+                  firstname = personalFormEditInputs[0].value;
+                  lastname = personalFormEditInputs[1].value;
+                  username = personalFormEditInputs[2].value;
+                  _context.next = 6;
+                  return (0,_Update_User__WEBPACK_IMPORTED_MODULE_2__.updateMe)({
+                    firstname: firstname,
+                    lastname: lastname,
+                    username: username,
+                    latterDaySaint: isLatterDaySaint
+                  });
+
+                case 6:
+                case "end":
+                  return _context.stop();
+              }
+            }
+          }, _callee);
+        }));
+
+        return function (_x) {
+          return _ref.apply(this, arguments);
+        };
+      }());
       return;
     }
 
@@ -2442,6 +2481,8 @@ profileSectionButtons.forEach(function (psb) {
           });
         }
       });
+      var email = document.getElementsByClassName('communications-form__form-section__input-container__input')[0].value; // Get User Communication Preference
+
       return;
     }
 
@@ -2502,14 +2543,7 @@ var login = /*#__PURE__*/function () {
 
           case 4:
             response = _context.sent;
-            console.log(response); // if ((response.data.status = 'Success')) {
-            // await axios({
-            //   method: `GET`,
-            //   url: `/users/login`,
-            //   data: qs.stringify(options),
-            // });
-            // }
-
+            if (response.statusText === "OK") alert(response, response.data, response.data.user);
             _context.next = 11;
             break;
 
@@ -2533,16 +2567,17 @@ var login = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./Public/JS/Update-Password.js":
-/*!**************************************!*\
-  !*** ./Public/JS/Update-Password.js ***!
-  \**************************************/
+/***/ "./Public/JS/Update-User.js":
+/*!**********************************!*\
+  !*** ./Public/JS/Update-User.js ***!
+  \**********************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "updatePassword": function() { return /* binding */ updatePassword; }
+/* harmony export */   "updatePassword": function() { return /* binding */ updatePassword; },
+/* harmony export */   "updateMe": function() { return /* binding */ updateMe; }
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
@@ -2576,7 +2611,7 @@ var updatePassword = /*#__PURE__*/function () {
           case 3:
             response = _context.sent;
 
-            if (response.statusText === 'OK') {
+            if (response.data.status === 'Success') {
               window.location.assign("/");
             }
 
@@ -2599,6 +2634,59 @@ var updatePassword = /*#__PURE__*/function () {
 
   return function updatePassword(_x, _x2) {
     return _ref.apply(this, arguments);
+  };
+}();
+var updateMe = /*#__PURE__*/function () {
+  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2() {
+    var _len,
+        options,
+        _key,
+        response,
+        _args2 = arguments;
+
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+
+            for (_len = _args2.length, options = new Array(_len), _key = 0; _key < _len; _key++) {
+              options[_key] = _args2[_key];
+            }
+
+            console.log(options);
+            _context2.next = 5;
+            return axios__WEBPACK_IMPORTED_MODULE_2___default()({
+              method: "PATCH",
+              url: "/users/updateMe",
+              data: qs__WEBPACK_IMPORTED_MODULE_3___default().stringify({
+                firstname: options.firstname,
+                lastname: options.lastname,
+                username: options.username,
+                latterDaySaint: options.latterDaySaint
+              })
+            });
+
+          case 5:
+            response = _context2.sent;
+            _context2.next = 11;
+            break;
+
+          case 8:
+            _context2.prev = 8;
+            _context2.t0 = _context2["catch"](0);
+            console.log(_context2.t0);
+
+          case 11:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 8]]);
+  }));
+
+  return function updateMe() {
+    return _ref2.apply(this, arguments);
   };
 }();
 
@@ -4356,7 +4444,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
 /* harmony import */ var _Validate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Validate */ "./Public/JS/Validate.js");
 /* harmony import */ var _App_LoggedIn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./App-LoggedIn */ "./Public/JS/App-LoggedIn.js");
-/* harmony import */ var _Update_Password__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Update-Password */ "./Public/JS/Update-Password.js");
+/* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
 /* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Login */ "./Public/JS/Login.js");
 
 
@@ -4393,7 +4481,7 @@ __webpack_require__.r(__webpack_exports__);
           e.preventDefault();
           var password = document.getElementById('password').value;
           var passwordConfirmed = document.getElementById('passwordConfirmed').value;
-          (0,_Update_Password__WEBPACK_IMPORTED_MODULE_4__.updatePassword)(password, passwordConfirmed);
+          (0,_Update_User__WEBPACK_IMPORTED_MODULE_4__.updatePassword)(password, passwordConfirmed);
         });
       }
     }, {

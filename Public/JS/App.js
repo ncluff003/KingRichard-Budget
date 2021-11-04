@@ -1,6 +1,6 @@
 import { Validate } from './Validate';
 import * as AppLoggedIn from './App-LoggedIn';
-import { updatePassword } from './Update-Password';
+import { updatePassword } from './Update-User';
 import login from './Login';
 
 ///////////////////////////////////////////////

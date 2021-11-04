@@ -11,6 +11,7 @@ const jwt = require(`jsonwebtoken`);
 ////////////////////////////////////////////
 //  Third Party Middleware
 const crypto = require('crypto');
+const util = require('util');
 
 ////////////////////////////////////////////
 //  Third Party Config Files
@@ -31,13 +32,12 @@ const Calendar = require(`./../Utilities/Calendar`);
 ////////////////////////////////////////////
 //  My Models
 const User = require(`./../Models/userModel`);
-const { patch } = require('../App');
 
 ////////////////////////////////////////////
 //  My Functions
 
 const signToken = (id) => {
-  return jwt.sign({ id: id }, process.env.JWT_SECRET, {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 };
@@ -45,19 +45,23 @@ const signToken = (id) => {
 ////////////////////////////////////////////
 //  Exported Controllers
 
-exports.protect = catchAsync(async (req, res, next) => {
+exports.protect = catchAsync(async (request, response, next) => {
   // 1) Getting token and check of it's there
   let token;
-  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
-    token = req.headers.authorization.split(' ')[1];
+  if (request.headers.authorization && request.headers.authorization.startsWith('Bearer')) {
+    token = request.headers.authorization.split(' ')[1];
+  } else if (request.cookies.JWT) {
+    token = request.cookies.JWT;
   }
+  console.log(token);
 
   if (!token) {
     return next(new AppError('You are not logged in! Please log in to get access.', 401));
   }
 
   // 2) Verification token
-  const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+  const decoded = await util.promisify(jwt.verify)(token, process.env.JWT_SECRET);
+  console.log(decoded);
 
   // 3) Check if user still exists
   const currentUser = await User.findById(decoded.id);
@@ -71,31 +75,8 @@ exports.protect = catchAsync(async (req, res, next) => {
   }
 
   // GRANT ACCESS TO PROTECTED ROUTE
-  req.user = currentUser;
+  request.user = currentUser;
   next();
-});
-
-exports.renderAppLoggedIn = catchAsync(async (request, response, next) => {
-  const { username, password } = request.locals;
-
-  // Check if Username & Password Exist
-  if (!username || !password) return next(new AppError(`Please provide username and password!`), 400);
-  // Check if User exists right along with Username & Password is correct.
-  const user = await User.findOne({ username }).select('+password');
-  console.log(user);
-
-  if (!user || !(await user.correctPassword(password, user.password)))
-    return next(new AppError(`Incorrect username or password`), 401);
-
-  const token = signToken(user._id);
-  response.status(200).render(`loggedIn`, {
-    title: `King Richard | Home`,
-    token,
-    data: {
-      user: user,
-      calendar: Calendar,
-    },
-  });
 });
 
 /*
@@ -118,13 +99,7 @@ exports.login = catchAsync(async (request, response, next) => {
     return next(new AppError(`Incorrect username or password`), 401);
 
   const token = signToken(user._id);
-
-  // response.locals.user = user;
-  // response.locals.token = token;
-  // response.status(200).json({
-  //   status: `Success`,
-  //   token,
-  // });
+  console.log(token);
 
   response.status(200).render(`loggedIn`, {
     title: `King Richard | Home`,
@@ -175,9 +150,9 @@ exports.signup = catchAsync(async (request, response, next) => {
     password: formBody.password,
     passwordConfirmed: formBody.passwordConfirmed,
   });
-  request.user = newUser;
 
   const token = signToken(newUser._id);
+  console.log(newUser.id);
 
   // response.status(201).json({
   //   token,
@@ -223,19 +198,9 @@ exports.resetPassword = catchAsync(async (request, response, next) => {
 
   request.user = user;
 
-  // response.status(200).json({
-  //   status: `Success`,
-  //   token: token,
-  //   protocol: `${request.protocol}`,
-  // });
-
-  response.status(200).render(`loggedIn`, {
-    title: `King Richard | Home`,
-    token,
-    data: {
-      user: user,
-      calendar: Calendar,
-    },
+  response.status(200).json({
+    status: `Success`,
+    message: `You have successfully changed your password.`,
   });
 });
 
@@ -268,14 +233,18 @@ exports.forgotPassword = catchAsync(async (request, response, next) => {
 
   console.log(user);
   console.log(request);
-  // request.patch()
   try {
     const resetURL = `${request.protocol}://${request.get('host')}/users/resetPassword/${resetToken}`;
     await new sendEmail(user, resetURL).sendResetPassword();
 
-    return response.status(200).json({
-      status: `Success`,
-      message: `Token Sent To Email`,
+    // response.status(200).json({
+    //   status: `Success`,
+    //   message: `Token Sent To Email`,
+    // });
+    response.status(200).render(`base`, {
+      title: `King Richard`,
+      errorMessage: '',
+      successMessage: 'Password Reset Email Sent',
     });
   } catch (error) {
     user.passwordResetToken = undefined;
@@ -283,6 +252,4 @@ exports.forgotPassword = catchAsync(async (request, response, next) => {
     await user.save({ validateBeforeSave: false });
     return next(new AppError(`There was an error sending the email.  Try again later.`, 500));
   }
-
-  next();
 });

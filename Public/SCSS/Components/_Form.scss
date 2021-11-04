@@ -397,21 +397,27 @@
                         }
                         &:hover {
                           cursor: pointer;
-                          &:before {
-                            transform: translate(98.5%, -50%);
-                            border-top-left-radius: 0;
-                            border-bottom-left-radius: 0;
-                            border-top-right-radius: 8rem;
-                            border-bottom-right-radius: 8rem;
-                          }
                         }
                         &--text-preference {
+                          @include SizeAndPositioning(relative, 85%, 50%, flex, space-evenly, center, 0, 0, 0);
+                          padding: 0.35rem;
+                          background-color: rgba($colorDarkestGrey, 0.75);
+                          border: 0.3rem groove $primaryColor;
+                          border-radius: 8rem;
+                          transition: border 0.25s, background-color 0.25s, color 0.25s;
+                          &:hover {
+                            cursor: pointer;
+                          }
                           &:before {
-                            transform: translate(98.5%, -50%);
+                            @include SizeAndPositioning(absolute, 88%, 49%, flex, center, center, 98.5%, -50%, 0);
+                            top: 50%;
+                            left: 1.5%;
                             border-top-left-radius: 0;
                             border-bottom-left-radius: 0;
                             border-top-right-radius: 8rem;
                             border-bottom-right-radius: 8rem;
+                            background-color: rgba($tertiaryColor, 0.9);
+                            content: '';
                           }
                         }
                       }

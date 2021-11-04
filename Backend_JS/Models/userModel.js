@@ -33,7 +33,13 @@ const userSchema = new mongoose.Schema({
     trim: true,
     lowercase: true,
     required: [true, `Every user must confirm their email address`],
-    validate: [validator.isEmail, `Please repeat your valid email above.`],
+    validateEmail: [validator.isEmail, `Please repeat your valid email above.`],
+    validate: {
+      validator: function (el) {
+        return el === this.email;
+      },
+      message: `The emails are not the same.`,
+    },
   },
   phoneNumber: {
     type: String,
@@ -97,19 +103,13 @@ userSchema.pre('save', function (next) {
   next();
 });
 
-userSchema.methods.correctPassword = async function (
-  candidatePassword,
-  userPassword,
-) {
+userSchema.methods.correctPassword = async function (candidatePassword, userPassword) {
   return await bcrypt.compare(candidatePassword, userPassword);
 };
 
 userSchema.methods.changedPasswordAfter = async function (JWTTimestamp) {
   if (this.passwordChangedAt) {
-    const changedTimeStamp = parseInt(
-      this.passwordChangedAt.getTime() / 1000,
-      10,
-    );
+    const changedTimeStamp = parseInt(this.passwordChangedAt.getTime() / 1000, 10);
     return JWTTimestamp < changedTimeStamp;
   }
   // False means NOT changed.
@@ -119,10 +119,7 @@ userSchema.methods.changedPasswordAfter = async function (JWTTimestamp) {
 userSchema.methods.createPasswordResetToken = function () {
   const resetToken = crypto.randomBytes(36).toString(`hex`);
 
-  this.passwordResetToken = crypto
-    .createHash('sha256')
-    .update(resetToken)
-    .digest('hex');
+  this.passwordResetToken = crypto.createHash('sha256').update(resetToken).digest('hex');
   this.passwordResetExpires = Date.now() + 15 * 60 * 1000;
   console.log({ resetToken }, this.passwordResetToken);
   return resetToken;

@@ -48,6 +48,7 @@ module.exports = class sendEmail {
           user: process.env.NAMECHEAP_EMAIL,
           pass: process.env.NAMECHEAP_PASSWORD,
         },
+        logger: true,
       });
     }
     return nodemailer.createTransport({
@@ -61,28 +62,25 @@ module.exports = class sendEmail {
   }
 
   async _send(template, subject) {
-    const html = pug.renderFile(
-      `${__dirname}/../Views/Emails/${template}.pug`,
-      {
-        from: this.from,
-        to: this.to,
-        user: this.user,
-        firstName: this.firstName,
-        lastName: this.lastName,
-        userName: this.userName,
-        subject: subject,
-        url: this.url,
+    const html = pug.renderFile(`${__dirname}/../Views/Emails/${template}.pug`, {
+      from: this.from,
+      to: this.to,
+      user: this.user,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      username: this.username,
+      subject: subject,
+      url: this.url,
 
-        greeting: Calendar.getDay(),
-        hour: Calendar.getHour(),
-        minutes: Calendar.getMinutes(),
-        timeOfDay: Calendar.getTimeOfDay(),
-        day: Calendar.getDay(),
-        weekday: Calendar.getWeekday(),
-        month: Calendar.getMonth(),
-        year: Calendar.getYear(),
-      },
-    );
+      greeting: Calendar.getGreeting(),
+      hour: Calendar.getHour(),
+      minutes: Calendar.getMinutes(),
+      timeOfDay: Calendar.getTimeOfDay(),
+      day: Calendar.getDay(),
+      weekday: Calendar.getWeekday(),
+      month: Calendar.getMonth(),
+      year: Calendar.getYear(),
+    });
 
     const mailOptions = {
       from: this.from,
@@ -90,6 +88,14 @@ module.exports = class sendEmail {
       subject: subject,
       html: html,
       text: htmlToText.fromString(html),
+      attachments: [
+        {
+          filename: 'KingRichard-Logo.jpg',
+          contentType: 'image/jpeg',
+          path: __dirname + `/../../Public/KingRichard-Logo.png`,
+          cid: 'company-logo',
+        },
+      ],
     };
 
     await this.makeTransport().sendMail(mailOptions);
@@ -102,10 +108,7 @@ module.exports = class sendEmail {
   }
 
   async sendResetPassword() {
-    await this._send(
-      `resetPasswordEmail`,
-      `Your Requested Password Reset Token (Valid For Only 15 Minutes)`,
-    );
+    await this._send(`resetPasswordEmail`, `Your Requested Password Reset Token (Valid For Only 15 Minutes)`);
   }
   // Send Email
 };

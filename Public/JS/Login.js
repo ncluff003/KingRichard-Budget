@@ -13,14 +13,7 @@ export const login = async (username, password) => {
       url: `/users/login`,
       data: qs.stringify(options),
     });
-    console.log(response);
-    // if ((response.data.status = 'Success')) {
-    // await axios({
-    //   method: `GET`,
-    //   url: `/users/login`,
-    //   data: qs.stringify(options),
-    // });
-    // }
+    if (response.statusText === `OK`) alert(response, response.data, response.data.user);
   } catch (error) {
     console.log(error);
   }
