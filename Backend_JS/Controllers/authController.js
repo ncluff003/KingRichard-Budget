@@ -42,9 +42,63 @@ const signToken = (id) => {
   });
 };
 
+const createAndSendToken = (user, statusCode, method, request, response, template, title, optionalData, status, message) => {
+  const token = signToken(user.id);
+  const cookieOptions = {
+    expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000),
+    // secure: true, - This is only meant for https connections.
+    httpOnly: true,
+  };
+  if (process.env.NODE_ENV === `production`) cookieOptions.secure = true;
+  response.cookie('JWT', token, cookieOptions);
+  if (method === `json`) {
+    response.status(statusCode).json({
+      status: `${status}`,
+      message: `${message}`,
+    });
+  }
+  if (method === `render`) {
+    response.status(statusCode).render(`${template}`, {
+      title: title,
+      token,
+      data: {
+        user: user,
+        ...optionalData,
+      },
+    });
+  }
+};
+
 ////////////////////////////////////////////
 //  Exported Controllers
 
+// UPDATE USER PASSWORD
+exports.updateMyPassword = catchAsync(async (request, response, next) => {
+  const user = await User.findById(request.user.id).select('+password');
+
+  if (!(await user.correctPassword(request.body.currentPassword, user.password))) {
+    return next(new AppError(`Your current password is wrong.`, 401));
+  }
+
+  user.password = request.body.newPassword;
+  user.passwordConfirmed = request.body.newPasswordConfirmed;
+  await user.save();
+
+  createAndSendToken(user, 200, `render`, request, response, `loggedIn`, `King Richard | Home`, { calendar: Calendar });
+});
+
+// RESTRICTING ROUTES AS NECESSARY TO CERTAIN ROLES
+exports.restrictTo = (...roles) => {
+  return (request, response, next) => {
+    // NOTES
+    if (!roles.includes(request.user.role)) {
+      return next(new AppError(`You do not have permission to perform this action`, 403));
+    }
+  };
+  next();
+};
+
+// PROTECTING ROUTES TO BE SURE THE USER IS LOGGED IN
 exports.protect = catchAsync(async (request, response, next) => {
   // 1) Getting token and check of it's there
   let token;
@@ -76,41 +130,31 @@ exports.protect = catchAsync(async (request, response, next) => {
 
   // GRANT ACCESS TO PROTECTED ROUTE
   request.user = currentUser;
+  request.userBody = request.body;
   next();
 });
 
-/*
-  What is my issue?
-    Honestly, over my response, it returns the html in response.data, but does not render it.
-*/
+// LOGGING IN
 exports.login = catchAsync(async (request, response, next) => {
   const { loginUsername, loginPassword } = request.body;
   const username = loginUsername;
   const password = loginPassword;
-  console.log(loginUsername, loginPassword, username, password);
+  console.log(username, password);
 
   // Check if Username & Password Exist
   if (!username || !password) return next(new AppError(`Please provide username and password!`), 400);
   // Check if User exists right along with Username & Password is correct.
   const user = await User.findOne({ username }).select('+password');
-  console.log(user);
 
-  if (!user || !(await user.correctPassword(password, user.password)))
-    return next(new AppError(`Incorrect username or password`), 401);
+  if (!user || !(await user.correctPassword(password, user.password))) return next(new AppError(`Incorrect username or password`), 401);
 
-  const token = signToken(user._id);
-  console.log(token);
-
-  response.status(200).render(`loggedIn`, {
-    title: `King Richard | Home`,
-    token,
-    data: {
-      user: user,
-      calendar: Calendar,
-    },
-  });
+  // REACTIVATE USER IF INACTIVE
+  // if (user.active === false) user.active = true;
+  // user.save();
+  createAndSendToken(user, 200, `render`, request, response, `loggedIn`, `King Richard | Home`, { calendar: Calendar });
 });
 
+// VALIDATING USER INPUT FOR SIGNING UP
 exports.validateSignup = catchAsync(async (request, response, next) => {
   const formBody = request.body;
   console.log(request.body);
@@ -119,8 +163,7 @@ exports.validateSignup = catchAsync(async (request, response, next) => {
   if (!Validate.isUsername(formBody.username))
     return next(new AppError(`Username must start with a capital and contain letters and/or numbers..`, 400));
   if (!Validate.isEmail(formBody.email)) return next(new AppError(`Please provide a valid email address.`, 400));
-  if (!Validate.isEmail(formBody.emailConfirmed))
-    return next(new AppError(`Please provide a valid email address.`, 400));
+  if (!Validate.isEmail(formBody.emailConfirmed)) return next(new AppError(`Please provide a valid email address.`, 400));
   if (!Validate.is_Eight_Character_One_Upper_Lower_Number_Special(formBody.password))
     return next(
       new AppError(
@@ -139,6 +182,7 @@ exports.validateSignup = catchAsync(async (request, response, next) => {
   next();
 });
 
+// SIGN UP VALIDATED USERS
 exports.signup = catchAsync(async (request, response, next) => {
   const formBody = request.body;
   const newUser = await User.create({
@@ -154,26 +198,14 @@ exports.signup = catchAsync(async (request, response, next) => {
   const token = signToken(newUser._id);
   console.log(newUser.id);
 
-  // response.status(201).json({
-  //   token,
-  //   data: {
-  //     user: newUser,
-  //     calendar: Calendar,
-  //   },
-  // });
-
   await new sendEmail(newUser).sendWelcome();
 
-  response.status(201).render(`loggedIn`, {
-    title: `King Richard | Home`,
-    token,
-    data: {
-      user: newUser,
-      calendar: Calendar,
-    },
+  createAndSendToken(newUser, 201, `render`, request, response, `loggedIn`, `King Richard | Home`, {
+    calendar: Calendar,
   });
 });
 
+// RESET USERS PASSWORD IF FORGOTTEN
 exports.resetPassword = catchAsync(async (request, response, next) => {
   console.log(request.body);
   // Get User Based On Token
@@ -204,6 +236,7 @@ exports.resetPassword = catchAsync(async (request, response, next) => {
   });
 });
 
+// RENDERING PASSWORD RESET FORM
 exports.renderPasswordReset = catchAsync(async (request, response, next) => {
   console.log(request.params);
   const resetToken = request.params.token;
@@ -222,7 +255,7 @@ exports.renderPasswordReset = catchAsync(async (request, response, next) => {
   console.log(`I ran again!`);
 });
 
-// I will need to put this as part of the login form.
+// SENDING EMAIL WITH LINK TO RESET PASSWORD UPON USER REQUESTING IT AFTER FORGETTING THEIR PASSWORD
 exports.forgotPassword = catchAsync(async (request, response, next) => {
   const email = request.body.forgottenEmail;
   const user = await User.findOne({ email });

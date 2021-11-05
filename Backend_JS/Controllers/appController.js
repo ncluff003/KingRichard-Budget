@@ -3,12 +3,14 @@
 
 ////////////////////////////////////////////
 //  Third Party Modules
-
+const dotenv = require('dotenv');
+const jwt = require(`jsonwebtoken`);
 ////////////////////////////////////////////
 //  Third Party Module Instances
 
 ////////////////////////////////////////////
 //  Third Party Middleware
+const crypto = require('crypto');
 
 ////////////////////////////////////////////
 //  Third Party Config Files
@@ -23,6 +25,36 @@ const AppError = require(`./../Utilities/appError`);
 
 ////////////////////////////////////////////
 //  My Modules
+const Calendar = require(`./../Utilities/Calendar`);
+
+////////////////////////////////////////////
+//  MY FUNCTIONS
+
+const signToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN,
+  });
+};
+
+const createAndSendToken = (user, statusCode, method, request, response, template, title, optionalData, status, message) => {
+  const token = signToken(user.id);
+  if (method === `json`) {
+    return response.status(statusCode).json({
+      status: `${status}`,
+      message: `${message}`,
+    });
+  }
+  if (method === `render`) {
+    return response.status(statusCode).render(`${template}`, {
+      title: title,
+      token,
+      data: {
+        user: user,
+        ...optionalData,
+      },
+    });
+  }
+};
 
 ////////////////////////////////////////////
 //  Exported Controllers
@@ -33,6 +65,12 @@ exports.renderApp = catchAsync(async (request, response) => {
     errorMessage: '',
     successMessage: '',
   });
+});
+
+exports.renderAppLoggedIn = catchAsync(async (request, response) => {
+  const user = request.user.id;
+  console.log(user);
+  createAndSendToken(user, 200, `render`, request, response, `loggedIn`, `King Richard | Home`, { calendar: Calendar });
 });
 
 exports.introduceMe = catchAsync(async (request, response) => {

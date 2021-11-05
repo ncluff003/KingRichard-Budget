@@ -25,12 +25,20 @@ section.unique-profile-content-container.unique-profile-content-container__perso
       div.personal-information-form__button--lds 
         i.fas.fa-place-of-worship.personal-information-form__button__icon
         p.personal-information-form__button__text Latter Day Saint?
-      section.personal-information-form__toggle-switch
-        section.personal-information-form__toggle-switch__glow
-        section.personal-information-form__toggle-switch__switch 
-        p.personal-information-form__toggle-switch__text--no NO
-        p.personal-information-form__toggle-switch__text--yes YES
-      i.fas.fa-info-circle.personal-information-form__icon
+      if !data.user.latterDaySaint
+        section.personal-information-form__toggle-switch
+          section.personal-information-form__toggle-switch__glow
+          section.personal-information-form__toggle-switch__switch 
+          p.personal-information-form__toggle-switch__text--no NO
+          p.personal-information-form__toggle-switch__text--yes YES
+        i.fas.fa-info-circle.personal-information-form__icon
+      else
+        section.personal-information-form__toggle-switch.personal-information-form__toggle-switch--toggled
+          section.personal-information-form__toggle-switch__glow.personal-information-form__toggle-switch__glow--lit-up
+          section.personal-information-form__toggle-switch__switch.personal-information-form__toggle-switch__switch--toggled.personal-information-form__toggle-switch__switch--toggled-full
+          p.personal-information-form__toggle-switch__text--no.personal-information-form__toggle-switch__text--no--repositioned.personal-information-form__toggle-switch__text--no--toggled.personal-information-form__toggle-switch__text--no--removed NO
+          p.personal-information-form__toggle-switch__text--yes.personal-information-form__toggle-switch__text--yes--displayed.personal-information-form__toggle-switch__text--yes--toggled YES
+        i.fas.fa-info-circle.personal-information-form__icon
     section.personal-information-form__form-section.r__personal-information-form__form-section
       button.personal-information-form__button__save
         i.fas.fa-id-card.personal-information-form__button__save__icon--save

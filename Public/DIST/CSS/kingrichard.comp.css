@@ -34052,6 +34052,7 @@ html {
 .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .personal-information-form__form-section--comms .personal-information-form__toggle-switch__text--yes--toggled,
 .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .communications-form__form-section--lds .personal-information-form__toggle-switch__text--yes--toggled,
 .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .communications-form__form-section--comms .personal-information-form__toggle-switch__text--yes--toggled {
+  display: flex;
   opacity: 1;
 }
 .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section--lds .personal-information-form__toggle-switch__switch--toggled, .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section--comms .personal-information-form__toggle-switch__switch--toggled,
@@ -34074,6 +34075,8 @@ html {
 .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .communications-form__form-section--comms .personal-information-form__toggle-switch__switch--toggled-full {
   transform: translate(0, 0);
   width: 100%;
+  border: 0.3rem groove #38d927;
+  background-color: rgba(56, 217, 39, 0.8);
   transform-origin: right;
 }
 .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section--lds .personal-information-form__toggle-switch__switch--toggled-full:hover, .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form__form-section--comms .personal-information-form__toggle-switch__switch--toggled-full:hover,

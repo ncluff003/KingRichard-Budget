@@ -98,6 +98,34 @@ function _createClass(Constructor, protoProps, staticProps) {
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/defineProperty.js ***!
+  \*******************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ _defineProperty; }
+/* harmony export */ });
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/regenerator/index.js":
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
@@ -2349,6 +2377,7 @@ profileSectionButtons.forEach(function (psb) {
     });
 
     if (clicked.closest('button') === profileSectionButtons[0]) {
+      (0,_Update_User__WEBPACK_IMPORTED_MODULE_2__.getSomePersonals)();
       profileSectionRows.forEach(function (row) {
         row.style.display = 'none';
       });
@@ -2409,10 +2438,17 @@ profileSectionButtons.forEach(function (psb) {
               switch (_context.prev = _context.next) {
                 case 0:
                   e.preventDefault();
+
+                  if (ldsSwitchToggle.classList.contains("personal-information-form__toggle-switch__switch--toggled-full")) {
+                    isLatterDaySaint = true;
+                  } else {
+                    isLatterDaySaint = false;
+                  }
+
                   firstname = personalFormEditInputs[0].value;
                   lastname = personalFormEditInputs[1].value;
                   username = personalFormEditInputs[2].value;
-                  _context.next = 6;
+                  _context.next = 7;
                   return (0,_Update_User__WEBPACK_IMPORTED_MODULE_2__.updateMe)({
                     firstname: firstname,
                     lastname: lastname,
@@ -2420,7 +2456,7 @@ profileSectionButtons.forEach(function (psb) {
                     latterDaySaint: isLatterDaySaint
                   });
 
-                case 6:
+                case 7:
                 case "end":
                   return _context.stop();
               }
@@ -2450,6 +2486,7 @@ profileSectionButtons.forEach(function (psb) {
     }
 
     if (clicked.closest('button') === profileSectionButtons[2]) {
+      (0,_Update_User__WEBPACK_IMPORTED_MODULE_2__.getSomePersonals)();
       profileSectionRows.forEach(function (row) {
         row.style.display = 'none';
       });
@@ -2465,7 +2502,7 @@ profileSectionButtons.forEach(function (psb) {
           communicationFormEditInputs[i].toggleAttribute('readonly');
         });
 
-        if (i === 3) {
+        if (i === 2) {
           communicationFormEditInputs[i].addEventListener('keyup', function (e) {
             e.preventDefault();
             var value = communicationFormEditInputs[i].value;
@@ -2473,15 +2510,23 @@ profileSectionButtons.forEach(function (psb) {
           });
         }
 
-        if (i === 4) {
+        if (i === 3) {
           communicationFormEditInputs[i].addEventListener('keyup', function (e) {
             e.preventDefault();
             var value = communicationFormEditInputs[i].value;
             communicationFormEditInputs[i].value = formatPhoneNumber(value);
           });
         }
+      }); // Get User Communication Preference
+
+      var _saveButton = document.querySelector('.communications-form__button__save');
+
+      _saveButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        var email = communicationFormEditInputs[0].value;
+        var newEmail = communicationFormEditInputs[1].value;
+        var commSwitch = document.getElementById('commSwitch');
       });
-      var email = document.getElementsByClassName('communications-form__form-section__input-container__input')[0].value; // Get User Communication Preference
 
       return;
     }
@@ -2576,46 +2621,46 @@ var login = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getSomePersonals": function() { return /* binding */ getSomePersonals; },
 /* harmony export */   "updatePassword": function() { return /* binding */ updatePassword; },
 /* harmony export */   "updateMe": function() { return /* binding */ updateMe; }
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_4__);
+
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 
 
 
-var updatePassword = /*#__PURE__*/function () {
-  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(password, passwordConfirmed) {
+var getSomePersonals = /*#__PURE__*/function () {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__.default)( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee() {
     var response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_2___default()({
-              method: "PATCH",
-              url: "/users/resetPassword/".concat(window.location.href.split('/')[5]),
-              data: qs__WEBPACK_IMPORTED_MODULE_3___default().stringify({
-                password: password,
-                passwordConfirmed: passwordConfirmed
-              })
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
+              method: "GET",
+              url: "/users/me"
             });
 
           case 3:
             response = _context.sent;
-
-            if (response.data.status === 'Success') {
-              window.location.assign("/");
-            }
-
-            console.log(response);
+            console.log(response, response[0]);
+            if (response[0] === "Email") console.log(true);
             _context.next = 11;
             break;
 
@@ -2632,43 +2677,36 @@ var updatePassword = /*#__PURE__*/function () {
     }, _callee, null, [[0, 8]]);
   }));
 
-  return function updatePassword(_x, _x2) {
+  return function getSomePersonals() {
     return _ref.apply(this, arguments);
   };
 }();
-var updateMe = /*#__PURE__*/function () {
-  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2() {
-    var _len,
-        options,
-        _key,
-        response,
-        _args2 = arguments;
-
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
+var updatePassword = /*#__PURE__*/function () {
+  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__.default)( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee2(password, passwordConfirmed) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.prev = 0;
-
-            for (_len = _args2.length, options = new Array(_len), _key = 0; _key < _len; _key++) {
-              options[_key] = _args2[_key];
-            }
-
-            console.log(options);
-            _context2.next = 5;
-            return axios__WEBPACK_IMPORTED_MODULE_2___default()({
+            _context2.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "PATCH",
-              url: "/users/updateMe",
-              data: qs__WEBPACK_IMPORTED_MODULE_3___default().stringify({
-                firstname: options.firstname,
-                lastname: options.lastname,
-                username: options.username,
-                latterDaySaint: options.latterDaySaint
+              url: "/users/resetPassword/".concat(window.location.href.split('/')[5]),
+              data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify({
+                password: password,
+                passwordConfirmed: passwordConfirmed
               })
             });
 
-          case 5:
+          case 3:
             response = _context2.sent;
+
+            if (response.data.status === 'Success') {
+              window.location.assign("/");
+            }
+
+            console.log(response);
             _context2.next = 11;
             break;
 
@@ -2685,8 +2723,47 @@ var updateMe = /*#__PURE__*/function () {
     }, _callee2, null, [[0, 8]]);
   }));
 
-  return function updateMe() {
+  return function updatePassword(_x, _x2) {
     return _ref2.apply(this, arguments);
+  };
+}();
+var updateMe = /*#__PURE__*/function () {
+  var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__.default)( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee3(options) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            console.log(options);
+            _context3.next = 4;
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
+              method: "PATCH",
+              url: "/users/updateMe",
+              data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify(_objectSpread({}, options))
+            });
+
+          case 4:
+            response = _context3.sent;
+            console.log(response);
+            _context3.next = 11;
+            break;
+
+          case 8:
+            _context3.prev = 8;
+            _context3.t0 = _context3["catch"](0);
+            console.log(_context3.t0);
+
+          case 11:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3, null, [[0, 8]]);
+  }));
+
+  return function updateMe(_x3) {
+    return _ref3.apply(this, arguments);
   };
 }();
 

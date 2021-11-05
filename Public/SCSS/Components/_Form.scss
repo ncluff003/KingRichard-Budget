@@ -343,6 +343,7 @@
                             display: flex;
                           }
                           &--toggled {
+                            display: flex;
                             opacity: 1;
                           }
                         }
@@ -353,6 +354,8 @@
                           &-full {
                             transform: translate(0, 0);
                             width: 100%;
+                            border: 0.3rem groove $tertiaryColor;
+                            background-color: rgba($tertiaryColor, 0.8);
                             transform-origin: right;
                             &:hover {
                               cursor: pointer;

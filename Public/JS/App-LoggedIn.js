@@ -1,4 +1,4 @@
-import { updateMe } from './Update-User';
+import { getSomePersonals, updateMe } from './Update-User';
 
 // Opening The Profile Page
 const userButton = document.querySelector('.navigation__landing-navigation__user');
@@ -23,9 +23,7 @@ let accountManagement = false;
 const profileSectionRows = document.querySelectorAll('.user-profile-card__user-info__row');
 const profileSectionButtons = document.querySelectorAll('.user-profile-card__user-info__row__button');
 const userProfileSection = document.querySelector('.user-profile-card__user-info__profile-option-container');
-const userProfileSectionHeader = document.querySelector(
-  '.user-profile-card__user-info__profile-option-container__header',
-);
+const userProfileSectionHeader = document.querySelector('.user-profile-card__user-info__profile-option-container__header');
 const personalInformationContainer = document.querySelector(
   '.unique-profile-content-container.unique-profile-content-container__personal-information',
 );
@@ -51,9 +49,7 @@ const ldsInfoModal = document.querySelector('.personal-information-modal');
 const ldsInfoModalClose = document.querySelector('.personal-information-modal__close');
 
 // Password Management Variables
-const passwordManagementButtons = document.querySelectorAll(
-  '.unique-profile-content-container__password-management__button',
-);
+const passwordManagementButtons = document.querySelectorAll('.unique-profile-content-container__password-management__button');
 const changePasswordForm = document.querySelector('.change-password-form');
 
 const formatPhoneNumber = (value) => {
@@ -90,6 +86,7 @@ profileSectionButtons.forEach((psb) => {
       });
     });
     if (clicked.closest('button') === profileSectionButtons[0]) {
+      getSomePersonals();
       profileSectionRows.forEach((row) => {
         row.style.display = 'none';
       });
@@ -103,9 +100,7 @@ profileSectionButtons.forEach((psb) => {
       const ldsSwitchToggleYes = document.querySelector('.personal-information-form__toggle-switch__text--yes');
       const ldsSwitchToggleGlow = document.querySelector('.personal-information-form__toggle-switch__glow');
       const personalFormEditButtons = document.querySelectorAll('.personal-information-form__button');
-      const personalFormEditInputs = document.querySelectorAll(
-        '.personal-information-form__form-section__input-container__input',
-      );
+      const personalFormEditInputs = document.querySelectorAll('.personal-information-form__form-section__input-container__input');
 
       // Edit Inputs Activation
       personalFormEditButtons.forEach((b, i) => {
@@ -150,6 +145,11 @@ profileSectionButtons.forEach((psb) => {
       const saveButton = document.querySelector('.personal-information-form__button__save');
       saveButton.addEventListener('click', async (e) => {
         e.preventDefault();
+        if (ldsSwitchToggle.classList.contains(`personal-information-form__toggle-switch__switch--toggled-full`)) {
+          isLatterDaySaint = true;
+        } else {
+          isLatterDaySaint = false;
+        }
         const firstname = personalFormEditInputs[0].value;
         const lastname = personalFormEditInputs[1].value;
         const username = personalFormEditInputs[2].value;
@@ -176,6 +176,7 @@ profileSectionButtons.forEach((psb) => {
       return;
     }
     if (clicked.closest('button') === profileSectionButtons[2]) {
+      getSomePersonals();
       profileSectionRows.forEach((row) => {
         row.style.display = 'none';
       });
@@ -184,15 +185,20 @@ profileSectionButtons.forEach((psb) => {
       userProfileSection.style.display = 'flex';
 
       const communicationFormEditButtons = document.querySelectorAll('.communications-form__button');
-      const communicationFormEditInputs = document.querySelectorAll(
-        '.communications-form__form-section__input-container__input',
-      );
+      const communicationFormEditInputs = document.querySelectorAll('.communications-form__form-section__input-container__input');
       // Edit Inputs Activation
       communicationFormEditButtons.forEach((b, i) => {
         b.addEventListener('click', (e) => {
           e.preventDefault();
           communicationFormEditInputs[i].toggleAttribute('readonly');
         });
+        if (i === 2) {
+          communicationFormEditInputs[i].addEventListener('keyup', (e) => {
+            e.preventDefault();
+            let value = communicationFormEditInputs[i].value;
+            communicationFormEditInputs[i].value = formatPhoneNumber(value);
+          });
+        }
         if (i === 3) {
           communicationFormEditInputs[i].addEventListener('keyup', (e) => {
             e.preventDefault();
@@ -200,17 +206,15 @@ profileSectionButtons.forEach((psb) => {
             communicationFormEditInputs[i].value = formatPhoneNumber(value);
           });
         }
-        if (i === 4) {
-          communicationFormEditInputs[i].addEventListener('keyup', (e) => {
-            e.preventDefault();
-            let value = communicationFormEditInputs[i].value;
-            communicationFormEditInputs[i].value = formatPhoneNumber(value);
-          });
-        }
       });
-      const email = document.getElementsByClassName('communications-form__form-section__input-container__input')[0]
-        .value;
       // Get User Communication Preference
+      const saveButton = document.querySelector('.communications-form__button__save');
+      saveButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        const email = communicationFormEditInputs[0].value;
+        const newEmail = communicationFormEditInputs[1].value;
+        const commSwitch = document.getElementById('commSwitch');
+      });
       return;
     }
     if (clicked.closest('button') === profileSectionButtons[3]) {
