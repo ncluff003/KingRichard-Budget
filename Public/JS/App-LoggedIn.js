@@ -1,4 +1,4 @@
-import { getSomePersonals, updateMe } from './Update-User';
+import { getSomePersonals, updateMe, deleteMe } from './Update-User';
 
 // Opening The Profile Page
 const userButton = document.querySelector('.navigation__landing-navigation__user');
@@ -186,20 +186,28 @@ profileSectionButtons.forEach((psb) => {
 
       const communicationFormEditButtons = document.querySelectorAll('.communications-form__button');
       const communicationFormEditInputs = document.querySelectorAll('.communications-form__form-section__input-container__input');
+      const newEmailConfirmationSection = document.getElementById('emailConfirmedSection');
+
+      communicationFormEditInputs[1].addEventListener('keyup', (e) => {
+        !communicationFormEditInputs[1].value
+          ? (newEmailConfirmationSection.style.display = 'none')
+          : (newEmailConfirmationSection.style.display = `flex`);
+        console.log(newEmailConfirmationSection);
+      });
       // Edit Inputs Activation
       communicationFormEditButtons.forEach((b, i) => {
         b.addEventListener('click', (e) => {
           e.preventDefault();
           communicationFormEditInputs[i].toggleAttribute('readonly');
         });
-        if (i === 2) {
+        if (i === 3) {
           communicationFormEditInputs[i].addEventListener('keyup', (e) => {
             e.preventDefault();
             let value = communicationFormEditInputs[i].value;
             communicationFormEditInputs[i].value = formatPhoneNumber(value);
           });
         }
-        if (i === 3) {
+        if (i === 4) {
           communicationFormEditInputs[i].addEventListener('keyup', (e) => {
             e.preventDefault();
             let value = communicationFormEditInputs[i].value;
@@ -208,12 +216,34 @@ profileSectionButtons.forEach((psb) => {
         }
       });
       // Get User Communication Preference
+      const commPreferenceSwitch = document.getElementById('commSwitch');
+      let commPreference = 'Email';
+      commPreferenceSwitch.addEventListener('click', (e) => {
+        console.log(commPreferenceSwitch);
+        commPreferenceSwitch.classList.toggle('communications-form__comm-switch--text-preference');
+      });
       const saveButton = document.querySelector('.communications-form__button__save');
       saveButton.addEventListener('click', (e) => {
         e.preventDefault();
-        const email = communicationFormEditInputs[0].value;
-        const newEmail = communicationFormEditInputs[1].value;
-        const commSwitch = document.getElementById('commSwitch');
+        let newEmail, newEmailConfirmed;
+        newEmail = communicationFormEditInputs[1].value;
+        newEmailConfirmed = communicationFormEditInputs[2].value;
+        if (!communicationFormEditInputs[1].value && !communicationFormEditInputs[2].value) {
+          newEmail = communicationFormEditInputs[0].value;
+          newEmailConfirmed = communicationFormEditInputs[0].value;
+        }
+        if (commPreferenceSwitch.classList.contains('communications-form__comm-switch--text-preference')) {
+          commPreference = `Text`;
+        } else {
+          commPreference = `Email`;
+        }
+        console.log(newEmail, newEmailConfirmed);
+        const communicationPreference = commPreference;
+        updateMe({
+          email: newEmail,
+          emailConfirmed: newEmailConfirmed,
+          communicationPreference: communicationPreference,
+        });
       });
       return;
     }
@@ -224,6 +254,12 @@ profileSectionButtons.forEach((psb) => {
       accountManagementContainer.style.display = 'flex';
       userProfileSectionHeader.textContent = clicked.closest('button').textContent;
       userProfileSection.style.display = 'flex';
+
+      const accountManagementButtons = document.querySelectorAll('.unique-profile-content-container__account-management__button');
+      accountManagementButtons[1].addEventListener('click', (e) => {
+        e.preventDefault();
+        deleteMe();
+      });
       return;
     }
   });

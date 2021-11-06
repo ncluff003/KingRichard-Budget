@@ -34263,6 +34263,12 @@ html {
   background-color: rgba(56, 217, 39, 0.9);
   content: "";
 }
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .personal-information-form #emailConfirmedSection,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__personal-information .communications-form #emailConfirmedSection,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .personal-information-form #emailConfirmedSection,
+.master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .unique-profile-content-container.unique-profile-content-container__communications .communications-form #emailConfirmedSection {
+  display: none;
+}
 .master-flex-container .master-grid-container .user-profile-background .user-profile-card__user-info__profile-option-container__content .personal-information-modal {
   position: absolute;
   height: 60%;

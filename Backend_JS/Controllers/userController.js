@@ -112,7 +112,6 @@ exports.deactivateMe = catchAsync(async (request, response, next) => {
     status: `Success`,
     data: null,
   });
-  window.location.assign('/');
 });
 
 exports.deleteMe = catchAsync(async (request, response, next) => {
@@ -122,5 +121,4 @@ exports.deleteMe = catchAsync(async (request, response, next) => {
     status: `Success`,
     data: null,
   });
-  window.location.assign('/');
 });

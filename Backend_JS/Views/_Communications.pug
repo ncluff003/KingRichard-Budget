@@ -14,6 +14,13 @@ section.unique-profile-content-container.unique-profile-content-container__commu
       section.communications-form__form-section__input-container.r__communications-form__form-section__input-container
         input.communications-form__form-section__input-container__input.communications-form__form-section__input-container__input#newEmail(type="email" name="newEmail" placeholder="New Email" readonly="true")
         label.communications-form__form-section__input-container__label#newEmailLabel(for="newEmail") Enter Your New Email
+    section.communications-form__form-section.r__communications-form__form-section#emailConfirmedSection
+      button.communications-form__button 
+        i.fas.fa-user-edit.communications-form__button__icon
+        p.communications-form__button__text Edit
+      section.communications-form__form-section__input-container.r__communications-form__form-section__input-container
+        input.communications-form__form-section__input-container__input.communications-form__form-section__input-container__input#newEmailConfirmed(type="email" name="newEmailConfirmed" placeholder="New Email Confirmation" readonly="true")
+        label.communications-form__form-section__input-container__label#newEmailConfirmedLabel(for="newEmailConfirmed") Please Confirm Your New Email
     section.communications-form__form-section.r__communications-form__form-section
       button.communications-form__button 
         i.fas.fa-user-edit.communications-form__button__icon
@@ -32,11 +39,12 @@ section.unique-profile-content-container.unique-profile-content-container__commu
       div.communications-form__button--comms
         i.fas.fa-mobile-alt.communications-form__button__icon
         p.communications-form__button__text Communication Preference?
-      - let commPreference = `${data.user.communicationPreference}`;
+      - let commPreference = data.user.communicationPreference;
       - let textPreferred = false;
-      - if (data.user.communicationPreference === `Email`) textPreferred = false;
-      if !textPreferred
-        section.communications-form__comm-switch#commSwitch
+      - if (commPreference === `Email`) textPreferred = false;
+      - if (commPreference === `Text`) textPreferred = true;
+      if textPreferred
+        section.communications-form__comm-switch.communications-form__comm-switch--text-preference#commSwitch
           section.communications-form__comm-switch--email 
             i.far.fa-envelope.communications-form__comm-switch--email__icon
             p.communications-form__comm-switch--email__text Email 
@@ -44,7 +52,7 @@ section.unique-profile-content-container.unique-profile-content-container__commu
             i.fas.fa-mobile-alt.communications-form__comm-switch--text__icon
             p.communications-form__comm-switch--text__text Text
       else 
-        section.communications-form__comm-switch.communications-form__comm-switch--text-preference#commSwitch
+        section.communications-form__comm-switch#commSwitch
           section.communications-form__comm-switch--email 
             i.far.fa-envelope.communications-form__comm-switch--email__icon
             p.communications-form__comm-switch--email__text Email 

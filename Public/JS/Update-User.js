@@ -35,7 +35,7 @@ export const updatePassword = async (password, passwordConfirmed) => {
 
 export const updateMe = async (options) => {
   try {
-    console.log(options);
+    console.log(options, typeof options.emailConfirmed);
     const response = await axios({
       method: `PATCH`,
       url: `/users/updateMe`,
@@ -44,6 +44,17 @@ export const updateMe = async (options) => {
       }),
     });
     console.log(response);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteMe = async () => {
+  try {
+    const response = await axios({
+      method: `DELETE`,
+      url: `/users/deleteMe`,
+    });
   } catch (error) {
     console.log(error);
   }

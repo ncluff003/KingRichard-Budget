@@ -30,7 +30,7 @@ router.route(`/forgotPassword`).post(authController.forgotPassword, appControlle
 router.route(`/resetPassword/:token`).get(authController.renderPasswordReset).patch(authController.resetPassword);
 router.route(`/updateMe`).patch(authController.protect, userController.updateMe);
 router.route(`/deactivateMe`).delete(userController.deactivateMe);
-router.route(`/deleteMe`).delete(userController.deleteMe);
+router.route(`/deleteMe`).delete(authController.protect, userController.deleteMe);
 // router.route(`/about`).get(appController.introduceMe);
 // router.route(`/projects`).get(appController.viewMyWork);
 // router.route(`/contact`).get(appController.contactMe).post(messageController.validateEmail, messageController.emailMe);

@@ -34,12 +34,6 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     required: [true, `Every user must confirm their email address`],
     validateEmail: [validator.isEmail, `Please repeat your valid email above.`],
-    validate: {
-      validator: function (el) {
-        return el === this.email;
-      },
-      message: `The emails are not the same.`,
-    },
   },
   phoneNumber: {
     type: String,

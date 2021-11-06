@@ -1,41 +1,17 @@
-//- Email template adapted from https://github.com/leemunroe/responsive-html-email-template
-//- Converted from HTML using https://html2pug.now.sh/
-
 doctype html
-html
+html(style="position: relative; font-family: MADE Tommy Soft, Verdana; margin: 0; padding: 0; box-sizing: inherit;")
   head
     meta(name='viewport', content='width=device-width')
     meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
     title= subject
 
     include _style
-  body
-    table.body(role='presentation', border='0', cellpadding='0', cellspacing='0')
-      tbody
-        tr
-          td
-          td.container
-            .content
-              // START CENTERED WHITE CONTAINER
-              table.main(role='presentation')
+  body(style="position: relative; width: 100%; margin: 0; padding: 0;")
+    table(border = '0', cellpadding = '0', cellspacing = '0' style="position: relative; margin: 0; padding: 0; margin: 0 auto; max-width: 600px; width: 600px;") 
+      thead.email-header(style="position: relative; display: block; margin: 0; padding: 0; padding: 20px; background-color: #CCCCCC33; border: 3px groove #BBBBBB77; border-bottom: none; border-top-left-radius: 10px; border-top-right-radius: 10px;") 
+        include _header
+      tbody.email-body(style="position: relative; display: block; margin: 0; padding: 0; border: 3px groove #BBBBBB77; border-top: none; border-bottom: none; background-color: #CCCCCC33;") 
+        block content
+      tfoot.email-footer(style="position: relative; display: block; margin: 0; padding: 0; padding: 50px; background-color: #CCCCCC33; border: 3px groove #BBBBBB77; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top: none;  text-align: center;")
+        include _footer
 
-                // START MAIN AREA
-                tbody
-                  tr
-                    td.wrapper
-                      table(role='presentation', border='0', cellpadding='0', cellspacing='0')
-                        tbody
-                          tr
-                            td
-                              // CONTENT
-                              block content
-
-              // START FOOTER
-              .footer
-                table(role='presentation', border='0', cellpadding='0', cellspacing='0')
-                  tbody
-                    tr
-                      td.content-block
-                        span.apple-link King Richard &copy; 2021
-                        p.company-slogan Live Like Royalty
-          //- td  

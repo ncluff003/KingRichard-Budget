@@ -1,20 +1,7 @@
 extends baseEmail
 
 block content
-  section.company-header
-    div.company-header__logo.welcome-company-header__logo
-      img.company-header__logo-image(src="cid:company-logo" alt="King Richard Logo")
-      p.company-header__logo-text King Richard
-  p.salutations #{greeting} #{firstName} #{lastName},
-  section.content-section
-    p.opening-statement Welcome to the King Richard Royal Family! 💰💰💰
-    table.btn.btn-primary(role='presentation', border='0', cellpadding='0', cellspacing='0')
-      tbody
-        tr
-          td(align='left')
-            table(role='presentation', border='0', cellpadding='0', cellspacing='0')
-              tbody
-                tr
-                  td
-  section.disclaimer.welcome-disclaimer
-    p We hope you are not Robin Hood! 😉 😆 👍
+  tr.salutations-container(style="position: relative; display: block; font-size: 20px; color: #333333;" colspan="2")
+    td.salutations-text(style="padding: 20px 10px 10px 30px;")= `${greeting} ${firstName} ${lastName},`
+  tr.message-container(style="postion: relative; display: block; width: 100%; font-size: 20px;" colspan="2")
+    td.message(style="position: relative; padding: 40px; text-indent: 20px; text-align: center;")= `Welcome to the King Richard family! 😃 👪 We hope you both find using our budgeting app enjoyable AND rewarding for you and those you love.`
