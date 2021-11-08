@@ -1,4 +1,4 @@
-import { getSomePersonals, updateMe, deleteMe } from './Update-User';
+import { getSomePersonals, updateMe, updateMyPassword, deleteMe } from './Update-User';
 
 // Opening The Profile Page
 const userButton = document.querySelector('.navigation__landing-navigation__user');
@@ -153,12 +153,13 @@ profileSectionButtons.forEach((psb) => {
         const firstname = personalFormEditInputs[0].value;
         const lastname = personalFormEditInputs[1].value;
         const username = personalFormEditInputs[2].value;
-        await updateMe({
+        const updatedUserInfo = await updateMe({
           firstname: firstname,
           lastname: lastname,
           username: username,
           latterDaySaint: isLatterDaySaint,
         });
+        console.log(updatedUserInfo);
       });
       return;
     }
@@ -172,6 +173,15 @@ profileSectionButtons.forEach((psb) => {
       passwordManagementButtons[0].addEventListener('click', (e) => {
         e.preventDefault();
         changePasswordForm.style.display = 'flex';
+        const submitNewPassword = document.querySelector('.change-password-form__button');
+        submitNewPassword.addEventListener('click', (e) => {
+          e.preventDefault();
+          const changePasswordFormInputs = document.querySelectorAll('.change-password-form__form-section__input');
+          const currentPassword = changePasswordFormInputs[0].value;
+          const newPassword = changePasswordFormInputs[1].value;
+          const newPasswordConfirmed = changePasswordFormInputs[2].value;
+          updateMyPassword(currentPassword, newPassword, newPasswordConfirmed);
+        });
       });
       return;
     }
@@ -239,10 +249,14 @@ profileSectionButtons.forEach((psb) => {
         }
         console.log(newEmail, newEmailConfirmed);
         const communicationPreference = commPreference;
+        const phone = document.getElementById('phone').value;
+        const phoneConfirmed = document.getElementById('phoneConfirmed').value;
         updateMe({
           email: newEmail,
           emailConfirmed: newEmailConfirmed,
           communicationPreference: communicationPreference,
+          phoneNumber: phone,
+          phoneNumberConfirmed: phoneConfirmed,
         });
       });
       return;

@@ -1,8 +1,10 @@
-tr(style="display: block;") 
-  th(colspan = '1', border = '0', cellpadding = '0', cellspacing = '0' style="position: relative; margin: 0; padding: 0; height: 150px; width: 50%")
-    .company-logo(style="position: relative; margin: 0; padding: 0; display: flex; color: #822aba;")
-      img.logo(src="cid:company-logo" alt="King Richard Logo" style="position: relative; margin: 0; padding: 0; margin: auto 0 auto 20px; height: auto; width: 20%;")
-      p.text(style="position: relative; margin: 0; padding: 0; margin: auto 0 auto 10px; font-size: 20px; font-family: Purely Me;") King Richard
-  th(colspan = '1', border = '0', cellpadding = '0', cellspacing = '0')
-    .email-date(style="position: relative; display: flex; justify-content: flex-end; margin: 0; padding: 0; font-size: 16px; color: #822aba;") 
-      p(style="position: relative; margin: 0; padding: 0; margin: auto 30px auto 0; color: #822aba;")= `${weekday}, ${day} ${month} ${year}`
+table.email-header(border = '0', cellpadding = '0', cellspacing = '0' style="position: relative; display: block; max-width: 600px; width: 600px; margin: 0 auto; padding: 0; border-radius: 10px 10px 0 0; border: 3px groove #BBBBBB77; border-bottom: none; background-color: #CCCCCC33; color: #333333;") 
+  tbody(style="position: relative; display: block; width: 100%;") 
+    tr.table-row(style="position: relative; display: block; text-align: center; width: 100%; padding: 20px;" colspan="3")
+      td.table-data(style="position: relative; max-width: 200px; width: 0.3%;" colspan="1")
+        img.logo(src="cid:company-logo" alt="King Richard Logo" style="position: relative; margin: 0; padding: 0; margin: auto 0 auto 20px; height: 80px; width: auto;")
+      td.table-data(style="position: relative; max-width: 200px; width: 10.3%;" colspan="1")
+        p.text(style="position: relative; margin: 0; padding: 0; margin: auto 0 auto 10px; font-size: 20px; font-family: Purely Me; color: #822aba;") King Richard
+      td.table-data(style="position: relative; max-width: 200px; width: 33.4%; padding: 0 30px 0 0" colspan="1")
+        p(style="position: relative; margin: 0; padding: 0 30px 0 0; float: right; font-size: 16px; font-family: MADE Tommy Soft, Verdana; color: #822aba;")= `${weekday}, ${day} ${month} ${year}`
+      

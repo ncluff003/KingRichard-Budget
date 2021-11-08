@@ -28,6 +28,7 @@ router.route(`/signup`).post(authController.validateSignup, authController.signu
 router.route(`/login`).post(authController.login);
 router.route(`/forgotPassword`).post(authController.forgotPassword, appController.renderApp);
 router.route(`/resetPassword/:token`).get(authController.renderPasswordReset).patch(authController.resetPassword);
+router.route(`/updateMyPassword`).post(authController.protect, authController.updateMyPassword);
 router.route(`/updateMe`).patch(authController.protect, userController.updateMe);
 router.route(`/deactivateMe`).delete(userController.deactivateMe);
 router.route(`/deleteMe`).delete(authController.protect, userController.deleteMe);
