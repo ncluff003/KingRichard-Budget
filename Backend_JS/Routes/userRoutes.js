@@ -26,6 +26,7 @@ const userController = require(`./../Controllers/userController`);
 router.route('/me').get(authController.protect, userController.getMe);
 router.route(`/signup`).post(authController.validateSignup, authController.signup);
 router.route(`/login`).post(authController.login);
+router.route(`/logout`).get(authController.logout);
 router.route(`/forgotPassword`).post(authController.forgotPassword, appController.renderApp);
 router.route(`/resetPassword/:token`).get(authController.renderPasswordReset).patch(authController.resetPassword);
 router.route(`/updateMyPassword`).post(authController.protect, authController.updateMyPassword);

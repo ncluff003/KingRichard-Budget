@@ -7,7 +7,6 @@ export const getSomePersonals = async () => {
       method: `GET`,
       url: `/users/me`,
     });
-    console.log(response, response[0]);
     if (response[0] === `Email`) console.log(true);
   } catch (error) {
     console.log(error);
@@ -56,7 +55,6 @@ export const updateMyPassword = async (currentPassword, newPassword, newPassword
 
 export const updateMe = async (options) => {
   try {
-    console.log(options, typeof options.emailConfirmed);
     const response = await axios({
       method: `PATCH`,
       url: `/users/updateMe`,
@@ -103,6 +101,9 @@ export const deleteMe = async () => {
       method: `DELETE`,
       url: `/users/deleteMe`,
     });
+    if (response.statusText === 'No Content') {
+      window.location.assign('/');
+    }
   } catch (error) {
     console.log(error);
   }

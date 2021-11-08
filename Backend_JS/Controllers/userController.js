@@ -75,12 +75,10 @@ const createAndSendToken = (user, statusCode, method, request, response, templat
 exports.getMe = catchAsync(async (request, response, next) => {
   const user = await User.findById(request.user.id);
   const userInfo = [user.communicationPreference, user.latterDaySaint];
-  console.log(userInfo);
   return userInfo;
 });
 
 exports.updateMe = catchAsync(async (request, response, next) => {
-  console.log(request.body, `Hi, I am next to the request body.`);
   // CREATE ERROR IF USER TRIES TO POST PASSWORD DATA
   if (request.body.password || request.body.passwordConfirmed) {
     return next(new AppError(`This route is not for password updates.  Please use /updateMyPassword route.`, 400));
@@ -100,8 +98,6 @@ exports.updateMe = catchAsync(async (request, response, next) => {
     'latterDaySaint',
   );
   const updatedUser = await User.findByIdAndUpdate(request.user.id, filteredBody, { new: true, runValidators: true });
-  console.log(updatedUser);
-
   createAndSendToken(updatedUser, 200, `render`, request, response, `loggedIn`, `King Richard | Home`, { calendar: Calendar });
 });
 
@@ -116,9 +112,8 @@ exports.deactivateMe = catchAsync(async (request, response, next) => {
 
 exports.deleteMe = catchAsync(async (request, response, next) => {
   await User.findByIdAndDelete(request.user.id);
-  response.status(204).render(`base`, {
-    title: `King Richard`,
-    status: `Success`,
-    data: null,
+  response.status(204).json({
+    status: 'Success',
+    message: 'Deleted',
   });
 });

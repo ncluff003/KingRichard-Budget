@@ -4232,7 +4232,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
-/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+/* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Login */ "./Public/JS/Login.js");
+
 
 
  // Opening The Profile Page
@@ -4280,19 +4281,14 @@ var formatPhoneNumber = function formatPhoneNumber(value) {
   var phoneNumberLength = phoneNumber.length;
 
   if (phoneNumberLength <= 3) {
-    console.log(phoneNumber);
     return phoneNumber;
   }
 
-  console.log(phoneNumberLength);
-
   if (phoneNumberLength >= 4 && phoneNumberLength < 7) {
-    console.log("(".concat(phoneNumber.slice(0, 3), ") ").concat(phoneNumber.slice(3, 6)));
     return "(".concat(phoneNumber.slice(0, 3), ") ").concat(phoneNumber.slice(3, 6));
   }
 
   var formattedNumber = "(".concat(phoneNumber.slice(0, 3), ") ").concat(phoneNumber.slice(3, 6), " - ").concat(phoneNumber.slice(6));
-  console.log(phoneNumber, formattedNumber);
   return formattedNumber;
 };
 
@@ -4394,9 +4390,8 @@ profileSectionButtons.forEach(function (psb) {
 
                 case 7:
                   updatedUserInfo = _context.sent;
-                  console.log(updatedUserInfo);
 
-                case 9:
+                case 8:
                 case "end":
                   return _context.stop();
               }
@@ -4447,7 +4442,6 @@ profileSectionButtons.forEach(function (psb) {
       var newEmailConfirmationSection = document.getElementById('emailConfirmedSection');
       communicationFormEditInputs[1].addEventListener('keyup', function (e) {
         !communicationFormEditInputs[1].value ? newEmailConfirmationSection.style.display = 'none' : newEmailConfirmationSection.style.display = "flex";
-        console.log(newEmailConfirmationSection);
       }); // Edit Inputs Activation
 
       communicationFormEditButtons.forEach(function (b, i) {
@@ -4476,7 +4470,6 @@ profileSectionButtons.forEach(function (psb) {
       var commPreferenceSwitch = document.getElementById('commSwitch');
       var commPreference = 'Email';
       commPreferenceSwitch.addEventListener('click', function (e) {
-        console.log(commPreferenceSwitch);
         commPreferenceSwitch.classList.toggle('communications-form__comm-switch--text-preference');
       });
 
@@ -4499,7 +4492,6 @@ profileSectionButtons.forEach(function (psb) {
           commPreference = "Email";
         }
 
-        console.log(newEmail, newEmailConfirmed);
         var communicationPreference = commPreference;
         var phone = document.getElementById('phone').value;
         var phoneConfirmed = document.getElementById('phoneConfirmed').value;
@@ -4523,6 +4515,10 @@ profileSectionButtons.forEach(function (psb) {
       userProfileSectionHeader.textContent = clicked.closest('button').textContent;
       userProfileSection.style.display = 'flex';
       var accountManagementButtons = document.querySelectorAll('.unique-profile-content-container__account-management__button');
+      accountManagementButtons[0].addEventListener('click', function (e) {
+        e.preventDefault();
+        (0,_Login__WEBPACK_IMPORTED_MODULE_3__.logout)();
+      });
       accountManagementButtons[1].addEventListener('click', function (e) {
         e.preventDefault();
         (0,_Update_User__WEBPACK_IMPORTED_MODULE_2__.deleteMe)();
@@ -4531,6 +4527,117 @@ profileSectionButtons.forEach(function (psb) {
     }
   });
 });
+
+/***/ }),
+
+/***/ "./Public/JS/Login.js":
+/*!****************************!*\
+  !*** ./Public/JS/Login.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "login": () => (/* binding */ login),
+/* harmony export */   "logout": () => (/* binding */ logout)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_3__);
+/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
+
+
+
+var login = /*#__PURE__*/function () {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(username, password) {
+    var options, response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            options = {
+              username: username,
+              password: password
+            };
+            _context.next = 4;
+            return axios__WEBPACK_IMPORTED_MODULE_2___default()({
+              method: "POST",
+              url: "/users/login",
+              data: qs__WEBPACK_IMPORTED_MODULE_3___default().stringify(options)
+            });
+
+          case 4:
+            response = _context.sent;
+            if (response.statusText === "OK") alert(response, response.data, response.data.user);
+            _context.next = 11;
+            break;
+
+          case 8:
+            _context.prev = 8;
+            _context.t0 = _context["catch"](0);
+            console.log(_context.t0);
+
+          case 11:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 8]]);
+  }));
+
+  return function login(_x, _x2) {
+    return _ref.apply(this, arguments);
+  };
+}();
+var logout = /*#__PURE__*/function () {
+  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2() {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_2___default()({
+              method: 'GET',
+              url: '/users/logout'
+            });
+
+          case 3:
+            response = _context2.sent;
+            console.log(response);
+
+            if (response.data.status === 'Success') {
+              window.location.assign("/");
+            }
+
+            _context2.next = 11;
+            break;
+
+          case 8:
+            _context2.prev = 8;
+            _context2.t0 = _context2["catch"](0);
+            console.log(_context2.t0);
+
+          case 11:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 8]]);
+  }));
+
+  return function logout() {
+    return _ref2.apply(this, arguments);
+  };
+}();
 
 /***/ }),
 
@@ -4550,16 +4657,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "deleteMe": () => (/* binding */ deleteMe)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
-/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_4__);
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
-
 
 
 
@@ -4571,37 +4676,36 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 
 var getSomePersonals = /*#__PURE__*/function () {
-  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee() {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee() {
     var response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee$(_context) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_4___default()({
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "GET",
               url: "/users/me"
             });
 
           case 3:
             response = _context.sent;
-            console.log(response, response[0]);
             if (response[0] === "Email") console.log(true);
-            _context.next = 11;
+            _context.next = 10;
             break;
 
-          case 8:
-            _context.prev = 8;
+          case 7:
+            _context.prev = 7;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0);
 
-          case 11:
+          case 10:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 8]]);
+    }, _callee, null, [[0, 7]]);
   }));
 
   return function getSomePersonals() {
@@ -4609,18 +4713,18 @@ var getSomePersonals = /*#__PURE__*/function () {
   };
 }();
 var updatePassword = /*#__PURE__*/function () {
-  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee2(password, passwordConfirmed) {
+  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee2(password, passwordConfirmed) {
     var response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee2$(_context2) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.prev = 0;
             _context2.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_4___default()({
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "PATCH",
               url: "/users/resetPassword/".concat(window.location.href.split('/')[5]),
-              data: qs__WEBPACK_IMPORTED_MODULE_5___default().stringify({
+              data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify({
                 password: password,
                 passwordConfirmed: passwordConfirmed
               })
@@ -4654,18 +4758,18 @@ var updatePassword = /*#__PURE__*/function () {
   };
 }();
 var updateMyPassword = /*#__PURE__*/function () {
-  var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee3(currentPassword, newPassword, newPasswordConfirmed) {
+  var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee3(currentPassword, newPassword, newPasswordConfirmed) {
     var response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee3$(_context3) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
             _context3.prev = 0;
             _context3.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_4___default()({
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "POST",
               url: "/users/updateMyPassword",
-              data: qs__WEBPACK_IMPORTED_MODULE_5___default().stringify({
+              data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify({
                 currentPassword: currentPassword,
                 newPassword: newPassword,
                 newPasswordConfirmed: newPasswordConfirmed
@@ -4702,22 +4806,21 @@ var updateMyPassword = /*#__PURE__*/function () {
   };
 }();
 var updateMe = /*#__PURE__*/function () {
-  var _ref4 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee4(options) {
+  var _ref4 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee4(options) {
     var response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee4$(_context4) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
             _context4.prev = 0;
-            console.log(options, (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(options.emailConfirmed));
-            _context4.next = 4;
-            return axios__WEBPACK_IMPORTED_MODULE_4___default()({
+            _context4.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "PATCH",
               url: "/users/updateMe",
-              data: qs__WEBPACK_IMPORTED_MODULE_5___default().stringify(_objectSpread({}, options))
+              data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify(_objectSpread({}, options))
             });
 
-          case 4:
+          case 3:
             response = _context4.sent;
 
             if (response.statusText === 'OK') {
@@ -4735,20 +4838,20 @@ var updateMe = /*#__PURE__*/function () {
               document.getElementById('phoneConfirmed').value = '';
             }
 
-            _context4.next = 11;
+            _context4.next = 10;
             break;
 
-          case 8:
-            _context4.prev = 8;
+          case 7:
+            _context4.prev = 7;
             _context4.t0 = _context4["catch"](0);
             console.log(_context4.t0);
 
-          case 11:
+          case 10:
           case "end":
             return _context4.stop();
         }
       }
-    }, _callee4, null, [[0, 8]]);
+    }, _callee4, null, [[0, 7]]);
   }));
 
   return function updateMe(_x6) {
@@ -4756,35 +4859,40 @@ var updateMe = /*#__PURE__*/function () {
   };
 }();
 var deleteMe = /*#__PURE__*/function () {
-  var _ref5 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee5() {
+  var _ref5 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee5() {
     var response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee5$(_context5) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
             _context5.prev = 0;
             _context5.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_4___default()({
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "DELETE",
               url: "/users/deleteMe"
             });
 
           case 3:
             response = _context5.sent;
-            _context5.next = 9;
+
+            if (response.statusText === 'No Content') {
+              window.location.assign('/');
+            }
+
+            _context5.next = 10;
             break;
 
-          case 6:
-            _context5.prev = 6;
+          case 7:
+            _context5.prev = 7;
             _context5.t0 = _context5["catch"](0);
             console.log(_context5.t0);
 
-          case 9:
+          case 10:
           case "end":
             return _context5.stop();
         }
       }
-    }, _callee5, null, [[0, 6]]);
+    }, _callee5, null, [[0, 7]]);
   }));
 
   return function deleteMe() {
@@ -10165,35 +10273,6 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/esm/typeof.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/esm/typeof.js ***!
-  \***********************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _typeof)
-/* harmony export */ });
-function _typeof(obj) {
-  "@babel/helpers - typeof";
-
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    _typeof = function _typeof(obj) {
-      return typeof obj;
-    };
-  } else {
-    _typeof = function _typeof(obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-  }
-
-  return _typeof(obj);
-}
-
 /***/ })
 
 /******/ 	});
@@ -10289,7 +10368,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Validate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Validate */ "./Public/JS/Validate.js");
 /* harmony import */ var _App_LoggedIn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./App-LoggedIn */ "./Public/JS/App-LoggedIn.js");
 /* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
-/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
 
 
@@ -10425,7 +10503,6 @@ __webpack_require__.r(__webpack_exports__);
               signupForm[1].forEach(function (p) {
                 p.style.display = 'none';
               });
-              console.log(signupFormPage);
               signupForm[signupFormPage].forEach(function (p) {
                 p.style.display = 'flex';
               });
@@ -10481,7 +10558,6 @@ __webpack_require__.r(__webpack_exports__);
             loginFormMessageSections.forEach(function (lfms) {
               return lfms.style.display = "flex";
             });
-            console.log(loginFormSections, loginFormMessageSections);
             return landingForms[1].classList.toggle('form-container--open');
           }
 

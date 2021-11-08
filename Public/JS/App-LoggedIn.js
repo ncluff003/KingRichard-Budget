@@ -1,4 +1,5 @@
 import { getSomePersonals, updateMe, updateMyPassword, deleteMe } from './Update-User';
+import { logout } from './Login';
 
 // Opening The Profile Page
 const userButton = document.querySelector('.navigation__landing-navigation__user');
@@ -57,16 +58,12 @@ const formatPhoneNumber = (value) => {
   let phoneNumber = value.replace(/[^\d]/g, '');
   let phoneNumberLength = phoneNumber.length;
   if (phoneNumberLength <= 3) {
-    console.log(phoneNumber);
     return phoneNumber;
   }
-  console.log(phoneNumberLength);
   if (phoneNumberLength >= 4 && phoneNumberLength < 7) {
-    console.log(`(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}`);
     return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}`;
   }
   let formattedNumber = `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)} - ${phoneNumber.slice(6)}`;
-  console.log(phoneNumber, formattedNumber);
   return formattedNumber;
 };
 
@@ -159,7 +156,6 @@ profileSectionButtons.forEach((psb) => {
           username: username,
           latterDaySaint: isLatterDaySaint,
         });
-        console.log(updatedUserInfo);
       });
       return;
     }
@@ -202,7 +198,6 @@ profileSectionButtons.forEach((psb) => {
         !communicationFormEditInputs[1].value
           ? (newEmailConfirmationSection.style.display = 'none')
           : (newEmailConfirmationSection.style.display = `flex`);
-        console.log(newEmailConfirmationSection);
       });
       // Edit Inputs Activation
       communicationFormEditButtons.forEach((b, i) => {
@@ -229,7 +224,6 @@ profileSectionButtons.forEach((psb) => {
       const commPreferenceSwitch = document.getElementById('commSwitch');
       let commPreference = 'Email';
       commPreferenceSwitch.addEventListener('click', (e) => {
-        console.log(commPreferenceSwitch);
         commPreferenceSwitch.classList.toggle('communications-form__comm-switch--text-preference');
       });
       const saveButton = document.querySelector('.communications-form__button__save');
@@ -247,7 +241,6 @@ profileSectionButtons.forEach((psb) => {
         } else {
           commPreference = `Email`;
         }
-        console.log(newEmail, newEmailConfirmed);
         const communicationPreference = commPreference;
         const phone = document.getElementById('phone').value;
         const phoneConfirmed = document.getElementById('phoneConfirmed').value;
@@ -270,6 +263,10 @@ profileSectionButtons.forEach((psb) => {
       userProfileSection.style.display = 'flex';
 
       const accountManagementButtons = document.querySelectorAll('.unique-profile-content-container__account-management__button');
+      accountManagementButtons[0].addEventListener('click', (e) => {
+        e.preventDefault();
+        logout();
+      });
       accountManagementButtons[1].addEventListener('click', (e) => {
         e.preventDefault();
         deleteMe();

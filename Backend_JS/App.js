@@ -34,7 +34,6 @@ App.use(compression());
 ////////////////////////////////////////////
 //  My Middleware
 App.use((request, response, next) => {
-  console.log(request.headers);
   next();
 });
 

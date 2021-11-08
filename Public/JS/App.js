@@ -113,7 +113,6 @@ import { updatePassword } from './Update-User';
             signupForm[1].forEach((p) => {
               p.style.display = 'none';
             });
-            console.log(signupFormPage);
             signupForm[signupFormPage].forEach((p) => {
               p.style.display = 'flex';
             });
@@ -169,7 +168,6 @@ import { updatePassword } from './Update-User';
           loginFormMessageSections.forEach((lfms) => {
             return (lfms.style.display = `flex`);
           });
-          console.log(loginFormSections, loginFormMessageSections);
           return landingForms[1].classList.toggle('form-container--open');
         }
         if (

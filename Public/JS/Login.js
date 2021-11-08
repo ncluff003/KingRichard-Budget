@@ -18,3 +18,18 @@ export const login = async (username, password) => {
     console.log(error);
   }
 };
+
+export const logout = async () => {
+  try {
+    const response = await axios({
+      method: 'GET',
+      url: '/users/logout',
+    });
+    console.log(response);
+    if (response.data.status === 'Success') {
+      window.location.assign(`/`);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};

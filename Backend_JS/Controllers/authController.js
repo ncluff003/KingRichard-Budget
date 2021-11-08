@@ -107,7 +107,6 @@ exports.protect = catchAsync(async (request, response, next) => {
   } else if (request.cookies.JWT) {
     token = request.cookies.JWT;
   }
-  console.log(token);
 
   if (!token) {
     return next(new AppError('You are not logged in! Please log in to get access.', 401));
@@ -115,7 +114,6 @@ exports.protect = catchAsync(async (request, response, next) => {
 
   // 2) Verification token
   const decoded = await util.promisify(jwt.verify)(token, process.env.JWT_SECRET);
-  console.log(decoded);
 
   // 3) Check if user still exists
   const currentUser = await User.findById(decoded.id);
@@ -139,7 +137,6 @@ exports.login = catchAsync(async (request, response, next) => {
   const { loginUsername, loginPassword } = request.body;
   const username = loginUsername;
   const password = loginPassword;
-  console.log(username, password);
 
   // Check if Username & Password Exist
   if (!username || !password) return next(new AppError(`Please provide username and password!`), 400);
@@ -154,10 +151,17 @@ exports.login = catchAsync(async (request, response, next) => {
   createAndSendToken(user, 200, `render`, request, response, `loggedIn`, `King Richard | Home`, { calendar: Calendar });
 });
 
+exports.logout = (request, response) => {
+  response.cookie(`JWT`, 'Logged Out', {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true,
+  });
+  response.status(200).json({ status: 'Success' });
+};
+
 // VALIDATING USER INPUT FOR SIGNING UP
 exports.validateSignup = catchAsync(async (request, response, next) => {
   const formBody = request.body;
-  console.log(request.body);
   if (!Validate.isName(formBody.firstname)) return next(new AppError(`First name must be only letters.`, 400));
   if (!Validate.isName(formBody.lastname)) return next(new AppError(`Last name must be only letters.`, 400));
   if (!Validate.isUsername(formBody.username))
@@ -196,7 +200,6 @@ exports.signup = catchAsync(async (request, response, next) => {
   });
 
   const token = signToken(newUser._id);
-  console.log(newUser.id);
 
   await new sendEmail(newUser).sendWelcome();
 
@@ -207,7 +210,6 @@ exports.signup = catchAsync(async (request, response, next) => {
 
 // RESET USERS PASSWORD IF FORGOTTEN
 exports.resetPassword = catchAsync(async (request, response, next) => {
-  console.log(request.body);
   // Get User Based On Token
   const hashedToken = crypto.createHash('sha256').update(request.params.token).digest('hex');
 
@@ -238,12 +240,9 @@ exports.resetPassword = catchAsync(async (request, response, next) => {
 
 // RENDERING PASSWORD RESET FORM
 exports.renderPasswordReset = catchAsync(async (request, response, next) => {
-  console.log(request.params);
   const resetToken = request.params.token;
   const resetURL = `${request.protocol}://${request.get('host')}/users/resetPassword/${resetToken}`;
-  console.log(request.url);
 
-  console.log(resetURL);
   response.status(200).render('resetPassword', {
     title: `King Richard | Reset Password`,
     data: {
@@ -251,8 +250,6 @@ exports.renderPasswordReset = catchAsync(async (request, response, next) => {
       url: resetURL,
     },
   });
-  console.log(response.data, response.body);
-  console.log(`I ran again!`);
 });
 
 // SENDING EMAIL WITH LINK TO RESET PASSWORD UPON USER REQUESTING IT AFTER FORGETTING THEIR PASSWORD
@@ -264,8 +261,6 @@ exports.forgotPassword = catchAsync(async (request, response, next) => {
   const resetToken = user.createPasswordResetToken();
   await user.save({ validateBeforeSave: false });
 
-  console.log(user);
-  console.log(request);
   try {
     const resetURL = `${request.protocol}://${request.get('host')}/users/resetPassword/${resetToken}`;
     await new sendEmail(user, resetURL).sendResetPassword();
