@@ -1,4 +1,4 @@
-@use "../../../Public/SCSS/Utilities/Variables" as *;
+@use '../../../Public/SCSS/Utilities/Variables' as *;
 
 /////////////////////////////////
 // Base
@@ -51,7 +51,8 @@ html {
       }
     }
     .form-container,
-    .form-container--password-reset {
+    .form-container--password-reset,
+    .create-budget-form-container {
       #closeForgottenForm {
         font-size: 4rem;
         color: rgba($colorOffWhite, 0.75);
@@ -60,10 +61,22 @@ html {
           color: $colorOffWhite;
         }
       }
+      /////////////////////////////////////
+      // Create Buget Form Specific Styles
+
+      .close-create-budget-forms {
+        color: rgba($colorOffWhite, 0.75);
+        font-size: 4rem;
+
+        &:hover {
+          color: $colorOffWhite;
+        }
+      }
       .login-form,
       .signup-form,
       .forgotten-form,
-      .password-reset-form {
+      .password-reset-form,
+      .create-budget-form {
         &__form-section {
           color: $colorOffWhite;
           &__input {
@@ -87,6 +100,40 @@ html {
                 background-color: $tertiaryColor;
                 color: $colorOffWhite;
               }
+            }
+          }
+          &__lds-label {
+            font-size: 1.6rem;
+            &--icon {
+              font-size: 1.6rem;
+              color: rgba($colorOffWhite, 0.5);
+              &:hover {
+                color: $colorOffWhite;
+              }
+            }
+          }
+        }
+        &__header {
+          font-size: 3rem;
+          color: $colorOffWhite;
+        }
+        #latterDaySaintYesLabel,
+        #latterDaySaintNoLabel {
+          font-size: 5rem;
+          color: $colorOffWhite;
+        }
+        &-modal {
+          &__header {
+            font-size: 2.4rem;
+            color: $colorOffWhite;
+            text-align: center;
+            line-height: 1.5;
+          }
+          &__close {
+            font-size: 4rem;
+            color: rgba($colorOffWhite, 0.75);
+            &:hover {
+              color: $colorOffWhite;
             }
           }
         }

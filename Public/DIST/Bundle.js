@@ -4226,13 +4226,17 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "_watchUserButton": () => (/* binding */ _watchUserButton)
+/* harmony export */   "_watchUserButton": () => (/* binding */ _watchUserButton),
+/* harmony export */   "_watchCreateBudgetButton": () => (/* binding */ _watchCreateBudgetButton),
+/* harmony export */   "_mirrorBudgetName": () => (/* binding */ _mirrorBudgetName),
+/* harmony export */   "_watchCheckboxes": () => (/* binding */ _watchCheckboxes)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
 /* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Login */ "./Public/JS/Login.js");
+/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
 
 
@@ -4248,6 +4252,63 @@ var _watchUserButton = function _watchUserButton() {
     setTimeout(function () {
       profileCard.style.display = 'flex';
     }, 1500);
+  });
+};
+var _watchCreateBudgetButton = function _watchCreateBudgetButton() {
+  // Create Budget Functionality
+  var createBudget = document.querySelector('.budget-card--create');
+  var createBudgetFormContainer = document.querySelector('.create-budget-form-container');
+  createBudget.addEventListener('click', function (e) {
+    createBudgetFormContainer.classList.add('create-budget-form-container--open');
+    document.querySelector('.close-create-budget-forms').addEventListener('click', function (e) {
+      createBudgetFormContainer.classList.remove('create-budget-form-container--open');
+    });
+  });
+};
+var _mirrorBudgetName = function _mirrorBudgetName() {
+  var budgetNameInput = document.getElementById("budgetName");
+  var budgetName = document.querySelector('.create-budget-form__header--text');
+  budgetNameInput.addEventListener('keyup', function (e) {
+    e.preventDefault();
+    budgetName.textContent = "Create Budget: ".concat(budgetNameInput.value);
+    console.log(budgetName.textContent);
+  });
+};
+var _watchCheckboxes = function _watchCheckboxes() {
+  var checkboxes = document.querySelectorAll('.create-budget-form__form-section__checkbox-input');
+  var yesBox = document.querySelectorAll('.create-budget-form__form-section__checkbox-input')[0];
+  var noBox = document.querySelectorAll('.create-budget-form__form-section__checkbox-input')[1];
+  var yesLabel = document.querySelectorAll('.create-budget-form__form-section__checkbox-label')[0];
+  var noLabel = document.querySelectorAll('.create-budget-form__form-section__checkbox-label')[1];
+  yesLabel.addEventListener('click', function (e) {
+    if (yesBox.checked) {
+      console.log('Un-Checked');
+      yesLabel.style.backgroundColor = "rgba(17, 17, 17, .75)";
+      return;
+    }
+
+    if (!yesBox.checked) {
+      console.log('Checked');
+      noLabel.style.backgroundColor = "rgba(17, 17, 17, .75)";
+      yesLabel.style.backgroundColor = "#38d927";
+      noBox.checked = false;
+      return;
+    }
+  });
+  noLabel.addEventListener('click', function (e) {
+    if (noBox.checked) {
+      console.log('Un-Checked');
+      noLabel.style.backgroundColor = "rgba(17, 17, 17, .75)";
+      return;
+    }
+
+    if (!noBox.checked) {
+      console.log('Checked');
+      yesLabel.style.backgroundColor = "rgba(17, 17, 17, .75)";
+      noLabel.style.backgroundColor = "#38d927";
+      yesBox.checked = false;
+      return;
+    }
   });
 }; // Activating Correct Card Section
 
@@ -10368,6 +10429,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Validate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Validate */ "./Public/JS/Validate.js");
 /* harmony import */ var _App_LoggedIn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./App-LoggedIn */ "./Public/JS/App-LoggedIn.js");
 /* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
+/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
 
 
@@ -10391,6 +10453,12 @@ __webpack_require__.r(__webpack_exports__);
       this._checkForAndWatchForPasswordResetForm();
 
       _App_LoggedIn__WEBPACK_IMPORTED_MODULE_3__._watchUserButton();
+
+      _App_LoggedIn__WEBPACK_IMPORTED_MODULE_3__._watchCreateBudgetButton();
+
+      _App_LoggedIn__WEBPACK_IMPORTED_MODULE_3__._mirrorBudgetName();
+
+      _App_LoggedIn__WEBPACK_IMPORTED_MODULE_3__._watchCheckboxes();
     }
 
     (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(App, [{
@@ -10550,6 +10618,7 @@ __webpack_require__.r(__webpack_exports__);
         landingNavigation.addEventListener('click', function (e) {
           e.preventDefault();
           var clicked = e.target;
+          console.log(clicked);
 
           if (clicked.closest('button').classList.contains('navigation__landing-navigation__login') || clicked.closest('button').classList.contains('r__navigation__landing-navigation__login')) {
             loginFormSections.forEach(function (lfs) {

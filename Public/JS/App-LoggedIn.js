@@ -16,6 +16,60 @@ export const _watchUserButton = () => {
   });
 };
 
+export const _watchCreateBudgetButton = () => {
+  // Create Budget Functionality
+  const createBudget = document.querySelector('.budget-card--create');
+  const createBudgetFormContainer = document.querySelector('.create-budget-form-container');
+  createBudget.addEventListener('click', (e) => {
+    createBudgetFormContainer.classList.add('create-budget-form-container--open');
+    document.querySelector('.close-create-budget-forms').addEventListener('click', (e) => {
+      createBudgetFormContainer.classList.remove('create-budget-form-container--open');
+    });
+  });
+};
+
+export const _mirrorBudgetName = () => {
+  const budgetNameInput = document.getElementById(`budgetName`);
+  const budgetName = document.querySelector('.create-budget-form__header--text');
+  budgetNameInput.addEventListener('keyup', (e) => {
+    e.preventDefault();
+    budgetName.textContent = `Create Budget: ${budgetNameInput.value}`;
+    console.log(budgetName.textContent);
+  });
+};
+
+export const _watchCheckboxes = () => {
+  const checkboxes = document.querySelectorAll('.create-budget-form__form-section__checkbox-input');
+  const yesBox = document.querySelectorAll('.create-budget-form__form-section__checkbox-input')[0];
+  const noBox = document.querySelectorAll('.create-budget-form__form-section__checkbox-input')[1];
+  const yesLabel = document.querySelectorAll('.create-budget-form__form-section__checkbox-label')[0];
+  const noLabel = document.querySelectorAll('.create-budget-form__form-section__checkbox-label')[1];
+  yesLabel.addEventListener('click', (e) => {
+    if (yesBox.checked) {
+      yesLabel.style.backgroundColor = `rgba(17, 17, 17, .75)`;
+      return;
+    }
+    if (!yesBox.checked) {
+      noLabel.style.backgroundColor = `rgba(17, 17, 17, .75)`;
+      yesLabel.style.backgroundColor = `#38d927`;
+      noBox.checked = false;
+      return;
+    }
+  });
+  noLabel.addEventListener('click', (e) => {
+    if (noBox.checked) {
+      noLabel.style.backgroundColor = `rgba(17, 17, 17, .75)`;
+      return;
+    }
+    if (!noBox.checked) {
+      yesLabel.style.backgroundColor = `rgba(17, 17, 17, .75)`;
+      noLabel.style.backgroundColor = `#38d927`;
+      yesBox.checked = false;
+      return;
+    }
+  });
+};
+
 // Activating Correct Card Section
 let passwordManagement = false;
 let communications = false;

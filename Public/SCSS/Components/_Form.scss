@@ -1,12 +1,13 @@
-@use "../../../Public/SCSS/Utilities/Mixins" as *;
-@use "../../../Public/SCSS/Utilities/Variables" as *;
+@use '../../../Public/SCSS/Utilities/Mixins' as *;
+@use '../../../Public/SCSS/Utilities/Variables' as *;
 
 ////////////////////////////////////////////////
 //  Master Flex Container
 
 .master-flex-container {
   .master-grid-container {
-    .form-container {
+    .form-container,
+    .create-budget-form-container {
       @include SizeAndPositioning(relative, 100%, 0%, none, center, center, 0, 0, 0);
       background-color: rgba($primaryColorDark, 0.9);
       opacity: 0;
@@ -19,7 +20,8 @@
       .login-form,
       .signup-form,
       .forgotten-form,
-      .password-reset-form {
+      .password-reset-form,
+      .create-budget-form {
         @include SizeAndPositioning(relative, 100%, 45%, flex, center, center, 0, 0, 0);
         flex-direction: column;
         &__form-section {
@@ -27,7 +29,8 @@
           margin-top: 4rem;
           &__input {
             @include SizeAndPositioning(relative, 100%, 100%, flex, center, flex-start, 0, 0, 0);
-            border: 0.2rem solid rgba($tertiaryColor, 0.95);
+            border: 0.3rem solid rgba($tertiaryColor, 0.95);
+            border-bottom: 0.15rem solid rgba($tertiaryColor, 0.95);
             background-color: rgba($colorDarkestGrey, 0.75);
             padding-left: 4rem;
             &::-webkit-input-placeholder {
@@ -69,12 +72,15 @@
             @include SizeAndPositioning(relative, 7.5%, 100%, none, center, center, 0, 0, 0);
             &__message-container {
               @include SizeAndPositioning(relative, 100%, 75%, flex, center, center, 0, 0, 0);
-              border: 0.2rem solid rgba($tertiaryColor, 0.95);
+              border: 0.3rem solid rgba($tertiaryColor, 0.95);
+              border-top: 0.15rem solid rgba($tertiaryColor, 0.95);
               background-color: rgba($colorDarkestGrey, 0.75);
             }
             &__form-button {
               @include SizeAndPositioning(relative, 100%, 25%, flex, center, center, 0, 0, 0);
-              border: 0.2rem solid rgba($tertiaryColor, 0.95);
+              border: 0.3rem solid rgba($tertiaryColor, 0.95);
+              border-top: 0.15rem solid rgba($tertiaryColor, 0.95);
+              border-left: 0.15rem solid rgba($tertiaryColor, 0.95);
               background-color: rgba($tertiaryColor, 0.75);
               transition: background-color 0.5s;
               padding: 1rem;
@@ -91,6 +97,63 @@
               margin: 0 0.3% 0 0.325%;
             }
           }
+          &__lds-label {
+            @include SizeAndPositioning(absolute, min-content, 100%, flex, flex-start, center, 0, -2.4rem, 0);
+            top: 0;
+            left: 3rem;
+            &--icon {
+              @include SizeAndPositioning(absolute, min-content, min-content, flex, flex-start, center, 0, -2.5rem, 0);
+              top: 0;
+              left: 29rem;
+              &:hover {
+                cursor: pointer;
+                transition: color 0.5s;
+              }
+            }
+          }
+        }
+
+        &__header {
+          @include SizeAndPositioning(absolute, 10%, 100%, flex, center, center, 0, 0, 0);
+          top: 0;
+          left: 0;
+          background-color: $tertiaryColor;
+        }
+        .create-budget-form__form-section__checkbox-input {
+          position: relative;
+          display: none;
+        }
+        #latterDaySaintYesLabel,
+        #latterDaySaintNoLabel {
+          @include SizeAndPositioning(relative, 100%, 50%, flex, center, center, 0, 0, 0);
+          border: 0.3rem solid rgba($tertiaryColor, 0.95);
+          background-color: rgba($colorDarkestGrey, 0.75);
+        }
+        #latterDaySaintYesLabel {
+          border-top-left-radius: 2.5rem;
+          border-right: 0.2rem solid rgba($tertiaryColor, 0.95);
+        }
+        #latterDaySaintNoLabel {
+          border-top-right-radius: 2.5rem;
+          border-left: 0.2rem solid rgba($tertiaryColor, 0.95);
+        }
+        &-modal {
+          @include SizeAndPositioning(absolute, 60%, 100%, none, center, center, 0, -50%, 0);
+          top: 50%;
+          left: 0;
+          padding: 3rem;
+          border: 0.3rem solid $tertiaryColor;
+          border-radius: 2.5rem;
+          background-color: rgba($tertiaryColorDark, 0.95);
+          &__close {
+            @include SizeAndPositioning(absolute, 5rem, 5rem, flex, center, center, 0, 0, 0);
+            top: 3rem;
+            right: 3rem;
+            &:hover {
+              cursor: pointer;
+              transition: color 0.5s;
+            }
+          }
         }
       }
       &--open {
@@ -98,6 +161,10 @@
         opacity: 1;
         display: flex;
         transition: width 0.5s, opacity 1s;
+      }
+      .create-budget-form-question,
+      .create-budget-form-message {
+        display: flex;
       }
       .form-page-number {
         margin-top: 3rem;
@@ -161,6 +228,8 @@
               &__form-button {
                 @include SizeAndPositioning(relative, 100%, 25%, flex, center, center, 0, 0, 0);
                 border: 0.2rem solid rgba($tertiaryColor, 0.95);
+                border-top: 0.15rem solid rgba($tertiaryColor, 0.95);
+                border-left: 0.15rem solid rgba($tertiaryColor, 0.95);
                 background-color: rgba($tertiaryColor, 0.75);
                 transition: background-color 0.5s;
                 padding: 1rem;
@@ -178,6 +247,18 @@
               }
             }
           }
+        }
+      }
+      /////////////////////////////////////
+      // Create Buget Form Specific Styles
+
+      .close-create-budget-forms {
+        @include SizeAndPositioning(absolute, 5rem, 5rem, flex, center, center, 0, 0, 0);
+        top: 3rem;
+        right: 3rem;
+        transition: color 0.5s;
+        &:hover {
+          cursor: pointer;
         }
       }
     }

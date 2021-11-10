@@ -40,57 +40,6 @@ html
           header.background-header__main.r__background-header__main King Richard
           p.background-header__sub.r__background-header__sub Budget Like Royalty
         block Unique-Content
-          div.form-container.r__form-container.column_1-24.row_2-17
-            i.fas.fa-window-close#closeForgottenForm
-            form.forgotten-form.r__forgotten-form(action="/users/forgotPassword" method="POST")
-              section.forgotten-form__form-section.r__forgotten-form__form-section
-                input.forgotten-form__form-section__input.forgotten-form__form-section__input--rounded-top#forgottenEmail(type="email" name="forgottenEmail" placeholder="Email"  required)
-                label.forgotten-form__form-section__label#emailforgotorgotLabel(for="forgottenEmail") Please Enter Your Email
-              section.forgotten-form__form-section--message.r__forgotten-form__form-section--message
-                div.forgotten-form__form-section--message__message-container.r__forgotten-form__form-section--message__message-container Error Response
-                button.forgotten-form__form-section--message__form-button.r__forgotten-form__form-section--message__form-button#forgottenEmailSubmit(type="submit") Submit Email
-          div.form-container.r__form-container.column_1-24.row_2-17
-            form.login-form.r__login-form(action="/App" method="POST")
-              section.login-form__form-section.r__login-form__form-section
-                input.login-form__form-section__input.login-form__form-section__input--rounded-top#loginUsername(type="text" name="loginUsername" placeholder="Username"  required)
-                label.login-form__form-section__label#username-label(for="loginUsername") Please Enter Your Username
-              section.login-form__form-section.r__login-form__form-section
-                input.login-form__form-section__input#loginPassword(type="password" name="loginPassword" placeholder="Password" required)
-                label.login-form__form-section__label#password-label(for="loginPassword") Please Enter Your Password
-              section.login-form__form-section--message.r__login-form__form-section--message
-                div.login-form__form-section--message__message-container.r__login-form__form-section--message__message-container Error Response
-                button.login-form__form-section--message__form-button.r__login-form__form-section--message__form-button#loginButtonOne(type="submit") Login
-                button.forgotten-form__form-section--message__form-button.r__forgotten-form__form-section--message__form-button#loginButtonTwo(type="button") Forgot Username or Password
-          div.form-container.r__form-container.column_1-24.row_2-17
-            form.signup-form.r__signup-form(action="/users/signup" method="POST")
-              section.signup-form__form-section.r__signup-form__form-section
-                input.signup-form__form-section__input.signup-form__form-section__input--rounded-top#firstname(type="text" name="firstname" placeholder="First Name" pattern="^[A-Za-z]*$" required)
-                label.signup-form__form-section__label#first-name-label(for="firstname") Please Enter Your First Name
-              section.signup-form__form-section.r__signup-form__form-section
-                input.signup-form__form-section__input.signup-form__form-section__input#lastname(type="text" name="lastname" placeholder="Last Name" pattern="^[A-Za-z]*$" required)
-                label.signup-form__form-section__label#last-name-label(for="lastname") Please Enter Your Last Name
-              section.signup-form__form-section.r__signup-form__form-section
-                input.signup-form__form-section__input.signup-form__form-section__input#username(type="text" name="username" placeholder="Username" pattern="^[A-Z][A-Za-z0-9]*$" required)
-                label.signup-form__form-section__label#user-name-label(for="username") Please Enter Your Username
-              section.signup-form__form-section--message.r__signup-form__form-section--message
-                div.signup-form__form-section--message__message-container.r__signup-form__form-section--message__message-container Error Response
-                button.signup-form__form-section--message__form-button.r__signup-form__form-section--message__form-button(type="submit") Continue
-              section.signup-form__form-section.r__signup-form__form-section
-                input.signup-form__form-section__input.signup-form__form-section__input--rounded-top#email(type="email" name="email" placeholder="Email" required)
-                label.signup-form__form-section__label#email-label(for="email") Please Enter Your Email
-              section.signup-form__form-section.r__signup-form__form-section
-                input.signup-form__form-section__input.signup-form__form-section__input#emailConfirmed(type="email" name="emailConfirmed" placeholder="Repeat Email" required)
-                label.signup-form__form-section__label#repeat-email-label(for="emailConfirmed") Please Repeat Your Email
-              section.signup-form__form-section--message.r__signup-form__form-section--message
-                div.signup-form__form-section--message__message-container.r__signup-form__form-section--message__message-container Error Response
-                button.signup-form__form-section--message__form-button.r__signup-form__form-section--message__form-button(type="submit") Continue
-              section.signup-form__form-section.r__signup-form__form-section
-                input.signup-form__form-section__input.signup-form__form-section__input--rounded-top#password(type="password" name="password" placeholder="Password" required)
-                label.signup-form__form-section__label#password-label(for="password") Please Enter Your Password
-              section.signup-form__form-section.r__signup-form__form-section
-                input.signup-form__form-section__input.signup-form__form-section__input#passwordConfirmed(type="password" name="passwordConfirmed" placeholder="Repeat Password" required)
-                label.signup-form__form-section__label#repeat-password-label(for="passwordConfirmed") Please Repeat Your Password
-              section.signup-form__form-section--message.r__signup-form__form-section--message
-                div.signup-form__form-section--message__message-container.r__signup-form__form-section--message__message-container Error Response
-                button.signup-form__form-section--message__form-button.r__signup-form__form-section--message__form-button(type="submit") Submit
-              p.form-page-number 1 / 3
+          include _Forgotten-Password-Form
+          include _Login-Form
+          include _Signup-Form

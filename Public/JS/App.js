@@ -13,6 +13,9 @@ import { updatePassword } from './Update-User';
       this._watchForgottenEmailForm();
       this._checkForAndWatchForPasswordResetForm();
       AppLoggedIn._watchUserButton();
+      AppLoggedIn._watchCreateBudgetButton();
+      AppLoggedIn._mirrorBudgetName();
+      AppLoggedIn._watchCheckboxes();
     }
 
     _checkForAndWatchForPasswordResetForm() {
@@ -158,6 +161,7 @@ import { updatePassword } from './Update-User';
       landingNavigation.addEventListener('click', (e) => {
         e.preventDefault();
         const clicked = e.target;
+        console.log(clicked);
         if (
           clicked.closest('button').classList.contains('navigation__landing-navigation__login') ||
           clicked.closest('button').classList.contains('r__navigation__landing-navigation__login')
