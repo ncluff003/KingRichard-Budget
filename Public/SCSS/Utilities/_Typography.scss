@@ -118,7 +118,10 @@ html {
           color: $colorOffWhite;
         }
         #latterDaySaintYesLabel,
-        #latterDaySaintNoLabel {
+        #latterDaySaintNoLabel,
+        #tithingNetLabel,
+        #tithingGrossLabel,
+        #tithingSurplusLabel {
           font-size: 5rem;
           color: $colorOffWhite;
         }
@@ -134,6 +137,93 @@ html {
             color: rgba($colorOffWhite, 0.75);
             &:hover {
               color: $colorOffWhite;
+            }
+          }
+        }
+      }
+      .create-budget-form-question--full-page {
+        .create-budget-form__sub-header {
+          font-size: 2.4rem;
+          color: rgba($colorDarkestGrey, 0.9);
+          &--finish-selecting {
+            color: rgba($colorDarkestGrey, 0.8);
+            &:hover {
+              color: $colorDarkestGrey;
+            }
+          }
+        }
+        .create-budget-form__category-container {
+          &__category {
+            font-size: 2rem;
+            color: rgba($colorOffWhite, 0.75);
+            &--icon {
+              font-size: 3rem;
+            }
+            &:hover {
+              color: $colorOffWhite;
+            }
+          }
+        }
+        .create-budget-form__row-container {
+          &__main-category-display,
+          &__sub-category-display {
+            &--header {
+              &-text {
+                font-size: 1.6rem;
+                color: $colorOffWhite;
+              }
+            }
+          }
+          &__main-category-display {
+            &-container {
+              &__category {
+                font-size: 1.6rem;
+                color: rgba($colorOffWhite, 0.75);
+                .create-budget-form__category-container__category--icon {
+                  font-size: 2rem;
+                }
+              }
+            }
+          }
+          &__sub-category-display {
+            &__sub-category-container {
+              &__container {
+                font-size: 2rem;
+                color: rgba($colorOffWhite, 0.75);
+                &--header {
+                  font-size: 2rem;
+                  color: rgba($primaryColor, 0.75);
+                }
+                &__surplus-container {
+                  &--text {
+                    font-size: 1.6rem;
+                    color: rgba($primaryColor, 0.75);
+                  }
+                  &__toggle {
+                    &-switch {
+                      &--icon {
+                        font-size: 1.6rem;
+                        color: $primaryColor;
+                      }
+                    }
+                    &:hover {
+                      .create-budget-form__row-container__sub-category-display__sub-category-container__container__surplus-container__toggle-switch {
+                        &--icon {
+                          color: $tertiaryColor;
+                          transition: color 0.5s;
+                        }
+                      }
+                    }
+                  }
+                }
+                &__remove-category {
+                  font-size: 2.4rem;
+                  color: rgba($primaryColor, 0.75);
+                  &:hover {
+                    color: $tertiaryColor;
+                  }
+                }
+              }
             }
           }
         }

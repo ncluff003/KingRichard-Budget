@@ -65,7 +65,7 @@
           }
           &__label {
             @include SizeAndPositioning(absolute, 100%, 100%, flex, flex-start, center, 0, 0, 0);
-            padding-left: 4rem;
+            padding-left: 1.5rem;
             transition: transform 0.5s, opacity 0.5s;
           }
           &--message {
@@ -124,18 +124,28 @@
           display: none;
         }
         #latterDaySaintYesLabel,
-        #latterDaySaintNoLabel {
+        #latterDaySaintNoLabel,
+        #tithingNetLabel,
+        #tithingGrossLabel,
+        #tithingSurplusLabel {
           @include SizeAndPositioning(relative, 100%, 50%, flex, center, center, 0, 0, 0);
           border: 0.3rem solid rgba($tertiaryColor, 0.95);
           background-color: rgba($colorDarkestGrey, 0.75);
         }
-        #latterDaySaintYesLabel {
+        #latterDaySaintYesLabel,
+        #tithingNetLabel {
           border-top-left-radius: 2.5rem;
           border-right: 0.2rem solid rgba($tertiaryColor, 0.95);
         }
-        #latterDaySaintNoLabel {
+        #latterDaySaintNoLabel,
+        #tithingSurplusLabel {
           border-top-right-radius: 2.5rem;
           border-left: 0.2rem solid rgba($tertiaryColor, 0.95);
+        }
+        #tithingNetLabel,
+        #tithingGrossLabel,
+        #tithingSurplusLabel {
+          width: 33.3%;
         }
         &-modal {
           @include SizeAndPositioning(absolute, 60%, 100%, none, center, center, 0, -50%, 0);
@@ -162,10 +172,115 @@
         display: flex;
         transition: width 0.5s, opacity 1s;
       }
-      .create-budget-form-question,
       .create-budget-form-message {
-        display: flex;
+        display: none;
       }
+      .create-budget-form-question {
+        &--full-page {
+          @include SizeAndPositioning(absolute, 90%, 100%, flex, flex-start, center, 0, 0, 0);
+          bottom: 0;
+          flex-direction: column;
+          background-color: rgba($colorOffWhite, 0.1);
+          .create-budget-form__sub-header {
+            @include SizeAndPositioning(relative, 6.5rem, 100%, flex, center, center, 0, 0, 0);
+            border-top: 0.4rem groove rgba($colorDarkestGrey, 0.9);
+            border-bottom: 0.4rem groove rgba($colorDarkestGrey, 0.9);
+            background-color: $secondaryColorLighter;
+          }
+          .create-budget-form__category-container {
+            @include SizeAndPositioning(relative, 50%, 100%, flex, space-evenly, flex-start, 0, 0, 0);
+            flex-flow: row wrap;
+            overflow-y: auto;
+            &__category {
+              @include SizeAndPositioning(relative, 27.5%, 12.5%, flex, space-evenly, center, 0, 0, 0);
+              flex-direction: column;
+              border: 0.3rem solid rgba($colorOffWhite, 0.75);
+              padding: 2.4rem;
+              border-radius: 1rem;
+              margin: 1rem;
+              background-color: rgba($primaryColorLight, 0.5);
+              &--icon {
+                margin-bottom: 1rem;
+              }
+              &:hover {
+                cursor: pointer;
+                background-color: $tertiaryColor;
+                border: 0.3rem solid $colorOffWhite;
+                transition: background-color 0.5s, color 0.5s, border 0.5s;
+              }
+            }
+          }
+          .create-budget-form__row-container {
+            @include SizeAndPositioning(relative, 40%, 100%, flex, space-evenly, flex-start, 0, 0, 0);
+            bottom: 0;
+            &__main-category-display,
+            &__sub-category-display {
+              @include SizeAndPositioning(relative, 100%, 47.5%, flex, flex-start, flex-start, 0, 0, 0);
+              flex-direction: column;
+              background-color: rgba($colorOffWhite, 0.15);
+              &--header {
+                @include SizeAndPositioning(relative, 6.5rem, 100%, flex, center, center, 0, 0, 0);
+                background-color: $tertiaryColorLight;
+                border: 0.3rem solid $colorOffWhite;
+              }
+            }
+            &__main-category-display {
+              &-container {
+                @include SizeAndPositioning(relative, 80%, 100%, flex, space-evenly, flex-start, 0, 0, 0);
+                flex-flow: row wrap;
+                padding-top: 1rem;
+                overflow-y: auto;
+                &__category {
+                  @include SizeAndPositioning(relative, 40%, 25%, flex, space-evenly, center, 0, 0, 0);
+                  flex-direction: column;
+                  border: 0.3rem solid rgba($colorOffWhite, 0.75);
+                  padding: 2.4rem;
+                  border-radius: 1rem;
+                  margin: 0.5rem;
+                  background-color: rgba($primaryColorLight, 0.5);
+                }
+              }
+            }
+            &__sub-category-display {
+              &__sub-category-container {
+                @include SizeAndPositioning(relative, 80%, 100%, flex, flex-start, flex-start, 0, 0, 0);
+                flex-direction: column;
+                overflow-y: auto;
+                &__container {
+                  @include SizeAndPositioning(relative, 6.5rem, 100%, flex, space-evenly, center, 0, 0, 0);
+                  border: 0.3rem solid rgba($colorOffWhite, 0.75);
+                  background-color: rgba($colorOffWhite, 0.4);
+                  &__surplus-container {
+                    @include SizeAndPositioning(relative, 100%, min-content, flex, space-evenly, center, 0, 0, 0);
+                    flex-direction: column;
+                    padding: 0.25rem;
+                    &__toggle {
+                      @include SizeAndPositioning(relative, 49%, 90%, flex, flex-start, center, 0, 0, 0);
+                      border-radius: 5rem;
+                      padding: 0.125rem;
+                      border: 0.3rem solid rgba($primaryColor, 0.9);
+                      background-color: rgba($primaryColorDark, 0.7);
+                      &:hover {
+                        cursor: pointer;
+                        border: 0.3rem solid $tertiaryColor;
+                        background-color: $tertiaryColorDarker;
+                        transition: background-color 0.5s, color 0.5s, border 0.5s;
+                      }
+                    }
+                  }
+                  &__remove-category {
+                    &:hover {
+                      cursor: pointer;
+                      transition: color 0.5s;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
       .form-page-number {
         margin-top: 3rem;
       }
@@ -215,7 +330,7 @@
             }
             &__label {
               @include SizeAndPositioning(absolute, 100%, 100%, flex, flex-start, center, 0, 0, 0);
-              padding-left: 4rem;
+              padding-left: 1.5rem;
               transition: transform 0.5s, opacity 0.5s;
             }
             &--message {

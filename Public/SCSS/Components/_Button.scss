@@ -1,5 +1,5 @@
-@use "../../../Public/SCSS/Utilities/Mixins" as *;
-@use "../../../Public/SCSS/Utilities/Variables" as *;
+@use '../../../Public/SCSS/Utilities/Mixins' as *;
+@use '../../../Public/SCSS/Utilities/Variables' as *;
 
 ////////////////////////////////////////////////
 //  Master Flex Container
@@ -23,7 +23,7 @@
           transition: color 0.5s, background-color 0.5s;
           &-icon {
             position: relative;
-            transform: translate(-0.3rem, -0.2rem);
+            transform: translate(-0.3rem, 0);
             -moz-transform: translate(-0.3rem, 0);
           }
           &:hover {
@@ -62,7 +62,8 @@
         }
       }
     }
-    .user-profile-background {
+    .user-profile-background,
+    .create-budget-form-container {
       .user-profile-card {
         &__user-info {
           &__profile-option-container {
@@ -123,7 +124,8 @@
               .unique-profile-content-container.unique-profile-content-container__personal-information,
               .unique-profile-content-container.unique-profile-content-container__communications {
                 .personal-information-form,
-                .communications-form {
+                .communications-form,
+                .create-budget-form {
                   &__form-section,
                   &__form-section--lds,
                   &__form-section--comms {
@@ -166,8 +168,7 @@
                         background-color: rgba($primaryColor, 0.8);
                         border-radius: 4rem;
                         transform-origin: left;
-                        transition: border 0.25s, background-color 0.25s, color 0.25s, transform 0.25s,
-                          width 0.25s ease-in-out;
+                        transition: border 0.25s, background-color 0.25s, color 0.25s, transform 0.25s, width 0.25s ease-in-out;
                       }
                       &__glow {
                         @include SizeAndPositioning(absolute, 85%, 90%, flex, center, center, -50%, -50%, 0);
@@ -187,6 +188,26 @@
                     }
                   }
                 }
+              }
+            }
+          }
+        }
+      }
+      .create-budget-form {
+        .create-budget-form-question--full-page {
+          .create-budget-form__sub-header {
+            // Button For Create Forms
+            &--finish-selecting {
+              @include SizeAndPositioning(absolute, 80%, 15%, flex, center, center, 0, -50%, 0);
+              top: 50%;
+              right: 0.75rem;
+              border: 0.3rem solid rgba($colorDarkestGrey, 0.6);
+              background-color: rgba($colorOffWhite, 0.6);
+              &:hover {
+                cursor: pointer;
+                background-color: $colorOffWhite;
+                border: 0.3rem solid $colorDarkestGrey;
+                transition: border 0.5s, background-color 0.5s, color 0.5s;
               }
             }
           }

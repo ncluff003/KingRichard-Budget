@@ -10,7 +10,7 @@ section.create-budget-form-container.column_1-24.row_2-17
       div.create-budget-form__form-section--message__message-container.r__create-budget-form__form-section--message__message-container Error Response
       button.create-budget-form__form-section--message__form-button.r__create-budget-form__form-section--message__form-button(type="submit") Continue
     section.create-budget-form__form-section.r__create-budget-form__form-section.create-budget-form-question
-      h3.create-budget-form__form-section__lds-label Are you a Latter Day Saint?
+      h3.create-budget-form__form-section__lds-label Are You A Latter Day Saint?
       i.fas.fa-info-circle.create-budget-form__form-section__lds-label--icon
       input.create-budget-form__form-section__checkbox-input#latterDaySaintYes(type="checkbox" name="latterDaySaintYes")
       label.create-budget-form__form-section__checkbox-label#latterDaySaintYesLabel(for="latterDaySaintYes") Yes
@@ -22,3 +22,15 @@ section.create-budget-form-container.column_1-24.row_2-17
     section.create-budget-form-modal 
       header.create-budget-form-modal__header No personal affiliation is neccesary.  Faith based options are availabe to be used if you are a Latter Day Saint.
       i.fas.fa-window-close.create-budget-form-modal__close
+    section.create-budget-form__form-section.r__create-budget-form__form-section.create-budget-form-question
+      h3.create-budget-form__form-section__lds-label On What Will You Pay Tithing?
+      input.create-budget-form__form-section__checkbox-input#tithingNet(type="checkbox" name="tithingNet")
+      label.create-budget-form__form-section__checkbox-label#tithingNetLabel(for="tithingNet") Net
+      input.create-budget-form__form-section__checkbox-input#tithingGross(type="checkbox" name="tithingGross")
+      label.create-budget-form__form-section__checkbox-label#tithingGrossLabel(for="tithingGross") Gross
+      input.create-budget-form__form-section__checkbox-input#tithingSurplus(type="checkbox" name="tithingSurplus")
+      label.create-budget-form__form-section__checkbox-label#tithingSurplusLabel(for="tithingSurplus") Surplus
+    section.create-budget-form__form-section--message.r__create-budget-form__form-section--message.create-budget-form-message
+      div.create-budget-form__form-section--message__message-container.r__create-budget-form__form-section--message__message-container Error Response
+      button.create-budget-form__form-section--message__form-button.r__create-budget-form__form-section--message__form-button(type="submit") Continue
+    include _Budget-Category-Selection
