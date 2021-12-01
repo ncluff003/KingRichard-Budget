@@ -2,213 +2,53 @@
 @use '../../../Public/SCSS/Utilities/Variables' as *;
 
 ////////////////////////////////////////////////
-//  Master Flex Container
-
-.master-flex-container {
-  ////////////////////////////////////////////////
-  //  Master Grid Container
-
-  .master-grid-container {
-    ////////////////////////////////////////////////
-    //  Navigation
-    .navigation {
-      &__landing-navigation {
-        &__login,
-        &__signup,
-        &__user {
-          @include SizeAndPositioning(relative, 100%, 12.5%, flex, space-between, center, 0, 0, 0);
-          border-radius: 5rem;
-          background-color: transparent;
-          border: 0.2rem solid rgba($colorOffWhite, 0.75);
-          transition: color 0.5s, background-color 0.5s;
-          &-icon {
-            position: relative;
-            transform: translate(-0.3rem, 0);
-            -moz-transform: translate(-0.3rem, 0);
-          }
-          &:hover {
-            border: 0.2rem solid $colorOffWhite;
-            background: $tertiaryColor;
-            cursor: pointer;
-          }
-          &:active {
-            background-color: $secondaryColor;
-          }
-        }
-        &__login {
-          margin-right: 2rem;
-          &-text {
-            transform: translate(-2.3rem, 0);
-          }
-        }
-        &__signup {
-          &-text {
-            transform: translate(-1.6rem, 0);
-          }
-        }
-        &__user {
-          width: min-content;
-          padding: 1rem 1rem 1rem 5rem;
-          margin-right: 2rem;
-          &-icon {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform: translate(-0.6rem, -50%);
-          }
-          &-text {
-            transform: translate(-1.2rem, 0.1rem);
-          }
-        }
+//  Master Grid Container
+.master-grid-container {
+  .entrance-button-container {
+    .entrance-button {
+      @include SizeAndPositioning(relative, 65%, 40%, flex, center, center, 13%, 0, 0);
+      -moz-transform: translate(13%, 0);
+      background-color: rgba($colorLightestGrey, 0.125);
+      border: 0.3rem solid rgba($primaryColor, 0.75);
+      border-radius: 1.5rem;
+      &:hover {
+        cursor: pointer;
+        background-color: $primaryColor;
+        border: 0.3rem solid $primaryColor;
+        transition: background-color 0.5s, border 0.5s, color 0.5s;
       }
     }
-    .user-profile-background,
-    .create-budget-form-container {
-      .user-profile-card {
-        &__user-info {
-          &__profile-option-container {
-            &__content {
-              .back-button {
-                @include SizeAndPositioning(absolute, 3rem, 12rem, flex, space-evenly, center, 0, -9rem, 0);
-                top: 0;
-                left: 0;
-                background-color: transparent;
-                border: none;
-                border-radius: 1rem;
-                transition: color 5s;
-                &:hover {
-                  cursor: pointer;
-                }
-              }
-              .unique-profile-content-container.unique-profile-content-container__password-management,
-              .unique-profile-content-container.unique-profile-content-container__account-management {
-                .unique-profile-content-container__password-management__button,
-                .unique-profile-content-container__account-management__button {
-                  @include SizeAndPositioning(relative, 25%, 65%, flex, space-evenly, center, 0, 0, 0);
-                  // @include SizeAndPositioning(relative, 25%, 65%, none, space-evenly, center, 0, 0, 0);
-                  background-color: transparent;
-                  border: 0.2rem solid rgba($colorOffWhite, 0.75);
-                  border-radius: 1.5rem;
-                  transition: background-color 0.5s, border 0.5s, color 0.5s;
-                  margin: 0.5rem 0;
-                  &:hover {
-                    cursor: pointer;
-                    border: 0.2rem solid $tertiaryColor;
-                    background-color: $tertiaryColorDark;
-                  }
-                  &:active {
-                    border: 0.2rem solid $secondaryColor;
-                    background-color: $secondaryColor;
-                  }
-                }
-                .change-password-form {
-                  &__button {
-                    @include SizeAndPositioning(relative, 7rem, 50%, flex, center, center, 0, 0, 0);
-                    margin-top: 2rem;
-                    background-color: rgba($primaryColorDark, 0.8);
-                    border: 0.2rem solid rgba($primaryColor, 0.8);
-                    border-radius: 1.5rem;
-                    transition: background-color 0.5s, border 0.5s, color 0.5s;
-                    &:hover {
-                      background-color: $tertiaryColorDark;
-                      border: 0.2rem solid $tertiaryColor;
-                      cursor: pointer;
-                    }
-                    &:active {
-                      background-color: $secondaryColorDark;
-                      border: 0.2rem solid $secondaryColor;
-                    }
-                  }
-                }
-              }
-              .unique-profile-content-container.unique-profile-content-container__personal-information,
-              .unique-profile-content-container.unique-profile-content-container__communications {
-                .personal-information-form,
-                .communications-form,
-                .create-budget-form {
-                  &__form-section,
-                  &__form-section--lds,
-                  &__form-section--comms {
-                    .personal-information-form__button,
-                    .personal-information-form__button--lds,
-                    .personal-information-form__button__save,
-                    .communications-form__button,
-                    .communications-form__button--comms,
-                    .communications-form__button__save {
-                      @include SizeAndPositioning(relative, 90%, 15%, flex, space-evenly, center, 0, 0, 0);
-                      flex-direction: column;
-                      background-color: rgba($primaryColorDark, 0.8);
-                      border: 0.2rem solid rgba($primaryColor, 0.8);
-                      border-radius: 1.5rem;
-                      transition: background-color 0.5s, border 0.5s, color 0.5s;
-                      &:hover {
-                        background-color: $tertiaryColorDark;
-                        border: 0.2rem solid $tertiaryColor;
-                        cursor: pointer;
-                      }
-                      &:active {
-                        background-color: $secondaryColorDark;
-                        border: 0.2rem solid $secondaryColor;
-                      }
-                      &--lds,
-                      &--comms,
-                      &__save {
-                        flex-direction: row;
-                        width: 40%;
-                        padding: 1rem;
-                      }
-                      &__save {
-                        width: 50%;
-                      }
-                    }
-                    .personal-information-form__toggle-switch {
-                      &__switch {
-                        @include SizeAndPositioning(relative, 100%, 35%, flex, center, center, 0, 0, 0);
-                        border: 0.3rem groove rgba($primaryColorDark, 0.8);
-                        background-color: rgba($primaryColor, 0.8);
-                        border-radius: 4rem;
-                        transform-origin: left;
-                        transition: border 0.25s, background-color 0.25s, color 0.25s, transform 0.25s, width 0.25s ease-in-out;
-                      }
-                      &__glow {
-                        @include SizeAndPositioning(absolute, 85%, 90%, flex, center, center, -50%, -50%, 0);
-                        border-radius: 4rem;
-                        box-shadow: 0 0 2.5rem $tertiaryColor;
-                        top: 50%;
-                        left: 50%;
-                        z-index: 5;
-                        opacity: 0;
-                        &--lit-up {
-                          opacity: 1;
-                        }
-                      }
-                    }
-                    .personal-information-form__icon {
-                      transition: color 0.5s;
-                    }
-                  }
-                }
-              }
-            }
+  }
+  .form-container {
+    .login-form,
+    .signup-form,
+    .forgotten-form {
+      &__section {
+        &__button {
+          @include SizeAndPositioning(relative, 6rem, 20%, flex, center, center, 0, 0, 0);
+          background-color: rgba($colorLightestGrey, 0.125);
+          border: 0.3rem solid rgba($primaryColor, 0.75);
+          border-radius: 0.75rem;
+          &:hover {
+            cursor: pointer;
+            background-color: $primaryColor;
+            border: 0.3rem solid $primaryColor;
+            transition: background-color 0.5s, border 0.5s, color 0.5s;
           }
         }
       }
-      .create-budget-form {
-        .create-budget-form-question--full-page {
-          .create-budget-form__sub-header {
-            // Button For Create Forms
-            &--finish-selecting {
-              @include SizeAndPositioning(absolute, 80%, 15%, flex, center, center, 0, -50%, 0);
-              top: 50%;
-              right: 0.75rem;
-              border: 0.3rem solid rgba($colorDarkestGrey, 0.6);
-              background-color: rgba($colorOffWhite, 0.6);
-              &:hover {
-                cursor: pointer;
-                background-color: $colorOffWhite;
-                border: 0.3rem solid $colorDarkestGrey;
-                transition: border 0.5s, background-color 0.5s, color 0.5s;
-              }
+      &__form-page {
+        &__section {
+          &__button {
+            @include SizeAndPositioning(relative, 6rem, 20%, flex, center, center, 0, 0, 0);
+            background-color: rgba($colorLightestGrey, 0.125);
+            border: 0.3rem solid rgba($primaryColor, 0.75);
+            border-radius: 0.75rem;
+            &:hover {
+              cursor: pointer;
+              background-color: $primaryColor;
+              border: 0.3rem solid $primaryColor;
+              transition: background-color 0.5s, border 0.5s, color 0.5s;
             }
           }
         }

@@ -13,6 +13,7 @@ html
     meta(name='viewport' content='width=device-width, initial-scale=1')
     link(rel='stylesheet' href='/DIST/CSS/kingrichard.css')
     script(type='module' src='/DIST/Bundle.js' defer)
+    script(src="/reload/reload.js")
   body
     //
       [if lt IE 7]>
@@ -21,25 +22,14 @@ html
       experience.
       </p>
       <![endif]
-    section.master-flex-container.r__master-flex-container
-      section.master-grid-container.r__master-grid-container
-        nav.navigation.column_1-24.row_1-1.r__navigation
-          div.logo-container.r__logo-container
-            img.logo-container__logo.r__logo-container__logo(src="/KingRichard-Logo-White.svg")
-            p.logo-container__logo-text.r__logo-container__logo-text King Richard
-          block Navigation
-            ul.navigation__landing-navigation.r__navigation__landing-navigation
-              button.navigation__landing-navigation__login.r__navigation__landing-navigation__login
-                i.fas.fa-user-circle.navigation__landing-navigation__login-icon.r__navigation__landing-navigation__login-icon
-                p.navigation__landing-navigation__login-text.r__navigation__landing-navigation__login-text Login
-              button.navigation__landing-navigation__signup.r__navigation__landing-navigation__signup
-                i.fas.fa-user-circle.navigation__landing-navigation__signup-icon.r__navigation__landing-navigation__signup-icon
-                p.navigation__landing-navigation__signup-text.r__navigation__landing-navigation__signup-text Signup
-        img.background-logo.r__background-logo.column_3-10.row_4-8(src="/KingRichard-Logo.svg")
-        section.background-header.r__background-header.column_10-14.row_9-3
-          header.background-header__main.r__background-header__main King Richard
-          p.background-header__sub.r__background-header__sub Budget Like Royalty
-        block Unique-Content
-          include _Forgotten-Password-Form
-          include _Login-Form
-          include _Signup-Form
+    section.master-grid-container.r__master-grid-container
+      .logo-container.r__logo-container.column_9-6.row_4-8 
+        img.logo-image.r__logo-image(src="/KingRichard-Logo.svg")
+        p.logo-text.r__logo-text King Richard
+      .entrance-button-container.r__entrance-button-container.column_9-6.row_12-2
+        button.entrance-button.r__entrance-button.entrance-button--medium.r__entrance-button--medium Login
+        button.entrance-button.r__entrance-button.entrance-button--medium.r__entrance-button--medium Signup
+      h2.slogan.r__slogan.column_9-6.row_14-2 Budget Like Royalty
+      include _Login-Form
+      include _Signup-Form
+      include _Forgotten-Password-Form

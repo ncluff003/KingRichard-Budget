@@ -8,476 +8,118 @@ html {
   font-variant-ligatures: none;
 }
 
-////////////////////////////////////////////////
-//  Vertical Flex Container
-
-.master-flex-container {
-  .master-grid-container {
-    ////////////////////////////////////////////////
-    //  Navigation
-    .navigation {
-      .logo-container {
-        &__logo {
-          fill: $colorOffWhite;
-        }
-        &__logo-text {
-          font-size: 2.4rem;
-          color: $colorOffWhite;
+/////////////////////////////////
+// Master Grid Container
+.master-grid-container {
+  .logo-container {
+    .logo-text {
+      font-size: 7rem;
+      color: $primaryColor;
+    }
+  }
+  .entrance-button-container {
+    font-family: MADE Tommy Soft, Verdana, sans-serif;
+    .entrance-button {
+      font-size: 2.2rem;
+      color: rgba($primaryColor, 0.75);
+      &:hover {
+        color: $colorOffWhite;
+      }
+    }
+  }
+  .slogan {
+    font-family: MADE Tommy Soft, Verdana, sans-serif;
+    font-size: 3.6rem;
+    color: $primaryColor;
+  }
+  .form-container {
+    .form-close-icon {
+      font-size: 4rem;
+      color: rgba($primaryColor, 0.5);
+      &:hover {
+        color: $primaryColor;
+      }
+    }
+    .login-form,
+    .signup-form,
+    .forgotten-form {
+      font-family: MADE Tommy Soft, Verdana, sans-serif;
+      &__header {
+        &__title {
+          font-family: MADE Tommy Soft Bold, Verdana, sans-serif;
+          font-size: 10rem;
+          color: $primaryColor;
+          &--medium {
+            font-family: MADE Tommy Soft Bold, Verdana, sans-serif;
+            color: $primaryColor;
+            font-size: 6rem;
+          }
         }
       }
-      &__landing-navigation {
-        font-size: 1.6rem;
-        &__login,
-        &__signup,
-        &__user {
-          color: rgba($colorOffWhite, 0.85);
-          &-icon {
-            font-size: 3.7rem;
-            color: $colorOffWhite;
+      &__section {
+        &__input {
+          font-size: 2rem;
+          color: rgba($primaryColor, 0.8);
+          &:focus {
+            color: $primaryColor;
+            & > label {
+              color: $primaryColor;
+            }
           }
+        }
+        &__label {
+          font-size: 2rem;
+          color: rgba($primaryColor, 0.8);
+        }
+        &__button {
+          font-size: 2.2rem;
+          color: rgba($primaryColor, 0.75);
           &:hover {
             color: $colorOffWhite;
           }
         }
-      }
-    }
-    .background-header {
-      color: $primaryColor;
-      &__main {
-        font-size: 15rem;
-      }
-      &__sub {
-        font-size: 5rem;
-      }
-    }
-    .form-container,
-    .form-container--password-reset,
-    .create-budget-form-container {
-      #closeForgottenForm {
-        font-size: 4rem;
-        color: rgba($colorOffWhite, 0.75);
-        &:hover {
-          cursor: pointer;
-          color: $colorOffWhite;
+        &__forgot-username-or-password-link {
+          font-size: 1.6rem;
+          color: rgba($primaryColor, 0.8);
+          &:hover {
+            color: $primaryColor;
+          }
         }
       }
-      /////////////////////////////////////
-      // Create Buget Form Specific Styles
-
-      .close-create-budget-forms {
-        color: rgba($colorOffWhite, 0.75);
-        font-size: 4rem;
-
-        &:hover {
-          color: $colorOffWhite;
-        }
-      }
-      .login-form,
-      .signup-form,
-      .forgotten-form,
-      .password-reset-form,
-      .create-budget-form {
-        &__form-section {
-          color: $colorOffWhite;
+      &__form-page {
+        &__section {
           &__input {
-            font-size: 5rem;
-            color: $colorOffWhite;
+            font-size: 2rem;
+            color: rgba($primaryColor, 0.8);
+            &:focus {
+              color: $primaryColor;
+              & > label {
+                color: $primaryColor;
+              }
+            }
           }
           &__label {
-            font-size: 3rem;
-          }
-          &--message {
-            font-size: 1.8rem;
-            &__message-container {
-              font-size: 1.4rem;
-              text-align: center;
-              color: rgba($colorOffWhite, 0.85);
-            }
-            &__form-button {
-              color: rgba($colorOffWhite, 0.85);
-              &:hover {
-                cursor: pointer;
-                background-color: $tertiaryColor;
-                color: $colorOffWhite;
-              }
-            }
-          }
-          &__lds-label {
-            font-size: 1.6rem;
-            &--icon {
-              font-size: 1.6rem;
-              color: rgba($colorOffWhite, 0.5);
-              &:hover {
-                color: $colorOffWhite;
-              }
-            }
-          }
-        }
-        &__header {
-          font-size: 3rem;
-          color: $colorOffWhite;
-        }
-        #latterDaySaintYesLabel,
-        #latterDaySaintNoLabel,
-        #tithingNetLabel,
-        #tithingGrossLabel,
-        #tithingSurplusLabel {
-          font-size: 5rem;
-          color: $colorOffWhite;
-        }
-        &-modal {
-          &__header {
-            font-size: 2.4rem;
-            color: $colorOffWhite;
-            text-align: center;
-            line-height: 1.5;
-          }
-          &__close {
-            font-size: 4rem;
-            color: rgba($colorOffWhite, 0.75);
-            &:hover {
-              color: $colorOffWhite;
-            }
-          }
-        }
-      }
-      .create-budget-form-question--full-page {
-        .create-budget-form__sub-header {
-          font-size: 2.4rem;
-          color: rgba($colorDarkestGrey, 0.9);
-          &--finish-selecting {
-            color: rgba($colorDarkestGrey, 0.8);
-            &:hover {
-              color: $colorDarkestGrey;
-            }
-          }
-        }
-        .create-budget-form__category-container {
-          &__category {
             font-size: 2rem;
-            color: rgba($colorOffWhite, 0.75);
-            &--icon {
-              font-size: 3rem;
-            }
+            color: rgba($primaryColor, 0.8);
+          }
+          &__button {
+            font-size: 2.2rem;
+            color: rgba($primaryColor, 0.75);
             &:hover {
               color: $colorOffWhite;
             }
           }
-        }
-        .create-budget-form__row-container {
-          &__main-category-display,
-          &__sub-category-display {
-            &--header {
-              &-text {
-                font-size: 1.6rem;
+          &__page-number {
+            font-size: 2rem;
+            color: $primaryColor;
+          }
+          .signup-form__form-page__section__input-container--latter-day-saint {
+            .signup-form__form-page__section__input--latter-day-saint {
+              &__text--NO,
+              &__text--YES {
+                font-size: 3rem;
                 color: $colorOffWhite;
-              }
-            }
-          }
-          &__main-category-display {
-            &-container {
-              &__category {
-                font-size: 1.6rem;
-                color: rgba($colorOffWhite, 0.75);
-                .create-budget-form__category-container__category--icon {
-                  font-size: 2rem;
-                }
-              }
-            }
-          }
-          &__sub-category-display {
-            &__sub-category-container {
-              &__container {
-                font-size: 2rem;
-                color: rgba($colorOffWhite, 0.75);
-                &--header {
-                  font-size: 2rem;
-                  color: rgba($primaryColor, 0.75);
-                }
-                &__surplus-container {
-                  &--text {
-                    font-size: 1.6rem;
-                    color: rgba($primaryColor, 0.75);
-                  }
-                  &__toggle {
-                    &-switch {
-                      &--icon {
-                        font-size: 1.6rem;
-                        color: $primaryColor;
-                      }
-                    }
-                    &:hover {
-                      .create-budget-form__row-container__sub-category-display__sub-category-container__container__surplus-container__toggle-switch {
-                        &--icon {
-                          color: $tertiaryColor;
-                          transition: color 0.5s;
-                        }
-                      }
-                    }
-                  }
-                }
-                &__remove-category {
-                  font-size: 2.4rem;
-                  color: rgba($primaryColor, 0.75);
-                  &:hover {
-                    color: $tertiaryColor;
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-      .form-page-number {
-        font-size: 4rem;
-        color: $colorOffWhite;
-      }
-    }
-    ///////////////////////////
-    // Logged In | Signed Up
-
-    .app-background {
-      .app-container {
-        &__header--landing {
-          font-size: 2rem;
-          color: $colorOffWhite;
-        }
-        .budget-card-container {
-          .fa-arrow-alt-circle-left,
-          .fa-arrow-alt-circle-right {
-            font-size: 6rem;
-            color: rgba($colorOffWhite, 0.85);
-            &:hover {
-              cursor: pointer;
-              color: $tertiaryColor;
-            }
-            &:active {
-              color: $secondaryColor;
-            }
-          }
-          &__cards-container {
-            .budget-card {
-              &--create {
-                &__icon,
-                &__text {
-                  color: rgba($colorOffWhite, 0.5);
-                }
-                &__icon {
-                  font-size: 10rem;
-                  font-weight: bold;
-                }
-                &__text {
-                  font-size: 3rem;
-                }
-                &:hover {
-                  .budget-card--create__icon,
-                  .budget-card--create__text {
-                    color: $colorOffWhite;
-                  }
-                }
-                &:active {
-                  .budget-card--create__icon,
-                  .budget-card--create__text {
-                    color: $colorOffWhite;
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    .user-profile-background {
-      .user-profile-card {
-        &__first-impression {
-          color: $colorOffWhite;
-          &__image-container {
-            &__update-photo-button {
-              color: rgba($colorOffWhite, 0.75);
-              &--icon {
-                font-size: 2rem;
-              }
-              &--text {
-                font-size: 1.6rem;
-              }
-              &:hover {
-                color: $colorOffWhite;
-              }
-            }
-          }
-          &__name-container {
-            font-size: 3.6rem;
-            &--last {
-              font-size: 2.4rem;
-            }
-          }
-        }
-        &__user-info {
-          &__row,
-          &__row--hidden {
-            &__button {
-              color: rgba($colorOffWhite, 0.75);
-              &--icon {
-                font-size: 4rem;
-              }
-              &--text {
-                font-size: 2rem;
-                text-align: center;
-              }
-              &:hover {
-                color: $colorOffWhite;
-              }
-              &:active {
-                color: $colorDarkerGrey;
-              }
-            }
-            &-info {
-              &--text {
-                color: rgba($colorOffWhite, 0.75);
-              }
-            }
-          }
-          &__profile-option-container {
-            &__header {
-              font-size: 3rem;
-              color: $colorOffWhite;
-            }
-            &__content {
-              .back-button {
-                font-size: 1.6rem;
-                color: rgba($colorOffWhite, 0.5);
-                &:hover {
-                  color: $colorOffWhite;
-                }
-              }
-              .unique-profile-content-container.unique-profile-content-container__password-management,
-              .unique-profile-content-container.unique-profile-content-container__account-management {
-                .unique-profile-content-container__password-management__button,
-                .unique-profile-content-container__account-management__button {
-                  font-size: 1.6rem;
-                  color: rgba($colorOffWhite, 0.75);
-                  &--icon {
-                    font-size: 2.6rem;
-                  }
-                  &:hover {
-                    color: $colorOffWhite;
-                  }
-                  &:active {
-                    color: $colorDarkerGrey;
-                  }
-                }
-                .change-password-form {
-                  &__form-section {
-                    font-size: 2rem;
-                    &__input {
-                      color: rgba($colorOffWhite, 0.85);
-                      &:focus {
-                        border: 0.2rem solid $primaryColor;
-                        color: $colorOffWhite;
-                      }
-                    }
-                    &__label {
-                      color: rgba($colorOffWhite, 0.85);
-                    }
-                  }
-                  &__button {
-                    font-size: 2rem;
-                    color: rgba($colorOffWhite, 0.85);
-                    &:hover {
-                      color: $colorOffWhite;
-                    }
-                    &:active {
-                      color: $colorDarkerGrey;
-                    }
-                  }
-                }
-              }
-              .unique-profile-content-container.unique-profile-content-container__personal-information,
-              .unique-profile-content-container.unique-profile-content-container__communications {
-                .personal-information-form,
-                .communications-form {
-                  &__form-section,
-                  &__form-section--lds,
-                  &__form-section--comms {
-                    font-size: 1.6rem;
-                    .personal-information-form__button,
-                    .personal-information-form__button--lds,
-                    .personal-information-form__button__save,
-                    .communications-form__button,
-                    .communications-form__button--comms,
-                    .communications-form__button__save {
-                      font-size: 2rem;
-                      color: rgba($colorOffWhite, 0.8);
-                      text-align: center;
-                      &:hover {
-                        color: $colorOffWhite;
-                      }
-                      &:active {
-                        color: $colorDarkerGrey;
-                      }
-                      &__text {
-                        font-size: 1.4rem;
-                        &--save {
-                          font-size: 2.8rem;
-                        }
-                      }
-                      &__icon {
-                        &--save {
-                          font-size: 3.6rem;
-                        }
-                      }
-                    }
-                    .personal-information-form__toggle-switch {
-                      color: rgba($colorOffWhite, 0.8);
-                      .personal-information-form__toggle-switch__text--no,
-                      .personal-information-form__toggle-switch__text--yes {
-                        font-size: 2rem;
-                      }
-                      &:hover {
-                        .personal-information-form__toggle-switch__text--no,
-                        .personal-information-form__toggle-switch__text--yes {
-                          color: $colorOffWhite;
-                        }
-                      }
-                    }
-                    .communications-form__comm-switch,
-                    .communications-form__comm-switch--text-preference {
-                      color: $colorOffWhite;
-                    }
-                    &__input-container {
-                      &__input {
-                        color: rgba($colorOffWhite, 0.85);
-                        &:focus {
-                          border: 0.2rem solid $primaryColor;
-                          color: $colorOffWhite;
-                        }
-                      }
-                      &__label {
-                        color: rgba($colorOffWhite, 0.85);
-                      }
-                    }
-                    .personal-information-form__icon {
-                      color: rgba($primaryColorDark, 0.8);
-                      font-size: 3rem;
-                      &:hover {
-                        color: $tertiaryColorDark;
-                        cursor: pointer;
-                      }
-                    }
-                  }
-                }
-              }
-              .personal-information-modal {
-                font-size: 1.6rem;
-                line-height: 1.5;
-                color: $colorOffWhite;
-                &__close {
-                  font-size: 3rem;
-                  color: rgba($colorOffWhite, 0.8);
-                  &:hover {
-                    color: $colorOffWhite;
-                  }
-                }
+                text-transform: capitalize;
               }
             }
           }

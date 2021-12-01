@@ -16,7 +16,43 @@ export const _watchUserButton = () => {
   });
 };
 
-export const _watchCreateBudgetButton = () => {
+export const _mirrorBudgetName = () => {
+  const budgetNameInput = document.getElementById(`budgetName`);
+  const budgetName = document.querySelector('.create-budget-form__header--text');
+  budgetNameInput.addEventListener('keyup', (e) => {
+    e.preventDefault();
+    budgetName.textContent = `Create Budget: ${budgetNameInput.value}`;
+    console.log(budgetName.textContent);
+  });
+};
+
+export const _watchCreateBudgetFormSections = () => {
+  const createBudgetFormSections = document.querySelectorAll('.create-budget-form__form-section');
+  const createBudgetMessages = document.querySelectorAll('.create-budget-form__form-section--message');
+  console.log(createBudgetFormSections);
+  console.log(createBudgetMessages.length, createBudgetMessages);
+  createBudgetFormSections.forEach((cbfs, i) => {
+    if (i != 0) {
+      cbfs.style.display = 'none';
+    }
+  });
+  createBudgetMessages.forEach((cbm, i) => {
+    if (i != 0) {
+      cbm.style.display = 'none';
+    }
+  });
+};
+
+export const _watchCreateBudgetFormButtons = () => {
+  const createBudgetFormButtons = document.querySelectorAll('.create-budget-form__form-section--message__form-button');
+  const finishSelectingButton = document.querySelector('.create-budget-form__sub-header--finish-selecting');
+  const previousCategoryButton = document.querySelector('.create-budget-form__sub-header__goals--previous-category');
+  const nextCategoryButton = document.querySelector('.create-budget-form__sub-header__goals--next-category');
+  console.log(createBudgetFormButtons.length, createBudgetFormButtons);
+  console.log(finishSelectingButton, previousCategoryButton, nextCategoryButton);
+};
+
+export const _watchCreateBudgetButton = function () {
   // Create Budget Functionality
   const createBudget = document.querySelector('.budget-card--create');
   const createBudgetFormContainer = document.querySelector('.create-budget-form-container');
@@ -26,16 +62,9 @@ export const _watchCreateBudgetButton = () => {
       createBudgetFormContainer.classList.remove('create-budget-form-container--open');
     });
   });
-};
-
-export const _mirrorBudgetName = () => {
-  const budgetNameInput = document.getElementById(`budgetName`);
-  const budgetName = document.querySelector('.create-budget-form__header--text');
-  budgetNameInput.addEventListener('keyup', (e) => {
-    e.preventDefault();
-    budgetName.textContent = `Create Budget: ${budgetNameInput.value}`;
-    console.log(budgetName.textContent);
-  });
+  this._mirrorBudgetName();
+  this._watchCreateBudgetFormSections();
+  this._watchCreateBudgetFormButtons();
 };
 
 export const _watchCheckboxes = () => {

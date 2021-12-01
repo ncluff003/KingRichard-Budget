@@ -1,33 +1,40 @@
-div.form-container.r__form-container.column_1-24.row_2-17
-  form.signup-form.r__signup-form(action="/users/signup" method="POST")
-    section.signup-form__form-section.r__signup-form__form-section
-      input.signup-form__form-section__input.signup-form__form-section__input--rounded-top#firstname(type="text" name="firstname" placeholder="First Name" pattern="^[A-Za-z]*$" required)
-      label.signup-form__form-section__label#first-name-label(for="firstname") Please Enter Your First Name
-    section.signup-form__form-section.r__signup-form__form-section
-      input.signup-form__form-section__input.signup-form__form-section__input#lastname(type="text" name="lastname" placeholder="Last Name" pattern="^[A-Za-z]*$" required)
-      label.signup-form__form-section__label#last-name-label(for="lastname") Please Enter Your Last Name
-    section.signup-form__form-section.r__signup-form__form-section
-      input.signup-form__form-section__input.signup-form__form-section__input#username(type="text" name="username" placeholder="Username" pattern="^[A-Z][A-Za-z0-9]*$" required)
-      label.signup-form__form-section__label#user-name-label(for="username") Please Enter Your Username
-    section.signup-form__form-section--message.r__signup-form__form-section--message
-      div.signup-form__form-section--message__message-container.r__signup-form__form-section--message__message-container Error Response
-      button.signup-form__form-section--message__form-button.r__signup-form__form-section--message__form-button(type="submit") Continue
-    section.signup-form__form-section.r__signup-form__form-section
-      input.signup-form__form-section__input.signup-form__form-section__input--rounded-top#email(type="email" name="email" placeholder="Email" required)
-      label.signup-form__form-section__label#email-label(for="email") Please Enter Your Email
-    section.signup-form__form-section.r__signup-form__form-section
-      input.signup-form__form-section__input.signup-form__form-section__input#emailConfirmed(type="email" name="emailConfirmed" placeholder="Repeat Email" required)
-      label.signup-form__form-section__label#repeat-email-label(for="emailConfirmed") Please Repeat Your Email
-    section.signup-form__form-section--message.r__signup-form__form-section--message
-      div.signup-form__form-section--message__message-container.r__signup-form__form-section--message__message-container Error Response
-      button.signup-form__form-section--message__form-button.r__signup-form__form-section--message__form-button(type="submit") Continue
-    section.signup-form__form-section.r__signup-form__form-section
-      input.signup-form__form-section__input.signup-form__form-section__input--rounded-top#password(type="password" name="password" placeholder="Password" required)
-      label.signup-form__form-section__label#password-label(for="password") Please Enter Your Password
-    section.signup-form__form-section.r__signup-form__form-section
-      input.signup-form__form-section__input.signup-form__form-section__input#passwordConfirmed(type="password" name="passwordConfirmed" placeholder="Repeat Password" required)
-      label.signup-form__form-section__label#repeat-password-label(for="passwordConfirmed") Please Repeat Your Password
-    section.signup-form__form-section--message.r__signup-form__form-section--message
-      div.signup-form__form-section--message__message-container.r__signup-form__form-section--message__message-container Error Response
-      button.signup-form__form-section--message__form-button.r__signup-form__form-section--message__form-button(type="submit") Submit
-    p.form-page-number 1 / 3
+div.form-container.r__form-container.form-container--full-page.r__form-container--full-page.column_1-24.row_1-18
+  i.fas.fa-window-close.form-close-icon
+  form.signup-form.r__signup-form
+    header.signup-form__header.r__signup-form__header 
+      p.signup-form__header__title.r__signup-form__header__title Signup 
+    section.signup-form__form-page
+      section.signup-form__form-page__section.r__signup-form__form-page__section 
+        input.signup-form__form-page__section__input.r__signup-form__form-page__section__input#firstname(type="text" name="firstname" placeholder="FIRST NAME" required)
+        label.signup-form__form-page__section__label.r__signup-form__form-page__section__label(for="firstname") Please Provide Your First Name
+      section.signup-form__form-page__section.r__signup-form__form-page__section 
+        input.signup-form__form-page__section__input.r__signup-form__form-page__section__input#lastname(type="text" name="lastname" placeholder="LAST NAME" required)
+        label.signup-form__form-page__section__label.r__signup-form__form-page__section__label(for="lastname") Please Provide Your Last Name
+    section.signup-form__form-page
+      section.login-form__section.r__login-form__section 
+        input.login-form__section__input.r__login-form__section__input#username(type="text" name="username" placeholder="USERNAME" required)
+        label.login-form__section__label.r__login-form__section__label(for="username") What will your Username Be?
+      section.signup-form__form-page__section.r__signup-form__form-page__section.switch-section.r__switch-section 
+        label.signup-form__form-page__section__label.r__signup-form__form-page__section__label(for="latterDaySaint") Are You A Latter Day Saint?
+        .signup-form__form-page__section__input-container--latter-day-saint 
+          .signup-form__form-page__section__input--latter-day-saint
+            .signup-form__form-page__section__input--latter-day-saint__switch 
+            p.signup-form__form-page__section__input--latter-day-saint__text--NO NO
+            p.signup-form__form-page__section__input--latter-day-saint__text--YES YES
+    section.signup-form__form-page
+      section.signup-form__form-page__section.r__signup-form__form-page__section 
+        input.signup-form__form-page__section__input.r__signup-form__form-page__section__input#email(type="email" name="email" placeholder="EMAIL ADDRESS" required)
+        label.signup-form__form-page__section__label.r__signup-form__form-page__section__label(for="email") Please Provide Your Email Address
+      section.signup-form__form-page__section.r__signup-form__form-page__section 
+        input.signup-form__form-page__section__input.r__signup-form__form-page__section__input#emailConfirmed(type="email" name="emailConfirmed" placeholder="EMAIL ADDRESS" required)
+        label.signup-form__form-page__section__label.r__signup-form__form-page__section__label(for="emailConfirmed") Please Confirm Your Email Address
+    section.signup-form__form-page
+      section.signup-form__form-page__section.r__signup-form__form-page__section 
+        input.signup-form__form-page__section__input.r__signup-form__form-page__section__input#password(type="password" name="password" placeholder="PASSWORD" required)
+        label.signup-form__form-page__section__label.r__signup-form__form-page__section__label(for="password") Please Provide Your Password
+      section.signup-form__form-page__section.r__signup-form__form-page__section 
+        input.signup-form__form-page__section__input.r__signup-form__form-page__section__input#passwordConfirmed(type="password" name="passwordConfirmed" placeholder="PASSWORD" required)
+        label.signup-form__form-page__section__label.r__signup-form__form-page__section__label(for="passwordConfirmed") Please Confirm Your Password
+    section.signup-form__form-page__section.r__signup-form__form-page__section.page-section.r__page-section 
+      p.signup-form__form-page__section__page-number.page-section__page-number.r__page-section__page-number= `Page 1 / 4`
+      button.signup-form__form-page__section__button.r__signup-form__form-page__section__button Submit

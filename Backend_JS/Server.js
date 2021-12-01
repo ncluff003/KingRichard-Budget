@@ -52,8 +52,6 @@ const server = App.listen(PORT, () => {
   console.log(`App listening at port ${PORT}`);
 });
 
-reload(App);
-
 // This is how to handle a more graceful shutdown.
 process.on(`unhandledRejection`, (error) => {
   console.log(error.name, error.message);

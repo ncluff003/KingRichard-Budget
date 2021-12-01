@@ -27,7 +27,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.65625"
-     inkscape:cx="552.81356"
+     inkscape:cx="913.19451"
      inkscape:cy="420.87543"
      inkscape:document-units="px"
      inkscape:current-layer="layer41"
@@ -1847,7 +1847,7 @@
          inkscape:groupmode="layer"
          id="layer33"
          inkscape:label="Create Budget Form | Set Goals For Main And Sub Categories"
-         style="display:none">
+         style="display:inline">
         <rect
            y="185.53258"
            x="561.71893"
@@ -2278,7 +2278,7 @@
          inkscape:groupmode="layer"
          id="layer37"
          inkscape:label="Create Budget Form | Set Emergency Fund Goal"
-         style="display:inline">
+         style="display:none">
         <path
            inkscape:connector-curvature="0"
            style="display:inline;opacity:0.7;fill:#111111;fill-opacity:1;stroke:#38d927;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"

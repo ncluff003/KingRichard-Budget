@@ -1,12 +1,14 @@
-div.form-container.r__form-container.column_1-24.row_2-17
+div.form-container.r__form-container.form-container--full-page.r__form-container--full-page.column_1-24.row_1-18
+  i.fas.fa-window-close.form-close-icon
   form.login-form.r__login-form(action="/App" method="POST")
-    section.login-form__form-section.r__login-form__form-section
-      input.login-form__form-section__input.login-form__form-section__input--rounded-top#loginUsername(type="text" name="loginUsername" placeholder="Username"  required)
-      label.login-form__form-section__label#username-label(for="loginUsername") Please Enter Your Username
-    section.login-form__form-section.r__login-form__form-section
-      input.login-form__form-section__input#loginPassword(type="password" name="loginPassword" placeholder="Password" required)
-      label.login-form__form-section__label#password-label(for="loginPassword") Please Enter Your Password
-    section.login-form__form-section--message.r__login-form__form-section--message
-      div.login-form__form-section--message__message-container.r__login-form__form-section--message__message-container Error Response
-      button.login-form__form-section--message__form-button.r__login-form__form-section--message__form-button#loginButtonOne(type="submit") Login
-      button.forgotten-form__form-section--message__form-button.r__forgotten-form__form-section--message__form-button#loginButtonTwo(type="button") Forgot Username or Password
+    header.login-form__header.r__login-form__header 
+      p.login-form__header__title.r__login-form__header__title Login 
+    section.login-form__section.r__login-form__section 
+      input.login-form__section__input.r__login-form__section__input#loginUsername(type="text" name="loginUsername" placeholder="USERNAME" required)
+      label.login-form__section__label.r__login-form__section__label(for="loginUsername") Please Provide Your Username
+    section.login-form__section.r__login-form__section 
+      input.login-form__section__input.r__login-form__section__input#loginPassword(type="password" name="loginPassword" placeholder="PASSWORD" required)
+      label.login-form__section__label.r__login-form__section__label(for="loginPassword") Please Provide Your Password
+    section.login-form__section.r__login-form__section 
+      button.login-form__section__button.r__login-form__section__button Submit
+      p.login-form__section__forgot-username-or-password-link Forgot Username or Password?

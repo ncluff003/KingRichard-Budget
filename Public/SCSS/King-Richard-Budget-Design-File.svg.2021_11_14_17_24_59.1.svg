@@ -113,7 +113,7 @@
        inkscape:groupmode="layer"
        id="layer3"
        inkscape:label="Landing Navigation"
-       style="display:none;opacity:1">
+       style="display:inline;opacity:1">
       <rect
          style="opacity:1;fill:#822aba;fill-opacity:1;stroke:none"
          id="rect1399"
@@ -579,7 +579,7 @@
      inkscape:groupmode="layer"
      id="layer14"
      inkscape:label="User Login Page"
-     style="display:inline">
+     style="display:none">
     <rect
        style="opacity:0.8;fill:#510780;fill-opacity:1;stroke:none;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect1765"
@@ -890,12 +890,12 @@
        inkscape:groupmode="layer"
        id="layer22"
        inkscape:label="Create Budget Form"
-       style="display:inline">
+       style="display:none">
       <g
          inkscape:groupmode="layer"
          id="layer24"
          inkscape:label="Create Budget Form - Background"
-         style="display:inline">
+         style="display:none">
         <rect
            style="display:inline;opacity:0.8;fill:#6c2699;fill-opacity:1;stroke:none;stroke-width:4.94772673;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
            id="rect4478"
@@ -2278,7 +2278,7 @@
          inkscape:groupmode="layer"
          id="layer37"
          inkscape:label="Create Budget Form | Set Emergency Fund Goal"
-         style="display:inline">
+         style="display:none">
         <path
            inkscape:connector-curvature="0"
            style="display:inline;opacity:0.7;fill:#111111;fill-opacity:1;stroke:#38d927;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -5787,7 +5787,7 @@
      inkscape:groupmode="layer"
      id="layer18"
      inkscape:label="User Logged In - Navigation"
-     style="display:inline">
+     style="display:none">
     <g
        inkscape:groupmode="layer"
        id="layer19"
