@@ -1,27 +1,62 @@
-@use "../../../Public/SCSS/Utilities/Mixins" as *;
-@use "../../../Public/SCSS/Utilities/Variables" as *;
+@use '../../../Public/SCSS/Utilities/Mixins' as *;
+@use '../../../Public/SCSS/Utilities/Variables' as *;
 
 ////////////////////////////////////////////////
-//  Master Flex Container
-
-.master-flex-container {
-  ////////////////////////////////////////////////
-  //  Navigation
-
-  .navigation {
-    @include SizeAndPositioning(relative, 4.983rem, 100vw, flex, space-between, center, 0, 0, 0);
-    background-color: $primaryColor;
-    border-bottom: 0.3rem groove $secondaryColor;
-    padding: 0 3rem;
-    .logo-container {
-      @include SizeAndPositioning(relative, 100%, 50%, flex, flex-start, center, 0, 0, 0);
-      &__logo {
-        @include SizingItem(relative, 80%, auto);
-        margin-right: 2rem;
+//  Master Grid Container
+.master-grid-container {
+  .app-flex-container {
+    .app-navigation__main {
+      @include SizeAndPositioning(relative, 100%, 20%, flex, space-evenly, center, 0, 0, 0);
+      background-color: rgba($primaryColor, 0.95);
+      border-right: 0.5rem groove $tertiaryColor;
+      flex-direction: column;
+      &__user-information {
+        @include SizeAndPositioning(relative, 35%, 100%, flex, space-evenly, center, 0, 0, 0);
+        flex-direction: column;
+        &__profile-picture-container {
+          @include SizeAndPositioning(relative, 74%, 60%, flex, center, center, 0, 0, 0);
+          border: 0.6rem solid $colorOffWhite;
+          border-radius: 50%;
+          margin-bottom: 1rem;
+          &__picture {
+            @include SizingItem(relative, 100%, auto);
+          }
+        }
       }
-    }
-    &__landing-navigation {
-      @include SizeAndPositioning(relative, 80%, 50%, flex, flex-end, center, 0, 0, 0);
+      &__navigation-links {
+        @include SizeAndPositioning(relative, 30%, 100%, flex, space-evenly, center, 0, 0, 0);
+        &__link-container {
+          @include SizeAndPositioning(relative, 100%, 100%, flex, center, center, 0, 0, 0);
+          flex-direction: column;
+          &__link {
+            @include SizeAndPositioning(relative, 20%, 80%, flex, space-evenly, center, 0, 0, 0);
+            &:not(:last-of-type) {
+              margin-bottom: 1.5rem;
+            }
+            &--link {
+              @include SizeAndPositioning(relative, 100%, 100%, flex, space-evenly, center, 0, 0, 0);
+              border: 0.3rem solid $colorOffWhite;
+              border-radius: 1.25rem;
+              &:hover {
+                background-color: $secondaryColor;
+                transition: color 0.5s, background-color 0.5s;
+              }
+              &:active {
+                background-color: $tertiaryColor;
+              }
+            }
+          }
+        }
+      }
+      &__logo-container {
+        @include SizeAndPositioning(relative, 20%, 100%, flex, space-evenly, center, 0, 0, 0);
+        flex-direction: column;
+        &__logo {
+          @include SizingItem(relative, 80%, auto);
+          margin-bottom: 1rem;
+          transform: translateX(-15%);
+        }
+      }
     }
   }
 }

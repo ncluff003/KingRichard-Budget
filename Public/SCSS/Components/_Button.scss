@@ -22,7 +22,8 @@
   .form-container {
     .login-form,
     .signup-form,
-    .forgotten-form {
+    .forgotten-form,
+    .reset-password-form {
       &__section {
         &__button {
           @include SizeAndPositioning(relative, 6rem, 20%, flex, center, center, 0, 0, 0);
@@ -49,6 +50,27 @@
               background-color: $primaryColor;
               border: 0.3rem solid $primaryColor;
               transition: background-color 0.5s, border 0.5s, color 0.5s;
+            }
+          }
+        }
+      }
+    }
+  }
+  .app-flex-container {
+    .app-navigation__main {
+      &__user-information {
+        &__update-picture {
+          @include SizeAndPositioning(relative, 7.5%, 60%, flex, center, center, 0, 0, 0);
+          background-color: transparent;
+          border: none;
+          &--icon {
+            margin-right: 1rem;
+          }
+          &:hover {
+            cursor: pointer;
+            .app-navigation__main__user-information__update-picture--icon,
+            .app-navigation__main__user-information__update-picture--text {
+              transition: color 0.5s;
             }
           }
         }

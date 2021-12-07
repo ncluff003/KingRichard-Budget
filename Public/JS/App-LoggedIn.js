@@ -1,5 +1,14 @@
 import { getSomePersonals, updateMe, updateMyPassword, deleteMe } from './Update-User';
 import { logout } from './Login';
+// import * as BudgetCard from './Budget-Cards';
+
+(function () {
+  class App {
+    constructor() {}
+  }
+
+  const app = new App();
+})();
 
 // Opening The Profile Page
 const userButton = document.querySelector('.navigation__landing-navigation__user');

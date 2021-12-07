@@ -1,27 +1,32 @@
 extends base
   
-include _Navigation-LoggedIn
-
-block Unique-Content
-  section.app-background.r__app-background.column_1-24.row_2-17
-    section.app-container.r__app-container
-      header.app-container__header--landing
-        h1.app-container__header--landing__title= `${data.calendar.getGreeting()} ${data.user.firstname} ${data.user.lastname}`
-      section.budget-card-container.r__budget-card-container
-        i.fas.fa-arrow-alt-circle-left
-        div.budget-card-container__cards-container
-          section.budget-card--create
-            i.fas.fa-plus.budget-card--create__icon
-            p.budget-card--create__text Create Budget
-        i.fas.fa-arrow-alt-circle-right
-  include _User-Profile
-  include _Create-Budget-Form
-  
-          //- section.user-profile-card__user-info__row-info
-          //-   input.user-profile-card__user-info__row-info--text(placeholder=`(000) 000 - 000` type='tel' pattern="\([0-9]{3}\) [0-9]{3} \- [0-9]{4}") 
-          //- button.user-profile-card__user-info__row__button
-          //-   i.fas.fa-user-edit.user-profile-card__user-info__row__button--icon
-          //-   p.user-profile-card__user-info__row__button--text Phone Number
-          //- section.user-profile-card__user-info__row-info
-          //-   input.user-profile-card__user-info__row-info--text(placeholder=`(000) 000 - 000` type='tel' pattern="\([0-9]{3}\) [0-9]{3} \- [0-9]{4}") 
+block App-Content 
+  section.master-grid-container.r__master-grid-container
+    section.app-flex-container.r__app-flex-container.column_1-24.row_1-18 
+      nav.app-navigation__main.r__app-navigation__main
+        section.app-navigation__main__user-information.r__app-navigation__main__user-information
+          section.app-navigation__main__user-information__profile-picture-container.r__app-navigation__main__user-information__profile-picture-container 
+            img.app-navigation__main__user-information__profile-picture-container__picture.r__app-navigation__main__user-information__profile-picture-container__picture(src=`/DIST/CSS/Images/Users/${data.user.photo}`)
+          button.app-navigation__main__user-information__update-picture.r__app-navigation__main__user-information__update-picture 
+            i.fas.fa-camera.app-navigation__main__user-information__update-picture--icon.r__app-navigation__main__user-information__update-picture--icon
+            p.app-navigation__main__user-information__update-picture--text.r__app-navigation__main__user-information__update-picture--text Update Photo
+          p.app-navigation__main__user-information__user-name.r__app-navigation__main__user-information__user-name= `${data.user.firstname} ${data.user.lastname}`
+        section.app-navigation__main__navigation-links.r__app-navigation__main__navigation-links 
+          ul.app-navigation__main__navigation-links__link-container.r__app-navigation__main__navigation-links__link-container
+            li.app-navigation__main__navigation-links__link-container__link.r__app-navigation__main__navigation-links__link-container__link
+              a.app-navigation__main__navigation-links__link-container__link--link.r__app-navigation__main__navigation-links__link-container__link--link(href="#") Personal Information 
+            li.app-navigation__main__navigation-links__link-container__link.r__app-navigation__main__navigation-links__link-container__link
+              a.app-navigation__main__navigation-links__link-container__link--link.r__app-navigation__main__navigation-links__link-container__link--link(href="#") Communications
+            li.app-navigation__main__navigation-links__link-container__link.r__app-navigation__main__navigation-links__link-container__link
+              a.app-navigation__main__navigation-links__link-container__link--link.r__app-navigation__main__navigation-links__link-container__link--link(href="#") Password Management
+            li.app-navigation__main__navigation-links__link-container__link.r__app-navigation__main__navigation-links__link-container__link
+              a.app-navigation__main__navigation-links__link-container__link--link.r__app-navigation__main__navigation-links__link-container__link--link(href="#") Account Management
+        section.app-navigation__main__logo-container.r__app-navigation__main__logo-container 
+          img.app-navigation__main__logo-container__logo.r__app-navigation__main__logo-container__logo(src="/KingRichard-Logo-White.svg")
+          p.app-navigation__main__logo-container__text.r__app-navigation__main__logo-container__text King Richard              
+      section.app-viewport.r__app-viewport
+        img.app-logo.r__app-logo(src="/KingRichard-Logo.svg")
+        p.app-name.r__app-name King Richard 
+        section.app-viewport__display-container.r__app-viewport__display-container 
+          include _Budget-Card-Container
 

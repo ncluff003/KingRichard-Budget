@@ -1,38 +1,81 @@
-@use "../../../Public/SCSS/Utilities/Mixins" as *;
-@use "../../../Public/SCSS/Utilities/Variables" as *;
+@use '../../../Public/SCSS/Utilities/Mixins' as *;
+@use '../../../Public/SCSS/Utilities/Variables' as *;
 
 ////////////////////////////////////////////////
-//  Master Flex Container
-
-.master-flex-container {
-  .master-grid-container {
-    ////////////////////////////////////////////////
-    //  Background
-    .background-logo {
-      @include SizeAndPositioning(relative, auto, 60%, flex, center, center, 0, 0, 0);
-    }
-    .background-header {
-      @include SizeAndPositioning(relative, 100%, 100%, flex, center, flex-start, 0, 0, 0);
-      flex-direction: column;
-      &__main {
-        @include SizeAndPositioning(relative, 60%, 100%, flex, flex-start, center, 0, 0, 0);
-      }
-      &__sub {
-        @include SizeAndPositioning(relative, 40%, 100%, flex, flex-end, center, -15rem, 2rem, 0);
-      }
-    }
-    .app-background {
-      @include SizeAndPositioning(relative, 100%, 100%, flex, center, center, 0, 0, 0);
-      background-color: rgba($primaryColorDarker, 0.8);
-    }
-    .user-profile-background {
-      @include SizeAndPositioning(relative, 0, 0, flex, center, center, 0, 0, 0);
-      opacity: 0;
-      background-color: rgba($primaryColor, 0.975);
-      &--open {
-        height: 100%;
-        width: 100%;
-        opacity: 1;
+//  Master Grid Container
+.master-grid-container {
+  .app-flex-container {
+    .app-viewport {
+      &__display-container {
+        @include SizeAndPositioning(absolute, 100%, 100%, grid, center, center, 0, 0, 0);
+        @include gridLayout(100%, 100%, repeat(20, 1fr), repeat(16, 1fr), 0, 0);
+        @include gridPlacement(20, 20, 16, 16);
+        background-color: rgba($colorOffWhite, 0.9);
+        .budget-card-container {
+          @include SizeAndPositioning(relative, 100%, 100%, flex, space-evenly, center, 0, 0, 0);
+          background-color: rgba($colorOffWhite, 0.5);
+          &__card {
+            @include SizeAndPositioning(relative, 100%, 25%, flex, center, center, 0, 0, 0);
+            flex-direction: column;
+            border: 0.3rem solid rgba($primaryColor, 0.8);
+            border-radius: 2.5rem;
+            background-color: transparent;
+            &__header {
+              @include SizeAndPositioning(absolute, 10%, 100%, flex, center, center, 0, 0, 0);
+              top: 0;
+              border-top-left-radius: 2.1rem;
+              border-top-right-radius: 2.1rem;
+              background-color: rgba($primaryColor, 0.8);
+              &__icon {
+                @include SizeAndPositioning(absolute, 3rem, auto, flex, center, center, 0, -50%, 0);
+                top: 50%;
+                right: 2rem;
+                &:hover {
+                  cursor: pointer;
+                  transition: color 0.5s;
+                }
+              }
+            }
+            &:hover {
+              cursor: pointer;
+              border: 0.3rem solid $primaryColor;
+              transition: border 0.5s;
+              .budget-card-container__card__header {
+                background-color: $primaryColor;
+                transition: background-color 0.5s, color 0.5s;
+                &__icon {
+                  transition: color 0.5s;
+                }
+              }
+            }
+            &--create {
+              @include SizeAndPositioning(relative, 100%, 25%, flex, center, center, 0, 0, 0);
+              flex-direction: column;
+              border: 0.3rem solid rgba($primaryColor, 0.8);
+              border-radius: 2.5rem;
+              background-color: transparent;
+              &__header {
+                @include SizeAndPositioning(absolute, 10%, 100%, flex, center, center, 0, 0, 0);
+                top: 0;
+                border-top-left-radius: 2.1rem;
+                border-top-right-radius: 2.1rem;
+                background-color: rgba($primaryColor, 0.8);
+              }
+              &:hover {
+                cursor: pointer;
+                border: 0.3rem solid $primaryColor;
+                transition: border 0.5s;
+                .budget-card-container__card--create__header {
+                  background-color: $primaryColor;
+                  transition: background-color 0.5s, color 0.5s;
+                }
+                .budget-card-container__card--create__icon {
+                  transition: color 0.5s;
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

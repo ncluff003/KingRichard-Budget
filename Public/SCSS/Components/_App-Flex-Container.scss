@@ -1,0 +1,10 @@
+@use '../../../Public/SCSS/Utilities/Mixins' as *;
+@use '../../../Public/SCSS/Utilities/Variables' as *;
+
+////////////////////////////////////////////////
+//  Master Grid Container
+.master-grid-container {
+  .app-flex-container {
+    @include SizeAndPositioning(relative, 100%, 100%, flex, space-between, center, 0, 0, 0);
+  }
+}

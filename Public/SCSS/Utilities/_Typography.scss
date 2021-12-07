@@ -42,7 +42,8 @@ html {
     }
     .login-form,
     .signup-form,
-    .forgotten-form {
+    .forgotten-form,
+    .reset-password-form {
       font-family: MADE Tommy Soft, Verdana, sans-serif;
       &__header {
         &__title {
@@ -120,6 +121,116 @@ html {
                 font-size: 3rem;
                 color: $colorOffWhite;
                 text-transform: capitalize;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .app-flex-container {
+    .app-navigation__main {
+      &__navigation-links {
+        font-family: MADE Tommy Soft, Verdana, sans-serif;
+        &__link-container {
+          &__link {
+            &--link {
+              font-size: 2rem;
+              &:link,
+              &:visited {
+                text-decoration: none;
+                color: rgba($colorOffWhite, 0.8);
+              }
+              &:hover {
+                color: $colorOffWhite;
+              }
+              &:active {
+                color: $colorDarkGrey;
+              }
+            }
+          }
+        }
+      }
+      &__logo-container {
+        &__text {
+          font-size: 3rem;
+          color: $colorOffWhite;
+        }
+      }
+      &__user-information {
+        font-family: MADE Tommy Soft, Verdana, sans-serif;
+        &__update-picture {
+          color: rgba($colorOffWhite, 0.8);
+          &--icon {
+            font-size: 1.6rem;
+          }
+          &--text {
+            font-size: 1.6rem;
+          }
+          &:hover {
+            .app-navigation__main__user-information__update-picture--icon,
+            .app-navigation__main__user-information__update-picture--text {
+              color: $colorOffWhite;
+            }
+          }
+        }
+        &__user-name {
+          font-size: 3.6rem;
+          color: $colorOffWhite;
+        }
+      }
+    }
+    .app-viewport {
+      .app-name {
+        font-size: 7rem;
+        color: $primaryColor;
+      }
+      &__display-container {
+        .budget-card-container {
+          &__card {
+            &__header {
+              &__text {
+                font-size: 2rem;
+                color: rgba($colorOffWhite, 0.8);
+              }
+              &__icon {
+                font-size: 2rem;
+                color: rgba($colorOffWhite, 0.8);
+              }
+            }
+            &:hover {
+              .budget-card-container__card__header {
+                &__text {
+                  color: $colorOffWhite;
+                }
+                &__icon {
+                  color: $colorOffWhite;
+                  &:hover {
+                    color: $secondaryColor;
+                  }
+                }
+              }
+            }
+            &--create {
+              &__header {
+                &__text {
+                  font-size: 2rem;
+                  color: rgba($colorOffWhite, 0.8);
+                }
+              }
+              &__icon {
+                font-size: 10rem;
+                color: rgba($primaryColor, 0.8);
+              }
+              &:hover {
+                .budget-card-container__card--create__header {
+                  &__text {
+                    color: $colorOffWhite;
+                  }
+                }
+                .budget-card-container__card--create__icon {
+                  color: $primaryColor;
+                }
               }
             }
           }

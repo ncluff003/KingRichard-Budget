@@ -189,10 +189,12 @@ exports.validateSignup = catchAsync(async (request, response, next) => {
 // SIGN UP VALIDATED USERS
 exports.signup = catchAsync(async (request, response, next) => {
   const formBody = request.body;
+  console.log(formBody);
   const newUser = await User.create({
     firstname: formBody.firstname,
     lastname: formBody.lastname,
     username: formBody.username,
+    latterDaySaint: formBody.latterDaySaint,
     email: formBody.email,
     emailConfirmed: formBody.emailConfirmed,
     password: formBody.password,

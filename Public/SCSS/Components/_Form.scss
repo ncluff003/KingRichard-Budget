@@ -8,6 +8,9 @@
     @include SizeAndPositioning(relative, 100%, 100vw, none, center, center, 0, 0, 0);
     background-color: rgba($colorOffWhite, 0.95);
     &--full-page {
+      &:nth-of-type(6) {
+        display: flex;
+      }
       z-index: 1;
       .form-close-icon {
         @include SizeAndPositioning(absolute, 2rem, 2rem, flex, center, center, 0, 0, 0);
@@ -20,7 +23,8 @@
       }
       .login-form,
       .signup-form,
-      .forgotten-form {
+      .forgotten-form,
+      .reset-password-form {
         @include SizeAndPositioning(relative, 100%, 50%, flex, center, center, 0, 0, 0);
         flex-direction: column;
         &__header {
