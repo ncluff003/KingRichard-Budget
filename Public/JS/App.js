@@ -14,7 +14,19 @@ import { signup } from './Signup';
       this._watchEntranceButtons();
       this._watchFormClosers();
       this._watchTheSwitch();
-      BudgetCard.createBudgetCard(`Cluff's Budget`, `7 December 2021`, `7 December 2021`, `Nathan Cluff`, `Image`);
+      BudgetCard.createBudgetCard(
+        `Cluff's Budget`,
+        `7 December 2021`,
+        `7 December 2021`,
+        `Nathan Cluff`,
+        `./../DIST/CSS/Images/Default-Budget-Cover-Photo.svg`,
+      );
+      AppLoggedIn._watchUserProfileButtons();
+      AppLoggedIn._watchCommPreference();
+      AppLoggedIn._watchSubSectionButtons();
+      AppLoggedIn._watchPasswordSubSectionButtons();
+      AppLoggedIn._watchPhoneNumberInputs();
+      AppLoggedIn._watchForProfileUpdates();
     }
 
     _watchResetButton() {

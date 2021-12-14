@@ -79,6 +79,9 @@ exports.getMe = catchAsync(async (request, response, next) => {
 });
 
 exports.updateMe = catchAsync(async (request, response, next) => {
+  console.log('----------------------------------------------------------------');
+  console.log(request.body);
+  console.log('----------------------------------------------------------------');
   // CREATE ERROR IF USER TRIES TO POST PASSWORD DATA
   if (request.body.password || request.body.passwordConfirmed) {
     return next(new AppError(`This route is not for password updates.  Please use /updateMyPassword route.`, 400));
@@ -91,8 +94,8 @@ exports.updateMe = catchAsync(async (request, response, next) => {
     'username',
     'email',
     'emailConfirmed',
-    'phone',
-    'phoneConfirmed',
+    'phoneNumber',
+    'phoneNumberConfirmed',
     'communicationPreference',
     'photo',
     'latterDaySaint',

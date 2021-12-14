@@ -1,33 +1,9 @@
-mixin profileButton(iconType, icon, text)
-  button.user-profile-card__user-info__row__button 
-    i.user-profile-card__user-info__row__button--icon(class=`${iconType} ${icon}`)
-    p.user-profile-card__user-info__row__button--text= `${text}`
-
-section.user-profile-background.r__user-profile-background.column_1-24.row_2-17 
-    section.user-profile-card.r__user-profile-card
-      section.user-profile-card__first-impression
-        section.user-profile-card__first-impression__image-container
-          img.user-profile-card__first-impression__image-container--image(src=`/DIST/CSS/Images/Users/${data.user.photo}` alt=`Photo of ${data.user.firstname} ${data.user.lastname}`)
-          button.user-profile-card__first-impression__image-container__update-photo-button
-            i.fas.fa-camera.user-profile-card__first-impression__image-container__update-photo-button--icon
-            p.user-profile-card__first-impression__update-photo-button--text Update Photo        
-        section.user-profile-card__first-impression__name-container
-          p.user-profile-card__first-impression__name-container--first #{data.user.firstname}
-          p.user-profile-card__first-impression__name-container--last #{data.user.lastname}
-      section.user-profile-card__user-info
-        section.user-profile-card__user-info__row
-          +profileButton(`fas`, `fa-user-alt`, `Personal Information`)
-          +profileButton(`fas`, `fa-lock`, `Password Management`)
-        section.user-profile-card__user-info__row
-          +profileButton(`fas`, `fa-mobile-alt`, `Communications`)
-          +profileButton(`fas`, `fa-id-card`, `Account Management`)
-        section.user-profile-card__user-info__profile-option-container 
-          header.user-profile-card__user-info__profile-option-container__header Sample Title 
-          section.user-profile-card__user-info__profile-option-container__content
-            button.back-button 
-                  i.fas.fa-arrow-alt-circle-left.back-button__icon 
-                  p.back-button__text Go Back
-            include _Personal-Information
-            include _Password-Management
-            include _Communications
-            include _Account-Management
+section.user-profile-container.r__user-profile-container.column_1-20.row_1-16
+  i.fas.fa-window-close.user-profile-container__close.r__user-profile-container__close
+  header.user-profile-container__header.r__user-profile-container__header 
+    p.user-profile-container__header__text.r__user-profile-container__header__text Personal Information 
+  section.user-profile-container__form-container.r__user-profile-container__form-container
+    include _Personal-Information
+    include _Communications
+    include _Password-Management
+    include _Account-Management

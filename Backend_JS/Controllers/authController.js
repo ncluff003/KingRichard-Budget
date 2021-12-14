@@ -141,13 +141,16 @@ exports.login = catchAsync(async (request, response, next) => {
   // Check if Username & Password Exist
   if (!username || !password) return next(new AppError(`Please provide username and password!`), 400);
   // Check if User exists right along with Username & Password is correct.
-  const user = await User.findOne({ username }).select('+password');
+  const user = await User.findOne({ username }).select('+password').select('+active');
 
   if (!user || !(await user.correctPassword(password, user.password))) return next(new AppError(`Incorrect username or password`), 401);
-
   // REACTIVATE USER IF INACTIVE
-  // if (user.active === false) user.active = true;
-  // user.save();
+  if (user.active === false) {
+    console.log('INACTIVE USER');
+    user.active = true;
+    user.save({ validateBeforeSave: false });
+  }
+
   createAndSendToken(user, 200, `render`, request, response, `loggedIn`, `King Richard | Home`, { calendar: Calendar });
 });
 

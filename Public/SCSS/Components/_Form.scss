@@ -198,4 +198,219 @@
       display: flex;
     }
   }
+  .app-flex-container {
+    .app-viewport {
+      &__display-container {
+        .user-profile-container {
+          // USER PROFILE FORM CONTAINER
+          &__form-container {
+            @include SizeAndPositioning(relative, 85%, 100%, flex, center, center, 0, 0, 0);
+            flex-direction: column;
+            // USER PROFILE FORM
+            .user-profile-form {
+              @include SizeAndPositioning(relative, 100%, 100%, none, center, center, 0, 0, 0);
+              flex-direction: column;
+              &__section {
+                @include SizeAndPositioning(relative, min-content, 100%, flex, space-evenly, center, 0, 0, 0);
+                flex-direction: column;
+                &__label {
+                  @include SizeAndPositioning(absolute, 7rem, 25%, flex, flex-start, center, 0, -50%, 0);
+                  top: 50%;
+                  left: calc(37.7% + 2rem);
+                  -moz-transform: translateY(-50%);
+                  transition: transform 0.5s;
+                }
+                &__input {
+                  @include SizeAndPositioning(relative, 7rem, 25%, flex, flex-start, center, 0, 0, 0);
+                  padding: 1rem;
+                  padding-left: 2rem;
+                  background-color: rgba($colorDarkestGrey, 0.5);
+                  border: 0.3rem solid rgba($colorOffWhite, 0.75);
+                  border-radius: 0.75rem;
+                  margin: 2rem 0;
+                  &::-webkit-input-placeholder,
+                  &::-moz-placeholder,
+                  &::placeholder {
+                    opacity: 0;
+                  }
+                  &:focus {
+                    outline: none;
+                    &::-webkit-input-placeholder,
+                    &::-moz-placeholder,
+                    &::placeholder {
+                      opacity: 1;
+                    }
+                  }
+                  &:not(:placeholder-shown) + label,
+                  &:focus + label {
+                    transform: translate(-6rem, -8.25rem) scale(0.75);
+                  }
+                }
+                &__input-container--latter-day-saint {
+                  @include SizeAndPositioning(relative, 7rem, 12.5%, flex, space-evenly, center, 0, 0, 0);
+                  flex-direction: column;
+                  .user-profile-form__section__input--latter-day-saint {
+                    @include SizeAndPositioning(relative, 95%, 100%, flex, center, center, -15%, 0, 0);
+                    background-color: rgba($primaryColorLight, 0.8);
+                    border: 0.3rem solid rgba($primaryColor, 0.8);
+                    border-radius: 5rem;
+                    padding: 0.25rem;
+                    transition: background-color 0.5s, border 0.5s;
+                    &__switch {
+                      @include SizeAndPositioning(absolute, 84%, 30%, flex, center, center, 0, -50%, 0);
+                      top: 50%;
+                      left: 2.75%;
+                      background-color: rgba($primaryColorDark, 0.8);
+                      border-radius: 5rem;
+                      transition: background-color 0.5s, transform 0.5s, width 0.25s;
+                    }
+                    &__text--NO {
+                      @include SizeAndPositioning(relative, 100%, 70%, flex, center, center, 0, 0, 0);
+                    }
+                    &__text--YES {
+                      @include SizeAndPositioning(relative, 100%, 70%, none, center, center, 0, 0, 0);
+                    }
+                    &:hover {
+                      cursor: pointer;
+                    }
+                    &--switched {
+                      border: 0.3rem solid $secondaryColorDark;
+                      background-color: $secondaryColorLight;
+                      padding: 0.25rem;
+                      .user-profile-form__section__input--latter-day-saint__switch {
+                        width: 94%;
+                        background-color: $secondaryColorDark;
+                        // transform: translate(215%, -49%);
+                        transform: translate(0, -49%);
+                      }
+                      .user-profile-form__section__input--latter-day-saint__text--NO {
+                        display: none;
+                      }
+                      .user-profile-form__section__input--latter-day-saint__text--YES {
+                        display: flex;
+                      }
+                    }
+                  }
+                }
+                &__sub-section {
+                  @include SizeAndPositioning(relative, min-content, 100%, none, space-evenly, center, 0, 0, 0);
+                  flex-direction: column;
+                  &:first-of-type {
+                    margin: 0 0 1rem;
+                  }
+                  margin: 0.5rem 0;
+                  &__input {
+                    @include SizeAndPositioning(relative, 6rem, 17.5%, flex, flex-start, center, 15%, 0, 0);
+                    padding: 1rem;
+                    padding-left: 2rem;
+                    background-color: rgba($colorDarkestGrey, 0.5);
+                    border: 0.3rem solid rgba($colorOffWhite, 0.75);
+                    border-radius: 0.75rem;
+                    margin: 0.5rem 0;
+                    &::-webkit-input-placeholder,
+                    &::-moz-placeholder,
+                    &::placeholder {
+                      opacity: 0;
+                    }
+                    &:focus {
+                      outline: none;
+                      &::-webkit-input-placeholder,
+                      &::-moz-placeholder,
+                      &::placeholder {
+                        opacity: 1;
+                      }
+                    }
+                    &:not(:placeholder-shown) + label,
+                    &:focus + label {
+                      transform: translate(-4rem, -7rem) scale(0.75);
+                    }
+                  }
+                  &__label {
+                    @include SizeAndPositioning(absolute, 6rem, 17.5%, flex, flex-start, center, 0, -50%, 0);
+                    top: 50%;
+                    left: calc(43.75% + 2rem);
+                    -moz-transform: translateY(-50%);
+                    transition: transform 0.5s;
+                  }
+                  &--show {
+                    display: flex;
+                    .user-profile-form__section__label {
+                      transform: translate(-4rem, -16.25rem) scale(0.75);
+                    }
+                  }
+                }
+                &__comm-switch {
+                  @include SizeAndPositioning(relative, 100%, 15%, flex, center, center, 0, 0, 0);
+                  background-color: rgba($colorDarkestGrey, 0.5);
+                  border: 0.4rem solid rgba($colorOffWhite, 0.8);
+                  border-radius: 8rem;
+                  padding: 0.5rem;
+                  &--email,
+                  &--text {
+                    @include SizeAndPositioning(relative, 100%, 50%, flex, space-evenly, center, 0, 0, 0);
+                    z-index: 1;
+                  }
+                  &--email {
+                    border-top-left-radius: 8rem;
+                    border-bottom-left-radius: 8rem;
+                  }
+                  &--text {
+                    border-top-right-radius: 8rem;
+                    border-bottom-right-radius: 8rem;
+                  }
+                  &:after {
+                    @include SizeAndPositioning(absolute, 85%, 50%, flex, center, center, 0, -50%, 0);
+                    top: 50%;
+                    left: 0.5rem;
+                    background-color: $secondaryColor;
+                    border-top-left-radius: 8rem;
+                    border-bottom-left-radius: 8rem;
+                    z-index: 0;
+                    content: '';
+                    transition: transform 0.5s, border-radius 0.5s;
+                  }
+                  &--text-preferred {
+                    &:after {
+                      @include SizeAndPositioning(absolute, 85%, 50%, flex, center, center, 91%, -50%, 0);
+                      top: 50%;
+                      left: 0.5rem;
+                      background-color: $secondaryColor;
+                      border-top-left-radius: 0;
+                      border-bottom-left-radius: 0;
+                      border-top-right-radius: 8rem;
+                      border-bottom-right-radius: 8rem;
+                      z-index: 0;
+                      content: '';
+                    }
+                  }
+                  &:hover {
+                    cursor: pointer;
+                  }
+                }
+              }
+              .switch-section {
+                flex-direction: row;
+                justify-content: center;
+                margin-top: 2rem;
+                label {
+                  position: relative;
+                  top: 0;
+                  left: 0;
+                  width: 14%;
+                  transform: translate(0, 0);
+                }
+                .comms-label {
+                  width: 18%;
+                }
+                margin-bottom: 2rem;
+              }
+              ::-webkit-input-placeholder {
+                opacity: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

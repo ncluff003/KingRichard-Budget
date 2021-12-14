@@ -76,5 +76,96 @@
         }
       }
     }
+    .app-viewport {
+      &__display-container {
+        .user-profile-container {
+          // USER PROFILE FORM CONTAINER
+          &__form-container {
+            // USER PROFILE FORM
+            .user-profile-form {
+              &__button {
+                @include SizeAndPositioning(relative, 7rem, 15%, flex, center, center, 0, 0, 0);
+                border: 0.3rem solid rgba($colorOffWhite, 0.75);
+                border-radius: 1.25rem;
+                background-color: transparent;
+                &--icon {
+                  margin-right: 1rem;
+                }
+                &:hover {
+                  cursor: pointer;
+                  background-color: $secondaryColor;
+                  border: 0.3rem solid $colorOffWhite;
+                  transition: background-color 0.5s, border 0.5s, color 0.5s;
+                }
+                &:active {
+                  background-color: $tertiaryColor;
+                  border: 0.3rem solid $colorDarkerGrey;
+                }
+              }
+              &__section {
+                &__button {
+                  @include SizeAndPositioning(absolute, 3rem, 12.5%, flex, center, center, 0, 0.75rem, 0);
+                  bottom: 0;
+                  right: 36.5%;
+                  background-color: transparent;
+                  border: none;
+                  &:hover {
+                    cursor: pointer;
+                    transition: color 0.5s, transform 0.5s;
+                  }
+                  &__password-button {
+                    @include SizeAndPositioning(relative, 7rem, 15%, flex, center, center, 0, 0, 0);
+                    border: 0.3rem solid rgba($colorOffWhite, 0.75);
+                    border-radius: 1.25rem;
+                    background-color: transparent;
+                    margin: 1rem 0;
+                    &:focus {
+                      outline: none;
+                    }
+                    &--icon {
+                      margin-right: 1rem;
+                    }
+                    &:hover {
+                      cursor: pointer;
+                      background-color: $secondaryColor;
+                      border: 0.3rem solid $colorOffWhite;
+                      transition: background-color 0.5s, border 0.5s, color 0.5s;
+                    }
+                    &:active {
+                      background-color: $tertiaryColor;
+                      border: 0.3rem solid $colorDarkerGrey;
+                    }
+                  }
+                }
+                &__sub-section {
+                  &__button {
+                    @include SizeAndPositioning(relative, 7rem, 15%, flex, center, center, 0, 0, 0);
+                    border: 0.3rem solid rgba($colorOffWhite, 0.75);
+                    border-radius: 1.25rem;
+                    background-color: transparent;
+                    &--icon {
+                      margin-right: 1rem;
+                    }
+                    &:hover {
+                      cursor: pointer;
+                      background-color: $secondaryColor;
+                      border: 0.3rem solid $colorOffWhite;
+                      transition: background-color 0.5s, border 0.5s, color 0.5s;
+                    }
+                    &:active {
+                      background-color: $tertiaryColor;
+                      border: 0.3rem solid $colorDarkerGrey;
+                    }
+                  }
+                }
+              }
+              .account-management-button.r__account-management-button {
+                margin: 1rem 0;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

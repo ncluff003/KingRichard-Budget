@@ -36,6 +36,37 @@
                 }
               }
             }
+            &__content {
+              @include SizeAndPositioning(absolute, 80%, 100%, flex, center, center, 0, 0, 0);
+              background-color: rgba($colorDarkestGrey, 0.1);
+              opacity: 0.8;
+              &__cover-photo {
+                @include SizeAndPositioning(relative, 100%, 100%, flex, center, center, 0, 0, 0);
+              }
+              &__change-photo-button {
+                @include SizeAndPositioning(absolute, 4rem, 4rem, flex, center, center, 0, 0, 0);
+                top: 4rem;
+                left: 4rem;
+                border: 0.25rem solid rgba($primaryColor, 0.8);
+                background-color: rgba($colorDarkestGrey, 0.25);
+                border-radius: 5rem;
+              }
+            }
+            &__footer {
+              @include SizeAndPositioning(absolute, 10%, 100%, flex, center, center, 0, 0, 0);
+              bottom: 0;
+              border-bottom-left-radius: 2.1rem;
+              border-bottom-right-radius: 2.1rem;
+              background-color: rgba($primaryColor, 0.8);
+              flex-direction: column;
+              &--top {
+                @include SizeAndPositioning(relative, 50%, 100%, flex, space-between, flex-start, 0, 0, 0);
+                padding: 0.5rem 0.5rem 0;
+              }
+              &--bottom {
+                @include SizeAndPositioning(relative, 50%, 100%, flex, center, center, 0, 0, 0);
+              }
+            }
             &:hover {
               cursor: pointer;
               border: 0.3rem solid $primaryColor;
@@ -46,6 +77,25 @@
                 &__icon {
                   transition: color 0.5s;
                 }
+              }
+              .budget-card-container__card__content {
+                opacity: 1;
+                transition: opacity 0.5s;
+                &__change-photo-button {
+                  &:hover {
+                    cursor: pointer;
+                    border: 0.25rem solid $primaryColor;
+                    background-color: $primaryColor;
+                    transition: border 0.5s, background-color 0.5s;
+                    .budget-card-container__card__content__change-photo-button__icon {
+                      transition: color 0.5s;
+                    }
+                  }
+                }
+              }
+              .budget-card-container__card__footer {
+                background-color: $primaryColor;
+                transition: background-color 0.5s, color 0.5s;
               }
             }
             &--create {

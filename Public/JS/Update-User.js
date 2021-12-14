@@ -74,21 +74,53 @@ export const updateMe = async (options) => {
         ? (document.getElementById('lastname').value = options.value)
         : (document.getElementById('lastname').value = document.getElementById('lastname').value);
 
+      // Check if username is not undefined or empty.
+      !options.username === undefined && !options.username === ''
+        ? (document.getElementById('username').value = options.value)
+        : (document.getElementById('username').value = document.getElementById('username').value);
+
       // Check if email is not undefined or empty.
       !options.email === undefined && !options.email === ''
         ? (document.getElementById('email').value = options.value)
         : (document.getElementById('email').value = document.getElementById('email').value);
 
+      // Check if email is not undefined or empty.
+      !options.emailConfirmed === undefined && !options.emailConfirmed === ''
+        ? (document.getElementById('email').value = options.value)
+        : (document.getElementById('email').value = document.getElementById('email').value);
+
+      document.getElementById('email').value = options.email;
       document.getElementById('newEmail').value = '';
       document.getElementById('newEmailConfirmed').value = '';
 
       // Check if phone number is not undefined or empty.
       !options.phoneNumber === undefined && !options.phoneNumber === ''
-        ? (document.getElementById('phone').value = options.value)
-        : (document.getElementById('phone').value = '');
+        ? (document.getElementById('phoneNumber').value = options.value)
+        : (document.getElementById('phoneNumber').value = document.getElementById('phoneNumber').value);
 
-      // Check if username is not undefined or empty.
-      document.getElementById('phoneConfirmed').value = '';
+      // Check if phone number is not undefined or empty.
+      !options.phoneNumberConfirmed === undefined && !options.phoneNumberConfirmed === ''
+        ? (document.getElementById('phoneNumber').value = options.value)
+        : (document.getElementById('phoneNumber').value = document.getElementById('phoneNumber').value);
+
+      // Check if confirmed phone number is not undefined or empty.
+      document.getElementById('phoneNumber').value = options.phoneNumber;
+      document.getElementById('newPhoneNumber').value = '';
+      document.getElementById('newPhoneNumberConfirmed').value = '';
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deactivateMe = async () => {
+  try {
+    const response = await axios({
+      method: `DELETE`,
+      url: `/users/deactivateMe`,
+    });
+    if (response.statusText === 'Success') {
+      window.location.assign('/');
     }
   } catch (error) {
     console.log(error);

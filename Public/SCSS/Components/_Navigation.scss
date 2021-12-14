@@ -37,7 +37,9 @@
               @include SizeAndPositioning(relative, 100%, 100%, flex, space-evenly, center, 0, 0, 0);
               border: 0.3rem solid $colorOffWhite;
               border-radius: 1.25rem;
+              background-color: transparent;
               &:hover {
+                cursor: pointer;
                 background-color: $secondaryColor;
                 transition: color 0.5s, background-color 0.5s;
               }
