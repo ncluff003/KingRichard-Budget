@@ -1,0 +1,61 @@
+section.budget-creation-form__page__section.r__budget-creation-form__page__section
+  section.budget-creation-form__page__section__month-container.r__budget-creation-form__page__section__month-container 
+    header.budget-creation-form__page__section__month-container__header.r__budget-creation-form__page__section__month-container__header 
+      i.fas.fa-file-invoice-dollar.budget-creation-form__page__section__month-container__header__icon.r__budget-creation-form__page__section__month-container__header__icon 
+      p.budget-creation-form__page__section__month-container__header__title.r__budget-creation-form__page__section__month-container__header__title= `${data.calendar.getMonth()}`
+    section.budget-creation-form__page__section__month-container__budget-goal-summary-container.r__budget-creation-form__page__section__month-container__budget-goal-summary-container 
+      section.budget-single-goal-summary.r__budget-single-goal-summary
+        p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Overall Budget
+        p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `$${0}`
+      section.budget-single-goal-summary.r__budget-single-goal-summary
+        p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Overall Spent
+        p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `$${0}`
+      section.budget-single-goal-summary.r__budget-single-goal-summary
+        p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Overall Remaining
+        p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `$${0}`
+      section.budget-single-goal-summary.r__budget-single-goal-summary
+        p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Percentage Spent
+        p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `${0}%`
+      section.budget-single-goal-summary.r__budget-single-goal-summary
+        p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Percentage of Month Remaining
+        p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `${data.calendar.monthRemaining()}`
+    section.budget-creation-form__page__section__month-container__category-container.r__budget-creation-form__page__section__month-container__category-container
+      section.main-category-display.r__main-category-display
+        section.main-category-display__button-container.r__main-category-display__button-container
+          i.fas.fa-arrow-alt-circle-left.main-category-display__button-container__icon.r__main-category-display__button-container__icon.left.r__left
+        section.main-category-display__category-display.r__main-category-display__category-display
+          i.fas.main-category-display__category-display__icon
+          p.main-category-display__category-display__title.r__main-category-display__category-display__title Housing
+        section.main-category-display__button-container.r__main-category-display__button-container
+          i.fas.fa-arrow-alt-circle-right.main-category-display__button-container__icon.r__main-category-display__button-container__icon.right.r__right
+      section.sub-category-display.r__sub-category-display
+        section.sub-category-display__headers.r__sub-category-display__headers 
+          section.sub-category-display__headers__title-container Category
+          section.sub-category-display__headers__title-container Individual Payment
+          section.sub-category-display__headers__title-container Spent
+          section.sub-category-display__headers__title-container Remaining
+          section.sub-category-display__headers__title-container Percent Spent
+        section.sub-category-display__sub-category
+          section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
+            p.sub-category-display__sub-category__section__category-name.r__sub-category-display__sub-category__section__category-name Rent / Mortgage 
+            button.sub-category-display__sub-category__section__set-category-timing-button.r__sub-category-display__sub-category__section__set-category-timing-button + Timing
+          section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
+            input.sub-category-display__sub-category__section__input.r__sub-category-display__sub-category__section__input.individual-payment.r__individual-payment(type="number")
+          section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
+            input.sub-category-display__sub-category__section__input.r__sub-category-display__sub-category__section__input.spent.r__spent(type="number" readonly="true")
+          section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
+            input.sub-category-display__sub-category__section__input.r__sub-category-display__sub-category__section__input.remaining.r__remaining(type="number" readonly="true")
+          section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
+            input.sub-category-display__sub-category__section__input.r__sub-category-display__sub-category__section__input.percent-spent.r__percent-spent(type="number" readonly="true")
+        section.sub-category-display__sub-category
+          section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
+            p.sub-category-display__sub-category__section__category-name.r__sub-category-display__sub-category__section__category-name Electricity 
+            button.sub-category-display__sub-category__section__set-category-timing-button.r__sub-category-display__sub-category__section__set-category-timing-button + Timing
+          section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
+            input.sub-category-display__sub-category__section__input.r__sub-category-display__sub-category__section__input.individual-payment.r__individual-payment(type="number")
+          section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
+            input.sub-category-display__sub-category__section__input.r__sub-category-display__sub-category__section__input.spent.r__spent(type="number" readonly="true")
+          section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
+            input.sub-category-display__sub-category__section__input.r__sub-category-display__sub-category__section__input.remaining.r__remaining(type="number" readonly="true")
+          section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
+            input.sub-category-display__sub-category__section__input.r__sub-category-display__sub-category__section__input.percent-spent.r__percent-spent(type="number" readonly="true")

@@ -3,6 +3,9 @@ import * as BudgetCard from './Budget-Cards';
 import * as AppLoggedIn from './App-LoggedIn';
 import { updatePassword } from './Update-User';
 import { signup } from './Signup';
+import * as Categories from './Budget-Categories';
+import * as Budget from './Budget-Creation';
+import * as Person from './Person';
 
 ///////////////////////////////////////////////
 // APP
@@ -27,6 +30,8 @@ import { signup } from './Signup';
       AppLoggedIn._watchPasswordSubSectionButtons();
       AppLoggedIn._watchPhoneNumberInputs();
       AppLoggedIn._watchForProfileUpdates();
+      Budget._watchEmergencyGoalSettings();
+      Budget._watchBudgetCreation();
     }
 
     _watchResetButton() {
@@ -43,7 +48,6 @@ import { signup } from './Signup';
     _changeLatterDaySaintStatus(lightSwitch, switchClass) {
       lightSwitch.classList.toggle(switchClass);
       isLatterDaySaint = !isLatterDaySaint;
-      console.log(isLatterDaySaint);
     }
 
     _watchTheSwitch() {
@@ -79,7 +83,6 @@ import { signup } from './Signup';
       });
       formPages[pageNumber].style.display = 'flex';
       domSignupFormPageNumber.textContent = `Page ${pageNumber + 1} / 4`;
-      console.log(pageNumber);
     }
 
     _watchFormSubmitButton() {
@@ -108,7 +111,6 @@ import { signup } from './Signup';
       formClosers.forEach((fc, i) => {
         fc.addEventListener('click', (e) => {
           e.preventDefault();
-          console.log(fc, i);
           this._closeTheForm(i);
         });
       });

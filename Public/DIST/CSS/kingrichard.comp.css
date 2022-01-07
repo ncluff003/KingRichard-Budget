@@ -370,6 +370,322 @@ html {
 .master-grid-container .app-flex-container .app-viewport__display-container .user-profile-container__form-container .user-profile-form__button:active {
   color: #333333;
 }
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .form-close-icon {
+  font-size: 4rem;
+  color: rgba(130, 42, 186, 0.5);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .form-close-icon:hover {
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__header__title {
+  font-family: MADE Tommy Soft Bold, Verdana, sans-serif;
+  font-size: 10rem;
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__header__title--medium {
+  font-family: MADE Tommy Soft Bold, Verdana, sans-serif;
+  color: #822aba;
+  font-size: 6rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(1), .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(5), .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(6), .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(7) {
+  flex-direction: column;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(1) > .budget-creation-form__page__section > .budget-creation-form__page__section__input, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(5) > .budget-creation-form__page__section > .budget-creation-form__page__section__input, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(6) > .budget-creation-form__page__section > .budget-creation-form__page__section__input, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(7) > .budget-creation-form__page__section > .budget-creation-form__page__section__input {
+  font-size: 1.6rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(1) > .budget-creation-form__page__section > .budget-creation-form__page__section__label, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(5) > .budget-creation-form__page__section > .budget-creation-form__page__section__label, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(6) > .budget-creation-form__page__section > .budget-creation-form__page__section__label, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(7) > .budget-creation-form__page__section > .budget-creation-form__page__section__label {
+  font-size: 1.6rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__select {
+  color: rgba(250, 250, 250, 0.8);
+  font-size: 2rem;
+  text-align: center;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__select:focus {
+  background-color: #822aba;
+  border: 0.3rem solid #822aba;
+  color: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__select option {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  color: #fafafa;
+  font-weight: 300;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__input {
+  font-size: 2rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__input:focus {
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__input:focus > label {
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__label {
+  font-size: 2rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__button {
+  font-size: 2.2rem;
+  color: rgba(130, 42, 186, 0.75);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__button:hover {
+  color: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category {
+  font-size: 2rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category__icon {
+  font-size: 3rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category:hover .budget-creation-form__page__section__main-category-container__create-main-category__icon {
+  color: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category:hover .budget-creation-form__page__section__main-category-container__create-main-category__text {
+  color: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category__icons-container .icon-container {
+  font-size: 1.6rem;
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category__icons-container .icon-container__icon {
+  font-size: 4rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category__icons-container .icon-container:hover {
+  color: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category__icons-container .icon-container--clicked {
+  color: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  font-size: 2rem;
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category__icon {
+  font-size: 3rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category__delete {
+  font-size: 1.2rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category:hover {
+  color: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category:hover .main-category__delete {
+  color: rgba(250, 250, 250, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category:hover .main-category__delete:hover {
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__set-main-category-title-container__input {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  font-size: 1.6rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__set-main-category-title-container__input:focus {
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__set-main-category-title-container__button {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  font-size: 1.6rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__set-main-category-title-container__button:hover {
+  color: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__main-category-display__left-button__icon, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__main-category-display__right-button__icon {
+  font-size: 5rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__main-category-display__left-button__icon:hover, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__main-category-display__right-button__icon:hover {
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__main-category-display__left-button__icon {
+  color: rgba(130, 42, 186, 0.25);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__main-category-display__category-information {
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__main-category-display__category-information__icon {
+  font-size: 16rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__main-category-display__category-information__text {
+  font-size: 4rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category .sub-category-title-container__title {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  font-size: 1.6rem;
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  font-size: 1.6rem;
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller__surplus-container__switch__toggle__icon {
+  font-size: 1.2rem;
+  color: rgba(250, 250, 250, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller__icon {
+  color: rgba(130, 42, 186, 0.8);
+  font-size: 2rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller__icon:hover {
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__input-container {
+  font-size: 1.4rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__input-container__input {
+  color: rgba(130, 42, 186, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__input-container__input:focus {
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__input-container__button {
+  color: rgba(130, 42, 186, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__input-container__button:hover {
+  color: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__controller {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  font-size: 1.6rem;
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__controller__surplus-container__switch__toggle__icon {
+  font-size: 1.2rem;
+  color: rgba(250, 250, 250, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__controller__icon {
+  color: rgba(130, 42, 186, 0.8);
+  font-size: 2rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__controller__icon:hover {
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  font-size: 1.6rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button:hover {
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__header {
+  font-size: 2.8rem;
+  color: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__header__title {
+  font-size: 4rem;
+  text-transform: uppercase;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__budget-goal-summary-container .budget-single-goal-summary__title {
+  font-size: 1.6rem;
+  color: #822aba;
+  text-align: center;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__budget-goal-summary-container .budget-single-goal-summary__amount {
+  font-size: 3rem;
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .main-category-display__button-container {
+  font-size: 6rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .main-category-display__button-container .left {
+  color: rgba(130, 42, 186, 0.25);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .main-category-display__button-container .right {
+  color: rgba(130, 42, 186, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .main-category-display__button-container .left:hover,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .main-category-display__button-container .right:hover {
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .main-category-display__category-display {
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .main-category-display__category-display__icon {
+  font-size: 20rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .main-category-display__category-display__title {
+  font-size: 4rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__headers__title-container {
+  font-size: 1.2rem;
+  color: #fafafa;
+  text-align: center;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section__category-name {
+  font-size: 1.4rem;
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section:first-of-type {
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section__set-category-timing-button {
+  font-size: 1.4rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section__input {
+  font-size: 1.4rem;
+  color: rgba(130, 42, 186, 0.8);
+  text-align: center;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section__input:focus {
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section {
+  background-color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__category-name {
+  color: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__set-category-timing-button {
+  color: rgba(250, 250, 250, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__set-category-timing-button:hover {
+  color: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__input {
+  color: rgba(250, 250, 250, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__input:focus {
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .emergency-section-header {
+  font-weight: 300;
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .emergency-section #lengthOfTime + .clicked-label,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .emergency-section #totalAmount + .clicked-label {
+  color: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page-mechanisms__page-number {
+  font-size: 3rem;
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page-mechanisms__submit-button {
+  font-size: 2rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page-mechanisms__submit-button:hover {
+  color: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .tithing-section #grossOptionLabel:hover,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .tithing-section #netOptionLabel:hover,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .tithing-section #surplusOptionLabel:hover {
+  color: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .tithing-section .checked {
+  color: #fafafa;
+}
 
 .gridTV {
   display: grid;
@@ -32050,8 +32366,146 @@ html {
   background-color: #ffd700;
   border: 0.3rem solid #333333;
 }
+.master-grid-container .app-flex-container .app-viewport__display-container .user-profile-container__form-container .user-profile-form__section__set-main-category-title-container__button {
+  position: relative;
+  height: 7rem;
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
 .master-grid-container .app-flex-container .app-viewport__display-container .user-profile-container__form-container .user-profile-form .account-management-button.r__account-management-button {
   margin: 1rem 0;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category:hover .main-category__delete {
+  border: 0.2rem solid rgba(250, 250, 250, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category__delete {
+  position: absolute;
+  height: 2rem;
+  width: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  top: 0.5rem;
+  right: 0.5rem;
+  border: 0.2rem solid rgba(130, 42, 186, 0.8);
+  border-radius: 50%;
+  background-color: transparent;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category__delete:hover {
+  cursor: pointer;
+  background-color: #fafafa;
+  border: 0.2rem solid #fafafa;
+  transition: background-color 0.5s, border 0.5s, color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__set-main-category-title-container__button {
+  position: relative;
+  height: 5rem;
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-radius: 1.25rem;
+  background-color: transparent;
+  margin-left: 1rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__set-main-category-title-container__button:hover {
+  cursor: pointer;
+  background-color: #822aba;
+  transition: color 0.5s, background-color 0.5s, border 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button {
+  position: relative;
+  height: 6rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  min-height: 6rem;
+  border: none;
+  background-color: transparent;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button:hover {
+  cursor: pointer;
+  transition: color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button__icon {
+  margin-right: 1rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container .category-creation__input-container__button {
+  position: relative;
+  height: 50%;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.2rem solid rgba(130, 42, 186, 0.8);
+  background-color: rgba(250, 250, 250, 0.25);
+  border-radius: 0.5rem;
+  margin-left: 1rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container .category-creation__input-container__button:hover {
+  cursor: pointer;
+  border: 0.2rem solid #822aba;
+  background-color: #822aba;
+  transition: background-color 0.5s, color 0.5s, border 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .main-category-display__button-container .left:hover,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .main-category-display__button-container .right:hover {
+  cursor: pointer;
+  transition: color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section {
+  position: relative;
+  height: 100%;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section:first-of-type {
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section__set-category-timing-button {
+  background-color: transparent;
+  border: none;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section__set-category-timing-button:hover {
+  cursor: pointer;
+  transition: color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section {
+  cursor: pointer;
+  background-color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page-mechanisms__page-number {
+  margin-right: 2rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page-mechanisms__submit-button {
+  position: relative;
+  height: 5rem;
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-radius: 1.25rem;
+  background-color: transparent;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page-mechanisms__submit-button:hover {
+  cursor: pointer;
+  background-color: #822aba;
+  transition: color 0.5s, background-color 0.5s, border 0.5s;
 }
 
 .vertical-flex-container .flex-section {
@@ -32282,6 +32736,12 @@ html {
 .master-grid-container .form-container--full-page .reset-password-form__form-page__section__input::-moz-placeholder,
 .master-grid-container .form-container--full-page .reset-password-form__form-page__section__input::placeholder {
   opacity: 0;
+}
+.master-grid-container .form-container--full-page .login-form__form-page__section__input:focus::-webkit-input-placeholder,
+.master-grid-container .form-container--full-page .signup-form__form-page__section__input:focus::-webkit-input-placeholder,
+.master-grid-container .form-container--full-page .forgotten-form__form-page__section__input:focus::-webkit-input-placeholder,
+.master-grid-container .form-container--full-page .reset-password-form__form-page__section__input:focus::-webkit-input-placeholder {
+  opacity: 1;
 }
 .master-grid-container .form-container--full-page .login-form__form-page__section__input:focus,
 .master-grid-container .form-container--full-page .signup-form__form-page__section__input:focus,
@@ -32543,6 +33003,9 @@ html {
 .master-grid-container .app-flex-container .app-viewport__display-container .user-profile-container__form-container .user-profile-form__section__input::-webkit-input-placeholder, .master-grid-container .app-flex-container .app-viewport__display-container .user-profile-container__form-container .user-profile-form__section__input::-moz-placeholder, .master-grid-container .app-flex-container .app-viewport__display-container .user-profile-container__form-container .user-profile-form__section__input::placeholder {
   opacity: 0;
 }
+.master-grid-container .app-flex-container .app-viewport__display-container .user-profile-container__form-container .user-profile-form__section__input:focus::-webkit-input-placeholder {
+  opacity: 1;
+}
 .master-grid-container .app-flex-container .app-viewport__display-container .user-profile-container__form-container .user-profile-form__section__input:focus {
   outline: none;
 }
@@ -32774,6 +33237,911 @@ html {
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .user-profile-container__form-container .user-profile-form ::-webkit-input-placeholder {
   opacity: 0;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .form-close-icon {
+  position: absolute;
+  height: 2rem;
+  width: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  top: 5rem;
+  right: 6rem;
+  z-index: 10;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .form-close-icon:hover {
+  cursor: pointer;
+  transition: color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  flex-direction: column;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form ::-webkit-input-placeholder {
+  opacity: 0;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__header {
+  position: relative;
+  height: 15%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page {
+  position: relative;
+  height: 70%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(1), .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(5), .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(6), .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(7) {
+  flex-direction: column;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(1) > .budget-creation-form__page__section > .budget-creation-form__page__section__input, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(5) > .budget-creation-form__page__section > .budget-creation-form__page__section__input, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(6) > .budget-creation-form__page__section > .budget-creation-form__page__section__input, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(7) > .budget-creation-form__page__section > .budget-creation-form__page__section__input {
+  width: 25%;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(1) > .budget-creation-form__page__section > .budget-creation-form__page__section__input:not(:placeholder-shown) + label, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(1) > .budget-creation-form__page__section > .budget-creation-form__page__section__input:focus + label, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(5) > .budget-creation-form__page__section > .budget-creation-form__page__section__input:not(:placeholder-shown) + label, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(5) > .budget-creation-form__page__section > .budget-creation-form__page__section__input:focus + label, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(6) > .budget-creation-form__page__section > .budget-creation-form__page__section__input:not(:placeholder-shown) + label, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(6) > .budget-creation-form__page__section > .budget-creation-form__page__section__input:focus + label, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(7) > .budget-creation-form__page__section > .budget-creation-form__page__section__input:not(:placeholder-shown) + label, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(7) > .budget-creation-form__page__section > .budget-creation-form__page__section__input:focus + label {
+  transform: translate(-5rem, -7rem) scale(0.75);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(1) > .budget-creation-form__page__section > .budget-creation-form__page__section__label, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(5) > .budget-creation-form__page__section > .budget-creation-form__page__section__label, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(6) > .budget-creation-form__page__section > .budget-creation-form__page__section__label, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(7) > .budget-creation-form__page__section > .budget-creation-form__page__section__label {
+  width: 25%;
+  left: calc(30% + 12.5rem);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section {
+  position: relative;
+  height: min-content;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  flex-direction: column;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section:not(:last-of-type) {
+  margin-bottom: 3.5rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__select {
+  position: relative;
+  height: 6rem;
+  width: 12.5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: rgba(130, 42, 186, 0.8);
+  border: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-top-right-radius: 0.9rem;
+  border-bottom-right-radius: 0.9rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__select:focus {
+  background-color: #822aba;
+  border: 0.3rem solid #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__select option {
+  background-color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__select option:hover {
+  background-color: #38d927;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__input {
+  position: relative;
+  height: 6rem;
+  width: 40%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  padding: 1rem;
+  padding-left: 2rem;
+  background-color: rgba(221, 221, 221, 0.125);
+  border: 0.3rem solid rgba(130, 42, 186, 0.75);
+  border-radius: 0.75rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__input::-webkit-input-placeholder, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__input::-moz-placeholder, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__input::placeholder {
+  opacity: 0;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__input:focus::-webkit-input-placeholder {
+  opacity: 1;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__input:focus {
+  outline: none;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__input:focus::-webkit-input-placeholder, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__input:focus::-moz-placeholder, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__input:focus::placeholder {
+  opacity: 1;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__input:not(:placeholder-shown) + label, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__input:focus + label {
+  transform: translate(-8.5rem, -7rem) scale(0.75);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__label {
+  position: absolute;
+  height: 6rem;
+  width: 40%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, -50%);
+  top: 50%;
+  left: calc(30% + 2rem);
+  -moz-transform: translateY(-50%);
+  transition: transform 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container {
+  position: relative;
+  height: 50rem;
+  width: 40%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  transform: rotate(0) translate(0, 0);
+  border: 0.3rem solid #822aba;
+  border-radius: 1.25rem;
+  flex-flow: row wrap;
+  overflow-y: auto;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category {
+  position: relative;
+  height: 25%;
+  width: 25%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  flex-direction: column;
+  border: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-top-left-radius: 0.9rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category:hover {
+  cursor: pointer;
+  border: 0.3rem solid #822aba;
+  background-color: #822aba;
+  transition: border 0.5s, background-color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category:hover .budget-creation-form__page__section__main-category-container__create-main-category__icon,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category:hover .budget-creation-form__page__section__main-category-container__create-main-category__text {
+  transition: color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category__icons-container {
+  position: relative;
+  height: 80%;
+  width: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.3rem solid #822aba;
+  grid-template-columns: repeat(5, 1fr);
+  border-top-left-radius: 0.9rem;
+  border-top-right-radius: 0.9rem;
+  flex-flow: row wrap;
+  overflow-y: auto;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category__icons-container .icon-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  flex-direction: column;
+  padding: 3rem 0;
+  z-index: 3;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category__icons-container .icon-container:first-of-type {
+  border-top-left-radius: 0.5rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category__icons-container .icon-container:hover {
+  cursor: pointer;
+  background-color: #822aba;
+  transition: background-color 0.5s, color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category__icons-container .icon-container__icon {
+  position: relative;
+  z-index: 0;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category__icons-container .icon-container--clicked {
+  background-color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category__icons-container--open {
+  display: grid;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category--hidden {
+  display: none;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category {
+  position: relative;
+  height: 25%;
+  width: 25%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  flex-direction: column;
+  border: 0.3rem solid rgba(130, 42, 186, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category:first-of-type {
+  border-top-left-radius: 0.9rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category:nth-of-type(3) {
+  border-top-right-radius: 0.9rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category--hidden {
+  display: none;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category:hover {
+  cursor: pointer;
+  border: 0.3rem solid #822aba;
+  background-color: #822aba;
+  transition: border 0.5s, background-color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category:hover .budget-creation-form__page__section__main-category-container__create-main-category__icon,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category:hover .budget-creation-form__page__section__main-category-container__create-main-category__text {
+  transition: color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container--creating-category {
+  flex-direction: column;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__set-main-category-title-container {
+  position: relative;
+  height: 20%;
+  width: 100%;
+  display: none;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border-top: 0.3rem solid #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__set-main-category-title-container__input {
+  position: relative;
+  height: 5rem;
+  width: 35%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-radius: 1.25rem;
+  background-color: rgba(250, 250, 250, 0.8);
+  padding: 1rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__set-main-category-title-container__input:focus {
+  outline: none;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__set-main-category-title-container--open {
+  display: flex;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container {
+  position: relative;
+  height: 50rem;
+  width: 35%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  flex-direction: column;
+  border: 0.3rem solid #822aba;
+  border-radius: 1rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__main-category-display {
+  position: relative;
+  height: 55%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__main-category-display__left-button, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__main-category-display__right-button {
+  position: relative;
+  height: 100%;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__main-category-display__left-button__icon:hover, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__main-category-display__right-button__icon:hover {
+  cursor: pointer;
+  transition: color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__main-category-display__category-information {
+  position: relative;
+  height: 100%;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  flex-direction: column;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display {
+  position: relative;
+  height: 45%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  flex-direction: column;
+  border-top: 0.3rem solid #822aba;
+  overflow-y: auto;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category {
+  position: relative;
+  height: 6rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  min-height: 6rem;
+  border-bottom: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-left: none;
+  border-right: none;
+  background-color: transparent;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category .sub-category-title-container {
+  position: relative;
+  height: 100%;
+  width: 70%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  padding-left: 2rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller {
+  position: relative;
+  height: 100%;
+  width: 30%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller__surplus-container {
+  position: relative;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  flex-direction: column;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller__surplus-container__switch {
+  position: relative;
+  height: 40%;
+  width: 75%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.2rem solid rgba(101, 33, 144, 0.8);
+  border-radius: 2rem;
+  background-color: rgba(130, 42, 186, 0.8);
+  transition: border 0.5s, background-color 0.5s, transform 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller__surplus-container__switch__toggle {
+  position: relative;
+  height: 93%;
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(5%, 0);
+  border: 0.2rem solid rgba(250, 250, 250, 0.8);
+  border-radius: 50%;
+  background-color: rgba(101, 33, 144, 0.8);
+  transition: border 0.5s, background-color 0.5s, transform 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller__surplus-container__switch--switched {
+  position: relative;
+  height: 40%;
+  width: 75%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.2rem solid rgba(44, 174, 31, 0.8);
+  border-radius: 2rem;
+  background-color: rgba(56, 217, 39, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller__surplus-container__switch--switched .sub-category-controller__surplus-container__switch__toggle {
+  position: relative;
+  height: 93%;
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(200%, 0);
+  border-radius: 50%;
+  background-color: rgba(44, 174, 31, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller__surplus-container__switch:hover {
+  cursor: pointer;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller__icon:hover {
+  cursor: pointer;
+  transition: color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .hidden {
+  display: none;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__input-container {
+  position: relative;
+  height: 100%;
+  width: 70%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  padding-left: 2rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__input-container__input {
+  position: relative;
+  height: 50%;
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  padding-left: 1rem;
+  border: 0.2rem solid rgba(130, 42, 186, 0.8);
+  background-color: rgba(250, 250, 250, 0.25);
+  border-radius: 0.5rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__input-container__input:focus {
+  border: 0.2rem solid #822aba;
+  outline: none;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__controller {
+  position: relative;
+  height: 100%;
+  width: 30%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__controller__surplus-container {
+  position: relative;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  flex-direction: column;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__controller__surplus-container__switch {
+  position: relative;
+  height: 40%;
+  width: 75%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.2rem solid rgba(101, 33, 144, 0.8);
+  border-radius: 2rem;
+  background-color: rgba(130, 42, 186, 0.8);
+  transition: border 0.5s, background-color 0.5s, transform 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__controller__surplus-container__switch__toggle {
+  position: relative;
+  height: 93%;
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(5%, 0);
+  border: 0.2rem solid rgba(250, 250, 250, 0.8);
+  border-radius: 50%;
+  background-color: rgba(101, 33, 144, 0.8);
+  transition: border 0.5s, background-color 0.5s, transform 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__controller__surplus-container__switch--switched {
+  position: relative;
+  height: 40%;
+  width: 75%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.2rem solid rgba(44, 174, 31, 0.8);
+  border-radius: 2rem;
+  background-color: rgba(56, 217, 39, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__controller__surplus-container__switch--switched .category-creation__controller__surplus-container__switch__toggle {
+  position: relative;
+  height: 93%;
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border-radius: 50%;
+  background-color: rgba(44, 174, 31, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__controller__surplus-container__switch:hover {
+  cursor: pointer;
+  position: relative;
+  height: 40%;
+  width: 75%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.2rem solid rgba(44, 174, 31, 0.8);
+  border-radius: 2rem;
+  background-color: rgba(56, 217, 39, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__controller__surplus-container__switch:hover .category-creation__controller__surplus-container__switch__toggle {
+  position: relative;
+  height: 93%;
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(200%, 0);
+  border-radius: 50%;
+  background-color: rgba(44, 174, 31, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__controller__icon:hover {
+  cursor: pointer;
+  transition: color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container {
+  position: relative;
+  height: 62.5rem;
+  width: 75%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  flex-direction: column;
+  border: 0.3rem solid #822aba;
+  border-radius: 1.25rem;
+  padding: 0.25rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__header {
+  position: relative;
+  height: 6rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: #822aba;
+  border-top-left-radius: 0.8rem;
+  border-top-right-radius: 0.8rem;
+  border-bottom: 0.3rem solid #ffd700;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__header__icon {
+  position: absolute;
+  height: 3rem;
+  width: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, -50%);
+  top: 50%;
+  left: 1rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__budget-goal-summary-container {
+  position: relative;
+  height: 14rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__budget-goal-summary-container .budget-single-goal-summary {
+  position: relative;
+  height: 100%;
+  width: 19%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  flex-direction: column;
+  background-color: #dddddd;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__budget-goal-summary-container .budget-single-goal-summary__title, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__budget-goal-summary-container .budget-single-goal-summary__amount {
+  position: relative;
+  height: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container {
+  position: relative;
+  height: 42.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  padding: 1.5rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .main-category-display {
+  position: relative;
+  height: 100%;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .main-category-display__button-container {
+  position: relative;
+  height: 100%;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .main-category-display__category-display {
+  position: relative;
+  height: 100%;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  flex-direction: column;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .main-category-display__category-display__title {
+  margin-top: 2rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display {
+  position: relative;
+  height: 100%;
+  width: 60%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  margin-left: 1.5rem;
+  flex-direction: column;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__headers {
+  position: relative;
+  height: 4rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__headers__title-container {
+  position: relative;
+  height: 100%;
+  width: 19.5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category {
+  position: relative;
+  height: 6rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  min-height: 6rem;
+  background-color: #dddddd;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section {
+  position: relative;
+  height: 100%;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section:first-of-type {
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section__input {
+  position: relative;
+  height: 60%;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: rgba(250, 250, 250, 0.35);
+  border-radius: 0.5rem;
+  border: 0.2rem solid rgba(130, 42, 186, 0.8);
+  caret-color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section__input:focus {
+  outline: none;
+  border: 0.2rem solid #822aba, 0.8;
+  background-color: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section {
+  background-color: #822aba;
+  transition: background-color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__input {
+  border: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__input:focus {
+  outline: none;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .emergency-section {
+  flex-direction: row;
+  justify-content: center;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .emergency-section-header {
+  position: absolute;
+  height: 6rem;
+  width: 27.5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  left: calc(30% + 9.5rem);
+  top: 0;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .emergency-section #lengthOfTime,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .emergency-section #totalAmount {
+  display: none;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .emergency-section #lengthOfTime .emergency-checkbox-label, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .emergency-section #lengthOfTime + label,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .emergency-section #totalAmount .emergency-checkbox-label,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .emergency-section #totalAmount + label {
+  position: relative;
+  height: 6rem;
+  width: 12.5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  left: 0;
+  width: 12.5%;
+  border-top: 0.3rem solid #822aba;
+  border-bottom: 0.3rem solid #822aba;
+  margin-bottom: 4rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .emergency-section #lengthOfTime .emergency-checkbox-label:first-of-type, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .emergency-section #lengthOfTime + label:first-of-type,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .emergency-section #totalAmount .emergency-checkbox-label:first-of-type,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .emergency-section #totalAmount + label:first-of-type {
+  border-left: 0.3rem solid #822aba;
+  border-top-left-radius: 0.9rem;
+  border-bottom-left-radius: 0.9rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .emergency-section #lengthOfTime .emergency-checkbox-label:nth-of-type(2), .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .emergency-section #lengthOfTime + label:nth-of-type(2),
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .emergency-section #totalAmount .emergency-checkbox-label:nth-of-type(2),
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .emergency-section #totalAmount + label:nth-of-type(2) {
+  border-right: 0.3rem solid #822aba;
+  border-top-right-radius: 0.9rem;
+  border-bottom-right-radius: 0.9rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .emergency-section #lengthOfTime .emergency-checkbox-label:hover, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .emergency-section #lengthOfTime + label:hover,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .emergency-section #totalAmount .emergency-checkbox-label:hover,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .emergency-section #totalAmount + label:hover {
+  cursor: pointer;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .emergency-section #lengthOfTime + .clicked-label,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .emergency-section #totalAmount + .clicked-label {
+  background-color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .timing-section {
+  flex-direction: row;
+  justify-content: center;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .timing-section #timingNumber {
+  width: 12.5%;
+  border-radius: 0;
+  border-top-left-radius: 0.9rem;
+  border-bottom-left-radius: 0.9rem;
+  border-right: none;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .emergency-input:not(:first-of-type) {
+  display: none;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page-mechanisms {
+  position: relative;
+  height: 15%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .tithing-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .tithing-section #grossOption,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .tithing-section #netOption,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .tithing-section #surplusOption {
+  display: none;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .tithing-section #grossOptionLabel,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .tithing-section #netOptionLabel,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .tithing-section #surplusOptionLabel {
+  position: relative;
+  height: 7rem;
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  top: 0;
+  left: 0;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .tithing-section #grossOptionLabel:hover,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .tithing-section #netOptionLabel:hover,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .tithing-section #surplusOptionLabel:hover {
+  cursor: pointer;
+  background-color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .tithing-section #grossOptionLabel {
+  border-top: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-left: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-bottom: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-top-left-radius: 1.25rem;
+  border-bottom-left-radius: 1.25rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .tithing-section #grossOptionLabel:hover {
+  border-top: 0.3rem solid #822aba;
+  border-left: 0.3rem solid #822aba;
+  border-bottom: 0.3rem solid #822aba;
+  transition: border 0.5s, background-color 0.5s, color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .tithing-section #netOptionLabel {
+  border-top: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-bottom: 0.3rem solid rgba(130, 42, 186, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .tithing-section #netOptionLabel:hover {
+  border-top: 0.3rem solid #822aba;
+  border-bottom: 0.3rem solid #822aba;
+  transition: border 0.5s, background-color 0.5s, color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .tithing-section #surplusOptionLabel {
+  border-top: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-right: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-bottom: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-top-right-radius: 1.25rem;
+  border-bottom-right-radius: 1.25rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .tithing-section #surplusOptionLabel:hover {
+  border-top: 0.3rem solid #822aba;
+  border-right: 0.3rem solid #822aba;
+  border-bottom: 0.3rem solid #822aba;
+  transition: border 0.5s, background-color 0.5s, color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page .tithing-section .checked {
+  background-color: #822aba;
+  transition: background-color 0.5s, color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form .disappear {
+  display: none;
 }
 
 .master-grid-container .app-flex-container {
@@ -42507,6 +43875,16 @@ html {
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-card-container__card--create:hover .budget-card-container__card--create__icon {
   transition: color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: rgba(250, 250, 250, 0.95);
 }
 
 /*

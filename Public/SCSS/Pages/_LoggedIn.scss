@@ -126,6 +126,10 @@
             }
           }
         }
+        .budget-creation-form-container {
+          @include SizeAndPositioning(relative, 100%, 100%, flex, space-evenly, center, 0, 0, 0);
+          background-color: rgba($colorOffWhite, 0.95);
+        }
       }
     }
   }

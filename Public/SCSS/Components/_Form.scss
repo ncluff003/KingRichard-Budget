@@ -102,6 +102,11 @@
                 opacity: 0;
               }
               &:focus {
+                &::-webkit-input-placeholder {
+                  opacity: 1;
+                }
+              }
+              &:focus {
                 outline: none;
                 &::-webkit-input-placeholder,
                 &::-moz-placeholder,
@@ -232,6 +237,11 @@
                   &::-moz-placeholder,
                   &::placeholder {
                     opacity: 0;
+                  }
+                  &:focus {
+                    &::-webkit-input-placeholder {
+                      opacity: 1;
+                    }
                   }
                   &:focus {
                     outline: none;
@@ -407,6 +417,601 @@
               ::-webkit-input-placeholder {
                 opacity: 0;
               }
+            }
+          }
+        }
+        .budget-creation-form-container {
+          .form-close-icon {
+            @include SizeAndPositioning(absolute, 2rem, 2rem, flex, center, center, 0, 0, 0);
+            top: 5rem;
+            right: 6rem;
+            z-index: 10;
+            &:hover {
+              cursor: pointer;
+              transition: color 0.5s;
+            }
+          }
+          .budget-creation-form {
+            @include SizeAndPositioning(relative, 100%, 100%, flex, center, center, 0, 0, 0);
+            flex-direction: column;
+            ::-webkit-input-placeholder {
+              opacity: 0;
+            }
+            &__header {
+              @include SizeAndPositioning(relative, 15%, 100%, flex, center, center, 0, 0, 0);
+            }
+            &__page {
+              @include SizeAndPositioning(relative, 70%, 100%, flex, center, center, 0, 0, 0);
+              &:nth-of-type(1),
+              &:nth-of-type(5),
+              &:nth-of-type(6),
+              &:nth-of-type(7) {
+                flex-direction: column;
+                & > .budget-creation-form__page__section {
+                  & > .budget-creation-form__page__section__input {
+                    width: 25%;
+                    &:not(:placeholder-shown) + label,
+                    &:focus + label {
+                      transform: translate(-5rem, -7rem) scale(0.75);
+                    }
+                  }
+                  & > .budget-creation-form__page__section__label {
+                    width: 25%;
+                    left: calc(30% + 12.5rem);
+                  }
+                }
+              }
+              &__section {
+                @include SizeAndPositioning(relative, min-content, 100%, flex, space-evenly, center, 0, 0, 0);
+                flex-direction: column;
+                &:not(:last-of-type) {
+                  margin-bottom: 3.5rem;
+                }
+                &__select {
+                  @include SizeAndPositioning(relative, 6rem, 12.5%, flex, center, center, 0, 0, 0);
+                  background-color: rgba($primaryColor, 0.8);
+                  border: 0.3rem solid rgba($primaryColor, 0.8);
+                  border-top-right-radius: 0.9rem;
+                  border-bottom-right-radius: 0.9rem;
+                  &:focus {
+                    background-color: $primaryColor;
+                    border: 0.3rem solid $primaryColor;
+                  }
+                  option {
+                    background-color: $primaryColor;
+                    &:hover {
+                      background-color: $secondaryColor;
+                    }
+                  }
+                }
+                &__input {
+                  @include SizeAndPositioning(relative, 6rem, 40%, flex, flex-start, center, 0, 0, 0);
+                  padding: 1rem;
+                  padding-left: 2rem;
+                  background-color: rgba($colorLightestGrey, 0.125);
+                  border: 0.3rem solid rgba($primaryColor, 0.75);
+                  border-radius: 0.75rem;
+                  &::-webkit-input-placeholder,
+                  &::-moz-placeholder,
+                  &::placeholder {
+                    opacity: 0;
+                  }
+                  &:focus {
+                    &::-webkit-input-placeholder {
+                      opacity: 1;
+                    }
+                  }
+                  &:focus {
+                    outline: none;
+                    &::-webkit-input-placeholder,
+                    &::-moz-placeholder,
+                    &::placeholder {
+                      opacity: 1;
+                    }
+                  }
+                  &:not(:placeholder-shown) + label,
+                  &:focus + label {
+                    transform: translate(-8.5rem, -7rem) scale(0.75);
+                  }
+                }
+                &__label {
+                  @include SizeAndPositioning(absolute, 6rem, 40%, flex, flex-start, center, 0, -50%, 0);
+                  top: 50%;
+                  left: calc(30% + 2rem);
+                  -moz-transform: translateY(-50%);
+                  transition: transform 0.5s;
+                }
+                &__main-category-container {
+                  @include SizeAndPositioning(relative, 50rem, 40%, flex, flex-start, flex-start, 0, 0, 0);
+                  border: 0.3rem solid $primaryColor;
+                  border-radius: 1.25rem;
+                  flex-flow: row wrap;
+                  overflow-y: auto;
+                  &__create-main-category {
+                    @include SizeAndPositioning(relative, 25%, 25%, flex, space-evenly, center, 0, 0, 0);
+                    flex-direction: column;
+                    border: 0.3rem solid rgba($primaryColor, 0.8);
+                    border-top-left-radius: 0.9rem;
+                    &:hover {
+                      cursor: pointer;
+                      border: 0.3rem solid $primaryColor;
+                      background-color: $primaryColor;
+                      transition: border 0.5s, background-color 0.5s;
+                      .budget-creation-form__page__section__main-category-container__create-main-category__icon,
+                      .budget-creation-form__page__section__main-category-container__create-main-category__text {
+                        transition: color 0.5s;
+                      }
+                    }
+                    &__icons-container {
+                      @include SizeAndPositioning(relative, 80%, 100%, none, center, center, 0, 0, 0);
+                      border: 0.3rem solid $primaryColor;
+                      grid-template-columns: repeat(5, 1fr);
+                      border-top-left-radius: 0.9rem;
+                      border-top-right-radius: 0.9rem;
+                      flex-flow: row wrap;
+                      overflow-y: auto;
+                      .icon-container {
+                        @include SizeAndPositioning(relative, 100%, 100%, flex, space-evenly, center, 0, 0, 0);
+                        flex-direction: column;
+                        // border: 0.3rem solid rgba($primaryColor, 0.8);
+                        padding: 3rem 0;
+                        &:first-of-type {
+                          border-top-left-radius: 0.5rem;
+                        }
+                        &:nth-of-type(5n) {
+                          // border-bottom: 0.3rem solid rgba($primaryColor, 0.8);
+                        }
+                        &:nth-of-type(5n + 1),
+                        &:nth-of-type(5n + 2),
+                        &:nth-of-type(5n + 4) {
+                          // border-bottom: 0.3rem solid rgba($primaryColor, 0.8);
+                          // border-right: 0.3rem solid rgba($primaryColor, 0.8);
+                        }
+                        &:nth-of-type(5n + 3) {
+                          // border-left: 0.3rem solid rgba($primaryColor, 0.8);
+                          // border-bottom: 0.3rem solid rgba($primaryColor, 0.8);
+                          // border-right: 0.3rem solid rgba($primaryColor, 0.8);
+                        }
+                        z-index: 3;
+                        &:hover {
+                          cursor: pointer;
+                          background-color: $primaryColor;
+                          transition: background-color 0.5s, color 0.5s;
+                        }
+                        &__icon {
+                          position: relative;
+                          z-index: 0;
+                        }
+                        &--clicked {
+                          background-color: $primaryColor;
+                        }
+                      }
+                      &--open {
+                        display: grid;
+                      }
+                    }
+                    &--hidden {
+                      display: none;
+                    }
+                  }
+                  .main-category {
+                    @include SizeAndPositioning(relative, 25%, 25%, flex, space-evenly, center, 0, 0, 0);
+                    flex-direction: column;
+                    border: 0.3rem solid rgba($primaryColor, 0.8);
+                    &:first-of-type {
+                      border-top-left-radius: 0.9rem;
+                    }
+                    &:nth-of-type(3) {
+                      border-top-right-radius: 0.9rem;
+                    }
+                    &--hidden {
+                      display: none;
+                    }
+                    &:hover {
+                      cursor: pointer;
+                      border: 0.3rem solid $primaryColor;
+                      background-color: $primaryColor;
+                      transition: border 0.5s, background-color 0.5s;
+                      .budget-creation-form__page__section__main-category-container__create-main-category__icon,
+                      .budget-creation-form__page__section__main-category-container__create-main-category__text {
+                        transition: color 0.5s;
+                      }
+                    }
+                  }
+                  &--creating-category {
+                    flex-direction: column;
+                  }
+                }
+                &__set-main-category-title-container {
+                  @include SizeAndPositioning(relative, 20%, 100%, none, space-evenly, center, 0, 0, 0);
+                  border-top: 0.3rem solid $primaryColor;
+                  &__input {
+                    @include SizeAndPositioning(relative, 5rem, 35%, flex, center, center, 0, 0, 0);
+                    border: 0.3rem solid rgba($primaryColor, 0.8);
+                    border-radius: 1.25rem;
+                    background-color: rgba($colorOffWhite, 0.8);
+                    padding: 1rem;
+                    &:focus {
+                      outline: none;
+                    }
+                  }
+                  &--open {
+                    display: flex;
+                  }
+                }
+                &__sub-category-container {
+                  @include SizeAndPositioning(relative, 50rem, 35%, flex, center, center, 0, 0, 0);
+                  flex-direction: column;
+                  border: 0.3rem solid $primaryColor;
+                  border-radius: 1rem;
+                  &__main-category-display {
+                    @include SizeAndPositioning(relative, 55%, 100%, flex, center, center, 0, 0, 0);
+                    &__left-button,
+                    &__right-button {
+                      @include SizeAndPositioning(relative, 100%, 20%, flex, center, center, 0, 0, 0);
+                      &__icon {
+                        &:hover {
+                          cursor: pointer;
+                          transition: color 0.5s;
+                        }
+                      }
+                    }
+                    &__category-information {
+                      @include SizeAndPositioning(relative, 100%, 60%, flex, center, center, 0, 0, 0);
+                      flex-direction: column;
+                    }
+                  }
+                  &__sub-category-display {
+                    @include SizeAndPositioning(relative, 45%, 100%, flex, flex-start, center, 0, 0, 0);
+                    flex-direction: column;
+                    border-top: 0.3rem solid $primaryColor;
+                    overflow-y: auto;
+                    &__sub-category {
+                      @include SizeAndPositioning(relative, 6rem, 100%, flex, center, center, 0, 0, 0);
+                      min-height: 6rem;
+                      border-bottom: 0.3rem solid rgba($primaryColor, 0.8);
+                      border-left: none;
+                      border-right: none;
+                      background-color: transparent;
+                      .sub-category-title-container {
+                        @include SizeAndPositioning(relative, 100%, 70%, flex, flex-start, center, 0, 0, 0);
+                        padding-left: 2rem;
+                      }
+                      .sub-category-controller {
+                        @include SizeAndPositioning(relative, 100%, 30%, flex, space-evenly, center, 0, 0, 0);
+                        &__surplus-container {
+                          @include SizeAndPositioning(relative, 100%, 50%, flex, center, center, 0, 0, 0);
+                          flex-direction: column;
+                          &__switch {
+                            @include SizeAndPositioning(relative, 40%, 75%, flex, flex-start, center, 0, 0, 0);
+                            border: 0.2rem solid rgba($primaryColorDark, 0.8);
+                            border-radius: 2rem;
+                            background-color: rgba($primaryColor, 0.8);
+                            transition: border 0.5s, background-color 0.5s, transform 0.5s;
+                            &__toggle {
+                              @include SizeAndPositioning(relative, 93%, 33%, flex, center, center, 5%, 0, 0);
+                              border: 0.2rem solid rgba($colorOffWhite, 0.8);
+                              border-radius: 50%;
+                              background-color: rgba($primaryColorDark, 0.8);
+                              transition: border 0.5s, background-color 0.5s, transform 0.5s;
+                            }
+                            &--switched {
+                              @include SizeAndPositioning(relative, 40%, 75%, flex, flex-start, center, 0, 0, 0);
+                              border: 0.2rem solid rgba($secondaryColorDark, 0.8);
+                              border-radius: 2rem;
+                              background-color: rgba($secondaryColor, 0.8);
+                              .sub-category-controller__surplus-container__switch__toggle {
+                                @include SizeAndPositioning(relative, 93%, 33%, flex, center, center, 200%, 0, 0);
+                                border-radius: 50%;
+                                background-color: rgba($secondaryColorDark, 0.8);
+                              }
+                            }
+                            &:hover {
+                              cursor: pointer;
+                            }
+                          }
+                        }
+                        &__icon {
+                          &:hover {
+                            cursor: pointer;
+                            transition: color 0.5s;
+                          }
+                        }
+                      }
+                    }
+                    .hidden {
+                      display: none;
+                    }
+                    .category-creation {
+                      &__input-container {
+                        @include SizeAndPositioning(relative, 100%, 70%, flex, flex-start, center, 0, 0, 0);
+                        padding-left: 2rem;
+                        &__input {
+                          @include SizeAndPositioning(relative, 50%, 50%, flex, flex-start, center, 0, 0, 0);
+                          padding-left: 1rem;
+                          border: 0.2rem solid rgba($primaryColor, 0.8);
+                          background-color: rgba($colorOffWhite, 0.25);
+                          border-radius: 0.5rem;
+                          &:focus {
+                            border: 0.2rem solid $primaryColor;
+                            outline: none;
+                          }
+                        }
+                      }
+                      &__controller {
+                        @include SizeAndPositioning(relative, 100%, 30%, flex, space-evenly, center, 0, 0, 0);
+                        &__surplus-container {
+                          @include SizeAndPositioning(relative, 100%, 50%, flex, center, center, 0, 0, 0);
+                          flex-direction: column;
+                          &__switch {
+                            @include SizeAndPositioning(relative, 40%, 75%, flex, flex-start, center, 0, 0, 0);
+                            border: 0.2rem solid rgba($primaryColorDark, 0.8);
+                            border-radius: 2rem;
+                            background-color: rgba($primaryColor, 0.8);
+                            transition: border 0.5s, background-color 0.5s, transform 0.5s;
+                            &__toggle {
+                              @include SizeAndPositioning(relative, 93%, 33%, flex, center, center, 5%, 0, 0);
+                              border: 0.2rem solid rgba($colorOffWhite, 0.8);
+                              border-radius: 50%;
+                              background-color: rgba($primaryColorDark, 0.8);
+                              transition: border 0.5s, background-color 0.5s, transform 0.5s;
+                            }
+                            &--switched {
+                              @include SizeAndPositioning(relative, 40%, 75%, flex, flex-start, center, 0, 0, 0);
+                              border: 0.2rem solid rgba($secondaryColorDark, 0.8);
+                              border-radius: 2rem;
+                              background-color: rgba($secondaryColor, 0.8);
+                              .category-creation__controller__surplus-container__switch__toggle {
+                                @include SizeAndPositioning(relative, 93%, 33%, flex, center, center, 0, 0, 0);
+                                border-radius: 50%;
+                                background-color: rgba($secondaryColorDark, 0.8);
+                              }
+                            }
+                            &:hover {
+                              cursor: pointer;
+                              @include SizeAndPositioning(relative, 40%, 75%, flex, flex-start, center, 0, 0, 0);
+                              border: 0.2rem solid rgba($secondaryColorDark, 0.8);
+                              border-radius: 2rem;
+                              background-color: rgba($secondaryColor, 0.8);
+                              .category-creation__controller__surplus-container__switch__toggle {
+                                @include SizeAndPositioning(relative, 93%, 33%, flex, center, center, 200%, 0, 0);
+                                border-radius: 50%;
+                                background-color: rgba($secondaryColorDark, 0.8);
+                              }
+                            }
+                          }
+                        }
+                        &__icon {
+                          &:hover {
+                            cursor: pointer;
+                            transition: color 0.5s;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+
+                //////////////////////////////////
+                // CREATE BUDGET FORM PAGE FOUR
+                &__month-container {
+                  @include SizeAndPositioning(relative, 62.5rem, 75%, flex, flex-start, center, 0, 0, 0);
+                  flex-direction: column;
+                  border: 0.3rem solid $primaryColor;
+                  border-radius: 1.25rem;
+                  padding: 0.25rem;
+                  &__header {
+                    @include SizeAndPositioning(relative, 6rem, 100%, flex, center, center, 0, 0, 0);
+                    background-color: $primaryColor;
+                    border-top-left-radius: 0.8rem;
+                    border-top-right-radius: 0.8rem;
+                    border-bottom: 0.3rem solid $tertiaryColor;
+                    &__icon {
+                      @include SizeAndPositioning(absolute, 3rem, 3rem, flex, center, center, 0, -50%, 0);
+                      top: 50%;
+                      left: 1rem;
+                    }
+                  }
+                  &__budget-goal-summary-container {
+                    @include SizeAndPositioning(relative, 14rem, 100%, flex, space-between, center, 0, 0, 0);
+                    .budget-single-goal-summary {
+                      @include SizeAndPositioning(relative, 100%, 19%, flex, space-evenly, center, 0, 0, 0);
+                      flex-direction: column;
+                      background-color: $colorLightestGrey;
+                      &__title,
+                      &__amount {
+                        @include SizeAndPositioning(relative, 50%, 100%, flex, center, center, 0, 0, 0);
+                      }
+                    }
+                  }
+                  &__category-container {
+                    @include SizeAndPositioning(relative, 42.5rem, 100%, flex, center, center, 0, 0, 0);
+                    padding: 1.5rem;
+                    .main-category-display {
+                      @include SizeAndPositioning(relative, 100%, 40%, flex, center, center, 0, 0, 0);
+                      &__button-container {
+                        @include SizeAndPositioning(relative, 100%, 20%, flex, center, center, 0, 0, 0);
+                      }
+                      &__category-display {
+                        @include SizeAndPositioning(relative, 100%, 60%, flex, center, center, 0, 0, 0);
+                        flex-direction: column;
+                        &__title {
+                          margin-top: 2rem;
+                        }
+                      }
+                    }
+                    .sub-category-display {
+                      @include SizeAndPositioning(relative, 100%, 60%, flex, flex-start, center, 0, 0, 0);
+                      margin-left: 1.5rem;
+                      flex-direction: column;
+                      &__headers {
+                        @include SizeAndPositioning(relative, 4rem, 100%, flex, space-between, center, 0, 0, 0);
+                        &__title-container {
+                          @include SizeAndPositioning(relative, 100%, 19.5%, flex, center, center, 0, 0, 0);
+                          background-color: $primaryColor;
+                        }
+                      }
+                      &__sub-category {
+                        @include SizeAndPositioning(relative, 6rem, 100%, flex, space-evenly, center, 0, 0, 0);
+                        min-height: 6rem;
+                        background-color: $colorLightestGrey;
+                        &__section {
+                          @include SizeAndPositioning(relative, 100%, 20%, flex, center, center, 0, 0, 0);
+                          &:first-of-type {
+                            justify-content: space-evenly;
+                            flex-direction: column;
+                          }
+                          &__input {
+                            @include SizeAndPositioning(relative, 60%, 80%, flex, center, center, 0, 0, 0);
+                            background-color: rgba($colorOffWhite, 0.35);
+                            border-radius: 0.5rem;
+                            border: 0.2rem solid rgba($primaryColor, 0.8);
+                            caret-color: $primaryColor;
+
+                            &:focus {
+                              outline: none;
+                              border: 0.2rem solid $primaryColor, 0.8;
+                              background-color: $colorOffWhite;
+                            }
+                          }
+                        }
+                        &:hover {
+                          .sub-category-display__sub-category__section {
+                            background-color: $primaryColor;
+                            transition: background-color 0.5s;
+                            &__input {
+                              border: $colorOffWhite;
+                              &:focus {
+                                outline: none;
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              .emergency-section {
+                flex-direction: row;
+                justify-content: center;
+                &-header {
+                  @include SizeAndPositioning(absolute, 6rem, 27.5%, flex, center, center, 0, 0, 0);
+                  left: calc(30% + 9.5rem);
+                  top: 0;
+                }
+                #lengthOfTime,
+                #totalAmount {
+                  display: none;
+                  .emergency-checkbox-label,
+                  & + label {
+                    @include SizeAndPositioning(relative, 6rem, 12.5%, flex, center, center, 0, 0, 0);
+                    left: 0;
+                    width: 12.5%;
+                    border-top: 0.3rem solid $primaryColor;
+                    border-bottom: 0.3rem solid $primaryColor;
+                    margin-bottom: 4rem;
+                    &:first-of-type {
+                      border-left: 0.3rem solid $primaryColor;
+                      border-top-left-radius: 0.9rem;
+                      border-bottom-left-radius: 0.9rem;
+                    }
+                    &:nth-of-type(2) {
+                      border-right: 0.3rem solid $primaryColor;
+                      border-top-right-radius: 0.9rem;
+                      border-bottom-right-radius: 0.9rem;
+                    }
+                    &:hover {
+                      cursor: pointer;
+                    }
+                  }
+                  & + .clicked-label {
+                    background-color: $primaryColor;
+                  }
+                }
+              }
+              .timing-section {
+                flex-direction: row;
+                justify-content: center;
+                #timingNumber {
+                  width: 12.5%;
+                  border-radius: 0;
+                  border-top-left-radius: 0.9rem;
+                  border-bottom-left-radius: 0.9rem;
+                  border-right: none;
+                }
+              }
+              .emergency-input {
+                &:not(:first-of-type) {
+                  display: none;
+                }
+              }
+              &-mechanisms {
+                @include SizeAndPositioning(relative, 15%, 100%, flex, center, center, 0, 0, 0);
+              }
+              .tithing-section {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                #grossOption,
+                #netOption,
+                #surplusOption {
+                  display: none;
+                }
+                #grossOptionLabel,
+                #netOptionLabel,
+                #surplusOptionLabel {
+                  @include SizeAndPositioning(relative, 7rem, 10%, flex, center, center, 0, 0, 0);
+                  top: 0;
+                  left: 0;
+                  &:hover {
+                    cursor: pointer;
+                    background-color: $primaryColor;
+                  }
+                }
+                #grossOptionLabel {
+                  border-top: 0.3rem solid rgba($primaryColor, 0.8);
+                  border-left: 0.3rem solid rgba($primaryColor, 0.8);
+                  border-bottom: 0.3rem solid rgba($primaryColor, 0.8);
+                  border-top-left-radius: 1.25rem;
+                  border-bottom-left-radius: 1.25rem;
+                  &:hover {
+                    border-top: 0.3rem solid $primaryColor;
+                    border-left: 0.3rem solid $primaryColor;
+                    border-bottom: 0.3rem solid $primaryColor;
+                    transition: border 0.5s, background-color 0.5s, color 0.5s;
+                  }
+                }
+                #netOptionLabel {
+                  border-top: 0.3rem solid rgba($primaryColor, 0.8);
+                  border-bottom: 0.3rem solid rgba($primaryColor, 0.8);
+                  &:hover {
+                    border-top: 0.3rem solid $primaryColor;
+                    border-bottom: 0.3rem solid $primaryColor;
+                    transition: border 0.5s, background-color 0.5s, color 0.5s;
+                  }
+                }
+                #surplusOptionLabel {
+                  border-top: 0.3rem solid rgba($primaryColor, 0.8);
+                  border-right: 0.3rem solid rgba($primaryColor, 0.8);
+                  border-bottom: 0.3rem solid rgba($primaryColor, 0.8);
+                  border-top-right-radius: 1.25rem;
+                  border-bottom-right-radius: 1.25rem;
+                  &:hover {
+                    border-top: 0.3rem solid $primaryColor;
+                    border-right: 0.3rem solid $primaryColor;
+                    border-bottom: 0.3rem solid $primaryColor;
+                    transition: border 0.5s, background-color 0.5s, color 0.5s;
+                  }
+                }
+                .checked {
+                  background-color: $primaryColor;
+                  transition: background-color 0.5s, color 0.5s;
+                }
+              }
+            }
+            .disappear {
+              display: none;
             }
           }
         }

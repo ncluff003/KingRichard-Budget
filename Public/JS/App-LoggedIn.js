@@ -1,5 +1,6 @@
 import { getSomePersonals, updateMe, updateMyPassword, deactivateMe, deleteMe } from './Update-User';
 import { logout } from './Login';
+import * as Categories from './Budget-Categories';
 
 let commPreference;
 let latterDaySaint = false;
@@ -150,7 +151,7 @@ export const _watchUserProfileButtons = () => {
   if (userProfileButtons[0]) {
     userProfileButtons.forEach((pb, i) => {
       pb.addEventListener('click', (e) => {
-        e.preventDefault;
+        e.preventDefault();
         const clicked = e.target;
         userProfileHeader.textContent = clicked.closest('button').textContent;
         _showProfileForm(userProfileForms, i);
@@ -209,6 +210,7 @@ const formatPhoneNumber = (value) => {
   let formattedNumber = `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)} - ${phoneNumber.slice(6)}`;
   return formattedNumber;
 };
+const iconContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
 let formattedNumber;
 const commSwitch = document.querySelector('.user-profile-form__section__comm-switch');
 const userProfileSubSectionFormButtons = document.querySelectorAll('.user-profile-form__section__sub-section__button');

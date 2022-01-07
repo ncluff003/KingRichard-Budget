@@ -8,6 +8,7 @@ export const getSomePersonals = async () => {
       url: `/users/me`,
     });
     if (response[0] === `Email`) console.log(true);
+    return response;
   } catch (error) {
     console.log(error);
   }

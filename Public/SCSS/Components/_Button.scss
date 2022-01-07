@@ -158,9 +158,153 @@
                     }
                   }
                 }
+                &__set-main-category-title-container {
+                  &__button {
+                    @include SizeAndPositioning(relative, 7rem, 15%, flex, center, center, 0, 0, 0);
+                  }
+                }
               }
               .account-management-button.r__account-management-button {
                 margin: 1rem 0;
+              }
+            }
+          }
+        }
+        .budget-creation-form-container {
+          .budget-creation-form {
+            &__page {
+              &__section {
+                &__main-category-container {
+                  .main-category {
+                    &:hover {
+                      .main-category__delete {
+                        border: 0.2rem solid rgba($colorOffWhite, 0.8);
+                      }
+                    }
+                    &__delete {
+                      @include SizeAndPositioning(absolute, 2rem, 2rem, flex, center, center, 0, 0, 0);
+                      top: 0.5rem;
+                      right: 0.5rem;
+                      border: 0.2rem solid rgba($primaryColor, 0.8);
+                      border-radius: 50%;
+                      background-color: transparent;
+                      &:hover {
+                        cursor: pointer;
+                        background-color: $colorOffWhite;
+                        border: 0.2rem solid $colorOffWhite;
+                        transition: background-color 0.5s, border 0.5s, color 0.5s;
+                      }
+                    }
+                  }
+                }
+                &__set-main-category-title-container {
+                  &__button {
+                    @include SizeAndPositioning(relative, 5rem, 25%, flex, center, center, 0, 0, 0);
+                    border: 0.3rem solid rgba($primaryColor, 0.8);
+                    border-radius: 1.25rem;
+                    background-color: transparent;
+                    margin-left: 1rem;
+                    &:hover {
+                      cursor: pointer;
+                      background-color: $primaryColor;
+                      transition: color 0.5s, background-color 0.5s, border 0.5s;
+                    }
+                  }
+                }
+                &__sub-category-container {
+                  &__sub-category-display {
+                    &__sub-category-button {
+                      @include SizeAndPositioning(relative, 6rem, 100%, flex, center, center, 0, 0, 0);
+                      min-height: 6rem;
+                      border: none;
+                      background-color: transparent;
+                      &:hover {
+                        cursor: pointer;
+                        transition: color 0.5s;
+                      }
+                      &__icon {
+                        margin-right: 1rem;
+                      }
+                    }
+                  }
+                  .category-creation {
+                    &__input-container {
+                      &__button {
+                        @include SizeAndPositioning(relative, 50%, 20%, flex, center, center, 0, 0, 0);
+                        border: 0.2rem solid rgba($primaryColor, 0.8);
+                        background-color: rgba($colorOffWhite, 0.25);
+                        border-radius: 0.5rem;
+                        margin-left: 1rem;
+                        &:hover {
+                          cursor: pointer;
+                          border: 0.2rem solid $primaryColor;
+                          background-color: $primaryColor;
+                          transition: background-color 0.5s, color 0.5s, border 0.5s;
+                        }
+                      }
+                    }
+                  }
+                }
+                &__month-container {
+                  &__category-container {
+                    .main-category-display {
+                      &__button-container {
+                        .left,
+                        .right {
+                          &:hover {
+                            cursor: pointer;
+                            transition: color 0.5s;
+                          }
+                        }
+                      }
+                    }
+                    .sub-category-display {
+                      &__headers {
+                        &__title-container {
+                        }
+                      }
+                      &__sub-category {
+                        &__section {
+                          @include SizeAndPositioning(relative, 100%, 20%, flex, center, center, 0, 0, 0);
+                          &:first-of-type {
+                            justify-content: space-evenly;
+                            flex-direction: column;
+                          }
+                          &__set-category-timing-button {
+                            background-color: transparent;
+                            border: none;
+                            &:hover {
+                              cursor: pointer;
+                              transition: color 0.5s;
+                            }
+                          }
+                        }
+                        &:hover {
+                          .sub-category-display__sub-category__section {
+                            cursor: pointer;
+                            background-color: $primaryColor;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              &-mechanisms {
+                &__page-number {
+                  margin-right: 2rem;
+                }
+                &__submit-button {
+                  @include SizeAndPositioning(relative, 5rem, 15%, flex, center, center, 0, 0, 0);
+                  border: 0.3rem solid rgba($primaryColor, 0.8);
+                  border-radius: 1.25rem;
+                  background-color: transparent;
+                  &:hover {
+                    cursor: pointer;
+                    background-color: $primaryColor;
+                    transition: color 0.5s, background-color 0.5s, border 0.5s;
+                  }
+                }
               }
             }
           }

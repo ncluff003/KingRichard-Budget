@@ -75,7 +75,13 @@ const createAndSendToken = (user, statusCode, method, request, response, templat
 exports.getMe = catchAsync(async (request, response, next) => {
   const user = await User.findById(request.user.id);
   const userInfo = [user.communicationPreference, user.latterDaySaint];
-  return userInfo;
+  response.status(200).json({
+    status: `Success`,
+    data: {
+      user: user,
+      userInfo: userInfo,
+    },
+  });
 });
 
 exports.updateMe = catchAsync(async (request, response, next) => {

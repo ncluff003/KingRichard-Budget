@@ -28,20 +28,7 @@ class Calendar {
   constructor() {
     this.date = new Date();
     this.days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    this.months = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ];
+    this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     this.monthIndex = this.date.getMonth();
     this.hours = this.date.getHours();
     this.day = this.date.getDay();
@@ -89,6 +76,33 @@ class Calendar {
 
   getYear() {
     return this.date.getFullYear();
+  }
+
+  monthRemaining() {
+    let days;
+    const currentMonth = this.getMonth();
+    const currentDay = this.getDay();
+    if (
+      currentMonth === `January` ||
+      currentMonth === `March` ||
+      currentMonth === `May` ||
+      currentMonth === `July` ||
+      currentMonth === `August` ||
+      currentMonth === `October` ||
+      currentMonth === `December`
+    ) {
+      days = 31;
+    }
+    if (currentMonth === `April` || currentMonth === `June` || currentMonth === `September` || currentMonth === `November`) {
+      days = 30;
+    }
+    if (currentMonth === `February`) {
+      (this.getYear() % 4 === 0 && !(this.getYear() % 100 === 0)) || this.getYear() % 400 === 0 ? (days = 29) : (days = 28);
+    }
+    const remaining = days - currentDay;
+    const percentage = remaining / days;
+    const calculatedPercent = (100 * percentage).toFixed(0);
+    return `${calculatedPercent}%`;
   }
 }
 

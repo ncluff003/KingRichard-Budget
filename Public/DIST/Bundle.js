@@ -4239,7 +4239,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
 /* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Login */ "./Public/JS/Login.js");
+/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
 
 
 
@@ -4478,7 +4480,7 @@ var _watchUserProfileButtons = function _watchUserProfileButtons() {
   if (userProfileButtons[0]) {
     userProfileButtons.forEach(function (pb, i) {
       pb.addEventListener('click', function (e) {
-        e.preventDefault;
+        e.preventDefault();
         var clicked = e.target;
         userProfileHeader.textContent = clicked.closest('button').textContent;
 
@@ -4546,6 +4548,7 @@ var formatPhoneNumber = function formatPhoneNumber(value) {
   return formattedNumber;
 };
 
+var iconContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
 var formattedNumber;
 var commSwitch = document.querySelector('.user-profile-form__section__comm-switch');
 var userProfileSubSectionFormButtons = document.querySelectorAll('.user-profile-form__section__sub-section__button');
@@ -4576,6 +4579,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "createBudgetCard": () => (/* binding */ createBudgetCard)
 /* harmony export */ });
+/* harmony import */ var _Retrieve_Budgets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Retrieve-Budgets */ "./Public/JS/Retrieve-Budgets.js");
+/* harmony import */ var _Retrieve_Budgets__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_Retrieve_Budgets__WEBPACK_IMPORTED_MODULE_0__);
+
 var createBudgetCard = function createBudgetCard(budgetName, createdAt, lastUpdated, administrators, coverPhoto) {
   // CREATE BASE CARD ELEMENTS
   var budgetCardContainer = document.querySelector('.budget-card-container');
@@ -4647,6 +4653,771 @@ var createBudgetCard = function createBudgetCard(budgetName, createdAt, lastUpda
   footerBottom.insertAdjacentElement('beforeend', budgetAdminParagraph); // ADD CARD TO CONTAINER
 
   budgetCardContainer.insertAdjacentElement('afterbegin', budgetCard);
+};
+
+/***/ }),
+
+/***/ "./Public/JS/Budget-Categories.js":
+/*!****************************************!*\
+  !*** ./Public/JS/Budget-Categories.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "icons": () => (/* binding */ icons),
+/* harmony export */   "createCategories": () => (/* binding */ createCategories),
+/* harmony export */   "_clickIcon": () => (/* binding */ _clickIcon),
+/* harmony export */   "budgetMainCategories": () => (/* binding */ budgetMainCategories),
+/* harmony export */   "createSubCategory": () => (/* binding */ createSubCategory),
+/* harmony export */   "_watchCreateCategoryButton": () => (/* binding */ _watchCreateCategoryButton)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/esm/inherits.js");
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
+/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
+
+
+
+
+
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__["default"])(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+////////////////////////////////
+// ICONS FOR MAIN CATEGORIES
+var icons = ["address-book", "address-card", "adjust", "air-freshener", "align-center", "align-justify", "align-left", "align-right", "allergies", "ambulance", "american-sign-language-interpreting", "anchor", "angle-double-down", "angle-double-left", "angle-double-right", "angle-double-up", "angle-down", "angle-left", "angle-right", "angle-up", "angry", "ankh", "apple-alt", "archive", "archway", "arrow-alt-circle-down", "arrow-alt-circle-left", "arrow-alt-circle-right", "arrow-alt-circle-up", "arrow-down", "arrow-left", "arrow-right", "arrows-alt", "arrows-alt-h", "arrows-alt-v", "arrow-up", "assistive-listening-systems", "asterisk", "at", "atlas", "atom", "baby-carriage", "backspace", "backward", "bacon", "bahai", "balance-scale", "balance-scale-left", "balance-scale-right", "ban", "band-aid", "barcode", "bars", "baseball-ball", "basketball-ball", "bath", "battery-empty", "battery-full", "battery-half", "battery-quarter", "battery-three-quarters", "bed", "beer", "bell", "bell-slash", "bezier-curve", "bible", "bicycle", "biking", "binoculars", "biohazard", "birthday-cake", "blender", "blender-phone", "blind", "blog", "bold", "bolt", "bomb", "bone", "bong", "book", "book-dead", "bookmark", "book-medical", "book-open", "book-reader", "border-all", "border-none", "border-style", "bowling-ball", "box", "boxes", "box-open", "braille", "brain", "bread-slice", "briefcase", "briefcase-medical", "broadcast-tower", "broom", "brush", "bug", "building", "bullhorn", "bullseye", "burn", "bus", "bus-alt", "business-time", "calculator", "calendar", "calendar-alt", "calendar-check", "calendar-day", "calendar-minus", "calendar-plus", "calendar-times", "calendar-week", "camera", "camera-retro", "campground", "candy-cane", "cannabis", "capsules", "car", "car-alt", "caravan", "car-battery", "car-crash", "caret-down", "caret-left", "caret-right", "caret-square-down", "caret-square-left", "caret-square-right", "caret-square-up", "caret-up", "carrot", "car-side", "cart-arrow-down", "cart-plus", "cash-register", "cat", "certificate", "chair", "chalkboard", "chalkboard-teacher", "charging-station", "chart-area", "chart-bar", "chart-line", "chart-pie", "check", "check-circle", "check-double", "check-square", "cheese", "chess", "chess-bishop", "chess-board", "chess-king", "chess-knight", "chess-pawn", "chess-queen", "chess-rook", "chevron-circle-down", "chevron-circle-left", "chevron-circle-right", "chevron-circle-up", "chevron-down", "chevron-left", "chevron-right", "chevron-up", "child", "church", "circle", "circle-notch", "city", "clinic-medical", "clipboard", "clipboard-check", "clipboard-list", "clock", "clone", "closed-captioning", "cloud", "cloud-download-alt", "cloud-meatball", "cloud-moon", "cloud-moon-rain", "cloud-rain", "cloud-showers-heavy", "cloud-sun", "cloud-sun-rain", "cocktail", "code", "code-branch", "coffee", "cog", "cogs", "coins", "columns", "comment", "comment-alt", "comment-dollar", "comment-dots", "comment-medical", "comments", "comments-dollar", "comment-slash", "compact-disc", "compress", "compress-alt", "compress-arrows-alt", "concierge-bell", "cookie", "cookie-bite", "copy", "copyright", "couch", "credit-card", "crop", "crop-alt", "cross", "crosshairs", "crow", "crown", "crutch", "cube", "cubes", "cut", "database", "deaf", "democrat", "desktop", "dharmachakra", "diagnoses", "dice", "dice-d6", "dice-d20", "dice-five", "dice-four", "dice-one", "dice-six", "dice-three", "dice-two", "digital-tachograph", "directions", "divide", "dizzy", "dna", "dog", "dollar-sign", "dolly", "dolly-flatbed", "donate", "door-closed", "door-open", "dot-circle", "dove", "download", "drafting-compass", "dragon", "draw-polygon", "drum", "drum-steelpan", "drumstick-bite", "dumbbell", "dumpster", "dumpster-fire", "dungeon", "edit", "egg", "eject", "ellipsis-h", "ellipsis-v", "envelope", "envelope-open", "envelope-open-text", "envelope-square", "equals", "eraser", "ethernet", "euro-sign", "exchange-alt", "exclamation", "exclamation-circle", "exclamation-triangle", "expand", "expand-alt", "expand-arrows-alt", "external-link-alt", "external-link-square-alt", "eye", "eye-dropper", "eye-slash", "fan", "fast-backward", "fast-forward", "fax", "feather", "feather-alt", "female", "fighter-jet", "file", "file-alt", "file-archive", "file-audio", "file-code", "file-contract", "file-csv", "file-download", "file-excel", "file-export", "file-image", "file-import", "file-invoice", "file-invoice-dollar", "file-medical", "file-medical-alt", "file-pdf", "file-powerpoint", "file-prescription", "file-signature", "file-upload", "file-video", "file-word", "fill", "fill-drip", "film", "filter", "fingerprint", "fire", "fire-alt", "fire-extinguisher", "first-aid", "fish", "fist-raised", "flag", "flag-checkered", "flag-usa", "flask", "flushed", "folder", "folder-minus", "folder-open", "folder-plus", "font", "football-ball", "forward", "frog", "frown", "frown-open", "funnel-dollar", "futbol", "gamepad", "gas-pump", "gavel", "gem", "genderless", "ghost", "gift", "gifts", "glass-cheers", "glasses", "glass-martini", "glass-martini-alt", "glass-whiskey", "globe", "globe-africa", "globe-americas", "globe-asia", "globe-europe", "golf-ball", "gopuram", "graduation-cap", "greater-than", "greater-than-equal", "grimace", "grin", "grin-alt", "grin-beam", "grin-beam-sweat", "grin-hearts", "grin-squint", "grin-squint-tears", "grin-stars", "grin-tears", "grin-tongue", "grin-tongue-squint", "grin-tongue-wink", "grin-wink", "grip-horizontal", "grip-lines", "grip-lines-vertical", "grip-vertical", "guitar", "hamburger", "hammer", "hamsa", "hand-holding", "hand-holding-heart", "hand-holding-usd", "hand-lizard", "hand-middle-finger", "hand-paper", "hand-peace", "hand-point-down", "hand-pointer", "hand-point-left", "hand-point-right", "hand-point-up", "hand-rock", "hands", "hand-scissors", "handshake", "hands-helping", "hand-spock", "hanukiah", "hard-hat", "hashtag", "hat-cowboy", "hat-cowboy-side", "hat-wizard", "hdd", "heading", "headphones", "headphones-alt", "headset", "heart", "heartbeat", "heart-broken", "helicopter", "highlighter", "hiking", "hippo", "history", "hockey-puck", "holly-berry", "home", "horse", "horse-head", "hospital", "hospital-alt", "hospital-symbol", "hotdog", "hotel", "hot-tub", "hourglass", "hourglass-end", "hourglass-half", "hourglass-start", "house-damage", "hryvnia", "h-square", "ice-cream", "icicles", "icons", "i-cursor", "id-badge", "id-card", "id-card-alt", "igloo", "image", "images", "inbox", "indent", "industry", "infinity", "info", "info-circle", "italic", "jedi", "joint", "journal-whills", "kaaba", "key", "keyboard", "khanda", "kiss", "kiss-beam", "kiss-wink-heart", "kiwi-bird", "landmark", "language", "laptop", "laptop-code", "laptop-medical", "laugh", "laugh-beam", "laugh-squint", "laugh-wink", "layer-group", "leaf", "lemon", "less-than", "less-than-equal", "level-down-alt", "level-up-alt", "life-ring", "lightbulb", "link", "lira-sign", "list", "list-alt", "list-ol", "list-ul", "location-arrow", "lock", "lock-open", "long-arrow-alt-down", "long-arrow-alt-left", "long-arrow-alt-right", "long-arrow-alt-up", "low-vision", "luggage-cart", "magic", "magnet", "mail-bulk", "male", "map", "map-marked", "map-marked-alt", "map-marker", "map-marker-alt", "map-pin", "map-signs", "marker", "mars", "mars-double", "mars-stroke", "mars-stroke-h", "mars-stroke-v", "mask", "medal", "medkit", "meh", "meh-blank", "meh-rolling-eyes", "memory", "menorah", "mercury", "meteor", "microchip", "microphone", "microphone-alt", "microphone-alt-slash", "microphone-slash", "microscope", "minus", "minus-circle", "minus-square", "mitten", "mobile", "mobile-alt", "money-bill", "money-bill-alt", "money-bill-wave", "money-bill-wave-alt", "money-check", "money-check-alt", "monument", "moon", "mortar-pestle", "mosque", "motorcycle", "mountain", "mouse", "mouse-pointer", "mug-hot", "music", "network-wired", "neuter", "newspaper", "not-equal", "notes-medical", "object-group", "object-ungroup", "oil-can", "om", "otter", "outdent", "pager", "paint-brush", "paint-roller", "palette", "pallet", "paperclip", "paper-plane", "parachute-box", "paragraph", "parking", "passport", "pastafarianism", "paste", "pause", "pause-circle", "paw", "peace", "pen", "pen-alt", "pencil-alt", "pencil-ruler", "pen-fancy", "pen-nib", "pen-square", "people-carry", "pepper-hot", "percent", "percentage", "person-booth", "phone", "phone-alt", "phone-slash", "phone-square", "phone-square-alt", "phone-volume", "photo-video", "piggy-bank", "pills", "pizza-slice", "place-of-worship", "plane", "plane-arrival", "plane-departure", "play", "play-circle", "plug", "plus", "plus-circle", "plus-square", "podcast", "poll", "poll-h", "poo", "poop", "poo-storm", "portrait", "pound-sign", "power-off", "pray", "praying-hands", "prescription", "prescription-bottle", "prescription-bottle-alt", "print", "procedures", "project-diagram", "puzzle-piece", "qrcode", "question", "question-circle", "quidditch", "quote-left", "quote-right", "quran", "radiation", "radiation-alt", "rainbow", "random", "receipt", "record-vinyl", "recycle", "redo", "redo-alt", "registered", "remove-format", "reply", "reply-all", "republican", "restroom", "retweet", "ribbon", "ring", "road", "robot", "rocket", "route", "rss", "rss-square", "ruble-sign", "ruler", "ruler-combined", "ruler-horizontal", "ruler-vertical", "running", "rupee-sign", "sad-cry", "sad-tear", "satellite", "satellite-dish", "save", "school", "screwdriver", "scroll", "sd-card", "search", "search-dollar", "search-location", "search-minus", "search-plus", "seedling", "server", "shapes", "share", "share-alt", "share-alt-square", "share-square", "shekel-sign", "shield-alt", "ship", "shipping-fast", "shoe-prints", "shopping-bag", "shopping-basket", "shopping-cart", "shower", "shuttle-van", "sign", "signal", "signature", "sign-in-alt", "sign-language", "sign-out-alt", "sim-card", "sitemap", "skating", "skiing", "skiing-nordic", "skull", "skull-crossbones", "slash", "sleigh", "sliders-h", "smile", "smile-beam", "smile-wink", "smog", "smoking", "smoking-ban", "sms", "snowboarding", "snowflake", "snowman", "snowplow", "socks", "solar-panel", "sort", "sort-alpha-down", "sort-alpha-down-alt", "sort-alpha-up", "sort-alpha-up-alt", "sort-amount-down", "sort-amount-down-alt", "sort-amount-up", "sort-amount-up-alt", "sort-down", "sort-numeric-down", "sort-numeric-down-alt", "sort-numeric-up", "sort-numeric-up-alt", "sort-up", "spa", "space-shuttle", "spell-check", "spider", "spinner", "splotch", "spray-can", "square", "square-full", "square-root-alt", "stamp", "star", "star-and-crescent", "star-half", "star-half-alt", "star-of-david", "star-of-life", "step-backward", "step-forward", "stethoscope", "sticky-note", "stop", "stop-circle", "stopwatch", "store", "store-alt", "stream", "street-view", "strikethrough", "stroopwafel", "subscript", "subway", "suitcase", "suitcase-rolling", "sun", "superscript", "surprise", "swatchbook", "swimmer", "swimming-pool", "synagogue", "sync", "sync-alt", "syringe", "table", "tablet", "tablet-alt", "table-tennis", "tablets", "tachometer-alt", "tag", "tags", "tape", "tasks", "taxi", "teeth", "teeth-open", "temperature-high", "temperature-low", "tenge", "terminal", "text-height", "text-width", "th", "theater-masks", "thermometer", "thermometer-empty", "thermometer-full", "thermometer-half", "thermometer-quarter", "thermometer-three-quarters", "th-large", "th-list", "thumbs-down", "thumbs-up", "thumbtack", "ticket-alt", "times", "times-circle", "tint", "tint-slash", "tired", "toggle-off", "toggle-on", "toilet", "toilet-paper", "toolbox", "tools", "tooth", "torah", "torii-gate", "tractor", "trademark", "traffic-light", "trailer", "train", "tram", "transgender", "transgender-alt", "trash", "trash-alt", "trash-restore", "trash-restore-alt", "tree", "trophy", "truck", "truck-loading", "truck-monster", "truck-moving", "truck-pickup", "tshirt", "tty", "tv", "umbrella", "umbrella-beach", "underline", "undo", "undo-alt", "universal-access", "university", "unlink", "unlock", "unlock-alt", "upload", "user", "user-alt", "user-alt-slash", "user-astronaut", "user-check", "user-circle", "user-clock", "user-cog", "user-edit", "user-friends", "user-graduate", "user-injured", "user-lock", "user-md", "user-minus", "user-ninja", "user-nurse", "user-plus", "users", "users-cog", "user-secret", "user-shield", "user-slash", "user-tag", "user-tie", "user-times", "utensils", "utensil-spoon", "vector-square", "venus", "venus-double", "venus-mars", "vial", "vials", "video", "video-slash", "vihara", "voicemail", "volleyball-ball", "volume-down", "volume-mute", "volume-off", "volume-up", "vote-yea", "vr-cardboard", "walking", "wallet", "warehouse", "water", "wave-square", "weight", "weight-hanging", "wheelchair", "wifi", "wind", "window-close", "window-maximize", "window-minimize", "window-restore", "wine-bottle", "wine-glass", "wine-glass-alt", "won-sign", "wrench", "x-ray", "yen-sign", "yin-yang"];
+var icon; ////////////////////////////////////////
+// SHOWING ICONS FOR MAIN CATEGORIES
+
+var createCategories = function createCategories() {
+  icons.forEach(function (iconImage, i) {
+    var mainContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
+
+    if (mainContainer) {
+      var iconContainer = document.createElement("section");
+      iconContainer.classList.add('icon-container');
+
+      var _icon = document.createElement('i');
+
+      _icon.classList.add('fas');
+
+      _icon.classList.add("fa-".concat(iconImage));
+
+      _icon.classList.add("icon-container__icon");
+
+      iconContainer.insertAdjacentElement('beforeend', _icon);
+      mainContainer.insertAdjacentElement('beforeend', iconContainer);
+    }
+  });
+}; ////////////////////////////////////////
+// WATCH FOR ICON CLICKS
+
+var _clickIcon = function _clickIcon() {
+  var iconContainers = document.querySelectorAll('.icon-container');
+  iconContainers.forEach(function (element, i) {
+    element.addEventListener('click', function (e) {
+      var clicked = e.target;
+
+      if (e.target.classList.contains('icon-container__icon')) {
+        iconContainers.forEach(function (e) {
+          e.classList.remove('icon-container--clicked');
+        });
+        element.classList.add('icon-container--clicked');
+        icon = e.target;
+        return icon;
+      }
+
+      iconContainers.forEach(function (e) {
+        e.classList.remove('icon-container--clicked');
+      });
+      element.classList.add('icon-container--clicked');
+      icon = clicked.firstChild;
+      return icon;
+    });
+  });
+}; ////////////////////////////////////////
+// HIDE CREATED ICONS
+
+var _hideCreatedIcons = function _hideCreatedIcons() {
+  var mainCategories = document.querySelectorAll('.main-category');
+  if (mainCategories.length === 0) return;
+  mainCategories.forEach(function (mc) {
+    mc.classList.add('main-category--hidden');
+  });
+}; ////////////////////////////////////////
+// OPEN CATEGORY CREATION
+
+
+var openCategoryCreation = function openCategoryCreation() {
+  var createCategoryButton = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category');
+  var mainCategoryContainer = document.querySelector('.budget-creation-form__page__section__main-category-container');
+  var closeCreateCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[1];
+  var iconsContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
+  var createCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container');
+  createCategoryTitle.classList.toggle('budget-creation-form__page__section__set-main-category-title-container--open');
+  iconsContainer.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category__icons-container--open');
+  createCategoryButton.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category--hidden');
+  mainCategoryContainer.classList.toggle('budget-creation-form__page__section__main-category-container--creating-category');
+
+  _hideCreatedIcons();
+}; ////////////////////////////////////////
+// SHOW CREATED ICONS
+
+
+var _showCreatedIcons = function _showCreatedIcons() {
+  var mainCategories = document.querySelectorAll('.main-category');
+  mainCategories.forEach(function (mc) {
+    mc.classList.remove('main-category--hidden');
+  });
+}; ////////////////////////////////////////
+// CLOSE CATEGORY CREATION
+
+
+var closeCategoryCreation = function closeCategoryCreation() {
+  var createCategoryButton = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category');
+  var mainCategoryContainer = document.querySelector('.budget-creation-form__page__section__main-category-container');
+  var closeCreateCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[1];
+  var iconsContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
+  var createCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container');
+  createCategoryTitle.classList.toggle('budget-creation-form__page__section__set-main-category-title-container--open');
+  iconsContainer.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category__icons-container--open');
+  createCategoryButton.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category--hidden');
+  mainCategoryContainer.classList.toggle('budget-creation-form__page__section__main-category-container--creating-category');
+
+  _showCreatedIcons();
+};
+
+var budgetMainCategories = []; ////////////////////////////////////////
+// CATEGORY -- PARENT CLASS
+
+var Category = function Category(options) {
+  (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_6__["default"])(this, Category);
+
+  this.icon = options.icon;
+  this.title = options.title;
+}; ////////////////////////////////////////
+// MAIN CATEGORY -- CHILD CLASS
+
+
+var MainCategory = /*#__PURE__*/function (_Category) {
+  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__["default"])(MainCategory, _Category);
+
+  var _super = _createSuper(MainCategory);
+
+  function MainCategory(options) {
+    var _this;
+
+    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_6__["default"])(this, MainCategory);
+
+    var superOpts = _objectSpread({}, options);
+
+    _this = _super.call(this, superOpts);
+    _this.subCategories = [];
+    return _this;
+  }
+
+  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__["default"])(MainCategory, [{
+    key: "_capitalize",
+    value: function _capitalize(string) {
+      "".concat(string.charAt(0).toUpperCase()).concat(string.slice(1));
+    }
+  }]);
+
+  return MainCategory;
+}(Category); ////////////////////////////////////////
+// SUB CATEGORY -- CHILD CLASS
+
+
+var SubCategory = /*#__PURE__*/function (_Category2) {
+  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__["default"])(SubCategory, _Category2);
+
+  var _super2 = _createSuper(SubCategory);
+
+  function SubCategory(options) {
+    var _this2;
+
+    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_6__["default"])(this, SubCategory);
+
+    var superOpts = _objectSpread({}, options);
+
+    _this2 = _super2.call(this, superOpts);
+    _this2.surplus = false;
+    return _this2;
+  }
+
+  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__["default"])(SubCategory, [{
+    key: "_makeSurplus",
+    value: function _makeSurplus() {
+      this.surplus = !this.surplus;
+    }
+  }, {
+    key: "_finishUpdatingSubCategory",
+    value: function _finishUpdatingSubCategory(goal, spent, remaining) {
+      this.goalAmount = goal;
+      this.amountSpent = spent;
+      this.amountRemaining = remaining;
+    }
+  }]);
+
+  return SubCategory;
+}(Category); ////////////////////////////////////////
+// MAIN CATEGORY DELETION PROCESS
+
+
+var deleteMainCategory = function deleteMainCategory(e) {
+  budgetMainCategories = budgetMainCategories.filter(function (o, i) {
+    return o.title !== e.target.closest('section').firstChild.nextElementSibling.textContent;
+  });
+  e.target.closest('section').remove();
+  console.log("DELETED");
+}; ////////////////////////////////////////
+// CAPITALIZING CATEGORIES
+
+
+var _capitalize = function _capitalize(string) {
+  return "".concat(string.charAt(0).toUpperCase()).concat(string.slice(1));
+}; ////////////////////////////////////////
+// SUB CATEGORY CREATION PROCESS
+
+
+var createSubCategory = function createSubCategory(categories, index) {
+  // Creating Sub Category Container
+  var subCategory = document.createElement('section'); // Adding Sub Category Classes
+
+  subCategory.classList.add('budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category');
+  subCategory.classList.add('r__budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category');
+  subCategory.classList.add('sub-category');
+  subCategory.classList.add('r__sub-category');
+  subCategory.dataset.category = "".concat(index); // Creating the title container
+
+  var subCategoryTitleContainer = document.createElement('section'); // Adding the title container's classes
+
+  subCategoryTitleContainer.classList.add('sub-category-title-container');
+  subCategoryTitleContainer.classList.add('r__sub-category-title-container'); // Creating the title element
+
+  var subCategoryTitleElement = document.createElement('p'); // Adding title element's classes
+
+  subCategoryTitleElement.classList.add('sub-category-title-container__title');
+  subCategoryTitleElement.classList.add('r__sub-category-title-container__title'); // Select Category Creation Input
+
+  var subCategoryTitleInput = document.querySelector('.category-creation__input-container__input'); // Add Title Text Content
+
+  subCategoryTitleElement.textContent = subCategoryTitleInput.value; // Creating Sub Category Controller
+
+  var subCategoryController = document.createElement('section'); // Adding classes to Sub Category Controller
+
+  subCategoryController.classList.add('sub-category-controller');
+  subCategoryController.classList.add('r__sub-category-controller'); // Creating Surplus Container inside the controller.
+
+  var subCategorySurplusContainer = document.createElement('section');
+  subCategorySurplusContainer.classList.add('sub-category-controller__surplus-container');
+  subCategorySurplusContainer.classList.add('r__sub-category-controller__surplus-container'); // Creating Surplus Container Title Element
+
+  var surplusContainerTitle = document.createElement('p');
+  surplusContainerTitle.classList.add('sub-category-controller__surplus-container__title');
+  surplusContainerTitle.classList.add('r__sub-category-controller__surplus-container__title');
+  surplusContainerTitle.textContent = "Surplus?"; // Create Surplus Switch
+
+  var surplusContainerSwitch = document.createElement('section');
+  surplusContainerSwitch.classList.add('sub-category-controller__surplus-container__switch');
+  surplusContainerSwitch.classList.add('r__sub-category-controller__surplus-container__switch'); // Make Surplus Switch -- A SWITCH
+
+  surplusContainerSwitch.addEventListener('click', function (e) {
+    e.preventDefault();
+    surplusContainerSwitch.classList.toggle('sub-category-controller__surplus-container__switch--switched');
+
+    var subCategoriesArray = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(document.querySelectorAll('.sub-category'));
+
+    var clicked = e.target;
+    var subArray = subCategoriesArray.filter(function (sc, i) {
+      return Number(sc.dataset.category) === index;
+    });
+    var categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
+    var categoryTitle = subCategoryTitleElement.textContent;
+
+    categories[categoryNumber].subCategories[subArray.indexOf(clicked.closest('.sub-category'))]._makeSurplus();
+
+    console.log(categories[categoryNumber].subCategories);
+  }); // Create Surplus Switch Toggle
+
+  var surplusSwitchToggle = document.createElement('section');
+  surplusSwitchToggle.classList.add('sub-category-controller__surplus-container__switch__toggle');
+  surplusSwitchToggle.classList.add('r__sub-category-controller__surplus-container__switch__toggle');
+  var surplusSwitchToggleIcon = document.createElement('i');
+  surplusSwitchToggleIcon.classList.add('fas');
+  surplusSwitchToggleIcon.classList.add('fa-times');
+  surplusSwitchToggleIcon.classList.add('sub-category-controller__surplus-container__switch__toggle__icon');
+  surplusSwitchToggleIcon.classList.add('r__sub-category-controller__surplus-container__switch__toggle__icon');
+  var surplusCategoryTrashIcon = document.createElement('i');
+  surplusCategoryTrashIcon.classList.add('fas');
+  surplusCategoryTrashIcon.classList.add('fa-trash-alt');
+  surplusCategoryTrashIcon.classList.add('sub-category-controller__icon');
+  surplusCategoryTrashIcon.classList.add('r__sub-category-controller__icon');
+  surplusSwitchToggle.insertAdjacentElement('beforeend', surplusSwitchToggleIcon);
+  surplusContainerSwitch.insertAdjacentElement('beforeend', surplusSwitchToggle);
+  subCategorySurplusContainer.insertAdjacentElement('beforeend', surplusContainerTitle);
+  subCategorySurplusContainer.insertAdjacentElement('beforeend', surplusContainerSwitch);
+  subCategoryController.insertAdjacentElement('beforeend', subCategorySurplusContainer);
+  subCategoryController.insertAdjacentElement('beforeend', surplusCategoryTrashIcon);
+  subCategoryTitleContainer.insertAdjacentElement('beforeend', subCategoryTitleElement);
+  subCategory.insertAdjacentElement('beforeend', subCategoryTitleContainer);
+  subCategory.insertAdjacentElement('beforeend', subCategoryController);
+  var subCategories = document.querySelectorAll('.sub-category');
+
+  if (subCategories.length === 0) {
+    document.querySelector('.budget-creation-form__page__section__sub-category-container__sub-category-display').insertAdjacentElement('afterbegin', subCategory);
+  }
+
+  if (subCategories.length > 0) {
+    subCategories[subCategories.length - 1].insertAdjacentElement('afterend', subCategory);
+  }
+
+  categories[index].subCategories.push(new SubCategory({
+    title: "".concat(subCategoryTitleElement.textContent)
+  }));
+}; ////////////////////////////////////////
+// MAIN CATEGORY CREATION PROCESS
+
+var createMainCategory = function createMainCategory(element) {
+  var mainCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container__input').value;
+  mainCategoryTitle = mainCategoryTitle.split(' ').map(_capitalize).join(' ');
+  budgetMainCategories.push(new MainCategory({
+    icon: "".concat(element),
+    title: mainCategoryTitle
+  }));
+  var mainCategoryContainer = document.querySelector('.budget-creation-form__page__section__main-category-container');
+  var mainCategory = document.createElement('section');
+  mainCategory.classList.add('main-category');
+  var iconImage = document.createElement('i');
+  iconImage.classList.add('fas');
+  iconImage.classList.add("".concat(element));
+  iconImage.classList.add('main-category__icon');
+  var iconsText = document.createElement('p');
+  iconsText.classList.add('main-category__text');
+  var deleteButton = document.createElement('button');
+  var deleteIcon = document.createElement('i');
+  deleteIcon.classList.add('fas');
+  deleteIcon.classList.add('fa-times');
+  deleteButton.classList.add('main-category__delete');
+  deleteButton.insertAdjacentElement('beforeend', deleteIcon);
+  iconsText.textContent = mainCategoryTitle;
+  mainCategory.insertAdjacentElement('beforeend', iconImage);
+  mainCategory.insertAdjacentElement('beforeend', iconsText);
+  mainCategory.insertAdjacentElement('beforeend', deleteButton);
+  mainCategoryContainer.insertAdjacentElement('beforeend', mainCategory);
+  var mainCategoryLength = document.querySelectorAll('.main-category').length;
+
+  if (mainCategoryLength === 3) {
+    document.querySelectorAll('.main-category')[2].style.borderTopRightRadius = "0.9rem";
+  }
+
+  deleteButton.addEventListener('click', function (e) {
+    e.preventDefault();
+    deleteMainCategory(e);
+  });
+}; ////////////////////////////////////////
+// CREATE MAIN CATEGORY
+
+
+var _createMainCategory = function _createMainCategory(icon, iconList) {
+  createMainCategory(icon);
+  iconList.forEach(function (icon) {
+    icon.classList.remove('icon-container--clicked');
+  });
+}; ////////////////////////////////////////
+// FIND CLICKED ICON
+
+
+var _findClickedIcon = function _findClickedIcon(iconList) {
+  iconList.forEach(function (icon) {
+    if (icon.classList.contains('icon-container--clicked')) {
+      _createMainCategory(icon.firstChild.classList[1], iconList);
+    }
+  });
+};
+
+var _watchCategoryCreation = function _watchCategoryCreation() {
+  var createMainCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[0];
+  var iconContainers = document.querySelectorAll('.icon-container');
+
+  if (createMainCategoryButton) {
+    createMainCategoryButton.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      _findClickedIcon(iconContainers);
+
+      closeCategoryCreation();
+    });
+  }
+};
+
+var _watchCreateCategoryButton = function _watchCreateCategoryButton() {
+  var createCategoryButton = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category');
+
+  if (createCategoryButton) {
+    createCategoryButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      openCategoryCreation();
+    });
+  }
+
+  var closeCreateCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[1];
+
+  if (closeCreateCategoryButton) {
+    closeCreateCategoryButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      closeCategoryCreation();
+    });
+  }
+
+  _clickIcon();
+
+  _watchCategoryCreation();
+};
+
+/***/ }),
+
+/***/ "./Public/JS/Budget-Creation.js":
+/*!**************************************!*\
+  !*** ./Public/JS/Budget-Creation.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "_watchEmergencyGoalSettings": () => (/* binding */ _watchEmergencyGoalSettings),
+/* harmony export */   "_watchBudgetCreation": () => (/* binding */ _watchBudgetCreation)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
+/* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
+/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
+
+
+
+var tithingSetting;
+var grossOption = document.getElementById('grossOption');
+var netOption = document.getElementById('netOption');
+var surplusOption = document.getElementById('surplusOption');
+var grossOptionLabel = document.getElementById('grossOptionLabel');
+var netOptionLabel = document.getElementById('netOptionLabel');
+var surplusOptionLabel = document.getElementById('surplusOptionLabel');
+var tithingCheckboxes = [grossOption, netOption, surplusOption];
+var tithingOptions = [grossOptionLabel, netOptionLabel, surplusOptionLabel];
+var budgetContinueButton = document.querySelector('.budget-creation-form__page-mechanisms__submit-button');
+var tithingSection = document.querySelector('.tithing-section');
+
+if (tithingSection) {
+  tithingSection.addEventListener('click', function (e) {
+    var clicked = e.target;
+
+    if (e.target === grossOptionLabel) {
+      tithingOptions.forEach(function (t) {
+        return t.classList.remove('checked');
+      });
+      clicked.classList.toggle('checked');
+      return tithingSetting = "Gross";
+    }
+
+    if (e.target === netOptionLabel) {
+      tithingOptions.forEach(function (t) {
+        return t.classList.remove('checked');
+      });
+      clicked.classList.toggle('checked');
+      return tithingSetting = "Net";
+    }
+
+    if (e.target === surplusOptionLabel) {
+      tithingOptions.forEach(function (t) {
+        return t.classList.remove('checked');
+      });
+      clicked.classList.toggle('checked');
+      return tithingSetting = "Surplus";
+    }
+  });
+}
+
+var emergencySettingLabels = document.querySelectorAll('.emergency-checkbox-label');
+var emergencyInputs = document.querySelectorAll('.emergency-input');
+var emergencyGoalSetting;
+var _watchEmergencyGoalSettings = function _watchEmergencyGoalSettings() {
+  emergencySettingLabels.forEach(function (esl, i) {
+    esl.addEventListener('click', function (e) {
+      emergencySettingLabels.forEach(function (label) {
+        label.classList.remove('clicked-label');
+      });
+      esl.classList.add('clicked-label');
+      emergencyInputs.forEach(function (ei) {
+        ei.style.display = 'none';
+      });
+      esl.textContent === "Length Of Time" ? emergencyInputs[1].style.display = "flex" : emergencyInputs[0].style.display = "flex";
+      return emergencyGoalSetting = esl.textContent;
+    });
+  });
+};
+var budgetCreationFormPages = document.querySelectorAll('.budget-creation-form__page');
+var budgetCreationFormPagesNumber = budgetCreationFormPages.length;
+
+var logUser = /*#__PURE__*/function () {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
+    var userInfo, user;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return _Update_User__WEBPACK_IMPORTED_MODULE_3__.getSomePersonals();
+
+          case 2:
+            userInfo = _context.sent;
+            user = userInfo.data.data.user;
+            return _context.abrupt("return", user);
+
+          case 5:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function logUser() {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+var getUserInformation = /*#__PURE__*/function () {
+  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2() {
+    var userInfo, user, lastname;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.t0 = console;
+            _context2.next = 3;
+            return _Update_User__WEBPACK_IMPORTED_MODULE_3__.getSomePersonals();
+
+          case 3:
+            _context2.t1 = _context2.sent;
+
+            _context2.t0.log.call(_context2.t0, _context2.t1);
+
+            _context2.next = 7;
+            return _Update_User__WEBPACK_IMPORTED_MODULE_3__.getSomePersonals();
+
+          case 7:
+            userInfo = _context2.sent;
+            user = userInfo.data.data.user;
+            lastname = user.lastname;
+            return _context2.abrupt("return", (user, lastname));
+
+          case 11:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+
+  return function getUserInformation() {
+    return _ref2.apply(this, arguments);
+  };
+}(); // const userInfo = await Updating.getSomePersonals();
+// const user = userInfo.data.data.user;
+
+
+var _watchSubCategoryCreation = function _watchSubCategoryCreation(categories, index) {
+  var subCategoryCreateButton = document.querySelector('.category-creation__input-container__button');
+  console.log(index);
+  subCategoryCreateButton.addEventListener('click', function (e) {
+    _Budget_Categories__WEBPACK_IMPORTED_MODULE_2__.createSubCategory(categories, index);
+    console.log(index);
+  });
+};
+
+var getNumberOfSubCategories = function getNumberOfSubCategories(categories, index) {
+  return categories[index].subCategories.length;
+};
+
+var _addSubCategory = function _addSubCategory(categories, index) {
+  _Budget_Categories__WEBPACK_IMPORTED_MODULE_2__.createSubCategory(categories, index);
+};
+
+var setupGoalSetting = function setupGoalSetting(categories, index) {
+  var leftButton = document.querySelector('.left');
+  var rightButton = document.querySelector('.right');
+  var mainCategoryIcon = document.querySelector('.main-category-display__category-display__icon');
+  var mainCategoryTitle = document.querySelector('.main-category-display__category-display__title');
+  mainCategoryIcon.classList.add(categories[index].icon);
+  mainCategoryTitle.textContent = categories[index].title;
+  console.log(mainCategoryIcon);
+  leftButton.addEventListener('click', function (e) {
+    index--;
+    if (index < 0) index = 0;
+    mainCategoryIcon.classList.remove(categories[index + 1].icon);
+    mainCategoryIcon.classList.add(categories[index].icon);
+    mainCategoryTitle.textContent = categories[index].title; // const subCategories = document.querySelectorAll('.sub-category');
+    // subCategories.forEach((sc, i) => {
+    //   sc.classList.add('hidden');
+    //   if (sc.dataset.category === `${index}`) {
+    //     sc.classList.remove('hidden');
+    //   }
+    // });
+
+    return index;
+  });
+  rightButton.addEventListener('click', function (e) {
+    index++;
+    if (index > categories.length - 1) index = categories.length - 1;
+    mainCategoryIcon.classList.remove(categories[index - 1].icon);
+    mainCategoryIcon.classList.add(categories[index].icon);
+    mainCategoryTitle.textContent = categories[index].title; // const subCategories = document.querySelectorAll('.sub-category');
+    // subCategories.forEach((sc, i) => {
+    //   sc.classList.add('hidden');
+    //   if (sc.dataset.category === `${index}`) {
+    //     sc.classList.remove('hidden');
+    //   }
+    // });
+
+    return index;
+  });
+};
+
+var setupSubCategoryCreation = function setupSubCategoryCreation(categories, index) {
+  var leftButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__left-button__icon');
+  var rightButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__right-button__icon');
+  var mainCategoryIcon = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__icon');
+  var mainCategoryText = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__text');
+  mainCategoryIcon.classList.add(categories[index].icon);
+  mainCategoryText.textContent = categories[index].title;
+  leftButton.addEventListener('click', function (e) {
+    index--;
+    if (index < 0) index = 0;
+    mainCategoryIcon.classList.remove(categories[index + 1].icon);
+    mainCategoryIcon.classList.add(categories[index].icon);
+    mainCategoryText.textContent = categories[index].title;
+    var subCategories = document.querySelectorAll('.sub-category');
+    subCategories.forEach(function (sc, i) {
+      sc.classList.add('hidden');
+
+      if (sc.dataset.category === "".concat(index)) {
+        sc.classList.remove('hidden');
+      }
+    });
+    return index;
+  });
+  rightButton.addEventListener('click', function (e) {
+    index++;
+    if (index > categories.length - 1) index = categories.length - 1;
+    mainCategoryIcon.classList.remove(categories[index - 1].icon);
+    mainCategoryIcon.classList.add(categories[index].icon);
+    mainCategoryText.textContent = categories[index].title;
+    var subCategories = document.querySelectorAll('.sub-category');
+    subCategories.forEach(function (sc, i) {
+      sc.classList.add('hidden');
+
+      if (sc.dataset.category === "".concat(index)) {
+        sc.classList.remove('hidden');
+      }
+    });
+    return index;
+  });
+  var subCategoryCreateButton = document.querySelector('.category-creation__input-container__button');
+  subCategoryCreateButton.addEventListener('click', function (e) {
+    _addSubCategory(categories, index);
+  });
+}; /////////////////////////////////
+// GO TO PAGE
+
+
+var goToPage = function goToPage(page) {
+  budgetCreationFormPages.forEach(function (bp) {
+    bp.classList.add('disappear');
+    budgetCreationFormPages[page].classList.remove('disappear');
+  });
+}; /////////////////////////////////
+// GET BUDGET NAME
+
+
+var getBudgetName = function getBudgetName() {
+  var budgetName = document.getElementById('budgetName').value;
+  return budgetName;
+}; /////////////////////////////////
+// SETUP PAGE
+
+
+var setupPage = function setupPage() {
+  currentPage++;
+  goToPage(currentPage);
+  setPageCount(currentPage);
+  return currentPage;
+}; /////////////////////////////////
+// SET CORRECT PAGE COUNT
+
+
+var setPageCount = function setPageCount(pageNumber) {
+  var page = document.querySelector('.budget-creation-form__page-mechanisms__page-number');
+  page.textContent = "Page ".concat(pageNumber + 1, " / ").concat(budgetCreationFormPagesNumber);
+}; ////////////////////////////
+// INITIALIZE KEY VARIABLES
+
+
+var currentPage = 0;
+var _watchBudgetCreation = function _watchBudgetCreation() {
+  //////////////////////////////////////////////////////////////
+  // SET APPROPRIATE PAGE NUMBER DEPENDING ON USER INFORMATION
+  setPageCount(currentPage); ////////////////////////////////////////////////
+  // INITIALIZE KEY VARIABLES INSIDE FUNCTION SCOPE
+
+  var budgetName, mainCategories;
+  var subCategoryIndex = 0;
+  budgetContinueButton.addEventListener('click', function (e) {
+    e.preventDefault();
+    var budgetInfo = {};
+    setupPage(currentPage); //////////////////////////////
+    // ASSIGN BUDGET INFORMATION
+    /////////////////////
+    // BUDGET NAME
+
+    budgetName = getBudgetName();
+    mainCategories = _Budget_Categories__WEBPACK_IMPORTED_MODULE_2__.budgetMainCategories;
+    budgetInfo.name = budgetName; /////////////////////////////
+    // BUDGET MAIN CATEGORIES
+
+    budgetInfo.mainCategories = mainCategories;
+
+    if (currentPage + 1 === 2) {
+      _Budget_Categories__WEBPACK_IMPORTED_MODULE_2__.createCategories();
+
+      _Budget_Categories__WEBPACK_IMPORTED_MODULE_2__._watchCreateCategoryButton();
+    }
+
+    if (currentPage + 1 === 3) {
+      setupSubCategoryCreation(budgetInfo.mainCategories, subCategoryIndex);
+    }
+
+    if (currentPage + 1 === 4) {
+      setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex);
+    }
+  });
 };
 
 /***/ }),
@@ -4759,6 +5530,45 @@ var logout = /*#__PURE__*/function () {
     return _ref2.apply(this, arguments);
   };
 }();
+
+/***/ }),
+
+/***/ "./Public/JS/Person.js":
+/*!*****************************!*\
+  !*** ./Public/JS/Person.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Person": () => (/* binding */ Person)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
+
+var Person = function Person(options) {
+  (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, Person);
+
+  // firstname, lastname, username, latterDaySaint, email, emailConfirmed, password, passwordConfirmed
+  this.firstname = options.firstname;
+  this.lastname = options.lastname;
+  this.username = options.username;
+  this.latterDaySaint = options.latterDaySaint;
+  this.email = options.email;
+  this.emailConfirmed = options.emailConfirmed;
+  this.password = options.password;
+  this.passwordConfirmed = options.passwordConfirmed;
+};
+
+/***/ }),
+
+/***/ "./Public/JS/Retrieve-Budgets.js":
+/*!***************************************!*\
+  !*** ./Public/JS/Retrieve-Budgets.js ***!
+  \***************************************/
+/***/ (() => {
+
+
 
 /***/ }),
 
@@ -4887,20 +5697,19 @@ var getSomePersonals = /*#__PURE__*/function () {
           case 3:
             response = _context.sent;
             if (response[0] === "Email") console.log(true);
-            _context.next = 10;
-            break;
+            return _context.abrupt("return", response);
 
-          case 7:
-            _context.prev = 7;
+          case 8:
+            _context.prev = 8;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0);
 
-          case 10:
+          case 11:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 7]]);
+    }, _callee, null, [[0, 8]]);
   }));
 
   return function getSomePersonals() {
@@ -10437,6 +11246,27 @@ function _arrayWithoutHoles(arr) {
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _assertThisInitialized)
+/* harmony export */ });
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js":
 /*!*********************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js ***!
@@ -10562,6 +11392,56 @@ function _defineProperty(obj, key, value) {
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _getPrototypeOf)
+/* harmony export */ });
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/inherits.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/inherits.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _inherits)
+/* harmony export */ });
+/* harmony import */ var _setPrototypeOf_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./setPrototypeOf.js */ "./node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js");
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) (0,_setPrototypeOf_js__WEBPACK_IMPORTED_MODULE_0__["default"])(subClass, superClass);
+}
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/esm/iterableToArray.js":
 /*!********************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/esm/iterableToArray.js ***!
@@ -10596,6 +11476,55 @@ function _nonIterableSpread() {
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _possibleConstructorReturn)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
+/* harmony import */ var _assertThisInitialized_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assertThisInitialized.js */ "./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js");
+
+
+function _possibleConstructorReturn(self, call) {
+  if (call && ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__["default"])(call) === "object" || typeof call === "function")) {
+    return call;
+  } else if (call !== void 0) {
+    throw new TypeError("Derived constructors may only return object or undefined");
+  }
+
+  return (0,_assertThisInitialized_js__WEBPACK_IMPORTED_MODULE_1__["default"])(self);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _setPrototypeOf)
+/* harmony export */ });
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js":
 /*!**********************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js ***!
@@ -10617,6 +11546,35 @@ __webpack_require__.r(__webpack_exports__);
 
 function _toConsumableArray(arr) {
   return (0,_arrayWithoutHoles_js__WEBPACK_IMPORTED_MODULE_0__["default"])(arr) || (0,_iterableToArray_js__WEBPACK_IMPORTED_MODULE_1__["default"])(arr) || (0,_unsupportedIterableToArray_js__WEBPACK_IMPORTED_MODULE_2__["default"])(arr) || (0,_nonIterableSpread_js__WEBPACK_IMPORTED_MODULE_3__["default"])();
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/typeof.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/typeof.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _typeof)
+/* harmony export */ });
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function _typeof(obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
 }
 
 /***/ }),
@@ -10741,7 +11699,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _App_LoggedIn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./App-LoggedIn */ "./Public/JS/App-LoggedIn.js");
 /* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
 /* harmony import */ var _Signup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Signup */ "./Public/JS/Signup.js");
-/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
+/* harmony import */ var _Budget_Creation__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Budget-Creation */ "./Public/JS/Budget-Creation.js");
+/* harmony import */ var _Person__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Person */ "./Public/JS/Person.js");
+
+
+
 
 
 
@@ -10780,6 +11743,10 @@ __webpack_require__.r(__webpack_exports__);
       _App_LoggedIn__WEBPACK_IMPORTED_MODULE_5__._watchPhoneNumberInputs();
 
       _App_LoggedIn__WEBPACK_IMPORTED_MODULE_5__._watchForProfileUpdates();
+
+      _Budget_Creation__WEBPACK_IMPORTED_MODULE_9__._watchEmergencyGoalSettings();
+
+      _Budget_Creation__WEBPACK_IMPORTED_MODULE_9__._watchBudgetCreation();
     }
 
     (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__["default"])(App, [{
@@ -10799,7 +11766,6 @@ __webpack_require__.r(__webpack_exports__);
       value: function _changeLatterDaySaintStatus(lightSwitch, switchClass) {
         lightSwitch.classList.toggle(switchClass);
         isLatterDaySaint = !isLatterDaySaint;
-        console.log(isLatterDaySaint);
       }
     }, {
       key: "_watchTheSwitch",
@@ -10841,7 +11807,6 @@ __webpack_require__.r(__webpack_exports__);
         });
         formPages[pageNumber].style.display = 'flex';
         domSignupFormPageNumber.textContent = "Page ".concat(pageNumber + 1, " / 4");
-        console.log(pageNumber);
       }
     }, {
       key: "_watchFormSubmitButton",
@@ -10879,7 +11844,6 @@ __webpack_require__.r(__webpack_exports__);
         formClosers.forEach(function (fc, i) {
           fc.addEventListener('click', function (e) {
             e.preventDefault();
-            console.log(fc, i);
 
             _this3._closeTheForm(i);
           });

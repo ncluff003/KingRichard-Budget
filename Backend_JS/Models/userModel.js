@@ -79,6 +79,7 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  budgets: [],
   active: {
     type: Boolean,
     default: true,
