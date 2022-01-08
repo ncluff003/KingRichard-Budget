@@ -1078,6 +1078,12 @@ class MainCategory extends Category {
     this.subCategories = [];
   }
 
+  _deleteSubCategory(index) {
+    this.subCategories = this.subCategories.filter((sc) => {
+      return sc != this.subCategories[index];
+    });
+  }
+
   _capitalize(string) {
     `${string.charAt(0).toUpperCase()}${string.slice(1)}`;
   }
@@ -1094,6 +1100,15 @@ class SubCategory extends Category {
 
   _makeSurplus() {
     this.surplus = !this.surplus;
+  }
+
+  _capitalize(string) {
+    const words = string.split(' ');
+    return words
+      .forEach((w) => {
+        `${w.charAt(0).toUpperCase()}${w.slice(1)}`;
+      })
+      .join(' ');
   }
 
   _finishUpdatingSubCategory(goal, spent, remaining) {
@@ -1147,7 +1162,7 @@ export const createSubCategory = (categories, index) => {
   const subCategoryTitleInput = document.querySelector('.category-creation__input-container__input');
 
   // Add Title Text Content
-  subCategoryTitleElement.textContent = subCategoryTitleInput.value;
+  subCategoryTitleElement.textContent = subCategoryTitleInput.value.split(' ').map(_capitalize).join(' ');
 
   // Creating Sub Category Controller
   const subCategoryController = document.createElement('section');
@@ -1202,6 +1217,25 @@ export const createSubCategory = (categories, index) => {
   surplusCategoryTrashIcon.classList.add('fa-trash-alt');
   surplusCategoryTrashIcon.classList.add('sub-category-controller__icon');
   surplusCategoryTrashIcon.classList.add('r__sub-category-controller__icon');
+
+  surplusCategoryTrashIcon.addEventListener('click', (e) => {
+    e.preventDefault();
+    const clicked = e.target;
+    const selectedSubCategory = clicked.closest('.sub-category');
+
+    /////////////////////////////
+    // DELETE SUB CATEGORY
+    const subCategoriesArray = [...document.querySelectorAll('.sub-category')];
+    let subArray = subCategoriesArray.filter((sc, i) => {
+      return Number(sc.dataset.category) === index;
+    });
+    const categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
+
+    /////////////////////////////
+    // REMOVE DOM ELEMENT
+    selectedSubCategory.remove();
+    categories[categoryNumber]._deleteSubCategory(subArray.indexOf(selectedSubCategory));
+  });
 
   surplusSwitchToggle.insertAdjacentElement('beforeend', surplusSwitchToggleIcon);
 

@@ -225,12 +225,30 @@
                       &__icon {
                         margin-right: 1rem;
                       }
+                      &--hidden {
+                        display: none;
+                      }
                     }
                   }
                   .category-creation {
                     &__input-container {
                       &__button {
                         @include SizeAndPositioning(relative, 50%, 20%, flex, center, center, 0, 0, 0);
+                        border: 0.2rem solid rgba($primaryColor, 0.8);
+                        background-color: rgba($colorOffWhite, 0.25);
+                        border-radius: 0.5rem;
+                        margin-left: 1rem;
+                        &:hover {
+                          cursor: pointer;
+                          border: 0.2rem solid $primaryColor;
+                          background-color: $primaryColor;
+                          transition: background-color 0.5s, color 0.5s, border 0.5s;
+                        }
+                      }
+                    }
+                    &__controller {
+                      &__close {
+                        @include SizeAndPositioning(relative, 50%, 50%, flex, space-evenly, center, 0, 0, 0);
                         border: 0.2rem solid rgba($primaryColor, 0.8);
                         background-color: rgba($colorOffWhite, 0.25);
                         border-radius: 0.5rem;

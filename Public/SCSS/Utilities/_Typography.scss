@@ -637,6 +637,13 @@ html {
                             color: $primaryColor;
                           }
                         }
+                        &__close {
+                          font-size: 1.4rem;
+                          color: rgba($primaryColor, 0.8);
+                          &:hover {
+                            color: $colorOffWhite;
+                          }
+                        }
                       }
                     }
                     &__sub-category-button {
