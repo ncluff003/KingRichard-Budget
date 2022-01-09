@@ -304,6 +304,35 @@
                           }
                         }
                       }
+                      &__timing-container {
+                        &__monthly-container,
+                        &__bi-monthly-container,
+                        &__bi-weekly-container,
+                        &__weekly-container {
+                          &__button {
+                            @include SizeAndPositioning(relative, 7rem, 50%, flex, center, center, 0, 0, 0);
+                            background-color: transparent;
+                            border: 0.3rem solid rgba($primaryColor, 0.8);
+                            border-radius: 0.9rem;
+                            &__icon {
+                              @include SizeAndPositioning(absolute, 5rem, 5rem, flex, center, center, 0, -50%, 0);
+                              top: 50%;
+                              left: 1rem;
+                            }
+                            &:hover {
+                              cursor: pointer;
+                              background-color: $primaryColor;
+                              border: 0.3rem solid $primaryColor;
+                              transition: background-color 0.5s, border 0.5s, color 0.5s;
+                              .path1,
+                              .path2,
+                              .path3 {
+                                transition: color 0.5s;
+                              }
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                 }

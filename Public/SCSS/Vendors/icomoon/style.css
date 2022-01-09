@@ -1,0 +1,72 @@
+@font-face {
+  font-family: 'Icomoon';
+  src: url('./../Vendors/icomoon/fonts/icomoon.eot');
+  src: url('./../Vendors/icomoon/fonts/icomoon.eot') format('embedded-opentype'), url('./../Vendors/icomoon/fonts/icomoon.ttf') format('truetype'),
+    url('./../Vendors/icomoon/fonts/icomoon.woff') format('woff'), url('./../Vendors/icomoon/fonts/icomoon.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^='icon-'],
+[class*=' icon-'] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'Icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-calendar-bi-month .path1:before {
+  content: '\e900';
+  color: rgb(0, 0, 0);
+}
+.icon-calendar-bi-month .path2:before {
+  content: '\e901';
+  margin-left: -1.251953125em;
+  color: rgb(255, 255, 255);
+  opacity: 0.75;
+}
+.icon-calendar-bi-month .path3:before {
+  content: '\e902';
+  margin-left: -1.251953125em;
+  color: rgb(255, 255, 255);
+  opacity: 0.75;
+}
+.icon-calendar-bi-weekly .path1:before {
+  content: '\e903';
+  color: rgb(0, 0, 0);
+}
+.icon-calendar-bi-weekly .path2:before {
+  content: '\e904';
+  margin-left: -1.251953125em;
+  color: rgb(255, 255, 255);
+  opacity: 0.75;
+}
+.icon-calendar-month .path1:before {
+  content: '\e905';
+  color: rgb(0, 0, 0);
+}
+.icon-calendar-month .path2:before {
+  content: '\e906';
+  margin-left: -1.251953125em;
+  color: rgb(255, 255, 255);
+  opacity: 0.75;
+}
+.icon-calendar-week .path1:before {
+  content: '\e907';
+  color: rgb(0, 0, 0);
+}
+.icon-calendar-week .path2:before {
+  content: '\e908';
+  margin-left: -1.251953125em;
+  color: rgb(255, 255, 255);
+  opacity: 0.75;
+}

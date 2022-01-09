@@ -898,6 +898,18 @@
                           display: none;
                         }
                       }
+                      &__timing-container {
+                        @include SizeAndPositioning(relative, 100%, 100%, flex, space-evenly, center, 0, 0, 0);
+                        flex-direction: column;
+                        overflow-y: auto;
+                        &__monthly-container,
+                        &__bi-monthly-container,
+                        &__bi-weekly-container,
+                        &__weekly-container {
+                          @include SizeAndPositioning(relative, min-content, 80%, flex, center, center, 0, 0, 0);
+                          flex-direction: column;
+                        }
+                      }
                     }
                   }
                 }

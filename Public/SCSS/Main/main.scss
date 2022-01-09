@@ -1,44 +1,44 @@
 ////////////////////////////////////////////
 // Utilities
-@use "../../../Public/SCSS/Utilities/Mixins";
-@use "../../../Public/SCSS/Utilities/Variables";
-@use "../../../Public/SCSS/Utilities/Typography";
-@use "../../../Public/SCSS/Utilities/Animations";
+@use '../../../Public/SCSS/Utilities/Mixins';
+@use '../../../Public/SCSS/Utilities/Variables';
+@use '../../../Public/SCSS/Utilities/Typography';
+@use '../../../Public/SCSS/Utilities/Animations';
 
 //////////////////////////////////////////////
 // Layout
 
-@use "../../../Public/SCSS/Layout/GridTV";
-@use "../../../Public/SCSS/Layout/GridDesktop";
-@use "../../../Public/SCSS/Layout/GridTabPort";
-@use "../../../Public/SCSS/Layout/GridTabLand";
-@use "../../../Public/SCSS/Layout/GridMobilePort";
-@use "../../../Public/SCSS/Layout/GridMobileLand";
+@use '../../../Public/SCSS/Layout/GridTV';
+@use '../../../Public/SCSS/Layout/GridDesktop';
+@use '../../../Public/SCSS/Layout/GridTabPort';
+@use '../../../Public/SCSS/Layout/GridTabLand';
+@use '../../../Public/SCSS/Layout/GridMobilePort';
+@use '../../../Public/SCSS/Layout/GridMobileLand';
 
 //////////////////////////////////////////////
 // Components
 
-@use "../../../Public/SCSS/Components";
+@use '../../../Public/SCSS/Components';
 
 ////////////////////////////////////////////
 // Main
 
 ////////////////////////////////////////////
 // Pages
-@use "../../../Public/SCSS/Pages";
+@use '../../../Public/SCSS/Pages';
 
 ////////////////////////////////////////////
 // Themes
 
 ////////////////////////////////////////////
 // Base
-@use "../../../Public/SCSS/Base/Base";
+@use '../../../Public/SCSS/Base/Base';
 
 ////////////////////////////////////////////
 // Vendors
-@use "../Vendors/scss/fontawesome.scss";
-@use "../Vendors/scss/fa-solid.scss";
-@use "../Vendors/scss/fa-brands.scss";
-@use "../Vendors/scss/fa-regular.scss";
-@use "../Vendors/Animate.css";
-@use "../Vendors/Normalize.css";
+@use '../Vendors/scss/fontawesome.scss';
+@use '../Vendors/scss/fa-solid.scss';
+@use '../Vendors/scss/fa-brands.scss';
+@use '../Vendors/scss/fa-regular.scss';
+@use '../Vendors/Animate.css';
+@use '../Vendors/Normalize.css';
