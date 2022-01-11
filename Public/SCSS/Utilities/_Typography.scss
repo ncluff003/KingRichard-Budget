@@ -478,6 +478,7 @@ html {
                     }
                     &__icons-container {
                       .icon-container {
+                        font-family: MADE Tommy Soft, Verdana, sans-serif !important;
                         font-size: 1.6rem;
                         color: $primaryColor;
                         &__icon {
@@ -796,6 +797,31 @@ html {
                                   }
                                 }
                               }
+                            }
+                          }
+                          &__label {
+                            font-size: 1.4rem;
+                            color: rgba($primaryColor, 0.8);
+                            &:focus {
+                              color: $primaryColor;
+                            }
+                            &__input,
+                            &__select {
+                              font-size: 1.4rem;
+                              color: rgba($primaryColor, 0.8);
+                              &:focus {
+                                color: $primaryColor;
+                              }
+                            }
+                          }
+                          &__submit {
+                            font-size: 2rem;
+                            color: rgba($colorOffWhite, 0.8);
+                            &:hover {
+                              color: $colorOffWhite;
+                            }
+                            &:active {
+                              background-color: $secondaryColor;
                             }
                           }
                         }

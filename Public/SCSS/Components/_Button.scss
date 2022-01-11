@@ -310,7 +310,7 @@
                         &__bi-weekly-container,
                         &__weekly-container {
                           &__button {
-                            @include SizeAndPositioning(relative, 7rem, 50%, flex, center, center, 0, 0, 0);
+                            @include SizeAndPositioning(relative, 7rem, 70%, flex, center, center, 0, 0, 0);
                             background-color: transparent;
                             border: 0.3rem solid rgba($primaryColor, 0.8);
                             border-radius: 0.9rem;
@@ -329,6 +329,20 @@
                               .path3 {
                                 transition: color 0.5s;
                               }
+                            }
+                          }
+                          &__submit {
+                            @include SizeAndPositioning(relative, 5rem, 40%, flex, center, center, 4rem, 0, 0);
+                            border: 0.3rem solid rgba($primaryColor, 0.8);
+                            border-radius: 0.8rem;
+                            padding: 1rem;
+                            margin-bottom: 0.5rem;
+                            background-color: rgba($primaryColor, 0.8);
+                            &:hover {
+                              cursor: pointer;
+                              background-color: $primaryColor;
+                              border: 0.3rem solid $primaryColor;
+                              transition: color 0.5s, background-color 0.5s, border 0.5s;
                             }
                           }
                         }

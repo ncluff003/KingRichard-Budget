@@ -5211,7 +5211,7 @@ var _watchEmergencyGoalSettings = function _watchEmergencyGoalSettings() {
 var budgetCreationFormPages = document.querySelectorAll('.budget-creation-form__page');
 var budgetCreationFormPagesNumber = budgetCreationFormPages.length;
 
-var logUser = /*#__PURE__*/function () {
+var checkUser = /*#__PURE__*/function () {
   var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
     var userInfo, user;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
@@ -5234,7 +5234,7 @@ var logUser = /*#__PURE__*/function () {
     }, _callee);
   }));
 
-  return function logUser() {
+  return function checkUser() {
     return _ref.apply(this, arguments);
   };
 }();
@@ -5327,13 +5327,14 @@ var buildSubCategories = function buildSubCategories(categories, index, secondar
       subCategorySection.insertAdjacentElement('beforeend', subCategoryInput);
       subCategoryInput.addEventListener('keyup', function (e) {
         e.preventDefault();
-        var overallBudget = document.querySelector('.budget-single-goal-summary__amount');
+        var overallBudget = document.querySelectorAll('.budget-single-goal-summary__amount');
         var individualPayments = document.querySelectorAll('.individual-payment');
         var total = 0;
         individualPayments.forEach(function (ip) {
           total += Number(ip.value);
         });
-        overallBudget.textContent = "$".concat(total);
+        overallBudget[0].textContent = "$".concat(total);
+        overallBudget[2].textContent = "$".concat(total);
       });
     }
 
@@ -5539,35 +5540,90 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
 
   var budgetName, mainCategories;
   var subCategoryIndex = 0;
-  budgetContinueButton.addEventListener('click', function (e) {
-    e.preventDefault();
-    var budgetInfo = {};
-    setupPage(currentPage); //////////////////////////////
-    // ASSIGN BUDGET INFORMATION
-    /////////////////////
-    // BUDGET NAME
+  budgetContinueButton.addEventListener('click', /*#__PURE__*/function () {
+    var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee3(e) {
+      var budgetInfo, userInfo, user;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              e.preventDefault();
+              budgetInfo = {};
+              setupPage(currentPage); //////////////////////////////
+              // ASSIGN BUDGET INFORMATION
+              /////////////////////
+              // BUDGET NAME
 
-    budgetName = getBudgetName();
-    mainCategories = _Budget_Categories__WEBPACK_IMPORTED_MODULE_2__.budgetMainCategories;
-    budgetInfo.name = budgetName; /////////////////////////////
-    // BUDGET MAIN CATEGORIES
+              budgetName = getBudgetName();
+              mainCategories = _Budget_Categories__WEBPACK_IMPORTED_MODULE_2__.budgetMainCategories;
+              budgetInfo.name = budgetName; /////////////////////////////
+              // BUDGET MAIN CATEGORIES
 
-    budgetInfo.mainCategories = mainCategories;
+              budgetInfo.mainCategories = mainCategories; /////////////////////////////
+              // CHECK USER
 
-    if (currentPage + 1 === 2) {
-      _Budget_Categories__WEBPACK_IMPORTED_MODULE_2__.createCategories();
+              _context3.next = 9;
+              return _Update_User__WEBPACK_IMPORTED_MODULE_3__.getSomePersonals();
 
-      _Budget_Categories__WEBPACK_IMPORTED_MODULE_2__._watchCreateCategoryButton();
-    }
+            case 9:
+              userInfo = _context3.sent;
+              user = userInfo.data.data.user;
+              console.log(user, user.latterDaySaint); ////////////////////////////////////////////////////////////////////////
+              // GLITCH: Need to fix this to work if you are a Latter Day Saint as well.
+              ////////////////////////////////////////////////////////////////////////
+              /////////////////////////////
+              // IF NOT LATTER DAY SAINT
 
-    if (currentPage + 1 === 3) {
-      setupSubCategoryCreation(budgetInfo.mainCategories, subCategoryIndex);
-    }
+              if (currentPage + 1 === 2 && user.latterDaySaint === false) {
+                _Budget_Categories__WEBPACK_IMPORTED_MODULE_2__.createCategories();
 
-    if (currentPage + 1 === 4) {
-      setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex);
-    }
-  });
+                _Budget_Categories__WEBPACK_IMPORTED_MODULE_2__._watchCreateCategoryButton();
+              }
+
+              if (currentPage + 1 === 3 && user.latterDaySaint === false) {
+                console.log(budgetInfo.mainCategories);
+                console.log(currentPage);
+                setupSubCategoryCreation(budgetInfo.mainCategories, subCategoryIndex);
+              }
+
+              if (currentPage + 1 === 4 && user.latterDaySaint === false) {
+                console.log(budgetInfo.mainCategories);
+                console.log(currentPage);
+                setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex);
+              } /////////////////////////////
+              // IF LATTER DAY SAINT
+
+
+              if (currentPage + 1 === 3 && user.latterDaySaint === true) {
+                _Budget_Categories__WEBPACK_IMPORTED_MODULE_2__.createCategories();
+
+                _Budget_Categories__WEBPACK_IMPORTED_MODULE_2__._watchCreateCategoryButton();
+
+                console.log(currentPage + 1);
+              }
+
+              if (currentPage + 1 === 4 && user.latterDaySaint === true) {
+                console.log(currentPage + 1);
+                setupSubCategoryCreation(budgetInfo.mainCategories, subCategoryIndex);
+              }
+
+              if (currentPage + 1 === 5 && user.latterDaySaint === true) {
+                setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex);
+                console.log(currentPage + 1);
+              }
+
+            case 18:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }));
+
+    return function (_x) {
+      return _ref3.apply(this, arguments);
+    };
+  }());
 };
 
 /***/ }),

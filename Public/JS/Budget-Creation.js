@@ -56,7 +56,7 @@ export const _watchEmergencyGoalSettings = () => {
 const budgetCreationFormPages = document.querySelectorAll('.budget-creation-form__page');
 const budgetCreationFormPagesNumber = budgetCreationFormPages.length;
 
-const logUser = async () => {
+const checkUser = async () => {
   const userInfo = await Updating.getSomePersonals();
   const user = userInfo.data.data.user;
   return user;
@@ -124,13 +124,14 @@ const buildSubCategories = (categories, index, secondaryIndex) => {
 
       subCategoryInput.addEventListener('keyup', (e) => {
         e.preventDefault();
-        const overallBudget = document.querySelector('.budget-single-goal-summary__amount');
+        const overallBudget = document.querySelectorAll('.budget-single-goal-summary__amount');
         const individualPayments = document.querySelectorAll('.individual-payment');
         let total = 0;
         individualPayments.forEach((ip) => {
           total += Number(ip.value);
         });
-        overallBudget.textContent = `$${total}`;
+        overallBudget[0].textContent = `$${total}`;
+        overallBudget[2].textContent = `$${total}`;
       });
     }
     if (sectionIndex === 2) {
@@ -222,9 +223,7 @@ const setupGoalSetting = (categories, index) => {
 
 const setupSubCategoryCreation = (categories, index) => {
   const leftButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__left-button__icon');
-  const rightButton = document.querySelector(
-    '.budget-creation-form__page__section__sub-category-container__main-category-display__right-button__icon',
-  );
+  const rightButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__right-button__icon');
   let mainCategoryIcon = document.querySelector(
     '.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__icon',
   );
@@ -332,13 +331,12 @@ export const _watchBudgetCreation = () => {
   // INITIALIZE KEY VARIABLES INSIDE FUNCTION SCOPE
   let budgetName, mainCategories;
   let subCategoryIndex = 0;
-  budgetContinueButton.addEventListener('click', (e) => {
+  budgetContinueButton.addEventListener('click', async (e) => {
     e.preventDefault();
     let budgetInfo = {};
     setupPage(currentPage);
     //////////////////////////////
     // ASSIGN BUDGET INFORMATION
-
     /////////////////////
     // BUDGET NAME
     budgetName = getBudgetName();
@@ -347,14 +345,39 @@ export const _watchBudgetCreation = () => {
     /////////////////////////////
     // BUDGET MAIN CATEGORIES
     budgetInfo.mainCategories = mainCategories;
-    if (currentPage + 1 === 2) {
+
+    /////////////////////////////
+    // CHECK USER
+    const userInfo = await Updating.getSomePersonals();
+    const user = userInfo.data.data.user;
+    console.log(user, user.latterDaySaint);
+    ////////////////////////////////////////////////////////////////////////
+    // GLITCH: Need to fix this to work if you are a Latter Day Saint as well.
+    ////////////////////////////////////////////////////////////////////////
+
+    /////////////////////////////
+    // IF NOT LATTER DAY SAINT
+    if (currentPage + 1 === 2 && user.latterDaySaint === false) {
       Categories.createCategories();
       Categories._watchCreateCategoryButton();
     }
-    if (currentPage + 1 === 3) {
+    if (currentPage + 1 === 3 && user.latterDaySaint === false) {
       setupSubCategoryCreation(budgetInfo.mainCategories, subCategoryIndex);
     }
-    if (currentPage + 1 === 4) {
+    if (currentPage + 1 === 4 && user.latterDaySaint === false) {
+      setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex);
+    }
+
+    /////////////////////////////
+    // IF LATTER DAY SAINT
+    if (currentPage + 1 === 3 && user.latterDaySaint === true) {
+      Categories.createCategories();
+      Categories._watchCreateCategoryButton();
+    }
+    if (currentPage + 1 === 4 && user.latterDaySaint === true) {
+      setupSubCategoryCreation(budgetInfo.mainCategories, subCategoryIndex);
+    }
+    if (currentPage + 1 === 5 && user.latterDaySaint === true) {
       setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex);
     }
   });
