@@ -5383,6 +5383,55 @@ var buildSubCategories = function buildSubCategories(categories, index, secondar
 
 var _addSubCategory = function _addSubCategory(categories, index) {
   _Budget_Categories__WEBPACK_IMPORTED_MODULE_2__.createSubCategory(categories, index);
+}; /////////////////////////////////////////
+// SET UP TIMING FUNCTION CONTAINER
+
+
+var setupTimingFunctionContainer = function setupTimingFunctionContainer() {
+  /////////////////////////////////////////
+  // INITIALIZE VARIABLES FOR TIMING INPUTS
+  var monthlyTimingButton = document.querySelector('.sub-category-display__timing-container__monthly-container__button');
+  var biMonthlyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-monthly-container__button');
+  var biWeeklyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-weekly-container__button');
+  var weeklyTimingButton = document.querySelector('.sub-category-display__timing-container__weekly-container__button');
+  var timingInputButtons = [monthlyTimingButton, biMonthlyTimingButton, biWeeklyTimingButton, weeklyTimingButton];
+  timingInputButtons.forEach(function (t) {
+    return console.log(t);
+  }); // Monthly Timing
+
+  var monthlyTimingLabel = document.querySelector('.sub-category-display__timing-container__monthly-container__label');
+  var monthlyTimingSubmit = document.querySelector('.sub-category-display__timing-container__monthly-container__submit'); // Bi-Monthly Timing
+
+  var biMonthlyTimingLabelOne = document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label')[0];
+  var biMonthlyTimingLabelTwo = document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label')[1];
+  var biMonthlyTimingSubmit = document.querySelector('.sub-category-display__timing-container__bi-monthly-container__submit'); // Bi-Weekly Timing
+
+  var biWeeklyTimingLabel = document.querySelector('.sub-category-display__timing-container__bi-weekly-container__label');
+  var biWeeklyTimingSubmit = document.querySelector('.sub-category-display__timing-container__bi-weekly-container__submit'); // Weekly Timing
+
+  var weeklyTimingLabel = document.querySelector('.sub-category-display__timing-container__weekly-container__label');
+  var weeklyTimingSubmit = document.querySelector('.sub-category-display__timing-container__weekly-container__submit');
+  var timingFunctionPages = [[monthlyTimingLabel, monthlyTimingSubmit], [biMonthlyTimingLabelOne, biMonthlyTimingLabelTwo, biMonthlyTimingSubmit], [biWeeklyTimingLabel, biWeeklyTimingSubmit], [weeklyTimingLabel, weeklyTimingSubmit]];
+  timingInputButtons.forEach(function (tib, i) {
+    var index = i;
+    timingFunctionPages.forEach(function (tfp, i) {
+      tfp.forEach(function (el) {
+        el.classList.add('element-hidden');
+      });
+    });
+    tib.addEventListener('click', function (e) {
+      timingFunctionPages.forEach(function (tfp, i) {
+        tfp.forEach(function (el) {
+          console.log(el);
+          el.classList.add('element-hidden');
+        });
+      });
+      timingFunctionPages[index].forEach(function (te) {
+        te.classList.remove('element-hidden');
+        console.log(te);
+      });
+    });
+  });
 };
 
 var setupGoalSetting = function setupGoalSetting(categories, index) {
@@ -5405,14 +5454,20 @@ var setupGoalSetting = function setupGoalSetting(categories, index) {
     if (Number(sc.dataset.category) === 0) {
       sc.classList.remove('sub-category-display__sub-category--hidden');
     }
-  });
-  console.log(mainCategoryIcon);
+  }); /////////////////////////////////////////
+  // SET UP TIMING FUNCTION CONTAINER
+
+  setupTimingFunctionContainer();
   leftButton.addEventListener('click', function (e) {
     index--;
     if (index < 0) index = 0;
     mainCategoryIcon.classList.remove(categories[index + 1].icon);
     mainCategoryIcon.classList.add(categories[index].icon);
-    mainCategoryTitle.textContent = categories[index].title;
+    mainCategoryTitle.textContent = categories[index].title; // const timingInputLabels = document.querySelectorAll('.sub-category-display__timing-container__monthly-container__label');
+    // const timingInputButtons = document.querySelectorAll('.sub-category-display__timing-container__monthly-container__button');
+    // const timingInputSubmitButtons = document.querySelectorAll('.sub-category-display__timing-container__monthly-container__submit');
+    // console.log(timingInputLabels, timingInputButtons, timingInputSubmitButtons);
+
     subCategories.forEach(function (sc, i) {
       sc.classList.add('sub-category-display__sub-category--hidden');
 
@@ -5581,14 +5636,10 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
               }
 
               if (currentPage + 1 === 3 && user.latterDaySaint === false) {
-                console.log(budgetInfo.mainCategories);
-                console.log(currentPage);
                 setupSubCategoryCreation(budgetInfo.mainCategories, subCategoryIndex);
               }
 
               if (currentPage + 1 === 4 && user.latterDaySaint === false) {
-                console.log(budgetInfo.mainCategories);
-                console.log(currentPage);
                 setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex);
               } /////////////////////////////
               // IF LATTER DAY SAINT
@@ -5598,18 +5649,14 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
                 _Budget_Categories__WEBPACK_IMPORTED_MODULE_2__.createCategories();
 
                 _Budget_Categories__WEBPACK_IMPORTED_MODULE_2__._watchCreateCategoryButton();
-
-                console.log(currentPage + 1);
               }
 
               if (currentPage + 1 === 4 && user.latterDaySaint === true) {
-                console.log(currentPage + 1);
                 setupSubCategoryCreation(budgetInfo.mainCategories, subCategoryIndex);
               }
 
               if (currentPage + 1 === 5 && user.latterDaySaint === true) {
                 setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex);
-                console.log(currentPage + 1);
               }
 
             case 18:

@@ -169,6 +169,63 @@ const _addSubCategory = (categories, index) => {
   Categories.createSubCategory(categories, index);
 };
 
+/////////////////////////////////////////
+// SET UP TIMING FUNCTION CONTAINER
+const setupTimingFunctionContainer = () => {
+  /////////////////////////////////////////
+  // INITIALIZE VARIABLES FOR TIMING INPUTS
+  const monthlyTimingButton = document.querySelector('.sub-category-display__timing-container__monthly-container__button');
+  const biMonthlyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-monthly-container__button');
+  const biWeeklyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-weekly-container__button');
+  const weeklyTimingButton = document.querySelector('.sub-category-display__timing-container__weekly-container__button');
+  const timingInputButtons = [monthlyTimingButton, biMonthlyTimingButton, biWeeklyTimingButton, weeklyTimingButton];
+  timingInputButtons.forEach((t) => console.log(t));
+
+  // Monthly Timing
+  const monthlyTimingLabel = document.querySelector('.sub-category-display__timing-container__monthly-container__label');
+  const monthlyTimingSubmit = document.querySelector('.sub-category-display__timing-container__monthly-container__submit');
+
+  // Bi-Monthly Timing
+  const biMonthlyTimingLabelOne = document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label')[0];
+  const biMonthlyTimingLabelTwo = document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label')[1];
+  const biMonthlyTimingSubmit = document.querySelector('.sub-category-display__timing-container__bi-monthly-container__submit');
+  // Bi-Weekly Timing
+  const biWeeklyTimingLabel = document.querySelector('.sub-category-display__timing-container__bi-weekly-container__label');
+  const biWeeklyTimingSubmit = document.querySelector('.sub-category-display__timing-container__bi-weekly-container__submit');
+
+  // Weekly Timing
+  const weeklyTimingLabel = document.querySelector('.sub-category-display__timing-container__weekly-container__label');
+  const weeklyTimingSubmit = document.querySelector('.sub-category-display__timing-container__weekly-container__submit');
+
+  const timingFunctionPages = [
+    [monthlyTimingLabel, monthlyTimingSubmit],
+    [biMonthlyTimingLabelOne, biMonthlyTimingLabelTwo, biMonthlyTimingSubmit],
+    [biWeeklyTimingLabel, biWeeklyTimingSubmit],
+    [weeklyTimingLabel, weeklyTimingSubmit],
+  ];
+
+  timingInputButtons.forEach((tib, i) => {
+    const index = i;
+    timingFunctionPages.forEach((tfp, i) => {
+      tfp.forEach((el) => {
+        el.classList.add('element-hidden');
+      });
+    });
+    tib.addEventListener('click', (e) => {
+      timingFunctionPages.forEach((tfp, i) => {
+        tfp.forEach((el) => {
+          console.log(el);
+          el.classList.add('element-hidden');
+        });
+      });
+      timingFunctionPages[index].forEach((te) => {
+        te.classList.remove('element-hidden');
+        console.log(te);
+      });
+    });
+  });
+};
+
 const setupGoalSetting = (categories, index) => {
   const leftButton = document.querySelector('.left');
   const rightButton = document.querySelector('.right');
@@ -176,6 +233,7 @@ const setupGoalSetting = (categories, index) => {
   const mainCategoryTitle = document.querySelector('.main-category-display__category-display__title');
   mainCategoryIcon.classList.add(categories[index].icon);
   mainCategoryTitle.textContent = categories[index].title;
+
   categories.forEach((c, i) => {
     /////////////////////////////////////////
     // INITIALIZE INDEX FOR DATASET
@@ -190,13 +248,21 @@ const setupGoalSetting = (categories, index) => {
       sc.classList.remove('sub-category-display__sub-category--hidden');
     }
   });
-  console.log(mainCategoryIcon);
+
+  /////////////////////////////////////////
+  // SET UP TIMING FUNCTION CONTAINER
+  setupTimingFunctionContainer();
+
   leftButton.addEventListener('click', (e) => {
     index--;
     if (index < 0) index = 0;
     mainCategoryIcon.classList.remove(categories[index + 1].icon);
     mainCategoryIcon.classList.add(categories[index].icon);
     mainCategoryTitle.textContent = categories[index].title;
+    // const timingInputLabels = document.querySelectorAll('.sub-category-display__timing-container__monthly-container__label');
+    // const timingInputButtons = document.querySelectorAll('.sub-category-display__timing-container__monthly-container__button');
+    // const timingInputSubmitButtons = document.querySelectorAll('.sub-category-display__timing-container__monthly-container__submit');
+    // console.log(timingInputLabels, timingInputButtons, timingInputSubmitButtons);
     subCategories.forEach((sc, i) => {
       sc.classList.add('sub-category-display__sub-category--hidden');
       if (Number(sc.dataset.category) === index) {

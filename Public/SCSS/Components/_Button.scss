@@ -314,6 +314,14 @@
                             background-color: transparent;
                             border: 0.3rem solid rgba($primaryColor, 0.8);
                             border-radius: 0.9rem;
+                            margin-top: 0.5rem;
+                            margin-bottom: 0.5rem;
+                            &:first-of-type {
+                              margin-top: 1rem;
+                            }
+                            &:last-of-type {
+                              margin-bottom: 1rem;
+                            }
                             &__icon {
                               @include SizeAndPositioning(absolute, 5rem, 5rem, flex, center, center, 0, -50%, 0);
                               top: 50%;
@@ -330,6 +338,10 @@
                                 transition: color 0.5s;
                               }
                             }
+                            &:active {
+                              background-color: $secondaryColor;
+                              border: 0.3rem solid $secondaryColor;
+                            }
                           }
                           &__submit {
                             @include SizeAndPositioning(relative, 5rem, 40%, flex, center, center, 4rem, 0, 0);
@@ -343,6 +355,10 @@
                               background-color: $primaryColor;
                               border: 0.3rem solid $primaryColor;
                               transition: color 0.5s, background-color 0.5s, border 0.5s;
+                            }
+                            &:active {
+                              background-color: $secondaryColor;
+                              border: 0.3rem solid $secondaryColor;
                             }
                           }
                         }
