@@ -1,6 +1,6 @@
 import * as Categories from './Budget-Categories';
 import * as Updating from './Update-User';
-let tithingSetting;
+let tithingSetting, clicked, selectedTiming;
 const grossOption = document.getElementById('grossOption');
 const netOption = document.getElementById('netOption');
 const surplusOption = document.getElementById('surplusOption');
@@ -75,6 +75,7 @@ const getUserInformation = async () => {
 // const user = userInfo.data.data.user;
 
 const buildSubCategories = (categories, index, secondaryIndex) => {
+  const timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
   /////////////////////////////////////////
   // SELECT SUB CATEGORY DISPLAY
   const subCategoryDisplay = document.querySelector('.sub-category-display');
@@ -107,6 +108,13 @@ const buildSubCategories = (categories, index, secondaryIndex) => {
     subCategoryTimingButton.classList.add('sub-category-display__sub-category__section__set-category-timing-button');
     subCategoryTimingButton.classList.add('r__sub-category-display__sub-category__section__set-category-timing-button');
     subCategoryTimingButton.textContent = `+ Timing`;
+    subCategoryTimingButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      timingFunctionContainer.classList.toggle('sub-category-display__timing-container__hidden');
+      clicked = e.target;
+    });
+    //////////////////////////////////////////
+    // CREATE SUB CATEGORY TIMING DISPLAY
     if (sectionIndex === 0) {
       subCategorySection.insertAdjacentElement('beforeend', subCategoryName);
       subCategorySection.insertAdjacentElement('beforeend', subCategoryTimingButton);
@@ -166,12 +174,125 @@ const buildSubCategories = (categories, index, secondaryIndex) => {
 };
 
 const _addSubCategory = (categories, index) => {
+  // Select Category Creation Input
+  const subCategoryTitleInput = document.querySelector('.category-creation__input-container__input');
+  // Select All Previous Sub-Categories, If Any.
+  const oldSubCategories = document.querySelectorAll('.sub-category');
   Categories.createSubCategory(categories, index);
+  // oldSubCategories.forEach((os) => {
+  //   if (subCategoryTitleInput.value === os.firstChild.textContent) oldSubCategories[oldSubCategories.length - 1].remove();
+  //   return console.log(`Invalid Sub Category Name`);
+  // });
+};
+
+const calculateDayEnding = (day, dateEnding) => {
+  if (day === 0 || day === 4 || day === 5 || day === 6 || day === 7 || day === 8 || day === 9) {
+    dateEnding = `th`;
+  }
+  if (day === 1) dateEnding = `st`;
+  if (day === 2) dateEnding = `nd`;
+  if (day === 3) dateEnding = `rd`;
+
+  console.log(dateEnding);
+  return dateEnding;
+};
+
+const insertTiiming = (target, inputValues, timing) => {
+  let wording, dayEnding, dayEndingNumberOne;
+  console.log(dayEndingNumberOne);
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  if (timing === `Monthly`) {
+    dayEndingNumberOne = Number(inputValues[0].getDate().toString().split('')[inputValues[0].getDate().toString().length - 1]);
+    const day = inputValues[0].getDay();
+    const dayOne = inputValues[0].getDate();
+
+    // Getting proper day ending, such as 'st' for example for the 1st.
+    dayEnding = calculateDayEnding(dayEndingNumberOne, dayEnding);
+
+    wording = `Due the ${dayOne}${dayEnding} of ${months[inputValues[0].getMonth()]}.`;
+  }
+  if (timing === `Bi-Monthly`) {
+    const day = inputValues[0].getDay();
+    const day2 = inputValues[1].getDay();
+    const dayOne = inputValues[0].getDate();
+    const dayTwo = inputValues[1].getDate();
+    dayEndingNumberOne = Number(inputValues[0].getDate().toString().split('')[inputValues[0].getDate().toString().length - 1]);
+    let dayEndingNumberTwo = Number(inputValues[1].getDate().toString().split('')[inputValues[1].getDate().toString().length - 1]);
+    dayEnding = calculateDayEnding(dayEndingNumberOne, dayEnding);
+    let dayEndingTwo = calculateDayEnding(dayEndingNumberTwo, dayEnding);
+
+    if (inputValues[0].getMonth() !== inputValues[1].getMonth()) return;
+    wording = `Due the ${dayOne}${dayEnding} & ${dayTwo}${dayEndingTwo}, of ${months[inputValues[0].getMonth()]}`;
+  }
+  if (timing === `Bi-Weekly`) {
+    const day = inputValues[0].getDay();
+    const dayOne = inputValues[0].getDate();
+    console.log(Categories.budgetMainCategories, Categories.budgetMainCategories.length);
+    console.log(timing);
+  }
+  if (timing === `Weekly`) {
+    const day = inputValues[0].getDay();
+    const dayOne = inputValues[0].getDate();
+    console.log(timing);
+  }
+  target.textContent = wording;
+  const timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
+  timingFunctionContainer.classList.toggle('sub-category-display__timing-container__hidden');
+};
+
+/////////////////////////////////////////
+// WATCH FOR TIMING SETTING
+const watchForSettingTiming = (categories, index) => {
+  const timingSubmitButtons = document.querySelectorAll('.timing-submit-button');
+  timingSubmitButtons.forEach((tsb) => {
+    tsb.addEventListener('click', (e) => {
+      e.preventDefault();
+      console.log(tsb);
+      let timingArray = [];
+      const oldMonthlyTiming = new Date(document.querySelector('.sub-category-display__timing-container__monthly-container__label__input').value);
+      const monthlyTiming = new Date(oldMonthlyTiming.setHours(oldMonthlyTiming.getHours() + 7));
+      console.log(monthlyTiming);
+      const subCategoryIndex = [...document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-button')].indexOf(clicked);
+      const subCategoryTimingTarget = document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-text')[subCategoryIndex];
+      console.log(subCategoryIndex);
+      console.log(typeof monthlyTiming);
+      if (selectedTiming === `Monthly`) {
+        timingArray = [];
+        timingArray.push(monthlyTiming);
+        return insertTiiming(clicked, timingArray, selectedTiming);
+      }
+      if (selectedTiming === `Bi-Monthly`) {
+        e.preventDefault();
+        const oldTimingOne = new Date(document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input')[0].value);
+        const oldTimingTwo = new Date(document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input')[1].value);
+        const timingOne = new Date(oldTimingOne.setHours(oldTimingOne.getHours() + 7));
+        const timingTwo = new Date(oldTimingTwo.setHours(oldTimingTwo.getHours() + 7));
+        console.log(timingOne, timingTwo, document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input'));
+        timingArray = [];
+        timingArray.push(timingOne);
+        timingArray.push(timingTwo);
+        console.log(timingArray);
+        return insertTiiming(clicked, timingArray, selectedTiming);
+      }
+
+      if (selectedTiming === `Bi-Weekly`) {
+        const oldBiWeeklyTiming = new Date(document.querySelector('.sub-category-display__timing-container__bi-monthly-container__label__input'));
+        const biWeeklyTiming = new Date(oldBiWeeklyTiming.setHours(oldBiWeeklyTiming.getHours() + 7));
+        const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
+        console.log(Categories.budgetMainCategories, Categories.budgetMainCategories.length, subCategories);
+        timingArray = [];
+        timingArray.push(biWeeklyTiming);
+        return insertTiiming(clicked, timingArray, selectedTiming);
+      }
+    });
+  });
 };
 
 /////////////////////////////////////////
 // SET UP TIMING FUNCTION CONTAINER
-const setupTimingFunctionContainer = () => {
+const setupTimingFunctionContainer = (container) => {
+  const closeTimingFunctionContainer = document.querySelector('.sub-category-display__timing-container__close');
   /////////////////////////////////////////
   // INITIALIZE VARIABLES FOR TIMING INPUTS
   const monthlyTimingButton = document.querySelector('.sub-category-display__timing-container__monthly-container__button');
@@ -179,7 +300,6 @@ const setupTimingFunctionContainer = () => {
   const biWeeklyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-weekly-container__button');
   const weeklyTimingButton = document.querySelector('.sub-category-display__timing-container__weekly-container__button');
   const timingInputButtons = [monthlyTimingButton, biMonthlyTimingButton, biWeeklyTimingButton, weeklyTimingButton];
-  timingInputButtons.forEach((t) => console.log(t));
 
   // Monthly Timing
   const monthlyTimingLabel = document.querySelector('.sub-category-display__timing-container__monthly-container__label');
@@ -204,6 +324,8 @@ const setupTimingFunctionContainer = () => {
     [weeklyTimingLabel, weeklyTimingSubmit],
   ];
 
+  // sub-category-display__timing-container__monthly-container__label__input
+
   timingInputButtons.forEach((tib, i) => {
     const index = i;
     timingFunctionPages.forEach((tfp, i) => {
@@ -212,17 +334,21 @@ const setupTimingFunctionContainer = () => {
       });
     });
     tib.addEventListener('click', (e) => {
+      selectedTiming = tib.firstChild.nextSibling.textContent;
+      console.log(selectedTiming);
       timingFunctionPages.forEach((tfp, i) => {
         tfp.forEach((el) => {
-          console.log(el);
           el.classList.add('element-hidden');
         });
       });
       timingFunctionPages[index].forEach((te) => {
         te.classList.remove('element-hidden');
-        console.log(te);
       });
     });
+  });
+  closeTimingFunctionContainer.addEventListener('click', (e) => {
+    e.preventDefault();
+    container.classList.toggle('sub-category-display__timing-container__hidden');
   });
 };
 
@@ -251,8 +377,8 @@ const setupGoalSetting = (categories, index) => {
 
   /////////////////////////////////////////
   // SET UP TIMING FUNCTION CONTAINER
-  setupTimingFunctionContainer();
-
+  const timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
+  setupTimingFunctionContainer(timingFunctionContainer);
   leftButton.addEventListener('click', (e) => {
     index--;
     if (index < 0) index = 0;
@@ -416,7 +542,6 @@ export const _watchBudgetCreation = () => {
     // CHECK USER
     const userInfo = await Updating.getSomePersonals();
     const user = userInfo.data.data.user;
-    console.log(user, user.latterDaySaint);
     ////////////////////////////////////////////////////////////////////////
     // GLITCH: Need to fix this to work if you are a Latter Day Saint as well.
     ////////////////////////////////////////////////////////////////////////
@@ -432,6 +557,7 @@ export const _watchBudgetCreation = () => {
     }
     if (currentPage + 1 === 4 && user.latterDaySaint === false) {
       setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex);
+      watchForSettingTiming(budgetInfo.mainCategories, subCategoryIndex);
     }
 
     /////////////////////////////
@@ -445,6 +571,7 @@ export const _watchBudgetCreation = () => {
     }
     if (currentPage + 1 === 5 && user.latterDaySaint === true) {
       setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex);
+      watchForSettingTiming(budgetInfo.mainCategories, subCategoryIndex);
     }
   });
 };

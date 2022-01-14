@@ -5138,17 +5138,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "_watchEmergencyGoalSettings": () => (/* binding */ _watchEmergencyGoalSettings),
 /* harmony export */   "_watchBudgetCreation": () => (/* binding */ _watchBudgetCreation)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
-/* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
+/* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
 
 
 
-var tithingSetting;
+
+
+var tithingSetting, clicked, selectedTiming;
 var grossOption = document.getElementById('grossOption');
 var netOption = document.getElementById('netOption');
 var surplusOption = document.getElementById('surplusOption');
@@ -5212,14 +5216,14 @@ var budgetCreationFormPages = document.querySelectorAll('.budget-creation-form__
 var budgetCreationFormPagesNumber = budgetCreationFormPages.length;
 
 var checkUser = /*#__PURE__*/function () {
-  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee() {
     var userInfo, user;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return _Update_User__WEBPACK_IMPORTED_MODULE_3__.getSomePersonals();
+            return _Update_User__WEBPACK_IMPORTED_MODULE_5__.getSomePersonals();
 
           case 2:
             userInfo = _context.sent;
@@ -5240,15 +5244,15 @@ var checkUser = /*#__PURE__*/function () {
 }();
 
 var getUserInformation = /*#__PURE__*/function () {
-  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2() {
+  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee2() {
     var userInfo, user, lastname;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.t0 = console;
             _context2.next = 3;
-            return _Update_User__WEBPACK_IMPORTED_MODULE_3__.getSomePersonals();
+            return _Update_User__WEBPACK_IMPORTED_MODULE_5__.getSomePersonals();
 
           case 3:
             _context2.t1 = _context2.sent;
@@ -5256,7 +5260,7 @@ var getUserInformation = /*#__PURE__*/function () {
             _context2.t0.log.call(_context2.t0, _context2.t1);
 
             _context2.next = 7;
-            return _Update_User__WEBPACK_IMPORTED_MODULE_3__.getSomePersonals();
+            return _Update_User__WEBPACK_IMPORTED_MODULE_5__.getSomePersonals();
 
           case 7:
             userInfo = _context2.sent;
@@ -5280,8 +5284,9 @@ var getUserInformation = /*#__PURE__*/function () {
 
 
 var buildSubCategories = function buildSubCategories(categories, index, secondaryIndex) {
-  /////////////////////////////////////////
+  var timingFunctionContainer = document.querySelector('.sub-category-display__timing-container'); /////////////////////////////////////////
   // SELECT SUB CATEGORY DISPLAY
+
   var subCategoryDisplay = document.querySelector('.sub-category-display');
   var subCategory = document.createElement('section');
   subCategory.classList.add('sub-category-display__sub-category');
@@ -5309,6 +5314,12 @@ var buildSubCategories = function buildSubCategories(categories, index, secondar
     subCategoryTimingButton.classList.add('sub-category-display__sub-category__section__set-category-timing-button');
     subCategoryTimingButton.classList.add('r__sub-category-display__sub-category__section__set-category-timing-button');
     subCategoryTimingButton.textContent = "+ Timing";
+    subCategoryTimingButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      timingFunctionContainer.classList.toggle('sub-category-display__timing-container__hidden');
+      clicked = e.target;
+    }); //////////////////////////////////////////
+    // CREATE SUB CATEGORY TIMING DISPLAY
 
     if (sectionIndex === 0) {
       subCategorySection.insertAdjacentElement('beforeend', subCategoryName);
@@ -5382,22 +5393,145 @@ var buildSubCategories = function buildSubCategories(categories, index, secondar
 };
 
 var _addSubCategory = function _addSubCategory(categories, index) {
-  _Budget_Categories__WEBPACK_IMPORTED_MODULE_2__.createSubCategory(categories, index);
+  // Select Category Creation Input
+  var subCategoryTitleInput = document.querySelector('.category-creation__input-container__input'); // Select All Previous Sub-Categories, If Any.
+
+  var oldSubCategories = document.querySelectorAll('.sub-category');
+  _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.createSubCategory(categories, index);
+  oldSubCategories.forEach(function (os) {
+    if (subCategoryTitleInput.value === os.firstChild.textContent) oldSubCategories[oldSubCategories.length - 1].remove();
+    return console.log("Invalid Sub Category Name");
+  });
+};
+
+var calculateDayEnding = function calculateDayEnding(day, dateEnding) {
+  if (day === 0 || day === 4 || day === 5 || day === 6 || day === 7 || day === 8 || day === 9) {
+    dateEnding = "th";
+  }
+
+  if (day === 1) dateEnding = "st";
+  if (day === 2) dateEnding = "nd";
+  if (day === 3) dateEnding = "rd";
+  console.log(dateEnding);
+  return dateEnding;
+};
+
+var insertTiiming = function insertTiiming(target, inputValues, timing) {
+  var wording, dayEnding, dayEndingNumberOne;
+  console.log(dayEndingNumberOne);
+  var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+  if (timing === "Monthly") {
+    dayEndingNumberOne = Number(inputValues[0].getDate().toString().split('')[inputValues[0].getDate().toString().length - 1]);
+    var day = inputValues[0].getDay();
+    var dayOne = inputValues[0].getDate(); // Getting proper day ending, such as 'st' for example for the 1st.
+
+    dayEnding = calculateDayEnding(dayEndingNumberOne, dayEnding);
+    wording = "Due the ".concat(dayOne).concat(dayEnding, " of ").concat(months[inputValues[0].getMonth()], ".");
+  }
+
+  if (timing === "Bi-Monthly") {
+    var _day = inputValues[0].getDay();
+
+    var day2 = inputValues[1].getDay();
+
+    var _dayOne = inputValues[0].getDate();
+
+    var dayTwo = inputValues[1].getDate();
+    dayEndingNumberOne = Number(inputValues[0].getDate().toString().split('')[inputValues[0].getDate().toString().length - 1]);
+    var dayEndingNumberTwo = Number(inputValues[1].getDate().toString().split('')[inputValues[1].getDate().toString().length - 1]);
+    dayEnding = calculateDayEnding(dayEndingNumberOne, dayEnding);
+    var dayEndingTwo = calculateDayEnding(dayEndingNumberTwo, dayEnding);
+    if (inputValues[0].getMonth() !== inputValues[1].getMonth()) return;
+    wording = "Due the ".concat(_dayOne).concat(dayEnding, " & ").concat(dayTwo).concat(dayEndingTwo, ", of ").concat(months[inputValues[0].getMonth()]);
+  }
+
+  if (timing === "Bi-Weekly") {
+    var _day2 = inputValues[0].getDay();
+
+    var _dayOne2 = inputValues[0].getDate();
+
+    console.log(_Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.budgetMainCategories, _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.budgetMainCategories.length);
+    console.log(timing);
+  }
+
+  if (timing === "Weekly") {
+    var _day3 = inputValues[0].getDay();
+
+    var _dayOne3 = inputValues[0].getDate();
+
+    console.log(timing);
+  }
+
+  target.textContent = wording;
+  var timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
+  timingFunctionContainer.classList.toggle('sub-category-display__timing-container__hidden');
+}; /////////////////////////////////////////
+// WATCH FOR TIMING SETTING
+
+
+var watchForSettingTiming = function watchForSettingTiming(categories, index) {
+  var timingSubmitButtons = document.querySelectorAll('.timing-submit-button');
+  timingSubmitButtons.forEach(function (tsb) {
+    tsb.addEventListener('click', function (e) {
+      e.preventDefault();
+      console.log(tsb);
+      var timingArray = [];
+      var oldMonthlyTiming = new Date(document.querySelector('.sub-category-display__timing-container__monthly-container__label__input').value);
+      var monthlyTiming = new Date(oldMonthlyTiming.setHours(oldMonthlyTiming.getHours() + 7));
+      console.log(monthlyTiming);
+
+      var subCategoryIndex = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-button')).indexOf(clicked);
+
+      var subCategoryTimingTarget = document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-text')[subCategoryIndex];
+      console.log(subCategoryIndex);
+      console.log((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__["default"])(monthlyTiming));
+
+      if (selectedTiming === "Monthly") {
+        timingArray = [];
+        timingArray.push(monthlyTiming);
+        return insertTiiming(clicked, timingArray, selectedTiming);
+      }
+
+      if (selectedTiming === "Bi-Monthly") {
+        e.preventDefault();
+        var oldTimingOne = new Date(document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input')[0].value);
+        var oldTimingTwo = new Date(document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input')[1].value);
+        var timingOne = new Date(oldTimingOne.setHours(oldTimingOne.getHours() + 7));
+        var timingTwo = new Date(oldTimingTwo.setHours(oldTimingTwo.getHours() + 7));
+        console.log(timingOne, timingTwo, document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input'));
+        timingArray = [];
+        timingArray.push(timingOne);
+        timingArray.push(timingTwo);
+        console.log(timingArray);
+        return insertTiiming(clicked, timingArray, selectedTiming);
+      }
+
+      if (selectedTiming === "Bi-Weekly") {
+        var oldBiWeeklyTiming = new Date(document.querySelector('.sub-category-display__timing-container__bi-monthly-container__label__input'));
+        var biWeeklyTiming = new Date(oldBiWeeklyTiming.setHours(oldBiWeeklyTiming.getHours() + 7));
+        var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
+        console.log(_Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.budgetMainCategories, _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.budgetMainCategories.length, subCategories);
+        timingArray = [];
+        timingArray.push(biWeeklyTiming);
+        return insertTiiming(clicked, timingArray, selectedTiming);
+      }
+    });
+  });
 }; /////////////////////////////////////////
 // SET UP TIMING FUNCTION CONTAINER
 
 
-var setupTimingFunctionContainer = function setupTimingFunctionContainer() {
-  /////////////////////////////////////////
+var setupTimingFunctionContainer = function setupTimingFunctionContainer(container) {
+  var closeTimingFunctionContainer = document.querySelector('.sub-category-display__timing-container__close'); /////////////////////////////////////////
   // INITIALIZE VARIABLES FOR TIMING INPUTS
+
   var monthlyTimingButton = document.querySelector('.sub-category-display__timing-container__monthly-container__button');
   var biMonthlyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-monthly-container__button');
   var biWeeklyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-weekly-container__button');
   var weeklyTimingButton = document.querySelector('.sub-category-display__timing-container__weekly-container__button');
-  var timingInputButtons = [monthlyTimingButton, biMonthlyTimingButton, biWeeklyTimingButton, weeklyTimingButton];
-  timingInputButtons.forEach(function (t) {
-    return console.log(t);
-  }); // Monthly Timing
+  var timingInputButtons = [monthlyTimingButton, biMonthlyTimingButton, biWeeklyTimingButton, weeklyTimingButton]; // Monthly Timing
 
   var monthlyTimingLabel = document.querySelector('.sub-category-display__timing-container__monthly-container__label');
   var monthlyTimingSubmit = document.querySelector('.sub-category-display__timing-container__monthly-container__submit'); // Bi-Monthly Timing
@@ -5411,7 +5545,8 @@ var setupTimingFunctionContainer = function setupTimingFunctionContainer() {
 
   var weeklyTimingLabel = document.querySelector('.sub-category-display__timing-container__weekly-container__label');
   var weeklyTimingSubmit = document.querySelector('.sub-category-display__timing-container__weekly-container__submit');
-  var timingFunctionPages = [[monthlyTimingLabel, monthlyTimingSubmit], [biMonthlyTimingLabelOne, biMonthlyTimingLabelTwo, biMonthlyTimingSubmit], [biWeeklyTimingLabel, biWeeklyTimingSubmit], [weeklyTimingLabel, weeklyTimingSubmit]];
+  var timingFunctionPages = [[monthlyTimingLabel, monthlyTimingSubmit], [biMonthlyTimingLabelOne, biMonthlyTimingLabelTwo, biMonthlyTimingSubmit], [biWeeklyTimingLabel, biWeeklyTimingSubmit], [weeklyTimingLabel, weeklyTimingSubmit]]; // sub-category-display__timing-container__monthly-container__label__input
+
   timingInputButtons.forEach(function (tib, i) {
     var index = i;
     timingFunctionPages.forEach(function (tfp, i) {
@@ -5420,17 +5555,21 @@ var setupTimingFunctionContainer = function setupTimingFunctionContainer() {
       });
     });
     tib.addEventListener('click', function (e) {
+      selectedTiming = tib.firstChild.nextSibling.textContent;
+      console.log(selectedTiming);
       timingFunctionPages.forEach(function (tfp, i) {
         tfp.forEach(function (el) {
-          console.log(el);
           el.classList.add('element-hidden');
         });
       });
       timingFunctionPages[index].forEach(function (te) {
         te.classList.remove('element-hidden');
-        console.log(te);
       });
     });
+  });
+  closeTimingFunctionContainer.addEventListener('click', function (e) {
+    e.preventDefault();
+    container.classList.toggle('sub-category-display__timing-container__hidden');
   });
 };
 
@@ -5457,7 +5596,8 @@ var setupGoalSetting = function setupGoalSetting(categories, index) {
   }); /////////////////////////////////////////
   // SET UP TIMING FUNCTION CONTAINER
 
-  setupTimingFunctionContainer();
+  var timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
+  setupTimingFunctionContainer(timingFunctionContainer);
   leftButton.addEventListener('click', function (e) {
     index--;
     if (index < 0) index = 0;
@@ -5596,9 +5736,9 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
   var budgetName, mainCategories;
   var subCategoryIndex = 0;
   budgetContinueButton.addEventListener('click', /*#__PURE__*/function () {
-    var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee3(e) {
+    var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee3(e) {
       var budgetInfo, userInfo, user;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee3$(_context3) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
@@ -5610,7 +5750,7 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
               // BUDGET NAME
 
               budgetName = getBudgetName();
-              mainCategories = _Budget_Categories__WEBPACK_IMPORTED_MODULE_2__.budgetMainCategories;
+              mainCategories = _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.budgetMainCategories;
               budgetInfo.name = budgetName; /////////////////////////////
               // BUDGET MAIN CATEGORIES
 
@@ -5618,21 +5758,20 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
               // CHECK USER
 
               _context3.next = 9;
-              return _Update_User__WEBPACK_IMPORTED_MODULE_3__.getSomePersonals();
+              return _Update_User__WEBPACK_IMPORTED_MODULE_5__.getSomePersonals();
 
             case 9:
               userInfo = _context3.sent;
-              user = userInfo.data.data.user;
-              console.log(user, user.latterDaySaint); ////////////////////////////////////////////////////////////////////////
+              user = userInfo.data.data.user; ////////////////////////////////////////////////////////////////////////
               // GLITCH: Need to fix this to work if you are a Latter Day Saint as well.
               ////////////////////////////////////////////////////////////////////////
               /////////////////////////////
               // IF NOT LATTER DAY SAINT
 
               if (currentPage + 1 === 2 && user.latterDaySaint === false) {
-                _Budget_Categories__WEBPACK_IMPORTED_MODULE_2__.createCategories();
+                _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.createCategories();
 
-                _Budget_Categories__WEBPACK_IMPORTED_MODULE_2__._watchCreateCategoryButton();
+                _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__._watchCreateCategoryButton();
               }
 
               if (currentPage + 1 === 3 && user.latterDaySaint === false) {
@@ -5641,14 +5780,15 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
 
               if (currentPage + 1 === 4 && user.latterDaySaint === false) {
                 setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex);
+                watchForSettingTiming(budgetInfo.mainCategories, subCategoryIndex);
               } /////////////////////////////
               // IF LATTER DAY SAINT
 
 
               if (currentPage + 1 === 3 && user.latterDaySaint === true) {
-                _Budget_Categories__WEBPACK_IMPORTED_MODULE_2__.createCategories();
+                _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.createCategories();
 
-                _Budget_Categories__WEBPACK_IMPORTED_MODULE_2__._watchCreateCategoryButton();
+                _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__._watchCreateCategoryButton();
               }
 
               if (currentPage + 1 === 4 && user.latterDaySaint === true) {
@@ -5657,9 +5797,10 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
 
               if (currentPage + 1 === 5 && user.latterDaySaint === true) {
                 setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex);
+                watchForSettingTiming(budgetInfo.mainCategories, subCategoryIndex);
               }
 
-            case 18:
+            case 17:
             case "end":
               return _context3.stop();
           }

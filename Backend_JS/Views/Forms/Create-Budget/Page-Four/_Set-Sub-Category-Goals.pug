@@ -35,7 +35,8 @@ section.budget-creation-form__page__section.r__budget-creation-form__page__secti
           section.sub-category-display__headers__title-container.r__sub-category-display__headers__title-container Spent
           section.sub-category-display__headers__title-container.r__sub-category-display__headers__title-container Remaining
           section.sub-category-display__headers__title-container.r__sub-category-display__headers__title-container Percent Spent
-        section.sub-category-display__timing-container.r__sub-category-display__timing-container
+        section.sub-category-display__timing-container.r__sub-category-display__timing-container.sub-category-display__timing-container__hidden
+          i.fas.fa-times.sub-category-display__timing-container__close.r__sub-category-display__timing-container__close
           section.sub-category-display__timing-container__monthly-container.r__sub-category-display__timing-container__monthly-container
             button.sub-category-display__timing-container__monthly-container__button.r__sub-category-display__timing-container__monthly-container__button
               span.icon-calendar-month.sub-category-display__timing-container__monthly-container__button__icon.r__sub-category-display__timing-container__monthly-container__button__icon
@@ -44,7 +45,7 @@ section.budget-creation-form__page__section.r__budget-creation-form__page__secti
               p.sub-category-display__timing-container__monthly-container__button__text.r__sub-category-display__timing-container__monthly-container__button__text Monthly
             label.sub-category-display__timing-container__monthly-container__label.r__sub-category-display__timing-container__monthly-container__label Due Date
               input.sub-category-display__timing-container__monthly-container__label__input.r__sub-category-display__timing-container__monthly-container__label__input(type="date")
-            button.sub-category-display__timing-container__monthly-container__submit.r__sub-category-display__timing-container__monthly-container__submit Submit
+            button.sub-category-display__timing-container__monthly-container__submit.r__sub-category-display__timing-container__monthly-container__submit.timing-submit-button Submit
 
           section.sub-category-display__timing-container__bi-monthly-container.r__sub-category-display__timing-container__bi-monthly-container
             button.sub-category-display__timing-container__bi-monthly-container__button.r__sub-category-display__timing-container__bi-monthly-container__button
@@ -57,7 +58,7 @@ section.budget-creation-form__page__section.r__budget-creation-form__page__secti
               input.sub-category-display__timing-container__bi-monthly-container__label__input.r__sub-category-display__timing-container__bi-monthly-container__label__input(type="date") 
             label.sub-category-display__timing-container__bi-monthly-container__label.r__sub-category-display__timing-container__bi-monthly-container__label Second Due Date
               input.sub-category-display__timing-container__bi-monthly-container__label__input.r__sub-category-display__timing-container__bi-monthly-container__label__input(type="date") 
-            button.sub-category-display__timing-container__bi-monthly-container__submit.r__sub-category-display__timing-container__bi-monthly-container__submit Submit
+            button.sub-category-display__timing-container__bi-monthly-container__submit.r__sub-category-display__timing-container__bi-monthly-container__submit.timing-submit-button Submit
           section.sub-category-display__timing-container__bi-weekly-container.r__sub-category-display__timing-container__bi-weekly-container
             button.sub-category-display__timing-container__bi-weekly-container__button.r__sub-category-display__timing-container__bi-weekly-container__button
               span.icon-calendar-bi-weekly.sub-category-display__timing-container__bi-weekly-container__button__icon.r__sub-category-display__timing-container__bi-weekly-container__button__icon
@@ -66,7 +67,7 @@ section.budget-creation-form__page__section.r__budget-creation-form__page__secti
               p.sub-category-display__timing-container__bi-weekly-container__button__text.r__sub-category-display__timing-container__bi-weekly-container__button__text Bi-Weekly
             label.sub-category-display__timing-container__bi-weekly-container__label.r__sub-category-display__timing-container__bi-weekly-container__label Start Date
               input.sub-category-display__timing-container__bi-weekly-container__label__input.r__sub-category-display__timing-container__bi-weekly-container__label__input(type="date") 
-            button.sub-category-display__timing-container__bi-weekly-container__submit.r__sub-category-display__timing-container__bi-weekly-container__submit Submit
+            button.sub-category-display__timing-container__bi-weekly-container__submit.r__sub-category-display__timing-container__bi-weekly-container__submit.timing-submit-button Submit
           section.sub-category-display__timing-container__weekly-container.r__sub-category-display__timing-container__weekly-container
             button.sub-category-display__timing-container__weekly-container__button.r__sub-category-display__timing-container__weekly-container__button
               span.icon-calendar-week.sub-category-display__timing-container__weekly-container__button__icon.r__sub-category-display__timing-container__weekly-container__button__icon
@@ -78,4 +79,4 @@ section.budget-creation-form__page__section.r__budget-creation-form__page__secti
               select.sub-category-display__timing-container__weekly-container__label__select.r__sub-category-display__timing-container__weekly-container__label__select
                 each day in weekdays
                   option.sub-category-display__timing-container__weekly-container__label__select__option.sub-category-display__timing-container__weekly-container__label__select__option= `${day}`
-            button.sub-category-display__timing-container__weekly-container__submit.r__sub-category-display__timing-container__weekly-container__submit Submit
+            button.sub-category-display__timing-container__weekly-container__submit.r__sub-category-display__timing-container__weekly-container__submit.timing-submit-button Submit

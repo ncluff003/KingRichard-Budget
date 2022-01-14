@@ -717,7 +717,7 @@ html {
                       &__sub-category {
                         &__section {
                           &__category-name {
-                            font-size: 1.4rem;
+                            font-size: 1.6rem;
                             color: $primaryColor;
                           }
                           &:first-of-type {
@@ -725,7 +725,7 @@ html {
                             flex-direction: column;
                           }
                           &__set-category-timing-button {
-                            font-size: 1.4rem;
+                            font-size: 1.2rem;
                             color: rgba($primaryColor, 0.8);
                           }
                           &__input {
@@ -759,6 +759,13 @@ html {
                         }
                       }
                       &__timing-container {
+                        &__close {
+                          font-size: 3rem;
+                          color: rgba($primaryColor, 0.8);
+                          &:hover {
+                            color: $primaryColor;
+                          }
+                        }
                         &__monthly-container,
                         &__bi-monthly-container,
                         &__bi-weekly-container,

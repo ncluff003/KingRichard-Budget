@@ -381,6 +381,9 @@
                     background-color: $primaryColor;
                     transition: color 0.5s, background-color 0.5s, border 0.5s;
                   }
+                  &:focus {
+                    outline: none;
+                  }
                 }
               }
             }

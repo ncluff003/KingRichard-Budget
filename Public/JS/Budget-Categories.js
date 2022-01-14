@@ -964,9 +964,7 @@ let icon;
 
 export const createCategories = () => {
   icons.forEach((iconImage, i) => {
-    const mainContainer = document.querySelector(
-      '.budget-creation-form__page__section__main-category-container__create-main-category__icons-container',
-    );
+    const mainContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
     if (mainContainer) {
       const iconContainer = document.createElement(`section`);
       iconContainer.classList.add('icon-container');
@@ -1021,9 +1019,7 @@ const openCategoryCreation = () => {
   const createCategoryButton = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category');
   const mainCategoryContainer = document.querySelector('.budget-creation-form__page__section__main-category-container');
   const closeCreateCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[1];
-  const iconsContainer = document.querySelector(
-    '.budget-creation-form__page__section__main-category-container__create-main-category__icons-container',
-  );
+  const iconsContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
   const createCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container');
   createCategoryTitle.classList.toggle('budget-creation-form__page__section__set-main-category-title-container--open');
   iconsContainer.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category__icons-container--open');
@@ -1047,9 +1043,7 @@ const closeCategoryCreation = () => {
   const createCategoryButton = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category');
   const mainCategoryContainer = document.querySelector('.budget-creation-form__page__section__main-category-container');
   const closeCreateCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[1];
-  const iconsContainer = document.querySelector(
-    '.budget-creation-form__page__section__main-category-container__create-main-category__icons-container',
-  );
+  const iconsContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
   const createCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container');
   createCategoryTitle.classList.toggle('budget-creation-form__page__section__set-main-category-title-container--open');
   iconsContainer.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category__icons-container--open');
