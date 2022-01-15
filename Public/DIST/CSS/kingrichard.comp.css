@@ -711,8 +711,7 @@ html {
   color: #822aba;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section:first-of-type {
-  justify-content: space-evenly;
-  flex-direction: column;
+  text-align: center;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section__set-category-timing-button {
   font-size: 1.2rem;
@@ -34257,7 +34256,7 @@ html {
   display: none;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container {
-  position: relative;
+  position: absolute;
   height: calc(100% - 4rem);
   width: 100%;
   display: flex;
@@ -34267,6 +34266,9 @@ html {
   min-height: calc(100% - 4rem);
   flex-direction: column;
   overflow-y: auto;
+  top: 4rem;
+  left: 0;
+  z-index: 10;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__close {
   position: absolute;

@@ -1053,6 +1053,7 @@ const closeCategoryCreation = () => {
 };
 
 export let budgetMainCategories = [];
+let oldMainCategories = [];
 
 ////////////////////////////////////////
 // CATEGORY -- PARENT CLASS
@@ -1265,6 +1266,12 @@ const createMainCategory = (element) => {
   let mainCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container__input').value;
   mainCategoryTitle = mainCategoryTitle.split(' ').map(_capitalize).join(' ');
   budgetMainCategories.push(new MainCategory({ icon: `${element}`, title: mainCategoryTitle }));
+
+  // if (budgetMainCategories[budgetMainCategories.length - 1].title === mainCategoryTitle) {
+  //   budgetMainCategories.pop();
+  //   console.log(budgetMainCategories);
+  //   return;
+  // }
   const mainCategoryContainer = document.querySelector('.budget-creation-form__page__section__main-category-container');
   const mainCategory = document.createElement('section');
   mainCategory.classList.add('main-category');
@@ -1299,7 +1306,16 @@ const createMainCategory = (element) => {
 // CREATE MAIN CATEGORY
 
 const _createMainCategory = (icon, iconList) => {
+  let mainCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container__input').value.toLowerCase();
+  const filtered = budgetMainCategories.filter((mc) => {
+    if (mc.title.toLowerCase() === mainCategoryTitle) {
+      return mc;
+    }
+  });
+  if (filtered.length >= 1) return;
   createMainCategory(icon);
+
+  // oldMainCategories = budgetMainCategories;
   iconList.forEach((icon) => {
     icon.classList.remove('icon-container--clicked');
   });

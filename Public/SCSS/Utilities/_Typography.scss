@@ -721,8 +721,7 @@ html {
                             color: $primaryColor;
                           }
                           &:first-of-type {
-                            justify-content: space-evenly;
-                            flex-direction: column;
+                            text-align: center;
                           }
                           &__set-category-timing-button {
                             font-size: 1.2rem;

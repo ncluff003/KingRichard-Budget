@@ -900,10 +900,13 @@
                         }
                       }
                       &__timing-container {
-                        @include SizeAndPositioning(relative, calc(100% - 4rem), 100%, flex, flex-start, center, 0, 0, 0);
+                        @include SizeAndPositioning(absolute, calc(100% - 4rem), 100%, flex, flex-start, center, 0, 0, 0);
                         min-height: calc(100% - 4rem);
                         flex-direction: column;
                         overflow-y: auto;
+                        top: 4rem;
+                        left: 0;
+                        z-index: 10;
                         &__close {
                           @include SizeAndPositioning(absolute, 4rem, 4rem, flex, center, center, 0, 0, 0);
                           top: 2rem;

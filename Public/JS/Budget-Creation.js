@@ -174,15 +174,36 @@ const buildSubCategories = (categories, index, secondaryIndex) => {
 };
 
 const _addSubCategory = (categories, index) => {
-  // Select Category Creation Input
-  const subCategoryTitleInput = document.querySelector('.category-creation__input-container__input');
-  // Select All Previous Sub-Categories, If Any.
-  const oldSubCategories = document.querySelectorAll('.sub-category');
+  /////////////////////////////////////////////////
+  // INITIALIZE NEEDED VARIABLES
+  const mainCategoryTitle = document
+    .querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__text')
+    .textContent.toLowerCase();
+  let categoryIndex;
+
+  ////////////////////////////////////
+  // GETTING THE MAIN CATEGORY INDEX
+  Categories.budgetMainCategories.forEach((mc, i) => {
+    if (mc.title.toLowerCase() === mainCategoryTitle) {
+      categoryIndex = i;
+      return categoryIndex;
+    }
+  });
+  // Get Category Creation Input Value In Lowercase
+  const subCategoryTitle = document.querySelector('.category-creation__input-container__input').value.toLowerCase();
+
+  //////////////////////////////////////////
+  // CHECKING SUB CATEGORIES VS INPUT VALUE
+  const filtered = Categories.budgetMainCategories[categoryIndex].subCategories.filter((sc) => {
+    if (sc.title.toLowerCase() === subCategoryTitle) {
+      return sc;
+    }
+  });
+
+  /////////////////////////////////////////////////
+  // ALLOW ONLY ONE SUB CATEGORY WITH THAT NAME
+  if (filtered.length >= 1) return;
   Categories.createSubCategory(categories, index);
-  // oldSubCategories.forEach((os) => {
-  //   if (subCategoryTitleInput.value === os.firstChild.textContent) oldSubCategories[oldSubCategories.length - 1].remove();
-  //   return console.log(`Invalid Sub Category Name`);
-  // });
 };
 
 const calculateDayEnding = (day, dateEnding) => {

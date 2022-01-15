@@ -4801,7 +4801,8 @@ var closeCategoryCreation = function closeCategoryCreation() {
   _showCreatedIcons();
 };
 
-var budgetMainCategories = []; ////////////////////////////////////////
+var budgetMainCategories = [];
+var oldMainCategories = []; ////////////////////////////////////////
 // CATEGORY -- PARENT CLASS
 
 var Category = function Category(options) {
@@ -5033,7 +5034,12 @@ var createMainCategory = function createMainCategory(element) {
   budgetMainCategories.push(new MainCategory({
     icon: "".concat(element),
     title: mainCategoryTitle
-  }));
+  })); // if (budgetMainCategories[budgetMainCategories.length - 1].title === mainCategoryTitle) {
+  //   budgetMainCategories.pop();
+  //   console.log(budgetMainCategories);
+  //   return;
+  // }
+
   var mainCategoryContainer = document.querySelector('.budget-creation-form__page__section__main-category-container');
   var mainCategory = document.createElement('section');
   mainCategory.classList.add('main-category');
@@ -5069,7 +5075,15 @@ var createMainCategory = function createMainCategory(element) {
 
 
 var _createMainCategory = function _createMainCategory(icon, iconList) {
-  createMainCategory(icon);
+  var mainCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container__input').value.toLowerCase();
+  var filtered = budgetMainCategories.filter(function (mc) {
+    if (mc.title.toLowerCase() === mainCategoryTitle) {
+      return mc;
+    }
+  });
+  if (filtered.length >= 1) return;
+  createMainCategory(icon); // oldMainCategories = budgetMainCategories;
+
   iconList.forEach(function (icon) {
     icon.classList.remove('icon-container--clicked');
   });
@@ -5393,15 +5407,31 @@ var buildSubCategories = function buildSubCategories(categories, index, secondar
 };
 
 var _addSubCategory = function _addSubCategory(categories, index) {
-  // Select Category Creation Input
-  var subCategoryTitleInput = document.querySelector('.category-creation__input-container__input'); // Select All Previous Sub-Categories, If Any.
+  /////////////////////////////////////////////////
+  // INITIALIZE NEEDED VARIABLES
+  var mainCategoryTitle = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__text').textContent.toLowerCase();
+  var categoryIndex; ////////////////////////////////////
+  // GETTING THE MAIN CATEGORY INDEX
 
-  var oldSubCategories = document.querySelectorAll('.sub-category');
+  _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.budgetMainCategories.forEach(function (mc, i) {
+    if (mc.title.toLowerCase() === mainCategoryTitle) {
+      categoryIndex = i;
+      return categoryIndex;
+    }
+  }); // Get Category Creation Input Value In Lowercase
+
+  var subCategoryTitle = document.querySelector('.category-creation__input-container__input').value.toLowerCase(); //////////////////////////////////////////
+  // CHECKING SUB CATEGORIES VS INPUT VALUE
+
+  var filtered = _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.budgetMainCategories[categoryIndex].subCategories.filter(function (sc) {
+    if (sc.title.toLowerCase() === subCategoryTitle) {
+      return sc;
+    }
+  }); /////////////////////////////////////////////////
+  // ALLOW ONLY ONE SUB CATEGORY WITH THAT NAME
+
+  if (filtered.length >= 1) return;
   _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.createSubCategory(categories, index);
-  oldSubCategories.forEach(function (os) {
-    if (subCategoryTitleInput.value === os.firstChild.textContent) oldSubCategories[oldSubCategories.length - 1].remove();
-    return console.log("Invalid Sub Category Name");
-  });
 };
 
 var calculateDayEnding = function calculateDayEnding(day, dateEnding) {
