@@ -6027,7 +6027,10 @@ var Person = function Person(options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "signup": () => (/* binding */ signup)
+/* harmony export */   "signup": () => (/* binding */ signup),
+/* harmony export */   "_nextPage": () => (/* binding */ _nextPage),
+/* harmony export */   "_watchFormSubmitButton": () => (/* binding */ _watchFormSubmitButton),
+/* harmony export */   "_setupSignupForm": () => (/* binding */ _setupSignupForm)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
@@ -6039,7 +6042,12 @@ __webpack_require__.r(__webpack_exports__);
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
 
+var _this = undefined;
 
+
+
+ //////////////////////
+// USER SIGN UP
 
 var signup = /*#__PURE__*/function () {
   var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(firstname, lastname, username, latterDaySaint, email, emailConfirmed, password, passwordConfirmed) {
@@ -6087,7 +6095,48 @@ var signup = /*#__PURE__*/function () {
   return function signup(_x, _x2, _x3, _x4, _x5, _x6, _x7, _x8) {
     return _ref.apply(this, arguments);
   };
-}();
+}(); //////////////////////////////
+// SIGN UP FORM FUNCTIONALITY
+// Go To Next Page
+
+var _nextPage = function _nextPage(pageNumber, pages, pageElement) {
+  if (pageNumber > 3) _this._submitSignup();
+  pages.forEach(function (p) {
+    p.style.display = 'none';
+  });
+  pages[pageNumber].style.display = 'flex';
+  pageElement.textContent = "Page ".concat(pageNumber + 1, " / 4");
+}; // Watch The Submit Button
+
+var _watchFormSubmitButton = function _watchFormSubmitButton(page, pages, pageElement) {
+  var signupFormSubmit = document.querySelector('.signup-form__form-page__section__button');
+
+  if (signupFormSubmit) {
+    signupFormSubmit.addEventListener('click', function (e) {
+      e.preventDefault();
+      page++;
+
+      _nextPage(page, pages, pageElement);
+    });
+  }
+}; /////////////////////////
+// SIGN UP FORM SETUP
+
+var _setupSignupForm = function _setupSignupForm(page, pages) {
+  var domSignupFormPageNumber = document.querySelector('.signup-form__form-page__section__page-number');
+
+  _watchFormSubmitButton(page, pages, domSignupFormPageNumber);
+
+  if (page > 0 || page === undefined) {
+    page = 0;
+    domSignupFormPageNumber.textContent = "Page ".concat(page + 1, " / 4");
+  }
+
+  pages.forEach(function (fp, i) {
+    fp.style.display = 'none';
+  });
+  pages[0].style.display = 'flex';
+};
 
 /***/ }),
 
@@ -12148,6 +12197,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
 /* harmony import */ var _Budget_Creation__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Budget-Creation */ "./Public/JS/Budget-Creation.js");
 /* harmony import */ var _Person__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Person */ "./Public/JS/Person.js");
+/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
 
 
@@ -12166,15 +12216,13 @@ __webpack_require__.r(__webpack_exports__);
     function App() {
       (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, App);
 
-      this._watchFormSubmitButton();
+      this._startApp(); // this._watchFormSubmitButton(); #3 Because without it, #4, go to the next page, would not know to run.
 
-      this._watchResetButton();
 
-      this._watchEntranceButtons();
+      this._watchResetButton(); // this._watchEntranceButtons();  #1 Because there is nothing else to click.
+      // this._watchFormClosers(); #2 Because every form will need to be able to close after they are opened via the entrance buttons.
+      // this._watchTheSwitch();
 
-      this._watchFormClosers();
-
-      this._watchTheSwitch();
 
       _Budget_Cards__WEBPACK_IMPORTED_MODULE_4__.createBudgetCard("Cluff's Budget", "7 December 2021", "7 December 2021", "Nathan Cluff", "./../DIST/CSS/Images/Default-Budget-Cover-Photo.svg");
 
@@ -12212,6 +12260,7 @@ __webpack_require__.r(__webpack_exports__);
       value: function _changeLatterDaySaintStatus(lightSwitch, switchClass) {
         lightSwitch.classList.toggle(switchClass);
         isLatterDaySaint = !isLatterDaySaint;
+        console.log(isLatterDaySaint);
       }
     }, {
       key: "_watchTheSwitch",
@@ -12226,8 +12275,12 @@ __webpack_require__.r(__webpack_exports__);
       }
     }, {
       key: "_closeTheForm",
-      value: function _closeTheForm(index) {
+      value: function _closeTheForm(index, page, pageElement) {
         forms[index].classList.toggle('form-container--open');
+
+        if (pageElement) {
+          pageElement.textContent = "Page ".concat(page + 1, " / 4");
+        }
       }
     }, {
       key: "_submitSignup",
@@ -12242,77 +12295,80 @@ __webpack_require__.r(__webpack_exports__);
         var passwordConfirmed = document.getElementById('passwordConfirmed').value;
         var signupForm = forms[1]; // signupForm.submit();
 
-        (0,_Signup__WEBPACK_IMPORTED_MODULE_7__.signup)(firstname, lastname, username, latterDaySaint, email, emailConfirmed, password, passwordConfirmed);
-      }
-    }, {
-      key: "_nextPage",
-      value: function _nextPage(pageNumber) {
-        if (pageNumber > 3) this._submitSignup();
-        formPages.forEach(function (fp) {
-          fp.style.display = 'none';
-        });
-        formPages[pageNumber].style.display = 'flex';
-        domSignupFormPageNumber.textContent = "Page ".concat(pageNumber + 1, " / 4");
-      }
-    }, {
-      key: "_watchFormSubmitButton",
-      value: function _watchFormSubmitButton() {
-        var _this2 = this;
+        signup(firstname, lastname, username, latterDaySaint, email, emailConfirmed, password, passwordConfirmed);
+      } // _nextPage(pageNumber) {
+      //   if (pageNumber > 3) this._submitSignup();
+      //   formPages.forEach((fp) => {
+      //     fp.style.display = 'none';
+      //   });
+      //   formPages[pageNumber].style.display = 'flex';
+      //   domSignupFormPageNumber.textContent = `Page ${pageNumber + 1} / 4`;
+      // }
+      // _watchFormSubmitButton() {
+      //   if (signupFormSubmit) {
+      //     signupFormSubmit.addEventListener('click', (e) => {
+      //       e.preventDefault();
+      //       signupFormPage++;
+      //       this._nextPage(signupFormPage);
+      //     });
+      //   }
+      // }
 
-        if (signupFormSubmit) {
-          signupFormSubmit.addEventListener('click', function (e) {
-            e.preventDefault();
-            signupFormPage++;
-
-            _this2._nextPage(signupFormPage);
-          });
-        }
-      }
-    }, {
-      key: "_setupSignupForm",
-      value: function _setupSignupForm() {
-        if (signupFormPage > 0) {
-          signupFormPage = 0;
-          domSignupFormPageNumber.textContent = "Page ".concat(signupFormPage + 1, " / 4");
-        }
-
-        formPages.forEach(function (fp, i) {
-          fp.style.display = 'none';
-        });
-        formPages[0].style.display = 'flex';
-      }
     }, {
       key: "_watchFormClosers",
-      value: function _watchFormClosers() {
-        var _this3 = this;
+      value: function _watchFormClosers(pageElement, page) {
+        var _this2 = this;
 
-        signupFormPage = 0;
+        page = 0;
         formClosers.forEach(function (fc, i) {
           fc.addEventListener('click', function (e) {
             e.preventDefault();
 
-            _this3._closeTheForm(i);
+            _this2._closeTheForm(i, page, pageElement);
           });
         });
-
-        if (domSignupFormPageNumber) {
-          domSignupFormPageNumber.textContent = "Page ".concat(signupFormPage + 1, " / 4");
-        }
       }
     }, {
       key: "_watchEntranceButtons",
       value: function _watchEntranceButtons() {
-        var _this4 = this;
+        var _this3 = this;
 
+        //////////////////////////////
+        // Initialize Entrance Buttons.
+        var entranceButtons = [].concat((0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(document.querySelectorAll('.entrance-button')), [forgottenUsernameOrPasswordLink]);
         entranceButtons.forEach(function (eb, i) {
           if (eb) {
             eb.addEventListener('click', function (e) {
-              e.preventDefault();
-              forms[i].classList.toggle('form-container--open');
-              if (i === 1) _this4._setupSignupForm();
+              e.preventDefault(); //////////////////////////////////////////////////////////////
+              // Login Form Opens From Here, & Goes Straight To The Backend.
+
+              forms[i].classList.toggle('form-container--open'); //////////////////////////////////////////////////////////////
+              // The Forgotten Form Link Is Placed With The Entrance Buttons.
+              //////////////////////////////////////////////////////////////
+              // Signup Form Opens Here.
+
+              if (i === 1) {
+                var formPages = document.querySelectorAll('.signup-form__form-page');
+
+                _Signup__WEBPACK_IMPORTED_MODULE_7__._setupSignupForm(signupFormPage, formPages);
+
+                _this3._watchTheSwitch();
+              }
             });
           }
         });
+      }
+    }, {
+      key: "_startApp",
+      value: function _startApp() {
+        signupFormPage = 0;
+        console.log("App Has Started!");
+        var domSignupFormPageNumber = document.querySelector('.signup-form__form-page__section__page-number'); // WATCH THE ENTRANCE BUTTONS
+
+        this._watchEntranceButtons(); // WATCH THE FORM CLOSING BUTTONS
+
+
+        this._watchFormClosers(domSignupFormPageNumber, signupFormPage);
       }
     }]);
 
@@ -12323,14 +12379,11 @@ __webpack_require__.r(__webpack_exports__);
   var latterDaySaint = document.querySelector('.signup-form__form-page__section__input--latter-day-saint');
   var latterDaySaintSwitch = document.querySelector('.signup-form__form-page__section__input--latter-day-saint__switch');
   var isLatterDaySaint = false;
-  var signupFormPage = 0;
-  var domSignupFormPageNumber = document.querySelector('.signup-form__form-page__section__page-number');
-  var signupFormSubmit = document.querySelector('.signup-form__form-page__section__button');
+  var signupFormPage;
   var formClosers = document.querySelectorAll('.form-close-icon');
-  var formPages = document.querySelectorAll('.signup-form__form-page');
   var forms = document.querySelectorAll('.form-container');
-  var forgottenUsernameOrPasswordLink = document.querySelector('.login-form__section__forgot-username-or-password-link');
-  var entranceButtons = [].concat((0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(document.querySelectorAll('.entrance-button')), [forgottenUsernameOrPasswordLink]);
+  var forgottenUsernameOrPasswordLink = document.querySelector('.login-form__section__forgot-username-or-password-link'); // const entranceButtons = [...document.querySelectorAll('.entrance-button'), forgottenUsernameOrPasswordLink];
+
   var app = new App();
 })();
 })();
