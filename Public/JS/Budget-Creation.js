@@ -206,11 +206,14 @@ const _addSubCategory = (categories, index) => {
   Categories.createSubCategory(categories, index);
 };
 
-const calculateDayEnding = (day, dateEnding) => {
+const calculateDayEnding = (day, dateEnding, input) => {
   if (day === 0 || day === 4 || day === 5 || day === 6 || day === 7 || day === 8 || day === 9) {
     dateEnding = `th`;
   }
-  if (day === 1) dateEnding = `st`;
+  if (day === 1) {
+    dateEnding = `st`;
+    if (Number(input.getDate() === 11)) dateEnding = `th`;
+  }
   if (day === 2) dateEnding = `nd`;
   if (day === 3) dateEnding = `rd`;
 
@@ -229,7 +232,7 @@ const insertTiiming = (target, inputValues, timing) => {
     const dayOne = inputValues[0].getDate();
 
     // Getting proper day ending, such as 'st' for example for the 1st.
-    dayEnding = calculateDayEnding(dayEndingNumberOne, dayEnding);
+    dayEnding = calculateDayEnding(dayEndingNumberOne, dayEnding, inputValues[0]);
 
     wording = `Due the ${dayOne}${dayEnding} of ${months[inputValues[0].getMonth()]}.`;
   }
@@ -240,8 +243,8 @@ const insertTiiming = (target, inputValues, timing) => {
     const dayTwo = inputValues[1].getDate();
     dayEndingNumberOne = Number(inputValues[0].getDate().toString().split('')[inputValues[0].getDate().toString().length - 1]);
     let dayEndingNumberTwo = Number(inputValues[1].getDate().toString().split('')[inputValues[1].getDate().toString().length - 1]);
-    dayEnding = calculateDayEnding(dayEndingNumberOne, dayEnding);
-    let dayEndingTwo = calculateDayEnding(dayEndingNumberTwo, dayEnding);
+    dayEnding = calculateDayEnding(dayEndingNumberOne, dayEnding, inputValues[0]);
+    let dayEndingTwo = calculateDayEnding(dayEndingNumberTwo, dayEnding, inputValues[1]);
 
     if (inputValues[0].getMonth() !== inputValues[1].getMonth()) return;
     wording = `Due the ${dayOne}${dayEnding} & ${dayTwo}${dayEndingTwo}, of ${months[inputValues[0].getMonth()]}`;
@@ -249,8 +252,13 @@ const insertTiiming = (target, inputValues, timing) => {
   if (timing === `Bi-Weekly`) {
     const day = inputValues[0].getDay();
     const dayOne = inputValues[0].getDate();
+    dayEndingNumberOne = Number(inputValues[0].getDate().toString().split('')[inputValues[0].getDate().toString().length - 1]);
+    // Getting proper day ending, such as 'st' for example for the 1st.
+    dayEnding = calculateDayEnding(dayEndingNumberOne, dayEnding, inputValues[0]);
     console.log(Categories.budgetMainCategories, Categories.budgetMainCategories.length);
     console.log(timing);
+    console.log(inputValues);
+    wording = `Due the ${dayOne}${dayEnding} of ${months[inputValues[0].getMonth()]}.`;
   }
   if (timing === `Weekly`) {
     const day = inputValues[0].getDay();
@@ -298,7 +306,7 @@ const watchForSettingTiming = (categories, index) => {
       }
 
       if (selectedTiming === `Bi-Weekly`) {
-        const oldBiWeeklyTiming = new Date(document.querySelector('.sub-category-display__timing-container__bi-monthly-container__label__input'));
+        const oldBiWeeklyTiming = new Date(document.querySelector('.sub-category-display__timing-container__bi-weekly-container__label__input').value);
         const biWeeklyTiming = new Date(oldBiWeeklyTiming.setHours(oldBiWeeklyTiming.getHours() + 7));
         const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
         console.log(Categories.budgetMainCategories, Categories.budgetMainCategories.length, subCategories);
@@ -373,6 +381,10 @@ const setupTimingFunctionContainer = (container) => {
   });
 };
 
+const getTimingContainerHeight = (categories, index) => {
+  return `${(100 * categories[index].subCategories.length) / 10}rem`;
+};
+
 const setupGoalSetting = (categories, index) => {
   const leftButton = document.querySelector('.left');
   const rightButton = document.querySelector('.right');
@@ -400,6 +412,9 @@ const setupGoalSetting = (categories, index) => {
   // SET UP TIMING FUNCTION CONTAINER
   const timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
   setupTimingFunctionContainer(timingFunctionContainer);
+  console.log(getTimingContainerHeight(categories, index));
+  timingFunctionContainer.style.height = getTimingContainerHeight(categories, index);
+  timingFunctionContainer.style.minHeight = `calc(100% - 4rem)`;
   leftButton.addEventListener('click', (e) => {
     index--;
     if (index < 0) index = 0;
@@ -416,6 +431,9 @@ const setupGoalSetting = (categories, index) => {
         sc.classList.remove('sub-category-display__sub-category--hidden');
       }
     });
+    console.log(getTimingContainerHeight(categories, index));
+    timingFunctionContainer.style.height = getTimingContainerHeight(categories, index);
+    timingFunctionContainer.style.minHeight = `calc(100% - 4rem)`;
     return index;
   });
   rightButton.addEventListener('click', (e) => {
@@ -430,6 +448,9 @@ const setupGoalSetting = (categories, index) => {
         sc.classList.remove('sub-category-display__sub-category--hidden');
       }
     });
+    console.log(getTimingContainerHeight(categories, index));
+    timingFunctionContainer.style.height = getTimingContainerHeight(categories, index);
+    timingFunctionContainer.style.minHeight = `calc(100% - 4rem)`;
     return index;
   });
 };

@@ -900,7 +900,8 @@
                         }
                       }
                       &__timing-container {
-                        @include SizeAndPositioning(absolute, calc(100% - 4rem), 100%, flex, flex-start, center, 0, 0, 0);
+                        @include SizeAndPositioning(absolute, calc(100% - 4rem), 100%, flex, space-evenly, center, 0, 0, 0);
+                        background-color: rgba($colorOffWhite, 0.9);
                         min-height: calc(100% - 4rem);
                         flex-direction: column;
                         overflow-y: auto;

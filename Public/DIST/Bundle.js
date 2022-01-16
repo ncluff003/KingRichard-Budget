@@ -5434,12 +5434,16 @@ var _addSubCategory = function _addSubCategory(categories, index) {
   _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.createSubCategory(categories, index);
 };
 
-var calculateDayEnding = function calculateDayEnding(day, dateEnding) {
+var calculateDayEnding = function calculateDayEnding(day, dateEnding, input) {
   if (day === 0 || day === 4 || day === 5 || day === 6 || day === 7 || day === 8 || day === 9) {
     dateEnding = "th";
   }
 
-  if (day === 1) dateEnding = "st";
+  if (day === 1) {
+    dateEnding = "st";
+    if (Number(input.getDate() === 11)) dateEnding = "th";
+  }
+
   if (day === 2) dateEnding = "nd";
   if (day === 3) dateEnding = "rd";
   console.log(dateEnding);
@@ -5457,7 +5461,7 @@ var insertTiiming = function insertTiiming(target, inputValues, timing) {
     var day = inputValues[0].getDay();
     var dayOne = inputValues[0].getDate(); // Getting proper day ending, such as 'st' for example for the 1st.
 
-    dayEnding = calculateDayEnding(dayEndingNumberOne, dayEnding);
+    dayEnding = calculateDayEnding(dayEndingNumberOne, dayEnding, inputValues[0]);
     wording = "Due the ".concat(dayOne).concat(dayEnding, " of ").concat(months[inputValues[0].getMonth()], ".");
   }
 
@@ -5471,8 +5475,8 @@ var insertTiiming = function insertTiiming(target, inputValues, timing) {
     var dayTwo = inputValues[1].getDate();
     dayEndingNumberOne = Number(inputValues[0].getDate().toString().split('')[inputValues[0].getDate().toString().length - 1]);
     var dayEndingNumberTwo = Number(inputValues[1].getDate().toString().split('')[inputValues[1].getDate().toString().length - 1]);
-    dayEnding = calculateDayEnding(dayEndingNumberOne, dayEnding);
-    var dayEndingTwo = calculateDayEnding(dayEndingNumberTwo, dayEnding);
+    dayEnding = calculateDayEnding(dayEndingNumberOne, dayEnding, inputValues[0]);
+    var dayEndingTwo = calculateDayEnding(dayEndingNumberTwo, dayEnding, inputValues[1]);
     if (inputValues[0].getMonth() !== inputValues[1].getMonth()) return;
     wording = "Due the ".concat(_dayOne).concat(dayEnding, " & ").concat(dayTwo).concat(dayEndingTwo, ", of ").concat(months[inputValues[0].getMonth()]);
   }
@@ -5482,8 +5486,13 @@ var insertTiiming = function insertTiiming(target, inputValues, timing) {
 
     var _dayOne2 = inputValues[0].getDate();
 
+    dayEndingNumberOne = Number(inputValues[0].getDate().toString().split('')[inputValues[0].getDate().toString().length - 1]); // Getting proper day ending, such as 'st' for example for the 1st.
+
+    dayEnding = calculateDayEnding(dayEndingNumberOne, dayEnding, inputValues[0]);
     console.log(_Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.budgetMainCategories, _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.budgetMainCategories.length);
     console.log(timing);
+    console.log(inputValues);
+    wording = "Due the ".concat(_dayOne2).concat(dayEnding, " of ").concat(months[inputValues[0].getMonth()], ".");
   }
 
   if (timing === "Weekly") {
@@ -5539,7 +5548,7 @@ var watchForSettingTiming = function watchForSettingTiming(categories, index) {
       }
 
       if (selectedTiming === "Bi-Weekly") {
-        var oldBiWeeklyTiming = new Date(document.querySelector('.sub-category-display__timing-container__bi-monthly-container__label__input'));
+        var oldBiWeeklyTiming = new Date(document.querySelector('.sub-category-display__timing-container__bi-weekly-container__label__input').value);
         var biWeeklyTiming = new Date(oldBiWeeklyTiming.setHours(oldBiWeeklyTiming.getHours() + 7));
         var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
         console.log(_Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.budgetMainCategories, _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.budgetMainCategories.length, subCategories);
@@ -5603,6 +5612,10 @@ var setupTimingFunctionContainer = function setupTimingFunctionContainer(contain
   });
 };
 
+var getTimingContainerHeight = function getTimingContainerHeight(categories, index) {
+  return "".concat(100 * categories[index].subCategories.length / 10, "rem");
+};
+
 var setupGoalSetting = function setupGoalSetting(categories, index) {
   var leftButton = document.querySelector('.left');
   var rightButton = document.querySelector('.right');
@@ -5628,6 +5641,9 @@ var setupGoalSetting = function setupGoalSetting(categories, index) {
 
   var timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
   setupTimingFunctionContainer(timingFunctionContainer);
+  console.log(getTimingContainerHeight(categories, index));
+  timingFunctionContainer.style.height = getTimingContainerHeight(categories, index);
+  timingFunctionContainer.style.minHeight = "calc(100% - 4rem)";
   leftButton.addEventListener('click', function (e) {
     index--;
     if (index < 0) index = 0;
@@ -5645,6 +5661,9 @@ var setupGoalSetting = function setupGoalSetting(categories, index) {
         sc.classList.remove('sub-category-display__sub-category--hidden');
       }
     });
+    console.log(getTimingContainerHeight(categories, index));
+    timingFunctionContainer.style.height = getTimingContainerHeight(categories, index);
+    timingFunctionContainer.style.minHeight = "calc(100% - 4rem)";
     return index;
   });
   rightButton.addEventListener('click', function (e) {
@@ -5660,6 +5679,9 @@ var setupGoalSetting = function setupGoalSetting(categories, index) {
         sc.classList.remove('sub-category-display__sub-category--hidden');
       }
     });
+    console.log(getTimingContainerHeight(categories, index));
+    timingFunctionContainer.style.height = getTimingContainerHeight(categories, index);
+    timingFunctionContainer.style.minHeight = "calc(100% - 4rem)";
     return index;
   });
 };
