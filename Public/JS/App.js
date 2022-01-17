@@ -13,18 +13,7 @@ import * as Person from './Person';
   class App {
     constructor() {
       this._startApp();
-      // this._watchFormSubmitButton(); #3 Because without it, #4, go to the next page, would not know to run.
-      this._watchResetButton();
-      // this._watchEntranceButtons();  #1 Because there is nothing else to click.
-      // this._watchFormClosers(); #2 Because every form will need to be able to close after they are opened via the entrance buttons.
-      // this._watchTheSwitch();
-      BudgetCard.createBudgetCard(
-        `Cluff's Budget`,
-        `7 December 2021`,
-        `7 December 2021`,
-        `Nathan Cluff`,
-        `./../DIST/CSS/Images/Default-Budget-Cover-Photo.svg`,
-      );
+      BudgetCard.createBudgetCard(`Cluff's Budget`, `7 December 2021`, `7 December 2021`, `Nathan Cluff`, `./../DIST/CSS/Images/Default-Budget-Cover-Photo.svg`);
       AppLoggedIn._watchUserProfileButtons();
       AppLoggedIn._watchCommPreference();
       AppLoggedIn._watchSubSectionButtons();
@@ -46,58 +35,12 @@ import * as Person from './Person';
       }
     }
 
-    _changeLatterDaySaintStatus(lightSwitch, switchClass) {
-      lightSwitch.classList.toggle(switchClass);
-      isLatterDaySaint = !isLatterDaySaint;
-    }
-
-    _watchTheSwitch() {
-      if (latterDaySaint) {
-        latterDaySaint.addEventListener('click', (e) => {
-          this._changeLatterDaySaintStatus(latterDaySaint, 'signup-form__form-page__section__input--latter-day-saint--switched');
-        });
-      }
-    }
-
     _closeTheForm(index, page, pageElement) {
       forms[index].classList.toggle('form-container--open');
       if (pageElement) {
         pageElement.textContent = `Page ${page + 1} / 4`;
       }
     }
-
-    _submitSignup() {
-      const firstname = document.getElementById('firstname').value;
-      const lastname = document.getElementById('lastname').value;
-      const username = document.getElementById('username').value;
-      let latterDaySaint = isLatterDaySaint;
-      const email = document.getElementById('email').value;
-      const emailConfirmed = document.getElementById('emailConfirmed').value;
-      const password = document.getElementById('password').value;
-      const passwordConfirmed = document.getElementById('passwordConfirmed').value;
-      const signupForm = forms[1];
-      // signupForm.submit();
-      signup(firstname, lastname, username, latterDaySaint, email, emailConfirmed, password, passwordConfirmed);
-    }
-
-    // _nextPage(pageNumber) {
-    //   if (pageNumber > 3) this._submitSignup();
-    //   formPages.forEach((fp) => {
-    //     fp.style.display = 'none';
-    //   });
-    //   formPages[pageNumber].style.display = 'flex';
-    //   domSignupFormPageNumber.textContent = `Page ${pageNumber + 1} / 4`;
-    // }
-
-    // _watchFormSubmitButton() {
-    //   if (signupFormSubmit) {
-    //     signupFormSubmit.addEventListener('click', (e) => {
-    //       e.preventDefault();
-    //       signupFormPage++;
-    //       this._nextPage(signupFormPage);
-    //     });
-    //   }
-    // }
 
     _watchFormClosers(pageElement, page) {
       page = 0;
@@ -109,7 +52,8 @@ import * as Person from './Person';
       });
     }
 
-    _watchEntranceButtons() {
+    _watchEntranceButtons(person) {
+      console.log(person);
       //////////////////////////////
       // Initialize Entrance Buttons.
       const entranceButtons = [...document.querySelectorAll('.entrance-button'), forgottenUsernameOrPasswordLink];
@@ -128,8 +72,7 @@ import * as Person from './Person';
             // Signup Form Opens Here.
             if (i === 1) {
               const formPages = document.querySelectorAll('.signup-form__form-page');
-              Signup._setupSignupForm(signupFormPage, formPages);
-              this._watchTheSwitch();
+              Signup._setupSignupForm(signupFormPage, formPages, person);
             }
           });
         }
@@ -139,20 +82,23 @@ import * as Person from './Person';
       signupFormPage = 0;
       console.log(`App Has Started!`);
       let domSignupFormPageNumber = document.querySelector('.signup-form__form-page__section__page-number');
+      const newPerson = Person.newPerson;
+      newPerson.latterDaySaint = isLatterDaySaint;
       // WATCH THE ENTRANCE BUTTONS
-      this._watchEntranceButtons();
+      this._watchEntranceButtons(newPerson);
       // WATCH THE FORM CLOSING BUTTONS
       this._watchFormClosers(domSignupFormPageNumber, signupFormPage);
+      // WATCH LATTER DAY SAINT SWITCH
+      Signup._watchTheSwitch(newPerson);
+      // WATCH RESET BUTTON FOR PASSWORD RESETS
+      this._watchResetButton();
     }
   }
   const resetPasswordButton = document.querySelector('.reset-password-form__section__button');
-  const latterDaySaint = document.querySelector('.signup-form__form-page__section__input--latter-day-saint');
-  const latterDaySaintSwitch = document.querySelector('.signup-form__form-page__section__input--latter-day-saint__switch');
   let isLatterDaySaint = false;
   let signupFormPage;
   const formClosers = document.querySelectorAll('.form-close-icon');
   const forms = document.querySelectorAll('.form-container');
   const forgottenUsernameOrPasswordLink = document.querySelector('.login-form__section__forgot-username-or-password-link');
-  // const entranceButtons = [...document.querySelectorAll('.entrance-button'), forgottenUsernameOrPasswordLink];
   const app = new App();
 })();

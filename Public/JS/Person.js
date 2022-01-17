@@ -11,3 +11,5 @@ export class Person {
     this.passwordConfirmed = options.passwordConfirmed;
   }
 }
+
+export const newPerson = new Person(``, ``, ``, ``, ``, ``, ``, ``);
