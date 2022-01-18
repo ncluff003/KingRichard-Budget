@@ -173,38 +173,38 @@ const buildSubCategories = (categories, index, secondaryIndex) => {
   }
 };
 
-const _addSubCategory = (categories, index) => {
-  /////////////////////////////////////////////////
-  // INITIALIZE NEEDED VARIABLES
-  const mainCategoryTitle = document
-    .querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__text')
-    .textContent.toLowerCase();
-  let categoryIndex;
+// const _addSubCategory = (categories, index) => {
+//   /////////////////////////////////////////////////
+//   // INITIALIZE NEEDED VARIABLES
+//   const mainCategoryTitle = document
+//     .querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__text')
+//     .textContent.toLowerCase();
+//   let categoryIndex;
 
-  ////////////////////////////////////
-  // GETTING THE MAIN CATEGORY INDEX
-  Categories.budgetMainCategories.forEach((mc, i) => {
-    if (mc.title.toLowerCase() === mainCategoryTitle) {
-      categoryIndex = i;
-      return categoryIndex;
-    }
-  });
-  // Get Category Creation Input Value In Lowercase
-  const subCategoryTitle = document.querySelector('.category-creation__input-container__input').value.toLowerCase();
+//   ////////////////////////////////////
+//   // GETTING THE MAIN CATEGORY INDEX
+//   Categories.budgetMainCategories.forEach((mc, i) => {
+//     if (mc.title.toLowerCase() === mainCategoryTitle) {
+//       categoryIndex = i;
+//       return categoryIndex;
+//     }
+//   });
+//   // Get Category Creation Input Value In Lowercase
+//   const subCategoryTitle = document.querySelector('.category-creation__input-container__input').value.toLowerCase();
 
-  //////////////////////////////////////////
-  // CHECKING SUB CATEGORIES VS INPUT VALUE
-  const filtered = Categories.budgetMainCategories[categoryIndex].subCategories.filter((sc) => {
-    if (sc.title.toLowerCase() === subCategoryTitle) {
-      return sc;
-    }
-  });
+//   //////////////////////////////////////////
+//   // CHECKING SUB CATEGORIES VS INPUT VALUE
+//   const filtered = Categories.budgetMainCategories[categoryIndex].subCategories.filter((sc) => {
+//     if (sc.title.toLowerCase() === subCategoryTitle) {
+//       return sc;
+//     }
+//   });
 
-  /////////////////////////////////////////////////
-  // ALLOW ONLY ONE SUB CATEGORY WITH THAT NAME
-  if (filtered.length >= 1) return;
-  Categories.createSubCategory(categories, index);
-};
+//   /////////////////////////////////////////////////
+//   // ALLOW ONLY ONE SUB CATEGORY WITH THAT NAME
+//   if (filtered.length >= 1) return;
+//   Categories.createSubCategory(categories, index);
+// };
 
 const calculateDayEnding = (day, dateEnding, input) => {
   if (day === 0 || day === 4 || day === 5 || day === 6 || day === 7 || day === 8 || day === 9) {
@@ -255,7 +255,6 @@ const insertTiiming = (target, inputValues, timing) => {
     dayEndingNumberOne = Number(inputValues[0].getDate().toString().split('')[inputValues[0].getDate().toString().length - 1]);
     // Getting proper day ending, such as 'st' for example for the 1st.
     dayEnding = calculateDayEnding(dayEndingNumberOne, dayEnding, inputValues[0]);
-    console.log(Categories.budgetMainCategories, Categories.budgetMainCategories.length);
     console.log(timing);
     console.log(inputValues);
     wording = `Due the ${dayOne}${dayEnding} of ${months[inputValues[0].getMonth()]}.`;
@@ -309,7 +308,6 @@ const watchForSettingTiming = (categories, index) => {
         const oldBiWeeklyTiming = new Date(document.querySelector('.sub-category-display__timing-container__bi-weekly-container__label__input').value);
         const biWeeklyTiming = new Date(oldBiWeeklyTiming.setHours(oldBiWeeklyTiming.getHours() + 7));
         const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
-        console.log(Categories.budgetMainCategories, Categories.budgetMainCategories.length, subCategories);
         timingArray = [];
         timingArray.push(biWeeklyTiming);
         return insertTiiming(clicked, timingArray, selectedTiming);
@@ -421,10 +419,6 @@ const setupGoalSetting = (categories, index) => {
     mainCategoryIcon.classList.remove(categories[index + 1].icon);
     mainCategoryIcon.classList.add(categories[index].icon);
     mainCategoryTitle.textContent = categories[index].title;
-    // const timingInputLabels = document.querySelectorAll('.sub-category-display__timing-container__monthly-container__label');
-    // const timingInputButtons = document.querySelectorAll('.sub-category-display__timing-container__monthly-container__button');
-    // const timingInputSubmitButtons = document.querySelectorAll('.sub-category-display__timing-container__monthly-container__submit');
-    // console.log(timingInputLabels, timingInputButtons, timingInputSubmitButtons);
     subCategories.forEach((sc, i) => {
       sc.classList.add('sub-category-display__sub-category--hidden');
       if (Number(sc.dataset.category) === index) {
@@ -455,15 +449,11 @@ const setupGoalSetting = (categories, index) => {
   });
 };
 
-const setupSubCategoryCreation = (categories, index) => {
+const setupSubCategoryCreation = (categories, index, mainCategories) => {
   const leftButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__left-button__icon');
   const rightButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__right-button__icon');
-  let mainCategoryIcon = document.querySelector(
-    '.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__icon',
-  );
-  let mainCategoryText = document.querySelector(
-    '.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__text',
-  );
+  let mainCategoryIcon = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__icon');
+  let mainCategoryText = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__text');
   const subCategoryStartCreationButton = document.querySelector(
     '.budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button',
   );
@@ -471,16 +461,12 @@ const setupSubCategoryCreation = (categories, index) => {
   const categoryCreationSection = document.querySelector('.category-creation');
   subCategoryStartCreationButton.addEventListener('click', (e) => {
     e.preventDefault();
-    subCategoryStartCreationButton.classList.toggle(
-      'budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden',
-    );
+    subCategoryStartCreationButton.classList.toggle('budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden');
     categoryCreationSection.classList.toggle('category-creation--shown');
   });
   subCategoryStopCreationButton.addEventListener('click', (e) => {
     e.preventDefault();
-    subCategoryStartCreationButton.classList.toggle(
-      'budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden',
-    );
+    subCategoryStartCreationButton.classList.toggle('budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden');
     categoryCreationSection.classList.toggle('category-creation--shown');
   });
   mainCategoryIcon.classList.add(categories[index].icon);
@@ -517,7 +503,7 @@ const setupSubCategoryCreation = (categories, index) => {
   });
   const subCategoryCreateButton = document.querySelector('.category-creation__input-container__button');
   subCategoryCreateButton.addEventListener('click', (e) => {
-    _addSubCategory(categories, index);
+    Categories._addSubCategory(categories, index, mainCategories);
   });
 };
 
@@ -539,11 +525,10 @@ const getBudgetName = () => {
 
 /////////////////////////////////
 // SETUP PAGE
-const setupPage = () => {
-  currentPage++;
-  goToPage(currentPage);
-  setPageCount(currentPage);
-  return currentPage;
+const setupPage = (page) => {
+  goToPage(page);
+  setPageCount(page);
+  return page;
 };
 
 /////////////////////////////////
@@ -553,11 +538,15 @@ const setPageCount = (pageNumber) => {
   page.textContent = `Page ${pageNumber + 1} / ${budgetCreationFormPagesNumber}`;
 };
 
-////////////////////////////
-// INITIALIZE KEY VARIABLES
-let currentPage = 0;
+// ////////////////////////////
+// // INITIALIZE KEY VARIABLES
+// let currentPage = 0;
 
 export const _watchBudgetCreation = () => {
+  ////////////////////////////
+  // INITIALIZE KEY VARIABLES
+  let currentPage = 0;
+  let budgetMainCategories = [];
   //////////////////////////////////////////////////////////////
   // SET APPROPRIATE PAGE NUMBER DEPENDING ON USER INFORMATION
   setPageCount(currentPage);
@@ -565,16 +554,18 @@ export const _watchBudgetCreation = () => {
   // INITIALIZE KEY VARIABLES INSIDE FUNCTION SCOPE
   let budgetName, mainCategories;
   let subCategoryIndex = 0;
+  let icon;
   budgetContinueButton.addEventListener('click', async (e) => {
     e.preventDefault();
     let budgetInfo = {};
+    currentPage++;
     setupPage(currentPage);
     //////////////////////////////
     // ASSIGN BUDGET INFORMATION
     /////////////////////
     // BUDGET NAME
     budgetName = getBudgetName();
-    mainCategories = Categories.budgetMainCategories;
+    mainCategories = budgetMainCategories;
     budgetInfo.name = budgetName;
     /////////////////////////////
     // BUDGET MAIN CATEGORIES
@@ -591,11 +582,11 @@ export const _watchBudgetCreation = () => {
     /////////////////////////////
     // IF NOT LATTER DAY SAINT
     if (currentPage + 1 === 2 && user.latterDaySaint === false) {
-      Categories.createCategories();
-      Categories._watchCreateCategoryButton();
+      Categories.createCategories(icon);
+      Categories._watchCreateCategoryButton(icon, budgetMainCategories);
     }
     if (currentPage + 1 === 3 && user.latterDaySaint === false) {
-      setupSubCategoryCreation(budgetInfo.mainCategories, subCategoryIndex);
+      setupSubCategoryCreation(budgetInfo.mainCategories, subCategoryIndex, budgetMainCategories);
     }
     if (currentPage + 1 === 4 && user.latterDaySaint === false) {
       setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex);
@@ -605,11 +596,11 @@ export const _watchBudgetCreation = () => {
     /////////////////////////////
     // IF LATTER DAY SAINT
     if (currentPage + 1 === 3 && user.latterDaySaint === true) {
-      Categories.createCategories();
-      Categories._watchCreateCategoryButton();
+      Categories.createCategories(icon);
+      Categories._watchCreateCategoryButton(icon, budgetMainCategories);
     }
     if (currentPage + 1 === 4 && user.latterDaySaint === true) {
-      setupSubCategoryCreation(budgetInfo.mainCategories, subCategoryIndex);
+      setupSubCategoryCreation(budgetInfo.mainCategories, subCategoryIndex, budgetMainCategories);
     }
     if (currentPage + 1 === 5 && user.latterDaySaint === true) {
       setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex);

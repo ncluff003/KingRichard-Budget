@@ -957,104 +957,6 @@ export const icons = [
   `yin-yang`,
 ];
 
-let icon;
-
-////////////////////////////////////////
-// SHOWING ICONS FOR MAIN CATEGORIES
-
-export const createCategories = () => {
-  icons.forEach((iconImage, i) => {
-    const mainContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
-    if (mainContainer) {
-      const iconContainer = document.createElement(`section`);
-      iconContainer.classList.add('icon-container');
-      const icon = document.createElement('i');
-      icon.classList.add('fas');
-      icon.classList.add(`fa-${iconImage}`);
-      icon.classList.add(`icon-container__icon`);
-      iconContainer.insertAdjacentElement('beforeend', icon);
-      mainContainer.insertAdjacentElement('beforeend', iconContainer);
-    }
-  });
-};
-
-////////////////////////////////////////
-// WATCH FOR ICON CLICKS
-export const _clickIcon = () => {
-  const iconContainers = document.querySelectorAll('.icon-container');
-  iconContainers.forEach((element, i) => {
-    element.addEventListener('click', (e) => {
-      const clicked = e.target;
-      if (e.target.classList.contains('icon-container__icon')) {
-        iconContainers.forEach((e) => {
-          e.classList.remove('icon-container--clicked');
-        });
-        element.classList.add('icon-container--clicked');
-        icon = e.target;
-        return icon;
-      }
-      iconContainers.forEach((e) => {
-        e.classList.remove('icon-container--clicked');
-      });
-      element.classList.add('icon-container--clicked');
-      icon = clicked.firstChild;
-      return icon;
-    });
-  });
-};
-
-////////////////////////////////////////
-// HIDE CREATED ICONS
-const _hideCreatedIcons = () => {
-  const mainCategories = document.querySelectorAll('.main-category');
-  if (mainCategories.length === 0) return;
-  mainCategories.forEach((mc) => {
-    mc.classList.add('main-category--hidden');
-  });
-};
-
-////////////////////////////////////////
-// OPEN CATEGORY CREATION
-const openCategoryCreation = () => {
-  const createCategoryButton = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category');
-  const mainCategoryContainer = document.querySelector('.budget-creation-form__page__section__main-category-container');
-  const closeCreateCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[1];
-  const iconsContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
-  const createCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container');
-  createCategoryTitle.classList.toggle('budget-creation-form__page__section__set-main-category-title-container--open');
-  iconsContainer.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category__icons-container--open');
-  createCategoryButton.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category--hidden');
-  mainCategoryContainer.classList.toggle('budget-creation-form__page__section__main-category-container--creating-category');
-  _hideCreatedIcons();
-};
-
-////////////////////////////////////////
-// SHOW CREATED ICONS
-const _showCreatedIcons = () => {
-  const mainCategories = document.querySelectorAll('.main-category');
-  mainCategories.forEach((mc) => {
-    mc.classList.remove('main-category--hidden');
-  });
-};
-
-////////////////////////////////////////
-// CLOSE CATEGORY CREATION
-const closeCategoryCreation = () => {
-  const createCategoryButton = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category');
-  const mainCategoryContainer = document.querySelector('.budget-creation-form__page__section__main-category-container');
-  const closeCreateCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[1];
-  const iconsContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
-  const createCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container');
-  createCategoryTitle.classList.toggle('budget-creation-form__page__section__set-main-category-title-container--open');
-  iconsContainer.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category__icons-container--open');
-  createCategoryButton.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category--hidden');
-  mainCategoryContainer.classList.toggle('budget-creation-form__page__section__main-category-container--creating-category');
-  _showCreatedIcons();
-};
-
-export let budgetMainCategories = [];
-let oldMainCategories = [];
-
 ////////////////////////////////////////
 // CATEGORY -- PARENT CLASS
 class Category {
@@ -1078,10 +980,6 @@ class MainCategory extends Category {
       return sc != this.subCategories[index];
     });
   }
-
-  _capitalize(string) {
-    `${string.charAt(0).toUpperCase()}${string.slice(1)}`;
-  }
 }
 
 ////////////////////////////////////////
@@ -1097,31 +995,12 @@ class SubCategory extends Category {
     this.surplus = !this.surplus;
   }
 
-  _capitalize(string) {
-    const words = string.split(' ');
-    return words
-      .forEach((w) => {
-        `${w.charAt(0).toUpperCase()}${w.slice(1)}`;
-      })
-      .join(' ');
-  }
-
   _finishUpdatingSubCategory(goal, spent, remaining) {
     this.goalAmount = goal;
     this.amountSpent = spent;
     this.amountRemaining = remaining;
   }
 }
-
-////////////////////////////////////////
-// MAIN CATEGORY DELETION PROCESS
-const deleteMainCategory = (e) => {
-  budgetMainCategories = budgetMainCategories.filter((o, i) => {
-    return o.title !== e.target.closest('section').firstChild.nextElementSibling.textContent;
-  });
-  e.target.closest('section').remove();
-  console.log(`DELETED`);
-};
 
 ////////////////////////////////////////
 // CAPITALIZING CATEGORIES
@@ -1131,7 +1010,7 @@ const _capitalize = (string) => {
 
 ////////////////////////////////////////
 // SUB CATEGORY CREATION PROCESS
-export const createSubCategory = (categories, index) => {
+export const createSubCategory = (categories, index, mainCategories) => {
   // Creating Sub Category Container
   const subCategory = document.createElement('section');
   // Adding Sub Category Classes
@@ -1193,7 +1072,6 @@ export const createSubCategory = (categories, index) => {
     const categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
     const categoryTitle = subCategoryTitleElement.textContent;
     categories[categoryNumber].subCategories[subArray.indexOf(clicked.closest('.sub-category'))]._makeSurplus();
-    console.log(categories[categoryNumber].subCategories);
   });
 
   // Create Surplus Switch Toggle
@@ -1250,28 +1128,64 @@ export const createSubCategory = (categories, index) => {
   const subCategories = document.querySelectorAll('.sub-category');
 
   if (subCategories.length === 0) {
-    document
-      .querySelector('.budget-creation-form__page__section__sub-category-container__sub-category-display')
-      .insertAdjacentElement('afterbegin', subCategory);
+    document.querySelector('.budget-creation-form__page__section__sub-category-container__sub-category-display').insertAdjacentElement('afterbegin', subCategory);
   }
   if (subCategories.length > 0) {
     subCategories[subCategories.length - 1].insertAdjacentElement('afterend', subCategory);
   }
   categories[index].subCategories.push(new SubCategory({ title: `${subCategoryTitleElement.textContent}` }));
+  console.log(categories, mainCategories);
+};
+
+export const _addSubCategory = (categories, index, mainCategories) => {
+  /////////////////////////////////////////////////
+  // INITIALIZE NEEDED VARIABLES
+  const mainCategoryTitle = document
+    .querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__text')
+    .textContent.toLowerCase();
+  let categoryIndex;
+
+  ////////////////////////////////////
+  // GETTING THE MAIN CATEGORY INDEX
+  mainCategories.forEach((mc, i) => {
+    if (mc.title.toLowerCase() === mainCategoryTitle) {
+      categoryIndex = i;
+      return categoryIndex;
+    }
+  });
+  // Get Category Creation Input Value In Lowercase
+  const subCategoryTitle = document.querySelector('.category-creation__input-container__input').value.toLowerCase();
+
+  //////////////////////////////////////////
+  // CHECKING SUB CATEGORIES VS INPUT VALUE
+  const filtered = mainCategories[categoryIndex].subCategories.filter((sc) => {
+    if (sc.title.toLowerCase() === subCategoryTitle) {
+      return sc;
+    }
+  });
+
+  /////////////////////////////////////////////////
+  // ALLOW ONLY ONE SUB CATEGORY WITH THAT NAME
+  if (filtered.length >= 1) return;
+  createSubCategory(categories, index, mainCategories);
+};
+
+////////////////////////////////////////
+// MAIN CATEGORY DELETION PROCESS
+const deleteMainCategory = (e, mainCategories) => {
+  mainCategories = mainCategories.filter((o, i) => {
+    return o.title !== e.target.closest('section').firstChild.nextElementSibling.textContent;
+  });
+  e.target.closest('section').remove();
+  console.log(`DELETED`);
 };
 
 ////////////////////////////////////////
 // MAIN CATEGORY CREATION PROCESS
-const createMainCategory = (element) => {
+const createMainCategory = (element, mainCategories) => {
   let mainCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container__input').value;
   mainCategoryTitle = mainCategoryTitle.split(' ').map(_capitalize).join(' ');
-  budgetMainCategories.push(new MainCategory({ icon: `${element}`, title: mainCategoryTitle }));
-
-  // if (budgetMainCategories[budgetMainCategories.length - 1].title === mainCategoryTitle) {
-  //   budgetMainCategories.pop();
-  //   console.log(budgetMainCategories);
-  //   return;
-  // }
+  mainCategories.push(new MainCategory({ icon: `${element}`, title: mainCategoryTitle }));
   const mainCategoryContainer = document.querySelector('.budget-creation-form__page__section__main-category-container');
   const mainCategory = document.createElement('section');
   mainCategory.classList.add('main-category');
@@ -1298,22 +1212,22 @@ const createMainCategory = (element) => {
   }
   deleteButton.addEventListener('click', (e) => {
     e.preventDefault();
-    deleteMainCategory(e);
+    deleteMainCategory(e, mainCategories);
   });
 };
 
 ////////////////////////////////////////
 // CREATE MAIN CATEGORY
 
-const _createMainCategory = (icon, iconList) => {
+const _createMainCategory = (icon, iconList, mainCategories) => {
   let mainCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container__input').value.toLowerCase();
-  const filtered = budgetMainCategories.filter((mc) => {
+  const filtered = mainCategories.filter((mc) => {
     if (mc.title.toLowerCase() === mainCategoryTitle) {
       return mc;
     }
   });
   if (filtered.length >= 1) return;
-  createMainCategory(icon);
+  createMainCategory(icon, mainCategories);
 
   // oldMainCategories = budgetMainCategories;
   iconList.forEach((icon) => {
@@ -1323,27 +1237,101 @@ const _createMainCategory = (icon, iconList) => {
 
 ////////////////////////////////////////
 // FIND CLICKED ICON
-const _findClickedIcon = (iconList) => {
+const _findClickedIcon = (iconList, mainCategories) => {
   iconList.forEach((icon) => {
     if (icon.classList.contains('icon-container--clicked')) {
-      _createMainCategory(icon.firstChild.classList[1], iconList);
+      _createMainCategory(icon.firstChild.classList[1], iconList, mainCategories);
     }
   });
 };
 
-const _watchCategoryCreation = () => {
+const _watchCategoryCreation = (mainCategories) => {
   const createMainCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[0];
   const iconContainers = document.querySelectorAll('.icon-container');
   if (createMainCategoryButton) {
     createMainCategoryButton.addEventListener('click', (e) => {
       e.preventDefault();
-      _findClickedIcon(iconContainers);
+      _findClickedIcon(iconContainers, mainCategories);
       closeCategoryCreation();
     });
   }
 };
 
-export const _watchCreateCategoryButton = () => {
+////////////////////////////////////////
+// WATCH FOR ICON CLICKS
+export const _clickIcon = (icon) => {
+  const iconContainers = document.querySelectorAll('.icon-container');
+  iconContainers.forEach((element, i) => {
+    element.addEventListener('click', (e) => {
+      const clicked = e.target;
+      if (e.target.classList.contains('icon-container__icon')) {
+        iconContainers.forEach((e) => {
+          e.classList.remove('icon-container--clicked');
+        });
+        element.classList.add('icon-container--clicked');
+        icon = e.target;
+        return icon;
+      }
+      iconContainers.forEach((e) => {
+        e.classList.remove('icon-container--clicked');
+      });
+      element.classList.add('icon-container--clicked');
+      icon = clicked.firstChild;
+      return icon;
+    });
+  });
+};
+
+////////////////////////////////////////
+// HIDE CREATED ICONS
+const _hideCreatedIcons = () => {
+  const mainCategories = document.querySelectorAll('.main-category');
+  if (mainCategories.length === 0) return;
+  mainCategories.forEach((mc) => {
+    mc.classList.add('main-category--hidden');
+  });
+};
+
+////////////////////////////////////////
+// SHOW CREATED ICONS
+const _showCreatedIcons = () => {
+  const mainCategories = document.querySelectorAll('.main-category');
+  mainCategories.forEach((mc) => {
+    mc.classList.remove('main-category--hidden');
+  });
+};
+
+////////////////////////////////////////
+// CLOSE CATEGORY CREATION
+const closeCategoryCreation = () => {
+  const createCategoryButton = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category');
+  const mainCategoryContainer = document.querySelector('.budget-creation-form__page__section__main-category-container');
+  const closeCreateCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[1];
+  const iconsContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
+  const createCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container');
+  createCategoryTitle.classList.toggle('budget-creation-form__page__section__set-main-category-title-container--open');
+  iconsContainer.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category__icons-container--open');
+  createCategoryButton.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category--hidden');
+  mainCategoryContainer.classList.toggle('budget-creation-form__page__section__main-category-container--creating-category');
+  _showCreatedIcons();
+};
+
+////////////////////////////////////////
+// OPEN CATEGORY CREATION
+const openCategoryCreation = () => {
+  const createCategoryButton = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category');
+  const mainCategoryContainer = document.querySelector('.budget-creation-form__page__section__main-category-container');
+  const closeCreateCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[1];
+  const iconsContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
+  const createCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container');
+  createCategoryTitle.classList.toggle('budget-creation-form__page__section__set-main-category-title-container--open');
+  iconsContainer.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category__icons-container--open');
+  createCategoryButton.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category--hidden');
+  mainCategoryContainer.classList.toggle('budget-creation-form__page__section__main-category-container--creating-category');
+  _hideCreatedIcons();
+};
+
+export const _watchCreateCategoryButton = (icon, mainCategories) => {
   const createCategoryButton = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category');
   if (createCategoryButton) {
     createCategoryButton.addEventListener('click', (e) => {
@@ -1358,6 +1346,24 @@ export const _watchCreateCategoryButton = () => {
       closeCategoryCreation();
     });
   }
-  _clickIcon();
-  _watchCategoryCreation();
+  _clickIcon(icon);
+  _watchCategoryCreation(mainCategories);
+};
+
+////////////////////////////////////////
+// SHOWING ICONS FOR MAIN CATEGORIES
+export const createCategories = (icon) => {
+  icons.forEach((iconImage, i) => {
+    const mainContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
+    if (mainContainer) {
+      const iconContainer = document.createElement(`section`);
+      iconContainer.classList.add('icon-container');
+      const icon = document.createElement('i');
+      icon.classList.add('fas');
+      icon.classList.add(`fa-${iconImage}`);
+      icon.classList.add(`icon-container__icon`);
+      iconContainer.insertAdjacentElement('beforeend', icon);
+      mainContainer.insertAdjacentElement('beforeend', iconContainer);
+    }
+  });
 };

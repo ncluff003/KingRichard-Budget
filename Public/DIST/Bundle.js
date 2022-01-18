@@ -4226,7 +4226,6 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "_watchForProfileUpdates": () => (/* binding */ _watchForProfileUpdates),
 /* harmony export */   "_watchPhoneNumberInputs": () => (/* binding */ _watchPhoneNumberInputs),
 /* harmony export */   "_watchPasswordSubSectionButtons": () => (/* binding */ _watchPasswordSubSectionButtons),
 /* harmony export */   "_watchSubSectionButtons": () => (/* binding */ _watchSubSectionButtons),
@@ -4255,159 +4254,6 @@ var latterDaySaint = false; // const _getUserInfo = () => {
 //   getSomePersonals();
 //   latterDaySaint = user.latterDaySaint;
 // };
-///////////////////////////////////////////////////
-// ALL ABOUT WATCHING USER PROFILE FORM BUTTONS
-
-var _watchForProfileUpdates = function _watchForProfileUpdates() {
-  var userProfileFormButtons = document.querySelectorAll('.user-profile-form__button');
-  var userProfileSubSectionFormButtons = document.querySelectorAll('.user-profile-form__section__sub-section__button');
-  var latterDaySaintSwitch = document.querySelector('.user-profile-form__section__input--latter-day-saint');
-  userProfileFormButtons.forEach(function (b, i) {
-    b.addEventListener('click', /*#__PURE__*/function () {
-      var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(e) {
-        var firstname, lastname, username, updatedUserInfo, newEmail, newEmailConfirmed, newPhoneNumber, newPhoneNumberConfirmed, updateUserInfo;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                e.preventDefault();
-
-                if (!(i === 0)) {
-                  _context.next = 9;
-                  break;
-                }
-
-                firstname = document.getElementById('firstname').value;
-                lastname = document.getElementById('lastname').value;
-                username = document.getElementById('username').value;
-
-                if (latterDaySaintSwitch.classList.contains('user-profile-form__section__input--latter-day-saint--switched')) {
-                  latterDaySaint = true;
-                }
-
-                _context.next = 8;
-                return (0,_Update_User__WEBPACK_IMPORTED_MODULE_2__.updateMe)({
-                  firstname: firstname,
-                  lastname: lastname,
-                  username: username,
-                  latterDaySaint: latterDaySaint
-                });
-
-              case 8:
-                updatedUserInfo = _context.sent;
-
-              case 9:
-                if (!(i === 1)) {
-                  _context.next = 22;
-                  break;
-                }
-
-                console.log(commPreference);
-                newEmail = document.getElementById('newEmail').value;
-                newEmailConfirmed = document.getElementById('newEmailConfirmed').value;
-
-                if (newEmail === '') {
-                  newEmail = document.getElementById('email').value;
-                }
-
-                if (newEmailConfirmed === '') {
-                  newEmailConfirmed = document.getElementById('email').value;
-                }
-
-                newPhoneNumber = document.getElementById('newPhoneNumber').value;
-                newPhoneNumberConfirmed = document.getElementById('newPhoneNumberConfirmed').value;
-
-                if (newPhoneNumber === '') {
-                  newPhoneNumber = document.getElementById('phoneNumber').value;
-                }
-
-                if (newPhoneNumberConfirmed === '') {
-                  newPhoneNumberConfirmed = document.getElementById('phoneNumber').value;
-                }
-
-                _context.next = 21;
-                return (0,_Update_User__WEBPACK_IMPORTED_MODULE_2__.updateMe)({
-                  email: newEmail,
-                  emailConfirmed: newEmailConfirmed,
-                  phoneNumber: newPhoneNumber,
-                  phoneNumberConfirmed: newPhoneNumberConfirmed,
-                  communicationPreference: commPreference
-                });
-
-              case 21:
-                updateUserInfo = _context.sent;
-
-              case 22:
-                if (!(i === 2)) {
-                  _context.next = 25;
-                  break;
-                }
-
-                _context.next = 25;
-                return (0,_Login__WEBPACK_IMPORTED_MODULE_3__.logout)();
-
-              case 25:
-                if (!(i === 3)) {
-                  _context.next = 28;
-                  break;
-                }
-
-                _context.next = 28;
-                return (0,_Update_User__WEBPACK_IMPORTED_MODULE_2__.deactivateMe)();
-
-              case 28:
-                if (!(i === 4)) {
-                  _context.next = 31;
-                  break;
-                }
-
-                _context.next = 31;
-                return (0,_Update_User__WEBPACK_IMPORTED_MODULE_2__.deleteMe)();
-
-              case 31:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }));
-
-      return function (_x) {
-        return _ref.apply(this, arguments);
-      };
-    }());
-  });
-  userProfileSubSectionFormButtons[0].addEventListener('click', /*#__PURE__*/function () {
-    var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2(e) {
-      var currentPassword, newPassword, newPasswordConfirmed, updateUserInfo;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              e.preventDefault();
-              console.log(userProfileSubSectionFormButtons);
-              currentPassword = document.getElementById('currentPassword').value;
-              newPassword = document.getElementById('newPassword').value;
-              newPasswordConfirmed = document.getElementById('newPasswordConfirmed').value;
-              _context2.next = 7;
-              return (0,_Update_User__WEBPACK_IMPORTED_MODULE_2__.updateMyPassword)(currentPassword, newPassword, newPasswordConfirmed);
-
-            case 7:
-              updateUserInfo = _context2.sent;
-
-            case 8:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }));
-
-    return function (_x2) {
-      return _ref2.apply(this, arguments);
-    };
-  }());
-};
 
 var formatPhoneNumber = function formatPhoneNumber(value, number) {
   if (!value) return value;
@@ -4535,11 +4381,11 @@ var _watchUserProfileButtons = function _watchUserProfileButtons() {
   if (userProfileButtons[0]) {
     userProfileButtons.forEach(function (pb, i) {
       pb.addEventListener('click', /*#__PURE__*/function () {
-        var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee3(e) {
+        var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(e) {
           var clicked, userInfo, user;
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee3$(_context3) {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
             while (1) {
-              switch (_context3.prev = _context3.next) {
+              switch (_context.prev = _context.next) {
                 case 0:
                   e.preventDefault();
                   clicked = e.target;
@@ -4557,7 +4403,7 @@ var _watchUserProfileButtons = function _watchUserProfileButtons() {
                   }
 
                   if (!(i === 1)) {
-                    _context3.next = 13;
+                    _context.next = 13;
                     break;
                   }
 
@@ -4567,11 +4413,11 @@ var _watchUserProfileButtons = function _watchUserProfileButtons() {
                   }); /////////////////////////////////
                   // GET COMMUNICATION PREFERENCE
 
-                  _context3.next = 10;
+                  _context.next = 10;
                   return _Update_User__WEBPACK_IMPORTED_MODULE_2__.getSomePersonals();
 
                 case 10:
-                  userInfo = _context3.sent;
+                  userInfo = _context.sent;
                   user = userInfo.data.data.user;
                   commPreference = user.communicationPreference;
 
@@ -4592,14 +4438,14 @@ var _watchUserProfileButtons = function _watchUserProfileButtons() {
 
                 case 15:
                 case "end":
-                  return _context3.stop();
+                  return _context.stop();
               }
             }
-          }, _callee3);
+          }, _callee);
         }));
 
-        return function (_x3) {
-          return _ref3.apply(this, arguments);
+        return function (_x) {
+          return _ref.apply(this, arguments);
         };
       }());
     });
@@ -4635,12 +4481,12 @@ var _watchForLogin = function _watchForLogin(login) {
     _watchPhoneNumberInputs(formattedNumber); // WATCH FOR USER PROFILE UPDATES
 
 
-    _watchForProfileUpdates(); // WATCHING FOR CREATION OF BUDGETS
+    _Update_User__WEBPACK_IMPORTED_MODULE_2__._watchForProfileUpdates(); // WATCHING FOR CREATION OF BUDGETS
 
 
     _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__._watchBudgetCreation();
   }
-}; // let formattedNumber;
+};
 
 /***/ }),
 
@@ -4808,11 +4654,11 @@ var createBudgetCard = function createBudgetCard(budgetName, createdAt, lastUpda
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "icons": () => (/* binding */ icons),
-/* harmony export */   "createCategories": () => (/* binding */ createCategories),
-/* harmony export */   "_clickIcon": () => (/* binding */ _clickIcon),
-/* harmony export */   "budgetMainCategories": () => (/* binding */ budgetMainCategories),
 /* harmony export */   "createSubCategory": () => (/* binding */ createSubCategory),
-/* harmony export */   "_watchCreateCategoryButton": () => (/* binding */ _watchCreateCategoryButton)
+/* harmony export */   "_addSubCategory": () => (/* binding */ _addSubCategory),
+/* harmony export */   "_clickIcon": () => (/* binding */ _clickIcon),
+/* harmony export */   "_watchCreateCategoryButton": () => (/* binding */ _watchCreateCategoryButton),
+/* harmony export */   "createCategories": () => (/* binding */ createCategories)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
@@ -4840,110 +4686,8 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 ////////////////////////////////
 // ICONS FOR MAIN CATEGORIES
-var icons = ["address-book", "address-card", "adjust", "air-freshener", "align-center", "align-justify", "align-left", "align-right", "allergies", "ambulance", "american-sign-language-interpreting", "anchor", "angle-double-down", "angle-double-left", "angle-double-right", "angle-double-up", "angle-down", "angle-left", "angle-right", "angle-up", "angry", "ankh", "apple-alt", "archive", "archway", "arrow-alt-circle-down", "arrow-alt-circle-left", "arrow-alt-circle-right", "arrow-alt-circle-up", "arrow-down", "arrow-left", "arrow-right", "arrows-alt", "arrows-alt-h", "arrows-alt-v", "arrow-up", "assistive-listening-systems", "asterisk", "at", "atlas", "atom", "baby-carriage", "backspace", "backward", "bacon", "bahai", "balance-scale", "balance-scale-left", "balance-scale-right", "ban", "band-aid", "barcode", "bars", "baseball-ball", "basketball-ball", "bath", "battery-empty", "battery-full", "battery-half", "battery-quarter", "battery-three-quarters", "bed", "beer", "bell", "bell-slash", "bezier-curve", "bible", "bicycle", "biking", "binoculars", "biohazard", "birthday-cake", "blender", "blender-phone", "blind", "blog", "bold", "bolt", "bomb", "bone", "bong", "book", "book-dead", "bookmark", "book-medical", "book-open", "book-reader", "border-all", "border-none", "border-style", "bowling-ball", "box", "boxes", "box-open", "braille", "brain", "bread-slice", "briefcase", "briefcase-medical", "broadcast-tower", "broom", "brush", "bug", "building", "bullhorn", "bullseye", "burn", "bus", "bus-alt", "business-time", "calculator", "calendar", "calendar-alt", "calendar-check", "calendar-day", "calendar-minus", "calendar-plus", "calendar-times", "calendar-week", "camera", "camera-retro", "campground", "candy-cane", "cannabis", "capsules", "car", "car-alt", "caravan", "car-battery", "car-crash", "caret-down", "caret-left", "caret-right", "caret-square-down", "caret-square-left", "caret-square-right", "caret-square-up", "caret-up", "carrot", "car-side", "cart-arrow-down", "cart-plus", "cash-register", "cat", "certificate", "chair", "chalkboard", "chalkboard-teacher", "charging-station", "chart-area", "chart-bar", "chart-line", "chart-pie", "check", "check-circle", "check-double", "check-square", "cheese", "chess", "chess-bishop", "chess-board", "chess-king", "chess-knight", "chess-pawn", "chess-queen", "chess-rook", "chevron-circle-down", "chevron-circle-left", "chevron-circle-right", "chevron-circle-up", "chevron-down", "chevron-left", "chevron-right", "chevron-up", "child", "church", "circle", "circle-notch", "city", "clinic-medical", "clipboard", "clipboard-check", "clipboard-list", "clock", "clone", "closed-captioning", "cloud", "cloud-download-alt", "cloud-meatball", "cloud-moon", "cloud-moon-rain", "cloud-rain", "cloud-showers-heavy", "cloud-sun", "cloud-sun-rain", "cocktail", "code", "code-branch", "coffee", "cog", "cogs", "coins", "columns", "comment", "comment-alt", "comment-dollar", "comment-dots", "comment-medical", "comments", "comments-dollar", "comment-slash", "compact-disc", "compress", "compress-alt", "compress-arrows-alt", "concierge-bell", "cookie", "cookie-bite", "copy", "copyright", "couch", "credit-card", "crop", "crop-alt", "cross", "crosshairs", "crow", "crown", "crutch", "cube", "cubes", "cut", "database", "deaf", "democrat", "desktop", "dharmachakra", "diagnoses", "dice", "dice-d6", "dice-d20", "dice-five", "dice-four", "dice-one", "dice-six", "dice-three", "dice-two", "digital-tachograph", "directions", "divide", "dizzy", "dna", "dog", "dollar-sign", "dolly", "dolly-flatbed", "donate", "door-closed", "door-open", "dot-circle", "dove", "download", "drafting-compass", "dragon", "draw-polygon", "drum", "drum-steelpan", "drumstick-bite", "dumbbell", "dumpster", "dumpster-fire", "dungeon", "edit", "egg", "eject", "ellipsis-h", "ellipsis-v", "envelope", "envelope-open", "envelope-open-text", "envelope-square", "equals", "eraser", "ethernet", "euro-sign", "exchange-alt", "exclamation", "exclamation-circle", "exclamation-triangle", "expand", "expand-alt", "expand-arrows-alt", "external-link-alt", "external-link-square-alt", "eye", "eye-dropper", "eye-slash", "fan", "fast-backward", "fast-forward", "fax", "feather", "feather-alt", "female", "fighter-jet", "file", "file-alt", "file-archive", "file-audio", "file-code", "file-contract", "file-csv", "file-download", "file-excel", "file-export", "file-image", "file-import", "file-invoice", "file-invoice-dollar", "file-medical", "file-medical-alt", "file-pdf", "file-powerpoint", "file-prescription", "file-signature", "file-upload", "file-video", "file-word", "fill", "fill-drip", "film", "filter", "fingerprint", "fire", "fire-alt", "fire-extinguisher", "first-aid", "fish", "fist-raised", "flag", "flag-checkered", "flag-usa", "flask", "flushed", "folder", "folder-minus", "folder-open", "folder-plus", "font", "football-ball", "forward", "frog", "frown", "frown-open", "funnel-dollar", "futbol", "gamepad", "gas-pump", "gavel", "gem", "genderless", "ghost", "gift", "gifts", "glass-cheers", "glasses", "glass-martini", "glass-martini-alt", "glass-whiskey", "globe", "globe-africa", "globe-americas", "globe-asia", "globe-europe", "golf-ball", "gopuram", "graduation-cap", "greater-than", "greater-than-equal", "grimace", "grin", "grin-alt", "grin-beam", "grin-beam-sweat", "grin-hearts", "grin-squint", "grin-squint-tears", "grin-stars", "grin-tears", "grin-tongue", "grin-tongue-squint", "grin-tongue-wink", "grin-wink", "grip-horizontal", "grip-lines", "grip-lines-vertical", "grip-vertical", "guitar", "hamburger", "hammer", "hamsa", "hand-holding", "hand-holding-heart", "hand-holding-usd", "hand-lizard", "hand-middle-finger", "hand-paper", "hand-peace", "hand-point-down", "hand-pointer", "hand-point-left", "hand-point-right", "hand-point-up", "hand-rock", "hands", "hand-scissors", "handshake", "hands-helping", "hand-spock", "hanukiah", "hard-hat", "hashtag", "hat-cowboy", "hat-cowboy-side", "hat-wizard", "hdd", "heading", "headphones", "headphones-alt", "headset", "heart", "heartbeat", "heart-broken", "helicopter", "highlighter", "hiking", "hippo", "history", "hockey-puck", "holly-berry", "home", "horse", "horse-head", "hospital", "hospital-alt", "hospital-symbol", "hotdog", "hotel", "hot-tub", "hourglass", "hourglass-end", "hourglass-half", "hourglass-start", "house-damage", "hryvnia", "h-square", "ice-cream", "icicles", "icons", "i-cursor", "id-badge", "id-card", "id-card-alt", "igloo", "image", "images", "inbox", "indent", "industry", "infinity", "info", "info-circle", "italic", "jedi", "joint", "journal-whills", "kaaba", "key", "keyboard", "khanda", "kiss", "kiss-beam", "kiss-wink-heart", "kiwi-bird", "landmark", "language", "laptop", "laptop-code", "laptop-medical", "laugh", "laugh-beam", "laugh-squint", "laugh-wink", "layer-group", "leaf", "lemon", "less-than", "less-than-equal", "level-down-alt", "level-up-alt", "life-ring", "lightbulb", "link", "lira-sign", "list", "list-alt", "list-ol", "list-ul", "location-arrow", "lock", "lock-open", "long-arrow-alt-down", "long-arrow-alt-left", "long-arrow-alt-right", "long-arrow-alt-up", "low-vision", "luggage-cart", "magic", "magnet", "mail-bulk", "male", "map", "map-marked", "map-marked-alt", "map-marker", "map-marker-alt", "map-pin", "map-signs", "marker", "mars", "mars-double", "mars-stroke", "mars-stroke-h", "mars-stroke-v", "mask", "medal", "medkit", "meh", "meh-blank", "meh-rolling-eyes", "memory", "menorah", "mercury", "meteor", "microchip", "microphone", "microphone-alt", "microphone-alt-slash", "microphone-slash", "microscope", "minus", "minus-circle", "minus-square", "mitten", "mobile", "mobile-alt", "money-bill", "money-bill-alt", "money-bill-wave", "money-bill-wave-alt", "money-check", "money-check-alt", "monument", "moon", "mortar-pestle", "mosque", "motorcycle", "mountain", "mouse", "mouse-pointer", "mug-hot", "music", "network-wired", "neuter", "newspaper", "not-equal", "notes-medical", "object-group", "object-ungroup", "oil-can", "om", "otter", "outdent", "pager", "paint-brush", "paint-roller", "palette", "pallet", "paperclip", "paper-plane", "parachute-box", "paragraph", "parking", "passport", "pastafarianism", "paste", "pause", "pause-circle", "paw", "peace", "pen", "pen-alt", "pencil-alt", "pencil-ruler", "pen-fancy", "pen-nib", "pen-square", "people-carry", "pepper-hot", "percent", "percentage", "person-booth", "phone", "phone-alt", "phone-slash", "phone-square", "phone-square-alt", "phone-volume", "photo-video", "piggy-bank", "pills", "pizza-slice", "place-of-worship", "plane", "plane-arrival", "plane-departure", "play", "play-circle", "plug", "plus", "plus-circle", "plus-square", "podcast", "poll", "poll-h", "poo", "poop", "poo-storm", "portrait", "pound-sign", "power-off", "pray", "praying-hands", "prescription", "prescription-bottle", "prescription-bottle-alt", "print", "procedures", "project-diagram", "puzzle-piece", "qrcode", "question", "question-circle", "quidditch", "quote-left", "quote-right", "quran", "radiation", "radiation-alt", "rainbow", "random", "receipt", "record-vinyl", "recycle", "redo", "redo-alt", "registered", "remove-format", "reply", "reply-all", "republican", "restroom", "retweet", "ribbon", "ring", "road", "robot", "rocket", "route", "rss", "rss-square", "ruble-sign", "ruler", "ruler-combined", "ruler-horizontal", "ruler-vertical", "running", "rupee-sign", "sad-cry", "sad-tear", "satellite", "satellite-dish", "save", "school", "screwdriver", "scroll", "sd-card", "search", "search-dollar", "search-location", "search-minus", "search-plus", "seedling", "server", "shapes", "share", "share-alt", "share-alt-square", "share-square", "shekel-sign", "shield-alt", "ship", "shipping-fast", "shoe-prints", "shopping-bag", "shopping-basket", "shopping-cart", "shower", "shuttle-van", "sign", "signal", "signature", "sign-in-alt", "sign-language", "sign-out-alt", "sim-card", "sitemap", "skating", "skiing", "skiing-nordic", "skull", "skull-crossbones", "slash", "sleigh", "sliders-h", "smile", "smile-beam", "smile-wink", "smog", "smoking", "smoking-ban", "sms", "snowboarding", "snowflake", "snowman", "snowplow", "socks", "solar-panel", "sort", "sort-alpha-down", "sort-alpha-down-alt", "sort-alpha-up", "sort-alpha-up-alt", "sort-amount-down", "sort-amount-down-alt", "sort-amount-up", "sort-amount-up-alt", "sort-down", "sort-numeric-down", "sort-numeric-down-alt", "sort-numeric-up", "sort-numeric-up-alt", "sort-up", "spa", "space-shuttle", "spell-check", "spider", "spinner", "splotch", "spray-can", "square", "square-full", "square-root-alt", "stamp", "star", "star-and-crescent", "star-half", "star-half-alt", "star-of-david", "star-of-life", "step-backward", "step-forward", "stethoscope", "sticky-note", "stop", "stop-circle", "stopwatch", "store", "store-alt", "stream", "street-view", "strikethrough", "stroopwafel", "subscript", "subway", "suitcase", "suitcase-rolling", "sun", "superscript", "surprise", "swatchbook", "swimmer", "swimming-pool", "synagogue", "sync", "sync-alt", "syringe", "table", "tablet", "tablet-alt", "table-tennis", "tablets", "tachometer-alt", "tag", "tags", "tape", "tasks", "taxi", "teeth", "teeth-open", "temperature-high", "temperature-low", "tenge", "terminal", "text-height", "text-width", "th", "theater-masks", "thermometer", "thermometer-empty", "thermometer-full", "thermometer-half", "thermometer-quarter", "thermometer-three-quarters", "th-large", "th-list", "thumbs-down", "thumbs-up", "thumbtack", "ticket-alt", "times", "times-circle", "tint", "tint-slash", "tired", "toggle-off", "toggle-on", "toilet", "toilet-paper", "toolbox", "tools", "tooth", "torah", "torii-gate", "tractor", "trademark", "traffic-light", "trailer", "train", "tram", "transgender", "transgender-alt", "trash", "trash-alt", "trash-restore", "trash-restore-alt", "tree", "trophy", "truck", "truck-loading", "truck-monster", "truck-moving", "truck-pickup", "tshirt", "tty", "tv", "umbrella", "umbrella-beach", "underline", "undo", "undo-alt", "universal-access", "university", "unlink", "unlock", "unlock-alt", "upload", "user", "user-alt", "user-alt-slash", "user-astronaut", "user-check", "user-circle", "user-clock", "user-cog", "user-edit", "user-friends", "user-graduate", "user-injured", "user-lock", "user-md", "user-minus", "user-ninja", "user-nurse", "user-plus", "users", "users-cog", "user-secret", "user-shield", "user-slash", "user-tag", "user-tie", "user-times", "utensils", "utensil-spoon", "vector-square", "venus", "venus-double", "venus-mars", "vial", "vials", "video", "video-slash", "vihara", "voicemail", "volleyball-ball", "volume-down", "volume-mute", "volume-off", "volume-up", "vote-yea", "vr-cardboard", "walking", "wallet", "warehouse", "water", "wave-square", "weight", "weight-hanging", "wheelchair", "wifi", "wind", "window-close", "window-maximize", "window-minimize", "window-restore", "wine-bottle", "wine-glass", "wine-glass-alt", "won-sign", "wrench", "x-ray", "yen-sign", "yin-yang"];
-var icon; ////////////////////////////////////////
-// SHOWING ICONS FOR MAIN CATEGORIES
-
-var createCategories = function createCategories() {
-  icons.forEach(function (iconImage, i) {
-    var mainContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
-
-    if (mainContainer) {
-      var iconContainer = document.createElement("section");
-      iconContainer.classList.add('icon-container');
-
-      var _icon = document.createElement('i');
-
-      _icon.classList.add('fas');
-
-      _icon.classList.add("fa-".concat(iconImage));
-
-      _icon.classList.add("icon-container__icon");
-
-      iconContainer.insertAdjacentElement('beforeend', _icon);
-      mainContainer.insertAdjacentElement('beforeend', iconContainer);
-    }
-  });
-}; ////////////////////////////////////////
-// WATCH FOR ICON CLICKS
-
-var _clickIcon = function _clickIcon() {
-  var iconContainers = document.querySelectorAll('.icon-container');
-  iconContainers.forEach(function (element, i) {
-    element.addEventListener('click', function (e) {
-      var clicked = e.target;
-
-      if (e.target.classList.contains('icon-container__icon')) {
-        iconContainers.forEach(function (e) {
-          e.classList.remove('icon-container--clicked');
-        });
-        element.classList.add('icon-container--clicked');
-        icon = e.target;
-        return icon;
-      }
-
-      iconContainers.forEach(function (e) {
-        e.classList.remove('icon-container--clicked');
-      });
-      element.classList.add('icon-container--clicked');
-      icon = clicked.firstChild;
-      return icon;
-    });
-  });
-}; ////////////////////////////////////////
-// HIDE CREATED ICONS
-
-var _hideCreatedIcons = function _hideCreatedIcons() {
-  var mainCategories = document.querySelectorAll('.main-category');
-  if (mainCategories.length === 0) return;
-  mainCategories.forEach(function (mc) {
-    mc.classList.add('main-category--hidden');
-  });
-}; ////////////////////////////////////////
-// OPEN CATEGORY CREATION
-
-
-var openCategoryCreation = function openCategoryCreation() {
-  var createCategoryButton = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category');
-  var mainCategoryContainer = document.querySelector('.budget-creation-form__page__section__main-category-container');
-  var closeCreateCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[1];
-  var iconsContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
-  var createCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container');
-  createCategoryTitle.classList.toggle('budget-creation-form__page__section__set-main-category-title-container--open');
-  iconsContainer.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category__icons-container--open');
-  createCategoryButton.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category--hidden');
-  mainCategoryContainer.classList.toggle('budget-creation-form__page__section__main-category-container--creating-category');
-
-  _hideCreatedIcons();
-}; ////////////////////////////////////////
-// SHOW CREATED ICONS
-
-
-var _showCreatedIcons = function _showCreatedIcons() {
-  var mainCategories = document.querySelectorAll('.main-category');
-  mainCategories.forEach(function (mc) {
-    mc.classList.remove('main-category--hidden');
-  });
-}; ////////////////////////////////////////
-// CLOSE CATEGORY CREATION
-
-
-var closeCategoryCreation = function closeCategoryCreation() {
-  var createCategoryButton = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category');
-  var mainCategoryContainer = document.querySelector('.budget-creation-form__page__section__main-category-container');
-  var closeCreateCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[1];
-  var iconsContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
-  var createCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container');
-  createCategoryTitle.classList.toggle('budget-creation-form__page__section__set-main-category-title-container--open');
-  iconsContainer.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category__icons-container--open');
-  createCategoryButton.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category--hidden');
-  mainCategoryContainer.classList.toggle('budget-creation-form__page__section__main-category-container--creating-category');
-
-  _showCreatedIcons();
-};
-
-var budgetMainCategories = [];
-var oldMainCategories = []; ////////////////////////////////////////
+var icons = ["address-book", "address-card", "adjust", "air-freshener", "align-center", "align-justify", "align-left", "align-right", "allergies", "ambulance", "american-sign-language-interpreting", "anchor", "angle-double-down", "angle-double-left", "angle-double-right", "angle-double-up", "angle-down", "angle-left", "angle-right", "angle-up", "angry", "ankh", "apple-alt", "archive", "archway", "arrow-alt-circle-down", "arrow-alt-circle-left", "arrow-alt-circle-right", "arrow-alt-circle-up", "arrow-down", "arrow-left", "arrow-right", "arrows-alt", "arrows-alt-h", "arrows-alt-v", "arrow-up", "assistive-listening-systems", "asterisk", "at", "atlas", "atom", "baby-carriage", "backspace", "backward", "bacon", "bahai", "balance-scale", "balance-scale-left", "balance-scale-right", "ban", "band-aid", "barcode", "bars", "baseball-ball", "basketball-ball", "bath", "battery-empty", "battery-full", "battery-half", "battery-quarter", "battery-three-quarters", "bed", "beer", "bell", "bell-slash", "bezier-curve", "bible", "bicycle", "biking", "binoculars", "biohazard", "birthday-cake", "blender", "blender-phone", "blind", "blog", "bold", "bolt", "bomb", "bone", "bong", "book", "book-dead", "bookmark", "book-medical", "book-open", "book-reader", "border-all", "border-none", "border-style", "bowling-ball", "box", "boxes", "box-open", "braille", "brain", "bread-slice", "briefcase", "briefcase-medical", "broadcast-tower", "broom", "brush", "bug", "building", "bullhorn", "bullseye", "burn", "bus", "bus-alt", "business-time", "calculator", "calendar", "calendar-alt", "calendar-check", "calendar-day", "calendar-minus", "calendar-plus", "calendar-times", "calendar-week", "camera", "camera-retro", "campground", "candy-cane", "cannabis", "capsules", "car", "car-alt", "caravan", "car-battery", "car-crash", "caret-down", "caret-left", "caret-right", "caret-square-down", "caret-square-left", "caret-square-right", "caret-square-up", "caret-up", "carrot", "car-side", "cart-arrow-down", "cart-plus", "cash-register", "cat", "certificate", "chair", "chalkboard", "chalkboard-teacher", "charging-station", "chart-area", "chart-bar", "chart-line", "chart-pie", "check", "check-circle", "check-double", "check-square", "cheese", "chess", "chess-bishop", "chess-board", "chess-king", "chess-knight", "chess-pawn", "chess-queen", "chess-rook", "chevron-circle-down", "chevron-circle-left", "chevron-circle-right", "chevron-circle-up", "chevron-down", "chevron-left", "chevron-right", "chevron-up", "child", "church", "circle", "circle-notch", "city", "clinic-medical", "clipboard", "clipboard-check", "clipboard-list", "clock", "clone", "closed-captioning", "cloud", "cloud-download-alt", "cloud-meatball", "cloud-moon", "cloud-moon-rain", "cloud-rain", "cloud-showers-heavy", "cloud-sun", "cloud-sun-rain", "cocktail", "code", "code-branch", "coffee", "cog", "cogs", "coins", "columns", "comment", "comment-alt", "comment-dollar", "comment-dots", "comment-medical", "comments", "comments-dollar", "comment-slash", "compact-disc", "compress", "compress-alt", "compress-arrows-alt", "concierge-bell", "cookie", "cookie-bite", "copy", "copyright", "couch", "credit-card", "crop", "crop-alt", "cross", "crosshairs", "crow", "crown", "crutch", "cube", "cubes", "cut", "database", "deaf", "democrat", "desktop", "dharmachakra", "diagnoses", "dice", "dice-d6", "dice-d20", "dice-five", "dice-four", "dice-one", "dice-six", "dice-three", "dice-two", "digital-tachograph", "directions", "divide", "dizzy", "dna", "dog", "dollar-sign", "dolly", "dolly-flatbed", "donate", "door-closed", "door-open", "dot-circle", "dove", "download", "drafting-compass", "dragon", "draw-polygon", "drum", "drum-steelpan", "drumstick-bite", "dumbbell", "dumpster", "dumpster-fire", "dungeon", "edit", "egg", "eject", "ellipsis-h", "ellipsis-v", "envelope", "envelope-open", "envelope-open-text", "envelope-square", "equals", "eraser", "ethernet", "euro-sign", "exchange-alt", "exclamation", "exclamation-circle", "exclamation-triangle", "expand", "expand-alt", "expand-arrows-alt", "external-link-alt", "external-link-square-alt", "eye", "eye-dropper", "eye-slash", "fan", "fast-backward", "fast-forward", "fax", "feather", "feather-alt", "female", "fighter-jet", "file", "file-alt", "file-archive", "file-audio", "file-code", "file-contract", "file-csv", "file-download", "file-excel", "file-export", "file-image", "file-import", "file-invoice", "file-invoice-dollar", "file-medical", "file-medical-alt", "file-pdf", "file-powerpoint", "file-prescription", "file-signature", "file-upload", "file-video", "file-word", "fill", "fill-drip", "film", "filter", "fingerprint", "fire", "fire-alt", "fire-extinguisher", "first-aid", "fish", "fist-raised", "flag", "flag-checkered", "flag-usa", "flask", "flushed", "folder", "folder-minus", "folder-open", "folder-plus", "font", "football-ball", "forward", "frog", "frown", "frown-open", "funnel-dollar", "futbol", "gamepad", "gas-pump", "gavel", "gem", "genderless", "ghost", "gift", "gifts", "glass-cheers", "glasses", "glass-martini", "glass-martini-alt", "glass-whiskey", "globe", "globe-africa", "globe-americas", "globe-asia", "globe-europe", "golf-ball", "gopuram", "graduation-cap", "greater-than", "greater-than-equal", "grimace", "grin", "grin-alt", "grin-beam", "grin-beam-sweat", "grin-hearts", "grin-squint", "grin-squint-tears", "grin-stars", "grin-tears", "grin-tongue", "grin-tongue-squint", "grin-tongue-wink", "grin-wink", "grip-horizontal", "grip-lines", "grip-lines-vertical", "grip-vertical", "guitar", "hamburger", "hammer", "hamsa", "hand-holding", "hand-holding-heart", "hand-holding-usd", "hand-lizard", "hand-middle-finger", "hand-paper", "hand-peace", "hand-point-down", "hand-pointer", "hand-point-left", "hand-point-right", "hand-point-up", "hand-rock", "hands", "hand-scissors", "handshake", "hands-helping", "hand-spock", "hanukiah", "hard-hat", "hashtag", "hat-cowboy", "hat-cowboy-side", "hat-wizard", "hdd", "heading", "headphones", "headphones-alt", "headset", "heart", "heartbeat", "heart-broken", "helicopter", "highlighter", "hiking", "hippo", "history", "hockey-puck", "holly-berry", "home", "horse", "horse-head", "hospital", "hospital-alt", "hospital-symbol", "hotdog", "hotel", "hot-tub", "hourglass", "hourglass-end", "hourglass-half", "hourglass-start", "house-damage", "hryvnia", "h-square", "ice-cream", "icicles", "icons", "i-cursor", "id-badge", "id-card", "id-card-alt", "igloo", "image", "images", "inbox", "indent", "industry", "infinity", "info", "info-circle", "italic", "jedi", "joint", "journal-whills", "kaaba", "key", "keyboard", "khanda", "kiss", "kiss-beam", "kiss-wink-heart", "kiwi-bird", "landmark", "language", "laptop", "laptop-code", "laptop-medical", "laugh", "laugh-beam", "laugh-squint", "laugh-wink", "layer-group", "leaf", "lemon", "less-than", "less-than-equal", "level-down-alt", "level-up-alt", "life-ring", "lightbulb", "link", "lira-sign", "list", "list-alt", "list-ol", "list-ul", "location-arrow", "lock", "lock-open", "long-arrow-alt-down", "long-arrow-alt-left", "long-arrow-alt-right", "long-arrow-alt-up", "low-vision", "luggage-cart", "magic", "magnet", "mail-bulk", "male", "map", "map-marked", "map-marked-alt", "map-marker", "map-marker-alt", "map-pin", "map-signs", "marker", "mars", "mars-double", "mars-stroke", "mars-stroke-h", "mars-stroke-v", "mask", "medal", "medkit", "meh", "meh-blank", "meh-rolling-eyes", "memory", "menorah", "mercury", "meteor", "microchip", "microphone", "microphone-alt", "microphone-alt-slash", "microphone-slash", "microscope", "minus", "minus-circle", "minus-square", "mitten", "mobile", "mobile-alt", "money-bill", "money-bill-alt", "money-bill-wave", "money-bill-wave-alt", "money-check", "money-check-alt", "monument", "moon", "mortar-pestle", "mosque", "motorcycle", "mountain", "mouse", "mouse-pointer", "mug-hot", "music", "network-wired", "neuter", "newspaper", "not-equal", "notes-medical", "object-group", "object-ungroup", "oil-can", "om", "otter", "outdent", "pager", "paint-brush", "paint-roller", "palette", "pallet", "paperclip", "paper-plane", "parachute-box", "paragraph", "parking", "passport", "pastafarianism", "paste", "pause", "pause-circle", "paw", "peace", "pen", "pen-alt", "pencil-alt", "pencil-ruler", "pen-fancy", "pen-nib", "pen-square", "people-carry", "pepper-hot", "percent", "percentage", "person-booth", "phone", "phone-alt", "phone-slash", "phone-square", "phone-square-alt", "phone-volume", "photo-video", "piggy-bank", "pills", "pizza-slice", "place-of-worship", "plane", "plane-arrival", "plane-departure", "play", "play-circle", "plug", "plus", "plus-circle", "plus-square", "podcast", "poll", "poll-h", "poo", "poop", "poo-storm", "portrait", "pound-sign", "power-off", "pray", "praying-hands", "prescription", "prescription-bottle", "prescription-bottle-alt", "print", "procedures", "project-diagram", "puzzle-piece", "qrcode", "question", "question-circle", "quidditch", "quote-left", "quote-right", "quran", "radiation", "radiation-alt", "rainbow", "random", "receipt", "record-vinyl", "recycle", "redo", "redo-alt", "registered", "remove-format", "reply", "reply-all", "republican", "restroom", "retweet", "ribbon", "ring", "road", "robot", "rocket", "route", "rss", "rss-square", "ruble-sign", "ruler", "ruler-combined", "ruler-horizontal", "ruler-vertical", "running", "rupee-sign", "sad-cry", "sad-tear", "satellite", "satellite-dish", "save", "school", "screwdriver", "scroll", "sd-card", "search", "search-dollar", "search-location", "search-minus", "search-plus", "seedling", "server", "shapes", "share", "share-alt", "share-alt-square", "share-square", "shekel-sign", "shield-alt", "ship", "shipping-fast", "shoe-prints", "shopping-bag", "shopping-basket", "shopping-cart", "shower", "shuttle-van", "sign", "signal", "signature", "sign-in-alt", "sign-language", "sign-out-alt", "sim-card", "sitemap", "skating", "skiing", "skiing-nordic", "skull", "skull-crossbones", "slash", "sleigh", "sliders-h", "smile", "smile-beam", "smile-wink", "smog", "smoking", "smoking-ban", "sms", "snowboarding", "snowflake", "snowman", "snowplow", "socks", "solar-panel", "sort", "sort-alpha-down", "sort-alpha-down-alt", "sort-alpha-up", "sort-alpha-up-alt", "sort-amount-down", "sort-amount-down-alt", "sort-amount-up", "sort-amount-up-alt", "sort-down", "sort-numeric-down", "sort-numeric-down-alt", "sort-numeric-up", "sort-numeric-up-alt", "sort-up", "spa", "space-shuttle", "spell-check", "spider", "spinner", "splotch", "spray-can", "square", "square-full", "square-root-alt", "stamp", "star", "star-and-crescent", "star-half", "star-half-alt", "star-of-david", "star-of-life", "step-backward", "step-forward", "stethoscope", "sticky-note", "stop", "stop-circle", "stopwatch", "store", "store-alt", "stream", "street-view", "strikethrough", "stroopwafel", "subscript", "subway", "suitcase", "suitcase-rolling", "sun", "superscript", "surprise", "swatchbook", "swimmer", "swimming-pool", "synagogue", "sync", "sync-alt", "syringe", "table", "tablet", "tablet-alt", "table-tennis", "tablets", "tachometer-alt", "tag", "tags", "tape", "tasks", "taxi", "teeth", "teeth-open", "temperature-high", "temperature-low", "tenge", "terminal", "text-height", "text-width", "th", "theater-masks", "thermometer", "thermometer-empty", "thermometer-full", "thermometer-half", "thermometer-quarter", "thermometer-three-quarters", "th-large", "th-list", "thumbs-down", "thumbs-up", "thumbtack", "ticket-alt", "times", "times-circle", "tint", "tint-slash", "tired", "toggle-off", "toggle-on", "toilet", "toilet-paper", "toolbox", "tools", "tooth", "torah", "torii-gate", "tractor", "trademark", "traffic-light", "trailer", "train", "tram", "transgender", "transgender-alt", "trash", "trash-alt", "trash-restore", "trash-restore-alt", "tree", "trophy", "truck", "truck-loading", "truck-monster", "truck-moving", "truck-pickup", "tshirt", "tty", "tv", "umbrella", "umbrella-beach", "underline", "undo", "undo-alt", "universal-access", "university", "unlink", "unlock", "unlock-alt", "upload", "user", "user-alt", "user-alt-slash", "user-astronaut", "user-check", "user-circle", "user-clock", "user-cog", "user-edit", "user-friends", "user-graduate", "user-injured", "user-lock", "user-md", "user-minus", "user-ninja", "user-nurse", "user-plus", "users", "users-cog", "user-secret", "user-shield", "user-slash", "user-tag", "user-tie", "user-times", "utensils", "utensil-spoon", "vector-square", "venus", "venus-double", "venus-mars", "vial", "vials", "video", "video-slash", "vihara", "voicemail", "volleyball-ball", "volume-down", "volume-mute", "volume-off", "volume-up", "vote-yea", "vr-cardboard", "walking", "wallet", "warehouse", "water", "wave-square", "weight", "weight-hanging", "wheelchair", "wifi", "wind", "window-close", "window-maximize", "window-minimize", "window-restore", "wine-bottle", "wine-glass", "wine-glass-alt", "won-sign", "wrench", "x-ray", "yen-sign", "yin-yang"]; // export let budgetMainCategories = [];
+////////////////////////////////////////
 // CATEGORY -- PARENT CLASS
 
 var Category = function Category(options) {
@@ -4981,11 +4725,6 @@ var MainCategory = /*#__PURE__*/function (_Category) {
         return sc != _this2.subCategories[index];
       });
     }
-  }, {
-    key: "_capitalize",
-    value: function _capitalize(string) {
-      "".concat(string.charAt(0).toUpperCase()).concat(string.slice(1));
-    }
   }]);
 
   return MainCategory;
@@ -5016,14 +4755,6 @@ var SubCategory = /*#__PURE__*/function (_Category2) {
       this.surplus = !this.surplus;
     }
   }, {
-    key: "_capitalize",
-    value: function _capitalize(string) {
-      var words = string.split(' ');
-      return words.forEach(function (w) {
-        "".concat(w.charAt(0).toUpperCase()).concat(w.slice(1));
-      }).join(' ');
-    }
-  }, {
     key: "_finishUpdatingSubCategory",
     value: function _finishUpdatingSubCategory(goal, spent, remaining) {
       this.goalAmount = goal;
@@ -5034,16 +4765,6 @@ var SubCategory = /*#__PURE__*/function (_Category2) {
 
   return SubCategory;
 }(Category); ////////////////////////////////////////
-// MAIN CATEGORY DELETION PROCESS
-
-
-var deleteMainCategory = function deleteMainCategory(e) {
-  budgetMainCategories = budgetMainCategories.filter(function (o, i) {
-    return o.title !== e.target.closest('section').firstChild.nextElementSibling.textContent;
-  });
-  e.target.closest('section').remove();
-  console.log("DELETED");
-}; ////////////////////////////////////////
 // CAPITALIZING CATEGORIES
 
 
@@ -5053,7 +4774,7 @@ var _capitalize = function _capitalize(string) {
 // SUB CATEGORY CREATION PROCESS
 
 
-var createSubCategory = function createSubCategory(categories, index) {
+var createSubCategory = function createSubCategory(categories, index, mainCategories) {
   // Creating Sub Category Container
   var subCategory = document.createElement('section'); // Adding Sub Category Classes
 
@@ -5109,8 +4830,6 @@ var createSubCategory = function createSubCategory(categories, index) {
     var categoryTitle = subCategoryTitleElement.textContent;
 
     categories[categoryNumber].subCategories[subArray.indexOf(clicked.closest('.sub-category'))]._makeSurplus();
-
-    console.log(categories[categoryNumber].subCategories);
   }); // Create Surplus Switch Toggle
 
   var surplusSwitchToggle = document.createElement('section');
@@ -5166,21 +4885,54 @@ var createSubCategory = function createSubCategory(categories, index) {
   categories[index].subCategories.push(new SubCategory({
     title: "".concat(subCategoryTitleElement.textContent)
   }));
+  console.log(categories, mainCategories);
+};
+var _addSubCategory = function _addSubCategory(categories, index, mainCategories) {
+  /////////////////////////////////////////////////
+  // INITIALIZE NEEDED VARIABLES
+  var mainCategoryTitle = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__text').textContent.toLowerCase();
+  var categoryIndex; ////////////////////////////////////
+  // GETTING THE MAIN CATEGORY INDEX
+
+  mainCategories.forEach(function (mc, i) {
+    if (mc.title.toLowerCase() === mainCategoryTitle) {
+      categoryIndex = i;
+      return categoryIndex;
+    }
+  }); // Get Category Creation Input Value In Lowercase
+
+  var subCategoryTitle = document.querySelector('.category-creation__input-container__input').value.toLowerCase(); //////////////////////////////////////////
+  // CHECKING SUB CATEGORIES VS INPUT VALUE
+
+  var filtered = mainCategories[categoryIndex].subCategories.filter(function (sc) {
+    if (sc.title.toLowerCase() === subCategoryTitle) {
+      return sc;
+    }
+  }); /////////////////////////////////////////////////
+  // ALLOW ONLY ONE SUB CATEGORY WITH THAT NAME
+
+  if (filtered.length >= 1) return;
+  createSubCategory(categories, index, mainCategories);
+}; ////////////////////////////////////////
+// MAIN CATEGORY DELETION PROCESS
+
+var deleteMainCategory = function deleteMainCategory(e, mainCategories) {
+  mainCategories = mainCategories.filter(function (o, i) {
+    return o.title !== e.target.closest('section').firstChild.nextElementSibling.textContent;
+  });
+  e.target.closest('section').remove();
+  console.log("DELETED");
 }; ////////////////////////////////////////
 // MAIN CATEGORY CREATION PROCESS
 
-var createMainCategory = function createMainCategory(element) {
+
+var createMainCategory = function createMainCategory(element, mainCategories) {
   var mainCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container__input').value;
   mainCategoryTitle = mainCategoryTitle.split(' ').map(_capitalize).join(' ');
-  budgetMainCategories.push(new MainCategory({
+  mainCategories.push(new MainCategory({
     icon: "".concat(element),
     title: mainCategoryTitle
-  })); // if (budgetMainCategories[budgetMainCategories.length - 1].title === mainCategoryTitle) {
-  //   budgetMainCategories.pop();
-  //   console.log(budgetMainCategories);
-  //   return;
-  // }
-
+  }));
   var mainCategoryContainer = document.querySelector('.budget-creation-form__page__section__main-category-container');
   var mainCategory = document.createElement('section');
   mainCategory.classList.add('main-category');
@@ -5209,21 +4961,21 @@ var createMainCategory = function createMainCategory(element) {
 
   deleteButton.addEventListener('click', function (e) {
     e.preventDefault();
-    deleteMainCategory(e);
+    deleteMainCategory(e, mainCategories);
   });
 }; ////////////////////////////////////////
 // CREATE MAIN CATEGORY
 
 
-var _createMainCategory = function _createMainCategory(icon, iconList) {
+var _createMainCategory = function _createMainCategory(icon, iconList, mainCategories) {
   var mainCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container__input').value.toLowerCase();
-  var filtered = budgetMainCategories.filter(function (mc) {
+  var filtered = mainCategories.filter(function (mc) {
     if (mc.title.toLowerCase() === mainCategoryTitle) {
       return mc;
     }
   });
   if (filtered.length >= 1) return;
-  createMainCategory(icon); // oldMainCategories = budgetMainCategories;
+  createMainCategory(icon, mainCategories); // oldMainCategories = budgetMainCategories;
 
   iconList.forEach(function (icon) {
     icon.classList.remove('icon-container--clicked');
@@ -5232,15 +4984,15 @@ var _createMainCategory = function _createMainCategory(icon, iconList) {
 // FIND CLICKED ICON
 
 
-var _findClickedIcon = function _findClickedIcon(iconList) {
+var _findClickedIcon = function _findClickedIcon(iconList, mainCategories) {
   iconList.forEach(function (icon) {
     if (icon.classList.contains('icon-container--clicked')) {
-      _createMainCategory(icon.firstChild.classList[1], iconList);
+      _createMainCategory(icon.firstChild.classList[1], iconList, mainCategories);
     }
   });
 };
 
-var _watchCategoryCreation = function _watchCategoryCreation() {
+var _watchCategoryCreation = function _watchCategoryCreation(mainCategories) {
   var createMainCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[0];
   var iconContainers = document.querySelectorAll('.icon-container');
 
@@ -5248,14 +5000,91 @@ var _watchCategoryCreation = function _watchCategoryCreation() {
     createMainCategoryButton.addEventListener('click', function (e) {
       e.preventDefault();
 
-      _findClickedIcon(iconContainers);
+      _findClickedIcon(iconContainers, mainCategories);
 
       closeCategoryCreation();
     });
   }
+}; ////////////////////////////////////////
+// WATCH FOR ICON CLICKS
+
+
+var _clickIcon = function _clickIcon(icon) {
+  var iconContainers = document.querySelectorAll('.icon-container');
+  iconContainers.forEach(function (element, i) {
+    element.addEventListener('click', function (e) {
+      var clicked = e.target;
+
+      if (e.target.classList.contains('icon-container__icon')) {
+        iconContainers.forEach(function (e) {
+          e.classList.remove('icon-container--clicked');
+        });
+        element.classList.add('icon-container--clicked');
+        icon = e.target;
+        return icon;
+      }
+
+      iconContainers.forEach(function (e) {
+        e.classList.remove('icon-container--clicked');
+      });
+      element.classList.add('icon-container--clicked');
+      icon = clicked.firstChild;
+      return icon;
+    });
+  });
+}; ////////////////////////////////////////
+// HIDE CREATED ICONS
+
+var _hideCreatedIcons = function _hideCreatedIcons() {
+  var mainCategories = document.querySelectorAll('.main-category');
+  if (mainCategories.length === 0) return;
+  mainCategories.forEach(function (mc) {
+    mc.classList.add('main-category--hidden');
+  });
+}; ////////////////////////////////////////
+// SHOW CREATED ICONS
+
+
+var _showCreatedIcons = function _showCreatedIcons() {
+  var mainCategories = document.querySelectorAll('.main-category');
+  mainCategories.forEach(function (mc) {
+    mc.classList.remove('main-category--hidden');
+  });
+}; ////////////////////////////////////////
+// CLOSE CATEGORY CREATION
+
+
+var closeCategoryCreation = function closeCategoryCreation() {
+  var createCategoryButton = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category');
+  var mainCategoryContainer = document.querySelector('.budget-creation-form__page__section__main-category-container');
+  var closeCreateCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[1];
+  var iconsContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
+  var createCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container');
+  createCategoryTitle.classList.toggle('budget-creation-form__page__section__set-main-category-title-container--open');
+  iconsContainer.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category__icons-container--open');
+  createCategoryButton.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category--hidden');
+  mainCategoryContainer.classList.toggle('budget-creation-form__page__section__main-category-container--creating-category');
+
+  _showCreatedIcons();
+}; ////////////////////////////////////////
+// OPEN CATEGORY CREATION
+
+
+var openCategoryCreation = function openCategoryCreation() {
+  var createCategoryButton = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category');
+  var mainCategoryContainer = document.querySelector('.budget-creation-form__page__section__main-category-container');
+  var closeCreateCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[1];
+  var iconsContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
+  var createCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container');
+  createCategoryTitle.classList.toggle('budget-creation-form__page__section__set-main-category-title-container--open');
+  iconsContainer.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category__icons-container--open');
+  createCategoryButton.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category--hidden');
+  mainCategoryContainer.classList.toggle('budget-creation-form__page__section__main-category-container--creating-category');
+
+  _hideCreatedIcons();
 };
 
-var _watchCreateCategoryButton = function _watchCreateCategoryButton() {
+var _watchCreateCategoryButton = function _watchCreateCategoryButton(icon, mainCategories) {
   var createCategoryButton = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category');
 
   if (createCategoryButton) {
@@ -5274,9 +5103,32 @@ var _watchCreateCategoryButton = function _watchCreateCategoryButton() {
     });
   }
 
-  _clickIcon();
+  _clickIcon(icon);
 
-  _watchCategoryCreation();
+  _watchCategoryCreation(mainCategories);
+}; ////////////////////////////////////////
+// SHOWING ICONS FOR MAIN CATEGORIES
+
+var createCategories = function createCategories(icon) {
+  icons.forEach(function (iconImage, i) {
+    var mainContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
+
+    if (mainContainer) {
+      var iconContainer = document.createElement("section");
+      iconContainer.classList.add('icon-container');
+
+      var _icon = document.createElement('i');
+
+      _icon.classList.add('fas');
+
+      _icon.classList.add("fa-".concat(iconImage));
+
+      _icon.classList.add("icon-container__icon");
+
+      iconContainer.insertAdjacentElement('beforeend', _icon);
+      mainContainer.insertAdjacentElement('beforeend', iconContainer);
+    }
+  });
 };
 
 /***/ }),
@@ -5545,35 +5397,36 @@ var buildSubCategories = function buildSubCategories(categories, index, secondar
 
     sectionIndex++;
   }
-};
+}; // const _addSubCategory = (categories, index) => {
+//   /////////////////////////////////////////////////
+//   // INITIALIZE NEEDED VARIABLES
+//   const mainCategoryTitle = document
+//     .querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__text')
+//     .textContent.toLowerCase();
+//   let categoryIndex;
+//   ////////////////////////////////////
+//   // GETTING THE MAIN CATEGORY INDEX
+//   Categories.budgetMainCategories.forEach((mc, i) => {
+//     if (mc.title.toLowerCase() === mainCategoryTitle) {
+//       categoryIndex = i;
+//       return categoryIndex;
+//     }
+//   });
+//   // Get Category Creation Input Value In Lowercase
+//   const subCategoryTitle = document.querySelector('.category-creation__input-container__input').value.toLowerCase();
+//   //////////////////////////////////////////
+//   // CHECKING SUB CATEGORIES VS INPUT VALUE
+//   const filtered = Categories.budgetMainCategories[categoryIndex].subCategories.filter((sc) => {
+//     if (sc.title.toLowerCase() === subCategoryTitle) {
+//       return sc;
+//     }
+//   });
+//   /////////////////////////////////////////////////
+//   // ALLOW ONLY ONE SUB CATEGORY WITH THAT NAME
+//   if (filtered.length >= 1) return;
+//   Categories.createSubCategory(categories, index);
+// };
 
-var _addSubCategory = function _addSubCategory(categories, index) {
-  /////////////////////////////////////////////////
-  // INITIALIZE NEEDED VARIABLES
-  var mainCategoryTitle = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__text').textContent.toLowerCase();
-  var categoryIndex; ////////////////////////////////////
-  // GETTING THE MAIN CATEGORY INDEX
-
-  _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.budgetMainCategories.forEach(function (mc, i) {
-    if (mc.title.toLowerCase() === mainCategoryTitle) {
-      categoryIndex = i;
-      return categoryIndex;
-    }
-  }); // Get Category Creation Input Value In Lowercase
-
-  var subCategoryTitle = document.querySelector('.category-creation__input-container__input').value.toLowerCase(); //////////////////////////////////////////
-  // CHECKING SUB CATEGORIES VS INPUT VALUE
-
-  var filtered = _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.budgetMainCategories[categoryIndex].subCategories.filter(function (sc) {
-    if (sc.title.toLowerCase() === subCategoryTitle) {
-      return sc;
-    }
-  }); /////////////////////////////////////////////////
-  // ALLOW ONLY ONE SUB CATEGORY WITH THAT NAME
-
-  if (filtered.length >= 1) return;
-  _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.createSubCategory(categories, index);
-};
 
 var calculateDayEnding = function calculateDayEnding(day, dateEnding, input) {
   if (day === 0 || day === 4 || day === 5 || day === 6 || day === 7 || day === 8 || day === 9) {
@@ -5630,7 +5483,6 @@ var insertTiiming = function insertTiiming(target, inputValues, timing) {
     dayEndingNumberOne = Number(inputValues[0].getDate().toString().split('')[inputValues[0].getDate().toString().length - 1]); // Getting proper day ending, such as 'st' for example for the 1st.
 
     dayEnding = calculateDayEnding(dayEndingNumberOne, dayEnding, inputValues[0]);
-    console.log(_Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.budgetMainCategories, _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.budgetMainCategories.length);
     console.log(timing);
     console.log(inputValues);
     wording = "Due the ".concat(_dayOne2).concat(dayEnding, " of ").concat(months[inputValues[0].getMonth()], ".");
@@ -5692,7 +5544,6 @@ var watchForSettingTiming = function watchForSettingTiming(categories, index) {
         var oldBiWeeklyTiming = new Date(document.querySelector('.sub-category-display__timing-container__bi-weekly-container__label__input').value);
         var biWeeklyTiming = new Date(oldBiWeeklyTiming.setHours(oldBiWeeklyTiming.getHours() + 7));
         var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
-        console.log(_Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.budgetMainCategories, _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.budgetMainCategories.length, subCategories);
         timingArray = [];
         timingArray.push(biWeeklyTiming);
         return insertTiiming(clicked, timingArray, selectedTiming);
@@ -5790,11 +5641,7 @@ var setupGoalSetting = function setupGoalSetting(categories, index) {
     if (index < 0) index = 0;
     mainCategoryIcon.classList.remove(categories[index + 1].icon);
     mainCategoryIcon.classList.add(categories[index].icon);
-    mainCategoryTitle.textContent = categories[index].title; // const timingInputLabels = document.querySelectorAll('.sub-category-display__timing-container__monthly-container__label');
-    // const timingInputButtons = document.querySelectorAll('.sub-category-display__timing-container__monthly-container__button');
-    // const timingInputSubmitButtons = document.querySelectorAll('.sub-category-display__timing-container__monthly-container__submit');
-    // console.log(timingInputLabels, timingInputButtons, timingInputSubmitButtons);
-
+    mainCategoryTitle.textContent = categories[index].title;
     subCategories.forEach(function (sc, i) {
       sc.classList.add('sub-category-display__sub-category--hidden');
 
@@ -5827,7 +5674,7 @@ var setupGoalSetting = function setupGoalSetting(categories, index) {
   });
 };
 
-var setupSubCategoryCreation = function setupSubCategoryCreation(categories, index) {
+var setupSubCategoryCreation = function setupSubCategoryCreation(categories, index, mainCategories) {
   var leftButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__left-button__icon');
   var rightButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__right-button__icon');
   var mainCategoryIcon = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__icon');
@@ -5881,7 +5728,7 @@ var setupSubCategoryCreation = function setupSubCategoryCreation(categories, ind
   });
   var subCategoryCreateButton = document.querySelector('.category-creation__input-container__button');
   subCategoryCreateButton.addEventListener('click', function (e) {
-    _addSubCategory(categories, index);
+    _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__._addSubCategory(categories, index, mainCategories);
   });
 }; /////////////////////////////////
 // GO TO PAGE
@@ -5903,11 +5750,10 @@ var getBudgetName = function getBudgetName() {
 // SETUP PAGE
 
 
-var setupPage = function setupPage() {
-  currentPage++;
-  goToPage(currentPage);
-  setPageCount(currentPage);
-  return currentPage;
+var setupPage = function setupPage(page) {
+  goToPage(page);
+  setPageCount(page);
+  return page;
 }; /////////////////////////////////
 // SET CORRECT PAGE COUNT
 
@@ -5915,19 +5761,24 @@ var setupPage = function setupPage() {
 var setPageCount = function setPageCount(pageNumber) {
   var page = document.querySelector('.budget-creation-form__page-mechanisms__page-number');
   page.textContent = "Page ".concat(pageNumber + 1, " / ").concat(budgetCreationFormPagesNumber);
-}; ////////////////////////////
-// INITIALIZE KEY VARIABLES
+}; // ////////////////////////////
+// // INITIALIZE KEY VARIABLES
+// let currentPage = 0;
 
 
-var currentPage = 0;
 var _watchBudgetCreation = function _watchBudgetCreation() {
-  //////////////////////////////////////////////////////////////
+  ////////////////////////////
+  // INITIALIZE KEY VARIABLES
+  var currentPage = 0;
+  var budgetMainCategories = []; //////////////////////////////////////////////////////////////
   // SET APPROPRIATE PAGE NUMBER DEPENDING ON USER INFORMATION
+
   setPageCount(currentPage); ////////////////////////////////////////////////
   // INITIALIZE KEY VARIABLES INSIDE FUNCTION SCOPE
 
   var budgetName, mainCategories;
   var subCategoryIndex = 0;
+  var icon;
   budgetContinueButton.addEventListener('click', /*#__PURE__*/function () {
     var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee3(e) {
       var budgetInfo, userInfo, user;
@@ -5937,23 +5788,24 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
             case 0:
               e.preventDefault();
               budgetInfo = {};
+              currentPage++;
               setupPage(currentPage); //////////////////////////////
               // ASSIGN BUDGET INFORMATION
               /////////////////////
               // BUDGET NAME
 
               budgetName = getBudgetName();
-              mainCategories = _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.budgetMainCategories;
+              mainCategories = budgetMainCategories;
               budgetInfo.name = budgetName; /////////////////////////////
               // BUDGET MAIN CATEGORIES
 
               budgetInfo.mainCategories = mainCategories; /////////////////////////////
               // CHECK USER
 
-              _context3.next = 9;
+              _context3.next = 10;
               return _Update_User__WEBPACK_IMPORTED_MODULE_5__.getSomePersonals();
 
-            case 9:
+            case 10:
               userInfo = _context3.sent;
               user = userInfo.data.data.user; ////////////////////////////////////////////////////////////////////////
               // GLITCH: Need to fix this to work if you are a Latter Day Saint as well.
@@ -5962,13 +5814,13 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
               // IF NOT LATTER DAY SAINT
 
               if (currentPage + 1 === 2 && user.latterDaySaint === false) {
-                _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.createCategories();
+                _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.createCategories(icon);
 
-                _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__._watchCreateCategoryButton();
+                _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__._watchCreateCategoryButton(icon, budgetMainCategories);
               }
 
               if (currentPage + 1 === 3 && user.latterDaySaint === false) {
-                setupSubCategoryCreation(budgetInfo.mainCategories, subCategoryIndex);
+                setupSubCategoryCreation(budgetInfo.mainCategories, subCategoryIndex, budgetMainCategories);
               }
 
               if (currentPage + 1 === 4 && user.latterDaySaint === false) {
@@ -5979,13 +5831,13 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
 
 
               if (currentPage + 1 === 3 && user.latterDaySaint === true) {
-                _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.createCategories();
+                _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.createCategories(icon);
 
-                _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__._watchCreateCategoryButton();
+                _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__._watchCreateCategoryButton(icon, budgetMainCategories);
               }
 
               if (currentPage + 1 === 4 && user.latterDaySaint === true) {
-                setupSubCategoryCreation(budgetInfo.mainCategories, subCategoryIndex);
+                setupSubCategoryCreation(budgetInfo.mainCategories, subCategoryIndex, budgetMainCategories);
               }
 
               if (currentPage + 1 === 5 && user.latterDaySaint === true) {
@@ -5993,7 +5845,7 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
                 watchForSettingTiming(budgetInfo.mainCategories, subCategoryIndex);
               }
 
-            case 17:
+            case 18:
             case "end":
               return _context3.stop();
           }
@@ -6342,9 +6194,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "updatePassword": () => (/* binding */ updatePassword),
 /* harmony export */   "updateMyPassword": () => (/* binding */ updateMyPassword),
 /* harmony export */   "updateMe": () => (/* binding */ updateMe),
-/* harmony export */   "_watchPasswordResetButton": () => (/* binding */ _watchPasswordResetButton),
 /* harmony export */   "deactivateMe": () => (/* binding */ deactivateMe),
-/* harmony export */   "deleteMe": () => (/* binding */ deleteMe)
+/* harmony export */   "deleteMe": () => (/* binding */ deleteMe),
+/* harmony export */   "_watchPasswordResetButton": () => (/* binding */ _watchPasswordResetButton),
+/* harmony export */   "_watchForProfileUpdates": () => (/* binding */ _watchForProfileUpdates)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
@@ -6555,21 +6408,7 @@ var updateMe = /*#__PURE__*/function () {
   return function updateMe(_x6) {
     return _ref4.apply(this, arguments);
   };
-}(); ////////////////////////////////////
-// Watch Button To Reset Password
-
-var _watchPasswordResetButton = function _watchPasswordResetButton() {
-  var resetPasswordButton = document.querySelector('.reset-password-form__section__button');
-
-  if (resetPasswordButton) {
-    resetPasswordButton.addEventListener('click', function (e) {
-      e.preventDefault();
-      var newPassword = document.getElementById('newPassword').value;
-      var newPasswordConfirmed = document.getElementById('newPasswordConfirmed').value;
-      updatePassword(newPassword, newPasswordConfirmed);
-    });
-  }
-};
+}();
 var deactivateMe = /*#__PURE__*/function () {
   var _ref5 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee5() {
     var response;
@@ -6651,7 +6490,173 @@ var deleteMe = /*#__PURE__*/function () {
   return function deleteMe() {
     return _ref6.apply(this, arguments);
   };
-}();
+}(); ////////////////////////////////////
+// Watch Button To Reset Password
+
+var _watchPasswordResetButton = function _watchPasswordResetButton() {
+  var resetPasswordButton = document.querySelector('.reset-password-form__section__button');
+
+  if (resetPasswordButton) {
+    resetPasswordButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      var newPassword = document.getElementById('newPassword').value;
+      var newPasswordConfirmed = document.getElementById('newPasswordConfirmed').value;
+      updatePassword(newPassword, newPasswordConfirmed);
+    });
+  }
+}; ///////////////////////////////////////////////////
+// ALL ABOUT WATCHING USER PROFILE FORM BUTTONS
+
+var _watchForProfileUpdates = function _watchForProfileUpdates() {
+  var userProfileFormButtons = document.querySelectorAll('.user-profile-form__button');
+  var userProfileSubSectionFormButtons = document.querySelectorAll('.user-profile-form__section__sub-section__button');
+  var latterDaySaintSwitch = document.querySelector('.user-profile-form__section__input--latter-day-saint');
+  userProfileFormButtons.forEach(function (b, i) {
+    b.addEventListener('click', /*#__PURE__*/function () {
+      var _ref7 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee7(e) {
+        var firstname, lastname, username, updatedUserInfo, newEmail, newEmailConfirmed, newPhoneNumber, newPhoneNumberConfirmed, updateUserInfo;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                e.preventDefault();
+
+                if (!(i === 0)) {
+                  _context7.next = 9;
+                  break;
+                }
+
+                firstname = document.getElementById('firstname').value;
+                lastname = document.getElementById('lastname').value;
+                username = document.getElementById('username').value;
+
+                if (latterDaySaintSwitch.classList.contains('user-profile-form__section__input--latter-day-saint--switched')) {
+                  latterDaySaint = true;
+                }
+
+                _context7.next = 8;
+                return updateMe({
+                  firstname: firstname,
+                  lastname: lastname,
+                  username: username,
+                  latterDaySaint: latterDaySaint
+                });
+
+              case 8:
+                updatedUserInfo = _context7.sent;
+
+              case 9:
+                if (!(i === 1)) {
+                  _context7.next = 22;
+                  break;
+                }
+
+                console.log(commPreference);
+                newEmail = document.getElementById('newEmail').value;
+                newEmailConfirmed = document.getElementById('newEmailConfirmed').value;
+
+                if (newEmail === '') {
+                  newEmail = document.getElementById('email').value;
+                }
+
+                if (newEmailConfirmed === '') {
+                  newEmailConfirmed = document.getElementById('email').value;
+                }
+
+                newPhoneNumber = document.getElementById('newPhoneNumber').value;
+                newPhoneNumberConfirmed = document.getElementById('newPhoneNumberConfirmed').value;
+
+                if (newPhoneNumber === '') {
+                  newPhoneNumber = document.getElementById('phoneNumber').value;
+                }
+
+                if (newPhoneNumberConfirmed === '') {
+                  newPhoneNumberConfirmed = document.getElementById('phoneNumber').value;
+                }
+
+                _context7.next = 21;
+                return updateMe({
+                  email: newEmail,
+                  emailConfirmed: newEmailConfirmed,
+                  phoneNumber: newPhoneNumber,
+                  phoneNumberConfirmed: newPhoneNumberConfirmed,
+                  communicationPreference: commPreference
+                });
+
+              case 21:
+                updateUserInfo = _context7.sent;
+
+              case 22:
+                if (!(i === 2)) {
+                  _context7.next = 25;
+                  break;
+                }
+
+                _context7.next = 25;
+                return logout();
+
+              case 25:
+                if (!(i === 3)) {
+                  _context7.next = 28;
+                  break;
+                }
+
+                _context7.next = 28;
+                return deactivateMe();
+
+              case 28:
+                if (!(i === 4)) {
+                  _context7.next = 31;
+                  break;
+                }
+
+                _context7.next = 31;
+                return deleteMe();
+
+              case 31:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7);
+      }));
+
+      return function (_x7) {
+        return _ref7.apply(this, arguments);
+      };
+    }());
+  });
+  userProfileSubSectionFormButtons[0].addEventListener('click', /*#__PURE__*/function () {
+    var _ref8 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee8(e) {
+      var currentPassword, newPassword, newPasswordConfirmed, updateUserInfo;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee8$(_context8) {
+        while (1) {
+          switch (_context8.prev = _context8.next) {
+            case 0:
+              e.preventDefault();
+              console.log(userProfileSubSectionFormButtons);
+              currentPassword = document.getElementById('currentPassword').value;
+              newPassword = document.getElementById('newPassword').value;
+              newPasswordConfirmed = document.getElementById('newPasswordConfirmed').value;
+              _context8.next = 7;
+              return updateMyPassword(currentPassword, newPassword, newPasswordConfirmed);
+
+            case 7:
+              updateUserInfo = _context8.sent;
+
+            case 8:
+            case "end":
+              return _context8.stop();
+          }
+        }
+      }, _callee8);
+    }));
+
+    return function (_x8) {
+      return _ref8.apply(this, arguments);
+    };
+  }());
+};
 
 /***/ }),
 

@@ -12,80 +12,6 @@ let latterDaySaint = false;
 //   latterDaySaint = user.latterDaySaint;
 // };
 
-///////////////////////////////////////////////////
-// ALL ABOUT WATCHING USER PROFILE FORM BUTTONS
-export const _watchForProfileUpdates = () => {
-  const userProfileFormButtons = document.querySelectorAll('.user-profile-form__button');
-  const userProfileSubSectionFormButtons = document.querySelectorAll('.user-profile-form__section__sub-section__button');
-  const latterDaySaintSwitch = document.querySelector('.user-profile-form__section__input--latter-day-saint');
-  userProfileFormButtons.forEach((b, i) => {
-    b.addEventListener('click', async (e) => {
-      e.preventDefault();
-      if (i === 0) {
-        const firstname = document.getElementById('firstname').value;
-        const lastname = document.getElementById('lastname').value;
-        const username = document.getElementById('username').value;
-        if (latterDaySaintSwitch.classList.contains('user-profile-form__section__input--latter-day-saint--switched')) {
-          latterDaySaint = true;
-        }
-        const updatedUserInfo = await updateMe({
-          firstname: firstname,
-          lastname: lastname,
-          username: username,
-          latterDaySaint: latterDaySaint,
-        });
-      }
-      if (i === 1) {
-        console.log(commPreference);
-        let newEmail = document.getElementById('newEmail').value;
-        let newEmailConfirmed = document.getElementById('newEmailConfirmed').value;
-        if (newEmail === '') {
-          newEmail = document.getElementById('email').value;
-        }
-        if (newEmailConfirmed === '') {
-          newEmailConfirmed = document.getElementById('email').value;
-        }
-
-        let newPhoneNumber = document.getElementById('newPhoneNumber').value;
-        let newPhoneNumberConfirmed = document.getElementById('newPhoneNumberConfirmed').value;
-        if (newPhoneNumber === '') {
-          newPhoneNumber = document.getElementById('phoneNumber').value;
-        }
-        if (newPhoneNumberConfirmed === '') {
-          newPhoneNumberConfirmed = document.getElementById('phoneNumber').value;
-        }
-        const updateUserInfo = await updateMe({
-          email: newEmail,
-          emailConfirmed: newEmailConfirmed,
-          phoneNumber: newPhoneNumber,
-          phoneNumberConfirmed: newPhoneNumberConfirmed,
-          communicationPreference: commPreference,
-        });
-      }
-
-      if (i === 2) {
-        await logout();
-      }
-
-      if (i === 3) {
-        await deactivateMe();
-      }
-
-      if (i === 4) {
-        await deleteMe();
-      }
-    });
-  });
-  userProfileSubSectionFormButtons[0].addEventListener('click', async (e) => {
-    e.preventDefault();
-    console.log(userProfileSubSectionFormButtons);
-    const currentPassword = document.getElementById('currentPassword').value;
-    const newPassword = document.getElementById('newPassword').value;
-    const newPasswordConfirmed = document.getElementById('newPasswordConfirmed').value;
-    const updateUserInfo = await updateMyPassword(currentPassword, newPassword, newPasswordConfirmed);
-  });
-};
-
 const formatPhoneNumber = (value, number) => {
   if (!value) return value;
   let phoneNumber = value.replace(/[^\d]/g, '');
@@ -262,7 +188,7 @@ export const _watchForLogin = (login) => {
     // WATCH FOR PHONE NUMBER UPDATES
     _watchPhoneNumberInputs(formattedNumber);
     // WATCH FOR USER PROFILE UPDATES
-    _watchForProfileUpdates();
+    Update._watchForProfileUpdates();
     // WATCHING FOR CREATION OF BUDGETS
     Budget._watchBudgetCreation();
   }
