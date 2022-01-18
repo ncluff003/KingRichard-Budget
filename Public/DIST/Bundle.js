@@ -4227,12 +4227,13 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "_watchForProfileUpdates": () => (/* binding */ _watchForProfileUpdates),
-/* harmony export */   "_watchPasswordSubSectionButtons": () => (/* binding */ _watchPasswordSubSectionButtons),
 /* harmony export */   "_watchPhoneNumberInputs": () => (/* binding */ _watchPhoneNumberInputs),
+/* harmony export */   "_watchPasswordSubSectionButtons": () => (/* binding */ _watchPasswordSubSectionButtons),
 /* harmony export */   "_watchSubSectionButtons": () => (/* binding */ _watchSubSectionButtons),
+/* harmony export */   "_watchCommPreference": () => (/* binding */ _watchCommPreference),
 /* harmony export */   "_showProfileForm": () => (/* binding */ _showProfileForm),
 /* harmony export */   "_watchUserProfileButtons": () => (/* binding */ _watchUserProfileButtons),
-/* harmony export */   "_watchCommPreference": () => (/* binding */ _watchCommPreference)
+/* harmony export */   "_watchForLogin": () => (/* binding */ _watchForLogin)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
@@ -4254,18 +4255,6 @@ var _getUserInfo = function _getUserInfo() {
   latterDaySaint = user.latterDaySaint;
 };
 
-var _changeCommPreference = function _changeCommPreference() {
-  if (commPreference === "Email") {
-    return commPreference = "Text";
-  } else {
-    return commPreference = "Email";
-  }
-};
-
-var _openSubSections = function _openSubSections(subSection, className) {
-  subSection.classList.toggle(className);
-};
-
 var _togglePasswordSubSections = function _togglePasswordSubSections() {
   _openSubSections(userProfileSubSections[4], 'user-profile-form__section__sub-section--show');
 
@@ -4274,7 +4263,9 @@ var _togglePasswordSubSections = function _togglePasswordSubSections() {
   _openSubSections(userProfileSubSections[6], 'user-profile-form__section__sub-section--show');
 
   _openSubSections(userProfileSubSections[7], 'user-profile-form__section__sub-section--show');
-};
+}; ///////////////////////////////////////////////////
+// ALL ABOUT WATCHING USER PROFILE FORM BUTTONS
+
 
 var _watchForProfileUpdates = function _watchForProfileUpdates() {
   userProfileFormButtons.forEach(function (b, i) {
@@ -4423,13 +4414,24 @@ var _watchForProfileUpdates = function _watchForProfileUpdates() {
     };
   }());
 };
-var _watchPasswordSubSectionButtons = function _watchPasswordSubSectionButtons() {
-  userProfilePasswordSubSectionButtons[0].addEventListener('click', function (e) {
-    e.preventDefault();
 
-    _togglePasswordSubSections();
-  });
+var formatPhoneNumber = function formatPhoneNumber(value) {
+  if (!value) return value;
+  var phoneNumber = value.replace(/[^\d]/g, '');
+  var phoneNumberLength = phoneNumber.length;
+
+  if (phoneNumberLength <= 3) {
+    return phoneNumber;
+  }
+
+  if (phoneNumberLength >= 4 && phoneNumberLength < 7) {
+    return "(".concat(phoneNumber.slice(0, 3), ") ").concat(phoneNumber.slice(3, 6));
+  }
+
+  var formattedNumber = "(".concat(phoneNumber.slice(0, 3), ") ").concat(phoneNumber.slice(3, 6), " - ").concat(phoneNumber.slice(6));
+  return formattedNumber;
 };
+
 var _watchPhoneNumberInputs = function _watchPhoneNumberInputs() {
   formatPhoneNumber(userProfileInputs[4].value);
   userProfileSubInputs[2].addEventListener('keyup', function (e) {
@@ -4439,6 +4441,18 @@ var _watchPhoneNumberInputs = function _watchPhoneNumberInputs() {
     userProfileSubInputs[3].value = formatPhoneNumber(userProfileSubInputs[3].value);
   });
 };
+var _watchPasswordSubSectionButtons = function _watchPasswordSubSectionButtons() {
+  userProfilePasswordSubSectionButtons[0].addEventListener('click', function (e) {
+    e.preventDefault();
+
+    _togglePasswordSubSections();
+  });
+}; // Open User Profile Form Sub Sections
+
+var _openSubSections = function _openSubSections(subSection, className) {
+  subSection.classList.toggle(className);
+};
+
 var _watchSubSectionButtons = function _watchSubSectionButtons() {
   userProfileFormSectionButtons.forEach(function (button, i) {
     button.addEventListener('click', function (e) {
@@ -4461,7 +4475,25 @@ var _watchSubSectionButtons = function _watchSubSectionButtons() {
       }
     });
   });
+}; //////////////////////////////////////////////////
+// ALL ABOUT WATCHING COMMUNICATION PREFERENCES
+
+var _changeCommPreference = function _changeCommPreference() {
+  if (commPreference === "Email") {
+    return commPreference = "Text";
+  } else {
+    return commPreference = "Email";
+  }
 };
+
+var _watchCommPreference = function _watchCommPreference() {
+  commSwitch.addEventListener('click', function (e) {
+    commSwitch.classList.toggle('user-profile-form__section__comm-switch--text-preferred');
+
+    _changeCommPreference();
+  });
+}; ////////////////////////////////////////////
+// ALL ABOUT WATCHING USER PROFILE BUTTONS
 
 var _watchLatterDaySaintSwitch = function _watchLatterDaySaintSwitch() {
   latterDaySaintSwitch.addEventListener('click', function (e) {
@@ -4501,11 +4533,6 @@ var _watchUserProfileButtons = function _watchUserProfileButtons() {
             userProfileContainer.classList.remove('user-profile-container--open');
           });
           commPreference = "Email";
-          commSwitch.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            _changeCommPreference();
-          });
         }
 
         if (i === 2) {
@@ -4525,29 +4552,37 @@ var _watchUserProfileButtons = function _watchUserProfileButtons() {
     });
   }
 };
-var _watchCommPreference = function _watchCommPreference() {
-  commSwitch.addEventListener('click', function (e) {
-    commSwitch.classList.toggle('user-profile-form__section__comm-switch--text-preferred');
-  });
+
+var checkLoginStatus = function checkLoginStatus(login, checkElement) {
+  if (checkElement) {
+    return login = !login;
+  }
 };
 
-var formatPhoneNumber = function formatPhoneNumber(value) {
-  if (!value) return value;
-  var phoneNumber = value.replace(/[^\d]/g, '');
-  var phoneNumberLength = phoneNumber.length;
+var _watchForLogin = function _watchForLogin(login) {
+  var appViewport = document.querySelector('.app-viewport');
+  var status = checkLoginStatus(login, appViewport);
+  status === true ? console.log("Logged In") : console.log("Logged Out");
 
-  if (phoneNumberLength <= 3) {
-    return phoneNumber;
+  if (status === true) {
+    // WATCHING USER PROFILE NAVIGATION BUTTONS
+    _watchUserProfileButtons(); // WATCHING COMMUNICATION PREFERENCES
+
+
+    _watchCommPreference(); // WATCHING URSER PROFILE FORM BUTTONS
+
+
+    _watchSubSectionButtons();
+
+    _watchPasswordSubSectionButtons(); // WATCH FOR PHONE NUMBER UPDATES
+
+
+    _watchPhoneNumberInputs(); // WATCH FOR USER PROFILE UPDATES
+
+
+    _watchForProfileUpdates();
   }
-
-  if (phoneNumberLength >= 4 && phoneNumberLength < 7) {
-    return "(".concat(phoneNumber.slice(0, 3), ") ").concat(phoneNumber.slice(3, 6));
-  }
-
-  var formattedNumber = "(".concat(phoneNumber.slice(0, 3), ") ").concat(phoneNumber.slice(3, 6), " - ").concat(phoneNumber.slice(6));
-  return formattedNumber;
 };
-
 var iconContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
 var formattedNumber;
 var commSwitch = document.querySelector('.user-profile-form__section__comm-switch');
@@ -4565,6 +4600,164 @@ var userProfileHeader = document.querySelector('.user-profile-container__header_
 var userProfileContainerClose = document.querySelector('.user-profile-container__close');
 var userProfileContainer = document.querySelector('.user-profile-container');
 var userProfileButtons = document.querySelectorAll('.app-navigation__main__navigation-links__link-container__link--link');
+
+/***/ }),
+
+/***/ "./Public/JS/App.js":
+/*!**************************!*\
+  !*** ./Public/JS/App.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
+/* harmony import */ var _Validate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Validate */ "./Public/JS/Validate.js");
+/* harmony import */ var _Base_Forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Base-Forms */ "./Public/JS/Base-Forms.js");
+/* harmony import */ var _Budget_Cards__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Budget-Cards */ "./Public/JS/Budget-Cards.js");
+/* harmony import */ var _App_LoggedIn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./App-LoggedIn */ "./Public/JS/App-LoggedIn.js");
+/* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
+/* harmony import */ var _Signup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Signup */ "./Public/JS/Signup.js");
+/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
+/* harmony import */ var _Budget_Creation__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Budget-Creation */ "./Public/JS/Budget-Creation.js");
+/* harmony import */ var _Person__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Person */ "./Public/JS/Person.js");
+/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
+
+
+
+
+
+
+
+
+
+ ///////////////////////////////////////////////
+// APP
+
+(function () {
+  var App = /*#__PURE__*/function () {
+    function App() {
+      (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, App);
+
+      /////////////////////////////
+      // START UP THE APPLICATION
+      this._startApp();
+
+      _Budget_Cards__WEBPACK_IMPORTED_MODULE_4__.createBudgetCard("Cluff's Budget", "7 December 2021", "7 December 2021", "Nathan Cluff", "./../DIST/CSS/Images/Default-Budget-Cover-Photo.svg");
+
+      _Budget_Creation__WEBPACK_IMPORTED_MODULE_9__._watchEmergencyGoalSettings();
+
+      _Budget_Creation__WEBPACK_IMPORTED_MODULE_9__._watchBudgetCreation();
+    }
+
+    (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(App, [{
+      key: "_startApp",
+      value: function _startApp() {
+        signupFormPage = 0;
+        isLoggedIn = false;
+        console.log("App Has Started!");
+        var domSignupFormPageNumber = document.querySelector('.signup-form__form-page__section__page-number');
+        var newPerson = _Person__WEBPACK_IMPORTED_MODULE_10__.newPerson;
+        newPerson.latterDaySaint = isLatterDaySaint; // WATCH THE ENTRANCE BUTTONS
+
+        _Base_Forms__WEBPACK_IMPORTED_MODULE_3__._watchEntranceButtons(newPerson, forms, signupFormPage); // WATCH THE FORM CLOSING BUTTONS
+
+
+        _Base_Forms__WEBPACK_IMPORTED_MODULE_3__._watchFormClosers(domSignupFormPageNumber, signupFormPage, forms); // WATCH LATTER DAY SAINT SWITCH
+
+
+        _Signup__WEBPACK_IMPORTED_MODULE_7__._watchTheLatterDaySaintSwitch(newPerson); // WATCH RESET BUTTON FOR PASSWORD RESETS
+
+
+        _Update_User__WEBPACK_IMPORTED_MODULE_6__._watchPasswordResetButton(); // WATCH FOR USER LOGIN
+
+
+        _App_LoggedIn__WEBPACK_IMPORTED_MODULE_5__._watchForLogin(isLoggedIn);
+      }
+    }]);
+
+    return App;
+  }(); ////////////////////////////////////////////////
+  // INITIALIZE SOME STARTING VARIABLES FOR THE APP
+  // const resetPasswordButton = document.querySelector('.reset-password-form__section__button');
+
+
+  var isLatterDaySaint = false;
+  var signupFormPage, isLoggedIn;
+  var forms = document.querySelectorAll('.form-container'); /////////////////////////////////////////////////
+  // IMMEDIATELY MAKE AN INSTANCE OF THE APP CLASS
+
+  var app = new App();
+})();
+
+/***/ }),
+
+/***/ "./Public/JS/Base-Forms.js":
+/*!*********************************!*\
+  !*** ./Public/JS/Base-Forms.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "_watchFormClosers": () => (/* binding */ _watchFormClosers),
+/* harmony export */   "_watchEntranceButtons": () => (/* binding */ _watchEntranceButtons)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
+/* harmony import */ var _Signup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Signup */ "./Public/JS/Signup.js");
+/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App */ "./Public/JS/App.js");
+
+
+ //////////////////////////////
+// Actually Close The Form
+
+var _closeTheForm = function _closeTheForm(index, page, pageElement, form) {
+  form[index].classList.toggle('form-container--open');
+
+  if (pageElement) {
+    pageElement.textContent = "Page ".concat(page + 1, " / 4");
+  }
+}; //////////////////////////////
+// Watch Form Closing Buttons
+
+
+var _watchFormClosers = function _watchFormClosers(pageElement, page, form) {
+  var formClosers = document.querySelectorAll('.form-close-icon');
+  page = 0;
+  formClosers.forEach(function (fc, i) {
+    fc.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      _closeTheForm(i, page, pageElement, form);
+    });
+  });
+};
+var _watchEntranceButtons = function _watchEntranceButtons(person, form, formPage) {
+  //////////////////////////////
+  // Initialize Entrance Buttons.
+  var forgottenUsernameOrPasswordLink = document.querySelector('.login-form__section__forgot-username-or-password-link');
+  var entranceButtons = [].concat((0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(document.querySelectorAll('.entrance-button')), [forgottenUsernameOrPasswordLink]);
+  entranceButtons.forEach(function (eb, i) {
+    if (eb) {
+      eb.addEventListener('click', function (e) {
+        e.preventDefault(); //////////////////////////////////////////////////////////////
+        // OPEN UP THE SELECTED FORM
+
+        form[i].classList.toggle('form-container--open'); //////////////////////////////////////////////////////////////
+        // SETUP THE SIGNUP FORM IF IT IS THE SELECTED FORM
+
+        if (i === 1) {
+          var formPages = document.querySelectorAll('.signup-form__form-page');
+
+          _Signup__WEBPACK_IMPORTED_MODULE_1__._setupSignupForm(formPage, formPages, person);
+        }
+      });
+    }
+  });
+};
 
 /***/ }),
 
@@ -6031,7 +6224,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "signup": () => (/* binding */ signup),
 /* harmony export */   "_nextPage": () => (/* binding */ _nextPage),
-/* harmony export */   "_watchTheSwitch": () => (/* binding */ _watchTheSwitch),
+/* harmony export */   "_watchTheLatterDaySaintSwitch": () => (/* binding */ _watchTheLatterDaySaintSwitch),
 /* harmony export */   "_watchFormSubmitButton": () => (/* binding */ _watchFormSubmitButton),
 /* harmony export */   "_setupSignupForm": () => (/* binding */ _setupSignupForm)
 /* harmony export */ });
@@ -6120,7 +6313,7 @@ var _changeLatterDaySaintStatus = function _changeLatterDaySaintStatus(lightSwit
 }; // Watching The Latter Day Saint Switch
 
 
-var _watchTheSwitch = function _watchTheSwitch(person) {
+var _watchTheLatterDaySaintSwitch = function _watchTheLatterDaySaintSwitch(person) {
   var latterDaySaint = document.querySelector('.signup-form__form-page__section__input--latter-day-saint');
 
   if (latterDaySaint) {
@@ -6201,6 +6394,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "updatePassword": () => (/* binding */ updatePassword),
 /* harmony export */   "updateMyPassword": () => (/* binding */ updateMyPassword),
 /* harmony export */   "updateMe": () => (/* binding */ updateMe),
+/* harmony export */   "_watchPasswordResetButton": () => (/* binding */ _watchPasswordResetButton),
 /* harmony export */   "deactivateMe": () => (/* binding */ deactivateMe),
 /* harmony export */   "deleteMe": () => (/* binding */ deleteMe)
 /* harmony export */ });
@@ -6413,7 +6607,21 @@ var updateMe = /*#__PURE__*/function () {
   return function updateMe(_x6) {
     return _ref4.apply(this, arguments);
   };
-}();
+}(); ////////////////////////////////////
+// Watch Button To Reset Password
+
+var _watchPasswordResetButton = function _watchPasswordResetButton() {
+  var resetPasswordButton = document.querySelector('.reset-password-form__section__button');
+
+  if (resetPasswordButton) {
+    resetPasswordButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      var newPassword = document.getElementById('newPassword').value;
+      var newPasswordConfirmed = document.getElementById('newPasswordConfirmed').value;
+      updatePassword(newPassword, newPasswordConfirmed);
+    });
+  }
+};
 var deactivateMe = /*#__PURE__*/function () {
   var _ref5 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee5() {
     var response;
@@ -12226,163 +12434,12 @@ function _unsupportedIterableToArray(o, minLen) {
 /******/ 	})();
 /******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
-(() => {
-"use strict";
-/*!**************************!*\
-  !*** ./Public/JS/App.js ***!
-  \**************************/
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
-/* harmony import */ var _Validate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Validate */ "./Public/JS/Validate.js");
-/* harmony import */ var _Budget_Cards__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Budget-Cards */ "./Public/JS/Budget-Cards.js");
-/* harmony import */ var _App_LoggedIn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./App-LoggedIn */ "./Public/JS/App-LoggedIn.js");
-/* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
-/* harmony import */ var _Signup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Signup */ "./Public/JS/Signup.js");
-/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
-/* harmony import */ var _Budget_Creation__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Budget-Creation */ "./Public/JS/Budget-Creation.js");
-/* harmony import */ var _Person__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Person */ "./Public/JS/Person.js");
-/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
-
-
-
-
-
-
-
-
-
-
- ///////////////////////////////////////////////
-// APP
-
-(function () {
-  var App = /*#__PURE__*/function () {
-    function App() {
-      (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, App);
-
-      this._startApp(); // this._watchResetButton();
-
-
-      _Budget_Cards__WEBPACK_IMPORTED_MODULE_4__.createBudgetCard("Cluff's Budget", "7 December 2021", "7 December 2021", "Nathan Cluff", "./../DIST/CSS/Images/Default-Budget-Cover-Photo.svg");
-
-      _App_LoggedIn__WEBPACK_IMPORTED_MODULE_5__._watchUserProfileButtons();
-
-      _App_LoggedIn__WEBPACK_IMPORTED_MODULE_5__._watchCommPreference();
-
-      _App_LoggedIn__WEBPACK_IMPORTED_MODULE_5__._watchSubSectionButtons();
-
-      _App_LoggedIn__WEBPACK_IMPORTED_MODULE_5__._watchPasswordSubSectionButtons();
-
-      _App_LoggedIn__WEBPACK_IMPORTED_MODULE_5__._watchPhoneNumberInputs();
-
-      _App_LoggedIn__WEBPACK_IMPORTED_MODULE_5__._watchForProfileUpdates();
-
-      _Budget_Creation__WEBPACK_IMPORTED_MODULE_9__._watchEmergencyGoalSettings();
-
-      _Budget_Creation__WEBPACK_IMPORTED_MODULE_9__._watchBudgetCreation();
-    }
-
-    (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__["default"])(App, [{
-      key: "_watchResetButton",
-      value: function _watchResetButton() {
-        if (resetPasswordButton) {
-          resetPasswordButton.addEventListener('click', function (e) {
-            e.preventDefault();
-            var newPassword = document.getElementById('newPassword').value;
-            var newPasswordConfirmed = document.getElementById('newPasswordConfirmed').value;
-            (0,_Update_User__WEBPACK_IMPORTED_MODULE_6__.updatePassword)(newPassword, newPasswordConfirmed);
-          });
-        }
-      }
-    }, {
-      key: "_closeTheForm",
-      value: function _closeTheForm(index, page, pageElement) {
-        forms[index].classList.toggle('form-container--open');
-
-        if (pageElement) {
-          pageElement.textContent = "Page ".concat(page + 1, " / 4");
-        }
-      }
-    }, {
-      key: "_watchFormClosers",
-      value: function _watchFormClosers(pageElement, page) {
-        var _this = this;
-
-        page = 0;
-        formClosers.forEach(function (fc, i) {
-          fc.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            _this._closeTheForm(i, page, pageElement);
-          });
-        });
-      }
-    }, {
-      key: "_watchEntranceButtons",
-      value: function _watchEntranceButtons(person) {
-        console.log(person); //////////////////////////////
-        // Initialize Entrance Buttons.
-
-        var entranceButtons = [].concat((0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(document.querySelectorAll('.entrance-button')), [forgottenUsernameOrPasswordLink]);
-        entranceButtons.forEach(function (eb, i) {
-          if (eb) {
-            eb.addEventListener('click', function (e) {
-              e.preventDefault(); //////////////////////////////////////////////////////////////
-              // Login Form Opens From Here, & Goes Straight To The Backend.
-
-              forms[i].classList.toggle('form-container--open'); //////////////////////////////////////////////////////////////
-              // The Forgotten Form Link Is Placed With The Entrance Buttons.
-              //////////////////////////////////////////////////////////////
-              // Signup Form Opens Here.
-
-              if (i === 1) {
-                var formPages = document.querySelectorAll('.signup-form__form-page');
-
-                _Signup__WEBPACK_IMPORTED_MODULE_7__._setupSignupForm(signupFormPage, formPages, person);
-              }
-            });
-          }
-        });
-      }
-    }, {
-      key: "_startApp",
-      value: function _startApp() {
-        signupFormPage = 0;
-        console.log("App Has Started!");
-        var domSignupFormPageNumber = document.querySelector('.signup-form__form-page__section__page-number');
-        var newPerson = _Person__WEBPACK_IMPORTED_MODULE_10__.newPerson;
-        newPerson.latterDaySaint = isLatterDaySaint; // WATCH THE ENTRANCE BUTTONS
-
-        this._watchEntranceButtons(newPerson); // WATCH THE FORM CLOSING BUTTONS
-
-
-        this._watchFormClosers(domSignupFormPageNumber, signupFormPage); // WATCH LATTER DAY SAINT SWITCH
-
-
-        _Signup__WEBPACK_IMPORTED_MODULE_7__._watchTheSwitch(newPerson); // WATCH RESET BUTTON FOR PASSWORD RESETS
-
-
-        this._watchResetButton();
-      }
-    }]);
-
-    return App;
-  }();
-
-  var resetPasswordButton = document.querySelector('.reset-password-form__section__button');
-  var isLatterDaySaint = false;
-  var signupFormPage;
-  var formClosers = document.querySelectorAll('.form-close-icon');
-  var forms = document.querySelectorAll('.form-container');
-  var forgottenUsernameOrPasswordLink = document.querySelector('.login-form__section__forgot-username-or-password-link');
-  var app = new App();
-})();
-})();
-
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
+/******/ 	var __webpack_exports__ = __webpack_require__("./Public/JS/App.js");
+/******/ 	
 /******/ })()
 ;
 //# sourceMappingURL=Bundle.js.map

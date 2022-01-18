@@ -114,6 +114,20 @@ export const updateMe = async (options) => {
   }
 };
 
+////////////////////////////////////
+// Watch Button To Reset Password
+export const _watchPasswordResetButton = () => {
+  const resetPasswordButton = document.querySelector('.reset-password-form__section__button');
+  if (resetPasswordButton) {
+    resetPasswordButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      const newPassword = document.getElementById('newPassword').value;
+      const newPasswordConfirmed = document.getElementById('newPasswordConfirmed').value;
+      updatePassword(newPassword, newPasswordConfirmed);
+    });
+  }
+};
+
 export const deactivateMe = async () => {
   try {
     const response = await axios({

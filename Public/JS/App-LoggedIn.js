@@ -1,34 +1,18 @@
 import { getSomePersonals, updateMe, updateMyPassword, deactivateMe, deleteMe } from './Update-User';
 import { logout } from './Login';
 import * as Categories from './Budget-Categories';
+import * as Budget from './Budget-Creation';
 
 let commPreference;
 let latterDaySaint = false;
 
-const _getUserInfo = () => {
-  getSomePersonals();
-  latterDaySaint = user.latterDaySaint;
-};
+// const _getUserInfo = () => {
+//   getSomePersonals();
+//   latterDaySaint = user.latterDaySaint;
+// };
 
-const _changeCommPreference = () => {
-  if (commPreference === `Email`) {
-    return (commPreference = `Text`);
-  } else {
-    return (commPreference = `Email`);
-  }
-};
-
-const _openSubSections = (subSection, className) => {
-  subSection.classList.toggle(className);
-};
-
-const _togglePasswordSubSections = () => {
-  _openSubSections(userProfileSubSections[4], 'user-profile-form__section__sub-section--show');
-  _openSubSections(userProfileSubSections[5], 'user-profile-form__section__sub-section--show');
-  _openSubSections(userProfileSubSections[6], 'user-profile-form__section__sub-section--show');
-  _openSubSections(userProfileSubSections[7], 'user-profile-form__section__sub-section--show');
-};
-
+///////////////////////////////////////////////////
+// ALL ABOUT WATCHING USER PROFILE FORM BUTTONS
 export const _watchForProfileUpdates = () => {
   userProfileFormButtons.forEach((b, i) => {
     b.addEventListener('click', async (e) => {
@@ -98,11 +82,18 @@ export const _watchForProfileUpdates = () => {
   });
 };
 
-export const _watchPasswordSubSectionButtons = () => {
-  userProfilePasswordSubSectionButtons[0].addEventListener('click', (e) => {
-    e.preventDefault();
-    _togglePasswordSubSections();
-  });
+const formatPhoneNumber = (value) => {
+  if (!value) return value;
+  let phoneNumber = value.replace(/[^\d]/g, '');
+  let phoneNumberLength = phoneNumber.length;
+  if (phoneNumberLength <= 3) {
+    return phoneNumber;
+  }
+  if (phoneNumberLength >= 4 && phoneNumberLength < 7) {
+    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}`;
+  }
+  let formattedNumber = `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)} - ${phoneNumber.slice(6)}`;
+  return formattedNumber;
 };
 
 export const _watchPhoneNumberInputs = () => {
@@ -113,6 +104,25 @@ export const _watchPhoneNumberInputs = () => {
   userProfileSubInputs[3].addEventListener('keyup', (e) => {
     userProfileSubInputs[3].value = formatPhoneNumber(userProfileSubInputs[3].value);
   });
+};
+
+const _togglePasswordSubSections = () => {
+  _openSubSections(userProfileSubSections[4], 'user-profile-form__section__sub-section--show');
+  _openSubSections(userProfileSubSections[5], 'user-profile-form__section__sub-section--show');
+  _openSubSections(userProfileSubSections[6], 'user-profile-form__section__sub-section--show');
+  _openSubSections(userProfileSubSections[7], 'user-profile-form__section__sub-section--show');
+};
+
+export const _watchPasswordSubSectionButtons = () => {
+  userProfilePasswordSubSectionButtons[0].addEventListener('click', (e) => {
+    e.preventDefault();
+    _togglePasswordSubSections();
+  });
+};
+
+// Open User Profile Form Sub Sections
+const _openSubSections = (subSection, className) => {
+  subSection.classList.toggle(className);
 };
 
 export const _watchSubSectionButtons = () => {
@@ -132,6 +142,26 @@ export const _watchSubSectionButtons = () => {
     });
   });
 };
+
+//////////////////////////////////////////////////
+// ALL ABOUT WATCHING COMMUNICATION PREFERENCES
+const _changeCommPreference = () => {
+  if (commPreference === `Email`) {
+    return (commPreference = `Text`);
+  } else {
+    return (commPreference = `Email`);
+  }
+};
+
+export const _watchCommPreference = () => {
+  commSwitch.addEventListener('click', (e) => {
+    commSwitch.classList.toggle('user-profile-form__section__comm-switch--text-preferred');
+    _changeCommPreference();
+  });
+};
+
+////////////////////////////////////////////
+// ALL ABOUT WATCHING USER PROFILE BUTTONS
 
 const _watchLatterDaySaintSwitch = () => {
   latterDaySaintSwitch.addEventListener('click', (e) => {
@@ -169,10 +199,6 @@ export const _watchUserProfileButtons = () => {
             userProfileContainer.classList.remove('user-profile-container--open');
           });
           commPreference = `Email`;
-          commSwitch.addEventListener('click', (e) => {
-            e.preventDefault();
-            _changeCommPreference();
-          });
         }
         if (i === 2) {
           userProfileContainer.classList.add('user-profile-container--open');
@@ -191,25 +217,33 @@ export const _watchUserProfileButtons = () => {
   }
 };
 
-export const _watchCommPreference = () => {
-  commSwitch.addEventListener('click', (e) => {
-    commSwitch.classList.toggle('user-profile-form__section__comm-switch--text-preferred');
-  });
+const checkLoginStatus = (login, checkElement) => {
+  if (checkElement) {
+    return (login = !login);
+  }
 };
 
-const formatPhoneNumber = (value) => {
-  if (!value) return value;
-  let phoneNumber = value.replace(/[^\d]/g, '');
-  let phoneNumberLength = phoneNumber.length;
-  if (phoneNumberLength <= 3) {
-    return phoneNumber;
+export const _watchForLogin = (login) => {
+  const appViewport = document.querySelector('.app-viewport');
+  const status = checkLoginStatus(login, appViewport);
+  status === true ? console.log(`Logged In`) : console.log(`Logged Out`);
+  if (status === true) {
+    // WATCHING USER PROFILE NAVIGATION BUTTONS
+    _watchUserProfileButtons();
+    // WATCHING COMMUNICATION PREFERENCES
+    _watchCommPreference();
+    // WATCHING URSER PROFILE FORM BUTTONS
+    _watchSubSectionButtons();
+    _watchPasswordSubSectionButtons();
+    // WATCH FOR PHONE NUMBER UPDATES
+    _watchPhoneNumberInputs();
+    // WATCH FOR USER PROFILE UPDATES
+    _watchForProfileUpdates();
+    // WATCHING FOR CREATION OF BUDGETS
+    _watchBudgetCreation();
   }
-  if (phoneNumberLength >= 4 && phoneNumberLength < 7) {
-    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}`;
-  }
-  let formattedNumber = `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)} - ${phoneNumber.slice(6)}`;
-  return formattedNumber;
 };
+
 const iconContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
 let formattedNumber;
 const commSwitch = document.querySelector('.user-profile-form__section__comm-switch');

@@ -51,7 +51,7 @@ const _changeLatterDaySaintStatus = (lightSwitch, switchClass, person) => {
 };
 
 // Watching The Latter Day Saint Switch
-export const _watchTheSwitch = (person) => {
+export const _watchTheLatterDaySaintSwitch = (person) => {
   const latterDaySaint = document.querySelector('.signup-form__form-page__section__input--latter-day-saint');
   if (latterDaySaint) {
     latterDaySaint.addEventListener('click', (e) => {
