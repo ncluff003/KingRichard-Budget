@@ -1134,7 +1134,6 @@ export const createSubCategory = (categories, index, mainCategories) => {
     subCategories[subCategories.length - 1].insertAdjacentElement('afterend', subCategory);
   }
   categories[index].subCategories.push(new SubCategory({ title: `${subCategoryTitleElement.textContent}` }));
-  console.log(categories, mainCategories);
 };
 
 export const _addSubCategory = (categories, index, mainCategories) => {

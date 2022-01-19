@@ -1,43 +1,9 @@
 import * as Categories from './Budget-Categories';
 import * as Updating from './Update-User';
-let tithingSetting, clicked, selectedTiming;
-const grossOption = document.getElementById('grossOption');
-const netOption = document.getElementById('netOption');
-const surplusOption = document.getElementById('surplusOption');
-const grossOptionLabel = document.getElementById('grossOptionLabel');
-const netOptionLabel = document.getElementById('netOptionLabel');
-const surplusOptionLabel = document.getElementById('surplusOptionLabel');
-const tithingCheckboxes = [grossOption, netOption, surplusOption];
-const tithingOptions = [grossOptionLabel, netOptionLabel, surplusOptionLabel];
-const budgetContinueButton = document.querySelector('.budget-creation-form__page-mechanisms__submit-button');
 
-const tithingSection = document.querySelector('.tithing-section');
-if (tithingSection) {
-  tithingSection.addEventListener('click', (e) => {
-    const clicked = e.target;
-    if (e.target === grossOptionLabel) {
-      tithingOptions.forEach((t) => t.classList.remove('checked'));
-      clicked.classList.toggle('checked');
-      return (tithingSetting = `Gross`);
-    }
-    if (e.target === netOptionLabel) {
-      tithingOptions.forEach((t) => t.classList.remove('checked'));
-      clicked.classList.toggle('checked');
-      return (tithingSetting = `Net`);
-    }
-    if (e.target === surplusOptionLabel) {
-      tithingOptions.forEach((t) => t.classList.remove('checked'));
-      clicked.classList.toggle('checked');
-      return (tithingSetting = `Surplus`);
-    }
-  });
-}
-
-const emergencySettingLabels = document.querySelectorAll('.emergency-checkbox-label');
-const emergencyInputs = document.querySelectorAll('.emergency-input');
-let emergencyGoalSetting;
-
-export const _watchEmergencyGoalSettings = () => {
+export const _watchEmergencyGoalSettings = (setting) => {
+  const emergencySettingLabels = document.querySelectorAll('.emergency-checkbox-label');
+  const emergencyInputs = document.querySelectorAll('.emergency-input');
   emergencySettingLabels.forEach((esl, i) => {
     esl.addEventListener('click', (e) => {
       emergencySettingLabels.forEach((label) => {
@@ -48,19 +14,15 @@ export const _watchEmergencyGoalSettings = () => {
         ei.style.display = 'none';
       });
       esl.textContent === `Length Of Time` ? (emergencyInputs[1].style.display = `flex`) : (emergencyInputs[0].style.display = `flex`);
-      return (emergencyGoalSetting = esl.textContent);
+      return (setting = esl.textContent);
     });
   });
 };
-
-const budgetCreationFormPages = document.querySelectorAll('.budget-creation-form__page');
-const budgetCreationFormPagesNumber = budgetCreationFormPages.length;
 
 const checkUser = async () => {
   const userInfo = await Updating.getSomePersonals();
   const user = userInfo.data.data.user;
   return user;
-  // return user;
 };
 
 const getUserInformation = async () => {
@@ -74,7 +36,7 @@ const getUserInformation = async () => {
 // const userInfo = await Updating.getSomePersonals();
 // const user = userInfo.data.data.user;
 
-const buildSubCategories = (categories, index, secondaryIndex) => {
+const buildSubCategories = (categories, index, secondaryIndex, clickedItem) => {
   const timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
   /////////////////////////////////////////
   // SELECT SUB CATEGORY DISPLAY
@@ -108,11 +70,13 @@ const buildSubCategories = (categories, index, secondaryIndex) => {
     subCategoryTimingButton.classList.add('sub-category-display__sub-category__section__set-category-timing-button');
     subCategoryTimingButton.classList.add('r__sub-category-display__sub-category__section__set-category-timing-button');
     subCategoryTimingButton.textContent = `+ Timing`;
-    subCategoryTimingButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      timingFunctionContainer.classList.toggle('sub-category-display__timing-container__hidden');
-      clicked = e.target;
-    });
+    console.log(clickedItem);
+    // subCategoryTimingButton.addEventListener('click', (e) => {
+    //   e.preventDefault();
+    //   timingFunctionContainer.classList.toggle('sub-category-display__timing-container__hidden');
+    //   clickedItem = e.target;
+    //   console.log(clickedItem);
+    // });
     //////////////////////////////////////////
     // CREATE SUB CATEGORY TIMING DISPLAY
     if (sectionIndex === 0) {
@@ -172,39 +136,6 @@ const buildSubCategories = (categories, index, secondaryIndex) => {
     sectionIndex++;
   }
 };
-
-// const _addSubCategory = (categories, index) => {
-//   /////////////////////////////////////////////////
-//   // INITIALIZE NEEDED VARIABLES
-//   const mainCategoryTitle = document
-//     .querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__text')
-//     .textContent.toLowerCase();
-//   let categoryIndex;
-
-//   ////////////////////////////////////
-//   // GETTING THE MAIN CATEGORY INDEX
-//   Categories.budgetMainCategories.forEach((mc, i) => {
-//     if (mc.title.toLowerCase() === mainCategoryTitle) {
-//       categoryIndex = i;
-//       return categoryIndex;
-//     }
-//   });
-//   // Get Category Creation Input Value In Lowercase
-//   const subCategoryTitle = document.querySelector('.category-creation__input-container__input').value.toLowerCase();
-
-//   //////////////////////////////////////////
-//   // CHECKING SUB CATEGORIES VS INPUT VALUE
-//   const filtered = Categories.budgetMainCategories[categoryIndex].subCategories.filter((sc) => {
-//     if (sc.title.toLowerCase() === subCategoryTitle) {
-//       return sc;
-//     }
-//   });
-
-//   /////////////////////////////////////////////////
-//   // ALLOW ONLY ONE SUB CATEGORY WITH THAT NAME
-//   if (filtered.length >= 1) return;
-//   Categories.createSubCategory(categories, index);
-// };
 
 const calculateDayEnding = (day, dateEnding, input) => {
   if (day === 0 || day === 4 || day === 5 || day === 6 || day === 7 || day === 8 || day === 9) {
@@ -271,7 +202,33 @@ const insertTiiming = (target, inputValues, timing) => {
 
 /////////////////////////////////////////
 // WATCH FOR TIMING SETTING
-const watchForSettingTiming = (categories, index) => {
+const watchForSettingTiming = (categories, index, clickedItem, timing) => {
+  console.log(clickedItem);
+  // Getting the timing.
+  const monthlyTimingButton = document.querySelector('.sub-category-display__timing-container__monthly-container__button');
+  const biMonthlyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-monthly-container__button');
+  const biWeeklyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-weekly-container__button');
+  const weeklyTimingButton = document.querySelector('.sub-category-display__timing-container__weekly-container__button');
+  const timingInputButtons = [monthlyTimingButton, biMonthlyTimingButton, biWeeklyTimingButton, weeklyTimingButton];
+
+  timingInputButtons.forEach((tib, i) => {
+    tib.addEventListener('click', (e) => {
+      e.preventDefault();
+      timing = tib.firstChild.nextSibling.textContent;
+    });
+  });
+
+  const subCategoryTimingButtons = document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-button');
+  const timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
+  console.log(subCategoryTimingButtons);
+  subCategoryTimingButtons.forEach((sctb, i) => {
+    sctb.addEventListener('click', (e) => {
+      e.preventDefault();
+      timingFunctionContainer.classList.toggle('sub-category-display__timing-container__hidden');
+      clickedItem = e.target;
+      console.log(clickedItem, timing);
+    });
+  });
   const timingSubmitButtons = document.querySelectorAll('.timing-submit-button');
   timingSubmitButtons.forEach((tsb) => {
     tsb.addEventListener('click', (e) => {
@@ -280,17 +237,17 @@ const watchForSettingTiming = (categories, index) => {
       let timingArray = [];
       const oldMonthlyTiming = new Date(document.querySelector('.sub-category-display__timing-container__monthly-container__label__input').value);
       const monthlyTiming = new Date(oldMonthlyTiming.setHours(oldMonthlyTiming.getHours() + 7));
-      console.log(monthlyTiming);
-      const subCategoryIndex = [...document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-button')].indexOf(clicked);
+      console.log(monthlyTiming, clickedItem);
+      const subCategoryIndex = [...document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-button')].indexOf(clickedItem);
       const subCategoryTimingTarget = document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-text')[subCategoryIndex];
       console.log(subCategoryIndex);
-      console.log(typeof monthlyTiming);
-      if (selectedTiming === `Monthly`) {
+      console.log(typeof monthlyTiming, timing);
+      if (timing === `Monthly`) {
         timingArray = [];
         timingArray.push(monthlyTiming);
-        return insertTiiming(clicked, timingArray, selectedTiming);
+        return insertTiiming(clickedItem, timingArray, timing);
       }
-      if (selectedTiming === `Bi-Monthly`) {
+      if (timing === `Bi-Monthly`) {
         e.preventDefault();
         const oldTimingOne = new Date(document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input')[0].value);
         const oldTimingTwo = new Date(document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input')[1].value);
@@ -301,16 +258,16 @@ const watchForSettingTiming = (categories, index) => {
         timingArray.push(timingOne);
         timingArray.push(timingTwo);
         console.log(timingArray);
-        return insertTiiming(clicked, timingArray, selectedTiming);
+        return insertTiiming(clickedItem, timingArray, timing);
       }
 
-      if (selectedTiming === `Bi-Weekly`) {
+      if (timing === `Bi-Weekly`) {
         const oldBiWeeklyTiming = new Date(document.querySelector('.sub-category-display__timing-container__bi-weekly-container__label__input').value);
         const biWeeklyTiming = new Date(oldBiWeeklyTiming.setHours(oldBiWeeklyTiming.getHours() + 7));
         const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
         timingArray = [];
         timingArray.push(biWeeklyTiming);
-        return insertTiiming(clicked, timingArray, selectedTiming);
+        return insertTiiming(clickedItem, timingArray, timing);
       }
     });
   });
@@ -318,7 +275,7 @@ const watchForSettingTiming = (categories, index) => {
 
 /////////////////////////////////////////
 // SET UP TIMING FUNCTION CONTAINER
-const setupTimingFunctionContainer = (container) => {
+const setupTimingFunctionContainer = (container, timing) => {
   const closeTimingFunctionContainer = document.querySelector('.sub-category-display__timing-container__close');
   /////////////////////////////////////////
   // INITIALIZE VARIABLES FOR TIMING INPUTS
@@ -361,8 +318,6 @@ const setupTimingFunctionContainer = (container) => {
       });
     });
     tib.addEventListener('click', (e) => {
-      selectedTiming = tib.firstChild.nextSibling.textContent;
-      console.log(selectedTiming);
       timingFunctionPages.forEach((tfp, i) => {
         tfp.forEach((el) => {
           el.classList.add('element-hidden');
@@ -383,7 +338,7 @@ const getTimingContainerHeight = (categories, index) => {
   return `${(100 * categories[index].subCategories.length) / 10}rem`;
 };
 
-const setupGoalSetting = (categories, index) => {
+const setupGoalSetting = (categories, index, clickedItem, timing) => {
   const leftButton = document.querySelector('.left');
   const rightButton = document.querySelector('.right');
   const mainCategoryIcon = document.querySelector('.main-category-display__category-display__icon');
@@ -391,12 +346,13 @@ const setupGoalSetting = (categories, index) => {
   mainCategoryIcon.classList.add(categories[index].icon);
   mainCategoryTitle.textContent = categories[index].title;
 
+  console.log(clickedItem);
   categories.forEach((c, i) => {
     /////////////////////////////////////////
     // INITIALIZE INDEX FOR DATASET
     let dataIndex = i;
     c.subCategories.forEach((sc, i) => {
-      buildSubCategories(c.subCategories, i, dataIndex);
+      buildSubCategories(c.subCategories, i, dataIndex, clickedItem);
     });
   });
   const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
@@ -509,10 +465,10 @@ const setupSubCategoryCreation = (categories, index, mainCategories) => {
 
 /////////////////////////////////
 // GO TO PAGE
-const goToPage = (page) => {
-  budgetCreationFormPages.forEach((bp) => {
+const goToPage = (page, createBudgetPages) => {
+  createBudgetPages.forEach((bp) => {
     bp.classList.add('disappear');
-    budgetCreationFormPages[page].classList.remove('disappear');
+    createBudgetPages[page].classList.remove('disappear');
   });
 };
 
@@ -525,31 +481,68 @@ const getBudgetName = () => {
 
 /////////////////////////////////
 // SETUP PAGE
-const setupPage = (page) => {
-  goToPage(page);
-  setPageCount(page);
+const setupPage = (page, createBudgetPages, createBudgetPagesNumber) => {
+  goToPage(page, createBudgetPages);
+  setPageCount(page, createBudgetPagesNumber);
   return page;
 };
 
 /////////////////////////////////
 // SET CORRECT PAGE COUNT
-const setPageCount = (pageNumber) => {
+const setPageCount = (pageNumber, createBudgetPages) => {
   const page = document.querySelector('.budget-creation-form__page-mechanisms__page-number');
-  page.textContent = `Page ${pageNumber + 1} / ${budgetCreationFormPagesNumber}`;
+  page.textContent = `Page ${pageNumber + 1} / ${createBudgetPages}`;
 };
 
 // ////////////////////////////
 // // INITIALIZE KEY VARIABLES
 // let currentPage = 0;
 
+const _watchTIthingOptions = () => {
+  let tithingSetting;
+  const grossOption = document.getElementById('grossOption');
+  const netOption = document.getElementById('netOption');
+  const surplusOption = document.getElementById('surplusOption');
+  const grossOptionLabel = document.getElementById('grossOptionLabel');
+  const netOptionLabel = document.getElementById('netOptionLabel');
+  const surplusOptionLabel = document.getElementById('surplusOptionLabel');
+  const tithingCheckboxes = [grossOption, netOption, surplusOption];
+  const tithingOptions = [grossOptionLabel, netOptionLabel, surplusOptionLabel];
+  const tithingSection = document.querySelector('.tithing-section');
+  if (tithingSection) {
+    tithingSection.addEventListener('click', (e) => {
+      const clicked = e.target;
+      if (e.target === grossOptionLabel) {
+        tithingOptions.forEach((t) => t.classList.remove('checked'));
+        clicked.classList.toggle('checked');
+        return (tithingSetting = `Gross`);
+      }
+      if (e.target === netOptionLabel) {
+        tithingOptions.forEach((t) => t.classList.remove('checked'));
+        clicked.classList.toggle('checked');
+        return (tithingSetting = `Net`);
+      }
+      if (e.target === surplusOptionLabel) {
+        tithingOptions.forEach((t) => t.classList.remove('checked'));
+        clicked.classList.toggle('checked');
+        return (tithingSetting = `Surplus`);
+      }
+    });
+  }
+};
+
 export const _watchBudgetCreation = () => {
   ////////////////////////////
   // INITIALIZE KEY VARIABLES
+  const budgetCreationFormPages = document.querySelectorAll('.budget-creation-form__page');
+  const budgetCreationFormPagesNumber = budgetCreationFormPages.length;
   let currentPage = 0;
   let budgetMainCategories = [];
+  let emergencyGoalSetting, clicked, selectedTiming;
+  const budgetContinueButton = document.querySelector('.budget-creation-form__page-mechanisms__submit-button');
   //////////////////////////////////////////////////////////////
   // SET APPROPRIATE PAGE NUMBER DEPENDING ON USER INFORMATION
-  setPageCount(currentPage);
+  setPageCount(currentPage, budgetCreationFormPagesNumber);
   ////////////////////////////////////////////////
   // INITIALIZE KEY VARIABLES INSIDE FUNCTION SCOPE
   let budgetName, mainCategories;
@@ -559,7 +552,7 @@ export const _watchBudgetCreation = () => {
     e.preventDefault();
     let budgetInfo = {};
     currentPage++;
-    setupPage(currentPage);
+    setupPage(currentPage, budgetCreationFormPages, budgetCreationFormPagesNumber);
     //////////////////////////////
     // ASSIGN BUDGET INFORMATION
     /////////////////////
@@ -589,12 +582,19 @@ export const _watchBudgetCreation = () => {
       setupSubCategoryCreation(budgetInfo.mainCategories, subCategoryIndex, budgetMainCategories);
     }
     if (currentPage + 1 === 4 && user.latterDaySaint === false) {
-      setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex);
-      watchForSettingTiming(budgetInfo.mainCategories, subCategoryIndex);
+      setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex, clicked, selectedTiming);
+      watchForSettingTiming(budgetInfo.mainCategories, subCategoryIndex, clicked, selectedTiming);
+    }
+    if (currentPage + 1 === 5 && user.latterDaySaint === false) {
+      _watchEmergencyGoalSettings(emergencyGoalSetting);
     }
 
     /////////////////////////////
     // IF LATTER DAY SAINT
+    if (currentPage + 1 === 2 && user.latterDaySaint === true) {
+      console.log(`Tithing Options`);
+      _watchTIthingOptions();
+    }
     if (currentPage + 1 === 3 && user.latterDaySaint === true) {
       Categories.createCategories(icon);
       Categories._watchCreateCategoryButton(icon, budgetMainCategories);
@@ -603,8 +603,11 @@ export const _watchBudgetCreation = () => {
       setupSubCategoryCreation(budgetInfo.mainCategories, subCategoryIndex, budgetMainCategories);
     }
     if (currentPage + 1 === 5 && user.latterDaySaint === true) {
-      setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex);
-      watchForSettingTiming(budgetInfo.mainCategories, subCategoryIndex);
+      setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex, clicked, selectedTiming);
+      watchForSettingTiming(budgetInfo.mainCategories, subCategoryIndex, clicked, selectedTiming);
+    }
+    if (currentPage + 1 === 6 && user.latterDaySaint === true) {
+      _watchEmergencyGoalSettings(emergencyGoalSetting);
     }
   });
 };

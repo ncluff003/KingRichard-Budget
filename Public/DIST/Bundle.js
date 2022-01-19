@@ -4686,8 +4686,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 ////////////////////////////////
 // ICONS FOR MAIN CATEGORIES
-var icons = ["address-book", "address-card", "adjust", "air-freshener", "align-center", "align-justify", "align-left", "align-right", "allergies", "ambulance", "american-sign-language-interpreting", "anchor", "angle-double-down", "angle-double-left", "angle-double-right", "angle-double-up", "angle-down", "angle-left", "angle-right", "angle-up", "angry", "ankh", "apple-alt", "archive", "archway", "arrow-alt-circle-down", "arrow-alt-circle-left", "arrow-alt-circle-right", "arrow-alt-circle-up", "arrow-down", "arrow-left", "arrow-right", "arrows-alt", "arrows-alt-h", "arrows-alt-v", "arrow-up", "assistive-listening-systems", "asterisk", "at", "atlas", "atom", "baby-carriage", "backspace", "backward", "bacon", "bahai", "balance-scale", "balance-scale-left", "balance-scale-right", "ban", "band-aid", "barcode", "bars", "baseball-ball", "basketball-ball", "bath", "battery-empty", "battery-full", "battery-half", "battery-quarter", "battery-three-quarters", "bed", "beer", "bell", "bell-slash", "bezier-curve", "bible", "bicycle", "biking", "binoculars", "biohazard", "birthday-cake", "blender", "blender-phone", "blind", "blog", "bold", "bolt", "bomb", "bone", "bong", "book", "book-dead", "bookmark", "book-medical", "book-open", "book-reader", "border-all", "border-none", "border-style", "bowling-ball", "box", "boxes", "box-open", "braille", "brain", "bread-slice", "briefcase", "briefcase-medical", "broadcast-tower", "broom", "brush", "bug", "building", "bullhorn", "bullseye", "burn", "bus", "bus-alt", "business-time", "calculator", "calendar", "calendar-alt", "calendar-check", "calendar-day", "calendar-minus", "calendar-plus", "calendar-times", "calendar-week", "camera", "camera-retro", "campground", "candy-cane", "cannabis", "capsules", "car", "car-alt", "caravan", "car-battery", "car-crash", "caret-down", "caret-left", "caret-right", "caret-square-down", "caret-square-left", "caret-square-right", "caret-square-up", "caret-up", "carrot", "car-side", "cart-arrow-down", "cart-plus", "cash-register", "cat", "certificate", "chair", "chalkboard", "chalkboard-teacher", "charging-station", "chart-area", "chart-bar", "chart-line", "chart-pie", "check", "check-circle", "check-double", "check-square", "cheese", "chess", "chess-bishop", "chess-board", "chess-king", "chess-knight", "chess-pawn", "chess-queen", "chess-rook", "chevron-circle-down", "chevron-circle-left", "chevron-circle-right", "chevron-circle-up", "chevron-down", "chevron-left", "chevron-right", "chevron-up", "child", "church", "circle", "circle-notch", "city", "clinic-medical", "clipboard", "clipboard-check", "clipboard-list", "clock", "clone", "closed-captioning", "cloud", "cloud-download-alt", "cloud-meatball", "cloud-moon", "cloud-moon-rain", "cloud-rain", "cloud-showers-heavy", "cloud-sun", "cloud-sun-rain", "cocktail", "code", "code-branch", "coffee", "cog", "cogs", "coins", "columns", "comment", "comment-alt", "comment-dollar", "comment-dots", "comment-medical", "comments", "comments-dollar", "comment-slash", "compact-disc", "compress", "compress-alt", "compress-arrows-alt", "concierge-bell", "cookie", "cookie-bite", "copy", "copyright", "couch", "credit-card", "crop", "crop-alt", "cross", "crosshairs", "crow", "crown", "crutch", "cube", "cubes", "cut", "database", "deaf", "democrat", "desktop", "dharmachakra", "diagnoses", "dice", "dice-d6", "dice-d20", "dice-five", "dice-four", "dice-one", "dice-six", "dice-three", "dice-two", "digital-tachograph", "directions", "divide", "dizzy", "dna", "dog", "dollar-sign", "dolly", "dolly-flatbed", "donate", "door-closed", "door-open", "dot-circle", "dove", "download", "drafting-compass", "dragon", "draw-polygon", "drum", "drum-steelpan", "drumstick-bite", "dumbbell", "dumpster", "dumpster-fire", "dungeon", "edit", "egg", "eject", "ellipsis-h", "ellipsis-v", "envelope", "envelope-open", "envelope-open-text", "envelope-square", "equals", "eraser", "ethernet", "euro-sign", "exchange-alt", "exclamation", "exclamation-circle", "exclamation-triangle", "expand", "expand-alt", "expand-arrows-alt", "external-link-alt", "external-link-square-alt", "eye", "eye-dropper", "eye-slash", "fan", "fast-backward", "fast-forward", "fax", "feather", "feather-alt", "female", "fighter-jet", "file", "file-alt", "file-archive", "file-audio", "file-code", "file-contract", "file-csv", "file-download", "file-excel", "file-export", "file-image", "file-import", "file-invoice", "file-invoice-dollar", "file-medical", "file-medical-alt", "file-pdf", "file-powerpoint", "file-prescription", "file-signature", "file-upload", "file-video", "file-word", "fill", "fill-drip", "film", "filter", "fingerprint", "fire", "fire-alt", "fire-extinguisher", "first-aid", "fish", "fist-raised", "flag", "flag-checkered", "flag-usa", "flask", "flushed", "folder", "folder-minus", "folder-open", "folder-plus", "font", "football-ball", "forward", "frog", "frown", "frown-open", "funnel-dollar", "futbol", "gamepad", "gas-pump", "gavel", "gem", "genderless", "ghost", "gift", "gifts", "glass-cheers", "glasses", "glass-martini", "glass-martini-alt", "glass-whiskey", "globe", "globe-africa", "globe-americas", "globe-asia", "globe-europe", "golf-ball", "gopuram", "graduation-cap", "greater-than", "greater-than-equal", "grimace", "grin", "grin-alt", "grin-beam", "grin-beam-sweat", "grin-hearts", "grin-squint", "grin-squint-tears", "grin-stars", "grin-tears", "grin-tongue", "grin-tongue-squint", "grin-tongue-wink", "grin-wink", "grip-horizontal", "grip-lines", "grip-lines-vertical", "grip-vertical", "guitar", "hamburger", "hammer", "hamsa", "hand-holding", "hand-holding-heart", "hand-holding-usd", "hand-lizard", "hand-middle-finger", "hand-paper", "hand-peace", "hand-point-down", "hand-pointer", "hand-point-left", "hand-point-right", "hand-point-up", "hand-rock", "hands", "hand-scissors", "handshake", "hands-helping", "hand-spock", "hanukiah", "hard-hat", "hashtag", "hat-cowboy", "hat-cowboy-side", "hat-wizard", "hdd", "heading", "headphones", "headphones-alt", "headset", "heart", "heartbeat", "heart-broken", "helicopter", "highlighter", "hiking", "hippo", "history", "hockey-puck", "holly-berry", "home", "horse", "horse-head", "hospital", "hospital-alt", "hospital-symbol", "hotdog", "hotel", "hot-tub", "hourglass", "hourglass-end", "hourglass-half", "hourglass-start", "house-damage", "hryvnia", "h-square", "ice-cream", "icicles", "icons", "i-cursor", "id-badge", "id-card", "id-card-alt", "igloo", "image", "images", "inbox", "indent", "industry", "infinity", "info", "info-circle", "italic", "jedi", "joint", "journal-whills", "kaaba", "key", "keyboard", "khanda", "kiss", "kiss-beam", "kiss-wink-heart", "kiwi-bird", "landmark", "language", "laptop", "laptop-code", "laptop-medical", "laugh", "laugh-beam", "laugh-squint", "laugh-wink", "layer-group", "leaf", "lemon", "less-than", "less-than-equal", "level-down-alt", "level-up-alt", "life-ring", "lightbulb", "link", "lira-sign", "list", "list-alt", "list-ol", "list-ul", "location-arrow", "lock", "lock-open", "long-arrow-alt-down", "long-arrow-alt-left", "long-arrow-alt-right", "long-arrow-alt-up", "low-vision", "luggage-cart", "magic", "magnet", "mail-bulk", "male", "map", "map-marked", "map-marked-alt", "map-marker", "map-marker-alt", "map-pin", "map-signs", "marker", "mars", "mars-double", "mars-stroke", "mars-stroke-h", "mars-stroke-v", "mask", "medal", "medkit", "meh", "meh-blank", "meh-rolling-eyes", "memory", "menorah", "mercury", "meteor", "microchip", "microphone", "microphone-alt", "microphone-alt-slash", "microphone-slash", "microscope", "minus", "minus-circle", "minus-square", "mitten", "mobile", "mobile-alt", "money-bill", "money-bill-alt", "money-bill-wave", "money-bill-wave-alt", "money-check", "money-check-alt", "monument", "moon", "mortar-pestle", "mosque", "motorcycle", "mountain", "mouse", "mouse-pointer", "mug-hot", "music", "network-wired", "neuter", "newspaper", "not-equal", "notes-medical", "object-group", "object-ungroup", "oil-can", "om", "otter", "outdent", "pager", "paint-brush", "paint-roller", "palette", "pallet", "paperclip", "paper-plane", "parachute-box", "paragraph", "parking", "passport", "pastafarianism", "paste", "pause", "pause-circle", "paw", "peace", "pen", "pen-alt", "pencil-alt", "pencil-ruler", "pen-fancy", "pen-nib", "pen-square", "people-carry", "pepper-hot", "percent", "percentage", "person-booth", "phone", "phone-alt", "phone-slash", "phone-square", "phone-square-alt", "phone-volume", "photo-video", "piggy-bank", "pills", "pizza-slice", "place-of-worship", "plane", "plane-arrival", "plane-departure", "play", "play-circle", "plug", "plus", "plus-circle", "plus-square", "podcast", "poll", "poll-h", "poo", "poop", "poo-storm", "portrait", "pound-sign", "power-off", "pray", "praying-hands", "prescription", "prescription-bottle", "prescription-bottle-alt", "print", "procedures", "project-diagram", "puzzle-piece", "qrcode", "question", "question-circle", "quidditch", "quote-left", "quote-right", "quran", "radiation", "radiation-alt", "rainbow", "random", "receipt", "record-vinyl", "recycle", "redo", "redo-alt", "registered", "remove-format", "reply", "reply-all", "republican", "restroom", "retweet", "ribbon", "ring", "road", "robot", "rocket", "route", "rss", "rss-square", "ruble-sign", "ruler", "ruler-combined", "ruler-horizontal", "ruler-vertical", "running", "rupee-sign", "sad-cry", "sad-tear", "satellite", "satellite-dish", "save", "school", "screwdriver", "scroll", "sd-card", "search", "search-dollar", "search-location", "search-minus", "search-plus", "seedling", "server", "shapes", "share", "share-alt", "share-alt-square", "share-square", "shekel-sign", "shield-alt", "ship", "shipping-fast", "shoe-prints", "shopping-bag", "shopping-basket", "shopping-cart", "shower", "shuttle-van", "sign", "signal", "signature", "sign-in-alt", "sign-language", "sign-out-alt", "sim-card", "sitemap", "skating", "skiing", "skiing-nordic", "skull", "skull-crossbones", "slash", "sleigh", "sliders-h", "smile", "smile-beam", "smile-wink", "smog", "smoking", "smoking-ban", "sms", "snowboarding", "snowflake", "snowman", "snowplow", "socks", "solar-panel", "sort", "sort-alpha-down", "sort-alpha-down-alt", "sort-alpha-up", "sort-alpha-up-alt", "sort-amount-down", "sort-amount-down-alt", "sort-amount-up", "sort-amount-up-alt", "sort-down", "sort-numeric-down", "sort-numeric-down-alt", "sort-numeric-up", "sort-numeric-up-alt", "sort-up", "spa", "space-shuttle", "spell-check", "spider", "spinner", "splotch", "spray-can", "square", "square-full", "square-root-alt", "stamp", "star", "star-and-crescent", "star-half", "star-half-alt", "star-of-david", "star-of-life", "step-backward", "step-forward", "stethoscope", "sticky-note", "stop", "stop-circle", "stopwatch", "store", "store-alt", "stream", "street-view", "strikethrough", "stroopwafel", "subscript", "subway", "suitcase", "suitcase-rolling", "sun", "superscript", "surprise", "swatchbook", "swimmer", "swimming-pool", "synagogue", "sync", "sync-alt", "syringe", "table", "tablet", "tablet-alt", "table-tennis", "tablets", "tachometer-alt", "tag", "tags", "tape", "tasks", "taxi", "teeth", "teeth-open", "temperature-high", "temperature-low", "tenge", "terminal", "text-height", "text-width", "th", "theater-masks", "thermometer", "thermometer-empty", "thermometer-full", "thermometer-half", "thermometer-quarter", "thermometer-three-quarters", "th-large", "th-list", "thumbs-down", "thumbs-up", "thumbtack", "ticket-alt", "times", "times-circle", "tint", "tint-slash", "tired", "toggle-off", "toggle-on", "toilet", "toilet-paper", "toolbox", "tools", "tooth", "torah", "torii-gate", "tractor", "trademark", "traffic-light", "trailer", "train", "tram", "transgender", "transgender-alt", "trash", "trash-alt", "trash-restore", "trash-restore-alt", "tree", "trophy", "truck", "truck-loading", "truck-monster", "truck-moving", "truck-pickup", "tshirt", "tty", "tv", "umbrella", "umbrella-beach", "underline", "undo", "undo-alt", "universal-access", "university", "unlink", "unlock", "unlock-alt", "upload", "user", "user-alt", "user-alt-slash", "user-astronaut", "user-check", "user-circle", "user-clock", "user-cog", "user-edit", "user-friends", "user-graduate", "user-injured", "user-lock", "user-md", "user-minus", "user-ninja", "user-nurse", "user-plus", "users", "users-cog", "user-secret", "user-shield", "user-slash", "user-tag", "user-tie", "user-times", "utensils", "utensil-spoon", "vector-square", "venus", "venus-double", "venus-mars", "vial", "vials", "video", "video-slash", "vihara", "voicemail", "volleyball-ball", "volume-down", "volume-mute", "volume-off", "volume-up", "vote-yea", "vr-cardboard", "walking", "wallet", "warehouse", "water", "wave-square", "weight", "weight-hanging", "wheelchair", "wifi", "wind", "window-close", "window-maximize", "window-minimize", "window-restore", "wine-bottle", "wine-glass", "wine-glass-alt", "won-sign", "wrench", "x-ray", "yen-sign", "yin-yang"]; // export let budgetMainCategories = [];
-////////////////////////////////////////
+var icons = ["address-book", "address-card", "adjust", "air-freshener", "align-center", "align-justify", "align-left", "align-right", "allergies", "ambulance", "american-sign-language-interpreting", "anchor", "angle-double-down", "angle-double-left", "angle-double-right", "angle-double-up", "angle-down", "angle-left", "angle-right", "angle-up", "angry", "ankh", "apple-alt", "archive", "archway", "arrow-alt-circle-down", "arrow-alt-circle-left", "arrow-alt-circle-right", "arrow-alt-circle-up", "arrow-down", "arrow-left", "arrow-right", "arrows-alt", "arrows-alt-h", "arrows-alt-v", "arrow-up", "assistive-listening-systems", "asterisk", "at", "atlas", "atom", "baby-carriage", "backspace", "backward", "bacon", "bahai", "balance-scale", "balance-scale-left", "balance-scale-right", "ban", "band-aid", "barcode", "bars", "baseball-ball", "basketball-ball", "bath", "battery-empty", "battery-full", "battery-half", "battery-quarter", "battery-three-quarters", "bed", "beer", "bell", "bell-slash", "bezier-curve", "bible", "bicycle", "biking", "binoculars", "biohazard", "birthday-cake", "blender", "blender-phone", "blind", "blog", "bold", "bolt", "bomb", "bone", "bong", "book", "book-dead", "bookmark", "book-medical", "book-open", "book-reader", "border-all", "border-none", "border-style", "bowling-ball", "box", "boxes", "box-open", "braille", "brain", "bread-slice", "briefcase", "briefcase-medical", "broadcast-tower", "broom", "brush", "bug", "building", "bullhorn", "bullseye", "burn", "bus", "bus-alt", "business-time", "calculator", "calendar", "calendar-alt", "calendar-check", "calendar-day", "calendar-minus", "calendar-plus", "calendar-times", "calendar-week", "camera", "camera-retro", "campground", "candy-cane", "cannabis", "capsules", "car", "car-alt", "caravan", "car-battery", "car-crash", "caret-down", "caret-left", "caret-right", "caret-square-down", "caret-square-left", "caret-square-right", "caret-square-up", "caret-up", "carrot", "car-side", "cart-arrow-down", "cart-plus", "cash-register", "cat", "certificate", "chair", "chalkboard", "chalkboard-teacher", "charging-station", "chart-area", "chart-bar", "chart-line", "chart-pie", "check", "check-circle", "check-double", "check-square", "cheese", "chess", "chess-bishop", "chess-board", "chess-king", "chess-knight", "chess-pawn", "chess-queen", "chess-rook", "chevron-circle-down", "chevron-circle-left", "chevron-circle-right", "chevron-circle-up", "chevron-down", "chevron-left", "chevron-right", "chevron-up", "child", "church", "circle", "circle-notch", "city", "clinic-medical", "clipboard", "clipboard-check", "clipboard-list", "clock", "clone", "closed-captioning", "cloud", "cloud-download-alt", "cloud-meatball", "cloud-moon", "cloud-moon-rain", "cloud-rain", "cloud-showers-heavy", "cloud-sun", "cloud-sun-rain", "cocktail", "code", "code-branch", "coffee", "cog", "cogs", "coins", "columns", "comment", "comment-alt", "comment-dollar", "comment-dots", "comment-medical", "comments", "comments-dollar", "comment-slash", "compact-disc", "compress", "compress-alt", "compress-arrows-alt", "concierge-bell", "cookie", "cookie-bite", "copy", "copyright", "couch", "credit-card", "crop", "crop-alt", "cross", "crosshairs", "crow", "crown", "crutch", "cube", "cubes", "cut", "database", "deaf", "democrat", "desktop", "dharmachakra", "diagnoses", "dice", "dice-d6", "dice-d20", "dice-five", "dice-four", "dice-one", "dice-six", "dice-three", "dice-two", "digital-tachograph", "directions", "divide", "dizzy", "dna", "dog", "dollar-sign", "dolly", "dolly-flatbed", "donate", "door-closed", "door-open", "dot-circle", "dove", "download", "drafting-compass", "dragon", "draw-polygon", "drum", "drum-steelpan", "drumstick-bite", "dumbbell", "dumpster", "dumpster-fire", "dungeon", "edit", "egg", "eject", "ellipsis-h", "ellipsis-v", "envelope", "envelope-open", "envelope-open-text", "envelope-square", "equals", "eraser", "ethernet", "euro-sign", "exchange-alt", "exclamation", "exclamation-circle", "exclamation-triangle", "expand", "expand-alt", "expand-arrows-alt", "external-link-alt", "external-link-square-alt", "eye", "eye-dropper", "eye-slash", "fan", "fast-backward", "fast-forward", "fax", "feather", "feather-alt", "female", "fighter-jet", "file", "file-alt", "file-archive", "file-audio", "file-code", "file-contract", "file-csv", "file-download", "file-excel", "file-export", "file-image", "file-import", "file-invoice", "file-invoice-dollar", "file-medical", "file-medical-alt", "file-pdf", "file-powerpoint", "file-prescription", "file-signature", "file-upload", "file-video", "file-word", "fill", "fill-drip", "film", "filter", "fingerprint", "fire", "fire-alt", "fire-extinguisher", "first-aid", "fish", "fist-raised", "flag", "flag-checkered", "flag-usa", "flask", "flushed", "folder", "folder-minus", "folder-open", "folder-plus", "font", "football-ball", "forward", "frog", "frown", "frown-open", "funnel-dollar", "futbol", "gamepad", "gas-pump", "gavel", "gem", "genderless", "ghost", "gift", "gifts", "glass-cheers", "glasses", "glass-martini", "glass-martini-alt", "glass-whiskey", "globe", "globe-africa", "globe-americas", "globe-asia", "globe-europe", "golf-ball", "gopuram", "graduation-cap", "greater-than", "greater-than-equal", "grimace", "grin", "grin-alt", "grin-beam", "grin-beam-sweat", "grin-hearts", "grin-squint", "grin-squint-tears", "grin-stars", "grin-tears", "grin-tongue", "grin-tongue-squint", "grin-tongue-wink", "grin-wink", "grip-horizontal", "grip-lines", "grip-lines-vertical", "grip-vertical", "guitar", "hamburger", "hammer", "hamsa", "hand-holding", "hand-holding-heart", "hand-holding-usd", "hand-lizard", "hand-middle-finger", "hand-paper", "hand-peace", "hand-point-down", "hand-pointer", "hand-point-left", "hand-point-right", "hand-point-up", "hand-rock", "hands", "hand-scissors", "handshake", "hands-helping", "hand-spock", "hanukiah", "hard-hat", "hashtag", "hat-cowboy", "hat-cowboy-side", "hat-wizard", "hdd", "heading", "headphones", "headphones-alt", "headset", "heart", "heartbeat", "heart-broken", "helicopter", "highlighter", "hiking", "hippo", "history", "hockey-puck", "holly-berry", "home", "horse", "horse-head", "hospital", "hospital-alt", "hospital-symbol", "hotdog", "hotel", "hot-tub", "hourglass", "hourglass-end", "hourglass-half", "hourglass-start", "house-damage", "hryvnia", "h-square", "ice-cream", "icicles", "icons", "i-cursor", "id-badge", "id-card", "id-card-alt", "igloo", "image", "images", "inbox", "indent", "industry", "infinity", "info", "info-circle", "italic", "jedi", "joint", "journal-whills", "kaaba", "key", "keyboard", "khanda", "kiss", "kiss-beam", "kiss-wink-heart", "kiwi-bird", "landmark", "language", "laptop", "laptop-code", "laptop-medical", "laugh", "laugh-beam", "laugh-squint", "laugh-wink", "layer-group", "leaf", "lemon", "less-than", "less-than-equal", "level-down-alt", "level-up-alt", "life-ring", "lightbulb", "link", "lira-sign", "list", "list-alt", "list-ol", "list-ul", "location-arrow", "lock", "lock-open", "long-arrow-alt-down", "long-arrow-alt-left", "long-arrow-alt-right", "long-arrow-alt-up", "low-vision", "luggage-cart", "magic", "magnet", "mail-bulk", "male", "map", "map-marked", "map-marked-alt", "map-marker", "map-marker-alt", "map-pin", "map-signs", "marker", "mars", "mars-double", "mars-stroke", "mars-stroke-h", "mars-stroke-v", "mask", "medal", "medkit", "meh", "meh-blank", "meh-rolling-eyes", "memory", "menorah", "mercury", "meteor", "microchip", "microphone", "microphone-alt", "microphone-alt-slash", "microphone-slash", "microscope", "minus", "minus-circle", "minus-square", "mitten", "mobile", "mobile-alt", "money-bill", "money-bill-alt", "money-bill-wave", "money-bill-wave-alt", "money-check", "money-check-alt", "monument", "moon", "mortar-pestle", "mosque", "motorcycle", "mountain", "mouse", "mouse-pointer", "mug-hot", "music", "network-wired", "neuter", "newspaper", "not-equal", "notes-medical", "object-group", "object-ungroup", "oil-can", "om", "otter", "outdent", "pager", "paint-brush", "paint-roller", "palette", "pallet", "paperclip", "paper-plane", "parachute-box", "paragraph", "parking", "passport", "pastafarianism", "paste", "pause", "pause-circle", "paw", "peace", "pen", "pen-alt", "pencil-alt", "pencil-ruler", "pen-fancy", "pen-nib", "pen-square", "people-carry", "pepper-hot", "percent", "percentage", "person-booth", "phone", "phone-alt", "phone-slash", "phone-square", "phone-square-alt", "phone-volume", "photo-video", "piggy-bank", "pills", "pizza-slice", "place-of-worship", "plane", "plane-arrival", "plane-departure", "play", "play-circle", "plug", "plus", "plus-circle", "plus-square", "podcast", "poll", "poll-h", "poo", "poop", "poo-storm", "portrait", "pound-sign", "power-off", "pray", "praying-hands", "prescription", "prescription-bottle", "prescription-bottle-alt", "print", "procedures", "project-diagram", "puzzle-piece", "qrcode", "question", "question-circle", "quidditch", "quote-left", "quote-right", "quran", "radiation", "radiation-alt", "rainbow", "random", "receipt", "record-vinyl", "recycle", "redo", "redo-alt", "registered", "remove-format", "reply", "reply-all", "republican", "restroom", "retweet", "ribbon", "ring", "road", "robot", "rocket", "route", "rss", "rss-square", "ruble-sign", "ruler", "ruler-combined", "ruler-horizontal", "ruler-vertical", "running", "rupee-sign", "sad-cry", "sad-tear", "satellite", "satellite-dish", "save", "school", "screwdriver", "scroll", "sd-card", "search", "search-dollar", "search-location", "search-minus", "search-plus", "seedling", "server", "shapes", "share", "share-alt", "share-alt-square", "share-square", "shekel-sign", "shield-alt", "ship", "shipping-fast", "shoe-prints", "shopping-bag", "shopping-basket", "shopping-cart", "shower", "shuttle-van", "sign", "signal", "signature", "sign-in-alt", "sign-language", "sign-out-alt", "sim-card", "sitemap", "skating", "skiing", "skiing-nordic", "skull", "skull-crossbones", "slash", "sleigh", "sliders-h", "smile", "smile-beam", "smile-wink", "smog", "smoking", "smoking-ban", "sms", "snowboarding", "snowflake", "snowman", "snowplow", "socks", "solar-panel", "sort", "sort-alpha-down", "sort-alpha-down-alt", "sort-alpha-up", "sort-alpha-up-alt", "sort-amount-down", "sort-amount-down-alt", "sort-amount-up", "sort-amount-up-alt", "sort-down", "sort-numeric-down", "sort-numeric-down-alt", "sort-numeric-up", "sort-numeric-up-alt", "sort-up", "spa", "space-shuttle", "spell-check", "spider", "spinner", "splotch", "spray-can", "square", "square-full", "square-root-alt", "stamp", "star", "star-and-crescent", "star-half", "star-half-alt", "star-of-david", "star-of-life", "step-backward", "step-forward", "stethoscope", "sticky-note", "stop", "stop-circle", "stopwatch", "store", "store-alt", "stream", "street-view", "strikethrough", "stroopwafel", "subscript", "subway", "suitcase", "suitcase-rolling", "sun", "superscript", "surprise", "swatchbook", "swimmer", "swimming-pool", "synagogue", "sync", "sync-alt", "syringe", "table", "tablet", "tablet-alt", "table-tennis", "tablets", "tachometer-alt", "tag", "tags", "tape", "tasks", "taxi", "teeth", "teeth-open", "temperature-high", "temperature-low", "tenge", "terminal", "text-height", "text-width", "th", "theater-masks", "thermometer", "thermometer-empty", "thermometer-full", "thermometer-half", "thermometer-quarter", "thermometer-three-quarters", "th-large", "th-list", "thumbs-down", "thumbs-up", "thumbtack", "ticket-alt", "times", "times-circle", "tint", "tint-slash", "tired", "toggle-off", "toggle-on", "toilet", "toilet-paper", "toolbox", "tools", "tooth", "torah", "torii-gate", "tractor", "trademark", "traffic-light", "trailer", "train", "tram", "transgender", "transgender-alt", "trash", "trash-alt", "trash-restore", "trash-restore-alt", "tree", "trophy", "truck", "truck-loading", "truck-monster", "truck-moving", "truck-pickup", "tshirt", "tty", "tv", "umbrella", "umbrella-beach", "underline", "undo", "undo-alt", "universal-access", "university", "unlink", "unlock", "unlock-alt", "upload", "user", "user-alt", "user-alt-slash", "user-astronaut", "user-check", "user-circle", "user-clock", "user-cog", "user-edit", "user-friends", "user-graduate", "user-injured", "user-lock", "user-md", "user-minus", "user-ninja", "user-nurse", "user-plus", "users", "users-cog", "user-secret", "user-shield", "user-slash", "user-tag", "user-tie", "user-times", "utensils", "utensil-spoon", "vector-square", "venus", "venus-double", "venus-mars", "vial", "vials", "video", "video-slash", "vihara", "voicemail", "volleyball-ball", "volume-down", "volume-mute", "volume-off", "volume-up", "vote-yea", "vr-cardboard", "walking", "wallet", "warehouse", "water", "wave-square", "weight", "weight-hanging", "wheelchair", "wifi", "wind", "window-close", "window-maximize", "window-minimize", "window-restore", "wine-bottle", "wine-glass", "wine-glass-alt", "won-sign", "wrench", "x-ray", "yen-sign", "yin-yang"]; ////////////////////////////////////////
 // CATEGORY -- PARENT CLASS
 
 var Category = function Category(options) {
@@ -4885,7 +4884,6 @@ var createSubCategory = function createSubCategory(categories, index, mainCatego
   categories[index].subCategories.push(new SubCategory({
     title: "".concat(subCategoryTitleElement.textContent)
   }));
-  console.log(categories, mainCategories);
 };
 var _addSubCategory = function _addSubCategory(categories, index, mainCategories) {
   /////////////////////////////////////////////////
@@ -5159,52 +5157,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var tithingSetting, clicked, selectedTiming;
-var grossOption = document.getElementById('grossOption');
-var netOption = document.getElementById('netOption');
-var surplusOption = document.getElementById('surplusOption');
-var grossOptionLabel = document.getElementById('grossOptionLabel');
-var netOptionLabel = document.getElementById('netOptionLabel');
-var surplusOptionLabel = document.getElementById('surplusOptionLabel');
-var tithingCheckboxes = [grossOption, netOption, surplusOption];
-var tithingOptions = [grossOptionLabel, netOptionLabel, surplusOptionLabel];
-var budgetContinueButton = document.querySelector('.budget-creation-form__page-mechanisms__submit-button');
-var tithingSection = document.querySelector('.tithing-section');
-
-if (tithingSection) {
-  tithingSection.addEventListener('click', function (e) {
-    var clicked = e.target;
-
-    if (e.target === grossOptionLabel) {
-      tithingOptions.forEach(function (t) {
-        return t.classList.remove('checked');
-      });
-      clicked.classList.toggle('checked');
-      return tithingSetting = "Gross";
-    }
-
-    if (e.target === netOptionLabel) {
-      tithingOptions.forEach(function (t) {
-        return t.classList.remove('checked');
-      });
-      clicked.classList.toggle('checked');
-      return tithingSetting = "Net";
-    }
-
-    if (e.target === surplusOptionLabel) {
-      tithingOptions.forEach(function (t) {
-        return t.classList.remove('checked');
-      });
-      clicked.classList.toggle('checked');
-      return tithingSetting = "Surplus";
-    }
-  });
-}
-
-var emergencySettingLabels = document.querySelectorAll('.emergency-checkbox-label');
-var emergencyInputs = document.querySelectorAll('.emergency-input');
-var emergencyGoalSetting;
-var _watchEmergencyGoalSettings = function _watchEmergencyGoalSettings() {
+var _watchEmergencyGoalSettings = function _watchEmergencyGoalSettings(setting) {
+  var emergencySettingLabels = document.querySelectorAll('.emergency-checkbox-label');
+  var emergencyInputs = document.querySelectorAll('.emergency-input');
   emergencySettingLabels.forEach(function (esl, i) {
     esl.addEventListener('click', function (e) {
       emergencySettingLabels.forEach(function (label) {
@@ -5215,12 +5170,11 @@ var _watchEmergencyGoalSettings = function _watchEmergencyGoalSettings() {
         ei.style.display = 'none';
       });
       esl.textContent === "Length Of Time" ? emergencyInputs[1].style.display = "flex" : emergencyInputs[0].style.display = "flex";
-      return emergencyGoalSetting = esl.textContent;
+      return setting = esl.textContent;
     });
   });
-};
-var budgetCreationFormPages = document.querySelectorAll('.budget-creation-form__page');
-var budgetCreationFormPagesNumber = budgetCreationFormPages.length;
+}; // const budgetCreationFormPages = document.querySelectorAll('.budget-creation-form__page');
+// const budgetCreationFormPagesNumber = budgetCreationFormPages.length;
 
 var checkUser = /*#__PURE__*/function () {
   var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee() {
@@ -5290,7 +5244,7 @@ var getUserInformation = /*#__PURE__*/function () {
 // const user = userInfo.data.data.user;
 
 
-var buildSubCategories = function buildSubCategories(categories, index, secondaryIndex) {
+var buildSubCategories = function buildSubCategories(categories, index, secondaryIndex, clickedItem) {
   var timingFunctionContainer = document.querySelector('.sub-category-display__timing-container'); /////////////////////////////////////////
   // SELECT SUB CATEGORY DISPLAY
 
@@ -5321,11 +5275,13 @@ var buildSubCategories = function buildSubCategories(categories, index, secondar
     subCategoryTimingButton.classList.add('sub-category-display__sub-category__section__set-category-timing-button');
     subCategoryTimingButton.classList.add('r__sub-category-display__sub-category__section__set-category-timing-button');
     subCategoryTimingButton.textContent = "+ Timing";
-    subCategoryTimingButton.addEventListener('click', function (e) {
-      e.preventDefault();
-      timingFunctionContainer.classList.toggle('sub-category-display__timing-container__hidden');
-      clicked = e.target;
-    }); //////////////////////////////////////////
+    console.log(clickedItem); // subCategoryTimingButton.addEventListener('click', (e) => {
+    //   e.preventDefault();
+    //   timingFunctionContainer.classList.toggle('sub-category-display__timing-container__hidden');
+    //   clickedItem = e.target;
+    //   console.log(clickedItem);
+    // });
+    //////////////////////////////////////////
     // CREATE SUB CATEGORY TIMING DISPLAY
 
     if (sectionIndex === 0) {
@@ -5397,36 +5353,7 @@ var buildSubCategories = function buildSubCategories(categories, index, secondar
 
     sectionIndex++;
   }
-}; // const _addSubCategory = (categories, index) => {
-//   /////////////////////////////////////////////////
-//   // INITIALIZE NEEDED VARIABLES
-//   const mainCategoryTitle = document
-//     .querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__text')
-//     .textContent.toLowerCase();
-//   let categoryIndex;
-//   ////////////////////////////////////
-//   // GETTING THE MAIN CATEGORY INDEX
-//   Categories.budgetMainCategories.forEach((mc, i) => {
-//     if (mc.title.toLowerCase() === mainCategoryTitle) {
-//       categoryIndex = i;
-//       return categoryIndex;
-//     }
-//   });
-//   // Get Category Creation Input Value In Lowercase
-//   const subCategoryTitle = document.querySelector('.category-creation__input-container__input').value.toLowerCase();
-//   //////////////////////////////////////////
-//   // CHECKING SUB CATEGORIES VS INPUT VALUE
-//   const filtered = Categories.budgetMainCategories[categoryIndex].subCategories.filter((sc) => {
-//     if (sc.title.toLowerCase() === subCategoryTitle) {
-//       return sc;
-//     }
-//   });
-//   /////////////////////////////////////////////////
-//   // ALLOW ONLY ONE SUB CATEGORY WITH THAT NAME
-//   if (filtered.length >= 1) return;
-//   Categories.createSubCategory(categories, index);
-// };
-
+};
 
 var calculateDayEnding = function calculateDayEnding(day, dateEnding, input) {
   if (day === 0 || day === 4 || day === 5 || day === 6 || day === 7 || day === 8 || day === 9) {
@@ -5503,7 +5430,31 @@ var insertTiiming = function insertTiiming(target, inputValues, timing) {
 // WATCH FOR TIMING SETTING
 
 
-var watchForSettingTiming = function watchForSettingTiming(categories, index) {
+var watchForSettingTiming = function watchForSettingTiming(categories, index, clickedItem, timing) {
+  console.log(clickedItem); // Getting the timing.
+
+  var monthlyTimingButton = document.querySelector('.sub-category-display__timing-container__monthly-container__button');
+  var biMonthlyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-monthly-container__button');
+  var biWeeklyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-weekly-container__button');
+  var weeklyTimingButton = document.querySelector('.sub-category-display__timing-container__weekly-container__button');
+  var timingInputButtons = [monthlyTimingButton, biMonthlyTimingButton, biWeeklyTimingButton, weeklyTimingButton];
+  timingInputButtons.forEach(function (tib, i) {
+    tib.addEventListener('click', function (e) {
+      e.preventDefault();
+      timing = tib.firstChild.nextSibling.textContent;
+    });
+  });
+  var subCategoryTimingButtons = document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-button');
+  var timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
+  console.log(subCategoryTimingButtons);
+  subCategoryTimingButtons.forEach(function (sctb, i) {
+    sctb.addEventListener('click', function (e) {
+      e.preventDefault();
+      timingFunctionContainer.classList.toggle('sub-category-display__timing-container__hidden');
+      clickedItem = e.target;
+      console.log(clickedItem, timing);
+    });
+  });
   var timingSubmitButtons = document.querySelectorAll('.timing-submit-button');
   timingSubmitButtons.forEach(function (tsb) {
     tsb.addEventListener('click', function (e) {
@@ -5512,21 +5463,21 @@ var watchForSettingTiming = function watchForSettingTiming(categories, index) {
       var timingArray = [];
       var oldMonthlyTiming = new Date(document.querySelector('.sub-category-display__timing-container__monthly-container__label__input').value);
       var monthlyTiming = new Date(oldMonthlyTiming.setHours(oldMonthlyTiming.getHours() + 7));
-      console.log(monthlyTiming);
+      console.log(monthlyTiming, clickedItem);
 
-      var subCategoryIndex = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-button')).indexOf(clicked);
+      var subCategoryIndex = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-button')).indexOf(clickedItem);
 
       var subCategoryTimingTarget = document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-text')[subCategoryIndex];
       console.log(subCategoryIndex);
-      console.log((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__["default"])(monthlyTiming));
+      console.log((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__["default"])(monthlyTiming), timing);
 
-      if (selectedTiming === "Monthly") {
+      if (timing === "Monthly") {
         timingArray = [];
         timingArray.push(monthlyTiming);
-        return insertTiiming(clicked, timingArray, selectedTiming);
+        return insertTiiming(clickedItem, timingArray, timing);
       }
 
-      if (selectedTiming === "Bi-Monthly") {
+      if (timing === "Bi-Monthly") {
         e.preventDefault();
         var oldTimingOne = new Date(document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input')[0].value);
         var oldTimingTwo = new Date(document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input')[1].value);
@@ -5537,16 +5488,16 @@ var watchForSettingTiming = function watchForSettingTiming(categories, index) {
         timingArray.push(timingOne);
         timingArray.push(timingTwo);
         console.log(timingArray);
-        return insertTiiming(clicked, timingArray, selectedTiming);
+        return insertTiiming(clickedItem, timingArray, timing);
       }
 
-      if (selectedTiming === "Bi-Weekly") {
+      if (timing === "Bi-Weekly") {
         var oldBiWeeklyTiming = new Date(document.querySelector('.sub-category-display__timing-container__bi-weekly-container__label__input').value);
         var biWeeklyTiming = new Date(oldBiWeeklyTiming.setHours(oldBiWeeklyTiming.getHours() + 7));
         var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
         timingArray = [];
         timingArray.push(biWeeklyTiming);
-        return insertTiiming(clicked, timingArray, selectedTiming);
+        return insertTiiming(clickedItem, timingArray, timing);
       }
     });
   });
@@ -5554,7 +5505,7 @@ var watchForSettingTiming = function watchForSettingTiming(categories, index) {
 // SET UP TIMING FUNCTION CONTAINER
 
 
-var setupTimingFunctionContainer = function setupTimingFunctionContainer(container) {
+var setupTimingFunctionContainer = function setupTimingFunctionContainer(container, timing) {
   var closeTimingFunctionContainer = document.querySelector('.sub-category-display__timing-container__close'); /////////////////////////////////////////
   // INITIALIZE VARIABLES FOR TIMING INPUTS
 
@@ -5586,8 +5537,6 @@ var setupTimingFunctionContainer = function setupTimingFunctionContainer(contain
       });
     });
     tib.addEventListener('click', function (e) {
-      selectedTiming = tib.firstChild.nextSibling.textContent;
-      console.log(selectedTiming);
       timingFunctionPages.forEach(function (tfp, i) {
         tfp.forEach(function (el) {
           el.classList.add('element-hidden');
@@ -5608,19 +5557,20 @@ var getTimingContainerHeight = function getTimingContainerHeight(categories, ind
   return "".concat(100 * categories[index].subCategories.length / 10, "rem");
 };
 
-var setupGoalSetting = function setupGoalSetting(categories, index) {
+var setupGoalSetting = function setupGoalSetting(categories, index, clickedItem, timing) {
   var leftButton = document.querySelector('.left');
   var rightButton = document.querySelector('.right');
   var mainCategoryIcon = document.querySelector('.main-category-display__category-display__icon');
   var mainCategoryTitle = document.querySelector('.main-category-display__category-display__title');
   mainCategoryIcon.classList.add(categories[index].icon);
   mainCategoryTitle.textContent = categories[index].title;
+  console.log(clickedItem);
   categories.forEach(function (c, i) {
     /////////////////////////////////////////
     // INITIALIZE INDEX FOR DATASET
     var dataIndex = i;
     c.subCategories.forEach(function (sc, i) {
-      buildSubCategories(c.subCategories, i, dataIndex);
+      buildSubCategories(c.subCategories, i, dataIndex, clickedItem);
     });
   });
   var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
@@ -5734,10 +5684,10 @@ var setupSubCategoryCreation = function setupSubCategoryCreation(categories, ind
 // GO TO PAGE
 
 
-var goToPage = function goToPage(page) {
-  budgetCreationFormPages.forEach(function (bp) {
+var goToPage = function goToPage(page, createBudgetPages) {
+  createBudgetPages.forEach(function (bp) {
     bp.classList.add('disappear');
-    budgetCreationFormPages[page].classList.remove('disappear');
+    createBudgetPages[page].classList.remove('disappear');
   });
 }; /////////////////////////////////
 // GET BUDGET NAME
@@ -5750,30 +5700,77 @@ var getBudgetName = function getBudgetName() {
 // SETUP PAGE
 
 
-var setupPage = function setupPage(page) {
-  goToPage(page);
-  setPageCount(page);
+var setupPage = function setupPage(page, createBudgetPages, createBudgetPagesNumber) {
+  goToPage(page, createBudgetPages);
+  setPageCount(page, createBudgetPagesNumber);
   return page;
 }; /////////////////////////////////
 // SET CORRECT PAGE COUNT
 
 
-var setPageCount = function setPageCount(pageNumber) {
+var setPageCount = function setPageCount(pageNumber, createBudgetPages) {
   var page = document.querySelector('.budget-creation-form__page-mechanisms__page-number');
-  page.textContent = "Page ".concat(pageNumber + 1, " / ").concat(budgetCreationFormPagesNumber);
+  page.textContent = "Page ".concat(pageNumber + 1, " / ").concat(createBudgetPages);
 }; // ////////////////////////////
 // // INITIALIZE KEY VARIABLES
 // let currentPage = 0;
 
 
+var _watchTIthingOptions = function _watchTIthingOptions() {
+  var tithingSetting;
+  var grossOption = document.getElementById('grossOption');
+  var netOption = document.getElementById('netOption');
+  var surplusOption = document.getElementById('surplusOption');
+  var grossOptionLabel = document.getElementById('grossOptionLabel');
+  var netOptionLabel = document.getElementById('netOptionLabel');
+  var surplusOptionLabel = document.getElementById('surplusOptionLabel');
+  var tithingCheckboxes = [grossOption, netOption, surplusOption];
+  var tithingOptions = [grossOptionLabel, netOptionLabel, surplusOptionLabel];
+  var tithingSection = document.querySelector('.tithing-section');
+
+  if (tithingSection) {
+    tithingSection.addEventListener('click', function (e) {
+      var clicked = e.target;
+
+      if (e.target === grossOptionLabel) {
+        tithingOptions.forEach(function (t) {
+          return t.classList.remove('checked');
+        });
+        clicked.classList.toggle('checked');
+        return tithingSetting = "Gross";
+      }
+
+      if (e.target === netOptionLabel) {
+        tithingOptions.forEach(function (t) {
+          return t.classList.remove('checked');
+        });
+        clicked.classList.toggle('checked');
+        return tithingSetting = "Net";
+      }
+
+      if (e.target === surplusOptionLabel) {
+        tithingOptions.forEach(function (t) {
+          return t.classList.remove('checked');
+        });
+        clicked.classList.toggle('checked');
+        return tithingSetting = "Surplus";
+      }
+    });
+  }
+};
+
 var _watchBudgetCreation = function _watchBudgetCreation() {
   ////////////////////////////
   // INITIALIZE KEY VARIABLES
+  var budgetCreationFormPages = document.querySelectorAll('.budget-creation-form__page');
+  var budgetCreationFormPagesNumber = budgetCreationFormPages.length;
   var currentPage = 0;
-  var budgetMainCategories = []; //////////////////////////////////////////////////////////////
+  var budgetMainCategories = [];
+  var emergencyGoalSetting, clicked, selectedTiming;
+  var budgetContinueButton = document.querySelector('.budget-creation-form__page-mechanisms__submit-button'); //////////////////////////////////////////////////////////////
   // SET APPROPRIATE PAGE NUMBER DEPENDING ON USER INFORMATION
 
-  setPageCount(currentPage); ////////////////////////////////////////////////
+  setPageCount(currentPage, budgetCreationFormPagesNumber); ////////////////////////////////////////////////
   // INITIALIZE KEY VARIABLES INSIDE FUNCTION SCOPE
 
   var budgetName, mainCategories;
@@ -5789,7 +5786,7 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
               e.preventDefault();
               budgetInfo = {};
               currentPage++;
-              setupPage(currentPage); //////////////////////////////
+              setupPage(currentPage, budgetCreationFormPages, budgetCreationFormPagesNumber); //////////////////////////////
               // ASSIGN BUDGET INFORMATION
               /////////////////////
               // BUDGET NAME
@@ -5824,11 +5821,21 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
               }
 
               if (currentPage + 1 === 4 && user.latterDaySaint === false) {
-                setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex);
-                watchForSettingTiming(budgetInfo.mainCategories, subCategoryIndex);
+                setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex, clicked, selectedTiming);
+                watchForSettingTiming(budgetInfo.mainCategories, subCategoryIndex, clicked, selectedTiming);
+              }
+
+              if (currentPage + 1 === 5 && user.latterDaySaint === false) {
+                _watchEmergencyGoalSettings(emergencyGoalSetting);
               } /////////////////////////////
               // IF LATTER DAY SAINT
 
+
+              if (currentPage + 1 === 2 && user.latterDaySaint === true) {
+                console.log("Tithing Options");
+
+                _watchTIthingOptions();
+              }
 
               if (currentPage + 1 === 3 && user.latterDaySaint === true) {
                 _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.createCategories(icon);
@@ -5841,11 +5848,15 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
               }
 
               if (currentPage + 1 === 5 && user.latterDaySaint === true) {
-                setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex);
-                watchForSettingTiming(budgetInfo.mainCategories, subCategoryIndex);
+                setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex, clicked, selectedTiming);
+                watchForSettingTiming(budgetInfo.mainCategories, subCategoryIndex, clicked, selectedTiming);
               }
 
-            case 18:
+              if (currentPage + 1 === 6 && user.latterDaySaint === true) {
+                _watchEmergencyGoalSettings(emergencyGoalSetting);
+              }
+
+            case 21:
             case "end":
               return _context3.stop();
           }
