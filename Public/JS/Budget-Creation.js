@@ -70,13 +70,6 @@ const buildSubCategories = (categories, index, secondaryIndex, clickedItem) => {
     subCategoryTimingButton.classList.add('sub-category-display__sub-category__section__set-category-timing-button');
     subCategoryTimingButton.classList.add('r__sub-category-display__sub-category__section__set-category-timing-button');
     subCategoryTimingButton.textContent = `+ Timing`;
-    console.log(clickedItem);
-    // subCategoryTimingButton.addEventListener('click', (e) => {
-    //   e.preventDefault();
-    //   timingFunctionContainer.classList.toggle('sub-category-display__timing-container__hidden');
-    //   clickedItem = e.target;
-    //   console.log(clickedItem);
-    // });
     //////////////////////////////////////////
     // CREATE SUB CATEGORY TIMING DISPLAY
     if (sectionIndex === 0) {
@@ -137,6 +130,44 @@ const buildSubCategories = (categories, index, secondaryIndex, clickedItem) => {
   }
 };
 
+const checkMonth = (date) => {
+  return date.getMonth();
+};
+
+const create12MonthArray = (input) => {
+  ////////////////////////////////////////////////////
+  // GET DATE AGAIN SO IT DOES NOT CHANGE MAGICALLY
+  const adjustedDate1 = new Date(document.querySelector('.sub-category-display__timing-container__bi-weekly-container__label__input').value);
+  const adjustedDate2 = new Date(document.querySelector('.sub-category-display__timing-container__bi-weekly-container__label__input').value);
+  const selectedDate1 = new Date(adjustedDate1.setHours(adjustedDate1.getHours() + 7));
+  const selectedDate2 = new Date(adjustedDate2.setHours(adjustedDate2.getHours() + 7));
+  const manipulated = input;
+  const twelveMonthArray = [];
+  twelveMonthArray.push(selectedDate1);
+  let startMonth = selectedDate1.getMonth();
+  let middleMonth = startMonth;
+  let endMonth = new Date(selectedDate2.setMonth(selectedDate2.getMonth() + 11)).getMonth();
+  let numberOfMonths = 12;
+  let startingMonth = 1;
+
+  do {
+    // Get Month Of Date Item Of Array.
+    let lastMonth = checkMonth(twelveMonthArray[twelveMonthArray.length - 1]);
+    if (middleMonth === lastMonth) {
+      twelveMonthArray.push(new Date(manipulated.setDate(manipulated.getDate() + 14)));
+      middleMonth = checkMonth(twelveMonthArray[twelveMonthArray.length - 1]);
+      console.log(startingMonth, lastMonth, middleMonth);
+    }
+    // If The Next Due Date Entered The Next Month.
+    if (middleMonth != lastMonth) {
+      console.log(startingMonth, lastMonth, middleMonth);
+      // Increment The Iteration Counter.
+      startingMonth++;
+    }
+  } while (startingMonth < numberOfMonths); // Check If Iteration Is Not The 12th
+  console.log(twelveMonthArray);
+};
+
 const calculateDayEnding = (day, dateEnding, input) => {
   if (day === 0 || day === 4 || day === 5 || day === 6 || day === 7 || day === 8 || day === 9) {
     dateEnding = `th`;
@@ -147,14 +178,11 @@ const calculateDayEnding = (day, dateEnding, input) => {
   }
   if (day === 2) dateEnding = `nd`;
   if (day === 3) dateEnding = `rd`;
-
-  console.log(dateEnding);
   return dateEnding;
 };
 
-const insertTiiming = (target, inputValues, timing) => {
+const insertTiiming = (target, inputValues, timing, timingButtons) => {
   let wording, dayEnding, dayEndingNumberOne;
-  console.log(dayEndingNumberOne);
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   if (timing === `Monthly`) {
@@ -186,9 +214,8 @@ const insertTiiming = (target, inputValues, timing) => {
     dayEndingNumberOne = Number(inputValues[0].getDate().toString().split('')[inputValues[0].getDate().toString().length - 1]);
     // Getting proper day ending, such as 'st' for example for the 1st.
     dayEnding = calculateDayEnding(dayEndingNumberOne, dayEnding, inputValues[0]);
-    console.log(timing);
-    console.log(inputValues);
     wording = `Due the ${dayOne}${dayEnding} of ${months[inputValues[0].getMonth()]}.`;
+    create12MonthArray(inputValues[0]);
   }
   if (timing === `Weekly`) {
     const day = inputValues[0].getDay();
@@ -203,7 +230,6 @@ const insertTiiming = (target, inputValues, timing) => {
 /////////////////////////////////////////
 // WATCH FOR TIMING SETTING
 const watchForSettingTiming = (categories, index, clickedItem, timing) => {
-  console.log(clickedItem);
   // Getting the timing.
   const monthlyTimingButton = document.querySelector('.sub-category-display__timing-container__monthly-container__button');
   const biMonthlyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-monthly-container__button');
@@ -220,32 +246,26 @@ const watchForSettingTiming = (categories, index, clickedItem, timing) => {
 
   const subCategoryTimingButtons = document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-button');
   const timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
-  console.log(subCategoryTimingButtons);
   subCategoryTimingButtons.forEach((sctb, i) => {
     sctb.addEventListener('click', (e) => {
       e.preventDefault();
       timingFunctionContainer.classList.toggle('sub-category-display__timing-container__hidden');
       clickedItem = e.target;
-      console.log(clickedItem, timing);
     });
   });
   const timingSubmitButtons = document.querySelectorAll('.timing-submit-button');
   timingSubmitButtons.forEach((tsb) => {
     tsb.addEventListener('click', (e) => {
       e.preventDefault();
-      console.log(tsb);
       let timingArray = [];
       const oldMonthlyTiming = new Date(document.querySelector('.sub-category-display__timing-container__monthly-container__label__input').value);
       const monthlyTiming = new Date(oldMonthlyTiming.setHours(oldMonthlyTiming.getHours() + 7));
-      console.log(monthlyTiming, clickedItem);
       const subCategoryIndex = [...document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-button')].indexOf(clickedItem);
       const subCategoryTimingTarget = document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-text')[subCategoryIndex];
-      console.log(subCategoryIndex);
-      console.log(typeof monthlyTiming, timing);
       if (timing === `Monthly`) {
         timingArray = [];
         timingArray.push(monthlyTiming);
-        return insertTiiming(clickedItem, timingArray, timing);
+        return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons);
       }
       if (timing === `Bi-Monthly`) {
         e.preventDefault();
@@ -253,12 +273,11 @@ const watchForSettingTiming = (categories, index, clickedItem, timing) => {
         const oldTimingTwo = new Date(document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input')[1].value);
         const timingOne = new Date(oldTimingOne.setHours(oldTimingOne.getHours() + 7));
         const timingTwo = new Date(oldTimingTwo.setHours(oldTimingTwo.getHours() + 7));
-        console.log(timingOne, timingTwo, document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input'));
         timingArray = [];
         timingArray.push(timingOne);
         timingArray.push(timingTwo);
         console.log(timingArray);
-        return insertTiiming(clickedItem, timingArray, timing);
+        return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons);
       }
 
       if (timing === `Bi-Weekly`) {
@@ -267,7 +286,7 @@ const watchForSettingTiming = (categories, index, clickedItem, timing) => {
         const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
         timingArray = [];
         timingArray.push(biWeeklyTiming);
-        return insertTiiming(clickedItem, timingArray, timing);
+        return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons);
       }
     });
   });
@@ -335,7 +354,7 @@ const setupTimingFunctionContainer = (container, timing) => {
 };
 
 const getTimingContainerHeight = (categories, index) => {
-  return `${(100 * categories[index].subCategories.length) / 10}rem`;
+  return (100 * categories[index].subCategories.length) / 10;
 };
 
 const setupGoalSetting = (categories, index, clickedItem, timing) => {
@@ -346,7 +365,6 @@ const setupGoalSetting = (categories, index, clickedItem, timing) => {
   mainCategoryIcon.classList.add(categories[index].icon);
   mainCategoryTitle.textContent = categories[index].title;
 
-  console.log(clickedItem);
   categories.forEach((c, i) => {
     /////////////////////////////////////////
     // INITIALIZE INDEX FOR DATASET
@@ -366,9 +384,10 @@ const setupGoalSetting = (categories, index, clickedItem, timing) => {
   // SET UP TIMING FUNCTION CONTAINER
   const timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
   setupTimingFunctionContainer(timingFunctionContainer);
-  console.log(getTimingContainerHeight(categories, index));
-  timingFunctionContainer.style.height = getTimingContainerHeight(categories, index);
+  timingFunctionContainer.style.height = `${getTimingContainerHeight(categories, index)}rem`;
   timingFunctionContainer.style.minHeight = `calc(100% - 4rem)`;
+  if (getTimingContainerHeight(categories, index) >= 40) timingFunctionContainer.style.justifyContent = `space-evenly`;
+  if (getTimingContainerHeight(categories, index) < 40) timingFunctionContainer.style.justifyContent = `flex-start`;
   leftButton.addEventListener('click', (e) => {
     index--;
     if (index < 0) index = 0;
@@ -384,6 +403,8 @@ const setupGoalSetting = (categories, index, clickedItem, timing) => {
     console.log(getTimingContainerHeight(categories, index));
     timingFunctionContainer.style.height = getTimingContainerHeight(categories, index);
     timingFunctionContainer.style.minHeight = `calc(100% - 4rem)`;
+    if (getTimingContainerHeight(categories, index) >= 40) timingFunctionContainer.style.justifyContent = `space-evenly`;
+    if (getTimingContainerHeight(categories, index) < 40) timingFunctionContainer.style.justifyContent = `flex-start`;
     return index;
   });
   rightButton.addEventListener('click', (e) => {
@@ -401,6 +422,8 @@ const setupGoalSetting = (categories, index, clickedItem, timing) => {
     console.log(getTimingContainerHeight(categories, index));
     timingFunctionContainer.style.height = getTimingContainerHeight(categories, index);
     timingFunctionContainer.style.minHeight = `calc(100% - 4rem)`;
+    if (getTimingContainerHeight(categories, index) >= 40) timingFunctionContainer.style.justifyContent = `space-evenly`;
+    if (getTimingContainerHeight(categories, index) < 40) timingFunctionContainer.style.justifyContent = `flex-start`;
     return index;
   });
 };

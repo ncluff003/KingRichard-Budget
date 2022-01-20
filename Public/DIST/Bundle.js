@@ -5143,15 +5143,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "_watchEmergencyGoalSettings": () => (/* binding */ _watchEmergencyGoalSettings),
 /* harmony export */   "_watchBudgetCreation": () => (/* binding */ _watchBudgetCreation)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
-/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
-/* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
+/* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
-
 
 
 
@@ -5173,18 +5171,17 @@ var _watchEmergencyGoalSettings = function _watchEmergencyGoalSettings(setting) 
       return setting = esl.textContent;
     });
   });
-}; // const budgetCreationFormPages = document.querySelectorAll('.budget-creation-form__page');
-// const budgetCreationFormPagesNumber = budgetCreationFormPages.length;
+};
 
 var checkUser = /*#__PURE__*/function () {
-  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee() {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee() {
     var userInfo, user;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee$(_context) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return _Update_User__WEBPACK_IMPORTED_MODULE_5__.getSomePersonals();
+            return _Update_User__WEBPACK_IMPORTED_MODULE_4__.getSomePersonals();
 
           case 2:
             userInfo = _context.sent;
@@ -5205,15 +5202,15 @@ var checkUser = /*#__PURE__*/function () {
 }();
 
 var getUserInformation = /*#__PURE__*/function () {
-  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee2() {
+  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee2() {
     var userInfo, user, lastname;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee2$(_context2) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.t0 = console;
             _context2.next = 3;
-            return _Update_User__WEBPACK_IMPORTED_MODULE_5__.getSomePersonals();
+            return _Update_User__WEBPACK_IMPORTED_MODULE_4__.getSomePersonals();
 
           case 3:
             _context2.t1 = _context2.sent;
@@ -5221,7 +5218,7 @@ var getUserInformation = /*#__PURE__*/function () {
             _context2.t0.log.call(_context2.t0, _context2.t1);
 
             _context2.next = 7;
-            return _Update_User__WEBPACK_IMPORTED_MODULE_5__.getSomePersonals();
+            return _Update_User__WEBPACK_IMPORTED_MODULE_4__.getSomePersonals();
 
           case 7:
             userInfo = _context2.sent;
@@ -5274,14 +5271,7 @@ var buildSubCategories = function buildSubCategories(categories, index, secondar
     var subCategoryTimingButton = document.createElement('button');
     subCategoryTimingButton.classList.add('sub-category-display__sub-category__section__set-category-timing-button');
     subCategoryTimingButton.classList.add('r__sub-category-display__sub-category__section__set-category-timing-button');
-    subCategoryTimingButton.textContent = "+ Timing";
-    console.log(clickedItem); // subCategoryTimingButton.addEventListener('click', (e) => {
-    //   e.preventDefault();
-    //   timingFunctionContainer.classList.toggle('sub-category-display__timing-container__hidden');
-    //   clickedItem = e.target;
-    //   console.log(clickedItem);
-    // });
-    //////////////////////////////////////////
+    subCategoryTimingButton.textContent = "+ Timing"; //////////////////////////////////////////
     // CREATE SUB CATEGORY TIMING DISPLAY
 
     if (sectionIndex === 0) {
@@ -5355,6 +5345,46 @@ var buildSubCategories = function buildSubCategories(categories, index, secondar
   }
 };
 
+var checkMonth = function checkMonth(date) {
+  return date.getMonth();
+};
+
+var create12MonthArray = function create12MonthArray(input) {
+  ////////////////////////////////////////////////////
+  // GET DATE AGAIN SO IT DOES NOT CHANGE MAGICALLY
+  var adjustedDate1 = new Date(document.querySelector('.sub-category-display__timing-container__bi-weekly-container__label__input').value);
+  var adjustedDate2 = new Date(document.querySelector('.sub-category-display__timing-container__bi-weekly-container__label__input').value);
+  var selectedDate1 = new Date(adjustedDate1.setHours(adjustedDate1.getHours() + 7));
+  var selectedDate2 = new Date(adjustedDate2.setHours(adjustedDate2.getHours() + 7));
+  var manipulated = input;
+  var twelveMonthArray = [];
+  twelveMonthArray.push(selectedDate1);
+  var startMonth = selectedDate1.getMonth();
+  var middleMonth = startMonth;
+  var endMonth = new Date(selectedDate2.setMonth(selectedDate2.getMonth() + 11)).getMonth();
+  var numberOfMonths = 12;
+  var startingMonth = 1;
+
+  do {
+    // Get Month Of Date Item Of Array.
+    var lastMonth = checkMonth(twelveMonthArray[twelveMonthArray.length - 1]);
+
+    if (middleMonth === lastMonth) {
+      twelveMonthArray.push(new Date(manipulated.setDate(manipulated.getDate() + 14)));
+      middleMonth = checkMonth(twelveMonthArray[twelveMonthArray.length - 1]);
+      console.log(startingMonth, lastMonth, middleMonth);
+    }
+
+    if (middleMonth != lastMonth) {
+      console.log(startingMonth, lastMonth, middleMonth);
+      startingMonth++;
+    }
+  } while (startingMonth < numberOfMonths); // Check If Iteration Is Not The 12th
+
+
+  console.log(twelveMonthArray);
+};
+
 var calculateDayEnding = function calculateDayEnding(day, dateEnding, input) {
   if (day === 0 || day === 4 || day === 5 || day === 6 || day === 7 || day === 8 || day === 9) {
     dateEnding = "th";
@@ -5367,13 +5397,11 @@ var calculateDayEnding = function calculateDayEnding(day, dateEnding, input) {
 
   if (day === 2) dateEnding = "nd";
   if (day === 3) dateEnding = "rd";
-  console.log(dateEnding);
   return dateEnding;
 };
 
-var insertTiiming = function insertTiiming(target, inputValues, timing) {
+var insertTiiming = function insertTiiming(target, inputValues, timing, timingButtons) {
   var wording, dayEnding, dayEndingNumberOne;
-  console.log(dayEndingNumberOne);
   var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -5410,9 +5438,8 @@ var insertTiiming = function insertTiiming(target, inputValues, timing) {
     dayEndingNumberOne = Number(inputValues[0].getDate().toString().split('')[inputValues[0].getDate().toString().length - 1]); // Getting proper day ending, such as 'st' for example for the 1st.
 
     dayEnding = calculateDayEnding(dayEndingNumberOne, dayEnding, inputValues[0]);
-    console.log(timing);
-    console.log(inputValues);
     wording = "Due the ".concat(_dayOne2).concat(dayEnding, " of ").concat(months[inputValues[0].getMonth()], ".");
+    create12MonthArray(inputValues[0]);
   }
 
   if (timing === "Weekly") {
@@ -5431,8 +5458,7 @@ var insertTiiming = function insertTiiming(target, inputValues, timing) {
 
 
 var watchForSettingTiming = function watchForSettingTiming(categories, index, clickedItem, timing) {
-  console.log(clickedItem); // Getting the timing.
-
+  // Getting the timing.
   var monthlyTimingButton = document.querySelector('.sub-category-display__timing-container__monthly-container__button');
   var biMonthlyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-monthly-container__button');
   var biWeeklyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-weekly-container__button');
@@ -5446,35 +5472,29 @@ var watchForSettingTiming = function watchForSettingTiming(categories, index, cl
   });
   var subCategoryTimingButtons = document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-button');
   var timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
-  console.log(subCategoryTimingButtons);
   subCategoryTimingButtons.forEach(function (sctb, i) {
     sctb.addEventListener('click', function (e) {
       e.preventDefault();
       timingFunctionContainer.classList.toggle('sub-category-display__timing-container__hidden');
       clickedItem = e.target;
-      console.log(clickedItem, timing);
     });
   });
   var timingSubmitButtons = document.querySelectorAll('.timing-submit-button');
   timingSubmitButtons.forEach(function (tsb) {
     tsb.addEventListener('click', function (e) {
       e.preventDefault();
-      console.log(tsb);
       var timingArray = [];
       var oldMonthlyTiming = new Date(document.querySelector('.sub-category-display__timing-container__monthly-container__label__input').value);
       var monthlyTiming = new Date(oldMonthlyTiming.setHours(oldMonthlyTiming.getHours() + 7));
-      console.log(monthlyTiming, clickedItem);
 
-      var subCategoryIndex = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-button')).indexOf(clickedItem);
+      var subCategoryIndex = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-button')).indexOf(clickedItem);
 
       var subCategoryTimingTarget = document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-text')[subCategoryIndex];
-      console.log(subCategoryIndex);
-      console.log((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__["default"])(monthlyTiming), timing);
 
       if (timing === "Monthly") {
         timingArray = [];
         timingArray.push(monthlyTiming);
-        return insertTiiming(clickedItem, timingArray, timing);
+        return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons);
       }
 
       if (timing === "Bi-Monthly") {
@@ -5483,12 +5503,11 @@ var watchForSettingTiming = function watchForSettingTiming(categories, index, cl
         var oldTimingTwo = new Date(document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input')[1].value);
         var timingOne = new Date(oldTimingOne.setHours(oldTimingOne.getHours() + 7));
         var timingTwo = new Date(oldTimingTwo.setHours(oldTimingTwo.getHours() + 7));
-        console.log(timingOne, timingTwo, document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input'));
         timingArray = [];
         timingArray.push(timingOne);
         timingArray.push(timingTwo);
         console.log(timingArray);
-        return insertTiiming(clickedItem, timingArray, timing);
+        return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons);
       }
 
       if (timing === "Bi-Weekly") {
@@ -5497,7 +5516,7 @@ var watchForSettingTiming = function watchForSettingTiming(categories, index, cl
         var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
         timingArray = [];
         timingArray.push(biWeeklyTiming);
-        return insertTiiming(clickedItem, timingArray, timing);
+        return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons);
       }
     });
   });
@@ -5554,7 +5573,7 @@ var setupTimingFunctionContainer = function setupTimingFunctionContainer(contain
 };
 
 var getTimingContainerHeight = function getTimingContainerHeight(categories, index) {
-  return "".concat(100 * categories[index].subCategories.length / 10, "rem");
+  return 100 * categories[index].subCategories.length / 10;
 };
 
 var setupGoalSetting = function setupGoalSetting(categories, index, clickedItem, timing) {
@@ -5564,7 +5583,6 @@ var setupGoalSetting = function setupGoalSetting(categories, index, clickedItem,
   var mainCategoryTitle = document.querySelector('.main-category-display__category-display__title');
   mainCategoryIcon.classList.add(categories[index].icon);
   mainCategoryTitle.textContent = categories[index].title;
-  console.log(clickedItem);
   categories.forEach(function (c, i) {
     /////////////////////////////////////////
     // INITIALIZE INDEX FOR DATASET
@@ -5583,9 +5601,10 @@ var setupGoalSetting = function setupGoalSetting(categories, index, clickedItem,
 
   var timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
   setupTimingFunctionContainer(timingFunctionContainer);
-  console.log(getTimingContainerHeight(categories, index));
-  timingFunctionContainer.style.height = getTimingContainerHeight(categories, index);
+  timingFunctionContainer.style.height = "".concat(getTimingContainerHeight(categories, index), "rem");
   timingFunctionContainer.style.minHeight = "calc(100% - 4rem)";
+  if (getTimingContainerHeight(categories, index) >= 40) timingFunctionContainer.style.justifyContent = "space-evenly";
+  if (getTimingContainerHeight(categories, index) < 40) timingFunctionContainer.style.justifyContent = "flex-start";
   leftButton.addEventListener('click', function (e) {
     index--;
     if (index < 0) index = 0;
@@ -5602,6 +5621,8 @@ var setupGoalSetting = function setupGoalSetting(categories, index, clickedItem,
     console.log(getTimingContainerHeight(categories, index));
     timingFunctionContainer.style.height = getTimingContainerHeight(categories, index);
     timingFunctionContainer.style.minHeight = "calc(100% - 4rem)";
+    if (getTimingContainerHeight(categories, index) >= 40) timingFunctionContainer.style.justifyContent = "space-evenly";
+    if (getTimingContainerHeight(categories, index) < 40) timingFunctionContainer.style.justifyContent = "flex-start";
     return index;
   });
   rightButton.addEventListener('click', function (e) {
@@ -5620,6 +5641,8 @@ var setupGoalSetting = function setupGoalSetting(categories, index, clickedItem,
     console.log(getTimingContainerHeight(categories, index));
     timingFunctionContainer.style.height = getTimingContainerHeight(categories, index);
     timingFunctionContainer.style.minHeight = "calc(100% - 4rem)";
+    if (getTimingContainerHeight(categories, index) >= 40) timingFunctionContainer.style.justifyContent = "space-evenly";
+    if (getTimingContainerHeight(categories, index) < 40) timingFunctionContainer.style.justifyContent = "flex-start";
     return index;
   });
 };
@@ -5678,7 +5701,7 @@ var setupSubCategoryCreation = function setupSubCategoryCreation(categories, ind
   });
   var subCategoryCreateButton = document.querySelector('.category-creation__input-container__button');
   subCategoryCreateButton.addEventListener('click', function (e) {
-    _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__._addSubCategory(categories, index, mainCategories);
+    _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__._addSubCategory(categories, index, mainCategories);
   });
 }; /////////////////////////////////
 // GO TO PAGE
@@ -5777,9 +5800,9 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
   var subCategoryIndex = 0;
   var icon;
   budgetContinueButton.addEventListener('click', /*#__PURE__*/function () {
-    var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee3(e) {
+    var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee3(e) {
       var budgetInfo, userInfo, user;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee3$(_context3) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
@@ -5800,7 +5823,7 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
               // CHECK USER
 
               _context3.next = 10;
-              return _Update_User__WEBPACK_IMPORTED_MODULE_5__.getSomePersonals();
+              return _Update_User__WEBPACK_IMPORTED_MODULE_4__.getSomePersonals();
 
             case 10:
               userInfo = _context3.sent;
@@ -5811,9 +5834,9 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
               // IF NOT LATTER DAY SAINT
 
               if (currentPage + 1 === 2 && user.latterDaySaint === false) {
-                _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.createCategories(icon);
+                _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__.createCategories(icon);
 
-                _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__._watchCreateCategoryButton(icon, budgetMainCategories);
+                _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__._watchCreateCategoryButton(icon, budgetMainCategories);
               }
 
               if (currentPage + 1 === 3 && user.latterDaySaint === false) {
@@ -5838,9 +5861,9 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
               }
 
               if (currentPage + 1 === 3 && user.latterDaySaint === true) {
-                _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.createCategories(icon);
+                _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__.createCategories(icon);
 
-                _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__._watchCreateCategoryButton(icon, budgetMainCategories);
+                _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__._watchCreateCategoryButton(icon, budgetMainCategories);
               }
 
               if (currentPage + 1 === 4 && user.latterDaySaint === true) {

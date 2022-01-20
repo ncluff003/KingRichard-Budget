@@ -558,20 +558,6 @@
                         &:first-of-type {
                           border-top-left-radius: 0.5rem;
                         }
-                        &:nth-of-type(5n) {
-                          // border-bottom: 0.3rem solid rgba($primaryColor, 0.8);
-                        }
-                        &:nth-of-type(5n + 1),
-                        &:nth-of-type(5n + 2),
-                        &:nth-of-type(5n + 4) {
-                          // border-bottom: 0.3rem solid rgba($primaryColor, 0.8);
-                          // border-right: 0.3rem solid rgba($primaryColor, 0.8);
-                        }
-                        &:nth-of-type(5n + 3) {
-                          // border-left: 0.3rem solid rgba($primaryColor, 0.8);
-                          // border-bottom: 0.3rem solid rgba($primaryColor, 0.8);
-                          // border-right: 0.3rem solid rgba($primaryColor, 0.8);
-                        }
                         z-index: 3;
                         &:hover {
                           cursor: pointer;
@@ -900,7 +886,7 @@
                         }
                       }
                       &__timing-container {
-                        @include SizeAndPositioning(absolute, calc(100% - 4rem), 100%, flex, space-evenly, center, 0, 0, 0);
+                        @include SizeAndPositioning(absolute, calc(100% - 4rem), 100%, flex, flex-start, center, 0, 0, 0);
                         background-color: rgba($colorOffWhite, 0.9);
                         min-height: calc(100% - 4rem);
                         flex-direction: column;
