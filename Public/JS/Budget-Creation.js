@@ -134,38 +134,21 @@ const checkMonth = (date) => {
   return date.getMonth();
 };
 
-const create12MonthArray = (input) => {
+const create12MonthArray = (array, input) => {
   ////////////////////////////////////////////////////
   // GET DATE AGAIN SO IT DOES NOT CHANGE MAGICALLY
-  const adjustedDate1 = new Date(document.querySelector('.sub-category-display__timing-container__bi-weekly-container__label__input').value);
-  const adjustedDate2 = new Date(document.querySelector('.sub-category-display__timing-container__bi-weekly-container__label__input').value);
-  const selectedDate1 = new Date(adjustedDate1.setHours(adjustedDate1.getHours() + 7));
-  const selectedDate2 = new Date(adjustedDate2.setHours(adjustedDate2.getHours() + 7));
+  const adjustedDate = new Date(document.querySelector('.sub-category-display__timing-container__bi-weekly-container__label__input').value);
+  const selectedDate = new Date(adjustedDate.setHours(adjustedDate.getHours() + 7));
   const manipulated = input;
-  const twelveMonthArray = [];
-  twelveMonthArray.push(selectedDate1);
-  let startMonth = selectedDate1.getMonth();
-  let middleMonth = startMonth;
-  let endMonth = new Date(selectedDate2.setMonth(selectedDate2.getMonth() + 11)).getMonth();
-  let numberOfMonths = 12;
-  let startingMonth = 1;
+  array.push(selectedDate);
+  let numberOfIterations = 25;
+  let startingMonth = 0;
 
-  do {
-    // Get Month Of Date Item Of Array.
-    let lastMonth = checkMonth(twelveMonthArray[twelveMonthArray.length - 1]);
-    if (middleMonth === lastMonth) {
-      twelveMonthArray.push(new Date(manipulated.setDate(manipulated.getDate() + 14)));
-      middleMonth = checkMonth(twelveMonthArray[twelveMonthArray.length - 1]);
-      console.log(startingMonth, lastMonth, middleMonth);
-    }
-    // If The Next Due Date Entered The Next Month.
-    if (middleMonth != lastMonth) {
-      console.log(startingMonth, lastMonth, middleMonth);
-      // Increment The Iteration Counter.
-      startingMonth++;
-    }
-  } while (startingMonth < numberOfMonths); // Check If Iteration Is Not The 12th
-  console.log(twelveMonthArray);
+  while (startingMonth < numberOfIterations) {
+    array.push(new Date(manipulated.setDate(manipulated.getDate() + 14)));
+    startingMonth++;
+  }
+  console.log(array);
 };
 
 const calculateDayEnding = (day, dateEnding, input) => {
@@ -211,11 +194,12 @@ const insertTiiming = (target, inputValues, timing, timingButtons) => {
   if (timing === `Bi-Weekly`) {
     const day = inputValues[0].getDay();
     const dayOne = inputValues[0].getDate();
+    const twelveMonthArray = [];
     dayEndingNumberOne = Number(inputValues[0].getDate().toString().split('')[inputValues[0].getDate().toString().length - 1]);
     // Getting proper day ending, such as 'st' for example for the 1st.
     dayEnding = calculateDayEnding(dayEndingNumberOne, dayEnding, inputValues[0]);
     wording = `Due the ${dayOne}${dayEnding} of ${months[inputValues[0].getMonth()]}.`;
-    create12MonthArray(inputValues[0]);
+    create12MonthArray(twelveMonthArray, inputValues[0]);
   }
   if (timing === `Weekly`) {
     const day = inputValues[0].getDay();
