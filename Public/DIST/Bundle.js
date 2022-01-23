@@ -4744,6 +4744,7 @@ var SubCategory = /*#__PURE__*/function (_Category2) {
     var superOpts = _objectSpread({}, options);
 
     _this3 = _super2.call(this, superOpts);
+    _this3.timingOptions = {};
     _this3.surplus = false;
     return _this3;
   }
@@ -4755,10 +4756,13 @@ var SubCategory = /*#__PURE__*/function (_Category2) {
     }
   }, {
     key: "_finishUpdatingSubCategory",
-    value: function _finishUpdatingSubCategory(goal, spent, remaining) {
-      this.goalAmount = goal;
-      this.amountSpent = spent;
-      this.amountRemaining = remaining;
+    value: function _finishUpdatingSubCategory(goal) {
+      var goalAmount = Number(goal);
+      if (goalAmount !== "undefined" || typeof goalAmount !== "number") goal = 0;
+      this.goalAmount = goalAmount;
+      this.amountSpent = 0;
+      this.amountRemaining = this.goalAmount - this.amountSpent;
+      this.percentageSpent = Number((this.amountSpent / this.goalAmount).toFixed(1));
     }
   }]);
 
@@ -5173,6 +5177,17 @@ var _watchEmergencyGoalSettings = function _watchEmergencyGoalSettings(setting) 
   });
 };
 
+var _finishUpdatingSubCategories = function _finishUpdatingSubCategories(mainCategories, goals) {
+  console.log(mainCategories, goals);
+  mainCategories.forEach(function (mc, i) {
+    mc.subCategories.forEach(function (sc, i) {
+      sc._finishUpdatingSubCategory(goals[i].value);
+    });
+    console.log(mc);
+  });
+  return;
+};
+
 var checkUser = /*#__PURE__*/function () {
   var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee() {
     var userInfo, user;
@@ -5345,26 +5360,111 @@ var buildSubCategories = function buildSubCategories(categories, index, secondar
   }
 };
 
+var getNextWeekDayDate = function getNextWeekDayDate(days, date, weekday) {
+  var currentWeekDay = days[date.getDay()];
+  var startingDate = date;
+  var alterable;
+  if (currentWeekDay === days[weekday]) console.log("They Match!");
+
+  while (currentWeekDay !== days[weekday]) {
+    alterable = new Date(date.setDate(startingDate.getDate() + 1));
+    currentWeekDay = days[alterable.getDay()];
+
+    if (days[alterable.getDay()] === weekday) {
+      startingDate = alterable;
+      return currentWeekDay;
+    }
+  }
+
+  return startingDate;
+};
+
 var checkMonth = function checkMonth(date) {
   return date.getMonth();
 };
 
-var create12MonthArray = function create12MonthArray(array, input) {
-  ////////////////////////////////////////////////////
-  // GET DATE AGAIN SO IT DOES NOT CHANGE MAGICALLY
-  var adjustedDate = new Date(document.querySelector('.sub-category-display__timing-container__bi-weekly-container__label__input').value);
-  var selectedDate = new Date(adjustedDate.setHours(adjustedDate.getHours() + 7));
-  var manipulated = input;
-  array.push(selectedDate);
-  var numberOfIterations = 25;
-  var startingMonth = 0;
+var create12MonthArray = function create12MonthArray(array, input, timing, days) {
+  var numberOfIterations;
+  var startingIteration = 0;
 
-  while (startingMonth < numberOfIterations) {
-    array.push(new Date(manipulated.setDate(manipulated.getDate() + 14)));
-    startingMonth++;
+  if (timing === "Monthly") {
+    ////////////////////////////////////////////////////
+    // GET DATE AGAIN SO IT DOES NOT CHANGE MAGICALLY
+    var adjustedDate = new Date(document.querySelector('.sub-category-display__timing-container__monthly-container__label__input').value);
+    var selectedDate = new Date(adjustedDate.setHours(adjustedDate.getHours() + 7));
+    var manipulated = input;
+    array.push(selectedDate);
+    numberOfIterations = 11;
+
+    while (startingIteration < numberOfIterations) {
+      array.push(new Date(manipulated.setMonth(manipulated.getMonth() + 1)));
+      startingIteration++;
+    }
   }
 
-  console.log(array);
+  if (timing === "Bi-Monthly") {
+    ////////////////////////////////////////////////////
+    // GET DATE AGAIN SO IT DOES NOT CHANGE MAGICALLY
+    var adjustedDate1 = new Date(document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input')[0].value);
+    var selectedDate1 = new Date(adjustedDate1.setHours(adjustedDate1.getHours() + 7));
+    var adjustedDate2 = new Date(document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input')[1].value);
+    var selectedDate2 = new Date(adjustedDate2.setHours(adjustedDate2.getHours() + 7));
+    var manipulated1 = input[0];
+    var manipulated2 = input[1];
+    var biMonthlyArray = [];
+    biMonthlyArray.push(selectedDate1, selectedDate2);
+    array.push(biMonthlyArray);
+    numberOfIterations = 11;
+
+    while (startingIteration < numberOfIterations) {
+      biMonthlyArray = [];
+      biMonthlyArray.push(new Date(manipulated1.setMonth(manipulated1.getMonth() + 1)));
+      biMonthlyArray.push(new Date(manipulated2.setMonth(manipulated2.getMonth() + 1)));
+      array.push(biMonthlyArray);
+      startingIteration++;
+    }
+  }
+
+  if (timing === "Bi-Weekly") {
+    ////////////////////////////////////////////////////
+    // GET DATE AGAIN SO IT DOES NOT CHANGE MAGICALLY
+    var _adjustedDate = new Date(document.querySelector('.sub-category-display__timing-container__bi-weekly-container__label__input').value);
+
+    var _selectedDate = new Date(_adjustedDate.setHours(_adjustedDate.getHours() + 7));
+
+    var _manipulated = input;
+    array.push(_selectedDate);
+    numberOfIterations = 25;
+
+    while (startingIteration < numberOfIterations) {
+      array.push(new Date(_manipulated.setDate(_manipulated.getDate() + 14)));
+      startingIteration++;
+    }
+  }
+
+  if (timing === "Weekly") {
+    ////////////////////////////////////////////////////
+    // GET DATE AGAIN SO IT DOES NOT CHANGE MAGICALLY
+    var selectedWeekDay = document.querySelector('.sub-category-display__timing-container__weekly-container__label__select').value;
+    var currentDate1 = new Date();
+    var currentDate2 = new Date();
+    var nextWeekDay = getNextWeekDayDate(days, currentDate1, selectedWeekDay);
+    var firstDate = getNextWeekDayDate(days, currentDate2, selectedWeekDay);
+    var _adjustedDate2 = nextWeekDay;
+    var _selectedDate2 = _adjustedDate2;
+    var _manipulated2 = currentDate1;
+    array.push(_selectedDate2);
+    numberOfIterations = 51;
+
+    while (startingIteration < numberOfIterations) {
+      array.push(new Date(_manipulated2.setDate(_manipulated2.getDate() + 7)));
+      startingIteration++;
+    }
+
+    array[0] = firstDate;
+  }
+
+  return array;
 };
 
 var calculateDayEnding = function calculateDayEnding(day, dateEnding, input) {
@@ -5382,55 +5482,181 @@ var calculateDayEnding = function calculateDayEnding(day, dateEnding, input) {
   return dateEnding;
 };
 
-var insertTiiming = function insertTiiming(target, inputValues, timing, timingButtons) {
+var insertTiiming = function insertTiiming(target, inputValues, timing, timingButtons, mainCategories, index) {
   var wording, dayEnding, dayEndingNumberOne;
   var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-  if (timing === "Monthly") {
-    dayEndingNumberOne = Number(inputValues[0].getDate().toString().split('')[inputValues[0].getDate().toString().length - 1]);
-    var day = inputValues[0].getDay();
-    var dayOne = inputValues[0].getDate(); // Getting proper day ending, such as 'st' for example for the 1st.
+  var subCategoryIndex = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-button')).indexOf(target);
 
-    dayEnding = calculateDayEnding(dayEndingNumberOne, dayEnding, inputValues[0]);
-    wording = "Due the ".concat(dayOne).concat(dayEnding, " of ").concat(months[inputValues[0].getMonth()], ".");
-  }
+  var currentMainCategory; ////////////////////////////
+  // INITIALIZE 12 MONTH ARRAY
+
+  var twelveMonthArray = []; // GET MONTHLY TIMING
+
+  if (timing === "Monthly") {
+    // Create Payment Schedule
+    var paymentSchedule = create12MonthArray(twelveMonthArray, inputValues[0], timing, days); // Get Current Main Category
+
+    mainCategories.forEach(function (mc, i) {
+      var categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
+      if (mc.title === categoryTitle) currentMainCategory = mc;
+    }); ///////////////////////
+    // SET TIMING OPTIONS
+    // Set Payment Cycle
+
+    currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing; // Set Payment Schedule
+
+    currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentSchedule = paymentSchedule; // Set Next Due Date(s)
+
+    currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates = [currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentSchedule[0]]; ///////////////////////////////
+    // GET THE DUE DATE
+
+    var dueDate = currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates[0]; //////////////////////////
+    // GET LAST DIGIT OF DATE
+
+    dayEndingNumberOne = Number(dueDate.getDate().toString().split('')[dueDate.getDate().toString().length - 1]); ///////////////////////////////////////////////
+    // CALCULATE PROPER DAY ENDING (i.e. 'st' on 1st)
+
+    dayEnding = calculateDayEnding(dayEndingNumberOne, dayEnding, dueDate); ////////////////////////////
+    // GET THE DAY OF THE WEEK
+
+    var day = days[dueDate.getDay()]; //////////////////////////////
+    // GET THE DAY OF THE MONTH
+
+    var dayOne = dueDate.getDate(); //////////////////////////////////////////////
+    // SET THE WORDING FOR THE TIMING ON THE UI
+
+    wording = "Due ".concat(day, ", the ").concat(dayOne).concat(dayEnding, " of ").concat(months[dueDate.getMonth()], ".");
+  } // GET BI-MONTHLY TIMING
+
 
   if (timing === "Bi-Monthly") {
-    var _day = inputValues[0].getDay();
+    ////////////////////////////////////////////
+    // RETURN IF MONTH OF DATES DO NOT MATCH
+    if (inputValues[0].getMonth() !== inputValues[1].getMonth()) return; // Create Payment Schedule
 
-    var day2 = inputValues[1].getDay();
+    var _paymentSchedule = create12MonthArray(twelveMonthArray, inputValues, timing, days); // Get Current Main Category
 
-    var _dayOne = inputValues[0].getDate();
 
-    var dayTwo = inputValues[1].getDate();
-    dayEndingNumberOne = Number(inputValues[0].getDate().toString().split('')[inputValues[0].getDate().toString().length - 1]);
-    var dayEndingNumberTwo = Number(inputValues[1].getDate().toString().split('')[inputValues[1].getDate().toString().length - 1]);
-    dayEnding = calculateDayEnding(dayEndingNumberOne, dayEnding, inputValues[0]);
-    var dayEndingTwo = calculateDayEnding(dayEndingNumberTwo, dayEnding, inputValues[1]);
-    if (inputValues[0].getMonth() !== inputValues[1].getMonth()) return;
-    wording = "Due the ".concat(_dayOne).concat(dayEnding, " & ").concat(dayTwo).concat(dayEndingTwo, ", of ").concat(months[inputValues[0].getMonth()]);
-  }
+    mainCategories.forEach(function (mc, i) {
+      var categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
+      if (mc.title === categoryTitle) currentMainCategory = mc;
+    }); ///////////////////////
+    // SET TIMING OPTIONS
+    // Set Payment Cycle
+
+    currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing; // Set Payment Schedule
+
+    currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentSchedule = _paymentSchedule; // Set Next Due Date(s)
+
+    currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates = [currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentSchedule[0]]; ///////////////////////////////
+    // GET THE DUE DATES
+
+    var dueDate1 = currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates[0][0];
+    var dueDate2 = currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates[0][1]; //////////////////////////
+    // GET LAST DIGIT OF DATES
+
+    dayEndingNumberOne = Number(dueDate1.getDate().toString().split('')[dueDate1.getDate().toString().length - 1]);
+    var dayEndingNumberTwo = Number(dueDate2.getDate().toString().split('')[dueDate2.getDate().toString().length - 1]); ///////////////////////////////////////////////
+    // CALCULATE PROPER DAY ENDING (i.e. 'st' on 1st)
+
+    dayEnding = calculateDayEnding(dayEndingNumberOne, dayEnding, dueDate1);
+    var dayEndingTwo = calculateDayEnding(dayEndingNumberTwo, dayEnding, dueDate2); ////////////////////////////
+    // GET THE DAY OF THE WEEK
+
+    var _day = dueDate1.getDay();
+
+    var day2 = dueDate2.getDay(); //////////////////////////////
+    // GET THE DAY OF THE MONTH
+
+    var _dayOne = dueDate1.getDate();
+
+    var dayTwo = dueDate2.getDate(); //////////////////////////////////////////////
+    // SET THE WORDING FOR THE TIMING ON THE UI
+
+    wording = "Due the ".concat(_dayOne).concat(dayEnding, " & ").concat(dayTwo).concat(dayEndingTwo, ", of ").concat(months[dueDate1.getMonth()]);
+  } // GET BI-WEEKLY TIMING
+
 
   if (timing === "Bi-Weekly") {
-    var _day2 = inputValues[0].getDay();
+    // Create Payment Schedule
+    var _paymentSchedule2 = create12MonthArray(twelveMonthArray, inputValues[0], timing, days); // Get Current Main Category
 
-    var _dayOne2 = inputValues[0].getDate();
 
-    var twelveMonthArray = [];
-    dayEndingNumberOne = Number(inputValues[0].getDate().toString().split('')[inputValues[0].getDate().toString().length - 1]); // Getting proper day ending, such as 'st' for example for the 1st.
+    mainCategories.forEach(function (mc, i) {
+      var categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
+      if (mc.title === categoryTitle) currentMainCategory = mc;
+    }); ///////////////////////
+    // SET TIMING OPTIONS
+    // Set Payment Cycle
 
-    dayEnding = calculateDayEnding(dayEndingNumberOne, dayEnding, inputValues[0]);
-    wording = "Due the ".concat(_dayOne2).concat(dayEnding, " of ").concat(months[inputValues[0].getMonth()], ".");
-    create12MonthArray(twelveMonthArray, inputValues[0]);
-  }
+    currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing; // Set Payment Schedule
+
+    currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentSchedule = _paymentSchedule2; // Set Next Due Date(s)
+
+    currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates = [currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentSchedule[0]];
+    console.log(currentMainCategory.subCategories[subCategoryIndex]); ///////////////////////////////
+    // GET THE DUE DATE
+
+    var _dueDate = currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates[0]; //////////////////////////
+    // GET LAST DIGIT OF DATE
+
+    dayEndingNumberOne = Number(_dueDate.getDate().toString().split('')[_dueDate.getDate().toString().length - 1]); ///////////////////////////////////////////////
+    // CALCULATE PROPER DAY ENDING (i.e. 'st' on 1st)
+
+    dayEnding = calculateDayEnding(dayEndingNumberOne, dayEnding, _dueDate); ////////////////////////////
+    // GET THE DAY OF THE WEEK
+
+    var _day2 = days[_dueDate.getDay()]; //////////////////////////////
+    // GET THE DAY OF THE MONTH
+
+
+    var _dayOne2 = _dueDate.getDate(); //////////////////////////////////////////////
+    // SET THE WORDING FOR THE TIMING ON THE UI
+
+
+    wording = "Due the ".concat(_dayOne2).concat(dayEnding, " of ").concat(months[_dueDate.getMonth()], ".");
+  } // GET WEEKLY TIMING
+
 
   if (timing === "Weekly") {
-    var _day3 = inputValues[0].getDay();
+    // Create Payment Schedule
+    var _paymentSchedule3 = create12MonthArray(twelveMonthArray, inputValues[0], timing, days); // Get Current Main Category
 
-    var _dayOne3 = inputValues[0].getDate();
 
-    console.log(timing);
+    mainCategories.forEach(function (mc, i) {
+      var categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
+      if (mc.title === categoryTitle) currentMainCategory = mc;
+    }); ///////////////////////
+    // SET TIMING OPTIONS
+    // Set Payment Cycle
+
+    currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing; // Set Payment Schedule
+
+    currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentSchedule = _paymentSchedule3; // Set Next Due Date(s)
+
+    currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates = [currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentSchedule[0]]; ///////////////////////////////
+    // GET THE DUE DATE
+
+    var _dueDate2 = currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates[0]; //////////////////////////
+    // GET LAST DIGIT OF DATE
+
+    dayEndingNumberOne = Number(_dueDate2.getDate().toString().split('')[_dueDate2.getDate().toString().length - 1]); ///////////////////////////////////////////////
+    // CALCULATE PROPER DAY ENDING (i.e. 'st' on 1st)
+
+    dayEnding = calculateDayEnding(dayEndingNumberOne, dayEnding, _dueDate2); ////////////////////////////
+    // GET THE DAY OF THE WEEK
+
+    var _day3 = days[_dueDate2.getDay()]; //////////////////////////////
+    // GET THE DAY OF THE MONTH
+
+
+    var _dayOne3 = _dueDate2.getDate(); //////////////////////////////////////////////
+    // SET THE WORDING FOR THE TIMING ON THE UI
+
+
+    wording = "Due every ".concat(_day3, " of the month.");
   }
 
   target.textContent = wording;
@@ -5440,7 +5666,7 @@ var insertTiiming = function insertTiiming(target, inputValues, timing, timingBu
 // WATCH FOR TIMING SETTING
 
 
-var watchForSettingTiming = function watchForSettingTiming(categories, index, clickedItem, timing) {
+var watchForSettingTiming = function watchForSettingTiming(categories, index, clickedItem, timing, fullBudget) {
   // Getting the timing.
   var monthlyTimingButton = document.querySelector('.sub-category-display__timing-container__monthly-container__button');
   var biMonthlyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-monthly-container__button');
@@ -5477,7 +5703,7 @@ var watchForSettingTiming = function watchForSettingTiming(categories, index, cl
       if (timing === "Monthly") {
         timingArray = [];
         timingArray.push(monthlyTiming);
-        return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons);
+        return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, categories, index);
       }
 
       if (timing === "Bi-Monthly") {
@@ -5490,7 +5716,7 @@ var watchForSettingTiming = function watchForSettingTiming(categories, index, cl
         timingArray.push(timingOne);
         timingArray.push(timingTwo);
         console.log(timingArray);
-        return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons);
+        return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, categories, index);
       }
 
       if (timing === "Bi-Weekly") {
@@ -5499,7 +5725,17 @@ var watchForSettingTiming = function watchForSettingTiming(categories, index, cl
         var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
         timingArray = [];
         timingArray.push(biWeeklyTiming);
-        return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons);
+        insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, categories, index);
+        console.log(fullBudget);
+        return;
+      }
+
+      if (timing === "Weekly") {
+        var oldWeeklyTiming = new Date(document.querySelector('.sub-category-display__timing-container__weekly-container__label__select').value);
+        var weeklyTiming = new Date(oldWeeklyTiming.setHours(oldWeeklyTiming.getHours() + 7));
+        timingArray = [];
+        timingArray.push(weeklyTiming);
+        insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, categories, index);
       }
     });
   });
@@ -5621,7 +5857,6 @@ var setupGoalSetting = function setupGoalSetting(categories, index, clickedItem,
         sc.classList.remove('sub-category-display__sub-category--hidden');
       }
     });
-    console.log(getTimingContainerHeight(categories, index));
     timingFunctionContainer.style.height = getTimingContainerHeight(categories, index);
     timingFunctionContainer.style.minHeight = "calc(100% - 4rem)";
     if (getTimingContainerHeight(categories, index) >= 40) timingFunctionContainer.style.justifyContent = "space-evenly";
@@ -5784,15 +6019,15 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
   var icon;
   budgetContinueButton.addEventListener('click', /*#__PURE__*/function () {
     var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee3(e) {
-      var budgetInfo, userInfo, user;
+      var budgetInfo, userInfo, user, individualPayments, _individualPayments;
+
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
               e.preventDefault();
               budgetInfo = {};
-              currentPage++;
-              setupPage(currentPage, budgetCreationFormPages, budgetCreationFormPagesNumber); //////////////////////////////
+              currentPage++; //////////////////////////////
               // ASSIGN BUDGET INFORMATION
               /////////////////////
               // BUDGET NAME
@@ -5802,7 +6037,8 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
               budgetInfo.name = budgetName; /////////////////////////////
               // BUDGET MAIN CATEGORIES
 
-              budgetInfo.mainCategories = mainCategories; /////////////////////////////
+              budgetInfo.mainCategories = mainCategories;
+              setupPage(currentPage, budgetCreationFormPages, budgetCreationFormPagesNumber); /////////////////////////////
               // CHECK USER
 
               _context3.next = 10;
@@ -5828,10 +6064,14 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
 
               if (currentPage + 1 === 4 && user.latterDaySaint === false) {
                 setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex, clicked, selectedTiming);
-                watchForSettingTiming(budgetInfo.mainCategories, subCategoryIndex, clicked, selectedTiming);
+                watchForSettingTiming(budgetInfo.mainCategories, subCategoryIndex, clicked, selectedTiming, budgetInfo);
               }
 
               if (currentPage + 1 === 5 && user.latterDaySaint === false) {
+                individualPayments = document.querySelectorAll('.individual-payment');
+
+                _finishUpdatingSubCategories(budgetInfo.mainCategories, individualPayments);
+
                 _watchEmergencyGoalSettings(emergencyGoalSetting);
               } /////////////////////////////
               // IF LATTER DAY SAINT
@@ -5855,10 +6095,14 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
 
               if (currentPage + 1 === 5 && user.latterDaySaint === true) {
                 setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex, clicked, selectedTiming);
-                watchForSettingTiming(budgetInfo.mainCategories, subCategoryIndex, clicked, selectedTiming);
+                watchForSettingTiming(budgetInfo.mainCategories, subCategoryIndex, clicked, selectedTiming, budgetInfo);
               }
 
               if (currentPage + 1 === 6 && user.latterDaySaint === true) {
+                _individualPayments = document.querySelectorAll('.individual-payment');
+
+                _finishUpdatingSubCategories(budgetInfo.mainCategories, _individualPayments);
+
                 _watchEmergencyGoalSettings(emergencyGoalSetting);
               }
 

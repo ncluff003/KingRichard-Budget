@@ -77,6 +77,6 @@ section.budget-creation-form__page__section.r__budget-creation-form__page__secti
             label.sub-category-display__timing-container__weekly-container__label.r__sub-category-display__timing-container__weekly-container__label Weekday
               - const weekdays = [`Sunday`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`]
               select.sub-category-display__timing-container__weekly-container__label__select.r__sub-category-display__timing-container__weekly-container__label__select
-                each day in weekdays
-                  option.sub-category-display__timing-container__weekly-container__label__select__option.sub-category-display__timing-container__weekly-container__label__select__option= `${day}`
+                each day, index in weekdays
+                  option.sub-category-display__timing-container__weekly-container__label__select__option.sub-category-display__timing-container__weekly-container__label__select__option(value=`${index}`)= `${day}`
             button.sub-category-display__timing-container__weekly-container__submit.r__sub-category-display__timing-container__weekly-container__submit.timing-submit-button Submit

@@ -718,7 +718,7 @@ html {
   color: rgba(130, 42, 186, 0.8);
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section__input {
-  font-size: 1.4rem;
+  font-size: 2rem;
   color: rgba(130, 42, 186, 0.8);
   text-align: center;
 }

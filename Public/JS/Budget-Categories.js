@@ -988,6 +988,7 @@ class SubCategory extends Category {
   constructor(options) {
     const superOpts = { ...options };
     super(superOpts);
+    this.timingOptions = {};
     this.surplus = false;
   }
 
@@ -995,10 +996,13 @@ class SubCategory extends Category {
     this.surplus = !this.surplus;
   }
 
-  _finishUpdatingSubCategory(goal, spent, remaining) {
-    this.goalAmount = goal;
-    this.amountSpent = spent;
-    this.amountRemaining = remaining;
+  _finishUpdatingSubCategory(goal) {
+    let goalAmount = Number(goal);
+    if (goalAmount !== `undefined` || typeof goalAmount !== `number`) goal = 0;
+    this.goalAmount = goalAmount;
+    this.amountSpent = 0;
+    this.amountRemaining = this.goalAmount - this.amountSpent;
+    this.percentageSpent = Number((this.amountSpent / this.goalAmount).toFixed(1));
   }
 }
 
