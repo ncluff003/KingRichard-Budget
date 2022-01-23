@@ -529,6 +529,7 @@ html {
   font-family: MADE Tommy Soft, Verdana, sans-serif !important;
   font-size: 1.6rem;
   color: #822aba;
+  text-align: center;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category__icons-container .icon-container__icon {
   font-size: 4rem;
@@ -33669,7 +33670,7 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
   border: 0.3rem solid #822aba;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   border-top-left-radius: 0.9rem;
   border-top-right-radius: 0.9rem;
   flex-flow: row wrap;
@@ -33698,6 +33699,7 @@ html {
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category__icons-container .icon-container__icon {
   position: relative;
   z-index: 0;
+  margin-bottom: 0.5rem;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category__icons-container .icon-container--clicked {
   background-color: #822aba;
@@ -44235,9 +44237,7 @@ I was thinking of iterating through the objects that were created.
     //////////////////////////////////
     /// To Do List:
 
-    MUSTDO : With Users getting into Database, now I have to have the App Logged In page come up with the appropriate user and greeting.  This will include the user's budgets that have been created, along with the create budget card.  Technically, this is ALMOST done, but the created budgets will come later, and the greeting is next to be done.  ** TOP PRIORITY **
-    MUSTDO : Get Login Form to do the same as the Signup form for the already signed up users.  In other words, bring up the App Logged In page with everything else that the sign up form brings up on that page. ** TOP PRIORITY **
-    MUSTDO : Have both the login form and signup form change the logged in URL to /app.  That way, it then will use that router from then on.  I do not want it to stick on /users/login or /users/signup url's.  That will NOT work for this app.  ** TOP PRIORITY **
+    MUSTDO :  ** TOP PRIORITY **
 
 
     //////////////////////////////////
@@ -44249,7 +44249,7 @@ I was thinking of iterating through the objects that were created.
     //////////////////////////////////
     /// Adjustments To Make
 
-    ADJUST : Clean up App.js file by clearing App Class Constructor of ALL functions EXCEPT the 'startApp' function.
+    ADJUST : Eventually, it may be possible to make a 'Budget' Class that gets filled up by the user. --- This will be looked at AFTER the budget works, as I have it working right now for what I need.
     ADJUST : 
 
 

@@ -5117,7 +5117,7 @@ var createCategories = function createCategories(icon) {
 
     if (mainContainer) {
       var iconContainer = document.createElement("section");
-      iconContainer.classList.add('icon-container');
+      iconContainer.classList.add('icon-container'); // Create Icon
 
       var _icon = document.createElement('i');
 
@@ -5125,9 +5125,14 @@ var createCategories = function createCategories(icon) {
 
       _icon.classList.add("fa-".concat(iconImage));
 
-      _icon.classList.add("icon-container__icon");
+      _icon.classList.add("icon-container__icon"); // Create Icon Text
 
+
+      var text = document.createElement('p');
+      text.classList.add('icon-container__text');
+      text.textContent = icons[i].split('-').join(' ');
       iconContainer.insertAdjacentElement('beforeend', _icon);
+      iconContainer.insertAdjacentElement('beforeend', text);
       mainContainer.insertAdjacentElement('beforeend', iconContainer);
     }
   });

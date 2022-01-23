@@ -1,6 +1,24 @@
 import * as Categories from './Budget-Categories';
 import * as Updating from './Update-User';
 
+// class Budget {
+//   constructor() {
+//     this.mainCategories = [];
+//   }
+
+//   _addName(name) {
+//     this.name = name;
+//   }
+
+//   _addMainCategory () {
+
+//   }
+
+//   _addSubCategory () {
+
+//   }
+// }
+
 export const _watchEmergencyGoalSettings = (setting) => {
   const emergencySettingLabels = document.querySelectorAll('.emergency-checkbox-label');
   const emergencyInputs = document.querySelectorAll('.emergency-input');

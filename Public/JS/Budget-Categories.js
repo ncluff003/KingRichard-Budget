@@ -1361,11 +1361,19 @@ export const createCategories = (icon) => {
     if (mainContainer) {
       const iconContainer = document.createElement(`section`);
       iconContainer.classList.add('icon-container');
+
+      // Create Icon
       const icon = document.createElement('i');
       icon.classList.add('fas');
       icon.classList.add(`fa-${iconImage}`);
       icon.classList.add(`icon-container__icon`);
+
+      // Create Icon Text
+      const text = document.createElement('p');
+      text.classList.add('icon-container__text');
+      text.textContent = icons[i].split('-').join(' ');
       iconContainer.insertAdjacentElement('beforeend', icon);
+      iconContainer.insertAdjacentElement('beforeend', text);
       mainContainer.insertAdjacentElement('beforeend', iconContainer);
     }
   });

@@ -481,8 +481,11 @@ html {
                         font-family: MADE Tommy Soft, Verdana, sans-serif !important;
                         font-size: 1.6rem;
                         color: $primaryColor;
+                        text-align: center;
                         &__icon {
                           font-size: 4rem;
+                        }
+                        &__text {
                         }
                         &:hover {
                           color: $colorOffWhite;
