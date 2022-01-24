@@ -5163,6 +5163,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // class Budget {
+//   constructor() {
+//     this.mainCategories = [];
+//   }
+//   _addName(name) {
+//     this.name = name;
+//   }
+//   _addMainCategory () {
+//   }
+//   _addSubCategory () {
+//   }
+// }
 
 var _watchEmergencyGoalSettings = function _watchEmergencyGoalSettings(setting) {
   var emergencySettingLabels = document.querySelectorAll('.emergency-checkbox-label');
@@ -5177,7 +5189,9 @@ var _watchEmergencyGoalSettings = function _watchEmergencyGoalSettings(setting) 
         ei.style.display = 'none';
       });
       esl.textContent === "Length Of Time" ? emergencyInputs[1].style.display = "flex" : emergencyInputs[0].style.display = "flex";
-      return setting = esl.textContent;
+      setting = esl.textContent;
+      console.log(setting);
+      return setting;
     });
   });
 };

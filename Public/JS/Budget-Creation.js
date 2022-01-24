@@ -1,25 +1,39 @@
 import * as Categories from './Budget-Categories';
 import * as Updating from './Update-User';
 
-// class Budget {
-//   constructor() {
-//     this.mainCategories = [];
-//   }
+class Account {
+  constructor(options) {
+    this.name = options.name;
+  }
+}
+class Budget {
+  constructor() {
+    this.accounts = [];
+    this.mainCategories = [];
+  }
 
-//   _addName(name) {
-//     this.name = name;
-//   }
+  _addName(name) {
+    this.name = name;
+  }
 
-//   _addMainCategory () {
+  _addMainCategory() {}
 
-//   }
+  _addSubCategory() {}
 
-//   _addSubCategory () {
+  _addAccounts() {
+    this.accounts.push(new Account(`Un-Allocated`));
+    this.accounts.push(new Account(`Monthly Budget`));
+    this.accounts.push(new Account(`Emergency Fund`));
+    this.accounts.push(new Account(`Savings Fund`));
+    this.accounts.push(new Account(`Expense Fund`));
+    this.accounts.push(new Account(`Surplus`));
+    this.accounts.push(new Account(`Investment Fund`));
+    this.accounts.push(new Account(`Debt`));
+    this.accounts.push(new Account(`Tithing`));
+  }
+}
 
-//   }
-// }
-
-export const _watchEmergencyGoalSettings = (setting) => {
+export const _watchEmergencyGoalSettings = (budget, setting) => {
   const emergencySettingLabels = document.querySelectorAll('.emergency-checkbox-label');
   const emergencyInputs = document.querySelectorAll('.emergency-input');
   emergencySettingLabels.forEach((esl, i) => {
@@ -32,7 +46,9 @@ export const _watchEmergencyGoalSettings = (setting) => {
         ei.style.display = 'none';
       });
       esl.textContent === `Length Of Time` ? (emergencyInputs[1].style.display = `flex`) : (emergencyInputs[0].style.display = `flex`);
-      return (setting = esl.textContent);
+      setting = esl.textContent;
+      console.log(setting);
+      return setting;
     });
   });
 };
@@ -903,7 +919,7 @@ export const _watchBudgetCreation = () => {
     if (currentPage + 1 === 6 && user.latterDaySaint === true) {
       const individualPayments = document.querySelectorAll('.individual-payment');
       _finishUpdatingSubCategories(budgetInfo.mainCategories, individualPayments);
-      _watchEmergencyGoalSettings(emergencyGoalSetting);
+      _watchEmergencyGoalSettings(budgetInfo, emergencyGoalSetting);
     }
   });
 };
