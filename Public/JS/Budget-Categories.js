@@ -968,7 +968,7 @@ class Category {
 
 ////////////////////////////////////////
 // MAIN CATEGORY -- CHILD CLASS
-class MainCategory extends Category {
+export class MainCategory extends Category {
   constructor(options) {
     const superOpts = { ...options };
     super(superOpts);
@@ -984,7 +984,7 @@ class MainCategory extends Category {
 
 ////////////////////////////////////////
 // SUB CATEGORY -- CHILD CLASS
-class SubCategory extends Category {
+export class SubCategory extends Category {
   constructor(options) {
     const superOpts = { ...options };
     super(superOpts);
@@ -1014,7 +1014,7 @@ const _capitalize = (string) => {
 
 ////////////////////////////////////////
 // SUB CATEGORY CREATION PROCESS
-export const createSubCategory = (categories, index, mainCategories) => {
+export const createSubCategory = (budget, index) => {
   // Creating Sub Category Container
   const subCategory = document.createElement('section');
   // Adding Sub Category Classes
@@ -1075,7 +1075,7 @@ export const createSubCategory = (categories, index, mainCategories) => {
     });
     const categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
     const categoryTitle = subCategoryTitleElement.textContent;
-    categories[categoryNumber].subCategories[subArray.indexOf(clicked.closest('.sub-category'))]._makeSurplus();
+    budget.mainCategories[categoryNumber].subCategories[subArray.indexOf(clicked.closest('.sub-category'))]._makeSurplus();
   });
 
   // Create Surplus Switch Toggle
@@ -1111,7 +1111,7 @@ export const createSubCategory = (categories, index, mainCategories) => {
     /////////////////////////////
     // REMOVE DOM ELEMENT
     selectedSubCategory.remove();
-    categories[categoryNumber]._deleteSubCategory(subArray.indexOf(selectedSubCategory));
+    budget.mainCategories[categoryNumber]._deleteSubCategory(subArray.indexOf(selectedSubCategory));
   });
 
   surplusSwitchToggle.insertAdjacentElement('beforeend', surplusSwitchToggleIcon);
@@ -1137,10 +1137,10 @@ export const createSubCategory = (categories, index, mainCategories) => {
   if (subCategories.length > 0) {
     subCategories[subCategories.length - 1].insertAdjacentElement('afterend', subCategory);
   }
-  categories[index].subCategories.push(new SubCategory({ title: `${subCategoryTitleElement.textContent}` }));
+  budget._addSubCategory(index, `${subCategoryTitleElement.textContent}`);
 };
 
-export const _addSubCategory = (categories, index, mainCategories) => {
+export const _addSubCategory = (budget, index) => {
   /////////////////////////////////////////////////
   // INITIALIZE NEEDED VARIABLES
   const mainCategoryTitle = document
@@ -1150,7 +1150,7 @@ export const _addSubCategory = (categories, index, mainCategories) => {
 
   ////////////////////////////////////
   // GETTING THE MAIN CATEGORY INDEX
-  mainCategories.forEach((mc, i) => {
+  budget.mainCategories.forEach((mc, i) => {
     if (mc.title.toLowerCase() === mainCategoryTitle) {
       categoryIndex = i;
       return categoryIndex;
@@ -1161,7 +1161,7 @@ export const _addSubCategory = (categories, index, mainCategories) => {
 
   //////////////////////////////////////////
   // CHECKING SUB CATEGORIES VS INPUT VALUE
-  const filtered = mainCategories[categoryIndex].subCategories.filter((sc) => {
+  const filtered = budget.mainCategories[categoryIndex].subCategories.filter((sc) => {
     if (sc.title.toLowerCase() === subCategoryTitle) {
       return sc;
     }
@@ -1170,25 +1170,27 @@ export const _addSubCategory = (categories, index, mainCategories) => {
   /////////////////////////////////////////////////
   // ALLOW ONLY ONE SUB CATEGORY WITH THAT NAME
   if (filtered.length >= 1) return;
-  createSubCategory(categories, index, mainCategories);
+  createSubCategory(budget, index);
 };
 
 ////////////////////////////////////////
 // MAIN CATEGORY DELETION PROCESS
-const deleteMainCategory = (e, mainCategories) => {
-  mainCategories = mainCategories.filter((o, i) => {
+const deleteMainCategory = (e, budget) => {
+  budget.mainCategories = budget.mainCategories.filter((o, i) => {
     return o.title !== e.target.closest('section').firstChild.nextElementSibling.textContent;
   });
   e.target.closest('section').remove();
   console.log(`DELETED`);
+  return budget.mainCategories;
 };
 
 ////////////////////////////////////////
 // MAIN CATEGORY CREATION PROCESS
-const createMainCategory = (element, mainCategories) => {
+const createMainCategory = (element, budget, filteredArray) => {
   let mainCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container__input').value;
   mainCategoryTitle = mainCategoryTitle.split(' ').map(_capitalize).join(' ');
-  mainCategories.push(new MainCategory({ icon: `${element}`, title: mainCategoryTitle }));
+  // budget.mainCategories.push(new MainCategory({ icon: `${element}`, title: mainCategoryTitle }));
+  budget._addMainCategory(`${element}`, mainCategoryTitle);
   const mainCategoryContainer = document.querySelector('.budget-creation-form__page__section__main-category-container');
   const mainCategory = document.createElement('section');
   mainCategory.classList.add('main-category');
@@ -1215,22 +1217,22 @@ const createMainCategory = (element, mainCategories) => {
   }
   deleteButton.addEventListener('click', (e) => {
     e.preventDefault();
-    deleteMainCategory(e, mainCategories);
+    deleteMainCategory(e, budget, filteredArray);
   });
 };
 
 ////////////////////////////////////////
 // CREATE MAIN CATEGORY
 
-const _createMainCategory = (icon, iconList, mainCategories) => {
+const _createMainCategory = (icon, iconList, budget) => {
   let mainCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container__input').value.toLowerCase();
-  const filtered = mainCategories.filter((mc) => {
+  const filtered = budget.mainCategories.filter((mc) => {
     if (mc.title.toLowerCase() === mainCategoryTitle) {
       return mc;
     }
   });
   if (filtered.length >= 1) return;
-  createMainCategory(icon, mainCategories);
+  createMainCategory(icon, budget, filtered);
 
   // oldMainCategories = budgetMainCategories;
   iconList.forEach((icon) => {
@@ -1240,21 +1242,21 @@ const _createMainCategory = (icon, iconList, mainCategories) => {
 
 ////////////////////////////////////////
 // FIND CLICKED ICON
-const _findClickedIcon = (iconList, mainCategories) => {
+const _findClickedIcon = (iconList, budget) => {
   iconList.forEach((icon) => {
     if (icon.classList.contains('icon-container--clicked')) {
-      _createMainCategory(icon.firstChild.classList[1], iconList, mainCategories);
+      _createMainCategory(icon.firstChild.classList[1], iconList, budget);
     }
   });
 };
 
-const _watchCategoryCreation = (mainCategories) => {
+const _watchCategoryCreation = (budget) => {
   const createMainCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[0];
   const iconContainers = document.querySelectorAll('.icon-container');
   if (createMainCategoryButton) {
     createMainCategoryButton.addEventListener('click', (e) => {
       e.preventDefault();
-      _findClickedIcon(iconContainers, mainCategories);
+      _findClickedIcon(iconContainers, budget);
       closeCategoryCreation();
     });
   }
@@ -1334,7 +1336,7 @@ const openCategoryCreation = () => {
   _hideCreatedIcons();
 };
 
-export const _watchCreateCategoryButton = (icon, mainCategories) => {
+export const _watchCreateCategoryButton = (icon, budget) => {
   const createCategoryButton = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category');
   if (createCategoryButton) {
     createCategoryButton.addEventListener('click', (e) => {
@@ -1350,7 +1352,7 @@ export const _watchCreateCategoryButton = (icon, mainCategories) => {
     });
   }
   _clickIcon(icon);
-  _watchCategoryCreation(mainCategories);
+  _watchCategoryCreation(budget);
 };
 
 ////////////////////////////////////////

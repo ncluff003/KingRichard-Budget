@@ -4654,6 +4654,8 @@ var createBudgetCard = function createBudgetCard(budgetName, createdAt, lastUpda
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "icons": () => (/* binding */ icons),
+/* harmony export */   "MainCategory": () => (/* binding */ MainCategory),
+/* harmony export */   "SubCategory": () => (/* binding */ SubCategory),
 /* harmony export */   "createSubCategory": () => (/* binding */ createSubCategory),
 /* harmony export */   "_addSubCategory": () => (/* binding */ _addSubCategory),
 /* harmony export */   "_clickIcon": () => (/* binding */ _clickIcon),
@@ -4730,7 +4732,6 @@ var MainCategory = /*#__PURE__*/function (_Category) {
 }(Category); ////////////////////////////////////////
 // SUB CATEGORY -- CHILD CLASS
 
-
 var SubCategory = /*#__PURE__*/function (_Category2) {
   (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__["default"])(SubCategory, _Category2);
 
@@ -4770,14 +4771,13 @@ var SubCategory = /*#__PURE__*/function (_Category2) {
 }(Category); ////////////////////////////////////////
 // CAPITALIZING CATEGORIES
 
-
 var _capitalize = function _capitalize(string) {
   return "".concat(string.charAt(0).toUpperCase()).concat(string.slice(1));
 }; ////////////////////////////////////////
 // SUB CATEGORY CREATION PROCESS
 
 
-var createSubCategory = function createSubCategory(categories, index, mainCategories) {
+var createSubCategory = function createSubCategory(budget, index) {
   // Creating Sub Category Container
   var subCategory = document.createElement('section'); // Adding Sub Category Classes
 
@@ -4832,7 +4832,7 @@ var createSubCategory = function createSubCategory(categories, index, mainCatego
     var categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
     var categoryTitle = subCategoryTitleElement.textContent;
 
-    categories[categoryNumber].subCategories[subArray.indexOf(clicked.closest('.sub-category'))]._makeSurplus();
+    budget.mainCategories[categoryNumber].subCategories[subArray.indexOf(clicked.closest('.sub-category'))]._makeSurplus();
   }); // Create Surplus Switch Toggle
 
   var surplusSwitchToggle = document.createElement('section');
@@ -4864,7 +4864,7 @@ var createSubCategory = function createSubCategory(categories, index, mainCatego
 
     selectedSubCategory.remove();
 
-    categories[categoryNumber]._deleteSubCategory(subArray.indexOf(selectedSubCategory));
+    budget.mainCategories[categoryNumber]._deleteSubCategory(subArray.indexOf(selectedSubCategory));
   });
   surplusSwitchToggle.insertAdjacentElement('beforeend', surplusSwitchToggleIcon);
   surplusContainerSwitch.insertAdjacentElement('beforeend', surplusSwitchToggle);
@@ -4885,18 +4885,17 @@ var createSubCategory = function createSubCategory(categories, index, mainCatego
     subCategories[subCategories.length - 1].insertAdjacentElement('afterend', subCategory);
   }
 
-  categories[index].subCategories.push(new SubCategory({
-    title: "".concat(subCategoryTitleElement.textContent)
-  }));
+  budget._addSubCategory(index, "".concat(subCategoryTitleElement.textContent)); // mainCategories[index].subCategories.push(new SubCategory({ title: `${subCategoryTitleElement.textContent}` }));
+
 };
-var _addSubCategory = function _addSubCategory(categories, index, mainCategories) {
+var _addSubCategory = function _addSubCategory(budget, index) {
   /////////////////////////////////////////////////
   // INITIALIZE NEEDED VARIABLES
   var mainCategoryTitle = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__text').textContent.toLowerCase();
   var categoryIndex; ////////////////////////////////////
   // GETTING THE MAIN CATEGORY INDEX
 
-  mainCategories.forEach(function (mc, i) {
+  budget.mainCategories.forEach(function (mc, i) {
     if (mc.title.toLowerCase() === mainCategoryTitle) {
       categoryIndex = i;
       return categoryIndex;
@@ -4906,7 +4905,7 @@ var _addSubCategory = function _addSubCategory(categories, index, mainCategories
   var subCategoryTitle = document.querySelector('.category-creation__input-container__input').value.toLowerCase(); //////////////////////////////////////////
   // CHECKING SUB CATEGORIES VS INPUT VALUE
 
-  var filtered = mainCategories[categoryIndex].subCategories.filter(function (sc) {
+  var filtered = budget.mainCategories[categoryIndex].subCategories.filter(function (sc) {
     if (sc.title.toLowerCase() === subCategoryTitle) {
       return sc;
     }
@@ -4914,27 +4913,27 @@ var _addSubCategory = function _addSubCategory(categories, index, mainCategories
   // ALLOW ONLY ONE SUB CATEGORY WITH THAT NAME
 
   if (filtered.length >= 1) return;
-  createSubCategory(categories, index, mainCategories);
+  createSubCategory(budget, index);
 }; ////////////////////////////////////////
 // MAIN CATEGORY DELETION PROCESS
 
-var deleteMainCategory = function deleteMainCategory(e, mainCategories) {
-  mainCategories = mainCategories.filter(function (o, i) {
+var deleteMainCategory = function deleteMainCategory(e, budget) {
+  budget.mainCategories = budget.mainCategories.filter(function (o, i) {
     return o.title !== e.target.closest('section').firstChild.nextElementSibling.textContent;
   });
   e.target.closest('section').remove();
   console.log("DELETED");
+  return budget.mainCategories;
 }; ////////////////////////////////////////
 // MAIN CATEGORY CREATION PROCESS
 
 
-var createMainCategory = function createMainCategory(element, mainCategories) {
+var createMainCategory = function createMainCategory(element, budget, filteredArray) {
   var mainCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container__input').value;
-  mainCategoryTitle = mainCategoryTitle.split(' ').map(_capitalize).join(' ');
-  mainCategories.push(new MainCategory({
-    icon: "".concat(element),
-    title: mainCategoryTitle
-  }));
+  mainCategoryTitle = mainCategoryTitle.split(' ').map(_capitalize).join(' '); // budget.mainCategories.push(new MainCategory({ icon: `${element}`, title: mainCategoryTitle }));
+
+  budget._addMainCategory("".concat(element), mainCategoryTitle);
+
   var mainCategoryContainer = document.querySelector('.budget-creation-form__page__section__main-category-container');
   var mainCategory = document.createElement('section');
   mainCategory.classList.add('main-category');
@@ -4963,21 +4962,21 @@ var createMainCategory = function createMainCategory(element, mainCategories) {
 
   deleteButton.addEventListener('click', function (e) {
     e.preventDefault();
-    deleteMainCategory(e, mainCategories);
+    deleteMainCategory(e, budget, filteredArray);
   });
 }; ////////////////////////////////////////
 // CREATE MAIN CATEGORY
 
 
-var _createMainCategory = function _createMainCategory(icon, iconList, mainCategories) {
+var _createMainCategory = function _createMainCategory(icon, iconList, budget) {
   var mainCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container__input').value.toLowerCase();
-  var filtered = mainCategories.filter(function (mc) {
+  var filtered = budget.mainCategories.filter(function (mc) {
     if (mc.title.toLowerCase() === mainCategoryTitle) {
       return mc;
     }
   });
   if (filtered.length >= 1) return;
-  createMainCategory(icon, mainCategories); // oldMainCategories = budgetMainCategories;
+  createMainCategory(icon, budget, filtered); // oldMainCategories = budgetMainCategories;
 
   iconList.forEach(function (icon) {
     icon.classList.remove('icon-container--clicked');
@@ -4986,15 +4985,15 @@ var _createMainCategory = function _createMainCategory(icon, iconList, mainCateg
 // FIND CLICKED ICON
 
 
-var _findClickedIcon = function _findClickedIcon(iconList, mainCategories) {
+var _findClickedIcon = function _findClickedIcon(iconList, budget) {
   iconList.forEach(function (icon) {
     if (icon.classList.contains('icon-container--clicked')) {
-      _createMainCategory(icon.firstChild.classList[1], iconList, mainCategories);
+      _createMainCategory(icon.firstChild.classList[1], iconList, budget);
     }
   });
 };
 
-var _watchCategoryCreation = function _watchCategoryCreation(mainCategories) {
+var _watchCategoryCreation = function _watchCategoryCreation(budget) {
   var createMainCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[0];
   var iconContainers = document.querySelectorAll('.icon-container');
 
@@ -5002,7 +5001,7 @@ var _watchCategoryCreation = function _watchCategoryCreation(mainCategories) {
     createMainCategoryButton.addEventListener('click', function (e) {
       e.preventDefault();
 
-      _findClickedIcon(iconContainers, mainCategories);
+      _findClickedIcon(iconContainers, budget);
 
       closeCategoryCreation();
     });
@@ -5086,7 +5085,7 @@ var openCategoryCreation = function openCategoryCreation() {
   _hideCreatedIcons();
 };
 
-var _watchCreateCategoryButton = function _watchCreateCategoryButton(icon, mainCategories) {
+var _watchCreateCategoryButton = function _watchCreateCategoryButton(icon, budget) {
   var createCategoryButton = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category');
 
   if (createCategoryButton) {
@@ -5107,7 +5106,7 @@ var _watchCreateCategoryButton = function _watchCreateCategoryButton(icon, mainC
 
   _clickIcon(icon);
 
-  _watchCategoryCreation(mainCategories);
+  _watchCategoryCreation(budget);
 }; ////////////////////////////////////////
 // SHOWING ICONS FOR MAIN CATEGORIES
 
@@ -5154,29 +5153,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
-/* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
+/* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
 
 
 
- // class Budget {
-//   constructor() {
-//     this.mainCategories = [];
-//   }
-//   _addName(name) {
-//     this.name = name;
-//   }
-//   _addMainCategory () {
-//   }
-//   _addSubCategory () {
-//   }
-// }
 
-var _watchEmergencyGoalSettings = function _watchEmergencyGoalSettings(setting) {
+
+
+
+var Account = function Account(options) {
+  (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__["default"])(this, Account);
+
+  this.name = options.accountName;
+};
+
+var Budget = /*#__PURE__*/function () {
+  function Budget() {
+    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__["default"])(this, Budget);
+
+    this.name = '';
+    this.accounts = [];
+    this.mainCategories = [];
+  }
+
+  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__["default"])(Budget, [{
+    key: "_addName",
+    value: function _addName(name) {
+      this.name = name;
+    }
+  }, {
+    key: "_addMainCategory",
+    value: function _addMainCategory(icon, title) {
+      this.mainCategories.push(new _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__.MainCategory({
+        icon: icon,
+        title: title
+      }));
+    }
+  }, {
+    key: "_addSubCategory",
+    value: function _addSubCategory(index, title) {
+      this.mainCategories[index].subCategories.push(new _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__.SubCategory({
+        title: title
+      }));
+    }
+  }, {
+    key: "_addAccounts",
+    value: function _addAccounts() {
+      this.accounts.push(new Account({
+        accountName: "Un-Allocated"
+      }));
+      this.accounts.push(new Account({
+        accountName: "Monthly Budget"
+      }));
+      this.accounts.push(new Account({
+        accountName: "Emergency Fund"
+      }));
+      this.accounts.push(new Account({
+        accountName: "Savings Fund"
+      }));
+      this.accounts.push(new Account({
+        accountName: "Expense Fund"
+      }));
+      this.accounts.push(new Account({
+        accountName: "Surplus"
+      }));
+      this.accounts.push(new Account({
+        accountName: "Investment Fund"
+      }));
+      this.accounts.push(new Account({
+        accountName: "Debt"
+      }));
+      this.accounts.push(new Account({
+        accountName: "Tithing"
+      }));
+    }
+  }]);
+
+  return Budget;
+}();
+
+var _watchEmergencyGoalSettings = function _watchEmergencyGoalSettings(budget, setting) {
   var emergencySettingLabels = document.querySelectorAll('.emergency-checkbox-label');
   var emergencyInputs = document.querySelectorAll('.emergency-input');
   emergencySettingLabels.forEach(function (esl, i) {
@@ -5196,9 +5259,9 @@ var _watchEmergencyGoalSettings = function _watchEmergencyGoalSettings(setting) 
   });
 };
 
-var _finishUpdatingSubCategories = function _finishUpdatingSubCategories(mainCategories, goals) {
-  console.log(mainCategories, goals);
-  mainCategories.forEach(function (mc, i) {
+var _finishUpdatingSubCategories = function _finishUpdatingSubCategories(budget, goals) {
+  console.log(budget.mainCategories, goals);
+  budget.mainCategories.forEach(function (mc, i) {
     mc.subCategories.forEach(function (sc, i) {
       sc._finishUpdatingSubCategory(goals[i].value);
     });
@@ -5208,14 +5271,14 @@ var _finishUpdatingSubCategories = function _finishUpdatingSubCategories(mainCat
 };
 
 var checkUser = /*#__PURE__*/function () {
-  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee() {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default().mark(function _callee() {
     var userInfo, user;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee$(_context) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return _Update_User__WEBPACK_IMPORTED_MODULE_4__.getSomePersonals();
+            return _Update_User__WEBPACK_IMPORTED_MODULE_6__.getSomePersonals();
 
           case 2:
             userInfo = _context.sent;
@@ -5236,15 +5299,15 @@ var checkUser = /*#__PURE__*/function () {
 }();
 
 var getUserInformation = /*#__PURE__*/function () {
-  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee2() {
+  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default().mark(function _callee2() {
     var userInfo, user, lastname;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee2$(_context2) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.t0 = console;
             _context2.next = 3;
-            return _Update_User__WEBPACK_IMPORTED_MODULE_4__.getSomePersonals();
+            return _Update_User__WEBPACK_IMPORTED_MODULE_6__.getSomePersonals();
 
           case 3:
             _context2.t1 = _context2.sent;
@@ -5252,7 +5315,7 @@ var getUserInformation = /*#__PURE__*/function () {
             _context2.t0.log.call(_context2.t0, _context2.t1);
 
             _context2.next = 7;
-            return _Update_User__WEBPACK_IMPORTED_MODULE_4__.getSomePersonals();
+            return _Update_User__WEBPACK_IMPORTED_MODULE_6__.getSomePersonals();
 
           case 7:
             userInfo = _context2.sent;
@@ -5501,7 +5564,7 @@ var calculateDayEnding = function calculateDayEnding(day, dateEnding, input) {
   return dateEnding;
 };
 
-var insertTiiming = function insertTiiming(target, inputValues, timing, timingButtons, mainCategories, index) {
+var insertTiiming = function insertTiiming(target, inputValues, timing, timingButtons, budget, index) {
   var wording, dayEnding, dayEndingNumberOne;
   var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -5517,7 +5580,7 @@ var insertTiiming = function insertTiiming(target, inputValues, timing, timingBu
     // Create Payment Schedule
     var paymentSchedule = create12MonthArray(twelveMonthArray, inputValues[0], timing, days); // Get Current Main Category
 
-    mainCategories.forEach(function (mc, i) {
+    budget.mainCategories.forEach(function (mc, i) {
       var categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
       if (mc.title === categoryTitle) currentMainCategory = mc;
     }); ///////////////////////
@@ -5558,7 +5621,7 @@ var insertTiiming = function insertTiiming(target, inputValues, timing, timingBu
     var _paymentSchedule = create12MonthArray(twelveMonthArray, inputValues, timing, days); // Get Current Main Category
 
 
-    mainCategories.forEach(function (mc, i) {
+    budget.mainCategories.forEach(function (mc, i) {
       var categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
       if (mc.title === categoryTitle) currentMainCategory = mc;
     }); ///////////////////////
@@ -5603,7 +5666,7 @@ var insertTiiming = function insertTiiming(target, inputValues, timing, timingBu
     var _paymentSchedule2 = create12MonthArray(twelveMonthArray, inputValues[0], timing, days); // Get Current Main Category
 
 
-    mainCategories.forEach(function (mc, i) {
+    budget.mainCategories.forEach(function (mc, i) {
       var categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
       if (mc.title === categoryTitle) currentMainCategory = mc;
     }); ///////////////////////
@@ -5644,7 +5707,7 @@ var insertTiiming = function insertTiiming(target, inputValues, timing, timingBu
     var _paymentSchedule3 = create12MonthArray(twelveMonthArray, inputValues[0], timing, days); // Get Current Main Category
 
 
-    mainCategories.forEach(function (mc, i) {
+    budget.mainCategories.forEach(function (mc, i) {
       var categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
       if (mc.title === categoryTitle) currentMainCategory = mc;
     }); ///////////////////////
@@ -5685,7 +5748,7 @@ var insertTiiming = function insertTiiming(target, inputValues, timing, timingBu
 // WATCH FOR TIMING SETTING
 
 
-var watchForSettingTiming = function watchForSettingTiming(categories, index, clickedItem, timing, fullBudget) {
+var watchForSettingTiming = function watchForSettingTiming(budget, index, clickedItem, timing, fullBudget) {
   // Getting the timing.
   var monthlyTimingButton = document.querySelector('.sub-category-display__timing-container__monthly-container__button');
   var biMonthlyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-monthly-container__button');
@@ -5722,7 +5785,7 @@ var watchForSettingTiming = function watchForSettingTiming(categories, index, cl
       if (timing === "Monthly") {
         timingArray = [];
         timingArray.push(monthlyTiming);
-        return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, categories, index);
+        return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
       }
 
       if (timing === "Bi-Monthly") {
@@ -5735,7 +5798,7 @@ var watchForSettingTiming = function watchForSettingTiming(categories, index, cl
         timingArray.push(timingOne);
         timingArray.push(timingTwo);
         console.log(timingArray);
-        return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, categories, index);
+        return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
       }
 
       if (timing === "Bi-Weekly") {
@@ -5744,7 +5807,7 @@ var watchForSettingTiming = function watchForSettingTiming(categories, index, cl
         var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
         timingArray = [];
         timingArray.push(biWeeklyTiming);
-        insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, categories, index);
+        insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
         console.log(fullBudget);
         return;
       }
@@ -5754,7 +5817,7 @@ var watchForSettingTiming = function watchForSettingTiming(categories, index, cl
         var weeklyTiming = new Date(oldWeeklyTiming.setHours(oldWeeklyTiming.getHours() + 7));
         timingArray = [];
         timingArray.push(weeklyTiming);
-        insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, categories, index);
+        insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
       }
     });
   });
@@ -5814,14 +5877,14 @@ var getTimingContainerHeight = function getTimingContainerHeight(categories, ind
   return 100 * categories[index].subCategories.length / 10;
 };
 
-var setupGoalSetting = function setupGoalSetting(categories, index, clickedItem, timing) {
+var setupGoalSetting = function setupGoalSetting(budget, index, clickedItem, timing) {
   var leftButton = document.querySelector('.left');
   var rightButton = document.querySelector('.right');
   var mainCategoryIcon = document.querySelector('.main-category-display__category-display__icon');
   var mainCategoryTitle = document.querySelector('.main-category-display__category-display__title');
-  mainCategoryIcon.classList.add(categories[index].icon);
-  mainCategoryTitle.textContent = categories[index].title;
-  categories.forEach(function (c, i) {
+  mainCategoryIcon.classList.add(budget.mainCategories[index].icon);
+  mainCategoryTitle.textContent = budget.mainCategories[index].title;
+  budget.mainCategories.forEach(function (c, i) {
     /////////////////////////////////////////
     // INITIALIZE INDEX FOR DATASET
     var dataIndex = i;
@@ -5839,16 +5902,16 @@ var setupGoalSetting = function setupGoalSetting(categories, index, clickedItem,
 
   var timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
   setupTimingFunctionContainer(timingFunctionContainer);
-  timingFunctionContainer.style.height = "".concat(getTimingContainerHeight(categories, index), "rem");
+  timingFunctionContainer.style.height = "".concat(getTimingContainerHeight(budget.mainCategories, index), "rem");
   timingFunctionContainer.style.minHeight = "calc(100% - 4rem)";
-  if (getTimingContainerHeight(categories, index) >= 40) timingFunctionContainer.style.justifyContent = "space-evenly";
-  if (getTimingContainerHeight(categories, index) < 40) timingFunctionContainer.style.justifyContent = "flex-start";
+  if (getTimingContainerHeight(budget.mainCategories, index) >= 40) timingFunctionContainer.style.justifyContent = "space-evenly";
+  if (getTimingContainerHeight(budget.mainCategories, index) < 40) timingFunctionContainer.style.justifyContent = "flex-start";
   leftButton.addEventListener('click', function (e) {
     index--;
     if (index < 0) index = 0;
-    mainCategoryIcon.classList.remove(categories[index + 1].icon);
-    mainCategoryIcon.classList.add(categories[index].icon);
-    mainCategoryTitle.textContent = categories[index].title;
+    mainCategoryIcon.classList.remove(budget.mainCategories[index + 1].icon);
+    mainCategoryIcon.classList.add(budget.mainCategories[index].icon);
+    mainCategoryTitle.textContent = budget.mainCategories[index].title;
     subCategories.forEach(function (sc, i) {
       sc.classList.add('sub-category-display__sub-category--hidden');
 
@@ -5856,19 +5919,19 @@ var setupGoalSetting = function setupGoalSetting(categories, index, clickedItem,
         sc.classList.remove('sub-category-display__sub-category--hidden');
       }
     });
-    console.log(getTimingContainerHeight(categories, index));
-    timingFunctionContainer.style.height = getTimingContainerHeight(categories, index);
+    console.log(getTimingContainerHeight(budget.mainCategories, index));
+    timingFunctionContainer.style.height = getTimingContainerHeight(budget.mainCategories, index);
     timingFunctionContainer.style.minHeight = "calc(100% - 4rem)";
-    if (getTimingContainerHeight(categories, index) >= 40) timingFunctionContainer.style.justifyContent = "space-evenly";
-    if (getTimingContainerHeight(categories, index) < 40) timingFunctionContainer.style.justifyContent = "flex-start";
+    if (getTimingContainerHeight(budget.mainCategories, index) >= 40) timingFunctionContainer.style.justifyContent = "space-evenly";
+    if (getTimingContainerHeight(budget.mainCategories, index) < 40) timingFunctionContainer.style.justifyContent = "flex-start";
     return index;
   });
   rightButton.addEventListener('click', function (e) {
     index++;
-    if (index > categories.length - 1) index = categories.length - 1;
-    mainCategoryIcon.classList.remove(categories[index - 1].icon);
-    mainCategoryIcon.classList.add(categories[index].icon);
-    mainCategoryTitle.textContent = categories[index].title;
+    if (index > budget.mainCategories.length - 1) index = budget.mainCategories.length - 1;
+    mainCategoryIcon.classList.remove(budget.mainCategories[index - 1].icon);
+    mainCategoryIcon.classList.add(budget.mainCategories[index].icon);
+    mainCategoryTitle.textContent = budget.mainCategories[index].title;
     subCategories.forEach(function (sc, i) {
       sc.classList.add('sub-category-display__sub-category--hidden');
 
@@ -5876,15 +5939,17 @@ var setupGoalSetting = function setupGoalSetting(categories, index, clickedItem,
         sc.classList.remove('sub-category-display__sub-category--hidden');
       }
     });
-    timingFunctionContainer.style.height = getTimingContainerHeight(categories, index);
+    timingFunctionContainer.style.height = getTimingContainerHeight(budget.mainCategories, index);
     timingFunctionContainer.style.minHeight = "calc(100% - 4rem)";
-    if (getTimingContainerHeight(categories, index) >= 40) timingFunctionContainer.style.justifyContent = "space-evenly";
-    if (getTimingContainerHeight(categories, index) < 40) timingFunctionContainer.style.justifyContent = "flex-start";
+    if (getTimingContainerHeight(budget.mainCategories, index) >= 40) timingFunctionContainer.style.justifyContent = "space-evenly";
+    if (getTimingContainerHeight(budget.mainCategories, index) < 40) timingFunctionContainer.style.justifyContent = "flex-start";
     return index;
   });
 };
 
-var setupSubCategoryCreation = function setupSubCategoryCreation(categories, index, mainCategories) {
+var setupSubCategoryCreation = function setupSubCategoryCreation(budget, index) {
+  console.log(budget, budget.mainCategories); // console.log(budget);
+
   var leftButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__left-button__icon');
   var rightButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__right-button__icon');
   var mainCategoryIcon = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__icon');
@@ -5902,14 +5967,15 @@ var setupSubCategoryCreation = function setupSubCategoryCreation(categories, ind
     subCategoryStartCreationButton.classList.toggle('budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden');
     categoryCreationSection.classList.toggle('category-creation--shown');
   });
-  mainCategoryIcon.classList.add(categories[index].icon);
-  mainCategoryText.textContent = categories[index].title;
+  console.log(budget.mainCategories[index], index);
+  mainCategoryIcon.classList.add(budget.mainCategories[index].icon);
+  mainCategoryText.textContent = budget.mainCategories[index].title;
   leftButton.addEventListener('click', function (e) {
     index--;
     if (index < 0) index = 0;
-    mainCategoryIcon.classList.remove(categories[index + 1].icon);
-    mainCategoryIcon.classList.add(categories[index].icon);
-    mainCategoryText.textContent = categories[index].title;
+    mainCategoryIcon.classList.remove(budget.mainCategories[index + 1].icon);
+    mainCategoryIcon.classList.add(budget.mainCategories[index].icon);
+    mainCategoryText.textContent = budget.mainCategories[index].title;
     var subCategories = document.querySelectorAll('.sub-category');
     subCategories.forEach(function (sc, i) {
       sc.classList.add('hidden');
@@ -5922,10 +5988,10 @@ var setupSubCategoryCreation = function setupSubCategoryCreation(categories, ind
   });
   rightButton.addEventListener('click', function (e) {
     index++;
-    if (index > categories.length - 1) index = categories.length - 1;
-    mainCategoryIcon.classList.remove(categories[index - 1].icon);
-    mainCategoryIcon.classList.add(categories[index].icon);
-    mainCategoryText.textContent = categories[index].title;
+    if (index > budget.mainCategories.length - 1) index = budget.mainCategories.length - 1;
+    mainCategoryIcon.classList.remove(budget.mainCategories[index - 1].icon);
+    mainCategoryIcon.classList.add(budget.mainCategories[index].icon);
+    mainCategoryText.textContent = budget.mainCategories[index].title;
     var subCategories = document.querySelectorAll('.sub-category');
     subCategories.forEach(function (sc, i) {
       sc.classList.add('hidden');
@@ -5938,7 +6004,7 @@ var setupSubCategoryCreation = function setupSubCategoryCreation(categories, ind
   });
   var subCategoryCreateButton = document.querySelector('.category-creation__input-container__button');
   subCategoryCreateButton.addEventListener('click', function (e) {
-    _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__._addSubCategory(categories, index, mainCategories);
+    _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__._addSubCategory(budget, index);
   });
 }; /////////////////////////////////
 // GO TO PAGE
@@ -6025,7 +6091,6 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
   var budgetCreationFormPages = document.querySelectorAll('.budget-creation-form__page');
   var budgetCreationFormPagesNumber = budgetCreationFormPages.length;
   var currentPage = 0;
-  var budgetMainCategories = [];
   var emergencyGoalSetting, clicked, selectedTiming;
   var budgetContinueButton = document.querySelector('.budget-creation-form__page-mechanisms__submit-button'); //////////////////////////////////////////////////////////////
   // SET APPROPRIATE PAGE NUMBER DEPENDING ON USER INFORMATION
@@ -6033,37 +6098,39 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
   setPageCount(currentPage, budgetCreationFormPagesNumber); ////////////////////////////////////////////////
   // INITIALIZE KEY VARIABLES INSIDE FUNCTION SCOPE
 
-  var budgetName, mainCategories;
+  var budgetName;
   var subCategoryIndex = 0;
   var icon;
-  budgetContinueButton.addEventListener('click', /*#__PURE__*/function () {
-    var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee3(e) {
-      var budgetInfo, userInfo, user, individualPayments, _individualPayments;
+  var budget = new Budget();
 
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee3$(_context3) {
+  budget._addAccounts();
+
+  budgetContinueButton.addEventListener('click', /*#__PURE__*/function () {
+    var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default().mark(function _callee3(e) {
+      var userInfo, user, individualPayments, _individualPayments;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
               e.preventDefault();
-              budgetInfo = {};
               currentPage++; //////////////////////////////
               // ASSIGN BUDGET INFORMATION
               /////////////////////
               // BUDGET NAME
 
               budgetName = getBudgetName();
-              mainCategories = budgetMainCategories;
-              budgetInfo.name = budgetName; /////////////////////////////
-              // BUDGET MAIN CATEGORIES
+              budget.name = budgetName;
+              console.log(budget); ////////////////////////////////
+              // SETUP BUDGET CREATION FORM
 
-              budgetInfo.mainCategories = mainCategories;
               setupPage(currentPage, budgetCreationFormPages, budgetCreationFormPagesNumber); /////////////////////////////
               // CHECK USER
 
-              _context3.next = 10;
-              return _Update_User__WEBPACK_IMPORTED_MODULE_4__.getSomePersonals();
+              _context3.next = 8;
+              return _Update_User__WEBPACK_IMPORTED_MODULE_6__.getSomePersonals();
 
-            case 10:
+            case 8:
               userInfo = _context3.sent;
               user = userInfo.data.data.user; ////////////////////////////////////////////////////////////////////////
               // GLITCH: Need to fix this to work if you are a Latter Day Saint as well.
@@ -6072,26 +6139,26 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
               // IF NOT LATTER DAY SAINT
 
               if (currentPage + 1 === 2 && user.latterDaySaint === false) {
-                _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__.createCategories(icon);
+                _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__.createCategories(icon);
 
-                _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__._watchCreateCategoryButton(icon, budgetMainCategories);
+                _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__._watchCreateCategoryButton(icon, budget);
               }
 
               if (currentPage + 1 === 3 && user.latterDaySaint === false) {
-                setupSubCategoryCreation(budgetInfo.mainCategories, subCategoryIndex, budgetMainCategories);
+                setupSubCategoryCreation(budget, subCategoryIndex);
               }
 
               if (currentPage + 1 === 4 && user.latterDaySaint === false) {
-                setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex, clicked, selectedTiming);
-                watchForSettingTiming(budgetInfo.mainCategories, subCategoryIndex, clicked, selectedTiming, budgetInfo);
+                setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
+                watchForSettingTiming(budget, subCategoryIndex, clicked, selectedTiming);
               }
 
               if (currentPage + 1 === 5 && user.latterDaySaint === false) {
                 individualPayments = document.querySelectorAll('.individual-payment');
 
-                _finishUpdatingSubCategories(budgetInfo.mainCategories, individualPayments);
+                _finishUpdatingSubCategories(budget, individualPayments);
 
-                _watchEmergencyGoalSettings(emergencyGoalSetting);
+                _watchEmergencyGoalSettings(budgetk, emergencyGoalSetting);
               } /////////////////////////////
               // IF LATTER DAY SAINT
 
@@ -6103,29 +6170,29 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
               }
 
               if (currentPage + 1 === 3 && user.latterDaySaint === true) {
-                _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__.createCategories(icon);
+                _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__.createCategories(icon);
 
-                _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__._watchCreateCategoryButton(icon, budgetMainCategories);
+                _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__._watchCreateCategoryButton(icon, budget);
               }
 
               if (currentPage + 1 === 4 && user.latterDaySaint === true) {
-                setupSubCategoryCreation(budgetInfo.mainCategories, subCategoryIndex, budgetMainCategories);
+                setupSubCategoryCreation(budget, subCategoryIndex);
               }
 
               if (currentPage + 1 === 5 && user.latterDaySaint === true) {
-                setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex, clicked, selectedTiming);
-                watchForSettingTiming(budgetInfo.mainCategories, subCategoryIndex, clicked, selectedTiming, budgetInfo);
+                setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
+                watchForSettingTiming(budget, subCategoryIndex, clicked, selectedTiming);
               }
 
               if (currentPage + 1 === 6 && user.latterDaySaint === true) {
                 _individualPayments = document.querySelectorAll('.individual-payment');
 
-                _finishUpdatingSubCategories(budgetInfo.mainCategories, _individualPayments);
+                _finishUpdatingSubCategories(budget, _individualPayments);
 
-                _watchEmergencyGoalSettings(emergencyGoalSetting);
+                _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
               }
 
-            case 21:
+            case 19:
             case "end":
               return _context3.stop();
           }

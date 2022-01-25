@@ -3,11 +3,12 @@ import * as Updating from './Update-User';
 
 class Account {
   constructor(options) {
-    this.name = options.name;
+    this.name = options.accountName;
   }
 }
 class Budget {
   constructor() {
+    this.name = '';
     this.accounts = [];
     this.mainCategories = [];
   }
@@ -16,20 +17,24 @@ class Budget {
     this.name = name;
   }
 
-  _addMainCategory() {}
+  _addMainCategory(icon, title) {
+    this.mainCategories.push(new Categories.MainCategory({ icon: icon, title: title }));
+  }
 
-  _addSubCategory() {}
+  _addSubCategory(index, title) {
+    this.mainCategories[index].subCategories.push(new Categories.SubCategory({ title: title }));
+  }
 
   _addAccounts() {
-    this.accounts.push(new Account(`Un-Allocated`));
-    this.accounts.push(new Account(`Monthly Budget`));
-    this.accounts.push(new Account(`Emergency Fund`));
-    this.accounts.push(new Account(`Savings Fund`));
-    this.accounts.push(new Account(`Expense Fund`));
-    this.accounts.push(new Account(`Surplus`));
-    this.accounts.push(new Account(`Investment Fund`));
-    this.accounts.push(new Account(`Debt`));
-    this.accounts.push(new Account(`Tithing`));
+    this.accounts.push(new Account({ accountName: `Un-Allocated` }));
+    this.accounts.push(new Account({ accountName: `Monthly Budget` }));
+    this.accounts.push(new Account({ accountName: `Emergency Fund` }));
+    this.accounts.push(new Account({ accountName: `Savings Fund` }));
+    this.accounts.push(new Account({ accountName: `Expense Fund` }));
+    this.accounts.push(new Account({ accountName: `Surplus` }));
+    this.accounts.push(new Account({ accountName: `Investment Fund` }));
+    this.accounts.push(new Account({ accountName: `Debt` }));
+    this.accounts.push(new Account({ accountName: `Tithing` }));
   }
 }
 
@@ -53,9 +58,9 @@ export const _watchEmergencyGoalSettings = (budget, setting) => {
   });
 };
 
-const _finishUpdatingSubCategories = (mainCategories, goals) => {
-  console.log(mainCategories, goals);
-  mainCategories.forEach((mc, i) => {
+const _finishUpdatingSubCategories = (budget, goals) => {
+  console.log(budget.mainCategories, goals);
+  budget.mainCategories.forEach((mc, i) => {
     mc.subCategories.forEach((sc, i) => {
       sc._finishUpdatingSubCategory(goals[i].value);
     });
@@ -287,7 +292,7 @@ const calculateDayEnding = (day, dateEnding, input) => {
   return dateEnding;
 };
 
-const insertTiiming = (target, inputValues, timing, timingButtons, mainCategories, index) => {
+const insertTiiming = (target, inputValues, timing, timingButtons, budget, index) => {
   let wording, dayEnding, dayEndingNumberOne;
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -303,7 +308,7 @@ const insertTiiming = (target, inputValues, timing, timingButtons, mainCategorie
     let paymentSchedule = create12MonthArray(twelveMonthArray, inputValues[0], timing, days);
 
     // Get Current Main Category
-    mainCategories.forEach((mc, i) => {
+    budget.mainCategories.forEach((mc, i) => {
       let categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
       if (mc.title === categoryTitle) currentMainCategory = mc;
     });
@@ -355,7 +360,7 @@ const insertTiiming = (target, inputValues, timing, timingButtons, mainCategorie
     let paymentSchedule = create12MonthArray(twelveMonthArray, inputValues, timing, days);
 
     // Get Current Main Category
-    mainCategories.forEach((mc, i) => {
+    budget.mainCategories.forEach((mc, i) => {
       let categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
       if (mc.title === categoryTitle) currentMainCategory = mc;
     });
@@ -408,7 +413,7 @@ const insertTiiming = (target, inputValues, timing, timingButtons, mainCategorie
     let paymentSchedule = create12MonthArray(twelveMonthArray, inputValues[0], timing, days);
 
     // Get Current Main Category
-    mainCategories.forEach((mc, i) => {
+    budget.mainCategories.forEach((mc, i) => {
       let categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
       if (mc.title === categoryTitle) currentMainCategory = mc;
     });
@@ -457,7 +462,7 @@ const insertTiiming = (target, inputValues, timing, timingButtons, mainCategorie
     let paymentSchedule = create12MonthArray(twelveMonthArray, inputValues[0], timing, days);
 
     // Get Current Main Category
-    mainCategories.forEach((mc, i) => {
+    budget.mainCategories.forEach((mc, i) => {
       let categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
       if (mc.title === categoryTitle) currentMainCategory = mc;
     });
@@ -505,7 +510,7 @@ const insertTiiming = (target, inputValues, timing, timingButtons, mainCategorie
 
 /////////////////////////////////////////
 // WATCH FOR TIMING SETTING
-const watchForSettingTiming = (categories, index, clickedItem, timing, fullBudget) => {
+const watchForSettingTiming = (budget, index, clickedItem, timing, fullBudget) => {
   // Getting the timing.
   const monthlyTimingButton = document.querySelector('.sub-category-display__timing-container__monthly-container__button');
   const biMonthlyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-monthly-container__button');
@@ -541,7 +546,7 @@ const watchForSettingTiming = (categories, index, clickedItem, timing, fullBudge
       if (timing === `Monthly`) {
         timingArray = [];
         timingArray.push(monthlyTiming);
-        return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, categories, index);
+        return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
       }
       if (timing === `Bi-Monthly`) {
         e.preventDefault();
@@ -553,7 +558,7 @@ const watchForSettingTiming = (categories, index, clickedItem, timing, fullBudge
         timingArray.push(timingOne);
         timingArray.push(timingTwo);
         console.log(timingArray);
-        return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, categories, index);
+        return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
       }
 
       if (timing === `Bi-Weekly`) {
@@ -562,7 +567,7 @@ const watchForSettingTiming = (categories, index, clickedItem, timing, fullBudge
         const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
         timingArray = [];
         timingArray.push(biWeeklyTiming);
-        insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, categories, index);
+        insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
         console.log(fullBudget);
         return;
       }
@@ -572,7 +577,7 @@ const watchForSettingTiming = (categories, index, clickedItem, timing, fullBudge
         const weeklyTiming = new Date(oldWeeklyTiming.setHours(oldWeeklyTiming.getHours() + 7));
         timingArray = [];
         timingArray.push(weeklyTiming);
-        insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, categories, index);
+        insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
       }
     });
   });
@@ -643,15 +648,15 @@ const getTimingContainerHeight = (categories, index) => {
   return (100 * categories[index].subCategories.length) / 10;
 };
 
-const setupGoalSetting = (categories, index, clickedItem, timing) => {
+const setupGoalSetting = (budget, index, clickedItem, timing) => {
   const leftButton = document.querySelector('.left');
   const rightButton = document.querySelector('.right');
   const mainCategoryIcon = document.querySelector('.main-category-display__category-display__icon');
   const mainCategoryTitle = document.querySelector('.main-category-display__category-display__title');
-  mainCategoryIcon.classList.add(categories[index].icon);
-  mainCategoryTitle.textContent = categories[index].title;
+  mainCategoryIcon.classList.add(budget.mainCategories[index].icon);
+  mainCategoryTitle.textContent = budget.mainCategories[index].title;
 
-  categories.forEach((c, i) => {
+  budget.mainCategories.forEach((c, i) => {
     /////////////////////////////////////////
     // INITIALIZE INDEX FOR DATASET
     let dataIndex = i;
@@ -670,50 +675,52 @@ const setupGoalSetting = (categories, index, clickedItem, timing) => {
   // SET UP TIMING FUNCTION CONTAINER
   const timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
   setupTimingFunctionContainer(timingFunctionContainer);
-  timingFunctionContainer.style.height = `${getTimingContainerHeight(categories, index)}rem`;
+  timingFunctionContainer.style.height = `${getTimingContainerHeight(budget.mainCategories, index)}rem`;
   timingFunctionContainer.style.minHeight = `calc(100% - 4rem)`;
-  if (getTimingContainerHeight(categories, index) >= 40) timingFunctionContainer.style.justifyContent = `space-evenly`;
-  if (getTimingContainerHeight(categories, index) < 40) timingFunctionContainer.style.justifyContent = `flex-start`;
+  if (getTimingContainerHeight(budget.mainCategories, index) >= 40) timingFunctionContainer.style.justifyContent = `space-evenly`;
+  if (getTimingContainerHeight(budget.mainCategories, index) < 40) timingFunctionContainer.style.justifyContent = `flex-start`;
   leftButton.addEventListener('click', (e) => {
     index--;
     if (index < 0) index = 0;
-    mainCategoryIcon.classList.remove(categories[index + 1].icon);
-    mainCategoryIcon.classList.add(categories[index].icon);
-    mainCategoryTitle.textContent = categories[index].title;
+    mainCategoryIcon.classList.remove(budget.mainCategories[index + 1].icon);
+    mainCategoryIcon.classList.add(budget.mainCategories[index].icon);
+    mainCategoryTitle.textContent = budget.mainCategories[index].title;
     subCategories.forEach((sc, i) => {
       sc.classList.add('sub-category-display__sub-category--hidden');
       if (Number(sc.dataset.category) === index) {
         sc.classList.remove('sub-category-display__sub-category--hidden');
       }
     });
-    console.log(getTimingContainerHeight(categories, index));
-    timingFunctionContainer.style.height = getTimingContainerHeight(categories, index);
+    console.log(getTimingContainerHeight(budget.mainCategories, index));
+    timingFunctionContainer.style.height = getTimingContainerHeight(budget.mainCategories, index);
     timingFunctionContainer.style.minHeight = `calc(100% - 4rem)`;
-    if (getTimingContainerHeight(categories, index) >= 40) timingFunctionContainer.style.justifyContent = `space-evenly`;
-    if (getTimingContainerHeight(categories, index) < 40) timingFunctionContainer.style.justifyContent = `flex-start`;
+    if (getTimingContainerHeight(budget.mainCategories, index) >= 40) timingFunctionContainer.style.justifyContent = `space-evenly`;
+    if (getTimingContainerHeight(budget.mainCategories, index) < 40) timingFunctionContainer.style.justifyContent = `flex-start`;
     return index;
   });
   rightButton.addEventListener('click', (e) => {
     index++;
-    if (index > categories.length - 1) index = categories.length - 1;
-    mainCategoryIcon.classList.remove(categories[index - 1].icon);
-    mainCategoryIcon.classList.add(categories[index].icon);
-    mainCategoryTitle.textContent = categories[index].title;
+    if (index > budget.mainCategories.length - 1) index = budget.mainCategories.length - 1;
+    mainCategoryIcon.classList.remove(budget.mainCategories[index - 1].icon);
+    mainCategoryIcon.classList.add(budget.mainCategories[index].icon);
+    mainCategoryTitle.textContent = budget.mainCategories[index].title;
     subCategories.forEach((sc, i) => {
       sc.classList.add('sub-category-display__sub-category--hidden');
       if (Number(sc.dataset.category) === index) {
         sc.classList.remove('sub-category-display__sub-category--hidden');
       }
     });
-    timingFunctionContainer.style.height = getTimingContainerHeight(categories, index);
+    timingFunctionContainer.style.height = getTimingContainerHeight(budget.mainCategories, index);
     timingFunctionContainer.style.minHeight = `calc(100% - 4rem)`;
-    if (getTimingContainerHeight(categories, index) >= 40) timingFunctionContainer.style.justifyContent = `space-evenly`;
-    if (getTimingContainerHeight(categories, index) < 40) timingFunctionContainer.style.justifyContent = `flex-start`;
+    if (getTimingContainerHeight(budget.mainCategories, index) >= 40) timingFunctionContainer.style.justifyContent = `space-evenly`;
+    if (getTimingContainerHeight(budget.mainCategories, index) < 40) timingFunctionContainer.style.justifyContent = `flex-start`;
     return index;
   });
 };
 
-const setupSubCategoryCreation = (categories, index, mainCategories) => {
+const setupSubCategoryCreation = (budget, index) => {
+  console.log(budget, budget.mainCategories);
+  // console.log(budget);
   const leftButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__left-button__icon');
   const rightButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__right-button__icon');
   let mainCategoryIcon = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__icon');
@@ -733,14 +740,15 @@ const setupSubCategoryCreation = (categories, index, mainCategories) => {
     subCategoryStartCreationButton.classList.toggle('budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden');
     categoryCreationSection.classList.toggle('category-creation--shown');
   });
-  mainCategoryIcon.classList.add(categories[index].icon);
-  mainCategoryText.textContent = categories[index].title;
+  console.log(budget.mainCategories[index], index);
+  mainCategoryIcon.classList.add(budget.mainCategories[index].icon);
+  mainCategoryText.textContent = budget.mainCategories[index].title;
   leftButton.addEventListener('click', (e) => {
     index--;
     if (index < 0) index = 0;
-    mainCategoryIcon.classList.remove(categories[index + 1].icon);
-    mainCategoryIcon.classList.add(categories[index].icon);
-    mainCategoryText.textContent = categories[index].title;
+    mainCategoryIcon.classList.remove(budget.mainCategories[index + 1].icon);
+    mainCategoryIcon.classList.add(budget.mainCategories[index].icon);
+    mainCategoryText.textContent = budget.mainCategories[index].title;
     const subCategories = document.querySelectorAll('.sub-category');
     subCategories.forEach((sc, i) => {
       sc.classList.add('hidden');
@@ -752,10 +760,10 @@ const setupSubCategoryCreation = (categories, index, mainCategories) => {
   });
   rightButton.addEventListener('click', (e) => {
     index++;
-    if (index > categories.length - 1) index = categories.length - 1;
-    mainCategoryIcon.classList.remove(categories[index - 1].icon);
-    mainCategoryIcon.classList.add(categories[index].icon);
-    mainCategoryText.textContent = categories[index].title;
+    if (index > budget.mainCategories.length - 1) index = budget.mainCategories.length - 1;
+    mainCategoryIcon.classList.remove(budget.mainCategories[index - 1].icon);
+    mainCategoryIcon.classList.add(budget.mainCategories[index].icon);
+    mainCategoryText.textContent = budget.mainCategories[index].title;
     const subCategories = document.querySelectorAll('.sub-category');
     subCategories.forEach((sc, i) => {
       sc.classList.add('hidden');
@@ -767,7 +775,7 @@ const setupSubCategoryCreation = (categories, index, mainCategories) => {
   });
   const subCategoryCreateButton = document.querySelector('.category-creation__input-container__button');
   subCategoryCreateButton.addEventListener('click', (e) => {
-    Categories._addSubCategory(categories, index, mainCategories);
+    Categories._addSubCategory(budget, index);
   });
 };
 
@@ -845,7 +853,6 @@ export const _watchBudgetCreation = () => {
   const budgetCreationFormPages = document.querySelectorAll('.budget-creation-form__page');
   const budgetCreationFormPagesNumber = budgetCreationFormPages.length;
   let currentPage = 0;
-  let budgetMainCategories = [];
   let emergencyGoalSetting, clicked, selectedTiming;
   const budgetContinueButton = document.querySelector('.budget-creation-form__page-mechanisms__submit-button');
   //////////////////////////////////////////////////////////////
@@ -853,23 +860,24 @@ export const _watchBudgetCreation = () => {
   setPageCount(currentPage, budgetCreationFormPagesNumber);
   ////////////////////////////////////////////////
   // INITIALIZE KEY VARIABLES INSIDE FUNCTION SCOPE
-  let budgetName, mainCategories;
+  let budgetName;
   let subCategoryIndex = 0;
   let icon;
+  const budget = new Budget();
+  budget._addAccounts();
   budgetContinueButton.addEventListener('click', async (e) => {
     e.preventDefault();
-    let budgetInfo = {};
     currentPage++;
     //////////////////////////////
     // ASSIGN BUDGET INFORMATION
     /////////////////////
     // BUDGET NAME
     budgetName = getBudgetName();
-    mainCategories = budgetMainCategories;
-    budgetInfo.name = budgetName;
-    /////////////////////////////
-    // BUDGET MAIN CATEGORIES
-    budgetInfo.mainCategories = mainCategories;
+    budget.name = budgetName;
+    console.log(budget);
+
+    ////////////////////////////////
+    // SETUP BUDGET CREATION FORM
     setupPage(currentPage, budgetCreationFormPages, budgetCreationFormPagesNumber);
 
     /////////////////////////////
@@ -884,19 +892,19 @@ export const _watchBudgetCreation = () => {
     // IF NOT LATTER DAY SAINT
     if (currentPage + 1 === 2 && user.latterDaySaint === false) {
       Categories.createCategories(icon);
-      Categories._watchCreateCategoryButton(icon, budgetMainCategories);
+      Categories._watchCreateCategoryButton(icon, budget);
     }
     if (currentPage + 1 === 3 && user.latterDaySaint === false) {
-      setupSubCategoryCreation(budgetInfo.mainCategories, subCategoryIndex, budgetMainCategories);
+      setupSubCategoryCreation(budget, subCategoryIndex);
     }
     if (currentPage + 1 === 4 && user.latterDaySaint === false) {
-      setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex, clicked, selectedTiming);
-      watchForSettingTiming(budgetInfo.mainCategories, subCategoryIndex, clicked, selectedTiming, budgetInfo);
+      setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
+      watchForSettingTiming(budget, subCategoryIndex, clicked, selectedTiming);
     }
     if (currentPage + 1 === 5 && user.latterDaySaint === false) {
       const individualPayments = document.querySelectorAll('.individual-payment');
-      _finishUpdatingSubCategories(budgetInfo.mainCategories, individualPayments);
-      _watchEmergencyGoalSettings(emergencyGoalSetting);
+      _finishUpdatingSubCategories(budget, individualPayments);
+      _watchEmergencyGoalSettings(budgetk, emergencyGoalSetting);
     }
 
     /////////////////////////////
@@ -907,19 +915,19 @@ export const _watchBudgetCreation = () => {
     }
     if (currentPage + 1 === 3 && user.latterDaySaint === true) {
       Categories.createCategories(icon);
-      Categories._watchCreateCategoryButton(icon, budgetMainCategories);
+      Categories._watchCreateCategoryButton(icon, budget);
     }
     if (currentPage + 1 === 4 && user.latterDaySaint === true) {
-      setupSubCategoryCreation(budgetInfo.mainCategories, subCategoryIndex, budgetMainCategories);
+      setupSubCategoryCreation(budget, subCategoryIndex);
     }
     if (currentPage + 1 === 5 && user.latterDaySaint === true) {
-      setupGoalSetting(budgetInfo.mainCategories, subCategoryIndex, clicked, selectedTiming);
-      watchForSettingTiming(budgetInfo.mainCategories, subCategoryIndex, clicked, selectedTiming, budgetInfo);
+      setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
+      watchForSettingTiming(budget, subCategoryIndex, clicked, selectedTiming);
     }
     if (currentPage + 1 === 6 && user.latterDaySaint === true) {
       const individualPayments = document.querySelectorAll('.individual-payment');
-      _finishUpdatingSubCategories(budgetInfo.mainCategories, individualPayments);
-      _watchEmergencyGoalSettings(budgetInfo, emergencyGoalSetting);
+      _finishUpdatingSubCategories(budget, individualPayments);
+      _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
     }
   });
 };
