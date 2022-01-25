@@ -1,5 +1,6 @@
 import * as Categories from './Budget-Categories';
 import * as Updating from './Update-User';
+import * as Budgets from './Create-Budget';
 
 class Account {
   constructor(options) {
@@ -7,7 +8,7 @@ class Account {
     this.amount = options.amount;
   }
 }
-class Budget {
+export class Budget {
   constructor() {
     this.name = '';
     this.accounts = [];
@@ -58,6 +59,8 @@ class Budget {
     this.accounts[6].goal = Number(document.querySelector('#investmentGoal').value);
     console.log(this);
   }
+
+  _submit(form, budget) {}
 }
 
 export const _watchEmergencyGoalSettings = (budget, setting) => {
