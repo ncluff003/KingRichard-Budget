@@ -20,6 +20,7 @@ const router = express.Router();
 const appController = require(`./../Controllers/appController`);
 const authController = require(`./../Controllers/authController`);
 const userController = require(`./../Controllers/userController`);
+const budgetController = require(`./../Controllers/budgetController`);
 
 ////////////////////////////////////////////
 //  Routing Middleware
@@ -36,7 +37,7 @@ router.route(`/deleteMe`).delete(authController.protect, userController.deleteMe
 // router.route(`/about`).get(appController.introduceMe);
 // router.route(`/projects`).get(appController.viewMyWork);
 // router.route(`/contact`).get(appController.contactMe).post(messageController.validateEmail, messageController.emailMe);
-router.route(`/:id/budgets`).post(authController.protect);
+router.route(`/:id/budgets`).post(authController.protect, budgetController.createBudget);
 
 ////////////////////////////////////////////
 //  My Modules

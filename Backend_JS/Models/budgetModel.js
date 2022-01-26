@@ -38,7 +38,7 @@ const budgetSchema = new mongoose.Schema({
             required: [true, `You must set a goal type for your emergency fund.`],
           },
           goal: {
-            type: Mixed,
+            type: mongoose.Mixed,
             enum: [Number, `${Number} Months`],
             required: [true, `A emergency fund goal is required.`],
           },

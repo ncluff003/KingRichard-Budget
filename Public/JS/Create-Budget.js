@@ -4,20 +4,13 @@ import qs from 'qs';
 
 //////////////////////
 // USER SIGN UP
-export const createBudget = async (firstname, lastname, username, latterDaySaint, email, emailConfirmed, password, passwordConfirmed) => {
+export const createBudget = async (budget) => {
   try {
     const response = await axios({
       method: `POST`,
-      url: `/users/signup`,
+      url: `/users/:id/budgets`,
       data: qs.stringify({
-        firstname: firstname,
-        lastname: lastname,
-        username: username,
-        latterDaySaint: latterDaySaint,
-        email: email,
-        emailConfirmed: emailConfirmed,
-        password: password,
-        passwordConfirmed: passwordConfirmed,
+        budget: budget,
       }),
     });
     console.log(response);

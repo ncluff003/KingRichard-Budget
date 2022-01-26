@@ -60,7 +60,9 @@ export class Budget {
     console.log(this);
   }
 
-  _submit(form, budget) {}
+  _submit(budget) {
+    Budgets.createBudget(budget);
+  }
 }
 
 export const _watchEmergencyGoalSettings = (budget, setting) => {
@@ -942,6 +944,7 @@ export const _watchBudgetCreation = () => {
     }
     if (currentPage + 1 === 8 && user.latterDaySaint === false) {
       budget._setInvestmentGoal();
+      budget._submit(budget);
     }
 
     /////////////////////////////
@@ -974,6 +977,7 @@ export const _watchBudgetCreation = () => {
     }
     if (currentPage + 1 === 9 && user.latterDaySaint === true) {
       budget._setInvestmentGoal();
+      budget._submit(budget);
     }
   });
 };

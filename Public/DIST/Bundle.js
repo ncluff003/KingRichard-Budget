@@ -5147,6 +5147,7 @@ var createCategories = function createCategories(icon) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Budget": () => (/* binding */ Budget),
 /* harmony export */   "_watchEmergencyGoalSettings": () => (/* binding */ _watchEmergencyGoalSettings),
 /* harmony export */   "_watchBudgetCreation": () => (/* binding */ _watchBudgetCreation)
 /* harmony export */ });
@@ -5158,7 +5159,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
 /* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
+/* harmony import */ var _Create_Budget__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Create-Budget */ "./Public/JS/Create-Budget.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
 
 
 
@@ -5268,11 +5271,15 @@ var Budget = /*#__PURE__*/function () {
       this.accounts[6].goal = Number(document.querySelector('#investmentGoal').value);
       console.log(this);
     }
+  }, {
+    key: "_submit",
+    value: function _submit(budget) {
+      _Create_Budget__WEBPACK_IMPORTED_MODULE_7__.createBudget(budget);
+    }
   }]);
 
   return Budget;
 }();
-
 var _watchEmergencyGoalSettings = function _watchEmergencyGoalSettings(budget, setting) {
   var emergencySettingLabels = document.querySelectorAll('.emergency-checkbox-label');
   var emergencyInputs = document.querySelectorAll('.emergency-input');
@@ -6205,6 +6212,8 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
 
               if (currentPage + 1 === 8 && user.latterDaySaint === false) {
                 budget._setInvestmentGoal();
+
+                budget._submit(budget);
               } /////////////////////////////
               // IF LATTER DAY SAINT
 
@@ -6248,6 +6257,8 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
 
               if (currentPage + 1 === 9 && user.latterDaySaint === true) {
                 budget._setInvestmentGoal();
+
+                budget._submit(budget);
               }
 
             case 26:
@@ -6263,6 +6274,76 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
     };
   }());
 };
+
+/***/ }),
+
+/***/ "./Public/JS/Create-Budget.js":
+/*!************************************!*\
+  !*** ./Public/JS/Create-Budget.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createBudget": () => (/* binding */ createBudget)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Budget_Creation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Budget-Creation */ "./Public/JS/Budget-Creation.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_4__);
+/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
+
+
+
+ //////////////////////
+// USER SIGN UP
+
+var createBudget = /*#__PURE__*/function () {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(budget) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
+              method: "POST",
+              url: "/users/:id/budgets",
+              data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify({
+                budget: budget
+              })
+            });
+
+          case 3:
+            response = _context.sent;
+            console.log(response);
+            _context.next = 10;
+            break;
+
+          case 7:
+            _context.prev = 7;
+            _context.t0 = _context["catch"](0);
+            console.log(_context.t0);
+
+          case 10:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 7]]);
+  }));
+
+  return function createBudget(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
 
 /***/ }),
 
