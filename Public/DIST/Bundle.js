@@ -5240,7 +5240,11 @@ var Budget = /*#__PURE__*/function () {
       this.accounts.push(new Account({
         accountName: "Debt",
         amount: 0
-      }));
+      })); // if (user.latterDaySaint === true) this.accounts.push(new Account({ accountName: `Tithing`, amount: 0 }));
+    }
+  }, {
+    key: "_addTithingAccount",
+    value: function _addTithingAccount(user) {
       if (user.latterDaySaint === true) this.accounts.push(new Account({
         accountName: "Tithing",
         amount: 0
@@ -6143,6 +6147,9 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
   var subCategoryIndex = 0;
   var icon;
   var budget = new Budget();
+
+  budget._addAccounts();
+
   budgetContinueButton.addEventListener('click', /*#__PURE__*/function () {
     var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default().mark(function _callee3(e) {
       var userInfo, user, individualPayments, _individualPayments;
@@ -6170,14 +6177,14 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
             case 7:
               userInfo = _context3.sent;
               user = userInfo.data.data.user;
+              console.log(budget);
 
-              budget._addAccounts(user);
-
-              console.log(budget); ////////////////////////////////////////////////////////////////////////
+              budget._addTithingAccount(user); ////////////////////////////////////////////////////////////////////////
               // GLITCH: Need to fix this to work if you are a Latter Day Saint as well.
               ////////////////////////////////////////////////////////////////////////
               /////////////////////////////
               // IF NOT LATTER DAY SAINT
+
 
               if (currentPage + 1 === 2 && user.latterDaySaint === false) {
                 _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__.createCategories(icon);

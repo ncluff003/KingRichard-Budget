@@ -36,6 +36,10 @@ export class Budget {
     this.accounts.push(new Account({ accountName: `Surplus`, amount: 0 }));
     this.accounts.push(new Account({ accountName: `Investment Fund`, amount: 0 }));
     this.accounts.push(new Account({ accountName: `Debt`, amount: 0 }));
+    // if (user.latterDaySaint === true) this.accounts.push(new Account({ accountName: `Tithing`, amount: 0 }));
+  }
+
+  _addTithingAccount(user) {
     if (user.latterDaySaint === true) this.accounts.push(new Account({ accountName: `Tithing`, amount: 0 }));
   }
 
@@ -894,6 +898,7 @@ export const _watchBudgetCreation = () => {
   let subCategoryIndex = 0;
   let icon;
   const budget = new Budget();
+  budget._addAccounts();
   budgetContinueButton.addEventListener('click', async (e) => {
     e.preventDefault();
     currentPage++;
@@ -912,8 +917,8 @@ export const _watchBudgetCreation = () => {
     // CHECK USER
     const userInfo = await Updating.getSomePersonals();
     const user = userInfo.data.data.user;
-    budget._addAccounts(user);
     console.log(budget);
+    budget._addTithingAccount(user);
     ////////////////////////////////////////////////////////////////////////
     // GLITCH: Need to fix this to work if you are a Latter Day Saint as well.
     ////////////////////////////////////////////////////////////////////////

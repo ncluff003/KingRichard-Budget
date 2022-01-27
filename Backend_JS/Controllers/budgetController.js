@@ -75,13 +75,35 @@ const createAndSendToken = (user, statusCode, method, request, response, templat
 
 exports.createBudget = catchAsync(async (request, response, next) => {
   console.log(request.body);
-  // const user = await User.findById(request.user.id);
+  const budgetBody = request.body;
+  const budget = budgetBody.budget;
+  console.log(budgetBody, budgetBody.budget);
+  budget.accounts.forEach((a) => {
+    console.log(a.name);
+  });
+  console.log(budget.accounts);
+  const user = await User.findById(request.user.id);
   // const userInfo = [user.communicationPreference, user.latterDaySaint];
-  // response.status(200).json({
-  //   status: `Success`,
-  //   data: {
-  //     user: user,
-  //     userInfo: userInfo,
-  //   },
+  user.budgets.push(
+    await Budget.create({
+      name: budget.name,
+      createdAt: new Date(),
+      lastUpdated: new Date(),
+      associatedUsers: user.id,
+      budgetAdmins: user.id,
+      accounts: budget.accounts,
+    }),
+  );
+  console.log(user);
+  response.status(200).json({
+    status: `Success`,
+    data: {
+      user: user,
+      budget: budget,
+    },
+  });
+  // response.status(500).json({
+  //   status: `Error`,
+  //   message: `This route has not yet been defined`,
   // });
 });
