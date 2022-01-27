@@ -6322,7 +6322,7 @@ var createBudget = /*#__PURE__*/function () {
             _context.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "POST",
-              url: "/users/:id/budgets",
+              url: "/users/budgets",
               data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify({
                 budget: budget
               })

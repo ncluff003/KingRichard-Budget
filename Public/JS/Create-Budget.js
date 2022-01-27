@@ -8,7 +8,7 @@ export const createBudget = async (budget) => {
   try {
     const response = await axios({
       method: `POST`,
-      url: `/users/:id/budgets`,
+      url: `/users/budgets`,
       data: qs.stringify({
         budget: budget,
       }),

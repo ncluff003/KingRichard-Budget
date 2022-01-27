@@ -118,13 +118,13 @@ const budgetSchema = new mongoose.Schema({
             type: String,
             required: [true, `Every Sub Category Needs A Title`],
           },
-          paymentCycle: {
-            cycle: {
+          timingOptions: {
+            paymentCycle: {
               type: String,
               enum: [`Weekly`, `Bi-Weekly`, `Bi-Monthly`, `Monthly`],
             },
             dueDates: [],
-            paymentSchedule: [],
+            paymentSchedule: [Date],
           },
           goalAmount: {
             type: Number,
@@ -138,7 +138,7 @@ const budgetSchema = new mongoose.Schema({
           amountRemaining: {
             type: Number,
           },
-          percentSpent: {
+          percentageSpent: {
             type: Number,
             default: 0,
           },

@@ -76,7 +76,7 @@ const createAndSendToken = (user, statusCode, method, request, response, templat
 exports.createBudget = catchAsync(async (request, response, next) => {
   console.log(request.body);
   const budgetBody = request.body;
-  const budget = budgetBody.budget;
+  let budget = budgetBody.budget;
   console.log(budgetBody, budgetBody.budget);
   budget.accounts.forEach((a) => {
     console.log(a.name);
@@ -85,16 +85,18 @@ exports.createBudget = catchAsync(async (request, response, next) => {
   const user = await User.findById(request.user.id);
   // const userInfo = [user.communicationPreference, user.latterDaySaint];
   user.budgets.push(
-    await Budget.create({
+    (budget = await Budget.create({
       name: budget.name,
       createdAt: new Date(),
       lastUpdated: new Date(),
       associatedUsers: user.id,
       budgetAdmins: user.id,
       accounts: budget.accounts,
-    }),
+      mainCategories: budget.mainCategories,
+    })),
   );
-  console.log(user);
+  // await user.save({ validateBeforeSave: false }); -- This is so I can save the changes to the user to have their budgets embedded into them.
+  console.log(user, user.budgets, user.budgets[user.budgets.length - 1].name);
   response.status(200).json({
     status: `Success`,
     data: {
