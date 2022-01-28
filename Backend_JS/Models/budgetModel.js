@@ -17,6 +17,7 @@ const budgetSchema = new mongoose.Schema({
     default: `Default-Budget-Cover-Photo.svg`,
   },
   accounts: [
+    // {},
     {
       name: String,
       amount: {
