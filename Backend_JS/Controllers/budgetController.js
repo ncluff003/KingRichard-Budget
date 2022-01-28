@@ -84,19 +84,23 @@ exports.createBudget = catchAsync(async (request, response, next) => {
   console.log(budget.accounts);
   const user = await User.findById(request.user.id);
   // const userInfo = [user.communicationPreference, user.latterDaySaint];
-  user.budgets.push(
-    (budget = await Budget.create({
-      name: budget.name,
-      createdAt: new Date(),
-      lastUpdated: new Date(),
-      associatedUsers: user.id,
-      budgetAdmins: user.id,
-      accounts: budget.accounts,
-      mainCategories: budget.mainCategories,
-    })),
-  );
-  // await user.save({ validateBeforeSave: false }); -- This is so I can save the changes to the user to have their budgets embedded into them.
-  console.log(user, user.budgets, user.budgets[user.budgets.length - 1].name);
+  // user.budgets.push(
+  //   ),
+  // );
+  budget = await Budget.create({
+    name: budget.name,
+    createdAt: new Date(),
+    lastUpdated: new Date(),
+    associatedUsers: user.id,
+    budgetAdmins: user.id,
+    accounts: budget.accounts,
+    mainCategories: budget.mainCategories,
+  });
+  user.budgets.push(budget.id);
+
+  // Save embedded budget into the user.
+  await user.save({ validateBeforeSave: false });
+  console.log(user, user.budgets);
   response.status(200).json({
     status: `Success`,
     data: {

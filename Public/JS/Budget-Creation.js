@@ -918,7 +918,6 @@ export const _watchBudgetCreation = () => {
     const userInfo = await Updating.getSomePersonals();
     const user = userInfo.data.data.user;
     console.log(budget);
-    budget._addTithingAccount(user);
     ////////////////////////////////////////////////////////////////////////
     // GLITCH: Need to fix this to work if you are a Latter Day Saint as well.
     ////////////////////////////////////////////////////////////////////////
@@ -956,6 +955,7 @@ export const _watchBudgetCreation = () => {
     // IF LATTER DAY SAINT
     if (currentPage + 1 === 2 && user.latterDaySaint === true) {
       console.log(`Tithing Options`);
+      budget._addTithingAccount(user);
       _watchTIthingOptions(budget);
     }
     if (currentPage + 1 === 3 && user.latterDaySaint === true) {

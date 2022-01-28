@@ -33,6 +33,10 @@ const budgetSchema = new mongoose.Schema({
     },
     {
       name: String,
+      ammount: {
+        type: Number,
+        default: 0,
+      },
       goalMeasurement: {
         type: String,
         enum: [`Length Of Time`, `Total Amount`],
@@ -42,10 +46,6 @@ const budgetSchema = new mongoose.Schema({
         type: mongoose.Mixed,
         enum: [Number, `${Number} Months`],
         required: [true, `An emergency fund goal is required.`],
-      },
-      ammount: {
-        type: Number,
-        default: 0,
       },
     },
     {

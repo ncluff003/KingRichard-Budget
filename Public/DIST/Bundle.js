@@ -6177,14 +6177,11 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
             case 7:
               userInfo = _context3.sent;
               user = userInfo.data.data.user;
-              console.log(budget);
-
-              budget._addTithingAccount(user); ////////////////////////////////////////////////////////////////////////
+              console.log(budget); ////////////////////////////////////////////////////////////////////////
               // GLITCH: Need to fix this to work if you are a Latter Day Saint as well.
               ////////////////////////////////////////////////////////////////////////
               /////////////////////////////
               // IF NOT LATTER DAY SAINT
-
 
               if (currentPage + 1 === 2 && user.latterDaySaint === false) {
                 _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__.createCategories(icon);
@@ -6228,6 +6225,8 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
               if (currentPage + 1 === 2 && user.latterDaySaint === true) {
                 console.log("Tithing Options");
 
+                budget._addTithingAccount(user);
+
                 _watchTIthingOptions(budget);
               }
 
@@ -6268,7 +6267,7 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
                 budget._submit(budget);
               }
 
-            case 26:
+            case 25:
             case "end":
               return _context3.stop();
           }
