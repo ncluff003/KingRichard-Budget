@@ -4920,6 +4920,10 @@ var _addSubCategory = function _addSubCategory(budget, index) {
 // MAIN CATEGORY DELETION PROCESS
 
 var deleteMainCategory = function deleteMainCategory(e, budget) {
+  var budgetPages = document.querySelectorAll('.budget-creation-form__page');
+  var mainCategoryCreationPage = document.querySelector('.budget-creation-form__page');
+  console.log(mainCategoryCreationPage, budgetPages);
+  if (budgetPages[2].classList.contains("disappear")) return;
   budget.mainCategories = budget.mainCategories.filter(function (o, i) {
     return o.title !== e.target.closest('section').firstChild.nextElementSibling.textContent;
   });
@@ -4962,10 +4966,12 @@ var createMainCategory = function createMainCategory(element, budget, filteredAr
     document.querySelectorAll('.main-category')[2].style.borderTopRightRadius = "0.9rem";
   }
 
-  deleteButton.addEventListener('click', function (e) {
-    e.preventDefault();
-    deleteMainCategory(e, budget, filteredArray);
-  });
+  if (deleteButton) {
+    deleteButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      deleteMainCategory(e, budget, filteredArray);
+    });
+  }
 }; ////////////////////////////////////////
 // CREATE MAIN CATEGORY
 
@@ -6049,6 +6055,7 @@ var setupSubCategoryCreation = function setupSubCategoryCreation(budget, index) 
     _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__._addSubCategory(budget, index);
 
     subCategoryCreateInput.focus();
+    subCategoryCreateInput.value = '';
   });
   subCategoryStartCreationButton.addEventListener('click', function (e) {
     e.preventDefault();
@@ -6056,31 +6063,55 @@ var setupSubCategoryCreation = function setupSubCategoryCreation(budget, index) 
     categoryCreationSection.classList.toggle('category-creation--shown');
     var subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
     subCategoryCreateInput.focus();
-    var createSC = document.addEventListener("keyup", function (e) {
-      e.preventDefault();
-      if (e.key === "Enter") subCategoryCreateButton.click();
-    });
   });
 }; //////////////////////////////////////
 // LOG KEYBOARD KEY
 
 
 var clickToCreateSubCategory = function clickToCreateSubCategory() {
-  event.preventDefault();
-  event.stopPropagation();
-  console.log(event.BUBBLING_PHASE);
+  var e = event;
+  var subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
   var subCategoryCreationButton = document.querySelector('.category-creation__input-container__button');
-  console.log(event);
-  if (event.key === "Enter") subCategoryCreationButton.click();
-}; //////////////////////////////////////
-// LOG KEYBOARD KEY
-
-
-var logKey = function logKey(e, button) {
   e.preventDefault();
-  console.log(e.key, button);
-  var pressed = e.key;
-  if (pressed === "Enter") clickToCreateSubCategory(button);
+
+  if (e.key === "Enter") {
+    var subCategoryStartCreationButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button');
+    var categoryCreation = document.querySelector('.category-creation');
+
+    if (categoryCreation.classList.contains('category-creation--shown')) {
+      subCategoryCreationButton.focus();
+      subCategoryCreateInput.blur();
+      subCategoryCreationButton.click();
+    }
+
+    if (!subCategoryStartCreationButton.classList.contains("budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden")) {
+      subCategoryStartCreationButton.classList.toggle('budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden');
+      categoryCreation.classList.toggle('category-creation--shown');
+
+      var _subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
+
+      _subCategoryCreateInput.focus();
+    }
+  }
+}; //////////////////////////////////////////////////////////////
+// WATCHING TO CYCLE MAIN CATEGORIES IN SUB CATEGORY CREATION
+
+
+var watchToCycleSubCategoryMainCategories = function watchToCycleSubCategoryMainCategories() {
+  var leftButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__left-button__icon');
+  var rightButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__right-button__icon');
+  document.addEventListener("keyup", function (e) {
+    e.preventDefault();
+    console.log(e.key);
+
+    if (e.key === "ArrowLeft") {
+      return leftButton.click();
+    }
+
+    if (e.key === "ArrowRight") {
+      return rightButton.click();
+    }
+  });
 }; ///////////////////////////////////////////////////
 // WATCH SUB CATEGORY CREATE BUTTON FOR KEYBOARD
 
@@ -6256,7 +6287,9 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
               }
 
               if (currentPage + 1 === 3 && user.latterDaySaint === false) {
-                // _watchForSubCategoryKeyboard();
+                _watchForSubCategoryKeyboard();
+
+                watchToCycleSubCategoryMainCategories();
                 setupSubCategoryCreation(budget, subCategoryIndex);
               }
 
@@ -6304,8 +6337,9 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
               }
 
               if (currentPage + 1 === 4 && user.latterDaySaint === true) {
-                // _watchForSubCategoryKeyboard();
-                // const watchSCCreation = document.addEventListener(`keyup`, clickToCreateSubCategory);
+                _watchForSubCategoryKeyboard();
+
+                watchToCycleSubCategoryMainCategories();
                 setupSubCategoryCreation(budget, subCategoryIndex);
               }
 

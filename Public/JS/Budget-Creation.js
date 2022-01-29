@@ -812,6 +812,7 @@ const setupSubCategoryCreation = (budget, index) => {
     const subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
     Categories._addSubCategory(budget, index);
     subCategoryCreateInput.focus();
+    subCategoryCreateInput.value = '';
   });
   subCategoryStartCreationButton.addEventListener('click', (e) => {
     e.preventDefault();
@@ -819,31 +820,52 @@ const setupSubCategoryCreation = (budget, index) => {
     categoryCreationSection.classList.toggle('category-creation--shown');
     const subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
     subCategoryCreateInput.focus();
-    const createSC = document.addEventListener(`keyup`, (e) => {
-      e.preventDefault();
-      if (e.key === `Enter`) subCategoryCreateButton.click();
-    });
   });
 };
 
 //////////////////////////////////////
 // LOG KEYBOARD KEY
 const clickToCreateSubCategory = () => {
-  event.preventDefault();
-  event.stopPropagation();
-  console.log(event.BUBBLING_PHASE);
+  const e = event;
+  const subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
   const subCategoryCreationButton = document.querySelector('.category-creation__input-container__button');
-  console.log(event);
-  if (event.key === `Enter`) subCategoryCreationButton.click();
+  e.preventDefault();
+  if (e.key === `Enter`) {
+    const subCategoryStartCreationButton = document.querySelector(
+      '.budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button',
+    );
+    const categoryCreation = document.querySelector('.category-creation');
+    if (categoryCreation.classList.contains('category-creation--shown')) {
+      subCategoryCreationButton.focus();
+      subCategoryCreateInput.blur();
+      subCategoryCreationButton.click();
+    }
+    if (
+      !subCategoryStartCreationButton.classList.contains(`budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden`)
+    ) {
+      subCategoryStartCreationButton.classList.toggle('budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden');
+      categoryCreation.classList.toggle('category-creation--shown');
+      const subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
+      subCategoryCreateInput.focus();
+    }
+  }
 };
 
-//////////////////////////////////////
-// LOG KEYBOARD KEY
-const logKey = (e, button) => {
-  e.preventDefault();
-  console.log(e.key, button);
-  const pressed = e.key;
-  if (pressed === `Enter`) clickToCreateSubCategory(button);
+//////////////////////////////////////////////////////////////
+// WATCHING TO CYCLE MAIN CATEGORIES IN SUB CATEGORY CREATION
+const watchToCycleSubCategoryMainCategories = () => {
+  const leftButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__left-button__icon');
+  const rightButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__right-button__icon');
+  document.addEventListener(`keyup`, (e) => {
+    e.preventDefault();
+    console.log(e.key);
+    if (e.key === `ArrowLeft`) {
+      return leftButton.click();
+    }
+    if (e.key === `ArrowRight`) {
+      return rightButton.click();
+    }
+  });
 };
 
 ///////////////////////////////////////////////////
@@ -995,7 +1017,8 @@ export const _watchBudgetCreation = () => {
       Categories._watchCreateCategoryButton(icon, budget);
     }
     if (currentPage + 1 === 3 && user.latterDaySaint === false) {
-      // _watchForSubCategoryKeyboard();
+      _watchForSubCategoryKeyboard();
+      watchToCycleSubCategoryMainCategories();
       setupSubCategoryCreation(budget, subCategoryIndex);
     }
     if (currentPage + 1 === 4 && user.latterDaySaint === false) {
@@ -1030,8 +1053,8 @@ export const _watchBudgetCreation = () => {
       Categories._watchCreateCategoryButton(icon, budget);
     }
     if (currentPage + 1 === 4 && user.latterDaySaint === true) {
-      // _watchForSubCategoryKeyboard();
-      // const watchSCCreation = document.addEventListener(`keyup`, clickToCreateSubCategory);
+      _watchForSubCategoryKeyboard();
+      watchToCycleSubCategoryMainCategories();
       setupSubCategoryCreation(budget, subCategoryIndex);
     }
     if (currentPage + 1 === 5 && user.latterDaySaint === true) {

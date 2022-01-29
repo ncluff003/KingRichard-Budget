@@ -1176,6 +1176,10 @@ export const _addSubCategory = (budget, index) => {
 ////////////////////////////////////////
 // MAIN CATEGORY DELETION PROCESS
 const deleteMainCategory = (e, budget) => {
+  const budgetPages = document.querySelectorAll('.budget-creation-form__page');
+  const mainCategoryCreationPage = document.querySelector('.budget-creation-form__page');
+  console.log(mainCategoryCreationPage, budgetPages);
+  if (budgetPages[2].classList.contains(`disappear`)) return;
   budget.mainCategories = budget.mainCategories.filter((o, i) => {
     return o.title !== e.target.closest('section').firstChild.nextElementSibling.textContent;
   });
@@ -1215,10 +1219,12 @@ const createMainCategory = (element, budget, filteredArray) => {
   if (mainCategoryLength === 3) {
     document.querySelectorAll('.main-category')[2].style.borderTopRightRadius = `0.9rem`;
   }
-  deleteButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    deleteMainCategory(e, budget, filteredArray);
-  });
+  if (deleteButton) {
+    deleteButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      deleteMainCategory(e, budget, filteredArray);
+    });
+  }
 };
 
 ////////////////////////////////////////
