@@ -388,7 +388,8 @@ html {
           }
         }
         .budget-creation-form-container {
-          .form-close-icon {
+          .form-close-icon,
+          .budget-creation-form-close-icon {
             font-size: 4rem;
             color: rgba($primaryColor, 0.5);
             &:hover {

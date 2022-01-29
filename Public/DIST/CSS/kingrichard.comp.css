@@ -447,11 +447,13 @@ html {
 .master-grid-container .app-flex-container .app-viewport__display-container .user-profile-container__form-container .user-profile-form__button:active {
   color: #333333;
 }
-.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .form-close-icon {
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .form-close-icon,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form-close-icon {
   font-size: 4rem;
   color: rgba(130, 42, 186, 0.5);
 }
-.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .form-close-icon:hover {
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .form-close-icon:hover,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form-close-icon:hover {
   color: #822aba;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form {
@@ -33488,7 +33490,8 @@ html {
 .master-grid-container .app-flex-container .app-viewport__display-container .user-profile-container__form-container .user-profile-form ::-webkit-input-placeholder {
   opacity: 0;
 }
-.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .form-close-icon {
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .form-close-icon,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form-close-icon {
   position: absolute;
   height: 2rem;
   width: 2rem;
@@ -33500,7 +33503,8 @@ html {
   right: 6rem;
   z-index: 10;
 }
-.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .form-close-icon:hover {
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .form-close-icon:hover,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form-close-icon:hover {
   cursor: pointer;
   transition: color 0.5s;
 }
@@ -34486,6 +34490,9 @@ html {
   transition: background-color 0.5s, color 0.5s;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form .disappear {
+  display: none;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container--hidden {
   display: none;
 }
 
@@ -44231,6 +44238,9 @@ html {
   transform: rotate(0) translate(0, 0);
   background-color: rgba(250, 250, 250, 0.95);
 }
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container--hidden {
+  display: none;
+}
 
 /*
 I was thinking of iterating through the objects that were created.
@@ -44243,6 +44253,9 @@ I was thinking of iterating through the objects that were created.
     //////////////////////////////////
     /// Glitches To Fix
 
+    GLITCH : Cannot close create budget form.
+    GLITCH : Timings cannot be added to some of the sub categories because the index is incorrect.
+    GLITCH : Cannot use enter to create sub categories as it goes first to deleting the main categories.
     GLITCH : 
 
 

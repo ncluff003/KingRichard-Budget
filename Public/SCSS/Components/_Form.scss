@@ -421,7 +421,8 @@
           }
         }
         .budget-creation-form-container {
-          .form-close-icon {
+          .form-close-icon,
+          .budget-creation-form-close-icon {
             @include SizeAndPositioning(absolute, 2rem, 2rem, flex, center, center, 0, 0, 0);
             top: 5rem;
             right: 6rem;
@@ -1069,6 +1070,9 @@
             .disappear {
               display: none;
             }
+          }
+          &--hidden {
+            display: none;
           }
         }
       }

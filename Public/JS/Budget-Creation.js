@@ -1,6 +1,7 @@
 import * as Categories from './Budget-Categories';
 import * as Updating from './Update-User';
 import * as Budgets from './Create-Budget';
+import * as Base from './Base-Forms';
 
 class Account {
   constructor(options) {
@@ -359,7 +360,7 @@ const insertTiiming = (target, inputValues, timing, timingButtons, budget, index
 
     ///////////////////////
     // SET TIMING OPTIONS
-
+    console.log(subCategoryIndex);
     // Set Payment Cycle
     currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing;
 
@@ -411,7 +412,7 @@ const insertTiiming = (target, inputValues, timing, timingButtons, budget, index
 
     ///////////////////////
     // SET TIMING OPTIONS
-
+    console.log(subCategoryIndex);
     // Set Payment Cycle
     currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing;
 
@@ -464,7 +465,7 @@ const insertTiiming = (target, inputValues, timing, timingButtons, budget, index
 
     ///////////////////////
     // SET TIMING OPTIONS
-
+    console.log(subCategoryIndex);
     // Set Payment Cycle
     currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing;
 
@@ -512,7 +513,7 @@ const insertTiiming = (target, inputValues, timing, timingButtons, budget, index
 
     ///////////////////////
     // SET TIMING OPTIONS
-
+    console.log(subCategoryIndex);
     // Set Payment Cycle
     currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing;
 
@@ -768,11 +769,6 @@ const setupSubCategoryCreation = (budget, index) => {
   );
   const subCategoryStopCreationButton = document.querySelector('.category-creation__controller__close');
   const categoryCreationSection = document.querySelector('.category-creation');
-  subCategoryStartCreationButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    subCategoryStartCreationButton.classList.toggle('budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden');
-    categoryCreationSection.classList.toggle('category-creation--shown');
-  });
   subCategoryStopCreationButton.addEventListener('click', (e) => {
     e.preventDefault();
     subCategoryStartCreationButton.classList.toggle('budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden');
@@ -813,8 +809,47 @@ const setupSubCategoryCreation = (budget, index) => {
   const subCategoryCreateButton = document.querySelector('.category-creation__input-container__button');
   subCategoryCreateButton.addEventListener('click', (e) => {
     e.preventDefault();
+    const subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
     Categories._addSubCategory(budget, index);
+    subCategoryCreateInput.focus();
   });
+  subCategoryStartCreationButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    subCategoryStartCreationButton.classList.toggle('budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden');
+    categoryCreationSection.classList.toggle('category-creation--shown');
+    const subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
+    subCategoryCreateInput.focus();
+    const createSC = document.addEventListener(`keyup`, (e) => {
+      e.preventDefault();
+      if (e.key === `Enter`) subCategoryCreateButton.click();
+    });
+  });
+};
+
+//////////////////////////////////////
+// LOG KEYBOARD KEY
+const clickToCreateSubCategory = () => {
+  event.preventDefault();
+  event.stopPropagation();
+  console.log(event.BUBBLING_PHASE);
+  const subCategoryCreationButton = document.querySelector('.category-creation__input-container__button');
+  console.log(event);
+  if (event.key === `Enter`) subCategoryCreationButton.click();
+};
+
+//////////////////////////////////////
+// LOG KEYBOARD KEY
+const logKey = (e, button) => {
+  e.preventDefault();
+  console.log(e.key, button);
+  const pressed = e.key;
+  if (pressed === `Enter`) clickToCreateSubCategory(button);
+};
+
+///////////////////////////////////////////////////
+// WATCH SUB CATEGORY CREATE BUTTON FOR KEYBOARD
+const _watchForSubCategoryKeyboard = () => {
+  document.addEventListener(`keyup`, clickToCreateSubCategory);
 };
 
 /////////////////////////////////
@@ -890,7 +925,29 @@ const _watchTIthingOptions = (budget) => {
   }
 };
 
+const _watchCreationFormCloser = (form) => {
+  const formCloser = document.querySelector(`.budget-creation-form-close-icon`);
+  formCloser.addEventListener('click', (e) => {
+    form.classList.toggle(`budget-creation-form-container--hidden`);
+  });
+};
+
+const _watchCreationFormOpener = (form, button) => {
+  button.addEventListener(`click`, (e) => {
+    form.classList.toggle(`budget-creation-form-container--hidden`);
+  });
+};
+
 export const _watchBudgetCreation = () => {
+  const budgetCreationForm = document.querySelector('.budget-creation-form-container');
+  const budgetCreationFormOpenButton = document.querySelector('.budget-card-container__card--create');
+  ////////////////////////////
+  // WATCH FOR FORM CLOSURE
+  _watchCreationFormCloser(budgetCreationForm);
+
+  ////////////////////////////
+  // WATCH FOR FORM OPENING
+  _watchCreationFormOpener(budgetCreationForm, budgetCreationFormOpenButton);
   ////////////////////////////
   // INITIALIZE KEY VARIABLES
   const budgetCreationFormPages = document.querySelectorAll('.budget-creation-form__page');
@@ -938,6 +995,7 @@ export const _watchBudgetCreation = () => {
       Categories._watchCreateCategoryButton(icon, budget);
     }
     if (currentPage + 1 === 3 && user.latterDaySaint === false) {
+      // _watchForSubCategoryKeyboard();
       setupSubCategoryCreation(budget, subCategoryIndex);
     }
     if (currentPage + 1 === 4 && user.latterDaySaint === false) {
@@ -972,6 +1030,8 @@ export const _watchBudgetCreation = () => {
       Categories._watchCreateCategoryButton(icon, budget);
     }
     if (currentPage + 1 === 4 && user.latterDaySaint === true) {
+      // _watchForSubCategoryKeyboard();
+      // const watchSCCreation = document.addEventListener(`keyup`, clickToCreateSubCategory);
       setupSubCategoryCreation(budget, subCategoryIndex);
     }
     if (currentPage + 1 === 5 && user.latterDaySaint === true) {

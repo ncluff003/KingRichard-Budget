@@ -4504,6 +4504,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
 /* harmony import */ var _Signup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Signup */ "./Public/JS/Signup.js");
+/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
  //////////////////////////////
 // Actually Close The Form
@@ -4521,9 +4522,11 @@ var _closeTheForm = function _closeTheForm(index, page, pageElement, form) {
 var _watchFormClosers = function _watchFormClosers(pageElement, page, form) {
   var formClosers = document.querySelectorAll('.form-close-icon');
   page = 0;
+  console.log(form);
   formClosers.forEach(function (fc, i) {
     fc.addEventListener('click', function (e) {
       e.preventDefault();
+      console.log(i, formClosers);
 
       _closeTheForm(i, page, pageElement, form);
     });
@@ -5160,7 +5163,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
 /* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
 /* harmony import */ var _Create_Budget__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Create-Budget */ "./Public/JS/Create-Budget.js");
+/* harmony import */ var _Base_Forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Base-Forms */ "./Public/JS/Base-Forms.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
 
 
 
@@ -5627,7 +5632,8 @@ var insertTiiming = function insertTiiming(target, inputValues, timing, timingBu
       if (mc.title === categoryTitle) currentMainCategory = mc;
     }); ///////////////////////
     // SET TIMING OPTIONS
-    // Set Payment Cycle
+
+    console.log(subCategoryIndex); // Set Payment Cycle
 
     currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing; // Set Payment Schedule
 
@@ -5668,7 +5674,8 @@ var insertTiiming = function insertTiiming(target, inputValues, timing, timingBu
       if (mc.title === categoryTitle) currentMainCategory = mc;
     }); ///////////////////////
     // SET TIMING OPTIONS
-    // Set Payment Cycle
+
+    console.log(subCategoryIndex); // Set Payment Cycle
 
     currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing; // Set Payment Schedule
 
@@ -5713,7 +5720,8 @@ var insertTiiming = function insertTiiming(target, inputValues, timing, timingBu
       if (mc.title === categoryTitle) currentMainCategory = mc;
     }); ///////////////////////
     // SET TIMING OPTIONS
-    // Set Payment Cycle
+
+    console.log(subCategoryIndex); // Set Payment Cycle
 
     currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing; // Set Payment Schedule
 
@@ -5753,7 +5761,8 @@ var insertTiiming = function insertTiiming(target, inputValues, timing, timingBu
       if (mc.title === categoryTitle) currentMainCategory = mc;
     }); ///////////////////////
     // SET TIMING OPTIONS
-    // Set Payment Cycle
+
+    console.log(subCategoryIndex); // Set Payment Cycle
 
     currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing; // Set Payment Schedule
 
@@ -5993,11 +6002,6 @@ var setupSubCategoryCreation = function setupSubCategoryCreation(budget, index) 
   var subCategoryStartCreationButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button');
   var subCategoryStopCreationButton = document.querySelector('.category-creation__controller__close');
   var categoryCreationSection = document.querySelector('.category-creation');
-  subCategoryStartCreationButton.addEventListener('click', function (e) {
-    e.preventDefault();
-    subCategoryStartCreationButton.classList.toggle('budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden');
-    categoryCreationSection.classList.toggle('category-creation--shown');
-  });
   subCategoryStopCreationButton.addEventListener('click', function (e) {
     e.preventDefault();
     subCategoryStartCreationButton.classList.toggle('budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden');
@@ -6040,9 +6044,49 @@ var setupSubCategoryCreation = function setupSubCategoryCreation(budget, index) 
   var subCategoryCreateButton = document.querySelector('.category-creation__input-container__button');
   subCategoryCreateButton.addEventListener('click', function (e) {
     e.preventDefault();
+    var subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
 
     _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__._addSubCategory(budget, index);
+
+    subCategoryCreateInput.focus();
   });
+  subCategoryStartCreationButton.addEventListener('click', function (e) {
+    e.preventDefault();
+    subCategoryStartCreationButton.classList.toggle('budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden');
+    categoryCreationSection.classList.toggle('category-creation--shown');
+    var subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
+    subCategoryCreateInput.focus();
+    var createSC = document.addEventListener("keyup", function (e) {
+      e.preventDefault();
+      if (e.key === "Enter") subCategoryCreateButton.click();
+    });
+  });
+}; //////////////////////////////////////
+// LOG KEYBOARD KEY
+
+
+var clickToCreateSubCategory = function clickToCreateSubCategory() {
+  event.preventDefault();
+  event.stopPropagation();
+  console.log(event.BUBBLING_PHASE);
+  var subCategoryCreationButton = document.querySelector('.category-creation__input-container__button');
+  console.log(event);
+  if (event.key === "Enter") subCategoryCreationButton.click();
+}; //////////////////////////////////////
+// LOG KEYBOARD KEY
+
+
+var logKey = function logKey(e, button) {
+  e.preventDefault();
+  console.log(e.key, button);
+  var pressed = e.key;
+  if (pressed === "Enter") clickToCreateSubCategory(button);
+}; ///////////////////////////////////////////////////
+// WATCH SUB CATEGORY CREATE BUTTON FOR KEYBOARD
+
+
+var _watchForSubCategoryKeyboard = function _watchForSubCategoryKeyboard() {
+  document.addEventListener("keyup", clickToCreateSubCategory);
 }; /////////////////////////////////
 // GO TO PAGE
 
@@ -6129,9 +6173,32 @@ var _watchTIthingOptions = function _watchTIthingOptions(budget) {
   }
 };
 
+var _watchCreationFormCloser = function _watchCreationFormCloser(form) {
+  var formCloser = document.querySelector(".budget-creation-form-close-icon");
+  formCloser.addEventListener('click', function (e) {
+    form.classList.toggle("budget-creation-form-container--hidden");
+  });
+};
+
+var _watchCreationFormOpener = function _watchCreationFormOpener(form, button) {
+  button.addEventListener("click", function (e) {
+    form.classList.toggle("budget-creation-form-container--hidden");
+  });
+};
+
 var _watchBudgetCreation = function _watchBudgetCreation() {
-  ////////////////////////////
+  var budgetCreationForm = document.querySelector('.budget-creation-form-container');
+  var budgetCreationFormOpenButton = document.querySelector('.budget-card-container__card--create'); ////////////////////////////
+  // WATCH FOR FORM CLOSURE
+
+  _watchCreationFormCloser(budgetCreationForm); ////////////////////////////
+  // WATCH FOR FORM OPENING
+
+
+  _watchCreationFormOpener(budgetCreationForm, budgetCreationFormOpenButton); ////////////////////////////
   // INITIALIZE KEY VARIABLES
+
+
   var budgetCreationFormPages = document.querySelectorAll('.budget-creation-form__page');
   var budgetCreationFormPagesNumber = budgetCreationFormPages.length;
   var currentPage = 0;
@@ -6189,6 +6256,7 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
               }
 
               if (currentPage + 1 === 3 && user.latterDaySaint === false) {
+                // _watchForSubCategoryKeyboard();
                 setupSubCategoryCreation(budget, subCategoryIndex);
               }
 
@@ -6236,6 +6304,8 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
               }
 
               if (currentPage + 1 === 4 && user.latterDaySaint === true) {
+                // _watchForSubCategoryKeyboard();
+                // const watchSCCreation = document.addEventListener(`keyup`, clickToCreateSubCategory);
                 setupSubCategoryCreation(budget, subCategoryIndex);
               }
 
@@ -6559,44 +6629,21 @@ var signup = /*#__PURE__*/function () {
 
           case 3:
             response = _context.sent;
-            if (response.statusText === "Created") console.log(document.cookie); // if (response.statusText === `Created`) {
-            //   try {
-            //     console.log(response);
-            //     const username = document.querySelector('#username').value;
-            //     const password = document.querySelector('#password').value;
-            //     response.username = username;
-            //     response.password = password;
-            //     const data = qs.stringify({
-            //       loginUsername: username,
-            //       loginPassword: password,
-            //     });
-            //     console.log(response);
-            //     const response2 = await axios({
-            //       method: `POST`,
-            //       url: `/App`,
-            //       data: data,
-            //     });
-            //     console.log(response2);
-            //   } catch (error) {
-            //     console.log(error);
-            //   }
-            // }
-
             console.log(response);
-            _context.next = 11;
+            _context.next = 10;
             break;
 
-          case 8:
-            _context.prev = 8;
+          case 7:
+            _context.prev = 7;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0);
 
-          case 11:
+          case 10:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 8]]);
+    }, _callee, null, [[0, 7]]);
   }));
 
   return function signup(_x, _x2, _x3, _x4, _x5, _x6, _x7, _x8) {
