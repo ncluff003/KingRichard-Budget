@@ -1,5 +1,6 @@
 import axios from 'axios';
 import qs from 'qs';
+import { logout } from './Login';
 
 export const getSomePersonals = async () => {
   try {

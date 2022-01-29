@@ -134,6 +134,7 @@ exports.protect = catchAsync(async (request, response, next) => {
 
 // LOGGING IN
 exports.login = catchAsync(async (request, response, next) => {
+  console.log(request.body);
   const { loginUsername, loginPassword } = request.body;
   const username = loginUsername;
   const password = loginPassword;
@@ -167,8 +168,7 @@ exports.validateSignup = catchAsync(async (request, response, next) => {
   const formBody = request.body;
   if (!Validate.isName(formBody.firstname)) return next(new AppError(`First name must be only letters.`, 400));
   if (!Validate.isName(formBody.lastname)) return next(new AppError(`Last name must be only letters.`, 400));
-  if (!Validate.isUsername(formBody.username))
-    return next(new AppError(`Username must start with a capital and contain letters and/or numbers..`, 400));
+  if (!Validate.isUsername(formBody.username)) return next(new AppError(`Username must start with a capital and contain letters and/or numbers..`, 400));
   if (!Validate.isEmail(formBody.email)) return next(new AppError(`Please provide a valid email address.`, 400));
   if (!Validate.isEmail(formBody.emailConfirmed)) return next(new AppError(`Please provide a valid email address.`, 400));
   if (!Validate.is_Eight_Character_One_Upper_Lower_Number_Special(formBody.password))

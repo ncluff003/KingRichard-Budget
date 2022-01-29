@@ -1,6 +1,6 @@
 div.form-container.r__form-container.form-container--full-page.r__form-container--full-page.column_1-24.row_1-18
   i.fas.fa-window-close.form-close-icon
-  form.signup-form.r__signup-form
+  form.signup-form.r__signup-form(method="POST" action="/users/signup")
     header.signup-form__header.r__signup-form__header 
       p.signup-form__header__title.r__signup-form__header__title Signup 
     section.signup-form__form-page
@@ -37,4 +37,4 @@ div.form-container.r__form-container.form-container--full-page.r__form-container
         label.signup-form__form-page__section__label.r__signup-form__form-page__section__label(for="passwordConfirmed") Please Confirm Your Password
     section.signup-form__form-page__section.r__signup-form__form-page__section.page-section.r__page-section 
       p.signup-form__form-page__section__page-number.page-section__page-number.r__page-section__page-number= `Page 1 / 4`
-      button.signup-form__form-page__section__button.r__signup-form__form-page__section__button Submit
+      button.signup-form__form-page__section__button.r__signup-form__form-page__section__button(type="button") Submit

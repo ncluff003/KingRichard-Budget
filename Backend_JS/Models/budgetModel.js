@@ -16,83 +16,75 @@ const budgetSchema = new mongoose.Schema({
     type: String,
     default: `Default-Budget-Cover-Photo.svg`,
   },
-  accounts: [
-    // {},
-    {
-      name: String,
+  accounts: {
+    unAllocated: {
       amount: {
         type: Number,
         default: 0,
       },
     },
-    {
-      name: String,
-      ammount: {
+    monthlyBudget: {
+      amount: {
         type: Number,
         default: 0,
       },
     },
-    {
-      name: String,
-      ammount: {
-        type: Number,
-        default: 0,
-      },
+    emergencyFund: {
       goalMeasurement: {
         type: String,
         enum: [`Length Of Time`, `Total Amount`],
         required: [true, `You must set a goal type for your emergency fund.`],
       },
       goal: {
-        type: mongoose.Mixed,
-        enum: [Number, `${Number} Months`],
+        // type: mongoose.Mixed,
+        type: Number,
+        // enum: [Number, `${Number} Months`],
         required: [true, `An emergency fund goal is required.`],
       },
+      amount: {
+        type: Number,
+        default: 0,
+      },
     },
-    {
-      name: String,
+    savingsFund: {
       goal: {
         type: Number,
-        required: [true, `A savings fund goal is required.`],
+        required: [true, `Every Budget Needs A Savings Fund Goal`],
       },
-      ammount: {
-        type: Number,
-        default: 0,
-      },
-    },
-    {
-      name: String,
       amount: {
         type: Number,
         default: 0,
       },
     },
-    {
-      name: String,
+    expenseFund: {
       amount: {
         type: Number,
         default: 0,
       },
     },
-    {
-      name: String,
+    surplus: {
+      amount: {
+        type: Number,
+        default: 0,
+      },
+    },
+    investmentFund: {
       goal: {
         type: Number,
+        required: [true, `Every Budget Needs A Savings Fund Goal`],
       },
       amount: {
         type: Number,
         default: 0,
       },
     },
-    {
-      name: String,
+    debt: {
       amount: {
         type: Number,
         default: 0,
       },
     },
-    {
-      name: String,
+    tithing: {
       setting: {
         type: String,
         enum: [`Gross`, `Net`, `Surplus`],
@@ -102,7 +94,7 @@ const budgetSchema = new mongoose.Schema({
         default: 0,
       },
     },
-  ],
+  },
   mainCategories: [
     {
       icon: {

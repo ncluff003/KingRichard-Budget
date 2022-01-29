@@ -23,7 +23,7 @@ const authController = require(`./../Controllers/authController`);
 ////////////////////////////////////////////
 //  Routing Middleware
 router.route(`/`).get(appController.renderApp);
-router.route(`/App`).post(authController.login);
+router.route(`/App`).get(authController.login).post(authController.login);
 
 ////////////////////////////////////////////
 //  My Modules

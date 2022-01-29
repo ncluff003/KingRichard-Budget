@@ -4,14 +4,13 @@ import * as Budgets from './Create-Budget';
 
 class Account {
   constructor(options) {
-    this.name = options.accountName;
     this.amount = options.amount;
   }
 }
 export class Budget {
   constructor() {
     this.name = '';
-    this.accounts = [];
+    this.accounts = {};
     this.mainCategories = [];
   }
 
@@ -28,39 +27,48 @@ export class Budget {
   }
 
   _addAccounts(user) {
-    this.accounts.push(new Account({ accountName: `Un-Allocated`, amount: 0 }));
-    this.accounts.push(new Account({ accountName: `Monthly Budget`, amount: 0 }));
-    this.accounts.push(new Account({ accountName: `Emergency Fund`, amount: 0 }));
-    this.accounts.push(new Account({ accountName: `Savings Fund`, amount: 0 }));
-    this.accounts.push(new Account({ accountName: `Expense Fund`, amount: 0 }));
-    this.accounts.push(new Account({ accountName: `Surplus`, amount: 0 }));
-    this.accounts.push(new Account({ accountName: `Investment Fund`, amount: 0 }));
-    this.accounts.push(new Account({ accountName: `Debt`, amount: 0 }));
+    this.accounts.unAllocated = new Account({ amount: 0 });
+    this.accounts.monthlyBudget = new Account({ amount: 0 });
+    this.accounts.emergencyFund = new Account({ amount: 0 });
+    this.accounts.savingsFund = new Account({ amount: 0 });
+    this.accounts.expenseFund = new Account({ amount: 0 });
+    this.accounts.surplus = new Account({ amount: 0 });
+    this.accounts.investmentFund = new Account({ amount: 0 });
+    this.accounts.debt = new Account({ amount: 0 });
+    // this.accounts.push(new Account({ accountName: `Un-Allocated`, amount: 0 }));
+    // this.accounts.push(new Account({ accountName: `Monthly Budget`, amount: 0 }));
+    // this.accounts.push(new Account({ accountName: `Emergency Fund`, amount: 0 }));
+    // this.accounts.push(new Account({ accountName: `Savings Fund`, amount: 0 }));
+    // this.accounts.push(new Account({ accountName: `Expense Fund`, amount: 0 }));
+    // this.accounts.push(new Account({ accountName: `Surplus`, amount: 0 }));
+    // this.accounts.push(new Account({ accountName: `Investment Fund`, amount: 0 }));
+    // this.accounts.push(new Account({ accountName: `Debt`, amount: 0 }));
     // if (user.latterDaySaint === true) this.accounts.push(new Account({ accountName: `Tithing`, amount: 0 }));
   }
 
   _addTithingAccount(user) {
-    if (user.latterDaySaint === true) this.accounts.push(new Account({ accountName: `Tithing`, amount: 0 }));
+    // if (user.latterDaySaint === true) this.accounts.push(new Account({ accountName: `Tithing`, amount: 0 }));
+    if (user.latterDaySaint === true) this.accounts.tithing = { amount: 0 };
   }
 
   _setEmergencyGoal() {
-    if (this.accounts[2].goalMeasurement === `Length Of Time`) {
-      this.accounts[2].goal = Number(document.querySelector('#timingNumber').value);
+    if (this.accounts.emergencyFund.goalMeasurement === `Length Of Time`) {
+      this.accounts.emergencyFund.goal = Number(document.querySelector('#timingNumber').value);
       console.log(this);
     }
-    if (this.accounts[2].goalMeasurement === `Total Amount`) {
-      this.accounts[2].goal = Number(document.querySelector('#emergencyGoal').value);
+    if (this.accounts.emergencyFund.goalMeasurement === `Total Amount`) {
+      this.accounts.emergencyFund.goal = Number(document.querySelector('#emergencyGoal').value);
       console.log(this);
     }
   }
 
   _setSavingsGoal() {
-    this.accounts[3].goal = Number(document.querySelector('#savingsGoal').value);
+    this.accounts.savingsFund.goal = Number(document.querySelector('#savingsGoal').value);
     console.log(this);
   }
 
   _setInvestmentGoal() {
-    this.accounts[6].goal = Number(document.querySelector('#investmentGoal').value);
+    this.accounts.investmentFund.goal = Number(document.querySelector('#investmentGoal').value);
     console.log(this);
   }
 
@@ -84,11 +92,12 @@ export const _watchEmergencyGoalSettings = (budget, setting) => {
       esl.textContent === `Length Of Time` ? (emergencyInputs[1].style.display = `flex`) : (emergencyInputs[0].style.display = `flex`);
       setting = esl.textContent;
       if (budget) {
-        budget.accounts.forEach((a, i) => {
-          if (a.name === `Emergency Fund`) {
-            a.goalMeasurement = setting;
-          }
-        });
+        budget.accounts.emergencyFund.goalMeasurement = setting;
+        // budget.accounts.forEach((a, i) => {
+        //   if (a.name === `Emergency Fund`) {
+        //     a.goalMeasurement = setting;
+        //   }
+        // });
       }
       console.log(budget);
       return setting;
@@ -875,7 +884,7 @@ const _watchTIthingOptions = (budget) => {
         clicked.classList.toggle('checked');
         return (tithingSetting = `Surplus`);
       }
-      budget.accounts[8].setting = tithingSetting;
+      budget.accounts.tithing.setting = tithingSetting;
       console.log(budget);
     });
   }

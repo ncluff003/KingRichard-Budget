@@ -34,7 +34,10 @@ const _submitSignup = (person) => {
 
 // Go To Next Page
 export const _nextPage = (pageNumber, pages, pageElement, person) => {
-  if (pageNumber > 3) _submitSignup(person);
+  // if (pageNumber > 3) _submitSignup(person);
+  if (pageNumber > 3) {
+    const signupFormSubmit = document.querySelector('.signup-form__form-page__section__button');
+  }
   pages.forEach((p) => {
     p.style.display = 'none';
   });
@@ -82,12 +85,26 @@ export const _watchFormSubmitButton = (page, pages, pageElement, person) => {
         const emailConfirmed = document.getElementById('emailConfirmed').value;
         person.email = email;
         person.emailConfirmed = emailConfirmed;
+        console.log(person);
       }
       if (page + 1 === 5) {
         const password = document.getElementById('password').value;
         const passwordConfirmed = document.getElementById('passwordConfirmed').value;
         person.password = password;
         person.passwordConfirmed = passwordConfirmed;
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // CREATING A WAY TO GET THE LATTER DAY SAINT INFO IN WHILE STILL BEING ABLE TO LOG IN RIGHT AFTER SIGNING UP.
+
+        const signupForm = document.querySelector('.signup-form');
+        signupFormSubmit.setAttribute(`type`, `submit`);
+        const latterDaySaint = document.createElement(`input`);
+        latterDaySaint.value = person.latterDaySaint;
+        latterDaySaint.setAttribute(`id`, `latterDaySaint`);
+        latterDaySaint.setAttribute(`name`, `latterDaySaint`);
+        signupForm.insertAdjacentElement(`beforeend`, latterDaySaint);
+        latterDaySaint.style.visibility = `hidden`;
+        signupForm.submit();
       }
       _nextPage(page, pages, pageElement, person);
     });

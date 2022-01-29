@@ -78,9 +78,6 @@ exports.createBudget = catchAsync(async (request, response, next) => {
   const budgetBody = request.body;
   let budget = budgetBody.budget;
   console.log(budgetBody, budgetBody.budget);
-  budget.accounts.forEach((a) => {
-    console.log(a.name);
-  });
   console.log(budget.accounts);
   const user = await User.findById(request.user.id);
   // const userInfo = [user.communicationPreference, user.latterDaySaint];

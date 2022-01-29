@@ -5173,7 +5173,6 @@ __webpack_require__.r(__webpack_exports__);
 var Account = function Account(options) {
   (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__["default"])(this, Account);
 
-  this.name = options.accountName;
   this.amount = options.amount;
 };
 
@@ -5182,7 +5181,7 @@ var Budget = /*#__PURE__*/function () {
     (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__["default"])(this, Budget);
 
     this.name = '';
-    this.accounts = [];
+    this.accounts = {};
     this.mainCategories = [];
   }
 
@@ -5209,70 +5208,70 @@ var Budget = /*#__PURE__*/function () {
   }, {
     key: "_addAccounts",
     value: function _addAccounts(user) {
-      this.accounts.push(new Account({
-        accountName: "Un-Allocated",
+      this.accounts.unAllocated = new Account({
         amount: 0
-      }));
-      this.accounts.push(new Account({
-        accountName: "Monthly Budget",
+      });
+      this.accounts.monthlyBudget = new Account({
         amount: 0
-      }));
-      this.accounts.push(new Account({
-        accountName: "Emergency Fund",
+      });
+      this.accounts.emergencyFund = new Account({
         amount: 0
-      }));
-      this.accounts.push(new Account({
-        accountName: "Savings Fund",
+      });
+      this.accounts.savingsFund = new Account({
         amount: 0
-      }));
-      this.accounts.push(new Account({
-        accountName: "Expense Fund",
+      });
+      this.accounts.expenseFund = new Account({
         amount: 0
-      }));
-      this.accounts.push(new Account({
-        accountName: "Surplus",
+      });
+      this.accounts.surplus = new Account({
         amount: 0
-      }));
-      this.accounts.push(new Account({
-        accountName: "Investment Fund",
+      });
+      this.accounts.investmentFund = new Account({
         amount: 0
-      }));
-      this.accounts.push(new Account({
-        accountName: "Debt",
+      });
+      this.accounts.debt = new Account({
         amount: 0
-      })); // if (user.latterDaySaint === true) this.accounts.push(new Account({ accountName: `Tithing`, amount: 0 }));
+      }); // this.accounts.push(new Account({ accountName: `Un-Allocated`, amount: 0 }));
+      // this.accounts.push(new Account({ accountName: `Monthly Budget`, amount: 0 }));
+      // this.accounts.push(new Account({ accountName: `Emergency Fund`, amount: 0 }));
+      // this.accounts.push(new Account({ accountName: `Savings Fund`, amount: 0 }));
+      // this.accounts.push(new Account({ accountName: `Expense Fund`, amount: 0 }));
+      // this.accounts.push(new Account({ accountName: `Surplus`, amount: 0 }));
+      // this.accounts.push(new Account({ accountName: `Investment Fund`, amount: 0 }));
+      // this.accounts.push(new Account({ accountName: `Debt`, amount: 0 }));
+      // if (user.latterDaySaint === true) this.accounts.push(new Account({ accountName: `Tithing`, amount: 0 }));
     }
   }, {
     key: "_addTithingAccount",
     value: function _addTithingAccount(user) {
-      if (user.latterDaySaint === true) this.accounts.push(new Account({
-        accountName: "Tithing",
+      // if (user.latterDaySaint === true) this.accounts.push(new Account({ accountName: `Tithing`, amount: 0 }));
+      if (user.latterDaySaint === true) this.accounts.tithing = {
         amount: 0
-      }));
+      };
     }
   }, {
     key: "_setEmergencyGoal",
     value: function _setEmergencyGoal() {
-      if (this.accounts[2].goalMeasurement === "Length Of Time") {
-        this.accounts[2].goal = Number(document.querySelector('#timingNumber').value);
+      if (this.accounts.emergencyFund.goalMeasurement === "Length Of Time") {
+        this.accounts.emergencyFund.goal = Number(document.querySelector('#timingNumber').value);
         console.log(this);
       }
 
-      if (this.accounts[2].goalMeasurement === "Total Amount") {
-        this.accounts[2].goal = Number(document.querySelector('#emergencyGoal').value);
+      if (this.accounts.emergencyFund.goalMeasurement === "Total Amount") {
+        this.accounts.emergencyFund.goal = Number(document.querySelector('#emergencyGoal').value);
         console.log(this);
       }
     }
   }, {
     key: "_setSavingsGoal",
     value: function _setSavingsGoal() {
-      this.accounts[3].goal = Number(document.querySelector('#savingsGoal').value);
+      this.accounts.savingsFund.goal = Number(document.querySelector('#savingsGoal').value);
       console.log(this);
     }
   }, {
     key: "_setInvestmentGoal",
     value: function _setInvestmentGoal() {
-      this.accounts[6].goal = Number(document.querySelector('#investmentGoal').value);
+      this.accounts.investmentFund.goal = Number(document.querySelector('#investmentGoal').value);
       console.log(this);
     }
   }, {
@@ -5300,11 +5299,11 @@ var _watchEmergencyGoalSettings = function _watchEmergencyGoalSettings(budget, s
       setting = esl.textContent;
 
       if (budget) {
-        budget.accounts.forEach(function (a, i) {
-          if (a.name === "Emergency Fund") {
-            a.goalMeasurement = setting;
-          }
-        });
+        budget.accounts.emergencyFund.goalMeasurement = setting; // budget.accounts.forEach((a, i) => {
+        //   if (a.name === `Emergency Fund`) {
+        //     a.goalMeasurement = setting;
+        //   }
+        // });
       }
 
       console.log(budget);
@@ -6124,7 +6123,7 @@ var _watchTIthingOptions = function _watchTIthingOptions(budget) {
         return tithingSetting = "Surplus";
       }
 
-      budget.accounts[8].setting = tithingSetting;
+      budget.accounts.tithing.setting = tithingSetting;
       console.log(budget);
     });
   }
@@ -6560,21 +6559,44 @@ var signup = /*#__PURE__*/function () {
 
           case 3:
             response = _context.sent;
+            if (response.statusText === "Created") console.log(document.cookie); // if (response.statusText === `Created`) {
+            //   try {
+            //     console.log(response);
+            //     const username = document.querySelector('#username').value;
+            //     const password = document.querySelector('#password').value;
+            //     response.username = username;
+            //     response.password = password;
+            //     const data = qs.stringify({
+            //       loginUsername: username,
+            //       loginPassword: password,
+            //     });
+            //     console.log(response);
+            //     const response2 = await axios({
+            //       method: `POST`,
+            //       url: `/App`,
+            //       data: data,
+            //     });
+            //     console.log(response2);
+            //   } catch (error) {
+            //     console.log(error);
+            //   }
+            // }
+
             console.log(response);
-            _context.next = 10;
+            _context.next = 11;
             break;
 
-          case 7:
-            _context.prev = 7;
+          case 8:
+            _context.prev = 8;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0);
 
-          case 10:
+          case 11:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 7]]);
+    }, _callee, null, [[0, 8]]);
   }));
 
   return function signup(_x, _x2, _x3, _x4, _x5, _x6, _x7, _x8) {
@@ -6589,7 +6611,11 @@ var _submitSignup = function _submitSignup(person) {
 
 
 var _nextPage = function _nextPage(pageNumber, pages, pageElement, person) {
-  if (pageNumber > 3) _submitSignup(person);
+  // if (pageNumber > 3) _submitSignup(person);
+  if (pageNumber > 3) {
+    var signupFormSubmit = document.querySelector('.signup-form__form-page__section__button');
+  }
+
   pages.forEach(function (p) {
     p.style.display = 'none';
   });
@@ -6640,13 +6666,25 @@ var _watchFormSubmitButton = function _watchFormSubmitButton(page, pages, pageEl
         var emailConfirmed = document.getElementById('emailConfirmed').value;
         person.email = email;
         person.emailConfirmed = emailConfirmed;
+        console.log(person);
       }
 
       if (page + 1 === 5) {
         var password = document.getElementById('password').value;
         var passwordConfirmed = document.getElementById('passwordConfirmed').value;
         person.password = password;
-        person.passwordConfirmed = passwordConfirmed;
+        person.passwordConfirmed = passwordConfirmed; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // CREATING A WAY TO GET THE LATTER DAY SAINT INFO IN WHILE STILL BEING ABLE TO LOG IN RIGHT AFTER SIGNING UP.
+
+        var signupForm = document.querySelector('.signup-form');
+        signupFormSubmit.setAttribute("type", "submit");
+        var latterDaySaint = document.createElement("input");
+        latterDaySaint.value = person.latterDaySaint;
+        latterDaySaint.setAttribute("id", "latterDaySaint");
+        latterDaySaint.setAttribute("name", "latterDaySaint");
+        signupForm.insertAdjacentElement("beforeend", latterDaySaint);
+        latterDaySaint.style.visibility = "hidden";
+        signupForm.submit();
       }
 
       _nextPage(page, pages, pageElement, person);
@@ -6699,6 +6737,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
 /* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Login */ "./Public/JS/Login.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
 
@@ -6706,6 +6745,7 @@ __webpack_require__.r(__webpack_exports__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
 
 
 
@@ -7085,7 +7125,7 @@ var _watchForProfileUpdates = function _watchForProfileUpdates() {
                 }
 
                 _context7.next = 25;
-                return logout();
+                return (0,_Login__WEBPACK_IMPORTED_MODULE_5__.logout)();
 
               case 25:
                 if (!(i === 3)) {
