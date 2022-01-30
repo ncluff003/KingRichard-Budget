@@ -1131,7 +1131,7 @@ export const createSubCategory = (budget, index) => {
 
   const subCategories = document.querySelectorAll('.sub-category');
 
-  if (subCategories.length === 0) {
+  if (subCategories.length === 0 && subCategoryTitleInput.value !== '' && subCategoryTitleInput.value !== undefined) {
     document.querySelector('.budget-creation-form__page__section__sub-category-container__sub-category-display').insertAdjacentElement('afterbegin', subCategory);
   }
   if (subCategories.length > 0) {

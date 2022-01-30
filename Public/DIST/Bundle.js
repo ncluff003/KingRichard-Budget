@@ -4877,7 +4877,7 @@ var createSubCategory = function createSubCategory(budget, index) {
   subCategory.insertAdjacentElement('beforeend', subCategoryController);
   var subCategories = document.querySelectorAll('.sub-category');
 
-  if (subCategories.length === 0) {
+  if (subCategories.length === 0 && subCategoryTitleInput.value !== '' && subCategoryTitleInput.value !== undefined) {
     document.querySelector('.budget-creation-form__page__section__sub-category-container__sub-category-display').insertAdjacentElement('afterbegin', subCategory);
   }
 
@@ -6072,17 +6072,15 @@ var setupSubCategoryCreation = function setupSubCategoryCreation(budget, index) 
 
 var clickToCreateSubCategory = function clickToCreateSubCategory() {
   var e = event;
+  e.preventDefault();
   var subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
   var subCategoryCreationButton = document.querySelector('.category-creation__input-container__button');
-  e.preventDefault();
   var subCategoryStartCreationButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button');
 
   if (e.key === "Enter") {
     var categoryCreation = document.querySelector('.category-creation');
 
     if (categoryCreation.classList.contains('category-creation--shown')) {
-      subCategoryCreationButton.focus();
-      subCategoryCreateInput.blur();
       subCategoryCreationButton.click();
     }
 

@@ -830,17 +830,15 @@ const setupSubCategoryCreation = (budget, index) => {
 // LOG KEYBOARD KEY
 const clickToCreateSubCategory = () => {
   const e = event;
+  e.preventDefault();
   const subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
   const subCategoryCreationButton = document.querySelector('.category-creation__input-container__button');
-  e.preventDefault();
   const subCategoryStartCreationButton = document.querySelector(
     '.budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button',
   );
   if (e.key === `Enter`) {
     const categoryCreation = document.querySelector('.category-creation');
     if (categoryCreation.classList.contains('category-creation--shown')) {
-      subCategoryCreationButton.focus();
-      subCategoryCreateInput.blur();
       subCategoryCreationButton.click();
     }
     if (
