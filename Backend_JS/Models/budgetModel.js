@@ -117,7 +117,9 @@ const budgetSchema = new mongoose.Schema({
               enum: [`Weekly`, `Bi-Weekly`, `Bi-Monthly`, `Monthly`],
             },
             dueDates: [],
-            paymentSchedule: [Date],
+            paymentSchedule: {
+              type: mongoose.Mixed,
+            },
           },
           goalAmount: {
             type: Number,

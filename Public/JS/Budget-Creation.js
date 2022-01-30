@@ -36,9 +36,19 @@ export class Budget {
     this.accounts.surplus = new Account({ amount: 0 });
     this.accounts.investmentFund = new Account({ amount: 0 });
     this.accounts.debt = new Account({ amount: 0 });
+    // this.accounts.push(new Account({ accountName: `Un-Allocated`, amount: 0 }));
+    // this.accounts.push(new Account({ accountName: `Monthly Budget`, amount: 0 }));
+    // this.accounts.push(new Account({ accountName: `Emergency Fund`, amount: 0 }));
+    // this.accounts.push(new Account({ accountName: `Savings Fund`, amount: 0 }));
+    // this.accounts.push(new Account({ accountName: `Expense Fund`, amount: 0 }));
+    // this.accounts.push(new Account({ accountName: `Surplus`, amount: 0 }));
+    // this.accounts.push(new Account({ accountName: `Investment Fund`, amount: 0 }));
+    // this.accounts.push(new Account({ accountName: `Debt`, amount: 0 }));
+    // if (user.latterDaySaint === true) this.accounts.push(new Account({ accountName: `Tithing`, amount: 0 }));
   }
 
   _addTithingAccount(user) {
+    // if (user.latterDaySaint === true) this.accounts.push(new Account({ accountName: `Tithing`, amount: 0 }));
     if (user.latterDaySaint === true) this.accounts.tithing = { amount: 0 };
   }
 
@@ -82,6 +92,14 @@ export const _watchEmergencyGoalSettings = (budget, setting) => {
       });
       esl.textContent === `Length Of Time` ? (emergencyInputs[1].style.display = `flex`) : (emergencyInputs[0].style.display = `flex`);
       setting = esl.textContent;
+      if (setting === `Length Of Time`) {
+        console.log(emergencyInputs);
+        document.querySelector('#timingNumber').focus();
+      }
+      if (setting === `Total Amount`) {
+        console.log(emergencyInputs);
+        document.querySelector('#emergencyGoal').focus();
+      }
       if (budget) {
         budget.accounts.emergencyFund.goalMeasurement = setting;
       }
@@ -837,6 +855,22 @@ const clickToCreateSubCategory = () => {
 };
 
 //////////////////////////////////////////////////////////////
+// WATCHING TO CYCLE MAIN CATEGORIES GOALS
+const _watchForCyclingCategoryGoals = () => {
+  const leftButton = document.querySelector('.left');
+  const rightButton = document.querySelector('.right');
+  document.addEventListener(`keyup`, (e) => {
+    e.preventDefault();
+    if (e.key === `ArrowLeft`) {
+      return leftButton.click();
+    }
+    if (e.key === `ArrowRight`) {
+      return rightButton.click();
+    }
+  });
+};
+
+//////////////////////////////////////////////////////////////
 // WATCHING TO CYCLE MAIN CATEGORIES IN SUB CATEGORY CREATION
 const watchToCycleSubCategoryMainCategories = () => {
   const leftButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__left-button__icon');
@@ -1011,6 +1045,7 @@ export const _watchBudgetCreation = () => {
     }
     if (currentPage + 1 === 4 && user.latterDaySaint === false) {
       setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
+      _watchForCyclingCategoryGoals();
       watchForSettingTiming(budget, subCategoryIndex, clicked, selectedTiming);
     }
     if (currentPage + 1 === 5 && user.latterDaySaint === false) {
@@ -1020,9 +1055,11 @@ export const _watchBudgetCreation = () => {
     }
     if (currentPage + 1 === 6 && user.latterDaySaint === false) {
       budget._setEmergencyGoal();
+      document.querySelector('#savingsGoal').focus();
     }
     if (currentPage + 1 === 7 && user.latterDaySaint === false) {
       budget._setSavingsGoal();
+      document.querySelector('#investmentGoal').focus();
     }
     if (currentPage + 1 === 8 && user.latterDaySaint === false) {
       budget._setInvestmentGoal();
@@ -1047,6 +1084,7 @@ export const _watchBudgetCreation = () => {
     }
     if (currentPage + 1 === 5 && user.latterDaySaint === true) {
       setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
+      _watchForCyclingCategoryGoals();
       watchForSettingTiming(budget, subCategoryIndex, clicked, selectedTiming);
     }
     if (currentPage + 1 === 6 && user.latterDaySaint === true) {
@@ -1056,9 +1094,11 @@ export const _watchBudgetCreation = () => {
     }
     if (currentPage + 1 === 7 && user.latterDaySaint === true) {
       budget._setEmergencyGoal();
+      document.querySelector('#savingsGoal').focus();
     }
     if (currentPage + 1 === 8 && user.latterDaySaint === true) {
       budget._setSavingsGoal();
+      document.querySelector('#investmentGoal').focus();
     }
     if (currentPage + 1 === 9 && user.latterDaySaint === true) {
       budget._setInvestmentGoal();

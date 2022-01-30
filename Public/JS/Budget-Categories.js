@@ -1178,8 +1178,7 @@ export const _addSubCategory = (budget, index) => {
 const deleteMainCategory = (e, budget) => {
   const budgetPages = document.querySelectorAll('.budget-creation-form__page');
   const mainCategoryCreationPage = document.querySelector('.budget-creation-form__page');
-  console.log(mainCategoryCreationPage, budgetPages);
-  if (budgetPages[2].classList.contains(`disappear`)) return;
+  if (!budgetPages[2].classList.contains(`disappear`)) return;
   budget.mainCategories = budget.mainCategories.filter((o, i) => {
     return o.title !== e.target.closest('section').firstChild.nextElementSibling.textContent;
   });

@@ -4919,8 +4919,7 @@ var _addSubCategory = function _addSubCategory(budget, index) {
 var deleteMainCategory = function deleteMainCategory(e, budget) {
   var budgetPages = document.querySelectorAll('.budget-creation-form__page');
   var mainCategoryCreationPage = document.querySelector('.budget-creation-form__page');
-  console.log(mainCategoryCreationPage, budgetPages);
-  if (budgetPages[2].classList.contains("disappear")) return;
+  if (!budgetPages[2].classList.contains("disappear")) return;
   budget.mainCategories = budget.mainCategories.filter(function (o, i) {
     return o.title !== e.target.closest('section').firstChild.nextElementSibling.textContent;
   });
@@ -5306,12 +5305,18 @@ var _watchEmergencyGoalSettings = function _watchEmergencyGoalSettings(budget, s
       esl.textContent === "Length Of Time" ? emergencyInputs[1].style.display = "flex" : emergencyInputs[0].style.display = "flex";
       setting = esl.textContent;
 
+      if (setting === "Length Of Time") {
+        console.log(emergencyInputs);
+        document.querySelector('#timingNumber').focus();
+      }
+
+      if (setting === "Total Amount") {
+        console.log(emergencyInputs);
+        document.querySelector('#emergencyGoal').focus();
+      }
+
       if (budget) {
-        budget.accounts.emergencyFund.goalMeasurement = setting; // budget.accounts.forEach((a, i) => {
-        //   if (a.name === `Emergency Fund`) {
-        //     a.goalMeasurement = setting;
-        //   }
-        // });
+        budget.accounts.emergencyFund.goalMeasurement = setting;
       }
 
       console.log(budget);
@@ -6091,6 +6096,24 @@ var clickToCreateSubCategory = function clickToCreateSubCategory() {
     }
   }
 }; //////////////////////////////////////////////////////////////
+// WATCHING TO CYCLE MAIN CATEGORIES GOALS
+
+
+var _watchForCyclingCategoryGoals = function _watchForCyclingCategoryGoals() {
+  var leftButton = document.querySelector('.left');
+  var rightButton = document.querySelector('.right');
+  document.addEventListener("keyup", function (e) {
+    e.preventDefault();
+
+    if (e.key === "ArrowLeft") {
+      return leftButton.click();
+    }
+
+    if (e.key === "ArrowRight") {
+      return rightButton.click();
+    }
+  });
+}; //////////////////////////////////////////////////////////////
 // WATCHING TO CYCLE MAIN CATEGORIES IN SUB CATEGORY CREATION
 
 
@@ -6293,6 +6316,9 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
 
               if (currentPage + 1 === 4 && user.latterDaySaint === false) {
                 setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
+
+                _watchForCyclingCategoryGoals();
+
                 watchForSettingTiming(budget, subCategoryIndex, clicked, selectedTiming);
               }
 
@@ -6306,10 +6332,14 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
 
               if (currentPage + 1 === 6 && user.latterDaySaint === false) {
                 budget._setEmergencyGoal();
+
+                document.querySelector('#savingsGoal').focus();
               }
 
               if (currentPage + 1 === 7 && user.latterDaySaint === false) {
                 budget._setSavingsGoal();
+
+                document.querySelector('#investmentGoal').focus();
               }
 
               if (currentPage + 1 === 8 && user.latterDaySaint === false) {
@@ -6343,6 +6373,9 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
 
               if (currentPage + 1 === 5 && user.latterDaySaint === true) {
                 setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
+
+                _watchForCyclingCategoryGoals();
+
                 watchForSettingTiming(budget, subCategoryIndex, clicked, selectedTiming);
               }
 
@@ -6356,10 +6389,14 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
 
               if (currentPage + 1 === 7 && user.latterDaySaint === true) {
                 budget._setEmergencyGoal();
+
+                document.querySelector('#savingsGoal').focus();
               }
 
               if (currentPage + 1 === 8 && user.latterDaySaint === true) {
                 budget._setSavingsGoal();
+
+                document.querySelector('#investmentGoal').focus();
               }
 
               if (currentPage + 1 === 9 && user.latterDaySaint === true) {
