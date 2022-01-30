@@ -36,19 +36,9 @@ export class Budget {
     this.accounts.surplus = new Account({ amount: 0 });
     this.accounts.investmentFund = new Account({ amount: 0 });
     this.accounts.debt = new Account({ amount: 0 });
-    // this.accounts.push(new Account({ accountName: `Un-Allocated`, amount: 0 }));
-    // this.accounts.push(new Account({ accountName: `Monthly Budget`, amount: 0 }));
-    // this.accounts.push(new Account({ accountName: `Emergency Fund`, amount: 0 }));
-    // this.accounts.push(new Account({ accountName: `Savings Fund`, amount: 0 }));
-    // this.accounts.push(new Account({ accountName: `Expense Fund`, amount: 0 }));
-    // this.accounts.push(new Account({ accountName: `Surplus`, amount: 0 }));
-    // this.accounts.push(new Account({ accountName: `Investment Fund`, amount: 0 }));
-    // this.accounts.push(new Account({ accountName: `Debt`, amount: 0 }));
-    // if (user.latterDaySaint === true) this.accounts.push(new Account({ accountName: `Tithing`, amount: 0 }));
   }
 
   _addTithingAccount(user) {
-    // if (user.latterDaySaint === true) this.accounts.push(new Account({ accountName: `Tithing`, amount: 0 }));
     if (user.latterDaySaint === true) this.accounts.tithing = { amount: 0 };
   }
 
@@ -94,11 +84,6 @@ export const _watchEmergencyGoalSettings = (budget, setting) => {
       setting = esl.textContent;
       if (budget) {
         budget.accounts.emergencyFund.goalMeasurement = setting;
-        // budget.accounts.forEach((a, i) => {
-        //   if (a.name === `Emergency Fund`) {
-        //     a.goalMeasurement = setting;
-        //   }
-        // });
       }
       console.log(budget);
       return setting;
@@ -830,10 +815,10 @@ const clickToCreateSubCategory = () => {
   const subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
   const subCategoryCreationButton = document.querySelector('.category-creation__input-container__button');
   e.preventDefault();
+  const subCategoryStartCreationButton = document.querySelector(
+    '.budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button',
+  );
   if (e.key === `Enter`) {
-    const subCategoryStartCreationButton = document.querySelector(
-      '.budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button',
-    );
     const categoryCreation = document.querySelector('.category-creation');
     if (categoryCreation.classList.contains('category-creation--shown')) {
       subCategoryCreationButton.focus();
@@ -858,7 +843,6 @@ const watchToCycleSubCategoryMainCategories = () => {
   const rightButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__right-button__icon');
   document.addEventListener(`keyup`, (e) => {
     e.preventDefault();
-    console.log(e.key);
     if (e.key === `ArrowLeft`) {
       return leftButton.click();
     }
@@ -871,6 +855,10 @@ const watchToCycleSubCategoryMainCategories = () => {
 ///////////////////////////////////////////////////
 // WATCH SUB CATEGORY CREATE BUTTON FOR KEYBOARD
 const _watchForSubCategoryKeyboard = () => {
+  const subCategoryStartCreationButton = document.querySelector(
+    '.budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button',
+  );
+  subCategoryStartCreationButton.focus();
   document.addEventListener(`keyup`, clickToCreateSubCategory);
 };
 

@@ -425,6 +425,17 @@ html {
                   }
                 }
               }
+              &:nth-of-type(8) {
+                flex-direction: column;
+                & > .budget-creation-form__page__section {
+                  & > .budget-creation-form__page__section__input {
+                    font-size: 1.6rem;
+                  }
+                  & > .budget-creation-form__page__section__label {
+                    font-size: 1.6rem;
+                  }
+                }
+              }
               &__section {
                 &__select {
                   color: rgba($colorOffWhite, 0.8);

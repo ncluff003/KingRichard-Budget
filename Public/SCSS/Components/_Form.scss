@@ -462,6 +462,22 @@
                   }
                 }
               }
+              &:nth-of-type(8) {
+                flex-direction: column;
+                & > .budget-creation-form__page__section {
+                  & > .budget-creation-form__page__section__input {
+                    width: 25%;
+                    &:not(:placeholder-shown) + label,
+                    &:focus + label {
+                      transform: translate(-5rem, -7rem) scale(0.75);
+                    }
+                  }
+                  & > .budget-creation-form__page__section__label {
+                    width: 25%;
+                    left: calc(30% + 12.5rem);
+                  }
+                }
+              }
               &__section {
                 @include SizeAndPositioning(relative, min-content, 100%, flex, space-evenly, center, 0, 0, 0);
                 flex-direction: column;

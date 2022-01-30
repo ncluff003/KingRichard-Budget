@@ -4504,7 +4504,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
 /* harmony import */ var _Signup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Signup */ "./Public/JS/Signup.js");
-/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
  //////////////////////////////
 // Actually Close The Form
@@ -4522,11 +4521,9 @@ var _closeTheForm = function _closeTheForm(index, page, pageElement, form) {
 var _watchFormClosers = function _watchFormClosers(pageElement, page, form) {
   var formClosers = document.querySelectorAll('.form-close-icon');
   page = 0;
-  console.log(form);
   formClosers.forEach(function (fc, i) {
     fc.addEventListener('click', function (e) {
       e.preventDefault();
-      console.log(i, formClosers);
 
       _closeTheForm(i, page, pageElement, form);
     });
@@ -6073,9 +6070,9 @@ var clickToCreateSubCategory = function clickToCreateSubCategory() {
   var subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
   var subCategoryCreationButton = document.querySelector('.category-creation__input-container__button');
   e.preventDefault();
+  var subCategoryStartCreationButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button');
 
   if (e.key === "Enter") {
-    var subCategoryStartCreationButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button');
     var categoryCreation = document.querySelector('.category-creation');
 
     if (categoryCreation.classList.contains('category-creation--shown')) {
@@ -6102,7 +6099,6 @@ var watchToCycleSubCategoryMainCategories = function watchToCycleSubCategoryMain
   var rightButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__right-button__icon');
   document.addEventListener("keyup", function (e) {
     e.preventDefault();
-    console.log(e.key);
 
     if (e.key === "ArrowLeft") {
       return leftButton.click();
@@ -6117,6 +6113,8 @@ var watchToCycleSubCategoryMainCategories = function watchToCycleSubCategoryMain
 
 
 var _watchForSubCategoryKeyboard = function _watchForSubCategoryKeyboard() {
+  var subCategoryStartCreationButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button');
+  subCategoryStartCreationButton.focus();
   document.addEventListener("keyup", clickToCreateSubCategory);
 }; /////////////////////////////////
 // GO TO PAGE

@@ -14,11 +14,9 @@ const _closeTheForm = (index, page, pageElement, form) => {
 export const _watchFormClosers = (pageElement, page, form) => {
   const formClosers = document.querySelectorAll('.form-close-icon');
   page = 0;
-  console.log(form);
   formClosers.forEach((fc, i) => {
     fc.addEventListener('click', (e) => {
       e.preventDefault();
-      console.log(i, formClosers);
       _closeTheForm(i, page, pageElement, form);
     });
   });
