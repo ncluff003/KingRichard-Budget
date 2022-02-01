@@ -1,3 +1,4 @@
+import * as Update from './Update-User';
 ////////////////////////////////
 // ICONS FOR MAIN CATEGORIES
 export const icons = [
@@ -1133,7 +1134,7 @@ export const createSubCategory = (budget, index) => {
   subCategory.insertAdjacentElement('beforeend', subCategoryController);
 
   const subCategories = document.querySelectorAll('.sub-category');
-
+  if (subCategoryTitleInput.value === '') return;
   if (subCategories.length === 0 && subCategoryTitleInput.value !== '' && subCategoryTitleInput.value !== undefined) {
     document.querySelector('.budget-creation-form__page__section__sub-category-container__sub-category-display').insertAdjacentElement('afterbegin', subCategory);
   }
@@ -1180,10 +1181,19 @@ export const _addSubCategory = (budget, index) => {
 
 ////////////////////////////////////////
 // MAIN CATEGORY DELETION PROCESS
-const deleteMainCategory = (e, budget) => {
+const deleteMainCategory = async (e, budget) => {
   const budgetPages = document.querySelectorAll('.budget-creation-form__page');
   const mainCategoryCreationPage = document.querySelector('.budget-creation-form__page');
-  if (budgetPages[2].classList.contains(`disappear`)) return;
+  /////////////////////////////
+  // CHECK USER
+  const userInfo = await Update.getSomePersonals();
+  const user = userInfo.data.data.user;
+  if (user.latterDaySaint === true) {
+    if (budgetPages[2].classList.contains(`disappear`)) return;
+  }
+  if (user.latterDaySaint === false) {
+    if (!budgetPages[2].classList.contains(`disappear`)) return;
+  }
   budget.mainCategories = budget.mainCategories.filter((o, i) => {
     return o.title !== e.target.closest('section').firstChild.nextElementSibling.textContent;
   });

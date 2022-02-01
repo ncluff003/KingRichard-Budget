@@ -64,11 +64,13 @@ export class Budget {
   }
 
   _setSavingsGoal() {
+    this.accounts.savingsFund.percentage = Number(document.querySelector('#savingsPercentGoal').value) / 100;
     this.accounts.savingsFund.goal = Number(document.querySelector('#savingsGoal').value);
     console.log(this);
   }
 
   _setInvestmentGoal() {
+    this.accounts.investmentFund.percentage = Number(document.querySelector('#investmentPercentGoal').value) / 100;
     this.accounts.investmentFund.goal = Number(document.querySelector('#investmentGoal').value);
     console.log(this);
   }
@@ -822,6 +824,7 @@ const setupSubCategoryCreation = (budget, index) => {
     subCategoryStartCreationButton.classList.toggle('budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden');
     categoryCreationSection.classList.toggle('category-creation--shown');
     const subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
+    subCategoryCreateInput.value = '';
     subCategoryCreateInput.focus();
   });
 };

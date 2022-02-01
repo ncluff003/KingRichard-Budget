@@ -462,11 +462,54 @@
                   }
                 }
               }
+              &:nth-of-type(6),
+              &:nth-of-type(7) {
+                & > .budget-creation-form__page__section {
+                  & > .savings-percent-goal,
+                  & > .investment-percent-goal {
+                    &:first-of-type {
+                      margin-bottom: 2.4rem;
+                      & + label {
+                        top: 21%;
+                      }
+                    }
+                  }
+                  .budget-creation-form__page__section__input {
+                    &:last-of-type {
+                      & + label {
+                        top: 79%;
+                      }
+                      & + .emergency-checkbox-label,
+                      & + .emergency-goal-label {
+                        top: 50%;
+                      }
+                    }
+                  }
+                  // & > .budget-creation-form__page__section__label {
+                  //   width: 25%;
+                  //   left: calc(30% + 12.5rem);
+                  // }
+                }
+              }
               &:nth-of-type(8) {
                 flex-direction: column;
                 & > .budget-creation-form__page__section {
+                  & > .investment-percent-goal {
+                    margin-bottom: 2.4rem;
+                    &:first-of-type {
+                      margin-bottom: 2.4rem;
+                      & + label {
+                        top: 21%;
+                      }
+                    }
+                  }
                   & > .budget-creation-form__page__section__input {
                     width: 25%;
+                    &:last-of-type {
+                      & + label {
+                        top: 79%;
+                      }
+                    }
                     &:not(:placeholder-shown) + label,
                     &:focus + label {
                       transform: translate(-5rem, -7rem) scale(0.75);

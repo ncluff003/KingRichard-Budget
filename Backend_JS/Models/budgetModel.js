@@ -51,6 +51,10 @@ const budgetSchema = new mongoose.Schema({
         type: Number,
         required: [true, `Every Budget Needs A Savings Fund Goal`],
       },
+      percentage: {
+        type: Number,
+        required: [true, `Every Budget Needs A Percentage Set`],
+      },
       amount: {
         type: Number,
         default: 0,
@@ -72,6 +76,10 @@ const budgetSchema = new mongoose.Schema({
       goal: {
         type: Number,
         required: [true, `Every Budget Needs A Savings Fund Goal`],
+      },
+      percentage: {
+        type: Number,
+        required: [true, `Every Budget Needs A Percentage Set`],
       },
       amount: {
         type: Number,

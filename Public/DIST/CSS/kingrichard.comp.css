@@ -33561,11 +33561,35 @@ html {
   width: 25%;
   left: calc(30% + 12.5rem);
 }
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(6) > .budget-creation-form__page__section > .savings-percent-goal:first-of-type, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(6) > .budget-creation-form__page__section > .investment-percent-goal:first-of-type, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(7) > .budget-creation-form__page__section > .savings-percent-goal:first-of-type, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(7) > .budget-creation-form__page__section > .investment-percent-goal:first-of-type {
+  margin-bottom: 2.4rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(6) > .budget-creation-form__page__section > .savings-percent-goal:first-of-type + label, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(6) > .budget-creation-form__page__section > .investment-percent-goal:first-of-type + label, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(7) > .budget-creation-form__page__section > .savings-percent-goal:first-of-type + label, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(7) > .budget-creation-form__page__section > .investment-percent-goal:first-of-type + label {
+  top: 21%;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(6) > .budget-creation-form__page__section .budget-creation-form__page__section__input:last-of-type + label, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(7) > .budget-creation-form__page__section .budget-creation-form__page__section__input:last-of-type + label {
+  top: 79%;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(6) > .budget-creation-form__page__section .budget-creation-form__page__section__input:last-of-type + .emergency-checkbox-label, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(6) > .budget-creation-form__page__section .budget-creation-form__page__section__input:last-of-type + .emergency-goal-label, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(7) > .budget-creation-form__page__section .budget-creation-form__page__section__input:last-of-type + .emergency-checkbox-label, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(7) > .budget-creation-form__page__section .budget-creation-form__page__section__input:last-of-type + .emergency-goal-label {
+  top: 50%;
+}
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(8) {
   flex-direction: column;
 }
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(8) > .budget-creation-form__page__section > .investment-percent-goal {
+  margin-bottom: 2.4rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(8) > .budget-creation-form__page__section > .investment-percent-goal:first-of-type {
+  margin-bottom: 2.4rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(8) > .budget-creation-form__page__section > .investment-percent-goal:first-of-type + label {
+  top: 21%;
+}
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(8) > .budget-creation-form__page__section > .budget-creation-form__page__section__input {
   width: 25%;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(8) > .budget-creation-form__page__section > .budget-creation-form__page__section__input:last-of-type + label {
+  top: 79%;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(8) > .budget-creation-form__page__section > .budget-creation-form__page__section__input:not(:placeholder-shown) + label, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page:nth-of-type(8) > .budget-creation-form__page__section > .budget-creation-form__page__section__input:focus + label {
   transform: translate(-5rem, -7rem) scale(0.75);
@@ -44274,17 +44298,13 @@ I was thinking of iterating through the objects that were created.
     //////////////////////////////////
     /// Glitches To Fix
 
-    GLITCH : Cannot close create budget form.
-    GLITCH : Timings cannot be added to some of the sub categories because the index is incorrect.
-    GLITCH : Cannot use enter to create sub categories as it goes first to deleting the main categories.
-    GLITCH : 
+    GLITCH : Make it so the percentages of the savings and investment funds are recorded in the budget object to be used later.
 
 
     //////////////////////////////////
     /// Adjustments To Make
 
-    ADJUST : Eventually, it may be possible to make a 'Budget' Class that gets filled up by the user. --- This will be looked at AFTER the budget works, as I have it working right now for what I need.
-    ADJUST : 
+    ADJUST : Styling the create budget form to fit the percentages of both the savings and investment funds.
 
 
     //////////////////////////////////

@@ -3,7 +3,7 @@ form.enter-income-form.r__enter-income-form(method="POST" action=`/users/${data.
     label.form-label.r__form-label Date Received
       input.form-input.r__form-input#enterIncome(type="date")
     label.form-label.r__form-label Received From
-      input.form-input.r__form-input#enterIncome(type="text")
+      input.form-input.r__form-input#receivedFrom(type="text")
     if data.user.latterDaySaint
       label.form-label.r__form-label Tithed?
         .form-input--tithing.r__form-input--tithing 
@@ -11,3 +11,18 @@ form.enter-income-form.r__enter-income-form(method="POST" action=`/users/${data.
           p.form-input--tithing__text.r__form-input--tithing__text-no NO
           p.form-input--tithing__text.r__form-input--tithing__text-yes YES
   section.form-row.r__form-row
+    label.form-label.r__form-label Gross Pay
+      input.form-input.r__form-input#grossPay(type="number" min="0")
+    label.form-label.r__form-label Net Pay
+      input.form-input.r__form-input#netPay(type="number" min="0")
+  section.form-row.r__form-row
+    section.early-income-view.r__early-income-view 
+      section.early-income-view__investment.r__early-income-view__investment
+        h3.early-income-view__investment__header.r__early-income-view__investment__header Investment Account
+        p.early-income-view__investment__amount.r__early-income-view__investment__amount= `$0.00`
+      section.early-income-view__savings.r__early-income-view__savings
+        h3.early-income-view__savings__header.r__early-income-view__savings__header Savings Account
+        p.early-income-view__savings__amount.r__early-income-view__savings__amount= `$0.00`
+      section.early-income-view__un-allocated.r__early-income-view__un-allocated
+        h3.early-income-view__un-allocated__header.r__early-income-view__un-allocated__header Total Un-Allocated
+        p.early-income-view__un-allocated__amount.r__early-income-view__un-allocated__amount= `$0.00`
