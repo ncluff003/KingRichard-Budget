@@ -13,7 +13,18 @@ export const createBudget = async (budget) => {
         budget: budget,
       }),
     });
-    console.log(response);
+    if (response.statusText === `Created`) {
+      const response = await axios({
+        method: `GET`,
+        url: `/users/budgets`,
+        data: qs.stringify({
+          budget: budget,
+        }),
+      });
+    }
+    document.open(`text/html`).write(response.data);
+    window.location.assign(`/users/budgets`);
+    console.log(response.data);
   } catch (error) {
     console.log(error);
   }

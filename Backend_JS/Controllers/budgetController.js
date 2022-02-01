@@ -32,6 +32,7 @@ const Calendar = require(`./../Utilities/Calendar`);
 //  My Models
 const User = require(`./../Models/userModel`);
 const Budget = require(`./../Models/budgetModel`);
+const { response } = require('express');
 
 ////////////////////////////////////////////
 //  My Functions
@@ -72,18 +73,18 @@ const createAndSendToken = (user, statusCode, method, request, response, templat
 
 ////////////////////////////////////////////
 //  Exported Controllers
+exports.getBudget = catchAsync(async (request, response, next) => {
+  const user = await User.findById(request.user.id);
+  const budget = await Budget.findById(user.budgets[user.budgets.length - 1]);
+  console.log(budget);
+
+  createAndSendToken(user, 201, `render`, request, response, `./Budget/budgetLanding`, `King Richard | ${budget.name}`, { budget: budget }, 200, `Success`);
+});
 
 exports.createBudget = catchAsync(async (request, response, next) => {
-  console.log(request.body);
   const budgetBody = request.body;
   let budget = budgetBody.budget;
-  console.log(budgetBody, budgetBody.budget);
-  console.log(budget.accounts);
   const user = await User.findById(request.user.id);
-  // const userInfo = [user.communicationPreference, user.latterDaySaint];
-  // user.budgets.push(
-  //   ),
-  // );
   budget = await Budget.create({
     name: budget.name,
     createdAt: new Date(),
@@ -97,16 +98,5 @@ exports.createBudget = catchAsync(async (request, response, next) => {
 
   // Save embedded budget into the user.
   await user.save({ validateBeforeSave: false });
-  console.log(user, user.budgets);
-  response.status(200).json({
-    status: `Success`,
-    data: {
-      user: user,
-      budget: budget,
-    },
-  });
-  // response.status(500).json({
-  //   status: `Error`,
-  //   message: `This route has not yet been defined`,
-  // });
+  createAndSendToken(user, 201, `render`, request, response, `./Budget/budgetLanding`, `King Richard | ${budget.name}`, { budget: budget }, 200, `Success`);
 });

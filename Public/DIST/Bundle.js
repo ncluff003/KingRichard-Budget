@@ -4830,6 +4830,9 @@ var createSubCategory = function createSubCategory(budget, index) {
       return Number(sc.dataset.category) === index;
     });
     var categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
+    console.log(subArray, categoryNumber, subArray.indexOf(clicked.closest('.sub-category')));
+    console.log(budget.mainCategories[categoryNumber].subCategories);
+    console.log(budget.mainCategories[categoryNumber]);
     var categoryTitle = subCategoryTitleElement.textContent;
 
     budget.mainCategories[categoryNumber].subCategories[subArray.indexOf(clicked.closest('.sub-category'))]._makeSurplus();
@@ -4885,6 +4888,9 @@ var createSubCategory = function createSubCategory(budget, index) {
     subCategories[subCategories.length - 1].insertAdjacentElement('afterend', subCategory);
   }
 
+  if (!subCategoryTitleInput.value) return;
+  console.log(index);
+
   budget._addSubCategory(index, "".concat(subCategoryTitleElement.textContent));
 };
 var _addSubCategory = function _addSubCategory(budget, index) {
@@ -4919,7 +4925,7 @@ var _addSubCategory = function _addSubCategory(budget, index) {
 var deleteMainCategory = function deleteMainCategory(e, budget) {
   var budgetPages = document.querySelectorAll('.budget-creation-form__page');
   var mainCategoryCreationPage = document.querySelector('.budget-creation-form__page');
-  if (!budgetPages[2].classList.contains("disappear")) return;
+  if (budgetPages[2].classList.contains("disappear")) return;
   budget.mainCategories = budget.mainCategories.filter(function (o, i) {
     return o.title !== e.target.closest('section').firstChild.nextElementSibling.textContent;
   });
@@ -6448,7 +6454,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var createBudget = /*#__PURE__*/function () {
   var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(budget) {
-    var response;
+    var response, _response;
+
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -6465,21 +6472,42 @@ var createBudget = /*#__PURE__*/function () {
 
           case 3:
             response = _context.sent;
-            console.log(response);
-            _context.next = 10;
-            break;
+
+            if (!(response.statusText === "Created")) {
+              _context.next = 8;
+              break;
+            }
+
+            _context.next = 7;
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
+              method: "GET",
+              url: "/users/budgets",
+              data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify({
+                budget: budget
+              })
+            });
 
           case 7:
-            _context.prev = 7;
+            _response = _context.sent;
+
+          case 8:
+            document.open("text/html").write(response.data);
+            window.location.assign("/users/budgets");
+            console.log(response.data);
+            _context.next = 16;
+            break;
+
+          case 13:
+            _context.prev = 13;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0);
 
-          case 10:
+          case 16:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 7]]);
+    }, _callee, null, [[0, 13]]);
   }));
 
   return function createBudget(_x) {

@@ -1,0 +1,20 @@
+mixin dashboardAccountOverview(icon, text, accountTotal) 
+  section.budget-container.r__budget-container.budget-container--extra-small.r__budget-container--extra-small
+    header.budget-container__header.r__budget-container__header
+      i.fas.budget-container__header__icon.r__budget-container__header__icon(class=`fa-${icon}`)
+      p.budget-container__header__text.r__budget-container__header__text=`${text}`
+    section.budget-container__content.r__budget-container__content
+      p.budget-container__content__account-total.r__budget-container__content__account-total=`${accountTotal}`
++dashboardAccountOverview(`piggy-bank`, `Bank Account`, `$0`)
++dashboardAccountOverview(`hand-holding-usd`, `Debt`, `$0`)
++dashboardAccountOverview(`dollar-sign`, `Net Value`, `$0`)
+section.budget-container.r__budget-container.budget-container--small.r__budget-container--small
+  header.budget-container__header.r__budget-container__header
+    i.fas.fa-money-bill-alt.budget-container__header__icon.r__budget-container__header__icon
+    p.budget-container__header__text.r__budget-container__header__text Enter Income
+    button.budget-container__header__button.r__budget-container__header__button
+      p.budget-container__header__button__text.r__budget-container__header__button__text Submit
+    section.budget-container__content.r__budget-container__content
+      include ./../Forms/Income/_Enter-Income
+
+      //- I will add the actual account numbers needed with a function to set up the budget correctly EVERY time the dashboard is opened.

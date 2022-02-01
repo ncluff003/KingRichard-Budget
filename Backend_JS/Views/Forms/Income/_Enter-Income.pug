@@ -1,0 +1,13 @@
+form.enter-income-form.r__enter-income-form(method="POST" action=`/users/${data.user.id}/budgets/${data.budget.id}`) 
+  section.form-row.r__form-row 
+    label.form-label.r__form-label Date Received
+      input.form-input.r__form-input#enterIncome(type="date")
+    label.form-label.r__form-label Received From
+      input.form-input.r__form-input#enterIncome(type="text")
+    if data.user.latterDaySaint
+      label.form-label.r__form-label Tithed?
+        .form-input--tithing.r__form-input--tithing 
+          .form-input--tithing__switch.r__form-input--tithing__switch 
+          p.form-input--tithing__text.r__form-input--tithing__text-no NO
+          p.form-input--tithing__text.r__form-input--tithing__text-yes YES
+  section.form-row.r__form-row

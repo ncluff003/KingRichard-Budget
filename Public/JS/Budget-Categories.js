@@ -1074,6 +1074,9 @@ export const createSubCategory = (budget, index) => {
       return Number(sc.dataset.category) === index;
     });
     const categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
+    console.log(subArray, categoryNumber, subArray.indexOf(clicked.closest('.sub-category')));
+    console.log(budget.mainCategories[categoryNumber].subCategories);
+    console.log(budget.mainCategories[categoryNumber]);
     const categoryTitle = subCategoryTitleElement.textContent;
     budget.mainCategories[categoryNumber].subCategories[subArray.indexOf(clicked.closest('.sub-category'))]._makeSurplus();
   });
@@ -1137,6 +1140,8 @@ export const createSubCategory = (budget, index) => {
   if (subCategories.length > 0) {
     subCategories[subCategories.length - 1].insertAdjacentElement('afterend', subCategory);
   }
+  if (!subCategoryTitleInput.value) return;
+  console.log(index);
   budget._addSubCategory(index, `${subCategoryTitleElement.textContent}`);
 };
 
@@ -1178,7 +1183,7 @@ export const _addSubCategory = (budget, index) => {
 const deleteMainCategory = (e, budget) => {
   const budgetPages = document.querySelectorAll('.budget-creation-form__page');
   const mainCategoryCreationPage = document.querySelector('.budget-creation-form__page');
-  if (!budgetPages[2].classList.contains(`disappear`)) return;
+  if (budgetPages[2].classList.contains(`disappear`)) return;
   budget.mainCategories = budget.mainCategories.filter((o, i) => {
     return o.title !== e.target.closest('section').firstChild.nextElementSibling.textContent;
   });

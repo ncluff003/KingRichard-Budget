@@ -15,7 +15,6 @@
         flex-direction: column;
         &__profile-picture-container {
           @include SizeAndPositioning(relative, 74%, 60%, flex, center, center, 0, 0, 0);
-          border: 0.6rem solid $colorOffWhite;
           border-radius: 50%;
           margin-bottom: 1rem;
           &__picture {
