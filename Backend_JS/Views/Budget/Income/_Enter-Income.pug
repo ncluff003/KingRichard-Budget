@@ -1,7 +1,7 @@
 form.enter-income-form.r__enter-income-form(method="POST" action=`/users/${data.user.id}/budgets/${data.budget.id}`) 
   section.form-row.r__form-row 
     label.form-label.r__form-label Date Received
-      input.form-input.r__form-input#enterIncome(type="date")
+      input.form-input.r__form-input#incomeDate(type="date")
     label.form-label.r__form-label Received From
       input.form-input.r__form-input#receivedFrom(type="text")
     if data.user.latterDaySaint

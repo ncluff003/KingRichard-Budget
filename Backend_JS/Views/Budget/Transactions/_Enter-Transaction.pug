@@ -1,0 +1,33 @@
+form.enter-transaction-form.r__enter-transaction-form(method="POST" action=`/users/${data.user.id}/budgets/${data.budget.id}`) 
+  section.form-row.r__form-row
+    label.form-label.r__form-label Transaction Date
+      input.form-input.r__form-input#transactionDate(type="date")
+    label.form-label.r__form-label Transaction Location
+      input.form-input.r__form-input#transactionLocation(type="text")
+    button.form-button.r__form-button(type="button") Add item
+  section.form-row.r__form-row
+  - let accounts = [`Monthly Budget`,`Emergency Fund`,`Savings Fund`,`Expense Fund`,`Surplus`,`Investment Fund`,`Debt`,`Tithing`]; 
+  - if (data.user.latterDaySaint === false) accounts = accounts.filter((a, i) => { if (a !== `Tithing`) return a});
+    select.account-selection.r__account-selection
+      each account in accounts
+        option.account-selection__option.r__account-selection__option= `${account}`
+    block secondRow 
+      include ./Accounts/_monthly-budget
+      include ./Accounts/_emergency-fund
+      include ./Accounts/_savings-fund
+      include ./Accounts/_expense-fund
+      include ./Accounts/_surplus
+      include ./Accounts/_investment-fund
+      include ./Accounts/_debt
+    if data.user.latterDaySaint
+      include ./Accounts/_tithing
+  block thirdRow
+    include ./Accounts/_monthly-budget-2
+    include ./Accounts/_emergency-fund-2
+    include ./Accounts/_savings-fund-2
+    include ./Accounts/_expense-fund-2
+    include ./Accounts/_surplus-2
+    include ./Accounts/_investment-fund-2
+    include ./Accounts/_debt-2
+  if data.user.latterDaySaint
+    include ./Accounts/_tithing-2

@@ -15,6 +15,14 @@ section.budget-container.r__budget-container.budget-container--small.r__budget-c
     button.budget-container__header__button.r__budget-container__header__button
       p.budget-container__header__button__text.r__budget-container__header__button__text Submit
     section.budget-container__content.r__budget-container__content
-      include ./../Forms/Income/_Enter-Income
+      include ./Income/_Enter-Income
+section.budget-container.r__budget-container.budget-container--small.r__budget-container--small
+  header.budget-container__header.r__budget-container__header
+    i.fas.fa-money-check-alt.budget-container__header__icon.r__budget-container__header__icon
+    p.budget-container__header__text.r__budget-container__header__text Enter Transaction
+    button.budget-container__header__button.r__budget-container__header__button
+      p.budget-container__header__button__text.r__budget-container__header__button__text Submit
+    section.budget-container__content.r__budget-container__content
+      include ./Transactions/_Enter-Transaction
 
       //- I will add the actual account numbers needed with a function to set up the budget correctly EVERY time the dashboard is opened.
