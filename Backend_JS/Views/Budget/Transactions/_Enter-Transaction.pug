@@ -1,9 +1,9 @@
 form.enter-transaction-form.r__enter-transaction-form(method="POST" action=`/users/${data.user.id}/budgets/${data.budget.id}`) 
   section.form-row.r__form-row
-    label.form-label.r__form-label Transaction Date
-      input.form-input.r__form-input#transactionDate(type="date")
-    label.form-label.r__form-label Transaction Location
-      input.form-input.r__form-input#transactionLocation(type="text")
+    input.form-input.r__form-input#transactionDate(type="date")
+    label.form-label.r__form-label(for="transactionDate") Transaction Date
+    input.form-input.r__form-input#transactionLocation(type="text")
+    label.form-label.r__form-label(for="transactionLocation") Transaction Location
     button.form-button.r__form-button(type="button") Add item
   section.form-row.r__form-row
   - let accounts = [`Monthly Budget`,`Emergency Fund`,`Savings Fund`,`Expense Fund`,`Surplus`,`Investment Fund`,`Debt`,`Tithing`]; 
