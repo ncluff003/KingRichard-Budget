@@ -1,0 +1,25 @@
+- let accounts = [`Monthly Budget`,`Emergency Fund`,`Savings Fund`,`Expense Fund`,`Surplus`,`Investment Fund`,`Debt`,`Tithing`]; 
+- if (data.user.latterDaySaint === false) accounts = accounts.filter((a, i) => { if (a !== `Tithing`) return a});
+  select.account-selection.r__account-selection
+    each account in accounts
+      option.account-selection__option.r__account-selection__option= `${account}`
+  block secondRow 
+    include _monthly-budget
+    include _emergency-fund
+    include _savings-fund
+    include _expense-fund
+    include _surplus
+    include _investment-fund
+    include _debt
+  if data.user.latterDaySaint
+    include _tithing
+block thirdRow
+  include _monthly-budget-2
+  include _emergency-fund-2
+  include _savings-fund-2
+  include _expense-fund-2
+  include _surplus-2
+  include _investment-fund-2
+  include _debt-2
+if data.user.latterDaySaint
+  include _tithing-2
