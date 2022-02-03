@@ -187,108 +187,6 @@ html {
         color: $primaryColor;
       }
       &__display-container {
-        .budget-card-container {
-          &__card {
-            font-family: MADE Tommy Soft, Verdana, sans-serif;
-            &__header {
-              &__text {
-                font-size: 2.4rem;
-                font-family: Purely Me;
-                color: rgba($colorOffWhite, 0.8);
-              }
-              &__icon {
-                font-size: 2rem;
-                color: rgba($colorOffWhite, 0.8);
-              }
-            }
-            &__content {
-              &__change-photo-button {
-                &__icon {
-                  font-size: 1.6rem;
-                  color: rgba($primaryColor, 0.5);
-                }
-              }
-            }
-            &__footer {
-              color: rgba($colorOffWhite, 0.8);
-              &--top {
-                font-size: 1.2rem;
-              }
-              &--bottom {
-                font-size: 1.8rem;
-              }
-            }
-            &:hover {
-              .budget-card-container__card__header {
-                &__text {
-                  color: $colorOffWhite;
-                }
-                &__icon {
-                  color: $colorOffWhite;
-                  &:hover {
-                    color: $secondaryColor;
-                  }
-                }
-              }
-              .budget-card-container__card__content {
-                &__change-photo-button {
-                  &:hover {
-                    .budget-card-container__card__content__change-photo-button__icon {
-                      color: $colorOffWhite;
-                    }
-                  }
-                }
-              }
-              .budget-card-container__card__footer {
-                color: $colorOffWhite;
-              }
-            }
-            &--create {
-              &__header {
-                &__text {
-                  font-size: 2rem;
-                  color: rgba($colorOffWhite, 0.8);
-                }
-              }
-              &__icon {
-                font-size: 10rem;
-                color: rgba($primaryColor, 0.8);
-              }
-              &:hover {
-                .budget-card-container__card--create__header {
-                  &__text {
-                    color: $colorOffWhite;
-                  }
-                }
-                .budget-card-container__card--create__icon {
-                  color: $primaryColor;
-                }
-              }
-            }
-          }
-        }
-        .user-profile-container {
-          &__close {
-            font-size: 4rem;
-            color: rgba($colorOffWhite, 0.8);
-            &:hover {
-              color: $colorOffWhite;
-            }
-          }
-          &__header {
-            &__text {
-              font-family: MADE Tommy Soft, Verdana, sans-serif;
-              font-size: 10rem;
-              color: $colorOffWhite;
-            }
-          }
-        }
-      }
-    }
-  }
-  .app-flex-container {
-    .app-viewport {
-      &__display-container {
         .user-profile-container {
           // USER PROFILE FORM CONTAINER
           &__form-container {
@@ -887,6 +785,122 @@ html {
                 }
                 .checked {
                   color: $colorOffWhite;
+                }
+              }
+            }
+          }
+        }
+        .budget-card-container {
+          &__card {
+            font-family: MADE Tommy Soft, Verdana, sans-serif;
+            &__header {
+              &__text {
+                font-size: 2.4rem;
+                font-family: Purely Me;
+                color: rgba($colorOffWhite, 0.8);
+              }
+              &__icon {
+                font-size: 2rem;
+                color: rgba($colorOffWhite, 0.8);
+              }
+            }
+            &__content {
+              &__change-photo-button {
+                &__icon {
+                  font-size: 1.6rem;
+                  color: rgba($primaryColor, 0.5);
+                }
+              }
+            }
+            &__footer {
+              color: rgba($colorOffWhite, 0.8);
+              &--top {
+                font-size: 1.2rem;
+              }
+              &--bottom {
+                font-size: 1.8rem;
+              }
+            }
+            &:hover {
+              .budget-card-container__card__header {
+                &__text {
+                  color: $colorOffWhite;
+                }
+                &__icon {
+                  color: $colorOffWhite;
+                  &:hover {
+                    color: $secondaryColor;
+                  }
+                }
+              }
+              .budget-card-container__card__content {
+                &__change-photo-button {
+                  &:hover {
+                    .budget-card-container__card__content__change-photo-button__icon {
+                      color: $colorOffWhite;
+                    }
+                  }
+                }
+              }
+              .budget-card-container__card__footer {
+                color: $colorOffWhite;
+              }
+            }
+            &--create {
+              &__header {
+                &__text {
+                  font-size: 2rem;
+                  color: rgba($colorOffWhite, 0.8);
+                }
+              }
+              &__icon {
+                font-size: 10rem;
+                color: rgba($primaryColor, 0.8);
+              }
+              &:hover {
+                .budget-card-container__card--create__header {
+                  &__text {
+                    color: $colorOffWhite;
+                  }
+                }
+                .budget-card-container__card--create__icon {
+                  color: $primaryColor;
+                }
+              }
+            }
+          }
+        }
+        .user-profile-container {
+          &__close {
+            font-size: 4rem;
+            color: rgba($colorOffWhite, 0.8);
+            &:hover {
+              color: $colorOffWhite;
+            }
+          }
+          &__header {
+            &__text {
+              font-family: MADE Tommy Soft, Verdana, sans-serif;
+              font-size: 10rem;
+              color: $colorOffWhite;
+            }
+          }
+        }
+        .budget-container {
+          .budget-navigation {
+            &__link-list {
+              &__list-item {
+                &__link {
+                  font-family: MADE Tommy Soft, Verdana, sans-serif;
+                  font-size: 2.4rem;
+                  text-decoration: none;
+                  color: rgba($colorOffWhite, 0.8);
+                  &:hover {
+                    color: $colorOffWhite;
+                  }
+                  &:active {
+                    color: $colorDarkerGrey;
+                  }
                 }
               }
             }

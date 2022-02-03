@@ -1,6 +1,46 @@
 @use '../../../Public/SCSS/Utilities/Mixins' as *;
 @use '../../../Public/SCSS/Utilities/Variables' as *;
 
-.budget-container {
-  @include SizeAndPositioning(relative, 100%, 100%, flex, row, wrap, space-evenly, center, 0, 0, 0);
+////////////////////////////////////////////////
+//  Master Grid Container
+.master-grid-container {
+  .app-flex-container {
+    .app-viewport.r__app-viewport {
+      .budget-container {
+        @include SizeAndPositioning(relative, 100%, 100%, flex, row, wrap, space-evenly, center, 0, 0, 0);
+        .budget-navigation {
+          @include SizeAndPositioning(relative, 100%, 100%, flex, column, nowrap, center, center, 0, 0, 0);
+          background-color: rgba($primaryColorDark, 0.85);
+          &__link-list {
+            @include SizeAndPositioning(relative, 75%, 50%, flex, column, nowrap, center, center, 0, 0, 0);
+            &__list-item {
+              @include SizeAndPositioning(relative, 12.5%, 60%, flex, row, nowrap, center, center, 0, 0, 0);
+              &:first-of-type {
+                margin-top: 0;
+              }
+              margin: 0.5rem 0;
+              &:last-of-type {
+                margin-bottom: 0;
+              }
+              list-style: none;
+              &__link {
+                @include SizeAndPositioning(relative, 100%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+                border-radius: 1.5rem;
+                border: 0.3rem solid rgba($colorOffWhite, 0.8);
+                background-color: rgba($primaryColorDarker, 0.8);
+                &:hover {
+                  border: 0.3rem solid $colorOffWhite;
+                  background-color: $secondaryColor;
+                  transition: border 0.5s, background-color 0.5s, color 0.5s;
+                }
+                &:active {
+                  background-color: $tertiaryColor;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
