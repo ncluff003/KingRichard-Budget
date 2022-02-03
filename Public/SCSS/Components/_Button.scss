@@ -6,7 +6,7 @@
 .master-grid-container {
   .entrance-button-container {
     .entrance-button {
-      @include SizeAndPositioning(relative, 65%, 40%, flex, center, center, 13%, 0, 0);
+      @include SizeAndPositioning(relative, 65%, 40%, flex, row, nowrap, center, center, 13%, 0, 0);
       -moz-transform: translate(13%, 0);
       background-color: rgba($colorLightestGrey, 0.125);
       border: 0.3rem solid rgba($primaryColor, 0.75);
@@ -26,7 +26,7 @@
     .reset-password-form {
       &__section {
         &__button {
-          @include SizeAndPositioning(relative, 6rem, 20%, flex, center, center, 0, 0, 0);
+          @include SizeAndPositioning(relative, 6rem, 20%, flex, row, nowrap, center, center, 0, 0, 0);
           background-color: rgba($colorLightestGrey, 0.125);
           border: 0.3rem solid rgba($primaryColor, 0.75);
           border-radius: 0.75rem;
@@ -41,7 +41,7 @@
       &__form-page {
         &__section {
           &__button {
-            @include SizeAndPositioning(relative, 6rem, 20%, flex, center, center, 0, 0, 0);
+            @include SizeAndPositioning(relative, 6rem, 20%, flex, row, nowrap, center, center, 0, 0, 0);
             background-color: rgba($colorLightestGrey, 0.125);
             border: 0.3rem solid rgba($primaryColor, 0.75);
             border-radius: 0.75rem;
@@ -60,7 +60,7 @@
     .app-navigation__main {
       &__user-information {
         &__update-picture {
-          @include SizeAndPositioning(relative, 7.5%, 60%, flex, center, center, 0, 0, 0);
+          @include SizeAndPositioning(relative, 7.5%, 60%, flex, row, nowrap, center, center, 0, 0, 0);
           background-color: transparent;
           border: none;
           &--icon {
@@ -84,7 +84,7 @@
             // USER PROFILE FORM
             .user-profile-form {
               &__button {
-                @include SizeAndPositioning(relative, 7rem, 15%, flex, center, center, 0, 0, 0);
+                @include SizeAndPositioning(relative, 7rem, 15%, flex, row, nowrap, center, center, 0, 0, 0);
                 border: 0.3rem solid rgba($colorOffWhite, 0.75);
                 border-radius: 1.25rem;
                 background-color: transparent;
@@ -104,7 +104,7 @@
               }
               &__section {
                 &__button {
-                  @include SizeAndPositioning(absolute, 3rem, 12.5%, flex, center, center, 0, 0.75rem, 0);
+                  @include SizeAndPositioning(absolute, 3rem, 12.5%, flex, row, nowrap, center, center, 0, 0.75rem, 0);
                   bottom: 0;
                   right: 36.5%;
                   background-color: transparent;
@@ -114,7 +114,7 @@
                     transition: color 0.5s, transform 0.5s;
                   }
                   &__password-button {
-                    @include SizeAndPositioning(relative, 7rem, 15%, flex, center, center, 0, 0, 0);
+                    @include SizeAndPositioning(relative, 7rem, 15%, flex, row, nowrap, center, center, 0, 0, 0);
                     border: 0.3rem solid rgba($colorOffWhite, 0.75);
                     border-radius: 1.25rem;
                     background-color: transparent;
@@ -139,7 +139,7 @@
                 }
                 &__sub-section {
                   &__button {
-                    @include SizeAndPositioning(relative, 7rem, 15%, flex, center, center, 0, 0, 0);
+                    @include SizeAndPositioning(relative, 7rem, 15%, flex, row, nowrap, center, center, 0, 0, 0);
                     border: 0.3rem solid rgba($colorOffWhite, 0.75);
                     border-radius: 1.25rem;
                     background-color: transparent;
@@ -160,7 +160,7 @@
                 }
                 &__set-main-category-title-container {
                   &__button {
-                    @include SizeAndPositioning(relative, 7rem, 15%, flex, center, center, 0, 0, 0);
+                    @include SizeAndPositioning(relative, 7rem, 15%, flex, row, nowrap, center, center, 0, 0, 0);
                   }
                 }
               }
@@ -182,7 +182,7 @@
                       }
                     }
                     &__delete {
-                      @include SizeAndPositioning(absolute, 2rem, 2rem, flex, center, center, 0, 0, 0);
+                      @include SizeAndPositioning(absolute, 2rem, 2rem, flex, row, nowrap, center, center, 0, 0, 0);
                       top: 0.5rem;
                       right: 0.5rem;
                       border: 0.2rem solid rgba($primaryColor, 0.8);
@@ -199,7 +199,7 @@
                 }
                 &__set-main-category-title-container {
                   &__button {
-                    @include SizeAndPositioning(relative, 5rem, 25%, flex, center, center, 0, 0, 0);
+                    @include SizeAndPositioning(relative, 5rem, 25%, flex, row, nowrap, center, center, 0, 0, 0);
                     border: 0.3rem solid rgba($primaryColor, 0.8);
                     border-radius: 1.25rem;
                     background-color: transparent;
@@ -214,7 +214,7 @@
                 &__sub-category-container {
                   &__sub-category-display {
                     &__sub-category-button {
-                      @include SizeAndPositioning(relative, 6rem, 100%, flex, center, center, 0, 0, 0);
+                      @include SizeAndPositioning(relative, 6rem, 100%, flex, row, nowrap, center, center, 0, 0, 0);
                       min-height: 6rem;
                       border: none;
                       background-color: transparent;
@@ -233,7 +233,7 @@
                   .category-creation {
                     &__input-container {
                       &__button {
-                        @include SizeAndPositioning(relative, 50%, 20%, flex, center, center, 0, 0, 0);
+                        @include SizeAndPositioning(relative, 50%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
                         border: 0.2rem solid rgba($primaryColor, 0.8);
                         background-color: rgba($colorOffWhite, 0.25);
                         border-radius: 0.5rem;
@@ -248,7 +248,7 @@
                     }
                     &__controller {
                       &__close {
-                        @include SizeAndPositioning(relative, 50%, 50%, flex, space-evenly, center, 0, 0, 0);
+                        @include SizeAndPositioning(relative, 50%, 50%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
                         border: 0.2rem solid rgba($primaryColor, 0.8);
                         background-color: rgba($colorOffWhite, 0.25);
                         border-radius: 0.5rem;
@@ -283,7 +283,7 @@
                       }
                       &__sub-category {
                         &__section {
-                          @include SizeAndPositioning(relative, 100%, 20%, flex, center, center, 0, 0, 0);
+                          @include SizeAndPositioning(relative, 100%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
                           &:first-of-type {
                             justify-content: space-evenly;
                             flex-direction: column;
@@ -310,7 +310,7 @@
                         &__bi-weekly-container,
                         &__weekly-container {
                           &__button {
-                            @include SizeAndPositioning(relative, 7rem, 70%, flex, center, center, 0, 0, 0);
+                            @include SizeAndPositioning(relative, 7rem, 70%, flex, row, nowrap, center, center, 0, 0, 0);
                             background-color: transparent;
                             border: 0.3rem solid rgba($primaryColor, 0.8);
                             border-radius: 0.9rem;
@@ -323,7 +323,7 @@
                               margin-bottom: 1rem;
                             }
                             &__icon {
-                              @include SizeAndPositioning(absolute, 5rem, 5rem, flex, center, center, 0, -50%, 0);
+                              @include SizeAndPositioning(absolute, 5rem, 5rem, flex, row, nowrap, center, center, 0, -50%, 0);
                               top: 50%;
                               left: 1rem;
                             }
@@ -344,7 +344,7 @@
                             }
                           }
                           &__submit {
-                            @include SizeAndPositioning(relative, 5rem, 40%, flex, center, center, 4rem, 0, 0);
+                            @include SizeAndPositioning(relative, 5rem, 40%, flex, row, nowrap, center, center, 4rem, 0, 0);
                             border: 0.3rem solid rgba($primaryColor, 0.8);
                             border-radius: 0.8rem;
                             padding: 1rem;
@@ -372,7 +372,7 @@
                   margin-right: 2rem;
                 }
                 &__submit-button {
-                  @include SizeAndPositioning(relative, 5rem, 15%, flex, center, center, 0, 0, 0);
+                  @include SizeAndPositioning(relative, 5rem, 15%, flex, row, nowrap, center, center, 0, 0, 0);
                   border: 0.3rem solid rgba($primaryColor, 0.8);
                   border-radius: 1.25rem;
                   background-color: transparent;

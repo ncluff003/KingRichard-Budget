@@ -1,0 +1,6 @@
+@use '../../../Public/SCSS/Utilities/Mixins' as *;
+@use '../../../Public/SCSS/Utilities/Variables' as *;
+
+.budget-container {
+  @include SizeAndPositioning(relative, 100%, 100%, flex, row, wrap, space-evenly, center, 0, 0, 0);
+}

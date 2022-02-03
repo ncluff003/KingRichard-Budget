@@ -1,20 +1,18 @@
-@use "../../../Public/SCSS/Utilities/Mixins" as *;
-@use "../../../Public/SCSS/Utilities/Variables" as *;
+@use '../../../Public/SCSS/Utilities/Mixins' as *;
+@use '../../../Public/SCSS/Utilities/Variables' as *;
 
- ////////////////////////////////////////////////
- //  Vertical Flex Container
+////////////////////////////////////////////////
+//  Vertical Flex Container
 
- .vertical-flex-container {
+.vertical-flex-container {
+  ////////////////////////////////////////////////
+  //  Navigation
 
-   ////////////////////////////////////////////////
-   //  Navigation
-   
-   ////////////////////////////////////////////////
-   //  Flex Section
+  ////////////////////////////////////////////////
+  //  Flex Section
 
-   .flex-section {
-       @include SizeAndPositioning(relative, 100vh, 100vw, flex, center, center, 0, 0, 0);
-       background-color: $colorSuperLightGrey;
-   }
-
+  .flex-section {
+    @include SizeAndPositioning(relative, 100vh, 100vw, flex, row, nowrap, center, center, 0, 0, 0);
+    background-color: $colorSuperLightGrey;
+  }
 }

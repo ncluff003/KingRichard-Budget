@@ -5,6 +5,6 @@
 //  Master Grid Container
 .master-grid-container {
   .app-flex-container {
-    @include SizeAndPositioning(relative, 100%, 100%, flex, space-between, center, 0, 0, 0);
+    @include SizeAndPositioning(relative, 100%, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
   }
 }

@@ -5,7 +5,7 @@
 //  Master Grid Container
 .master-grid-container {
   .form-container {
-    @include SizeAndPositioning(relative, 100%, 100vw, none, center, center, 0, 0, 0);
+    @include SizeAndPositioning(relative, 100%, 100vw, none, row, nowrap, center, center, 0, 0, 0);
     background-color: rgba($colorOffWhite, 0.95);
     &--full-page {
       &:nth-of-type(6) {
@@ -13,7 +13,7 @@
       }
       z-index: 1;
       .form-close-icon {
-        @include SizeAndPositioning(absolute, 2rem, 2rem, flex, center, center, 0, 0, 0);
+        @include SizeAndPositioning(absolute, 2rem, 2rem, flex, row, nowrap, center, center, 0, 0, 0);
         top: 5rem;
         right: 6rem;
         &:hover {
@@ -25,19 +25,17 @@
       .signup-form,
       .forgotten-form,
       .reset-password-form {
-        @include SizeAndPositioning(relative, 100%, 50%, flex, center, center, 0, 0, 0);
-        flex-direction: column;
+        @include SizeAndPositioning(relative, 100%, 50%, flex, column, nowrap, center, center, 0, 0, 0);
         &__header {
           margin-bottom: 3rem;
         }
         &__section {
-          @include SizeAndPositioning(relative, min-content, 100%, flex, space-evenly, center, 0, 0, 0);
-          flex-direction: column;
+          @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
           &:not(:last-of-type) {
             margin-bottom: 3.5rem;
           }
           &__input {
-            @include SizeAndPositioning(relative, 6rem, 40%, flex, flex-start, center, 0, 0, 0);
+            @include SizeAndPositioning(relative, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, 0, 0);
             padding: 1rem;
             padding-left: 2rem;
             background-color: rgba($colorLightestGrey, 0.125);
@@ -66,7 +64,7 @@
             }
           }
           &__label {
-            @include SizeAndPositioning(absolute, 6rem, 40%, flex, flex-start, center, 0, -50%, 0);
+            @include SizeAndPositioning(absolute, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, -50%, 0);
             top: 50%;
             left: calc(30% + 2rem);
             -moz-transform: translateY(-50%);
@@ -80,17 +78,15 @@
           }
         }
         &__form-page {
-          @include SizeAndPositioning(relative, min-content, 100%, flex, space-evenly, center, 0, 0, 0);
-          flex-direction: column;
+          @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
           margin: 0 0 1rem;
           &__section {
-            @include SizeAndPositioning(relative, min-content, 100%, flex, space-evenly, center, 0, 0, 0);
-            flex-direction: column;
+            @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
             &:not(:last-of-type) {
               margin-bottom: 3.5rem;
             }
             &__input {
-              @include SizeAndPositioning(relative, 6rem, 40%, flex, flex-start, center, 0, 0, 0);
+              @include SizeAndPositioning(relative, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, 0, 0);
               padding: 1rem;
               padding-left: 2rem;
               background-color: rgba($colorLightestGrey, 0.125);
@@ -120,24 +116,23 @@
               }
             }
             &__label {
-              @include SizeAndPositioning(absolute, 6rem, 40%, flex, flex-start, center, 0, -50%, 0);
+              @include SizeAndPositioning(absolute, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, -50%, 0);
               top: 50%;
               left: calc(30% + 2rem);
               -moz-transform: translateY(-50%);
               transition: transform 0.5s;
             }
             .signup-form__form-page__section__input-container--latter-day-saint {
-              @include SizeAndPositioning(relative, 7rem, 20%, flex, space-evenly, center, 0, 0, 0);
-              flex-direction: column;
+              @include SizeAndPositioning(relative, 7rem, 20%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
               .signup-form__form-page__section__input--latter-day-saint {
-                @include SizeAndPositioning(relative, 95%, 100%, flex, center, center, -15%, 0, 0);
+                @include SizeAndPositioning(relative, 95%, 100%, flex, row, nowrap, center, center, -15%, 0, 0);
                 background-color: rgba($primaryColorLight, 0.8);
                 border: 0.3rem solid rgba($primaryColor, 0.8);
                 border-radius: 5rem;
                 padding: 0.25rem;
                 transition: background-color 0.5s, border 0.5s;
                 &__switch {
-                  @include SizeAndPositioning(absolute, 84%, 30%, flex, center, center, 0, -50%, 0);
+                  @include SizeAndPositioning(absolute, 84%, 30%, flex, row, nowrap, center, center, 0, -50%, 0);
                   top: 50%;
                   left: 2.75%;
                   background-color: rgba($primaryColorDark, 0.8);
@@ -145,10 +140,10 @@
                   transition: background-color 0.5s, transform 0.5s, width 0.25s;
                 }
                 &__text--NO {
-                  @include SizeAndPositioning(relative, 100%, 70%, flex, center, center, 0, 0, 0);
+                  @include SizeAndPositioning(relative, 100%, 70%, flex, row, nowrap, center, center, 0, 0, 0);
                 }
                 &__text--YES {
-                  @include SizeAndPositioning(relative, 100%, 70%, none, center, center, 0, 0, 0);
+                  @include SizeAndPositioning(relative, 100%, 70%, none, row, nowrap, center, center, 0, 0, 0);
                 }
                 &:hover {
                   cursor: pointer;
@@ -209,24 +204,21 @@
         .user-profile-container {
           // USER PROFILE FORM CONTAINER
           &__form-container {
-            @include SizeAndPositioning(relative, 85%, 100%, flex, center, center, 0, 0, 0);
-            flex-direction: column;
+            @include SizeAndPositioning(relative, 85%, 100%, flex, column, nowrap, center, center, 0, 0, 0);
             // USER PROFILE FORM
             .user-profile-form {
-              @include SizeAndPositioning(relative, 100%, 100%, none, center, center, 0, 0, 0);
-              flex-direction: column;
+              @include SizeAndPositioning(relative, 100%, 100%, none, column, nowrap, center, center, 0, 0, 0);
               &__section {
-                @include SizeAndPositioning(relative, min-content, 100%, flex, space-evenly, center, 0, 0, 0);
-                flex-direction: column;
+                @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
                 &__label {
-                  @include SizeAndPositioning(absolute, 7rem, 25%, flex, flex-start, center, 0, -50%, 0);
+                  @include SizeAndPositioning(absolute, 7rem, 25%, flex, row, nowrap, flex-start, center, 0, -50%, 0);
                   top: 50%;
                   left: calc(37.7% + 2rem);
                   -moz-transform: translateY(-50%);
                   transition: transform 0.5s;
                 }
                 &__input {
-                  @include SizeAndPositioning(relative, 7rem, 25%, flex, flex-start, center, 0, 0, 0);
+                  @include SizeAndPositioning(relative, 7rem, 25%, flex, row, nowrap, flex-start, center, 0, 0, 0);
                   padding: 1rem;
                   padding-left: 2rem;
                   background-color: rgba($colorDarkestGrey, 0.5);
@@ -257,17 +249,16 @@
                   }
                 }
                 &__input-container--latter-day-saint {
-                  @include SizeAndPositioning(relative, 7rem, 12.5%, flex, space-evenly, center, 0, 0, 0);
-                  flex-direction: column;
+                  @include SizeAndPositioning(relative, 7rem, 12.5%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
                   .user-profile-form__section__input--latter-day-saint {
-                    @include SizeAndPositioning(relative, 95%, 100%, flex, center, center, -15%, 0, 0);
+                    @include SizeAndPositioning(relative, 95%, 100%, flex, row, nowrap, center, center, -15%, 0, 0);
                     background-color: rgba($primaryColorLight, 0.8);
                     border: 0.3rem solid rgba($primaryColor, 0.8);
                     border-radius: 5rem;
                     padding: 0.25rem;
                     transition: background-color 0.5s, border 0.5s;
                     &__switch {
-                      @include SizeAndPositioning(absolute, 84%, 30%, flex, center, center, 0, -50%, 0);
+                      @include SizeAndPositioning(absolute, 84%, 30%, flex, row, nowrap, center, center, 0, -50%, 0);
                       top: 50%;
                       left: 2.75%;
                       background-color: rgba($primaryColorDark, 0.8);
@@ -275,10 +266,10 @@
                       transition: background-color 0.5s, transform 0.5s, width 0.25s;
                     }
                     &__text--NO {
-                      @include SizeAndPositioning(relative, 100%, 70%, flex, center, center, 0, 0, 0);
+                      @include SizeAndPositioning(relative, 100%, 70%, flex, row, nowrap, center, center, 0, 0, 0);
                     }
                     &__text--YES {
-                      @include SizeAndPositioning(relative, 100%, 70%, none, center, center, 0, 0, 0);
+                      @include SizeAndPositioning(relative, 100%, 70%, none, row, nowrap, center, center, 0, 0, 0);
                     }
                     &:hover {
                       cursor: pointer;
@@ -303,14 +294,13 @@
                   }
                 }
                 &__sub-section {
-                  @include SizeAndPositioning(relative, min-content, 100%, none, space-evenly, center, 0, 0, 0);
-                  flex-direction: column;
+                  @include SizeAndPositioning(relative, min-content, 100%, none, column, nowrap, space-evenly, center, 0, 0, 0);
                   &:first-of-type {
                     margin: 0 0 1rem;
                   }
                   margin: 0.5rem 0;
                   &__input {
-                    @include SizeAndPositioning(relative, 6rem, 17.5%, flex, flex-start, center, 15%, 0, 0);
+                    @include SizeAndPositioning(relative, 6rem, 17.5%, flex, row, nowrap, flex-start, center, 15%, 0, 0);
                     padding: 1rem;
                     padding-left: 2rem;
                     background-color: rgba($colorDarkestGrey, 0.5);
@@ -336,7 +326,7 @@
                     }
                   }
                   &__label {
-                    @include SizeAndPositioning(absolute, 6rem, 17.5%, flex, flex-start, center, 0, -50%, 0);
+                    @include SizeAndPositioning(absolute, 6rem, 17.5%, flex, row, nowrap, flex-start, center, 0, -50%, 0);
                     top: 50%;
                     left: calc(43.75% + 2rem);
                     -moz-transform: translateY(-50%);
@@ -350,14 +340,14 @@
                   }
                 }
                 &__comm-switch {
-                  @include SizeAndPositioning(relative, 100%, 15%, flex, center, center, 0, 0, 0);
+                  @include SizeAndPositioning(relative, 100%, 15%, flex, row, nowrap, center, center, 0, 0, 0);
                   background-color: rgba($colorDarkestGrey, 0.5);
                   border: 0.4rem solid rgba($colorOffWhite, 0.8);
                   border-radius: 8rem;
                   padding: 0.5rem;
                   &--email,
                   &--text {
-                    @include SizeAndPositioning(relative, 100%, 50%, flex, space-evenly, center, 0, 0, 0);
+                    @include SizeAndPositioning(relative, 100%, 50%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
                     z-index: 1;
                   }
                   &--email {
@@ -369,7 +359,7 @@
                     border-bottom-right-radius: 8rem;
                   }
                   &:after {
-                    @include SizeAndPositioning(absolute, 85%, 50%, flex, center, center, 0, -50%, 0);
+                    @include SizeAndPositioning(absolute, 85%, 50%, flex, row, nowrap, center, center, 0, -50%, 0);
                     top: 50%;
                     left: 0.5rem;
                     background-color: $secondaryColor;
@@ -381,7 +371,7 @@
                   }
                   &--text-preferred {
                     &:after {
-                      @include SizeAndPositioning(absolute, 85%, 50%, flex, center, center, 91%, -50%, 0);
+                      @include SizeAndPositioning(absolute, 85%, 50%, flex, row, nowrap, center, center, 91%, -50%, 0);
                       top: 50%;
                       left: 0.5rem;
                       background-color: $secondaryColor;
@@ -423,7 +413,7 @@
         .budget-creation-form-container {
           .form-close-icon,
           .budget-creation-form-close-icon {
-            @include SizeAndPositioning(absolute, 2rem, 2rem, flex, center, center, 0, 0, 0);
+            @include SizeAndPositioning(absolute, 2rem, 2rem, flex, row, nowrap, center, center, 0, 0, 0);
             top: 5rem;
             right: 6rem;
             z-index: 10;
@@ -433,16 +423,15 @@
             }
           }
           .budget-creation-form {
-            @include SizeAndPositioning(relative, 100%, 100%, flex, center, center, 0, 0, 0);
-            flex-direction: column;
+            @include SizeAndPositioning(relative, 100%, 100%, flex, column, nowrap, center, center, 0, 0, 0);
             ::-webkit-input-placeholder {
               opacity: 0;
             }
             &__header {
-              @include SizeAndPositioning(relative, 15%, 100%, flex, center, center, 0, 0, 0);
+              @include SizeAndPositioning(relative, 15%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
             }
             &__page {
-              @include SizeAndPositioning(relative, 70%, 100%, flex, center, center, 0, 0, 0);
+              @include SizeAndPositioning(relative, 70%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
               &:nth-of-type(1),
               &:nth-of-type(5),
               &:nth-of-type(6),
@@ -485,10 +474,6 @@
                       }
                     }
                   }
-                  // & > .budget-creation-form__page__section__label {
-                  //   width: 25%;
-                  //   left: calc(30% + 12.5rem);
-                  // }
                 }
               }
               &:nth-of-type(8) {
@@ -522,13 +507,12 @@
                 }
               }
               &__section {
-                @include SizeAndPositioning(relative, min-content, 100%, flex, space-evenly, center, 0, 0, 0);
-                flex-direction: column;
+                @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
                 &:not(:last-of-type) {
                   margin-bottom: 3.5rem;
                 }
                 &__select {
-                  @include SizeAndPositioning(relative, 6rem, 12.5%, flex, center, center, 0, 0, 0);
+                  @include SizeAndPositioning(relative, 6rem, 12.5%, flex, row, nowrap, center, center, 0, 0, 0);
                   background-color: rgba($primaryColor, 0.8);
                   border: 0.3rem solid rgba($primaryColor, 0.8);
                   border-top-right-radius: 0.9rem;
@@ -545,7 +529,7 @@
                   }
                 }
                 &__input {
-                  @include SizeAndPositioning(relative, 6rem, 40%, flex, flex-start, center, 0, 0, 0);
+                  @include SizeAndPositioning(relative, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, 0, 0);
                   padding: 1rem;
                   padding-left: 2rem;
                   background-color: rgba($colorLightestGrey, 0.125);
@@ -575,21 +559,20 @@
                   }
                 }
                 &__label {
-                  @include SizeAndPositioning(absolute, 6rem, 40%, flex, flex-start, center, 0, -50%, 0);
+                  @include SizeAndPositioning(absolute, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, -50%, 0);
                   top: 50%;
                   left: calc(30% + 2rem);
                   -moz-transform: translateY(-50%);
                   transition: transform 0.5s;
                 }
                 &__main-category-container {
-                  @include SizeAndPositioning(relative, 50rem, 40%, flex, flex-start, flex-start, 0, 0, 0);
+                  @include SizeAndPositioning(relative, 50rem, 40%, flex, row, nowrap, flex-start, flex-start, 0, 0, 0);
                   border: 0.3rem solid $primaryColor;
                   border-radius: 1.25rem;
                   flex-flow: row wrap;
                   overflow-y: auto;
                   &__create-main-category {
-                    @include SizeAndPositioning(relative, 25%, 25%, flex, space-evenly, center, 0, 0, 0);
-                    flex-direction: column;
+                    @include SizeAndPositioning(relative, 25%, 25%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
                     border: 0.3rem solid rgba($primaryColor, 0.8);
                     border-top-left-radius: 0.9rem;
                     &:hover {
@@ -603,16 +586,14 @@
                       }
                     }
                     &__icons-container {
-                      @include SizeAndPositioning(relative, 80%, 100%, none, center, center, 0, 0, 0);
+                      @include SizeAndPositioning(relative, 80%, 100%, none, row, wrap, center, center, 0, 0, 0);
                       border: 0.3rem solid $primaryColor;
                       grid-template-columns: repeat(3, 1fr);
                       border-top-left-radius: 0.9rem;
                       border-top-right-radius: 0.9rem;
-                      flex-flow: row wrap;
                       overflow-y: auto;
                       .icon-container {
-                        @include SizeAndPositioning(relative, 100%, 100%, flex, space-evenly, center, 0, 0, 0);
-                        flex-direction: column;
+                        @include SizeAndPositioning(relative, 100%, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
                         padding: 3rem 0;
                         &:first-of-type {
                           border-top-left-radius: 0.5rem;
@@ -641,8 +622,7 @@
                     }
                   }
                   .main-category {
-                    @include SizeAndPositioning(relative, 25%, 25%, flex, space-evenly, center, 0, 0, 0);
-                    flex-direction: column;
+                    @include SizeAndPositioning(relative, 25%, 25%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
                     border: 0.3rem solid rgba($primaryColor, 0.8);
                     &:first-of-type {
                       border-top-left-radius: 0.9rem;
@@ -669,10 +649,10 @@
                   }
                 }
                 &__set-main-category-title-container {
-                  @include SizeAndPositioning(relative, 20%, 100%, none, space-evenly, center, 0, 0, 0);
+                  @include SizeAndPositioning(relative, 20%, 100%, none, row, nowrap, space-evenly, center, 0, 0, 0);
                   border-top: 0.3rem solid $primaryColor;
                   &__input {
-                    @include SizeAndPositioning(relative, 5rem, 35%, flex, center, center, 0, 0, 0);
+                    @include SizeAndPositioning(relative, 5rem, 35%, flex, row, nowrap, center, center, 0, 0, 0);
                     border: 0.3rem solid rgba($primaryColor, 0.8);
                     border-radius: 1.25rem;
                     background-color: rgba($colorOffWhite, 0.8);
@@ -686,15 +666,14 @@
                   }
                 }
                 &__sub-category-container {
-                  @include SizeAndPositioning(relative, 50rem, 35%, flex, center, center, 0, 0, 0);
-                  flex-direction: column;
+                  @include SizeAndPositioning(relative, 50rem, 35%, flex, column, nowrap, center, center, 0, 0, 0);
                   border: 0.3rem solid $primaryColor;
                   border-radius: 1rem;
                   &__main-category-display {
-                    @include SizeAndPositioning(relative, 55%, 100%, flex, center, center, 0, 0, 0);
+                    @include SizeAndPositioning(relative, 55%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
                     &__left-button,
                     &__right-button {
-                      @include SizeAndPositioning(relative, 100%, 20%, flex, center, center, 0, 0, 0);
+                      @include SizeAndPositioning(relative, 100%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
                       &__icon {
                         &:hover {
                           cursor: pointer;
@@ -703,51 +682,48 @@
                       }
                     }
                     &__category-information {
-                      @include SizeAndPositioning(relative, 100%, 60%, flex, center, center, 0, 0, 0);
-                      flex-direction: column;
+                      @include SizeAndPositioning(relative, 100%, 60%, flex, column, nowrap, center, center, 0, 0, 0);
                     }
                   }
                   &__sub-category-display {
-                    @include SizeAndPositioning(relative, 45%, 100%, flex, flex-start, center, 0, 0, 0);
-                    flex-direction: column;
+                    @include SizeAndPositioning(relative, 45%, 100%, flex, column, nowrap, flex-start, center, 0, 0, 0);
                     border-top: 0.3rem solid $primaryColor;
                     overflow-y: auto;
                     &__sub-category {
-                      @include SizeAndPositioning(relative, 6rem, 100%, flex, center, center, 0, 0, 0);
+                      @include SizeAndPositioning(relative, 6rem, 100%, flex, row, nowrap, center, center, 0, 0, 0);
                       min-height: 6rem;
                       border-bottom: 0.3rem solid rgba($primaryColor, 0.8);
                       border-left: none;
                       border-right: none;
                       background-color: transparent;
                       .sub-category-title-container {
-                        @include SizeAndPositioning(relative, 100%, 70%, flex, flex-start, center, 0, 0, 0);
+                        @include SizeAndPositioning(relative, 100%, 70%, flex, row, nowrap, flex-start, center, 0, 0, 0);
                         padding-left: 2rem;
                       }
                       .sub-category-controller {
-                        @include SizeAndPositioning(relative, 100%, 30%, flex, space-evenly, center, 0, 0, 0);
+                        @include SizeAndPositioning(relative, 100%, 30%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
                         &__surplus-container {
-                          @include SizeAndPositioning(relative, 100%, 50%, flex, center, center, 0, 0, 0);
-                          flex-direction: column;
+                          @include SizeAndPositioning(relative, 100%, 50%, flex, column, nowrap, center, center, 0, 0, 0);
                           &__switch {
-                            @include SizeAndPositioning(relative, 40%, 75%, flex, flex-start, center, 0, 0, 0);
+                            @include SizeAndPositioning(relative, 40%, 75%, flex, row, nowrap, flex-start, center, 0, 0, 0);
                             border: 0.2rem solid rgba($primaryColorDark, 0.8);
                             border-radius: 2rem;
                             background-color: rgba($primaryColor, 0.8);
                             transition: border 0.5s, background-color 0.5s, transform 0.5s;
                             &__toggle {
-                              @include SizeAndPositioning(relative, 93%, 33%, flex, center, center, 5%, 0, 0);
+                              @include SizeAndPositioning(relative, 93%, 33%, flex, row, nowrap, center, center, 5%, 0, 0);
                               border: 0.2rem solid rgba($colorOffWhite, 0.8);
                               border-radius: 50%;
                               background-color: rgba($primaryColorDark, 0.8);
                               transition: border 0.5s, background-color 0.5s, transform 0.5s;
                             }
                             &--switched {
-                              @include SizeAndPositioning(relative, 40%, 75%, flex, flex-start, center, 0, 0, 0);
+                              @include SizeAndPositioning(relative, 40%, 75%, flex, row, nowrap, flex-start, center, 0, 0, 0);
                               border: 0.2rem solid rgba($secondaryColorDark, 0.8);
                               border-radius: 2rem;
                               background-color: rgba($secondaryColor, 0.8);
                               .sub-category-controller__surplus-container__switch__toggle {
-                                @include SizeAndPositioning(relative, 93%, 33%, flex, center, center, 200%, 0, 0);
+                                @include SizeAndPositioning(relative, 93%, 33%, flex, row, nowrap, center, center, 200%, 0, 0);
                                 border-radius: 50%;
                                 background-color: rgba($secondaryColorDark, 0.8);
                               }
@@ -771,10 +747,10 @@
                     .category-creation {
                       display: none;
                       &__input-container {
-                        @include SizeAndPositioning(relative, 100%, 70%, flex, flex-start, center, 0, 0, 0);
+                        @include SizeAndPositioning(relative, 100%, 70%, flex, row, nowrap, flex-start, center, 0, 0, 0);
                         padding-left: 2rem;
                         &__input {
-                          @include SizeAndPositioning(relative, 50%, 50%, flex, flex-start, center, 0, 0, 0);
+                          @include SizeAndPositioning(relative, 50%, 50%, flex, row, nowrap, flex-start, center, 0, 0, 0);
                           padding-left: 1rem;
                           border: 0.2rem solid rgba($primaryColor, 0.8);
                           background-color: rgba($colorOffWhite, 0.25);
@@ -786,42 +762,41 @@
                         }
                       }
                       &__controller {
-                        @include SizeAndPositioning(relative, 100%, 30%, flex, space-evenly, center, 0, 0, 0);
+                        @include SizeAndPositioning(relative, 100%, 30%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
                         &__surplus-container {
-                          @include SizeAndPositioning(relative, 100%, 50%, flex, center, center, 0, 0, 0);
-                          flex-direction: column;
+                          @include SizeAndPositioning(relative, 100%, 50%, flex, column, nowrap, center, center, 0, 0, 0);
                           &__switch {
-                            @include SizeAndPositioning(relative, 40%, 75%, flex, flex-start, center, 0, 0, 0);
+                            @include SizeAndPositioning(relative, 40%, 75%, flex, row, nowrap, flex-start, center, 0, 0, 0);
                             border: 0.2rem solid rgba($primaryColorDark, 0.8);
                             border-radius: 2rem;
                             background-color: rgba($primaryColor, 0.8);
                             transition: border 0.5s, background-color 0.5s, transform 0.5s;
                             &__toggle {
-                              @include SizeAndPositioning(relative, 93%, 33%, flex, center, center, 5%, 0, 0);
+                              @include SizeAndPositioning(relative, 93%, 33%, flex, row, nowrap, center, center, 5%, 0, 0);
                               border: 0.2rem solid rgba($colorOffWhite, 0.8);
                               border-radius: 50%;
                               background-color: rgba($primaryColorDark, 0.8);
                               transition: border 0.5s, background-color 0.5s, transform 0.5s;
                             }
                             &--switched {
-                              @include SizeAndPositioning(relative, 40%, 75%, flex, flex-start, center, 0, 0, 0);
+                              @include SizeAndPositioning(relative, 40%, 75%, flex, row, nowrap, flex-start, center, 0, 0, 0);
                               border: 0.2rem solid rgba($secondaryColorDark, 0.8);
                               border-radius: 2rem;
                               background-color: rgba($secondaryColor, 0.8);
                               .category-creation__controller__surplus-container__switch__toggle {
-                                @include SizeAndPositioning(relative, 93%, 33%, flex, center, center, 0, 0, 0);
+                                @include SizeAndPositioning(relative, 93%, 33%, flex, row, nowrap, center, center, 0, 0, 0);
                                 border-radius: 50%;
                                 background-color: rgba($secondaryColorDark, 0.8);
                               }
                             }
                             &:hover {
                               cursor: pointer;
-                              @include SizeAndPositioning(relative, 40%, 75%, flex, flex-start, center, 0, 0, 0);
+                              @include SizeAndPositioning(relative, 40%, 75%, flex, row, nowrap, flex-start, center, 0, 0, 0);
                               border: 0.2rem solid rgba($secondaryColorDark, 0.8);
                               border-radius: 2rem;
                               background-color: rgba($secondaryColor, 0.8);
                               .category-creation__controller__surplus-container__switch__toggle {
-                                @include SizeAndPositioning(relative, 93%, 33%, flex, center, center, 200%, 0, 0);
+                                @include SizeAndPositioning(relative, 93%, 33%, flex, row, nowrap, center, center, 200%, 0, 0);
                                 border-radius: 50%;
                                 background-color: rgba($secondaryColorDark, 0.8);
                               }
@@ -845,77 +820,73 @@
                 //////////////////////////////////
                 // CREATE BUDGET FORM PAGE FOUR
                 &__month-container {
-                  @include SizeAndPositioning(relative, 62.5rem, 75%, flex, flex-start, center, 0, 0, 0);
-                  flex-direction: column;
+                  @include SizeAndPositioning(relative, 62.5rem, 75%, flex, column, nowrap, flex-start, center, 0, 0, 0);
                   border: 0.3rem solid $primaryColor;
                   border-radius: 1.25rem;
                   padding: 0.25rem;
                   &__header {
-                    @include SizeAndPositioning(relative, 6rem, 100%, flex, center, center, 0, 0, 0);
+                    @include SizeAndPositioning(relative, 6rem, 100%, flex, row, nowrap, center, center, 0, 0, 0);
                     background-color: $primaryColor;
                     border-top-left-radius: 0.8rem;
                     border-top-right-radius: 0.8rem;
                     border-bottom: 0.3rem solid $tertiaryColor;
                     &__icon {
-                      @include SizeAndPositioning(absolute, 3rem, 3rem, flex, center, center, 0, -50%, 0);
+                      @include SizeAndPositioning(absolute, 3rem, 3rem, flex, row, nowrap, center, center, 0, -50%, 0);
                       top: 50%;
                       left: 1rem;
                     }
                   }
                   &__budget-goal-summary-container {
-                    @include SizeAndPositioning(relative, 14rem, 100%, flex, space-between, center, 0, 0, 0);
+                    @include SizeAndPositioning(relative, 14rem, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
                     .budget-single-goal-summary {
-                      @include SizeAndPositioning(relative, 100%, 19%, flex, space-evenly, center, 0, 0, 0);
-                      flex-direction: column;
+                      @include SizeAndPositioning(relative, 100%, 19%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
                       background-color: $colorLightestGrey;
                       &__title,
                       &__amount {
-                        @include SizeAndPositioning(relative, 50%, 100%, flex, center, center, 0, 0, 0);
+                        @include SizeAndPositioning(relative, 50%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
                       }
                     }
                   }
                   &__category-container {
-                    @include SizeAndPositioning(relative, 42.5rem, 100%, flex, center, center, 0, 0, 0);
+                    @include SizeAndPositioning(relative, 42.5rem, 100%, flex, row, nowrap, center, center, 0, 0, 0);
                     padding: 1.5rem;
                     .main-category-display {
-                      @include SizeAndPositioning(relative, 100%, 40%, flex, center, center, 0, 0, 0);
+                      @include SizeAndPositioning(relative, 100%, 40%, flex, row, nowrap, center, center, 0, 0, 0);
                       &__button-container {
-                        @include SizeAndPositioning(relative, 100%, 20%, flex, center, center, 0, 0, 0);
+                        @include SizeAndPositioning(relative, 100%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
                       }
                       &__category-display {
-                        @include SizeAndPositioning(relative, 100%, 60%, flex, center, center, 0, 0, 0);
-                        flex-direction: column;
+                        @include SizeAndPositioning(relative, 100%, 60%, flex, column, nowrap, center, center, 0, 0, 0);
                         &__title {
                           margin-top: 2rem;
                         }
                       }
                     }
                     .sub-category-display {
-                      @include SizeAndPositioning(relative, 100%, 60%, flex, flex-start, center, 0, 0, 0);
+                      @include SizeAndPositioning(relative, 100%, 60%, flex, column, nowrap, flex-start, center, 0, 0, 0);
                       margin-left: 1.5rem;
-                      flex-direction: column;
                       overflow-y: auto;
                       &__headers {
-                        @include SizeAndPositioning(relative, 4rem, 100%, flex, space-between, center, 0, 0, 0);
+                        @include SizeAndPositioning(relative, 4rem, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
                         min-height: 4rem;
                         &__title-container {
-                          @include SizeAndPositioning(relative, 100%, 19.5%, flex, center, center, 0, 0, 0);
+                          @include SizeAndPositioning(relative, 100%, 19.5%, flex, row, nowrap, center, center, 0, 0, 0);
                           background-color: $primaryColor;
                         }
                       }
                       &__sub-category {
-                        @include SizeAndPositioning(relative, 6rem, 100%, flex, space-evenly, center, 0, 0, 0);
+                        @include SizeAndPositioning(relative, 6rem, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
                         min-height: 10rem;
                         background-color: $colorLightestGrey;
                         &__section {
-                          @include SizeAndPositioning(relative, 100%, 20%, flex, center, center, 0, 0, 0);
+                          @include SizeAndPositioning(relative, 100%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
                           &:first-of-type {
                             justify-content: space-evenly;
                             flex-direction: column;
                             padding: 0.5rem;
                           }
                           &__input {
-                            @include SizeAndPositioning(relative, 60%, 80%, flex, center, center, 0, 0, 0);
+                            @include SizeAndPositioning(relative, 60%, 80%, flex, row, nowrap, center, center, 0, 0, 0);
                             background-color: rgba($colorOffWhite, 0.35);
                             border-radius: 0.5rem;
                             border: 0.2rem solid rgba($primaryColor, 0.8);
@@ -946,16 +917,15 @@
                         }
                       }
                       &__timing-container {
-                        @include SizeAndPositioning(absolute, calc(100% - 4rem), 100%, flex, flex-start, center, 0, 0, 0);
+                        @include SizeAndPositioning(absolute, calc(100% - 4rem), 100%, flex, column, nowrap, flex-start, center, 0, 0, 0);
                         background-color: rgba($colorOffWhite, 0.9);
                         min-height: calc(100% - 4rem);
-                        flex-direction: column;
                         overflow-y: auto;
                         top: 4rem;
                         left: 0;
                         z-index: 10;
                         &__close {
-                          @include SizeAndPositioning(absolute, 4rem, 4rem, flex, center, center, 0, 0, 0);
+                          @include SizeAndPositioning(absolute, 4rem, 4rem, flex, row, nowrap, center, center, 0, 0, 0);
                           top: 2rem;
                           right: 2rem;
                           &:hover {
@@ -967,10 +937,9 @@
                         &__bi-monthly-container,
                         &__bi-weekly-container,
                         &__weekly-container {
-                          @include SizeAndPositioning(relative, min-content, 80%, flex, center, center, 0, 0, 0);
-                          flex-direction: column;
+                          @include SizeAndPositioning(relative, min-content, 80%, flex, column, nowrap, center, center, 0, 0, 0);
                           &__label {
-                            @include SizeAndPositioning(relative, 5rem, 60%, flex, space-evenly, center, 0, 0, 0);
+                            @include SizeAndPositioning(relative, 5rem, 60%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
                             border: 0.3rem solid rgba($primaryColor, 0.8);
                             border-radius: 0.8rem;
                             padding: 1rem;
@@ -1012,7 +981,7 @@
                 flex-direction: row;
                 justify-content: center;
                 &-header {
-                  @include SizeAndPositioning(absolute, 6rem, 27.5%, flex, center, center, 0, 0, 0);
+                  @include SizeAndPositioning(absolute, 6rem, 27.5%, flex, row, nowrap, center, center, 0, 0, 0);
                   left: calc(30% + 9.5rem);
                   top: 0;
                 }
@@ -1021,7 +990,7 @@
                   display: none;
                   .emergency-checkbox-label,
                   & + label {
-                    @include SizeAndPositioning(relative, 6rem, 12.5%, flex, center, center, 0, 0, 0);
+                    @include SizeAndPositioning(relative, 6rem, 12.5%, flex, row, nowrap, center, center, 0, 0, 0);
                     left: 0;
                     width: 12.5%;
                     border-top: 0.3rem solid $primaryColor;
@@ -1063,7 +1032,7 @@
                 }
               }
               &-mechanisms {
-                @include SizeAndPositioning(relative, 15%, 100%, flex, center, center, 0, 0, 0);
+                @include SizeAndPositioning(relative, 15%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
               }
               .tithing-section {
                 display: flex;
@@ -1077,7 +1046,7 @@
                 #grossOptionLabel,
                 #netOptionLabel,
                 #surplusOptionLabel {
-                  @include SizeAndPositioning(relative, 7rem, 10%, flex, center, center, 0, 0, 0);
+                  @include SizeAndPositioning(relative, 7rem, 10%, flex, row, nowrap, center, center, 0, 0, 0);
                   top: 0;
                   left: 0;
                   &:hover {

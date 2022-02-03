@@ -1,5 +1,5 @@
-@use "../../../Public/SCSS/Utilities/Mixins" as *;
-@use "../../../Public/SCSS/Utilities/Variables" as *;
+@use '../../../Public/SCSS/Utilities/Mixins' as *;
+@use '../../../Public/SCSS/Utilities/Variables' as *;
 
 ////////////////////////////////////////////////
 //  Master Flex Container
@@ -12,7 +12,7 @@
     .app-background {
       .app-container {
         .budget-card-container {
-          @include SizeAndPositioning(relative, 70%, 100%, flex, space-around, center, 0, 0, 0);
+          @include SizeAndPositioning(relative, 70%, 100%, flex, row, nowrap, space-around, center, 0, 0, 0);
           margin-bottom: 10rem;
           .fa-arrow-alt-circle-left,
           .fa-arrow-alt-circle-right {
@@ -29,12 +29,10 @@
             }
           }
           &__cards-container {
-            @include SizeAndPositioning(relative, 80%, 40%, flex, space-evenly, center, 0, 0, 0);
-            flex-direction: column;
+            @include SizeAndPositioning(relative, 80%, 40%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
             .budget-card {
               &--create {
-                @include SizeAndPositioning(relative, 100%, 100%, flex, center, center, 0, 0, 0);
-                flex-direction: column;
+                @include SizeAndPositioning(relative, 100%, 100%, flex, column, nowrap, center, center, 0, 0, 0);
                 border: 0.2rem groove rgba($colorOffWhite, 0.5);
                 border-radius: 3rem;
                 transition: background-color 0.25s, color 0.25s, border 0.25s;
