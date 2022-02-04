@@ -1,10 +1,10 @@
 mixin dashboardAccountOverview(icon, text, accountTotal) 
   section.budget-container.r__budget-container.budget-container--extra-small.r__budget-container--extra-small
-    header.budget-container__header.r__budget-container__header
-      i.fas.budget-container__header__icon.r__budget-container__header__icon(class=`fa-${icon}`)
-      p.budget-container__header__text.r__budget-container__header__text=`${text}`
-    section.budget-container__content.r__budget-container__content
-      p.budget-container__content__account-total.r__budget-container__content__account-total=`${accountTotal}`
+    header.budget-container--extra-small__header.r__budget-container--extra-small__header
+      i.fas.budget-container--extra-small__header__icon.r__budget-container--extra-small__header__icon(class=`fa-${icon}`)
+      p.budget-container--extra-small__header__text.r__budget-container--extra-small__header__text=`${text}`
+    section.budget-container--extra-small__content.r__budget-container--extra-small__content
+      p.budget-container--extra-small__content__account-total.r__budget-container--extra-small__content__account-total=`${accountTotal}`
 +dashboardAccountOverview(`piggy-bank`, `Bank Account`, `$0`)
 +dashboardAccountOverview(`hand-holding-usd`, `Debt`, `$0`)
 +dashboardAccountOverview(`dollar-sign`, `Net Value`, `$0`)
@@ -24,6 +24,10 @@ section.budget-container.r__budget-container.budget-container--small.r__budget-c
       p.budget-container__header__button__text.r__budget-container__header__button__text Submit
     section.budget-container__content.r__budget-container__content
       include ./Transactions/_Enter-Transaction
+  section.budget-container__transaction-total.r__budget-container__transaction-total 
+    h3.budget-container__transaction-total__heading.r__budget-container__transaction-total__heading Total Spent 
+    p.budget-container__transaction-total__amount.r__budget-container__transaction-total__amount= `$0.00`
 include _upcoming-bills
+include _monthly-budget
 
       //- I will add the actual account numbers needed with a function to set up the budget correctly EVERY time the dashboard is opened.

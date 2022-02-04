@@ -51,6 +51,7 @@
           top: 3rem;
           left: 3rem;
           padding: 1rem;
+          z-index: 10;
           &__button {
             @include SizeAndPositioning(relative, 0.75rem, 30%, flex, row, nowrap, center, center, 0, 0, 0);
             z-index: 10;
@@ -102,6 +103,28 @@
                 &:after {
                   width: 100%;
                 }
+              }
+            }
+          }
+        }
+        &__dashboard {
+          @include SizeAndPositioning(relative, min-content, 100%, flex, row, wrap, space-evenly, flex-start, 0, 0, 0);
+          padding: 12rem 10rem 10rem;
+          .budget-container {
+            &--extra-small {
+              @include SizeAndPositioning(relative, 22.5rem, 35rem, flex, column, nowrap, space-between, center, 0, 0, 0);
+              padding: 0.2rem;
+              border: 0.3rem solid $primaryColor;
+              border-radius: 0.51rem;
+              &__header {
+                @include SizeAndPositioning(relative, 25%, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
+                border-top-left-radius: 0.25rem;
+                border-top-right-radius: 0.25rem;
+                padding: 0 1.5rem;
+                background-color: $primaryColor;
+              }
+              &__content {
+                @include SizeAndPositioning(relative, 75%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
               }
             }
           }

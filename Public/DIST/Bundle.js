@@ -6528,7 +6528,8 @@ var _watchBudgetNavigation = function _watchBudgetNavigation() {
 };
 
 var _watchBudget = function _watchBudget() {
-  console.log("WATCHING YOUR BUDGET");
+  console.log("WATCHING YOUR BUDGET"); ////////////////////////////////////////////
+  // START BY WATCHING THE BUDGET NAVIGATION
 
   _watchBudgetNavigation();
 };
