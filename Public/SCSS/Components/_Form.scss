@@ -1104,6 +1104,84 @@
           }
         }
       }
+      .budget-container {
+        &__dashboard {
+          &__container {
+            &--small {
+              &__content {
+                .enter-income-form {
+                  @include SizeAndPositioning(relative, 100%, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+                  .form-row {
+                    @include SizeAndPositioning(relative, 30%, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
+                    &__section {
+                      @include SizeAndPositioning(relative, 100%, 33.3%, flex, column-reverse, nowrap, center, center, 0, 0, 0);
+                      .form-input {
+                        @include SizeAndPositioning(relative, 4rem, 85%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+                        padding: 0.5rem;
+                        border: 0.2rem solid rgba($primaryColor, 0.8);
+                        border-radius: 0.9rem;
+                        &::-webkit-input-placeholder,
+                        &::-moz-placeholder,
+                        &::placeholder {
+                          opacity: 0;
+                        }
+                        &:focus {
+                          outline: none;
+                          border: 0.2rem solid $primaryColor;
+                          &::-moz-placeholder,
+                          &::placeholder {
+                            opacity: 1;
+                          }
+                        }
+                        &:focus {
+                          &::-webkit-input-placeholder {
+                            opacity: 1;
+                          }
+                        }
+                        &:not(:placeholder-shown) + label,
+                        &:focus + label {
+                          transform: translate(-1.25rem, -4.25rem) scale(0.95);
+                        }
+                        transition: border 0.5s, color 0.5s;
+                      }
+                      .form-label {
+                        @include SizeAndPositioning(absolute, 3rem, 75%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+                        top: 50%;
+                        left: calc(7% + 2rem);
+                        // left: 0.5rem;
+                        -moz-transform: translateY(-50%);
+                        transition: transform 0.5s;
+                      }
+                    }
+                  }
+                  .early-income-view {
+                    @include SizeAndPositioning(relative, 40%, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
+                    &__investment,
+                    &__savings,
+                    &__un-allocated {
+                      @include SizeAndPositioning(relative, 100%, 33%, flex, column, nowrap, center, center, 0, 0, 0);
+                      border: 0.2rem solid $primaryColor;
+                      &__header {
+                        @include SizeAndPositioning(absolute, 1.5rem, max-content, flex, row, nowrap, center, center, 0, 0, 0);
+                        top: 0.25rem;
+                        left: 0.25rem;
+                      }
+                    }
+                    &__investment {
+                      border-bottom-left-radius: 0.4rem;
+                    }
+                    &__un-allocated {
+                      background-color: $primaryColor;
+                      border: none;
+                      border-bottom-right-radius: 0.4rem;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

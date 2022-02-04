@@ -10,7 +10,7 @@
         @include SizeAndPositioning(relative, 100%, 100%, flex, row, wrap, space-evenly, center, 0, 0, 0);
         .budget-navigation {
           @include SizeAndPositioning(relative, 100%, 100%, none, column, nowrap, center, center, 0, 0, 0);
-          background-color: rgba($primaryColorDark, 0.85);
+          background-color: rgba($primaryColorDark, 0.9);
           opacity: 0;
           transition: opacity 0.5s;
           &__link-list {
@@ -110,7 +110,7 @@
         &__dashboard {
           @include SizeAndPositioning(relative, min-content, 100%, flex, row, wrap, space-evenly, flex-start, 0, 0, 0);
           padding: 12rem 10rem 10rem;
-          .budget-container {
+          &__container {
             &--extra-small {
               @include SizeAndPositioning(relative, 22.5rem, 35rem, flex, column, nowrap, space-between, center, 0, 0, 0);
               padding: 0.2rem;
@@ -122,9 +122,28 @@
                 border-top-right-radius: 0.25rem;
                 padding: 0 1.5rem;
                 background-color: $primaryColor;
+                border-bottom: 0.3rem solid $tertiaryColor;
               }
               &__content {
                 @include SizeAndPositioning(relative, 75%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+              }
+              margin-bottom: 5rem;
+            }
+            &--small {
+              @include SizeAndPositioning(relative, 35rem, 55.8rem, flex, column, nowrap, space-between, center, 0, 0, 0);
+              padding: 0.2rem;
+              border: 0.3rem solid $primaryColor;
+              border-radius: 0.51rem;
+              &__header {
+                @include SizeAndPositioning(relative, 20%, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
+                border-top-left-radius: 0.25rem;
+                border-top-right-radius: 0.25rem;
+                padding: 0 1.5rem;
+                background-color: $primaryColor;
+                border-bottom: 0.3rem solid $tertiaryColor;
+              }
+              &__content {
+                @include SizeAndPositioning(relative, 80%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
               }
             }
           }

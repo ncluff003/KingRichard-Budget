@@ -912,6 +912,78 @@ html {
               color: $primaryColor;
             }
           }
+          &__dashboard {
+            font-family: MADE Tommy Soft, Verdana, sans-serif;
+            color: $colorOffWhite;
+            &__container {
+              &--extra-small {
+                &__header {
+                  font-size: 2.4rem;
+                  &__icon {
+                    font-size: 3rem;
+                  }
+                  &__text {
+                  }
+                }
+                &__content {
+                  font-size: 4rem;
+                  color: $primaryColor;
+                }
+              }
+              &--small {
+                &__header {
+                  font-size: 2.4rem;
+                  &__icon {
+                    font-size: 3rem;
+                  }
+                  &__text {
+                  }
+                  &__button {
+                    color: rgba($colorOffWhite, 0.8);
+                    &:hover {
+                      color: $colorOffWhite;
+                    }
+                    &:active {
+                      color: $colorDarkerGrey;
+                    }
+                  }
+                }
+                &__content {
+                  color: $primaryColor;
+                  .enter-income-form {
+                    .form-row {
+                      &__section {
+                        .form-input {
+                          color: rgba($primaryColor, 0.8);
+                          font-size: 1.2rem;
+                          &:focus {
+                            color: $primaryColor;
+                          }
+                        }
+                        .form-label {
+                          font-size: 1.4rem;
+                        }
+                      }
+                    }
+                  }
+                  .early-income-view {
+                    &__investment,
+                    &__savings,
+                    &__un-allocated {
+                      font-size: 3.2rem;
+                      color: $primaryColor;
+                      &__header {
+                        font-size: 1.2rem;
+                      }
+                    }
+                    &__un-allocated {
+                      color: $colorOffWhite;
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

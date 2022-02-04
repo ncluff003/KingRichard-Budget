@@ -863,6 +863,58 @@ html {
   font-size: 2.8rem;
   color: #822aba;
 }
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  color: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--extra-small__header {
+  font-size: 2.4rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--extra-small__header__icon {
+  font-size: 3rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--extra-small__content {
+  font-size: 4rem;
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__header {
+  font-size: 2.4rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__header__icon {
+  font-size: 3rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__header__button {
+  color: rgba(250, 250, 250, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__header__button:hover {
+  color: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__header__button:active {
+  color: #333333;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content {
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input {
+  color: rgba(130, 42, 186, 0.8);
+  font-size: 1.2rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input:focus {
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label {
+  font-size: 1.4rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .early-income-view__investment, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .early-income-view__savings, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .early-income-view__un-allocated {
+  font-size: 3.2rem;
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .early-income-view__investment__header, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .early-income-view__savings__header, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .early-income-view__un-allocated__header {
+  font-size: 1.2rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .early-income-view__un-allocated {
+  color: #fafafa;
+}
 
 .gridTV {
   display: grid;
@@ -32832,6 +32884,40 @@ html {
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page-mechanisms__submit-button:focus {
   outline: none;
 }
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__header__button {
+  position: relative;
+  height: 75%;
+  width: 25%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: transparent;
+  border: 0.3rem solid rgba(250, 250, 250, 0.8);
+  border-radius: 0.9rem;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__header__button:hover {
+  cursor: pointer;
+  background-color: #38d927;
+  border: 0.3rem solid #fafafa;
+  transition: color 0.5s, background-color 0.5s, border 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__header__button:active {
+  background-color: #ffd700;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content {
+  position: relative;
+  height: 75%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
 
 .vertical-flex-container .flex-section {
   position: relative;
@@ -34767,6 +34853,129 @@ html {
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container--hidden {
   display: none;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row {
+  position: relative;
+  height: 30%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section {
+  position: relative;
+  height: 100%;
+  width: 33.3%;
+  display: flex;
+  flex-direction: column-reverse;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input {
+  position: relative;
+  height: 4rem;
+  width: 85%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  padding: 0.5rem;
+  border: 0.2rem solid rgba(130, 42, 186, 0.8);
+  border-radius: 0.9rem;
+  transition: border 0.5s, color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input::-webkit-input-placeholder, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input::-moz-placeholder, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input::placeholder {
+  opacity: 0;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input:focus {
+  outline: none;
+  border: 0.2rem solid #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input:focus::-moz-placeholder, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input:focus::placeholder {
+  opacity: 1;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input:focus::-webkit-input-placeholder {
+  opacity: 1;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input:not(:placeholder-shown) + label, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input:focus + label {
+  transform: translate(-1.25rem, -4.25rem) scale(0.95);
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label {
+  position: absolute;
+  height: 3rem;
+  width: 75%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  top: 50%;
+  left: calc(7% + 2rem);
+  -moz-transform: translateY(-50%);
+  transition: transform 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view {
+  position: relative;
+  height: 40%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view__investment, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view__savings, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view__un-allocated {
+  position: relative;
+  height: 100%;
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.2rem solid #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view__investment__header, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view__savings__header, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view__un-allocated__header {
+  position: absolute;
+  height: 1.5rem;
+  width: max-content;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  top: 0.25rem;
+  left: 0.25rem;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view__investment {
+  border-bottom-left-radius: 0.4rem;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view__un-allocated {
+  background-color: #822aba;
+  border: none;
+  border-bottom-right-radius: 0.4rem;
 }
 
 .master-grid-container .app-flex-container {
@@ -44579,7 +44788,7 @@ html {
   justify-content: center;
   align-items: center;
   transform: rotate(0) translate(0, 0);
-  background-color: rgba(101, 33, 144, 0.85);
+  background-color: rgba(101, 33, 144, 0.9);
   opacity: 0;
   transition: opacity 0.5s;
 }
@@ -44740,7 +44949,7 @@ html {
   transform: rotate(0) translate(0, 0);
   padding: 12rem 10rem 10rem;
 }
-.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard .budget-container--extra-small {
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--extra-small {
   position: relative;
   height: 22.5rem;
   width: 35rem;
@@ -44753,8 +44962,9 @@ html {
   padding: 0.2rem;
   border: 0.3rem solid #822aba;
   border-radius: 0.51rem;
+  margin-bottom: 5rem;
 }
-.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard .budget-container--extra-small__header {
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--extra-small__header {
   position: relative;
   height: 25%;
   width: 100%;
@@ -44768,10 +44978,52 @@ html {
   border-top-right-radius: 0.25rem;
   padding: 0 1.5rem;
   background-color: #822aba;
+  border-bottom: 0.3rem solid #ffd700;
 }
-.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard .budget-container--extra-small__content {
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--extra-small__content {
   position: relative;
   height: 75%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small {
+  position: relative;
+  height: 35rem;
+  width: 55.8rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  padding: 0.2rem;
+  border: 0.3rem solid #822aba;
+  border-radius: 0.51rem;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small__header {
+  position: relative;
+  height: 20%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  padding: 0 1.5rem;
+  background-color: #822aba;
+  border-bottom: 0.3rem solid #ffd700;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small__content {
+  position: relative;
+  height: 80%;
   width: 100%;
   display: flex;
   flex-direction: row;

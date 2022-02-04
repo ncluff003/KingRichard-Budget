@@ -390,6 +390,34 @@
           }
         }
       }
+      .budget-container {
+        &__dashboard {
+          &__container {
+            &--small {
+              &__header {
+                &__button {
+                  @include SizeAndPositioning(relative, 75%, 25%, flex, row, nowrap, center, center, 0, 0, 0);
+                  background-color: transparent;
+                  border: 0.3rem solid rgba($colorOffWhite, 0.8);
+                  border-radius: 0.9rem;
+                  &:hover {
+                    cursor: pointer;
+                    background-color: $secondaryColor;
+                    border: 0.3rem solid $colorOffWhite;
+                    transition: color 0.5s, background-color 0.5s, border 0.5s;
+                  }
+                  &:active {
+                    background-color: $tertiaryColor;
+                  }
+                }
+              }
+              &__content {
+                @include SizeAndPositioning(relative, 75%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
