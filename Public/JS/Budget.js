@@ -12,5 +12,7 @@ const _watchBudgetNavigation = () => {
 
 export const _watchBudget = () => {
   console.log(`WATCHING YOUR BUDGET`);
+  ////////////////////////////////////////////
+  // START BY WATCHING THE BUDGET NAVIGATION
   _watchBudgetNavigation();
 };

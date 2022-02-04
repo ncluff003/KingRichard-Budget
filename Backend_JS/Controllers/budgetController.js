@@ -77,7 +77,18 @@ exports.getBudget = catchAsync(async (request, response, next) => {
   const user = await User.findById(request.user.id);
   const budget = await Budget.findById(user.budgets[user.budgets.length - 1]);
 
-  createAndSendToken(user, 201, `render`, request, response, `./Budget/budgetLanding`, `King Richard | ${budget.name}`, { budget: budget }, 200, `Success`);
+  createAndSendToken(
+    user,
+    201,
+    `render`,
+    request,
+    response,
+    `./Budget/budgetLanding`,
+    `King Richard | ${budget.name}`,
+    { budget: budget, calendar: Calendar },
+    200,
+    `Success`,
+  );
 });
 
 exports.createBudget = catchAsync(async (request, response, next) => {
