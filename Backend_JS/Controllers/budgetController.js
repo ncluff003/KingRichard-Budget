@@ -76,7 +76,6 @@ const createAndSendToken = (user, statusCode, method, request, response, templat
 exports.getBudget = catchAsync(async (request, response, next) => {
   const user = await User.findById(request.user.id);
   const budget = await Budget.findById(user.budgets[user.budgets.length - 1]);
-  console.log(budget);
 
   createAndSendToken(user, 201, `render`, request, response, `./Budget/budgetLanding`, `King Richard | ${budget.name}`, { budget: budget }, 200, `Success`);
 });

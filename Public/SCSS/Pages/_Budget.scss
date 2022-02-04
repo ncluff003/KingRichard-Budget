@@ -9,8 +9,10 @@
       .budget-container {
         @include SizeAndPositioning(relative, 100%, 100%, flex, row, wrap, space-evenly, center, 0, 0, 0);
         .budget-navigation {
-          @include SizeAndPositioning(relative, 100%, 100%, flex, column, nowrap, center, center, 0, 0, 0);
+          @include SizeAndPositioning(relative, 100%, 100%, none, column, nowrap, center, center, 0, 0, 0);
           background-color: rgba($primaryColorDark, 0.85);
+          opacity: 0;
+          transition: opacity 0.5s;
           &__link-list {
             @include SizeAndPositioning(relative, 75%, 50%, flex, column, nowrap, center, center, 0, 0, 0);
             &__list-item {
@@ -35,6 +37,70 @@
                 }
                 &:active {
                   background-color: $tertiaryColor;
+                }
+              }
+            }
+          }
+          &--visible {
+            display: flex;
+            opacity: 1;
+          }
+        }
+        &__navigation-button-container {
+          @include SizeAndPositioning(absolute, 7rem, 20%, flex, row, nowrap, space-between, center, 0, 0, 0);
+          top: 3rem;
+          left: 3rem;
+          padding: 1rem;
+          &__button {
+            @include SizeAndPositioning(relative, 0.75rem, 30%, flex, row, nowrap, center, center, 0, 0, 0);
+            z-index: 10;
+            background-color: rgba($primaryColor, 0.8);
+            border-radius: 0.4rem;
+            border: none;
+            transition: background-color 0.5s, width 0.5s;
+            &:before,
+            &:after {
+              content: '';
+              z-index: 10;
+              background-color: rgba($primaryColor, 0.8);
+              border-radius: 0.4rem;
+              border: none;
+              left: 0;
+            }
+            &:before {
+              @include SizeAndPositioning(absolute, 0.75rem, 50%, flex, row, nowrap, center, center, 0, -1.5rem, 0);
+              transition: background-color 0.5s, width 0.5s, transform 0.5s;
+            }
+            &:after {
+              @include SizeAndPositioning(absolute, 0.75rem, 75%, flex, row, nowrap, center, center, 0, 1.5rem, 0);
+              transition: background-color 0.5s, width 0.5s, transform 0.5s;
+            }
+            &:hover {
+              cursor: pointer;
+              width: 25%;
+              &:before {
+                width: 100%;
+              }
+              &:after {
+                width: 100%;
+              }
+            }
+            &--clicked {
+              background-color: transparent;
+              &:before {
+                transform: translate(0.5rem, 0) rotate(45deg);
+                background-color: $colorOffWhite;
+                width: 90%;
+              }
+              &:after {
+                transform: translate(0.5rem, 0) rotate(-45deg);
+                background-color: $colorOffWhite;
+                width: 90%;
+              }
+              &:hover {
+                &:before,
+                &:after {
+                  width: 100%;
                 }
               }
             }

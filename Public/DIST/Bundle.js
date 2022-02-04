@@ -4241,7 +4241,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Login */ "./Public/JS/Login.js");
 /* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
 /* harmony import */ var _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Budget-Creation */ "./Public/JS/Budget-Creation.js");
+/* harmony import */ var _Budget__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Budget */ "./Public/JS/Budget.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
 
 
 
@@ -4347,13 +4349,15 @@ var _changeCommPreference = function _changeCommPreference() {
 };
 
 var _watchCommPreference = function _watchCommPreference(communicationSwitch) {
-  communicationSwitch.addEventListener('click', function (e) {
-    communicationSwitch.classList.toggle('user-profile-form__section__comm-switch--text-preferred');
+  if (communicationSwitch) {
+    communicationSwitch.addEventListener('click', function (e) {
+      communicationSwitch.classList.toggle('user-profile-form__section__comm-switch--text-preferred');
 
-    _changeCommPreference();
+      _changeCommPreference();
 
-    console.log(commPreference);
-  });
+      console.log(commPreference);
+    });
+  }
 }; ////////////////////////////////////////////
 // ALL ABOUT WATCHING USER PROFILE BUTTONS
 
@@ -4639,7 +4643,9 @@ var createBudgetCard = function createBudgetCard(budgetName, createdAt, lastUpda
   footerTop.insertAdjacentElement('beforeend', lastUpdatedParagraph);
   footerBottom.insertAdjacentElement('beforeend', budgetAdminParagraph); // ADD CARD TO CONTAINER
 
-  budgetCardContainer.insertAdjacentElement('afterbegin', budgetCard);
+  if (budgetCardContainer) {
+    budgetCardContainer.insertAdjacentElement('afterbegin', budgetCard);
+  }
 };
 
 /***/ }),
@@ -5231,8 +5237,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
 /* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
 /* harmony import */ var _Create_Budget__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Create-Budget */ "./Public/JS/Create-Budget.js");
-/* harmony import */ var _Base_Forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Base-Forms */ "./Public/JS/Base-Forms.js");
+/* harmony import */ var _Budget__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Budget */ "./Public/JS/Budget.js");
+/* harmony import */ var _Base_Forms__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Base-Forms */ "./Public/JS/Base-Forms.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
 
 
 
@@ -5304,20 +5312,11 @@ var Budget = /*#__PURE__*/function () {
       });
       this.accounts.debt = new Account({
         amount: 0
-      }); // this.accounts.push(new Account({ accountName: `Un-Allocated`, amount: 0 }));
-      // this.accounts.push(new Account({ accountName: `Monthly Budget`, amount: 0 }));
-      // this.accounts.push(new Account({ accountName: `Emergency Fund`, amount: 0 }));
-      // this.accounts.push(new Account({ accountName: `Savings Fund`, amount: 0 }));
-      // this.accounts.push(new Account({ accountName: `Expense Fund`, amount: 0 }));
-      // this.accounts.push(new Account({ accountName: `Surplus`, amount: 0 }));
-      // this.accounts.push(new Account({ accountName: `Investment Fund`, amount: 0 }));
-      // this.accounts.push(new Account({ accountName: `Debt`, amount: 0 }));
-      // if (user.latterDaySaint === true) this.accounts.push(new Account({ accountName: `Tithing`, amount: 0 }));
+      });
     }
   }, {
     key: "_addTithingAccount",
     value: function _addTithingAccount(user) {
-      // if (user.latterDaySaint === true) this.accounts.push(new Account({ accountName: `Tithing`, amount: 0 }));
       if (user.latterDaySaint === true) this.accounts.tithing = {
         amount: 0
       };
@@ -6240,7 +6239,10 @@ var setupPage = function setupPage(page, createBudgetPages, createBudgetPagesNum
 
 var setPageCount = function setPageCount(pageNumber, createBudgetPages) {
   var page = document.querySelector('.budget-creation-form__page-mechanisms__page-number');
-  page.textContent = "Page ".concat(pageNumber + 1, " / ").concat(createBudgetPages);
+
+  if (page) {
+    page.textContent = "Page ".concat(pageNumber + 1, " / ").concat(createBudgetPages);
+  }
 }; // ////////////////////////////
 // // INITIALIZE KEY VARIABLES
 // let currentPage = 0;
@@ -6294,15 +6296,20 @@ var _watchTIthingOptions = function _watchTIthingOptions(budget) {
 
 var _watchCreationFormCloser = function _watchCreationFormCloser(form) {
   var formCloser = document.querySelector(".budget-creation-form-close-icon");
-  formCloser.addEventListener('click', function (e) {
-    form.classList.toggle("budget-creation-form-container--hidden");
-  });
+
+  if (formCloser) {
+    formCloser.addEventListener('click', function (e) {
+      form.classList.toggle("budget-creation-form-container--hidden");
+    });
+  }
 };
 
 var _watchCreationFormOpener = function _watchCreationFormOpener(form, button) {
-  button.addEventListener("click", function (e) {
-    form.classList.toggle("budget-creation-form-container--hidden");
-  });
+  if (button) {
+    button.addEventListener("click", function (e) {
+      form.classList.toggle("budget-creation-form-container--hidden");
+    });
+  }
 };
 
 var _watchBudgetCreation = function _watchBudgetCreation() {
@@ -6335,155 +6342,195 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
 
   budget._addAccounts();
 
-  budgetContinueButton.addEventListener('click', /*#__PURE__*/function () {
-    var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default().mark(function _callee3(e) {
-      var userInfo, user, individualPayments, _individualPayments;
+  if (budgetContinueButton) {
+    budgetContinueButton.addEventListener('click', /*#__PURE__*/function () {
+      var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default().mark(function _callee3(e) {
+        var userInfo, user, individualPayments, _individualPayments;
 
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default().wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              e.preventDefault();
-              currentPage++; //////////////////////////////
-              // ASSIGN BUDGET INFORMATION
-              /////////////////////
-              // BUDGET NAME
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                e.preventDefault();
+                currentPage++; //////////////////////////////
+                // ASSIGN BUDGET INFORMATION
+                /////////////////////
+                // BUDGET NAME
 
-              budgetName = getBudgetName();
-              budget.name = budgetName; ////////////////////////////////
-              // SETUP BUDGET CREATION FORM
+                budgetName = getBudgetName();
+                budget.name = budgetName; ////////////////////////////////
+                // SETUP BUDGET CREATION FORM
 
-              setupPage(currentPage, budgetCreationFormPages, budgetCreationFormPagesNumber, budget); /////////////////////////////
-              // CHECK USER
+                setupPage(currentPage, budgetCreationFormPages, budgetCreationFormPagesNumber, budget); /////////////////////////////
+                // CHECK USER
 
-              _context3.next = 7;
-              return _Update_User__WEBPACK_IMPORTED_MODULE_6__.getSomePersonals();
+                _context3.next = 7;
+                return _Update_User__WEBPACK_IMPORTED_MODULE_6__.getSomePersonals();
 
-            case 7:
-              userInfo = _context3.sent;
-              user = userInfo.data.data.user;
-              console.log(budget); ////////////////////////////////////////////////////////////////////////
-              // GLITCH: Need to fix this to work if you are a Latter Day Saint as well.
-              ////////////////////////////////////////////////////////////////////////
-              /////////////////////////////
-              // IF NOT LATTER DAY SAINT
+              case 7:
+                userInfo = _context3.sent;
+                user = userInfo.data.data.user;
+                console.log(budget); ////////////////////////////////////////////////////////////////////////
+                // GLITCH: Need to fix this to work if you are a Latter Day Saint as well.
+                ////////////////////////////////////////////////////////////////////////
+                /////////////////////////////
+                // IF NOT LATTER DAY SAINT
 
-              if (currentPage + 1 === 2 && user.latterDaySaint === false) {
-                _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__.createCategories(icon);
+                if (currentPage + 1 === 2 && user.latterDaySaint === false) {
+                  _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__.createCategories(icon);
 
-                _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__._watchCreateCategoryButton(icon, budget);
-              }
+                  _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__._watchCreateCategoryButton(icon, budget);
+                }
 
-              if (currentPage + 1 === 3 && user.latterDaySaint === false) {
-                _watchForSubCategoryKeyboard();
+                if (currentPage + 1 === 3 && user.latterDaySaint === false) {
+                  _watchForSubCategoryKeyboard();
 
-                watchToCycleSubCategoryMainCategories();
-                setupSubCategoryCreation(budget, subCategoryIndex);
-              }
+                  watchToCycleSubCategoryMainCategories();
+                  setupSubCategoryCreation(budget, subCategoryIndex);
+                }
 
-              if (currentPage + 1 === 4 && user.latterDaySaint === false) {
-                setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
+                if (currentPage + 1 === 4 && user.latterDaySaint === false) {
+                  setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
 
-                _watchForCyclingCategoryGoals();
+                  _watchForCyclingCategoryGoals();
 
-                watchForSettingTiming(budget, subCategoryIndex, clicked, selectedTiming);
-              }
+                  watchForSettingTiming(budget, subCategoryIndex, clicked, selectedTiming);
+                }
 
-              if (currentPage + 1 === 5 && user.latterDaySaint === false) {
-                individualPayments = document.querySelectorAll('.individual-payment');
+                if (currentPage + 1 === 5 && user.latterDaySaint === false) {
+                  individualPayments = document.querySelectorAll('.individual-payment');
 
-                _finishUpdatingSubCategories(budget, individualPayments);
+                  _finishUpdatingSubCategories(budget, individualPayments);
 
-                _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
-              }
+                  _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
+                }
 
-              if (currentPage + 1 === 6 && user.latterDaySaint === false) {
-                budget._setEmergencyGoal();
+                if (currentPage + 1 === 6 && user.latterDaySaint === false) {
+                  budget._setEmergencyGoal();
 
-                document.querySelector('#savingsGoal').focus();
-              }
+                  document.querySelector('#savingsGoal').focus();
+                }
 
-              if (currentPage + 1 === 7 && user.latterDaySaint === false) {
-                budget._setSavingsGoal();
+                if (currentPage + 1 === 7 && user.latterDaySaint === false) {
+                  budget._setSavingsGoal();
 
-                document.querySelector('#investmentGoal').focus();
-              }
+                  document.querySelector('#investmentGoal').focus();
+                }
 
-              if (currentPage + 1 === 8 && user.latterDaySaint === false) {
-                budget._setInvestmentGoal();
+                if (currentPage + 1 === 8 && user.latterDaySaint === false) {
+                  budget._setInvestmentGoal();
 
-                budget._submit(budget);
-              } /////////////////////////////
-              // IF LATTER DAY SAINT
+                  budget._submit(budget);
+                } /////////////////////////////
+                // IF LATTER DAY SAINT
 
 
-              if (currentPage + 1 === 2 && user.latterDaySaint === true) {
-                console.log("Tithing Options");
+                if (currentPage + 1 === 2 && user.latterDaySaint === true) {
+                  console.log("Tithing Options");
 
-                budget._addTithingAccount(user);
+                  budget._addTithingAccount(user);
 
-                _watchTIthingOptions(budget);
-              }
+                  _watchTIthingOptions(budget);
+                }
 
-              if (currentPage + 1 === 3 && user.latterDaySaint === true) {
-                _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__.createCategories(icon);
+                if (currentPage + 1 === 3 && user.latterDaySaint === true) {
+                  _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__.createCategories(icon);
 
-                _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__._watchCreateCategoryButton(icon, budget);
-              }
+                  _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__._watchCreateCategoryButton(icon, budget);
+                }
 
-              if (currentPage + 1 === 4 && user.latterDaySaint === true) {
-                _watchForSubCategoryKeyboard();
+                if (currentPage + 1 === 4 && user.latterDaySaint === true) {
+                  _watchForSubCategoryKeyboard();
 
-                watchToCycleSubCategoryMainCategories();
-                setupSubCategoryCreation(budget, subCategoryIndex);
-              }
+                  watchToCycleSubCategoryMainCategories();
+                  setupSubCategoryCreation(budget, subCategoryIndex);
+                }
 
-              if (currentPage + 1 === 5 && user.latterDaySaint === true) {
-                setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
+                if (currentPage + 1 === 5 && user.latterDaySaint === true) {
+                  setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
 
-                _watchForCyclingCategoryGoals();
+                  _watchForCyclingCategoryGoals();
 
-                watchForSettingTiming(budget, subCategoryIndex, clicked, selectedTiming);
-              }
+                  watchForSettingTiming(budget, subCategoryIndex, clicked, selectedTiming);
+                }
 
-              if (currentPage + 1 === 6 && user.latterDaySaint === true) {
-                _individualPayments = document.querySelectorAll('.individual-payment');
+                if (currentPage + 1 === 6 && user.latterDaySaint === true) {
+                  _individualPayments = document.querySelectorAll('.individual-payment');
 
-                _finishUpdatingSubCategories(budget, _individualPayments);
+                  _finishUpdatingSubCategories(budget, _individualPayments);
 
-                _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
-              }
+                  _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
+                }
 
-              if (currentPage + 1 === 7 && user.latterDaySaint === true) {
-                budget._setEmergencyGoal();
+                if (currentPage + 1 === 7 && user.latterDaySaint === true) {
+                  budget._setEmergencyGoal();
 
-                document.querySelector('#savingsGoal').focus();
-              }
+                  document.querySelector('#savingsGoal').focus();
+                }
 
-              if (currentPage + 1 === 8 && user.latterDaySaint === true) {
-                budget._setSavingsGoal();
+                if (currentPage + 1 === 8 && user.latterDaySaint === true) {
+                  budget._setSavingsGoal();
 
-                document.querySelector('#investmentGoal').focus();
-              }
+                  document.querySelector('#investmentGoal').focus();
+                }
 
-              if (currentPage + 1 === 9 && user.latterDaySaint === true) {
-                budget._setInvestmentGoal();
+                if (currentPage + 1 === 9 && user.latterDaySaint === true) {
+                  budget._setInvestmentGoal();
 
-                budget._submit(budget);
-              }
+                  budget._submit(budget);
+                }
 
-            case 25:
-            case "end":
-              return _context3.stop();
+              case 25:
+              case "end":
+                return _context3.stop();
+            }
           }
-        }
-      }, _callee3);
-    }));
+        }, _callee3);
+      }));
 
-    return function (_x) {
-      return _ref3.apply(this, arguments);
-    };
-  }());
+      return function (_x) {
+        return _ref3.apply(this, arguments);
+      };
+    }());
+  } // WATCHING YOUR BUDGET AFTER YOU LOGIN OR CREATE YOUR BUDGET
+
+
+  var budgetNavButton = document.querySelector('.budget-container__navigation-button-container__button');
+
+  _Budget__WEBPACK_IMPORTED_MODULE_8__._watchBudget();
+};
+
+/***/ }),
+
+/***/ "./Public/JS/Budget.js":
+/*!*****************************!*\
+  !*** ./Public/JS/Budget.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "_watchBudget": () => (/* binding */ _watchBudget)
+/* harmony export */ });
+/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+var _watchBudgetNavigation = function _watchBudgetNavigation() {
+  var budgetNavButton = document.querySelector('.budget-container__navigation-button-container__button');
+  var budgetNavigation = document.querySelector('.budget-navigation');
+
+  if (budgetNavButton) {
+    budgetNavButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      budgetNavButton.classList.toggle('budget-container__navigation-button-container__button--clicked');
+      budgetNavigation.classList.toggle('budget-navigation--visible');
+    });
+  }
+};
+
+var _watchBudget = function _watchBudget() {
+  console.log("WATCHING YOUR BUDGET");
+
+  _watchBudgetNavigation();
 };
 
 /***/ }),
@@ -6503,11 +6550,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Budget_Creation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Budget-Creation */ "./Public/JS/Budget-Creation.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _Budget__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Budget */ "./Public/JS/Budget.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_5__);
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
 
 
 
@@ -6525,10 +6574,10 @@ var createBudget = /*#__PURE__*/function () {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
+            return axios__WEBPACK_IMPORTED_MODULE_4___default()({
               method: "POST",
               url: "/users/budgets",
-              data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify({
+              data: qs__WEBPACK_IMPORTED_MODULE_5___default().stringify({
                 budget: budget
               })
             });
@@ -6542,10 +6591,10 @@ var createBudget = /*#__PURE__*/function () {
             }
 
             _context.next = 7;
-            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
+            return axios__WEBPACK_IMPORTED_MODULE_4___default()({
               method: "GET",
               url: "/users/budgets",
-              data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify({
+              data: qs__WEBPACK_IMPORTED_MODULE_5___default().stringify({
                 budget: budget
               })
             });
@@ -6556,7 +6605,9 @@ var createBudget = /*#__PURE__*/function () {
           case 8:
             document.open("text/html").write(response.data);
             window.location.assign("/users/budgets");
-            console.log(response.data);
+
+            _Budget__WEBPACK_IMPORTED_MODULE_3__._watchBudget();
+
             _context.next = 16;
             break;
 

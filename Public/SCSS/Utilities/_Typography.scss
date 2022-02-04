@@ -905,6 +905,13 @@ html {
               }
             }
           }
+          &__navigation-button-container {
+            &__text {
+              font-family: MADE Tommy Soft, Verdana, sans-serif;
+              font-size: 2.8rem;
+              color: $primaryColor;
+            }
+          }
         }
       }
     }

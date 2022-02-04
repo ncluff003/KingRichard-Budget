@@ -1,4 +1,5 @@
 import * as Budget from './Budget-Creation';
+import * as Budgeting from './Budget';
 import axios from 'axios';
 import qs from 'qs';
 
@@ -24,7 +25,7 @@ export const createBudget = async (budget) => {
     }
     document.open(`text/html`).write(response.data);
     window.location.assign(`/users/budgets`);
-    console.log(response.data);
+    Budgeting._watchBudget();
   } catch (error) {
     console.log(error);
   }

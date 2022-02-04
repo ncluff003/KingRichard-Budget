@@ -74,5 +74,7 @@ export const createBudgetCard = (budgetName, createdAt, lastUpdated, administrat
   footerBottom.insertAdjacentElement('beforeend', budgetAdminParagraph);
 
   // ADD CARD TO CONTAINER
-  budgetCardContainer.insertAdjacentElement('afterbegin', budgetCard);
+  if (budgetCardContainer) {
+    budgetCardContainer.insertAdjacentElement('afterbegin', budgetCard);
+  }
 };

@@ -2,6 +2,7 @@ import { getSomePersonals, updateMe, updateMyPassword, deactivateMe, deleteMe } 
 import { logout } from './Login';
 import * as Categories from './Budget-Categories';
 import * as Budget from './Budget-Creation';
+import * as Budgeting from './Budget';
 import * as Update from './Update-User';
 
 let commPreference;
@@ -91,11 +92,13 @@ const _changeCommPreference = () => {
 };
 
 export const _watchCommPreference = (communicationSwitch) => {
-  communicationSwitch.addEventListener('click', (e) => {
-    communicationSwitch.classList.toggle('user-profile-form__section__comm-switch--text-preferred');
-    _changeCommPreference();
-    console.log(commPreference);
-  });
+  if (communicationSwitch) {
+    communicationSwitch.addEventListener('click', (e) => {
+      communicationSwitch.classList.toggle('user-profile-form__section__comm-switch--text-preferred');
+      _changeCommPreference();
+      console.log(commPreference);
+    });
+  }
 };
 
 ////////////////////////////////////////////

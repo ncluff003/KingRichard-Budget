@@ -1,6 +1,7 @@
 import * as Categories from './Budget-Categories';
 import * as Updating from './Update-User';
 import * as Budgets from './Create-Budget';
+import * as Budgeting from './Budget';
 import * as Base from './Base-Forms';
 
 class Account {
@@ -36,19 +37,9 @@ export class Budget {
     this.accounts.surplus = new Account({ amount: 0 });
     this.accounts.investmentFund = new Account({ amount: 0 });
     this.accounts.debt = new Account({ amount: 0 });
-    // this.accounts.push(new Account({ accountName: `Un-Allocated`, amount: 0 }));
-    // this.accounts.push(new Account({ accountName: `Monthly Budget`, amount: 0 }));
-    // this.accounts.push(new Account({ accountName: `Emergency Fund`, amount: 0 }));
-    // this.accounts.push(new Account({ accountName: `Savings Fund`, amount: 0 }));
-    // this.accounts.push(new Account({ accountName: `Expense Fund`, amount: 0 }));
-    // this.accounts.push(new Account({ accountName: `Surplus`, amount: 0 }));
-    // this.accounts.push(new Account({ accountName: `Investment Fund`, amount: 0 }));
-    // this.accounts.push(new Account({ accountName: `Debt`, amount: 0 }));
-    // if (user.latterDaySaint === true) this.accounts.push(new Account({ accountName: `Tithing`, amount: 0 }));
   }
 
   _addTithingAccount(user) {
-    // if (user.latterDaySaint === true) this.accounts.push(new Account({ accountName: `Tithing`, amount: 0 }));
     if (user.latterDaySaint === true) this.accounts.tithing = { amount: 0 };
   }
 
@@ -928,7 +919,9 @@ const setupPage = (page, createBudgetPages, createBudgetPagesNumber, budget) => 
 // SET CORRECT PAGE COUNT
 const setPageCount = (pageNumber, createBudgetPages) => {
   const page = document.querySelector('.budget-creation-form__page-mechanisms__page-number');
-  page.textContent = `Page ${pageNumber + 1} / ${createBudgetPages}`;
+  if (page) {
+    page.textContent = `Page ${pageNumber + 1} / ${createBudgetPages}`;
+  }
 };
 
 // ////////////////////////////
@@ -972,15 +965,19 @@ const _watchTIthingOptions = (budget) => {
 
 const _watchCreationFormCloser = (form) => {
   const formCloser = document.querySelector(`.budget-creation-form-close-icon`);
-  formCloser.addEventListener('click', (e) => {
-    form.classList.toggle(`budget-creation-form-container--hidden`);
-  });
+  if (formCloser) {
+    formCloser.addEventListener('click', (e) => {
+      form.classList.toggle(`budget-creation-form-container--hidden`);
+    });
+  }
 };
 
 const _watchCreationFormOpener = (form, button) => {
-  button.addEventListener(`click`, (e) => {
-    form.classList.toggle(`budget-creation-form-container--hidden`);
-  });
+  if (button) {
+    button.addEventListener(`click`, (e) => {
+      form.classList.toggle(`budget-creation-form-container--hidden`);
+    });
+  }
 };
 
 export const _watchBudgetCreation = () => {
@@ -1010,100 +1007,105 @@ export const _watchBudgetCreation = () => {
   let icon;
   const budget = new Budget();
   budget._addAccounts();
-  budgetContinueButton.addEventListener('click', async (e) => {
-    e.preventDefault();
-    currentPage++;
-    //////////////////////////////
-    // ASSIGN BUDGET INFORMATION
-    /////////////////////
-    // BUDGET NAME
-    budgetName = getBudgetName();
-    budget.name = budgetName;
+  if (budgetContinueButton) {
+    budgetContinueButton.addEventListener('click', async (e) => {
+      e.preventDefault();
+      currentPage++;
+      //////////////////////////////
+      // ASSIGN BUDGET INFORMATION
+      /////////////////////
+      // BUDGET NAME
+      budgetName = getBudgetName();
+      budget.name = budgetName;
 
-    ////////////////////////////////
-    // SETUP BUDGET CREATION FORM
-    setupPage(currentPage, budgetCreationFormPages, budgetCreationFormPagesNumber, budget);
+      ////////////////////////////////
+      // SETUP BUDGET CREATION FORM
+      setupPage(currentPage, budgetCreationFormPages, budgetCreationFormPagesNumber, budget);
 
-    /////////////////////////////
-    // CHECK USER
-    const userInfo = await Updating.getSomePersonals();
-    const user = userInfo.data.data.user;
-    console.log(budget);
-    ////////////////////////////////////////////////////////////////////////
-    // GLITCH: Need to fix this to work if you are a Latter Day Saint as well.
-    ////////////////////////////////////////////////////////////////////////
+      /////////////////////////////
+      // CHECK USER
+      const userInfo = await Updating.getSomePersonals();
+      const user = userInfo.data.data.user;
+      console.log(budget);
+      ////////////////////////////////////////////////////////////////////////
+      // GLITCH: Need to fix this to work if you are a Latter Day Saint as well.
+      ////////////////////////////////////////////////////////////////////////
 
-    /////////////////////////////
-    // IF NOT LATTER DAY SAINT
-    if (currentPage + 1 === 2 && user.latterDaySaint === false) {
-      Categories.createCategories(icon);
-      Categories._watchCreateCategoryButton(icon, budget);
-    }
-    if (currentPage + 1 === 3 && user.latterDaySaint === false) {
-      _watchForSubCategoryKeyboard();
-      watchToCycleSubCategoryMainCategories();
-      setupSubCategoryCreation(budget, subCategoryIndex);
-    }
-    if (currentPage + 1 === 4 && user.latterDaySaint === false) {
-      setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
-      _watchForCyclingCategoryGoals();
-      watchForSettingTiming(budget, subCategoryIndex, clicked, selectedTiming);
-    }
-    if (currentPage + 1 === 5 && user.latterDaySaint === false) {
-      const individualPayments = document.querySelectorAll('.individual-payment');
-      _finishUpdatingSubCategories(budget, individualPayments);
-      _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
-    }
-    if (currentPage + 1 === 6 && user.latterDaySaint === false) {
-      budget._setEmergencyGoal();
-      document.querySelector('#savingsGoal').focus();
-    }
-    if (currentPage + 1 === 7 && user.latterDaySaint === false) {
-      budget._setSavingsGoal();
-      document.querySelector('#investmentGoal').focus();
-    }
-    if (currentPage + 1 === 8 && user.latterDaySaint === false) {
-      budget._setInvestmentGoal();
-      budget._submit(budget);
-    }
+      /////////////////////////////
+      // IF NOT LATTER DAY SAINT
+      if (currentPage + 1 === 2 && user.latterDaySaint === false) {
+        Categories.createCategories(icon);
+        Categories._watchCreateCategoryButton(icon, budget);
+      }
+      if (currentPage + 1 === 3 && user.latterDaySaint === false) {
+        _watchForSubCategoryKeyboard();
+        watchToCycleSubCategoryMainCategories();
+        setupSubCategoryCreation(budget, subCategoryIndex);
+      }
+      if (currentPage + 1 === 4 && user.latterDaySaint === false) {
+        setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
+        _watchForCyclingCategoryGoals();
+        watchForSettingTiming(budget, subCategoryIndex, clicked, selectedTiming);
+      }
+      if (currentPage + 1 === 5 && user.latterDaySaint === false) {
+        const individualPayments = document.querySelectorAll('.individual-payment');
+        _finishUpdatingSubCategories(budget, individualPayments);
+        _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
+      }
+      if (currentPage + 1 === 6 && user.latterDaySaint === false) {
+        budget._setEmergencyGoal();
+        document.querySelector('#savingsGoal').focus();
+      }
+      if (currentPage + 1 === 7 && user.latterDaySaint === false) {
+        budget._setSavingsGoal();
+        document.querySelector('#investmentGoal').focus();
+      }
+      if (currentPage + 1 === 8 && user.latterDaySaint === false) {
+        budget._setInvestmentGoal();
+        budget._submit(budget);
+      }
 
-    /////////////////////////////
-    // IF LATTER DAY SAINT
-    if (currentPage + 1 === 2 && user.latterDaySaint === true) {
-      console.log(`Tithing Options`);
-      budget._addTithingAccount(user);
-      _watchTIthingOptions(budget);
-    }
-    if (currentPage + 1 === 3 && user.latterDaySaint === true) {
-      Categories.createCategories(icon);
-      Categories._watchCreateCategoryButton(icon, budget);
-    }
-    if (currentPage + 1 === 4 && user.latterDaySaint === true) {
-      _watchForSubCategoryKeyboard();
-      watchToCycleSubCategoryMainCategories();
-      setupSubCategoryCreation(budget, subCategoryIndex);
-    }
-    if (currentPage + 1 === 5 && user.latterDaySaint === true) {
-      setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
-      _watchForCyclingCategoryGoals();
-      watchForSettingTiming(budget, subCategoryIndex, clicked, selectedTiming);
-    }
-    if (currentPage + 1 === 6 && user.latterDaySaint === true) {
-      const individualPayments = document.querySelectorAll('.individual-payment');
-      _finishUpdatingSubCategories(budget, individualPayments);
-      _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
-    }
-    if (currentPage + 1 === 7 && user.latterDaySaint === true) {
-      budget._setEmergencyGoal();
-      document.querySelector('#savingsGoal').focus();
-    }
-    if (currentPage + 1 === 8 && user.latterDaySaint === true) {
-      budget._setSavingsGoal();
-      document.querySelector('#investmentGoal').focus();
-    }
-    if (currentPage + 1 === 9 && user.latterDaySaint === true) {
-      budget._setInvestmentGoal();
-      budget._submit(budget);
-    }
-  });
+      /////////////////////////////
+      // IF LATTER DAY SAINT
+      if (currentPage + 1 === 2 && user.latterDaySaint === true) {
+        console.log(`Tithing Options`);
+        budget._addTithingAccount(user);
+        _watchTIthingOptions(budget);
+      }
+      if (currentPage + 1 === 3 && user.latterDaySaint === true) {
+        Categories.createCategories(icon);
+        Categories._watchCreateCategoryButton(icon, budget);
+      }
+      if (currentPage + 1 === 4 && user.latterDaySaint === true) {
+        _watchForSubCategoryKeyboard();
+        watchToCycleSubCategoryMainCategories();
+        setupSubCategoryCreation(budget, subCategoryIndex);
+      }
+      if (currentPage + 1 === 5 && user.latterDaySaint === true) {
+        setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
+        _watchForCyclingCategoryGoals();
+        watchForSettingTiming(budget, subCategoryIndex, clicked, selectedTiming);
+      }
+      if (currentPage + 1 === 6 && user.latterDaySaint === true) {
+        const individualPayments = document.querySelectorAll('.individual-payment');
+        _finishUpdatingSubCategories(budget, individualPayments);
+        _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
+      }
+      if (currentPage + 1 === 7 && user.latterDaySaint === true) {
+        budget._setEmergencyGoal();
+        document.querySelector('#savingsGoal').focus();
+      }
+      if (currentPage + 1 === 8 && user.latterDaySaint === true) {
+        budget._setSavingsGoal();
+        document.querySelector('#investmentGoal').focus();
+      }
+      if (currentPage + 1 === 9 && user.latterDaySaint === true) {
+        budget._setInvestmentGoal();
+        budget._submit(budget);
+      }
+    });
+  }
+  // WATCHING YOUR BUDGET AFTER YOU LOGIN OR CREATE YOUR BUDGET
+  const budgetNavButton = document.querySelector('.budget-container__navigation-button-container__button');
+  Budgeting._watchBudget();
 };
