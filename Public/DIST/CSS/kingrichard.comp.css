@@ -897,13 +897,16 @@ html {
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input {
   color: rgba(130, 42, 186, 0.8);
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input:focus {
   color: #822aba;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label {
   font-size: 1.4rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing {
+  color: #fafafa;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .early-income-view__investment, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .early-income-view__savings, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .early-income-view__un-allocated {
   font-size: 3.2rem;
@@ -34916,11 +34919,11 @@ html {
   opacity: 1;
 }
 .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input:not(:placeholder-shown) + label, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input:focus + label {
-  transform: translate(-1.25rem, -4.25rem) scale(0.95);
+  transform: translate(-1.25rem, -3rem) scale(0.95);
 }
 .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label {
   position: absolute;
-  height: 3rem;
+  height: 4rem;
   width: 75%;
   display: flex;
   flex-direction: row;
@@ -34928,10 +34931,86 @@ html {
   justify-content: flex-start;
   align-items: center;
   transform: rotate(0) translate(0, 0);
-  top: 50%;
   left: calc(7% + 2rem);
-  -moz-transform: translateY(-50%);
   transition: transform 0.5s;
+  -moz-transform: translate(-0.75rem, 0);
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label__text {
+  transform: translate(-2rem, 0);
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing {
+  position: absolute;
+  height: 4rem;
+  width: 75%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(4rem, 0);
+  border: 0.2rem solid #822aba;
+  border-radius: 5rem;
+  background-color: rgba(72, 23, 103, 0.9);
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing__switch {
+  position: absolute;
+  height: 3.4rem;
+  width: 3.4rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  transform: rotate(0) translate(0.2rem, -50%);
+  top: 50%;
+  left: 0;
+  border-radius: 5rem;
+  background-color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing__text-no {
+  display: flex;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing__text-yes {
+  display: none;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing--tithed {
+  background-color: #38d927;
+  border: 0.2rem solid #2cae1f;
+  transition: border 0.5s, background-color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing--tithed__switch {
+  width: 96%;
+  background-color: #38d927;
+  transition: color 0.5s, background-color 0.5s, width 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing--tithed__text-no {
+  display: none;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing--tithed__text-yes {
+  display: flex;
+  z-index: 2;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing:hover {
+  cursor: pointer;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .income-row:first-of-type {
+  margin-bottom: 2rem;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .income-row:first-of-type .form-row__section {
+  justify-content: flex-start;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .income-row:nth-of-type(2) .form-row__section {
+  width: 50%;
+  justify-content: flex-end;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .income-row:nth-of-type(2) .form-row__section .form-input {
+  width: 90%;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .income-row:nth-of-type(2) .form-row__section .form-input:not(:placeholder-shown) + label, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .income-row:nth-of-type(2) .form-row__section .form-input:focus + label {
+  transform: translate(-2rem, -3rem) scale(0.95);
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .income-row:nth-of-type(2) .form-row__section .form-label {
+  -moz-transform: translate(-1.5rem, 0);
 }
 .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view {
   position: relative;

@@ -955,13 +955,16 @@ html {
                       &__section {
                         .form-input {
                           color: rgba($primaryColor, 0.8);
-                          font-size: 1.2rem;
+                          font-size: 1.4rem;
                           &:focus {
                             color: $primaryColor;
                           }
                         }
                         .form-label {
                           font-size: 1.4rem;
+                          .form-input--tithing {
+                            color: $colorOffWhite;
+                          }
                         }
                       }
                     }

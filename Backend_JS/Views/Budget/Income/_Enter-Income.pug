@@ -1,5 +1,5 @@
 form.enter-income-form.r__enter-income-form(method="POST" action=`/users/${data.user.id}/budgets/${data.budget.id}`) 
-  section.form-row.r__form-row.income-row_r__income-row
+  section.form-row.r__form-row.income-row.r__income-row
     section.form-row__section.r__form-row__section 
       input.form-input.r__form-input#incomeDate(type="date")
       label.form-label.r__form-label(for="incomeDate") Date Received
@@ -8,12 +8,13 @@ form.enter-income-form.r__enter-income-form(method="POST" action=`/users/${data.
       label.form-label.r__form-label(for="receivedFrom") Received From
     section.form-row__section.r__form-row__section 
       if data.user.latterDaySaint
-        label.form-label.r__form-label Tithed?
+        label.form-label.r__form-label 
+          p.form-label__text.r__form-label__text Tithed?
           .form-input--tithing.r__form-input--tithing 
             .form-input--tithing__switch.r__form-input--tithing__switch 
-            p.form-input--tithing__text.r__form-input--tithing__text-no NO
-            p.form-input--tithing__text.r__form-input--tithing__text-yes YES
-  section.form-row.r__form-row.income-row_r__income-row
+            p.form-input--tithing__text-no.r__form-input--tithing__text-no NO
+            p.form-input--tithing__text-yes.r__form-input--tithing__text-yes YES
+  section.form-row.r__form-row.income-row.r__income-row
     section.form-row__section.r__form-row__section 
       input.form-input.r__form-input#grossPay(type="number" min="0" placeholder="$0.00")
       label.form-label.r__form-label(for="grossPay") Gross Pay
