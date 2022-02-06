@@ -1,4 +1,4 @@
-- let accounts = [`Monthly Budget`,`Emergency Fund`,`Savings Fund`,`Expense Fund`,`Surplus`,`Investment Fund`,`Debt`,`Tithing`]; 
+- let accounts = [`Monthly Budget`,`Emergency Fund`,`Savings Fund`,`Expense Fund`,`Surplus`,`Debt`,`Tithing`]; 
 - if (data.user.latterDaySaint === false) accounts = accounts.filter((a, i) => { if (a !== `Tithing`) return a});
   select.account-selection.r__account-selection
     each account in accounts

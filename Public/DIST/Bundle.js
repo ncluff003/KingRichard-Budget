@@ -6522,11 +6522,10 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
   });
   var accountOptions = document.querySelectorAll('.account-selection__option');
   var clicked;
-  console.log(accountOptions);
   accountOptions.forEach(function (ao, i) {
     ao.addEventListener('click', function (e) {
       e.preventDefault();
-      clicked = e.target;
+      clicked = e.target; // MONTHLY BUDGET OPTIONS
 
       if (clicked.value === "Monthly Budget") {
         arrayOfArrays.forEach(function (a, i) {
@@ -6537,7 +6536,8 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
         arrayOfArrays[0].forEach(function (a, i) {
           a.style.display = "flex";
         });
-      }
+      } // EMERGENCY FUND OPTIONS
+
 
       if (clicked.value === "Emergency Fund") {
         arrayOfArrays.forEach(function (a, i) {
@@ -6548,9 +6548,67 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
         arrayOfArrays[1].forEach(function (a, i) {
           a.style.display = "flex";
         });
-      }
+      } // SAVINGS FUND OPTIONS
 
-      console.log(clicked);
+
+      if (clicked.value === "Savings Fund") {
+        arrayOfArrays.forEach(function (a, i) {
+          a.forEach(function (c, i) {
+            c.style.display = "none";
+          });
+        });
+        arrayOfArrays[2].forEach(function (a, i) {
+          a.style.display = "flex";
+        });
+      } // EXPENSE FUND OPTIONS
+
+
+      if (clicked.value === "Expense Fund") {
+        arrayOfArrays.forEach(function (a, i) {
+          a.forEach(function (c, i) {
+            c.style.display = "none";
+          });
+        });
+        arrayOfArrays[3].forEach(function (a, i) {
+          a.style.display = "flex";
+        });
+      } // SURPLUS OPTIONS
+
+
+      if (clicked.value === "Surplus") {
+        arrayOfArrays.forEach(function (a, i) {
+          a.forEach(function (c, i) {
+            c.style.display = "none";
+          });
+        });
+        arrayOfArrays[4].forEach(function (a, i) {
+          a.style.display = "flex";
+        });
+      } // DEBT OPTIONS
+
+
+      if (clicked.value === "Debt") {
+        arrayOfArrays.forEach(function (a, i) {
+          a.forEach(function (c, i) {
+            c.style.display = "none";
+          });
+        });
+        arrayOfArrays[5].forEach(function (a, i) {
+          a.style.display = "flex";
+        });
+      } // TITHING OPTIONS
+
+
+      if (clicked.value === "Tithing") {
+        arrayOfArrays.forEach(function (a, i) {
+          a.forEach(function (c, i) {
+            c.style.display = "none";
+          });
+        });
+        arrayOfArrays[6].forEach(function (a, i) {
+          a.style.display = "flex";
+        });
+      }
     });
   });
 };
@@ -6574,14 +6632,26 @@ var _watchBudget = function _watchBudget() {
 
   var formLabels = document.querySelectorAll('.form-label');
   var formInputs = document.querySelectorAll('.form-input');
+  var formSections = document.querySelectorAll('.form-row__section');
   var mainCategoryOptionArrays = [];
-  console.log(formInputs, formLabels); ///////////////////////////////
+  console.log(formInputs, formLabels, formSections); ///////////////////////////////
   // MONTHLY BUDGET OPTIONS
 
-  var monthlyBudgetTransactionOptions = [formLabels[7], formLabels[8], formInputs[17], formLabels[18], formInputs[18], formLabels[19]];
-  var emergencyFuncTransactionOptions = [formLabels[9], formInputs[8], formLabels[10], formInputs[9]];
+  var monthlyBudgetTransactionOptions = [formSections[10], formSections[11], formLabels[7], formLabels[8], formInputs[18], formLabels[19], formInputs[19], formLabels[20]];
+  var emergencyFuncTransactionOptions = [formSections[7], formSections[8], formLabels[9], formInputs[8], formLabels[10], formInputs[9]];
+  var savingsFundTransactionOptions = [formSections[12], formSections[13], formSections[14], formLabels[11], formInputs[10], formLabels[12], formInputs[11], formLabels[21], formInputs[20], formLabels[22], formInputs[21], formLabels[23]];
+  var expenseFundTransactionOptions = [formSections[15], formSections[16], formSections[17], formLabels[13], formInputs[12], formLabels[14], formInputs[13], formLabels[24], formInputs[22], formLabels[25], formInputs[23], formLabels[26]];
+  var surplusTransactionOptions = [formSections[18], formSections[19], formSections[20], formLabels[15], formInputs[14], formInputs[15], formLabels[16], formLabels[27], formInputs[24], formLabels[28], formInputs[25], formLabels[29]];
+  var investmentFundTransactionOptions = [];
+  var debtTransactionOptions = [formSections[21], formSections[22], formSections[23], formLabels[17], formLabels[30], formInputs[26], formLabels[31], formInputs[27], formLabels[32]];
+  var tithingTransactionOptions = [formSections[9], formLabels[18], formInputs[17]];
   mainCategoryOptionArrays.push(monthlyBudgetTransactionOptions);
-  mainCategoryOptionArrays.push(emergencyFuncTransactionOptions); ////////////////////////////////////////////
+  mainCategoryOptionArrays.push(emergencyFuncTransactionOptions);
+  mainCategoryOptionArrays.push(savingsFundTransactionOptions);
+  mainCategoryOptionArrays.push(expenseFundTransactionOptions);
+  mainCategoryOptionArrays.push(surplusTransactionOptions);
+  mainCategoryOptionArrays.push(debtTransactionOptions);
+  mainCategoryOptionArrays.push(tithingTransactionOptions); ////////////////////////////////////////////
   // START BY WATCHING THE BUDGET NAVIGATION
 
   _watchBudgetNavigation(); ////////////////////////////////////////////

@@ -1,10 +1,13 @@
-input.form-input.r__form-input#expenseFundDescription(type="text")
-label.form-label.r__form-label(for="expenseFundDescription") Description
-input.form-input.r__form-input#expenseAmountSpent(type="number" min="0")
-label.form-label.r__form-label(for="expenseAmountSpent") Amount Spent
-label.form-label.r__form-label Fully Paid For?
-  .paid-for-container.r__paid-for-container 
-    .paid-for-container__no.r__paid-for-container__no
-      p.paid-for-container__no--text.r__paid-for-container__no--text NO
-    .paid-for-container__yes.r__paid-for-container__yes
-      p.paid-for-container__yes--text.r__paid-for-container__yes--text YES
+section.form-row__section.r__form-row__section  
+  input.form-input.r__form-input#expenseFundDescription(type="text" placeholder="Transaction Description")
+  label.form-label.r__form-label(for="expenseFundDescription") Description
+section.form-row__section.r__form-row__section
+  input.form-input.r__form-input#expenseAmountSpent(type="number" min="0" placeholder="$0.00")
+  label.form-label.r__form-label(for="expenseAmountSpent") Amount Spent
+section.form-row__section.r__form-row__section
+  label.form-label.r__form-label Fully Paid For?
+    .paid-for-container.r__paid-for-container 
+      .paid-for-container__no.r__paid-for-container__no
+        p.paid-for-container__no--text.r__paid-for-container__no--text NO
+      .paid-for-container__yes.r__paid-for-container__yes
+        p.paid-for-container__yes--text.r__paid-for-container__yes--text YES

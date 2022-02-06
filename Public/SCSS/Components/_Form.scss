@@ -1114,6 +1114,21 @@
                   @include SizeAndPositioning(relative, 100%, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
                   .form-row {
                     @include SizeAndPositioning(relative, 30%, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
+                    .account-selection {
+                      @include SizeAndPositioning(relative, 4rem, max-content, flex, row, nowrap, center, center, 0, 0, 0);
+                      padding: 0.5rem;
+                      background-color: transparent;
+                      border: 0.2rem solid rgba($primaryColor, 0.8);
+                      border-radius: 0.9rem;
+                      &:hover {
+                        cursor: pointer;
+                        background-color: $primaryColor;
+                        transition: background-color 0.5s, color 0.5s, border 0.5s;
+                      }
+                      &:focus {
+                        border: 0.2rem solid $primaryColor;
+                      }
+                    }
                     &__section {
                       @include SizeAndPositioning(relative, 100%, 33.3%, flex, column-reverse, nowrap, center, center, 0, 0, 0);
                       .form-input {
@@ -1239,6 +1254,49 @@
                       background-color: $primaryColor;
                       border: none;
                       border-bottom-right-radius: 0.4rem;
+                    }
+                  }
+                }
+                .enter-transaction-form {
+                  .form-row {
+                    &:nth-of-type(1) {
+                      padding-right: 0.8rem;
+                      .form-row__section {
+                        &:nth-of-type(1) {
+                          width: 33.3%;
+                          .form-input {
+                            width: 90%;
+                          }
+                        }
+                        &:nth-of-type(2) {
+                          width: 37.5%;
+                          .form-input {
+                            width: 90%;
+                          }
+                        }
+                      }
+                    }
+                    &:nth-of-type(2),
+                    &:nth-of-type(3) {
+                      padding-left: 0.8rem;
+                      .form-row__section {
+                        &:nth-of-type(0),
+                        &:nth-of-type(1),
+                        &:nth-of-type(2),
+                        &:nth-of-type(3),
+                        &:nth-of-type(4),
+                        &:nth-of-type(6),
+                        &:nth-of-type(7),
+                        &:nth-of-type(9),
+                        &:nth-of-type(10),
+                        &:nth-of-type(12),
+                        &:nth-of-type(13) {
+                          width: 50%;
+                          .form-input {
+                            width: 90%;
+                          }
+                        }
+                      }
                     }
                   }
                 }

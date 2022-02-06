@@ -1,9 +1,11 @@
 form.enter-transaction-form.r__enter-transaction-form(method="POST" action=`/users/${data.user.id}/budgets/${data.budget.id}`) 
   section.form-row.r__form-row
-    input.form-input.r__form-input#transactionDate(type="date")
-    label.form-label.r__form-label(for="transactionDate") Transaction Date
-    input.form-input.r__form-input#transactionLocation(type="text")
-    label.form-label.r__form-label(for="transactionLocation") Transaction Location
+    section.form-row__section.r__form-row__section
+      input.form-input.r__form-input#transactionDate(type="date")
+      label.form-label.r__form-label(for="transactionDate") Transaction Date
+    section.form-row__section.r__form-row__section
+      input.form-input.r__form-input#transactionLocation(type="text" placeholder="Transaction Location")
+      label.form-label.r__form-label(for="transactionLocation") Transaction Location
     button.form-button.r__form-button(type="button") Add item
   section.form-row.r__form-row
     include ./Accounts/_transaction-options-1
