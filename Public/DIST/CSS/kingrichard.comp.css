@@ -34857,7 +34857,8 @@ html {
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container--hidden {
   display: none;
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form {
   position: relative;
   height: 100%;
   width: 100%;
@@ -34868,7 +34869,8 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row {
   position: relative;
   height: 30%;
   width: 100%;
@@ -34879,7 +34881,8 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section {
   position: relative;
   height: 100%;
   width: 33.3%;
@@ -34890,7 +34893,8 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section .form-input {
   position: relative;
   height: 4rem;
   width: 85%;
@@ -34905,23 +34909,33 @@ html {
   border-radius: 0.9rem;
   transition: border 0.5s, color 0.5s;
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input::-webkit-input-placeholder, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input::-moz-placeholder, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input::placeholder {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input::-webkit-input-placeholder, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input::-moz-placeholder, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input::placeholder,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section .form-input::-webkit-input-placeholder,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section .form-input::-moz-placeholder,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section .form-input::placeholder {
   opacity: 0;
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input:focus {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input:focus,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section .form-input:focus {
   outline: none;
   border: 0.2rem solid #822aba;
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input:focus::-moz-placeholder, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input:focus::placeholder {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input:focus::-moz-placeholder, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input:focus::placeholder,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section .form-input:focus::-moz-placeholder,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section .form-input:focus::placeholder {
   opacity: 1;
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input:focus::-webkit-input-placeholder {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input:focus::-webkit-input-placeholder,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section .form-input:focus::-webkit-input-placeholder {
   opacity: 1;
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input:not(:placeholder-shown) + label, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input:focus + label {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input:not(:placeholder-shown) + label, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input:focus + label,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section .form-input:not(:placeholder-shown) + label,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section .form-input:focus + label {
   transform: translate(-1.25rem, -3rem) scale(0.95);
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section .form-label {
   position: absolute;
   height: 4rem;
   width: 75%;
@@ -34935,10 +34949,12 @@ html {
   transition: transform 0.5s;
   -moz-transform: translate(-0.75rem, 0);
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label__text {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label__text,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section .form-label__text {
   transform: translate(-2rem, 0);
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section .form-label .form-input--tithing {
   position: absolute;
   height: 4rem;
   width: 75%;
@@ -34952,7 +34968,8 @@ html {
   border-radius: 5rem;
   background-color: rgba(72, 23, 103, 0.9);
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing__switch {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing__switch,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section .form-label .form-input--tithing__switch {
   position: absolute;
   height: 3.4rem;
   width: 3.4rem;
@@ -34967,52 +34984,67 @@ html {
   border-radius: 5rem;
   background-color: #822aba;
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing__text-no {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing__text-no,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section .form-label .form-input--tithing__text-no {
   display: flex;
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing__text-yes {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing__text-yes,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section .form-label .form-input--tithing__text-yes {
   display: none;
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing--tithed {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing--tithed,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section .form-label .form-input--tithing--tithed {
   background-color: #38d927;
   border: 0.2rem solid #2cae1f;
   transition: border 0.5s, background-color 0.5s;
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing--tithed__switch {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing--tithed__switch,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section .form-label .form-input--tithing--tithed__switch {
   width: 96%;
   background-color: #38d927;
   transition: color 0.5s, background-color 0.5s, width 0.5s;
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing--tithed__text-no {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing--tithed__text-no,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section .form-label .form-input--tithing--tithed__text-no {
   display: none;
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing--tithed__text-yes {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing--tithed__text-yes,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section .form-label .form-input--tithing--tithed__text-yes {
   display: flex;
   z-index: 2;
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing:hover {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing:hover,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section .form-label .form-input--tithing:hover {
   cursor: pointer;
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .income-row:first-of-type {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .income-row:first-of-type,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .income-row:first-of-type {
   margin-bottom: 2rem;
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .income-row:first-of-type .form-row__section {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .income-row:first-of-type .form-row__section,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .income-row:first-of-type .form-row__section {
   justify-content: flex-start;
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .income-row:nth-of-type(2) .form-row__section {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .income-row:nth-of-type(2) .form-row__section,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .income-row:nth-of-type(2) .form-row__section {
   width: 50%;
   justify-content: flex-end;
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .income-row:nth-of-type(2) .form-row__section .form-input {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .income-row:nth-of-type(2) .form-row__section .form-input,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .income-row:nth-of-type(2) .form-row__section .form-input {
   width: 90%;
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .income-row:nth-of-type(2) .form-row__section .form-input:not(:placeholder-shown) + label, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .income-row:nth-of-type(2) .form-row__section .form-input:focus + label {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .income-row:nth-of-type(2) .form-row__section .form-input:not(:placeholder-shown) + label, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .income-row:nth-of-type(2) .form-row__section .form-input:focus + label,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .income-row:nth-of-type(2) .form-row__section .form-input:not(:placeholder-shown) + label,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .income-row:nth-of-type(2) .form-row__section .form-input:focus + label {
   transform: translate(-2rem, -3rem) scale(0.95);
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .income-row:nth-of-type(2) .form-row__section .form-label {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .income-row:nth-of-type(2) .form-row__section .form-label,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .income-row:nth-of-type(2) .form-row__section .form-label {
   -moz-transform: translate(-1.5rem, 0);
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .early-income-view {
   position: relative;
   height: 40%;
   width: 100%;
@@ -35023,7 +35055,10 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view__investment, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view__savings, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view__un-allocated {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view__investment, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view__savings, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view__un-allocated,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .early-income-view__investment,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .early-income-view__savings,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .early-income-view__un-allocated {
   position: relative;
   height: 100%;
   width: 33%;
@@ -35035,7 +35070,10 @@ html {
   transform: rotate(0) translate(0, 0);
   border: 0.2rem solid #822aba;
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view__investment__header, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view__savings__header, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view__un-allocated__header {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view__investment__header, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view__savings__header, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view__un-allocated__header,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .early-income-view__investment__header,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .early-income-view__savings__header,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .early-income-view__un-allocated__header {
   position: absolute;
   height: 1.5rem;
   width: max-content;
@@ -35048,10 +35086,12 @@ html {
   top: 0.25rem;
   left: 0.25rem;
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view__investment {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view__investment,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .early-income-view__investment {
   border-bottom-left-radius: 0.4rem;
 }
-.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view__un-allocated {
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-income-form .early-income-view__un-allocated,
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .early-income-view__un-allocated {
   background-color: #822aba;
   border: none;
   border-bottom-right-radius: 0.4rem;

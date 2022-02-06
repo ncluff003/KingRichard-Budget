@@ -2,7 +2,7 @@
 label.form-label.r__form-label Expense Type
   select.form-input.r__form-input#expenseType
     each expenseType in expenseTypes 
-      option.category-selection.r__category-selection= `${expenseType}`
+      option.category-selection.r__category-selection(value=`${expenseType}`)= `${expenseType}`
 label.form-label.r__form-label Expense
   select.form-input.r__form-input#expenses
   //- This is where the expenses that are either expenses or bills planned.  It depends on the expense type you selected.

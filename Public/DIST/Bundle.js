@@ -6514,6 +6514,47 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "_watchBudget": () => (/* binding */ _watchBudget)
 /* harmony export */ });
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
+  arrayOfArrays.forEach(function (a, i) {
+    a.forEach(function (c, i) {
+      c.style.display = "none";
+    });
+  });
+  var accountOptions = document.querySelectorAll('.account-selection__option');
+  var clicked;
+  console.log(accountOptions);
+  accountOptions.forEach(function (ao, i) {
+    ao.addEventListener('click', function (e) {
+      e.preventDefault();
+      clicked = e.target;
+
+      if (clicked.value === "Monthly Budget") {
+        arrayOfArrays.forEach(function (a, i) {
+          a.forEach(function (c, i) {
+            c.style.display = "none";
+          });
+        });
+        arrayOfArrays[0].forEach(function (a, i) {
+          a.style.display = "flex";
+        });
+      }
+
+      if (clicked.value === "Emergency Fund") {
+        arrayOfArrays.forEach(function (a, i) {
+          a.forEach(function (c, i) {
+            c.style.display = "none";
+          });
+        });
+        arrayOfArrays[1].forEach(function (a, i) {
+          a.style.display = "flex";
+        });
+      }
+
+      console.log(clicked);
+    });
+  });
+};
+
 var _watchBudgetNavigation = function _watchBudgetNavigation() {
   var budgetNavButton = document.querySelector('.budget-container__navigation-button-container__button');
   var budgetNavigation = document.querySelector('.budget-navigation');
@@ -6529,9 +6570,25 @@ var _watchBudgetNavigation = function _watchBudgetNavigation() {
 
 var _watchBudget = function _watchBudget() {
   console.log("WATCHING YOUR BUDGET"); ////////////////////////////////////////////
+  // SETUP ACCOUNT OPTIONS FOR TRANSACTIONS
+
+  var formLabels = document.querySelectorAll('.form-label');
+  var formInputs = document.querySelectorAll('.form-input');
+  var mainCategoryOptionArrays = [];
+  console.log(formInputs, formLabels); ///////////////////////////////
+  // MONTHLY BUDGET OPTIONS
+
+  var monthlyBudgetTransactionOptions = [formLabels[7], formLabels[8], formInputs[17], formLabels[18], formInputs[18], formLabels[19]];
+  var emergencyFuncTransactionOptions = [formLabels[9], formInputs[8], formLabels[10], formInputs[9]];
+  mainCategoryOptionArrays.push(monthlyBudgetTransactionOptions);
+  mainCategoryOptionArrays.push(emergencyFuncTransactionOptions); ////////////////////////////////////////////
   // START BY WATCHING THE BUDGET NAVIGATION
 
-  _watchBudgetNavigation();
+  _watchBudgetNavigation(); ////////////////////////////////////////////
+  // WATCH FOR ACCOUNT SELECTION
+
+
+  _watchForTransactions(mainCategoryOptionArrays);
 };
 
 /***/ }),

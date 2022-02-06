@@ -1109,7 +1109,8 @@
           &__container {
             &--small {
               &__content {
-                .enter-income-form {
+                .enter-income-form,
+                .enter-transaction-form {
                   @include SizeAndPositioning(relative, 100%, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
                   .form-row {
                     @include SizeAndPositioning(relative, 30%, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
