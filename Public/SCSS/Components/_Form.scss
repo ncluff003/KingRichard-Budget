@@ -1276,6 +1276,28 @@
                         }
                       }
                     }
+                    &:nth-of-type(2) {
+                      .label-container {
+                        @include SizeAndPositioning(relative, 100%, 33.3%, flex, column, nowrap, center, center, 0, -0.7rem, 0);
+                        &__text {
+                          align-self: flex-start;
+                          transform: translateX(2rem);
+                        }
+                        .form-input {
+                          @include SizeAndPositioning(relative, 4rem, 85%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+                          padding: 0.5rem;
+                          border: 0.2rem solid rgba($primaryColor, 0.8);
+                          border-radius: 0.9rem;
+                          background-color: transparent;
+                          &:hover {
+                            cursor: pointer;
+                            background-color: $primaryColor;
+                            border: 0.2rem solid $primaryColor;
+                            transition: background-color 0.5s, color 0.5s, border 0.5s;
+                          }
+                        }
+                      }
+                    }
                     &:nth-of-type(2),
                     &:nth-of-type(3) {
                       padding-left: 0.8rem;

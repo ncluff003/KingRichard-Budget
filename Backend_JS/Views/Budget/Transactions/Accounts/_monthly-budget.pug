@@ -1,7 +1,9 @@
-label.form-label.r__form-label Category
+label.form-label.r__form-label 
+  p.label-container__text.r__label-container__text Category
   select.form-input.r__form-input#mainCategory
     each category in data.budget.mainCategories 
       option.category-selection.r__category-selection(value=`${category.title}`)= `${category.title}`
-label.form-label.r__form-label SubCategory
+label.form-label.r__form-label
+  p.label-container__text.r__label-container__text SubCategory
   select.form-input.r__form-input#subCategory
   //- This is where depending on the main category, that category's sub categories will be put as options here.

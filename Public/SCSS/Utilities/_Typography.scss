@@ -978,6 +978,15 @@ html {
                           }
                         }
                       }
+                      .form-label {
+                        .form-input {
+                          color: rgba($primaryColor, 0.8);
+                          font-size: 1.4rem;
+                          &:hover {
+                            color: $colorOffWhite;
+                          }
+                        }
+                      }
                     }
                   }
                   .enter-transaction-form {
@@ -991,6 +1000,15 @@ html {
                           }
                           &:focus {
                             border: 0.2rem solid $primaryColor;
+                          }
+                        }
+                      }
+                      &:nth-of-type(2) {
+                        .label-container {
+                          font-size: 1.26rem;
+                          text-align: left;
+                          select {
+                            font-size: 1.4rem;
                           }
                         }
                       }

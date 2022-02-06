@@ -6535,6 +6535,8 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
         });
         arrayOfArrays[0].forEach(function (a, i) {
           a.style.display = "flex";
+          if (i === 2) a.classList.add('label-container');
+          if (i === 3) a.classList.add('label-container');
         });
       } // EMERGENCY FUND OPTIONS
 
@@ -6559,6 +6561,8 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
         });
         arrayOfArrays[2].forEach(function (a, i) {
           a.style.display = "flex";
+          if (i === 3) a.classList.add('label-container');
+          if (i === 5) a.classList.add('label-container');
         });
       } // EXPENSE FUND OPTIONS
 
@@ -6571,6 +6575,8 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
         });
         arrayOfArrays[3].forEach(function (a, i) {
           a.style.display = "flex";
+          if (i === 3) a.classList.add('label-container');
+          if (i === 5) a.classList.add('label-container');
         });
       } // SURPLUS OPTIONS
 
@@ -6583,6 +6589,8 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
         });
         arrayOfArrays[4].forEach(function (a, i) {
           a.style.display = "flex";
+          if (i === 3) a.classList.add('label-container');
+          if (i === 6) a.classList.add('label-container');
         });
       } // DEBT OPTIONS
 
@@ -6595,6 +6603,7 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
         });
         arrayOfArrays[5].forEach(function (a, i) {
           a.style.display = "flex";
+          if (i === 3) a.classList.add('label-container');
         });
       } // TITHING OPTIONS
 

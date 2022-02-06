@@ -925,6 +925,15 @@ html {
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section .form-label .form-input--tithing {
   color: #fafafa;
 }
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-income-form .form-row .form-label .form-input,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row .form-label .form-input {
+  color: rgba(130, 42, 186, 0.8);
+  font-size: 1.4rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-income-form .form-row .form-label .form-input:hover,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row .form-label .form-input:hover {
+  color: #fafafa;
+}
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(1) .form-button {
   color: rgba(130, 42, 186, 0.8);
   font-size: 1.4rem;
@@ -934,6 +943,13 @@ html {
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(1) .form-button:focus {
   border: 0.2rem solid #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .label-container {
+  font-size: 1.26rem;
+  text-align: left;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .label-container select {
+  font-size: 1.4rem;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .form-row__section:nth-of-type(0), .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .form-row__section:nth-of-type(1), .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .form-row__section:nth-of-type(2), .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .form-row__section:nth-of-type(3), .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .form-row__section:nth-of-type(4), .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .form-row__section:nth-of-type(6), .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .form-row__section:nth-of-type(7), .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .form-row__section:nth-of-type(9), .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .form-row__section:nth-of-type(10), .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .form-row__section:nth-of-type(12), .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .form-row__section:nth-of-type(13), .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(0), .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(1), .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(2), .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(3), .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(4), .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(6), .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(7), .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(9), .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(10), .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(12), .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(13) {
   width: 50%;
@@ -35198,6 +35214,42 @@ html {
 }
 .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(1) .form-row__section:nth-of-type(2) .form-input {
   width: 90%;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .label-container {
+  position: relative;
+  height: 100%;
+  width: 33.3%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, -0.7rem);
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .label-container__text {
+  align-self: flex-start;
+  transform: translateX(2rem);
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .label-container .form-input {
+  position: relative;
+  height: 4rem;
+  width: 85%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  padding: 0.5rem;
+  border: 0.2rem solid rgba(130, 42, 186, 0.8);
+  border-radius: 0.9rem;
+  background-color: transparent;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .label-container .form-input:hover {
+  cursor: pointer;
+  background-color: #822aba;
+  border: 0.2rem solid #822aba;
+  transition: background-color 0.5s, color 0.5s, border 0.5s;
 }
 .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2), .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) {
   padding-left: 0.8rem;
