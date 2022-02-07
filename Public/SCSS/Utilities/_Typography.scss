@@ -1003,7 +1003,7 @@ html {
                           }
                         }
                       }
-                      &:nth-of-type(2) {
+                      &:nth-of-type(3) {
                         .label-container {
                           font-size: 1.26rem;
                           text-align: left;
@@ -1012,8 +1012,18 @@ html {
                           }
                         }
                       }
-                      &:nth-of-type(2),
-                      &:nth-of-type(3) {
+                      &:nth-of-type(4) {
+                        .fully-paid-for {
+                          .paid-for-container {
+                            &__no,
+                            &__yes {
+                              color: $colorOffWhite;
+                            }
+                          }
+                        }
+                      }
+                      &:nth-of-type(3),
+                      &:nth-of-type(4) {
                         .form-row__section {
                           &:nth-of-type(0),
                           &:nth-of-type(1),
@@ -1048,6 +1058,12 @@ html {
                     &__un-allocated {
                       color: $colorOffWhite;
                     }
+                  }
+                }
+                &__transaction-total {
+                  font-size: 3rem;
+                  &__heading {
+                    font-size: 1.6rem;
                   }
                 }
               }

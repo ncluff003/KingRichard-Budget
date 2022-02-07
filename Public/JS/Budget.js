@@ -48,6 +48,13 @@ const _watchForTransactions = (arrayOfArrays) => {
           a.style.display = `flex`;
           if (i === 3) a.classList.add('label-container');
           if (i === 5) a.classList.add('label-container');
+          if (i === 11) {
+            a.classList.add('fully-paid-for');
+            a.addEventListener('click', (e) => {
+              console.log(a.firstChild.nextSibling);
+              a.firstChild.nextSibling.classList.toggle('paid-for-container--clicked');
+            });
+          }
         });
       }
 
@@ -62,6 +69,13 @@ const _watchForTransactions = (arrayOfArrays) => {
           a.style.display = `flex`;
           if (i === 3) a.classList.add('label-container');
           if (i === 5) a.classList.add('label-container');
+          if (i === 11) {
+            a.classList.add('fully-paid-for');
+            a.addEventListener('click', (e) => {
+              console.log(a.firstChild.nextSibling);
+              a.firstChild.nextSibling.classList.toggle('paid-for-container--clicked');
+            });
+          }
         });
       }
 
@@ -76,6 +90,12 @@ const _watchForTransactions = (arrayOfArrays) => {
           a.style.display = `flex`;
           if (i === 3) a.classList.add('label-container');
           if (i === 6) a.classList.add('label-container');
+          if (i === 11) {
+            a.classList.add('fully-paid-for');
+            a.addEventListener('click', (e) => {
+              a.firstChild.nextSibling.classList.toggle('paid-for-container--clicked');
+            });
+          }
         });
       }
 
@@ -89,6 +109,13 @@ const _watchForTransactions = (arrayOfArrays) => {
         arrayOfArrays[5].forEach((a, i) => {
           a.style.display = `flex`;
           if (i === 3) a.classList.add('label-container');
+          if (i === 8) {
+            a.classList.add('fully-paid-for');
+            a.addEventListener('click', (e) => {
+              console.log(a.firstChild.nextSibling);
+              a.firstChild.nextSibling.classList.toggle('paid-for-container--clicked');
+            });
+          }
         });
       }
 

@@ -141,9 +141,17 @@
                 padding: 0 1.5rem;
                 background-color: $primaryColor;
                 border-bottom: 0.3rem solid $tertiaryColor;
+                min-height: 20%;
               }
               &__content {
                 @include SizeAndPositioning(relative, 80%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+              }
+              &__transaction-total {
+                @include SizeAndPositioning(relative, 20%, 100%, flex, column, nowrap, space-around, center, 0, 0, 0);
+                min-height: 20%;
+                background-color: $primaryColor;
+                border-bottom-left-radius: 0.4rem;
+                border-bottom-right-radius: 0.4rem;
               }
             }
           }

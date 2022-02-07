@@ -6563,6 +6563,14 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
           a.style.display = "flex";
           if (i === 3) a.classList.add('label-container');
           if (i === 5) a.classList.add('label-container');
+
+          if (i === 11) {
+            a.classList.add('fully-paid-for');
+            a.addEventListener('click', function (e) {
+              console.log(a.firstChild.nextSibling);
+              a.firstChild.nextSibling.classList.toggle('paid-for-container--clicked');
+            });
+          }
         });
       } // EXPENSE FUND OPTIONS
 
@@ -6577,6 +6585,14 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
           a.style.display = "flex";
           if (i === 3) a.classList.add('label-container');
           if (i === 5) a.classList.add('label-container');
+
+          if (i === 11) {
+            a.classList.add('fully-paid-for');
+            a.addEventListener('click', function (e) {
+              console.log(a.firstChild.nextSibling);
+              a.firstChild.nextSibling.classList.toggle('paid-for-container--clicked');
+            });
+          }
         });
       } // SURPLUS OPTIONS
 
@@ -6591,6 +6607,13 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
           a.style.display = "flex";
           if (i === 3) a.classList.add('label-container');
           if (i === 6) a.classList.add('label-container');
+
+          if (i === 11) {
+            a.classList.add('fully-paid-for');
+            a.addEventListener('click', function (e) {
+              a.firstChild.nextSibling.classList.toggle('paid-for-container--clicked');
+            });
+          }
         });
       } // DEBT OPTIONS
 
@@ -6604,6 +6627,14 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
         arrayOfArrays[5].forEach(function (a, i) {
           a.style.display = "flex";
           if (i === 3) a.classList.add('label-container');
+
+          if (i === 8) {
+            a.classList.add('fully-paid-for');
+            a.addEventListener('click', function (e) {
+              console.log(a.firstChild.nextSibling);
+              a.firstChild.nextSibling.classList.toggle('paid-for-container--clicked');
+            });
+          }
         });
       } // TITHING OPTIONS
 

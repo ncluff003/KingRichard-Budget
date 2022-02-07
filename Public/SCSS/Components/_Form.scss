@@ -1276,7 +1276,7 @@
                         }
                       }
                     }
-                    &:nth-of-type(2) {
+                    &:nth-of-type(3) {
                       .label-container {
                         @include SizeAndPositioning(relative, 100%, 33.3%, flex, column, nowrap, center, center, 0, -0.7rem, 0);
                         &__text {
@@ -1298,8 +1298,47 @@
                         }
                       }
                     }
-                    &:nth-of-type(2),
-                    &:nth-of-type(3) {
+                    &:nth-of-type(4) {
+                      justify-content: flex-start;
+                      .fully-paid-for {
+                        @include SizeAndPositioning(absolute, 100%, 75%, flex, column, nowrap, center, flex-start, 0, calc(-50% + -0.9rem), 0);
+                        top: 50%;
+                        left: 0;
+                        .paid-for-container {
+                          @include SizeAndPositioning(relative, 4rem, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
+                          border: 0.2rem solid $primaryColorDark;
+                          border-radius: 0.5rem;
+                          background-color: rgba($primaryColor, 0.8);
+                          &:before {
+                            @include SizeAndPositioning(absolute, 100%, 50%, flex, row, nowrap, center, center, 0, -50%, 0);
+                            top: 50%;
+                            left: 0;
+                            content: '';
+                            border-top-left-radius: 0.2rem;
+                            border-bottom-left-radius: 0.2rem;
+                            background-color: rgba($secondaryColor, 0.95);
+                            transition: border 0.5s, transform 0.5s;
+                          }
+                          &__no,
+                          &__yes {
+                            @include SizeAndPositioning(relative, 100%, 50%, flex, row, nowrap, center, center, 0, 0, 0);
+                          }
+                          &:hover {
+                            cursor: pointer;
+                          }
+                          &--clicked {
+                            &:before {
+                              transform: translate(4.8rem, -50%);
+                              border-radius: 0;
+                              border-top-right-radius: 0.2rem;
+                              border-bottom-right-radius: 0.2rem;
+                            }
+                          }
+                        }
+                      }
+                    }
+                    &:nth-of-type(3),
+                    &:nth-of-type(4) {
                       padding-left: 0.8rem;
                       .form-row__section {
                         &:nth-of-type(0),
@@ -1322,6 +1361,7 @@
                     }
                   }
                 }
+                // Transaction Total
               }
             }
           }
