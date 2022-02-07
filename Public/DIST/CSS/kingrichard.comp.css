@@ -971,10 +971,14 @@ html {
   color: #fafafa;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__transaction-total {
-  font-size: 3rem;
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  font-weight: bold;
+  font-size: 6rem;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__transaction-total__heading {
-  font-size: 1.6rem;
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  font-weight: normal;
+  font-size: 2rem;
 }
 
 .gridTV {
@@ -45353,7 +45357,7 @@ html {
 }
 .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small {
   position: relative;
-  height: 35rem;
+  height: 45rem;
   width: 55.8rem;
   display: flex;
   flex-direction: column;
@@ -45384,7 +45388,7 @@ html {
 }
 .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small__content {
   position: relative;
-  height: 80%;
+  height: 75%;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -45395,7 +45399,7 @@ html {
 }
 .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small__transaction-total {
   position: relative;
-  height: 20%;
+  height: 40%;
   width: 100%;
   display: flex;
   flex-direction: column;
