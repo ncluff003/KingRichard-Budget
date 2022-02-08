@@ -1,3 +1,6 @@
+// Class of the 'days' on the Calendar.
+// bill-calendar-container__calendar-container__calendar__days__single-day
+
 const _watchForTransactions = (arrayOfArrays) => {
   arrayOfArrays.forEach((a, i) => {
     a.forEach((c, i) => {

@@ -934,7 +934,7 @@ html {
                 &__header {
                   font-size: 2.4rem;
                   &__icon {
-                    font-size: 3rem;
+                    font-size: 4.25rem;
                   }
                   &__text {
                   }
@@ -1068,6 +1068,52 @@ html {
                     font-family: MADE Tommy Soft, Verdana, sans-serif;
                     font-weight: normal;
                     font-size: 2rem;
+                  }
+                }
+                &-wide {
+                  .bill-calendar-container {
+                    &__header {
+                      font-size: 2.4rem;
+                      &__icon {
+                        font-size: 4.25rem;
+                      }
+                    }
+                    &__calendar-container {
+                      &__calendar {
+                        &__header {
+                          font-size: 2.4rem;
+                          color: $primaryColor;
+                          &__icon {
+                            font-size: 3.6rem;
+                            color: rgba($primaryColor, 0.25);
+                            &--not-end {
+                              &:hover {
+                                cursor: pointer;
+                                color: $primaryColor;
+                                transition: color 0.5s;
+                              }
+                            }
+                          }
+                        }
+                        &__weekdays {
+                          &__weekday {
+                            font-size: 1.6rem;
+                          }
+                        }
+                        &__days {
+                          &__single-day {
+                            font-size: 2rem;
+                            color: rgba($colorOffWhite, 0.8);
+                            &:hover {
+                              color: $colorOffWhite;
+                            }
+                          }
+                        }
+                      }
+                    }
+                    &__calendar-container,
+                    &__upcoming-bills {
+                    }
                   }
                 }
               }

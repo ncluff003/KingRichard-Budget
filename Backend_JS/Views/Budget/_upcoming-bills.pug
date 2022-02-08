@@ -1,32 +1,33 @@
-section.budget-container.r__budget-container.budget-container--small-wide.r__budget-container--small-wide 
+section.budget-container.r__budget-container.budget-container__dashboard__container--small-wide.r__budget-container__dashboard__container--small-wide 
   section.bill-calendar-container.r__bill-calendar-container 
     header.bill-calendar-container__header.r__bill-calendar-container__header 
       i.fas.fa-calendar-alt.bill-calendar-container__header__icon.r__bill-calendar-container__header__icon 
-      p.bill-calendar-container__header__text.r__bill-calendar-container__header__text Bill Calendar 
-    section.bill-calendar-container__calendar.r__bill-calendar-container__calendar 
-      header.bill-calendar-container__calendar__header.r__bill-calendar-container__calendar__header 
-        i.fas.fa-chevron-left.bill-calendar-container__calendar__header__icon.r__bill-calendar-container__calendar__header__icon
-        p.bill-calendar-container__calendar__header__title.r__bill-calendar-container__calendar__header__title= `${data.calendar.getMonth()}`
-        i.fas.fa-chevron-right.bill-calendar-container__calendar__header__icon.r__bill-calendar-container__calendar__header__icon
-      section.bill-calendar-container__calendar__weekdays.r__bill-calendar-container__calendar__weekdays 
-      - const weekdays = [ `Sunday`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` ]
-      each day in weekdays 
-        p.bill-calendar-container__calendar__weekdays__weekday.r__bill-calendar-container__calendar__weekdays__weekday= `${day[0]}`
-      section.bill-calendar-container__calendar__days.r__bill-calendar-container__calendar__days 
-        - const numberOfDaySquares = 35;
-        - let startingSquare = 1
-        while startingSquare <= numberOfDaySquares
-          p.bill-calendar-container__calendar__days__single-day.r__bill-calendar-container__calendar__days__single-day
-          - startingSquare++
+      p.bill-calendar-container__header__text.r__bill-calendar-container__header__text Bill Calendar
+    section.bill-calendar-container__calendar-container.r__bill-calendar-container__calendar-container 
+      section.bill-calendar-container__calendar-container__calendar.r__bill-calendar-container__calendar-container__calendar 
+        header.bill-calendar-container__calendar-container__calendar__header.r__bill-calendar-container__calendar-container__calendar__header 
+          i.fas.fa-chevron-left.bill-calendar-container__calendar-container__calendar__header__icon.r__bill-calendar-container__calendar-container__calendar__header__icon
+          p.bill-calendar-container__calendar-container__calendar__header__title.r__bill-calendar-container__calendar-container__calendar__header__title= `${data.calendar.getMonth()}`
+          i.fas.fa-chevron-right.bill-calendar-container__calendar-container__calendar__header__icon.r__bill-calendar-container__calendar-container__calendar__header__icon
+        section.bill-calendar-container__calendar-container__calendar__weekdays.r__bill-calendar-container__calendar-container__calendar__weekdays 
+          - const weekdays = [ `Sunday`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` ]
+            each day in weekdays 
+              p.bill-calendar-container__calendar-container__calendar__weekdays__weekday.r__bill-calendar-container__calendar-container__calendar__weekdays__weekday= `${day[0]}`
+        section.bill-calendar-container__calendar-container__calendar__days.r__bill-calendar-container__calendar-container__calendar__days 
+          - const numberOfDaySquares = 35;
+          - let startingSquare = 1
+          while startingSquare <= numberOfDaySquares
+            p.bill-calendar-container__calendar-container__calendar__days__single-day.r__bill-calendar-container__calendar-container__calendar__days__single-day
+            - startingSquare++
   section.bill-calendar-container.r__bill-calendar-container 
     header.bill-calendar-container__header.r__bill-calendar-container__header 
       i.fas.fa-calendar-alt.bill-calendar-container__header__icon.r__bill-calendar-container__header__icon 
       p.bill-calendar-container__header__text.r__bill-calendar-container__header__text Upcoming Bills
     section.bill-calendar-container__upcoming-bills.r__bill-calendar-container__upcoming-bills
-    - const billInfo = [`Type`, `Due Date`, `Biler | Creditor`, `Amount`]
-      section.bill-calendar-container__upcoming-bills__titles.r__bill-calendar-container__upcoming-bills__titles 
-      each title in billInfo 
-        section.bill-calendar-container__upcoming-bills__titles__title.r__bill-calendar-container__upcoming-bills__titles__title
-          p.bill-calendar-container__upcoming-bills__titles__title__text.r__bill-calendar-container__upcoming-bills__titles__title__text= `${title}`
-      section.bill-calendar-container__upcoming-bills__bills.r__bill-calendar-container__upcoming-bills__bills
+      - const billInfo = [`Type`, `Due Date`, `Biler | Creditor`, `Amount`]
+        section.bill-calendar-container__upcoming-bills__titles.r__bill-calendar-container__upcoming-bills__titles 
+        each title in billInfo 
+          section.bill-calendar-container__upcoming-bills__titles__title.r__bill-calendar-container__upcoming-bills__titles__title
+            p.bill-calendar-container__upcoming-bills__titles__title__text.r__bill-calendar-container__upcoming-bills__titles__title__text= `${title}`
+        section.bill-calendar-container__upcoming-bills__bills.r__bill-calendar-container__upcoming-bills__bills
       
