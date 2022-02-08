@@ -6513,7 +6513,69 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "_watchBudget": () => (/* binding */ _watchBudget)
 /* harmony export */ });
+/* harmony import */ var _FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FrontEnd-Calendar */ "./Public/JS/FrontEnd-Calendar.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+ // Class of the 'days' on the Calendar.
+// bill-calendar-container__calendar-container__calendar__days__single-day
+
+var _setupMonth = function _setupMonth(monthDays, year) {
+  var date = new Date();
+  var dayStart = 1;
+  var days = document.querySelectorAll('.bill-calendar-container__calendar-container__calendar__days__single-day');
+  var startDate = new Date(year, date.getMonth(), 1);
+  var manipulatedDate = new Date(year, date.getMonth(), 1);
+  var currentDate = new Date(year, date.getMonth(), date.getDate());
+  currentDate = new Date(currentDate.setDate(currentDate.getDate() + 1));
+  var dayIndex = startDate.getDay();
+
+  while (dayStart <= monthDays) {
+    if (dayStart === 1) {
+      days[dayIndex].textContent = dayStart;
+      dayStart++;
+      dayIndex++;
+    }
+
+    manipulatedDate = new Date(manipulatedDate.setDate(manipulatedDate.getDate() + 1));
+    days[dayIndex].textContent = manipulatedDate.getDate();
+    dayStart++;
+    dayIndex++;
+  }
+
+  days[currentDate.getDate()].classList.add('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
+  days.forEach(function (d, i) {
+    d.addEventListener('click', function (e) {
+      console.log(d.textContent);
+    });
+  });
+};
+
+var getDaysInMonth = function getDaysInMonth(calendar, month, value) {
+  if (month === "January" || month === "March" || month === "May" || month === "July" || month === "August" || month === "October" || month === "December") {
+    value = 31;
+  }
+
+  if (month === "April" || month === "June" || month === "September" || month === "November") {
+    value = 30;
+  }
+
+  if (month === "February") {
+    calendar.getYear() % 4 === 0 && !(calendar.getYear() % 100 === 0) || calendar.getYear() % 400 === 0 ? value = 29 : value = 28;
+  }
+
+  return value;
+};
+
+var _setupBillCalendar = function _setupBillCalendar() {
+  var calendar = _FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_0__.myCalendar;
+  var daysInMonth;
+  var currentMonth = calendar.getMonth();
+  var currentYear = calendar.getYear(); // GETTING NUMBER OF DAYS IN THE CURRENT MONTH
+
+  daysInMonth = getDaysInMonth(calendar, currentMonth, daysInMonth); // SETTING UP THE BILL CALENDAR MONTH
+
+  _setupMonth(daysInMonth, currentYear);
+};
+
 var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
   arrayOfArrays.forEach(function (a, i) {
     a.forEach(function (c, i) {
@@ -6567,7 +6629,6 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
           if (i === 11) {
             a.classList.add('fully-paid-for');
             a.addEventListener('click', function (e) {
-              console.log(a.firstChild.nextSibling);
               a.firstChild.nextSibling.classList.toggle('paid-for-container--clicked');
             });
           }
@@ -6589,7 +6650,6 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
           if (i === 11) {
             a.classList.add('fully-paid-for');
             a.addEventListener('click', function (e) {
-              console.log(a.firstChild.nextSibling);
               a.firstChild.nextSibling.classList.toggle('paid-for-container--clicked');
             });
           }
@@ -6631,7 +6691,6 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
           if (i === 8) {
             a.classList.add('fully-paid-for');
             a.addEventListener('click', function (e) {
-              console.log(a.firstChild.nextSibling);
               a.firstChild.nextSibling.classList.toggle('paid-for-container--clicked');
             });
           }
@@ -6673,8 +6732,7 @@ var _watchBudget = function _watchBudget() {
   var formLabels = document.querySelectorAll('.form-label');
   var formInputs = document.querySelectorAll('.form-input');
   var formSections = document.querySelectorAll('.form-row__section');
-  var mainCategoryOptionArrays = [];
-  console.log(formInputs, formLabels, formSections); ///////////////////////////////
+  var mainCategoryOptionArrays = []; ///////////////////////////////
   // MONTHLY BUDGET OPTIONS
 
   var monthlyBudgetTransactionOptions = [formSections[10], formSections[11], formLabels[7], formLabels[8], formInputs[18], formLabels[19], formInputs[19], formLabels[20]];
@@ -6698,7 +6756,11 @@ var _watchBudget = function _watchBudget() {
   // WATCH FOR ACCOUNT SELECTION
 
 
-  _watchForTransactions(mainCategoryOptionArrays);
+  _watchForTransactions(mainCategoryOptionArrays); ////////////////////////////////////////////
+  // SETUP BILL CALENDAR
+
+
+  _setupBillCalendar();
 };
 
 /***/ }),
@@ -6796,6 +6858,123 @@ var createBudget = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
+
+/***/ }),
+
+/***/ "./Public/JS/FrontEnd-Calendar.js":
+/*!****************************************!*\
+  !*** ./Public/JS/FrontEnd-Calendar.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "myCalendar": () => (/* binding */ myCalendar)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
+
+
+
+var Calendar = /*#__PURE__*/function () {
+  function Calendar() {
+    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, Calendar);
+
+    this.date = new Date();
+    this.days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    this.monthIndex = this.date.getMonth();
+    this.hours = this.date.getHours();
+    this.day = this.date.getDay();
+  }
+
+  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(Calendar, [{
+    key: "getMinutes",
+    value: function getMinutes() {
+      return this.date.getMinutes() < 10 ? "0".concat(this.date.getMinutes()) : this.date.getMinutes();
+    }
+  }, {
+    key: "getHour",
+    value: function getHour() {
+      if (this.hours === 0 || this.hours === 24) return this.hours = 12;
+
+      if (this.hours >= 13 && this.getMinutes() >= 0) {
+        return this.hours = this.hours - 12;
+      }
+
+      return this.hours;
+    }
+  }, {
+    key: "getTimeOfDay",
+    value: function getTimeOfDay() {
+      return this.date.getHours() < 12 ? this.timeOfDay = "AM" : this.timeOfDay = "PM";
+    }
+  }, {
+    key: "getDay",
+    value: function getDay() {
+      return this.date.getDate();
+    }
+  }, {
+    key: "getGreeting",
+    value: function getGreeting() {
+      if (this.hours < 12) {
+        return this.greeting = "Good Morning";
+      }
+
+      if (this.hours >= 12 && this.hours < 18) {
+        return this.greeting = "Good Afternoon";
+      }
+
+      if (this.hours >= 18) {
+        return this.greeting = "Good Evening";
+      }
+    }
+  }, {
+    key: "getWeekday",
+    value: function getWeekday() {
+      return this.days[this.day];
+    }
+  }, {
+    key: "getMonth",
+    value: function getMonth() {
+      return this.months[this.monthIndex];
+    }
+  }, {
+    key: "getYear",
+    value: function getYear() {
+      return this.date.getFullYear();
+    }
+  }, {
+    key: "monthRemaining",
+    value: function monthRemaining() {
+      var days;
+      var currentMonth = this.getMonth();
+      var currentDay = this.getDay();
+
+      if (currentMonth === "January" || currentMonth === "March" || currentMonth === "May" || currentMonth === "July" || currentMonth === "August" || currentMonth === "October" || currentMonth === "December") {
+        days = 31;
+      }
+
+      if (currentMonth === "April" || currentMonth === "June" || currentMonth === "September" || currentMonth === "November") {
+        days = 30;
+      }
+
+      if (currentMonth === "February") {
+        this.getYear() % 4 === 0 && !(this.getYear() % 100 === 0) || this.getYear() % 400 === 0 ? days = 29 : days = 28;
+      }
+
+      var remaining = days - currentDay;
+      var percentage = remaining / days;
+      var calculatedPercent = (100 * percentage).toFixed(0);
+      return "".concat(calculatedPercent, "%");
+    }
+  }]);
+
+  return Calendar;
+}();
+
+var myCalendar = new Calendar(Date.now());
 
 /***/ }),
 

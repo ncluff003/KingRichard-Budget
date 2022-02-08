@@ -1,5 +1,59 @@
+import * as Calendar from './FrontEnd-Calendar';
 // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
+
+const _setupMonth = (monthDays, year) => {
+  const date = new Date();
+  let dayStart = 1;
+  const days = document.querySelectorAll('.bill-calendar-container__calendar-container__calendar__days__single-day');
+  const startDate = new Date(year, date.getMonth(), 1);
+  let manipulatedDate = new Date(year, date.getMonth(), 1);
+  let currentDate = new Date(year, date.getMonth(), date.getDate());
+  currentDate = new Date(currentDate.setDate(currentDate.getDate() + 1));
+  let dayIndex = startDate.getDay();
+  while (dayStart <= monthDays) {
+    if (dayStart === 1) {
+      days[dayIndex].textContent = dayStart;
+      dayStart++;
+      dayIndex++;
+    }
+    manipulatedDate = new Date(manipulatedDate.setDate(manipulatedDate.getDate() + 1));
+    days[dayIndex].textContent = manipulatedDate.getDate();
+    dayStart++;
+    dayIndex++;
+  }
+  days[currentDate.getDate()].classList.add('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
+  days.forEach((d, i) => {
+    d.addEventListener('click', (e) => {
+      console.log(d.textContent);
+    });
+  });
+};
+
+const getDaysInMonth = (calendar, month, value) => {
+  if (month === `January` || month === `March` || month === `May` || month === `July` || month === `August` || month === `October` || month === `December`) {
+    value = 31;
+  }
+  if (month === `April` || month === `June` || month === `September` || month === `November`) {
+    value = 30;
+  }
+  if (month === `February`) {
+    (calendar.getYear() % 4 === 0 && !(calendar.getYear() % 100 === 0)) || calendar.getYear() % 400 === 0 ? (value = 29) : (value = 28);
+  }
+  return value;
+};
+
+const _setupBillCalendar = () => {
+  const calendar = Calendar.myCalendar;
+  let daysInMonth;
+  const currentMonth = calendar.getMonth();
+  const currentYear = calendar.getYear();
+
+  // GETTING NUMBER OF DAYS IN THE CURRENT MONTH
+  daysInMonth = getDaysInMonth(calendar, currentMonth, daysInMonth);
+  // SETTING UP THE BILL CALENDAR MONTH
+  _setupMonth(daysInMonth, currentYear);
+};
 
 const _watchForTransactions = (arrayOfArrays) => {
   arrayOfArrays.forEach((a, i) => {
@@ -54,7 +108,6 @@ const _watchForTransactions = (arrayOfArrays) => {
           if (i === 11) {
             a.classList.add('fully-paid-for');
             a.addEventListener('click', (e) => {
-              console.log(a.firstChild.nextSibling);
               a.firstChild.nextSibling.classList.toggle('paid-for-container--clicked');
             });
           }
@@ -75,7 +128,6 @@ const _watchForTransactions = (arrayOfArrays) => {
           if (i === 11) {
             a.classList.add('fully-paid-for');
             a.addEventListener('click', (e) => {
-              console.log(a.firstChild.nextSibling);
               a.firstChild.nextSibling.classList.toggle('paid-for-container--clicked');
             });
           }
@@ -115,7 +167,6 @@ const _watchForTransactions = (arrayOfArrays) => {
           if (i === 8) {
             a.classList.add('fully-paid-for');
             a.addEventListener('click', (e) => {
-              console.log(a.firstChild.nextSibling);
               a.firstChild.nextSibling.classList.toggle('paid-for-container--clicked');
             });
           }
@@ -157,7 +208,6 @@ export const _watchBudget = () => {
   const formInputs = document.querySelectorAll('.form-input');
   const formSections = document.querySelectorAll('.form-row__section');
   const mainCategoryOptionArrays = [];
-  console.log(formInputs, formLabels, formSections);
   ///////////////////////////////
   // MONTHLY BUDGET OPTIONS
   const monthlyBudgetTransactionOptions = [
@@ -241,4 +291,8 @@ export const _watchBudget = () => {
   ////////////////////////////////////////////
   // WATCH FOR ACCOUNT SELECTION
   _watchForTransactions(mainCategoryOptionArrays);
+
+  ////////////////////////////////////////////
+  // SETUP BILL CALENDAR
+  _setupBillCalendar();
 };

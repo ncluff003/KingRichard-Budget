@@ -1103,8 +1103,11 @@ html {
                         &__days {
                           &__single-day {
                             font-size: 2rem;
-                            color: rgba($colorOffWhite, 0.8);
+                            color: rgba($primaryColor, 0.8);
                             &:hover {
+                              color: $colorOffWhite;
+                            }
+                            &--current-day {
                               color: $colorOffWhite;
                             }
                           }

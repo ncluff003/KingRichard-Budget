@@ -191,7 +191,6 @@
                     padding: 3rem;
                     &__calendar {
                       @include SizeAndPositioning(relative, 100%, 100%, flex, column, nowrap, center, center, 0, 0, 0);
-                      background-color: rgba($colorDarkerGrey, 0.2);
                       padding: 0.2rem;
                       &__header {
                         @include SizeAndPositioning(relative, 20%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
@@ -209,7 +208,7 @@
                       }
                       &__days {
                         @include SizeAndPositioning(relative, 70%, 100%, grid, row, wrap, space-evenly, center, 0, 0, 0);
-                        @include gridLayout(100%, 100%, repeat(7, 1fr), repeat(5, 1fr), 0.2rem, 0.2rem);
+                        @include gridLayout(100%, 100%, repeat(7, 1fr), repeat(6, 1fr), 0.2rem, 0.2rem);
                         @include gridPlacement(7, 7, 5, 5);
                         &__single-day {
                           @include SizeAndPositioning(relative, 100%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
@@ -224,6 +223,9 @@
                             cursor: pointer;
                             background-color: $primaryColor;
                             transition: background-color 0.5s, color 0.5s;
+                          }
+                          &--current-day {
+                            background-color: $primaryColor;
                           }
                         }
                       }
