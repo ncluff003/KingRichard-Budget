@@ -21,13 +21,13 @@ section.budget-container.r__budget-container.budget-container__dashboard__contai
             - startingSquare++
   section.bill-calendar-container.r__bill-calendar-container 
     header.bill-calendar-container__header.r__bill-calendar-container__header 
-      i.fas.fa-calendar-alt.bill-calendar-container__header__icon.r__bill-calendar-container__header__icon 
+      i.fas.fa-envelope-open-text.bill-calendar-container__header__icon.r__bill-calendar-container__header__icon 
       p.bill-calendar-container__header__text.r__bill-calendar-container__header__text Upcoming Bills
     section.bill-calendar-container__upcoming-bills.r__bill-calendar-container__upcoming-bills
-      - const billInfo = [`Type`, `Due Date`, `Biler | Creditor`, `Amount`]
+      - const billInfo = [`Type`, `Due Date`, `Biller | Creditor`, `Amount`]
         section.bill-calendar-container__upcoming-bills__titles.r__bill-calendar-container__upcoming-bills__titles 
-        each title in billInfo 
-          section.bill-calendar-container__upcoming-bills__titles__title.r__bill-calendar-container__upcoming-bills__titles__title
-            p.bill-calendar-container__upcoming-bills__titles__title__text.r__bill-calendar-container__upcoming-bills__titles__title__text= `${title}`
+          each title in billInfo 
+            section.bill-calendar-container__upcoming-bills__titles__title.r__bill-calendar-container__upcoming-bills__titles__title
+              p.bill-calendar-container__upcoming-bills__titles__title__text.r__bill-calendar-container__upcoming-bills__titles__title__text= `${title}`
         section.bill-calendar-container__upcoming-bills__bills.r__bill-calendar-container__upcoming-bills__bills
       

@@ -881,7 +881,7 @@ html {
   font-size: 2.4rem;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__header__icon {
-  font-size: 4.25rem;
+  font-size: 3rem;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small__header__button {
   color: rgba(250, 250, 250, 0.8);
@@ -984,14 +984,14 @@ html {
   font-size: 2.4rem;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small-wide .bill-calendar-container__header__icon {
-  font-size: 4.25rem;
+  font-size: 3rem;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small-wide .bill-calendar-container__calendar-container__calendar__header {
   font-size: 2.4rem;
   color: #822aba;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small-wide .bill-calendar-container__calendar-container__calendar__header__icon {
-  font-size: 3.6rem;
+  font-size: 3rem;
   color: rgba(130, 42, 186, 0.25);
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small-wide .bill-calendar-container__calendar-container__calendar__header__icon--not-end:hover {
@@ -1008,6 +1008,13 @@ html {
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small-wide .bill-calendar-container__calendar-container__calendar__days__single-day:hover {
   color: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small-wide .bill-calendar-container__upcoming-bills__titles {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  color: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small-wide .bill-calendar-container__upcoming-bills__titles__title {
+  font-size: 1.6rem;
 }
 .gridTV {
   display: grid;
@@ -45354,7 +45361,7 @@ html {
   padding: 0.2rem;
   border: 0.3rem solid #822aba;
   border-radius: 0.5rem;
-  background-color: rgba(250, 250, 250, 0.8);
+  background-color: rgba(221, 221, 221, 0.25);
   margin-bottom: 5rem;
 }
 .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--extra-small__header {
@@ -45397,7 +45404,7 @@ html {
   padding: 0.2rem;
   border: 0.3rem solid #822aba;
   border-radius: 0.5rem;
-  background-color: rgba(250, 250, 250, 0.8);
+  background-color: rgba(221, 221, 221, 0.25);
   margin-bottom: 5rem;
 }
 .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small__header {
@@ -45507,6 +45514,7 @@ html {
   left: 0;
 }
 .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small-wide .bill-calendar-container__calendar-container {
+  border-right: 0.2rem groove #822aba;
   padding: 3rem;
 }
 .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small-wide .bill-calendar-container__calendar-container__calendar {
@@ -46056,6 +46064,32 @@ html {
   background-color: #822aba;
   transition: background-color 0.5s, color 0.5s;
 }
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small-wide .bill-calendar-container__upcoming-bills__titles {
+  position: relative;
+  height: 4.4rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: rgba(221, 221, 221, 0.5);
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small-wide .bill-calendar-container__upcoming-bills__titles__title {
+  position: relative;
+  height: 100%;
+  width: calc(25% - 0.4rem);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: #822aba;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
 .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small-wide .bill-calendar-container__calendar-container, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small-wide .bill-calendar-container__upcoming-bills {
   position: relative;
   height: 85%;
@@ -46066,7 +46100,7 @@ html {
   justify-content: center;
   align-items: center;
   transform: rotate(0) translate(0, 0);
-  background-color: #dddddd;
+  background-color: rgba(221, 221, 221, 0.25);
 }
 
 /*

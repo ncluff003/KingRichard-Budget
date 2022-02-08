@@ -934,7 +934,7 @@ html {
                 &__header {
                   font-size: 2.4rem;
                   &__icon {
-                    font-size: 4.25rem;
+                    font-size: 3rem;
                   }
                   &__text {
                   }
@@ -1075,7 +1075,7 @@ html {
                     &__header {
                       font-size: 2.4rem;
                       &__icon {
-                        font-size: 4.25rem;
+                        font-size: 3rem;
                       }
                     }
                     &__calendar-container {
@@ -1084,7 +1084,7 @@ html {
                           font-size: 2.4rem;
                           color: $primaryColor;
                           &__icon {
-                            font-size: 3.6rem;
+                            font-size: 3rem;
                             color: rgba($primaryColor, 0.25);
                             &--not-end {
                               &:hover {
@@ -1108,6 +1108,15 @@ html {
                               color: $colorOffWhite;
                             }
                           }
+                        }
+                      }
+                    }
+                    &__upcoming-bills {
+                      &__titles {
+                        font-family: MADE Tommy Soft, Verdana, sans-serif;
+                        color: $colorOffWhite;
+                        &__title {
+                          font-size: 1.6rem;
                         }
                       }
                     }

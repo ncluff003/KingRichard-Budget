@@ -116,7 +116,7 @@
               padding: 0.2rem;
               border: 0.3rem solid $primaryColor;
               border-radius: 0.5rem;
-              background-color: rgba($colorOffWhite, 0.8);
+              background-color: rgba($colorLightestGrey, 0.25);
               &__header {
                 @include SizeAndPositioning(relative, 25%, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
                 border-top-left-radius: 0.25rem;
@@ -135,7 +135,7 @@
               padding: 0.2rem;
               border: 0.3rem solid $primaryColor;
               border-radius: 0.5rem;
-              background-color: rgba($colorOffWhite, 0.8);
+              background-color: rgba($colorLightestGrey, 0.25);
               &__header {
                 @include SizeAndPositioning(relative, 15%, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
                 border-top-left-radius: 0.25rem;
@@ -187,6 +187,7 @@
                     }
                   }
                   &__calendar-container {
+                    border-right: 0.2rem groove $primaryColor;
                     padding: 3rem;
                     &__calendar {
                       @include SizeAndPositioning(relative, 100%, 100%, flex, column, nowrap, center, center, 0, 0, 0);
@@ -228,10 +229,22 @@
                       }
                     }
                   }
+                  &__upcoming-bills {
+                    &__titles {
+                      @include SizeAndPositioning(relative, 4.4rem, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
+                      background-color: rgba($colorLightestGrey, 0.5);
+                      &__title {
+                        @include SizeAndPositioning(relative, 100%, calc(25% - 0.4rem), flex, row, nowrap, center, center, 0, 0, 0);
+                        background-color: $primaryColor;
+                        border-top-left-radius: 0.5rem;
+                        border-top-right-radius: 0.5rem;
+                      }
+                    }
+                  }
                   &__calendar-container,
                   &__upcoming-bills {
                     @include SizeAndPositioning(relative, 85%, 100%, flex, column, nowrap, center, center, 0, 0, 0);
-                    background-color: $colorLightestGrey;
+                    background-color: rgba($colorLightestGrey, 0.25);
                   }
                 }
               }
