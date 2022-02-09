@@ -2,6 +2,13 @@ import * as Calendar from './FrontEnd-Calendar';
 // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
 
+const selectDay = (monthDays, singleDay) => {
+  monthDays.forEach((day, i) => {
+    day.classList.remove('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
+  });
+  singleDay.classList.add('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
+};
+
 const _setupMonth = (monthDays, year) => {
   const date = new Date();
   let dayStart = 1;
@@ -22,11 +29,16 @@ const _setupMonth = (monthDays, year) => {
     dayStart++;
     dayIndex++;
   }
-  days[currentDate.getDate()].classList.add('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
+  let currentDay = days[currentDate.getDate()];
+  currentDay.classList.add('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
   days.forEach((d, i) => {
-    d.addEventListener('click', (e) => {
-      console.log(d.textContent);
-    });
+    if (d.textContent === '') d.classList.add('un-used-day');
+    if (d.textContent !== '') {
+      d.addEventListener('click', (e) => {
+        console.log(d.textContent);
+        selectDay(days, d);
+      });
+    }
   });
 };
 
@@ -208,6 +220,7 @@ export const _watchBudget = () => {
   const formInputs = document.querySelectorAll('.form-input');
   const formSections = document.querySelectorAll('.form-row__section');
   const mainCategoryOptionArrays = [];
+  let currentDay;
   ///////////////////////////////
   // MONTHLY BUDGET OPTIONS
   const monthlyBudgetTransactionOptions = [

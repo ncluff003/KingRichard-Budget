@@ -1111,6 +1111,11 @@ html {
                               color: $colorOffWhite;
                             }
                           }
+                          .un-used-day {
+                            &:hover {
+                              background-color: $primaryColor;
+                            }
+                          }
                         }
                       }
                     }

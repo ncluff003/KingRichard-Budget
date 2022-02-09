@@ -228,6 +228,15 @@
                             background-color: $primaryColor;
                           }
                         }
+                        .un-used-day {
+                          @include SizeAndPositioning(relative, 100%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+                          border: none;
+                          &:hover {
+                            cursor: default;
+                            background-color: transparent;
+                            transition: background-color 0.5s, color 0.5s;
+                          }
+                        }
                       }
                     }
                   }

@@ -6518,6 +6518,13 @@ __webpack_require__.r(__webpack_exports__);
  // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
 
+var selectDay = function selectDay(monthDays, singleDay) {
+  monthDays.forEach(function (day, i) {
+    day.classList.remove('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
+  });
+  singleDay.classList.add('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
+};
+
 var _setupMonth = function _setupMonth(monthDays, year) {
   var date = new Date();
   var dayStart = 1;
@@ -6541,11 +6548,17 @@ var _setupMonth = function _setupMonth(monthDays, year) {
     dayIndex++;
   }
 
-  days[currentDate.getDate()].classList.add('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
+  var currentDay = days[currentDate.getDate()];
+  currentDay.classList.add('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
   days.forEach(function (d, i) {
-    d.addEventListener('click', function (e) {
-      console.log(d.textContent);
-    });
+    if (d.textContent === '') d.classList.add('un-used-day');
+
+    if (d.textContent !== '') {
+      d.addEventListener('click', function (e) {
+        console.log(d.textContent);
+        selectDay(days, d);
+      });
+    }
   });
 };
 
@@ -6732,7 +6745,8 @@ var _watchBudget = function _watchBudget() {
   var formLabels = document.querySelectorAll('.form-label');
   var formInputs = document.querySelectorAll('.form-input');
   var formSections = document.querySelectorAll('.form-row__section');
-  var mainCategoryOptionArrays = []; ///////////////////////////////
+  var mainCategoryOptionArrays = [];
+  var currentDay; ///////////////////////////////
   // MONTHLY BUDGET OPTIONS
 
   var monthlyBudgetTransactionOptions = [formSections[10], formSections[11], formLabels[7], formLabels[8], formInputs[18], formLabels[19], formInputs[19], formLabels[20]];
