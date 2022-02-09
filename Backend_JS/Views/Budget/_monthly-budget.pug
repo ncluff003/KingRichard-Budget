@@ -1,8 +1,8 @@
-section.budget-container.r__budget-container.budget-container--large.r__budget-container--large 
-  header.budget-container.r__budget-container.budget-container--large__header.r__budget-container--large__header
-    i.fas.fa-file-invoice-dollar.budget-container--large__header__icon.r__budget-container--large__header__icon 
-    p.budget-container--large__header__title.r__budget-container--large__header__title= `${data.calendar.getMonth()}`
-  section.budget-container--large__budget-goal-summary-container.r__budget-container--large__budget-goal-summary-container 
+section.budget-container.r__budget-container.budget-container__dashboard__container--large.r__budget-container__dashboard__container--large 
+  header.budget-container.r__budget-container.budget-container__dashboard__container--large__header.r__budget-container__dashboard__container--large__header
+    i.fas.fa-file-invoice-dollar.budget-container__dashboard__container--large__header__icon.r__budget-container__dashboard__container--large__header__icon 
+    p.budget-container__dashboard__container--large__header__title.r__budget-container__dashboard__container--large__header__title= `${data.calendar.getMonth().toUpperCase()}`
+  section.budget-container__dashboard__container--large__budget-goal-summary-container.r__budget-container__dashboard__container--large__budget-goal-summary-container 
     section.budget-single-goal-summary.r__budget-single-goal-summary
       p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Overall Budget
       p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `$${0}`
@@ -18,7 +18,7 @@ section.budget-container.r__budget-container.budget-container--large.r__budget-c
     section.budget-single-goal-summary.r__budget-single-goal-summary
       p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Percentage of Month Remaining
       p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `${data.calendar.monthRemaining()}`
-  section.budget-container--large__category-container.r__budget-container--large__category-container
+  section.budget-container__dashboard__container--large__category-container.r__budget-container__dashboard__container--large__category-container
     section.main-category-display.r__main-category-display
       section.main-category-display__button-container.r__main-category-display__button-container
         i.fas.fa-arrow-alt-circle-left.main-category-display__button-container__icon.r__main-category-display__button-container__icon.left.r__left
@@ -29,6 +29,6 @@ section.budget-container.r__budget-container.budget-container--large.r__budget-c
         i.fas.fa-arrow-alt-circle-right.main-category-display__button-container__icon.r__main-category-display__button-container__icon.right.r__right
     section.sub-category-display.r__sub-category-display
       section.sub-category-display__headers.r__sub-category-display__headers
-      - const subCategoryHeaders = [`Category`, `Budgeted`, `Spent`, `Remaining`, `Percent Spent`] 
-      each header in subCategoryHeaders
-        section.sub-category-display__headers__title-container.r__sub-category-display__headers__title-container= `${header}`
+        - const subCategoryHeaders = [`Category`, `Budgeted`, `Spent`, `Remaining`, `Percent Spent`] 
+        each header in subCategoryHeaders
+          section.sub-category-display__headers__title-container.r__sub-category-display__headers__title-container= `${header}`
