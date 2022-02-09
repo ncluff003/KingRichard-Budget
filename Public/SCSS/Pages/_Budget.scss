@@ -244,6 +244,8 @@
                     &__titles {
                       @include SizeAndPositioning(relative, 4.4rem, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
                       background-color: rgba($colorLightestGrey, 0.5);
+                      padding-bottom: 0.2rem;
+                      border-bottom: 0.2rem solid $primaryColor;
                       &__title {
                         @include SizeAndPositioning(relative, 100%, calc(25% - 0.4rem), flex, row, nowrap, center, center, 0, 0, 0);
                         background-color: $primaryColor;
@@ -258,31 +260,38 @@
                         @include SizeAndPositioning(relative, 4.4rem, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
                         min-height: 4.4rem;
                         &__bill-item {
-                          @include SizeAndPositioning(relative, 100%, 25%, flex, row, nowrap, center, center, 0, 0, 0);
+                          @include SizeAndPositioning(relative, 100%, 25%, flex, column, wrap, center, center, 0, 0, 0);
                           &:nth-of-type(4) {
-                            justify-content: space-evenly;
-                            input[type='checkbox'] {
-                              appearance: none;
-                              -webkit-appearance: none;
-                              @include SizingItem(relative, 2rem, 2rem);
-                              border: 0.2rem solid $primaryColor;
-                              border-radius: 0.25rem;
-                              background-color: transparent;
-                              transition: background-color 0.5s, border 0.5s;
-                              &::after {
-                                @include SizeAndPositioning(absolute, 100%, 100%, none, row, nowrap, center, center, 0, 0, 0);
-                                content: '\f00c';
-                                transition: color 0.5s;
-                              }
-                              &:hover {
-                                cursor: pointer;
-                              }
-                              &:checked {
-                                border: 0.2rem solid $secondaryColor;
-                                background-color: $secondaryColor;
-                                &:after {
-                                  display: flex;
+                            @include SizeAndPositioning(relative, 100%, 25%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+                            .bill-calendar-container__upcoming-bills__bills__bill__bill-item__checkbox-container {
+                              @include SizeAndPositioning(relative, 100%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+                              input[type='checkbox'] {
+                                margin-right: 0.5rem;
+                                appearance: none;
+                                -webkit-appearance: none;
+                                @include SizingItem(relative, 2rem, 2rem);
+                                border: 0.2rem solid $primaryColor;
+                                border-radius: 0.25rem;
+                                background-color: transparent;
+                                transition: background-color 0.5s, border 0.5s;
+                                &::after {
+                                  @include SizeAndPositioning(absolute, 100%, 100%, none, row, nowrap, center, center, 0, 0, 0);
+                                  content: '\f00c';
+                                  transition: color 0.5s;
                                 }
+                                &:hover {
+                                  cursor: pointer;
+                                }
+                                &:checked {
+                                  border: 0.2rem solid $secondaryColor;
+                                  background-color: $secondaryColor;
+                                  &:after {
+                                    display: flex;
+                                  }
+                                }
+                              }
+                              &__text {
+                                @include SizeAndPositioning(relative, 50%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
                               }
                             }
                           }
