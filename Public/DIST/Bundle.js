@@ -5708,7 +5708,8 @@ var insertTiiming = function insertTiiming(target, inputValues, timing, timingBu
     }); ///////////////////////
     // SET TIMING OPTIONS
 
-    console.log(subCategoryIndex); // Set Payment Cycle
+    console.log(subCategoryIndex);
+    console.log(currentMainCategory, currentMainCategory.subCategories); // Set Payment Cycle
 
     currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing; // Set Payment Schedule
 
@@ -6806,11 +6807,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
  //////////////////////
-// USER SIGN UP
+// CREATE BUDGET
 
 var createBudget = /*#__PURE__*/function () {
   var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(budget) {
-    var response, _response;
+    var _response, _response2;
 
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
       while (1) {
@@ -6827,9 +6828,9 @@ var createBudget = /*#__PURE__*/function () {
             });
 
           case 3:
-            response = _context.sent;
+            _response = _context.sent;
 
-            if (!(response.statusText === "Created")) {
+            if (!(_response.statusText === "Created")) {
               _context.next = 8;
               break;
             }
@@ -6844,28 +6845,30 @@ var createBudget = /*#__PURE__*/function () {
             });
 
           case 7:
-            _response = _context.sent;
+            _response2 = _context.sent;
 
           case 8:
-            document.open("text/html").write(response.data);
+            document.open("text/html").write(_response.data);
             window.location.assign("/users/budgets");
+            console.log(_response);
 
             _Budget__WEBPACK_IMPORTED_MODULE_3__._watchBudget();
 
-            _context.next = 16;
+            _context.next = 18;
             break;
 
-          case 13:
-            _context.prev = 13;
+          case 14:
+            _context.prev = 14;
             _context.t0 = _context["catch"](0);
+            console.log(response);
             console.log(_context.t0);
 
-          case 16:
+          case 18:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 13]]);
+    }, _callee, null, [[0, 14]]);
   }));
 
   return function createBudget(_x) {

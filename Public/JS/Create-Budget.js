@@ -4,7 +4,7 @@ import axios from 'axios';
 import qs from 'qs';
 
 //////////////////////
-// USER SIGN UP
+// CREATE BUDGET
 export const createBudget = async (budget) => {
   try {
     const response = await axios({
@@ -25,8 +25,10 @@ export const createBudget = async (budget) => {
     }
     document.open(`text/html`).write(response.data);
     window.location.assign(`/users/budgets`);
+    console.log(response);
     Budgeting._watchBudget();
   } catch (error) {
+    console.log(response);
     console.log(error);
   }
 };

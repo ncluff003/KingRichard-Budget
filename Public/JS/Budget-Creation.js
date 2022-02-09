@@ -357,6 +357,7 @@ const insertTiiming = (target, inputValues, timing, timingButtons, budget, index
     ///////////////////////
     // SET TIMING OPTIONS
     console.log(subCategoryIndex);
+    console.log(currentMainCategory, currentMainCategory.subCategories);
     // Set Payment Cycle
     currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing;
 

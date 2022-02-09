@@ -28,11 +28,11 @@ const sendEmail = require(`./../Utilities/Email`);
 //  My Modules
 const Validate = require(`./../Models/validatorModel`);
 const Calendar = require(`./../Utilities/Calendar`);
+
 ////////////////////////////////////////////
 //  My Models
 const User = require(`./../Models/userModel`);
 const Budget = require(`./../Models/budgetModel`);
-const { response } = require('express');
 
 ////////////////////////////////////////////
 //  My Functions
@@ -42,6 +42,7 @@ const signToken = (id) => {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 };
+console.log(Calendar);
 
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};
@@ -60,12 +61,14 @@ const createAndSendToken = (user, statusCode, method, request, response, templat
     });
   }
   if (method === `render`) {
+    console.log({ ...optionalData });
+    console.log(request, response);
     return response.status(statusCode).render(`${template}`, {
       title: title,
       token,
       data: {
-        user: user,
         ...optionalData,
+        user: user,
       },
     });
   }
@@ -75,8 +78,9 @@ const createAndSendToken = (user, statusCode, method, request, response, templat
 //  Exported Controllers
 exports.getBudget = catchAsync(async (request, response, next) => {
   const user = await User.findById(request.user.id);
+  console.log(user);
   const budget = await Budget.findById(user.budgets[user.budgets.length - 1]);
-
+  console.log(budget);
   createAndSendToken(
     user,
     201,

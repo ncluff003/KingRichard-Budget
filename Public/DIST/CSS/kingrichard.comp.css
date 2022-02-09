@@ -46527,6 +46527,8 @@ I was thinking of iterating through the objects that were created.
     /// Glitches To Fix
 
     GLITCH : Make it so the percentages of the savings and investment funds are recorded in the budget object to be used later.
+    GLITCH : Other than the first category, timing options are not working.
+    GLITCH : Creating a budget for some reason will fail the authentication process.
 
 
     //////////////////////////////////

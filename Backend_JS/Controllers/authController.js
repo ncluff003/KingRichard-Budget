@@ -129,6 +129,7 @@ exports.protect = catchAsync(async (request, response, next) => {
   // GRANT ACCESS TO PROTECTED ROUTE
   request.user = currentUser;
   request.userBody = request.body;
+  request.calendar = Calendar;
   next();
 });
 
