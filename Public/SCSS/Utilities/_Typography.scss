@@ -1127,6 +1127,32 @@ html {
                           font-size: 1.6rem;
                         }
                       }
+                      &__bills {
+                        font-family: MADE Tommy Soft, Verdana, sans-serif;
+                        &__bill {
+                          font-size: 1.2rem;
+                          color: rgba($primaryColor, 0.8);
+                          &__bill-item {
+                            text-align: center;
+                            &:nth-of-type(4) {
+                              input[type='checkbox'] {
+                                &::after {
+                                  font-family: 'Font Awesome 5 Free';
+                                  font-weight: 900;
+                                }
+                                &:checked {
+                                  &:after {
+                                    color: $colorOffWhite;
+                                  }
+                                }
+                              }
+                            }
+                          }
+                          &:hover {
+                            color: $colorOffWhite;
+                          }
+                        }
+                      }
                     }
                     &__calendar-container,
                     &__upcoming-bills {

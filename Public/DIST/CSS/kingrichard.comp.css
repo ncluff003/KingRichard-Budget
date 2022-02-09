@@ -1022,6 +1022,26 @@ html {
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small-wide .bill-calendar-container__upcoming-bills__titles__title {
   font-size: 1.6rem;
 }
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small-wide .bill-calendar-container__upcoming-bills__bills {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small-wide .bill-calendar-container__upcoming-bills__bills__bill {
+  font-size: 1.2rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small-wide .bill-calendar-container__upcoming-bills__bills__bill__bill-item {
+  text-align: center;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small-wide .bill-calendar-container__upcoming-bills__bills__bill__bill-item:nth-of-type(4) input[type=checkbox]::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small-wide .bill-calendar-container__upcoming-bills__bills__bill__bill-item:nth-of-type(4) input[type=checkbox]:checked:after {
+  color: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--small-wide .bill-calendar-container__upcoming-bills__bills__bill:hover {
+  color: #fafafa;
+}
 .gridTV {
   display: grid;
   height: 100vh;
@@ -46114,6 +46134,87 @@ html {
   background-color: #822aba;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small-wide .bill-calendar-container__upcoming-bills__bills {
+  position: relative;
+  height: min-content;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  padding: 0 0.3rem;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small-wide .bill-calendar-container__upcoming-bills__bills__bill {
+  position: relative;
+  height: 4.4rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  min-height: 4.4rem;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small-wide .bill-calendar-container__upcoming-bills__bills__bill__bill-item {
+  position: relative;
+  height: 100%;
+  width: 25%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small-wide .bill-calendar-container__upcoming-bills__bills__bill__bill-item:nth-of-type(4) {
+  justify-content: space-evenly;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small-wide .bill-calendar-container__upcoming-bills__bills__bill__bill-item:nth-of-type(4) input[type=checkbox] {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  height: 2rem;
+  width: 2rem;
+  border: 0.2rem solid #822aba;
+  border-radius: 0.25rem;
+  background-color: transparent;
+  transition: background-color 0.5s, border 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small-wide .bill-calendar-container__upcoming-bills__bills__bill__bill-item:nth-of-type(4) input[type=checkbox]::after {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: none;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  content: "\f00c";
+  transition: color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small-wide .bill-calendar-container__upcoming-bills__bills__bill__bill-item:nth-of-type(4) input[type=checkbox]:hover {
+  cursor: pointer;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small-wide .bill-calendar-container__upcoming-bills__bills__bill__bill-item:nth-of-type(4) input[type=checkbox]:checked {
+  border: 0.2rem solid #38d927;
+  background-color: #38d927;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small-wide .bill-calendar-container__upcoming-bills__bills__bill__bill-item:nth-of-type(4) input[type=checkbox]:checked:after {
+  display: flex;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small-wide .bill-calendar-container__upcoming-bills__bills__bill:hover {
+  cursor: pointer;
+  background-color: #822aba;
+  transition: color 0.5s, background-color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small-wide .bill-calendar-container__upcoming-bills__bills__bill:hover .bill-calendar-container__upcoming-bills__bills__bill__bill-item input[type=checkbox] {
+  border: 0.2rem solid #fafafa;
+  transition: border 0.5s, background-color 0.5s;
 }
 .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small-wide .bill-calendar-container__calendar-container, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small-wide .bill-calendar-container__upcoming-bills {
   position: relative;

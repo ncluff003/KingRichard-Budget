@@ -251,6 +251,55 @@
                         border-top-right-radius: 0.5rem;
                       }
                     }
+                    &__bills {
+                      @include SizeAndPositioning(relative, min-content, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+                      padding: 0 0.3rem;
+                      &__bill {
+                        @include SizeAndPositioning(relative, 4.4rem, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
+                        min-height: 4.4rem;
+                        &__bill-item {
+                          @include SizeAndPositioning(relative, 100%, 25%, flex, row, nowrap, center, center, 0, 0, 0);
+                          &:nth-of-type(4) {
+                            justify-content: space-evenly;
+                            input[type='checkbox'] {
+                              appearance: none;
+                              -webkit-appearance: none;
+                              @include SizingItem(relative, 2rem, 2rem);
+                              border: 0.2rem solid $primaryColor;
+                              border-radius: 0.25rem;
+                              background-color: transparent;
+                              transition: background-color 0.5s, border 0.5s;
+                              &::after {
+                                @include SizeAndPositioning(absolute, 100%, 100%, none, row, nowrap, center, center, 0, 0, 0);
+                                content: '\f00c';
+                                transition: color 0.5s;
+                              }
+                              &:hover {
+                                cursor: pointer;
+                              }
+                              &:checked {
+                                border: 0.2rem solid $secondaryColor;
+                                background-color: $secondaryColor;
+                                &:after {
+                                  display: flex;
+                                }
+                              }
+                            }
+                          }
+                        }
+                        &:hover {
+                          cursor: pointer;
+                          background-color: $primaryColor;
+                          transition: color 0.5s, background-color 0.5s;
+                          .bill-calendar-container__upcoming-bills__bills__bill__bill-item {
+                            input[type='checkbox'] {
+                              border: 0.2rem solid $colorOffWhite;
+                              transition: border 0.5s, background-color 0.5s;
+                            }
+                          }
+                        }
+                      }
+                    }
                   }
                   &__calendar-container,
                   &__upcoming-bills {
