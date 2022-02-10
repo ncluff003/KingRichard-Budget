@@ -6526,12 +6526,16 @@ __webpack_require__.r(__webpack_exports__);
  // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
 
-var cycleMainCategories = function cycleMainCategories(direction, index, icons, titles) {
+var cycleMainCategories = function cycleMainCategories(direction, index, icons, titles, subCats) {
   console.log(direction);
+  console.log(subCats);
 
   if (direction === "left") {
     console.log(index);
     index--;
+    var filtered = subCats.filter(function (sc, i) {
+      if (Number(sc.dataset.subCategory) === index) return sc;
+    });
     if (index < 0) index = 0;
     console.log(index);
     icons.forEach(function (ic) {
@@ -6542,11 +6546,22 @@ var cycleMainCategories = function cycleMainCategories(direction, index, icons, 
       t.style.display = "none";
       titles[index].style.display = "flex";
     });
+    subCats.forEach(function (sc) {
+      sc.classList.add('sub-category-display__sub-category--hidden');
+    });
+    filtered.forEach(function (f) {
+      f.classList.remove('sub-category-display__sub-category--hidden');
+    });
   }
 
   if (direction === "right") {
     if (index === icons.length - 1) return;
     index++;
+
+    var _filtered = subCats.filter(function (sc, i) {
+      if (Number(sc.dataset.subCategory) === index) return sc;
+    });
+
     console.log(index);
     icons.forEach(function (ic) {
       ic.style.display = "none";
@@ -6556,12 +6571,20 @@ var cycleMainCategories = function cycleMainCategories(direction, index, icons, 
       t.style.display = "none";
       titles[index].style.display = "flex";
     });
+    subCats.forEach(function (sc) {
+      sc.classList.add('sub-category-display__sub-category--hidden');
+    });
+
+    _filtered.forEach(function (f) {
+      f.classList.remove('sub-category-display__sub-category--hidden');
+    });
   }
 };
 
 var _setupCurrentMonth = function _setupCurrentMonth() {
   var categoryIcons = document.querySelectorAll('.main-category-display__category-display__icon');
   var categoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
+  var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
   var leftButton = document.querySelector('.left');
   var rightButton = document.querySelector('.right');
   var categoryIndex = 0;
@@ -6574,13 +6597,17 @@ var _setupCurrentMonth = function _setupCurrentMonth() {
     t.style.display = "none";
     if (i === 0) t.style.display = "flex";
   });
+  subCategories.forEach(function (sc, i) {
+    sc.classList.add('sub-category-display__sub-category--hidden');
+    if (i === 0) sc.classList.remove('sub-category-display__sub-category--hidden');
+  });
   leftButton.addEventListener('click', function (e) {
     e.preventDefault();
-    cycleMainCategories('left', categoryIndex, categoryIcons, categoryTitles);
+    cycleMainCategories('left', categoryIndex, categoryIcons, categoryTitles, subCategories);
   });
   rightButton.addEventListener('click', function (e) {
     e.preventDefault();
-    cycleMainCategories('right', categoryIndex, categoryIcons, categoryTitles);
+    cycleMainCategories('right', categoryIndex, categoryIcons, categoryTitles, subCategories);
   });
 };
 

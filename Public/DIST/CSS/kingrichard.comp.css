@@ -1086,10 +1086,18 @@ html {
   font-size: 4rem;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--large__category-container .sub-category-display__headers__title-container {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   color: #fafafa;
   text-align: center;
 }
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--large__category-container .sub-category-display__sub-category__section__content {
+  font-size: 1.6rem;
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__dashboard__container--large__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__content {
+  color: #fafafa;
+}
+
 .gridTV {
   display: grid;
   height: 100vh;
@@ -46513,6 +46521,40 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
   background-color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--large__category-container .sub-category-display__sub-category {
+  position: relative;
+  height: 6rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  min-height: 10rem;
+  background-color: #dddddd;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--large__category-container .sub-category-display__sub-category__section {
+  position: relative;
+  height: 100%;
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--large__category-container .sub-category-display__sub-category:hover {
+  cursor: pointer;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--large__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section {
+  background-color: #822aba;
+  transition: background-color 0.5s, color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--large__category-container .sub-category-display__sub-category--hidden {
+  display: none;
 }
 
 /*

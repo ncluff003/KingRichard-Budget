@@ -2,11 +2,15 @@ import * as Updating from './Update-User';
 import * as Calendar from './FrontEnd-Calendar';
 // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
-const cycleMainCategories = (direction, index, icons, titles) => {
+const cycleMainCategories = (direction, index, icons, titles, subCats) => {
   console.log(direction);
+  console.log(subCats);
   if (direction === `left`) {
     console.log(index);
     index--;
+    let filtered = subCats.filter((sc, i) => {
+      if (Number(sc.dataset.subCategory) === index) return sc;
+    });
     if (index < 0) index = 0;
     console.log(index);
     icons.forEach((ic) => {
@@ -17,10 +21,19 @@ const cycleMainCategories = (direction, index, icons, titles) => {
       t.style.display = `none`;
       titles[index].style.display = `flex`;
     });
+    subCats.forEach((sc) => {
+      sc.classList.add('sub-category-display__sub-category--hidden');
+    });
+    filtered.forEach((f) => {
+      f.classList.remove('sub-category-display__sub-category--hidden');
+    });
   }
   if (direction === `right`) {
     if (index === icons.length - 1) return;
     index++;
+    let filtered = subCats.filter((sc, i) => {
+      if (Number(sc.dataset.subCategory) === index) return sc;
+    });
     console.log(index);
     icons.forEach((ic) => {
       ic.style.display = `none`;
@@ -30,12 +43,19 @@ const cycleMainCategories = (direction, index, icons, titles) => {
       t.style.display = `none`;
       titles[index].style.display = `flex`;
     });
+    subCats.forEach((sc) => {
+      sc.classList.add('sub-category-display__sub-category--hidden');
+    });
+    filtered.forEach((f) => {
+      f.classList.remove('sub-category-display__sub-category--hidden');
+    });
   }
 };
 
 const _setupCurrentMonth = () => {
   const categoryIcons = document.querySelectorAll('.main-category-display__category-display__icon');
   const categoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
+  const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
   const leftButton = document.querySelector('.left');
   const rightButton = document.querySelector('.right');
   let categoryIndex = 0;
@@ -48,13 +68,17 @@ const _setupCurrentMonth = () => {
     t.style.display = `none`;
     if (i === 0) t.style.display = `flex`;
   });
+  subCategories.forEach((sc, i) => {
+    sc.classList.add('sub-category-display__sub-category--hidden');
+    if (i === 0) sc.classList.remove('sub-category-display__sub-category--hidden');
+  });
   leftButton.addEventListener('click', (e) => {
     e.preventDefault();
-    cycleMainCategories('left', categoryIndex, categoryIcons, categoryTitles);
+    cycleMainCategories('left', categoryIndex, categoryIcons, categoryTitles, subCategories);
   });
   rightButton.addEventListener('click', (e) => {
     e.preventDefault();
-    cycleMainCategories('right', categoryIndex, categoryIcons, categoryTitles);
+    cycleMainCategories('right', categoryIndex, categoryIcons, categoryTitles, subCategories);
   });
 };
 

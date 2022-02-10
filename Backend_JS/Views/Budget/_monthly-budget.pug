@@ -33,3 +33,16 @@ section.budget-container.r__budget-container.budget-container__dashboard__contai
         - const subCategoryHeaders = [`Category`, `Budgeted`, `Spent`, `Remaining`, `Percent Spent`] 
         each header in subCategoryHeaders
           section.sub-category-display__headers__title-container.r__sub-category-display__headers__title-container= `${header}`
+      each category, mainIndex in data.budget.mainCategories 
+        each subCategory, subIndex in category.subCategories 
+          section.sub-category-display__sub-category.r__sub-category-display__sub-category(data-subCategory=`${mainIndex}`) 
+            section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
+              p.sub-category-display__sub-category__section__content.r__sub-category-display__sub-category__section__content= `${subCategory.title}`
+            section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
+              p.sub-category-display__sub-category__section__content.r__sub-category-display__sub-category__section__content= `$${subCategory.goalAmount.toFixed(2)}`
+            section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
+              p.sub-category-display__sub-category__section__content.r__sub-category-display__sub-category__section__content= `$${subCategory.amountSpent.toFixed(2)}`
+            section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
+              p.sub-category-display__sub-category__section__content.r__sub-category-display__sub-category__section__content= `$${(subCategory.goalAmount - subCategory.amountSpent).toFixed(2)}`
+            section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
+              p.sub-category-display__sub-category__section__content.r__sub-category-display__sub-category__section__content= `${(subCategory.amountSpent / subCategory.goalAmount).toFixed(0)}%`

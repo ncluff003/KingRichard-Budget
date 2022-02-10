@@ -1214,125 +1214,25 @@ html {
                   .sub-category-display {
                     &__headers {
                       &__title-container {
-                        font-size: 1.2rem;
+                        font-size: 1.6rem;
                         color: $colorOffWhite;
                         text-align: center;
                       }
                     }
                     &__sub-category {
-                      //   &__section {
-                      //     &__category-name {
-                      //       font-size: 1.6rem;
-                      //       color: $primaryColor;
-                      //     }
-                      //     &:first-of-type {
-                      //       text-align: center;
-                      //     }
-                      //     &__set-category-timing-button {
-                      //       font-size: 1.2rem;
-                      //       color: rgba($primaryColor, 0.8);
-                      //     }
-                      //     &__input {
-                      //       font-size: 2rem;
-                      //       color: rgba($primaryColor, 0.8);
-                      //       text-align: center;
-                      //       &:focus {
-                      //         color: $primaryColor;
-                      //       }
-                      //     }
-                      //   }
-                      //   &:hover {
-                      //     .sub-category-display__sub-category__section {
-                      //       background-color: $primaryColor;
-                      //       &__category-name {
-                      //         color: $colorOffWhite;
-                      //       }
-                      //       &__set-category-timing-button {
-                      //         color: rgba($colorOffWhite, 0.8);
-                      //         &:hover {
-                      //           color: $colorOffWhite;
-                      //         }
-                      //       }
-                      //       &__input {
-                      //         color: rgba($colorOffWhite, 0.8);
-                      //         &:focus {
-                      //           color: $primaryColor;
-                      //         }
-                      //       }
-                      //     }
-                      //   }
-                      // }
-                      // &__timing-container {
-                      //   &__close {
-                      //     font-size: 3rem;
-                      //     color: rgba($primaryColor, 0.8);
-                      //     &:hover {
-                      //       color: $primaryColor;
-                      //     }
-                      //   }
-                      //   &__monthly-container,
-                      //   &__bi-monthly-container,
-                      //   &__bi-weekly-container,
-                      //   &__weekly-container {
-                      //     &__button {
-                      //       &__icon {
-                      //         font-family: Icomoon;
-                      //         font-size: 4rem;
-                      //         .path1:before {
-                      //           color: $primaryColor;
-                      //         }
-                      //       }
-                      //       &__text {
-                      //         font-size: 2.2rem;
-                      //         color: rgba($primaryColor, 0.8);
-                      //       }
-                      //       &:hover {
-                      //         .sub-category-display__timing-container {
-                      //           &__monthly-container,
-                      //           &__bi-monthly-container,
-                      //           &__bi-weekly-container,
-                      //           &__weekly-container {
-                      //             &__button {
-                      //               &__icon {
-                      //                 .path1:before {
-                      //                   color: $tertiaryColor;
-                      //                 }
-                      //                 .path2:before,
-                      //                 .path3:before {
-                      //                   color: $colorDarkerGrey;
-                      //                 }
-                      //               }
-                      //               &__text {
-                      //                 color: $colorOffWhite;
-                      //               }
-                      //             }
-                      //           }
-                      //         }
-                      //       }
-                      //     }
-                      //     &__label {
-                      //       font-size: 1.4rem;
-                      //       color: rgba($primaryColor, 0.8);
-                      //       &:focus {
-                      //         color: $primaryColor;
-                      //       }
-                      //       &__input,
-                      //       &__select {
-                      //         font-size: 1.4rem;
-                      //         color: rgba($primaryColor, 0.8);
-                      //         &:focus {
-                      //           color: $primaryColor;
-                      //         }
-                      //       }
-                      //     }
-                      //     &__submit {
-                      //       font-size: 2rem;
-                      //       color: rgba($colorOffWhite, 0.8);
-                      //       &:hover {
-                      //         color: $colorOffWhite;
-                      //       }
-                      //     }
-                      //   }
+                      &__section {
+                        &__content {
+                          font-size: 1.6rem;
+                          color: $primaryColor;
+                        }
+                      }
+                      &:hover {
+                        .sub-category-display__sub-category__section {
+                          &__content {
+                            color: $colorOffWhite;
+                          }
+                        }
+                      }
                     }
                   }
                 }
