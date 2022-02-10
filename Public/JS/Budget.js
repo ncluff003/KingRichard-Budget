@@ -2,6 +2,61 @@ import * as Updating from './Update-User';
 import * as Calendar from './FrontEnd-Calendar';
 // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
+const cycleMainCategories = (direction, index, icons, titles) => {
+  console.log(direction);
+  if (direction === `left`) {
+    console.log(index);
+    index--;
+    if (index < 0) index = 0;
+    console.log(index);
+    icons.forEach((ic) => {
+      ic.style.display = `none`;
+      icons[index].style.display = `flex`;
+    });
+    titles.forEach((t) => {
+      t.style.display = `none`;
+      titles[index].style.display = `flex`;
+    });
+  }
+  if (direction === `right`) {
+    if (index === icons.length - 1) return;
+    index++;
+    console.log(index);
+    icons.forEach((ic) => {
+      ic.style.display = `none`;
+      icons[index].style.display = `flex`;
+    });
+    titles.forEach((t) => {
+      t.style.display = `none`;
+      titles[index].style.display = `flex`;
+    });
+  }
+};
+
+const _setupCurrentMonth = () => {
+  const categoryIcons = document.querySelectorAll('.main-category-display__category-display__icon');
+  const categoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
+  const leftButton = document.querySelector('.left');
+  const rightButton = document.querySelector('.right');
+  let categoryIndex = 0;
+  console.log(categoryIcons, categoryTitles);
+  categoryIcons.forEach((c, i) => {
+    c.style.display = `none`;
+    if (i === 0) c.style.display = `flex`;
+  });
+  categoryTitles.forEach((t, i) => {
+    t.style.display = `none`;
+    if (i === 0) t.style.display = `flex`;
+  });
+  leftButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    cycleMainCategories('left', categoryIndex, categoryIcons, categoryTitles);
+  });
+  rightButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    cycleMainCategories('right', categoryIndex, categoryIcons, categoryTitles);
+  });
+};
 
 const selectDay = (monthDays, singleDay) => {
   monthDays.forEach((day, i) => {
@@ -309,4 +364,7 @@ export const _watchBudget = async () => {
   ////////////////////////////////////////////
   // SETUP BILL CALENDAR
   _setupBillCalendar();
+  ////////////////////////////////////////////
+  // SETUP BILL CURRENT MONTH
+  _setupCurrentMonth();
 };

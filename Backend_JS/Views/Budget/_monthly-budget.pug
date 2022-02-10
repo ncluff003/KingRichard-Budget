@@ -23,9 +23,9 @@ section.budget-container.r__budget-container.budget-container__dashboard__contai
       section.main-category-display__button-container.r__main-category-display__button-container
         i.fas.fa-arrow-alt-circle-left.main-category-display__button-container__icon.r__main-category-display__button-container__icon.left.r__left
       section.main-category-display__category-display.r__main-category-display__category-display
-        each category in data.budget.mainCategories
-          i.fas.main-category-display__category-display__icon(class=`${category.icon}`)
-          p.main-category-display__category-display__title.r__main-category-display__category-display__title= `${category.title}`
+        each category, index in data.budget.mainCategories
+          i.fas.main-category-display__category-display__icon(class=`${category.icon}` data-category=`${index}`)
+          p.main-category-display__category-display__title.r__main-category-display__category-display__title(data-category=`${index}`)= `${category.title}`
       section.main-category-display__button-container.r__main-category-display__button-container
         i.fas.fa-arrow-alt-circle-right.main-category-display__button-container__icon.r__main-category-display__button-container__icon.right.r__right
     section.sub-category-display.r__sub-category-display

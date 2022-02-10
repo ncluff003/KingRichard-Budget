@@ -6526,6 +6526,64 @@ __webpack_require__.r(__webpack_exports__);
  // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
 
+var cycleMainCategories = function cycleMainCategories(direction, index, icons, titles) {
+  console.log(direction);
+
+  if (direction === "left") {
+    console.log(index);
+    index--;
+    if (index < 0) index = 0;
+    console.log(index);
+    icons.forEach(function (ic) {
+      ic.style.display = "none";
+      icons[index].style.display = "flex";
+    });
+    titles.forEach(function (t) {
+      t.style.display = "none";
+      titles[index].style.display = "flex";
+    });
+  }
+
+  if (direction === "right") {
+    if (index === icons.length - 1) return;
+    index++;
+    console.log(index);
+    icons.forEach(function (ic) {
+      ic.style.display = "none";
+      icons[index].style.display = "flex";
+    });
+    titles.forEach(function (t) {
+      t.style.display = "none";
+      titles[index].style.display = "flex";
+    });
+  }
+};
+
+var _setupCurrentMonth = function _setupCurrentMonth() {
+  var categoryIcons = document.querySelectorAll('.main-category-display__category-display__icon');
+  var categoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
+  var leftButton = document.querySelector('.left');
+  var rightButton = document.querySelector('.right');
+  var categoryIndex = 0;
+  console.log(categoryIcons, categoryTitles);
+  categoryIcons.forEach(function (c, i) {
+    c.style.display = "none";
+    if (i === 0) c.style.display = "flex";
+  });
+  categoryTitles.forEach(function (t, i) {
+    t.style.display = "none";
+    if (i === 0) t.style.display = "flex";
+  });
+  leftButton.addEventListener('click', function (e) {
+    e.preventDefault();
+    cycleMainCategories('left', categoryIndex, categoryIcons, categoryTitles);
+  });
+  rightButton.addEventListener('click', function (e) {
+    e.preventDefault();
+    cycleMainCategories('right', categoryIndex, categoryIcons, categoryTitles);
+  });
+};
+
 var selectDay = function selectDay(monthDays, singleDay) {
   monthDays.forEach(function (day, i) {
     day.classList.remove('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
@@ -6815,10 +6873,7 @@ var _watchBudget = /*#__PURE__*/function () {
             pushIntoArray(surplusTransactions, surplusTransactionOptions);
             pushIntoArray(debtTransactions, debtTransactionOptions);
             pushIntoArray(tithingTransactions, tithingTransactionOptions);
-            finalTransactionArrayPush(mainCategoryOptionArrays, user, [monthlyBudgetTransactionOptions, emergencyFundTransactionOptions, savingsFundTransactionOptions, expenseFundTransactionOptions, surplusTransactionOptions, debtTransactionOptions, tithingTransactionOptions]); // mainCategoryOptionArrays.push(expenseFundTransactionOptions);
-            // mainCategoryOptionArrays.push(surplusTransactionOptions);
-            // mainCategoryOptionArrays.push(debtTransactionOptions);
-
+            finalTransactionArrayPush(mainCategoryOptionArrays, user, [monthlyBudgetTransactionOptions, emergencyFundTransactionOptions, savingsFundTransactionOptions, expenseFundTransactionOptions, surplusTransactionOptions, debtTransactionOptions, tithingTransactionOptions]);
             if (user.latterDaySaint === true) mainCategoryOptionArrays.push(tithingTransactionOptions);
             console.log(mainCategoryOptionArrays); ////////////////////////////////////////////
             // START BY WATCHING THE BUDGET NAVIGATION
@@ -6831,9 +6886,13 @@ var _watchBudget = /*#__PURE__*/function () {
             // SETUP BILL CALENDAR
 
 
-            _setupBillCalendar();
+            _setupBillCalendar(); ////////////////////////////////////////////
+            // SETUP BILL CURRENT MONTH
 
-          case 37:
+
+            _setupCurrentMonth();
+
+          case 38:
           case "end":
             return _context.stop();
         }
