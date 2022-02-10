@@ -32495,6 +32495,7 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
   background-color: rgba(101, 33, 144, 0.95);
+  z-index: 10;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .user-profile-container__close {
   position: absolute;

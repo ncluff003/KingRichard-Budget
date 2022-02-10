@@ -3,16 +3,9 @@ import * as Calendar from './FrontEnd-Calendar';
 // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
 const cycleMainCategories = (direction, index, icons, titles, subCats) => {
-  console.log(direction);
-  console.log(subCats);
   if (direction === `left`) {
-    console.log(index);
     index--;
-    let filtered = subCats.filter((sc, i) => {
-      if (Number(sc.dataset.subCategory) === index) return sc;
-    });
     if (index < 0) index = 0;
-    console.log(index);
     icons.forEach((ic) => {
       ic.style.display = `none`;
       icons[index].style.display = `flex`;
@@ -23,18 +16,12 @@ const cycleMainCategories = (direction, index, icons, titles, subCats) => {
     });
     subCats.forEach((sc) => {
       sc.classList.add('sub-category-display__sub-category--hidden');
-    });
-    filtered.forEach((f) => {
-      f.classList.remove('sub-category-display__sub-category--hidden');
+      if (Number(sc.dataset.subcategory) === index) sc.classList.remove('sub-category-display__sub-category--hidden');
     });
   }
   if (direction === `right`) {
-    if (index === icons.length - 1) return;
     index++;
-    let filtered = subCats.filter((sc, i) => {
-      if (Number(sc.dataset.subCategory) === index) return sc;
-    });
-    console.log(index);
+    if (index > icons.length - 1) index = icons.length - 1;
     icons.forEach((ic) => {
       ic.style.display = `none`;
       icons[index].style.display = `flex`;
@@ -45,9 +32,7 @@ const cycleMainCategories = (direction, index, icons, titles, subCats) => {
     });
     subCats.forEach((sc) => {
       sc.classList.add('sub-category-display__sub-category--hidden');
-    });
-    filtered.forEach((f) => {
-      f.classList.remove('sub-category-display__sub-category--hidden');
+      if (Number(sc.dataset.subcategory) === index) sc.classList.remove('sub-category-display__sub-category--hidden');
     });
   }
 };
@@ -70,7 +55,7 @@ const _setupCurrentMonth = () => {
   });
   subCategories.forEach((sc, i) => {
     sc.classList.add('sub-category-display__sub-category--hidden');
-    if (i === 0) sc.classList.remove('sub-category-display__sub-category--hidden');
+    if (Number(sc.dataset.subcategory) === 0) sc.classList.remove('sub-category-display__sub-category--hidden');
   });
   leftButton.addEventListener('click', (e) => {
     e.preventDefault();

@@ -6527,17 +6527,9 @@ __webpack_require__.r(__webpack_exports__);
 // bill-calendar-container__calendar-container__calendar__days__single-day
 
 var cycleMainCategories = function cycleMainCategories(direction, index, icons, titles, subCats) {
-  console.log(direction);
-  console.log(subCats);
-
   if (direction === "left") {
-    console.log(index);
     index--;
-    var filtered = subCats.filter(function (sc, i) {
-      if (Number(sc.dataset.subCategory) === index) return sc;
-    });
     if (index < 0) index = 0;
-    console.log(index);
     icons.forEach(function (ic) {
       ic.style.display = "none";
       icons[index].style.display = "flex";
@@ -6548,21 +6540,13 @@ var cycleMainCategories = function cycleMainCategories(direction, index, icons, 
     });
     subCats.forEach(function (sc) {
       sc.classList.add('sub-category-display__sub-category--hidden');
-    });
-    filtered.forEach(function (f) {
-      f.classList.remove('sub-category-display__sub-category--hidden');
+      if (Number(sc.dataset.subcategory) === index) sc.classList.remove('sub-category-display__sub-category--hidden');
     });
   }
 
   if (direction === "right") {
-    if (index === icons.length - 1) return;
     index++;
-
-    var _filtered = subCats.filter(function (sc, i) {
-      if (Number(sc.dataset.subCategory) === index) return sc;
-    });
-
-    console.log(index);
+    if (index > icons.length - 1) index = icons.length - 1;
     icons.forEach(function (ic) {
       ic.style.display = "none";
       icons[index].style.display = "flex";
@@ -6573,10 +6557,7 @@ var cycleMainCategories = function cycleMainCategories(direction, index, icons, 
     });
     subCats.forEach(function (sc) {
       sc.classList.add('sub-category-display__sub-category--hidden');
-    });
-
-    _filtered.forEach(function (f) {
-      f.classList.remove('sub-category-display__sub-category--hidden');
+      if (Number(sc.dataset.subcategory) === index) sc.classList.remove('sub-category-display__sub-category--hidden');
     });
   }
 };
@@ -6599,7 +6580,7 @@ var _setupCurrentMonth = function _setupCurrentMonth() {
   });
   subCategories.forEach(function (sc, i) {
     sc.classList.add('sub-category-display__sub-category--hidden');
-    if (i === 0) sc.classList.remove('sub-category-display__sub-category--hidden');
+    if (Number(sc.dataset.subcategory) === 0) sc.classList.remove('sub-category-display__sub-category--hidden');
   });
   leftButton.addEventListener('click', function (e) {
     e.preventDefault();
