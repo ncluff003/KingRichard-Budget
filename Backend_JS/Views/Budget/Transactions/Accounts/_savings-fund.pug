@@ -1,10 +1,10 @@
 - const savingsTerms = [`Weekly`, `Bi-Weekly`, `Bi-Monthly`, `Monthly`, `Quarterly`, `Bi-Annually`, `Annually`,]
-label.form-label.r__form-label
+label.form-label.r__form-label.savings-fund-transaction.r__savings-fund-transaction
   p.label-container__text.r__label-container__text Savings Goal Term
   select.form-input.r__form-input#savingsTerm
     each term in savingsTerms 
       option.category-selection.r__category-selection(value=`${term}`)= `${term}`
-label.form-label.r__form-label 
+label.form-label.r__form-label.savings-fund-transaction.r__savings-fund-transaction 
   p.label-container__text.r__label-container__text Savings Goal
   select.form-input.r__form-input#savingsGoals
   //- Basically, depending on the savings term chosen, first it will look for 'Savings' Goals, and then for items inside that 'Term', and use that array to show a number of selection options.

@@ -6514,8 +6514,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "_watchBudget": () => (/* binding */ _watchBudget)
 /* harmony export */ });
-/* harmony import */ var _FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FrontEnd-Calendar */ "./Public/JS/FrontEnd-Calendar.js");
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
+/* harmony import */ var _FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FrontEnd-Calendar */ "./Public/JS/FrontEnd-Calendar.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
+
+
  // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
 
@@ -6580,7 +6587,7 @@ var getDaysInMonth = function getDaysInMonth(calendar, month, value) {
 };
 
 var _setupBillCalendar = function _setupBillCalendar() {
-  var calendar = _FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_0__.myCalendar;
+  var calendar = _FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_3__.myCalendar;
   var daysInMonth;
   var currentMonth = calendar.getMonth();
   var currentYear = calendar.getYear(); // GETTING NUMBER OF DAYS IN THE CURRENT MONTH
@@ -6591,8 +6598,10 @@ var _setupBillCalendar = function _setupBillCalendar() {
 };
 
 var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
+  console.log(arrayOfArrays);
   arrayOfArrays.forEach(function (a, i) {
     a.forEach(function (c, i) {
+      // console.log(c);
       c.style.display = "none";
     });
   });
@@ -6611,8 +6620,8 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
         });
         arrayOfArrays[0].forEach(function (a, i) {
           a.style.display = "flex";
-          if (i === 2) a.classList.add('label-container');
-          if (i === 3) a.classList.add('label-container');
+          if (i === 0) a.classList.add('label-container');
+          if (i === 1) a.classList.add('label-container');
         });
       } // EMERGENCY FUND OPTIONS
 
@@ -6637,13 +6646,13 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
         });
         arrayOfArrays[2].forEach(function (a, i) {
           a.style.display = "flex";
-          if (i === 3) a.classList.add('label-container');
-          if (i === 5) a.classList.add('label-container');
+          if (i === 0) a.classList.add('label-container');
+          if (i === 1) a.classList.add('label-container');
 
-          if (i === 11) {
-            a.classList.add('fully-paid-for');
-            a.addEventListener('click', function (e) {
-              a.firstChild.nextSibling.classList.toggle('paid-for-container--clicked');
+          if (i === 4) {
+            a.firstChild.classList.add('fully-paid-for');
+            a.firstChild.addEventListener('click', function (e) {
+              a.firstChild.firstChild.nextSibling.classList.toggle('paid-for-container--clicked');
             });
           }
         });
@@ -6658,13 +6667,13 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
         });
         arrayOfArrays[3].forEach(function (a, i) {
           a.style.display = "flex";
-          if (i === 3) a.classList.add('label-container');
-          if (i === 5) a.classList.add('label-container');
+          if (i === 0) a.classList.add('label-container');
+          if (i === 1) a.classList.add('label-container');
 
-          if (i === 11) {
-            a.classList.add('fully-paid-for');
-            a.addEventListener('click', function (e) {
-              a.firstChild.nextSibling.classList.toggle('paid-for-container--clicked');
+          if (i === 4) {
+            a.firstChild.classList.add('fully-paid-for');
+            a.firstChild.addEventListener('click', function (e) {
+              a.firstChild.firstChild.nextSibling.classList.toggle('paid-for-container--clicked');
             });
           }
         });
@@ -6679,13 +6688,13 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
         });
         arrayOfArrays[4].forEach(function (a, i) {
           a.style.display = "flex";
-          if (i === 3) a.classList.add('label-container');
-          if (i === 6) a.classList.add('label-container');
+          if (i === 0) a.classList.add('label-container');
+          if (i === 1) a.classList.add('label-container');
 
-          if (i === 11) {
-            a.classList.add('fully-paid-for');
-            a.addEventListener('click', function (e) {
-              a.firstChild.nextSibling.classList.toggle('paid-for-container--clicked');
+          if (i === 4) {
+            a.firstChild.classList.add('fully-paid-for');
+            a.firstChild.addEventListener('click', function (e) {
+              a.firstChild.firstChild.nextSibling.classList.toggle('paid-for-container--clicked');
             });
           }
         });
@@ -6700,12 +6709,12 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
         });
         arrayOfArrays[5].forEach(function (a, i) {
           a.style.display = "flex";
-          if (i === 3) a.classList.add('label-container');
+          if (i === 0) a.classList.add('label-container');
 
-          if (i === 8) {
-            a.classList.add('fully-paid-for');
-            a.addEventListener('click', function (e) {
-              a.firstChild.nextSibling.classList.toggle('paid-for-container--clicked');
+          if (i === 3) {
+            a.firstChild.classList.add('fully-paid-for');
+            a.firstChild.addEventListener('click', function (e) {
+              a.firstChild.firstChild.nextSibling.classList.toggle('paid-for-container--clicked');
             });
           }
         });
@@ -6739,44 +6748,103 @@ var _watchBudgetNavigation = function _watchBudgetNavigation() {
   }
 };
 
-var _watchBudget = function _watchBudget() {
-  console.log("WATCHING YOUR BUDGET"); ////////////////////////////////////////////
-  // SETUP ACCOUNT OPTIONS FOR TRANSACTIONS
-
-  var formLabels = document.querySelectorAll('.form-label');
-  var formInputs = document.querySelectorAll('.form-input');
-  var formSections = document.querySelectorAll('.form-row__section');
-  var mainCategoryOptionArrays = [];
-  var currentDay; ///////////////////////////////
-  // MONTHLY BUDGET OPTIONS
-
-  var monthlyBudgetTransactionOptions = [formSections[10], formSections[11], formLabels[7], formLabels[8], formInputs[18], formLabels[19], formInputs[19], formLabels[20]];
-  var emergencyFuncTransactionOptions = [formSections[7], formSections[8], formLabels[9], formInputs[8], formLabels[10], formInputs[9]];
-  var savingsFundTransactionOptions = [formSections[12], formSections[13], formSections[14], formLabels[11], formInputs[10], formLabels[12], formInputs[11], formLabels[21], formInputs[20], formLabels[22], formInputs[21], formLabels[23]];
-  var expenseFundTransactionOptions = [formSections[15], formSections[16], formSections[17], formLabels[13], formInputs[12], formLabels[14], formInputs[13], formLabels[24], formInputs[22], formLabels[25], formInputs[23], formLabels[26]];
-  var surplusTransactionOptions = [formSections[18], formSections[19], formSections[20], formLabels[15], formInputs[14], formInputs[15], formLabels[16], formLabels[27], formInputs[24], formLabels[28], formInputs[25], formLabels[29]];
-  var investmentFundTransactionOptions = [];
-  var debtTransactionOptions = [formSections[21], formSections[22], formSections[23], formLabels[17], formLabels[30], formInputs[26], formLabels[31], formInputs[27], formLabels[32]];
-  var tithingTransactionOptions = [formSections[9], formLabels[18], formInputs[17]];
-  mainCategoryOptionArrays.push(monthlyBudgetTransactionOptions);
-  mainCategoryOptionArrays.push(emergencyFuncTransactionOptions);
-  mainCategoryOptionArrays.push(savingsFundTransactionOptions);
-  mainCategoryOptionArrays.push(expenseFundTransactionOptions);
-  mainCategoryOptionArrays.push(surplusTransactionOptions);
-  mainCategoryOptionArrays.push(debtTransactionOptions);
-  mainCategoryOptionArrays.push(tithingTransactionOptions); ////////////////////////////////////////////
-  // START BY WATCHING THE BUDGET NAVIGATION
-
-  _watchBudgetNavigation(); ////////////////////////////////////////////
-  // WATCH FOR ACCOUNT SELECTION
-
-
-  _watchForTransactions(mainCategoryOptionArrays); ////////////////////////////////////////////
-  // SETUP BILL CALENDAR
-
-
-  _setupBillCalendar();
+var finalTransactionArrayPush = function finalTransactionArrayPush(finalArray, user, arrays) {
+  arrays.forEach(function (a) {
+    console.log(a);
+    finalArray.push(a);
+  });
 };
+
+var pushIntoArray = function pushIntoArray(arrayFiller, array) {
+  arrayFiller.forEach(function (af) {
+    array.push(af);
+  });
+  return array;
+};
+
+var _watchBudget = /*#__PURE__*/function () {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
+    var formLabels, formInputs, formSections, monthlyBudgetTransactions, monthlyBudgetTransactionOptions, emergencyFundTransactions, emergencyFundTransactionOptions, savingsFundTransactions, savingsFundTransactionOptions, expenseFundTransactions, expenseFundTransactionOptions, surplusTransactions, surplusTransactionOptions, debtTransactions, debtTransactionOptions, tithingTransactions, tithingTransactionOptions, mainCategoryOptionArrays, currentDay, userInfo, user;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            console.log("WATCHING YOUR BUDGET"); ////////////////////////////////////////////
+            // SETUP ACCOUNT OPTIONS FOR TRANSACTIONS
+
+            formLabels = document.querySelectorAll('.form-label');
+            formInputs = document.querySelectorAll('.form-input');
+            formSections = document.querySelectorAll('.form-row__section'); //////////////////////////////
+            // INITIALIZE ACCOUNT ARRAYS
+            // MONTHLY BUDGET
+
+            monthlyBudgetTransactions = document.querySelectorAll('.monthly-budget-transaction');
+            monthlyBudgetTransactionOptions = []; // EMERGENCY FUND
+
+            emergencyFundTransactions = document.querySelectorAll('.emergency-fund-transaction');
+            emergencyFundTransactionOptions = []; // SAVINGS FUND
+
+            savingsFundTransactions = document.querySelectorAll('.savings-fund-transaction');
+            savingsFundTransactionOptions = []; // EXPENSE FUND
+
+            expenseFundTransactions = document.querySelectorAll('.expense-fund-transaction');
+            expenseFundTransactionOptions = []; // SURPLUS
+
+            surplusTransactions = document.querySelectorAll('.surplus-transaction');
+            surplusTransactionOptions = []; // DEBT
+
+            debtTransactions = document.querySelectorAll('.debt-transaction');
+            debtTransactionOptions = []; // TITHING
+
+            tithingTransactions = document.querySelectorAll('.tithing-transaction');
+            console.log(tithingTransactions);
+            tithingTransactionOptions = [];
+            mainCategoryOptionArrays = [];
+            _context.next = 22;
+            return _Update_User__WEBPACK_IMPORTED_MODULE_2__.getSomePersonals();
+
+          case 22:
+            userInfo = _context.sent;
+            user = userInfo.data.data.user; ///////////////////////////////
+            // MONTHLY BUDGET OPTIONS
+
+            pushIntoArray(monthlyBudgetTransactions, monthlyBudgetTransactionOptions);
+            pushIntoArray(emergencyFundTransactions, emergencyFundTransactionOptions);
+            pushIntoArray(savingsFundTransactions, savingsFundTransactionOptions);
+            pushIntoArray(expenseFundTransactions, expenseFundTransactionOptions);
+            pushIntoArray(surplusTransactions, surplusTransactionOptions);
+            pushIntoArray(debtTransactions, debtTransactionOptions);
+            pushIntoArray(tithingTransactions, tithingTransactionOptions);
+            finalTransactionArrayPush(mainCategoryOptionArrays, user, [monthlyBudgetTransactionOptions, emergencyFundTransactionOptions, savingsFundTransactionOptions, expenseFundTransactionOptions, surplusTransactionOptions, debtTransactionOptions, tithingTransactionOptions]); // mainCategoryOptionArrays.push(expenseFundTransactionOptions);
+            // mainCategoryOptionArrays.push(surplusTransactionOptions);
+            // mainCategoryOptionArrays.push(debtTransactionOptions);
+
+            if (user.latterDaySaint === true) mainCategoryOptionArrays.push(tithingTransactionOptions);
+            console.log(mainCategoryOptionArrays); ////////////////////////////////////////////
+            // START BY WATCHING THE BUDGET NAVIGATION
+
+            _watchBudgetNavigation(); ////////////////////////////////////////////
+            // WATCH FOR ACCOUNT SELECTION
+
+
+            _watchForTransactions(mainCategoryOptionArrays); ////////////////////////////////////////////
+            // SETUP BILL CALENDAR
+
+
+            _setupBillCalendar();
+
+          case 37:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function _watchBudget() {
+    return _ref.apply(this, arguments);
+  };
+}();
 
 /***/ }),
 

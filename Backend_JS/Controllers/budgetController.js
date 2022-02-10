@@ -53,6 +53,7 @@ const filterObj = (obj, ...allowedFields) => {
 };
 
 const createAndSendToken = (user, statusCode, method, request, response, template, title, optionalData, status, message) => {
+  const calendar = Calendar;
   const token = signToken(user.id);
   if (method === `json`) {
     return response.status(statusCode).json({
@@ -68,6 +69,7 @@ const createAndSendToken = (user, statusCode, method, request, response, templat
       token,
       data: {
         ...optionalData,
+        calendar: calendar,
         user: user,
       },
     });
