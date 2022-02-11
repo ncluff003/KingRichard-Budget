@@ -4670,16 +4670,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/esm/inherits.js");
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js");
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js");
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/esm/inherits.js");
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
 
 
 
@@ -4692,9 +4694,9 @@ __webpack_require__.r(__webpack_exports__);
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3__["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5__["default"])(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_7__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_6__["default"])(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
@@ -4705,7 +4707,7 @@ var icons = ["address-book", "address-card", "adjust", "air-freshener", "align-c
 // CATEGORY -- PARENT CLASS
 
 var Category = function Category(options) {
-  (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_7__["default"])(this, Category);
+  (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_8__["default"])(this, Category);
 
   this.icon = options.icon;
   this.title = options.title;
@@ -4714,14 +4716,14 @@ var Category = function Category(options) {
 
 
 var MainCategory = /*#__PURE__*/function (_Category) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__["default"])(MainCategory, _Category);
+  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5__["default"])(MainCategory, _Category);
 
   var _super = _createSuper(MainCategory);
 
   function MainCategory(options) {
     var _this;
 
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_7__["default"])(this, MainCategory);
+    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_8__["default"])(this, MainCategory);
 
     var superOpts = _objectSpread({}, options);
 
@@ -4730,7 +4732,7 @@ var MainCategory = /*#__PURE__*/function (_Category) {
     return _this;
   }
 
-  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__["default"])(MainCategory, [{
+  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__["default"])(MainCategory, [{
     key: "_deleteSubCategory",
     value: function _deleteSubCategory(index) {
       var _this2 = this;
@@ -4746,14 +4748,14 @@ var MainCategory = /*#__PURE__*/function (_Category) {
 // SUB CATEGORY -- CHILD CLASS
 
 var SubCategory = /*#__PURE__*/function (_Category2) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__["default"])(SubCategory, _Category2);
+  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5__["default"])(SubCategory, _Category2);
 
   var _super2 = _createSuper(SubCategory);
 
   function SubCategory(options) {
     var _this3;
 
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_7__["default"])(this, SubCategory);
+    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_8__["default"])(this, SubCategory);
 
     var superOpts = _objectSpread({}, options);
 
@@ -4763,7 +4765,7 @@ var SubCategory = /*#__PURE__*/function (_Category2) {
     return _this3;
   }
 
-  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__["default"])(SubCategory, [{
+  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_4__["default"])(SubCategory, [{
     key: "_makeSurplus",
     value: function _makeSurplus() {
       this.surplus = !this.surplus;
@@ -4771,12 +4773,16 @@ var SubCategory = /*#__PURE__*/function (_Category2) {
   }, {
     key: "_finishUpdatingSubCategory",
     value: function _finishUpdatingSubCategory(goal) {
-      var goalAmount = Number(goal);
-      if (goalAmount !== "undefined" || typeof goalAmount !== "number") goal = 0;
-      this.goalAmount = goalAmount;
+      console.log((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_2__["default"])(goal));
+      var categoryGoal = goal;
+      console.log((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_2__["default"])(categoryGoal));
+      if (categoryGoal === undefined || typeof categoryGoal !== "number") categoryGoal = 0;
+      console.log(this);
+      this.goalAmount = categoryGoal;
+      console.log(this.goalAmount);
       this.amountSpent = 0;
       this.amountRemaining = this.goalAmount - this.amountSpent;
-      this.percentageSpent = Number((this.amountSpent / this.goalAmount).toFixed(1));
+      this.percentageSpent = this.amountSpent / this.goalAmount;
     }
   }]);
 
@@ -4937,9 +4943,9 @@ var _addSubCategory = function _addSubCategory(budget, index) {
 // MAIN CATEGORY DELETION PROCESS
 
 var deleteMainCategory = /*#__PURE__*/function () {
-  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8___default().mark(function _callee(e, budget) {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_9___default().mark(function _callee(e, budget) {
     var budgetPages, mainCategoryCreationPage, userInfo, user;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8___default().wrap(function _callee$(_context) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_9___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
@@ -4948,7 +4954,7 @@ var deleteMainCategory = /*#__PURE__*/function () {
             // CHECK USER
 
             _context.next = 4;
-            return _Update_User__WEBPACK_IMPORTED_MODULE_9__.getSomePersonals();
+            return _Update_User__WEBPACK_IMPORTED_MODULE_10__.getSomePersonals();
 
           case 4:
             userInfo = _context.sent;
@@ -5395,7 +5401,9 @@ var _watchEmergencyGoalSettings = function _watchEmergencyGoalSettings(budget, s
 var _finishUpdatingSubCategories = function _finishUpdatingSubCategories(budget, goals) {
   budget.mainCategories.forEach(function (mc, i) {
     mc.subCategories.forEach(function (sc, i) {
-      sc._finishUpdatingSubCategory(goals[i].value);
+      console.log(goals[i], goals[i].value);
+
+      sc._finishUpdatingSubCategory(Number(goals[i].value));
     });
   });
   return;
@@ -6526,6 +6534,15 @@ __webpack_require__.r(__webpack_exports__);
  // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
 
+var addTotalBudget = function addTotalBudget(subCategoryTotals, total) {
+  var initialValue = 0;
+  total = subCategoryTotals.reduce(function (totalValue, currentValue) {
+    return totalValue + currentValue;
+  }, initialValue);
+  console.log(total);
+  return total;
+};
+
 var cycleMainCategories = function cycleMainCategories(direction, index, icons, titles, subCats) {
   if (direction === "left") {
     index--;
@@ -6599,42 +6616,69 @@ var selectDay = function selectDay(monthDays, singleDay) {
   singleDay.classList.add('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
 };
 
-var _setupMonth = function _setupMonth(monthDays, year) {
-  var date = new Date();
-  var dayStart = 1;
-  var days = document.querySelectorAll('.bill-calendar-container__calendar-container__calendar__days__single-day');
-  var startDate = new Date(year, date.getMonth(), 1);
-  var manipulatedDate = new Date(year, date.getMonth(), 1);
-  var currentDate = new Date(year, date.getMonth(), date.getDate());
-  currentDate = new Date(currentDate.setDate(currentDate.getDate() + 1));
-  var dayIndex = startDate.getDay();
+var _setupMonth = /*#__PURE__*/function () {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(monthDays, year, user) {
+    var date, dayStart, days, startDate, manipulatedDate, currentDate, dayIndex, currentDay, total, subCategoryBudgetedTotals, budgetId, budget;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            date = new Date();
+            dayStart = 1;
+            days = document.querySelectorAll('.bill-calendar-container__calendar-container__calendar__days__single-day');
+            startDate = new Date(year, date.getMonth(), 1);
+            manipulatedDate = new Date(year, date.getMonth(), 1);
+            currentDate = new Date(year, date.getMonth(), date.getDate());
+            currentDate = new Date(currentDate.setDate(currentDate.getDate() + 1));
+            dayIndex = startDate.getDay();
 
-  while (dayStart <= monthDays) {
-    if (dayStart === 1) {
-      days[dayIndex].textContent = dayStart;
-      dayStart++;
-      dayIndex++;
-    }
+            while (dayStart <= monthDays) {
+              if (dayStart === 1) {
+                days[dayIndex].textContent = dayStart;
+                dayStart++;
+                dayIndex++;
+              }
 
-    manipulatedDate = new Date(manipulatedDate.setDate(manipulatedDate.getDate() + 1));
-    days[dayIndex].textContent = manipulatedDate.getDate();
-    dayStart++;
-    dayIndex++;
-  }
+              manipulatedDate = new Date(manipulatedDate.setDate(manipulatedDate.getDate() + 1));
+              days[dayIndex].textContent = manipulatedDate.getDate();
+              dayStart++;
+              dayIndex++;
+            }
 
-  var currentDay = days[currentDate.getDate()];
-  currentDay.classList.add('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
-  days.forEach(function (d, i) {
-    if (d.textContent === '') d.classList.add('un-used-day');
+            currentDay = days[currentDate.getDate()];
+            currentDay.classList.add('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
+            days.forEach(function (d, i) {
+              if (d.textContent === '') d.classList.add('un-used-day');
 
-    if (d.textContent !== '') {
-      d.addEventListener('click', function (e) {
-        console.log(d.textContent);
-        selectDay(days, d);
-      });
-    }
-  });
-};
+              if (d.textContent !== '') {
+                d.addEventListener('click', function (e) {
+                  console.log(d.textContent);
+                  selectDay(days, d);
+                });
+              }
+            });
+            subCategoryBudgetedTotals = [];
+            budgetId = user.budgets[user.budgets.length - 1]; // console.log(user.budgets[user.budgets.length - 1]);
+
+            console.log(subCategoryBudgetedTotals);
+            _context.next = 17;
+            return _Update_User__WEBPACK_IMPORTED_MODULE_2__.getMyBudget(budgetId);
+
+          case 17:
+            budget = _context.sent;
+
+          case 18:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function _setupMonth(_x, _x2, _x3) {
+    return _ref.apply(this, arguments);
+  };
+}();
 
 var getDaysInMonth = function getDaysInMonth(calendar, month, value) {
   if (month === "January" || month === "March" || month === "May" || month === "July" || month === "August" || month === "October" || month === "December") {
@@ -6652,7 +6696,7 @@ var getDaysInMonth = function getDaysInMonth(calendar, month, value) {
   return value;
 };
 
-var _setupBillCalendar = function _setupBillCalendar() {
+var _setupBillCalendar = function _setupBillCalendar(user) {
   var calendar = _FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_3__.myCalendar;
   var daysInMonth;
   var currentMonth = calendar.getMonth();
@@ -6660,7 +6704,7 @@ var _setupBillCalendar = function _setupBillCalendar() {
 
   daysInMonth = getDaysInMonth(calendar, currentMonth, daysInMonth); // SETTING UP THE BILL CALENDAR MONTH
 
-  _setupMonth(daysInMonth, currentYear);
+  _setupMonth(daysInMonth, currentYear, user);
 };
 
 var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
@@ -6829,11 +6873,11 @@ var pushIntoArray = function pushIntoArray(arrayFiller, array) {
 };
 
 var _watchBudget = /*#__PURE__*/function () {
-  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
+  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2() {
     var formLabels, formInputs, formSections, monthlyBudgetTransactions, monthlyBudgetTransactionOptions, emergencyFundTransactions, emergencyFundTransactionOptions, savingsFundTransactions, savingsFundTransactionOptions, expenseFundTransactions, expenseFundTransactionOptions, surplusTransactions, surplusTransactionOptions, debtTransactions, debtTransactionOptions, tithingTransactions, tithingTransactionOptions, mainCategoryOptionArrays, currentDay, userInfo, user;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
       while (1) {
-        switch (_context.prev = _context.next) {
+        switch (_context2.prev = _context2.next) {
           case 0:
             console.log("WATCHING YOUR BUDGET"); ////////////////////////////////////////////
             // SETUP ACCOUNT OPTIONS FOR TRANSACTIONS
@@ -6866,11 +6910,11 @@ var _watchBudget = /*#__PURE__*/function () {
             console.log(tithingTransactions);
             tithingTransactionOptions = [];
             mainCategoryOptionArrays = [];
-            _context.next = 22;
+            _context2.next = 22;
             return _Update_User__WEBPACK_IMPORTED_MODULE_2__.getSomePersonals();
 
           case 22:
-            userInfo = _context.sent;
+            userInfo = _context2.sent;
             user = userInfo.data.data.user; ///////////////////////////////
             // MONTHLY BUDGET OPTIONS
 
@@ -6894,7 +6938,7 @@ var _watchBudget = /*#__PURE__*/function () {
             // SETUP BILL CALENDAR
 
 
-            _setupBillCalendar(); ////////////////////////////////////////////
+            _setupBillCalendar(user); ////////////////////////////////////////////
             // SETUP BILL CURRENT MONTH
 
 
@@ -6902,14 +6946,14 @@ var _watchBudget = /*#__PURE__*/function () {
 
           case 38:
           case "end":
-            return _context.stop();
+            return _context2.stop();
         }
       }
-    }, _callee);
+    }, _callee2);
   }));
 
   return function _watchBudget() {
-    return _ref.apply(this, arguments);
+    return _ref2.apply(this, arguments);
   };
 }();
 
@@ -6946,7 +6990,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var createBudget = /*#__PURE__*/function () {
   var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(budget) {
-    var _response, _response2;
+    var response, _response;
 
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
       while (1) {
@@ -6963,9 +7007,9 @@ var createBudget = /*#__PURE__*/function () {
             });
 
           case 3:
-            _response = _context.sent;
+            response = _context.sent;
 
-            if (!(_response.statusText === "Created")) {
+            if (!(response.statusText === "Created")) {
               _context.next = 8;
               break;
             }
@@ -6980,25 +7024,24 @@ var createBudget = /*#__PURE__*/function () {
             });
 
           case 7:
-            _response2 = _context.sent;
+            _response = _context.sent;
 
           case 8:
-            document.open("text/html").write(_response.data);
+            document.open("text/html").write(response.data);
             window.location.assign("/users/budgets");
-            console.log(_response);
+            console.log(response);
 
             _Budget__WEBPACK_IMPORTED_MODULE_3__._watchBudget();
 
-            _context.next = 18;
+            _context.next = 17;
             break;
 
           case 14:
             _context.prev = 14;
             _context.t0 = _context["catch"](0);
-            console.log(response);
             console.log(_context.t0);
 
-          case 18:
+          case 17:
           case "end":
             return _context.stop();
         }
@@ -7476,6 +7519,7 @@ var _setupSignupForm = function _setupSignupForm(page, pages, person) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getSomePersonals": () => (/* binding */ getSomePersonals),
+/* harmony export */   "getMyBudget": () => (/* binding */ getMyBudget),
 /* harmony export */   "updatePassword": () => (/* binding */ updatePassword),
 /* harmony export */   "updateMyPassword": () => (/* binding */ updateMyPassword),
 /* harmony export */   "updateMe": () => (/* binding */ updateMe),
@@ -7541,8 +7585,8 @@ var getSomePersonals = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
-var updatePassword = /*#__PURE__*/function () {
-  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee2(password, passwordConfirmed) {
+var getMyBudget = /*#__PURE__*/function () {
+  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee2(id) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee2$(_context2) {
       while (1) {
@@ -7550,6 +7594,42 @@ var updatePassword = /*#__PURE__*/function () {
           case 0:
             _context2.prev = 0;
             _context2.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
+              method: "GET",
+              url: "/users/me/".concat(id)
+            });
+
+          case 3:
+            response = _context2.sent;
+            console.log(response);
+            return _context2.abrupt("return", response);
+
+          case 8:
+            _context2.prev = 8;
+            _context2.t0 = _context2["catch"](0);
+            console.log(_context2.t0);
+
+          case 11:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 8]]);
+  }));
+
+  return function getMyBudget(_x) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+var updatePassword = /*#__PURE__*/function () {
+  var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee3(password, passwordConfirmed) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            _context3.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "PATCH",
               url: "/users/resetPassword/".concat(window.location.href.split('/')[5]),
@@ -7560,58 +7640,10 @@ var updatePassword = /*#__PURE__*/function () {
             });
 
           case 3:
-            response = _context2.sent;
+            response = _context3.sent;
 
             if (response.data.status === 'Success') {
               window.location.assign("/");
-            }
-
-            _context2.next = 10;
-            break;
-
-          case 7:
-            _context2.prev = 7;
-            _context2.t0 = _context2["catch"](0);
-            console.log(_context2.t0);
-
-          case 10:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, _callee2, null, [[0, 7]]);
-  }));
-
-  return function updatePassword(_x, _x2) {
-    return _ref2.apply(this, arguments);
-  };
-}();
-var updateMyPassword = /*#__PURE__*/function () {
-  var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee3(currentPassword, newPassword, newPasswordConfirmed) {
-    var response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee3$(_context3) {
-      while (1) {
-        switch (_context3.prev = _context3.next) {
-          case 0:
-            _context3.prev = 0;
-            _context3.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
-              method: "POST",
-              url: "/users/updateMyPassword",
-              data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify({
-                currentPassword: currentPassword,
-                newPassword: newPassword,
-                newPasswordConfirmed: newPasswordConfirmed
-              })
-            });
-
-          case 3:
-            response = _context3.sent;
-
-            if (response.statusText === 'OK') {
-              document.getElementById('currentPassword').value = newPassword;
-              document.getElementById('newPassword').value = "";
-              document.getElementById('newPasswordConfirmed').value = ""; // window.location.reload(true);
             }
 
             _context3.next = 10;
@@ -7630,12 +7662,12 @@ var updateMyPassword = /*#__PURE__*/function () {
     }, _callee3, null, [[0, 7]]);
   }));
 
-  return function updateMyPassword(_x3, _x4, _x5) {
+  return function updatePassword(_x2, _x3) {
     return _ref3.apply(this, arguments);
   };
 }();
-var updateMe = /*#__PURE__*/function () {
-  var _ref4 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee4(options) {
+var updateMyPassword = /*#__PURE__*/function () {
+  var _ref4 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee4(currentPassword, newPassword, newPasswordConfirmed) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee4$(_context4) {
       while (1) {
@@ -7644,13 +7676,61 @@ var updateMe = /*#__PURE__*/function () {
             _context4.prev = 0;
             _context4.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_3___default()({
+              method: "POST",
+              url: "/users/updateMyPassword",
+              data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify({
+                currentPassword: currentPassword,
+                newPassword: newPassword,
+                newPasswordConfirmed: newPasswordConfirmed
+              })
+            });
+
+          case 3:
+            response = _context4.sent;
+
+            if (response.statusText === 'OK') {
+              document.getElementById('currentPassword').value = newPassword;
+              document.getElementById('newPassword').value = "";
+              document.getElementById('newPasswordConfirmed').value = ""; // window.location.reload(true);
+            }
+
+            _context4.next = 10;
+            break;
+
+          case 7:
+            _context4.prev = 7;
+            _context4.t0 = _context4["catch"](0);
+            console.log(_context4.t0);
+
+          case 10:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[0, 7]]);
+  }));
+
+  return function updateMyPassword(_x4, _x5, _x6) {
+    return _ref4.apply(this, arguments);
+  };
+}();
+var updateMe = /*#__PURE__*/function () {
+  var _ref5 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee5(options) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            _context5.prev = 0;
+            _context5.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "PATCH",
               url: "/users/updateMe",
               data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify(_objectSpread({}, options))
             });
 
           case 3:
-            response = _context4.sent;
+            response = _context5.sent;
 
             if (response.statusText === 'OK') {
               // Check if first name is not undefined or empty.
@@ -7676,47 +7756,6 @@ var updateMe = /*#__PURE__*/function () {
               document.getElementById('newPhoneNumberConfirmed').value = '';
             }
 
-            _context4.next = 10;
-            break;
-
-          case 7:
-            _context4.prev = 7;
-            _context4.t0 = _context4["catch"](0);
-            console.log(_context4.t0);
-
-          case 10:
-          case "end":
-            return _context4.stop();
-        }
-      }
-    }, _callee4, null, [[0, 7]]);
-  }));
-
-  return function updateMe(_x6) {
-    return _ref4.apply(this, arguments);
-  };
-}();
-var deactivateMe = /*#__PURE__*/function () {
-  var _ref5 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee5() {
-    var response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee5$(_context5) {
-      while (1) {
-        switch (_context5.prev = _context5.next) {
-          case 0:
-            _context5.prev = 0;
-            _context5.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
-              method: "DELETE",
-              url: "/users/deactivateMe"
-            });
-
-          case 3:
-            response = _context5.sent;
-
-            if (response.statusText === 'Success') {
-              window.location.assign('/');
-            }
-
             _context5.next = 10;
             break;
 
@@ -7733,11 +7772,11 @@ var deactivateMe = /*#__PURE__*/function () {
     }, _callee5, null, [[0, 7]]);
   }));
 
-  return function deactivateMe() {
+  return function updateMe(_x7) {
     return _ref5.apply(this, arguments);
   };
 }();
-var deleteMe = /*#__PURE__*/function () {
+var deactivateMe = /*#__PURE__*/function () {
   var _ref6 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee6() {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee6$(_context6) {
@@ -7748,13 +7787,13 @@ var deleteMe = /*#__PURE__*/function () {
             _context6.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "DELETE",
-              url: "/users/deleteMe"
+              url: "/users/deactivateMe"
             });
 
           case 3:
             response = _context6.sent;
 
-            if (response.statusText === 'No Content') {
+            if (response.statusText === 'Success') {
               window.location.assign('/');
             }
 
@@ -7774,8 +7813,49 @@ var deleteMe = /*#__PURE__*/function () {
     }, _callee6, null, [[0, 7]]);
   }));
 
-  return function deleteMe() {
+  return function deactivateMe() {
     return _ref6.apply(this, arguments);
+  };
+}();
+var deleteMe = /*#__PURE__*/function () {
+  var _ref7 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee7() {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee7$(_context7) {
+      while (1) {
+        switch (_context7.prev = _context7.next) {
+          case 0:
+            _context7.prev = 0;
+            _context7.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
+              method: "DELETE",
+              url: "/users/deleteMe"
+            });
+
+          case 3:
+            response = _context7.sent;
+
+            if (response.statusText === 'No Content') {
+              window.location.assign('/');
+            }
+
+            _context7.next = 10;
+            break;
+
+          case 7:
+            _context7.prev = 7;
+            _context7.t0 = _context7["catch"](0);
+            console.log(_context7.t0);
+
+          case 10:
+          case "end":
+            return _context7.stop();
+        }
+      }
+    }, _callee7, null, [[0, 7]]);
+  }));
+
+  return function deleteMe() {
+    return _ref7.apply(this, arguments);
   };
 }(); ////////////////////////////////////
 // Watch Button To Reset Password
@@ -7800,16 +7880,16 @@ var _watchForProfileUpdates = function _watchForProfileUpdates() {
   var latterDaySaintSwitch = document.querySelector('.user-profile-form__section__input--latter-day-saint');
   userProfileFormButtons.forEach(function (b, i) {
     b.addEventListener('click', /*#__PURE__*/function () {
-      var _ref7 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee7(e) {
+      var _ref8 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee8(e) {
         var firstname, lastname, username, updatedUserInfo, newEmail, newEmailConfirmed, newPhoneNumber, newPhoneNumberConfirmed, updateUserInfo;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee7$(_context7) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee8$(_context8) {
           while (1) {
-            switch (_context7.prev = _context7.next) {
+            switch (_context8.prev = _context8.next) {
               case 0:
                 e.preventDefault();
 
                 if (!(i === 0)) {
-                  _context7.next = 9;
+                  _context8.next = 9;
                   break;
                 }
 
@@ -7821,7 +7901,7 @@ var _watchForProfileUpdates = function _watchForProfileUpdates() {
                   latterDaySaint = true;
                 }
 
-                _context7.next = 8;
+                _context8.next = 8;
                 return updateMe({
                   firstname: firstname,
                   lastname: lastname,
@@ -7830,11 +7910,11 @@ var _watchForProfileUpdates = function _watchForProfileUpdates() {
                 });
 
               case 8:
-                updatedUserInfo = _context7.sent;
+                updatedUserInfo = _context8.sent;
 
               case 9:
                 if (!(i === 1)) {
-                  _context7.next = 22;
+                  _context8.next = 22;
                   break;
                 }
 
@@ -7861,7 +7941,7 @@ var _watchForProfileUpdates = function _watchForProfileUpdates() {
                   newPhoneNumberConfirmed = document.getElementById('phoneNumber').value;
                 }
 
-                _context7.next = 21;
+                _context8.next = 21;
                 return updateMe({
                   email: newEmail,
                   emailConfirmed: newEmailConfirmed,
@@ -7871,76 +7951,76 @@ var _watchForProfileUpdates = function _watchForProfileUpdates() {
                 });
 
               case 21:
-                updateUserInfo = _context7.sent;
+                updateUserInfo = _context8.sent;
 
               case 22:
                 if (!(i === 2)) {
-                  _context7.next = 25;
+                  _context8.next = 25;
                   break;
                 }
 
-                _context7.next = 25;
+                _context8.next = 25;
                 return (0,_Login__WEBPACK_IMPORTED_MODULE_5__.logout)();
 
               case 25:
                 if (!(i === 3)) {
-                  _context7.next = 28;
+                  _context8.next = 28;
                   break;
                 }
 
-                _context7.next = 28;
+                _context8.next = 28;
                 return deactivateMe();
 
               case 28:
                 if (!(i === 4)) {
-                  _context7.next = 31;
+                  _context8.next = 31;
                   break;
                 }
 
-                _context7.next = 31;
+                _context8.next = 31;
                 return deleteMe();
 
               case 31:
               case "end":
-                return _context7.stop();
+                return _context8.stop();
             }
           }
-        }, _callee7);
+        }, _callee8);
       }));
 
-      return function (_x7) {
-        return _ref7.apply(this, arguments);
+      return function (_x8) {
+        return _ref8.apply(this, arguments);
       };
     }());
   });
   userProfileSubSectionFormButtons[0].addEventListener('click', /*#__PURE__*/function () {
-    var _ref8 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee8(e) {
+    var _ref9 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee9(e) {
       var currentPassword, newPassword, newPasswordConfirmed, updateUserInfo;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee8$(_context8) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee9$(_context9) {
         while (1) {
-          switch (_context8.prev = _context8.next) {
+          switch (_context9.prev = _context9.next) {
             case 0:
               e.preventDefault();
               console.log(userProfileSubSectionFormButtons);
               currentPassword = document.getElementById('currentPassword').value;
               newPassword = document.getElementById('newPassword').value;
               newPasswordConfirmed = document.getElementById('newPasswordConfirmed').value;
-              _context8.next = 7;
+              _context9.next = 7;
               return updateMyPassword(currentPassword, newPassword, newPasswordConfirmed);
 
             case 7:
-              updateUserInfo = _context8.sent;
+              updateUserInfo = _context9.sent;
 
             case 8:
             case "end":
-              return _context8.stop();
+              return _context9.stop();
           }
         }
-      }, _callee8);
+      }, _callee9);
     }));
 
-    return function (_x8) {
-      return _ref8.apply(this, arguments);
+    return function (_x9) {
+      return _ref9.apply(this, arguments);
     };
   }());
 };
@@ -13715,12 +13795,7 @@ __webpack_require__.r(__webpack_exports__);
       /////////////////////////////
       // START UP THE APPLICATION
       this._startApp(); // Eventually, this will be the ONLY function being ran from the constructor of the the app.
-      // Budget Card Creation will be done at the end of the Create Budget Form when all is said and done.
-
-
-      _Budget_Cards__WEBPACK_IMPORTED_MODULE_4__.createBudgetCard("Cluff's Budget", "7 December 2021", "7 December 2021", "Nathan Cluff", "./../DIST/CSS/Images/Default-Budget-Cover-Photo.svg");
-
-      _Budget_Creation__WEBPACK_IMPORTED_MODULE_9__._watchEmergencyGoalSettings(); // Eventually this will move to the Budget-Creation.js under Watch Budget Creation for page 6 for LDS and 5 for Non-LDS.
+      // Budget._watchEmergencyGoalSettings(); // Eventually this will move to the Budget-Creation.js under Watch Budget Creation for page 6 for LDS and 5 for Non-LDS.
 
     }
 

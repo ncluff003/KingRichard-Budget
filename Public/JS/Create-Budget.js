@@ -28,7 +28,6 @@ export const createBudget = async (budget) => {
     console.log(response);
     Budgeting._watchBudget();
   } catch (error) {
-    console.log(response);
     console.log(error);
   }
 };

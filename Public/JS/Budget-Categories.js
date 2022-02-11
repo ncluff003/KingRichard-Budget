@@ -998,12 +998,16 @@ export class SubCategory extends Category {
   }
 
   _finishUpdatingSubCategory(goal) {
-    let goalAmount = Number(goal);
-    if (goalAmount !== `undefined` || typeof goalAmount !== `number`) goal = 0;
-    this.goalAmount = goalAmount;
+    console.log(typeof goal);
+    let categoryGoal = goal;
+    console.log(typeof categoryGoal);
+    if (categoryGoal === undefined || typeof categoryGoal !== `number`) categoryGoal = 0;
+    console.log(this);
+    this.goalAmount = categoryGoal;
+    console.log(this.goalAmount);
     this.amountSpent = 0;
     this.amountRemaining = this.goalAmount - this.amountSpent;
-    this.percentageSpent = Number((this.amountSpent / this.goalAmount).toFixed(1));
+    this.percentageSpent = this.amountSpent / this.goalAmount;
   }
 }
 

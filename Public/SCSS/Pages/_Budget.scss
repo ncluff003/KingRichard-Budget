@@ -259,6 +259,10 @@
                       &__bill {
                         @include SizeAndPositioning(relative, 4.4rem, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
                         min-height: 4.4rem;
+                        background-color: rgba($colorLightestGrey, 0.25);
+                        &:nth-of-type(2n) {
+                          background-color: rgba($colorLightestGrey, 0.5);
+                        }
                         &__bill-item {
                           @include SizeAndPositioning(relative, 100%, 25%, flex, column, wrap, center, center, 0, 0, 0);
                           &:nth-of-type(4) {
@@ -398,7 +402,10 @@
                   &__sub-category {
                     @include SizeAndPositioning(relative, 6rem, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
                     min-height: 10rem;
-                    background-color: $colorLightestGrey;
+                    background-color: rgba($colorLightestGrey, 0.25);
+                    &:nth-of-type(2n) {
+                      background-color: rgba($colorLightestGrey, 0.5);
+                    }
                     &__section {
                       @include SizeAndPositioning(relative, 100%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
                       // &:first-of-type {

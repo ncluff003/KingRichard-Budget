@@ -1,4 +1,18 @@
-section.budget-card-container.r__budget-card-container.column_1-20.row_4-11 
+section.budget-card-container.r__budget-card-container.column_1-20.row_4-11
+  each budget in data.user.budgets
+    section.budget-card-container__card.r__budget-card-container__card
+      header.budget-card-container__card__header.r__budget-card-container__card__header
+        p.budget-card-container__card__header__text.r__budget-card-container__card__header__text= `${budget.name}`
+        i.fas.fa-trash-alt.budget-card-container__card__header__icon.r__budget-card-container__card__header__icon
+      section.budget-card-container__card__content.r__budget-card-container__card__content
+        img.budget-card-container__card__content__cover-photo.r__budget-card-container__card__content__cover-photo(src=`./../DIST/CSS/Images/${budget.coverPhoto}`)
+        button.budget-card-container__card__content__change-photo-button.r__budget-card-container__card__content__change-photo-button
+          i.fas.fa-camera.budget-card-container__card__content__change-photo-button__icon.r__budget-card-container__card__content__change-photo-button__icon
+      section.budget-card-container__card__footer.r__budget-card-container__card__footer
+        section.budget-card-container__card__footer--top.r__budget-card-container__card__footer--top
+          - const months = [ `January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December` ]
+          p.budget-card-container__card__footer--top__first.r__budget-card-container__card__footer--top__first= `Created At ${budget.createdAt.getDate()} ${months[budget.createdAt.getMonth()]} ${budget.createdAt.getFullYear()}`
+          p.budget-card-container__card__footer--top__last.r__budget-card-container__card__footer--top__last= `Last Updated ${budget.lastUpdated.getDate()} ${months[budget.lastUpdated.getMonth()]} ${budget.lastUpdated.getFullYear()}`
   section.budget-card-container__card--create.r__budget-card-container__card--create 
     header.budget-card-container__card--create__header.r__budget-card-container__card--create__header 
       p.budget-card-container__card--create__header__text.r__budget-card-container__card--create__header__text Create Budget 

@@ -12,13 +12,23 @@
         @include gridPlacement(20, 20, 16, 16);
         background-color: rgba($colorOffWhite, 0.9);
         .budget-card-container {
-          @include SizeAndPositioning(relative, 100%, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
+          @include SizeAndPositioning(relative, 100%, 100%, flex, row, nowrap, flex-start, center, 0, 0, 0);
           background-color: rgba($colorOffWhite, 0.5);
+          overflow-x: auto;
+          padding: 0 5rem;
           &__card {
             @include SizeAndPositioning(relative, 100%, 25%, flex, column, nowrap, center, center, 0, 0, 0);
             border: 0.3rem solid rgba($primaryColor, 0.8);
             border-radius: 2.5rem;
             background-color: transparent;
+            min-width: 38.4rem;
+            margin: 0 1.5rem;
+            &:first-of-type {
+              margin-left: 3rem;
+            }
+            &:last-of-type {
+              margin-right: 3rem;
+            }
             &__header {
               @include SizeAndPositioning(absolute, 10%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
               top: 0;
@@ -58,11 +68,12 @@
               border-bottom-right-radius: 2.1rem;
               background-color: rgba($primaryColor, 0.8);
               &--top {
-                @include SizeAndPositioning(relative, 50%, 100%, flex, row, nowrap, space-between, flex-start, 0, 0, 0);
-                padding: 0.5rem 0.5rem 0;
-              }
-              &--bottom {
-                @include SizeAndPositioning(relative, 50%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+                @include SizeAndPositioning(relative, 100%, 100%, flex, column, nowrap, center, center, 0, 0, 0);
+                padding: 0 0.5rem;
+                &__first,
+                &__last {
+                  height: 40%;
+                }
               }
             }
             &:hover {
@@ -101,6 +112,10 @@
               border: 0.3rem solid rgba($primaryColor, 0.8);
               border-radius: 2.5rem;
               background-color: transparent;
+              min-width: 38.4rem;
+              &:last-of-type {
+                margin-left: 1.5rem;
+              }
               &__header {
                 @include SizeAndPositioning(absolute, 10%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
                 top: 0;

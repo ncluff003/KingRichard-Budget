@@ -15,6 +15,19 @@ export const getSomePersonals = async () => {
   }
 };
 
+export const getMyBudget = async (id) => {
+  try {
+    const response = await axios({
+      method: `GET`,
+      url: `/users/me/${id}`,
+    });
+    console.log(response);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const updatePassword = async (password, passwordConfirmed) => {
   try {
     const response = await axios({

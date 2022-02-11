@@ -13,6 +13,7 @@
       .app-container {
         .budget-card-container {
           @include SizeAndPositioning(relative, 70%, 100%, flex, row, nowrap, space-around, center, 0, 0, 0);
+          overflow-x: auto;
           margin-bottom: 10rem;
           .fa-arrow-alt-circle-left,
           .fa-arrow-alt-circle-right {

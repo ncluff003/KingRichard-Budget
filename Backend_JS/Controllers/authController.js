@@ -32,6 +32,7 @@ const Calendar = require(`./../Utilities/Calendar`);
 ////////////////////////////////////////////
 //  My Models
 const User = require(`./../Models/userModel`);
+const Budget = require('./../Models/budgetModel');
 
 ////////////////////////////////////////////
 //  My Functions
@@ -152,7 +153,7 @@ exports.login = catchAsync(async (request, response, next) => {
     user.active = true;
     user.save({ validateBeforeSave: false });
   }
-
+  console.log(user, await user.populate('budgets'));
   createAndSendToken(user, 200, `render`, request, response, `loggedIn`, `King Richard | Home`, { calendar: Calendar });
 });
 

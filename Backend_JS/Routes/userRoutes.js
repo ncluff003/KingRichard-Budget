@@ -38,6 +38,7 @@ router.route(`/deleteMe`).delete(authController.protect, userController.deleteMe
 // router.route(`/projects`).get(appController.viewMyWork);
 // router.route(`/contact`).get(appController.contactMe).post(messageController.validateEmail, messageController.emailMe);
 router.route(`/budgets`).post(authController.protect, budgetController.createBudget).get(authController.protect, budgetController.getBudget);
+router.route(`/budgets/:id`).get(authController.protect);
 
 ////////////////////////////////////////////
 //  My Modules

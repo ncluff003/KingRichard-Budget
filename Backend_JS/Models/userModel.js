@@ -2,6 +2,7 @@ const mongoose = require(`mongoose`);
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
+const Budget = require('./budgetModel');
 
 const userSchema = new mongoose.Schema({
   firstname: {
@@ -79,7 +80,12 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  budgets: [],
+  budgets: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Budget',
+    },
+  ],
   active: {
     type: Boolean,
     default: true,
@@ -87,11 +93,16 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-userSchema.pre(/^find/, function (next) {
+userSchema.pre(/^find/, async function (next) {
+  const populatedUser = this.populate('budgets');
+  console.log(this.budgets, this.populated);
+
+  // console.log(populatedUser);
   // this.find({ active: { $ne: false } });
   next();
 });
 
+// DOCUMENT MIDDLEWARE: Runs before .save() and .create() ONLY.
 userSchema.pre('save', async function (next) {
   // Only runs if password is modified, and this also only runs on SAVE rather than UPDATE.
   if (!this.isModified('password')) return next();
@@ -107,6 +118,13 @@ userSchema.pre('save', function (next) {
   this.passwordChangedAt = Date.now() - 1000;
   next();
 });
+
+// FOR EMBEDDED DOCUMENTS ONLY
+// userSchema.pre('save', async function (next) {
+//   const budgetPromises = this.budgets.map(async (id) => await Budget.findById(id));
+//   this.budgets = await Promise.all(budgetPromises);
+//   next();
+// });
 
 userSchema.methods.correctPassword = async function (candidatePassword, userPassword) {
   return await bcrypt.compare(candidatePassword, userPassword);

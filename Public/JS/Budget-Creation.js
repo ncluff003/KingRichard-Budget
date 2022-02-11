@@ -105,7 +105,8 @@ export const _watchEmergencyGoalSettings = (budget, setting) => {
 const _finishUpdatingSubCategories = (budget, goals) => {
   budget.mainCategories.forEach((mc, i) => {
     mc.subCategories.forEach((sc, i) => {
-      sc._finishUpdatingSubCategory(goals[i].value);
+      console.log(goals[i], goals[i].value);
+      sc._finishUpdatingSubCategory(Number(goals[i].value));
     });
   });
   return;

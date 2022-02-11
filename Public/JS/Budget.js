@@ -2,6 +2,13 @@ import * as Updating from './Update-User';
 import * as Calendar from './FrontEnd-Calendar';
 // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
+const addTotalBudget = (subCategoryTotals, total) => {
+  let initialValue = 0;
+  total = subCategoryTotals.reduce((totalValue, currentValue) => totalValue + currentValue, initialValue);
+  console.log(total);
+  return total;
+};
+
 const cycleMainCategories = (direction, index, icons, titles, subCats) => {
   if (direction === `left`) {
     index--;
@@ -74,7 +81,7 @@ const selectDay = (monthDays, singleDay) => {
   singleDay.classList.add('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
 };
 
-const _setupMonth = (monthDays, year) => {
+const _setupMonth = async (monthDays, year, user) => {
   const date = new Date();
   let dayStart = 1;
   const days = document.querySelectorAll('.bill-calendar-container__calendar-container__calendar__days__single-day');
@@ -105,6 +112,13 @@ const _setupMonth = (monthDays, year) => {
       });
     }
   });
+  let total;
+  let subCategoryBudgetedTotals = [];
+  let budgetId = user.budgets[user.budgets.length - 1];
+  // console.log(user.budgets[user.budgets.length - 1]);
+  console.log(subCategoryBudgetedTotals);
+  let budget = await Updating.getMyBudget(budgetId);
+  // console.log(user.budgets[user.budgets.length - 1])
 };
 
 const getDaysInMonth = (calendar, month, value) => {
@@ -120,7 +134,7 @@ const getDaysInMonth = (calendar, month, value) => {
   return value;
 };
 
-const _setupBillCalendar = () => {
+const _setupBillCalendar = (user) => {
   const calendar = Calendar.myCalendar;
   let daysInMonth;
   const currentMonth = calendar.getMonth();
@@ -129,7 +143,7 @@ const _setupBillCalendar = () => {
   // GETTING NUMBER OF DAYS IN THE CURRENT MONTH
   daysInMonth = getDaysInMonth(calendar, currentMonth, daysInMonth);
   // SETTING UP THE BILL CALENDAR MONTH
-  _setupMonth(daysInMonth, currentYear);
+  _setupMonth(daysInMonth, currentYear, user);
 };
 
 const _watchForTransactions = (arrayOfArrays) => {
@@ -372,7 +386,7 @@ export const _watchBudget = async () => {
 
   ////////////////////////////////////////////
   // SETUP BILL CALENDAR
-  _setupBillCalendar();
+  _setupBillCalendar(user);
   ////////////////////////////////////////////
   // SETUP BILL CURRENT MONTH
   _setupCurrentMonth();

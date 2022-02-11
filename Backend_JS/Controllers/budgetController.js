@@ -110,7 +110,7 @@ exports.createBudget = catchAsync(async (request, response, next) => {
     accounts: budget.accounts,
     mainCategories: budget.mainCategories,
   });
-  user.budgets.push(budget.id);
+  user.budgets.push(budget._id);
 
   // Save embedded budget into the user.
   await user.save({ validateBeforeSave: false });

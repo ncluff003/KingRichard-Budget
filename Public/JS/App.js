@@ -16,9 +16,7 @@ import * as Person from './Person';
       /////////////////////////////
       // START UP THE APPLICATION
       this._startApp(); // Eventually, this will be the ONLY function being ran from the constructor of the the app.
-      // Budget Card Creation will be done at the end of the Create Budget Form when all is said and done.
-      BudgetCard.createBudgetCard(`Cluff's Budget`, `7 December 2021`, `7 December 2021`, `Nathan Cluff`, `./../DIST/CSS/Images/Default-Budget-Cover-Photo.svg`);
-      Budget._watchEmergencyGoalSettings(); // Eventually this will move to the Budget-Creation.js under Watch Budget Creation for page 6 for LDS and 5 for Non-LDS.
+      // Budget._watchEmergencyGoalSettings(); // Eventually this will move to the Budget-Creation.js under Watch Budget Creation for page 6 for LDS and 5 for Non-LDS.
     }
 
     _startApp() {
