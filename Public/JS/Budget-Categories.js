@@ -1146,7 +1146,6 @@ export const createSubCategory = (budget, index) => {
     subCategories[subCategories.length - 1].insertAdjacentElement('afterend', subCategory);
   }
   if (!subCategoryTitleInput.value) return;
-  console.log(index);
   budget._addSubCategory(index, `${subCategoryTitleElement.textContent}`);
 };
 

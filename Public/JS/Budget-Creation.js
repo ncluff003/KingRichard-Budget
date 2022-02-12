@@ -338,8 +338,7 @@ const insertTiiming = (target, inputValues, timing, timingButtons, budget, index
   let wording, dayEnding, dayEndingNumberOne;
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  const subCategoryIndex = [...document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-button')].indexOf(target);
-  let currentMainCategory;
+  let currentMainCategory, subCategoryIndex;
   ////////////////////////////
   // INITIALIZE 12 MONTH ARRAY
   const twelveMonthArray = [];
@@ -355,10 +354,13 @@ const insertTiiming = (target, inputValues, timing, timingButtons, budget, index
       if (mc.title === categoryTitle) currentMainCategory = mc;
     });
 
+    // Get Correct Sub Category Index
+    currentMainCategory.subCategories.forEach((sc) => {
+      if (sc.title === target.previousSibling.textContent) subCategoryIndex = currentMainCategory.subCategories.indexOf(sc);
+    });
+
     ///////////////////////
     // SET TIMING OPTIONS
-    console.log(subCategoryIndex);
-    console.log(currentMainCategory, currentMainCategory.subCategories);
     // Set Payment Cycle
     currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing;
 
@@ -408,9 +410,14 @@ const insertTiiming = (target, inputValues, timing, timingButtons, budget, index
       if (mc.title === categoryTitle) currentMainCategory = mc;
     });
 
+    // Get Correct Sub Category Index
+    currentMainCategory.subCategories.forEach((sc) => {
+      if (sc.title === target.previousSibling.textContent) subCategoryIndex = currentMainCategory.subCategories.indexOf(sc);
+    });
+
     ///////////////////////
     // SET TIMING OPTIONS
-    console.log(subCategoryIndex);
+
     // Set Payment Cycle
     currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing;
 
@@ -461,9 +468,14 @@ const insertTiiming = (target, inputValues, timing, timingButtons, budget, index
       if (mc.title === categoryTitle) currentMainCategory = mc;
     });
 
+    // Get Correct Sub Category Index
+    currentMainCategory.subCategories.forEach((sc) => {
+      if (sc.title === target.previousSibling.textContent) subCategoryIndex = currentMainCategory.subCategories.indexOf(sc);
+    });
+
     ///////////////////////
     // SET TIMING OPTIONS
-    console.log(subCategoryIndex);
+
     // Set Payment Cycle
     currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing;
 
@@ -509,9 +521,14 @@ const insertTiiming = (target, inputValues, timing, timingButtons, budget, index
       if (mc.title === categoryTitle) currentMainCategory = mc;
     });
 
+    // Get Correct Sub Category Index
+    currentMainCategory.subCategories.forEach((sc) => {
+      if (sc.title === target.previousSibling.textContent) subCategoryIndex = currentMainCategory.subCategories.indexOf(sc);
+    });
+
     ///////////////////////
     // SET TIMING OPTIONS
-    console.log(subCategoryIndex);
+
     // Set Payment Cycle
     currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing;
 
@@ -1028,7 +1045,6 @@ export const _watchBudgetCreation = () => {
       // CHECK USER
       const userInfo = await Updating.getSomePersonals();
       const user = userInfo.data.data.user;
-      console.log(budget);
       ////////////////////////////////////////////////////////////////////////
       // GLITCH: Need to fix this to work if you are a Latter Day Saint as well.
       ////////////////////////////////////////////////////////////////////////

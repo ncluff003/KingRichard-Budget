@@ -51,7 +51,6 @@ const _setupCurrentMonth = () => {
   const leftButton = document.querySelector('.left');
   const rightButton = document.querySelector('.right');
   let categoryIndex = 0;
-  console.log(categoryIcons, categoryTitles);
   categoryIcons.forEach((c, i) => {
     c.style.display = `none`;
     if (i === 0) c.style.display = `flex`;
@@ -155,7 +154,6 @@ const _setupBillCalendar = (user) => {
 };
 
 const _watchForTransactions = (arrayOfArrays) => {
-  console.log(arrayOfArrays);
   arrayOfArrays.forEach((a, i) => {
     a.forEach((c, i) => {
       // console.log(c);
@@ -303,7 +301,6 @@ const _watchBudgetNavigation = () => {
 
 const finalTransactionArrayPush = (finalArray, user, arrays) => {
   arrays.forEach((a) => {
-    console.log(a);
     finalArray.push(a);
   });
 };
@@ -352,7 +349,6 @@ export const _watchBudget = async () => {
 
   // TITHING
   const tithingTransactions = document.querySelectorAll('.tithing-transaction');
-  console.log(tithingTransactions);
   const tithingTransactionOptions = [];
 
   const mainCategoryOptionArrays = [];
@@ -383,7 +379,6 @@ export const _watchBudget = async () => {
   ]);
 
   if (user.latterDaySaint === true) mainCategoryOptionArrays.push(tithingTransactionOptions);
-  console.log(mainCategoryOptionArrays);
   ////////////////////////////////////////////
   // START BY WATCHING THE BUDGET NAVIGATION
   _watchBudgetNavigation();

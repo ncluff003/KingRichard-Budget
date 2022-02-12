@@ -4945,7 +4945,6 @@ var createSubCategory = function createSubCategory(budget, index) {
   }
 
   if (!subCategoryTitleInput.value) return;
-  console.log(index);
 
   budget._addSubCategory(index, "".concat(subCategoryTitleElement.textContent));
 };
@@ -5734,10 +5733,7 @@ var insertTiiming = function insertTiiming(target, inputValues, timing, timingBu
   var wording, dayEnding, dayEndingNumberOne;
   var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-  var subCategoryIndex = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-button')).indexOf(target);
-
-  var currentMainCategory; ////////////////////////////
+  var currentMainCategory, subCategoryIndex; ////////////////////////////
   // INITIALIZE 12 MONTH ARRAY
 
   var twelveMonthArray = []; // GET MONTHLY TIMING
@@ -5749,11 +5745,13 @@ var insertTiiming = function insertTiiming(target, inputValues, timing, timingBu
     budget.mainCategories.forEach(function (mc, i) {
       var categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
       if (mc.title === categoryTitle) currentMainCategory = mc;
+    }); // Get Correct Sub Category Index
+
+    currentMainCategory.subCategories.forEach(function (sc) {
+      if (sc.title === target.previousSibling.textContent) subCategoryIndex = currentMainCategory.subCategories.indexOf(sc);
     }); ///////////////////////
     // SET TIMING OPTIONS
-
-    console.log(subCategoryIndex);
-    console.log(currentMainCategory, currentMainCategory.subCategories); // Set Payment Cycle
+    // Set Payment Cycle
 
     currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing; // Set Payment Schedule
 
@@ -5792,10 +5790,13 @@ var insertTiiming = function insertTiiming(target, inputValues, timing, timingBu
     budget.mainCategories.forEach(function (mc, i) {
       var categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
       if (mc.title === categoryTitle) currentMainCategory = mc;
+    }); // Get Correct Sub Category Index
+
+    currentMainCategory.subCategories.forEach(function (sc) {
+      if (sc.title === target.previousSibling.textContent) subCategoryIndex = currentMainCategory.subCategories.indexOf(sc);
     }); ///////////////////////
     // SET TIMING OPTIONS
-
-    console.log(subCategoryIndex); // Set Payment Cycle
+    // Set Payment Cycle
 
     currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing; // Set Payment Schedule
 
@@ -5838,10 +5839,13 @@ var insertTiiming = function insertTiiming(target, inputValues, timing, timingBu
     budget.mainCategories.forEach(function (mc, i) {
       var categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
       if (mc.title === categoryTitle) currentMainCategory = mc;
+    }); // Get Correct Sub Category Index
+
+    currentMainCategory.subCategories.forEach(function (sc) {
+      if (sc.title === target.previousSibling.textContent) subCategoryIndex = currentMainCategory.subCategories.indexOf(sc);
     }); ///////////////////////
     // SET TIMING OPTIONS
-
-    console.log(subCategoryIndex); // Set Payment Cycle
+    // Set Payment Cycle
 
     currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing; // Set Payment Schedule
 
@@ -5879,10 +5883,13 @@ var insertTiiming = function insertTiiming(target, inputValues, timing, timingBu
     budget.mainCategories.forEach(function (mc, i) {
       var categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
       if (mc.title === categoryTitle) currentMainCategory = mc;
+    }); // Get Correct Sub Category Index
+
+    currentMainCategory.subCategories.forEach(function (sc) {
+      if (sc.title === target.previousSibling.textContent) subCategoryIndex = currentMainCategory.subCategories.indexOf(sc);
     }); ///////////////////////
     // SET TIMING OPTIONS
-
-    console.log(subCategoryIndex); // Set Payment Cycle
+    // Set Payment Cycle
 
     currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing; // Set Payment Schedule
 
@@ -6414,8 +6421,7 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
 
               case 7:
                 userInfo = _context3.sent;
-                user = userInfo.data.data.user;
-                console.log(budget); ////////////////////////////////////////////////////////////////////////
+                user = userInfo.data.data.user; ////////////////////////////////////////////////////////////////////////
                 // GLITCH: Need to fix this to work if you are a Latter Day Saint as well.
                 ////////////////////////////////////////////////////////////////////////
                 /////////////////////////////
@@ -6525,7 +6531,7 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
                   budget._submit(budget);
                 }
 
-              case 25:
+              case 24:
               case "end":
                 return _context3.stop();
             }
@@ -6622,7 +6628,6 @@ var _setupCurrentMonth = function _setupCurrentMonth() {
   var leftButton = document.querySelector('.left');
   var rightButton = document.querySelector('.right');
   var categoryIndex = 0;
-  console.log(categoryIcons, categoryTitles);
   categoryIcons.forEach(function (c, i) {
     c.style.display = "none";
     if (i === 0) c.style.display = "flex";
@@ -6752,7 +6757,6 @@ var _setupBillCalendar = function _setupBillCalendar(user) {
 };
 
 var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
-  console.log(arrayOfArrays);
   arrayOfArrays.forEach(function (a, i) {
     a.forEach(function (c, i) {
       // console.log(c);
@@ -6904,7 +6908,6 @@ var _watchBudgetNavigation = function _watchBudgetNavigation() {
 
 var finalTransactionArrayPush = function finalTransactionArrayPush(finalArray, user, arrays) {
   arrays.forEach(function (a) {
-    console.log(a);
     finalArray.push(a);
   });
 };
@@ -6951,13 +6954,12 @@ var _watchBudget = /*#__PURE__*/function () {
             debtTransactionOptions = []; // TITHING
 
             tithingTransactions = document.querySelectorAll('.tithing-transaction');
-            console.log(tithingTransactions);
             tithingTransactionOptions = [];
             mainCategoryOptionArrays = [];
-            _context2.next = 22;
+            _context2.next = 21;
             return _Update_User__WEBPACK_IMPORTED_MODULE_2__.getSomePersonals();
 
-          case 22:
+          case 21:
             userInfo = _context2.sent;
             user = userInfo.data.data.user; ///////////////////////////////
             // MONTHLY BUDGET OPTIONS
@@ -6970,8 +6972,7 @@ var _watchBudget = /*#__PURE__*/function () {
             pushIntoArray(debtTransactions, debtTransactionOptions);
             pushIntoArray(tithingTransactions, tithingTransactionOptions);
             finalTransactionArrayPush(mainCategoryOptionArrays, user, [monthlyBudgetTransactionOptions, emergencyFundTransactionOptions, savingsFundTransactionOptions, expenseFundTransactionOptions, surplusTransactionOptions, debtTransactionOptions, tithingTransactionOptions]);
-            if (user.latterDaySaint === true) mainCategoryOptionArrays.push(tithingTransactionOptions);
-            console.log(mainCategoryOptionArrays); ////////////////////////////////////////////
+            if (user.latterDaySaint === true) mainCategoryOptionArrays.push(tithingTransactionOptions); ////////////////////////////////////////////
             // START BY WATCHING THE BUDGET NAVIGATION
 
             _watchBudgetNavigation(); ////////////////////////////////////////////
@@ -6988,7 +6989,7 @@ var _watchBudget = /*#__PURE__*/function () {
 
             _setupCurrentMonth();
 
-          case 38:
+          case 36:
           case "end":
             return _context2.stop();
         }
