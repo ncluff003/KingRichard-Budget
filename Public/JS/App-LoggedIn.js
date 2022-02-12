@@ -13,6 +13,21 @@ let latterDaySaint = false;
 //   latterDaySaint = user.latterDaySaint;
 // };
 
+const enterBudget = async (budgetId) => {
+  await Update.getMyBudget(budgetId);
+};
+
+const _watchBudgetSelection = () => {
+  const budgetCards = document.querySelectorAll('.budget-card-container__card');
+  budgetCards.forEach((bc, i) => {
+    bc.addEventListener('click', (e) => {
+      const clicked = e.target;
+      const id = clicked.closest('.budget-card-container__card').dataset.budgetid;
+      enterBudget(id);
+    });
+  });
+};
+
 const formatPhoneNumber = (value, number) => {
   if (!value) return value;
   let phoneNumber = value.replace(/[^\d]/g, '');
@@ -192,6 +207,8 @@ export const _watchForLogin = (login) => {
     _watchPhoneNumberInputs(formattedNumber);
     // WATCH FOR USER PROFILE UPDATES
     Update._watchForProfileUpdates();
+    // WATCHING FOR BUDGET SELECTION
+    _watchBudgetSelection();
     // WATCHING FOR CREATION OF BUDGETS
     Budget._watchBudgetCreation();
   }

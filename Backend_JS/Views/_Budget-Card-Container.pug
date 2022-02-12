@@ -1,6 +1,6 @@
 section.budget-card-container.r__budget-card-container.column_1-20.row_4-11
   each budget in data.user.budgets
-    section.budget-card-container__card.r__budget-card-container__card
+    section.budget-card-container__card.r__budget-card-container__card(data-budgetid=`${budget.id}`)
       header.budget-card-container__card__header.r__budget-card-container__card__header
         p.budget-card-container__card__header__text.r__budget-card-container__card__header__text= `${budget.name}`
         i.fas.fa-trash-alt.budget-card-container__card__header__icon.r__budget-card-container__card__header__icon

@@ -90,19 +90,27 @@ const _setupMonth = async (monthDays, year, user) => {
   let currentDate = new Date(year, date.getMonth(), date.getDate());
   currentDate = new Date(currentDate.setDate(currentDate.getDate() + 1));
   let dayIndex = startDate.getDay();
-  while (dayStart <= monthDays) {
-    if (dayStart === 1) {
-      days[dayIndex].textContent = dayStart;
+  if (dayStart && dayIndex) {
+    while (dayStart <= monthDays) {
+      if (dayStart === 1) {
+        if (days[dayIndex]) {
+          days[dayIndex].textContent = dayStart;
+          dayStart++;
+          dayIndex++;
+        }
+      }
+      manipulatedDate = new Date(manipulatedDate.setDate(manipulatedDate.getDate() + 1));
+      if (days[dayIndex]) {
+        days[dayIndex].textContent = manipulatedDate.getDate();
+      }
       dayStart++;
       dayIndex++;
     }
-    manipulatedDate = new Date(manipulatedDate.setDate(manipulatedDate.getDate() + 1));
-    days[dayIndex].textContent = manipulatedDate.getDate();
-    dayStart++;
-    dayIndex++;
   }
   let currentDay = days[currentDate.getDate()];
-  currentDay.classList.add('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
+  if (currentDay) {
+    currentDay.classList.add('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
+  }
   days.forEach((d, i) => {
     if (d.textContent === '') d.classList.add('un-used-day');
     if (d.textContent !== '') {
@@ -114,10 +122,10 @@ const _setupMonth = async (monthDays, year, user) => {
   });
   let total;
   let subCategoryBudgetedTotals = [];
-  let budgetId = user.budgets[user.budgets.length - 1];
+  // let budgetId = user.budgets[user.budgets.length - 1];
   // console.log(user.budgets[user.budgets.length - 1]);
   console.log(subCategoryBudgetedTotals);
-  let budget = await Updating.getMyBudget(budgetId);
+  // let budget = await Updating.getMyBudget(budgetId);
   // console.log(user.budgets[user.budgets.length - 1])
 };
 

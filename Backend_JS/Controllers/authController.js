@@ -141,6 +141,8 @@ exports.login = catchAsync(async (request, response, next) => {
   const username = loginUsername;
   const password = loginPassword;
 
+  console.log(request.body);
+
   // Check if Username & Password Exist
   if (!username || !password) return next(new AppError(`Please provide username and password!`), 400);
   // Check if User exists right along with Username & Password is correct.
@@ -153,7 +155,6 @@ exports.login = catchAsync(async (request, response, next) => {
     user.active = true;
     user.save({ validateBeforeSave: false });
   }
-  console.log(user, await user.populate('budgets'));
   createAndSendToken(user, 200, `render`, request, response, `loggedIn`, `King Richard | Home`, { calendar: Calendar });
 });
 

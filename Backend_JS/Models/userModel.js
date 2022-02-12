@@ -95,10 +95,6 @@ const userSchema = new mongoose.Schema({
 
 userSchema.pre(/^find/, async function (next) {
   const populatedUser = this.populate('budgets');
-  console.log(this.budgets, this.populated);
-
-  // console.log(populatedUser);
-  // this.find({ active: { $ne: false } });
   next();
 });
 

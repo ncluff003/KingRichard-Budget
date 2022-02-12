@@ -1,6 +1,7 @@
 import axios from 'axios';
 import qs from 'qs';
 import { logout } from './Login';
+import * as Budgeting from './Budget';
 
 export const getSomePersonals = async () => {
   try {
@@ -19,10 +20,11 @@ export const getMyBudget = async (id) => {
   try {
     const response = await axios({
       method: `GET`,
-      url: `/users/me/${id}`,
+      url: `/users/budgets/${id}`,
     });
-    console.log(response);
-    return response;
+    document.open(`text/html`).write(response.data);
+    window.location.assign(`/users/budgets/${id}`);
+    Budgeting._watchBudget();
   } catch (error) {
     console.log(error);
   }

@@ -4257,6 +4257,39 @@ var latterDaySaint = false; // const _getUserInfo = () => {
 //   latterDaySaint = user.latterDaySaint;
 // };
 
+var enterBudget = /*#__PURE__*/function () {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(budgetId) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return _Update_User__WEBPACK_IMPORTED_MODULE_2__.getMyBudget(budgetId);
+
+          case 2:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function enterBudget(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+var _watchBudgetSelection = function _watchBudgetSelection() {
+  var budgetCards = document.querySelectorAll('.budget-card-container__card');
+  budgetCards.forEach(function (bc, i) {
+    bc.addEventListener('click', function (e) {
+      var clicked = e.target;
+      var id = clicked.closest('.budget-card-container__card').dataset.budgetid;
+      enterBudget(id);
+    });
+  });
+};
+
 var formatPhoneNumber = function formatPhoneNumber(value, number) {
   if (!value) return value;
   var phoneNumber = value.replace(/[^\d]/g, '');
@@ -4385,11 +4418,11 @@ var _watchUserProfileButtons = function _watchUserProfileButtons() {
   if (userProfileButtons[0]) {
     userProfileButtons.forEach(function (pb, i) {
       pb.addEventListener('click', /*#__PURE__*/function () {
-        var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(e) {
+        var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2(e) {
           var clicked, userInfo, user;
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
             while (1) {
-              switch (_context.prev = _context.next) {
+              switch (_context2.prev = _context2.next) {
                 case 0:
                   e.preventDefault();
                   clicked = e.target;
@@ -4407,7 +4440,7 @@ var _watchUserProfileButtons = function _watchUserProfileButtons() {
                   }
 
                   if (!(i === 1)) {
-                    _context.next = 13;
+                    _context2.next = 13;
                     break;
                   }
 
@@ -4417,11 +4450,11 @@ var _watchUserProfileButtons = function _watchUserProfileButtons() {
                   }); /////////////////////////////////
                   // GET COMMUNICATION PREFERENCE
 
-                  _context.next = 10;
+                  _context2.next = 10;
                   return _Update_User__WEBPACK_IMPORTED_MODULE_2__.getSomePersonals();
 
                 case 10:
-                  userInfo = _context.sent;
+                  userInfo = _context2.sent;
                   user = userInfo.data.data.user;
                   commPreference = user.communicationPreference;
 
@@ -4442,14 +4475,14 @@ var _watchUserProfileButtons = function _watchUserProfileButtons() {
 
                 case 15:
                 case "end":
-                  return _context.stop();
+                  return _context2.stop();
               }
             }
-          }, _callee);
+          }, _callee2);
         }));
 
-        return function (_x) {
-          return _ref.apply(this, arguments);
+        return function (_x2) {
+          return _ref2.apply(this, arguments);
         };
       }());
     });
@@ -4485,7 +4518,10 @@ var _watchForLogin = function _watchForLogin(login) {
     _watchPhoneNumberInputs(formattedNumber); // WATCH FOR USER PROFILE UPDATES
 
 
-    _Update_User__WEBPACK_IMPORTED_MODULE_2__._watchForProfileUpdates(); // WATCHING FOR CREATION OF BUDGETS
+    _Update_User__WEBPACK_IMPORTED_MODULE_2__._watchForProfileUpdates(); // WATCHING FOR BUDGET SELECTION
+
+
+    _watchBudgetSelection(); // WATCHING FOR CREATION OF BUDGETS
 
 
     _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__._watchBudgetCreation();
@@ -6618,7 +6654,7 @@ var selectDay = function selectDay(monthDays, singleDay) {
 
 var _setupMonth = /*#__PURE__*/function () {
   var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(monthDays, year, user) {
-    var date, dayStart, days, startDate, manipulatedDate, currentDate, dayIndex, currentDay, total, subCategoryBudgetedTotals, budgetId, budget;
+    var date, dayStart, days, startDate, manipulatedDate, currentDate, dayIndex, currentDay, total, subCategoryBudgetedTotals;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -6632,21 +6668,33 @@ var _setupMonth = /*#__PURE__*/function () {
             currentDate = new Date(currentDate.setDate(currentDate.getDate() + 1));
             dayIndex = startDate.getDay();
 
-            while (dayStart <= monthDays) {
-              if (dayStart === 1) {
-                days[dayIndex].textContent = dayStart;
+            if (dayStart && dayIndex) {
+              while (dayStart <= monthDays) {
+                if (dayStart === 1) {
+                  if (days[dayIndex]) {
+                    days[dayIndex].textContent = dayStart;
+                    dayStart++;
+                    dayIndex++;
+                  }
+                }
+
+                manipulatedDate = new Date(manipulatedDate.setDate(manipulatedDate.getDate() + 1));
+
+                if (days[dayIndex]) {
+                  days[dayIndex].textContent = manipulatedDate.getDate();
+                }
+
                 dayStart++;
                 dayIndex++;
               }
-
-              manipulatedDate = new Date(manipulatedDate.setDate(manipulatedDate.getDate() + 1));
-              days[dayIndex].textContent = manipulatedDate.getDate();
-              dayStart++;
-              dayIndex++;
             }
 
             currentDay = days[currentDate.getDate()];
-            currentDay.classList.add('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
+
+            if (currentDay) {
+              currentDay.classList.add('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
+            }
+
             days.forEach(function (d, i) {
               if (d.textContent === '') d.classList.add('un-used-day');
 
@@ -6657,17 +6705,13 @@ var _setupMonth = /*#__PURE__*/function () {
                 });
               }
             });
-            subCategoryBudgetedTotals = [];
-            budgetId = user.budgets[user.budgets.length - 1]; // console.log(user.budgets[user.budgets.length - 1]);
+            subCategoryBudgetedTotals = []; // let budgetId = user.budgets[user.budgets.length - 1];
+            // console.log(user.budgets[user.budgets.length - 1]);
 
-            console.log(subCategoryBudgetedTotals);
-            _context.next = 17;
-            return _Update_User__WEBPACK_IMPORTED_MODULE_2__.getMyBudget(budgetId);
+            console.log(subCategoryBudgetedTotals); // let budget = await Updating.getMyBudget(budgetId);
+            // console.log(user.budgets[user.budgets.length - 1])
 
-          case 17:
-            budget = _context.sent;
-
-          case 18:
+          case 14:
           case "end":
             return _context.stop();
         }
@@ -7010,11 +7054,12 @@ var createBudget = /*#__PURE__*/function () {
             response = _context.sent;
 
             if (!(response.statusText === "Created")) {
-              _context.next = 8;
+              _context.next = 9;
               break;
             }
 
-            _context.next = 7;
+            alert(budget);
+            _context.next = 8;
             return axios__WEBPACK_IMPORTED_MODULE_4___default()({
               method: "GET",
               url: "/users/budgets",
@@ -7023,30 +7068,33 @@ var createBudget = /*#__PURE__*/function () {
               })
             });
 
-          case 7:
+          case 8:
             _response = _context.sent;
 
-          case 8:
+          case 9:
+            alert(response.data);
+            alert(response.config);
+            alert(response.request);
             document.open("text/html").write(response.data);
             window.location.assign("/users/budgets");
             console.log(response);
 
             _Budget__WEBPACK_IMPORTED_MODULE_3__._watchBudget();
 
-            _context.next = 17;
+            _context.next = 21;
             break;
 
-          case 14:
-            _context.prev = 14;
+          case 18:
+            _context.prev = 18;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0);
 
-          case 17:
+          case 21:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 14]]);
+    }, _callee, null, [[0, 18]]);
   }));
 
   return function createBudget(_x) {
@@ -7537,6 +7585,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
 /* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Login */ "./Public/JS/Login.js");
+/* harmony import */ var _Budget__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Budget */ "./Public/JS/Budget.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
 
@@ -7544,6 +7593,7 @@ __webpack_require__.r(__webpack_exports__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
 
 
 
@@ -7596,25 +7646,30 @@ var getMyBudget = /*#__PURE__*/function () {
             _context2.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "GET",
-              url: "/users/me/".concat(id)
+              url: "/users/budgets/".concat(id)
             });
 
           case 3:
             response = _context2.sent;
-            console.log(response);
-            return _context2.abrupt("return", response);
+            document.open("text/html").write(response.data);
+            window.location.assign("/users/budgets/".concat(id));
 
-          case 8:
-            _context2.prev = 8;
+            _Budget__WEBPACK_IMPORTED_MODULE_6__._watchBudget();
+
+            _context2.next = 12;
+            break;
+
+          case 9:
+            _context2.prev = 9;
             _context2.t0 = _context2["catch"](0);
             console.log(_context2.t0);
 
-          case 11:
+          case 12:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 8]]);
+    }, _callee2, null, [[0, 9]]);
   }));
 
   return function getMyBudget(_x) {

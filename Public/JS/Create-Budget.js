@@ -15,6 +15,7 @@ export const createBudget = async (budget) => {
       }),
     });
     if (response.statusText === `Created`) {
+      alert(budget);
       const response = await axios({
         method: `GET`,
         url: `/users/budgets`,
@@ -23,6 +24,9 @@ export const createBudget = async (budget) => {
         }),
       });
     }
+    alert(response.data);
+    alert(response.config);
+    alert(response.request);
     document.open(`text/html`).write(response.data);
     window.location.assign(`/users/budgets`);
     console.log(response);

@@ -42,7 +42,6 @@ const signToken = (id) => {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 };
-console.log(Calendar);
 
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};
@@ -62,8 +61,6 @@ const createAndSendToken = (user, statusCode, method, request, response, templat
     });
   }
   if (method === `render`) {
-    console.log({ ...optionalData });
-    console.log(request, response);
     return response.status(statusCode).render(`${template}`, {
       title: title,
       token,
@@ -79,10 +76,15 @@ const createAndSendToken = (user, statusCode, method, request, response, templat
 ////////////////////////////////////////////
 //  Exported Controllers
 exports.getBudget = catchAsync(async (request, response, next) => {
-  const user = await User.findById(request.user.id);
-  console.log(user);
-  const budget = await Budget.findById(user.budgets[user.budgets.length - 1]);
-  console.log(budget);
+  // const user = await User.findById(request.user.id);
+  const user = request.user;
+  let budgetID = request.params.id;
+  if (!budgetID) budgetID = user.budgets[user.budgets.length - 1];
+  const budget = await Budget.findById(budgetID);
+
+  if (!budget) {
+    return next(new AppError('No budget found with that ID', 404));
+  }
   createAndSendToken(
     user,
     201,
