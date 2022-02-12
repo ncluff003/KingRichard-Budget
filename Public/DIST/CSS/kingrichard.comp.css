@@ -41091,6 +41091,7 @@ html {
   grid-column-gap: 0;
   grid-row-gap: 0;
   background-color: rgba(250, 250, 250, 0.9);
+  overflow-y: auto;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .column_1-20 {
   -ms-grid-column: 1/span 20;
