@@ -2,7 +2,7 @@ import * as Updating from './Update-User';
 import * as Calendar from './FrontEnd-Calendar';
 // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
-const addTotalBudget = (subCategoryTotals, total) => {
+const calculateRemaining = (overall, spent) => {
   let initialValue = 0;
   total = subCategoryTotals.reduce((totalValue, currentValue) => totalValue + currentValue, initialValue);
   console.log(total);
@@ -73,84 +73,62 @@ const _setupCurrentMonth = () => {
   });
 };
 
-const selectDay = (monthDays, singleDay) => {
-  monthDays.forEach((day, i) => {
-    day.classList.remove('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
-  });
-  singleDay.classList.add('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
-};
-
-const _setupMonth = async (monthDays, year, user) => {
-  const date = new Date();
-  let dayStart = 1;
-  const days = document.querySelectorAll('.bill-calendar-container__calendar-container__calendar__days__single-day');
-  const startDate = new Date(year, date.getMonth(), 1);
-  let manipulatedDate = new Date(year, date.getMonth(), 1);
-  let currentDate = new Date(year, date.getMonth(), date.getDate());
-  currentDate = new Date(currentDate.setDate(currentDate.getDate() + 1));
-  let dayIndex = startDate.getDay();
-  if (dayStart && dayIndex) {
-    while (dayStart <= monthDays) {
-      if (dayStart === 1) {
-        if (days[dayIndex]) {
-          days[dayIndex].textContent = dayStart;
-          dayStart++;
-          dayIndex++;
-        }
-      }
-      manipulatedDate = new Date(manipulatedDate.setDate(manipulatedDate.getDate() + 1));
-      if (days[dayIndex]) {
-        days[dayIndex].textContent = manipulatedDate.getDate();
-      }
-      dayStart++;
-      dayIndex++;
-    }
-  }
-  let currentDay = days[currentDate.getDate()];
-  if (currentDay) {
-    currentDay.classList.add('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
-  }
-  days.forEach((d, i) => {
-    if (d.textContent === '') d.classList.add('un-used-day');
-    if (d.textContent !== '') {
-      d.addEventListener('click', (e) => {
-        console.log(d.textContent);
-        selectDay(days, d);
-      });
-    }
-  });
-  let total;
-  let subCategoryBudgetedTotals = [];
-  // let budgetId = user.budgets[user.budgets.length - 1];
-  // console.log(user.budgets[user.budgets.length - 1]);
-  console.log(subCategoryBudgetedTotals);
-  // let budget = await Updating.getMyBudget(budgetId);
-  // console.log(user.budgets[user.budgets.length - 1])
-};
-
-const getDaysInMonth = (calendar, month, value) => {
-  if (month === `January` || month === `March` || month === `May` || month === `July` || month === `August` || month === `October` || month === `December`) {
-    value = 31;
-  }
-  if (month === `April` || month === `June` || month === `September` || month === `November`) {
-    value = 30;
-  }
-  if (month === `February`) {
-    (calendar.getYear() % 4 === 0 && !(calendar.getYear() % 100 === 0)) || calendar.getYear() % 400 === 0 ? (value = 29) : (value = 28);
-  }
-  return value;
-};
-
 const _setupBillCalendar = (user) => {
   const calendar = Calendar.myCalendar;
-  let daysInMonth;
-  const currentMonth = calendar.getMonth();
-  const currentYear = calendar.getYear();
+  let currentMonth = calendar.getMonth();
+  let currentMonthIndex = calendar.getMonthIndex();
+  let currentYear = calendar.getYear();
 
-  // GETTING NUMBER OF DAYS IN THE CURRENT MONTH
-  daysInMonth = getDaysInMonth(calendar, currentMonth, daysInMonth);
-  // SETTING UP THE BILL CALENDAR MONTH
-  _setupMonth(daysInMonth, currentYear, user);
+  calendar.makeCalendar(
+    currentMonthIndex,
+    currentMonth,
+    currentYear,
+    '.bill-calendar-container__calendar-container__calendar__days__single-day', // NEEDS PERIOD FOR .querySelectorAll
+    'bill-calendar-container__calendar-container__calendar__days__single-day--current-day', // CLASS IS ONLY BEING ADDED via .classList.add
+    'un-used-day', // CLASS IS ONLY BEING ADDED via .classList.add
+  );
+
+  const monthLeft = document.querySelector('.month-left');
+  const monthRight = document.querySelector('.month-right');
+
+  monthLeft.addEventListener('click', (e) => {
+    e.preventDefault();
+    currentMonthIndex--;
+    console.log(currentMonthIndex);
+    if (currentMonthIndex === -1) {
+      currentMonthIndex = 11;
+      currentYear--;
+      console.log(currentYear);
+    }
+    console.log(currentYear);
+    calendar.goBackAMonth(
+      currentMonthIndex,
+      currentYear,
+      '.bill-calendar-container__calendar-container__calendar__days__single-day',
+      'bill-calendar-container__calendar-container__calendar__days__single-day--current-day',
+      'un-used-day',
+    );
+  });
+  monthRight.addEventListener('click', (e) => {
+    e.preventDefault();
+    currentMonthIndex++;
+    console.log(currentMonthIndex);
+    if (currentMonthIndex === 12) {
+      currentMonthIndex = 0;
+      currentYear++;
+      console.log(currentYear);
+    }
+    console.log(currentYear);
+    calendar.goForwardAMonth(
+      currentMonthIndex,
+      currentYear,
+      '.bill-calendar-container__calendar-container__calendar__days__single-day',
+      'bill-calendar-container__calendar-container__calendar__days__single-day--current-day',
+      'un-used-day',
+    );
+  });
+
+  console.log(currentMonth, currentYear);
 };
 
 const _watchForTransactions = (arrayOfArrays) => {
@@ -352,8 +330,6 @@ export const _watchBudget = async () => {
   const tithingTransactionOptions = [];
 
   const mainCategoryOptionArrays = [];
-
-  let currentDay;
   /////////////////////////////
   // CHECK USER
   const userInfo = await Updating.getSomePersonals();

@@ -2,19 +2,27 @@ section.budget-container.r__budget-container.budget-container__dashboard__contai
   header.budget-container.r__budget-container.budget-container__dashboard__container--large__header.r__budget-container__dashboard__container--large__header
     i.fas.fa-file-invoice-dollar.budget-container__dashboard__container--large__header__icon.r__budget-container__dashboard__container--large__header__icon 
     p.budget-container__dashboard__container--large__header__title.r__budget-container__dashboard__container--large__header__title= `${data.calendar.getMonth().toUpperCase()}`
-  section.budget-container__dashboard__container--large__budget-goal-summary-container.r__budget-container__dashboard__container--large__budget-goal-summary-container 
+  section.budget-container__dashboard__container--large__budget-goal-summary-container.r__budget-container__dashboard__container--large__budget-goal-summary-container
+    - let initialTotal = 0;
+    - let subCategoryGoals = [];
+    - data.budget.mainCategories.forEach(mc => mc.subCategories.forEach(sc => subCategoryGoals.push(sc.goalAmount)))
+    - const overallBudget = subCategoryGoals.reduce((previous, current) => previous + current, initialTotal)
+    - let initialSpent = 0;
+    - let subCategorySpent = [];
+    - data.budget.mainCategories.forEach(mc => mc.subCategories.forEach(sc => subCategorySpent.push(sc.amountSpent)))
+    - const overallSpent = subCategorySpent.reduce((previous, current) => previous + current, initialTotal)
     section.budget-single-goal-summary.r__budget-single-goal-summary
       p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Overall Budget
-      p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `$${0}`
+      p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `$${overallBudget}`
     section.budget-single-goal-summary.r__budget-single-goal-summary
       p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Overall Spent
-      p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `$${0}`
+      p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `$${overallSpent}`
     section.budget-single-goal-summary.r__budget-single-goal-summary
       p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Overall Remaining
-      p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `$${0}`
+      p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `$${overallBudget - overallSpent}`
     section.budget-single-goal-summary.r__budget-single-goal-summary
       p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Percentage Spent
-      p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `${0}%`
+      p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `${(overallSpent / overallBudget).toFixed(2)}%`
     section.budget-single-goal-summary.r__budget-single-goal-summary
       p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Percentage of Month Remaining
       p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `${data.calendar.monthRemaining()}`

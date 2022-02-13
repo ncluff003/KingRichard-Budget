@@ -6,9 +6,9 @@ section.budget-container.r__budget-container.budget-container__dashboard__contai
     section.bill-calendar-container__calendar-container.r__bill-calendar-container__calendar-container 
       section.bill-calendar-container__calendar-container__calendar.r__bill-calendar-container__calendar-container__calendar 
         header.bill-calendar-container__calendar-container__calendar__header.r__bill-calendar-container__calendar-container__calendar__header 
-          i.fas.fa-chevron-left.bill-calendar-container__calendar-container__calendar__header__icon.r__bill-calendar-container__calendar-container__calendar__header__icon
+          i.fas.fa-chevron-left.bill-calendar-container__calendar-container__calendar__header__icon.r__bill-calendar-container__calendar-container__calendar__header__icon.month-left.r__month-left
           p.bill-calendar-container__calendar-container__calendar__header__title.r__bill-calendar-container__calendar-container__calendar__header__title= `${data.calendar.getMonth()}`
-          i.fas.fa-chevron-right.bill-calendar-container__calendar-container__calendar__header__icon.r__bill-calendar-container__calendar-container__calendar__header__icon
+          i.fas.fa-chevron-right.bill-calendar-container__calendar-container__calendar__header__icon.r__bill-calendar-container__calendar-container__calendar__header__icon.month-right.r__month-right
         section.bill-calendar-container__calendar-container__calendar__weekdays.r__bill-calendar-container__calendar-container__calendar__weekdays 
           - const weekdays = [ `Sunday`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` ]
             each day in weekdays 
@@ -24,7 +24,7 @@ section.budget-container.r__budget-container.budget-container__dashboard__contai
       i.fas.fa-envelope-open-text.bill-calendar-container__header__icon.r__bill-calendar-container__header__icon 
       p.bill-calendar-container__header__text.r__bill-calendar-container__header__text Upcoming Bills
     section.bill-calendar-container__upcoming-bills.r__bill-calendar-container__upcoming-bills
-      - const billInfo = [`Type`, `Due Date`, `Biller | Creditor`, `Amount`]
+      - const billInfo = [`Type`, `Due Date`, `Biller | Creditor`, `Amount`, `Paid?`]
         section.bill-calendar-container__upcoming-bills__titles.r__bill-calendar-container__upcoming-bills__titles 
           each title in billInfo 
             section.bill-calendar-container__upcoming-bills__titles__title.r__bill-calendar-container__upcoming-bills__titles__title
@@ -39,6 +39,7 @@ section.budget-container.r__budget-container.budget-container__dashboard__contai
               p.bill-calendar-container__upcoming-bills__bills__bill__bill-item__text.r__bill-calendar-container__upcoming-bills__bills__bill__bill-item__text Castle Pointe Apartments
             section.bill-calendar-container__upcoming-bills__bills__bill__bill-item.r__bill-calendar-container__upcoming-bills__bills__bill__bill-item
               p.bill-calendar-container__upcoming-bills__bills__bill__bill-item__text.r__bill-calendar-container__upcoming-bills__bills__bill__bill-item__text $237.49
+            section.bill-calendar-container__upcoming-bills__bills__bill__bill-item.r__bill-calendar-container__upcoming-bills__bills__bill__bill-item
               section.bill-calendar-container__upcoming-bills__bills__bill__bill-item__checkbox-container 
                 input.bill-calendar-container__upcoming-bills__bills__bill__bill-item__checkbox-container__payment-checkbox.r__bill-calendar-container__upcoming-bills__bills__bill__bill-item__checkbox-container__payment-checkbox#paymentCheck(type="checkbox")
                 label.bill-calendar-container__upcoming-bills__bills__bill__bill-item__checkbox-container__payment-label.r__bill-calendar-container__upcoming-bills__bills__bill__bill-item__checkbox-container__payment-label(for="paymentCheck") Payment Made

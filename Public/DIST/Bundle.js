@@ -6576,7 +6576,7 @@ __webpack_require__.r(__webpack_exports__);
  // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
 
-var addTotalBudget = function addTotalBudget(subCategoryTotals, total) {
+var calculateRemaining = function calculateRemaining(overall, spent) {
   var initialValue = 0;
   total = subCategoryTotals.reduce(function (totalValue, currentValue) {
     return totalValue + currentValue;
@@ -6650,110 +6650,46 @@ var _setupCurrentMonth = function _setupCurrentMonth() {
   });
 };
 
-var selectDay = function selectDay(monthDays, singleDay) {
-  monthDays.forEach(function (day, i) {
-    day.classList.remove('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
-  });
-  singleDay.classList.add('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
-};
-
-var _setupMonth = /*#__PURE__*/function () {
-  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(monthDays, year, user) {
-    var date, dayStart, days, startDate, manipulatedDate, currentDate, dayIndex, currentDay, total, subCategoryBudgetedTotals;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            date = new Date();
-            dayStart = 1;
-            days = document.querySelectorAll('.bill-calendar-container__calendar-container__calendar__days__single-day');
-            startDate = new Date(year, date.getMonth(), 1);
-            manipulatedDate = new Date(year, date.getMonth(), 1);
-            currentDate = new Date(year, date.getMonth(), date.getDate());
-            currentDate = new Date(currentDate.setDate(currentDate.getDate() + 1));
-            dayIndex = startDate.getDay();
-
-            if (dayStart && dayIndex) {
-              while (dayStart <= monthDays) {
-                if (dayStart === 1) {
-                  if (days[dayIndex]) {
-                    days[dayIndex].textContent = dayStart;
-                    dayStart++;
-                    dayIndex++;
-                  }
-                }
-
-                manipulatedDate = new Date(manipulatedDate.setDate(manipulatedDate.getDate() + 1));
-
-                if (days[dayIndex]) {
-                  days[dayIndex].textContent = manipulatedDate.getDate();
-                }
-
-                dayStart++;
-                dayIndex++;
-              }
-            }
-
-            currentDay = days[currentDate.getDate()];
-
-            if (currentDay) {
-              currentDay.classList.add('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
-            }
-
-            days.forEach(function (d, i) {
-              if (d.textContent === '') d.classList.add('un-used-day');
-
-              if (d.textContent !== '') {
-                d.addEventListener('click', function (e) {
-                  console.log(d.textContent);
-                  selectDay(days, d);
-                });
-              }
-            });
-            subCategoryBudgetedTotals = []; // let budgetId = user.budgets[user.budgets.length - 1];
-            // console.log(user.budgets[user.budgets.length - 1]);
-
-            console.log(subCategoryBudgetedTotals); // let budget = await Updating.getMyBudget(budgetId);
-            // console.log(user.budgets[user.budgets.length - 1])
-
-          case 14:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-
-  return function _setupMonth(_x, _x2, _x3) {
-    return _ref.apply(this, arguments);
-  };
-}();
-
-var getDaysInMonth = function getDaysInMonth(calendar, month, value) {
-  if (month === "January" || month === "March" || month === "May" || month === "July" || month === "August" || month === "October" || month === "December") {
-    value = 31;
-  }
-
-  if (month === "April" || month === "June" || month === "September" || month === "November") {
-    value = 30;
-  }
-
-  if (month === "February") {
-    calendar.getYear() % 4 === 0 && !(calendar.getYear() % 100 === 0) || calendar.getYear() % 400 === 0 ? value = 29 : value = 28;
-  }
-
-  return value;
-};
-
 var _setupBillCalendar = function _setupBillCalendar(user) {
   var calendar = _FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_3__.myCalendar;
-  var daysInMonth;
   var currentMonth = calendar.getMonth();
-  var currentYear = calendar.getYear(); // GETTING NUMBER OF DAYS IN THE CURRENT MONTH
+  var currentMonthIndex = calendar.getMonthIndex();
+  var currentYear = calendar.getYear();
+  calendar.makeCalendar(currentMonthIndex, currentMonth, currentYear, '.bill-calendar-container__calendar-container__calendar__days__single-day', // NEEDS PERIOD FOR .querySelectorAll
+  'bill-calendar-container__calendar-container__calendar__days__single-day--current-day', // CLASS IS ONLY BEING ADDED via .classList.add
+  'un-used-day' // CLASS IS ONLY BEING ADDED via .classList.add
+  );
+  var monthLeft = document.querySelector('.month-left');
+  var monthRight = document.querySelector('.month-right');
+  monthLeft.addEventListener('click', function (e) {
+    e.preventDefault();
+    currentMonthIndex--;
+    console.log(currentMonthIndex);
 
-  daysInMonth = getDaysInMonth(calendar, currentMonth, daysInMonth); // SETTING UP THE BILL CALENDAR MONTH
+    if (currentMonthIndex === -1) {
+      currentMonthIndex = 11;
+      currentYear--;
+      console.log(currentYear);
+    }
 
-  _setupMonth(daysInMonth, currentYear, user);
+    console.log(currentYear);
+    calendar.goBackAMonth(currentMonthIndex, currentYear, '.bill-calendar-container__calendar-container__calendar__days__single-day', 'bill-calendar-container__calendar-container__calendar__days__single-day--current-day', 'un-used-day');
+  });
+  monthRight.addEventListener('click', function (e) {
+    e.preventDefault();
+    currentMonthIndex++;
+    console.log(currentMonthIndex);
+
+    if (currentMonthIndex === 12) {
+      currentMonthIndex = 0;
+      currentYear++;
+      console.log(currentYear);
+    }
+
+    console.log(currentYear);
+    calendar.goForwardAMonth(currentMonthIndex, currentYear, '.bill-calendar-container__calendar-container__calendar__days__single-day', 'bill-calendar-container__calendar-container__calendar__days__single-day--current-day', 'un-used-day');
+  });
+  console.log(currentMonth, currentYear);
 };
 
 var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
@@ -6920,11 +6856,11 @@ var pushIntoArray = function pushIntoArray(arrayFiller, array) {
 };
 
 var _watchBudget = /*#__PURE__*/function () {
-  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2() {
-    var formLabels, formInputs, formSections, monthlyBudgetTransactions, monthlyBudgetTransactionOptions, emergencyFundTransactions, emergencyFundTransactionOptions, savingsFundTransactions, savingsFundTransactionOptions, expenseFundTransactions, expenseFundTransactionOptions, surplusTransactions, surplusTransactionOptions, debtTransactions, debtTransactionOptions, tithingTransactions, tithingTransactionOptions, mainCategoryOptionArrays, currentDay, userInfo, user;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
+    var formLabels, formInputs, formSections, monthlyBudgetTransactions, monthlyBudgetTransactionOptions, emergencyFundTransactions, emergencyFundTransactionOptions, savingsFundTransactions, savingsFundTransactionOptions, expenseFundTransactions, expenseFundTransactionOptions, surplusTransactions, surplusTransactionOptions, debtTransactions, debtTransactionOptions, tithingTransactions, tithingTransactionOptions, mainCategoryOptionArrays, userInfo, user;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
       while (1) {
-        switch (_context2.prev = _context2.next) {
+        switch (_context.prev = _context.next) {
           case 0:
             console.log("WATCHING YOUR BUDGET"); ////////////////////////////////////////////
             // SETUP ACCOUNT OPTIONS FOR TRANSACTIONS
@@ -6955,12 +6891,14 @@ var _watchBudget = /*#__PURE__*/function () {
 
             tithingTransactions = document.querySelectorAll('.tithing-transaction');
             tithingTransactionOptions = [];
-            mainCategoryOptionArrays = [];
-            _context2.next = 21;
+            mainCategoryOptionArrays = []; /////////////////////////////
+            // CHECK USER
+
+            _context.next = 21;
             return _Update_User__WEBPACK_IMPORTED_MODULE_2__.getSomePersonals();
 
           case 21:
-            userInfo = _context2.sent;
+            userInfo = _context.sent;
             user = userInfo.data.data.user; ///////////////////////////////
             // MONTHLY BUDGET OPTIONS
 
@@ -6991,14 +6929,14 @@ var _watchBudget = /*#__PURE__*/function () {
 
           case 36:
           case "end":
-            return _context2.stop();
+            return _context.stop();
         }
       }
-    }, _callee2);
+    }, _callee);
   }));
 
   return function _watchBudget() {
-    return _ref2.apply(this, arguments);
+    return _ref.apply(this, arguments);
   };
 }();
 
@@ -7118,6 +7056,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
+/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
 
 
@@ -7185,6 +7124,11 @@ var Calendar = /*#__PURE__*/function () {
       return this.months[this.monthIndex];
     }
   }, {
+    key: "getMonthIndex",
+    value: function getMonthIndex() {
+      return this.date.getMonth();
+    }
+  }, {
     key: "getYear",
     value: function getYear() {
       return this.date.getFullYear();
@@ -7212,6 +7156,109 @@ var Calendar = /*#__PURE__*/function () {
       var percentage = remaining / days;
       var calculatedPercent = (100 * percentage).toFixed(0);
       return "".concat(calculatedPercent, "%");
+    }
+  }, {
+    key: "goBackAMonth",
+    value: function goBackAMonth(month, year, dayClass, currentDayClass, unusedDayClass) {
+      var selectedMonth = this.months[month];
+      this.makeCalendar(month, selectedMonth, year, dayClass, currentDayClass, unusedDayClass);
+    }
+  }, {
+    key: "goForwardAMonth",
+    value: function goForwardAMonth(month, year, dayClass, currentDayClass, unusedDayClass) {
+      var selectedMonth = this.months[month];
+      this.makeCalendar(month, selectedMonth, year, dayClass, currentDayClass, unusedDayClass);
+    }
+  }, {
+    key: "_selectDay",
+    value: function _selectDay(monthDays, singleDay) {
+      monthDays.forEach(function (day, i) {
+        day.classList.remove('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
+      });
+      singleDay.classList.add('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
+    }
+  }, {
+    key: "_setupMonth",
+    value: function _setupMonth(monthIndex, monthDays, year, dayClass, currentDayClass, unusedDayClass) {
+      var _this = this;
+
+      var dayStart = 1;
+      var days = document.querySelectorAll(dayClass);
+      var startDate = new Date(year, monthIndex, 1);
+      var manipulatedDate = new Date(year, monthIndex, 1);
+      var currentDate = new Date(year, monthIndex, this.getDay());
+      currentDate = new Date(currentDate.setDate(currentDate.getDate() + 1));
+      var dayIndex = startDate.getDay();
+      days.forEach(function (d) {
+        return d.textContent = '';
+      });
+
+      if (dayStart && dayIndex || dayStart && dayIndex === 0) {
+        while (dayStart <= monthDays) {
+          if (dayStart === 1) {
+            if (days[dayIndex]) {
+              days[dayIndex].textContent = dayStart;
+              dayStart++;
+              dayIndex++;
+            }
+          }
+
+          manipulatedDate = new Date(manipulatedDate.setDate(manipulatedDate.getDate() + 1));
+
+          if (days[dayIndex]) {
+            days[dayIndex].textContent = manipulatedDate.getDate();
+          }
+
+          dayStart++;
+          dayIndex++;
+        }
+      }
+
+      var currentDayIndex = currentDate.getDate();
+      days.forEach(function (d, i) {
+        d.classList.remove(currentDayClass);
+        if (d.textContent === '') d.classList.add(unusedDayClass);
+
+        if (d.textContent !== '') {
+          if (d.classList.contains('un-used-day')) d.classList.remove('un-used-day');
+
+          if (Number(d.textContent) === currentDayIndex - 1) {
+            d.classList.add(currentDayClass);
+          }
+
+          d.addEventListener('click', function (e) {
+            _this._selectDay(days, d);
+          });
+        }
+      });
+    }
+  }, {
+    key: "_getDaysInMonth",
+    value: function _getDaysInMonth(month, value, year) {
+      if (month === "January" || month === "March" || month === "May" || month === "July" || month === "August" || month === "October" || month === "December") {
+        value = 31;
+      }
+
+      if (month === "April" || month === "June" || month === "September" || month === "November") {
+        value = 30;
+      }
+
+      if (month === "February") {
+        year % 4 === 0 && !(year % 100 === 0) || year % 400 === 0 ? value = 29 : value = 28;
+      }
+
+      return value;
+    }
+  }, {
+    key: "makeCalendar",
+    value: function makeCalendar(monthIndex, month, year, dayClass, currentDayClass, unusedDayClass) {
+      console.log("MAKING CALENDAR");
+      var daysInMonth;
+      daysInMonth = this._getDaysInMonth(month, daysInMonth, year);
+      var billMonth = document.querySelector('.bill-calendar-container__calendar-container__calendar__header__title');
+      billMonth.textContent = "".concat(month, " | ").concat(year);
+
+      this._setupMonth(monthIndex, daysInMonth, year, dayClass, currentDayClass, unusedDayClass);
     }
   }]);
 

@@ -48,6 +48,10 @@ class Calendar {
     return this.months[this.monthIndex];
   }
 
+  getMonthIndex() {
+    return this.date.getMonth();
+  }
+
   getYear() {
     return this.date.getFullYear();
   }
@@ -77,6 +81,87 @@ class Calendar {
     const percentage = remaining / days;
     const calculatedPercent = (100 * percentage).toFixed(0);
     return `${calculatedPercent}%`;
+  }
+
+  goBackAMonth(month, year, dayClass, currentDayClass, unusedDayClass) {
+    let selectedMonth = this.months[month];
+    this.makeCalendar(month, selectedMonth, year, dayClass, currentDayClass, unusedDayClass);
+  }
+
+  goForwardAMonth(month, year, dayClass, currentDayClass, unusedDayClass) {
+    let selectedMonth = this.months[month];
+    this.makeCalendar(month, selectedMonth, year, dayClass, currentDayClass, unusedDayClass);
+  }
+
+  _selectDay(monthDays, singleDay) {
+    monthDays.forEach((day, i) => {
+      day.classList.remove('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
+    });
+    singleDay.classList.add('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
+  }
+
+  _setupMonth(monthIndex, monthDays, year, dayClass, currentDayClass, unusedDayClass) {
+    let dayStart = 1;
+    const days = document.querySelectorAll(dayClass);
+    const startDate = new Date(year, monthIndex, 1);
+    let manipulatedDate = new Date(year, monthIndex, 1);
+    let currentDate = new Date(year, monthIndex, this.getDay());
+    currentDate = new Date(currentDate.setDate(currentDate.getDate() + 1));
+    let dayIndex = startDate.getDay();
+    days.forEach((d) => (d.textContent = ''));
+    if ((dayStart && dayIndex) || (dayStart && dayIndex === 0)) {
+      while (dayStart <= monthDays) {
+        if (dayStart === 1) {
+          if (days[dayIndex]) {
+            days[dayIndex].textContent = dayStart;
+            dayStart++;
+            dayIndex++;
+          }
+        }
+        manipulatedDate = new Date(manipulatedDate.setDate(manipulatedDate.getDate() + 1));
+        if (days[dayIndex]) {
+          days[dayIndex].textContent = manipulatedDate.getDate();
+        }
+        dayStart++;
+        dayIndex++;
+      }
+    }
+    let currentDayIndex = currentDate.getDate();
+    days.forEach((d, i) => {
+      d.classList.remove(currentDayClass);
+      if (d.textContent === '') d.classList.add(unusedDayClass);
+      if (d.textContent !== '') {
+        if (d.classList.contains('un-used-day')) d.classList.remove('un-used-day');
+        if (Number(d.textContent) === currentDayIndex - 1) {
+          d.classList.add(currentDayClass);
+        }
+        d.addEventListener('click', (e) => {
+          this._selectDay(days, d);
+        });
+      }
+    });
+  }
+
+  _getDaysInMonth(month, value, year) {
+    if (month === `January` || month === `March` || month === `May` || month === `July` || month === `August` || month === `October` || month === `December`) {
+      value = 31;
+    }
+    if (month === `April` || month === `June` || month === `September` || month === `November`) {
+      value = 30;
+    }
+    if (month === `February`) {
+      (year % 4 === 0 && !(year % 100 === 0)) || year % 400 === 0 ? (value = 29) : (value = 28);
+    }
+    return value;
+  }
+
+  makeCalendar(monthIndex, month, year, dayClass, currentDayClass, unusedDayClass) {
+    console.log(`MAKING CALENDAR`);
+    let daysInMonth;
+    daysInMonth = this._getDaysInMonth(month, daysInMonth, year);
+    const billMonth = document.querySelector('.bill-calendar-container__calendar-container__calendar__header__title');
+    billMonth.textContent = `${month} | ${year}`;
+    this._setupMonth(monthIndex, daysInMonth, year, dayClass, currentDayClass, unusedDayClass);
   }
 }
 
