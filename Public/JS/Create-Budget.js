@@ -24,9 +24,6 @@ export const createBudget = async (budget) => {
         }),
       });
     }
-    alert(response.data);
-    alert(response.config);
-    alert(response.request);
     document.open(`text/html`).write(response.data);
     window.location.assign(`/users/budgets`);
     console.log(response);

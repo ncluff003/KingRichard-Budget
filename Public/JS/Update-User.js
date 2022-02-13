@@ -16,20 +16,6 @@ export const getSomePersonals = async () => {
   }
 };
 
-export const getMyBudget = async (id) => {
-  try {
-    const response = await axios({
-      method: `GET`,
-      url: `/users/budgets/${id}`,
-    });
-    document.open(`text/html`).write(response.data);
-    window.location.assign(`/users/budgets/${id}`);
-    Budgeting._watchBudget();
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 export const updatePassword = async (password, passwordConfirmed) => {
   try {
     const response = await axios({

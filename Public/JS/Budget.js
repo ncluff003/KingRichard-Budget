@@ -1,5 +1,6 @@
 import * as Updating from './Update-User';
 import * as Calendar from './FrontEnd-Calendar';
+import * as Budget from './Manage-Budget';
 // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
 const calculateRemaining = (overall, spent) => {
@@ -73,7 +74,7 @@ const _setupCurrentMonth = () => {
   });
 };
 
-const _setupBillCalendar = (user) => {
+const _setupBillCalendar = () => {
   const calendar = Calendar.myCalendar;
   let currentMonth = calendar.getMonth();
   let currentMonthIndex = calendar.getMonthIndex();
@@ -91,44 +92,76 @@ const _setupBillCalendar = (user) => {
   const monthLeft = document.querySelector('.month-left');
   const monthRight = document.querySelector('.month-right');
 
-  monthLeft.addEventListener('click', (e) => {
-    e.preventDefault();
-    currentMonthIndex--;
-    console.log(currentMonthIndex);
-    if (currentMonthIndex === -1) {
-      currentMonthIndex = 11;
-      currentYear--;
+  if (monthLeft) {
+    monthLeft.addEventListener('click', (e) => {
+      e.preventDefault();
+      currentMonthIndex--;
+      console.log(currentMonthIndex);
+      if (currentMonthIndex === -1) {
+        currentMonthIndex = 11;
+        currentYear--;
+        console.log(currentYear);
+      }
       console.log(currentYear);
-    }
-    console.log(currentYear);
-    calendar.goBackAMonth(
-      currentMonthIndex,
-      currentYear,
-      '.bill-calendar-container__calendar-container__calendar__days__single-day',
-      'bill-calendar-container__calendar-container__calendar__days__single-day--current-day',
-      'un-used-day',
-    );
-  });
-  monthRight.addEventListener('click', (e) => {
-    e.preventDefault();
-    currentMonthIndex++;
-    console.log(currentMonthIndex);
-    if (currentMonthIndex === 12) {
-      currentMonthIndex = 0;
-      currentYear++;
+      calendar.goBackAMonth(
+        currentMonthIndex,
+        currentYear,
+        '.bill-calendar-container__calendar-container__calendar__days__single-day',
+        'bill-calendar-container__calendar-container__calendar__days__single-day--current-day',
+        'un-used-day',
+      );
+    });
+  }
+  if (monthRight) {
+    monthRight.addEventListener('click', (e) => {
+      e.preventDefault();
+      currentMonthIndex++;
+      console.log(currentMonthIndex);
+      if (currentMonthIndex === 12) {
+        currentMonthIndex = 0;
+        currentYear++;
+        console.log(currentYear);
+      }
       console.log(currentYear);
-    }
-    console.log(currentYear);
-    calendar.goForwardAMonth(
-      currentMonthIndex,
-      currentYear,
-      '.bill-calendar-container__calendar-container__calendar__days__single-day',
-      'bill-calendar-container__calendar-container__calendar__days__single-day--current-day',
-      'un-used-day',
-    );
-  });
+      calendar.goForwardAMonth(
+        currentMonthIndex,
+        currentYear,
+        '.bill-calendar-container__calendar-container__calendar__days__single-day',
+        'bill-calendar-container__calendar-container__calendar__days__single-day--current-day',
+        'un-used-day',
+      );
+    });
+  }
 
   console.log(currentMonth, currentYear);
+};
+
+const calculateTotal = (accountType, budget) => {
+  if (budget) {
+    if (accountType === `Bank Account`) {
+      const budgetAccounts = budget.accounts;
+      let initialDeposit = 0;
+      let budgetAccountTotals = [];
+      Object.entries(budgetAccounts).forEach((account) => {
+        return budgetAccountTotals.push(account[1].amount);
+      });
+      const bankVaultTotal = budgetAccountTotals.reduce((previous, current) => previous + current, initialDeposit);
+      const bankAccount = document.querySelector('.budget-container__dashboard__container--extra-small__content__account-total');
+      bankAccount.textContent = `$${bankVaultTotal}`;
+    }
+
+    if (accountType === `Debt`) {
+      console.log(budget.accounts);
+    }
+  }
+};
+
+const getDashboardAccountTotals = (budget) => {
+  console.log(budget);
+  calculateTotal(`Bank Account`, budget);
+  calculateTotal(`Debt`, budget);
+
+  // budget-container__dashboard__container--extra-small__content__account-total
 };
 
 const _watchForTransactions = (arrayOfArrays) => {
@@ -277,7 +310,7 @@ const _watchBudgetNavigation = () => {
   }
 };
 
-const finalTransactionArrayPush = (finalArray, user, arrays) => {
+const finalTransactionArrayPush = (finalArray, arrays) => {
   arrays.forEach((a) => {
     finalArray.push(a);
   });
@@ -292,6 +325,18 @@ const pushIntoArray = (arrayFiller, array) => {
 
 export const _watchBudget = async () => {
   console.log(`WATCHING YOUR BUDGET`);
+  /////////////////////////////
+  // GET USER
+  const userInfo = await Updating.getSomePersonals();
+  const user = userInfo.data.data.user;
+
+  ////////////////////////////////////////////
+  // GET BUDGET INFORMATION
+  let currentBudget;
+  user.budgets.forEach((b) => {
+    if (b._id === window.location.pathname.split('/')[3]) currentBudget = b;
+  });
+
   ////////////////////////////////////////////
   // SETUP ACCOUNT OPTIONS FOR TRANSACTIONS
   const formLabels = document.querySelectorAll('.form-label');
@@ -330,10 +375,7 @@ export const _watchBudget = async () => {
   const tithingTransactionOptions = [];
 
   const mainCategoryOptionArrays = [];
-  /////////////////////////////
-  // CHECK USER
-  const userInfo = await Updating.getSomePersonals();
-  const user = userInfo.data.data.user;
+
   ///////////////////////////////
   // MONTHLY BUDGET OPTIONS
   pushIntoArray(monthlyBudgetTransactions, monthlyBudgetTransactionOptions);
@@ -344,7 +386,7 @@ export const _watchBudget = async () => {
   pushIntoArray(debtTransactions, debtTransactionOptions);
   pushIntoArray(tithingTransactions, tithingTransactionOptions);
 
-  finalTransactionArrayPush(mainCategoryOptionArrays, user, [
+  finalTransactionArrayPush(mainCategoryOptionArrays, [
     monthlyBudgetTransactionOptions,
     emergencyFundTransactionOptions,
     savingsFundTransactionOptions,
@@ -364,8 +406,12 @@ export const _watchBudget = async () => {
   _watchForTransactions(mainCategoryOptionArrays);
 
   ////////////////////////////////////////////
+  // GET BANK ACCOUNT TOTAL
+  getDashboardAccountTotals(currentBudget);
+
+  ////////////////////////////////////////////
   // SETUP BILL CALENDAR
-  _setupBillCalendar(user);
+  _setupBillCalendar();
   ////////////////////////////////////////////
   // SETUP BILL CURRENT MONTH
   _setupCurrentMonth();

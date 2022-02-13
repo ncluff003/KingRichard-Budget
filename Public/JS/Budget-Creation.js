@@ -36,7 +36,7 @@ export class Budget {
     this.accounts.expenseFund = new Account({ amount: 0 });
     this.accounts.surplus = new Account({ amount: 0 });
     this.accounts.investmentFund = new Account({ amount: 0 });
-    this.accounts.debt = new Account({ amount: 0 });
+    this.accounts.debt = new Account({ amount: 0, debtAmount: 0 });
   }
 
   _addTithingAccount(user) {
@@ -986,7 +986,7 @@ const _watchCreationFormCloser = (form) => {
   const formCloser = document.querySelector(`.budget-creation-form-close-icon`);
   if (formCloser) {
     formCloser.addEventListener('click', (e) => {
-      form.classList.toggle(`budget-creation-form-container--hidden`);
+      form.classList.toggle(`budget-creation-form-container--shown`);
     });
   }
 };
@@ -994,7 +994,7 @@ const _watchCreationFormCloser = (form) => {
 const _watchCreationFormOpener = (form, button) => {
   if (button) {
     button.addEventListener(`click`, (e) => {
-      form.classList.toggle(`budget-creation-form-container--hidden`);
+      form.classList.toggle(`budget-creation-form-container--shown`);
     });
   }
 };
@@ -1045,6 +1045,7 @@ export const _watchBudgetCreation = () => {
       // CHECK USER
       const userInfo = await Updating.getSomePersonals();
       const user = userInfo.data.data.user;
+      console.log(user);
       ////////////////////////////////////////////////////////////////////////
       // GLITCH: Need to fix this to work if you are a Latter Day Saint as well.
       ////////////////////////////////////////////////////////////////////////

@@ -911,6 +911,13 @@ html {
               font-size: 2.8rem;
               color: $primaryColor;
             }
+            &__button {
+              &--clicked {
+                & ~ .budget-container__navigation-button-container__text {
+                  color: rgba($primaryColor, 0.2);
+                }
+              }
+            }
           }
           &__dashboard {
             font-family: MADE Tommy Soft, Verdana, sans-serif;

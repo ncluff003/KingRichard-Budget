@@ -24,7 +24,7 @@ App.set(`view engine`, `pug`);
 App.set(`views`, path.join(__dirname, `Views`));
 // App.use(helmet());
 App.use(express.static(path.resolve(`${__dirname}/../`, `Public/`)));
-App.use(express.urlencoded({ extended: true, limit: '25kb' }));
+App.use(express.urlencoded({ extended: true, limit: '50kb' }));
 App.use(express.json());
 App.use(cookierParser());
 App.use(xss());

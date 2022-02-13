@@ -160,7 +160,7 @@ class Calendar {
     let daysInMonth;
     daysInMonth = this._getDaysInMonth(month, daysInMonth, year);
     const billMonth = document.querySelector('.bill-calendar-container__calendar-container__calendar__header__title');
-    billMonth.textContent = `${month} | ${year}`;
+    if (billMonth) billMonth.textContent = `${month} | ${year}`;
     this._setupMonth(monthIndex, daysInMonth, year, dayClass, currentDayClass, unusedDayClass);
   }
 }

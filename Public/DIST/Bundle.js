@@ -4242,7 +4242,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
 /* harmony import */ var _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Budget-Creation */ "./Public/JS/Budget-Creation.js");
 /* harmony import */ var _Budget__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Budget */ "./Public/JS/Budget.js");
+/* harmony import */ var _Manage_Budget__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Manage-Budget */ "./Public/JS/Manage-Budget.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
 
 
 
@@ -4264,7 +4266,7 @@ var enterBudget = /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return _Update_User__WEBPACK_IMPORTED_MODULE_2__.getMyBudget(budgetId);
+            return _Manage_Budget__WEBPACK_IMPORTED_MODULE_7__.getMyBudget(budgetId);
 
           case 2:
           case "end":
@@ -4495,38 +4497,64 @@ var checkLoginStatus = function checkLoginStatus(login, checkElement) {
   }
 };
 
-var _watchForLogin = function _watchForLogin(login) {
-  var appViewport = document.querySelector('.app-viewport');
-  var status = checkLoginStatus(login, appViewport);
-  status === true ? console.log("Logged In") : console.log("Logged Out");
-  var commSwitch = document.querySelector('.user-profile-form__section__comm-switch');
-  var formattedNumber;
+var _watchForLogin = /*#__PURE__*/function () {
+  var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee3(login) {
+    var appViewport, status, commSwitch, formattedNumber, userInfo, user;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            appViewport = document.querySelector('.app-viewport');
+            status = checkLoginStatus(login, appViewport);
+            status === true ? console.log("Logged In") : console.log("Logged Out");
+            commSwitch = document.querySelector('.user-profile-form__section__comm-switch');
 
-  if (status === true) {
-    // WATCHING USER PROFILE NAVIGATION BUTTONS
-    _watchUserProfileButtons(); // WATCHING COMMUNICATION PREFERENCES
+            if (!(status === true)) {
+              _context3.next = 17;
+              break;
+            }
 
+            _context3.next = 7;
+            return _Update_User__WEBPACK_IMPORTED_MODULE_2__.getSomePersonals();
 
-    _watchCommPreference(commSwitch); // WATCHING URSER PROFILE FORM BUTTONS
+          case 7:
+            userInfo = _context3.sent;
+            user = userInfo.data.data.user; // WATCHING USER PROFILE NAVIGATION BUTTONS
 
-
-    _watchSubSectionButtons();
-
-    _watchPasswordSubSectionButtons(); // WATCH FOR PHONE NUMBER UPDATES
-
-
-    _watchPhoneNumberInputs(formattedNumber); // WATCH FOR USER PROFILE UPDATES
-
-
-    _Update_User__WEBPACK_IMPORTED_MODULE_2__._watchForProfileUpdates(); // WATCHING FOR BUDGET SELECTION
-
-
-    _watchBudgetSelection(); // WATCHING FOR CREATION OF BUDGETS
+            _watchUserProfileButtons(); // WATCHING COMMUNICATION PREFERENCES
 
 
-    _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__._watchBudgetCreation();
-  }
-};
+            _watchCommPreference(commSwitch); // WATCHING URSER PROFILE FORM BUTTONS
+
+
+            _watchSubSectionButtons();
+
+            _watchPasswordSubSectionButtons(); // WATCH FOR PHONE NUMBER UPDATES
+
+
+            _watchPhoneNumberInputs(formattedNumber); // WATCH FOR USER PROFILE UPDATES
+
+
+            _Update_User__WEBPACK_IMPORTED_MODULE_2__._watchForProfileUpdates(); // WATCHING FOR BUDGET SELECTION
+
+
+            _watchBudgetSelection(); // WATCHING FOR CREATION OF BUDGETS
+
+
+            _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__._watchBudgetCreation();
+
+          case 17:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3);
+  }));
+
+  return function _watchForLogin(_x3) {
+    return _ref3.apply(this, arguments);
+  };
+}();
 
 /***/ }),
 
@@ -5352,7 +5380,8 @@ var Budget = /*#__PURE__*/function () {
         amount: 0
       });
       this.accounts.debt = new Account({
-        amount: 0
+        amount: 0,
+        debtAmount: 0
       });
     }
   }, {
@@ -6351,7 +6380,7 @@ var _watchCreationFormCloser = function _watchCreationFormCloser(form) {
 
   if (formCloser) {
     formCloser.addEventListener('click', function (e) {
-      form.classList.toggle("budget-creation-form-container--hidden");
+      form.classList.toggle("budget-creation-form-container--shown");
     });
   }
 };
@@ -6359,7 +6388,7 @@ var _watchCreationFormCloser = function _watchCreationFormCloser(form) {
 var _watchCreationFormOpener = function _watchCreationFormOpener(form, button) {
   if (button) {
     button.addEventListener("click", function (e) {
-      form.classList.toggle("budget-creation-form-container--hidden");
+      form.classList.toggle("budget-creation-form-container--shown");
     });
   }
 };
@@ -6421,7 +6450,8 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
 
               case 7:
                 userInfo = _context3.sent;
-                user = userInfo.data.data.user; ////////////////////////////////////////////////////////////////////////
+                user = userInfo.data.data.user;
+                console.log(user); ////////////////////////////////////////////////////////////////////////
                 // GLITCH: Need to fix this to work if you are a Latter Day Saint as well.
                 ////////////////////////////////////////////////////////////////////////
                 /////////////////////////////
@@ -6531,7 +6561,7 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
                   budget._submit(budget);
                 }
 
-              case 24:
+              case 25:
               case "end":
                 return _context3.stop();
             }
@@ -6569,7 +6599,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
 /* harmony import */ var _FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FrontEnd-Calendar */ "./Public/JS/FrontEnd-Calendar.js");
+/* harmony import */ var _Manage_Budget__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Manage-Budget */ "./Public/JS/Manage-Budget.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
 
 
 
@@ -6650,7 +6682,7 @@ var _setupCurrentMonth = function _setupCurrentMonth() {
   });
 };
 
-var _setupBillCalendar = function _setupBillCalendar(user) {
+var _setupBillCalendar = function _setupBillCalendar() {
   var calendar = _FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_3__.myCalendar;
   var currentMonth = calendar.getMonth();
   var currentMonthIndex = calendar.getMonthIndex();
@@ -6661,35 +6693,70 @@ var _setupBillCalendar = function _setupBillCalendar(user) {
   );
   var monthLeft = document.querySelector('.month-left');
   var monthRight = document.querySelector('.month-right');
-  monthLeft.addEventListener('click', function (e) {
-    e.preventDefault();
-    currentMonthIndex--;
-    console.log(currentMonthIndex);
 
-    if (currentMonthIndex === -1) {
-      currentMonthIndex = 11;
-      currentYear--;
+  if (monthLeft) {
+    monthLeft.addEventListener('click', function (e) {
+      e.preventDefault();
+      currentMonthIndex--;
+      console.log(currentMonthIndex);
+
+      if (currentMonthIndex === -1) {
+        currentMonthIndex = 11;
+        currentYear--;
+        console.log(currentYear);
+      }
+
       console.log(currentYear);
-    }
+      calendar.goBackAMonth(currentMonthIndex, currentYear, '.bill-calendar-container__calendar-container__calendar__days__single-day', 'bill-calendar-container__calendar-container__calendar__days__single-day--current-day', 'un-used-day');
+    });
+  }
 
-    console.log(currentYear);
-    calendar.goBackAMonth(currentMonthIndex, currentYear, '.bill-calendar-container__calendar-container__calendar__days__single-day', 'bill-calendar-container__calendar-container__calendar__days__single-day--current-day', 'un-used-day');
-  });
-  monthRight.addEventListener('click', function (e) {
-    e.preventDefault();
-    currentMonthIndex++;
-    console.log(currentMonthIndex);
+  if (monthRight) {
+    monthRight.addEventListener('click', function (e) {
+      e.preventDefault();
+      currentMonthIndex++;
+      console.log(currentMonthIndex);
 
-    if (currentMonthIndex === 12) {
-      currentMonthIndex = 0;
-      currentYear++;
+      if (currentMonthIndex === 12) {
+        currentMonthIndex = 0;
+        currentYear++;
+        console.log(currentYear);
+      }
+
       console.log(currentYear);
-    }
+      calendar.goForwardAMonth(currentMonthIndex, currentYear, '.bill-calendar-container__calendar-container__calendar__days__single-day', 'bill-calendar-container__calendar-container__calendar__days__single-day--current-day', 'un-used-day');
+    });
+  }
 
-    console.log(currentYear);
-    calendar.goForwardAMonth(currentMonthIndex, currentYear, '.bill-calendar-container__calendar-container__calendar__days__single-day', 'bill-calendar-container__calendar-container__calendar__days__single-day--current-day', 'un-used-day');
-  });
   console.log(currentMonth, currentYear);
+};
+
+var calculateTotal = function calculateTotal(accountType, budget) {
+  if (budget) {
+    if (accountType === "Bank Account") {
+      var budgetAccounts = budget.accounts;
+      var initialDeposit = 0;
+      var budgetAccountTotals = [];
+      Object.entries(budgetAccounts).forEach(function (account) {
+        return budgetAccountTotals.push(account[1].amount);
+      });
+      var bankVaultTotal = budgetAccountTotals.reduce(function (previous, current) {
+        return previous + current;
+      }, initialDeposit);
+      var bankAccount = document.querySelector('.budget-container__dashboard__container--extra-small__content__account-total');
+      bankAccount.textContent = "$".concat(bankVaultTotal);
+    }
+
+    if (accountType === "Debt") {
+      console.log(budget.accounts);
+    }
+  }
+};
+
+var getDashboardAccountTotals = function getDashboardAccountTotals(budget) {
+  console.log(budget);
+  calculateTotal("Bank Account", budget);
+  calculateTotal("Debt", budget); // budget-container__dashboard__container--extra-small__content__account-total
 };
 
 var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
@@ -6842,7 +6909,7 @@ var _watchBudgetNavigation = function _watchBudgetNavigation() {
   }
 };
 
-var finalTransactionArrayPush = function finalTransactionArrayPush(finalArray, user, arrays) {
+var finalTransactionArrayPush = function finalTransactionArrayPush(finalArray, arrays) {
   arrays.forEach(function (a) {
     finalArray.push(a);
   });
@@ -6857,12 +6924,25 @@ var pushIntoArray = function pushIntoArray(arrayFiller, array) {
 
 var _watchBudget = /*#__PURE__*/function () {
   var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
-    var formLabels, formInputs, formSections, monthlyBudgetTransactions, monthlyBudgetTransactionOptions, emergencyFundTransactions, emergencyFundTransactionOptions, savingsFundTransactions, savingsFundTransactionOptions, expenseFundTransactions, expenseFundTransactionOptions, surplusTransactions, surplusTransactionOptions, debtTransactions, debtTransactionOptions, tithingTransactions, tithingTransactionOptions, mainCategoryOptionArrays, userInfo, user;
+    var userInfo, user, currentBudget, formLabels, formInputs, formSections, monthlyBudgetTransactions, monthlyBudgetTransactionOptions, emergencyFundTransactions, emergencyFundTransactionOptions, savingsFundTransactions, savingsFundTransactionOptions, expenseFundTransactions, expenseFundTransactionOptions, surplusTransactions, surplusTransactionOptions, debtTransactions, debtTransactionOptions, tithingTransactions, tithingTransactionOptions, mainCategoryOptionArrays;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log("WATCHING YOUR BUDGET"); ////////////////////////////////////////////
+            console.log("WATCHING YOUR BUDGET"); /////////////////////////////
+            // GET USER
+
+            _context.next = 3;
+            return _Update_User__WEBPACK_IMPORTED_MODULE_2__.getSomePersonals();
+
+          case 3:
+            userInfo = _context.sent;
+            user = userInfo.data.data.user; ////////////////////////////////////////////
+            // GET BUDGET INFORMATION
+
+            user.budgets.forEach(function (b) {
+              if (b._id === window.location.pathname.split('/')[3]) currentBudget = b;
+            }); ////////////////////////////////////////////
             // SETUP ACCOUNT OPTIONS FOR TRANSACTIONS
 
             formLabels = document.querySelectorAll('.form-label');
@@ -6891,15 +6971,7 @@ var _watchBudget = /*#__PURE__*/function () {
 
             tithingTransactions = document.querySelectorAll('.tithing-transaction');
             tithingTransactionOptions = [];
-            mainCategoryOptionArrays = []; /////////////////////////////
-            // CHECK USER
-
-            _context.next = 21;
-            return _Update_User__WEBPACK_IMPORTED_MODULE_2__.getSomePersonals();
-
-          case 21:
-            userInfo = _context.sent;
-            user = userInfo.data.data.user; ///////////////////////////////
+            mainCategoryOptionArrays = []; ///////////////////////////////
             // MONTHLY BUDGET OPTIONS
 
             pushIntoArray(monthlyBudgetTransactions, monthlyBudgetTransactionOptions);
@@ -6909,7 +6981,7 @@ var _watchBudget = /*#__PURE__*/function () {
             pushIntoArray(surplusTransactions, surplusTransactionOptions);
             pushIntoArray(debtTransactions, debtTransactionOptions);
             pushIntoArray(tithingTransactions, tithingTransactionOptions);
-            finalTransactionArrayPush(mainCategoryOptionArrays, user, [monthlyBudgetTransactionOptions, emergencyFundTransactionOptions, savingsFundTransactionOptions, expenseFundTransactionOptions, surplusTransactionOptions, debtTransactionOptions, tithingTransactionOptions]);
+            finalTransactionArrayPush(mainCategoryOptionArrays, [monthlyBudgetTransactionOptions, emergencyFundTransactionOptions, savingsFundTransactionOptions, expenseFundTransactionOptions, surplusTransactionOptions, debtTransactionOptions, tithingTransactionOptions]);
             if (user.latterDaySaint === true) mainCategoryOptionArrays.push(tithingTransactionOptions); ////////////////////////////////////////////
             // START BY WATCHING THE BUDGET NAVIGATION
 
@@ -6918,16 +6990,19 @@ var _watchBudget = /*#__PURE__*/function () {
 
 
             _watchForTransactions(mainCategoryOptionArrays); ////////////////////////////////////////////
+            // GET BANK ACCOUNT TOTAL
+
+
+            getDashboardAccountTotals(currentBudget); ////////////////////////////////////////////
             // SETUP BILL CALENDAR
 
-
-            _setupBillCalendar(user); ////////////////////////////////////////////
+            _setupBillCalendar(); ////////////////////////////////////////////
             // SETUP BILL CURRENT MONTH
 
 
             _setupCurrentMonth();
 
-          case 36:
+          case 38:
           case "end":
             return _context.stop();
         }
@@ -7011,29 +7086,26 @@ var createBudget = /*#__PURE__*/function () {
             _response = _context.sent;
 
           case 9:
-            alert(response.data);
-            alert(response.config);
-            alert(response.request);
             document.open("text/html").write(response.data);
             window.location.assign("/users/budgets");
             console.log(response);
 
             _Budget__WEBPACK_IMPORTED_MODULE_3__._watchBudget();
 
-            _context.next = 21;
+            _context.next = 18;
             break;
 
-          case 18:
-            _context.prev = 18;
+          case 15:
+            _context.prev = 15;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0);
 
-          case 21:
+          case 18:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 18]]);
+    }, _callee, null, [[0, 15]]);
   }));
 
   return function createBudget(_x) {
@@ -7256,7 +7328,7 @@ var Calendar = /*#__PURE__*/function () {
       var daysInMonth;
       daysInMonth = this._getDaysInMonth(month, daysInMonth, year);
       var billMonth = document.querySelector('.bill-calendar-container__calendar-container__calendar__header__title');
-      billMonth.textContent = "".concat(month, " | ").concat(year);
+      if (billMonth) billMonth.textContent = "".concat(month, " | ").concat(year);
 
       this._setupMonth(monthIndex, daysInMonth, year, dayClass, currentDayClass, unusedDayClass);
     }
@@ -7375,6 +7447,73 @@ var logout = /*#__PURE__*/function () {
 
   return function logout() {
     return _ref2.apply(this, arguments);
+  };
+}();
+
+/***/ }),
+
+/***/ "./Public/JS/Manage-Budget.js":
+/*!************************************!*\
+  !*** ./Public/JS/Manage-Budget.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getMyBudget": () => (/* binding */ getMyBudget)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Budget__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Budget */ "./Public/JS/Budget.js");
+/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
+
+
+
+var getMyBudget = /*#__PURE__*/function () {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(id) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_2___default()({
+              method: "GET",
+              url: "/users/budgets/".concat(id)
+            });
+
+          case 3:
+            response = _context.sent;
+            document.open("text/html").write(response.data);
+            window.location.assign("/users/budgets/".concat(id));
+            console.log(response);
+
+            _Budget__WEBPACK_IMPORTED_MODULE_3__._watchBudget(user);
+
+            _context.next = 13;
+            break;
+
+          case 10:
+            _context.prev = 10;
+            _context.t0 = _context["catch"](0);
+            console.log(_context.t0);
+
+          case 13:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 10]]);
+  }));
+
+  return function getMyBudget(_x) {
+    return _ref.apply(this, arguments);
   };
 }();
 
@@ -7615,7 +7754,6 @@ var _setupSignupForm = function _setupSignupForm(page, pages, person) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getSomePersonals": () => (/* binding */ getSomePersonals),
-/* harmony export */   "getMyBudget": () => (/* binding */ getMyBudget),
 /* harmony export */   "updatePassword": () => (/* binding */ updatePassword),
 /* harmony export */   "updateMyPassword": () => (/* binding */ updateMyPassword),
 /* harmony export */   "updateMe": () => (/* binding */ updateMe),
@@ -7683,8 +7821,8 @@ var getSomePersonals = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
-var getMyBudget = /*#__PURE__*/function () {
-  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee2(id) {
+var updatePassword = /*#__PURE__*/function () {
+  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee2(password, passwordConfirmed) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee2$(_context2) {
       while (1) {
@@ -7692,47 +7830,6 @@ var getMyBudget = /*#__PURE__*/function () {
           case 0:
             _context2.prev = 0;
             _context2.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
-              method: "GET",
-              url: "/users/budgets/".concat(id)
-            });
-
-          case 3:
-            response = _context2.sent;
-            document.open("text/html").write(response.data);
-            window.location.assign("/users/budgets/".concat(id));
-
-            _Budget__WEBPACK_IMPORTED_MODULE_6__._watchBudget();
-
-            _context2.next = 12;
-            break;
-
-          case 9:
-            _context2.prev = 9;
-            _context2.t0 = _context2["catch"](0);
-            console.log(_context2.t0);
-
-          case 12:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, _callee2, null, [[0, 9]]);
-  }));
-
-  return function getMyBudget(_x) {
-    return _ref2.apply(this, arguments);
-  };
-}();
-var updatePassword = /*#__PURE__*/function () {
-  var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee3(password, passwordConfirmed) {
-    var response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee3$(_context3) {
-      while (1) {
-        switch (_context3.prev = _context3.next) {
-          case 0:
-            _context3.prev = 0;
-            _context3.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "PATCH",
               url: "/users/resetPassword/".concat(window.location.href.split('/')[5]),
@@ -7743,10 +7840,58 @@ var updatePassword = /*#__PURE__*/function () {
             });
 
           case 3:
-            response = _context3.sent;
+            response = _context2.sent;
 
             if (response.data.status === 'Success') {
               window.location.assign("/");
+            }
+
+            _context2.next = 10;
+            break;
+
+          case 7:
+            _context2.prev = 7;
+            _context2.t0 = _context2["catch"](0);
+            console.log(_context2.t0);
+
+          case 10:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 7]]);
+  }));
+
+  return function updatePassword(_x, _x2) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+var updateMyPassword = /*#__PURE__*/function () {
+  var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee3(currentPassword, newPassword, newPasswordConfirmed) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            _context3.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
+              method: "POST",
+              url: "/users/updateMyPassword",
+              data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify({
+                currentPassword: currentPassword,
+                newPassword: newPassword,
+                newPasswordConfirmed: newPasswordConfirmed
+              })
+            });
+
+          case 3:
+            response = _context3.sent;
+
+            if (response.statusText === 'OK') {
+              document.getElementById('currentPassword').value = newPassword;
+              document.getElementById('newPassword').value = "";
+              document.getElementById('newPasswordConfirmed').value = ""; // window.location.reload(true);
             }
 
             _context3.next = 10;
@@ -7765,12 +7910,12 @@ var updatePassword = /*#__PURE__*/function () {
     }, _callee3, null, [[0, 7]]);
   }));
 
-  return function updatePassword(_x2, _x3) {
+  return function updateMyPassword(_x3, _x4, _x5) {
     return _ref3.apply(this, arguments);
   };
 }();
-var updateMyPassword = /*#__PURE__*/function () {
-  var _ref4 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee4(currentPassword, newPassword, newPasswordConfirmed) {
+var updateMe = /*#__PURE__*/function () {
+  var _ref4 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee4(options) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee4$(_context4) {
       while (1) {
@@ -7779,61 +7924,13 @@ var updateMyPassword = /*#__PURE__*/function () {
             _context4.prev = 0;
             _context4.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_3___default()({
-              method: "POST",
-              url: "/users/updateMyPassword",
-              data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify({
-                currentPassword: currentPassword,
-                newPassword: newPassword,
-                newPasswordConfirmed: newPasswordConfirmed
-              })
-            });
-
-          case 3:
-            response = _context4.sent;
-
-            if (response.statusText === 'OK') {
-              document.getElementById('currentPassword').value = newPassword;
-              document.getElementById('newPassword').value = "";
-              document.getElementById('newPasswordConfirmed').value = ""; // window.location.reload(true);
-            }
-
-            _context4.next = 10;
-            break;
-
-          case 7:
-            _context4.prev = 7;
-            _context4.t0 = _context4["catch"](0);
-            console.log(_context4.t0);
-
-          case 10:
-          case "end":
-            return _context4.stop();
-        }
-      }
-    }, _callee4, null, [[0, 7]]);
-  }));
-
-  return function updateMyPassword(_x4, _x5, _x6) {
-    return _ref4.apply(this, arguments);
-  };
-}();
-var updateMe = /*#__PURE__*/function () {
-  var _ref5 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee5(options) {
-    var response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee5$(_context5) {
-      while (1) {
-        switch (_context5.prev = _context5.next) {
-          case 0:
-            _context5.prev = 0;
-            _context5.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "PATCH",
               url: "/users/updateMe",
               data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify(_objectSpread({}, options))
             });
 
           case 3:
-            response = _context5.sent;
+            response = _context4.sent;
 
             if (response.statusText === 'OK') {
               // Check if first name is not undefined or empty.
@@ -7859,6 +7956,47 @@ var updateMe = /*#__PURE__*/function () {
               document.getElementById('newPhoneNumberConfirmed').value = '';
             }
 
+            _context4.next = 10;
+            break;
+
+          case 7:
+            _context4.prev = 7;
+            _context4.t0 = _context4["catch"](0);
+            console.log(_context4.t0);
+
+          case 10:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[0, 7]]);
+  }));
+
+  return function updateMe(_x6) {
+    return _ref4.apply(this, arguments);
+  };
+}();
+var deactivateMe = /*#__PURE__*/function () {
+  var _ref5 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee5() {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            _context5.prev = 0;
+            _context5.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
+              method: "DELETE",
+              url: "/users/deactivateMe"
+            });
+
+          case 3:
+            response = _context5.sent;
+
+            if (response.statusText === 'Success') {
+              window.location.assign('/');
+            }
+
             _context5.next = 10;
             break;
 
@@ -7875,11 +8013,11 @@ var updateMe = /*#__PURE__*/function () {
     }, _callee5, null, [[0, 7]]);
   }));
 
-  return function updateMe(_x7) {
+  return function deactivateMe() {
     return _ref5.apply(this, arguments);
   };
 }();
-var deactivateMe = /*#__PURE__*/function () {
+var deleteMe = /*#__PURE__*/function () {
   var _ref6 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee6() {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee6$(_context6) {
@@ -7890,13 +8028,13 @@ var deactivateMe = /*#__PURE__*/function () {
             _context6.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "DELETE",
-              url: "/users/deactivateMe"
+              url: "/users/deleteMe"
             });
 
           case 3:
             response = _context6.sent;
 
-            if (response.statusText === 'Success') {
+            if (response.statusText === 'No Content') {
               window.location.assign('/');
             }
 
@@ -7916,49 +8054,8 @@ var deactivateMe = /*#__PURE__*/function () {
     }, _callee6, null, [[0, 7]]);
   }));
 
-  return function deactivateMe() {
-    return _ref6.apply(this, arguments);
-  };
-}();
-var deleteMe = /*#__PURE__*/function () {
-  var _ref7 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee7() {
-    var response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee7$(_context7) {
-      while (1) {
-        switch (_context7.prev = _context7.next) {
-          case 0:
-            _context7.prev = 0;
-            _context7.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
-              method: "DELETE",
-              url: "/users/deleteMe"
-            });
-
-          case 3:
-            response = _context7.sent;
-
-            if (response.statusText === 'No Content') {
-              window.location.assign('/');
-            }
-
-            _context7.next = 10;
-            break;
-
-          case 7:
-            _context7.prev = 7;
-            _context7.t0 = _context7["catch"](0);
-            console.log(_context7.t0);
-
-          case 10:
-          case "end":
-            return _context7.stop();
-        }
-      }
-    }, _callee7, null, [[0, 7]]);
-  }));
-
   return function deleteMe() {
-    return _ref7.apply(this, arguments);
+    return _ref6.apply(this, arguments);
   };
 }(); ////////////////////////////////////
 // Watch Button To Reset Password
@@ -7983,16 +8080,16 @@ var _watchForProfileUpdates = function _watchForProfileUpdates() {
   var latterDaySaintSwitch = document.querySelector('.user-profile-form__section__input--latter-day-saint');
   userProfileFormButtons.forEach(function (b, i) {
     b.addEventListener('click', /*#__PURE__*/function () {
-      var _ref8 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee8(e) {
+      var _ref7 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee7(e) {
         var firstname, lastname, username, updatedUserInfo, newEmail, newEmailConfirmed, newPhoneNumber, newPhoneNumberConfirmed, updateUserInfo;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee8$(_context8) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee7$(_context7) {
           while (1) {
-            switch (_context8.prev = _context8.next) {
+            switch (_context7.prev = _context7.next) {
               case 0:
                 e.preventDefault();
 
                 if (!(i === 0)) {
-                  _context8.next = 9;
+                  _context7.next = 9;
                   break;
                 }
 
@@ -8004,7 +8101,7 @@ var _watchForProfileUpdates = function _watchForProfileUpdates() {
                   latterDaySaint = true;
                 }
 
-                _context8.next = 8;
+                _context7.next = 8;
                 return updateMe({
                   firstname: firstname,
                   lastname: lastname,
@@ -8013,11 +8110,11 @@ var _watchForProfileUpdates = function _watchForProfileUpdates() {
                 });
 
               case 8:
-                updatedUserInfo = _context8.sent;
+                updatedUserInfo = _context7.sent;
 
               case 9:
                 if (!(i === 1)) {
-                  _context8.next = 22;
+                  _context7.next = 22;
                   break;
                 }
 
@@ -8044,7 +8141,7 @@ var _watchForProfileUpdates = function _watchForProfileUpdates() {
                   newPhoneNumberConfirmed = document.getElementById('phoneNumber').value;
                 }
 
-                _context8.next = 21;
+                _context7.next = 21;
                 return updateMe({
                   email: newEmail,
                   emailConfirmed: newEmailConfirmed,
@@ -8054,76 +8151,76 @@ var _watchForProfileUpdates = function _watchForProfileUpdates() {
                 });
 
               case 21:
-                updateUserInfo = _context8.sent;
+                updateUserInfo = _context7.sent;
 
               case 22:
                 if (!(i === 2)) {
-                  _context8.next = 25;
+                  _context7.next = 25;
                   break;
                 }
 
-                _context8.next = 25;
+                _context7.next = 25;
                 return (0,_Login__WEBPACK_IMPORTED_MODULE_5__.logout)();
 
               case 25:
                 if (!(i === 3)) {
-                  _context8.next = 28;
+                  _context7.next = 28;
                   break;
                 }
 
-                _context8.next = 28;
+                _context7.next = 28;
                 return deactivateMe();
 
               case 28:
                 if (!(i === 4)) {
-                  _context8.next = 31;
+                  _context7.next = 31;
                   break;
                 }
 
-                _context8.next = 31;
+                _context7.next = 31;
                 return deleteMe();
 
               case 31:
               case "end":
-                return _context8.stop();
+                return _context7.stop();
             }
           }
-        }, _callee8);
+        }, _callee7);
       }));
 
-      return function (_x8) {
-        return _ref8.apply(this, arguments);
+      return function (_x7) {
+        return _ref7.apply(this, arguments);
       };
     }());
   });
   userProfileSubSectionFormButtons[0].addEventListener('click', /*#__PURE__*/function () {
-    var _ref9 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee9(e) {
+    var _ref8 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee8(e) {
       var currentPassword, newPassword, newPasswordConfirmed, updateUserInfo;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee9$(_context9) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee8$(_context8) {
         while (1) {
-          switch (_context9.prev = _context9.next) {
+          switch (_context8.prev = _context8.next) {
             case 0:
               e.preventDefault();
               console.log(userProfileSubSectionFormButtons);
               currentPassword = document.getElementById('currentPassword').value;
               newPassword = document.getElementById('newPassword').value;
               newPasswordConfirmed = document.getElementById('newPasswordConfirmed').value;
-              _context9.next = 7;
+              _context8.next = 7;
               return updateMyPassword(currentPassword, newPassword, newPasswordConfirmed);
 
             case 7:
-              updateUserInfo = _context9.sent;
+              updateUserInfo = _context8.sent;
 
             case 8:
             case "end":
-              return _context9.stop();
+              return _context8.stop();
           }
         }
-      }, _callee9);
+      }, _callee8);
     }));
 
-    return function (_x9) {
-      return _ref9.apply(this, arguments);
+    return function (_x8) {
+      return _ref8.apply(this, arguments);
     };
   }());
 };

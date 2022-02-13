@@ -4,6 +4,7 @@ import * as Categories from './Budget-Categories';
 import * as Budget from './Budget-Creation';
 import * as Budgeting from './Budget';
 import * as Update from './Update-User';
+import * as Manage from './Manage-Budget';
 
 let commPreference;
 let latterDaySaint = false;
@@ -14,7 +15,7 @@ let latterDaySaint = false;
 // };
 
 const enterBudget = async (budgetId) => {
-  await Update.getMyBudget(budgetId);
+  await Manage.getMyBudget(budgetId);
 };
 
 const _watchBudgetSelection = () => {
@@ -189,13 +190,17 @@ const checkLoginStatus = (login, checkElement) => {
   }
 };
 
-export const _watchForLogin = (login) => {
+export const _watchForLogin = async (login) => {
   const appViewport = document.querySelector('.app-viewport');
   const status = checkLoginStatus(login, appViewport);
   status === true ? console.log(`Logged In`) : console.log(`Logged Out`);
   const commSwitch = document.querySelector('.user-profile-form__section__comm-switch');
   let formattedNumber;
   if (status === true) {
+    ///////////////////////////////////////
+    // GET USER
+    const userInfo = await Update.getSomePersonals();
+    const user = userInfo.data.data.user;
     // WATCHING USER PROFILE NAVIGATION BUTTONS
     _watchUserProfileButtons();
     // WATCHING COMMUNICATION PREFERENCES

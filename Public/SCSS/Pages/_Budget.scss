@@ -56,6 +56,9 @@
           left: 3rem;
           padding: 1rem;
           z-index: 10;
+          &__text {
+            transition: color 0.5s;
+          }
           &__button {
             @include SizeAndPositioning(relative, 0.75rem, 30%, flex, row, nowrap, center, center, 0, 0, 0);
             z-index: 10;

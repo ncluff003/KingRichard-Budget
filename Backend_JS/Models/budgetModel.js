@@ -92,6 +92,10 @@ const budgetSchema = new mongoose.Schema({
         type: Number,
         default: 0,
       },
+      debtAmount: {
+        type: Number,
+        default: 0,
+      },
     },
     tithing: {
       setting: {
