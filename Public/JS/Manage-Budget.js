@@ -10,7 +10,7 @@ export const getMyBudget = async (id) => {
     document.open(`text/html`).write(response.data);
     window.location.assign(`/users/budgets/${id}`);
     console.log(response);
-    Budget._watchBudget(user);
+    Budget._watchBudget();
   } catch (error) {
     console.log(error);
   }

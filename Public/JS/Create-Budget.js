@@ -5,20 +5,23 @@ import qs from 'qs';
 
 //////////////////////
 // CREATE BUDGET
-export const createBudget = async (budget) => {
+export const createBudget = async (budget, user) => {
+  console.log(user);
   try {
     const response = await axios({
       method: `POST`,
-      url: `/users/budgets`,
+      url: `/users/${user._id}/budgets`,
       data: qs.stringify({
         budget: budget,
       }),
     });
+    console.log(response.data.data.budget);
     if (response.statusText === `Created`) {
-      alert(budget);
+      console.log(`Budget Created`);
+      console.log(`Retrieving Budget...`);
       const response = await axios({
         method: `GET`,
-        url: `/users/budgets`,
+        url: `/users/${user._id}/budgets`,
         data: qs.stringify({
           budget: budget,
         }),

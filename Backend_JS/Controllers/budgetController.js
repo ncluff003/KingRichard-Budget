@@ -99,8 +99,34 @@ exports.getBudget = catchAsync(async (request, response, next) => {
   );
 });
 
+exports.getBudgets = catchAsync(async (request, response, next) => {
+  // const user = await User.findById(request.user.id);
+  const user = request.user;
+  let budgetID = request.params.id;
+  if (!budgetID) budgetID = user.budgets[user.budgets.length - 1];
+  const budget = await Budget.findById(budgetID);
+
+  if (!budget) {
+    return next(new AppError('No budget found with that ID', 404));
+  }
+  createAndSendToken(
+    user,
+    201,
+    `render`,
+    request,
+    response,
+    `./Budget/budgetLanding`,
+    `King Richard | ${budget.name}`,
+    { budget: budget, calendar: Calendar },
+    200,
+    `Success`,
+  );
+});
+
 exports.createBudget = catchAsync(async (request, response, next) => {
+  console.log(request.params);
   const budgetBody = request.body;
+  console.log(budgetBody);
   let budget = budgetBody.budget;
   const user = await User.findById(request.user.id);
   budget = await Budget.create({

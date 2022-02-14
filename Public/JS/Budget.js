@@ -138,6 +138,7 @@ const _setupBillCalendar = () => {
 
 const calculateTotal = (accountType, budget) => {
   const accountSections = document.querySelectorAll('.budget-container__dashboard__container--extra-small__content__account-total');
+  console.log(budget);
   const budgetAccounts = budget.accounts;
   let amountOfDebt;
   let budgetAccountTotals = [];

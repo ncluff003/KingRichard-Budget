@@ -5420,8 +5420,8 @@ var Budget = /*#__PURE__*/function () {
     }
   }, {
     key: "_submit",
-    value: function _submit(budget) {
-      _Create_Budget__WEBPACK_IMPORTED_MODULE_7__.createBudget(budget);
+    value: function _submit(budget, user) {
+      _Create_Budget__WEBPACK_IMPORTED_MODULE_7__.createBudget(budget, user);
     }
   }]);
 
@@ -6501,7 +6501,7 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
                 if (currentPage + 1 === 8 && user.latterDaySaint === false) {
                   budget._setInvestmentGoal();
 
-                  budget._submit(budget);
+                  budget._submit(budget, user);
                 } /////////////////////////////
                 // IF LATTER DAY SAINT
 
@@ -6558,7 +6558,7 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
                 if (currentPage + 1 === 9 && user.latterDaySaint === true) {
                   budget._setInvestmentGoal();
 
-                  budget._submit(budget);
+                  budget._submit(budget, user);
                 }
 
               case 25:
@@ -6733,6 +6733,7 @@ var _setupBillCalendar = function _setupBillCalendar() {
 
 var calculateTotal = function calculateTotal(accountType, budget) {
   var accountSections = document.querySelectorAll('.budget-container__dashboard__container--extra-small__content__account-total');
+  console.log(budget);
   var budgetAccounts = budget.accounts;
   var amountOfDebt;
   var budgetAccountTotals = [];
@@ -7083,68 +7084,71 @@ __webpack_require__.r(__webpack_exports__);
 // CREATE BUDGET
 
 var createBudget = /*#__PURE__*/function () {
-  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(budget) {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(budget, user) {
     var response, _response;
 
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.prev = 0;
-            _context.next = 3;
+            console.log(user);
+            _context.prev = 1;
+            _context.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_4___default()({
               method: "POST",
-              url: "/users/budgets",
+              url: "/users/".concat(user._id, "/budgets"),
               data: qs__WEBPACK_IMPORTED_MODULE_5___default().stringify({
                 budget: budget
               })
             });
 
-          case 3:
+          case 4:
             response = _context.sent;
+            console.log(response.data.data.budget);
 
             if (!(response.statusText === "Created")) {
-              _context.next = 9;
+              _context.next = 12;
               break;
             }
 
-            alert(budget);
-            _context.next = 8;
+            console.log("Budget Created");
+            console.log("Retrieving Budget...");
+            _context.next = 11;
             return axios__WEBPACK_IMPORTED_MODULE_4___default()({
               method: "GET",
-              url: "/users/budgets",
+              url: "/users/".concat(user._id, "/budgets"),
               data: qs__WEBPACK_IMPORTED_MODULE_5___default().stringify({
                 budget: budget
               })
             });
 
-          case 8:
+          case 11:
             _response = _context.sent;
 
-          case 9:
+          case 12:
             document.open("text/html").write(response.data);
             window.location.assign("/users/budgets");
             console.log(response);
 
             _Budget__WEBPACK_IMPORTED_MODULE_3__._watchBudget();
 
-            _context.next = 18;
+            _context.next = 21;
             break;
 
-          case 15:
-            _context.prev = 15;
-            _context.t0 = _context["catch"](0);
+          case 18:
+            _context.prev = 18;
+            _context.t0 = _context["catch"](1);
             console.log(_context.t0);
 
-          case 18:
+          case 21:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 15]]);
+    }, _callee, null, [[1, 18]]);
   }));
 
-  return function createBudget(_x) {
+  return function createBudget(_x, _x2) {
     return _ref.apply(this, arguments);
   };
 }();
@@ -7530,7 +7534,7 @@ var getMyBudget = /*#__PURE__*/function () {
             window.location.assign("/users/budgets/".concat(id));
             console.log(response);
 
-            _Budget__WEBPACK_IMPORTED_MODULE_3__._watchBudget(user);
+            _Budget__WEBPACK_IMPORTED_MODULE_3__._watchBudget();
 
             _context.next = 13;
             break;

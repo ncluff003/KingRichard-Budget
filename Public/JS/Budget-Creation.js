@@ -66,8 +66,8 @@ export class Budget {
     console.log(this);
   }
 
-  _submit(budget) {
-    Budgets.createBudget(budget);
+  _submit(budget, user) {
+    Budgets.createBudget(budget, user);
   }
 }
 
@@ -1081,7 +1081,7 @@ export const _watchBudgetCreation = () => {
       }
       if (currentPage + 1 === 8 && user.latterDaySaint === false) {
         budget._setInvestmentGoal();
-        budget._submit(budget);
+        budget._submit(budget, user);
       }
 
       /////////////////////////////
@@ -1120,7 +1120,7 @@ export const _watchBudgetCreation = () => {
       }
       if (currentPage + 1 === 9 && user.latterDaySaint === true) {
         budget._setInvestmentGoal();
-        budget._submit(budget);
+        budget._submit(budget, user);
       }
     });
   }

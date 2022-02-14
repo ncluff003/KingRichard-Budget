@@ -21,6 +21,7 @@ const appController = require(`./../Controllers/appController`);
 const authController = require(`./../Controllers/authController`);
 const userController = require(`./../Controllers/userController`);
 const budgetController = require(`./../Controllers/budgetController`);
+const budgetRouter = require(`./../Routes/budgetRoutes`);
 
 ////////////////////////////////////////////
 //  Routing Middleware
@@ -34,11 +35,10 @@ router.route(`/updateMyPassword`).post(authController.protect, authController.up
 router.route(`/updateMe`).patch(authController.protect, userController.updateMe);
 router.route(`/deactivateMe`).delete(authController.protect, userController.deactivateMe);
 router.route(`/deleteMe`).delete(authController.protect, userController.deleteMe);
-// router.route(`/about`).get(appController.introduceMe);
-// router.route(`/projects`).get(appController.viewMyWork);
-// router.route(`/contact`).get(appController.contactMe).post(messageController.validateEmail, messageController.emailMe);
-router.route(`/budgets`).post(authController.protect, budgetController.createBudget).get(authController.protect, budgetController.getBudget);
-router.route(`/budgets/:id`).get(authController.protect, budgetController.getBudget);
+
+router.use(`/:userId/budgets`, budgetRouter);
+// router.route(`/budgets`).post(authController.protect, budgetController.createBudget).get(authController.protect, budgetController.getBudget);
+// router.route(`/budgets/:id`).get(authController.protect, budgetController.getBudget);
 
 ////////////////////////////////////////////
 //  My Modules

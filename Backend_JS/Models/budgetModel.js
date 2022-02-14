@@ -158,6 +158,144 @@ const budgetSchema = new mongoose.Schema({
       ],
     },
   ],
+  transactions: {
+    plannedTransactions: [
+      {
+        date: {
+          type: Date,
+          required: [true, `Every Transaction Must Have A Date`],
+        },
+        type: {
+          type: String,
+          enum: [`Deposit`, `Withdrawal`],
+          required: [true, `Every Transaction Is Either A Deposit Or Withdrawal`],
+        },
+        location: {
+          type: String,
+          required: [true, `Every Transaction Happened Somewhere.`],
+        },
+        account: {
+          type: String,
+          enum: [`Expense`, `Savings`, `Debt`, `Surplus`],
+          required: [true, `Every Transaction Must Come From An Account`], // Goes To Account
+        },
+        subAccount: {
+          type: String,
+          enum: [`Bill`, `Debt`, `Subscription`, `Other`],
+          required: [true, `Every Transaction Needs A Type Given.`], // Goes To Expenditure In Recent Transactions
+        },
+        amount: {
+          type: Number,
+          required: [true, `Every Transaction Had An Ammount.`],
+        },
+        need: {
+          type: String,
+          enum: [`Need`, `Surplue`],
+          required: [true, `Every Transaction Must Be Deemed Needed Or Surplus.`], // Expenses AND Savings Will Need Option For Whether It Is Surplus Or Not On Enter Transaction Form.
+        },
+        dueDate: {
+          type: Date,
+          required: [true, `Every Transaction Must Have A Due Date`],
+        },
+        timing: {
+          type: String,
+          enum: [`Weekly`, `Bi-Weekly`, `Bi-Monthly`, `Monthly`, `Quarterly`, `Bi-Annually`, `Annually`],
+        },
+        description: {
+          type: String,
+        },
+        amountSaved: {
+          type: Number,
+          default: 0,
+        },
+        paid: {
+          type: Boolean,
+          enum: [],
+          default: false,
+        },
+        paidStatus: {
+          type: String,
+          enum: [`Paid Off`, `Partially Paid`, `Not Paid`],
+        },
+      },
+    ],
+    recentTransactions: [
+      {
+        date: {
+          type: Date,
+          required: [true, `Every Transaction Must Have A Date`],
+        },
+        type: {
+          type: String,
+          enum: [`Deposit`, `Withdrawal`],
+          required: [true, `Every Transaction Is Either A Deposit Or Withdrawal`],
+        },
+        location: {
+          type: String,
+          required: [true, `Every Transaction Happened Somewhere.`],
+        },
+        receipt: [
+          {
+            account: {
+              type: String,
+              required: [true, `Every Transaction Must Come From An Account`],
+            },
+            category: {
+              type: String,
+            },
+            subCategory: {
+              type: String,
+            },
+            timing: {
+              type: String,
+              enum: [`Weekly`, `Bi-Weekly`, `Bi-Monthly`, `Monthly`, `Quarterly`, `Bi-Annually`, `Annually`],
+            },
+            expenditure: {
+              type: String,
+            },
+            lender: {
+              type: String,
+            },
+            amount: {
+              type: Number,
+              required: [true, `Every Transaction Had An Ammount.`],
+            },
+            description: {
+              type: String,
+              required: [true, `Every Transaction Must Come From An Account`],
+            },
+            fullyPaid: {
+              type: Boolean,
+            },
+          },
+        ],
+      },
+    ],
+  },
+  investments: [
+    {
+      name: {
+        type: String,
+        required: [true, `Every Investment Must Have A Name`],
+      },
+      initialInvestment: {
+        type: Number,
+        default: 0,
+        required: [true, `Every Investment Starts Somewhere`],
+      },
+      currentValue: {
+        type: Number,
+        default: this.initialInvestment, // I will review this stuff to see if this is correct.  Also, I can do a bit of trial and error.
+      },
+      settled: {
+        type: Boolean,
+        default: false,
+      },
+      valueDifference: {
+        type: Number, // I will find out the correct way to add a function here to simply make the value here the current value minus the initial investment.
+      },
+    },
+  ],
 });
 
 const Budget = new mongoose.model(`Budget`, budgetSchema);
