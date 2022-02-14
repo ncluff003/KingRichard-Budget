@@ -6619,8 +6619,6 @@ var calculateRemaining = function calculateRemaining(overall, spent) {
 
 var cycleMainCategories = function cycleMainCategories(direction, index, icons, titles, subCats) {
   if (direction === "left") {
-    index--;
-    if (index < 0) index = 0;
     icons.forEach(function (ic) {
       ic.style.display = "none";
       icons[index].style.display = "flex";
@@ -6636,8 +6634,6 @@ var cycleMainCategories = function cycleMainCategories(direction, index, icons, 
   }
 
   if (direction === "right") {
-    index++;
-    if (index > icons.length - 1) index = icons.length - 1;
     icons.forEach(function (ic) {
       ic.style.display = "none";
       icons[index].style.display = "flex";
@@ -6674,10 +6670,14 @@ var _setupCurrentMonth = function _setupCurrentMonth() {
   });
   leftButton.addEventListener('click', function (e) {
     e.preventDefault();
+    categoryIndex--;
+    if (categoryIndex <= 0) categoryIndex = 0;
     cycleMainCategories('left', categoryIndex, categoryIcons, categoryTitles, subCategories);
   });
   rightButton.addEventListener('click', function (e) {
     e.preventDefault();
+    categoryIndex++;
+    if (categoryIndex >= categoryIcons.length - 1) categoryIndex = categoryIcons.length - 1;
     cycleMainCategories('right', categoryIndex, categoryIcons, categoryTitles, subCategories);
   });
 };
@@ -6732,23 +6732,58 @@ var _setupBillCalendar = function _setupBillCalendar() {
 };
 
 var calculateTotal = function calculateTotal(accountType, budget) {
+  var accountSections = document.querySelectorAll('.budget-container__dashboard__container--extra-small__content__account-total');
+  var budgetAccounts = budget.accounts;
+  var amountOfDebt;
+  var budgetAccountTotals = [];
+  Object.entries(budgetAccounts).forEach(function (account) {
+    return budgetAccountTotals.push(account[1].amount);
+  });
+  Object.entries(budgetAccounts).forEach(function (account) {
+    if (account[0] === "debt") amountOfDebt = account[1].debtAmount;
+    return amountOfDebt;
+  }); // Set Money Format
+
+  var money = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+  });
+
   if (budget) {
     if (accountType === "Bank Account") {
-      var budgetAccounts = budget.accounts;
       var initialDeposit = 0;
-      var budgetAccountTotals = [];
-      Object.entries(budgetAccounts).forEach(function (account) {
-        return budgetAccountTotals.push(account[1].amount);
-      });
       var bankVaultTotal = budgetAccountTotals.reduce(function (previous, current) {
         return previous + current;
       }, initialDeposit);
-      var bankAccount = document.querySelector('.budget-container__dashboard__container--extra-small__content__account-total');
-      bankAccount.textContent = "$".concat(bankVaultTotal);
+      var bankAccountSection = accountSections[0];
+      var bankAccount = money.format(bankVaultTotal);
+      bankAccountSection.textContent = "".concat(bankAccount);
     }
 
     if (accountType === "Debt") {
-      console.log(budget.accounts);
+      var debtAccount = accountSections[1]; // amountOfDebt += 200;
+
+      var debt = money.format(amountOfDebt);
+      amountOfDebt === 0 ? debtAccount.textContent = debt : debtAccount.textContent = "-".concat(debt);
+    }
+
+    if (accountType === "Net Value") {
+      var _initialDeposit = 0;
+      var _budgetAccountTotals = [];
+      Object.entries(budgetAccounts).forEach(function (account) {
+        if (account[0] === "debt") amountOfDebt = account[1].debtAmount;
+        console.log(amountOfDebt);
+        return amountOfDebt;
+      });
+
+      var _bankVaultTotal = _budgetAccountTotals.reduce(function (previous, current) {
+        return previous + current;
+      }, _initialDeposit);
+
+      var netValueAccount = accountSections[2];
+      var netValue = money.format(_bankVaultTotal - amountOfDebt);
+      netValueAccount.textContent = netValue;
     }
   }
 };
@@ -6756,7 +6791,8 @@ var calculateTotal = function calculateTotal(accountType, budget) {
 var getDashboardAccountTotals = function getDashboardAccountTotals(budget) {
   console.log(budget);
   calculateTotal("Bank Account", budget);
-  calculateTotal("Debt", budget); // budget-container__dashboard__container--extra-small__content__account-total
+  calculateTotal("Debt", budget);
+  calculateTotal("Net Value", budget); // budget-container__dashboard__container--extra-small__content__account-total
 };
 
 var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {

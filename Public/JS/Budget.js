@@ -12,8 +12,6 @@ const calculateRemaining = (overall, spent) => {
 
 const cycleMainCategories = (direction, index, icons, titles, subCats) => {
   if (direction === `left`) {
-    index--;
-    if (index < 0) index = 0;
     icons.forEach((ic) => {
       ic.style.display = `none`;
       icons[index].style.display = `flex`;
@@ -28,8 +26,6 @@ const cycleMainCategories = (direction, index, icons, titles, subCats) => {
     });
   }
   if (direction === `right`) {
-    index++;
-    if (index > icons.length - 1) index = icons.length - 1;
     icons.forEach((ic) => {
       ic.style.display = `none`;
       icons[index].style.display = `flex`;
@@ -66,10 +62,14 @@ const _setupCurrentMonth = () => {
   });
   leftButton.addEventListener('click', (e) => {
     e.preventDefault();
+    categoryIndex--;
+    if (categoryIndex <= 0) categoryIndex = 0;
     cycleMainCategories('left', categoryIndex, categoryIcons, categoryTitles, subCategories);
   });
   rightButton.addEventListener('click', (e) => {
     e.preventDefault();
+    categoryIndex++;
+    if (categoryIndex >= categoryIcons.length - 1) categoryIndex = categoryIcons.length - 1;
     cycleMainCategories('right', categoryIndex, categoryIcons, categoryTitles, subCategories);
   });
 };
@@ -137,21 +137,53 @@ const _setupBillCalendar = () => {
 };
 
 const calculateTotal = (accountType, budget) => {
+  const accountSections = document.querySelectorAll('.budget-container__dashboard__container--extra-small__content__account-total');
+  const budgetAccounts = budget.accounts;
+  let amountOfDebt;
+  let budgetAccountTotals = [];
+  Object.entries(budgetAccounts).forEach((account) => {
+    return budgetAccountTotals.push(account[1].amount);
+  });
+  Object.entries(budgetAccounts).forEach((account) => {
+    if (account[0] === `debt`) amountOfDebt = account[1].debtAmount;
+    return amountOfDebt;
+  });
+
+  // Set Money Format
+  const money = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+  });
+
   if (budget) {
     if (accountType === `Bank Account`) {
-      const budgetAccounts = budget.accounts;
       let initialDeposit = 0;
-      let budgetAccountTotals = [];
-      Object.entries(budgetAccounts).forEach((account) => {
-        return budgetAccountTotals.push(account[1].amount);
-      });
       const bankVaultTotal = budgetAccountTotals.reduce((previous, current) => previous + current, initialDeposit);
-      const bankAccount = document.querySelector('.budget-container__dashboard__container--extra-small__content__account-total');
-      bankAccount.textContent = `$${bankVaultTotal}`;
+      const bankAccountSection = accountSections[0];
+      let bankAccount = money.format(bankVaultTotal);
+      bankAccountSection.textContent = `${bankAccount}`;
     }
 
     if (accountType === `Debt`) {
-      console.log(budget.accounts);
+      const debtAccount = accountSections[1];
+      // amountOfDebt += 200;
+      let debt = money.format(amountOfDebt);
+      amountOfDebt === 0 ? (debtAccount.textContent = debt) : (debtAccount.textContent = `-${debt}`);
+    }
+
+    if (accountType === `Net Value`) {
+      let initialDeposit = 0;
+      let budgetAccountTotals = [];
+      Object.entries(budgetAccounts).forEach((account) => {
+        if (account[0] === `debt`) amountOfDebt = account[1].debtAmount;
+        console.log(amountOfDebt);
+        return amountOfDebt;
+      });
+      const bankVaultTotal = budgetAccountTotals.reduce((previous, current) => previous + current, initialDeposit);
+      const netValueAccount = accountSections[2];
+      let netValue = money.format(bankVaultTotal - amountOfDebt);
+      netValueAccount.textContent = netValue;
     }
   }
 };
@@ -160,6 +192,7 @@ const getDashboardAccountTotals = (budget) => {
   console.log(budget);
   calculateTotal(`Bank Account`, budget);
   calculateTotal(`Debt`, budget);
+  calculateTotal(`Net Value`, budget);
 
   // budget-container__dashboard__container--extra-small__content__account-total
 };
