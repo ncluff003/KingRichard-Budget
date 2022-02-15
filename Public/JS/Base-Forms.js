@@ -1,3 +1,4 @@
+import * as Login from './Login';
 import * as Signup from './Signup';
 
 //////////////////////////////
@@ -22,6 +23,16 @@ export const _watchFormClosers = (pageElement, page, form) => {
   });
 };
 
+const getLoggedIn = () => {
+  event.preventDefault();
+  const loginUsername = document.getElementById('loginUsername').value;
+  const loginPassword = document.getElementById('loginPassword').value;
+  const loginSubmit = document.querySelector('.login-form__section__button');
+  loginSubmit.removeEventListener('click', getLoggedIn);
+  console.log(`Listener Stopped.`);
+  Login.login(loginUsername, loginPassword);
+};
+
 export const _watchEntranceButtons = (person, form, formPage) => {
   //////////////////////////////
   // Initialize Entrance Buttons.
@@ -34,6 +45,14 @@ export const _watchEntranceButtons = (person, form, formPage) => {
         //////////////////////////////////////////////////////////////
         // OPEN UP THE SELECTED FORM
         form[i].classList.toggle('form-container--open');
+
+        //////////////////////////////////////////////////////////////
+        // OPEN UP THE SELECTED FORM
+        if (i === 0) {
+          const loginSubmit = document.querySelector('.login-form__section__button');
+          loginSubmit.addEventListener('click', getLoggedIn);
+          console.log(`Listener Started.`);
+        }
 
         //////////////////////////////////////////////////////////////
         // SETUP THE SIGNUP FORM IF IT IS THE SELECTED FORM

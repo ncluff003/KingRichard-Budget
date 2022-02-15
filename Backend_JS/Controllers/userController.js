@@ -72,8 +72,26 @@ const createAndSendToken = (user, statusCode, method, request, response, templat
 ////////////////////////////////////////////
 //  Exported Controllers
 
+exports.searchForUser = catchAsync(async (request, response, next) => {
+  const { username, password } = request.body;
+  // Check if Username & Password Exist
+  if (!username || !password) return next(new AppError(`Please provide username and password!`), 400);
+
+  let user = await User.findOne({ username }).select('+password').select('+active');
+
+  if (!user || !(await user.correctPassword(password, user.password))) return next(new AppError(`Incorrect username or password`), 401);
+
+  response.status(200).json({
+    status: `Success`,
+    data: {
+      user: user,
+    },
+  });
+});
+
 exports.getMe = catchAsync(async (request, response, next) => {
-  const user = await User.findById(request.user.id);
+  console.log(request.user, request.user._id);
+  const user = await User.findById(request.user._id);
   const userInfo = [user.communicationPreference, user.latterDaySaint];
   response.status(200).json({
     status: `Success`,

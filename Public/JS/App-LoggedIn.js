@@ -14,17 +14,17 @@ let latterDaySaint = false;
 //   latterDaySaint = user.latterDaySaint;
 // };
 
-const enterBudget = async (budgetId) => {
-  await Manage.getMyBudget(budgetId);
+const enterBudget = async (budgetId, user) => {
+  await Manage.getMyBudget(budgetId, user);
 };
 
-const _watchBudgetSelection = () => {
+const _watchBudgetSelection = (user) => {
   const budgetCards = document.querySelectorAll('.budget-card-container__card');
   budgetCards.forEach((bc, i) => {
     bc.addEventListener('click', (e) => {
       const clicked = e.target;
       const id = clicked.closest('.budget-card-container__card').dataset.budgetid;
-      enterBudget(id);
+      enterBudget(id, user);
     });
   });
 };
@@ -213,7 +213,7 @@ export const _watchForLogin = async (login) => {
     // WATCH FOR USER PROFILE UPDATES
     Update._watchForProfileUpdates();
     // WATCHING FOR BUDGET SELECTION
-    _watchBudgetSelection();
+    _watchBudgetSelection(user);
     // WATCHING FOR CREATION OF BUDGETS
     Budget._watchBudgetCreation();
   }

@@ -368,8 +368,10 @@ export const _watchBudget = async () => {
   // GET BUDGET INFORMATION
   let currentBudget;
   user.budgets.forEach((b) => {
-    if (b._id === window.location.pathname.split('/')[3]) currentBudget = b;
+    if (b._id === window.location.pathname.split('/')[5]) currentBudget = b;
   });
+
+  if (!currentBudget) return;
 
   ////////////////////////////////////////////
   // SETUP ACCOUNT OPTIONS FOR TRANSACTIONS

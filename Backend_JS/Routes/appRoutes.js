@@ -18,12 +18,15 @@ const router = express.Router();
 ////////////////////////////////////////////
 //  My Middleware
 const appController = require(`./../Controllers/appController`);
+const userController = require(`./../Controllers/userController`);
 const authController = require(`./../Controllers/authController`);
+const userRouter = require('./userRoutes');
 
 ////////////////////////////////////////////
 //  Routing Middleware
-router.route(`/`).get(appController.renderApp);
-router.route(`/App`).get(authController.login).post(authController.login);
+router.route(`/`).get(appController.renderApp).post(authController.login);
+router.route('/user').post(userController.searchForUser);
+router.use(`/users`, userRouter);
 
 ////////////////////////////////////////////
 //  My Modules

@@ -40,12 +40,10 @@ App.use((request, response, next) => {
 ////////////////////////////////////////////
 //  Routers
 const appRouter = require(`./Routes/appRoutes`);
-const userRouter = require('./Routes/userRoutes');
 
 ////////////////////////////////////////////
 //  Routing Middleware
-App.use(`/`, appRouter);
-App.use(`/users`, userRouter);
+App.use(`/App`, appRouter);
 
 ////////////////////////////////////////////
 //  My Modules

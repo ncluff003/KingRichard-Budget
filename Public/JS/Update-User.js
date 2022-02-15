@@ -7,7 +7,7 @@ export const getSomePersonals = async () => {
   try {
     const response = await axios({
       method: `GET`,
-      url: `/users/me`,
+      url: `/App/users/me`,
     });
     if (response[0] === `Email`) console.log(true);
     return response;
@@ -20,7 +20,7 @@ export const updatePassword = async (password, passwordConfirmed) => {
   try {
     const response = await axios({
       method: `PATCH`,
-      url: `/users/resetPassword/${window.location.href.split('/')[5]}`,
+      url: `/App/users/resetPassword/${window.location.href.split('/')[5]}`,
       data: qs.stringify({
         password: password,
         passwordConfirmed: passwordConfirmed,
@@ -34,11 +34,11 @@ export const updatePassword = async (password, passwordConfirmed) => {
   }
 };
 
-export const updateMyPassword = async (currentPassword, newPassword, newPasswordConfirmed) => {
+export const updateMyPassword = async (currentPassword, newPassword, newPasswordConfirmed, id) => {
   try {
     const response = await axios({
       method: `POST`,
-      url: `/users/updateMyPassword`,
+      url: `/App/users/${id}/updateMyPassword`,
       data: qs.stringify({
         currentPassword: currentPassword,
         newPassword: newPassword,
@@ -60,7 +60,7 @@ export const updateMe = async (options) => {
   try {
     const response = await axios({
       method: `PATCH`,
-      url: `/users/updateMe`,
+      url: `/App/users/${options.id}/updateMe`,
       data: qs.stringify({
         ...options,
       }),
@@ -120,7 +120,7 @@ export const deactivateMe = async () => {
   try {
     const response = await axios({
       method: `DELETE`,
-      url: `/users/deactivateMe`,
+      url: `/App/users/deactivateMe`,
     });
     if (response.statusText === 'Success') {
       window.location.assign('/');
@@ -134,7 +134,7 @@ export const deleteMe = async () => {
   try {
     const response = await axios({
       method: `DELETE`,
-      url: `/users/deleteMe`,
+      url: `/App/users/deleteMe`,
     });
     if (response.statusText === 'No Content') {
       window.location.assign('/');
@@ -160,10 +160,13 @@ export const _watchPasswordResetButton = () => {
 
 ///////////////////////////////////////////////////
 // ALL ABOUT WATCHING USER PROFILE FORM BUTTONS
-export const _watchForProfileUpdates = () => {
+export const _watchForProfileUpdates = async () => {
   const userProfileFormButtons = document.querySelectorAll('.user-profile-form__button');
   const userProfileSubSectionFormButtons = document.querySelectorAll('.user-profile-form__section__sub-section__button');
   const latterDaySaintSwitch = document.querySelector('.user-profile-form__section__input--latter-day-saint');
+  let latterDaySaint;
+  const userInfo = await getSomePersonals();
+  const user = userInfo.data.data.user;
   userProfileFormButtons.forEach((b, i) => {
     b.addEventListener('click', async (e) => {
       e.preventDefault();
@@ -179,6 +182,7 @@ export const _watchForProfileUpdates = () => {
           lastname: lastname,
           username: username,
           latterDaySaint: latterDaySaint,
+          id: user._id,
         });
       }
       if (i === 1) {
@@ -206,19 +210,20 @@ export const _watchForProfileUpdates = () => {
           phoneNumber: newPhoneNumber,
           phoneNumberConfirmed: newPhoneNumberConfirmed,
           communicationPreference: commPreference,
+          id: user._id,
         });
       }
 
       if (i === 2) {
-        await logout();
+        await logout(user._id);
       }
 
       if (i === 3) {
-        await deactivateMe();
+        await deactivateMe(user._id);
       }
 
       if (i === 4) {
-        await deleteMe();
+        await deleteMe(user._id);
       }
     });
   });
@@ -228,6 +233,6 @@ export const _watchForProfileUpdates = () => {
     const currentPassword = document.getElementById('currentPassword').value;
     const newPassword = document.getElementById('newPassword').value;
     const newPasswordConfirmed = document.getElementById('newPasswordConfirmed').value;
-    const updateUserInfo = await updateMyPassword(currentPassword, newPassword, newPasswordConfirmed);
+    const updateUserInfo = await updateMyPassword(currentPassword, newPassword, newPasswordConfirmed, user._id);
   });
 };

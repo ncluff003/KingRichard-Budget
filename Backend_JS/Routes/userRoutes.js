@@ -25,18 +25,21 @@ const budgetRouter = require(`./../Routes/budgetRoutes`);
 
 ////////////////////////////////////////////
 //  Routing Middleware
-router.route('/me').get(authController.protect, userController.getMe);
+
 router.route(`/signup`).post(authController.validateSignup, authController.signup);
 router.route(`/login`).post(authController.login);
-router.route(`/logout`).get(authController.logout);
 router.route(`/forgotPassword`).post(authController.forgotPassword, appController.renderApp);
 router.route(`/resetPassword/:token`).get(authController.renderPasswordReset).patch(authController.resetPassword);
-router.route(`/updateMyPassword`).post(authController.protect, authController.updateMyPassword);
-router.route(`/updateMe`).patch(authController.protect, userController.updateMe);
-router.route(`/deactivateMe`).delete(authController.protect, userController.deactivateMe);
-router.route(`/deleteMe`).delete(authController.protect, userController.deleteMe);
 
-router.use(`/:userId/budgets`, budgetRouter);
+router.route('/me').get(authController.protect, userController.getMe);
+router.route(`/:id`).get(authController.login).post(authController.login);
+router.use(`/:id/budgets`, budgetRouter);
+router.route(`/:id/logout`).get(authController.logout);
+router.route(`/:id/updateMyPassword`).post(authController.protect, authController.updateMyPassword);
+router.route(`/:id/updateMe`).patch(authController.protect, userController.updateMe);
+router.route(`/:id/deactivateMe`).delete(authController.protect, userController.deactivateMe);
+router.route(`/:id/deleteMe`).delete(authController.protect, userController.deleteMe);
+
 // router.route(`/budgets`).post(authController.protect, budgetController.createBudget).get(authController.protect, budgetController.getBudget);
 // router.route(`/budgets/:id`).get(authController.protect, budgetController.getBudget);
 

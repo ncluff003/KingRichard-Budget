@@ -50,6 +50,7 @@ const createAndSendToken = (user, statusCode, method, request, response, templat
     // secure: true, - This is only meant for https connections.
     httpOnly: true,
   };
+  // if (request.password !== undefined) request.password = undefined;
   if (process.env.NODE_ENV === `production`) cookieOptions.secure = true;
   response.cookie('JWT', token, cookieOptions);
   if (method === `json`) {
@@ -137,18 +138,13 @@ exports.protect = catchAsync(async (request, response, next) => {
 // LOGGING IN
 exports.login = catchAsync(async (request, response, next) => {
   console.log(request.body);
-  const { loginUsername, loginPassword } = request.body;
-  const username = loginUsername;
-  const password = loginPassword;
-
-  console.log(request.body);
-
-  // Check if Username & Password Exist
-  if (!username || !password) return next(new AppError(`Please provide username and password!`), 400);
+  let { id, username, password } = request.body;
+  if (!request.body.id || id === `undefined`) id = request.params.id;
   // Check if User exists right along with Username & Password is correct.
-  const user = await User.findOne({ username }).select('+password').select('+active');
+  const user = await User.findById(`${id}`);
+  console.log(user);
 
-  if (!user || !(await user.correctPassword(password, user.password))) return next(new AppError(`Incorrect username or password`), 401);
+  // if (!user || !(await user.correctPassword(password, user.password))) return next(new AppError(`Incorrect username or password`), 401);
   // REACTIVATE USER IF INACTIVE
   if (user.active === false) {
     console.log('INACTIVE USER');
