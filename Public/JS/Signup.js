@@ -5,9 +5,9 @@ import qs from 'qs';
 // USER SIGN UP
 export const signup = async (firstname, lastname, username, latterDaySaint, email, emailConfirmed, password, passwordConfirmed) => {
   try {
-    const response = await axios({
+    const response1 = await axios({
       method: `POST`,
-      url: `/users/signup`,
+      url: `/App/Users/Signup`,
       data: qs.stringify({
         firstname: firstname,
         lastname: lastname,
@@ -19,7 +19,22 @@ export const signup = async (firstname, lastname, username, latterDaySaint, emai
         passwordConfirmed: passwordConfirmed,
       }),
     });
-    console.log(response);
+    if (response1.statusText === `OK`) {
+      let user = response1.data.data.user;
+      const response2 = await axios({
+        method: `POST`,
+        url: `App/Users/${user._id}`,
+        data: qs.stringify({
+          username: username,
+          password: password,
+        }),
+      });
+      if (response2.statusText === 'OK') {
+        document.open(`text/html`).write(response2.data);
+        window.location.assign(`/App/Users/${user._id}`);
+      }
+    }
+    console.log(response1);
   } catch (error) {
     console.log(error);
   }
@@ -34,7 +49,9 @@ const _submitSignup = (person) => {
 
 // Go To Next Page
 export const _nextPage = (pageNumber, pages, pageElement, person) => {
-  // if (pageNumber > 3) _submitSignup(person);
+  if (pageNumber > 3) {
+    return _submitSignup(person);
+  }
   if (pageNumber > 3) {
     const signupFormSubmit = document.querySelector('.signup-form__form-page__section__button');
   }
@@ -104,7 +121,7 @@ export const _watchFormSubmitButton = (page, pages, pageElement, person) => {
         latterDaySaint.setAttribute(`name`, `latterDaySaint`);
         signupForm.insertAdjacentElement(`beforeend`, latterDaySaint);
         latterDaySaint.style.visibility = `hidden`;
-        signupForm.submit();
+        // signupForm.submit();
       }
       _nextPage(page, pages, pageElement, person);
     });

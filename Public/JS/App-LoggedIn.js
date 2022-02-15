@@ -211,7 +211,7 @@ export const _watchForLogin = async (login) => {
     // WATCH FOR PHONE NUMBER UPDATES
     _watchPhoneNumberInputs(formattedNumber);
     // WATCH FOR USER PROFILE UPDATES
-    Update._watchForProfileUpdates();
+    Update._watchForProfileUpdates(user);
     // WATCHING FOR BUDGET SELECTION
     _watchBudgetSelection(user);
     // WATCHING FOR CREATION OF BUDGETS

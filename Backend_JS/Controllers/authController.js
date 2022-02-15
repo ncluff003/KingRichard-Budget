@@ -207,9 +207,15 @@ exports.signup = catchAsync(async (request, response, next) => {
 
   await new sendEmail(newUser).sendWelcome();
 
-  createAndSendToken(newUser, 201, `render`, request, response, `loggedIn`, `King Richard | Home`, {
-    calendar: Calendar,
+  response.status(200).json({
+    status: `Success`,
+    data: {
+      user: newUser,
+    },
   });
+  // createAndSendToken(newUser, 201, `render`, request, response, `loggedIn`, `King Richard | Home`, {
+  //   calendar: Calendar,
+  // });
 });
 
 // RESET USERS PASSWORD IF FORGOTTEN

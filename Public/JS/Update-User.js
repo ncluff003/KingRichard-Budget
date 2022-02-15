@@ -5,9 +5,10 @@ import * as Budgeting from './Budget';
 
 export const getSomePersonals = async () => {
   try {
+    let id = window.location.pathname.split('/')[3];
     const response = await axios({
       method: `GET`,
-      url: `/App/users/me`,
+      url: `/App/Users/${id}/Me`,
     });
     if (response[0] === `Email`) console.log(true);
     return response;
@@ -20,7 +21,7 @@ export const updatePassword = async (password, passwordConfirmed) => {
   try {
     const response = await axios({
       method: `PATCH`,
-      url: `/App/users/resetPassword/${window.location.href.split('/')[5]}`,
+      url: `/App/Users/ResetPassword/${window.location.href.split('/')[5]}`,
       data: qs.stringify({
         password: password,
         passwordConfirmed: passwordConfirmed,
@@ -38,7 +39,7 @@ export const updateMyPassword = async (currentPassword, newPassword, newPassword
   try {
     const response = await axios({
       method: `POST`,
-      url: `/App/users/${id}/updateMyPassword`,
+      url: `/App/Users/${id}/UpdateMyPassword`,
       data: qs.stringify({
         currentPassword: currentPassword,
         newPassword: newPassword,
@@ -60,7 +61,7 @@ export const updateMe = async (options) => {
   try {
     const response = await axios({
       method: `PATCH`,
-      url: `/App/users/${options.id}/updateMe`,
+      url: `/App/Users/${options.id}/UpdateMe`,
       data: qs.stringify({
         ...options,
       }),
@@ -116,28 +117,28 @@ export const updateMe = async (options) => {
   }
 };
 
-export const deactivateMe = async () => {
+export const deactivateMe = async (id) => {
   try {
     const response = await axios({
       method: `DELETE`,
-      url: `/App/users/deactivateMe`,
+      url: `/App/Users/${id}/DeactivateMe`,
     });
     if (response.statusText === 'Success') {
-      window.location.assign('/');
+      window.location.assign('/App');
     }
   } catch (error) {
     console.log(error);
   }
 };
 
-export const deleteMe = async () => {
+export const deleteMe = async (id) => {
   try {
     const response = await axios({
       method: `DELETE`,
-      url: `/App/users/deleteMe`,
+      url: `/App/Users/${id}/DeleteMe`,
     });
     if (response.statusText === 'No Content') {
-      window.location.assign('/');
+      window.location.assign('/App');
     }
   } catch (error) {
     console.log(error);
@@ -160,13 +161,11 @@ export const _watchPasswordResetButton = () => {
 
 ///////////////////////////////////////////////////
 // ALL ABOUT WATCHING USER PROFILE FORM BUTTONS
-export const _watchForProfileUpdates = async () => {
+export const _watchForProfileUpdates = async (user) => {
   const userProfileFormButtons = document.querySelectorAll('.user-profile-form__button');
   const userProfileSubSectionFormButtons = document.querySelectorAll('.user-profile-form__section__sub-section__button');
   const latterDaySaintSwitch = document.querySelector('.user-profile-form__section__input--latter-day-saint');
   let latterDaySaint;
-  const userInfo = await getSomePersonals();
-  const user = userInfo.data.data.user;
   userProfileFormButtons.forEach((b, i) => {
     b.addEventListener('click', async (e) => {
       e.preventDefault();

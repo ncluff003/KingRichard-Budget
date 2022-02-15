@@ -26,7 +26,8 @@ const budgetController = require(`./../Controllers/budgetController`);
 //  Routing Middleware
 
 router.route(`/`).post(authController.protect, budgetController.createBudget).get(authController.protect, budgetController.getBudgets);
-router.route(`/:id`).get(authController.protect, budgetController.getBudget);
+router.route(`/RetrieveBudget`).get(authController.protect, budgetController.retrieveBudgetInfo);
+router.route(`/:id/Dashboard`).get(authController.protect, budgetController.getBudget);
 
 ////////////////////////////////////////////
 //  My Modules

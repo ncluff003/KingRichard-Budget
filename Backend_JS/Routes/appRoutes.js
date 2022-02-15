@@ -25,8 +25,8 @@ const userRouter = require('./userRoutes');
 ////////////////////////////////////////////
 //  Routing Middleware
 router.route(`/`).get(appController.renderApp).post(authController.login);
-router.route('/user').post(userController.searchForUser);
-router.use(`/users`, userRouter);
+router.route('/User').post(userController.searchForUser);
+router.use(`/Users`, userRouter);
 
 ////////////////////////////////////////////
 //  My Modules

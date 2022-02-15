@@ -75,6 +75,24 @@ const createAndSendToken = (user, statusCode, method, request, response, templat
 
 ////////////////////////////////////////////
 //  Exported Controllers
+exports.retrieveBudgetInfo = catchAsync(async (request, response, next) => {
+  // const user = await User.findById(request.user.id);
+  const user = request.user;
+  let budgetID = user.budgets[user.budgets.length - 1];
+  console.log(budgetID);
+  const budget = await Budget.findById(budgetID);
+  if (!budget) {
+    return next(new AppError('No budget found with that ID', 404));
+  }
+
+  response.status(200).json({
+    status: `Success`,
+    data: {
+      budget: budget,
+    },
+  });
+});
+
 exports.getBudget = catchAsync(async (request, response, next) => {
   // const user = await User.findById(request.user.id);
   const user = request.user;
@@ -139,6 +157,7 @@ exports.createBudget = catchAsync(async (request, response, next) => {
     mainCategories: budget.mainCategories,
   });
   user.budgets.push(budget._id);
+  request.body.budgetId = budget._id;
 
   // Save embedded budget into the user.
   await user.save({ validateBeforeSave: false });

@@ -44,12 +44,11 @@ export const login = async (username, password) => {
 
     const response1 = await axios({
       method: `POST`,
-      url: `/App/user`,
+      url: `/App/User`,
       data: qs.stringify(options),
     });
     if (response1.statusText === 'OK') {
       let user = response1.data.data.user;
-      console.log(response1);
       console.log(user);
       const options = {
         username: username,
@@ -58,12 +57,12 @@ export const login = async (username, password) => {
       };
       const response2 = await axios({
         method: `POST`,
-        url: `/App/users/${user._id}`,
+        url: `/App/Users/${user._id}`,
         data: qs.stringify(options),
       });
       if (response2.statusText === 'OK') {
         document.open(`text/html`).write(response2.data);
-        window.location.assign(`/App/users/${user._id}`);
+        window.location.assign(`/App/Users/${user._id}`);
       }
     }
   } catch (error) {
@@ -75,7 +74,7 @@ export const logout = async (id) => {
   try {
     const response = await axios({
       method: 'GET',
-      url: `/App/users/${id}/logout`,
+      url: `/App/Users/${id}/Logout`,
     });
     console.log(response);
     if (response.data.status === 'Success') {

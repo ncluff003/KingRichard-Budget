@@ -4535,7 +4535,7 @@ var _watchForLogin = /*#__PURE__*/function () {
             _watchPhoneNumberInputs(formattedNumber); // WATCH FOR USER PROFILE UPDATES
 
 
-            _Update_User__WEBPACK_IMPORTED_MODULE_2__._watchForProfileUpdates(); // WATCHING FOR BUDGET SELECTION
+            _Update_User__WEBPACK_IMPORTED_MODULE_2__._watchForProfileUpdates(user); // WATCHING FOR BUDGET SELECTION
 
 
             _watchBudgetSelection(user); // WATCHING FOR CREATION OF BUDGETS
@@ -7116,8 +7116,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var createBudget = /*#__PURE__*/function () {
   var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(budget, user) {
-    var response, _response;
-
+    var response1, response2, budgetId, response3;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -7127,56 +7126,68 @@ var createBudget = /*#__PURE__*/function () {
             _context.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_4___default()({
               method: "POST",
-              url: "/users/".concat(user._id, "/budgets"),
+              url: "/App/Users/".concat(user._id, "/Budgets"),
               data: qs__WEBPACK_IMPORTED_MODULE_5___default().stringify({
                 budget: budget
               })
             });
 
           case 4:
-            response = _context.sent;
-            console.log(response.data.data.budget);
+            response1 = _context.sent;
 
-            if (!(response.statusText === "Created")) {
-              _context.next = 12;
+            if (!(response1.statusText === "Created")) {
+              _context.next = 19;
               break;
             }
 
             console.log("Budget Created");
             console.log("Retrieving Budget...");
-            _context.next = 11;
+            _context.next = 10;
             return axios__WEBPACK_IMPORTED_MODULE_4___default()({
               method: "GET",
-              url: "/users/".concat(user._id, "/budgets"),
+              url: "/App/Users/".concat(user._id, "/Budgets/RetrieveBudget/")
+            });
+
+          case 10:
+            response2 = _context.sent;
+
+            if (!(response2.statusText === "OK")) {
+              _context.next = 19;
+              break;
+            }
+
+            budgetId = response2.data.data.budget._id;
+            _context.next = 15;
+            return axios__WEBPACK_IMPORTED_MODULE_4___default()({
+              method: "GET",
+              url: "/App/Users/".concat(user._id, "/Budgets/").concat(budgetId, "/Dashboard"),
               data: qs__WEBPACK_IMPORTED_MODULE_5___default().stringify({
                 budget: budget
               })
             });
 
-          case 11:
-            _response = _context.sent;
-
-          case 12:
-            document.open("text/html").write(response.data);
-            window.location.assign("/users/budgets");
-            console.log(response);
+          case 15:
+            response3 = _context.sent;
+            document.open("text/html").write(response3.data);
+            window.location.assign("/App/Users/".concat(user._id, "/Budgets/").concat(budgetId, "/Dashboard"));
 
             _Budget__WEBPACK_IMPORTED_MODULE_3__._watchBudget();
 
-            _context.next = 21;
+          case 19:
+            _context.next = 24;
             break;
 
-          case 18:
-            _context.prev = 18;
+          case 21:
+            _context.prev = 21;
             _context.t0 = _context["catch"](1);
             console.log(_context.t0);
 
-          case 21:
+          case 24:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[1, 18]]);
+    }, _callee, null, [[1, 21]]);
   }));
 
   return function createBudget(_x, _x2) {
@@ -7482,7 +7493,7 @@ var login = /*#__PURE__*/function () {
             _context.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_2___default()({
               method: "POST",
-              url: "/App/user",
+              url: "/App/User",
               data: qs__WEBPACK_IMPORTED_MODULE_3___default().stringify(options)
             });
 
@@ -7490,48 +7501,47 @@ var login = /*#__PURE__*/function () {
             response1 = _context.sent;
 
             if (!(response1.statusText === 'OK')) {
-              _context.next = 14;
+              _context.next = 13;
               break;
             }
 
             user = response1.data.data.user;
-            console.log(response1);
             console.log(user);
             _options = {
               username: username,
               password: password,
               id: user._id
             };
-            _context.next = 12;
+            _context.next = 11;
             return axios__WEBPACK_IMPORTED_MODULE_2___default()({
               method: "POST",
-              url: "/App/users/".concat(user._id),
+              url: "/App/Users/".concat(user._id),
               data: qs__WEBPACK_IMPORTED_MODULE_3___default().stringify(_options)
             });
 
-          case 12:
+          case 11:
             response2 = _context.sent;
 
             if (response2.statusText === 'OK') {
               document.open("text/html").write(response2.data);
-              window.location.assign("/App/users/".concat(user._id));
+              window.location.assign("/App/Users/".concat(user._id));
             }
 
-          case 14:
-            _context.next = 19;
+          case 13:
+            _context.next = 18;
             break;
 
-          case 16:
-            _context.prev = 16;
+          case 15:
+            _context.prev = 15;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0);
 
-          case 19:
+          case 18:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 16]]);
+    }, _callee, null, [[0, 15]]);
   }));
 
   return function login(_x, _x2) {
@@ -7549,7 +7559,7 @@ var logout = /*#__PURE__*/function () {
             _context2.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_2___default()({
               method: 'GET',
-              url: "/App/users/".concat(id, "/logout")
+              url: "/App/Users/".concat(id, "/Logout")
             });
 
           case 3:
@@ -7616,13 +7626,13 @@ var getMyBudget = /*#__PURE__*/function () {
             _context.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_2___default()({
               method: "GET",
-              url: "/App/users/".concat(user._id, "/budgets/").concat(id)
+              url: "/App/Users/".concat(user._id, "/Budgets/").concat(id, "/Dashboard")
             });
 
           case 3:
             response = _context.sent;
             document.open("text/html").write(response.data);
-            window.location.assign("/App/users/".concat(user._id, "/budgets/").concat(id));
+            window.location.assign("/App/Users/".concat(user._id, "/Budgets/").concat(id, "/Dashboard"));
             console.log(response);
 
             _Budget__WEBPACK_IMPORTED_MODULE_3__._watchBudget();
@@ -7722,7 +7732,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var signup = /*#__PURE__*/function () {
   var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(firstname, lastname, username, latterDaySaint, email, emailConfirmed, password, passwordConfirmed) {
-    var response;
+    var response1, user, response2;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -7731,7 +7741,7 @@ var signup = /*#__PURE__*/function () {
             _context.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_2___default()({
               method: "POST",
-              url: "/users/signup",
+              url: "/App/Users/Signup",
               data: qs__WEBPACK_IMPORTED_MODULE_3___default().stringify({
                 firstname: firstname,
                 lastname: lastname,
@@ -7745,22 +7755,48 @@ var signup = /*#__PURE__*/function () {
             });
 
           case 3:
-            response = _context.sent;
-            console.log(response);
-            _context.next = 10;
+            response1 = _context.sent;
+
+            if (!(response1.statusText === "OK")) {
+              _context.next = 10;
+              break;
+            }
+
+            user = response1.data.data.user;
+            _context.next = 8;
+            return axios__WEBPACK_IMPORTED_MODULE_2___default()({
+              method: "POST",
+              url: "App/Users/".concat(user._id),
+              data: qs__WEBPACK_IMPORTED_MODULE_3___default().stringify({
+                username: username,
+                password: password
+              })
+            });
+
+          case 8:
+            response2 = _context.sent;
+
+            if (response2.statusText === 'OK') {
+              document.open("text/html").write(response2.data);
+              window.location.assign("/App/Users/".concat(user._id));
+            }
+
+          case 10:
+            console.log(response1);
+            _context.next = 16;
             break;
 
-          case 7:
-            _context.prev = 7;
+          case 13:
+            _context.prev = 13;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0);
 
-          case 10:
+          case 16:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 7]]);
+    }, _callee, null, [[0, 13]]);
   }));
 
   return function signup(_x, _x2, _x3, _x4, _x5, _x6, _x7, _x8) {
@@ -7775,7 +7811,10 @@ var _submitSignup = function _submitSignup(person) {
 
 
 var _nextPage = function _nextPage(pageNumber, pages, pageElement, person) {
-  // if (pageNumber > 3) _submitSignup(person);
+  if (pageNumber > 3) {
+    return _submitSignup(person);
+  }
+
   if (pageNumber > 3) {
     var signupFormSubmit = document.querySelector('.signup-form__form-page__section__button');
   }
@@ -7847,8 +7886,7 @@ var _watchFormSubmitButton = function _watchFormSubmitButton(page, pages, pageEl
         latterDaySaint.setAttribute("id", "latterDaySaint");
         latterDaySaint.setAttribute("name", "latterDaySaint");
         signupForm.insertAdjacentElement("beforeend", latterDaySaint);
-        latterDaySaint.style.visibility = "hidden";
-        signupForm.submit();
+        latterDaySaint.style.visibility = "hidden"; // signupForm.submit();
       }
 
       _nextPage(page, pages, pageElement, person);
@@ -7918,34 +7956,35 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 var getSomePersonals = /*#__PURE__*/function () {
   var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee() {
-    var response;
+    var id, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
-            _context.next = 3;
+            id = window.location.pathname.split('/')[3];
+            _context.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "GET",
-              url: "/App/users/me"
+              url: "/App/Users/".concat(id, "/Me")
             });
 
-          case 3:
+          case 4:
             response = _context.sent;
             if (response[0] === "Email") console.log(true);
             return _context.abrupt("return", response);
 
-          case 8:
-            _context.prev = 8;
+          case 9:
+            _context.prev = 9;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0);
 
-          case 11:
+          case 12:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 8]]);
+    }, _callee, null, [[0, 9]]);
   }));
 
   return function getSomePersonals() {
@@ -7963,7 +8002,7 @@ var updatePassword = /*#__PURE__*/function () {
             _context2.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "PATCH",
-              url: "/App/users/resetPassword/".concat(window.location.href.split('/')[5]),
+              url: "/App/Users/ResetPassword/".concat(window.location.href.split('/')[5]),
               data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify({
                 password: password,
                 passwordConfirmed: passwordConfirmed
@@ -8008,7 +8047,7 @@ var updateMyPassword = /*#__PURE__*/function () {
             _context3.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "POST",
-              url: "/App/users/".concat(id, "/updateMyPassword"),
+              url: "/App/Users/".concat(id, "/UpdateMyPassword"),
               data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify({
                 currentPassword: currentPassword,
                 newPassword: newPassword,
@@ -8056,7 +8095,7 @@ var updateMe = /*#__PURE__*/function () {
             _context4.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "PATCH",
-              url: "/App/users/".concat(options.id, "/updateMe"),
+              url: "/App/Users/".concat(options.id, "/UpdateMe"),
               data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify(_objectSpread({}, options))
             });
 
@@ -8108,7 +8147,7 @@ var updateMe = /*#__PURE__*/function () {
   };
 }();
 var deactivateMe = /*#__PURE__*/function () {
-  var _ref5 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee5() {
+  var _ref5 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee5(id) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee5$(_context5) {
       while (1) {
@@ -8118,14 +8157,14 @@ var deactivateMe = /*#__PURE__*/function () {
             _context5.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "DELETE",
-              url: "/App/users/deactivateMe"
+              url: "/App/Users/".concat(id, "/DeactivateMe")
             });
 
           case 3:
             response = _context5.sent;
 
             if (response.statusText === 'Success') {
-              window.location.assign('/');
+              window.location.assign('/App');
             }
 
             _context5.next = 10;
@@ -8144,12 +8183,12 @@ var deactivateMe = /*#__PURE__*/function () {
     }, _callee5, null, [[0, 7]]);
   }));
 
-  return function deactivateMe() {
+  return function deactivateMe(_x8) {
     return _ref5.apply(this, arguments);
   };
 }();
 var deleteMe = /*#__PURE__*/function () {
-  var _ref6 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee6() {
+  var _ref6 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee6(id) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee6$(_context6) {
       while (1) {
@@ -8159,14 +8198,14 @@ var deleteMe = /*#__PURE__*/function () {
             _context6.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "DELETE",
-              url: "/App/users/deleteMe"
+              url: "/App/Users/".concat(id, "/DeleteMe")
             });
 
           case 3:
             response = _context6.sent;
 
             if (response.statusText === 'No Content') {
-              window.location.assign('/');
+              window.location.assign('/App');
             }
 
             _context6.next = 10;
@@ -8185,7 +8224,7 @@ var deleteMe = /*#__PURE__*/function () {
     }, _callee6, null, [[0, 7]]);
   }));
 
-  return function deleteMe() {
+  return function deleteMe(_x9) {
     return _ref6.apply(this, arguments);
   };
 }(); ////////////////////////////////////
@@ -8206,8 +8245,8 @@ var _watchPasswordResetButton = function _watchPasswordResetButton() {
 // ALL ABOUT WATCHING USER PROFILE FORM BUTTONS
 
 var _watchForProfileUpdates = /*#__PURE__*/function () {
-  var _ref7 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee9() {
-    var userProfileFormButtons, userProfileSubSectionFormButtons, latterDaySaintSwitch, latterDaySaint, userInfo, user;
+  var _ref7 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee9(user) {
+    var userProfileFormButtons, userProfileSubSectionFormButtons, latterDaySaintSwitch, latterDaySaint;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee9$(_context9) {
       while (1) {
         switch (_context9.prev = _context9.next) {
@@ -8215,12 +8254,6 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
             userProfileFormButtons = document.querySelectorAll('.user-profile-form__button');
             userProfileSubSectionFormButtons = document.querySelectorAll('.user-profile-form__section__sub-section__button');
             latterDaySaintSwitch = document.querySelector('.user-profile-form__section__input--latter-day-saint');
-            _context9.next = 5;
-            return getSomePersonals();
-
-          case 5:
-            userInfo = _context9.sent;
-            user = userInfo.data.data.user;
             userProfileFormButtons.forEach(function (b, i) {
               b.addEventListener('click', /*#__PURE__*/function () {
                 var _ref8 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee7(e) {
@@ -8333,7 +8366,7 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
                   }, _callee7);
                 }));
 
-                return function (_x8) {
+                return function (_x11) {
                   return _ref8.apply(this, arguments);
                 };
               }());
@@ -8364,12 +8397,12 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
                 }, _callee8);
               }));
 
-              return function (_x9) {
+              return function (_x12) {
                 return _ref9.apply(this, arguments);
               };
             }());
 
-          case 9:
+          case 5:
           case "end":
             return _context9.stop();
         }
@@ -8377,7 +8410,7 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
     }, _callee9);
   }));
 
-  return function _watchForProfileUpdates() {
+  return function _watchForProfileUpdates(_x10) {
     return _ref7.apply(this, arguments);
   };
 }();

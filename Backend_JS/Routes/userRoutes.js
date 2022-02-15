@@ -26,19 +26,23 @@ const budgetRouter = require(`./../Routes/budgetRoutes`);
 ////////////////////////////////////////////
 //  Routing Middleware
 
-router.route(`/signup`).post(authController.validateSignup, authController.signup);
-router.route(`/login`).post(authController.login);
-router.route(`/forgotPassword`).post(authController.forgotPassword, appController.renderApp);
-router.route(`/resetPassword/:token`).get(authController.renderPasswordReset).patch(authController.resetPassword);
+// BEFORE LOGGING IN
+router.route(`/Signup`).post(authController.validateSignup, authController.signup);
+router.route(`/Login`).post(authController.login);
+router.route(`/ForgotPassword`).post(authController.forgotPassword, appController.renderApp);
+router.route(`/ResetPassword/:token`).get(authController.renderPasswordReset).patch(authController.resetPassword);
 
-router.route('/me').get(authController.protect, userController.getMe);
+// AFTER LOGGING IN
 router.route(`/:id`).get(authController.login).post(authController.login);
-router.use(`/:id/budgets`, budgetRouter);
-router.route(`/:id/logout`).get(authController.logout);
-router.route(`/:id/updateMyPassword`).post(authController.protect, authController.updateMyPassword);
-router.route(`/:id/updateMe`).patch(authController.protect, userController.updateMe);
-router.route(`/:id/deactivateMe`).delete(authController.protect, userController.deactivateMe);
-router.route(`/:id/deleteMe`).delete(authController.protect, userController.deleteMe);
+router.route('/:id/Me').get(authController.protect, userController.getMe);
+router.route(`/:id/Logout`).get(authController.logout);
+router.route(`/:id/UpdateMyPassword`).post(authController.protect, authController.updateMyPassword);
+router.route(`/:id/UpdateMe`).patch(authController.protect, userController.updateMe);
+router.route(`/:id/DeactivateMe`).delete(authController.protect, userController.deactivateMe);
+router.route(`/:id/DeleteMe`).delete(authController.protect, userController.deleteMe);
+
+// RE-ROUTE TO BUDGET ROUTER WHEN INSIDE ONE OF YOUR BUDGETS
+router.use(`/:id/Budgets`, budgetRouter);
 
 // router.route(`/budgets`).post(authController.protect, budgetController.createBudget).get(authController.protect, budgetController.getBudget);
 // router.route(`/budgets/:id`).get(authController.protect, budgetController.getBudget);
