@@ -46240,7 +46240,7 @@ html {
   transition: background-color 0.5s, color 0.5s;
 }
 .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small-wide .bill-calendar-container__calendar-container__calendar__days__single-day--current-day {
-  background-color: #822aba;
+  background-color: rgba(130, 42, 186, 0.75);
 }
 .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--small-wide .bill-calendar-container__calendar-container__calendar__days .un-used-day {
   position: relative;

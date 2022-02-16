@@ -282,7 +282,7 @@
                             transition: background-color 0.5s, color 0.5s;
                           }
                           &--current-day {
-                            background-color: $primaryColor;
+                            background-color: rgba($primaryColor, 0.75);
                           }
                         }
                         .un-used-day {

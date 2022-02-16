@@ -6963,12 +6963,31 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
 var _watchBudgetNavigation = function _watchBudgetNavigation() {
   var budgetNavButton = document.querySelector('.budget-container__navigation-button-container__button');
   var budgetNavigation = document.querySelector('.budget-navigation');
+  var linkButtons = document.querySelectorAll('.budget-navigation__link-list__list-item__link-button');
 
   if (budgetNavButton) {
     budgetNavButton.addEventListener('click', function (e) {
       e.preventDefault();
       budgetNavButton.classList.toggle('budget-container__navigation-button-container__button--clicked');
       budgetNavigation.classList.toggle('budget-navigation--visible');
+      if (!budgetNavButton.classList.contains('budget-navigation--visible')) linkButtons.forEach(function (lb) {
+        return lb.closest('li').nextSibling.classList.remove('revealed');
+      });
+    });
+  }
+
+  if (linkButtons) {
+    linkButtons.forEach(function (lb) {
+      lb.addEventListener('click', function (e) {
+        e.preventDefault();
+        var clicked = e.target.closest('li');
+        var siblingLinkContainer = clicked.nextSibling;
+        linkButtons.forEach(function (lb) {
+          lb.closest('li').nextSibling.classList.remove('revealed');
+          console.log(lb.closest('li'));
+        });
+        !siblingLinkContainer.classList.contains('revealed') ? siblingLinkContainer.classList.toggle('revealed') : siblingLinkContainer.classList.remove('revealed');
+      });
     });
   }
 };

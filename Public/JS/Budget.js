@@ -335,11 +335,28 @@ const _watchForTransactions = (arrayOfArrays) => {
 const _watchBudgetNavigation = () => {
   const budgetNavButton = document.querySelector('.budget-container__navigation-button-container__button');
   const budgetNavigation = document.querySelector('.budget-navigation');
+  const linkButtons = document.querySelectorAll('.budget-navigation__link-list__list-item__link-button');
+
   if (budgetNavButton) {
     budgetNavButton.addEventListener('click', (e) => {
       e.preventDefault();
       budgetNavButton.classList.toggle('budget-container__navigation-button-container__button--clicked');
       budgetNavigation.classList.toggle('budget-navigation--visible');
+      if (!budgetNavButton.classList.contains('budget-navigation--visible')) linkButtons.forEach((lb) => lb.closest('li').nextSibling.classList.remove('revealed'));
+    });
+  }
+  if (linkButtons) {
+    linkButtons.forEach((lb) => {
+      lb.addEventListener('click', (e) => {
+        e.preventDefault();
+        const clicked = e.target.closest('li');
+        const siblingLinkContainer = clicked.nextSibling;
+        linkButtons.forEach((lb) => {
+          lb.closest('li').nextSibling.classList.remove('revealed');
+          console.log(lb.closest('li'));
+        });
+        !siblingLinkContainer.classList.contains('revealed') ? siblingLinkContainer.classList.toggle('revealed') : siblingLinkContainer.classList.remove('revealed');
+      });
     });
   }
 };
