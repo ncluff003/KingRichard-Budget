@@ -73,73 +73,26 @@ const createAndSendToken = (user, statusCode, method, request, response, templat
   }
 };
 
-////////////////////////////////////////////
-//  Exported Controllers
-exports.retrieveBudgetInfo = catchAsync(async (request, response, next) => {
-  // const user = await User.findById(request.user.id);
-  const user = request.user;
-  let budgetID = user.budgets[user.budgets.length - 1];
-  console.log(budgetID);
-  const budget = await Budget.findById(budgetID);
-  if (!budget) {
-    return next(new AppError('No budget found with that ID', 404));
-  }
+////////////////////////////////////////
+// -- I KEEP SEEING THIS CODE REPEATED -- //
+////////////////////////////////////////
 
-  response.status(200).json({
-    status: `Success`,
-    data: {
-      budget: budget,
-    },
-  });
-});
-
-exports.getBudget = catchAsync(async (request, response, next) => {
-  // const user = await User.findById(request.user.id);
+const getCurrentInfo = async (request, response, next) => {
+  const currentInfo = {};
   const user = request.user;
   let budgetID = request.params.id;
   if (!budgetID) budgetID = user.budgets[user.budgets.length - 1];
   const budget = await Budget.findById(budgetID);
+  currentInfo.user = user;
+  currentInfo.budget = budget;
+  return currentInfo;
+};
 
-  if (!budget) {
-    return next(new AppError('No budget found with that ID', 404));
-  }
-  createAndSendToken(
-    user,
-    201,
-    `render`,
-    request,
-    response,
-    `./Budget/budgetLanding`,
-    `King Richard | ${budget.name}`,
-    { budget: budget, calendar: Calendar },
-    200,
-    `Success`,
-  );
-});
-
-exports.getBudgets = catchAsync(async (request, response, next) => {
-  // const user = await User.findById(request.user.id);
-  const user = request.user;
-  let budgetID = request.params.id;
-  if (!budgetID) budgetID = user.budgets[user.budgets.length - 1];
-  const budget = await Budget.findById(budgetID);
-
-  if (!budget) {
-    return next(new AppError('No budget found with that ID', 404));
-  }
-  createAndSendToken(
-    user,
-    201,
-    `render`,
-    request,
-    response,
-    `./Budget/budgetLanding`,
-    `King Richard | ${budget.name}`,
-    { budget: budget, calendar: Calendar },
-    200,
-    `Success`,
-  );
-});
+// const user = await User.findById(request.user.id);
+// const user = request.user;
+// let budgetID = request.params.id;
+// if (!budgetID) budgetID = user.budgets[user.budgets.length - 1];
+// const budget = await Budget.findById(budgetID);
 
 exports.createBudget = catchAsync(async (request, response, next) => {
   console.log(request.params);
@@ -163,3 +116,280 @@ exports.createBudget = catchAsync(async (request, response, next) => {
   await user.save({ validateBeforeSave: false });
   createAndSendToken(user, 201, `render`, request, response, `./Budget/budgetLanding`, `King Richard | ${budget.name}`, { budget: budget }, 200, `Success`);
 });
+
+////////////////////////////////////////////
+//  Exported Controllers
+exports.retrieveBudgetInfo = catchAsync(async (request, response, next) => {
+  // const user = await User.findById(request.user.id);
+  const user = request.user;
+  let budgetID = user.budgets[user.budgets.length - 1];
+  console.log(budgetID);
+  const budget = await Budget.findById(budgetID);
+  if (!budget) {
+    return next(new AppError('No budget found with that ID', 404));
+  }
+
+  response.status(200).json({
+    status: `Success`,
+    data: {
+      budget: budget,
+    },
+  });
+});
+
+exports.getBudgetDashboard = catchAsync(async (request, response, next) => {
+  // const user = await User.findById(request.user.id);
+  let { user, budget } = await getCurrentInfo(request, response);
+
+  if (!budget) {
+    return next(new AppError('No budget found with that ID', 404));
+  }
+
+  createAndSendToken(
+    user,
+    201,
+    `render`,
+    request,
+    response,
+    `./Budget/budgetLanding`,
+    `King Richard | ${budget.name}`,
+    { budget: budget, calendar: Calendar },
+    200,
+    `Success`,
+  );
+});
+
+exports.getBudgetManagement = catchAsync(async (request, response, next) => {
+  // const user = await User.findById(request.user.id);
+  let { user, budget } = await getCurrentInfo(request, response);
+
+  if (!budget) {
+    return next(new AppError('No budget found with that ID', 404));
+  }
+  createAndSendToken(
+    user,
+    201,
+    `render`,
+    request,
+    response,
+    `./Budget/Budget-Management/Budget-Management`,
+    `King Richard | ${budget.name}`,
+    { budget: budget, calendar: Calendar },
+    200,
+    `Success`,
+  );
+});
+
+exports.getEditCategoryGoals = catchAsync(async (request, response, next) => {
+  // const user = await User.findById(request.user.id);
+  let { user, budget } = await getCurrentInfo(request, response);
+
+  if (!budget) {
+    return next(new AppError('No budget found with that ID', 404));
+  }
+  createAndSendToken(
+    user,
+    201,
+    `render`,
+    request,
+    response,
+    `./Budget/Edit-Budget/Edit-Category-Goals`,
+    `King Richard | ${budget.name}`,
+    { budget: budget, calendar: Calendar },
+    200,
+    `Success`,
+  );
+});
+
+exports.getManageCategories = catchAsync(async (request, response, next) => {
+  // const user = await User.findById(request.user.id);
+  let { user, budget } = await getCurrentInfo(request, response);
+
+  if (!budget) {
+    return next(new AppError('No budget found with that ID', 404));
+  }
+  createAndSendToken(
+    user,
+    201,
+    `render`,
+    request,
+    response,
+    `./Budget/Edit-Budget/Manage-Categories`,
+    `King Richard | ${budget.name}`,
+    { budget: budget, calendar: Calendar },
+    200,
+    `Success`,
+  );
+});
+
+exports.getAllocateIncome = catchAsync(async (request, response, next) => {
+  // const user = await User.findById(request.user.id);
+  let { user, budget } = await getCurrentInfo(request, response);
+
+  if (!budget) {
+    return next(new AppError('No budget found with that ID', 404));
+  }
+  createAndSendToken(
+    user,
+    201,
+    `render`,
+    request,
+    response,
+    `./Budget/Income/Allocate-Income`,
+    `King Richard | ${budget.name}`,
+    { budget: budget, calendar: Calendar },
+    200,
+    `Success`,
+  );
+});
+
+exports.getTransactionPlanner = catchAsync(async (request, response, next) => {
+  // const user = await User.findById(request.user.id);
+  let { user, budget } = await getCurrentInfo(request, response);
+
+  if (!budget) {
+    return next(new AppError('No budget found with that ID', 404));
+  }
+  createAndSendToken(
+    user,
+    201,
+    `render`,
+    request,
+    response,
+    `./Budget/Transactions/Transaction-Planner`,
+    `King Richard | ${budget.name}`,
+    { budget: budget, calendar: Calendar },
+    200,
+    `Success`,
+  );
+});
+
+exports.getInvestmentPlanner = catchAsync(async (request, response, next) => {
+  // const user = await User.findById(request.user.id);
+  let { user, budget } = await getCurrentInfo(request, response);
+
+  if (!budget) {
+    return next(new AppError('No budget found with that ID', 404));
+  }
+  createAndSendToken(
+    user,
+    201,
+    `render`,
+    request,
+    response,
+    `./Budget/Transactions/Investment-Planner`,
+    `King Richard | ${budget.name}`,
+    { budget: budget, calendar: Calendar },
+    200,
+    `Success`,
+  );
+});
+
+exports.getDebtManager = catchAsync(async (request, response, next) => {
+  // const user = await User.findById(request.user.id);
+  let { user, budget } = await getCurrentInfo(request, response);
+
+  if (!budget) {
+    return next(new AppError('No budget found with that ID', 404));
+  }
+  createAndSendToken(
+    user,
+    201,
+    `render`,
+    request,
+    response,
+    `./Budget/Transactions/Debt-Manager`,
+    `King Richard | ${budget.name}`,
+    { budget: budget, calendar: Calendar },
+    200,
+    `Success`,
+  );
+});
+
+exports.getRecentTransactions = catchAsync(async (request, response, next) => {
+  // const user = await User.findById(request.user.id);
+  let { user, budget } = await getCurrentInfo(request, response);
+
+  if (!budget) {
+    return next(new AppError('No budget found with that ID', 404));
+  }
+  createAndSendToken(
+    user,
+    201,
+    `render`,
+    request,
+    response,
+    `./Budget/Transactions/Recent-Transactions`,
+    `King Richard | ${budget.name}`,
+    { budget: budget, calendar: Calendar },
+    200,
+    `Success`,
+  );
+});
+
+exports.getAccountManagement = catchAsync(async (request, response, next) => {
+  // const user = await User.findById(request.user.id);
+  let { user, budget } = await getCurrentInfo(request, response);
+
+  if (!budget) {
+    return next(new AppError('No budget found with that ID', 404));
+  }
+  createAndSendToken(
+    user,
+    201,
+    `render`,
+    request,
+    response,
+    `./Budget/Account-Management/Account-Management`,
+    `King Richard | ${budget.name}`,
+    { budget: budget, calendar: Calendar },
+    200,
+    `Success`,
+  );
+});
+
+exports.getInviteUsers = catchAsync(async (request, response, next) => {
+  // const user = await User.findById(request.user.id);
+  let { user, budget } = await getCurrentInfo(request, response);
+
+  if (!budget) {
+    return next(new AppError('No budget found with that ID', 404));
+  }
+  createAndSendToken(
+    user,
+    201,
+    `render`,
+    request,
+    response,
+    `./Budget/Invite-Users/Invite-Users`,
+    `King Richard | ${budget.name}`,
+    { budget: budget, calendar: Calendar },
+    200,
+    `Success`,
+  );
+});
+
+// exports.getBudgets = catchAsync(async (request, response, next) => {
+//   // const user = await User.findById(request.user.id);
+//   const user = request.user;
+//   let budgetID = request.params.id;
+//   if (!budgetID) budgetID = user.budgets[user.budgets.length - 1];
+//   const budget = await Budget.findById(budgetID);
+
+//   if (!budget) {
+//     return next(new AppError('No budget found with that ID', 404));
+//   }
+
+//   createAndSendToken(
+//     user,
+//     201,
+//     `render`,
+//     request,
+//     response,
+//     `./Budget/budgetLanding`,
+//     `King Richard | ${budget.name}`,
+//     { budget: budget, calendar: Calendar },
+//     200,
+//     `Success`,
+//   );
+// });

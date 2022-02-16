@@ -15,7 +15,7 @@ section.budget-container__dashboard__container--small.r__budget-container__dashb
     button.budget-container__dashboard__container--small__header__button.r__budget-container__dashboard__container--small__header__button
       p.budget-container__dashboard__container--small__header__button__text.r__budget-container__dashboard__container--small__header__button__text Submit
   section.budget-container__dashboard__container--small__content.r__budget-container__dashboard__container--small__content
-    include ./Income/_Enter-Income
+    include ./../Income/_Enter-Income
 section.budget-container__dashboard__container--small.r__budget-container__dashboard__container--small
   header.budget-container__dashboard__container--small__header.r__budget-container__dashboard__container--small__header
     i.fas.fa-money-check-alt.budget-container__dashboard__container--small__header__icon.r__budget-container__dashboard__container--small__header__icon
@@ -23,11 +23,11 @@ section.budget-container__dashboard__container--small.r__budget-container__dashb
     button.budget-container__dashboard__container--small__header__button.r__budget-container__dashboard__container--small__header__button
       p.budget-container__dashboard__container--small__header__button__text.r__budget-container__dashboard__container--small__header__button__text Submit
   section.budget-container__dashboard__container--small__content.r__budget-container__dashboard__container--small__content
-    include ./Transactions/_Enter-Transaction
+    include ./../Transactions/_Enter-Transaction
   section.budget-container__dashboard__container--small__transaction-total.r__budget-container__dashboard__container--small__transaction-total 
     h3.budget-container__dashboard__container--small__transaction-total__heading.r__budget-container__dashboard__container--small__transaction-total__heading Total Spent 
     p.budget-container__dashboard__container--small__transaction-total__amount.r__budget-container__dashboard__container--small__transaction-total__amount= `$0.00`
-include _upcoming-bills
-include _monthly-budget
+include ./../_upcoming-bills
+include ./../_monthly-budget
 
       //- I will add the actual account numbers needed with a function to set up the budget correctly EVERY time the dashboard is opened.
