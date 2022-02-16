@@ -890,7 +890,8 @@ html {
           .budget-navigation {
             &__link-list {
               &__list-item {
-                &__link {
+                &__link,
+                &__link-button {
                   font-family: MADE Tommy Soft, Verdana, sans-serif;
                   font-size: 2.4rem;
                   text-decoration: none;
@@ -900,6 +901,24 @@ html {
                   }
                   &:active {
                     color: $colorDarkerGrey;
+                  }
+                }
+                &__sub-link-container {
+                  font-family: MADE Tommy Soft, Verdana, sans-serif;
+                  font-size: 2rem;
+                  &__sub-link {
+                    color: rgba($colorOffWhite, 0.8);
+                    text-decoration: none;
+                  }
+                  &:hover {
+                    .budget-navigation__link-lidt__link-item__sub-link-container__sub-link {
+                      color: $colorOffWhite;
+                    }
+                  }
+                  &:active {
+                    .budget-navigation__link-lidt__link-item__sub-link-container__sub-link {
+                      color: $colorDarkerGrey;
+                    }
                   }
                 }
               }

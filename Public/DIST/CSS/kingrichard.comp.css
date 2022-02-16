@@ -846,16 +846,30 @@ html {
   font-size: 10rem;
   color: #fafafa;
 }
-.master-grid-container .app-flex-container .app-viewport__display-container .budget-container .budget-navigation__link-list__list-item__link {
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container .budget-navigation__link-list__list-item__link, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container .budget-navigation__link-list__list-item__link-button {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   font-size: 2.4rem;
   text-decoration: none;
   color: rgba(250, 250, 250, 0.8);
 }
-.master-grid-container .app-flex-container .app-viewport__display-container .budget-container .budget-navigation__link-list__list-item__link:hover {
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container .budget-navigation__link-list__list-item__link:hover, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container .budget-navigation__link-list__list-item__link-button:hover {
   color: #fafafa;
 }
-.master-grid-container .app-flex-container .app-viewport__display-container .budget-container .budget-navigation__link-list__list-item__link:active {
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container .budget-navigation__link-list__list-item__link:active, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container .budget-navigation__link-list__list-item__link-button:active {
+  color: #333333;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container .budget-navigation__link-list__list-item__sub-link-container {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  font-size: 2rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container .budget-navigation__link-list__list-item__sub-link-container__sub-link {
+  color: rgba(250, 250, 250, 0.8);
+  text-decoration: none;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container .budget-navigation__link-list__list-item__sub-link-container:hover .budget-navigation__link-lidt__link-item__sub-link-container__sub-link {
+  color: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container .budget-navigation__link-list__list-item__sub-link-container:active .budget-navigation__link-lidt__link-item__sub-link-container__sub-link {
   color: #333333;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__navigation-button-container__text {
@@ -45288,18 +45302,19 @@ html {
 }
 .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container .budget-navigation__link-list {
   position: relative;
-  height: 75%;
+  height: 85%;
   width: 50%;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   transform: rotate(0) translate(0, 0);
+  overflow-y: auto;
 }
 .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container .budget-navigation__link-list__list-item {
   position: relative;
-  height: 12.5%;
+  height: max-content;
   width: 60%;
   display: flex;
   flex-direction: row;
@@ -45307,16 +45322,33 @@ html {
   justify-content: center;
   align-items: center;
   transform: rotate(0) translate(0, 0);
+  min-height: 12.5%;
   margin: 0.5rem 0;
   list-style: none;
 }
 .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container .budget-navigation__link-list__list-item:first-of-type {
   margin-top: 0;
 }
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container .budget-navigation__link-list__list-item:nth-of-type(4), .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container .budget-navigation__link-list__list-item:nth-of-type(6), .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container .budget-navigation__link-list__list-item:nth-of-type(8) {
+  flex-direction: column;
+  align-items: flex-end;
+  padding-right: 2rem;
+  display: none;
+  opacity: 0;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container .budget-navigation__link-list__list-item:nth-of-type(4) {
+  margin: 3rem 0;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container .budget-navigation__link-list__list-item:nth-of-type(6) {
+  min-height: 9%;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container .budget-navigation__link-list__list-item:nth-of-type(8) {
+  margin: 11rem 0;
+}
 .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container .budget-navigation__link-list__list-item:last-of-type {
   margin-bottom: 0;
 }
-.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container .budget-navigation__link-list__list-item__link {
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container .budget-navigation__link-list__list-item__link, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container .budget-navigation__link-list__list-item__link-button {
   position: relative;
   height: 100%;
   width: 100%;
@@ -45326,17 +45358,50 @@ html {
   justify-content: center;
   align-items: center;
   transform: rotate(0) translate(0, 0);
+  min-height: 8.345rem;
   border-radius: 1.5rem;
   border: 0.3rem solid rgba(250, 250, 250, 0.8);
   background-color: rgba(72, 23, 103, 0.8);
 }
-.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container .budget-navigation__link-list__list-item__link:hover {
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container .budget-navigation__link-list__list-item__link:hover, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container .budget-navigation__link-list__list-item__link-button:hover {
+  cursor: pointer;
+  border: 0.3rem solid #fafafa;
+  background-color: #38d927;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container .budget-navigation__link-list__list-item__link:hover .budget-navigation__link-lidt__link-item__sub-link-container__sub-link, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container .budget-navigation__link-list__list-item__link-button:hover .budget-navigation__link-lidt__link-item__sub-link-container__sub-link {
+  transition: border 0.5s, background-color 0.5s, color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container .budget-navigation__link-list__list-item__link:active .budget-navigation__link-lidt__link-item__sub-link-container__sub-link, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container .budget-navigation__link-list__list-item__link-button:active .budget-navigation__link-lidt__link-item__sub-link-container__sub-link {
+  background-color: #ffd700;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container .budget-navigation__link-list__list-item__sub-link-container {
+  position: relative;
+  height: 6.676rem;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  min-height: 6.676rem;
+  border-radius: 1.5rem;
+  border: 0.3rem solid rgba(250, 250, 250, 0.8);
+  background-color: rgba(72, 23, 103, 0.8);
+  margin: 0.5rem 0;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container .budget-navigation__link-list__list-item__sub-link-container:hover {
+  cursor: pointer;
   border: 0.3rem solid #fafafa;
   background-color: #38d927;
   transition: border 0.5s, background-color 0.5s, color 0.5s;
 }
-.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container .budget-navigation__link-list__list-item__link:active {
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container .budget-navigation__link-list__list-item__sub-link-container:active {
   background-color: #ffd700;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container .budget-navigation__link-list .revealed {
+  display: flex;
+  opacity: 1;
 }
 .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container .budget-navigation--visible {
   display: flex;
@@ -46593,6 +46658,7 @@ I was thinking of iterating through the objects that were created.
     //////////////////////////////////
     /// Glitches To Fix
 
+    GLITCH : Sub Categories For The Budget Need To Be Correct As They Were Created.  Right Now, They Are NOT.
     GLITCH : Budget Navigation Button Needs To Stay WITH The Navigation Itself.
 
 

@@ -4869,6 +4869,8 @@ var SubCategory = /*#__PURE__*/function (_Category2) {
       this.amountSpent = 0;
       this.amountRemaining = this.goalAmount - this.amountSpent;
       this.percentageSpent = this.amountSpent / this.goalAmount;
+      if (isNaN(this.percentageSpent)) this.percentageSpent = 0;
+      console.log(this.percentageSpent);
     }
   }]);
 
@@ -5485,11 +5487,14 @@ var _watchEmergencyGoalSettings = function _watchEmergencyGoalSettings(budget, s
 };
 
 var _finishUpdatingSubCategories = function _finishUpdatingSubCategories(budget, goals) {
+  console.log(budget);
+  var index = 0; // This is where the issue persists with the sub category individual payments.
+
   budget.mainCategories.forEach(function (mc, i) {
     mc.subCategories.forEach(function (sc, i) {
-      console.log(goals[i], goals[i].value);
+      sc._finishUpdatingSubCategory(Number(goals[index].value));
 
-      sc._finishUpdatingSubCategory(Number(goals[i].value));
+      index++;
     });
   });
   return;

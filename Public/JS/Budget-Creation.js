@@ -103,10 +103,13 @@ export const _watchEmergencyGoalSettings = (budget, setting) => {
 };
 
 const _finishUpdatingSubCategories = (budget, goals) => {
+  console.log(budget);
+  let index = 0;
+  // This is where the issue persists with the sub category individual payments.
   budget.mainCategories.forEach((mc, i) => {
     mc.subCategories.forEach((sc, i) => {
-      console.log(goals[i], goals[i].value);
-      sc._finishUpdatingSubCategory(Number(goals[i].value));
+      sc._finishUpdatingSubCategory(Number(goals[index].value));
+      index++;
     });
   });
   return;

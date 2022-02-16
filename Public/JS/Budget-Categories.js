@@ -1008,6 +1008,8 @@ export class SubCategory extends Category {
     this.amountSpent = 0;
     this.amountRemaining = this.goalAmount - this.amountSpent;
     this.percentageSpent = this.amountSpent / this.goalAmount;
+    if (isNaN(this.percentageSpent)) this.percentageSpent = 0;
+    console.log(this.percentageSpent);
   }
 }
 
