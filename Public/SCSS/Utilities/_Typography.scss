@@ -1265,6 +1265,86 @@ html {
               }
             }
           }
+          &__header {
+            font-family: MADE Tommy Soft, Verdana, sans-serif;
+            font-size: 7rem;
+            color: $primaryColor;
+          }
+          &__budget-management-container {
+            font-family: MADE Tommy Soft, Verdana, sans-serif;
+            &--extra-small {
+              &__header {
+                font-size: 2.2rem;
+                color: $colorOffWhite;
+                &__icon {
+                  font-size: 3rem;
+                }
+                &__text {
+                }
+              }
+              &__budget-name-form,
+              &__budget-savings-goal-form,
+              &__budget-investment-goal-form,
+              &__budget-emergency-goal-form {
+                font-family: MADE Tommy Soft, Verdana, sans-serif;
+                &__budget-name-display {
+                  font-family: MADE Tommy Soft, Verdana, sans-serif;
+                  font-size: 3rem;
+                  color: $primaryColor;
+                }
+                &__input {
+                  font-family: MADE Tommy Soft, Verdana, sans-serif;
+                  font-size: 1.6rem;
+                  color: rgba($primaryColor, 0.8);
+                  &:focus {
+                    color: $primaryColor;
+                  }
+                }
+                &__submit {
+                  font-size: 1.6rem;
+                  color: rgba($colorOffWhite, 0.8);
+                  &:hover {
+                    color: $colorOffWhite;
+                  }
+                }
+              }
+              &__budget-savings-goal-form,
+              &__budget-investment-goal-form {
+                &__input {
+                  font-size: 1.6rem;
+                  color: rgba($primaryColor, 0.8);
+                  &:focus {
+                    color: $primaryColor;
+                  }
+                  & + label {
+                    font-size: 1.6rem;
+                    color: $primaryColor;
+                  }
+                }
+              }
+              &__budget-emergency-goal-form {
+                &__label--checkbox-outer {
+                  font-size: 1.1rem;
+                  color: $primaryColor;
+                }
+                &__label-container {
+                  &--checkbox-container {
+                    &:nth-of-type(1) {
+                      font-size: 1.4rem;
+                      color: $primaryColor;
+                    }
+                    &:nth-of-type(2) {
+                      font-size: 1.4rem;
+                      color: $primaryColor;
+                    }
+                  }
+                  .checked {
+                    color: $colorOffWhite;
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

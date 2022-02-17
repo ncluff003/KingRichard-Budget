@@ -57,12 +57,14 @@
                   cursor: pointer;
                   border: 0.3rem solid $colorOffWhite;
                   background-color: $secondaryColor;
-                  .budget-navigation__link-lidt__link-item__sub-link-container__sub-link {
+                  transition: border 0.5s, background-color 0.5s, color 0.5s;
+                  .budget-navigation__link-list__link-item__sub-link-container__sub-link {
                     transition: border 0.5s, background-color 0.5s, color 0.5s;
                   }
                 }
                 &:active {
-                  .budget-navigation__link-lidt__link-item__sub-link-container__sub-link {
+                  background-color: $tertiaryColor;
+                  .budget-navigation__link-list__link-item__sub-link-container__sub-link {
                     background-color: $tertiaryColor;
                   }
                 }
@@ -82,6 +84,9 @@
                 }
                 &:active {
                   background-color: $tertiaryColor;
+                }
+                &__sub-link {
+                  @include SizeAndPositioning(relative, 100%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
                 }
               }
             }
@@ -171,7 +176,7 @@
               padding: 0.2rem;
               border: 0.3rem solid $primaryColor;
               border-radius: 0.5rem;
-              background-color: rgba($colorLightestGrey, 0.25);
+              background-color: rgba($colorOffWhite, 0.8);
               &__header {
                 @include SizeAndPositioning(relative, 25%, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
                 border-top-left-radius: 0.25rem;
@@ -190,7 +195,7 @@
               padding: 0.2rem;
               border: 0.3rem solid $primaryColor;
               border-radius: 0.5rem;
-              background-color: rgba($colorLightestGrey, 0.25);
+              background-color: rgba($colorOffWhite, 0.8);
               &__header {
                 @include SizeAndPositioning(relative, 15%, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
                 border-top-left-radius: 0.25rem;
@@ -494,6 +499,30 @@
                   }
                 }
               }
+            }
+          }
+        }
+        &__header {
+          @include SizeAndPositioning(relative, 15%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+          background-color: rgba($colorLightestGrey, 0.3);
+        }
+        &__budget-management-container {
+          @include SizeAndPositioning(relative, 85%, 100%, flex, row, wrap, center, center, 0, 0, 0);
+          background-color: rgba($colorLightestGrey, 0.3);
+          &--extra-small {
+            @include SizeAndPositioning(relative, 22.5rem, 35rem, flex, column, nowrap, space-between, center, 0, 0, 0);
+            padding: 0.2rem;
+            border: 0.3rem solid $primaryColor;
+            border-radius: 0.5rem;
+            background-color: rgba($colorLightestGrey, 0.25);
+            margin: 0 6rem;
+            &__header {
+              @include SizeAndPositioning(relative, 25%, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
+              border-top-left-radius: 0.25rem;
+              border-top-right-radius: 0.25rem;
+              padding: 0 1.5rem;
+              background-color: $primaryColor;
+              border-bottom: 0.3rem solid $tertiaryColor;
             }
           }
         }

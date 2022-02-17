@@ -3,11 +3,26 @@ import * as Calendar from './FrontEnd-Calendar';
 import * as Budget from './Manage-Budget';
 // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
-const calculateRemaining = (overall, spent) => {
-  let initialValue = 0;
-  total = subCategoryTotals.reduce((totalValue, currentValue) => totalValue + currentValue, initialValue);
-  console.log(total);
-  return total;
+const _watchBudgetManagement = () => {
+  const budgetNameDisplay = document.querySelector('.budget-container__budget-management-container--extra-small__budget-name-form__budget-name-display');
+  const budgetNameInput = document.querySelector('.budget-container__budget-management-container--extra-small__budget-name-form__input');
+  if (window.location.pathname.split('/')[6] === `Budget-Management`) {
+    budgetNameInput.addEventListener('keyup', (e) => {
+      e.preventDefault();
+      budgetNameDisplay.textContent = budgetNameInput.value;
+    });
+    const emergencyFundSettings = document.querySelectorAll(
+      '.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container'
+    );
+    console.log(emergencyFundSettings);
+    emergencyFundSettings.forEach((setting) => {
+      setting.addEventListener('click', (e) => {
+        e.preventDefault();
+        emergencyFundSettings.forEach((es) => es.classList.remove('checked'));
+        setting.classList.toggle('checked');
+      });
+    });
+  }
 };
 
 const cycleMainCategories = (direction, index, icons, titles, subCats) => {
@@ -60,18 +75,22 @@ const _setupCurrentMonth = () => {
     sc.classList.add('sub-category-display__sub-category--hidden');
     if (Number(sc.dataset.subcategory) === 0) sc.classList.remove('sub-category-display__sub-category--hidden');
   });
-  leftButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    categoryIndex--;
-    if (categoryIndex <= 0) categoryIndex = 0;
-    cycleMainCategories('left', categoryIndex, categoryIcons, categoryTitles, subCategories);
-  });
-  rightButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    categoryIndex++;
-    if (categoryIndex >= categoryIcons.length - 1) categoryIndex = categoryIcons.length - 1;
-    cycleMainCategories('right', categoryIndex, categoryIcons, categoryTitles, subCategories);
-  });
+  if (leftButton) {
+    leftButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      categoryIndex--;
+      if (categoryIndex <= 0) categoryIndex = 0;
+      cycleMainCategories('left', categoryIndex, categoryIcons, categoryTitles, subCategories);
+    });
+  }
+  if (rightButton) {
+    rightButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      categoryIndex++;
+      if (categoryIndex >= categoryIcons.length - 1) categoryIndex = categoryIcons.length - 1;
+      cycleMainCategories('right', categoryIndex, categoryIcons, categoryTitles, subCategories);
+    });
+  }
 };
 
 const _setupBillCalendar = () => {
@@ -86,7 +105,7 @@ const _setupBillCalendar = () => {
     currentYear,
     '.bill-calendar-container__calendar-container__calendar__days__single-day', // NEEDS PERIOD FOR .querySelectorAll
     'bill-calendar-container__calendar-container__calendar__days__single-day--current-day', // CLASS IS ONLY BEING ADDED via .classList.add
-    'un-used-day', // CLASS IS ONLY BEING ADDED via .classList.add
+    'un-used-day' // CLASS IS ONLY BEING ADDED via .classList.add
   );
 
   const monthLeft = document.querySelector('.month-left');
@@ -108,7 +127,7 @@ const _setupBillCalendar = () => {
         currentYear,
         '.bill-calendar-container__calendar-container__calendar__days__single-day',
         'bill-calendar-container__calendar-container__calendar__days__single-day--current-day',
-        'un-used-day',
+        'un-used-day'
       );
     });
   }
@@ -128,7 +147,7 @@ const _setupBillCalendar = () => {
         currentYear,
         '.bill-calendar-container__calendar-container__calendar__days__single-day',
         'bill-calendar-container__calendar-container__calendar__days__single-day--current-day',
-        'un-used-day',
+        'un-used-day'
       );
     });
   }
@@ -163,14 +182,17 @@ const calculateTotal = (accountType, budget) => {
       const bankVaultTotal = budgetAccountTotals.reduce((previous, current) => previous + current, initialDeposit);
       const bankAccountSection = accountSections[0];
       let bankAccount = money.format(bankVaultTotal);
-      bankAccountSection.textContent = `${bankAccount}`;
+      if (bankAccountSection) bankAccountSection.textContent = `${bankAccount}`;
     }
 
     if (accountType === `Debt`) {
       const debtAccount = accountSections[1];
       // amountOfDebt += 200;
       let debt = money.format(amountOfDebt);
-      amountOfDebt === 0 ? (debtAccount.textContent = debt) : (debtAccount.textContent = `-${debt}`);
+
+      if (debtAccount) {
+        amountOfDebt === 0 ? (debtAccount.textContent = debt) : (debtAccount.textContent = `-${debt}`);
+      }
     }
 
     if (accountType === `Net Value`) {
@@ -184,7 +206,7 @@ const calculateTotal = (accountType, budget) => {
       const bankVaultTotal = budgetAccountTotals.reduce((previous, current) => previous + current, initialDeposit);
       const netValueAccount = accountSections[2];
       let netValue = money.format(bankVaultTotal - amountOfDebt);
-      netValueAccount.textContent = netValue;
+      if (netValueAccount) netValueAccount.textContent = netValue;
     }
   }
 };
@@ -468,4 +490,7 @@ export const _watchBudget = async () => {
   ////////////////////////////////////////////
   // SETUP BILL CURRENT MONTH
   _setupCurrentMonth();
+  ////////////////////////////////////////////
+  // SETUP BILL CURRENT MONTH
+  _watchBudgetManagement();
 };
