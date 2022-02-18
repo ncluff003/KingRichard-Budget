@@ -52,12 +52,24 @@ block Budget-Content
         - let emergencyFundGoal = data.budget.accounts.emergencyFund.goal
         input.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__input.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__input#investmentGoal(type="number" name="investmentGoal" placeholder="INVESTMENT FUND GOAL" value= `${emergencyFundGoal}` required)
         button.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__submit.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__submit(type="button") Submit
-    if !data.user.latterDaySaint
+    if data.user.latterDaySaint
       section.budget-container__budget-management-container--extra-small.r__budget-container__budget-management-container--extra-small
         header.budget-container__budget-management-container--extra-small__header.r__budget-container__budget-management-container--extra-small__header
           i.fas.fa-pencil-alt.budget-container__budget-management-container--extra-small__header__icon.r__budget-container__budget-management-container--extra-small__header__icon
           p.budget-container__budget-management-container--extra-small__header__text.r__budget-container__budget-management-container--extra-small__header__text Edit Tithing Setting
+        form.budget-container__budget-management-container--extra-small__budget-tithing-setting-form.r__budget-container__budget-management-container--extra-small__budget-tithing-setting-form
+          section.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container.r__budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container
+            label.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container.r__budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container Gross
+              input.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox.r__budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox(type="checkbox")
+            label.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container.r__budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container Net
+              input.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox.r__budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox(type="checkbox")
+            label.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container.r__budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container Surplus
+              input.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox.r__budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox(type="checkbox")
+          button.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__submit.r__budget-container__budget-management-container--extra-small__budget-tithing-setting-form__submit(type="button") Submit
     section.budget-container__budget-management-container--extra-small.r__budget-container__budget-management-container--extra-small
       header.budget-container__budget-management-container--extra-small__header.r__budget-container__budget-management-container--extra-small__header
-        i.fas.fa-pencil-alt.budget-container__budget-management-container--extra-small__header__icon.r__budget-container__budget-management-container--extra-small__header__icon
+        i.fas.fa-door-open.budget-container__budget-management-container--extra-small__header__icon.r__budget-container__budget-management-container--extra-small__header__icon
         p.budget-container__budget-management-container--extra-small__header__text.r__budget-container__budget-management-container--extra-small__header__text Exit or Delete Budget
+      form.budget-container__budget-management-container--extra-small__budget-exit-or-delete-form.r__budget-container__budget-management-container--extra-small__budget-exit-or-delete-form
+        button.budget-container__budget-management-container--extra-small__budget-exit-or-delete-form__submit--exit.r__budget-container__budget-management-container--extra-small__budget-exit-or-delete-form__submit--exit(type="button") Exit Budget
+        button.budget-container__budget-management-container--extra-small__budget-exit-or-delete-form__submit--delete.r__budget-container__budget-management-container--extra-small__budget-exit-or-delete-form__submit--delete(type="button") Delete Budget

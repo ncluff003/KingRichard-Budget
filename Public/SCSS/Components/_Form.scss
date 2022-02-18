@@ -1373,7 +1373,9 @@
             &__budget-name-form,
             &__budget-savings-goal-form,
             &__budget-investment-goal-form,
-            &__budget-emergency-goal-form {
+            &__budget-emergency-goal-form,
+            &__budget-tithing-setting-form,
+            &__budget-exit-or-delete-form {
               @include SizeAndPositioning(relative, 80%, 100%, flex, column, nowrap, center, center, 0, 0, 0);
               &__budget-name-display {
                 @include SizeAndPositioning(relative, 30%, 100%, flex, column, nowrap, center, center, 0, 0, 0);
@@ -1392,7 +1394,9 @@
                   transition: color 0.5s, border 0.5s, background-color 0.5s;
                 }
               }
-              &__submit {
+              &__submit,
+              &__submit--exit,
+              &__submit--delete {
                 @include SizeAndPositioning(relative, 20%, 30%, flex, column, nowrap, center, center, -4.25rem, 0.75rem, 0);
                 align-self: flex-end;
                 background-color: rgba($primaryColor, 0.5);
@@ -1404,6 +1408,15 @@
                   background-color: $primaryColor;
                   border: 0.2rem solid $primaryColor;
                   transition: background-color 0.5s, color 0.5s, border 0.5s;
+                }
+              }
+              &__submit--exit,
+              &__submit--delete {
+                transform: translate(0, 0);
+                width: 40%;
+                align-self: center;
+                &:first-of-type {
+                  margin-bottom: 1rem;
                 }
               }
             }
@@ -1526,6 +1539,46 @@
               }
               .visible {
                 display: flex;
+              }
+            }
+            &__budget-tithing-setting-form {
+              &__setting-container {
+                @include SizeAndPositioning(relative, 40%, 70%, flex, row, nowrap, center, center, 0, 0, 0);
+                &__label-container {
+                  @include SizeAndPositioning(relative, 100%, 33.33%, flex, row, nowrap, center, center, 0, 0, 0);
+                  &__input--checkbox {
+                    appearance: none;
+                    -webkit-appearance: none;
+                    display: none;
+                  }
+
+                  &:first-of-type {
+                    border-top: 0.2rem solid $primaryColor;
+                    border-left: 0.2rem solid $primaryColor;
+                    border-bottom: 0.2rem solid $primaryColor;
+                    border-top-left-radius: 0.5rem;
+                    border-bottom-left-radius: 0.5rem;
+                  }
+                  &:nth-of-type(2) {
+                    border-top: 0.2rem solid $primaryColor;
+                    border-bottom: 0.2rem solid $primaryColor;
+                  }
+                  &:nth-of-type(3) {
+                    border-top: 0.2rem solid $primaryColor;
+                    border-right: 0.2rem solid $primaryColor;
+                    border-bottom: 0.2rem solid $primaryColor;
+                    border-top-right-radius: 0.5rem;
+                    border-bottom-right-radius: 0.5rem;
+                  }
+                  &:hover {
+                    cursor: pointer;
+                    background-color: $primaryColor;
+                    transition: background-color 0.5s, border 0.5s, color 0.5s;
+                  }
+                }
+                .selected {
+                  background-color: rgba($primaryColor, 0.8);
+                }
               }
             }
           }

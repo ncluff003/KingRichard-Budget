@@ -45,6 +45,37 @@ const _watchBudgetManagement = (budget) => {
         changeEmergencyInput(emergencySettings, emergencySetting, budget);
       });
     });
+
+    const tithingSettings = document.querySelectorAll(
+      '.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container'
+    );
+    const tithingCheckboxes = document.querySelectorAll(
+      '.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox'
+    );
+    if (budget.accounts.tithing.setting) {
+      const tithingSettings = document.querySelectorAll(
+        '.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container'
+      );
+      const tithingCheckboxes = document.querySelectorAll(
+        '.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox'
+      );
+      let currentTithingSetting;
+      tithingSettings.forEach((ts) => {
+        ts.classList.remove('selected');
+        if (budget.accounts.tithing.setting === `Gross`) tithingSettings[0].classList.add('selected');
+        if (budget.accounts.tithing.setting === `Net`) tithingSettings[1].classList.add('selected');
+        if (budget.accounts.tithing.setting === `Surplus`) tithingSettings[2].classList.add('selected');
+      });
+      tithingSettings.forEach((ts) => {
+        ts.addEventListener('click', (e) => {
+          e.preventDefault();
+          tithingSettings.forEach((setting) => setting.classList.remove('selected'));
+          ts.classList.add('selected');
+          currentTithingSetting = ts.textContent;
+          console.log(currentTithingSetting);
+        });
+      });
+    }
   }
 };
 

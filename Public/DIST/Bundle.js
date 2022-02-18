@@ -6684,6 +6684,37 @@ var _watchBudgetManagement = function _watchBudgetManagement(budget) {
         changeEmergencyInput(emergencySettings, emergencySetting, budget);
       });
     });
+    var tithingSettings = document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container');
+    var tithingCheckboxes = document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox');
+
+    if (budget.accounts.tithing.setting) {
+      var _tithingSettings = document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container');
+
+      var _tithingCheckboxes = document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox');
+
+      var currentTithingSetting;
+
+      _tithingSettings.forEach(function (ts) {
+        ts.classList.remove('selected');
+        if (budget.accounts.tithing.setting === "Gross") _tithingSettings[0].classList.add('selected');
+        if (budget.accounts.tithing.setting === "Net") _tithingSettings[1].classList.add('selected');
+        if (budget.accounts.tithing.setting === "Surplus") _tithingSettings[2].classList.add('selected');
+      });
+
+      _tithingSettings.forEach(function (ts) {
+        ts.addEventListener('click', function (e) {
+          e.preventDefault();
+
+          _tithingSettings.forEach(function (setting) {
+            return setting.classList.remove('selected');
+          });
+
+          ts.classList.add('selected');
+          currentTithingSetting = ts.textContent;
+          console.log(currentTithingSetting);
+        });
+      });
+    }
   }
 };
 

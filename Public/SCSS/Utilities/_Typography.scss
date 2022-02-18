@@ -1285,7 +1285,9 @@ html {
               &__budget-name-form,
               &__budget-savings-goal-form,
               &__budget-investment-goal-form,
-              &__budget-emergency-goal-form {
+              &__budget-emergency-goal-form,
+              &__budget-tithing-setting-form,
+              &__budget-exit-or-delete-form {
                 font-family: MADE Tommy Soft, Verdana, sans-serif;
                 &__budget-name-display {
                   font-family: MADE Tommy Soft, Verdana, sans-serif;
@@ -1300,7 +1302,9 @@ html {
                     color: $primaryColor;
                   }
                 }
-                &__submit {
+                &__submit,
+                &__submit--exit,
+                &__submit--delete {
                   font-size: 1.6rem;
                   color: rgba($colorOffWhite, 0.8);
                   &:hover {
@@ -1359,6 +1363,20 @@ html {
                   &__input,
                   &__select {
                     font-size: 1.6rem;
+                  }
+                }
+              }
+              &__budget-tithing-setting-form {
+                &__setting-container {
+                  &__label-container {
+                    font-size: 2rem;
+                    color: rgba($primaryColor, 0.8);
+                    &:hover {
+                      color: $colorOffWhite;
+                    }
+                  }
+                  .selected {
+                    color: rgba($colorOffWhite, 0.8);
                   }
                 }
               }
