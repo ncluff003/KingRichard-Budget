@@ -1342,6 +1342,25 @@ html {
                     color: $colorOffWhite;
                   }
                 }
+                &__selection-container {
+                  &__select {
+                    color: rgba($colorOffWhite, 0.8);
+                    &:hover {
+                      color: $colorOffWhite;
+                    }
+                  }
+                  &__input {
+                    color: rgba($primaryColor, 0.8);
+                    &:hover,
+                    &:focus {
+                      color: $primaryColor;
+                    }
+                  }
+                  &__input,
+                  &__select {
+                    font-size: 1.6rem;
+                  }
+                }
               }
             }
           }

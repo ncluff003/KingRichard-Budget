@@ -41,12 +41,18 @@ block Budget-Content
         section.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container
           label.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container Length Of Time
             input.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container__input--checkbox.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container__input--checkbox(type="checkbox")
-          label.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container Total
+          label.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container Total Amount
             input.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container__input--checkbox.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container__input--checkbox(type="checkbox")
+        section.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container
+          - const timingOptions= [`Months`, `Weeks`] 
+          input.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__input.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__input
+          select.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__select.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__select
+            each timing in timingOptions 
+              option.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__select__option.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__select__option(value=`${timing}`)= `${timing}`
         - let emergencyFundGoal = data.budget.accounts.emergencyFund.goal
-        input.budget-container__budget-management-container--extra-small__budget-investment-goal-form__input.r__budget-container__budget-management-container--extra-small__budget-investment-goal-form__input#investmentGoal(type="number" name="investmentGoal" placeholder="INVESTMENT FUND GOAL" value= `${emergencyFundGoal}` required)
+        input.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__input.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__input#investmentGoal(type="number" name="investmentGoal" placeholder="INVESTMENT FUND GOAL" value= `${emergencyFundGoal}` required)
         button.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__submit.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__submit(type="button") Submit
-    if data.user.latterDaySaint
+    if !data.user.latterDaySaint
       section.budget-container__budget-management-container--extra-small.r__budget-container__budget-management-container--extra-small
         header.budget-container__budget-management-container--extra-small__header.r__budget-container__budget-management-container--extra-small__header
           i.fas.fa-pencil-alt.budget-container__budget-management-container--extra-small__header__icon.r__budget-container__budget-management-container--extra-small__header__icon

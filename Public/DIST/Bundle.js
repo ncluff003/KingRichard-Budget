@@ -6637,7 +6637,25 @@ __webpack_require__.r(__webpack_exports__);
  // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
 
-var _watchBudgetManagement = function _watchBudgetManagement() {
+var changeEmergencyInput = function changeEmergencyInput(array, setting) {
+  if (setting === "Length Of Time") {
+    array.forEach(function (eSetting) {
+      return eSetting.classList.remove('visible');
+    });
+    array[0].classList.add('visible');
+    console.log(setting);
+  }
+
+  if (setting === "Total Amount") {
+    array.forEach(function (eSetting) {
+      return eSetting.classList.remove('visible');
+    });
+    array[1].classList.add('visible');
+    console.log(setting);
+  }
+};
+
+var _watchBudgetManagement = function _watchBudgetManagement(budget) {
   var budgetNameDisplay = document.querySelector('.budget-container__budget-management-container--extra-small__budget-name-form__budget-name-display');
   var budgetNameInput = document.querySelector('.budget-container__budget-management-container--extra-small__budget-name-form__input');
 
@@ -6647,7 +6665,14 @@ var _watchBudgetManagement = function _watchBudgetManagement() {
       budgetNameDisplay.textContent = budgetNameInput.value;
     });
     var emergencyFundSettings = document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container');
-    console.log(emergencyFundSettings);
+    var emergencySetting;
+    var emergencySelectionContainer = document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container');
+    var emergencyTotalInput = document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__input');
+    var emergencySettings = [emergencySelectionContainer, emergencyTotalInput];
+    emergencySettings.forEach(function (eSetting) {
+      return eSetting.classList.remove('visible');
+    });
+    budget.accounts.emergencyFund.goalMeasurement === "Length Of Time" ? emergencySettings[0].classList.add('visible') : emergencySettings[1].classList.add('visible');
     emergencyFundSettings.forEach(function (setting) {
       setting.addEventListener('click', function (e) {
         e.preventDefault();
@@ -6655,6 +6680,8 @@ var _watchBudgetManagement = function _watchBudgetManagement() {
           return es.classList.remove('checked');
         });
         setting.classList.toggle('checked');
+        emergencySetting = setting.textContent;
+        changeEmergencyInput(emergencySettings, emergencySetting, budget);
       });
     });
   }
@@ -6842,7 +6869,6 @@ var calculateTotal = function calculateTotal(accountType, budget) {
 };
 
 var getDashboardAccountTotals = function getDashboardAccountTotals(budget) {
-  console.log(budget);
   calculateTotal("Bank Account", budget);
   calculateTotal("Debt", budget);
   calculateTotal("Net Value", budget); // budget-container__dashboard__container--extra-small__content__account-total
@@ -7121,7 +7147,7 @@ var _watchBudget = /*#__PURE__*/function () {
             // SETUP BILL CURRENT MONTH
 
 
-            _watchBudgetManagement();
+            _watchBudgetManagement(currentBudget);
 
           case 41:
           case "end":

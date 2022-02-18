@@ -1178,6 +1178,21 @@ html {
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container .checked {
   color: #fafafa;
 }
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__select {
+  color: rgba(250, 250, 250, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__select:hover {
+  color: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__input {
+  color: rgba(130, 42, 186, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__input:hover, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__input:focus {
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__input, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__select {
+  font-size: 1.6rem;
+}
 
 .gridTV {
   display: grid;
@@ -35577,6 +35592,7 @@ html {
   background-color: transparent;
   border: 0.2rem solid rgba(130, 42, 186, 0.8);
   border-radius: 0.5rem;
+  min-height: 3.24rem;
 }
 .master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-name-form__input:focus, .master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-savings-goal-form__input:focus, .master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-investment-goal-form__input:focus, .master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__input:focus {
   outline: none;
@@ -35598,6 +35614,7 @@ html {
   background-color: rgba(130, 42, 186, 0.5);
   border: 0.2rem solid rgba(130, 42, 186, 0.8);
   border-radius: 0.5rem;
+  min-height: 3.24rem;
 }
 .master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-name-form__submit:hover, .master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-savings-goal-form__submit:hover, .master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-investment-goal-form__submit:hover, .master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__submit:hover {
   cursor: pointer;
@@ -35640,6 +35657,9 @@ html {
 .master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-savings-goal-form__input:nth-of-type(1), .master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-investment-goal-form__input:nth-of-type(1) {
   margin-bottom: 2rem;
 }
+.master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-emergency-goal-form {
+  justify-content: flex-start;
+}
 .master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label--checkbox-outer {
   position: relative;
   height: 20%;
@@ -35651,6 +35671,7 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
   padding-left: 1.5rem;
+  min-height: 3.24rem;
 }
 .master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container {
   position: relative;
@@ -35662,6 +35683,7 @@ html {
   justify-content: center;
   align-items: center;
   transform: rotate(0) translate(0, 0);
+  min-height: 4.725rem;
 }
 .master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container {
   position: relative;
@@ -35693,8 +35715,69 @@ html {
   -webkit-appearance: none;
   display: none;
 }
+.master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container:hover {
+  cursor: pointer;
+}
 .master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container .checked {
   background-color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container {
+  position: relative;
+  height: 20%;
+  width: 70%;
+  display: none;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  min-height: 3.24rem;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__select {
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  border-right: 0.2rem solid #822aba;
+  border-left: none;
+  background-color: rgba(130, 42, 186, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__select:hover {
+  background-color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__input {
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  border-left: 0.2rem solid #822aba;
+  background-color: transparent;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__input:focus {
+  background-color: rgba(250, 250, 250, 0.25);
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__select, .master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__input {
+  position: relative;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border-top: 0.2rem solid #822aba;
+  border-bottom: 0.2rem solid #822aba;
+  padding-left: 1rem;
+  transition: background-color 0.5s, color 0.5s, border 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__select:focus, .master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__input:focus {
+  outline: none;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__select:hover, .master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__input:hover {
+  cursor: pointer;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__input {
+  display: none;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-emergency-goal-form .visible {
+  display: flex;
 }
 
 .master-grid-container .app-flex-container {

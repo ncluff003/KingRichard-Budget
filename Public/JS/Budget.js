@@ -3,7 +3,21 @@ import * as Calendar from './FrontEnd-Calendar';
 import * as Budget from './Manage-Budget';
 // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
-const _watchBudgetManagement = () => {
+
+const changeEmergencyInput = (array, setting) => {
+  if (setting === `Length Of Time`) {
+    array.forEach((eSetting) => eSetting.classList.remove('visible'));
+    array[0].classList.add('visible');
+    console.log(setting);
+  }
+  if (setting === `Total Amount`) {
+    array.forEach((eSetting) => eSetting.classList.remove('visible'));
+    array[1].classList.add('visible');
+    console.log(setting);
+  }
+};
+
+const _watchBudgetManagement = (budget) => {
   const budgetNameDisplay = document.querySelector('.budget-container__budget-management-container--extra-small__budget-name-form__budget-name-display');
   const budgetNameInput = document.querySelector('.budget-container__budget-management-container--extra-small__budget-name-form__input');
   if (window.location.pathname.split('/')[6] === `Budget-Management`) {
@@ -14,12 +28,21 @@ const _watchBudgetManagement = () => {
     const emergencyFundSettings = document.querySelectorAll(
       '.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container'
     );
-    console.log(emergencyFundSettings);
+    let emergencySetting;
+
+    const emergencySelectionContainer = document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container');
+    const emergencyTotalInput = document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__input');
+    const emergencySettings = [emergencySelectionContainer, emergencyTotalInput];
+    emergencySettings.forEach((eSetting) => eSetting.classList.remove('visible'));
+    budget.accounts.emergencyFund.goalMeasurement === `Length Of Time` ? emergencySettings[0].classList.add('visible') : emergencySettings[1].classList.add('visible');
+
     emergencyFundSettings.forEach((setting) => {
       setting.addEventListener('click', (e) => {
         e.preventDefault();
         emergencyFundSettings.forEach((es) => es.classList.remove('checked'));
         setting.classList.toggle('checked');
+        emergencySetting = setting.textContent;
+        changeEmergencyInput(emergencySettings, emergencySetting, budget);
       });
     });
   }
@@ -212,7 +235,6 @@ const calculateTotal = (accountType, budget) => {
 };
 
 const getDashboardAccountTotals = (budget) => {
-  console.log(budget);
   calculateTotal(`Bank Account`, budget);
   calculateTotal(`Debt`, budget);
   calculateTotal(`Net Value`, budget);
@@ -492,5 +514,5 @@ export const _watchBudget = async () => {
   _setupCurrentMonth();
   ////////////////////////////////////////////
   // SETUP BILL CURRENT MONTH
-  _watchBudgetManagement();
+  _watchBudgetManagement(currentBudget);
 };
