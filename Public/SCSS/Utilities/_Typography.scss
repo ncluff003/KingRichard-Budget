@@ -1114,10 +1114,11 @@ html {
                             color: rgba($primaryColor, 0.25);
                             &--not-end {
                               &:hover {
-                                cursor: pointer;
                                 color: $primaryColor;
-                                transition: color 0.5s;
                               }
+                            }
+                            &:hover {
+                              color: $primaryColor;
                             }
                           }
                         }

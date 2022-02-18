@@ -1,8 +1,18 @@
 import * as Updating from './Update-User';
 import * as Calendar from './FrontEnd-Calendar';
 import * as Budget from './Manage-Budget';
+
 // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
+
+const watchForBudgetDeletion = () => {
+  const budgetDeleteButton = document.querySelector(`.budget-container__budget-management-container--extra-small__budget-exit-or-delete-form__submit--delete`);
+  const budgetId = window.location.pathname.split('/')[5];
+  const userId = window.location.pathname.split('/')[3];
+  budgetDeleteButton.addEventListener('click', (e) => {
+    Budget.deleteMyBudget(budgetId, userId);
+  });
+};
 
 const changeEmergencyInput = (array, setting) => {
   if (setting === `Length Of Time`) {
@@ -76,6 +86,7 @@ const _watchBudgetManagement = (budget) => {
         });
       });
     }
+    watchForBudgetDeletion();
   }
 };
 
@@ -205,13 +216,10 @@ const _setupBillCalendar = () => {
       );
     });
   }
-
-  console.log(currentMonth, currentYear);
 };
 
 const calculateTotal = (accountType, budget) => {
   const accountSections = document.querySelectorAll('.budget-container__dashboard__container--extra-small__content__account-total');
-  console.log(budget);
   const budgetAccounts = budget.accounts;
   let amountOfDebt;
   let budgetAccountTotals = [];
@@ -254,7 +262,6 @@ const calculateTotal = (accountType, budget) => {
       let budgetAccountTotals = [];
       Object.entries(budgetAccounts).forEach((account) => {
         if (account[0] === `debt`) amountOfDebt = account[1].debtAmount;
-        console.log(amountOfDebt);
         return amountOfDebt;
       });
       const bankVaultTotal = budgetAccountTotals.reduce((previous, current) => previous + current, initialDeposit);

@@ -90,7 +90,6 @@ exports.searchForUser = catchAsync(async (request, response, next) => {
 });
 
 exports.getMe = catchAsync(async (request, response, next) => {
-  console.log(request.user, request.user._id);
   const user = await User.findById(request.user._id);
   const userInfo = [user.communicationPreference, user.latterDaySaint];
   response.status(200).json({

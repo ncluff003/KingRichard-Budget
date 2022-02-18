@@ -111,10 +111,57 @@ exports.createBudget = catchAsync(async (request, response, next) => {
   });
   user.budgets.push(budget._id);
   request.body.budgetId = budget._id;
+  request.budgetId = budget._id;
 
   // Save embedded budget into the user.
   await user.save({ validateBeforeSave: false });
   createAndSendToken(user, 201, `render`, request, response, `./Budget/budgetLanding`, `King Richard | ${budget.name}`, { budget: budget }, 200, `Success`);
+});
+
+exports.updateMyBudget = catchAsync(async (request, response, next) => {
+  console.log('----------------------------------------------------------------');
+  console.log(request.body);
+  console.log('----------------------------------------------------------------');
+  const { id } = request.body;
+  const budget = await Budget.findById(`${id}`);
+
+  // CREATE ERROR IF USER TRIES TO POST PASSWORD DATA
+  if (request.body.password || request.body.passwordConfirmed) {
+    return next(new AppError(`This route is not for password updates.  Please use /updateMyPassword route.`, 400));
+  }
+  // UPDATE USER DOCUMENT
+  const filteredBody = filterObj(request.body, 'name', 'savingsGoal', 'investmentGoal', 'emergencyFundGoal');
+  const updatedBudget = await User.findByIdAndUpdate(budget.id, filteredBody, { new: true, runValidators: true });
+  createAndSendToken(updatedUser, 200, `render`, request, response, `loggedIn`, `King Richard | Home`, { calendar: Calendar });
+});
+
+exports.deleteBudget = catchAsync(async (request, response, next) => {
+  console.log(`----------------------------------------------`);
+  console.log(request.body);
+  console.log(request.user.id);
+  console.log(request.originalUrl.split('/')[5]);
+  console.log(request.budget);
+  console.log(request.budgetId);
+  console.log(`----------------------------------------------`);
+  const id = request.originalUrl.split('/')[5];
+  const user = await User.findById(request.user.id);
+
+  console.log(`----------------------------------------------`);
+  console.log(user.budgets);
+  console.log(`----------------------------------------------`);
+  user.budgets = user.budgets.filter((b, i) => {
+    if (b._id.toString() !== id) return b;
+  });
+  console.log(`----------------------------------------------`);
+  console.log(user.budgets);
+  console.log(`----------------------------------------------`);
+
+  await user.save({ validateBeforeSave: false });
+  await Budget.findByIdAndDelete(id);
+  response.status(204).json({
+    status: 'Success',
+    message: 'Deleted',
+  });
 });
 
 ////////////////////////////////////////////
@@ -123,7 +170,6 @@ exports.retrieveBudgetInfo = catchAsync(async (request, response, next) => {
   // const user = await User.findById(request.user.id);
   const user = request.user;
   let budgetID = user.budgets[user.budgets.length - 1];
-  console.log(budgetID);
   const budget = await Budget.findById(budgetID);
   if (!budget) {
     return next(new AppError('No budget found with that ID', 404));
@@ -145,18 +191,11 @@ exports.getBudgetDashboard = catchAsync(async (request, response, next) => {
     return next(new AppError('No budget found with that ID', 404));
   }
 
-  createAndSendToken(
-    user,
-    201,
-    `render`,
-    request,
-    response,
-    `./Budget/budgetLanding`,
-    `King Richard | ${budget.name}`,
-    { budget: budget, calendar: Calendar },
-    200,
-    `Success`,
-  );
+  request.budget = budget;
+  request.budgetId = budget._id;
+  console.log(request.budgetId);
+
+  createAndSendToken(user, 201, `render`, request, response, `./Budget/budgetLanding`, `King Richard | ${budget.name}`, { budget: budget, calendar: Calendar }, 200, `Success`);
 });
 
 exports.getBudgetManagement = catchAsync(async (request, response, next) => {
@@ -166,6 +205,9 @@ exports.getBudgetManagement = catchAsync(async (request, response, next) => {
   if (!budget) {
     return next(new AppError('No budget found with that ID', 404));
   }
+  request.budget = budget;
+  request.budgetId = budget._id;
+  console.log(request.budgetId);
   createAndSendToken(
     user,
     201,
@@ -176,7 +218,7 @@ exports.getBudgetManagement = catchAsync(async (request, response, next) => {
     `King Richard | ${budget.name}`,
     { budget: budget, calendar: Calendar },
     200,
-    `Success`,
+    `Success`
   );
 });
 
@@ -197,7 +239,7 @@ exports.getEditCategoryGoals = catchAsync(async (request, response, next) => {
     `King Richard | ${budget.name}`,
     { budget: budget, calendar: Calendar },
     200,
-    `Success`,
+    `Success`
   );
 });
 
@@ -218,7 +260,7 @@ exports.getManageCategories = catchAsync(async (request, response, next) => {
     `King Richard | ${budget.name}`,
     { budget: budget, calendar: Calendar },
     200,
-    `Success`,
+    `Success`
   );
 });
 
@@ -239,7 +281,7 @@ exports.getAllocateIncome = catchAsync(async (request, response, next) => {
     `King Richard | ${budget.name}`,
     { budget: budget, calendar: Calendar },
     200,
-    `Success`,
+    `Success`
   );
 });
 
@@ -260,7 +302,7 @@ exports.getTransactionPlanner = catchAsync(async (request, response, next) => {
     `King Richard | ${budget.name}`,
     { budget: budget, calendar: Calendar },
     200,
-    `Success`,
+    `Success`
   );
 });
 
@@ -281,7 +323,7 @@ exports.getInvestmentPlanner = catchAsync(async (request, response, next) => {
     `King Richard | ${budget.name}`,
     { budget: budget, calendar: Calendar },
     200,
-    `Success`,
+    `Success`
   );
 });
 
@@ -302,7 +344,7 @@ exports.getDebtManager = catchAsync(async (request, response, next) => {
     `King Richard | ${budget.name}`,
     { budget: budget, calendar: Calendar },
     200,
-    `Success`,
+    `Success`
   );
 });
 
@@ -323,7 +365,7 @@ exports.getRecentTransactions = catchAsync(async (request, response, next) => {
     `King Richard | ${budget.name}`,
     { budget: budget, calendar: Calendar },
     200,
-    `Success`,
+    `Success`
   );
 });
 
@@ -344,7 +386,7 @@ exports.getAccountManagement = catchAsync(async (request, response, next) => {
     `King Richard | ${budget.name}`,
     { budget: budget, calendar: Calendar },
     200,
-    `Success`,
+    `Success`
   );
 });
 
@@ -365,7 +407,7 @@ exports.getInviteUsers = catchAsync(async (request, response, next) => {
     `King Richard | ${budget.name}`,
     { budget: budget, calendar: Calendar },
     200,
-    `Success`,
+    `Success`
   );
 });
 

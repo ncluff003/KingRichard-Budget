@@ -156,7 +156,6 @@ class Calendar {
   }
 
   makeCalendar(monthIndex, month, year, dayClass, currentDayClass, unusedDayClass) {
-    console.log(`MAKING CALENDAR`);
     let daysInMonth;
     daysInMonth = this._getDaysInMonth(month, daysInMonth, year);
     const billMonth = document.querySelector('.bill-calendar-container__calendar-container__calendar__header__title');

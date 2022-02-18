@@ -137,12 +137,10 @@ exports.protect = catchAsync(async (request, response, next) => {
 
 // LOGGING IN
 exports.login = catchAsync(async (request, response, next) => {
-  console.log(request.body);
   let { id, username, password } = request.body;
   if (!request.body.id || id === `undefined`) id = request.params.id;
   // Check if User exists right along with Username & Password is correct.
   const user = await User.findById(`${id}`);
-  console.log(user);
 
   // if (!user || !(await user.correctPassword(password, user.password))) return next(new AppError(`Incorrect username or password`), 401);
   // REACTIVATE USER IF INACTIVE
@@ -174,15 +172,15 @@ exports.validateSignup = catchAsync(async (request, response, next) => {
     return next(
       new AppError(
         `Passwords must contain at least 8 characters, amongst them being at least 1 capital letter, 1 lower case letter, 1 number, & 1 special symbol.  The special symbols may be the following: !, @, $, &, -, _, and &.`,
-        400,
-      ),
+        400
+      )
     );
   if (!Validate.is_Eight_Character_One_Upper_Lower_Number_Special(formBody.passwordConfirmed))
     return next(
       new AppError(
         `Passwords must contain at least 8 characters, amongst them being at least 1 capital letter, 1 lower case letter, 1 number, & 1 special symbol.  The special symbols may be the following: !, @, $, &, -, _, and &.`,
-        400,
-      ),
+        400
+      )
     );
   console.log(`Signup Successful.`);
   next();
@@ -191,7 +189,6 @@ exports.validateSignup = catchAsync(async (request, response, next) => {
 // SIGN UP VALIDATED USERS
 exports.signup = catchAsync(async (request, response, next) => {
   const formBody = request.body;
-  console.log(formBody);
   const newUser = await User.create({
     firstname: formBody.firstname,
     lastname: formBody.lastname,

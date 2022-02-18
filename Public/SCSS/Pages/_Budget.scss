@@ -258,6 +258,10 @@
                         @include SizeAndPositioning(relative, 20%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
                         &__icon {
                           margin: 0 1rem;
+                          &:hover {
+                            cursor: pointer;
+                            transition: color 0.5s;
+                          }
                         }
                       }
                       &__weekdays {
@@ -466,25 +470,6 @@
                     }
                     &__section {
                       @include SizeAndPositioning(relative, 100%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
-                      // &:first-of-type {
-                      //   justify-content: space-evenly;
-                      //   flex-direction: column;
-                      //   padding: 0.5rem;
-                      // }
-                      //     &__input {
-                      //       @include SizeAndPositioning(relative, 60%, 80%, flex, row, nowrap, center, center, 0, 0, 0);
-                      //       background-color: rgba($colorOffWhite, 0.35);
-                      //       border-radius: 0.5rem;
-                      //       border: 0.2rem solid rgba($primaryColor, 0.8);
-                      //       caret-color: $primaryColor;
-
-                      //       &:focus {
-                      //         outline: none;
-                      //         border: 0.2rem solid $primaryColor, 0.8;
-                      //         background-color: $colorOffWhite;
-                      //       }
-                      //     }
-                      //   }
                     }
                     &:hover {
                       cursor: pointer;
