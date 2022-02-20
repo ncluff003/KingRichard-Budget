@@ -3,3 +3,109 @@ extends ./../budgetLanding
 block Budget-Content 
   header.budget-container__header.r__budget-container__header
     p.budget-container__header__text.r__budget-container__header__text Edit Category Goals
+  section.budget-container.r__budget-container.budget-container__edit-category-goals-container--large.r__budget-container__edit-category-goals-container--large
+    header.budget-container.r__budget-container.budget-container__edit-category-goals-container--large__header.r__budget-container__edit-category-goals-container--large__header
+      i.fas.fa-file-invoice-dollar.budget-container__edit-category-goals-container--large__header__icon.r__budget-container__edit-category-goals-container--large__header__icon 
+      p.budget-container__edit-category-goals-container--large__header__title.r__budget-container__edit-category-goals-container--large__header__title= `${data.calendar.getMonth().toUpperCase()}`
+    section.budget-container__edit-category-goals-container--large__budget-goal-summary-container.r__budget-container__edit-category-goals-container--large__budget-goal-summary-container
+      - let initialTotal = 0;
+      - let subCategoryGoals = [];
+      - data.budget.mainCategories.forEach(mc => mc.subCategories.forEach(sc => subCategoryGoals.push(sc.goalAmount)))
+      - const overallBudget = subCategoryGoals.reduce((previous, current) => previous + current, initialTotal)
+      - let initialSpent = 0;
+      - let subCategorySpent = [];
+      - data.budget.mainCategories.forEach(mc => mc.subCategories.forEach(sc => subCategorySpent.push(sc.amountSpent)))
+      - const overallSpent = subCategorySpent.reduce((previous, current) => previous + current, initialTotal)
+      - let overallPercentageSpent = overallSpent / overallBudget
+      - if (isNaN(overallPercentageSpent)) overallPercentageSpent = 0
+      section.budget-single-goal-summary.r__budget-single-goal-summary
+        p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Overall Budget
+        p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `$${overallBudget}`
+      section.budget-single-goal-summary.r__budget-single-goal-summary
+        p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Overall Spent
+        p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `$${overallSpent}`
+      section.budget-single-goal-summary.r__budget-single-goal-summary
+        p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Overall Remaining
+        p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `$${overallBudget - overallSpent}`
+      section.budget-single-goal-summary.r__budget-single-goal-summary
+        p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Percentage Spent
+        p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `${(overallPercentageSpent).toFixed(2)}%`
+      section.budget-single-goal-summary.r__budget-single-goal-summary
+        p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Percentage of Month Remaining
+        p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `${data.calendar.monthRemaining()}`
+    section.budget-container__edit-category-goals-container--large__category-container.r__budget-container__edit-category-goals-container--large__category-container
+      section.main-category-display.r__main-category-display
+        section.main-category-display__button-container.r__main-category-display__button-container
+          i.fas.fa-arrow-alt-circle-left.main-category-display__button-container__icon.r__main-category-display__button-container__icon.left.r__left
+        section.main-category-display__category-display.r__main-category-display__category-display
+          each category, index in data.budget.mainCategories
+            i.fas.main-category-display__category-display__icon(class=`${category.icon}` data-category=`${index}`)
+            p.main-category-display__category-display__title.r__main-category-display__category-display__title(data-category=`${index}`)= `${category.title}`
+        section.main-category-display__button-container.r__main-category-display__button-container
+          i.fas.fa-arrow-alt-circle-right.main-category-display__button-container__icon.r__main-category-display__button-container__icon.right.r__right
+      section.sub-category-display.r__sub-category-display
+        section.sub-category-display__headers.r__sub-category-display__headers
+          - const subCategoryHeaders = [`Category`, `Individual Payment`, `Spent`, `Remaining`, `Percentage Spent`] 
+          each header in subCategoryHeaders
+            section.sub-category-display__headers__title-container.r__sub-category-display__headers__title-container= `${header}`
+        each category, mainIndex in data.budget.mainCategories 
+          each subCategory, subIndex in category.subCategories 
+            - let subOverallPercentageSpent = subCategory.amountSpent / subCategory.goalAmount
+            - if (isNaN(subOverallPercentageSpent)) subOverallPercentageSpent = 0
+            section.sub-category-display__sub-category.r__sub-category-display__sub-category(data-subCategory=`${mainIndex}`) 
+              section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
+                p.sub-category-display__sub-category__section__content.r__sub-category-display__sub-category__section__content= `${subCategory.title}`
+                button.sub-category-display__subcategory__section__set-category-timing-button.r__sub-category-display__subcategory__section__set-category-timing-button(type="button") + Timing
+              section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
+                input.sub-category-display__sub-category__section__input.r__sub-category-display__sub-category__section__input.individual-payment.r__individual-payment(type="number" min="0" placeholder="Insert Individual Payment Amount" value=`${subCategory.goalAmount.toFixed(2)}`)
+              section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
+                p.sub-category-display__sub-category__section__content.r__sub-category-display__sub-category__section__content= `$${subCategory.amountSpent.toFixed(2)}`
+              section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
+                p.sub-category-display__sub-category__section__content.r__sub-category-display__sub-category__section__content= `$${(subCategory.goalAmount - subCategory.amountSpent).toFixed(2)}`
+              section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
+                p.sub-category-display__sub-category__section__content.r__sub-category-display__sub-category__section__content= `${(subOverallPercentageSpent).toFixed(0)}%`
+        section.sub-category-display__timing-container.r__sub-category-display__timing-container.sub-category-display__timing-container__hidden
+          i.fas.fa-times.sub-category-display__timing-container__close.r__sub-category-display__timing-container__close
+          section.sub-category-display__timing-container__monthly-container.r__sub-category-display__timing-container__monthly-container
+            button.sub-category-display__timing-container__monthly-container__button.r__sub-category-display__timing-container__monthly-container__button
+              span.icon-calendar-month.sub-category-display__timing-container__monthly-container__button__icon.r__sub-category-display__timing-container__monthly-container__button__icon
+                span.path1
+                span.path2
+              p.sub-category-display__timing-container__monthly-container__button__text.r__sub-category-display__timing-container__monthly-container__button__text Monthly
+            label.sub-category-display__timing-container__monthly-container__label.r__sub-category-display__timing-container__monthly-container__label Due Date
+              input.sub-category-display__timing-container__monthly-container__label__input.r__sub-category-display__timing-container__monthly-container__label__input(type="date")
+            button.sub-category-display__timing-container__monthly-container__submit.r__sub-category-display__timing-container__monthly-container__submit.timing-submit-button Submit
+
+          section.sub-category-display__timing-container__bi-monthly-container.r__sub-category-display__timing-container__bi-monthly-container
+            button.sub-category-display__timing-container__bi-monthly-container__button.r__sub-category-display__timing-container__bi-monthly-container__button
+              span.icon-calendar-bi-month.sub-category-display__timing-container__bi-monthly-container__button__icon.r__sub-category-display__timing-container__bi-monthly-container__button__icon
+                span.path1
+                span.path2
+                span.path3
+              p.sub-category-display__timing-container__bi-monthly-container__button__text.r__sub-category-display__timing-container__bi-monthly-container__button__text Bi-Monthly
+            label.sub-category-display__timing-container__bi-monthly-container__label.r__sub-category-display__timing-container__bi-monthly-container__label First Due Date
+              input.sub-category-display__timing-container__bi-monthly-container__label__input.r__sub-category-display__timing-container__bi-monthly-container__label__input(type="date") 
+            label.sub-category-display__timing-container__bi-monthly-container__label.r__sub-category-display__timing-container__bi-monthly-container__label Second Due Date
+              input.sub-category-display__timing-container__bi-monthly-container__label__input.r__sub-category-display__timing-container__bi-monthly-container__label__input(type="date") 
+            button.sub-category-display__timing-container__bi-monthly-container__submit.r__sub-category-display__timing-container__bi-monthly-container__submit.timing-submit-button Submit
+          section.sub-category-display__timing-container__bi-weekly-container.r__sub-category-display__timing-container__bi-weekly-container
+            button.sub-category-display__timing-container__bi-weekly-container__button.r__sub-category-display__timing-container__bi-weekly-container__button
+              span.icon-calendar-bi-weekly.sub-category-display__timing-container__bi-weekly-container__button__icon.r__sub-category-display__timing-container__bi-weekly-container__button__icon
+                span.path1
+                span.path2
+              p.sub-category-display__timing-container__bi-weekly-container__button__text.r__sub-category-display__timing-container__bi-weekly-container__button__text Bi-Weekly
+            label.sub-category-display__timing-container__bi-weekly-container__label.r__sub-category-display__timing-container__bi-weekly-container__label Start Date
+              input.sub-category-display__timing-container__bi-weekly-container__label__input.r__sub-category-display__timing-container__bi-weekly-container__label__input(type="date") 
+            button.sub-category-display__timing-container__bi-weekly-container__submit.r__sub-category-display__timing-container__bi-weekly-container__submit.timing-submit-button Submit
+          section.sub-category-display__timing-container__weekly-container.r__sub-category-display__timing-container__weekly-container
+            button.sub-category-display__timing-container__weekly-container__button.r__sub-category-display__timing-container__weekly-container__button
+              span.icon-calendar-week.sub-category-display__timing-container__weekly-container__button__icon.r__sub-category-display__timing-container__weekly-container__button__icon
+                span.path1
+                span.path2
+              p.sub-category-display__timing-container__weekly-container__button__text.r__sub-category-display__timing-container__weekly-container__button__text Weekly
+            label.sub-category-display__timing-container__weekly-container__label.r__sub-category-display__timing-container__weekly-container__label Weekday
+              - const weekdays = [`Sunday`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`]
+              select.sub-category-display__timing-container__weekly-container__label__select.r__sub-category-display__timing-container__weekly-container__label__select
+                each day, index in weekdays
+                  option.sub-category-display__timing-container__weekly-container__label__select__option.sub-category-display__timing-container__weekly-container__label__select__option(value=`${index}`)= `${day}`
+            button.sub-category-display__timing-container__weekly-container__submit.r__sub-category-display__timing-container__weekly-container__submit.timing-submit-button Submit

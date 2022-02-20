@@ -459,6 +459,88 @@
             }
           }
         }
+        &__edit-category-goals-container {
+          &--large {
+            &__category-container {
+              .sub-category-display {
+                &__sub-category {
+                  &__section {
+                    &__set-category-timing-button {
+                      background-color: transparent;
+                      border: none;
+                      &:hover {
+                        cursor: pointer;
+                        transition: color 0.5s;
+                      }
+                    }
+                  }
+                }
+                &__timing-container {
+                  &__monthly-container,
+                  &__bi-monthly-container,
+                  &__bi-weekly-container,
+                  &__weekly-container {
+                    &__button {
+                      @include SizeAndPositioning(relative, 7rem, 70%, flex, row, nowrap, center, center, 0, 0, 0);
+                      background-color: transparent;
+                      border: 0.3rem solid rgba($primaryColor, 0.8);
+                      border-radius: 0.9rem;
+                      margin-top: 0.5rem;
+                      margin-bottom: 0.5rem;
+                      &:first-of-type {
+                        margin-top: 1rem;
+                      }
+                      &:last-of-type {
+                        margin-bottom: 1rem;
+                      }
+                      &__icon {
+                        @include SizeAndPositioning(absolute, 5rem, 5rem, flex, row, nowrap, center, center, 0, -50%, 0);
+                        top: 50%;
+                        left: 1rem;
+                      }
+                      &:hover {
+                        cursor: pointer;
+                        background-color: $primaryColor;
+                        border: 0.3rem solid $primaryColor;
+                        transition: background-color 0.5s, border 0.5s, color 0.5s;
+                        .path1,
+                        .path2,
+                        .path3 {
+                          transition: color 0.5s;
+                        }
+                      }
+                      &:active {
+                        background-color: $secondaryColor;
+                        border: 0.3rem solid $secondaryColor;
+                      }
+                    }
+                    &__submit {
+                      @include SizeAndPositioning(relative, 5rem, 40%, flex, row, nowrap, center, center, 4rem, 0, 0);
+                      border: 0.3rem solid rgba($primaryColor, 0.8);
+                      border-radius: 0.8rem;
+                      padding: 1rem;
+                      margin-bottom: 0.5rem;
+                      background-color: rgba($primaryColor, 0.8);
+                      &:hover {
+                        cursor: pointer;
+                        background-color: $primaryColor;
+                        border: 0.3rem solid $primaryColor;
+                        transition: color 0.5s, background-color 0.5s, border 0.5s;
+                      }
+                      &:active {
+                        background-color: $secondaryColor;
+                        border: 0.3rem solid $secondaryColor;
+                      }
+                    }
+                  }
+                  &__hidden {
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

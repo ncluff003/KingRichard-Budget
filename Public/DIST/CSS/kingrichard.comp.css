@@ -1204,6 +1204,125 @@ html {
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container .selected {
   color: rgba(250, 250, 250, 0.8);
 }
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__header {
+  color: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__header__title {
+  font-size: 5rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__header__icon {
+  font-size: 3rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__budget-goal-summary-container .budget-single-goal-summary__title {
+  font-size: 1.6rem;
+  color: #822aba;
+  text-align: center;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__budget-goal-summary-container .budget-single-goal-summary__amount {
+  font-size: 3rem;
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .main-category-display__button-container {
+  font-size: 6rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .main-category-display__button-container .left {
+  color: rgba(130, 42, 186, 0.25);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .main-category-display__button-container .right {
+  color: rgba(130, 42, 186, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .main-category-display__button-container .left:hover,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .main-category-display__button-container .right:hover {
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .main-category-display__category-display {
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .main-category-display__category-display__icon {
+  font-size: 20rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .main-category-display__category-display__title {
+  font-size: 4rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__headers__title-container {
+  font-size: 1.6rem;
+  color: #fafafa;
+  text-align: center;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__sub-category__section__content {
+  font-size: 1.6rem;
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__content {
+  color: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__close {
+  font-size: 3rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__close:hover {
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button__icon, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button__icon, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button__icon, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button__icon {
+  font-family: Icomoon;
+  font-size: 4rem;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button__icon .path1:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button__icon .path1:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button__icon .path1:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button__icon .path1:before {
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button__text, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button__text, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button__text, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button__text {
+  font-size: 2.2rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path1:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path1:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path1:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path1:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path1:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path1:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path1:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path1:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path1:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path1:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path1:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path1:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path1:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path1:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path1:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path1:before {
+  color: #ffd700;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path2:before,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path3:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path2:before,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path3:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path2:before,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path3:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path2:before,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path3:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path2:before,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path3:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path2:before,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path3:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path2:before,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path3:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path2:before,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path3:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path2:before,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path3:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path2:before,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path3:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path2:before,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path3:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path2:before,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path3:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path2:before,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path3:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path2:before,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path3:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path2:before,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path3:before, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path2:before,
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path3:before {
+  color: #333333;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__text, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__text, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__text, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__text, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__text, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__text, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__text, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__text, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__text, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__text, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__text, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__text, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__text, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__text, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__text, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__text {
+  color: #fafafa;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__label, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__label, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__label, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__label {
+  font-size: 1.4rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__label:focus, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__label:focus, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__label:focus, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__label:focus {
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__label__input, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__label__select, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__label__input, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__label__select, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__label__input, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__label__select, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__label__input, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__label__select {
+  font-size: 1.4rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__label__input:focus, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__label__select:focus, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__label__input:focus, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__label__select:focus, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__label__input:focus, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__label__select:focus, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__label__input:focus, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__label__select:focus {
+  color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__submit, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__submit, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__submit, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__submit {
+  font-size: 2rem;
+  color: rgba(250, 250, 250, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__submit:hover, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__submit:hover, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__submit:hover, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__submit:hover {
+  color: #fafafa;
+}
 
 .gridTV {
   display: grid;
@@ -33238,6 +33357,99 @@ html {
 .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .form-row__section:nth-of-type(0) .form-input, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .form-row__section:nth-of-type(1) .form-input, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .form-row__section:nth-of-type(2) .form-input, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .form-row__section:nth-of-type(3) .form-input, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .form-row__section:nth-of-type(4) .form-input, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .form-row__section:nth-of-type(6) .form-input, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .form-row__section:nth-of-type(7) .form-input, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .form-row__section:nth-of-type(9) .form-input, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .form-row__section:nth-of-type(10) .form-input, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .form-row__section:nth-of-type(12) .form-input, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(2) .form-row__section:nth-of-type(13) .form-input, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(0) .form-input, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(1) .form-input, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(2) .form-input, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(3) .form-input, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(4) .form-input, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(6) .form-input, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(7) .form-input, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(9) .form-input, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(10) .form-input, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(12) .form-input, .master-grid-container .app-flex-container .app-viewport .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(13) .form-input {
   width: 90%;
 }
+.master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__sub-category__section__set-category-timing-button {
+  background-color: transparent;
+  border: none;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__sub-category__section__set-category-timing-button:hover {
+  cursor: pointer;
+  transition: color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button {
+  position: relative;
+  height: 7rem;
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: transparent;
+  border: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-radius: 0.9rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:first-of-type, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:first-of-type, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:first-of-type, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:first-of-type {
+  margin-top: 1rem;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:last-of-type, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:last-of-type, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:last-of-type, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:last-of-type {
+  margin-bottom: 1rem;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button__icon, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button__icon, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button__icon, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button__icon {
+  position: absolute;
+  height: 5rem;
+  width: 5rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, -50%);
+  top: 50%;
+  left: 1rem;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover {
+  cursor: pointer;
+  background-color: #822aba;
+  border: 0.3rem solid #822aba;
+  transition: background-color 0.5s, border 0.5s, color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .path1,
+.master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .path2,
+.master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .path3, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .path1,
+.master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .path2,
+.master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .path3, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .path1,
+.master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .path2,
+.master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .path3, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .path1,
+.master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .path2,
+.master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .path3 {
+  transition: color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:active, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:active, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:active, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:active {
+  background-color: #38d927;
+  border: 0.3rem solid #38d927;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__submit, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__submit, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__submit, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__submit {
+  position: relative;
+  height: 5rem;
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(4rem, 0);
+  border: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-radius: 0.8rem;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  background-color: rgba(130, 42, 186, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__submit:hover, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__submit:hover, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__submit:hover, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__submit:hover {
+  cursor: pointer;
+  background-color: #822aba;
+  border: 0.3rem solid #822aba;
+  transition: color 0.5s, background-color 0.5s, border 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__submit:active, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__submit:active, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__submit:active, .master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__submit:active {
+  background-color: #38d927;
+  border: 0.3rem solid #38d927;
+}
+.master-grid-container .app-flex-container .app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__hidden {
+  display: none;
+}
 
 .vertical-flex-container .flex-section {
   position: relative;
@@ -46816,7 +47028,7 @@ html {
 }
 .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__dashboard__container--large__header {
   position: relative;
-  height: 8%;
+  height: 10%;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -47095,6 +47307,337 @@ html {
   background-color: #822aba;
   border-bottom: 0.3rem solid #ffd700;
 }
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large {
+  position: relative;
+  height: 67.5rem;
+  width: 118.6rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.3rem solid #822aba;
+  border-radius: 0.5rem;
+  padding: 0.2rem;
+  margin-bottom: 5rem;
+  background-color: rgba(250, 250, 250, 0.8);
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__header {
+  position: relative;
+  height: 10%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  padding: 0 1.5rem;
+  background-color: #822aba;
+  border-bottom: 0.3rem solid #ffd700;
+  min-height: 8%;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__header__icon {
+  position: absolute;
+  height: 100%;
+  width: 6rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, -50%);
+  top: 50%;
+  left: 0;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__budget-goal-summary-container {
+  position: relative;
+  height: 14rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__budget-goal-summary-container .budget-single-goal-summary {
+  position: relative;
+  height: 100%;
+  width: 19%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: #dddddd;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__budget-goal-summary-container .budget-single-goal-summary__title, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__budget-goal-summary-container .budget-single-goal-summary__amount {
+  position: relative;
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container {
+  position: relative;
+  height: 47rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  padding: 1.5rem;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .main-category-display {
+  position: relative;
+  height: 100%;
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .main-category-display__button-container {
+  position: relative;
+  height: 100%;
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .main-category-display__category-display {
+  position: relative;
+  height: 100%;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .main-category-display__category-display__title {
+  margin-top: 2rem;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .main-category-display {
+  position: relative;
+  height: 100%;
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .main-category-display__button-container {
+  position: relative;
+  height: 100%;
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .main-category-display__button-container .left:hover,
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .main-category-display__button-container .right:hover {
+  cursor: pointer;
+  transition: color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .main-category-display__category-display {
+  position: relative;
+  height: 100%;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .main-category-display__category-display__title {
+  margin-top: 2rem;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display {
+  position: relative;
+  height: 100%;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  margin-left: 1.5rem;
+  overflow-y: auto;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__headers {
+  position: relative;
+  height: 4rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  min-height: 4rem;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__headers__title-container {
+  position: relative;
+  height: 100%;
+  width: 19.5%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__sub-category {
+  position: relative;
+  height: 6rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  min-height: 10rem;
+  background-color: rgba(221, 221, 221, 0.25);
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__sub-category:nth-of-type(2n) {
+  background-color: rgba(221, 221, 221, 0.5);
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__sub-category__section {
+  position: relative;
+  height: 100%;
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__sub-category__section:first-of-type {
+  justify-content: space-evenly;
+  flex-direction: column;
+  padding: 0.5rem;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__sub-category:hover {
+  cursor: pointer;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section {
+  background-color: #822aba;
+  transition: background-color 0.5s, color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__sub-category--hidden {
+  display: none;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container {
+  position: absolute;
+  height: calc(100% - 4rem);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: rgba(250, 250, 250, 0.9);
+  min-height: calc(100% - 4rem);
+  overflow-y: auto;
+  top: 4rem;
+  left: 0;
+  z-index: 10;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__close {
+  position: absolute;
+  height: 4rem;
+  width: 4rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  top: 2rem;
+  right: 2rem;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__close:hover {
+  cursor: pointer;
+  transition: color 0.5s;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container {
+  position: relative;
+  height: min-content;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__label, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__label, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__label, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__label {
+  position: relative;
+  height: 5rem;
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-radius: 0.8rem;
+  padding: 1rem;
+  margin: 0.25rem 0;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__label:first-of-type, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__label:first-of-type, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__label:first-of-type, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__label:first-of-type {
+  margin-top: 0.5rem;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__label:last-of-type, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__label:last-of-type, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__label:last-of-type, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__label:last-of-type {
+  margin-bottom: 0.5rem;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__label:focus, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__label:focus, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__label:focus, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__label:focus {
+  border: 0.3rem solid #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__label__input, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__label__select, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__label__input, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__label__select, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__label__input, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__label__select, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__label__input, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__label__select {
+  background-color: rgba(250, 250, 250, 0.25);
+  border: 0.2rem solid rgba(130, 42, 186, 0.8);
+  border-radius: 0.6rem;
+  padding: 0.2rem;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__label__input:focus, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__label__select:focus, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__label__input:focus, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__label__select:focus, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__label__input:focus, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__label__select:focus, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__label__input:focus, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__label__select:focus {
+  border: 0.2rem solid #822aba;
+  outline: none;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container .element-hidden, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container .element-hidden, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container .element-hidden, .master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container .element-hidden {
+  display: none;
+}
+.master-grid-container .app-flex-container .app-viewport.r__app-viewport .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__hidden {
+  display: none;
+}
 
 /*
 I was thinking of iterating through the objects that were created.
@@ -47114,9 +47657,9 @@ I was thinking of iterating through the objects that were created.
     //////////////////////////////////
     /// Adjustments To Make
 
-    ADJUST : Update each of the SizeAndPositioning Mixins Since Updating With Flex-Direction & Flex-Wrap.
     ADJUST : Re-Do Enter Transaction Form To Accommodate For Expense Timing.  This Includes The JavaScript Along With The Styling AND HTML.
     ADJUST : Re-Do Enter Transaction Form To Accommodate For Expense AND Savings Marking Transaction Item As Need Or Surplus.  This Includes The JavaScript Along With The Styling AND HTML.
+    ADJUST : Considering the budget creation form, since the other inputs are 'read only', they should then be changed to paragraphs rather than inputs.  That way, I can properly adjust their content AS the individual payments are entered.
 
 
     //////////////////////////////////
