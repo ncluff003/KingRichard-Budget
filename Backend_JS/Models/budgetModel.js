@@ -31,16 +31,19 @@ const budgetSchema = new mongoose.Schema({
       },
     },
     emergencyFund: {
-      goalMeasurement: {
+      emergencyGoalMeasurement: {
         type: String,
         enum: [`Length Of Time`, `Total Amount`],
         required: [true, `You must set a goal type for your emergency fund.`],
       },
-      goal: {
+      emergencyFundGoal: {
         // type: mongoose.Mixed,
         type: Number,
         // enum: [Number, `${Number} Months`],
         required: [true, `An emergency fund goal is required.`],
+      },
+      emergencyFundGoalTiming: {
+        type: String,
       },
       amount: {
         type: Number,
@@ -48,11 +51,11 @@ const budgetSchema = new mongoose.Schema({
       },
     },
     savingsFund: {
-      goal: {
+      savingsGoal: {
         type: Number,
         required: [true, `Every Budget Needs A Savings Fund Goal`],
       },
-      percentage: {
+      savingsPercentage: {
         type: Number,
         required: [true, `Every Budget Needs A Percentage Set`],
       },
@@ -74,11 +77,11 @@ const budgetSchema = new mongoose.Schema({
       },
     },
     investmentFund: {
-      goal: {
+      investmentGoal: {
         type: Number,
         required: [true, `Every Budget Needs A Savings Fund Goal`],
       },
-      percentage: {
+      investmentPercentage: {
         type: Number,
         required: [true, `Every Budget Needs A Percentage Set`],
       },
@@ -98,7 +101,7 @@ const budgetSchema = new mongoose.Schema({
       },
     },
     tithing: {
-      setting: {
+      tithingSetting: {
         type: String,
         enum: [`Gross`, `Net`, `Surplus`],
       },

@@ -10,8 +10,127 @@ const watchForBudgetDeletion = () => {
   const budgetId = window.location.pathname.split('/')[5];
   const userId = window.location.pathname.split('/')[3];
   budgetDeleteButton.addEventListener('click', (e) => {
+    e.preventDefault();
     Budget.deleteMyBudget(budgetId, userId);
   });
+};
+
+const watchForBudgetExit = () => {
+  const exitButton = document.querySelector('.budget-container__budget-management-container--extra-small__budget-exit-or-delete-form__submit--exit');
+  const userId = window.location.pathname.split('/')[3];
+  exitButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    Budget.exitBudget(userId);
+  });
+};
+
+const buildUpdateObject = (budget, user, budgetName, customProperties, objects) => {
+  let budgetUpdateOpject = {
+    name: budgetName,
+    accounts: {},
+    budgetId: budget._id,
+    userId: user._id,
+  };
+
+  customProperties.forEach((c, i) => {
+    budgetUpdateOpject.accounts[c] = objects[i];
+  });
+
+  return budgetUpdateOpject;
+};
+
+const getTithing = (budget, user, currentTithingSetting) => {
+  let tithingSetting;
+  let tithing = {};
+  if (tithingSetting === undefined || tithingSetting !== '' || tithingSetting === null) {
+    tithingSetting = currentTithingSetting;
+  }
+  tithing.tithingSetting = currentTithingSetting;
+  tithing.amount = budget.accounts.tithing.amount;
+  return tithing;
+};
+
+const getEmergencyFund = (budget, emergencySetting) => {
+  let emergencyFundGoal, emergencyFundGoalTiming;
+  let emergencyFund = {};
+  if (emergencySetting === `Length Of Time`) {
+    emergencyFundGoal = Number(document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__input').value);
+    emergencyFundGoalTiming = document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__select').value;
+    if (emergencyFundGoal === '' || emergencyFundGoal === undefined || emergencyFundGoal === null) emergencyFundGoal = budget.accounts.emergencyFund.emergencyFundGoal;
+    if (emergencyFundGoalTiming === '' || emergencyFundGoalTiming === undefined || emergencyFundGoalTiming === null)
+      emergencyFundGoalTiming = budget.accounts.emergencyFund.emergencyFundGoalTiming;
+    emergencyFund.emergencyGoalMeasurement = emergencySetting;
+    emergencyFund.emergencyFundGoal = emergencyFundGoal;
+    emergencyFund.emergencyFundGoalTiming = emergencyFundGoalTiming;
+    emergencyFund.amount = budget.accounts.emergencyFund.amount;
+    return emergencyFund;
+  }
+  if (emergencySetting === `Total Amount`) {
+    emergencyFundGoal = Number(document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__input').value);
+  }
+};
+
+const getInvestmentFund = (budget) => {
+  let investmentFund = {};
+  let investmentGoal = Number(document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-investment-goal-form__input')[0].value);
+  let investmentPercentage = Number(document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-investment-goal-form__input')[1].value);
+  if (investmentGoal === '' || investmentGoal === undefined || investmentGoal === null) investmentGoal = budget.accounts.investmentFund.investmentGoal;
+  if (investmentPercentage === '' || investmentPercentage === undefined || investmentPercentage === null)
+    investmentPercentage = budget.accounts.investmentFund.investmentPercentage;
+  investmentFund.investmentGoal = investmentGoal;
+  investmentFund.investmentPercentage = investmentPercentage / 100;
+  investmentFund.amount = budget.accounts.investmentFund.amount;
+  return investmentFund;
+};
+
+const getSavingsFund = (budget) => {
+  let savingsFund = {};
+  let savingsGoal = Number(document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-savings-goal-form__input')[0].value);
+  let savingsPercentage = Number(document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-savings-goal-form__input')[1].value);
+  if (savingsGoal === '' || savingsGoal === undefined || savingsGoal === null) savingsGoal = budget.accounts.savingsFund.savingsGoal;
+  if (savingsPercentage === '' || savingsPercentage === undefined || savingsPercentage === null) savingsPercentage = budget.accounts.savingsFund.savingsPercentage;
+  savingsFund.savingsGoal = savingsGoal;
+  savingsFund.savingsPercentage = savingsPercentage / 100;
+  savingsFund.amount = budget.accounts.savingsFund.amount;
+  return savingsFund;
+};
+
+const getBudgetName = (budget) => {
+  let budgetName = document.querySelector('.budget-container__budget-management-container--extra-small__budget-name-form__input').value;
+  if (budgetName === '') budgetName = budget.name;
+  return budgetName;
+};
+
+const watchBudgetManatementUpdates = (emergencySetting, currentTithingSetting, budget, user) => {
+  // GET BUDGET NAME
+  const budgetName = getBudgetName(budget);
+  const savingsFund = getSavingsFund(budget);
+  const investmentFund = getInvestmentFund(budget);
+  const emergencyFund = getEmergencyFund(budget, emergencySetting);
+  let tithing;
+  if (user.latterDaySaint === true) {
+    tithing = getTithing(budget, user, currentTithingSetting);
+  }
+  console.log(budgetName, savingsFund, investmentFund, emergencyFund, tithing);
+  const newBudget = buildUpdateObject(
+    budget,
+    user,
+    budgetName,
+    [`unAllocated`, `monthlyBudget`, `emergencyFund`, `savingsFund`, `expenseFund`, `surplus`, `investmentFund`, `debt`, `tithing`],
+    [
+      budget.accounts.unAllocated,
+      budget.accounts.monthlyBudget,
+      emergencyFund,
+      savingsFund,
+      budget.accounts.expenseFund,
+      budget.accounts.surplus,
+      investmentFund,
+      budget.accounts.debt,
+      tithing,
+    ]
+  );
+  console.log(newBudget);
+  Budget.updateMyBudget(newBudget);
 };
 
 const changeEmergencyInput = (array, setting) => {
@@ -27,7 +146,7 @@ const changeEmergencyInput = (array, setting) => {
   }
 };
 
-const _watchBudgetManagement = (budget) => {
+const _watchBudgetManagement = (budget, user) => {
   const budgetNameDisplay = document.querySelector('.budget-container__budget-management-container--extra-small__budget-name-form__budget-name-display');
   const budgetNameInput = document.querySelector('.budget-container__budget-management-container--extra-small__budget-name-form__input');
   if (window.location.pathname.split('/')[6] === `Budget-Management`) {
@@ -44,9 +163,12 @@ const _watchBudgetManagement = (budget) => {
     const emergencyTotalInput = document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__input');
     const emergencySettings = [emergencySelectionContainer, emergencyTotalInput];
     emergencySettings.forEach((eSetting) => eSetting.classList.remove('visible'));
-    budget.accounts.emergencyFund.goalMeasurement === `Length Of Time` ? emergencySettings[0].classList.add('visible') : emergencySettings[1].classList.add('visible');
+    budget.accounts.emergencyFund.emergencyGoalMeasurement === `Length Of Time` ? emergencySettings[0].classList.add('visible') : emergencySettings[1].classList.add('visible');
 
     emergencyFundSettings.forEach((setting) => {
+      setting.classList.remove('checked');
+      if (setting.textContent === budget.accounts.emergencyFund.emergencyGoalMeasurement) setting.classList.toggle('checked');
+      emergencySetting = budget.accounts.emergencyFund.emergencyGoalMeasurement;
       setting.addEventListener('click', (e) => {
         e.preventDefault();
         emergencyFundSettings.forEach((es) => es.classList.remove('checked'));
@@ -56,25 +178,25 @@ const _watchBudgetManagement = (budget) => {
       });
     });
 
-    const tithingSettings = document.querySelectorAll(
-      '.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container'
-    );
     const tithingCheckboxes = document.querySelectorAll(
       '.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox'
     );
-    if (budget.accounts.tithing.setting) {
+    let currentTithingSetting;
+    if (budget.accounts.tithing.tithingSetting) {
       const tithingSettings = document.querySelectorAll(
         '.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container'
       );
       const tithingCheckboxes = document.querySelectorAll(
         '.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox'
       );
-      let currentTithingSetting;
       tithingSettings.forEach((ts) => {
         ts.classList.remove('selected');
-        if (budget.accounts.tithing.setting === `Gross`) tithingSettings[0].classList.add('selected');
-        if (budget.accounts.tithing.setting === `Net`) tithingSettings[1].classList.add('selected');
-        if (budget.accounts.tithing.setting === `Surplus`) tithingSettings[2].classList.add('selected');
+        if (budget.accounts.tithing.tithingSetting === `Gross`) tithingSettings[0].classList.add('selected');
+        if (budget.accounts.tithing.tithingSetting === `Net`) tithingSettings[1].classList.add('selected');
+        if (budget.accounts.tithing.tithingSetting === `Surplus`) tithingSettings[2].classList.add('selected');
+      });
+      tithingSettings.forEach((ts) => {
+        if (ts.classList.contains('selected')) currentTithingSetting = ts.textContent;
       });
       tithingSettings.forEach((ts) => {
         ts.addEventListener('click', (e) => {
@@ -82,10 +204,26 @@ const _watchBudgetManagement = (budget) => {
           tithingSettings.forEach((setting) => setting.classList.remove('selected'));
           ts.classList.add('selected');
           currentTithingSetting = ts.textContent;
-          console.log(currentTithingSetting);
         });
       });
     }
+    const budgetNameSubmit = document.querySelector('.budget-container__budget-management-container--extra-small__budget-name-form__submit');
+    const savingsGoalSubmit = document.querySelector('.budget-container__budget-management-container--extra-small__budget-savings-goal-form__submit');
+    const investmentGoalSubmit = document.querySelector('.budget-container__budget-management-container--extra-small__budget-investment-goal-form__submit');
+    const emergencyGoalSubmit = document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__submit');
+    const tithingSettingSubmit = document.querySelector('.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__submit');
+    const updateSubmitButtons = [budgetNameSubmit, savingsGoalSubmit, investmentGoalSubmit, emergencyGoalSubmit];
+
+    if (user.latterDaySaint === true) {
+      updateSubmitButtons.push(tithingSettingSubmit);
+    }
+    updateSubmitButtons.forEach((ub) => {
+      ub.addEventListener('click', (e) => {
+        e.preventDefault();
+        watchBudgetManatementUpdates(emergencySetting, currentTithingSetting, budget, user);
+      });
+    });
+    watchForBudgetExit();
     watchForBudgetDeletion();
   }
 };
@@ -552,5 +690,5 @@ export const _watchBudget = async () => {
   _setupCurrentMonth();
   ////////////////////////////////////////////
   // SETUP BILL CURRENT MONTH
-  _watchBudgetManagement(currentBudget);
+  _watchBudgetManagement(currentBudget, user);
 };

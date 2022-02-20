@@ -521,7 +521,8 @@
                     background-color: $primaryColor;
                     border: 0.3rem solid $primaryColor;
                   }
-                  option {
+                  option,
+                  &__option {
                     background-color: $primaryColor;
                     &:hover {
                       background-color: $secondaryColor;

@@ -5420,28 +5420,29 @@ var Budget = /*#__PURE__*/function () {
   }, {
     key: "_setEmergencyGoal",
     value: function _setEmergencyGoal() {
-      if (this.accounts.emergencyFund.goalMeasurement === "Length Of Time") {
-        this.accounts.emergencyFund.goal = Number(document.querySelector('#timingNumber').value);
+      if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Length Of Time") {
+        this.accounts.emergencyFund.emergencyFundGoal = Number(document.querySelector('#timingNumber').value);
+        this.accounts.emergencyFund.emergencyFundGoalTiming = document.querySelector('.budget-creation-form__page__section__select').value;
         console.log(this);
       }
 
-      if (this.accounts.emergencyFund.goalMeasurement === "Total Amount") {
-        this.accounts.emergencyFund.goal = Number(document.querySelector('#emergencyGoal').value);
+      if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Total Amount") {
+        this.accounts.emergencyFund.emergencyFundGoal = Number(document.querySelector('#emergencyGoal').value);
         console.log(this);
       }
     }
   }, {
     key: "_setSavingsGoal",
     value: function _setSavingsGoal() {
-      this.accounts.savingsFund.percentage = Number(document.querySelector('#savingsPercentGoal').value) / 100;
-      this.accounts.savingsFund.goal = Number(document.querySelector('#savingsGoal').value);
+      this.accounts.savingsFund.savingsPercentage = Number(document.querySelector('#savingsPercentGoal').value) / 100;
+      this.accounts.savingsFund.savingsGoal = Number(document.querySelector('#savingsGoal').value);
       console.log(this);
     }
   }, {
     key: "_setInvestmentGoal",
     value: function _setInvestmentGoal() {
-      this.accounts.investmentFund.percentage = Number(document.querySelector('#investmentPercentGoal').value) / 100;
-      this.accounts.investmentFund.goal = Number(document.querySelector('#investmentGoal').value);
+      this.accounts.investmentFund.investmentPercentage = Number(document.querySelector('#investmentPercentGoal').value) / 100;
+      this.accounts.investmentFund.investmentGoal = Number(document.querySelector('#investmentGoal').value);
       console.log(this);
     }
   }, {
@@ -5479,7 +5480,7 @@ var _watchEmergencyGoalSettings = function _watchEmergencyGoalSettings(budget, s
       }
 
       if (budget) {
-        budget.accounts.emergencyFund.goalMeasurement = setting;
+        budget.accounts.emergencyFund.emergencyGoalMeasurement = setting;
       }
 
       console.log(budget);
@@ -6398,7 +6399,7 @@ var _watchTIthingOptions = function _watchTIthingOptions(budget) {
         return tithingSetting = "Surplus";
       }
 
-      budget.accounts.tithing.setting = tithingSetting;
+      budget.accounts.tithing.tithingSetting = tithingSetting;
       console.log(budget);
     });
   }
@@ -6642,8 +6643,113 @@ var watchForBudgetDeletion = function watchForBudgetDeletion() {
   var budgetId = window.location.pathname.split('/')[5];
   var userId = window.location.pathname.split('/')[3];
   budgetDeleteButton.addEventListener('click', function (e) {
+    e.preventDefault();
     _Manage_Budget__WEBPACK_IMPORTED_MODULE_4__.deleteMyBudget(budgetId, userId);
   });
+};
+
+var watchForBudgetExit = function watchForBudgetExit() {
+  var exitButton = document.querySelector('.budget-container__budget-management-container--extra-small__budget-exit-or-delete-form__submit--exit');
+  var userId = window.location.pathname.split('/')[3];
+  exitButton.addEventListener('click', function (e) {
+    e.preventDefault();
+    _Manage_Budget__WEBPACK_IMPORTED_MODULE_4__.exitBudget(userId);
+  });
+};
+
+var buildUpdateObject = function buildUpdateObject(budget, user, budgetName, customProperties, objects) {
+  var budgetUpdateOpject = {
+    name: budgetName,
+    accounts: {},
+    budgetId: budget._id,
+    userId: user._id
+  };
+  customProperties.forEach(function (c, i) {
+    budgetUpdateOpject.accounts[c] = objects[i];
+  });
+  return budgetUpdateOpject;
+};
+
+var getTithing = function getTithing(budget, user, currentTithingSetting) {
+  var tithingSetting;
+  var tithing = {};
+
+  if (tithingSetting === undefined || tithingSetting !== '' || tithingSetting === null) {
+    tithingSetting = currentTithingSetting;
+  }
+
+  tithing.tithingSetting = currentTithingSetting;
+  tithing.amount = budget.accounts.tithing.amount;
+  return tithing;
+};
+
+var getEmergencyFund = function getEmergencyFund(budget, emergencySetting) {
+  var emergencyFundGoal, emergencyFundGoalTiming;
+  var emergencyFund = {};
+
+  if (emergencySetting === "Length Of Time") {
+    emergencyFundGoal = Number(document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__input').value);
+    emergencyFundGoalTiming = document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__select').value;
+    if (emergencyFundGoal === '' || emergencyFundGoal === undefined || emergencyFundGoal === null) emergencyFundGoal = budget.accounts.emergencyFund.emergencyFundGoal;
+    if (emergencyFundGoalTiming === '' || emergencyFundGoalTiming === undefined || emergencyFundGoalTiming === null) emergencyFundGoalTiming = budget.accounts.emergencyFund.emergencyFundGoalTiming;
+    emergencyFund.emergencyGoalMeasurement = emergencySetting;
+    emergencyFund.emergencyFundGoal = emergencyFundGoal;
+    emergencyFund.emergencyFundGoalTiming = emergencyFundGoalTiming;
+    emergencyFund.amount = budget.accounts.emergencyFund.amount;
+    return emergencyFund;
+  }
+
+  if (emergencySetting === "Total Amount") {
+    emergencyFundGoal = Number(document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__input').value);
+  }
+};
+
+var getInvestmentFund = function getInvestmentFund(budget) {
+  var investmentFund = {};
+  var investmentGoal = Number(document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-investment-goal-form__input')[0].value);
+  var investmentPercentage = Number(document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-investment-goal-form__input')[1].value);
+  if (investmentGoal === '' || investmentGoal === undefined || investmentGoal === null) investmentGoal = budget.accounts.investmentFund.investmentGoal;
+  if (investmentPercentage === '' || investmentPercentage === undefined || investmentPercentage === null) investmentPercentage = budget.accounts.investmentFund.investmentPercentage;
+  investmentFund.investmentGoal = investmentGoal;
+  investmentFund.investmentPercentage = investmentPercentage / 100;
+  investmentFund.amount = budget.accounts.investmentFund.amount;
+  return investmentFund;
+};
+
+var getSavingsFund = function getSavingsFund(budget) {
+  var savingsFund = {};
+  var savingsGoal = Number(document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-savings-goal-form__input')[0].value);
+  var savingsPercentage = Number(document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-savings-goal-form__input')[1].value);
+  if (savingsGoal === '' || savingsGoal === undefined || savingsGoal === null) savingsGoal = budget.accounts.savingsFund.savingsGoal;
+  if (savingsPercentage === '' || savingsPercentage === undefined || savingsPercentage === null) savingsPercentage = budget.accounts.savingsFund.savingsPercentage;
+  savingsFund.savingsGoal = savingsGoal;
+  savingsFund.savingsPercentage = savingsPercentage / 100;
+  savingsFund.amount = budget.accounts.savingsFund.amount;
+  return savingsFund;
+};
+
+var getBudgetName = function getBudgetName(budget) {
+  var budgetName = document.querySelector('.budget-container__budget-management-container--extra-small__budget-name-form__input').value;
+  if (budgetName === '') budgetName = budget.name;
+  return budgetName;
+};
+
+var watchBudgetManatementUpdates = function watchBudgetManatementUpdates(emergencySetting, currentTithingSetting, budget, user) {
+  // GET BUDGET NAME
+  var budgetName = getBudgetName(budget);
+  var savingsFund = getSavingsFund(budget);
+  var investmentFund = getInvestmentFund(budget);
+  var emergencyFund = getEmergencyFund(budget, emergencySetting);
+  var tithing;
+
+  if (user.latterDaySaint === true) {
+    tithing = getTithing(budget, user, currentTithingSetting);
+  }
+
+  console.log(budgetName, savingsFund, investmentFund, emergencyFund, tithing);
+  var newBudget = buildUpdateObject(budget, user, budgetName, ["unAllocated", "monthlyBudget", "emergencyFund", "savingsFund", "expenseFund", "surplus", "investmentFund", "debt", "tithing"], [budget.accounts.unAllocated, budget.accounts.monthlyBudget, emergencyFund, savingsFund, budget.accounts.expenseFund, budget.accounts.surplus, investmentFund, budget.accounts.debt, tithing]);
+  console.log(newBudget);
+  _Manage_Budget__WEBPACK_IMPORTED_MODULE_4__.updateMyBudget(newBudget);
 };
 
 var changeEmergencyInput = function changeEmergencyInput(array, setting) {
@@ -6664,7 +6770,7 @@ var changeEmergencyInput = function changeEmergencyInput(array, setting) {
   }
 };
 
-var _watchBudgetManagement = function _watchBudgetManagement(budget) {
+var _watchBudgetManagement = function _watchBudgetManagement(budget, user) {
   var budgetNameDisplay = document.querySelector('.budget-container__budget-management-container--extra-small__budget-name-form__budget-name-display');
   var budgetNameInput = document.querySelector('.budget-container__budget-management-container--extra-small__budget-name-form__input');
 
@@ -6681,8 +6787,11 @@ var _watchBudgetManagement = function _watchBudgetManagement(budget) {
     emergencySettings.forEach(function (eSetting) {
       return eSetting.classList.remove('visible');
     });
-    budget.accounts.emergencyFund.goalMeasurement === "Length Of Time" ? emergencySettings[0].classList.add('visible') : emergencySettings[1].classList.add('visible');
+    budget.accounts.emergencyFund.emergencyGoalMeasurement === "Length Of Time" ? emergencySettings[0].classList.add('visible') : emergencySettings[1].classList.add('visible');
     emergencyFundSettings.forEach(function (setting) {
+      setting.classList.remove('checked');
+      if (setting.textContent === budget.accounts.emergencyFund.emergencyGoalMeasurement) setting.classList.toggle('checked');
+      emergencySetting = budget.accounts.emergencyFund.emergencyGoalMeasurement;
       setting.addEventListener('click', function (e) {
         e.preventDefault();
         emergencyFundSettings.forEach(function (es) {
@@ -6693,38 +6802,53 @@ var _watchBudgetManagement = function _watchBudgetManagement(budget) {
         changeEmergencyInput(emergencySettings, emergencySetting, budget);
       });
     });
-    var tithingSettings = document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container');
     var tithingCheckboxes = document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox');
+    var currentTithingSetting;
 
-    if (budget.accounts.tithing.setting) {
-      var _tithingSettings = document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container');
+    if (budget.accounts.tithing.tithingSetting) {
+      var tithingSettings = document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container');
 
       var _tithingCheckboxes = document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox');
 
-      var currentTithingSetting;
-
-      _tithingSettings.forEach(function (ts) {
+      tithingSettings.forEach(function (ts) {
         ts.classList.remove('selected');
-        if (budget.accounts.tithing.setting === "Gross") _tithingSettings[0].classList.add('selected');
-        if (budget.accounts.tithing.setting === "Net") _tithingSettings[1].classList.add('selected');
-        if (budget.accounts.tithing.setting === "Surplus") _tithingSettings[2].classList.add('selected');
+        if (budget.accounts.tithing.tithingSetting === "Gross") tithingSettings[0].classList.add('selected');
+        if (budget.accounts.tithing.tithingSetting === "Net") tithingSettings[1].classList.add('selected');
+        if (budget.accounts.tithing.tithingSetting === "Surplus") tithingSettings[2].classList.add('selected');
       });
-
-      _tithingSettings.forEach(function (ts) {
+      tithingSettings.forEach(function (ts) {
+        if (ts.classList.contains('selected')) currentTithingSetting = ts.textContent;
+      });
+      tithingSettings.forEach(function (ts) {
         ts.addEventListener('click', function (e) {
           e.preventDefault();
-
-          _tithingSettings.forEach(function (setting) {
+          tithingSettings.forEach(function (setting) {
             return setting.classList.remove('selected');
           });
-
           ts.classList.add('selected');
           currentTithingSetting = ts.textContent;
-          console.log(currentTithingSetting);
         });
       });
     }
 
+    var budgetNameSubmit = document.querySelector('.budget-container__budget-management-container--extra-small__budget-name-form__submit');
+    var savingsGoalSubmit = document.querySelector('.budget-container__budget-management-container--extra-small__budget-savings-goal-form__submit');
+    var investmentGoalSubmit = document.querySelector('.budget-container__budget-management-container--extra-small__budget-investment-goal-form__submit');
+    var emergencyGoalSubmit = document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__submit');
+    var tithingSettingSubmit = document.querySelector('.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__submit');
+    var updateSubmitButtons = [budgetNameSubmit, savingsGoalSubmit, investmentGoalSubmit, emergencyGoalSubmit];
+
+    if (user.latterDaySaint === true) {
+      updateSubmitButtons.push(tithingSettingSubmit);
+    }
+
+    updateSubmitButtons.forEach(function (ub) {
+      ub.addEventListener('click', function (e) {
+        e.preventDefault();
+        watchBudgetManatementUpdates(emergencySetting, currentTithingSetting, budget, user);
+      });
+    });
+    watchForBudgetExit();
     watchForBudgetDeletion();
   }
 };
@@ -7185,7 +7309,7 @@ var _watchBudget = /*#__PURE__*/function () {
             // SETUP BILL CURRENT MONTH
 
 
-            _watchBudgetManagement(currentBudget);
+            _watchBudgetManagement(currentBudget, user);
 
           case 41:
           case "end":
@@ -7718,32 +7842,41 @@ var logout = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getMyBudget": () => (/* binding */ getMyBudget),
+/* harmony export */   "updateMyBudget": () => (/* binding */ updateMyBudget),
+/* harmony export */   "exitBudget": () => (/* binding */ exitBudget),
 /* harmony export */   "deleteMyBudget": () => (/* binding */ deleteMyBudget)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _Budget__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Budget */ "./Public/JS/Budget.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _Budget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Budget */ "./Public/JS/Budget.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 
 
 
 
 var getMyBudget = /*#__PURE__*/function () {
-  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(id, user) {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee(id, user) {
     var response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_2___default()({
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "GET",
               url: "/App/Users/".concat(user._id, "/Budgets/").concat(id, "/Dashboard")
             });
@@ -7754,7 +7887,7 @@ var getMyBudget = /*#__PURE__*/function () {
             window.location.assign("/App/Users/".concat(user._id, "/Budgets/").concat(id, "/Dashboard"));
             console.log(response);
 
-            _Budget__WEBPACK_IMPORTED_MODULE_4__._watchBudget();
+            _Budget__WEBPACK_IMPORTED_MODULE_5__._watchBudget();
 
             _context.next = 13;
             break;
@@ -7776,29 +7909,47 @@ var getMyBudget = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
-var deleteMyBudget = /*#__PURE__*/function () {
-  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2(id, userId) {
+var updateMyBudget = /*#__PURE__*/function () {
+  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee2(options) {
     var response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            _context2.prev = 0;
-            _context2.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_2___default()({
-              method: "DELETE",
-              url: "/App/Users/".concat(userId, "/Budgets/").concat(id, "/Budget-Management"),
-              data: qs__WEBPACK_IMPORTED_MODULE_3___default().stringify({
-                id: id
-              })
+            console.log(_objectSpread({}, options));
+            _context2.prev = 1;
+            _context2.next = 4;
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
+              method: "PATCH",
+              url: "/App/Users/".concat(options.userId, "/Budgets/").concat(options.budgetId, "/Budget-Management"),
+              data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify(_objectSpread({}, options))
             });
 
-          case 3:
+          case 4:
             response = _context2.sent;
-            console.log(response);
 
-            if (response.statusText === 'No Content') {
-              window.location.assign("/App/Users/".concat(userId));
+            if (response.statusText === 'OK') {
+              // Check if first name is not undefined or empty.
+              !options.firstname === undefined && !options.firstname === '' ? document.getElementById('firstname').value = options.value : document.getElementById('firstname').value = document.getElementById('firstname').value; // Check if last name is not undefined or empty.
+
+              !options.lastname === undefined && !options.lastname === '' ? document.getElementById('lastname').value = options.value : document.getElementById('lastname').value = document.getElementById('lastname').value; // Check if username is not undefined or empty.
+
+              !options.username === undefined && !options.username === '' ? document.getElementById('username').value = options.value : document.getElementById('username').value = document.getElementById('username').value; // Check if email is not undefined or empty.
+
+              !options.email === undefined && !options.email === '' ? document.getElementById('email').value = options.value : document.getElementById('email').value = document.getElementById('email').value; // Check if email is not undefined or empty.
+
+              !options.emailConfirmed === undefined && !options.emailConfirmed === '' ? document.getElementById('email').value = options.value : document.getElementById('email').value = document.getElementById('email').value;
+              document.getElementById('email').value = options.email;
+              document.getElementById('newEmail').value = '';
+              document.getElementById('newEmailConfirmed').value = ''; // Check if phone number is not undefined or empty.
+
+              !options.phoneNumber === undefined && !options.phoneNumber === '' ? document.getElementById('phoneNumber').value = options.value : document.getElementById('phoneNumber').value = document.getElementById('phoneNumber').value; // Check if phone number is not undefined or empty.
+
+              !options.phoneNumberConfirmed === undefined && !options.phoneNumberConfirmed === '' ? document.getElementById('phoneNumber').value = options.value : document.getElementById('phoneNumber').value = document.getElementById('phoneNumber').value; // Check if confirmed phone number is not undefined or empty.
+
+              document.getElementById('phoneNumber').value = options.phoneNumber;
+              document.getElementById('newPhoneNumber').value = '';
+              document.getElementById('newPhoneNumberConfirmed').value = '';
             }
 
             _context2.next = 11;
@@ -7806,7 +7957,7 @@ var deleteMyBudget = /*#__PURE__*/function () {
 
           case 8:
             _context2.prev = 8;
-            _context2.t0 = _context2["catch"](0);
+            _context2.t0 = _context2["catch"](1);
             console.log(_context2.t0);
 
           case 11:
@@ -7814,11 +7965,80 @@ var deleteMyBudget = /*#__PURE__*/function () {
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 8]]);
+    }, _callee2, null, [[1, 8]]);
   }));
 
-  return function deleteMyBudget(_x3, _x4) {
+  return function updateMyBudget(_x3) {
     return _ref2.apply(this, arguments);
+  };
+}();
+var exitBudget = /*#__PURE__*/function () {
+  var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee3(id) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            try {
+              window.location.assign("/App/Users/".concat(id));
+            } catch (error) {
+              console.log(error);
+            }
+
+          case 1:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3);
+  }));
+
+  return function exitBudget(_x4) {
+    return _ref3.apply(this, arguments);
+  };
+}();
+var deleteMyBudget = /*#__PURE__*/function () {
+  var _ref4 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee4(id, userId) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            _context4.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
+              method: "DELETE",
+              url: "/App/Users/".concat(userId, "/Budgets/").concat(id, "/Budget-Management"),
+              data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify({
+                id: id
+              })
+            });
+
+          case 3:
+            response = _context4.sent;
+            console.log(response);
+
+            if (response.statusText === 'No Content') {
+              window.location.assign("/App/Users/".concat(userId));
+            }
+
+            _context4.next = 11;
+            break;
+
+          case 8:
+            _context4.prev = 8;
+            _context4.t0 = _context4["catch"](0);
+            console.log(_context4.t0);
+
+          case 11:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[0, 8]]);
+  }));
+
+  return function deleteMyBudget(_x5, _x6) {
+    return _ref4.apply(this, arguments);
   };
 }();
 

@@ -44,25 +44,26 @@ export class Budget {
   }
 
   _setEmergencyGoal() {
-    if (this.accounts.emergencyFund.goalMeasurement === `Length Of Time`) {
-      this.accounts.emergencyFund.goal = Number(document.querySelector('#timingNumber').value);
+    if (this.accounts.emergencyFund.emergencyGoalMeasurement === `Length Of Time`) {
+      this.accounts.emergencyFund.emergencyFundGoal = Number(document.querySelector('#timingNumber').value);
+      this.accounts.emergencyFund.emergencyFundGoalTiming = document.querySelector('.budget-creation-form__page__section__select').value;
       console.log(this);
     }
-    if (this.accounts.emergencyFund.goalMeasurement === `Total Amount`) {
-      this.accounts.emergencyFund.goal = Number(document.querySelector('#emergencyGoal').value);
+    if (this.accounts.emergencyFund.emergencyGoalMeasurement === `Total Amount`) {
+      this.accounts.emergencyFund.emergencyFundGoal = Number(document.querySelector('#emergencyGoal').value);
       console.log(this);
     }
   }
 
   _setSavingsGoal() {
-    this.accounts.savingsFund.percentage = Number(document.querySelector('#savingsPercentGoal').value) / 100;
-    this.accounts.savingsFund.goal = Number(document.querySelector('#savingsGoal').value);
+    this.accounts.savingsFund.savingsPercentage = Number(document.querySelector('#savingsPercentGoal').value) / 100;
+    this.accounts.savingsFund.savingsGoal = Number(document.querySelector('#savingsGoal').value);
     console.log(this);
   }
 
   _setInvestmentGoal() {
-    this.accounts.investmentFund.percentage = Number(document.querySelector('#investmentPercentGoal').value) / 100;
-    this.accounts.investmentFund.goal = Number(document.querySelector('#investmentGoal').value);
+    this.accounts.investmentFund.investmentPercentage = Number(document.querySelector('#investmentPercentGoal').value) / 100;
+    this.accounts.investmentFund.investmentGoal = Number(document.querySelector('#investmentGoal').value);
     console.log(this);
   }
 
@@ -94,7 +95,7 @@ export const _watchEmergencyGoalSettings = (budget, setting) => {
         document.querySelector('#emergencyGoal').focus();
       }
       if (budget) {
-        budget.accounts.emergencyFund.goalMeasurement = setting;
+        budget.accounts.emergencyFund.emergencyGoalMeasurement = setting;
       }
       console.log(budget);
       return setting;
@@ -782,9 +783,7 @@ const setupSubCategoryCreation = (budget, index) => {
   const rightButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__right-button__icon');
   let mainCategoryIcon = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__icon');
   let mainCategoryText = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__text');
-  const subCategoryStartCreationButton = document.querySelector(
-    '.budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button',
-  );
+  const subCategoryStartCreationButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button');
   const subCategoryStopCreationButton = document.querySelector('.category-creation__controller__close');
   const categoryCreationSection = document.querySelector('.category-creation');
   subCategoryStopCreationButton.addEventListener('click', (e) => {
@@ -849,17 +848,13 @@ const clickToCreateSubCategory = () => {
   e.preventDefault();
   const subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
   const subCategoryCreationButton = document.querySelector('.category-creation__input-container__button');
-  const subCategoryStartCreationButton = document.querySelector(
-    '.budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button',
-  );
+  const subCategoryStartCreationButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button');
   if (e.key === `Enter`) {
     const categoryCreation = document.querySelector('.category-creation');
     if (categoryCreation.classList.contains('category-creation--shown')) {
       subCategoryCreationButton.click();
     }
-    if (
-      !subCategoryStartCreationButton.classList.contains(`budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden`)
-    ) {
+    if (!subCategoryStartCreationButton.classList.contains(`budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden`)) {
       subCategoryStartCreationButton.classList.toggle('budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden');
       categoryCreation.classList.toggle('category-creation--shown');
       const subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
@@ -903,9 +898,7 @@ const watchToCycleSubCategoryMainCategories = () => {
 ///////////////////////////////////////////////////
 // WATCH SUB CATEGORY CREATE BUTTON FOR KEYBOARD
 const _watchForSubCategoryKeyboard = () => {
-  const subCategoryStartCreationButton = document.querySelector(
-    '.budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button',
-  );
+  const subCategoryStartCreationButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button');
   subCategoryStartCreationButton.focus();
   document.addEventListener(`keyup`, clickToCreateSubCategory);
 };
@@ -979,7 +972,7 @@ const _watchTIthingOptions = (budget) => {
         clicked.classList.toggle('checked');
         return (tithingSetting = `Surplus`);
       }
-      budget.accounts.tithing.setting = tithingSetting;
+      budget.accounts.tithing.tithingSetting = tithingSetting;
       console.log(budget);
     });
   }

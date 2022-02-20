@@ -431,7 +431,7 @@ html {
   border: 0.3rem solid #822aba;
   color: #fafafa;
 }
-.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__select option {
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__select option, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__select__option {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   color: #fafafa;
   font-weight: 300;
@@ -34164,10 +34164,10 @@ html {
   background-color: #822aba;
   border: 0.3rem solid #822aba;
 }
-.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__select option {
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__select option, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__select__option {
   background-color: #822aba;
 }
-.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__select option:hover {
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__select option:hover, .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__select__option:hover {
   background-color: #38d927;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__input {

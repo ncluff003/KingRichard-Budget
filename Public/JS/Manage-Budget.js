@@ -17,6 +17,75 @@ export const getMyBudget = async (id, user) => {
   }
 };
 
+export const updateMyBudget = async (options) => {
+  console.log({ ...options });
+  try {
+    const response = await axios({
+      method: `PATCH`,
+      url: `/App/Users/${options.userId}/Budgets/${options.budgetId}/Budget-Management`,
+      data: qs.stringify({
+        ...options,
+      }),
+    });
+
+    if (response.statusText === 'OK') {
+      // Check if first name is not undefined or empty.
+      !options.firstname === undefined && !options.firstname === ''
+        ? (document.getElementById('firstname').value = options.value)
+        : (document.getElementById('firstname').value = document.getElementById('firstname').value);
+
+      // Check if last name is not undefined or empty.
+      !options.lastname === undefined && !options.lastname === ''
+        ? (document.getElementById('lastname').value = options.value)
+        : (document.getElementById('lastname').value = document.getElementById('lastname').value);
+
+      // Check if username is not undefined or empty.
+      !options.username === undefined && !options.username === ''
+        ? (document.getElementById('username').value = options.value)
+        : (document.getElementById('username').value = document.getElementById('username').value);
+
+      // Check if email is not undefined or empty.
+      !options.email === undefined && !options.email === ''
+        ? (document.getElementById('email').value = options.value)
+        : (document.getElementById('email').value = document.getElementById('email').value);
+
+      // Check if email is not undefined or empty.
+      !options.emailConfirmed === undefined && !options.emailConfirmed === ''
+        ? (document.getElementById('email').value = options.value)
+        : (document.getElementById('email').value = document.getElementById('email').value);
+
+      document.getElementById('email').value = options.email;
+      document.getElementById('newEmail').value = '';
+      document.getElementById('newEmailConfirmed').value = '';
+
+      // Check if phone number is not undefined or empty.
+      !options.phoneNumber === undefined && !options.phoneNumber === ''
+        ? (document.getElementById('phoneNumber').value = options.value)
+        : (document.getElementById('phoneNumber').value = document.getElementById('phoneNumber').value);
+
+      // Check if phone number is not undefined or empty.
+      !options.phoneNumberConfirmed === undefined && !options.phoneNumberConfirmed === ''
+        ? (document.getElementById('phoneNumber').value = options.value)
+        : (document.getElementById('phoneNumber').value = document.getElementById('phoneNumber').value);
+
+      // Check if confirmed phone number is not undefined or empty.
+      document.getElementById('phoneNumber').value = options.phoneNumber;
+      document.getElementById('newPhoneNumber').value = '';
+      document.getElementById('newPhoneNumberConfirmed').value = '';
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const exitBudget = async (id) => {
+  try {
+    window.location.assign(`/App/Users/${id}`);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const deleteMyBudget = async (id, userId) => {
   try {
     const response = await axios({

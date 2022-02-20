@@ -43,14 +43,78 @@ const signToken = (id) => {
   });
 };
 
-const filterObj = (obj, ...allowedFields) => {
-  const newObj = {};
-  Object.keys(obj).forEach((el) => {
-    if (allowedFields.includes(el)) newObj[el] = obj[el];
+let filterObj = (object, allowedFields) => {
+  let filtered = Object.keys(object)
+    .filter((key) => allowedFields.includes(key))
+    .reduce((obj, key) => {
+      obj[key] = object[key];
+      return obj;
+    }, {});
+
+  let filteredValues = Object.values(filtered.accounts);
+  let filteredKeys = Object.keys(filtered.accounts);
+  let newEntries = [];
+
+  filteredKeys.forEach((key, i) => {
+    if (key === `unAllocated`) {
+      filteredValues[i].amount = Number(filteredValues[i].amount);
+    }
+
+    if (key === `monthlyBudget`) {
+      filteredValues[i].amount = Number(filteredValues[i].amount);
+    }
+
+    if (key === `emergencyFund`) {
+      filteredValues[i].emergencyFundGoal = Number(filteredValues[i].emergencyFundGoal);
+      filteredValues[i].amount = Number(filteredValues[i].amount);
+    }
+
+    if (key === `savingsFund`) {
+      filteredValues[i].savingsGoal = Number(filteredValues[i].savingsGoal);
+      filteredValues[i].savingsPercentage = Number(filteredValues[i].savingsPercentage);
+      filteredValues[i].amount = Number(filteredValues[i].amount);
+    }
+
+    if (key === `expenseFund`) {
+      filteredValues[i].amount = Number(filteredValues[i].amount);
+    }
+
+    if (key === `surplus`) {
+      filteredValues[i].amount = Number(filteredValues[i].amount);
+    }
+
+    if (key === `investmentFund`) {
+      filteredValues[i].investmentGoal = Number(filteredValues[i].investmentGoal);
+      filteredValues[i].investmentPercentage = Number(filteredValues[i].investmentPercentage);
+      filteredValues[i].amount = Number(filteredValues[i].amount);
+    }
+
+    if (key === `debt`) {
+      filteredValues[i].amount = Number(filteredValues[i].amount);
+      filteredValues[i].debtAmount = Number(filteredValues[i].debtAmount);
+    }
+
+    if (key === `tithing`) {
+      filteredValues[i].amount = Number(filteredValues[i].amount);
+    }
+    newEntries.push([key, filteredValues[i]]);
   });
-  return newObj;
+  // filtered = Object.fromEntries(newEntries);
+  return filtered;
+  // const newObj = {};
+  // Object.keys(object).forEach((el) => {
+  //   if (allowedFields.includes(el)) newObj[el] = object[el];
+  // });
+  // return newObj;
 };
 
+const specialFilter = (object, allowedFields) => {
+  const values = Object.values(object.accounts);
+  const keys = Object.keys(object.accounts);
+
+  let filtered = [keys, values];
+  return filtered;
+};
 const createAndSendToken = (user, statusCode, method, request, response, template, title, optionalData, status, message) => {
   const calendar = Calendar;
   const token = signToken(user.id);
@@ -120,43 +184,56 @@ exports.createBudget = catchAsync(async (request, response, next) => {
 
 exports.updateMyBudget = catchAsync(async (request, response, next) => {
   console.log('----------------------------------------------------------------');
+  console.log(`--------------------------------------------`);
+  console.log(`Request`);
+  console.log(`--------------------------------------------`);
   console.log(request.body);
   console.log('----------------------------------------------------------------');
-  const { id } = request.body;
-  const budget = await Budget.findById(`${id}`);
+  const { budgetId } = request.body;
+  const budget = await Budget.findById(`${budgetId}`);
 
   // CREATE ERROR IF USER TRIES TO POST PASSWORD DATA
   if (request.body.password || request.body.passwordConfirmed) {
     return next(new AppError(`This route is not for password updates.  Please use /updateMyPassword route.`, 400));
   }
-  // UPDATE USER DOCUMENT
-  const filteredBody = filterObj(request.body, 'name', 'savingsGoal', 'investmentGoal', 'emergencyFundGoal');
-  const updatedBudget = await User.findByIdAndUpdate(budget.id, filteredBody, { new: true, runValidators: true });
-  createAndSendToken(updatedUser, 200, `render`, request, response, `loggedIn`, `King Richard | Home`, { calendar: Calendar });
+  // UPDATE BUDGET DOCUMENT
+  const filteredBody = filterObj(request.body, [`name`, `accounts`]);
+  console.log(`--------------------------------------------`);
+  console.log(`Budget`);
+  console.log(`--------------------------------------------`);
+  console.log(`--------------------------------------------`);
+  console.log(budget);
+  console.log(`--------------------------------------------`);
+  console.log(`--------------------------------------------`);
+  console.log(`Filtered`);
+  console.log(`--------------------------------------------`);
+  console.log(`--------------------------------------------`);
+  console.log(filteredBody);
+  console.log(`--------------------------------------------`);
+
+  console.log(budget.id);
+
+  let updatedBudget = await Budget.findByIdAndUpdate(budget.id, filteredBody, { new: true, runValidators: true });
+  // // await budget.save();
+  console.log(updatedBudget);
+  // return response.status(200).json({
+  //   status: `Success`,
+  //   data: updatedBudget,
+  // });
+  // createAndSendToken(updatedUser, 200, `render`, request, response, `loggedIn`, `King Richard | Home`, { calendar: Calendar });
 });
 
 exports.deleteBudget = catchAsync(async (request, response, next) => {
-  console.log(`----------------------------------------------`);
-  console.log(request.body);
-  console.log(request.user.id);
-  console.log(request.originalUrl.split('/')[5]);
-  console.log(request.budget);
-  console.log(request.budgetId);
-  console.log(`----------------------------------------------`);
   const id = request.originalUrl.split('/')[5];
   const user = await User.findById(request.user.id);
 
-  console.log(`----------------------------------------------`);
-  console.log(user.budgets);
-  console.log(`----------------------------------------------`);
+  // REMOVING BUDGET FROM USERS BUDGETS.
   user.budgets = user.budgets.filter((b, i) => {
     if (b._id.toString() !== id) return b;
   });
-  console.log(`----------------------------------------------`);
-  console.log(user.budgets);
-  console.log(`----------------------------------------------`);
-
   await user.save({ validateBeforeSave: false });
+
+  // DELETING BUDGET FROM THE DATABASE
   await Budget.findByIdAndDelete(id);
   response.status(204).json({
     status: 'Success',

@@ -30,7 +30,11 @@ router.route(`/`).post(authController.protect, budgetController.createBudget);
 router.route(`/RetrieveBudget`).get(authController.protect, budgetController.retrieveBudgetInfo);
 
 router.route(`/:id/Dashboard`).get(authController.protect, budgetController.getBudgetDashboard);
-router.route(`/:id/Budget-Management`).get(authController.protect, budgetController.getBudgetManagement).delete(authController.protect, budgetController.deleteBudget);
+router
+  .route(`/:id/Budget-Management`)
+  .get(authController.protect, budgetController.getBudgetManagement)
+  .patch(authController.protect, budgetController.updateMyBudget)
+  .delete(authController.protect, budgetController.deleteBudget);
 router.route(`/:id/Edit-Category-Goals`).get(authController.protect, budgetController.getEditCategoryGoals);
 router.route(`/:id/Manage-Categories`).get(authController.protect, budgetController.getManageCategories);
 router.route(`/:id/Allocate-Income`).get(authController.protect, budgetController.getAllocateIncome);

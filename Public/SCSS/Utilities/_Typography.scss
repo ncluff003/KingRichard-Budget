@@ -344,7 +344,8 @@ html {
                     border: 0.3rem solid $primaryColor;
                     color: $colorOffWhite;
                   }
-                  option {
+                  option,
+                  &__option {
                     font-family: MADE Tommy Soft, Verdana, sans-serif;
                     color: $colorOffWhite;
                     font-weight: 300;
