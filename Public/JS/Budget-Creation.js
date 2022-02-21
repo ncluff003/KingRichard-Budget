@@ -132,8 +132,44 @@ const getUserInformation = async () => {
 // const userInfo = await Updating.getSomePersonals();
 // const user = userInfo.data.data.user;
 
+const getOverallBudget = (subCategories, overall) => {
+  let arrayOfTotals = [];
+  subCategories.forEach((sc, i) => {
+    const subCategoryTotal = sc.firstChild.nextSibling.firstChild.value;
+    arrayOfTotals.push(subCategoryTotal);
+  });
+  let initialValue = 0;
+  overall = arrayOfTotals.reduce((previous, current) => Number(previous) + Number(current), initialValue);
+  console.log(overall);
+  return overall;
+};
+
+const getOverallSpent = (subCategories, overall) => {
+  let arrayOfTotals = [];
+  subCategories.forEach((sc, i) => {
+    let subCategoryTotal = Number(sc.firstChild.nextSibling.nextSibling.firstChild.textContent);
+    if (subCategoryTotal === '' || subCategoryTotal === undefined || subCategoryTotal === null) subCategoryTotal = 0;
+    arrayOfTotals.push(subCategoryTotal);
+  });
+  let initialValue = 0;
+  overall = arrayOfTotals.reduce((previous, current) => Number(previous) + Number(current), initialValue);
+  console.log(overall);
+  return overall;
+};
+
+const getOverallPercentageSpent = (total, part) => {
+  let percent = (part / total).toFixed(2);
+  if (percent === NaN) percent = 0;
+  return percent;
+};
+
 const buildSubCategories = (categories, index, secondaryIndex, clickedItem) => {
   const timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
+  const money = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+  });
   /////////////////////////////////////////
   // SELECT SUB CATEGORY DISPLAY
   const subCategoryDisplay = document.querySelector('.sub-category-display');
@@ -146,6 +182,7 @@ const buildSubCategories = (categories, index, secondaryIndex, clickedItem) => {
   subCategoryDisplay.insertAdjacentElement('beforeend', subCategory);
   const numberOfSections = 5;
   let sectionIndex = 0;
+  const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
 
   while (sectionIndex < numberOfSections) {
     const subCategorySection = document.createElement('section');
@@ -166,6 +203,8 @@ const buildSubCategories = (categories, index, secondaryIndex, clickedItem) => {
     subCategoryTimingButton.classList.add('sub-category-display__sub-category__section__set-category-timing-button');
     subCategoryTimingButton.classList.add('r__sub-category-display__sub-category__section__set-category-timing-button');
     subCategoryTimingButton.textContent = `+ Timing`;
+
+    const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
     //////////////////////////////////////////
     // CREATE SUB CATEGORY TIMING DISPLAY
     if (sectionIndex === 0) {
@@ -187,43 +226,64 @@ const buildSubCategories = (categories, index, secondaryIndex, clickedItem) => {
         e.preventDefault();
         const overallBudget = document.querySelectorAll('.budget-single-goal-summary__amount');
         const individualPayments = document.querySelectorAll('.individual-payment');
-        let total = 0;
-        individualPayments.forEach((ip) => {
-          total += Number(ip.value);
-        });
-        overallBudget[0].textContent = `$${total}`;
-        overallBudget[2].textContent = `$${total}`;
+        // overallBudget[0].textContent = `${money.format(total)}`;
+        // overallBudget[2].textContent = `${money.format(total)}`;
+        let spent = subCategoryInput.closest('section').nextSibling.firstChild;
+        let remaining = subCategoryInput.closest('section').nextSibling.nextSibling.firstChild;
+        let percentageSpent = subCategoryInput.closest('section').nextSibling.nextSibling.nextSibling.firstChild;
+        let overallSpent = overallBudget[1];
+        let overallRemaining = overallBudget[2];
+        let overallPercentageSpent = overallBudget[3];
+        let total = getOverallBudget(subCategories, overallBudget[0]);
+        let part = getOverallSpent(subCategories, overallSpent);
+        let percentage = getOverallPercentageSpent(total, part);
+        overallBudget[0].textContent = money.format(getOverallBudget(subCategories, overallBudget[0]));
+        console.log(part, typeof part);
+        overallSpent.textContent = money.format(part);
+        overallRemaining.textContent = money.format(total - part);
+        overallPercentageSpent.textContent = `${percentage}%`;
+        spent.textContent = money.format(0);
+        remaining.textContent = money.format(subCategoryInput.value - 0);
+        // let singlePercentage = 0 / subCategoryInput.value;
+        // if (singlePercentage === NaN || singlePercentage === null || singlePercentage === undefined) singlePercentage = 0;
+        // percentageSpent = `${singlePercentage.toFixed(2)}%`;
       });
     }
     if (sectionIndex === 2) {
-      const subCategoryInput = document.createElement('input');
-      subCategoryInput.classList.add('sub-category-display__sub-category__section__input');
-      subCategoryInput.classList.add('r__sub-category-display__sub-category__section__input');
-      subCategoryInput.readOnly = true;
-      subCategoryInput.type = `number`;
-      subCategoryInput.min = 0;
-      subCategorySection.insertAdjacentElement('beforeend', subCategoryInput);
+      const subCategoryContent = document.createElement('p');
+      subCategoryContent.classList.add('sub-category-display__sub-category__section__content');
+      subCategoryContent.classList.add('r__sub-category-display__sub-category__section__content');
+      subCategorySection.insertAdjacentElement('beforeend', subCategoryContent);
     }
     if (sectionIndex === 3) {
-      const subCategoryInput = document.createElement('input');
-      subCategoryInput.classList.add('sub-category-display__sub-category__section__input');
-      subCategoryInput.classList.add('r__sub-category-display__sub-category__section__input');
-      subCategoryInput.readOnly = true;
-      subCategoryInput.type = `number`;
-      subCategoryInput.min = 0;
-      subCategorySection.insertAdjacentElement('beforeend', subCategoryInput);
+      const subCategoryContent = document.createElement('p');
+      subCategoryContent.classList.add('sub-category-display__sub-category__section__content');
+      subCategoryContent.classList.add('r__sub-category-display__sub-category__section__content');
+      subCategorySection.insertAdjacentElement('beforeend', subCategoryContent);
     }
     if (sectionIndex === 4) {
-      const subCategoryInput = document.createElement('input');
-      subCategoryInput.classList.add('sub-category-display__sub-category__section__input');
-      subCategoryInput.classList.add('r__sub-category-display__sub-category__section__input');
-      subCategoryInput.readOnly = true;
-      subCategoryInput.type = `number`;
-      subCategoryInput.min = 0;
-      subCategorySection.insertAdjacentElement('beforeend', subCategoryInput);
+      const subCategoryContent = document.createElement('p');
+      subCategoryContent.classList.add('sub-category-display__sub-category__section__content');
+      subCategoryContent.classList.add('r__sub-category-display__sub-category__section__content');
+      subCategorySection.insertAdjacentElement('beforeend', subCategoryContent);
     }
     sectionIndex++;
   }
+  const overallBudget = document.querySelectorAll('.budget-single-goal-summary__amount');
+  const individualPayments = document.querySelectorAll('.individual-payment');
+  subCategories.forEach((sc, i) => {
+    let input = sc.firstChild.nextSibling.firstChild;
+    let spent = sc.firstChild.nextSibling.nextSibling.firstChild;
+    let remaining = sc.firstChild.nextSibling.nextSibling.nextSibling.firstChild;
+    let percentageSpent = sc.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild;
+    let overallSpent = overallBudget[1];
+    let overallRemaining = overallBudget[2];
+    let overallPercentageSpent = overallBudget[3];
+    input.addEventListener('keyup', (e) => {
+      e.preventDefault();
+      // getOverallSpent(0, individualPayments[i].value, overallSpent);
+    });
+  });
 };
 
 const getNextWeekDayDate = (days, date, weekday) => {

@@ -541,6 +541,20 @@
             }
           }
         }
+        &__update-budget-categories-button-container {
+          &__button {
+            @include SizeAndPositioning(relative, 75%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
+            border: 0.3rem solid rgba($primaryColor, 0.8);
+            border-radius: 0.9rem;
+            background-color: transparent;
+            &:hover {
+              cursor: pointer;
+              background-color: $primaryColor;
+              border: 0.3rem solid $primaryColor;
+              transition: color 0.5s, background-color 0.5s, border 0.5s;
+            }
+          }
+        }
       }
     }
   }

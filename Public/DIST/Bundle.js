@@ -5324,16 +5324,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "_watchBudgetCreation": () => (/* binding */ _watchBudgetCreation)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
-/* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
-/* harmony import */ var _Create_Budget__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Create-Budget */ "./Public/JS/Create-Budget.js");
-/* harmony import */ var _Budget__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Budget */ "./Public/JS/Budget.js");
-/* harmony import */ var _Base_Forms__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Base-Forms */ "./Public/JS/Base-Forms.js");
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
+/* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
+/* harmony import */ var _Create_Budget__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Create-Budget */ "./Public/JS/Create-Budget.js");
+/* harmony import */ var _Budget__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Budget */ "./Public/JS/Budget.js");
+/* harmony import */ var _Base_Forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Base-Forms */ "./Public/JS/Base-Forms.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
 
@@ -5346,22 +5347,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Account = /*#__PURE__*/(0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__["default"])(function Account(options) {
-  (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__["default"])(this, Account);
+
+var Account = /*#__PURE__*/(0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__["default"])(function Account(options) {
+  (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4__["default"])(this, Account);
 
   this.amount = options.amount;
 });
 
 var Budget = /*#__PURE__*/function () {
   function Budget() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__["default"])(this, Budget);
+    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4__["default"])(this, Budget);
 
     this.name = '';
     this.accounts = {};
     this.mainCategories = [];
   }
 
-  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__["default"])(Budget, [{
+  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__["default"])(Budget, [{
     key: "_addName",
     value: function _addName(name) {
       this.name = name;
@@ -5369,7 +5371,7 @@ var Budget = /*#__PURE__*/function () {
   }, {
     key: "_addMainCategory",
     value: function _addMainCategory(icon, title) {
-      this.mainCategories.push(new _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__.MainCategory({
+      this.mainCategories.push(new _Budget_Categories__WEBPACK_IMPORTED_MODULE_6__.MainCategory({
         icon: icon,
         title: title
       }));
@@ -5377,7 +5379,7 @@ var Budget = /*#__PURE__*/function () {
   }, {
     key: "_addSubCategory",
     value: function _addSubCategory(index, title) {
-      this.mainCategories[index].subCategories.push(new _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__.SubCategory({
+      this.mainCategories[index].subCategories.push(new _Budget_Categories__WEBPACK_IMPORTED_MODULE_6__.SubCategory({
         title: title
       }));
     }
@@ -5448,7 +5450,7 @@ var Budget = /*#__PURE__*/function () {
   }, {
     key: "_submit",
     value: function _submit(budget, user) {
-      _Create_Budget__WEBPACK_IMPORTED_MODULE_7__.createBudget(budget, user);
+      _Create_Budget__WEBPACK_IMPORTED_MODULE_8__.createBudget(budget, user);
     }
   }]);
 
@@ -5504,14 +5506,14 @@ var _finishUpdatingSubCategories = function _finishUpdatingSubCategories(budget,
 };
 
 var checkUser = /*#__PURE__*/function () {
-  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default().mark(function _callee() {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5___default().mark(function _callee() {
     var userInfo, user;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default().wrap(function _callee$(_context) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return _Update_User__WEBPACK_IMPORTED_MODULE_6__.getSomePersonals();
+            return _Update_User__WEBPACK_IMPORTED_MODULE_7__.getSomePersonals();
 
           case 2:
             userInfo = _context.sent;
@@ -5532,14 +5534,14 @@ var checkUser = /*#__PURE__*/function () {
 }();
 
 var getUserInformation = /*#__PURE__*/function () {
-  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default().mark(function _callee2() {
+  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5___default().mark(function _callee2() {
     var userInfo, user, lastname;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default().wrap(function _callee2$(_context2) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5___default().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.next = 2;
-            return _Update_User__WEBPACK_IMPORTED_MODULE_6__.getSomePersonals();
+            return _Update_User__WEBPACK_IMPORTED_MODULE_7__.getSomePersonals();
 
           case 2:
             userInfo = _context2.sent;
@@ -5562,8 +5564,49 @@ var getUserInformation = /*#__PURE__*/function () {
 // const user = userInfo.data.data.user;
 
 
+var getOverallBudget = function getOverallBudget(subCategories, overall) {
+  var arrayOfTotals = [];
+  subCategories.forEach(function (sc, i) {
+    var subCategoryTotal = sc.firstChild.nextSibling.firstChild.value;
+    arrayOfTotals.push(subCategoryTotal);
+  });
+  var initialValue = 0;
+  overall = arrayOfTotals.reduce(function (previous, current) {
+    return Number(previous) + Number(current);
+  }, initialValue);
+  console.log(overall);
+  return overall;
+};
+
+var getOverallSpent = function getOverallSpent(subCategories, overall) {
+  console.log(overall.textContent);
+  var arrayOfTotals = [];
+  subCategories.forEach(function (sc, i) {
+    var subCategoryTotal = Number(sc.firstChild.nextSibling.nextSibling.firstChild.textContent);
+    if (subCategoryTotal === '' || subCategoryTotal === undefined || subCategoryTotal === null) subCategoryTotal = 0;
+    arrayOfTotals.push(subCategoryTotal);
+  });
+  var initialValue = 0;
+  overall = arrayOfTotals.reduce(function (previous, current) {
+    return Number(previous) + Number(current);
+  }, initialValue);
+  console.log(overall);
+  return overall;
+};
+
+var getOverallPercentageSpent = function getOverallPercentageSpent(total, part) {
+  var percent = (part / total).toFixed(2);
+  if (percent === NaN) percent = 0;
+  return percent;
+};
+
 var buildSubCategories = function buildSubCategories(categories, index, secondaryIndex, clickedItem) {
-  var timingFunctionContainer = document.querySelector('.sub-category-display__timing-container'); /////////////////////////////////////////
+  var timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
+  var money = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+  }); /////////////////////////////////////////
   // SELECT SUB CATEGORY DISPLAY
 
   var subCategoryDisplay = document.querySelector('.sub-category-display');
@@ -5575,8 +5618,9 @@ var buildSubCategories = function buildSubCategories(categories, index, secondar
   subCategoryDisplay.insertAdjacentElement('beforeend', subCategory);
   var numberOfSections = 5;
   var sectionIndex = 0;
+  var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
 
-  while (sectionIndex < numberOfSections) {
+  var _loop = function _loop() {
     var subCategorySection = document.createElement('section');
     subCategorySection.classList.add('sub-category-display__sub-category__section');
     subCategorySection.classList.add('r__sub-category-display__sub-category__section');
@@ -5592,7 +5636,8 @@ var buildSubCategories = function buildSubCategories(categories, index, secondar
     var subCategoryTimingButton = document.createElement('button');
     subCategoryTimingButton.classList.add('sub-category-display__sub-category__section__set-category-timing-button');
     subCategoryTimingButton.classList.add('r__sub-category-display__sub-category__section__set-category-timing-button');
-    subCategoryTimingButton.textContent = "+ Timing"; //////////////////////////////////////////
+    subCategoryTimingButton.textContent = "+ Timing";
+    var subCategories = document.querySelectorAll('.sub-category-display__sub-category'); //////////////////////////////////////////
     // CREATE SUB CATEGORY TIMING DISPLAY
 
     if (sectionIndex === 0) {
@@ -5613,57 +5658,78 @@ var buildSubCategories = function buildSubCategories(categories, index, secondar
       subCategoryInput.addEventListener('keyup', function (e) {
         e.preventDefault();
         var overallBudget = document.querySelectorAll('.budget-single-goal-summary__amount');
-        var individualPayments = document.querySelectorAll('.individual-payment');
-        var total = 0;
-        individualPayments.forEach(function (ip) {
-          total += Number(ip.value);
-        });
-        overallBudget[0].textContent = "$".concat(total);
-        overallBudget[2].textContent = "$".concat(total);
+        var individualPayments = document.querySelectorAll('.individual-payment'); // overallBudget[0].textContent = `${money.format(total)}`;
+        // overallBudget[2].textContent = `${money.format(total)}`;
+
+        var spent = subCategoryInput.closest('section').nextSibling.firstChild;
+        var remaining = subCategoryInput.closest('section').nextSibling.nextSibling.firstChild;
+        var percentageSpent = subCategoryInput.closest('section').nextSibling.nextSibling.nextSibling.firstChild;
+        var overallSpent = overallBudget[1];
+        var overallRemaining = overallBudget[2];
+        var overallPercentageSpent = overallBudget[3];
+        var total = getOverallBudget(subCategories, overallBudget[0]);
+        var part = getOverallSpent(subCategories, overallSpent);
+        var percentage = getOverallPercentageSpent(total, part);
+        overallBudget[0].textContent = money.format(getOverallBudget(subCategories, overallBudget[0]));
+        console.log(part, (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(part));
+        overallSpent.textContent = money.format(part);
+        overallRemaining.textContent = money.format(total - part);
+        overallPercentageSpent.textContent = "".concat(percentage, "%");
+        spent.textContent = money.format(0);
+        remaining.textContent = money.format(subCategoryInput.value - 0); // let singlePercentage = 0 / subCategoryInput.value;
+        // if (singlePercentage === NaN || singlePercentage === null || singlePercentage === undefined) singlePercentage = 0;
+        // percentageSpent = `${singlePercentage.toFixed(2)}%`;
       });
     }
 
     if (sectionIndex === 2) {
-      var _subCategoryInput = document.createElement('input');
-
-      _subCategoryInput.classList.add('sub-category-display__sub-category__section__input');
-
-      _subCategoryInput.classList.add('r__sub-category-display__sub-category__section__input');
-
-      _subCategoryInput.readOnly = true;
-      _subCategoryInput.type = "number";
-      _subCategoryInput.min = 0;
-      subCategorySection.insertAdjacentElement('beforeend', _subCategoryInput);
+      var subCategoryContent = document.createElement('p');
+      subCategoryContent.classList.add('sub-category-display__sub-category__section__content');
+      subCategoryContent.classList.add('r__sub-category-display__sub-category__section__content');
+      subCategorySection.insertAdjacentElement('beforeend', subCategoryContent);
     }
 
     if (sectionIndex === 3) {
-      var _subCategoryInput2 = document.createElement('input');
+      var _subCategoryContent = document.createElement('p');
 
-      _subCategoryInput2.classList.add('sub-category-display__sub-category__section__input');
+      _subCategoryContent.classList.add('sub-category-display__sub-category__section__content');
 
-      _subCategoryInput2.classList.add('r__sub-category-display__sub-category__section__input');
+      _subCategoryContent.classList.add('r__sub-category-display__sub-category__section__content');
 
-      _subCategoryInput2.readOnly = true;
-      _subCategoryInput2.type = "number";
-      _subCategoryInput2.min = 0;
-      subCategorySection.insertAdjacentElement('beforeend', _subCategoryInput2);
+      subCategorySection.insertAdjacentElement('beforeend', _subCategoryContent);
     }
 
     if (sectionIndex === 4) {
-      var _subCategoryInput3 = document.createElement('input');
+      var _subCategoryContent2 = document.createElement('p');
 
-      _subCategoryInput3.classList.add('sub-category-display__sub-category__section__input');
+      _subCategoryContent2.classList.add('sub-category-display__sub-category__section__content');
 
-      _subCategoryInput3.classList.add('r__sub-category-display__sub-category__section__input');
+      _subCategoryContent2.classList.add('r__sub-category-display__sub-category__section__content');
 
-      _subCategoryInput3.readOnly = true;
-      _subCategoryInput3.type = "number";
-      _subCategoryInput3.min = 0;
-      subCategorySection.insertAdjacentElement('beforeend', _subCategoryInput3);
+      subCategorySection.insertAdjacentElement('beforeend', _subCategoryContent2);
     }
 
     sectionIndex++;
+  };
+
+  while (sectionIndex < numberOfSections) {
+    _loop();
   }
+
+  var overallBudget = document.querySelectorAll('.budget-single-goal-summary__amount');
+  var individualPayments = document.querySelectorAll('.individual-payment');
+  subCategories.forEach(function (sc, i) {
+    var input = sc.firstChild.nextSibling.firstChild;
+    var spent = sc.firstChild.nextSibling.nextSibling.firstChild;
+    var remaining = sc.firstChild.nextSibling.nextSibling.nextSibling.firstChild;
+    var percentageSpent = sc.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild;
+    var overallSpent = overallBudget[1];
+    var overallRemaining = overallBudget[2];
+    var overallPercentageSpent = overallBudget[3];
+    input.addEventListener('keyup', function (e) {
+      e.preventDefault(); // getOverallSpent(0, individualPayments[i].value, overallSpent);
+    });
+  });
 };
 
 var getNextWeekDayDate = function getNextWeekDayDate(days, date, weekday) {
@@ -6232,7 +6298,7 @@ var setupSubCategoryCreation = function setupSubCategoryCreation(budget, index) 
     e.preventDefault();
     var subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
 
-    _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__._addSubCategory(budget, index);
+    _Budget_Categories__WEBPACK_IMPORTED_MODULE_6__._addSubCategory(budget, index);
 
     subCategoryCreateInput.focus();
     subCategoryCreateInput.value = '';
@@ -6455,10 +6521,10 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
 
   if (budgetContinueButton) {
     budgetContinueButton.addEventListener('click', /*#__PURE__*/function () {
-      var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default().mark(function _callee3(e) {
+      var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5___default().mark(function _callee3(e) {
         var userInfo, user, individualPayments, _individualPayments;
 
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default().wrap(function _callee3$(_context3) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5___default().wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
@@ -6476,7 +6542,7 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
                 // CHECK USER
 
                 _context3.next = 7;
-                return _Update_User__WEBPACK_IMPORTED_MODULE_6__.getSomePersonals();
+                return _Update_User__WEBPACK_IMPORTED_MODULE_7__.getSomePersonals();
 
               case 7:
                 userInfo = _context3.sent;
@@ -6488,9 +6554,9 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
                 // IF NOT LATTER DAY SAINT
 
                 if (currentPage + 1 === 2 && user.latterDaySaint === false) {
-                  _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__.createCategories(icon);
+                  _Budget_Categories__WEBPACK_IMPORTED_MODULE_6__.createCategories(icon);
 
-                  _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__._watchCreateCategoryButton(icon, budget);
+                  _Budget_Categories__WEBPACK_IMPORTED_MODULE_6__._watchCreateCategoryButton(icon, budget);
                 }
 
                 if (currentPage + 1 === 3 && user.latterDaySaint === false) {
@@ -6545,9 +6611,9 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
                 }
 
                 if (currentPage + 1 === 3 && user.latterDaySaint === true) {
-                  _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__.createCategories(icon);
+                  _Budget_Categories__WEBPACK_IMPORTED_MODULE_6__.createCategories(icon);
 
-                  _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__._watchCreateCategoryButton(icon, budget);
+                  _Budget_Categories__WEBPACK_IMPORTED_MODULE_6__._watchCreateCategoryButton(icon, budget);
                 }
 
                 if (currentPage + 1 === 4 && user.latterDaySaint === true) {
@@ -6608,7 +6674,7 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
 
   var budgetNavButton = document.querySelector('.budget-container__navigation-button-container__button');
 
-  _Budget__WEBPACK_IMPORTED_MODULE_8__._watchBudget();
+  _Budget__WEBPACK_IMPORTED_MODULE_9__._watchBudget();
 };
 
 /***/ }),

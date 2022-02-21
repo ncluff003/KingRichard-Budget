@@ -649,6 +649,11 @@ html {
                               color: $primaryColor;
                             }
                           }
+                          &__content {
+                            font-size: 2rem;
+                            color: rgba($primaryColor, 0.8);
+                            text-align: center;
+                          }
                         }
                         &:hover {
                           .sub-category-display__sub-category__section {
@@ -667,6 +672,9 @@ html {
                               &:focus {
                                 color: $primaryColor;
                               }
+                            }
+                            &__content {
+                              color: $colorOffWhite;
                             }
                           }
                         }
@@ -1450,11 +1458,35 @@ html {
                         font-size: 1.6rem;
                         color: $primaryColor;
                       }
+                      &__set-category-timing-button {
+                        font-size: 1.2rem;
+                        color: rgba($primaryColor, 0.8);
+                      }
+                      &__input {
+                        font-size: 2rem;
+                        color: rgba($primaryColor, 0.8);
+                        text-align: center;
+                        &:focus {
+                          color: $primaryColor;
+                        }
+                      }
                     }
                     &:hover {
                       .sub-category-display__sub-category__section {
                         &__content {
                           color: $colorOffWhite;
+                        }
+                        &__set-category-timing-button {
+                          color: rgba($colorOffWhite, 0.8);
+                          &:hover {
+                            color: $colorOffWhite;
+                          }
+                        }
+                        &__input {
+                          color: rgba($colorOffWhite, 0.8);
+                          &:focus {
+                            color: $primaryColor;
+                          }
                         }
                       }
                     }
@@ -1532,6 +1564,15 @@ html {
                     }
                   }
                 }
+              }
+            }
+          }
+          &__update-budget-categories-button-container {
+            &__button {
+              font-size: 2rem;
+              color: rgba($primaryColor, 0.8);
+              &:hover {
+                color: $colorOffWhite;
               }
             }
           }

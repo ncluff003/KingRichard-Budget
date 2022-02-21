@@ -899,6 +899,9 @@
                               background-color: $colorOffWhite;
                             }
                           }
+                          &__content {
+                            @include SizeAndPositioning(relative, 75%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+                          }
                         }
                         &:hover {
                           cursor: pointer;
@@ -910,6 +913,9 @@
                               &:focus {
                                 outline: none;
                               }
+                            }
+                            &__content {
+                              transition: color 0.5s;
                             }
                           }
                         }

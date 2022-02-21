@@ -55,7 +55,7 @@ block Budget-Content
             section.sub-category-display__sub-category.r__sub-category-display__sub-category(data-subCategory=`${mainIndex}`) 
               section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
                 p.sub-category-display__sub-category__section__content.r__sub-category-display__sub-category__section__content= `${subCategory.title}`
-                button.sub-category-display__subcategory__section__set-category-timing-button.r__sub-category-display__subcategory__section__set-category-timing-button(type="button") + Timing
+                button.sub-category-display__sub-category__section__set-category-timing-button.r__sub-category-display__subcategory__section__set-category-timing-button(type="button") + Timing
               section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
                 input.sub-category-display__sub-category__section__input.r__sub-category-display__sub-category__section__input.individual-payment.r__individual-payment(type="number" min="0" placeholder="Insert Individual Payment Amount" value=`${subCategory.goalAmount.toFixed(2)}`)
               section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
@@ -109,3 +109,5 @@ block Budget-Content
                 each day, index in weekdays
                   option.sub-category-display__timing-container__weekly-container__label__select__option.sub-category-display__timing-container__weekly-container__label__select__option(value=`${index}`)= `${day}`
             button.sub-category-display__timing-container__weekly-container__submit.r__sub-category-display__timing-container__weekly-container__submit.timing-submit-button Submit
+  section.budget-container__update-budget-categories-button-container.r__budget-container__update-budget-categories-button-container
+    button.budget-container__update-budget-categories-button-container__button.r__budget-container__update-budget-categories-button-container__button(type="submit") Update Budget Goals
