@@ -5579,11 +5579,10 @@ var getOverallBudget = function getOverallBudget(subCategories, overall) {
 };
 
 var getOverallSpent = function getOverallSpent(subCategories, overall) {
-  console.log(overall.textContent);
   var arrayOfTotals = [];
   subCategories.forEach(function (sc, i) {
     var subCategoryTotal = Number(sc.firstChild.nextSibling.nextSibling.firstChild.textContent);
-    if (subCategoryTotal === '' || subCategoryTotal === undefined || subCategoryTotal === null) subCategoryTotal = 0;
+    sc.firstChild.nextSibling.nextSibling.firstChild.textContent === "$".concat(sc.firstChild.nextSibling.nextSibling.firstChild.textContent.split('$')[1]) ? subCategoryTotal = Number(sc.firstChild.nextSibling.nextSibling.firstChild.textContent.split('$')[1]) : subCategoryTotal = 0;
     arrayOfTotals.push(subCategoryTotal);
   });
   var initialValue = 0;
@@ -5598,6 +5597,12 @@ var getOverallPercentageSpent = function getOverallPercentageSpent(total, part) 
   var percent = (part / total).toFixed(2);
   if (percent === NaN) percent = 0;
   return percent;
+};
+
+var getSinglePercentageSpent = function getSinglePercentageSpent(spent, total) {
+  var percentage = (spent / total).toFixed(2);
+  console.log(percentage);
+  return percentage;
 };
 
 var buildSubCategories = function buildSubCategories(categories, index, secondaryIndex, clickedItem) {
@@ -5679,6 +5684,8 @@ var buildSubCategories = function buildSubCategories(categories, index, secondar
         remaining.textContent = money.format(subCategoryInput.value - 0); // let singlePercentage = 0 / subCategoryInput.value;
         // if (singlePercentage === NaN || singlePercentage === null || singlePercentage === undefined) singlePercentage = 0;
         // percentageSpent = `${singlePercentage.toFixed(2)}%`;
+
+        percentageSpent.textContent = "".concat(getSinglePercentageSpent(Number(spent.textContent.split('$')[1]), subCategoryInput.value), "%");
       });
     }
 

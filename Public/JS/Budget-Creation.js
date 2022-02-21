@@ -148,7 +148,9 @@ const getOverallSpent = (subCategories, overall) => {
   let arrayOfTotals = [];
   subCategories.forEach((sc, i) => {
     let subCategoryTotal = Number(sc.firstChild.nextSibling.nextSibling.firstChild.textContent);
-    if (subCategoryTotal === '' || subCategoryTotal === undefined || subCategoryTotal === null) subCategoryTotal = 0;
+    sc.firstChild.nextSibling.nextSibling.firstChild.textContent === `$${sc.firstChild.nextSibling.nextSibling.firstChild.textContent.split('$')[1]}`
+      ? (subCategoryTotal = Number(sc.firstChild.nextSibling.nextSibling.firstChild.textContent.split('$')[1]))
+      : (subCategoryTotal = 0);
     arrayOfTotals.push(subCategoryTotal);
   });
   let initialValue = 0;
@@ -161,6 +163,12 @@ const getOverallPercentageSpent = (total, part) => {
   let percent = (part / total).toFixed(2);
   if (percent === NaN) percent = 0;
   return percent;
+};
+
+const getSinglePercentageSpent = (spent, total) => {
+  let percentage = (spent / total).toFixed(2);
+  console.log(percentage);
+  return percentage;
 };
 
 const buildSubCategories = (categories, index, secondaryIndex, clickedItem) => {
@@ -244,9 +252,7 @@ const buildSubCategories = (categories, index, secondaryIndex, clickedItem) => {
         overallPercentageSpent.textContent = `${percentage}%`;
         spent.textContent = money.format(0);
         remaining.textContent = money.format(subCategoryInput.value - 0);
-        // let singlePercentage = 0 / subCategoryInput.value;
-        // if (singlePercentage === NaN || singlePercentage === null || singlePercentage === undefined) singlePercentage = 0;
-        // percentageSpent = `${singlePercentage.toFixed(2)}%`;
+        percentageSpent.textContent = `${getSinglePercentageSpent(Number(spent.textContent.split('$')[1]), subCategoryInput.value)}%`;
       });
     }
     if (sectionIndex === 2) {
