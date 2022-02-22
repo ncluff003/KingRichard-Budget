@@ -20,13 +20,13 @@ block Budget-Content
       - if (isNaN(overallPercentageSpent)) overallPercentageSpent = 0
       section.budget-single-goal-summary.r__budget-single-goal-summary
         p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Overall Budget
-        p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `$${overallBudget}`
+        p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `$${overallBudget.toFixed(2)}`
       section.budget-single-goal-summary.r__budget-single-goal-summary
         p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Overall Spent
-        p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `$${overallSpent}`
+        p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `$${overallSpent.toFixed(2)}`
       section.budget-single-goal-summary.r__budget-single-goal-summary
         p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Overall Remaining
-        p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `$${overallBudget - overallSpent}`
+        p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `$${(overallBudget - overallSpent).toFixed(2)}`
       section.budget-single-goal-summary.r__budget-single-goal-summary
         p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Percentage Spent
         p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `${(overallPercentageSpent).toFixed(2)}%`
@@ -52,18 +52,18 @@ block Budget-Content
           each subCategory, subIndex in category.subCategories 
             - let subOverallPercentageSpent = subCategory.amountSpent / subCategory.goalAmount
             - if (isNaN(subOverallPercentageSpent)) subOverallPercentageSpent = 0
-            section.sub-category-display__sub-category.r__sub-category-display__sub-category(data-subCategory=`${mainIndex}`) 
-              section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
-                p.sub-category-display__sub-category__section__content.r__sub-category-display__sub-category__section__content= `${subCategory.title}`
-                button.sub-category-display__sub-category__section__set-category-timing-button.r__sub-category-display__subcategory__section__set-category-timing-button(type="button") + Timing
-              section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
-                input.sub-category-display__sub-category__section__input.r__sub-category-display__sub-category__section__input.individual-payment.r__individual-payment(type="number" min="0" placeholder="Insert Individual Payment Amount" value=`${subCategory.goalAmount.toFixed(2)}`)
-              section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
-                p.sub-category-display__sub-category__section__content.r__sub-category-display__sub-category__section__content= `$${subCategory.amountSpent.toFixed(2)}`
-              section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
-                p.sub-category-display__sub-category__section__content.r__sub-category-display__sub-category__section__content= `$${(subCategory.goalAmount - subCategory.amountSpent).toFixed(2)}`
-              section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
-                p.sub-category-display__sub-category__section__content.r__sub-category-display__sub-category__section__content= `${(subOverallPercentageSpent).toFixed(0)}%`
+              section.sub-category-display__sub-category.r__sub-category-display__sub-category(data-subCategory=`${mainIndex}`) 
+                section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
+                  p.sub-category-display__sub-category__section__content.r__sub-category-display__sub-category__section__content= `${subCategory.title}`
+                  button.sub-category-display__sub-category__section__set-category-timing-button.r__sub-category-display__subcategory__section__set-category-timing-button(type="button") + Timing
+                section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
+                  input.sub-category-display__sub-category__section__input.r__sub-category-display__sub-category__section__input.individual-payment.r__individual-payment(type="number" min="0" placeholder="Insert Individual Payment Amount" value=`${subCategory.goalAmount.toFixed(2)}`)
+                section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
+                  p.sub-category-display__sub-category__section__content.r__sub-category-display__sub-category__section__content= `$${subCategory.amountSpent.toFixed(2)}`
+                section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
+                  p.sub-category-display__sub-category__section__content.r__sub-category-display__sub-category__section__content= `$${(subCategory.goalAmount - subCategory.amountSpent).toFixed(2)}`
+                section.sub-category-display__sub-category__section.r__sub-category-display__sub-category__section
+                  p.sub-category-display__sub-category__section__content.r__sub-category-display__sub-category__section__content= `${(subOverallPercentageSpent).toFixed(2)}%`
         section.sub-category-display__timing-container.r__sub-category-display__timing-container.sub-category-display__timing-container__hidden
           i.fas.fa-times.sub-category-display__timing-container__close.r__sub-category-display__timing-container__close
           section.sub-category-display__timing-container__monthly-container.r__sub-category-display__timing-container__monthly-container

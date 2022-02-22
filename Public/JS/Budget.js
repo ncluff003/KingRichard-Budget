@@ -1,6 +1,7 @@
 import * as Updating from './Update-User';
 import * as Calendar from './FrontEnd-Calendar';
 import * as Budget from './Manage-Budget';
+import * as Edit from './Budget-Creation';
 
 // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
@@ -24,19 +25,181 @@ const watchForBudgetExit = () => {
   });
 };
 
-const buildUpdateObject = (budget, user, budgetName, customProperties, objects) => {
-  let budgetUpdateOpject = {
-    name: budgetName,
-    accounts: {},
+const setMainCategoryTitle = (mainCategory, title) => {
+  return (mainCategory.title = title);
+};
+
+const buildUpdateObject = (budget, user, customObject, budgetName, customProperties, objects) => {
+  let budgetUpdateObject = {
     budgetId: budget._id,
     userId: user._id,
   };
 
-  customProperties.forEach((c, i) => {
-    budgetUpdateOpject.accounts[c] = objects[i];
-  });
+  if (customObject === `Accounts`) {
+    budgetUpdateObject.name = budgetName;
+    budgetUpdateObject.accounts = {};
+    customProperties.forEach((c, i) => {
+      budgetUpdateObject.accounts[c] = objects[i];
+    });
+  }
 
-  return budgetUpdateOpject;
+  if (customObject === `Main Categories`) {
+    // budget.mainCategories would be the Custom Properties
+    const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
+    const mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
+    const mainCategoryObject = {};
+    const subCategoryObject = {};
+    console.log(customProperties);
+    let emptyArray = [];
+    budgetUpdateObject.mainCategories = [];
+    let mainCategoryIndex = 0;
+    let subCategoryIndex = 0;
+    let entries = [];
+    const subCategoriesSplitArray = [];
+    let subCategorySubArray = [];
+
+    /*
+    After some thought on how it is done right now, it would not work this way.
+    Every sub-category has different details.  All might have titles, but others have timings, and so much more is different than just the timings.
+    Each have titles, goal amounts, amounts spent, amounts remaining, percentage spent, whether or not they are surplus.
+    They differ in their timing object.
+    
+    I will need to make another budget than this.  I'll take notes of how I created it, so that I can use a similar one.  I just need to put timing options
+    into it because I want to see from the database's point of view what goes into that.
+    */
+
+    customProperties.forEach((cp, i) => {
+      budgetUpdateObject.mainCategories.push(
+        Object.fromEntries([
+          [`title`, mainCategoryTitles[mainCategoryIndex].textContent],
+          [`subCategories`, emptyArray],
+        ])
+      );
+      mainCategoryIndex++;
+    });
+    mainCategoryIndex = 0;
+    subCategories.forEach((sc, i) => {
+      let title = sc.firstChild.nextSibling.firstChild.textContent;
+      let goalAmount = Number(sc.firstChild.nextSibling.nextSibling.firstChild.value);
+      let amountSpent = Number(sc.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+      let amountRemaining = Number(sc.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+      let percentageSpent = Number(sc.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
+      console.log(title, goalAmount, amountSpent, amountRemaining, percentageSpent);
+      if (Number(sc.dataset.subcategory) === mainCategoryIndex) {
+        budgetUpdateObject.mainCategories[mainCategoryIndex].subCategories.push(
+          Object.fromEntries([
+            [`title`, title],
+            [`goalAmount`, goalAmount],
+            [`amountSpent`, amountSpent],
+            [`amountRemaining`, amountRemaining],
+            [`percentageSpent`, percentageSpent],
+          ])
+        );
+
+        console.log(budgetUpdateObject.mainCategories[mainCategoryIndex].subCategories.length);
+        console.log(document.querySelectorAll(`.sub-category-display__sub-category[data-subcategory="${mainCategoryIndex}"]`).length);
+
+        budgetUpdateObject.mainCategories[mainCategoryIndex].subCategories.length ===
+        Array.from(document.querySelectorAll(`.sub-category-display__sub-category[data-subcategory="${mainCategoryIndex}"]`).length)
+          ? mainCategoryIndex++
+          : console.log(`Somehow, we do not match! 😠`);
+      }
+    });
+
+    console.log(budgetUpdateObject);
+  }
+
+  return budgetUpdateObject;
+};
+
+const getSinglePercentageSpent = (spent, total) => {
+  let percentage = (spent / total).toFixed(2);
+  return percentage;
+};
+
+const getOverallPercentageSpent = (total, part) => {
+  let percent = (part / total).toFixed(2);
+  if (percent === NaN) percent = 0;
+  return percent;
+};
+
+const getOverallSpent = (subCategories, overall) => {
+  let arrayOfTotals = [];
+  subCategories.forEach((sc, i) => {
+    let subCategoryTotal = Number(sc.firstChild.nextSibling.nextSibling.firstChild.textContent);
+    sc.firstChild.nextSibling.nextSibling.firstChild.textContent === `$${sc.firstChild.nextSibling.nextSibling.firstChild.textContent.split('$')[1]}`
+      ? (subCategoryTotal = Number(sc.firstChild.nextSibling.nextSibling.firstChild.textContent.split('$')[1]))
+      : (subCategoryTotal = 0);
+    arrayOfTotals.push(subCategoryTotal);
+  });
+  let initialValue = 0;
+  overall = arrayOfTotals.reduce((previous, current) => Number(previous) + Number(current), initialValue);
+  return overall;
+};
+
+const getOverallBudget = (subCategories, overall) => {
+  let arrayOfTotals = [];
+  subCategories.forEach((sc, i) => {
+    const subCategoryTotal = sc.firstChild.nextSibling.nextSibling.firstChild.value;
+    arrayOfTotals.push(subCategoryTotal);
+  });
+  let initialValue = 0;
+  overall = arrayOfTotals.reduce((previous, current) => Number(previous) + Number(current), initialValue);
+  console.log(overall);
+  return overall;
+};
+
+const _watchEditCategoryGoals = (budget, user) => {
+  const editCategoryGoalsContainer = document.querySelector('.budget-container__edit-category-goals-container--large');
+  if (editCategoryGoalsContainer) {
+    const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
+    const timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
+    const editCategoryGoalsSubmit = document.querySelector('.budget-container__update-budget-categories-button-container__button');
+    Edit.setupTimingFunctionContainer(timingFunctionContainer);
+    let clickedItem, selectedTiming;
+    let subCategoryIndex = 0;
+    Edit.watchForSettingTiming(budget, subCategoryIndex, clickedItem, selectedTiming);
+    console.log(budget, user);
+
+    const money = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+    });
+    const individualPayments = document.querySelectorAll('.individual-payment');
+    individualPayments.forEach((ip, i) => {
+      ip.addEventListener('keyup', (e) => {
+        e.preventDefault();
+        console.log(ip.value);
+        const overallBudget = document.querySelectorAll('.budget-single-goal-summary__amount');
+        console.log(overallBudget[0]);
+        let spent = ip.closest('section').nextSibling.firstChild;
+        let remaining = ip.closest('section').nextSibling.nextSibling.firstChild;
+        let percentageSpent = ip.closest('section').nextSibling.nextSibling.nextSibling.firstChild;
+        let overallSpent = overallBudget[1];
+        let overallRemaining = overallBudget[2];
+        let overallPercentageSpent = overallBudget[3];
+        let total = getOverallBudget(subCategories, overallBudget[0]);
+        let part = getOverallSpent(subCategories, overallSpent);
+        let percentage = getOverallPercentageSpent(total, part);
+        overallBudget[0].textContent = money.format(getOverallBudget(subCategories, overallBudget[0]));
+        overallSpent.textContent = money.format(part);
+        overallRemaining.textContent = money.format(total - part);
+        overallPercentageSpent.textContent = `${percentage}%`;
+        spent.textContent = money.format(spent.textContent.split('$')[1]);
+        remaining.textContent = money.format(ip.value - 0);
+        percentageSpent.textContent = `${getSinglePercentageSpent(Number(spent.textContent.split('$')[1]), ip.value)}%`;
+      });
+      ip.addEventListener('blur', (e) => {
+        e.preventDefault();
+        ip.value = Number(ip.value).toFixed(2);
+      });
+    });
+    editCategoryGoalsSubmit.addEventListener('click', (e) => {
+      e.preventDefault();
+      const newBudget = buildUpdateObject(budget, user, `Main Categories`, budget.name, budget.mainCategories, `Objects`);
+    });
+  }
 };
 
 const getTithing = (budget, user, currentTithingSetting) => {
@@ -115,6 +278,7 @@ const watchBudgetManatementUpdates = (emergencySetting, currentTithingSetting, b
   const newBudget = buildUpdateObject(
     budget,
     user,
+    `Accounts`,
     budgetName,
     [`unAllocated`, `monthlyBudget`, `emergencyFund`, `savingsFund`, `expenseFund`, `surplus`, `investmentFund`, `debt`, `tithing`],
     [
@@ -689,6 +853,9 @@ export const _watchBudget = async () => {
   // SETUP BILL CURRENT MONTH
   _setupCurrentMonth();
   ////////////////////////////////////////////
-  // SETUP BILL CURRENT MONTH
+  // WATCH BUDGET MANAGEMENT PAGE
   _watchBudgetManagement(currentBudget, user);
+  ////////////////////////////////////////////
+  // WATCH EDIT CATEGORY GOALS PAGE
+  _watchEditCategoryGoals(currentBudget, user);
 };

@@ -5321,6 +5321,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Budget": () => (/* binding */ Budget),
 /* harmony export */   "_watchEmergencyGoalSettings": () => (/* binding */ _watchEmergencyGoalSettings),
+/* harmony export */   "watchForSettingTiming": () => (/* binding */ watchForSettingTiming),
+/* harmony export */   "setupTimingFunctionContainer": () => (/* binding */ setupTimingFunctionContainer),
+/* harmony export */   "setupGoalSetting": () => (/* binding */ setupGoalSetting),
 /* harmony export */   "_watchBudgetCreation": () => (/* binding */ _watchBudgetCreation)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
@@ -5663,9 +5666,7 @@ var buildSubCategories = function buildSubCategories(categories, index, secondar
       subCategoryInput.addEventListener('keyup', function (e) {
         e.preventDefault();
         var overallBudget = document.querySelectorAll('.budget-single-goal-summary__amount');
-        var individualPayments = document.querySelectorAll('.individual-payment'); // overallBudget[0].textContent = `${money.format(total)}`;
-        // overallBudget[2].textContent = `${money.format(total)}`;
-
+        var individualPayments = document.querySelectorAll('.individual-payment');
         var spent = subCategoryInput.closest('section').nextSibling.firstChild;
         var remaining = subCategoryInput.closest('section').nextSibling.nextSibling.firstChild;
         var percentageSpent = subCategoryInput.closest('section').nextSibling.nextSibling.nextSibling.firstChild;
@@ -5681,10 +5682,7 @@ var buildSubCategories = function buildSubCategories(categories, index, secondar
         overallRemaining.textContent = money.format(total - part);
         overallPercentageSpent.textContent = "".concat(percentage, "%");
         spent.textContent = money.format(0);
-        remaining.textContent = money.format(subCategoryInput.value - 0); // let singlePercentage = 0 / subCategoryInput.value;
-        // if (singlePercentage === NaN || singlePercentage === null || singlePercentage === undefined) singlePercentage = 0;
-        // percentageSpent = `${singlePercentage.toFixed(2)}%`;
-
+        remaining.textContent = money.format(subCategoryInput.value - 0);
         percentageSpent.textContent = "".concat(getSinglePercentageSpent(Number(spent.textContent.split('$')[1]), subCategoryInput.value), "%");
       });
     }
@@ -6130,7 +6128,6 @@ var watchForSettingTiming = function watchForSettingTiming(budget, index, clicke
   });
 }; /////////////////////////////////////////
 // SET UP TIMING FUNCTION CONTAINER
-
 
 var setupTimingFunctionContainer = function setupTimingFunctionContainer(container, timing) {
   var closeTimingFunctionContainer = document.querySelector('.sub-category-display__timing-container__close'); /////////////////////////////////////////
@@ -6703,7 +6700,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
 /* harmony import */ var _FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FrontEnd-Calendar */ "./Public/JS/FrontEnd-Calendar.js");
 /* harmony import */ var _Manage_Budget__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Manage-Budget */ "./Public/JS/Manage-Budget.js");
+/* harmony import */ var _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Budget-Creation */ "./Public/JS/Budget-Creation.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
 
 
 
@@ -6730,17 +6729,164 @@ var watchForBudgetExit = function watchForBudgetExit() {
   });
 };
 
-var buildUpdateObject = function buildUpdateObject(budget, user, budgetName, customProperties, objects) {
-  var budgetUpdateOpject = {
-    name: budgetName,
-    accounts: {},
+var setMainCategoryTitle = function setMainCategoryTitle(mainCategory, title) {
+  return mainCategory.title = title;
+};
+
+var buildUpdateObject = function buildUpdateObject(budget, user, customObject, budgetName, customProperties, objects) {
+  var budgetUpdateObject = {
     budgetId: budget._id,
     userId: user._id
   };
-  customProperties.forEach(function (c, i) {
-    budgetUpdateOpject.accounts[c] = objects[i];
+
+  if (customObject === "Accounts") {
+    budgetUpdateObject.name = budgetName;
+    budgetUpdateObject.accounts = {};
+    customProperties.forEach(function (c, i) {
+      budgetUpdateObject.accounts[c] = objects[i];
+    });
+  }
+
+  if (customObject === "Main Categories") {
+    // budget.mainCategories would be the Custom Properties
+    var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
+    var mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
+    var mainCategoryObject = {};
+    var subCategoryObject = {};
+    console.log(customProperties);
+    var emptyArray = [];
+    budgetUpdateObject.mainCategories = [];
+    var mainCategoryIndex = 0;
+    var subCategoryIndex = 0;
+    var entries = [];
+    var subCategoriesSplitArray = [];
+    var subCategorySubArray = [];
+    /*
+    After some thought on how it is done right now, it would not work this way.
+    Every sub-category has different details.  All might have titles, but others have timings, and so much more is different than just the timings.
+    Each have titles, goal amounts, amounts spent, amounts remaining, percentage spent, whether or not they are surplus.
+    They differ in their timing object.
+    
+    I will need to make another budget than this.  I'll take notes of how I created it, so that I can use a similar one.  I just need to put timing options
+    into it because I want to see from the database's point of view what goes into that.
+    */
+
+    customProperties.forEach(function (cp, i) {
+      budgetUpdateObject.mainCategories.push(Object.fromEntries([["title", mainCategoryTitles[mainCategoryIndex].textContent], ["subCategories", emptyArray]]));
+      mainCategoryIndex++;
+    });
+    mainCategoryIndex = 0;
+    subCategories.forEach(function (sc, i) {
+      var title = sc.firstChild.nextSibling.firstChild.textContent;
+      var goalAmount = Number(sc.firstChild.nextSibling.nextSibling.firstChild.value);
+      var amountSpent = Number(sc.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+      var amountRemaining = Number(sc.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+      var percentageSpent = Number(sc.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
+      console.log(title, goalAmount, amountSpent, amountRemaining, percentageSpent);
+
+      if (Number(sc.dataset.subcategory) === mainCategoryIndex) {
+        budgetUpdateObject.mainCategories[mainCategoryIndex].subCategories.push(Object.fromEntries([["title", title], ["goalAmount", goalAmount], ["amountSpent", amountSpent], ["amountRemaining", amountRemaining], ["percentageSpent", percentageSpent]]));
+        console.log(budgetUpdateObject.mainCategories[mainCategoryIndex].subCategories.length);
+        console.log(document.querySelectorAll(".sub-category-display__sub-category[data-subcategory=\"".concat(mainCategoryIndex, "\"]")).length);
+        budgetUpdateObject.mainCategories[mainCategoryIndex].subCategories.length === Array.from(document.querySelectorAll(".sub-category-display__sub-category[data-subcategory=\"".concat(mainCategoryIndex, "\"]")).length) ? mainCategoryIndex++ : console.log("Somehow, we do not match! \uD83D\uDE20");
+      }
+    });
+    console.log(budgetUpdateObject);
+  }
+
+  return budgetUpdateObject;
+};
+
+var getSinglePercentageSpent = function getSinglePercentageSpent(spent, total) {
+  var percentage = (spent / total).toFixed(2);
+  return percentage;
+};
+
+var getOverallPercentageSpent = function getOverallPercentageSpent(total, part) {
+  var percent = (part / total).toFixed(2);
+  if (percent === NaN) percent = 0;
+  return percent;
+};
+
+var getOverallSpent = function getOverallSpent(subCategories, overall) {
+  var arrayOfTotals = [];
+  subCategories.forEach(function (sc, i) {
+    var subCategoryTotal = Number(sc.firstChild.nextSibling.nextSibling.firstChild.textContent);
+    sc.firstChild.nextSibling.nextSibling.firstChild.textContent === "$".concat(sc.firstChild.nextSibling.nextSibling.firstChild.textContent.split('$')[1]) ? subCategoryTotal = Number(sc.firstChild.nextSibling.nextSibling.firstChild.textContent.split('$')[1]) : subCategoryTotal = 0;
+    arrayOfTotals.push(subCategoryTotal);
   });
-  return budgetUpdateOpject;
+  var initialValue = 0;
+  overall = arrayOfTotals.reduce(function (previous, current) {
+    return Number(previous) + Number(current);
+  }, initialValue);
+  return overall;
+};
+
+var getOverallBudget = function getOverallBudget(subCategories, overall) {
+  var arrayOfTotals = [];
+  subCategories.forEach(function (sc, i) {
+    var subCategoryTotal = sc.firstChild.nextSibling.nextSibling.firstChild.value;
+    arrayOfTotals.push(subCategoryTotal);
+  });
+  var initialValue = 0;
+  overall = arrayOfTotals.reduce(function (previous, current) {
+    return Number(previous) + Number(current);
+  }, initialValue);
+  console.log(overall);
+  return overall;
+};
+
+var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, user) {
+  var editCategoryGoalsContainer = document.querySelector('.budget-container__edit-category-goals-container--large');
+
+  if (editCategoryGoalsContainer) {
+    var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
+    var timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
+    var editCategoryGoalsSubmit = document.querySelector('.budget-container__update-budget-categories-button-container__button');
+    _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__.setupTimingFunctionContainer(timingFunctionContainer);
+    var clickedItem, selectedTiming;
+    var subCategoryIndex = 0;
+    _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__.watchForSettingTiming(budget, subCategoryIndex, clickedItem, selectedTiming);
+    console.log(budget, user);
+    var money = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2
+    });
+    var individualPayments = document.querySelectorAll('.individual-payment');
+    individualPayments.forEach(function (ip, i) {
+      ip.addEventListener('keyup', function (e) {
+        e.preventDefault();
+        console.log(ip.value);
+        var overallBudget = document.querySelectorAll('.budget-single-goal-summary__amount');
+        console.log(overallBudget[0]);
+        var spent = ip.closest('section').nextSibling.firstChild;
+        var remaining = ip.closest('section').nextSibling.nextSibling.firstChild;
+        var percentageSpent = ip.closest('section').nextSibling.nextSibling.nextSibling.firstChild;
+        var overallSpent = overallBudget[1];
+        var overallRemaining = overallBudget[2];
+        var overallPercentageSpent = overallBudget[3];
+        var total = getOverallBudget(subCategories, overallBudget[0]);
+        var part = getOverallSpent(subCategories, overallSpent);
+        var percentage = getOverallPercentageSpent(total, part);
+        overallBudget[0].textContent = money.format(getOverallBudget(subCategories, overallBudget[0]));
+        overallSpent.textContent = money.format(part);
+        overallRemaining.textContent = money.format(total - part);
+        overallPercentageSpent.textContent = "".concat(percentage, "%");
+        spent.textContent = money.format(spent.textContent.split('$')[1]);
+        remaining.textContent = money.format(ip.value - 0);
+        percentageSpent.textContent = "".concat(getSinglePercentageSpent(Number(spent.textContent.split('$')[1]), ip.value), "%");
+      });
+      ip.addEventListener('blur', function (e) {
+        e.preventDefault();
+        ip.value = Number(ip.value).toFixed(2);
+      });
+    });
+    editCategoryGoalsSubmit.addEventListener('click', function (e) {
+      e.preventDefault();
+      var newBudget = buildUpdateObject(budget, user, "Main Categories", budget.name, budget.mainCategories, "Objects");
+    });
+  }
 };
 
 var getTithing = function getTithing(budget, user, currentTithingSetting) {
@@ -6820,7 +6966,7 @@ var watchBudgetManatementUpdates = function watchBudgetManatementUpdates(emergen
   }
 
   console.log(budgetName, savingsFund, investmentFund, emergencyFund, tithing);
-  var newBudget = buildUpdateObject(budget, user, budgetName, ["unAllocated", "monthlyBudget", "emergencyFund", "savingsFund", "expenseFund", "surplus", "investmentFund", "debt", "tithing"], [budget.accounts.unAllocated, budget.accounts.monthlyBudget, emergencyFund, savingsFund, budget.accounts.expenseFund, budget.accounts.surplus, investmentFund, budget.accounts.debt, tithing]);
+  var newBudget = buildUpdateObject(budget, user, "Accounts", budgetName, ["unAllocated", "monthlyBudget", "emergencyFund", "savingsFund", "expenseFund", "surplus", "investmentFund", "debt", "tithing"], [budget.accounts.unAllocated, budget.accounts.monthlyBudget, emergencyFund, savingsFund, budget.accounts.expenseFund, budget.accounts.surplus, investmentFund, budget.accounts.debt, tithing]);
   console.log(newBudget);
   _Manage_Budget__WEBPACK_IMPORTED_MODULE_4__.updateMyBudget(newBudget);
 };
@@ -7379,12 +7525,16 @@ var _watchBudget = /*#__PURE__*/function () {
 
 
             _setupCurrentMonth(); ////////////////////////////////////////////
-            // SETUP BILL CURRENT MONTH
+            // WATCH BUDGET MANAGEMENT PAGE
 
 
-            _watchBudgetManagement(currentBudget, user);
+            _watchBudgetManagement(currentBudget, user); ////////////////////////////////////////////
+            // WATCH EDIT CATEGORY GOALS PAGE
 
-          case 41:
+
+            _watchEditCategoryGoals(currentBudget, user);
+
+          case 42:
           case "end":
             return _context.stop();
         }

@@ -234,8 +234,6 @@ const buildSubCategories = (categories, index, secondaryIndex, clickedItem) => {
         e.preventDefault();
         const overallBudget = document.querySelectorAll('.budget-single-goal-summary__amount');
         const individualPayments = document.querySelectorAll('.individual-payment');
-        // overallBudget[0].textContent = `${money.format(total)}`;
-        // overallBudget[2].textContent = `${money.format(total)}`;
         let spent = subCategoryInput.closest('section').nextSibling.firstChild;
         let remaining = subCategoryInput.closest('section').nextSibling.nextSibling.firstChild;
         let percentageSpent = subCategoryInput.closest('section').nextSibling.nextSibling.nextSibling.firstChild;
@@ -639,7 +637,7 @@ const insertTiiming = (target, inputValues, timing, timingButtons, budget, index
 
 /////////////////////////////////////////
 // WATCH FOR TIMING SETTING
-const watchForSettingTiming = (budget, index, clickedItem, timing, fullBudget) => {
+export const watchForSettingTiming = (budget, index, clickedItem, timing, fullBudget) => {
   // Getting the timing.
   const monthlyTimingButton = document.querySelector('.sub-category-display__timing-container__monthly-container__button');
   const biMonthlyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-monthly-container__button');
@@ -712,7 +710,7 @@ const watchForSettingTiming = (budget, index, clickedItem, timing, fullBudget) =
 
 /////////////////////////////////////////
 // SET UP TIMING FUNCTION CONTAINER
-const setupTimingFunctionContainer = (container, timing) => {
+export const setupTimingFunctionContainer = (container, timing) => {
   const closeTimingFunctionContainer = document.querySelector('.sub-category-display__timing-container__close');
   /////////////////////////////////////////
   // INITIALIZE VARIABLES FOR TIMING INPUTS
@@ -775,7 +773,7 @@ const getTimingContainerHeight = (categories, index) => {
   return (100 * categories[index].subCategories.length) / 10;
 };
 
-const setupGoalSetting = (budget, index, clickedItem, timing) => {
+export const setupGoalSetting = (budget, index, clickedItem, timing) => {
   const leftButton = document.querySelector('.left');
   const rightButton = document.querySelector('.right');
   const mainCategoryIcon = document.querySelector('.main-category-display__category-display__icon');

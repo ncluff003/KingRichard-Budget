@@ -1256,7 +1256,7 @@ html {
   font-size: 4rem;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__headers__title-container {
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   color: #fafafa;
   text-align: center;
 }
@@ -47770,7 +47770,6 @@ I was thinking of iterating through the objects that were created.
 
     ADJUST : Re-Do Enter Transaction Form To Accommodate For Expense Timing.  This Includes The JavaScript Along With The Styling AND HTML.
     ADJUST : Re-Do Enter Transaction Form To Accommodate For Expense AND Savings Marking Transaction Item As Need Or Surplus.  This Includes The JavaScript Along With The Styling AND HTML.
-    ADJUST : Considering the budget creation form, since the other inputs are 'read only', they should then be changed to paragraphs rather than inputs.  That way, I can properly adjust their content AS the individual payments are entered.
 
 
     //////////////////////////////////
