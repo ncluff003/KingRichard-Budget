@@ -29,6 +29,37 @@ const setMainCategoryTitle = (mainCategory, title) => {
   return (mainCategory.title = title);
 };
 
+const fillSubCategoryArray = (updateObject, index) => {
+  let mainCategoryIndex = index;
+  let tempArray = Array.from(document.querySelectorAll(`.sub-category-display__sub-category[data-subcategory="${index}"]`));
+  tempArray.forEach((temp, i) => {
+    let title = temp.firstChild.nextSibling.firstChild.textContent;
+    let goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
+    let amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+    let amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+    let percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
+    updateObject.mainCategories[index].subCategories.push(
+      Object.fromEntries([
+        [`title`, title],
+        [`goalAmount`, goalAmount],
+        [`amountSpent`, amountSpent],
+        [`amountRemaining`, amountRemaining],
+        [`percentageSpent`, percentageSpent],
+      ])
+    );
+    if (updateObject.mainCategories[mainCategoryIndex] === undefined) return;
+    if (updateObject.mainCategories[mainCategoryIndex].subCategories.length === tempArray.length) {
+      mainCategoryIndex++;
+      updateObject.mainCategories[mainCategoryIndex].subCategories = [];
+      console.log(`Onto the next index...`);
+      return mainCategoryIndex;
+    }
+    if (index === tempArray.length) {
+      mainCategoryIndex++;
+    }
+  });
+};
+
 const buildUpdateObject = (budget, user, customObject, budgetName, customProperties, objects) => {
   let budgetUpdateObject = {
     budgetId: budget._id,
@@ -58,54 +89,21 @@ const buildUpdateObject = (budget, user, customObject, budgetName, customPropert
     const subCategoriesSplitArray = [];
     let subCategorySubArray = [];
 
-    /*
-    After some thought on how it is done right now, it would not work this way.
-    Every sub-category has different details.  All might have titles, but others have timings, and so much more is different than just the timings.
-    Each have titles, goal amounts, amounts spent, amounts remaining, percentage spent, whether or not they are surplus.
-    They differ in their timing object.
-    
-    I will need to make another budget than this.  I'll take notes of how I created it, so that I can use a similar one.  I just need to put timing options
-    into it because I want to see from the database's point of view what goes into that.
-    */
-
+    // EVERYTHING DONE IN THIS 'FOREACH' IS DONE 3 TIMES!!!
     customProperties.forEach((cp, i) => {
       budgetUpdateObject.mainCategories.push(
         Object.fromEntries([
-          [`title`, mainCategoryTitles[mainCategoryIndex].textContent],
+          [`title`, mainCategoryTitles[i].textContent],
           [`subCategories`, emptyArray],
         ])
       );
-      mainCategoryIndex++;
-    });
-    mainCategoryIndex = 0;
-    subCategories.forEach((sc, i) => {
-      let title = sc.firstChild.nextSibling.firstChild.textContent;
-      let goalAmount = Number(sc.firstChild.nextSibling.nextSibling.firstChild.value);
-      let amountSpent = Number(sc.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
-      let amountRemaining = Number(sc.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
-      let percentageSpent = Number(sc.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
-      console.log(title, goalAmount, amountSpent, amountRemaining, percentageSpent);
-      if (Number(sc.dataset.subcategory) === mainCategoryIndex) {
-        budgetUpdateObject.mainCategories[mainCategoryIndex].subCategories.push(
-          Object.fromEntries([
-            [`title`, title],
-            [`goalAmount`, goalAmount],
-            [`amountSpent`, amountSpent],
-            [`amountRemaining`, amountRemaining],
-            [`percentageSpent`, percentageSpent],
-          ])
-        );
-
-        console.log(budgetUpdateObject.mainCategories[mainCategoryIndex].subCategories.length);
-        console.log(document.querySelectorAll(`.sub-category-display__sub-category[data-subcategory="${mainCategoryIndex}"]`).length);
-
-        budgetUpdateObject.mainCategories[mainCategoryIndex].subCategories.length ===
-        Array.from(document.querySelectorAll(`.sub-category-display__sub-category[data-subcategory="${mainCategoryIndex}"]`).length)
-          ? mainCategoryIndex++
-          : console.log(`Somehow, we do not match! 😠`);
+      if (budgetUpdateObject.mainCategories.length === customProperties.length) {
+        return (mainCategoryIndex = 0);
       }
     });
-
+    budgetUpdateObject.mainCategories.forEach((mc, i) => {
+      fillSubCategoryArray(budgetUpdateObject, i);
+    });
     console.log(budgetUpdateObject);
   }
 

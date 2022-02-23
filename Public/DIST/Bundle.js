@@ -5321,6 +5321,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Budget": () => (/* binding */ Budget),
 /* harmony export */   "_watchEmergencyGoalSettings": () => (/* binding */ _watchEmergencyGoalSettings),
+/* harmony export */   "insertTiiming": () => (/* binding */ insertTiiming),
 /* harmony export */   "watchForSettingTiming": () => (/* binding */ watchForSettingTiming),
 /* harmony export */   "setupTimingFunctionContainer": () => (/* binding */ setupTimingFunctionContainer),
 /* harmony export */   "setupGoalSetting": () => (/* binding */ setupGoalSetting),
@@ -6054,7 +6055,6 @@ var insertTiiming = function insertTiiming(target, inputValues, timing, timingBu
 }; /////////////////////////////////////////
 // WATCH FOR TIMING SETTING
 
-
 var watchForSettingTiming = function watchForSettingTiming(budget, index, clickedItem, timing, fullBudget) {
   // Getting the timing.
   var monthlyTimingButton = document.querySelector('.sub-category-display__timing-container__monthly-container__button');
@@ -6733,6 +6733,31 @@ var setMainCategoryTitle = function setMainCategoryTitle(mainCategory, title) {
   return mainCategory.title = title;
 };
 
+var fillSubCategoryArray = function fillSubCategoryArray(updateObject, index) {
+  var mainCategoryIndex = index;
+  var tempArray = Array.from(document.querySelectorAll(".sub-category-display__sub-category[data-subcategory=\"".concat(index, "\"]")));
+  tempArray.forEach(function (temp, i) {
+    var title = temp.firstChild.nextSibling.firstChild.textContent;
+    var goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
+    var amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+    var amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+    var percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
+    updateObject.mainCategories[index].subCategories.push(Object.fromEntries([["title", title], ["goalAmount", goalAmount], ["amountSpent", amountSpent], ["amountRemaining", amountRemaining], ["percentageSpent", percentageSpent]]));
+    if (updateObject.mainCategories[mainCategoryIndex] === undefined) return;
+
+    if (updateObject.mainCategories[mainCategoryIndex].subCategories.length === tempArray.length) {
+      mainCategoryIndex++;
+      updateObject.mainCategories[mainCategoryIndex].subCategories = [];
+      console.log("Onto the next index...");
+      return mainCategoryIndex;
+    }
+
+    if (index === tempArray.length) {
+      mainCategoryIndex++;
+    }
+  });
+};
+
 var buildUpdateObject = function buildUpdateObject(budget, user, customObject, budgetName, customProperties, objects) {
   var budgetUpdateObject = {
     budgetId: budget._id,
@@ -6760,36 +6785,17 @@ var buildUpdateObject = function buildUpdateObject(budget, user, customObject, b
     var subCategoryIndex = 0;
     var entries = [];
     var subCategoriesSplitArray = [];
-    var subCategorySubArray = [];
-    /*
-    After some thought on how it is done right now, it would not work this way.
-    Every sub-category has different details.  All might have titles, but others have timings, and so much more is different than just the timings.
-    Each have titles, goal amounts, amounts spent, amounts remaining, percentage spent, whether or not they are surplus.
-    They differ in their timing object.
-    
-    I will need to make another budget than this.  I'll take notes of how I created it, so that I can use a similar one.  I just need to put timing options
-    into it because I want to see from the database's point of view what goes into that.
-    */
+    var subCategorySubArray = []; // EVERYTHING DONE IN THIS 'FOREACH' IS DONE 3 TIMES!!!
 
     customProperties.forEach(function (cp, i) {
-      budgetUpdateObject.mainCategories.push(Object.fromEntries([["title", mainCategoryTitles[mainCategoryIndex].textContent], ["subCategories", emptyArray]]));
-      mainCategoryIndex++;
-    });
-    mainCategoryIndex = 0;
-    subCategories.forEach(function (sc, i) {
-      var title = sc.firstChild.nextSibling.firstChild.textContent;
-      var goalAmount = Number(sc.firstChild.nextSibling.nextSibling.firstChild.value);
-      var amountSpent = Number(sc.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
-      var amountRemaining = Number(sc.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
-      var percentageSpent = Number(sc.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
-      console.log(title, goalAmount, amountSpent, amountRemaining, percentageSpent);
+      budgetUpdateObject.mainCategories.push(Object.fromEntries([["title", mainCategoryTitles[i].textContent], ["subCategories", emptyArray]]));
 
-      if (Number(sc.dataset.subcategory) === mainCategoryIndex) {
-        budgetUpdateObject.mainCategories[mainCategoryIndex].subCategories.push(Object.fromEntries([["title", title], ["goalAmount", goalAmount], ["amountSpent", amountSpent], ["amountRemaining", amountRemaining], ["percentageSpent", percentageSpent]]));
-        console.log(budgetUpdateObject.mainCategories[mainCategoryIndex].subCategories.length);
-        console.log(document.querySelectorAll(".sub-category-display__sub-category[data-subcategory=\"".concat(mainCategoryIndex, "\"]")).length);
-        budgetUpdateObject.mainCategories[mainCategoryIndex].subCategories.length === Array.from(document.querySelectorAll(".sub-category-display__sub-category[data-subcategory=\"".concat(mainCategoryIndex, "\"]")).length) ? mainCategoryIndex++ : console.log("Somehow, we do not match! \uD83D\uDE20");
+      if (budgetUpdateObject.mainCategories.length === customProperties.length) {
+        return mainCategoryIndex = 0;
       }
+    });
+    budgetUpdateObject.mainCategories.forEach(function (mc, i) {
+      fillSubCategoryArray(budgetUpdateObject, i);
     });
     console.log(budgetUpdateObject);
   }
