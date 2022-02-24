@@ -110,6 +110,20 @@ const buildUpdateObject = (budget, user, customObject, budgetName, customPropert
   return budgetUpdateObject;
 };
 
+const getSubCategoryTiming = (budget, mainCategory, index) => {
+  const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
+  console.log(subCategories);
+  budget.mainCategories[index].subCategories.forEach((msc, i) => {
+    if (msc.timingOptions.paymentCycle && Number(subCategories[i].dataset.subcategory) === index) {
+      console.log(subCategories[i]);
+      console.log(i, index);
+      subCategories[i].firstChild.nextSibling.firstChild.nextSibling.textContent = msc.timingOptions.paymentCycle;
+    }
+    console.log(`Fetching Sub Category Index...`, index);
+    console.log(subCategories[i].dataset.subcategory);
+  });
+};
+
 const getSinglePercentageSpent = (spent, total) => {
   let percentage = (spent / total).toFixed(2);
   return percentage;
@@ -158,6 +172,80 @@ const _watchEditCategoryGoals = (budget, user) => {
     let subCategoryIndex = 0;
     Edit.watchForSettingTiming(budget, subCategoryIndex, clickedItem, selectedTiming);
     console.log(budget, user);
+
+    // This is where we will need to check the timingOptions of each sub-category, and peform the operations necessary.
+
+    // export const insertTiiming = (target, inputValues, timing, timingButtons, budget, index) => {
+    // budget.mainCategories.forEach((mc, i) => {
+    //   mc.subCategories.forEach((sc, i) => {
+    //     console.log(sc.timingOptions);
+    //     let target, timing;
+    //     // if (sc.timingOptions.paymentCycle) {
+    //     //   console.log(subCategories[i], subCategories[i].firstChild.nextSibling.firstChild.nextSibling);
+    //     //   console.log(sc.timingOptions.paymentCycle);
+    //     //   console.log(subCategories[i].firstChild.nextSibling.firstChild);
+    //     //   target = subCategories[i].firstChild.nextSibling.firstChild.nextSibling;
+    //     //   timing = sc.timingOptions.paymentCycle;
+    //     //   sc.timingOptions.dueDates.forEach((dd) => {
+    //     //     let timingArray;
+    //     //     console.log(dd);
+    //     //     console.log(dd.length);
+    //     //     typeof dd === `object` && dd.length > 1 ? dd.forEach((d) => console.log(d)) : console.log(dd);
+
+    //     //     timingArray = [dd];
+    //     //     if (typeof dd === `object` && dd.length > 1) {
+    //     //       timingArray = dd;
+    //     //     }
+    //     //     console.log(timingArray);
+    //     //     timingArray = timingArray.map((timingItem) => new Date(`${timingItem}`));
+    //     //     timingArray.forEach((timing) => console.log(timing.getDay()));
+    //     //     // Edit.insertTiiming(target, timingArray, timing, `timingButtons`, budget, subCategoryIndex);
+    //     //   });
+    //     // }
+    //   });
+    // });
+
+    const mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
+    mainCategoryTitles.forEach((mc, i) => {
+      getSubCategoryTiming(budget, mc, i);
+    });
+
+    // if (timing === `Monthly`) {
+    //   timingArray = [];
+    //   timingArray.push(monthlyTiming);
+    //   return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
+    // }
+    // if (timing === `Bi-Monthly`) {
+    //   e.preventDefault();
+    //   const oldTimingOne = new Date(document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input')[0].value);
+    //   const oldTimingTwo = new Date(document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input')[1].value);
+    //   const timingOne = new Date(oldTimingOne.setHours(oldTimingOne.getHours() + 7));
+    //   const timingTwo = new Date(oldTimingTwo.setHours(oldTimingTwo.getHours() + 7));
+    //   timingArray = [];
+    //   timingArray.push(timingOne);
+    //   timingArray.push(timingTwo);
+    //   return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
+    // }
+
+    // if (timing === `Bi-Weekly`) {
+    //   const oldBiWeeklyTiming = new Date(document.querySelector('.sub-category-display__timing-container__bi-weekly-container__label__input').value);
+    //   const biWeeklyTiming = new Date(oldBiWeeklyTiming.setHours(oldBiWeeklyTiming.getHours() + 7));
+    //   const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
+    //   timingArray = [];
+    //   timingArray.push(biWeeklyTiming);
+    //   insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
+    //   return;
+    // }
+
+    // if (timing === `Weekly`) {
+    //   const oldWeeklyTiming = new Date(document.querySelector('.sub-category-display__timing-container__weekly-container__label__select').value);
+    //   const weeklyTiming = new Date(oldWeeklyTiming.setHours(oldWeeklyTiming.getHours() + 7));
+    //   timingArray = [];
+    //   timingArray.push(weeklyTiming);
+    //   insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
+    // }
+
+    // insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
 
     const money = new Intl.NumberFormat('en-US', {
       style: 'currency',
