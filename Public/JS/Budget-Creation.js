@@ -389,16 +389,16 @@ const create12MonthArray = (array, input, timing, days) => {
   return array;
 };
 
-const calculateDayEnding = (day, dateEnding, input) => {
-  if (day === 0 || day === 4 || day === 5 || day === 6 || day === 7 || day === 8 || day === 9) {
+export const calculateDayEnding = (endDigit, dateEnding, input) => {
+  if (endDigit === 0 || endDigit === 4 || endDigit === 5 || endDigit === 6 || endDigit === 7 || endDigit === 8 || endDigit === 9) {
     dateEnding = `th`;
   }
-  if (day === 1) {
+  if (endDigit === 1) {
     dateEnding = `st`;
     if (Number(input.getDate() === 11)) dateEnding = `th`;
   }
-  if (day === 2) dateEnding = `nd`;
-  if (day === 3) dateEnding = `rd`;
+  if (endDigit === 2) dateEnding = `nd`;
+  if (endDigit === 3) dateEnding = `rd`;
   return dateEnding;
 };
 

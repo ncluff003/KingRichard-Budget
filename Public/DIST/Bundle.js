@@ -5321,6 +5321,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Budget": () => (/* binding */ Budget),
 /* harmony export */   "_watchEmergencyGoalSettings": () => (/* binding */ _watchEmergencyGoalSettings),
+/* harmony export */   "calculateDayEnding": () => (/* binding */ calculateDayEnding),
 /* harmony export */   "insertTiiming": () => (/* binding */ insertTiiming),
 /* harmony export */   "watchForSettingTiming": () => (/* binding */ watchForSettingTiming),
 /* harmony export */   "setupTimingFunctionContainer": () => (/* binding */ setupTimingFunctionContainer),
@@ -5845,21 +5846,20 @@ var create12MonthArray = function create12MonthArray(array, input, timing, days)
   return array;
 };
 
-var calculateDayEnding = function calculateDayEnding(day, dateEnding, input) {
-  if (day === 0 || day === 4 || day === 5 || day === 6 || day === 7 || day === 8 || day === 9) {
+var calculateDayEnding = function calculateDayEnding(endDigit, dateEnding, input) {
+  if (endDigit === 0 || endDigit === 4 || endDigit === 5 || endDigit === 6 || endDigit === 7 || endDigit === 8 || endDigit === 9) {
     dateEnding = "th";
   }
 
-  if (day === 1) {
+  if (endDigit === 1) {
     dateEnding = "st";
     if (Number(input.getDate() === 11)) dateEnding = "th";
   }
 
-  if (day === 2) dateEnding = "nd";
-  if (day === 3) dateEnding = "rd";
+  if (endDigit === 2) dateEnding = "nd";
+  if (endDigit === 3) dateEnding = "rd";
   return dateEnding;
 };
-
 var insertTiiming = function insertTiiming(target, inputValues, timing, timingButtons, budget, index) {
   var wording, dayEnding, dayEndingNumberOne;
   var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -6803,21 +6803,76 @@ var buildUpdateObject = function buildUpdateObject(budget, user, customObject, b
   return budgetUpdateObject;
 };
 
-var getSubCategoryTiming = function getSubCategoryTiming(budget, mainCategory, index) {
-  var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
-  var startIndex = 0;
-  console.log(subCategories);
-  budget.mainCategories[index].subCategories.forEach(function (msc, i) {
-    if (msc.timingOptions.paymentCycle && Number(subCategories[startIndex].dataset.subcategory) === index) {
-      console.log(subCategories[i]);
-      console.log(i, index);
-      subCategories[i].firstChild.nextSibling.firstChild.nextSibling.textContent = msc.timingOptions.paymentCycle;
-    }
+var getSubCategoryTiming = function getSubCategoryTiming(budget, category) {
+  var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  var wording;
 
-    console.log("Fetching Sub Category Index...", index);
-    console.log(subCategories[i].dataset.subcategory);
-    startIndex++;
-  });
+  if (category.timingOptions.paymentCycle === "Weekly") {
+    console.log("Weekly", category.timingOptions.dueDates);
+    var day = days[new Date("".concat(category.timingOptions.dueDates[0])).getDay()];
+    wording = "Due every ".concat(day, " of the month.");
+    return wording;
+  }
+
+  if (category.timingOptions.paymentCycle === "Bi-Weekly") {
+    console.log("Bi-Weekly", category.timingOptions.dueDates);
+    var date = new Date("".concat(category.timingOptions.dueDates[0]));
+
+    var _day = date.getDate();
+
+    var endDigit = Number(date.getDate().toString().split('')[date.getDate().toString().length - 1]);
+    var dayEnding;
+    dayEnding = _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__.calculateDayEnding(endDigit, dayEnding, date);
+    console.log(_day, endDigit, dayEnding);
+    wording = "Due the ".concat(_day).concat(dayEnding, " of ").concat(months[date.getMonth()], ".");
+    return wording;
+  }
+
+  if (category.timingOptions.paymentCycle === "Bi-Monthly") {
+    var dayOne, dayTwo, _dayEnding, dayEndingTwo;
+
+    category.timingOptions.dueDates[0].forEach(function (dd, i) {
+      console.log("Bi-Monthly", dd);
+      console.log(new Date("".concat(dd)));
+
+      if (i === 0) {
+        dayOne = new Date("".concat(dd));
+      }
+
+      if (i === 1) {
+        dayTwo = new Date("".concat(dd));
+      }
+    });
+
+    var _endDigit = Number(dayOne.getDate().toString().split('')[dayOne.getDate().toString().length - 1]);
+
+    var endDigitTwo = Number(dayTwo.getDate().toString().split('')[dayTwo.getDate().toString().length - 1]);
+    _dayEnding = _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__.calculateDayEnding(_endDigit, _dayEnding, dayOne.getDate());
+    dayEndingTwo = _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__.calculateDayEnding(_endDigit, dayEndingTwo, dayTwo.getDate());
+    console.log(dayOne, dayTwo, _endDigit, endDigitTwo, _dayEnding, dayEndingTwo);
+    wording = "Due the ".concat(dayOne.getDate()).concat(_dayEnding, " & ").concat(dayTwo.getDate()).concat(dayEndingTwo, ", of ").concat(months[dayOne.getMonth()]);
+    console.log(wording);
+    return wording;
+  }
+
+  if (category.timingOptions.paymentCycle === "Monthly") {
+    console.log("Monthly", category.timingOptions.dueDates);
+
+    var _date = new Date("".concat(category.timingOptions.dueDates[0]));
+
+    var _day2 = _date.getDate();
+
+    var _endDigit2 = Number(_date.getDate().toString().split('')[_date.getDate().toString().length - 1]);
+
+    var _dayEnding2;
+
+    _dayEnding2 = _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__.calculateDayEnding(_endDigit2, _dayEnding2, _date);
+    console.log(_day2, _endDigit2, _dayEnding2);
+    wording = "Due the ".concat(_day2).concat(_dayEnding2, " of ").concat(months[_date.getMonth()], ".");
+    return wording;
+  } // console.log(budget, category);
+
 };
 
 var getSinglePercentageSpent = function getSinglePercentageSpent(spent, total) {
@@ -6865,78 +6920,27 @@ var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, user) {
   if (editCategoryGoalsContainer) {
     var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
     var timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
-    var editCategoryGoalsSubmit = document.querySelector('.budget-container__update-budget-categories-button-container__button');
+    var editCategoryGoalsSubmit = document.querySelector('.budget-container__update-budget-categories-button-container__button'); // On load, retrieve the proper timings and dates for the correct sub-categories.
+
+    var mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
+    var allCategories = [];
+    mainCategoryTitles.forEach(function (mct, i) {
+      budget.mainCategories[i].subCategories.forEach(function (sc, i) {
+        allCategories.push(sc);
+      });
+    });
+    allCategories.forEach(function (c, i) {
+      if (c.timingOptions.paymentCycle) {
+        var timing = getSubCategoryTiming(budget, c); // subCategories[i].firstChild.nextSibling.firstChild.nextSibling.textContent = c.timingOptions.paymentCycle;
+
+        subCategories[i].firstChild.nextSibling.firstChild.nextSibling.textContent = timing;
+      }
+    });
     _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__.setupTimingFunctionContainer(timingFunctionContainer);
     var clickedItem, selectedTiming;
     var subCategoryIndex = 0;
     _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__.watchForSettingTiming(budget, subCategoryIndex, clickedItem, selectedTiming);
-    console.log(budget, user); // This is where we will need to check the timingOptions of each sub-category, and peform the operations necessary.
-    // export const insertTiiming = (target, inputValues, timing, timingButtons, budget, index) => {
-    // budget.mainCategories.forEach((mc, i) => {
-    //   mc.subCategories.forEach((sc, i) => {
-    //     console.log(sc.timingOptions);
-    //     let target, timing;
-    //     // if (sc.timingOptions.paymentCycle) {
-    //     //   console.log(subCategories[i], subCategories[i].firstChild.nextSibling.firstChild.nextSibling);
-    //     //   console.log(sc.timingOptions.paymentCycle);
-    //     //   console.log(subCategories[i].firstChild.nextSibling.firstChild);
-    //     //   target = subCategories[i].firstChild.nextSibling.firstChild.nextSibling;
-    //     //   timing = sc.timingOptions.paymentCycle;
-    //     //   sc.timingOptions.dueDates.forEach((dd) => {
-    //     //     let timingArray;
-    //     //     console.log(dd);
-    //     //     console.log(dd.length);
-    //     //     typeof dd === `object` && dd.length > 1 ? dd.forEach((d) => console.log(d)) : console.log(dd);
-    //     //     timingArray = [dd];
-    //     //     if (typeof dd === `object` && dd.length > 1) {
-    //     //       timingArray = dd;
-    //     //     }
-    //     //     console.log(timingArray);
-    //     //     timingArray = timingArray.map((timingItem) => new Date(`${timingItem}`));
-    //     //     timingArray.forEach((timing) => console.log(timing.getDay()));
-    //     //     // Edit.insertTiiming(target, timingArray, timing, `timingButtons`, budget, subCategoryIndex);
-    //     //   });
-    //     // }
-    //   });
-    // });
-
-    var mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
-    mainCategoryTitles.forEach(function (mc, i) {
-      getSubCategoryTiming(budget, mc, i);
-    }); // if (timing === `Monthly`) {
-    //   timingArray = [];
-    //   timingArray.push(monthlyTiming);
-    //   return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
-    // }
-    // if (timing === `Bi-Monthly`) {
-    //   e.preventDefault();
-    //   const oldTimingOne = new Date(document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input')[0].value);
-    //   const oldTimingTwo = new Date(document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input')[1].value);
-    //   const timingOne = new Date(oldTimingOne.setHours(oldTimingOne.getHours() + 7));
-    //   const timingTwo = new Date(oldTimingTwo.setHours(oldTimingTwo.getHours() + 7));
-    //   timingArray = [];
-    //   timingArray.push(timingOne);
-    //   timingArray.push(timingTwo);
-    //   return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
-    // }
-    // if (timing === `Bi-Weekly`) {
-    //   const oldBiWeeklyTiming = new Date(document.querySelector('.sub-category-display__timing-container__bi-weekly-container__label__input').value);
-    //   const biWeeklyTiming = new Date(oldBiWeeklyTiming.setHours(oldBiWeeklyTiming.getHours() + 7));
-    //   const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
-    //   timingArray = [];
-    //   timingArray.push(biWeeklyTiming);
-    //   insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
-    //   return;
-    // }
-    // if (timing === `Weekly`) {
-    //   const oldWeeklyTiming = new Date(document.querySelector('.sub-category-display__timing-container__weekly-container__label__select').value);
-    //   const weeklyTiming = new Date(oldWeeklyTiming.setHours(oldWeeklyTiming.getHours() + 7));
-    //   timingArray = [];
-    //   timingArray.push(weeklyTiming);
-    //   insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
-    // }
-    // insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
-
+    console.log(budget, user);
     var money = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
