@@ -998,18 +998,13 @@ export class SubCategory extends Category {
   }
 
   _finishUpdatingSubCategory(goal) {
-    console.log(typeof goal);
     let categoryGoal = goal;
-    console.log(typeof categoryGoal);
     if (categoryGoal === undefined || typeof categoryGoal !== `number`) categoryGoal = 0;
-    console.log(this);
     this.goalAmount = categoryGoal;
-    console.log(this.goalAmount);
     this.amountSpent = 0;
     this.amountRemaining = this.goalAmount - this.amountSpent;
     this.percentageSpent = this.amountSpent / this.goalAmount;
     if (isNaN(this.percentageSpent)) this.percentageSpent = 0;
-    console.log(this.percentageSpent);
   }
 }
 
@@ -1081,9 +1076,6 @@ export const createSubCategory = (budget, index) => {
       return Number(sc.dataset.category) === index;
     });
     const categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
-    console.log(subArray, categoryNumber, subArray.indexOf(clicked.closest('.sub-category')));
-    console.log(budget.mainCategories[categoryNumber].subCategories);
-    console.log(budget.mainCategories[categoryNumber]);
     const categoryTitle = subCategoryTitleElement.textContent;
     budget.mainCategories[categoryNumber].subCategories[subArray.indexOf(clicked.closest('.sub-category'))]._makeSurplus();
   });
@@ -1189,6 +1181,8 @@ export const _addSubCategory = (budget, index) => {
 const deleteMainCategory = async (e, budget) => {
   const budgetPages = document.querySelectorAll('.budget-creation-form__page');
   const mainCategoryCreationPage = document.querySelector('.budget-creation-form__page');
+  let title = e.target.closest('section').firstChild.nextElementSibling.textContent;
+  console.log(title);
   /////////////////////////////
   // CHECK USER
   const userInfo = await Update.getSomePersonals();
@@ -1199,9 +1193,7 @@ const deleteMainCategory = async (e, budget) => {
   if (user.latterDaySaint === false) {
     if (!budgetPages[2].classList.contains(`disappear`)) return;
   }
-  budget.mainCategories = budget.mainCategories.filter((o, i) => {
-    return o.title !== e.target.closest('section').firstChild.nextElementSibling.textContent;
-  });
+  budget._deleteMainCategory(title);
   e.target.closest('section').remove();
   console.log(`DELETED`);
   return budget.mainCategories;
@@ -1249,7 +1241,7 @@ const createMainCategory = (element, budget, filteredArray) => {
 ////////////////////////////////////////
 // CREATE MAIN CATEGORY
 
-const _createMainCategory = (icon, iconList, budget) => {
+const _verifyMainCategory = (icon, iconList, budget) => {
   let mainCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container__input').value.toLowerCase();
   const filtered = budget.mainCategories.filter((mc) => {
     if (mc.title.toLowerCase() === mainCategoryTitle) {
@@ -1259,7 +1251,6 @@ const _createMainCategory = (icon, iconList, budget) => {
   if (filtered.length >= 1) return;
   createMainCategory(icon, budget, filtered);
 
-  // oldMainCategories = budgetMainCategories;
   iconList.forEach((icon) => {
     icon.classList.remove('icon-container--clicked');
   });
@@ -1270,12 +1261,12 @@ const _createMainCategory = (icon, iconList, budget) => {
 const _findClickedIcon = (iconList, budget) => {
   iconList.forEach((icon) => {
     if (icon.classList.contains('icon-container--clicked')) {
-      _createMainCategory(icon.firstChild.classList[1], iconList, budget);
+      _verifyMainCategory(icon.firstChild.classList[1], iconList, budget);
     }
   });
 };
 
-const _watchCategoryCreation = (budget) => {
+const _setupCategoryCreation = (budget) => {
   const createMainCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[0];
   const iconContainers = document.querySelectorAll('.icon-container');
   if (createMainCategoryButton) {
@@ -1295,20 +1286,19 @@ export const _clickIcon = (icon) => {
   iconContainers.forEach((element, i) => {
     element.addEventListener('click', (e) => {
       const clicked = e.target;
-      if (e.target.classList.contains('icon-container__icon')) {
+      if (clicked.classList.contains('icon-container__icon') || clicked.classList[2] === `icon-container__icon`) {
         iconContainers.forEach((e) => {
           e.classList.remove('icon-container--clicked');
         });
         element.classList.add('icon-container--clicked');
-        icon = e.target;
+        icon = clicked;
         return icon;
       }
-      iconContainers.forEach((e) => {
-        e.classList.remove('icon-container--clicked');
+      iconContainers.forEach((ic) => {
+        ic.classList.remove('icon-container--clicked');
       });
       element.classList.add('icon-container--clicked');
       icon = clicked.firstChild;
-      console.log(iconsArray.indexOf(element));
       return icon;
     });
   });
@@ -1365,6 +1355,7 @@ const openCategoryCreation = () => {
 
 export const _watchCreateCategoryButton = (icon, budget) => {
   const createCategoryButton = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category');
+  createCategories(icon);
   if (createCategoryButton) {
     createCategoryButton.addEventListener('click', (e) => {
       e.preventDefault();
@@ -1378,41 +1369,17 @@ export const _watchCreateCategoryButton = (icon, budget) => {
       closeCategoryCreation();
     });
   }
-  _clickIcon(icon);
-  _watchCategoryCreation(budget);
+  _setupCategoryCreation(budget);
 };
 
 ////////////////////////////////////////
 // SHOWING ICONS FOR MAIN CATEGORIES
-export const createCategories = (icon) => {
+export const createCategories = (icon, index) => {
   icons.forEach((iconImage, i) => {
     const mainContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
     if (mainContainer) {
       const iconContainer = document.createElement(`section`);
       iconContainer.classList.add('icon-container');
-
-      // iconContainer.addEventListener('click', (e) => {});
-
-      // iconContainers.forEach((element, i) => {
-      //   element.addEventListener('click', (e) => {
-      //     const clicked = e.target;
-      //     if (e.target.classList.contains('icon-container__icon')) {
-      //       iconContainers.forEach((e) => {
-      //         e.classList.remove('icon-container--clicked');
-      //       });
-      //       element.classList.add('icon-container--clicked');
-      //       icon = e.target;
-      //       return icon;
-      //     }
-      //     iconContainers.forEach((e) => {
-      //       e.classList.remove('icon-container--clicked');
-      //     });
-      //     element.classList.add('icon-container--clicked');
-      //     icon = clicked.firstChild;
-      //     console.log(iconsArray.indexOf(element));
-      //     return icon;
-      //   });
-      // });
 
       // Create Icon
       const icon = document.createElement('i');
@@ -1429,4 +1396,5 @@ export const createCategories = (icon) => {
       mainContainer.insertAdjacentElement('beforeend', iconContainer);
     }
   });
+  _clickIcon(icon);
 };

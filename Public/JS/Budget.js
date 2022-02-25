@@ -13,11 +13,25 @@ export class Budget {
   }
 
   _addName(name) {
+    /*
+
+      This is how the budget gets its name at the beginning of the creation period.
+
+      I am wondering if the function should be renamed as 'updateName' to help to keep it as the way to update the name later on as well.
+      We shall keep this in mind for later on if it can be used while updating in the budget management page.
+
+    */
     this.name = name;
   }
 
   _addMainCategory(icon, title) {
+    // This is how main categories are added as objects with an icon and title.
     this.mainCategories.push(new Categories.MainCategory({ icon: icon, title: title }));
+  }
+
+  _deleteMainCategory(title) {
+    this.mainCategories = this.mainCategories.filter((mc, i) => mc.title !== title);
+    console.log(`SUCCESSFUL DELETION`);
   }
 
   _addSubCategory(index, title) {
@@ -47,24 +61,20 @@ export class Budget {
     if (this.accounts.emergencyFund.emergencyGoalMeasurement === `Length Of Time`) {
       this.accounts.emergencyFund.emergencyFundGoal = Number(document.querySelector('#timingNumber').value);
       this.accounts.emergencyFund.emergencyFundGoalTiming = document.querySelector('.budget-creation-form__page__section__select').value;
-      console.log(this);
     }
     if (this.accounts.emergencyFund.emergencyGoalMeasurement === `Total Amount`) {
       this.accounts.emergencyFund.emergencyFundGoal = Number(document.querySelector('#emergencyGoal').value);
-      console.log(this);
     }
   }
 
   _setSavingsGoal() {
     this.accounts.savingsFund.savingsPercentage = Number(document.querySelector('#savingsPercentGoal').value) / 100;
     this.accounts.savingsFund.savingsGoal = Number(document.querySelector('#savingsGoal').value);
-    console.log(this);
   }
 
   _setInvestmentGoal() {
     this.accounts.investmentFund.investmentPercentage = Number(document.querySelector('#investmentPercentGoal').value) / 100;
     this.accounts.investmentFund.investmentGoal = Number(document.querySelector('#investmentGoal').value);
-    console.log(this);
   }
 
   _submit(budget, user) {

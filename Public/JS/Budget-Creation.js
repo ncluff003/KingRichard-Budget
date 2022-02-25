@@ -774,6 +774,42 @@ export const setupGoalSetting = (budget, index, clickedItem, timing) => {
   });
 };
 
+const cycleMainCategories = (direction, index, budget, iconElement, textElement) => {
+  if (direction === `Left`) {
+    if (index < 0) index = 0;
+    iconElement.classList.remove(budget.mainCategories[index + 1].icon);
+    iconElement.classList.add(budget.mainCategories[index].icon);
+    textElement.textContent = budget.mainCategories[index].title;
+    const subCategories = document.querySelectorAll('.sub-category');
+    subCategories.forEach((sc, i) => {
+      sc.classList.add('hidden');
+      if (sc.dataset.category === `${index}`) {
+        sc.classList.remove('hidden');
+      }
+    });
+    return index;
+  }
+  if (direction === `Right`) {
+    if (index > budget.mainCategories.length - 1) index = budget.mainCategories.length - 1;
+    iconElement.classList.remove(budget.mainCategories[index - 1].icon);
+    iconElement.classList.add(budget.mainCategories[index].icon);
+    textElement.textContent = budget.mainCategories[index].title;
+    const subCategories = document.querySelectorAll('.sub-category');
+    subCategories.forEach((sc, i) => {
+      sc.classList.add('hidden');
+      if (sc.dataset.category === `${index}`) {
+        sc.classList.remove('hidden');
+      }
+    });
+    return index;
+  }
+};
+
+const closeSubCategoryCreationInput = (button, inputSection) => {
+  button.classList.toggle('budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden');
+  inputSection.classList.toggle('category-creation--shown');
+};
+
 const setupSubCategoryCreation = (budget, index) => {
   const leftButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__left-button__icon');
   const rightButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__right-button__icon');
@@ -782,42 +818,22 @@ const setupSubCategoryCreation = (budget, index) => {
   const subCategoryStartCreationButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button');
   const subCategoryStopCreationButton = document.querySelector('.category-creation__controller__close');
   const categoryCreationSection = document.querySelector('.category-creation');
+  let direction;
   subCategoryStopCreationButton.addEventListener('click', (e) => {
     e.preventDefault();
-    subCategoryStartCreationButton.classList.toggle('budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden');
-    categoryCreationSection.classList.toggle('category-creation--shown');
+    closeSubCategoryCreationInput(subCategoryStartCreationButton, categoryCreationSection);
   });
   mainCategoryIcon.classList.add(budget.mainCategories[index].icon);
   mainCategoryText.textContent = budget.mainCategories[index].title;
   leftButton.addEventListener('click', (e) => {
     index--;
-    if (index < 0) index = 0;
-    mainCategoryIcon.classList.remove(budget.mainCategories[index + 1].icon);
-    mainCategoryIcon.classList.add(budget.mainCategories[index].icon);
-    mainCategoryText.textContent = budget.mainCategories[index].title;
-    const subCategories = document.querySelectorAll('.sub-category');
-    subCategories.forEach((sc, i) => {
-      sc.classList.add('hidden');
-      if (sc.dataset.category === `${index}`) {
-        sc.classList.remove('hidden');
-      }
-    });
-    return index;
+    direction = `Left`;
+    cycleMainCategories(direction, index, budget, mainCategoryIcon, mainCategoryText);
   });
   rightButton.addEventListener('click', (e) => {
     index++;
-    if (index > budget.mainCategories.length - 1) index = budget.mainCategories.length - 1;
-    mainCategoryIcon.classList.remove(budget.mainCategories[index - 1].icon);
-    mainCategoryIcon.classList.add(budget.mainCategories[index].icon);
-    mainCategoryText.textContent = budget.mainCategories[index].title;
-    const subCategories = document.querySelectorAll('.sub-category');
-    subCategories.forEach((sc, i) => {
-      sc.classList.add('hidden');
-      if (sc.dataset.category === `${index}`) {
-        sc.classList.remove('hidden');
-      }
-    });
-    return index;
+    direction = `Right`;
+    cycleMainCategories(direction, index, budget, mainCategoryIcon, mainCategoryText);
   });
   const subCategoryCreateButton = document.querySelector('.category-creation__input-container__button');
   subCategoryCreateButton.addEventListener('click', (e) => {
@@ -835,6 +851,8 @@ const setupSubCategoryCreation = (budget, index) => {
     subCategoryCreateInput.value = '';
     subCategoryCreateInput.focus();
   });
+  _watchForSubCategoryKeyboard();
+  watchToCycleSubCategoryMainCategories();
 };
 
 //////////////////////////////////////
@@ -912,11 +930,18 @@ const goToPage = (page, createBudgetPages) => {
 // SET BUDGET NAME
 const getBudgetName = (budget) => {
   const budgetName = document.getElementById('budgetName').value;
-  return budget._addName(budgetName);
+  budget._addName(budgetName);
+  return budget;
 };
 
 const _checktLatterDaySaintStatus = (user) => {
   return user.latterDaySaint;
+};
+
+///////////////////////////////////////
+// SETTING UP MAIN CATEGORY CREATION
+const setupMainCategoryCreation = (icon, budget) => {
+  Categories._watchCreateCategoryButton(icon, budget);
 };
 
 /////////////////////////////////
@@ -977,6 +1002,8 @@ const _watchTIthingOptions = (budget) => {
 };
 
 const _watchCreationFormCloser = (form, budget) => {
+  // GLITCH: Budget creation form page is NOT resetting when the form is closed.
+
   const formCloser = document.querySelector(`.budget-creation-form-close-icon`);
   if (formCloser) {
     formCloser.addEventListener('click', (e) => {
@@ -991,7 +1018,6 @@ const _watchCreationFormOpener = (form, button, budget) => {
   if (button) {
     button.addEventListener(`click`, (e) => {
       form.classList.toggle(`budget-creation-form-container--shown`);
-      budget = Budget.startToCreate();
       console.log(budget);
       return budget;
     });
@@ -999,17 +1025,16 @@ const _watchCreationFormOpener = (form, button, budget) => {
 };
 
 const _setupBudgetCreation = (form, button, budget) => {
-  _watchCreationFormOpener(form, button, budget);
   _watchCreationFormCloser(form, budget);
-  return budget;
+  _watchCreationFormOpener(form, button, budget);
 };
 
 export const _watchForBudgetCreation = async () => {
   const budgetCreationForm = document.querySelector('.budget-creation-form-container');
   const budgetCreationFormOpenButton = document.querySelector('.budget-card-container__card--create');
   let budget;
+  budget = Budget.startToCreate();
   _setupBudgetCreation(budgetCreationForm, budgetCreationFormOpenButton, budget);
-
   ////////////////////////////
   // INITIALIZE KEY VARIABLES
   const budgetCreationFormPages = document.querySelectorAll('.budget-creation-form__page');
@@ -1052,13 +1077,10 @@ export const _watchForBudgetCreation = async () => {
       /////////////////////////////
       // IF NOT LATTER DAY SAINT
       if (currentPage + 1 === 2 && latterDaySaintStatus === false) {
-        // setupMainCategoryCreation(budget);  This makes the most sense as the SINGLE function name for this step.
-        Categories.createCategories(icon);
-        Categories._watchCreateCategoryButton(icon, budget);
+        // From here, there is a need to check the function names to make sure they make sense as to what they are actually doing.  If not, they WILL be renamed accordingly.
+        setupMainCategoryCreation(icon, budget);
       }
       if (currentPage + 1 === 3 && latterDaySaintStatus === false) {
-        _watchForSubCategoryKeyboard();
-        watchToCycleSubCategoryMainCategories();
         setupSubCategoryCreation(budget, subCategoryIndex);
       }
       if (currentPage + 1 === 4 && latterDaySaintStatus === false) {
@@ -1092,13 +1114,10 @@ export const _watchForBudgetCreation = async () => {
         _watchTIthingOptions(budget);
       }
       if (currentPage + 1 === 3 && latterDaySaintStatus === true) {
-        // setupMainCategoryCreation(budget);
-        Categories.createCategories(icon);
-        Categories._watchCreateCategoryButton(icon, budget);
+        // From here, there is a need to check the function names to make sure they make sense as to what they are actually doing.  If not, they WILL be renamed accordingly.
+        setupMainCategoryCreation(icon, budget);
       }
       if (currentPage + 1 === 4 && latterDaySaintStatus === true) {
-        _watchForSubCategoryKeyboard();
-        watchToCycleSubCategoryMainCategories();
         setupSubCategoryCreation(budget, subCategoryIndex);
       }
       if (currentPage + 1 === 5 && latterDaySaintStatus === true) {
