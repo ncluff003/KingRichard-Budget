@@ -1,7 +1,7 @@
 import axios from 'axios';
 import qs from 'qs';
 import { logout } from './Login';
-import * as Budgeting from './Budget';
+import * as Budgeting from './Maintain-Budget';
 
 export const getSomePersonals = async () => {
   try {

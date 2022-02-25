@@ -10,6 +10,10 @@ export class Person {
     this.password = options.password;
     this.passwordConfirmed = options.passwordConfirmed;
   }
+
+  _getLatterDaySaintStatus() {
+    return this.latterDaySaint;
+  }
 }
 
 export const newPerson = new Person(``, ``, ``, ``, ``, ``, ``, ``);

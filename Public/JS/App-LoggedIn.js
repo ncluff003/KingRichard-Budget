@@ -2,7 +2,7 @@ import { getSomePersonals, updateMe, updateMyPassword, deactivateMe, deleteMe } 
 import { logout } from './Login';
 import * as Categories from './Budget-Categories';
 import * as Budget from './Budget-Creation';
-import * as Budgeting from './Budget';
+import * as Budgeting from './Maintain-Budget';
 import * as Update from './Update-User';
 import * as Manage from './Manage-Budget';
 
@@ -185,18 +185,18 @@ export const _watchUserProfileButtons = () => {
 };
 
 const checkLoginStatus = (login, checkElement) => {
-  if (checkElement) {
+  const appViewport = document.querySelector('.app-viewport');
+  if (appViewport) {
     return (login = !login);
   }
 };
 
 export const _watchForLogin = async (login) => {
-  const appViewport = document.querySelector('.app-viewport');
-  const status = checkLoginStatus(login, appViewport);
+  const status = checkLoginStatus(login);
   status === true ? console.log(`Logged In`) : console.log(`Logged Out`);
-  const commSwitch = document.querySelector('.user-profile-form__section__comm-switch');
-  let formattedNumber;
   if (status === true) {
+    const commSwitch = document.querySelector('.user-profile-form__section__comm-switch');
+    let formattedNumber;
     ///////////////////////////////////////
     // GET USER
     const userInfo = await Update.getSomePersonals();
@@ -215,6 +215,6 @@ export const _watchForLogin = async (login) => {
     // WATCHING FOR BUDGET SELECTION
     _watchBudgetSelection(user);
     // WATCHING FOR CREATION OF BUDGETS
-    Budget._watchBudgetCreation();
+    Budget._watchForBudgetCreation();
   }
 };

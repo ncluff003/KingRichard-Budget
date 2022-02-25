@@ -107,7 +107,6 @@ const budgetSchema = new mongoose.Schema({
       },
       amount: {
         type: Number,
-        default: 0,
       },
     },
   },

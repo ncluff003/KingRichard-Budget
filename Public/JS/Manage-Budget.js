@@ -1,6 +1,6 @@
 import axios from 'axios';
 import qs from 'qs';
-import * as Budget from './Budget';
+import * as Budget from './Maintain-Budget';
 
 export const getMyBudget = async (id, user) => {
   try {

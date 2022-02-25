@@ -1291,6 +1291,7 @@ const _watchCategoryCreation = (budget) => {
 // WATCH FOR ICON CLICKS
 export const _clickIcon = (icon) => {
   const iconContainers = document.querySelectorAll('.icon-container');
+  const iconsArray = Array.from(iconContainers);
   iconContainers.forEach((element, i) => {
     element.addEventListener('click', (e) => {
       const clicked = e.target;
@@ -1307,6 +1308,7 @@ export const _clickIcon = (icon) => {
       });
       element.classList.add('icon-container--clicked');
       icon = clicked.firstChild;
+      console.log(iconsArray.indexOf(element));
       return icon;
     });
   });
@@ -1388,6 +1390,29 @@ export const createCategories = (icon) => {
     if (mainContainer) {
       const iconContainer = document.createElement(`section`);
       iconContainer.classList.add('icon-container');
+
+      // iconContainer.addEventListener('click', (e) => {});
+
+      // iconContainers.forEach((element, i) => {
+      //   element.addEventListener('click', (e) => {
+      //     const clicked = e.target;
+      //     if (e.target.classList.contains('icon-container__icon')) {
+      //       iconContainers.forEach((e) => {
+      //         e.classList.remove('icon-container--clicked');
+      //       });
+      //       element.classList.add('icon-container--clicked');
+      //       icon = e.target;
+      //       return icon;
+      //     }
+      //     iconContainers.forEach((e) => {
+      //       e.classList.remove('icon-container--clicked');
+      //     });
+      //     element.classList.add('icon-container--clicked');
+      //     icon = clicked.firstChild;
+      //     console.log(iconsArray.indexOf(element));
+      //     return icon;
+      //   });
+      // });
 
       // Create Icon
       const icon = document.createElement('i');

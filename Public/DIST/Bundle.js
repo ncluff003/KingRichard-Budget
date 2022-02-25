@@ -4243,7 +4243,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Login */ "./Public/JS/Login.js");
 /* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
 /* harmony import */ var _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Budget-Creation */ "./Public/JS/Budget-Creation.js");
-/* harmony import */ var _Budget__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Budget */ "./Public/JS/Budget.js");
+/* harmony import */ var _Maintain_Budget__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Maintain-Budget */ "./Public/JS/Maintain-Budget.js");
 /* harmony import */ var _Manage_Budget__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Manage-Budget */ "./Public/JS/Manage-Budget.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
@@ -4494,32 +4494,33 @@ var _watchUserProfileButtons = function _watchUserProfileButtons() {
 };
 
 var checkLoginStatus = function checkLoginStatus(login, checkElement) {
-  if (checkElement) {
+  var appViewport = document.querySelector('.app-viewport');
+
+  if (appViewport) {
     return login = !login;
   }
 };
 
 var _watchForLogin = /*#__PURE__*/function () {
   var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee3(login) {
-    var appViewport, status, commSwitch, formattedNumber, userInfo, user;
+    var status, commSwitch, formattedNumber, userInfo, user;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            appViewport = document.querySelector('.app-viewport');
-            status = checkLoginStatus(login, appViewport);
+            status = checkLoginStatus(login);
             status === true ? console.log("Logged In") : console.log("Logged Out");
-            commSwitch = document.querySelector('.user-profile-form__section__comm-switch');
 
             if (!(status === true)) {
-              _context3.next = 17;
+              _context3.next = 16;
               break;
             }
 
-            _context3.next = 7;
+            commSwitch = document.querySelector('.user-profile-form__section__comm-switch');
+            _context3.next = 6;
             return _Update_User__WEBPACK_IMPORTED_MODULE_2__.getSomePersonals();
 
-          case 7:
+          case 6:
             userInfo = _context3.sent;
             user = userInfo.data.data.user; // WATCHING USER PROFILE NAVIGATION BUTTONS
 
@@ -4543,9 +4544,9 @@ var _watchForLogin = /*#__PURE__*/function () {
             _watchBudgetSelection(user); // WATCHING FOR CREATION OF BUDGETS
 
 
-            _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__._watchBudgetCreation();
+            _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__._watchForBudgetCreation();
 
-          case 17:
+          case 16:
           case "end":
             return _context3.stop();
         }
@@ -5183,6 +5184,7 @@ var _watchCategoryCreation = function _watchCategoryCreation(budget) {
 
 var _clickIcon = function _clickIcon(icon) {
   var iconContainers = document.querySelectorAll('.icon-container');
+  var iconsArray = Array.from(iconContainers);
   iconContainers.forEach(function (element, i) {
     element.addEventListener('click', function (e) {
       var clicked = e.target;
@@ -5201,6 +5203,7 @@ var _clickIcon = function _clickIcon(icon) {
       });
       element.classList.add('icon-container--clicked');
       icon = clicked.firstChild;
+      console.log(iconsArray.indexOf(element));
       return icon;
     });
   });
@@ -5287,7 +5290,28 @@ var createCategories = function createCategories(icon) {
 
     if (mainContainer) {
       var iconContainer = document.createElement("section");
-      iconContainer.classList.add('icon-container'); // Create Icon
+      iconContainer.classList.add('icon-container'); // iconContainer.addEventListener('click', (e) => {});
+      // iconContainers.forEach((element, i) => {
+      //   element.addEventListener('click', (e) => {
+      //     const clicked = e.target;
+      //     if (e.target.classList.contains('icon-container__icon')) {
+      //       iconContainers.forEach((e) => {
+      //         e.classList.remove('icon-container--clicked');
+      //       });
+      //       element.classList.add('icon-container--clicked');
+      //       icon = e.target;
+      //       return icon;
+      //     }
+      //     iconContainers.forEach((e) => {
+      //       e.classList.remove('icon-container--clicked');
+      //     });
+      //     element.classList.add('icon-container--clicked');
+      //     icon = clicked.firstChild;
+      //     console.log(iconsArray.indexOf(element));
+      //     return icon;
+      //   });
+      // });
+      // Create Icon
 
       var _icon = document.createElement('i');
 
@@ -5319,27 +5343,24 @@ var createCategories = function createCategories(icon) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Budget": () => (/* binding */ Budget),
 /* harmony export */   "_watchEmergencyGoalSettings": () => (/* binding */ _watchEmergencyGoalSettings),
 /* harmony export */   "calculateDayEnding": () => (/* binding */ calculateDayEnding),
 /* harmony export */   "insertTiiming": () => (/* binding */ insertTiiming),
 /* harmony export */   "watchForSettingTiming": () => (/* binding */ watchForSettingTiming),
 /* harmony export */   "setupTimingFunctionContainer": () => (/* binding */ setupTimingFunctionContainer),
 /* harmony export */   "setupGoalSetting": () => (/* binding */ setupGoalSetting),
-/* harmony export */   "_watchBudgetCreation": () => (/* binding */ _watchBudgetCreation)
+/* harmony export */   "_watchForBudgetCreation": () => (/* binding */ _watchForBudgetCreation)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
-/* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
-/* harmony import */ var _Create_Budget__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Create-Budget */ "./Public/JS/Create-Budget.js");
-/* harmony import */ var _Budget__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Budget */ "./Public/JS/Budget.js");
-/* harmony import */ var _Base_Forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Base-Forms */ "./Public/JS/Base-Forms.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
+/* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
+/* harmony import */ var _Maintain_Budget__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Maintain-Budget */ "./Public/JS/Maintain-Budget.js");
+/* harmony import */ var _Budget__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Budget */ "./Public/JS/Budget.js");
+/* harmony import */ var _Base_Forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Base-Forms */ "./Public/JS/Base-Forms.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
 
@@ -5350,117 +5371,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-var Account = /*#__PURE__*/(0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__["default"])(function Account(options) {
-  (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4__["default"])(this, Account);
-
-  this.amount = options.amount;
-});
-
-var Budget = /*#__PURE__*/function () {
-  function Budget() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_4__["default"])(this, Budget);
-
-    this.name = '';
-    this.accounts = {};
-    this.mainCategories = [];
-  }
-
-  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__["default"])(Budget, [{
-    key: "_addName",
-    value: function _addName(name) {
-      this.name = name;
-    }
-  }, {
-    key: "_addMainCategory",
-    value: function _addMainCategory(icon, title) {
-      this.mainCategories.push(new _Budget_Categories__WEBPACK_IMPORTED_MODULE_6__.MainCategory({
-        icon: icon,
-        title: title
-      }));
-    }
-  }, {
-    key: "_addSubCategory",
-    value: function _addSubCategory(index, title) {
-      this.mainCategories[index].subCategories.push(new _Budget_Categories__WEBPACK_IMPORTED_MODULE_6__.SubCategory({
-        title: title
-      }));
-    }
-  }, {
-    key: "_addAccounts",
-    value: function _addAccounts(user) {
-      this.accounts.unAllocated = new Account({
-        amount: 0
-      });
-      this.accounts.monthlyBudget = new Account({
-        amount: 0
-      });
-      this.accounts.emergencyFund = new Account({
-        amount: 0
-      });
-      this.accounts.savingsFund = new Account({
-        amount: 0
-      });
-      this.accounts.expenseFund = new Account({
-        amount: 0
-      });
-      this.accounts.surplus = new Account({
-        amount: 0
-      });
-      this.accounts.investmentFund = new Account({
-        amount: 0
-      });
-      this.accounts.debt = new Account({
-        amount: 0,
-        debtAmount: 0
-      });
-    }
-  }, {
-    key: "_addTithingAccount",
-    value: function _addTithingAccount(user) {
-      if (user.latterDaySaint === true) this.accounts.tithing = {
-        amount: 0
-      };
-    }
-  }, {
-    key: "_setEmergencyGoal",
-    value: function _setEmergencyGoal() {
-      if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Length Of Time") {
-        this.accounts.emergencyFund.emergencyFundGoal = Number(document.querySelector('#timingNumber').value);
-        this.accounts.emergencyFund.emergencyFundGoalTiming = document.querySelector('.budget-creation-form__page__section__select').value;
-        console.log(this);
-      }
-
-      if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Total Amount") {
-        this.accounts.emergencyFund.emergencyFundGoal = Number(document.querySelector('#emergencyGoal').value);
-        console.log(this);
-      }
-    }
-  }, {
-    key: "_setSavingsGoal",
-    value: function _setSavingsGoal() {
-      this.accounts.savingsFund.savingsPercentage = Number(document.querySelector('#savingsPercentGoal').value) / 100;
-      this.accounts.savingsFund.savingsGoal = Number(document.querySelector('#savingsGoal').value);
-      console.log(this);
-    }
-  }, {
-    key: "_setInvestmentGoal",
-    value: function _setInvestmentGoal() {
-      this.accounts.investmentFund.investmentPercentage = Number(document.querySelector('#investmentPercentGoal').value) / 100;
-      this.accounts.investmentFund.investmentGoal = Number(document.querySelector('#investmentGoal').value);
-      console.log(this);
-    }
-  }, {
-    key: "_submit",
-    value: function _submit(budget, user) {
-      _Create_Budget__WEBPACK_IMPORTED_MODULE_8__.createBudget(budget, user);
-    }
-  }]);
-
-  return Budget;
-}();
 var _watchEmergencyGoalSettings = function _watchEmergencyGoalSettings(budget, setting) {
   var emergencySettingLabels = document.querySelectorAll('.emergency-checkbox-label');
   var emergencyInputs = document.querySelectorAll('.emergency-input');
@@ -5511,14 +5421,14 @@ var _finishUpdatingSubCategories = function _finishUpdatingSubCategories(budget,
 };
 
 var checkUser = /*#__PURE__*/function () {
-  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5___default().mark(function _callee() {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee() {
     var userInfo, user;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5___default().wrap(function _callee$(_context) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return _Update_User__WEBPACK_IMPORTED_MODULE_7__.getSomePersonals();
+            return _Update_User__WEBPACK_IMPORTED_MODULE_5__.getSomePersonals();
 
           case 2:
             userInfo = _context.sent;
@@ -5539,14 +5449,14 @@ var checkUser = /*#__PURE__*/function () {
 }();
 
 var getUserInformation = /*#__PURE__*/function () {
-  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5___default().mark(function _callee2() {
+  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee2() {
     var userInfo, user, lastname;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5___default().wrap(function _callee2$(_context2) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.next = 2;
-            return _Update_User__WEBPACK_IMPORTED_MODULE_7__.getSomePersonals();
+            return _Update_User__WEBPACK_IMPORTED_MODULE_5__.getSomePersonals();
 
           case 2:
             userInfo = _context2.sent;
@@ -6302,7 +6212,7 @@ var setupSubCategoryCreation = function setupSubCategoryCreation(budget, index) 
     e.preventDefault();
     var subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
 
-    _Budget_Categories__WEBPACK_IMPORTED_MODULE_6__._addSubCategory(budget, index);
+    _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__._addSubCategory(budget, index);
 
     subCategoryCreateInput.focus();
     subCategoryCreateInput.value = '';
@@ -6396,12 +6306,16 @@ var goToPage = function goToPage(page, createBudgetPages) {
     if (createBudgetPages[page]) createBudgetPages[page].classList.remove('disappear');
   });
 }; /////////////////////////////////
-// GET BUDGET NAME
+// SET BUDGET NAME
 
 
-var getBudgetName = function getBudgetName() {
+var getBudgetName = function getBudgetName(budget) {
   var budgetName = document.getElementById('budgetName').value;
-  return budgetName;
+  return budget._addName(budgetName);
+};
+
+var _checktLatterDaySaintStatus = function _checktLatterDaySaintStatus(user) {
+  return user.latterDaySaint;
 }; /////////////////////////////////
 // SETUP PAGE
 
@@ -6450,7 +6364,8 @@ var _watchTIthingOptions = function _watchTIthingOptions(budget) {
           return t.classList.remove('checked');
         });
         clicked.classList.toggle('checked');
-        return tithingSetting = "Gross";
+
+        budget._setTithingSetting("Gross");
       }
 
       if (e.target === netOptionLabel) {
@@ -6458,7 +6373,8 @@ var _watchTIthingOptions = function _watchTIthingOptions(budget) {
           return t.classList.remove('checked');
         });
         clicked.classList.toggle('checked');
-        return tithingSetting = "Net";
+
+        budget._setTithingSetting("Net");
       }
 
       if (e.target === surplusOptionLabel) {
@@ -6466,111 +6382,106 @@ var _watchTIthingOptions = function _watchTIthingOptions(budget) {
           return t.classList.remove('checked');
         });
         clicked.classList.toggle('checked');
-        return tithingSetting = "Surplus";
-      }
 
-      budget.accounts.tithing.tithingSetting = tithingSetting;
-      console.log(budget);
+        budget._setTithingSetting("Surplus");
+      }
     });
   }
 };
 
-var _watchCreationFormCloser = function _watchCreationFormCloser(form) {
+var _watchCreationFormCloser = function _watchCreationFormCloser(form, budget) {
   var formCloser = document.querySelector(".budget-creation-form-close-icon");
 
   if (formCloser) {
     formCloser.addEventListener('click', function (e) {
       form.classList.toggle("budget-creation-form-container--shown");
+      budget = undefined;
+      console.log(budget);
     });
   }
 };
 
-var _watchCreationFormOpener = function _watchCreationFormOpener(form, button) {
+var _watchCreationFormOpener = function _watchCreationFormOpener(form, button, budget) {
   if (button) {
     button.addEventListener("click", function (e) {
       form.classList.toggle("budget-creation-form-container--shown");
+      budget = _Budget__WEBPACK_IMPORTED_MODULE_7__.startToCreate();
+      console.log(budget);
+      return budget;
     });
   }
 };
 
-var _watchBudgetCreation = function _watchBudgetCreation() {
-  var budgetCreationForm = document.querySelector('.budget-creation-form-container');
-  var budgetCreationFormOpenButton = document.querySelector('.budget-card-container__card--create'); ////////////////////////////
-  // WATCH FOR FORM CLOSURE
+var _setupBudgetCreation = function _setupBudgetCreation(form, button, budget) {
+  _watchCreationFormOpener(form, button, budget);
 
-  _watchCreationFormCloser(budgetCreationForm); ////////////////////////////
-  // WATCH FOR FORM OPENING
+  _watchCreationFormCloser(form, budget);
+
+  return budget;
+};
+
+var _watchForBudgetCreation = /*#__PURE__*/function () {
+  var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee3() {
+    var budgetCreationForm, budgetCreationFormOpenButton, budget, budgetCreationFormPages, budgetCreationFormPagesNumber, currentPage, emergencyGoalSetting, clicked, selectedTiming, budgetContinueButton, budgetName, subCategoryIndex, icon, userInfo, user, latterDaySaintStatus, budgetNavButton;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            budgetCreationForm = document.querySelector('.budget-creation-form-container');
+            budgetCreationFormOpenButton = document.querySelector('.budget-card-container__card--create');
+
+            _setupBudgetCreation(budgetCreationForm, budgetCreationFormOpenButton, budget); ////////////////////////////
+            // INITIALIZE KEY VARIABLES
 
 
-  _watchCreationFormOpener(budgetCreationForm, budgetCreationFormOpenButton); ////////////////////////////
-  // INITIALIZE KEY VARIABLES
+            budgetCreationFormPages = document.querySelectorAll('.budget-creation-form__page');
+            budgetCreationFormPagesNumber = budgetCreationFormPages.length;
+            currentPage = 0;
+            budgetContinueButton = document.querySelector('.budget-creation-form__page-mechanisms__submit-button'); //////////////////////////////////////////////////////////////
+            // SET APPROPRIATE PAGE NUMBER DEPENDING ON USER INFORMATION
 
+            setPageCount(currentPage, budgetCreationFormPagesNumber); ////////////////////////////////////////////////
+            // INITIALIZE KEY VARIABLES INSIDE FUNCTION SCOPE
 
-  var budgetCreationFormPages = document.querySelectorAll('.budget-creation-form__page');
-  var budgetCreationFormPagesNumber = budgetCreationFormPages.length;
-  var currentPage = 0;
-  var emergencyGoalSetting, clicked, selectedTiming;
-  var budgetContinueButton = document.querySelector('.budget-creation-form__page-mechanisms__submit-button'); //////////////////////////////////////////////////////////////
-  // SET APPROPRIATE PAGE NUMBER DEPENDING ON USER INFORMATION
+            subCategoryIndex = 0;
+            _context3.next = 11;
+            return _Update_User__WEBPACK_IMPORTED_MODULE_5__.getSomePersonals();
 
-  setPageCount(currentPage, budgetCreationFormPagesNumber); ////////////////////////////////////////////////
-  // INITIALIZE KEY VARIABLES INSIDE FUNCTION SCOPE
+          case 11:
+            userInfo = _context3.sent;
+            user = userInfo.data.data.user; //////////////////////////////////////
+            // CHECK IF USER IS A LATTER DAY SAINT
 
-  var budgetName;
-  var subCategoryIndex = 0;
-  var icon;
-  var budget = new Budget();
+            latterDaySaintStatus = _checktLatterDaySaintStatus(user);
 
-  budget._addAccounts();
-
-  if (budgetContinueButton) {
-    budgetContinueButton.addEventListener('click', /*#__PURE__*/function () {
-      var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5___default().mark(function _callee3(e) {
-        var userInfo, user, individualPayments, _individualPayments;
-
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5___default().wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
+            if (budgetContinueButton) {
+              budgetContinueButton.addEventListener('click', function (e) {
                 e.preventDefault();
                 currentPage++; //////////////////////////////
                 // ASSIGN BUDGET INFORMATION
                 /////////////////////
                 // BUDGET NAME
 
-                budgetName = getBudgetName();
-                budget.name = budgetName; ////////////////////////////////
+                getBudgetName(budget); ////////////////////////////////
                 // SETUP BUDGET CREATION FORM
 
                 setupPage(currentPage, budgetCreationFormPages, budgetCreationFormPagesNumber, budget); /////////////////////////////
-                // CHECK USER
-
-                _context3.next = 7;
-                return _Update_User__WEBPACK_IMPORTED_MODULE_7__.getSomePersonals();
-
-              case 7:
-                userInfo = _context3.sent;
-                user = userInfo.data.data.user;
-                console.log(user); ////////////////////////////////////////////////////////////////////////
-                // GLITCH: Need to fix this to work if you are a Latter Day Saint as well.
-                ////////////////////////////////////////////////////////////////////////
-                /////////////////////////////
                 // IF NOT LATTER DAY SAINT
 
-                if (currentPage + 1 === 2 && user.latterDaySaint === false) {
-                  _Budget_Categories__WEBPACK_IMPORTED_MODULE_6__.createCategories(icon);
+                if (currentPage + 1 === 2 && latterDaySaintStatus === false) {
+                  _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.createCategories(icon);
 
-                  _Budget_Categories__WEBPACK_IMPORTED_MODULE_6__._watchCreateCategoryButton(icon, budget);
+                  _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__._watchCreateCategoryButton(icon, budget);
                 }
 
-                if (currentPage + 1 === 3 && user.latterDaySaint === false) {
+                if (currentPage + 1 === 3 && latterDaySaintStatus === false) {
                   _watchForSubCategoryKeyboard();
 
                   watchToCycleSubCategoryMainCategories();
                   setupSubCategoryCreation(budget, subCategoryIndex);
                 }
 
-                if (currentPage + 1 === 4 && user.latterDaySaint === false) {
+                if (currentPage + 1 === 4 && latterDaySaintStatus === false) {
                   setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
 
                   _watchForCyclingCategoryGoals();
@@ -6578,27 +6489,27 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
                   watchForSettingTiming(budget, subCategoryIndex, clicked, selectedTiming);
                 }
 
-                if (currentPage + 1 === 5 && user.latterDaySaint === false) {
-                  individualPayments = document.querySelectorAll('.individual-payment');
+                if (currentPage + 1 === 5 && latterDaySaintStatus === false) {
+                  var individualPayments = document.querySelectorAll('.individual-payment');
 
                   _finishUpdatingSubCategories(budget, individualPayments);
 
                   _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
                 }
 
-                if (currentPage + 1 === 6 && user.latterDaySaint === false) {
+                if (currentPage + 1 === 6 && latterDaySaintStatus === false) {
                   budget._setEmergencyGoal();
 
                   document.querySelector('#savingsGoal').focus();
                 }
 
-                if (currentPage + 1 === 7 && user.latterDaySaint === false) {
+                if (currentPage + 1 === 7 && latterDaySaintStatus === false) {
                   budget._setSavingsGoal();
 
                   document.querySelector('#investmentGoal').focus();
                 }
 
-                if (currentPage + 1 === 8 && user.latterDaySaint === false) {
+                if (currentPage + 1 === 8 && latterDaySaintStatus === false) {
                   budget._setInvestmentGoal();
 
                   budget._submit(budget, user);
@@ -6606,7 +6517,7 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
                 // IF LATTER DAY SAINT
 
 
-                if (currentPage + 1 === 2 && user.latterDaySaint === true) {
+                if (currentPage + 1 === 2 && latterDaySaintStatus === true) {
                   console.log("Tithing Options");
 
                   budget._addTithingAccount(user);
@@ -6614,20 +6525,20 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
                   _watchTIthingOptions(budget);
                 }
 
-                if (currentPage + 1 === 3 && user.latterDaySaint === true) {
-                  _Budget_Categories__WEBPACK_IMPORTED_MODULE_6__.createCategories(icon);
+                if (currentPage + 1 === 3 && latterDaySaintStatus === true) {
+                  _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.createCategories(icon);
 
-                  _Budget_Categories__WEBPACK_IMPORTED_MODULE_6__._watchCreateCategoryButton(icon, budget);
+                  _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__._watchCreateCategoryButton(icon, budget);
                 }
 
-                if (currentPage + 1 === 4 && user.latterDaySaint === true) {
+                if (currentPage + 1 === 4 && latterDaySaintStatus === true) {
                   _watchForSubCategoryKeyboard();
 
                   watchToCycleSubCategoryMainCategories();
                   setupSubCategoryCreation(budget, subCategoryIndex);
                 }
 
-                if (currentPage + 1 === 5 && user.latterDaySaint === true) {
+                if (currentPage + 1 === 5 && latterDaySaintStatus === true) {
                   setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
 
                   _watchForCyclingCategoryGoals();
@@ -6635,51 +6546,51 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
                   watchForSettingTiming(budget, subCategoryIndex, clicked, selectedTiming);
                 }
 
-                if (currentPage + 1 === 6 && user.latterDaySaint === true) {
-                  _individualPayments = document.querySelectorAll('.individual-payment');
+                if (currentPage + 1 === 6 && latterDaySaintStatus === true) {
+                  var _individualPayments = document.querySelectorAll('.individual-payment');
 
                   _finishUpdatingSubCategories(budget, _individualPayments);
 
                   _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
                 }
 
-                if (currentPage + 1 === 7 && user.latterDaySaint === true) {
+                if (currentPage + 1 === 7 && latterDaySaintStatus === true) {
                   budget._setEmergencyGoal();
 
                   document.querySelector('#savingsGoal').focus();
                 }
 
-                if (currentPage + 1 === 8 && user.latterDaySaint === true) {
+                if (currentPage + 1 === 8 && latterDaySaintStatus === true) {
                   budget._setSavingsGoal();
 
                   document.querySelector('#investmentGoal').focus();
                 }
 
-                if (currentPage + 1 === 9 && user.latterDaySaint === true) {
+                if (currentPage + 1 === 9 && latterDaySaintStatus === true) {
                   budget._setInvestmentGoal();
 
                   budget._submit(budget, user);
                 }
-
-              case 25:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }));
-
-      return function (_x) {
-        return _ref3.apply(this, arguments);
-      };
-    }());
-  } // WATCHING YOUR BUDGET AFTER YOU LOGIN OR CREATE YOUR BUDGET
+              });
+            } // WATCHING YOUR BUDGET AFTER YOU LOGIN OR CREATE YOUR BUDGET
 
 
-  var budgetNavButton = document.querySelector('.budget-container__navigation-button-container__button');
+            budgetNavButton = document.querySelector('.budget-container__navigation-button-container__button');
 
-  _Budget__WEBPACK_IMPORTED_MODULE_9__._watchBudget();
-};
+            _Maintain_Budget__WEBPACK_IMPORTED_MODULE_6__._watchBudget();
+
+          case 17:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3);
+  }));
+
+  return function _watchForBudgetCreation() {
+    return _ref3.apply(this, arguments);
+  };
+}();
 
 /***/ }),
 
@@ -6687,6 +6598,627 @@ var _watchBudgetCreation = function _watchBudgetCreation() {
 /*!*****************************!*\
   !*** ./Public/JS/Budget.js ***!
   \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Budget": () => (/* binding */ Budget),
+/* harmony export */   "startToCreate": () => (/* binding */ startToCreate)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
+/* harmony import */ var _Create_Budget__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Create-Budget */ "./Public/JS/Create-Budget.js");
+/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
+/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
+
+
+
+
+var Account = /*#__PURE__*/(0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(function Account(options) {
+  (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, Account);
+
+  this.amount = options.amount;
+});
+
+var Budget = /*#__PURE__*/function () {
+  function Budget() {
+    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, Budget);
+
+    this.name = '';
+    this.accounts = {};
+    this.mainCategories = [];
+  }
+
+  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(Budget, [{
+    key: "_addName",
+    value: function _addName(name) {
+      this.name = name;
+    }
+  }, {
+    key: "_addMainCategory",
+    value: function _addMainCategory(icon, title) {
+      this.mainCategories.push(new _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__.MainCategory({
+        icon: icon,
+        title: title
+      }));
+    }
+  }, {
+    key: "_addSubCategory",
+    value: function _addSubCategory(index, title) {
+      this.mainCategories[index].subCategories.push(new _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__.SubCategory({
+        title: title
+      }));
+    }
+  }, {
+    key: "_addAccounts",
+    value: function _addAccounts() {
+      this.accounts.unAllocated = new Account({
+        amount: 0
+      });
+      this.accounts.monthlyBudget = new Account({
+        amount: 0
+      });
+      this.accounts.emergencyFund = new Account({
+        amount: 0
+      });
+      this.accounts.savingsFund = new Account({
+        amount: 0
+      });
+      this.accounts.expenseFund = new Account({
+        amount: 0
+      });
+      this.accounts.surplus = new Account({
+        amount: 0
+      });
+      this.accounts.investmentFund = new Account({
+        amount: 0
+      });
+      this.accounts.debt = new Account({
+        amount: 0,
+        debtAmount: 0
+      });
+    }
+  }, {
+    key: "_addTithingAccount",
+    value: function _addTithingAccount(user) {
+      if (user.latterDaySaint === true) this.accounts.tithing = {
+        amount: 0
+      };
+    }
+  }, {
+    key: "_setTithingSetting",
+    value: function _setTithingSetting(setting) {
+      this.accounts.tithing.tithingSetting = setting;
+    }
+  }, {
+    key: "_setEmergencyGoal",
+    value: function _setEmergencyGoal() {
+      if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Length Of Time") {
+        this.accounts.emergencyFund.emergencyFundGoal = Number(document.querySelector('#timingNumber').value);
+        this.accounts.emergencyFund.emergencyFundGoalTiming = document.querySelector('.budget-creation-form__page__section__select').value;
+        console.log(this);
+      }
+
+      if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Total Amount") {
+        this.accounts.emergencyFund.emergencyFundGoal = Number(document.querySelector('#emergencyGoal').value);
+        console.log(this);
+      }
+    }
+  }, {
+    key: "_setSavingsGoal",
+    value: function _setSavingsGoal() {
+      this.accounts.savingsFund.savingsPercentage = Number(document.querySelector('#savingsPercentGoal').value) / 100;
+      this.accounts.savingsFund.savingsGoal = Number(document.querySelector('#savingsGoal').value);
+      console.log(this);
+    }
+  }, {
+    key: "_setInvestmentGoal",
+    value: function _setInvestmentGoal() {
+      this.accounts.investmentFund.investmentPercentage = Number(document.querySelector('#investmentPercentGoal').value) / 100;
+      this.accounts.investmentFund.investmentGoal = Number(document.querySelector('#investmentGoal').value);
+      console.log(this);
+    }
+  }, {
+    key: "_submit",
+    value: function _submit(budget, user) {
+      _Create_Budget__WEBPACK_IMPORTED_MODULE_2__.createBudget(budget, user);
+    }
+  }]);
+
+  return Budget;
+}();
+var startToCreate = function startToCreate() {
+  var budget = new Budget();
+
+  budget._addAccounts();
+
+  return budget;
+};
+
+/***/ }),
+
+/***/ "./Public/JS/Create-Budget.js":
+/*!************************************!*\
+  !*** ./Public/JS/Create-Budget.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createBudget": () => (/* binding */ createBudget)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Budget_Creation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Budget-Creation */ "./Public/JS/Budget-Creation.js");
+/* harmony import */ var _Maintain_Budget__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Maintain-Budget */ "./Public/JS/Maintain-Budget.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_5__);
+/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
+
+
+
+
+ //////////////////////
+// CREATE BUDGET
+
+var createBudget = /*#__PURE__*/function () {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(budget, user) {
+    var response1, response2, budgetId, response3;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            console.log(user);
+            _context.prev = 1;
+            _context.next = 4;
+            return axios__WEBPACK_IMPORTED_MODULE_4___default()({
+              method: "POST",
+              url: "/App/Users/".concat(user._id, "/Budgets"),
+              data: qs__WEBPACK_IMPORTED_MODULE_5___default().stringify({
+                budget: budget
+              })
+            });
+
+          case 4:
+            response1 = _context.sent;
+
+            if (!(response1.statusText === "Created")) {
+              _context.next = 19;
+              break;
+            }
+
+            console.log("Budget Created");
+            console.log("Retrieving Budget...");
+            _context.next = 10;
+            return axios__WEBPACK_IMPORTED_MODULE_4___default()({
+              method: "GET",
+              url: "/App/Users/".concat(user._id, "/Budgets/RetrieveBudget/")
+            });
+
+          case 10:
+            response2 = _context.sent;
+
+            if (!(response2.statusText === "OK")) {
+              _context.next = 19;
+              break;
+            }
+
+            budgetId = response2.data.data.budget._id;
+            _context.next = 15;
+            return axios__WEBPACK_IMPORTED_MODULE_4___default()({
+              method: "GET",
+              url: "/App/Users/".concat(user._id, "/Budgets/").concat(budgetId, "/Dashboard"),
+              data: qs__WEBPACK_IMPORTED_MODULE_5___default().stringify({
+                budget: budget
+              })
+            });
+
+          case 15:
+            response3 = _context.sent;
+            document.open("text/html").write(response3.data);
+            window.location.assign("/App/Users/".concat(user._id, "/Budgets/").concat(budgetId, "/Dashboard"));
+
+            _Maintain_Budget__WEBPACK_IMPORTED_MODULE_3__._watchBudget();
+
+          case 19:
+            _context.next = 24;
+            break;
+
+          case 21:
+            _context.prev = 21;
+            _context.t0 = _context["catch"](1);
+            console.log(_context.t0);
+
+          case 24:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[1, 21]]);
+  }));
+
+  return function createBudget(_x, _x2) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+/***/ }),
+
+/***/ "./Public/JS/FrontEnd-Calendar.js":
+/*!****************************************!*\
+  !*** ./Public/JS/FrontEnd-Calendar.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "myCalendar": () => (/* binding */ myCalendar)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
+
+
+
+var Calendar = /*#__PURE__*/function () {
+  function Calendar() {
+    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, Calendar);
+
+    this.date = new Date();
+    this.days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    this.monthIndex = this.date.getMonth();
+    this.hours = this.date.getHours();
+    this.day = this.date.getDay();
+  }
+
+  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(Calendar, [{
+    key: "getMinutes",
+    value: function getMinutes() {
+      return this.date.getMinutes() < 10 ? "0".concat(this.date.getMinutes()) : this.date.getMinutes();
+    }
+  }, {
+    key: "getHour",
+    value: function getHour() {
+      if (this.hours === 0 || this.hours === 24) return this.hours = 12;
+
+      if (this.hours >= 13 && this.getMinutes() >= 0) {
+        return this.hours = this.hours - 12;
+      }
+
+      return this.hours;
+    }
+  }, {
+    key: "getTimeOfDay",
+    value: function getTimeOfDay() {
+      return this.date.getHours() < 12 ? this.timeOfDay = "AM" : this.timeOfDay = "PM";
+    }
+  }, {
+    key: "getDay",
+    value: function getDay() {
+      return this.date.getDate();
+    }
+  }, {
+    key: "getGreeting",
+    value: function getGreeting() {
+      if (this.hours < 12) {
+        return this.greeting = "Good Morning";
+      }
+
+      if (this.hours >= 12 && this.hours < 18) {
+        return this.greeting = "Good Afternoon";
+      }
+
+      if (this.hours >= 18) {
+        return this.greeting = "Good Evening";
+      }
+    }
+  }, {
+    key: "getWeekday",
+    value: function getWeekday() {
+      return this.days[this.day];
+    }
+  }, {
+    key: "getMonth",
+    value: function getMonth() {
+      return this.months[this.monthIndex];
+    }
+  }, {
+    key: "getMonthIndex",
+    value: function getMonthIndex() {
+      return this.date.getMonth();
+    }
+  }, {
+    key: "getYear",
+    value: function getYear() {
+      return this.date.getFullYear();
+    }
+  }, {
+    key: "monthRemaining",
+    value: function monthRemaining() {
+      var days;
+      var currentMonth = this.getMonth();
+      var currentDay = this.getDay();
+
+      if (currentMonth === "January" || currentMonth === "March" || currentMonth === "May" || currentMonth === "July" || currentMonth === "August" || currentMonth === "October" || currentMonth === "December") {
+        days = 31;
+      }
+
+      if (currentMonth === "April" || currentMonth === "June" || currentMonth === "September" || currentMonth === "November") {
+        days = 30;
+      }
+
+      if (currentMonth === "February") {
+        this.getYear() % 4 === 0 && !(this.getYear() % 100 === 0) || this.getYear() % 400 === 0 ? days = 29 : days = 28;
+      }
+
+      var remaining = days - currentDay;
+      var percentage = remaining / days;
+      var calculatedPercent = (100 * percentage).toFixed(0);
+      return "".concat(calculatedPercent, "%");
+    }
+  }, {
+    key: "goBackAMonth",
+    value: function goBackAMonth(month, year, dayClass, currentDayClass, unusedDayClass) {
+      var selectedMonth = this.months[month];
+      this.makeCalendar(month, selectedMonth, year, dayClass, currentDayClass, unusedDayClass);
+    }
+  }, {
+    key: "goForwardAMonth",
+    value: function goForwardAMonth(month, year, dayClass, currentDayClass, unusedDayClass) {
+      var selectedMonth = this.months[month];
+      this.makeCalendar(month, selectedMonth, year, dayClass, currentDayClass, unusedDayClass);
+    }
+  }, {
+    key: "_selectDay",
+    value: function _selectDay(monthDays, singleDay) {
+      monthDays.forEach(function (day, i) {
+        day.classList.remove('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
+      });
+      singleDay.classList.add('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
+    }
+  }, {
+    key: "_setupMonth",
+    value: function _setupMonth(monthIndex, monthDays, year, dayClass, currentDayClass, unusedDayClass) {
+      var _this = this;
+
+      var dayStart = 1;
+      var days = document.querySelectorAll(dayClass);
+      var startDate = new Date(year, monthIndex, 1);
+      var manipulatedDate = new Date(year, monthIndex, 1);
+      var currentDate = new Date(year, monthIndex, this.getDay());
+      currentDate = new Date(currentDate.setDate(currentDate.getDate() + 1));
+      var dayIndex = startDate.getDay();
+      days.forEach(function (d) {
+        return d.textContent = '';
+      });
+
+      if (dayStart && dayIndex || dayStart && dayIndex === 0) {
+        while (dayStart <= monthDays) {
+          if (dayStart === 1) {
+            if (days[dayIndex]) {
+              days[dayIndex].textContent = dayStart;
+              dayStart++;
+              dayIndex++;
+            }
+          }
+
+          manipulatedDate = new Date(manipulatedDate.setDate(manipulatedDate.getDate() + 1));
+
+          if (days[dayIndex]) {
+            days[dayIndex].textContent = manipulatedDate.getDate();
+          }
+
+          dayStart++;
+          dayIndex++;
+        }
+      }
+
+      var currentDayIndex = currentDate.getDate();
+      days.forEach(function (d, i) {
+        d.classList.remove(currentDayClass);
+        if (d.textContent === '') d.classList.add(unusedDayClass);
+
+        if (d.textContent !== '') {
+          if (d.classList.contains('un-used-day')) d.classList.remove('un-used-day');
+
+          if (Number(d.textContent) === currentDayIndex - 1) {
+            d.classList.add(currentDayClass);
+          }
+
+          d.addEventListener('click', function (e) {
+            _this._selectDay(days, d);
+          });
+        }
+      });
+    }
+  }, {
+    key: "_getDaysInMonth",
+    value: function _getDaysInMonth(month, value, year) {
+      if (month === "January" || month === "March" || month === "May" || month === "July" || month === "August" || month === "October" || month === "December") {
+        value = 31;
+      }
+
+      if (month === "April" || month === "June" || month === "September" || month === "November") {
+        value = 30;
+      }
+
+      if (month === "February") {
+        year % 4 === 0 && !(year % 100 === 0) || year % 400 === 0 ? value = 29 : value = 28;
+      }
+
+      return value;
+    }
+  }, {
+    key: "makeCalendar",
+    value: function makeCalendar(monthIndex, month, year, dayClass, currentDayClass, unusedDayClass) {
+      var daysInMonth;
+      daysInMonth = this._getDaysInMonth(month, daysInMonth, year);
+      var billMonth = document.querySelector('.bill-calendar-container__calendar-container__calendar__header__title');
+      if (billMonth) billMonth.textContent = "".concat(month, " | ").concat(year);
+
+      this._setupMonth(monthIndex, daysInMonth, year, dayClass, currentDayClass, unusedDayClass);
+    }
+  }]);
+
+  return Calendar;
+}();
+
+var myCalendar = new Calendar(Date.now());
+
+/***/ }),
+
+/***/ "./Public/JS/Login.js":
+/*!****************************!*\
+  !*** ./Public/JS/Login.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "login": () => (/* binding */ login),
+/* harmony export */   "logout": () => (/* binding */ logout)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_3__);
+/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
+
+
+
+var login = /*#__PURE__*/function () {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(username, password) {
+    var options, response1, user, _options, response2;
+
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            options = {
+              username: username,
+              password: password
+            };
+            _context.next = 4;
+            return axios__WEBPACK_IMPORTED_MODULE_2___default()({
+              method: "POST",
+              url: "/App/User",
+              data: qs__WEBPACK_IMPORTED_MODULE_3___default().stringify(options)
+            });
+
+          case 4:
+            response1 = _context.sent;
+
+            if (!(response1.statusText === 'OK')) {
+              _context.next = 13;
+              break;
+            }
+
+            user = response1.data.data.user;
+            console.log(user);
+            _options = {
+              username: username,
+              password: password,
+              id: user._id
+            };
+            _context.next = 11;
+            return axios__WEBPACK_IMPORTED_MODULE_2___default()({
+              method: "POST",
+              url: "/App/Users/".concat(user._id),
+              data: qs__WEBPACK_IMPORTED_MODULE_3___default().stringify(_options)
+            });
+
+          case 11:
+            response2 = _context.sent;
+
+            if (response2.statusText === 'OK') {
+              document.open("text/html").write(response2.data);
+              window.location.assign("/App/Users/".concat(user._id));
+            }
+
+          case 13:
+            _context.next = 18;
+            break;
+
+          case 15:
+            _context.prev = 15;
+            _context.t0 = _context["catch"](0);
+            console.log(_context.t0);
+
+          case 18:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 15]]);
+  }));
+
+  return function login(_x, _x2) {
+    return _ref.apply(this, arguments);
+  };
+}();
+var logout = /*#__PURE__*/function () {
+  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2(id) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_2___default()({
+              method: 'GET',
+              url: "/App/Users/".concat(id, "/Logout")
+            });
+
+          case 3:
+            response = _context2.sent;
+            console.log(response);
+
+            if (response.data.status === 'Success') {
+              window.location.assign("/App");
+            }
+
+            _context2.next = 11;
+            break;
+
+          case 8:
+            _context2.prev = 8;
+            _context2.t0 = _context2["catch"](0);
+            console.log(_context2.t0);
+
+          case 11:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 8]]);
+  }));
+
+  return function logout(_x3) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+/***/ }),
+
+/***/ "./Public/JS/Maintain-Budget.js":
+/*!**************************************!*\
+  !*** ./Public/JS/Maintain-Budget.js ***!
+  \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -6931,15 +7463,14 @@ var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, user) {
     });
     allCategories.forEach(function (c, i) {
       if (c.timingOptions.paymentCycle) {
-        var timing = getSubCategoryTiming(budget, c); // subCategories[i].firstChild.nextSibling.firstChild.nextSibling.textContent = c.timingOptions.paymentCycle;
-
+        var timing = getSubCategoryTiming(budget, c);
         subCategories[i].firstChild.nextSibling.firstChild.nextSibling.textContent = timing;
       }
     });
     _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__.setupTimingFunctionContainer(timingFunctionContainer);
     var clickedItem, selectedTiming;
     var subCategoryIndex = 0;
-    _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__.watchForSettingTiming(budget, subCategoryIndex, clickedItem, selectedTiming);
+    _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__.watchForSettingTiming(budget, subCategoryIndex, clickedItem, selectedTiming, "Full Budget");
     console.log(budget, user);
     var money = new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -7116,6 +7647,7 @@ var _watchBudgetManagement = function _watchBudgetManagement(budget, user) {
     });
     var tithingCheckboxes = document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox');
     var currentTithingSetting;
+    if (!budget.accounts.tithing) return;
 
     if (budget.accounts.tithing.tithingSetting) {
       var tithingSettings = document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container');
@@ -7642,512 +8174,6 @@ var _watchBudget = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./Public/JS/Create-Budget.js":
-/*!************************************!*\
-  !*** ./Public/JS/Create-Budget.js ***!
-  \************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createBudget": () => (/* binding */ createBudget)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Budget_Creation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Budget-Creation */ "./Public/JS/Budget-Creation.js");
-/* harmony import */ var _Budget__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Budget */ "./Public/JS/Budget.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_5__);
-/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
-
-
-
-
-
- //////////////////////
-// CREATE BUDGET
-
-var createBudget = /*#__PURE__*/function () {
-  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(budget, user) {
-    var response1, response2, budgetId, response3;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            console.log(user);
-            _context.prev = 1;
-            _context.next = 4;
-            return axios__WEBPACK_IMPORTED_MODULE_4___default()({
-              method: "POST",
-              url: "/App/Users/".concat(user._id, "/Budgets"),
-              data: qs__WEBPACK_IMPORTED_MODULE_5___default().stringify({
-                budget: budget
-              })
-            });
-
-          case 4:
-            response1 = _context.sent;
-
-            if (!(response1.statusText === "Created")) {
-              _context.next = 19;
-              break;
-            }
-
-            console.log("Budget Created");
-            console.log("Retrieving Budget...");
-            _context.next = 10;
-            return axios__WEBPACK_IMPORTED_MODULE_4___default()({
-              method: "GET",
-              url: "/App/Users/".concat(user._id, "/Budgets/RetrieveBudget/")
-            });
-
-          case 10:
-            response2 = _context.sent;
-
-            if (!(response2.statusText === "OK")) {
-              _context.next = 19;
-              break;
-            }
-
-            budgetId = response2.data.data.budget._id;
-            _context.next = 15;
-            return axios__WEBPACK_IMPORTED_MODULE_4___default()({
-              method: "GET",
-              url: "/App/Users/".concat(user._id, "/Budgets/").concat(budgetId, "/Dashboard"),
-              data: qs__WEBPACK_IMPORTED_MODULE_5___default().stringify({
-                budget: budget
-              })
-            });
-
-          case 15:
-            response3 = _context.sent;
-            document.open("text/html").write(response3.data);
-            window.location.assign("/App/Users/".concat(user._id, "/Budgets/").concat(budgetId, "/Dashboard"));
-
-            _Budget__WEBPACK_IMPORTED_MODULE_3__._watchBudget();
-
-          case 19:
-            _context.next = 24;
-            break;
-
-          case 21:
-            _context.prev = 21;
-            _context.t0 = _context["catch"](1);
-            console.log(_context.t0);
-
-          case 24:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee, null, [[1, 21]]);
-  }));
-
-  return function createBudget(_x, _x2) {
-    return _ref.apply(this, arguments);
-  };
-}();
-
-/***/ }),
-
-/***/ "./Public/JS/FrontEnd-Calendar.js":
-/*!****************************************!*\
-  !*** ./Public/JS/FrontEnd-Calendar.js ***!
-  \****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "myCalendar": () => (/* binding */ myCalendar)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
-
-
-
-var Calendar = /*#__PURE__*/function () {
-  function Calendar() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, Calendar);
-
-    this.date = new Date();
-    this.days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    this.monthIndex = this.date.getMonth();
-    this.hours = this.date.getHours();
-    this.day = this.date.getDay();
-  }
-
-  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(Calendar, [{
-    key: "getMinutes",
-    value: function getMinutes() {
-      return this.date.getMinutes() < 10 ? "0".concat(this.date.getMinutes()) : this.date.getMinutes();
-    }
-  }, {
-    key: "getHour",
-    value: function getHour() {
-      if (this.hours === 0 || this.hours === 24) return this.hours = 12;
-
-      if (this.hours >= 13 && this.getMinutes() >= 0) {
-        return this.hours = this.hours - 12;
-      }
-
-      return this.hours;
-    }
-  }, {
-    key: "getTimeOfDay",
-    value: function getTimeOfDay() {
-      return this.date.getHours() < 12 ? this.timeOfDay = "AM" : this.timeOfDay = "PM";
-    }
-  }, {
-    key: "getDay",
-    value: function getDay() {
-      return this.date.getDate();
-    }
-  }, {
-    key: "getGreeting",
-    value: function getGreeting() {
-      if (this.hours < 12) {
-        return this.greeting = "Good Morning";
-      }
-
-      if (this.hours >= 12 && this.hours < 18) {
-        return this.greeting = "Good Afternoon";
-      }
-
-      if (this.hours >= 18) {
-        return this.greeting = "Good Evening";
-      }
-    }
-  }, {
-    key: "getWeekday",
-    value: function getWeekday() {
-      return this.days[this.day];
-    }
-  }, {
-    key: "getMonth",
-    value: function getMonth() {
-      return this.months[this.monthIndex];
-    }
-  }, {
-    key: "getMonthIndex",
-    value: function getMonthIndex() {
-      return this.date.getMonth();
-    }
-  }, {
-    key: "getYear",
-    value: function getYear() {
-      return this.date.getFullYear();
-    }
-  }, {
-    key: "monthRemaining",
-    value: function monthRemaining() {
-      var days;
-      var currentMonth = this.getMonth();
-      var currentDay = this.getDay();
-
-      if (currentMonth === "January" || currentMonth === "March" || currentMonth === "May" || currentMonth === "July" || currentMonth === "August" || currentMonth === "October" || currentMonth === "December") {
-        days = 31;
-      }
-
-      if (currentMonth === "April" || currentMonth === "June" || currentMonth === "September" || currentMonth === "November") {
-        days = 30;
-      }
-
-      if (currentMonth === "February") {
-        this.getYear() % 4 === 0 && !(this.getYear() % 100 === 0) || this.getYear() % 400 === 0 ? days = 29 : days = 28;
-      }
-
-      var remaining = days - currentDay;
-      var percentage = remaining / days;
-      var calculatedPercent = (100 * percentage).toFixed(0);
-      return "".concat(calculatedPercent, "%");
-    }
-  }, {
-    key: "goBackAMonth",
-    value: function goBackAMonth(month, year, dayClass, currentDayClass, unusedDayClass) {
-      var selectedMonth = this.months[month];
-      this.makeCalendar(month, selectedMonth, year, dayClass, currentDayClass, unusedDayClass);
-    }
-  }, {
-    key: "goForwardAMonth",
-    value: function goForwardAMonth(month, year, dayClass, currentDayClass, unusedDayClass) {
-      var selectedMonth = this.months[month];
-      this.makeCalendar(month, selectedMonth, year, dayClass, currentDayClass, unusedDayClass);
-    }
-  }, {
-    key: "_selectDay",
-    value: function _selectDay(monthDays, singleDay) {
-      monthDays.forEach(function (day, i) {
-        day.classList.remove('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
-      });
-      singleDay.classList.add('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
-    }
-  }, {
-    key: "_setupMonth",
-    value: function _setupMonth(monthIndex, monthDays, year, dayClass, currentDayClass, unusedDayClass) {
-      var _this = this;
-
-      var dayStart = 1;
-      var days = document.querySelectorAll(dayClass);
-      var startDate = new Date(year, monthIndex, 1);
-      var manipulatedDate = new Date(year, monthIndex, 1);
-      var currentDate = new Date(year, monthIndex, this.getDay());
-      currentDate = new Date(currentDate.setDate(currentDate.getDate() + 1));
-      var dayIndex = startDate.getDay();
-      days.forEach(function (d) {
-        return d.textContent = '';
-      });
-
-      if (dayStart && dayIndex || dayStart && dayIndex === 0) {
-        while (dayStart <= monthDays) {
-          if (dayStart === 1) {
-            if (days[dayIndex]) {
-              days[dayIndex].textContent = dayStart;
-              dayStart++;
-              dayIndex++;
-            }
-          }
-
-          manipulatedDate = new Date(manipulatedDate.setDate(manipulatedDate.getDate() + 1));
-
-          if (days[dayIndex]) {
-            days[dayIndex].textContent = manipulatedDate.getDate();
-          }
-
-          dayStart++;
-          dayIndex++;
-        }
-      }
-
-      var currentDayIndex = currentDate.getDate();
-      days.forEach(function (d, i) {
-        d.classList.remove(currentDayClass);
-        if (d.textContent === '') d.classList.add(unusedDayClass);
-
-        if (d.textContent !== '') {
-          if (d.classList.contains('un-used-day')) d.classList.remove('un-used-day');
-
-          if (Number(d.textContent) === currentDayIndex - 1) {
-            d.classList.add(currentDayClass);
-          }
-
-          d.addEventListener('click', function (e) {
-            _this._selectDay(days, d);
-          });
-        }
-      });
-    }
-  }, {
-    key: "_getDaysInMonth",
-    value: function _getDaysInMonth(month, value, year) {
-      if (month === "January" || month === "March" || month === "May" || month === "July" || month === "August" || month === "October" || month === "December") {
-        value = 31;
-      }
-
-      if (month === "April" || month === "June" || month === "September" || month === "November") {
-        value = 30;
-      }
-
-      if (month === "February") {
-        year % 4 === 0 && !(year % 100 === 0) || year % 400 === 0 ? value = 29 : value = 28;
-      }
-
-      return value;
-    }
-  }, {
-    key: "makeCalendar",
-    value: function makeCalendar(monthIndex, month, year, dayClass, currentDayClass, unusedDayClass) {
-      var daysInMonth;
-      daysInMonth = this._getDaysInMonth(month, daysInMonth, year);
-      var billMonth = document.querySelector('.bill-calendar-container__calendar-container__calendar__header__title');
-      if (billMonth) billMonth.textContent = "".concat(month, " | ").concat(year);
-
-      this._setupMonth(monthIndex, daysInMonth, year, dayClass, currentDayClass, unusedDayClass);
-    }
-  }]);
-
-  return Calendar;
-}();
-
-var myCalendar = new Calendar(Date.now());
-
-/***/ }),
-
-/***/ "./Public/JS/Login.js":
-/*!****************************!*\
-  !*** ./Public/JS/Login.js ***!
-  \****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "login": () => (/* binding */ login),
-/* harmony export */   "logout": () => (/* binding */ logout)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_3__);
-/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
-
-
-
- // export const login = async (username, password) => {
-//   try {
-//     const options = {
-//       username: username,
-//       password: password,
-//     };
-//     const response = await axios({
-//       method: `POST`,
-//       url: `/users/login`,
-//       data: qs.stringify(options),
-//     });
-//     if (response.statusText === `OK`) alert(response, response.data, response.data.user);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-// try {
-//   const options = {
-//     username: username,
-//     password: password,
-//   };
-//   const response = await axios({
-//     method: `GET`,
-//     url: `/users/login`,
-//     data: qs.stringify(options),
-//   });
-//   if (response.statusText === `OK`) alert(response, response.data, response.data.user);
-// } catch (error) {
-//   console.log(error);
-// }
-
-var login = /*#__PURE__*/function () {
-  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(username, password) {
-    var options, response1, user, _options, response2;
-
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            _context.prev = 0;
-            options = {
-              username: username,
-              password: password
-            };
-            _context.next = 4;
-            return axios__WEBPACK_IMPORTED_MODULE_2___default()({
-              method: "POST",
-              url: "/App/User",
-              data: qs__WEBPACK_IMPORTED_MODULE_3___default().stringify(options)
-            });
-
-          case 4:
-            response1 = _context.sent;
-
-            if (!(response1.statusText === 'OK')) {
-              _context.next = 13;
-              break;
-            }
-
-            user = response1.data.data.user;
-            console.log(user);
-            _options = {
-              username: username,
-              password: password,
-              id: user._id
-            };
-            _context.next = 11;
-            return axios__WEBPACK_IMPORTED_MODULE_2___default()({
-              method: "POST",
-              url: "/App/Users/".concat(user._id),
-              data: qs__WEBPACK_IMPORTED_MODULE_3___default().stringify(_options)
-            });
-
-          case 11:
-            response2 = _context.sent;
-
-            if (response2.statusText === 'OK') {
-              document.open("text/html").write(response2.data);
-              window.location.assign("/App/Users/".concat(user._id));
-            }
-
-          case 13:
-            _context.next = 18;
-            break;
-
-          case 15:
-            _context.prev = 15;
-            _context.t0 = _context["catch"](0);
-            console.log(_context.t0);
-
-          case 18:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee, null, [[0, 15]]);
-  }));
-
-  return function login(_x, _x2) {
-    return _ref.apply(this, arguments);
-  };
-}();
-var logout = /*#__PURE__*/function () {
-  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2(id) {
-    var response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            _context2.prev = 0;
-            _context2.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_2___default()({
-              method: 'GET',
-              url: "/App/Users/".concat(id, "/Logout")
-            });
-
-          case 3:
-            response = _context2.sent;
-            console.log(response);
-
-            if (response.data.status === 'Success') {
-              window.location.assign("/App");
-            }
-
-            _context2.next = 11;
-            break;
-
-          case 8:
-            _context2.prev = 8;
-            _context2.t0 = _context2["catch"](0);
-            console.log(_context2.t0);
-
-          case 11:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, _callee2, null, [[0, 8]]);
-  }));
-
-  return function logout(_x3) {
-    return _ref2.apply(this, arguments);
-  };
-}();
-
-/***/ }),
-
 /***/ "./Public/JS/Manage-Budget.js":
 /*!************************************!*\
   !*** ./Public/JS/Manage-Budget.js ***!
@@ -8170,7 +8196,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
 /* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _Budget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Budget */ "./Public/JS/Budget.js");
+/* harmony import */ var _Maintain_Budget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Maintain-Budget */ "./Public/JS/Maintain-Budget.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
 
@@ -8203,7 +8229,7 @@ var getMyBudget = /*#__PURE__*/function () {
             window.location.assign("/App/Users/".concat(user._id, "/Budgets/").concat(id, "/Dashboard"));
             console.log(response);
 
-            _Budget__WEBPACK_IMPORTED_MODULE_5__._watchBudget();
+            _Maintain_Budget__WEBPACK_IMPORTED_MODULE_5__._watchBudget();
 
             _context.next = 13;
             break;
@@ -8372,23 +8398,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "Person": () => (/* binding */ Person),
 /* harmony export */   "newPerson": () => (/* binding */ newPerson)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
 
 
-var Person = /*#__PURE__*/(0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(function Person(options) {
-  (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__["default"])(this, Person);
+var Person = /*#__PURE__*/function () {
+  function Person(options) {
+    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, Person);
 
-  // firstname, lastname, username, latterDaySaint, email, emailConfirmed, password, passwordConfirmed
-  this.firstname = options.firstname;
-  this.lastname = options.lastname;
-  this.username = options.username;
-  this.latterDaySaint = options.latterDaySaint;
-  this.email = options.email;
-  this.emailConfirmed = options.emailConfirmed;
-  this.password = options.password;
-  this.passwordConfirmed = options.passwordConfirmed;
-});
+    // firstname, lastname, username, latterDaySaint, email, emailConfirmed, password, passwordConfirmed
+    this.firstname = options.firstname;
+    this.lastname = options.lastname;
+    this.username = options.username;
+    this.latterDaySaint = options.latterDaySaint;
+    this.email = options.email;
+    this.emailConfirmed = options.emailConfirmed;
+    this.password = options.password;
+    this.passwordConfirmed = options.passwordConfirmed;
+  }
+
+  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(Person, [{
+    key: "_getLatterDaySaintStatus",
+    value: function _getLatterDaySaintStatus() {
+      return this.latterDaySaint;
+    }
+  }]);
+
+  return Person;
+}();
 var newPerson = new Person("", "", "", "", "", "", "", "");
 
 /***/ }),
@@ -8642,7 +8679,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
 /* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Login */ "./Public/JS/Login.js");
-/* harmony import */ var _Budget__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Budget */ "./Public/JS/Budget.js");
+/* harmony import */ var _Maintain_Budget__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Maintain-Budget */ "./Public/JS/Maintain-Budget.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
 
@@ -14948,7 +14985,6 @@ __webpack_require__.r(__webpack_exports__);
     return App;
   }(); ////////////////////////////////////////////////
   // INITIALIZE SOME STARTING VARIABLES FOR THE APP
-  // const resetPasswordButton = document.querySelector('.reset-password-form__section__button');
 
 
   var isLatterDaySaint = false;

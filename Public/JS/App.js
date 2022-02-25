@@ -40,7 +40,6 @@ import * as Person from './Person';
   }
   ////////////////////////////////////////////////
   // INITIALIZE SOME STARTING VARIABLES FOR THE APP
-  // const resetPasswordButton = document.querySelector('.reset-password-form__section__button');
   let isLatterDaySaint = false;
   let signupFormPage, isLoggedIn;
   const forms = document.querySelectorAll('.form-container');

@@ -1,5 +1,5 @@
 import * as Budget from './Budget-Creation';
-import * as Budgeting from './Budget';
+import * as Budgeting from './Maintain-Budget';
 import axios from 'axios';
 import qs from 'qs';
 
