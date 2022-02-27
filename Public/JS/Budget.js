@@ -109,23 +109,33 @@ export class Budget {
     if (user.latterDaySaint === true) this.accounts.tithing = { amount: 0 };
   }
 
-  _setTithingSetting(setting) {
-    this.accounts.tithing.tithingSetting = setting;
-  }
-
-  _setEmergencyGoal() {
-    if (this.accounts.emergencyFund.emergencyGoalMeasurement === `Length Of Time`) {
-      this.accounts.emergencyFund.emergencyFundGoal = Number(document.querySelector('#timingNumber').value);
-      this.accounts.emergencyFund.emergencyFundGoalTiming = document.querySelector('.budget-creation-form__page__section__select').value;
+  _updateAccounts(mode, update, options) {
+    if (mode === `Creation`) {
+      if (update === `Tithing Setting`) {
+        this.accounts.tithing.tithingSetting = options.setting;
+      }
+      if (update === `Emergency Measurement`) {
+        this.accounts.emergencyFund.emergencyGoalMeasurement = options.setting;
+      }
+      if (update === `Emergency Goal`) {
+        if (this.accounts.emergencyFund.emergencyGoalMeasurement === `Length Of Time`) {
+          this.accounts.emergencyFund.emergencyFundGoal = options.goal;
+          this.accounts.emergencyFund.emergencyFundGoalTiming = options.goalTiming;
+        }
+        if (this.accounts.emergencyFund.emergencyGoalMeasurement === `Total Amount`) {
+          this.accounts.emergencyFund.emergencyFundGoal = options.goal;
+        }
+        console.log(this.accounts.emergencyFund);
+      }
+      if (update === `Savings`) {
+        this.accounts.savingsFund.savingsPercentage = Number(options.percentage);
+        this.accounts.savingsFund.savingsGoal = Number(options.goal);
+      }
+      if (update === `Investment`) {
+        this.accounts.savingsFund.savingsPercentage = Number(options.percentage);
+        this.accounts.savingsFund.savingsGoal = Number(options.goal);
+      }
     }
-    if (this.accounts.emergencyFund.emergencyGoalMeasurement === `Total Amount`) {
-      this.accounts.emergencyFund.emergencyFundGoal = Number(document.querySelector('#emergencyGoal').value);
-    }
-  }
-
-  _setSavingsGoal() {
-    this.accounts.savingsFund.savingsPercentage = Number(document.querySelector('#savingsPercentGoal').value) / 100;
-    this.accounts.savingsFund.savingsGoal = Number(document.querySelector('#savingsGoal').value);
   }
 
   _setInvestmentGoal() {
@@ -135,6 +145,11 @@ export class Budget {
 
   _submit(budget, user) {
     Budgets.createBudget(budget, user);
+  }
+
+  _buildPlaceHolderBudget(budget, user) {
+    this._addTithingAccount(user);
+    console.log(budget);
   }
 }
 

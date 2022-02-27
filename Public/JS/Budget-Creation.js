@@ -27,7 +27,8 @@ export const _watchEmergencyGoalSettings = (budget, setting) => {
         document.querySelector('#emergencyGoal').focus();
       }
       if (budget) {
-        budget.accounts.emergencyFund.emergencyGoalMeasurement = setting;
+        // budget.accounts.emergencyFund.emergencyGoalMeasurement = setting;
+        budget._updateAccounts(`Creation`, `Emergency Measurement`, { setting: setting });
       }
       console.log(budget);
       return setting;
@@ -72,7 +73,6 @@ const getOverallBudget = (subCategories, overall) => {
   });
   let initialValue = 0;
   overall = arrayOfTotals.reduce((previous, current) => Number(previous) + Number(current), initialValue);
-  console.log(overall);
   return overall;
 };
 
@@ -87,7 +87,6 @@ const getOverallSpent = (subCategories, overall) => {
   });
   let initialValue = 0;
   overall = arrayOfTotals.reduce((previous, current) => Number(previous) + Number(current), initialValue);
-  console.log(overall);
   return overall;
 };
 
@@ -99,7 +98,6 @@ const getOverallPercentageSpent = (total, part) => {
 
 const getSinglePercentageSpent = (spent, total) => {
   let percentage = (spent / total).toFixed(2);
-  console.log(percentage);
   return percentage;
 };
 
@@ -176,7 +174,6 @@ const buildSubCategories = (categories, index, secondaryIndex, clickedItem) => {
         let part = getOverallSpent(subCategories, overallSpent);
         let percentage = getOverallPercentageSpent(total, part);
         overallBudget[0].textContent = money.format(getOverallBudget(subCategories, overallBudget[0]));
-        console.log(part, typeof part);
         overallSpent.textContent = money.format(part);
         overallRemaining.textContent = money.format(total - part);
         overallPercentageSpent.textContent = `${percentage}%`;
@@ -966,17 +963,17 @@ const _watchTIthingOptions = (budget) => {
       if (e.target === grossOptionLabel) {
         tithingOptions.forEach((t) => t.classList.remove('checked'));
         clicked.classList.toggle('checked');
-        budget._setTithingSetting(`Gross`);
+        budget._updateAccounts(`Creation`, `Tithing Setting`, { setting: `Gross` });
       }
       if (e.target === netOptionLabel) {
         tithingOptions.forEach((t) => t.classList.remove('checked'));
         clicked.classList.toggle('checked');
-        budget._setTithingSetting(`Net`);
+        budget._updateAccounts(`Creation`, `Tithing Setting`, { setting: `Net` });
       }
       if (e.target === surplusOptionLabel) {
         tithingOptions.forEach((t) => t.classList.remove('checked'));
         clicked.classList.toggle('checked');
-        budget._setTithingSetting(`Surplus`);
+        budget._updateAccounts(`Creation`, `Tithing Setting`, { setting: `Surplus` });
       }
     });
   }
@@ -1070,19 +1067,32 @@ export const _watchForBudgetCreation = async () => {
       if (currentPage + 1 === 5 && latterDaySaintStatus === false) {
         const individualPayments = document.querySelectorAll('.individual-payment');
         budget._updateSubCategory(`Creation`, `Finalizing Sub-Categories`, { goals: individualPayments });
-        // _finishUpdatingSubCategories(budget, individualPayments);
         _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
       }
       if (currentPage + 1 === 6 && latterDaySaintStatus === false) {
-        budget._setEmergencyGoal();
-        document.querySelector('#savingsGoal').focus();
+        if (budget.accounts.emergencyFund.emergencyGoalMeasurement === `Length Of Time`) {
+          budget._updateAccounts(`Creation`, `Emergency Goal`, {
+            goal: Number(document.querySelector('#timingNumber').value),
+            goalTiming: document.querySelector('.budget-creation-form__page__section__select').value,
+          });
+        }
+        if (budget.accounts.emergencyFund.emergencyGoalMeasurement === `Total Amount`) {
+          budget._updateAccounts(`Creation`, `Emergency Goal`, { goal: Number(document.querySelector('#emergencyGoal').value) });
+        }
+        document.querySelector('#savingsPercentGoal').focus();
       }
       if (currentPage + 1 === 7 && latterDaySaintStatus === false) {
-        budget._setSavingsGoal();
-        document.querySelector('#investmentGoal').focus();
+        budget._updateAccounts(`Creation`, `Savings`, {
+          percentage: Number(document.querySelector('#savingsPercentGoal').value) / 100,
+          goal: Number(document.querySelector('#savingsGoal').value),
+        });
+        document.querySelector('#investmentPercentGoal').focus();
       }
       if (currentPage + 1 === 8 && latterDaySaintStatus === false) {
-        budget._setInvestmentGoal();
+        budget._updateAccounts(`Creation`, `Investment`, {
+          percentage: Number(document.querySelector('#investmentPercentGoal').value) / 100,
+          goal: Number(document.querySelector('#investmentGoal').value),
+        });
         budget._submit(budget, user);
       }
 
@@ -1106,19 +1116,32 @@ export const _watchForBudgetCreation = async () => {
       if (currentPage + 1 === 6 && latterDaySaintStatus === true) {
         const individualPayments = document.querySelectorAll('.individual-payment');
         budget._updateSubCategory(`Creation`, `Finalizing Sub-Categories`, { goals: individualPayments });
-        // _finishUpdatingSubCategories(budget, individualPayments);
         _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
       }
       if (currentPage + 1 === 7 && latterDaySaintStatus === true) {
-        budget._setEmergencyGoal();
-        document.querySelector('#savingsGoal').focus();
+        if (budget.accounts.emergencyFund.emergencyGoalMeasurement === `Length Of Time`) {
+          budget._updateAccounts(`Creation`, `Emergency Goal`, {
+            goal: Number(document.querySelector('#timingNumber').value),
+            goalTiming: document.querySelector('.budget-creation-form__page__section__select').value,
+          });
+        }
+        if (budget.accounts.emergencyFund.emergencyGoalMeasurement === `Total Amount`) {
+          budget._updateAccounts(`Creation`, `Emergency Goal`, { goal: Number(document.querySelector('#emergencyGoal').value) });
+        }
+        document.querySelector('#savingsPercentGoal').focus();
       }
       if (currentPage + 1 === 8 && latterDaySaintStatus === true) {
-        budget._setSavingsGoal();
-        document.querySelector('#investmentGoal').focus();
+        budget._updateAccounts(`Creation`, `Savings`, {
+          percentage: Number(document.querySelector('#savingsPercentGoal').value) / 100,
+          goal: Number(document.querySelector('#savingsGoal').value),
+        });
+        document.querySelector('#investmentPercentGoal').focus();
       }
       if (currentPage + 1 === 9 && latterDaySaintStatus === true) {
-        budget._setInvestmentGoal();
+        budget._updateAccounts(`Creation`, `Investment`, {
+          percentage: Number(document.querySelector('#investmentPercentGoal').value) / 100,
+          goal: Number(document.querySelector('#investmentGoal').value),
+        });
         budget._submit(budget, user);
       }
     });

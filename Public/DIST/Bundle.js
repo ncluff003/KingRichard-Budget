@@ -5327,17 +5327,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "_watchForBudgetCreation": () => (/* binding */ _watchForBudgetCreation)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
-/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
-/* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
-/* harmony import */ var _Maintain_Budget__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Maintain-Budget */ "./Public/JS/Maintain-Budget.js");
-/* harmony import */ var _Budget__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Budget */ "./Public/JS/Budget.js");
-/* harmony import */ var _Base_Forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Base-Forms */ "./Public/JS/Base-Forms.js");
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
+/* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
+/* harmony import */ var _Maintain_Budget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Maintain-Budget */ "./Public/JS/Maintain-Budget.js");
+/* harmony import */ var _Budget__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Budget */ "./Public/JS/Budget.js");
+/* harmony import */ var _Base_Forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Base-Forms */ "./Public/JS/Base-Forms.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
-
 
 
 
@@ -5372,7 +5370,10 @@ var _watchEmergencyGoalSettings = function _watchEmergencyGoalSettings(budget, s
       }
 
       if (budget) {
-        budget.accounts.emergencyFund.emergencyGoalMeasurement = setting;
+        // budget.accounts.emergencyFund.emergencyGoalMeasurement = setting;
+        budget._updateAccounts("Creation", "Emergency Measurement", {
+          setting: setting
+        });
       }
 
       console.log(budget);
@@ -5396,14 +5397,14 @@ var _finishUpdatingSubCategories = function _finishUpdatingSubCategories(budget,
 };
 
 var checkUser = /*#__PURE__*/function () {
-  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee() {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee() {
     var userInfo, user;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee$(_context) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return _Update_User__WEBPACK_IMPORTED_MODULE_5__.getSomePersonals();
+            return _Update_User__WEBPACK_IMPORTED_MODULE_4__.getSomePersonals();
 
           case 2:
             userInfo = _context.sent;
@@ -5424,14 +5425,14 @@ var checkUser = /*#__PURE__*/function () {
 }();
 
 var getUserInformation = /*#__PURE__*/function () {
-  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee2() {
+  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee2() {
     var userInfo, user, lastname;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee2$(_context2) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.next = 2;
-            return _Update_User__WEBPACK_IMPORTED_MODULE_5__.getSomePersonals();
+            return _Update_User__WEBPACK_IMPORTED_MODULE_4__.getSomePersonals();
 
           case 2:
             userInfo = _context2.sent;
@@ -5464,7 +5465,6 @@ var getOverallBudget = function getOverallBudget(subCategories, overall) {
   overall = arrayOfTotals.reduce(function (previous, current) {
     return Number(previous) + Number(current);
   }, initialValue);
-  console.log(overall);
   return overall;
 };
 
@@ -5479,7 +5479,6 @@ var getOverallSpent = function getOverallSpent(subCategories, overall) {
   overall = arrayOfTotals.reduce(function (previous, current) {
     return Number(previous) + Number(current);
   }, initialValue);
-  console.log(overall);
   return overall;
 };
 
@@ -5491,7 +5490,6 @@ var getOverallPercentageSpent = function getOverallPercentageSpent(total, part) 
 
 var getSinglePercentageSpent = function getSinglePercentageSpent(spent, total) {
   var percentage = (spent / total).toFixed(2);
-  console.log(percentage);
   return percentage;
 };
 
@@ -5564,7 +5562,6 @@ var buildSubCategories = function buildSubCategories(categories, index, secondar
         var part = getOverallSpent(subCategories, overallSpent);
         var percentage = getOverallPercentageSpent(total, part);
         overallBudget[0].textContent = money.format(getOverallBudget(subCategories, overallBudget[0]));
-        console.log(part, (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(part));
         overallSpent.textContent = money.format(part);
         overallRemaining.textContent = money.format(total - part);
         overallPercentageSpent.textContent = "".concat(percentage, "%");
@@ -6203,7 +6200,7 @@ var setupSubCategoryCreation = function setupSubCategoryCreation(budget, index) 
     e.preventDefault();
     var subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
 
-    _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__._verifySubCategory(budget, index);
+    _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__._verifySubCategory(budget, index);
 
     subCategoryCreateInput.focus();
     subCategoryCreateInput.value = '';
@@ -6320,7 +6317,7 @@ var _checktLatterDaySaintStatus = function _checktLatterDaySaintStatus(user) {
 
 
 var setupMainCategoryCreation = function setupMainCategoryCreation(icon, budget) {
-  _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__._watchCreateCategoryButton(icon, budget);
+  _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__._watchCreateCategoryButton(icon, budget);
 }; /////////////////////////////////
 // SETUP PAGE
 
@@ -6370,7 +6367,9 @@ var _watchTIthingOptions = function _watchTIthingOptions(budget) {
         });
         clicked.classList.toggle('checked');
 
-        budget._setTithingSetting("Gross");
+        budget._updateAccounts("Creation", "Tithing Setting", {
+          setting: "Gross"
+        });
       }
 
       if (e.target === netOptionLabel) {
@@ -6379,7 +6378,9 @@ var _watchTIthingOptions = function _watchTIthingOptions(budget) {
         });
         clicked.classList.toggle('checked');
 
-        budget._setTithingSetting("Net");
+        budget._updateAccounts("Creation", "Tithing Setting", {
+          setting: "Net"
+        });
       }
 
       if (e.target === surplusOptionLabel) {
@@ -6388,7 +6389,9 @@ var _watchTIthingOptions = function _watchTIthingOptions(budget) {
         });
         clicked.classList.toggle('checked');
 
-        budget._setTithingSetting("Surplus");
+        budget._updateAccounts("Creation", "Tithing Setting", {
+          setting: "Surplus"
+        });
       }
     });
   }
@@ -6424,15 +6427,15 @@ var _setupBudgetCreation = function _setupBudgetCreation(form, button, budget) {
 };
 
 var _watchForBudgetCreation = /*#__PURE__*/function () {
-  var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee3() {
+  var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee3() {
     var budgetCreationForm, budgetCreationFormOpenButton, budget, budgetCreationFormPages, budgetCreationFormPagesNumber, currentPage, emergencyGoalSetting, clicked, selectedTiming, budgetContinueButton, budgetName, subCategoryIndex, icon, userInfo, user, latterDaySaintStatus, budgetNavButton;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee3$(_context3) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
             budgetCreationForm = document.querySelector('.budget-creation-form-container');
             budgetCreationFormOpenButton = document.querySelector('.budget-card-container__card--create');
-            budget = _Budget__WEBPACK_IMPORTED_MODULE_7__.startToCreate();
+            budget = _Budget__WEBPACK_IMPORTED_MODULE_6__.startToCreate();
 
             _setupBudgetCreation(budgetCreationForm, budgetCreationFormOpenButton, budget); ////////////////////////////
             // INITIALIZE KEY VARIABLES
@@ -6449,7 +6452,7 @@ var _watchForBudgetCreation = /*#__PURE__*/function () {
 
             subCategoryIndex = 0;
             _context3.next = 12;
-            return _Update_User__WEBPACK_IMPORTED_MODULE_5__.getSomePersonals();
+            return _Update_User__WEBPACK_IMPORTED_MODULE_4__.getSomePersonals();
 
           case 12:
             userInfo = _context3.sent;
@@ -6490,26 +6493,42 @@ var _watchForBudgetCreation = /*#__PURE__*/function () {
 
                   budget._updateSubCategory("Creation", "Finalizing Sub-Categories", {
                     goals: individualPayments
-                  }); // _finishUpdatingSubCategories(budget, individualPayments);
-
+                  });
 
                   _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
                 }
 
                 if (currentPage + 1 === 6 && latterDaySaintStatus === false) {
-                  budget._setEmergencyGoal();
+                  if (budget.accounts.emergencyFund.emergencyGoalMeasurement === "Length Of Time") {
+                    budget._updateAccounts("Creation", "Emergency Goal", {
+                      goal: Number(document.querySelector('#timingNumber').value),
+                      goalTiming: document.querySelector('.budget-creation-form__page__section__select').value
+                    });
+                  }
 
-                  document.querySelector('#savingsGoal').focus();
+                  if (budget.accounts.emergencyFund.emergencyGoalMeasurement === "Total Amount") {
+                    budget._updateAccounts("Creation", "Emergency Goal", {
+                      goal: Number(document.querySelector('#emergencyGoal').value)
+                    });
+                  }
+
+                  document.querySelector('#savingsPercentGoal').focus();
                 }
 
                 if (currentPage + 1 === 7 && latterDaySaintStatus === false) {
-                  budget._setSavingsGoal();
+                  budget._updateAccounts("Creation", "Savings", {
+                    percentage: Number(document.querySelector('#savingsPercentGoal').value) / 100,
+                    goal: Number(document.querySelector('#savingsGoal').value)
+                  });
 
-                  document.querySelector('#investmentGoal').focus();
+                  document.querySelector('#investmentPercentGoal').focus();
                 }
 
                 if (currentPage + 1 === 8 && latterDaySaintStatus === false) {
-                  budget._setInvestmentGoal();
+                  budget._updateAccounts("Creation", "Investment", {
+                    percentage: Number(document.querySelector('#investmentPercentGoal').value) / 100,
+                    goal: Number(document.querySelector('#investmentGoal').value)
+                  });
 
                   budget._submit(budget, user);
                 } /////////////////////////////
@@ -6542,26 +6561,42 @@ var _watchForBudgetCreation = /*#__PURE__*/function () {
 
                   budget._updateSubCategory("Creation", "Finalizing Sub-Categories", {
                     goals: _individualPayments
-                  }); // _finishUpdatingSubCategories(budget, individualPayments);
-
+                  });
 
                   _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
                 }
 
                 if (currentPage + 1 === 7 && latterDaySaintStatus === true) {
-                  budget._setEmergencyGoal();
+                  if (budget.accounts.emergencyFund.emergencyGoalMeasurement === "Length Of Time") {
+                    budget._updateAccounts("Creation", "Emergency Goal", {
+                      goal: Number(document.querySelector('#timingNumber').value),
+                      goalTiming: document.querySelector('.budget-creation-form__page__section__select').value
+                    });
+                  }
 
-                  document.querySelector('#savingsGoal').focus();
+                  if (budget.accounts.emergencyFund.emergencyGoalMeasurement === "Total Amount") {
+                    budget._updateAccounts("Creation", "Emergency Goal", {
+                      goal: Number(document.querySelector('#emergencyGoal').value)
+                    });
+                  }
+
+                  document.querySelector('#savingsPercentGoal').focus();
                 }
 
                 if (currentPage + 1 === 8 && latterDaySaintStatus === true) {
-                  budget._setSavingsGoal();
+                  budget._updateAccounts("Creation", "Savings", {
+                    percentage: Number(document.querySelector('#savingsPercentGoal').value) / 100,
+                    goal: Number(document.querySelector('#savingsGoal').value)
+                  });
 
-                  document.querySelector('#investmentGoal').focus();
+                  document.querySelector('#investmentPercentGoal').focus();
                 }
 
                 if (currentPage + 1 === 9 && latterDaySaintStatus === true) {
-                  budget._setInvestmentGoal();
+                  budget._updateAccounts("Creation", "Investment", {
+                    percentage: Number(document.querySelector('#investmentPercentGoal').value) / 100,
+                    goal: Number(document.querySelector('#investmentGoal').value)
+                  });
 
                   budget._submit(budget, user);
                 }
@@ -6571,7 +6606,7 @@ var _watchForBudgetCreation = /*#__PURE__*/function () {
 
             budgetNavButton = document.querySelector('.budget-container__navigation-button-container__button');
 
-            _Maintain_Budget__WEBPACK_IMPORTED_MODULE_6__._watchBudget();
+            _Maintain_Budget__WEBPACK_IMPORTED_MODULE_5__._watchBudget();
 
           case 18:
           case "end":
@@ -6757,27 +6792,40 @@ var Budget = /*#__PURE__*/function () {
       };
     }
   }, {
-    key: "_setTithingSetting",
-    value: function _setTithingSetting(setting) {
-      this.accounts.tithing.tithingSetting = setting;
-    }
-  }, {
-    key: "_setEmergencyGoal",
-    value: function _setEmergencyGoal() {
-      if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Length Of Time") {
-        this.accounts.emergencyFund.emergencyFundGoal = Number(document.querySelector('#timingNumber').value);
-        this.accounts.emergencyFund.emergencyFundGoalTiming = document.querySelector('.budget-creation-form__page__section__select').value;
-      }
+    key: "_updateAccounts",
+    value: function _updateAccounts(mode, update, options) {
+      if (mode === "Creation") {
+        if (update === "Tithing Setting") {
+          this.accounts.tithing.tithingSetting = options.setting;
+        }
 
-      if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Total Amount") {
-        this.accounts.emergencyFund.emergencyFundGoal = Number(document.querySelector('#emergencyGoal').value);
+        if (update === "Emergency Measurement") {
+          this.accounts.emergencyFund.emergencyGoalMeasurement = options.setting;
+        }
+
+        if (update === "Emergency Goal") {
+          if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Length Of Time") {
+            this.accounts.emergencyFund.emergencyFundGoal = options.goal;
+            this.accounts.emergencyFund.emergencyFundGoalTiming = options.goalTiming;
+          }
+
+          if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Total Amount") {
+            this.accounts.emergencyFund.emergencyFundGoal = options.goal;
+          }
+
+          console.log(this.accounts.emergencyFund);
+        }
+
+        if (update === "Savings") {
+          this.accounts.savingsFund.savingsPercentage = Number(options.percentage);
+          this.accounts.savingsFund.savingsGoal = Number(options.goal);
+        }
+
+        if (update === "Investment") {
+          this.accounts.savingsFund.savingsPercentage = Number(options.percentage);
+          this.accounts.savingsFund.savingsGoal = Number(options.goal);
+        }
       }
-    }
-  }, {
-    key: "_setSavingsGoal",
-    value: function _setSavingsGoal() {
-      this.accounts.savingsFund.savingsPercentage = Number(document.querySelector('#savingsPercentGoal').value) / 100;
-      this.accounts.savingsFund.savingsGoal = Number(document.querySelector('#savingsGoal').value);
     }
   }, {
     key: "_setInvestmentGoal",
@@ -6789,6 +6837,13 @@ var Budget = /*#__PURE__*/function () {
     key: "_submit",
     value: function _submit(budget, user) {
       _Create_Budget__WEBPACK_IMPORTED_MODULE_2__.createBudget(budget, user);
+    }
+  }, {
+    key: "_buildPlaceHolderBudget",
+    value: function _buildPlaceHolderBudget(budget, user) {
+      this._addTithingAccount(user);
+
+      console.log(budget);
     }
   }]);
 
@@ -7297,8 +7352,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
 /* harmony import */ var _FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FrontEnd-Calendar */ "./Public/JS/FrontEnd-Calendar.js");
 /* harmony import */ var _Manage_Budget__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Manage-Budget */ "./Public/JS/Manage-Budget.js");
-/* harmony import */ var _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Budget-Creation */ "./Public/JS/Budget-Creation.js");
+/* harmony import */ var _Budget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Budget */ "./Public/JS/Budget.js");
+/* harmony import */ var _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Budget-Creation */ "./Public/JS/Budget-Creation.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
 
 
 
@@ -7420,7 +7477,7 @@ var getSubCategoryTiming = function getSubCategoryTiming(budget, category) {
 
     var endDigit = Number(date.getDate().toString().split('')[date.getDate().toString().length - 1]);
     var dayEnding;
-    dayEnding = _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__.calculateDayEnding(endDigit, dayEnding, date);
+    dayEnding = _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__.calculateDayEnding(endDigit, dayEnding, date);
     console.log(_day, endDigit, dayEnding);
     wording = "Due the ".concat(_day).concat(dayEnding, " of ").concat(months[date.getMonth()], ".");
     return wording;
@@ -7445,8 +7502,8 @@ var getSubCategoryTiming = function getSubCategoryTiming(budget, category) {
     var _endDigit = Number(dayOne.getDate().toString().split('')[dayOne.getDate().toString().length - 1]);
 
     var endDigitTwo = Number(dayTwo.getDate().toString().split('')[dayTwo.getDate().toString().length - 1]);
-    _dayEnding = _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__.calculateDayEnding(_endDigit, _dayEnding, dayOne.getDate());
-    dayEndingTwo = _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__.calculateDayEnding(_endDigit, dayEndingTwo, dayTwo.getDate());
+    _dayEnding = _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__.calculateDayEnding(_endDigit, _dayEnding, dayOne.getDate());
+    dayEndingTwo = _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__.calculateDayEnding(_endDigit, dayEndingTwo, dayTwo.getDate());
     console.log(dayOne, dayTwo, _endDigit, endDigitTwo, _dayEnding, dayEndingTwo);
     wording = "Due the ".concat(dayOne.getDate()).concat(_dayEnding, " & ").concat(dayTwo.getDate()).concat(dayEndingTwo, ", of ").concat(months[dayOne.getMonth()]);
     console.log(wording);
@@ -7464,7 +7521,7 @@ var getSubCategoryTiming = function getSubCategoryTiming(budget, category) {
 
     var _dayEnding2;
 
-    _dayEnding2 = _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__.calculateDayEnding(_endDigit2, _dayEnding2, _date);
+    _dayEnding2 = _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__.calculateDayEnding(_endDigit2, _dayEnding2, _date);
     console.log(_day2, _endDigit2, _dayEnding2);
     wording = "Due the ".concat(_day2).concat(_dayEnding2, " of ").concat(months[_date.getMonth()], ".");
     return wording;
@@ -7532,10 +7589,10 @@ var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, user) {
         subCategories[i].firstChild.nextSibling.firstChild.nextSibling.textContent = timing;
       }
     });
-    _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__.setupTimingFunctionContainer(timingFunctionContainer);
+    _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__.setupTimingFunctionContainer(timingFunctionContainer);
     var clickedItem, selectedTiming;
     var subCategoryIndex = 0;
-    _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__.watchForSettingTiming(budget, subCategoryIndex, clickedItem, selectedTiming, "Full Budget");
+    _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__.watchForSettingTiming(budget, subCategoryIndex, clickedItem, selectedTiming, "Full Budget");
     console.log(budget, user);
     var money = new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -8129,7 +8186,7 @@ var pushIntoArray = function pushIntoArray(arrayFiller, array) {
 
 var _watchBudget = /*#__PURE__*/function () {
   var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
-    var userInfo, user, currentBudget, formLabels, formInputs, formSections, monthlyBudgetTransactions, monthlyBudgetTransactionOptions, emergencyFundTransactions, emergencyFundTransactionOptions, savingsFundTransactions, savingsFundTransactionOptions, expenseFundTransactions, expenseFundTransactionOptions, surplusTransactions, surplusTransactionOptions, debtTransactions, debtTransactionOptions, tithingTransactions, tithingTransactionOptions, mainCategoryOptionArrays;
+    var userInfo, user, currentBudget, budget, formLabels, formInputs, formSections, monthlyBudgetTransactions, monthlyBudgetTransactionOptions, emergencyFundTransactions, emergencyFundTransactionOptions, savingsFundTransactions, savingsFundTransactionOptions, expenseFundTransactions, expenseFundTransactionOptions, surplusTransactions, surplusTransactionOptions, debtTransactions, debtTransactionOptions, tithingTransactions, tithingTransactionOptions, mainCategoryOptionArrays;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -8148,15 +8205,20 @@ var _watchBudget = /*#__PURE__*/function () {
             user.budgets.forEach(function (b) {
               if (b._id === window.location.pathname.split('/')[5]) currentBudget = b;
             });
+            budget = _Budget__WEBPACK_IMPORTED_MODULE_5__.startToCreate();
+
+            budget._buildPlaceHolderBudget(currentBudget, user);
+
+            console.log(budget);
 
             if (currentBudget) {
-              _context.next = 8;
+              _context.next = 11;
               break;
             }
 
             return _context.abrupt("return");
 
-          case 8:
+          case 11:
             ////////////////////////////////////////////
             // SETUP ACCOUNT OPTIONS FOR TRANSACTIONS
             formLabels = document.querySelectorAll('.form-label');
@@ -8224,7 +8286,7 @@ var _watchBudget = /*#__PURE__*/function () {
 
             _watchEditCategoryGoals(currentBudget, user);
 
-          case 42:
+          case 45:
           case "end":
             return _context.stop();
         }

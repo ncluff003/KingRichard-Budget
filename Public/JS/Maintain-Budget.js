@@ -1,6 +1,7 @@
 import * as Updating from './Update-User';
 import * as Calendar from './FrontEnd-Calendar';
-import * as Budget from './Manage-Budget';
+import * as Budgeting from './Manage-Budget';
+import * as Budget from './Budget';
 import * as Edit from './Budget-Creation';
 
 // Class of the 'days' on the Calendar.
@@ -12,7 +13,7 @@ const watchForBudgetDeletion = () => {
   const userId = window.location.pathname.split('/')[3];
   budgetDeleteButton.addEventListener('click', (e) => {
     e.preventDefault();
-    Budget.deleteMyBudget(budgetId, userId);
+    Budgeting.deleteMyBudget(budgetId, userId);
   });
 };
 
@@ -21,7 +22,7 @@ const watchForBudgetExit = () => {
   const userId = window.location.pathname.split('/')[3];
   exitButton.addEventListener('click', (e) => {
     e.preventDefault();
-    Budget.exitBudget(userId);
+    Budgeting.exitBudget(userId);
   });
 };
 
@@ -365,7 +366,7 @@ const watchBudgetManatementUpdates = (emergencySetting, currentTithingSetting, b
     ]
   );
   console.log(newBudget);
-  Budget.updateMyBudget(newBudget);
+  Budgeting.updateMyBudget(newBudget);
 };
 
 const changeEmergencyInput = (array, setting) => {
@@ -843,6 +844,9 @@ export const _watchBudget = async () => {
   user.budgets.forEach((b) => {
     if (b._id === window.location.pathname.split('/')[5]) currentBudget = b;
   });
+  let budget = Budget.startToCreate();
+  budget._buildPlaceHolderBudget(currentBudget, user);
+  console.log(budget);
 
   if (!currentBudget) return;
 
