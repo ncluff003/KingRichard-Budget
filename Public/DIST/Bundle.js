@@ -4752,7 +4752,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "MainCategory": () => (/* binding */ MainCategory),
 /* harmony export */   "SubCategory": () => (/* binding */ SubCategory),
 /* harmony export */   "createSubCategory": () => (/* binding */ createSubCategory),
-/* harmony export */   "_addSubCategory": () => (/* binding */ _addSubCategory),
+/* harmony export */   "_verifySubCategory": () => (/* binding */ _verifySubCategory),
 /* harmony export */   "_clickIcon": () => (/* binding */ _clickIcon),
 /* harmony export */   "_watchCreateCategoryButton": () => (/* binding */ _watchCreateCategoryButton),
 /* harmony export */   "createCategories": () => (/* binding */ createCategories)
@@ -4848,6 +4848,10 @@ var SubCategory = /*#__PURE__*/function (_Category2) {
 
     _this3 = _super2.call(this, superOpts);
     _this3.timingOptions = {};
+    _this3.goalAmount = 0;
+    _this3.amountSpent = 0;
+    _this3.amountRemaining = 0;
+    _this3.percentageSpent = 0;
     _this3.surplus = false;
     return _this3;
   }
@@ -4935,7 +4939,10 @@ var createSubCategory = function createSubCategory(budget, index) {
     var categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
     var categoryTitle = subCategoryTitleElement.textContent;
 
-    budget.mainCategories[categoryNumber].subCategories[subArray.indexOf(clicked.closest('.sub-category'))]._makeSurplus();
+    budget._updateSubCategory("Creation", "Surplus", {
+      mainIndex: categoryNumber,
+      subIndex: subArray.indexOf(clicked.closest('.sub-category'))
+    });
   }); // Create Surplus Switch Toggle
 
   var surplusSwitchToggle = document.createElement('section');
@@ -4967,7 +4974,7 @@ var createSubCategory = function createSubCategory(budget, index) {
 
     selectedSubCategory.remove();
 
-    budget.mainCategories[categoryNumber]._deleteSubCategory(subArray.indexOf(selectedSubCategory));
+    budget._deleteSubCategory(categoryNumber, subArray.indexOf(selectedSubCategory));
   });
   surplusSwitchToggle.insertAdjacentElement('beforeend', surplusSwitchToggleIcon);
   surplusContainerSwitch.insertAdjacentElement('beforeend', surplusSwitchToggle);
@@ -4989,11 +4996,11 @@ var createSubCategory = function createSubCategory(budget, index) {
     subCategories[subCategories.length - 1].insertAdjacentElement('afterend', subCategory);
   }
 
-  if (!subCategoryTitleInput.value) return;
+  if (!subCategoryTitleInput.value) return; // This is where it actually adds it to the budget object.
 
   budget._addSubCategory(index, "".concat(subCategoryTitleElement.textContent));
 };
-var _addSubCategory = function _addSubCategory(budget, index) {
+var _verifySubCategory = function _verifySubCategory(budget, index) {
   /////////////////////////////////////////////////
   // INITIALIZE NEEDED VARIABLES
   var mainCategoryTitle = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__text').textContent.toLowerCase();
@@ -5022,7 +5029,7 @@ var _addSubCategory = function _addSubCategory(budget, index) {
 }; ////////////////////////////////////////
 // MAIN CATEGORY DELETION PROCESS
 
-var deleteMainCategory = /*#__PURE__*/function () {
+var removeMainCategory = /*#__PURE__*/function () {
   var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8___default().mark(function _callee(e, budget) {
     var budgetPages, mainCategoryCreationPage, title, userInfo, user;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8___default().wrap(function _callee$(_context) {
@@ -5031,50 +5038,49 @@ var deleteMainCategory = /*#__PURE__*/function () {
           case 0:
             budgetPages = document.querySelectorAll('.budget-creation-form__page');
             mainCategoryCreationPage = document.querySelector('.budget-creation-form__page');
-            title = e.target.closest('section').firstChild.nextElementSibling.textContent;
-            console.log(title); /////////////////////////////
+            title = e.target.closest('section').firstChild.nextElementSibling.textContent; /////////////////////////////
             // CHECK USER
 
-            _context.next = 6;
+            _context.next = 5;
             return _Update_User__WEBPACK_IMPORTED_MODULE_9__.getSomePersonals();
 
-          case 6:
+          case 5:
             userInfo = _context.sent;
             user = userInfo.data.data.user;
 
             if (!(user.latterDaySaint === true)) {
-              _context.next = 11;
+              _context.next = 10;
               break;
             }
 
             if (!budgetPages[2].classList.contains("disappear")) {
-              _context.next = 11;
+              _context.next = 10;
               break;
             }
 
             return _context.abrupt("return");
 
-          case 11:
+          case 10:
             if (!(user.latterDaySaint === false)) {
-              _context.next = 14;
+              _context.next = 13;
               break;
             }
 
             if (budgetPages[2].classList.contains("disappear")) {
-              _context.next = 14;
+              _context.next = 13;
               break;
             }
 
             return _context.abrupt("return");
 
-          case 14:
+          case 13:
             budget._deleteMainCategory(title);
 
             e.target.closest('section').remove();
             console.log("DELETED");
             return _context.abrupt("return", budget.mainCategories);
 
-          case 18:
+          case 17:
           case "end":
             return _context.stop();
         }
@@ -5082,7 +5088,7 @@ var deleteMainCategory = /*#__PURE__*/function () {
     }, _callee);
   }));
 
-  return function deleteMainCategory(_x, _x2) {
+  return function removeMainCategory(_x, _x2) {
     return _ref.apply(this, arguments);
   };
 }(); ////////////////////////////////////////
@@ -5124,7 +5130,7 @@ var createMainCategory = function createMainCategory(element, budget, filteredAr
   if (deleteButton) {
     deleteButton.addEventListener('click', function (e) {
       e.preventDefault();
-      deleteMainCategory(e, budget, filteredArray);
+      removeMainCategory(e, budget, filteredArray);
     });
   }
 }; ////////////////////////////////////////
@@ -5755,22 +5761,24 @@ var insertTiiming = function insertTiiming(target, inputValues, timing, timingBu
     budget.mainCategories.forEach(function (mc, i) {
       var categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
       if (mc.title === categoryTitle) currentMainCategory = mc;
-    }); // Get Correct Sub Category Index
-
-    currentMainCategory.subCategories.forEach(function (sc) {
+    });
+    budget.mainCategories[index].subCategories.forEach(function (sc) {
       if (sc.title === target.previousSibling.textContent) subCategoryIndex = currentMainCategory.subCategories.indexOf(sc);
     }); ///////////////////////
     // SET TIMING OPTIONS
-    // Set Payment Cycle
 
-    currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing; // Set Payment Schedule
+    console.log(index, budget.mainCategories[index]);
 
-    currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentSchedule = paymentSchedule; // Set Next Due Date(s)
-
-    currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates = [currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentSchedule[0]]; ///////////////////////////////
+    budget._updateSubCategory("Creation", "Timing", {
+      index: index,
+      subCategoryIndex: subCategoryIndex,
+      paymentCycle: timing,
+      paymentSchedule: paymentSchedule
+    }); ///////////////////////////////
     // GET THE DUE DATE
 
-    var dueDate = currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates[0]; //////////////////////////
+
+    var dueDate = budget.mainCategories[index].subCategories[subCategoryIndex].timingOptions.dueDates[0]; //////////////////////////
     // GET LAST DIGIT OF DATE
 
     dayEndingNumberOne = Number(dueDate.getDate().toString().split('')[dueDate.getDate().toString().length - 1]); ///////////////////////////////////////////////
@@ -5794,29 +5802,25 @@ var insertTiiming = function insertTiiming(target, inputValues, timing, timingBu
     // RETURN IF MONTH OF DATES DO NOT MATCH
     if (inputValues[0].getMonth() !== inputValues[1].getMonth()) return; // Create Payment Schedule
 
-    var _paymentSchedule = create12MonthArray(twelveMonthArray, inputValues, timing, days); // Get Current Main Category
+    var _paymentSchedule = create12MonthArray(twelveMonthArray, inputValues, timing, days); // Get Correct Sub Category Index
 
 
-    budget.mainCategories.forEach(function (mc, i) {
-      var categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
-      if (mc.title === categoryTitle) currentMainCategory = mc;
-    }); // Get Correct Sub Category Index
-
-    currentMainCategory.subCategories.forEach(function (sc) {
-      if (sc.title === target.previousSibling.textContent) subCategoryIndex = currentMainCategory.subCategories.indexOf(sc);
+    budget.mainCategories[index].subCategories.forEach(function (sc) {
+      if (sc.title === target.previousSibling.textContent) subCategoryIndex = budget.mainCategories[index].subCategories.indexOf(sc);
     }); ///////////////////////
     // SET TIMING OPTIONS
-    // Set Payment Cycle
 
-    currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing; // Set Payment Schedule
-
-    currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentSchedule = _paymentSchedule; // Set Next Due Date(s)
-
-    currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates = [currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentSchedule[0]]; ///////////////////////////////
+    budget._updateSubCategory("Creation", "Timing", {
+      index: index,
+      subCategoryIndex: subCategoryIndex,
+      paymentCycle: timing,
+      paymentSchedule: _paymentSchedule
+    }); ///////////////////////////////
     // GET THE DUE DATES
 
-    var dueDate1 = currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates[0][0];
-    var dueDate2 = currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates[0][1]; //////////////////////////
+
+    var dueDate1 = budget.mainCategories[index].subCategories[subCategoryIndex].timingOptions.dueDates[0][0];
+    var dueDate2 = budget.mainCategories[index].subCategories[subCategoryIndex].timingOptions.dueDates[0][1]; //////////////////////////
     // GET LAST DIGIT OF DATES
 
     dayEndingNumberOne = Number(dueDate1.getDate().toString().split('')[dueDate1.getDate().toString().length - 1]);
@@ -5843,28 +5847,24 @@ var insertTiiming = function insertTiiming(target, inputValues, timing, timingBu
 
   if (timing === "Bi-Weekly") {
     // Create Payment Schedule
-    var _paymentSchedule2 = create12MonthArray(twelveMonthArray, inputValues[0], timing, days); // Get Current Main Category
+    var _paymentSchedule2 = create12MonthArray(twelveMonthArray, inputValues[0], timing, days); // Get Correct Sub Category Index
 
 
-    budget.mainCategories.forEach(function (mc, i) {
-      var categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
-      if (mc.title === categoryTitle) currentMainCategory = mc;
-    }); // Get Correct Sub Category Index
-
-    currentMainCategory.subCategories.forEach(function (sc) {
-      if (sc.title === target.previousSibling.textContent) subCategoryIndex = currentMainCategory.subCategories.indexOf(sc);
+    budget.mainCategories[index].subCategories.forEach(function (sc) {
+      if (sc.title === target.previousSibling.textContent) subCategoryIndex = budget.mainCategories[index].subCategories.indexOf(sc);
     }); ///////////////////////
     // SET TIMING OPTIONS
-    // Set Payment Cycle
 
-    currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing; // Set Payment Schedule
-
-    currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentSchedule = _paymentSchedule2; // Set Next Due Date(s)
-
-    currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates = [currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentSchedule[0]]; ///////////////////////////////
+    budget._updateSubCategory("Creation", "Timing", {
+      index: index,
+      subCategoryIndex: subCategoryIndex,
+      paymentCycle: timing,
+      paymentSchedule: _paymentSchedule2
+    }); ///////////////////////////////
     // GET THE DUE DATE
 
-    var _dueDate = currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates[0]; //////////////////////////
+
+    var _dueDate = budget.mainCategories[index].subCategories[subCategoryIndex].timingOptions.dueDates[0]; //////////////////////////
     // GET LAST DIGIT OF DATE
 
     dayEndingNumberOne = Number(_dueDate.getDate().toString().split('')[_dueDate.getDate().toString().length - 1]); ///////////////////////////////////////////////
@@ -5887,28 +5887,24 @@ var insertTiiming = function insertTiiming(target, inputValues, timing, timingBu
 
   if (timing === "Weekly") {
     // Create Payment Schedule
-    var _paymentSchedule3 = create12MonthArray(twelveMonthArray, inputValues[0], timing, days); // Get Current Main Category
+    var _paymentSchedule3 = create12MonthArray(twelveMonthArray, inputValues[0], timing, days); // Get Correct Sub Category Index
 
 
-    budget.mainCategories.forEach(function (mc, i) {
-      var categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
-      if (mc.title === categoryTitle) currentMainCategory = mc;
-    }); // Get Correct Sub Category Index
-
-    currentMainCategory.subCategories.forEach(function (sc) {
-      if (sc.title === target.previousSibling.textContent) subCategoryIndex = currentMainCategory.subCategories.indexOf(sc);
+    budget.mainCategories[index].subCategories.forEach(function (sc) {
+      if (sc.title === target.previousSibling.textContent) subCategoryIndex = budget.mainCategories[index].subCategories.indexOf(sc);
     }); ///////////////////////
     // SET TIMING OPTIONS
-    // Set Payment Cycle
 
-    currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing; // Set Payment Schedule
-
-    currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentSchedule = _paymentSchedule3; // Set Next Due Date(s)
-
-    currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates = [currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentSchedule[0]]; ///////////////////////////////
+    budget._updateSubCategory("Creation", "Timing", {
+      index: index,
+      subCategoryIndex: subCategoryIndex,
+      paymentCycle: timing,
+      paymentSchedule: _paymentSchedule3
+    }); ///////////////////////////////
     // GET THE DUE DATE
 
-    var _dueDate2 = currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates[0]; //////////////////////////
+
+    var _dueDate2 = budget.mainCategories[index].subCategories[subCategoryIndex].timingOptions.dueDates[0]; //////////////////////////
     // GET LAST DIGIT OF DATE
 
     dayEndingNumberOne = Number(_dueDate2.getDate().toString().split('')[_dueDate2.getDate().toString().length - 1]); ///////////////////////////////////////////////
@@ -6072,6 +6068,7 @@ var setupGoalSetting = function setupGoalSetting(budget, index, clickedItem, tim
     // INITIALIZE INDEX FOR DATASET
     var dataIndex = i;
     c.subCategories.forEach(function (sc, i) {
+      // This is NOT part of the methods of the class, so I will ignore this for now.
       buildSubCategories(c.subCategories, i, dataIndex, clickedItem);
     });
   });
@@ -6083,7 +6080,8 @@ var setupGoalSetting = function setupGoalSetting(budget, index, clickedItem, tim
   }); /////////////////////////////////////////
   // SET UP TIMING FUNCTION CONTAINER
 
-  var timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
+  var timingFunctionContainer = document.querySelector('.sub-category-display__timing-container'); // This is NOT part of the methods of the class, so I will ignore this for now.
+
   setupTimingFunctionContainer(timingFunctionContainer);
   timingFunctionContainer.style.height = "".concat(getTimingContainerHeight(budget.mainCategories, index), "rem");
   timingFunctionContainer.style.minHeight = "calc(100% - 4rem)";
@@ -6127,6 +6125,10 @@ var setupGoalSetting = function setupGoalSetting(budget, index, clickedItem, tim
     if (getTimingContainerHeight(budget.mainCategories, index) < 40) timingFunctionContainer.style.justifyContent = "flex-start";
     return index;
   });
+
+  _watchForCyclingCategoryGoals();
+
+  watchForSettingTiming(budget, index, clickedItem, timing);
 };
 
 var cycleMainCategories = function cycleMainCategories(direction, index, budget, iconElement, textElement) {
@@ -6180,10 +6182,6 @@ var setupSubCategoryCreation = function setupSubCategoryCreation(budget, index) 
   var subCategoryStopCreationButton = document.querySelector('.category-creation__controller__close');
   var categoryCreationSection = document.querySelector('.category-creation');
   var direction;
-  subCategoryStopCreationButton.addEventListener('click', function (e) {
-    e.preventDefault();
-    closeSubCategoryCreationInput(subCategoryStartCreationButton, categoryCreationSection);
-  });
   mainCategoryIcon.classList.add(budget.mainCategories[index].icon);
   mainCategoryText.textContent = budget.mainCategories[index].title;
   leftButton.addEventListener('click', function (e) {
@@ -6196,12 +6194,16 @@ var setupSubCategoryCreation = function setupSubCategoryCreation(budget, index) 
     direction = "Right";
     cycleMainCategories(direction, index, budget, mainCategoryIcon, mainCategoryText);
   });
+  subCategoryStopCreationButton.addEventListener('click', function (e) {
+    e.preventDefault();
+    closeSubCategoryCreationInput(subCategoryStartCreationButton, categoryCreationSection);
+  });
   var subCategoryCreateButton = document.querySelector('.category-creation__input-container__button');
   subCategoryCreateButton.addEventListener('click', function (e) {
     e.preventDefault();
     var subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
 
-    _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__._addSubCategory(budget, index);
+    _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__._verifySubCategory(budget, index);
 
     subCategoryCreateInput.focus();
     subCategoryCreateInput.value = '';
@@ -6213,9 +6215,10 @@ var setupSubCategoryCreation = function setupSubCategoryCreation(budget, index) 
     var subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
     subCategoryCreateInput.value = '';
     subCategoryCreateInput.focus();
+    console.log("Ready...");
   });
 
-  _watchForSubCategoryKeyboard();
+  _watchForSubCategoryKeyboardInput();
 
   watchToCycleSubCategoryMainCategories();
 }; //////////////////////////////////////
@@ -6285,7 +6288,7 @@ var watchToCycleSubCategoryMainCategories = function watchToCycleSubCategoryMain
 // WATCH SUB CATEGORY CREATE BUTTON FOR KEYBOARD
 
 
-var _watchForSubCategoryKeyboard = function _watchForSubCategoryKeyboard() {
+var _watchForSubCategoryKeyboardInput = function _watchForSubCategoryKeyboardInput() {
   var subCategoryStartCreationButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button');
   subCategoryStartCreationButton.focus();
   document.addEventListener("keyup", clickToCreateSubCategory);
@@ -6480,16 +6483,15 @@ var _watchForBudgetCreation = /*#__PURE__*/function () {
 
                 if (currentPage + 1 === 4 && latterDaySaintStatus === false) {
                   setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
-
-                  _watchForCyclingCategoryGoals();
-
-                  watchForSettingTiming(budget, subCategoryIndex, clicked, selectedTiming);
                 }
 
                 if (currentPage + 1 === 5 && latterDaySaintStatus === false) {
                   var individualPayments = document.querySelectorAll('.individual-payment');
 
-                  _finishUpdatingSubCategories(budget, individualPayments);
+                  budget._updateSubCategory("Creation", "Finalizing Sub-Categories", {
+                    goals: individualPayments
+                  }); // _finishUpdatingSubCategories(budget, individualPayments);
+
 
                   _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
                 }
@@ -6533,16 +6535,15 @@ var _watchForBudgetCreation = /*#__PURE__*/function () {
 
                 if (currentPage + 1 === 5 && latterDaySaintStatus === true) {
                   setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
-
-                  _watchForCyclingCategoryGoals();
-
-                  watchForSettingTiming(budget, subCategoryIndex, clicked, selectedTiming);
                 }
 
                 if (currentPage + 1 === 6 && latterDaySaintStatus === true) {
                   var _individualPayments = document.querySelectorAll('.individual-payment');
 
-                  _finishUpdatingSubCategories(budget, _individualPayments);
+                  budget._updateSubCategory("Creation", "Finalizing Sub-Categories", {
+                    goals: _individualPayments
+                  }); // _finishUpdatingSubCategories(budget, individualPayments);
+
 
                   _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
                 }
@@ -6627,11 +6628,6 @@ var Budget = /*#__PURE__*/function () {
   (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(Budget, [{
     key: "_addName",
     value: function _addName(name) {
-      /*
-         This is how the budget gets its name at the beginning of the creation period.
-         I am wondering if the function should be renamed as 'updateName' to help to keep it as the way to update the name later on as well.
-        We shall keep this in mind for later on if it can be used while updating in the budget management page.
-       */
       this.name = name;
     }
   }, {
@@ -6642,6 +6638,11 @@ var Budget = /*#__PURE__*/function () {
         icon: icon,
         title: title
       }));
+    }
+  }, {
+    key: "_updateMainCategory",
+    value: function _updateMainCategory() {
+      console.log("Main Category");
     }
   }, {
     key: "_deleteMainCategory",
@@ -6657,6 +6658,67 @@ var Budget = /*#__PURE__*/function () {
       this.mainCategories[index].subCategories.push(new _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__.SubCategory({
         title: title
       }));
+      console.log(this.mainCategories[index].subCategories);
+    }
+  }, {
+    key: "_updateSubCategory",
+    value: function _updateSubCategory(mode, update, options) {
+      if (mode === "Creation") {
+        if (update === "Timing") {
+          this.mainCategories[options.index].subCategories[options.subCategoryIndex].timingOptions.paymentCycle = options.paymentCycle;
+          this.mainCategories[options.index].subCategories[options.subCategoryIndex].timingOptions.paymentSchedule = options.paymentSchedule;
+          this.mainCategories[options.index].subCategories[options.subCategoryIndex].timingOptions.dueDates = [this.mainCategories[options.index].subCategories[options.subCategoryIndex].timingOptions.paymentSchedule[0]];
+        }
+
+        if (update === "Surplus") {
+          this.mainCategories[options.mainIndex].subCategories[options.subIndex].surplus = !this.mainCategories[options.mainIndex].subCategories[options.subIndex].surplus;
+          console.log(this.mainCategories[options.mainIndex].subCategories[options.subIndex]);
+        }
+
+        if (update === "Finalizing Sub-Categories") {
+          var index = 0;
+          this.mainCategories.forEach(function (mc, i) {
+            mc.subCategories.forEach(function (sc, i) {
+              if (Number(options.goals[index].value) === undefined || typeof Number(options.goals[index].value) !== "number") options.goals[index].value = Number(0);
+              sc.goalAmount = Number(options.goals[index].value);
+              sc.amountSpent = 0;
+              sc.amountRemaining = Number(sc.goalAmount - sc.amountSpent);
+              sc.percentageSpent = Number(sc.amountSpent / sc.goalAmount);
+              if (isNaN(sc.percentageSpent)) sc.percentageSpent = 0;
+              index++;
+            });
+          });
+        }
+      }
+
+      if (mode === "Updating") {
+        console.log("Updating Sub-Category...");
+      }
+      /*
+        This is where updating the goals SHOULD BE.
+           TO SOME DEGREE, THIS IS HOW THE UPDATING SUB CATEGORIES SHOULD BE.
+           _finishUpdatingSubCategory(goal) {
+          let categoryGoal = goal;
+          if (categoryGoal === undefined || typeof categoryGoal !== `number`) categoryGoal = 0;
+          this.goalAmount = categoryGoal;
+          this.amountSpent = 0;
+          this.amountRemaining = this.goalAmount - this.amountSpent;
+          this.percentageSpent = this.amountSpent / this.goalAmount;
+          if (isNaN(this.percentageSpent)) this.percentageSpent = 0;
+       */
+
+    }
+  }, {
+    key: "_deleteSubCategory",
+    value: function _deleteSubCategory(mainIndex, subIndex) {
+      var _this = this;
+
+      this.mainCategories[mainIndex].subCategories = this.mainCategories[mainIndex].subCategories.filter(function (sc) {
+        return sc !== _this.mainCategories[mainIndex].subCategories[subIndex];
+      }); // this.mainCategories[mainIndex]._deleteSubCategory(subIndex);
+
+      console.log(this.mainCategories[mainIndex].subCategories);
+      console.log("SUCCESSFUL DELETION");
     }
   }, {
     key: "_addAccounts",

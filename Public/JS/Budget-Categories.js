@@ -990,6 +990,10 @@ export class SubCategory extends Category {
     const superOpts = { ...options };
     super(superOpts);
     this.timingOptions = {};
+    this.goalAmount = 0;
+    this.amountSpent = 0;
+    this.amountRemaining = 0;
+    this.percentageSpent = 0;
     this.surplus = false;
   }
 
@@ -1077,7 +1081,8 @@ export const createSubCategory = (budget, index) => {
     });
     const categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
     const categoryTitle = subCategoryTitleElement.textContent;
-    budget.mainCategories[categoryNumber].subCategories[subArray.indexOf(clicked.closest('.sub-category'))]._makeSurplus();
+
+    budget._updateSubCategory(`Creation`, `Surplus`, { mainIndex: categoryNumber, subIndex: subArray.indexOf(clicked.closest('.sub-category')) });
   });
 
   // Create Surplus Switch Toggle
@@ -1113,7 +1118,8 @@ export const createSubCategory = (budget, index) => {
     /////////////////////////////
     // REMOVE DOM ELEMENT
     selectedSubCategory.remove();
-    budget.mainCategories[categoryNumber]._deleteSubCategory(subArray.indexOf(selectedSubCategory));
+
+    budget._deleteSubCategory(categoryNumber, subArray.indexOf(selectedSubCategory));
   });
 
   surplusSwitchToggle.insertAdjacentElement('beforeend', surplusSwitchToggleIcon);
@@ -1140,10 +1146,12 @@ export const createSubCategory = (budget, index) => {
     subCategories[subCategories.length - 1].insertAdjacentElement('afterend', subCategory);
   }
   if (!subCategoryTitleInput.value) return;
+
+  // This is where it actually adds it to the budget object.
   budget._addSubCategory(index, `${subCategoryTitleElement.textContent}`);
 };
 
-export const _addSubCategory = (budget, index) => {
+export const _verifySubCategory = (budget, index) => {
   /////////////////////////////////////////////////
   // INITIALIZE NEEDED VARIABLES
   const mainCategoryTitle = document
@@ -1178,11 +1186,10 @@ export const _addSubCategory = (budget, index) => {
 
 ////////////////////////////////////////
 // MAIN CATEGORY DELETION PROCESS
-const deleteMainCategory = async (e, budget) => {
+const removeMainCategory = async (e, budget) => {
   const budgetPages = document.querySelectorAll('.budget-creation-form__page');
   const mainCategoryCreationPage = document.querySelector('.budget-creation-form__page');
   let title = e.target.closest('section').firstChild.nextElementSibling.textContent;
-  console.log(title);
   /////////////////////////////
   // CHECK USER
   const userInfo = await Update.getSomePersonals();
@@ -1233,7 +1240,7 @@ const createMainCategory = (element, budget, filteredArray) => {
   if (deleteButton) {
     deleteButton.addEventListener('click', (e) => {
       e.preventDefault();
-      deleteMainCategory(e, budget, filteredArray);
+      removeMainCategory(e, budget, filteredArray);
     });
   }
 };

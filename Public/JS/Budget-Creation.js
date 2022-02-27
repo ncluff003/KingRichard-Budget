@@ -354,25 +354,23 @@ export const insertTiiming = (target, inputValues, timing, timingButtons, budget
       if (mc.title === categoryTitle) currentMainCategory = mc;
     });
 
-    // Get Correct Sub Category Index
-    currentMainCategory.subCategories.forEach((sc) => {
+    budget.mainCategories[index].subCategories.forEach((sc) => {
       if (sc.title === target.previousSibling.textContent) subCategoryIndex = currentMainCategory.subCategories.indexOf(sc);
     });
 
     ///////////////////////
     // SET TIMING OPTIONS
-    // Set Payment Cycle
-    currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing;
-
-    // Set Payment Schedule
-    currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentSchedule = paymentSchedule;
-
-    // Set Next Due Date(s)
-    currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates = [currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentSchedule[0]];
+    console.log(index, budget.mainCategories[index]);
+    budget._updateSubCategory(`Creation`, `Timing`, {
+      index: index,
+      subCategoryIndex: subCategoryIndex,
+      paymentCycle: timing,
+      paymentSchedule: paymentSchedule,
+    });
 
     ///////////////////////////////
     // GET THE DUE DATE
-    let dueDate = currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates[0];
+    let dueDate = budget.mainCategories[index].subCategories[subCategoryIndex].timingOptions.dueDates[0];
 
     //////////////////////////
     // GET LAST DIGIT OF DATE
@@ -404,33 +402,25 @@ export const insertTiiming = (target, inputValues, timing, timingButtons, budget
     // Create Payment Schedule
     let paymentSchedule = create12MonthArray(twelveMonthArray, inputValues, timing, days);
 
-    // Get Current Main Category
-    budget.mainCategories.forEach((mc, i) => {
-      let categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
-      if (mc.title === categoryTitle) currentMainCategory = mc;
-    });
-
     // Get Correct Sub Category Index
-    currentMainCategory.subCategories.forEach((sc) => {
-      if (sc.title === target.previousSibling.textContent) subCategoryIndex = currentMainCategory.subCategories.indexOf(sc);
+    budget.mainCategories[index].subCategories.forEach((sc) => {
+      if (sc.title === target.previousSibling.textContent) subCategoryIndex = budget.mainCategories[index].subCategories.indexOf(sc);
     });
 
     ///////////////////////
     // SET TIMING OPTIONS
 
-    // Set Payment Cycle
-    currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing;
-
-    // Set Payment Schedule
-    currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentSchedule = paymentSchedule;
-
-    // Set Next Due Date(s)
-    currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates = [currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentSchedule[0]];
+    budget._updateSubCategory(`Creation`, `Timing`, {
+      index: index,
+      subCategoryIndex: subCategoryIndex,
+      paymentCycle: timing,
+      paymentSchedule: paymentSchedule,
+    });
 
     ///////////////////////////////
     // GET THE DUE DATES
-    let dueDate1 = currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates[0][0];
-    let dueDate2 = currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates[0][1];
+    let dueDate1 = budget.mainCategories[index].subCategories[subCategoryIndex].timingOptions.dueDates[0][0];
+    let dueDate2 = budget.mainCategories[index].subCategories[subCategoryIndex].timingOptions.dueDates[0][1];
 
     //////////////////////////
     // GET LAST DIGIT OF DATES
@@ -462,32 +452,24 @@ export const insertTiiming = (target, inputValues, timing, timingButtons, budget
     // Create Payment Schedule
     let paymentSchedule = create12MonthArray(twelveMonthArray, inputValues[0], timing, days);
 
-    // Get Current Main Category
-    budget.mainCategories.forEach((mc, i) => {
-      let categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
-      if (mc.title === categoryTitle) currentMainCategory = mc;
-    });
-
     // Get Correct Sub Category Index
-    currentMainCategory.subCategories.forEach((sc) => {
-      if (sc.title === target.previousSibling.textContent) subCategoryIndex = currentMainCategory.subCategories.indexOf(sc);
+    budget.mainCategories[index].subCategories.forEach((sc) => {
+      if (sc.title === target.previousSibling.textContent) subCategoryIndex = budget.mainCategories[index].subCategories.indexOf(sc);
     });
 
     ///////////////////////
     // SET TIMING OPTIONS
 
-    // Set Payment Cycle
-    currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing;
-
-    // Set Payment Schedule
-    currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentSchedule = paymentSchedule;
-
-    // Set Next Due Date(s)
-    currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates = [currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentSchedule[0]];
+    budget._updateSubCategory(`Creation`, `Timing`, {
+      index: index,
+      subCategoryIndex: subCategoryIndex,
+      paymentCycle: timing,
+      paymentSchedule: paymentSchedule,
+    });
 
     ///////////////////////////////
     // GET THE DUE DATE
-    let dueDate = currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates[0];
+    let dueDate = budget.mainCategories[index].subCategories[subCategoryIndex].timingOptions.dueDates[0];
 
     //////////////////////////
     // GET LAST DIGIT OF DATE
@@ -515,32 +497,24 @@ export const insertTiiming = (target, inputValues, timing, timingButtons, budget
     // Create Payment Schedule
     let paymentSchedule = create12MonthArray(twelveMonthArray, inputValues[0], timing, days);
 
-    // Get Current Main Category
-    budget.mainCategories.forEach((mc, i) => {
-      let categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
-      if (mc.title === categoryTitle) currentMainCategory = mc;
-    });
-
     // Get Correct Sub Category Index
-    currentMainCategory.subCategories.forEach((sc) => {
-      if (sc.title === target.previousSibling.textContent) subCategoryIndex = currentMainCategory.subCategories.indexOf(sc);
+    budget.mainCategories[index].subCategories.forEach((sc) => {
+      if (sc.title === target.previousSibling.textContent) subCategoryIndex = budget.mainCategories[index].subCategories.indexOf(sc);
     });
 
     ///////////////////////
     // SET TIMING OPTIONS
 
-    // Set Payment Cycle
-    currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentCycle = timing;
-
-    // Set Payment Schedule
-    currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentSchedule = paymentSchedule;
-
-    // Set Next Due Date(s)
-    currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates = [currentMainCategory.subCategories[subCategoryIndex].timingOptions.paymentSchedule[0]];
+    budget._updateSubCategory(`Creation`, `Timing`, {
+      index: index,
+      subCategoryIndex: subCategoryIndex,
+      paymentCycle: timing,
+      paymentSchedule: paymentSchedule,
+    });
 
     ///////////////////////////////
     // GET THE DUE DATE
-    let dueDate = currentMainCategory.subCategories[subCategoryIndex].timingOptions.dueDates[0];
+    let dueDate = budget.mainCategories[index].subCategories[subCategoryIndex].timingOptions.dueDates[0];
 
     //////////////////////////
     // GET LAST DIGIT OF DATE
@@ -718,6 +692,7 @@ export const setupGoalSetting = (budget, index, clickedItem, timing) => {
     // INITIALIZE INDEX FOR DATASET
     let dataIndex = i;
     c.subCategories.forEach((sc, i) => {
+      // This is NOT part of the methods of the class, so I will ignore this for now.
       buildSubCategories(c.subCategories, i, dataIndex, clickedItem);
     });
   });
@@ -731,6 +706,7 @@ export const setupGoalSetting = (budget, index, clickedItem, timing) => {
   /////////////////////////////////////////
   // SET UP TIMING FUNCTION CONTAINER
   const timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
+  // This is NOT part of the methods of the class, so I will ignore this for now.
   setupTimingFunctionContainer(timingFunctionContainer);
   timingFunctionContainer.style.height = `${getTimingContainerHeight(budget.mainCategories, index)}rem`;
   timingFunctionContainer.style.minHeight = `calc(100% - 4rem)`;
@@ -772,6 +748,8 @@ export const setupGoalSetting = (budget, index, clickedItem, timing) => {
     if (getTimingContainerHeight(budget.mainCategories, index) < 40) timingFunctionContainer.style.justifyContent = `flex-start`;
     return index;
   });
+  _watchForCyclingCategoryGoals();
+  watchForSettingTiming(budget, index, clickedItem, timing);
 };
 
 const cycleMainCategories = (direction, index, budget, iconElement, textElement) => {
@@ -819,10 +797,6 @@ const setupSubCategoryCreation = (budget, index) => {
   const subCategoryStopCreationButton = document.querySelector('.category-creation__controller__close');
   const categoryCreationSection = document.querySelector('.category-creation');
   let direction;
-  subCategoryStopCreationButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    closeSubCategoryCreationInput(subCategoryStartCreationButton, categoryCreationSection);
-  });
   mainCategoryIcon.classList.add(budget.mainCategories[index].icon);
   mainCategoryText.textContent = budget.mainCategories[index].title;
   leftButton.addEventListener('click', (e) => {
@@ -835,14 +809,20 @@ const setupSubCategoryCreation = (budget, index) => {
     direction = `Right`;
     cycleMainCategories(direction, index, budget, mainCategoryIcon, mainCategoryText);
   });
+  subCategoryStopCreationButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    closeSubCategoryCreationInput(subCategoryStartCreationButton, categoryCreationSection);
+  });
+
   const subCategoryCreateButton = document.querySelector('.category-creation__input-container__button');
   subCategoryCreateButton.addEventListener('click', (e) => {
     e.preventDefault();
     const subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
-    Categories._addSubCategory(budget, index);
+    Categories._verifySubCategory(budget, index);
     subCategoryCreateInput.focus();
     subCategoryCreateInput.value = '';
   });
+
   subCategoryStartCreationButton.addEventListener('click', (e) => {
     e.preventDefault();
     subCategoryStartCreationButton.classList.toggle('budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden');
@@ -850,8 +830,9 @@ const setupSubCategoryCreation = (budget, index) => {
     const subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
     subCategoryCreateInput.value = '';
     subCategoryCreateInput.focus();
+    console.log(`Ready...`);
   });
-  _watchForSubCategoryKeyboard();
+  _watchForSubCategoryKeyboardInput();
   watchToCycleSubCategoryMainCategories();
 };
 
@@ -911,7 +892,7 @@ const watchToCycleSubCategoryMainCategories = () => {
 
 ///////////////////////////////////////////////////
 // WATCH SUB CATEGORY CREATE BUTTON FOR KEYBOARD
-const _watchForSubCategoryKeyboard = () => {
+const _watchForSubCategoryKeyboardInput = () => {
   const subCategoryStartCreationButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button');
   subCategoryStartCreationButton.focus();
   document.addEventListener(`keyup`, clickToCreateSubCategory);
@@ -1085,12 +1066,11 @@ export const _watchForBudgetCreation = async () => {
       }
       if (currentPage + 1 === 4 && latterDaySaintStatus === false) {
         setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
-        _watchForCyclingCategoryGoals();
-        watchForSettingTiming(budget, subCategoryIndex, clicked, selectedTiming);
       }
       if (currentPage + 1 === 5 && latterDaySaintStatus === false) {
         const individualPayments = document.querySelectorAll('.individual-payment');
-        _finishUpdatingSubCategories(budget, individualPayments);
+        budget._updateSubCategory(`Creation`, `Finalizing Sub-Categories`, { goals: individualPayments });
+        // _finishUpdatingSubCategories(budget, individualPayments);
         _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
       }
       if (currentPage + 1 === 6 && latterDaySaintStatus === false) {
@@ -1122,12 +1102,11 @@ export const _watchForBudgetCreation = async () => {
       }
       if (currentPage + 1 === 5 && latterDaySaintStatus === true) {
         setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
-        _watchForCyclingCategoryGoals();
-        watchForSettingTiming(budget, subCategoryIndex, clicked, selectedTiming);
       }
       if (currentPage + 1 === 6 && latterDaySaintStatus === true) {
         const individualPayments = document.querySelectorAll('.individual-payment');
-        _finishUpdatingSubCategories(budget, individualPayments);
+        budget._updateSubCategory(`Creation`, `Finalizing Sub-Categories`, { goals: individualPayments });
+        // _finishUpdatingSubCategories(budget, individualPayments);
         _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
       }
       if (currentPage + 1 === 7 && latterDaySaintStatus === true) {
