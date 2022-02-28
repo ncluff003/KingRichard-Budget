@@ -856,60 +856,60 @@ export const _watchBudget = async () => {
   const formInputs = document.querySelectorAll('.form-input');
   const formSections = document.querySelectorAll('.form-row__section');
 
-  //////////////////////////////
-  // INITIALIZE ACCOUNT ARRAYS
+  ///////////////////////////////////////////////
+  // INITIALIZE ACCOUNT TRANSACTION OPTION ARRAYS
 
   // MONTHLY BUDGET
-  const monthlyBudgetTransactions = document.querySelectorAll('.monthly-budget-transaction');
-  const monthlyBudgetTransactionOptions = [];
+  const monthlyBudgetTransactionsOptions = document.querySelectorAll('.monthly-budget-transaction');
+  const monthlyBudgetTransactionOptionsArray = [];
 
   // EMERGENCY FUND
-  const emergencyFundTransactions = document.querySelectorAll('.emergency-fund-transaction');
-  const emergencyFundTransactionOptions = [];
+  const emergencyFundTransactionsOptions = document.querySelectorAll('.emergency-fund-transaction');
+  const emergencyFundTransactionOptionsArray = [];
 
   // SAVINGS FUND
-  const savingsFundTransactions = document.querySelectorAll('.savings-fund-transaction');
-  const savingsFundTransactionOptions = [];
+  const savingsFundTransactionsOptions = document.querySelectorAll('.savings-fund-transaction');
+  const savingsFundTransactionOptionsArray = [];
 
   // EXPENSE FUND
-  const expenseFundTransactions = document.querySelectorAll('.expense-fund-transaction');
-  const expenseFundTransactionOptions = [];
+  const expenseFundTransactionsOptions = document.querySelectorAll('.expense-fund-transaction');
+  const expenseFundTransactionOptionsArray = [];
 
   // SURPLUS
-  const surplusTransactions = document.querySelectorAll('.surplus-transaction');
-  const surplusTransactionOptions = [];
+  const surplusTransactionsOptions = document.querySelectorAll('.surplus-transaction');
+  const surplusTransactionOptionsArray = [];
 
   // DEBT
-  const debtTransactions = document.querySelectorAll('.debt-transaction');
-  const debtTransactionOptions = [];
+  const debtTransactionsOptions = document.querySelectorAll('.debt-transaction');
+  const debtTransactionOptionsArray = [];
 
   // TITHING
-  const tithingTransactions = document.querySelectorAll('.tithing-transaction');
-  const tithingTransactionOptions = [];
+  const tithingTransactionsOptions = document.querySelectorAll('.tithing-transaction');
+  const tithingTransactionOptionsArray = [];
 
   const mainCategoryOptionArrays = [];
 
   ///////////////////////////////
   // MONTHLY BUDGET OPTIONS
-  pushIntoArray(monthlyBudgetTransactions, monthlyBudgetTransactionOptions);
-  pushIntoArray(emergencyFundTransactions, emergencyFundTransactionOptions);
-  pushIntoArray(savingsFundTransactions, savingsFundTransactionOptions);
-  pushIntoArray(expenseFundTransactions, expenseFundTransactionOptions);
-  pushIntoArray(surplusTransactions, surplusTransactionOptions);
-  pushIntoArray(debtTransactions, debtTransactionOptions);
-  pushIntoArray(tithingTransactions, tithingTransactionOptions);
+  pushIntoArray(monthlyBudgetTransactionsOptions, monthlyBudgetTransactionOptionsArray);
+  pushIntoArray(emergencyFundTransactionsOptions, emergencyFundTransactionOptionsArray);
+  pushIntoArray(savingsFundTransactionsOptions, savingsFundTransactionOptionsArray);
+  pushIntoArray(expenseFundTransactionsOptions, expenseFundTransactionOptionsArray);
+  pushIntoArray(surplusTransactionsOptions, surplusTransactionOptionsArray);
+  pushIntoArray(debtTransactionsOptions, debtTransactionOptionsArray);
+  pushIntoArray(tithingTransactionsOptions, tithingTransactionOptionsArray);
 
   finalTransactionArrayPush(mainCategoryOptionArrays, [
-    monthlyBudgetTransactionOptions,
-    emergencyFundTransactionOptions,
-    savingsFundTransactionOptions,
-    expenseFundTransactionOptions,
-    surplusTransactionOptions,
-    debtTransactionOptions,
-    tithingTransactionOptions,
+    monthlyBudgetTransactionOptionsArray,
+    emergencyFundTransactionOptionsArray,
+    savingsFundTransactionOptionsArray,
+    expenseFundTransactionOptionsArray,
+    surplusTransactionOptionsArray,
+    debtTransactionOptionsArray,
+    tithingTransactionOptionsArray,
   ]);
 
-  if (user.latterDaySaint === true) mainCategoryOptionArrays.push(tithingTransactionOptions);
+  if (user.latterDaySaint === true) mainCategoryOptionArrays.push(tithingTransactionOptionsArray);
   ////////////////////////////////////////////
   // START BY WATCHING THE BUDGET NAVIGATION
   _watchBudgetNavigation();

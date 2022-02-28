@@ -6812,8 +6812,6 @@ var Budget = /*#__PURE__*/function () {
           if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Total Amount") {
             this.accounts.emergencyFund.emergencyFundGoal = options.goal;
           }
-
-          console.log(this.accounts.emergencyFund);
         }
 
         if (update === "Savings") {
@@ -6822,8 +6820,13 @@ var Budget = /*#__PURE__*/function () {
         }
 
         if (update === "Investment") {
-          this.accounts.savingsFund.savingsPercentage = Number(options.percentage);
-          this.accounts.savingsFund.savingsGoal = Number(options.goal);
+          this.accounts.investmentFund.investmentPercentage = Number(options.percentage);
+          this.accounts.investmentFund.investmentGoal = Number(options.goal);
+        }
+
+        if (update === "Debt") {
+          this.accounts.debt.amount = Number(options.amount);
+          this.accounts.debt.debtAmount = Number(options.debtAmount);
         }
       }
     }
@@ -6841,8 +6844,72 @@ var Budget = /*#__PURE__*/function () {
   }, {
     key: "_buildPlaceHolderBudget",
     value: function _buildPlaceHolderBudget(budget, user) {
+      var _this2 = this;
+
       this._addTithingAccount(user);
 
+      this._addName(budget.name);
+
+      if (user.latterDaySaint === true) {
+        this._updateAccounts("Creation", "Tithing Setting", {
+          setting: budget.accounts.tithing.tithingSetting
+        });
+      }
+
+      this._updateAccounts("Creation", "Emergency Measurement", {
+        setting: budget.accounts.emergencyFund.emergencyGoalMeasurement
+      });
+
+      if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Length Of Time") {
+        this._updateAccounts("Creation", "Emergency Goal", {
+          goal: budget.accounts.emergencyFund.emergencyFundGoal,
+          goalTiming: budget.accounts.emergencyFund.emergencyFundGoalTiming
+        });
+      }
+
+      if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Total Amount") {
+        this._updateAccounts("Creation", "Emergency Goal", {
+          goal: budget.accounts.emergencyFund.emergencyFundGoal
+        });
+      }
+
+      this._updateAccounts("Creation", "Savings", {
+        goal: budget.accounts.savingsFund.savingsGoal,
+        percentage: budget.accounts.savingsFund.savingsPercentage
+      });
+
+      this._updateAccounts("Creation", "Investment", {
+        goal: budget.accounts.investmentFund.investmentGoal,
+        percentage: budget.accounts.investmentFund.investmentPercentage
+      });
+
+      this._updateAccounts("Creation", "Debt", {
+        amount: budget.accounts.debt.amount,
+        debtAmount: budget.accounts.debt.debtAmount
+      });
+
+      budget.mainCategories.forEach(function (mc) {
+        var subCategories = [];
+        mc.subCategories.forEach(function (sc) {
+          subCategories.push({
+            title: sc.title,
+            timingOptions: sc.timingOptions,
+            goalAmount: sc.goalAmount,
+            amountSpent: sc.amountSpent,
+            amountRemaining: sc.amountRemaining,
+            percentageSpent: sc.percentageSpent,
+            surplus: sc.surplus
+          });
+        });
+
+        _this2.mainCategories.push({
+          icon: mc.title,
+          title: mc.title,
+          subCategories: subCategories
+        });
+      });
+      this.transactions = budget.transactions;
+      this.investments = budget.investments;
       console.log(budget);
     }
   }]);
@@ -8186,7 +8253,7 @@ var pushIntoArray = function pushIntoArray(arrayFiller, array) {
 
 var _watchBudget = /*#__PURE__*/function () {
   var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
-    var userInfo, user, currentBudget, budget, formLabels, formInputs, formSections, monthlyBudgetTransactions, monthlyBudgetTransactionOptions, emergencyFundTransactions, emergencyFundTransactionOptions, savingsFundTransactions, savingsFundTransactionOptions, expenseFundTransactions, expenseFundTransactionOptions, surplusTransactions, surplusTransactionOptions, debtTransactions, debtTransactionOptions, tithingTransactions, tithingTransactionOptions, mainCategoryOptionArrays;
+    var userInfo, user, currentBudget, budget, formLabels, formInputs, formSections, monthlyBudgetTransactionsOptions, monthlyBudgetTransactionOptionsArray, emergencyFundTransactionsOptions, emergencyFundTransactionOptionsArray, savingsFundTransactionsOptions, savingsFundTransactionOptionsArray, expenseFundTransactionsOptions, expenseFundTransactionOptionsArray, surplusTransactionsOptions, surplusTransactionOptionsArray, debtTransactionsOptions, debtTransactionOptionsArray, tithingTransactionsOptions, tithingTransactionOptionsArray, mainCategoryOptionArrays;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -8223,42 +8290,42 @@ var _watchBudget = /*#__PURE__*/function () {
             // SETUP ACCOUNT OPTIONS FOR TRANSACTIONS
             formLabels = document.querySelectorAll('.form-label');
             formInputs = document.querySelectorAll('.form-input');
-            formSections = document.querySelectorAll('.form-row__section'); //////////////////////////////
-            // INITIALIZE ACCOUNT ARRAYS
+            formSections = document.querySelectorAll('.form-row__section'); ///////////////////////////////////////////////
+            // INITIALIZE ACCOUNT TRANSACTION OPTION ARRAYS
             // MONTHLY BUDGET
 
-            monthlyBudgetTransactions = document.querySelectorAll('.monthly-budget-transaction');
-            monthlyBudgetTransactionOptions = []; // EMERGENCY FUND
+            monthlyBudgetTransactionsOptions = document.querySelectorAll('.monthly-budget-transaction');
+            monthlyBudgetTransactionOptionsArray = []; // EMERGENCY FUND
 
-            emergencyFundTransactions = document.querySelectorAll('.emergency-fund-transaction');
-            emergencyFundTransactionOptions = []; // SAVINGS FUND
+            emergencyFundTransactionsOptions = document.querySelectorAll('.emergency-fund-transaction');
+            emergencyFundTransactionOptionsArray = []; // SAVINGS FUND
 
-            savingsFundTransactions = document.querySelectorAll('.savings-fund-transaction');
-            savingsFundTransactionOptions = []; // EXPENSE FUND
+            savingsFundTransactionsOptions = document.querySelectorAll('.savings-fund-transaction');
+            savingsFundTransactionOptionsArray = []; // EXPENSE FUND
 
-            expenseFundTransactions = document.querySelectorAll('.expense-fund-transaction');
-            expenseFundTransactionOptions = []; // SURPLUS
+            expenseFundTransactionsOptions = document.querySelectorAll('.expense-fund-transaction');
+            expenseFundTransactionOptionsArray = []; // SURPLUS
 
-            surplusTransactions = document.querySelectorAll('.surplus-transaction');
-            surplusTransactionOptions = []; // DEBT
+            surplusTransactionsOptions = document.querySelectorAll('.surplus-transaction');
+            surplusTransactionOptionsArray = []; // DEBT
 
-            debtTransactions = document.querySelectorAll('.debt-transaction');
-            debtTransactionOptions = []; // TITHING
+            debtTransactionsOptions = document.querySelectorAll('.debt-transaction');
+            debtTransactionOptionsArray = []; // TITHING
 
-            tithingTransactions = document.querySelectorAll('.tithing-transaction');
-            tithingTransactionOptions = [];
+            tithingTransactionsOptions = document.querySelectorAll('.tithing-transaction');
+            tithingTransactionOptionsArray = [];
             mainCategoryOptionArrays = []; ///////////////////////////////
             // MONTHLY BUDGET OPTIONS
 
-            pushIntoArray(monthlyBudgetTransactions, monthlyBudgetTransactionOptions);
-            pushIntoArray(emergencyFundTransactions, emergencyFundTransactionOptions);
-            pushIntoArray(savingsFundTransactions, savingsFundTransactionOptions);
-            pushIntoArray(expenseFundTransactions, expenseFundTransactionOptions);
-            pushIntoArray(surplusTransactions, surplusTransactionOptions);
-            pushIntoArray(debtTransactions, debtTransactionOptions);
-            pushIntoArray(tithingTransactions, tithingTransactionOptions);
-            finalTransactionArrayPush(mainCategoryOptionArrays, [monthlyBudgetTransactionOptions, emergencyFundTransactionOptions, savingsFundTransactionOptions, expenseFundTransactionOptions, surplusTransactionOptions, debtTransactionOptions, tithingTransactionOptions]);
-            if (user.latterDaySaint === true) mainCategoryOptionArrays.push(tithingTransactionOptions); ////////////////////////////////////////////
+            pushIntoArray(monthlyBudgetTransactionsOptions, monthlyBudgetTransactionOptionsArray);
+            pushIntoArray(emergencyFundTransactionsOptions, emergencyFundTransactionOptionsArray);
+            pushIntoArray(savingsFundTransactionsOptions, savingsFundTransactionOptionsArray);
+            pushIntoArray(expenseFundTransactionsOptions, expenseFundTransactionOptionsArray);
+            pushIntoArray(surplusTransactionsOptions, surplusTransactionOptionsArray);
+            pushIntoArray(debtTransactionsOptions, debtTransactionOptionsArray);
+            pushIntoArray(tithingTransactionsOptions, tithingTransactionOptionsArray);
+            finalTransactionArrayPush(mainCategoryOptionArrays, [monthlyBudgetTransactionOptionsArray, emergencyFundTransactionOptionsArray, savingsFundTransactionOptionsArray, expenseFundTransactionOptionsArray, surplusTransactionOptionsArray, debtTransactionOptionsArray, tithingTransactionOptionsArray]);
+            if (user.latterDaySaint === true) mainCategoryOptionArrays.push(tithingTransactionOptionsArray); ////////////////////////////////////////////
             // START BY WATCHING THE BUDGET NAVIGATION
 
             _watchBudgetNavigation(); ////////////////////////////////////////////

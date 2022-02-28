@@ -125,15 +125,18 @@ export class Budget {
         if (this.accounts.emergencyFund.emergencyGoalMeasurement === `Total Amount`) {
           this.accounts.emergencyFund.emergencyFundGoal = options.goal;
         }
-        console.log(this.accounts.emergencyFund);
       }
       if (update === `Savings`) {
         this.accounts.savingsFund.savingsPercentage = Number(options.percentage);
         this.accounts.savingsFund.savingsGoal = Number(options.goal);
       }
       if (update === `Investment`) {
-        this.accounts.savingsFund.savingsPercentage = Number(options.percentage);
-        this.accounts.savingsFund.savingsGoal = Number(options.goal);
+        this.accounts.investmentFund.investmentPercentage = Number(options.percentage);
+        this.accounts.investmentFund.investmentGoal = Number(options.goal);
+      }
+      if (update === `Debt`) {
+        this.accounts.debt.amount = Number(options.amount);
+        this.accounts.debt.debtAmount = Number(options.debtAmount);
       }
     }
   }
@@ -149,6 +152,40 @@ export class Budget {
 
   _buildPlaceHolderBudget(budget, user) {
     this._addTithingAccount(user);
+    this._addName(budget.name);
+    if (user.latterDaySaint === true) {
+      this._updateAccounts(`Creation`, `Tithing Setting`, { setting: budget.accounts.tithing.tithingSetting });
+    }
+    this._updateAccounts(`Creation`, `Emergency Measurement`, { setting: budget.accounts.emergencyFund.emergencyGoalMeasurement });
+    if (this.accounts.emergencyFund.emergencyGoalMeasurement === `Length Of Time`) {
+      this._updateAccounts(`Creation`, `Emergency Goal`, {
+        goal: budget.accounts.emergencyFund.emergencyFundGoal,
+        goalTiming: budget.accounts.emergencyFund.emergencyFundGoalTiming,
+      });
+    }
+    if (this.accounts.emergencyFund.emergencyGoalMeasurement === `Total Amount`) {
+      this._updateAccounts(`Creation`, `Emergency Goal`, { goal: budget.accounts.emergencyFund.emergencyFundGoal });
+    }
+    this._updateAccounts(`Creation`, `Savings`, { goal: budget.accounts.savingsFund.savingsGoal, percentage: budget.accounts.savingsFund.savingsPercentage });
+    this._updateAccounts(`Creation`, `Investment`, { goal: budget.accounts.investmentFund.investmentGoal, percentage: budget.accounts.investmentFund.investmentPercentage });
+    this._updateAccounts(`Creation`, `Debt`, { amount: budget.accounts.debt.amount, debtAmount: budget.accounts.debt.debtAmount });
+    budget.mainCategories.forEach((mc) => {
+      let subCategories = [];
+      mc.subCategories.forEach((sc) => {
+        subCategories.push({
+          title: sc.title,
+          timingOptions: sc.timingOptions,
+          goalAmount: sc.goalAmount,
+          amountSpent: sc.amountSpent,
+          amountRemaining: sc.amountRemaining,
+          percentageSpent: sc.percentageSpent,
+          surplus: sc.surplus,
+        });
+      });
+      this.mainCategories.push({ icon: mc.title, title: mc.title, subCategories: subCategories });
+    });
+    this.transactions = budget.transactions;
+    this.investments = budget.investments;
     console.log(budget);
   }
 }
