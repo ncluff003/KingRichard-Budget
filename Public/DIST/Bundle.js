@@ -6638,8 +6638,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
 /* harmony import */ var _Create_Budget__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Create-Budget */ "./Public/JS/Create-Budget.js");
-/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
+/* harmony import */ var _Manage_Budget__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Manage-Budget */ "./Public/JS/Manage-Budget.js");
+/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
 
 
 
@@ -6663,13 +6665,13 @@ var Budget = /*#__PURE__*/function () {
   (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(Budget, [{
     key: "_addName",
     value: function _addName(name) {
-      this.name = name;
+      return this.name = name;
     }
   }, {
     key: "_addMainCategory",
     value: function _addMainCategory(icon, title) {
       // This is how main categories are added as objects with an icon and title.
-      this.mainCategories.push(new _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__.MainCategory({
+      this.mainCategories.push(new _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.MainCategory({
         icon: icon,
         title: title
       }));
@@ -6690,7 +6692,7 @@ var Budget = /*#__PURE__*/function () {
   }, {
     key: "_addSubCategory",
     value: function _addSubCategory(index, title) {
-      this.mainCategories[index].subCategories.push(new _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__.SubCategory({
+      this.mainCategories[index].subCategories.push(new _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.SubCategory({
         title: title
       }));
       console.log(this.mainCategories[index].subCategories);
@@ -6828,6 +6830,48 @@ var Budget = /*#__PURE__*/function () {
           this.accounts.debt.amount = Number(options.amount);
           this.accounts.debt.debtAmount = Number(options.debtAmount);
         }
+      }
+    }
+  }, {
+    key: "_updateBudget",
+    value: function _updateBudget(mode, update, options) {
+      if (mode === "Update") {
+        if (update === "Budget Management") {
+          var updateObject = options.updateObject;
+          updateObject.budgetId = options.budgetId;
+          updateObject.userId = options.userId;
+          updateObject.name = options.name;
+          updateObject.accounts = {
+            unAllocated: {
+              amount: options.unAllocatedAmount
+            },
+            monthlyBudget: {
+              amount: options.monthlyBudgetAmount
+            },
+            emergencyFund: options.emergencyFund,
+            savingsFund: options.savingsFund,
+            expenseFund: {
+              amount: options.expenseFundAmount
+            },
+            surplus: {
+              amount: options.surplusAmount
+            },
+            investmentFund: options.investmentFund,
+            debt: {
+              amount: options.debtAmount,
+              debtAmount: options.debtTotal
+            }
+          };
+
+          if (options.user.latterDaySaint === true) {
+            updateObject.accounts.tithing = options.tithing;
+          }
+
+          console.log(updateObject);
+          _Manage_Budget__WEBPACK_IMPORTED_MODULE_3__.updateMyBudget(updateObject);
+        }
+
+        console.log("Updating...");
       }
     }
   }, {
@@ -7180,8 +7224,8 @@ var Calendar = /*#__PURE__*/function () {
       var days = document.querySelectorAll(dayClass);
       var startDate = new Date(year, monthIndex, 1);
       var manipulatedDate = new Date(year, monthIndex, 1);
-      var currentDate = new Date(year, monthIndex, this.getDay());
-      currentDate = new Date(currentDate.setDate(currentDate.getDate() + 1));
+      var currentDate = new Date(year, monthIndex, this.getDay()); // currentDate = new Date(currentDate.setDate(currentDate.getDate() + 1));
+
       var dayIndex = startDate.getDay();
       days.forEach(function (d) {
         return d.textContent = '';
@@ -7214,9 +7258,9 @@ var Calendar = /*#__PURE__*/function () {
         if (d.textContent === '') d.classList.add(unusedDayClass);
 
         if (d.textContent !== '') {
-          if (d.classList.contains('un-used-day')) d.classList.remove('un-used-day');
+          if (d.classList.contains('un-used-day')) d.classList.remove('un-used-day'); // if (Number(d.textContent) === currentDayIndex - 1) {
 
-          if (Number(d.textContent) === currentDayIndex - 1) {
+          if (Number(d.textContent) === currentDayIndex) {
             d.classList.add(currentDayClass);
           }
 
@@ -7635,7 +7679,7 @@ var getOverallBudget = function getOverallBudget(subCategories, overall) {
   return overall;
 };
 
-var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, user) {
+var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placeholderBudget, user) {
   var editCategoryGoalsContainer = document.querySelector('.budget-container__edit-category-goals-container--large');
 
   if (editCategoryGoalsContainer) {
@@ -7717,7 +7761,9 @@ var getTithing = function getTithing(budget, user, currentTithingSetting) {
 
 var getEmergencyFund = function getEmergencyFund(budget, emergencySetting) {
   var emergencyFundGoal, emergencyFundGoalTiming;
+  console.log(emergencySetting);
   var emergencyFund = {};
+  emergencyFund.emergencyGoalMeasurement = emergencySetting;
 
   if (emergencySetting === "Length Of Time") {
     emergencyFundGoal = Number(document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__input').value);
@@ -7732,8 +7778,11 @@ var getEmergencyFund = function getEmergencyFund(budget, emergencySetting) {
   }
 
   if (emergencySetting === "Total Amount") {
-    emergencyFundGoal = Number(document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__input').value);
+    emergencyFund.emergencyFundGoal = Number(document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__input').value);
+    console.log(emergencyFundGoal);
   }
+
+  return emergencyFund;
 };
 
 var getInvestmentFund = function getInvestmentFund(budget) {
@@ -7766,22 +7815,89 @@ var getBudgetName = function getBudgetName(budget) {
   return budgetName;
 };
 
-var watchBudgetManatementUpdates = function watchBudgetManatementUpdates(emergencySetting, currentTithingSetting, budget, user) {
+var compileBudgetManatementUpdates = function compileBudgetManatementUpdates(emergencySetting, currentTithingSetting, budget, placeholderBudget, user) {
+  /*
+    Quick note here...,
+     Building the update object outside of a method is alright, however, how this really should go down is to update the placeholder budget first.
+     Then, after the place holder budget is updated within the limits of the current page, there should be an object that is built based off of what CAN be updated on that page.
+    For the Budget Management Page, that would be the budget's name and the budget's accounts.  So, sending an object with THAT information would be most beneficial.
+    Another and final example for now would be the edit category goals page be fore changing the timing, goals, etc... on the placeholder budget and sending the whole main categories array
+    to the update functionality in the backend to update that budget that way.
+   */
   // GET BUDGET NAME
-  var budgetName = getBudgetName(budget);
+  var budgetName = getBudgetName(budget); // The methods below are returning the objects of these accounts.  They are NOT returning the values themselves.
+
   var savingsFund = getSavingsFund(budget);
   var investmentFund = getInvestmentFund(budget);
   var emergencyFund = getEmergencyFund(budget, emergencySetting);
+  console.log(savingsFund, investmentFund, emergencyFund);
   var tithing;
 
   if (user.latterDaySaint === true) {
     tithing = getTithing(budget, user, currentTithingSetting);
+
+    var name = placeholderBudget._addName(budgetName);
+
+    placeholderBudget._updateBudget("Update", "Budget Management", {
+      budgetId: budget._id,
+      userId: user._id,
+      user: user,
+      name: name,
+      unAllocatedAmount: placeholderBudget.accounts.unAllocated.amount,
+      monthlyBudgetAmount: placeholderBudget.accounts.monthlyBudget.amount,
+      emergencyFund: emergencyFund,
+      savingsFund: savingsFund,
+      expenseFundAmount: placeholderBudget.accounts.expenseFund.amount,
+      surplusAmount: placeholderBudget.accounts.surplus.amount,
+      investmentFund: investmentFund,
+      debtAmount: placeholderBudget.accounts.debt.amount,
+      debtTotal: Number(placeholderBudget.accounts.debt.debtAmount),
+      tithing: tithing,
+      updateObject: {}
+    });
   }
 
-  console.log(budgetName, savingsFund, investmentFund, emergencyFund, tithing);
-  var newBudget = buildUpdateObject(budget, user, "Accounts", budgetName, ["unAllocated", "monthlyBudget", "emergencyFund", "savingsFund", "expenseFund", "surplus", "investmentFund", "debt", "tithing"], [budget.accounts.unAllocated, budget.accounts.monthlyBudget, emergencyFund, savingsFund, budget.accounts.expenseFund, budget.accounts.surplus, investmentFund, budget.accounts.debt, tithing]);
-  console.log(newBudget);
-  _Manage_Budget__WEBPACK_IMPORTED_MODULE_4__.updateMyBudget(newBudget);
+  console.log(budget);
+
+  if (user.latterDaySaint === false) {
+    var _name = placeholderBudget._addName(budgetName);
+
+    placeholderBudget._updateBudget("Update", "Budget Management", {
+      budgetId: budget._id,
+      userId: user._id,
+      name: _name,
+      unAllocatedAmount: placeholderBudget.accounts.unAllocated.amount,
+      monthlyBudgetAmount: placeholderBudget.accounts.monthlyBudget.amount,
+      emergencyFund: emergencyFund,
+      savingsFund: savingsFund,
+      expenseFundamount: placeholderBudget.accounts.expenseFund.amount,
+      surplusAmount: placeholderBudget.accounts.surplus.amount,
+      investmentFund: investmentFund,
+      debtAmount: placeholderBudget.accounts.debt.amount,
+      debtTotal: Number(placeholderBudget.accounts.debt.debtAmount),
+      updateObject: {}
+    });
+  } // const newBudget = buildUpdateObject(
+  //   budget,
+  //   user,
+  //   `Accounts`,
+  //   budgetName,
+  //   [`unAllocated`, `monthlyBudget`, `emergencyFund`, `savingsFund`, `expenseFund`, `surplus`, `investmentFund`, `debt`, `tithing`],
+  //   [
+  //     budget.accounts.unAllocated,
+  //     budget.accounts.monthlyBudget,
+  //     emergencyFund,
+  //     savingsFund,
+  //     budget.accounts.expenseFund,
+  //     budget.accounts.surplus,
+  //     investmentFund,
+  //     budget.accounts.debt,
+  //     tithing,
+  //   ]
+  // );
+  // console.log(newBudget, placeholderBudget);
+  // Budgeting.updateMyBudget(newBudget);
+
 };
 
 var changeEmergencyInput = function changeEmergencyInput(array, setting) {
@@ -7802,7 +7918,7 @@ var changeEmergencyInput = function changeEmergencyInput(array, setting) {
   }
 };
 
-var _watchBudgetManagement = function _watchBudgetManagement(budget, user) {
+var _setupBudgetManagement = function _setupBudgetManagement(budget, placeholderBudget, user) {
   var budgetNameDisplay = document.querySelector('.budget-container__budget-management-container--extra-small__budget-name-form__budget-name-display');
   var budgetNameInput = document.querySelector('.budget-container__budget-management-container--extra-small__budget-name-form__input');
 
@@ -7878,7 +7994,7 @@ var _watchBudgetManagement = function _watchBudgetManagement(budget, user) {
     updateSubmitButtons.forEach(function (ub) {
       ub.addEventListener('click', function (e) {
         e.preventDefault();
-        watchBudgetManatementUpdates(emergencySetting, currentTithingSetting, budget, user);
+        compileBudgetManatementUpdates(emergencySetting, currentTithingSetting, budget, placeholderBudget, user);
       });
     });
     watchForBudgetExit();
@@ -8251,9 +8367,70 @@ var pushIntoArray = function pushIntoArray(arrayFiller, array) {
   return array;
 };
 
+var setupDashboard = function setupDashboard(user, budget, placeholderBudget) {
+  ////////////////////////////////////////////
+  // SETUP ACCOUNT OPTIONS FOR TRANSACTIONS
+  var formLabels = document.querySelectorAll('.form-label');
+  var formInputs = document.querySelectorAll('.form-input');
+  var formSections = document.querySelectorAll('.form-row__section'); ///////////////////////////////////////////////
+  // INITIALIZE ACCOUNT TRANSACTION OPTION ARRAYS
+  // MONTHLY BUDGET
+
+  var monthlyBudgetTransactionsOptions = document.querySelectorAll('.monthly-budget-transaction');
+  var monthlyBudgetTransactionOptionsArray = []; // EMERGENCY FUND
+
+  var emergencyFundTransactionsOptions = document.querySelectorAll('.emergency-fund-transaction');
+  var emergencyFundTransactionOptionsArray = []; // SAVINGS FUND
+
+  var savingsFundTransactionsOptions = document.querySelectorAll('.savings-fund-transaction');
+  var savingsFundTransactionOptionsArray = []; // EXPENSE FUND
+
+  var expenseFundTransactionsOptions = document.querySelectorAll('.expense-fund-transaction');
+  var expenseFundTransactionOptionsArray = []; // SURPLUS
+
+  var surplusTransactionsOptions = document.querySelectorAll('.surplus-transaction');
+  var surplusTransactionOptionsArray = []; // DEBT
+
+  var debtTransactionsOptions = document.querySelectorAll('.debt-transaction');
+  var debtTransactionOptionsArray = []; // TITHING
+
+  var tithingTransactionsOptions = document.querySelectorAll('.tithing-transaction');
+  var tithingTransactionOptionsArray = [];
+  var mainCategoryOptionArrays = []; ///////////////////////////////
+  // MONTHLY BUDGET OPTIONS
+
+  pushIntoArray(monthlyBudgetTransactionsOptions, monthlyBudgetTransactionOptionsArray);
+  pushIntoArray(emergencyFundTransactionsOptions, emergencyFundTransactionOptionsArray);
+  pushIntoArray(savingsFundTransactionsOptions, savingsFundTransactionOptionsArray);
+  pushIntoArray(expenseFundTransactionsOptions, expenseFundTransactionOptionsArray);
+  pushIntoArray(surplusTransactionsOptions, surplusTransactionOptionsArray);
+  pushIntoArray(debtTransactionsOptions, debtTransactionOptionsArray);
+  pushIntoArray(tithingTransactionsOptions, tithingTransactionOptionsArray);
+  finalTransactionArrayPush(mainCategoryOptionArrays, [monthlyBudgetTransactionOptionsArray, emergencyFundTransactionOptionsArray, savingsFundTransactionOptionsArray, expenseFundTransactionOptionsArray, surplusTransactionOptionsArray, debtTransactionOptionsArray, tithingTransactionOptionsArray]);
+  if (user.latterDaySaint === true) mainCategoryOptionArrays.push(tithingTransactionOptionsArray); ////////////////////////////////////////////
+  // START BY WATCHING THE BUDGET NAVIGATION
+
+  _watchBudgetNavigation(); ////////////////////////////////////////////
+  // WATCH FOR ACCOUNT SELECTION
+
+
+  _watchForTransactions(mainCategoryOptionArrays); ////////////////////////////////////////////
+  // GET BANK ACCOUNT TOTAL
+
+
+  getDashboardAccountTotals(budget); ////////////////////////////////////////////
+  // SETUP BILL CALENDAR
+
+  _setupBillCalendar(); ////////////////////////////////////////////
+  // SETUP BILL CURRENT MONTH
+
+
+  _setupCurrentMonth();
+};
+
 var _watchBudget = /*#__PURE__*/function () {
   var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
-    var userInfo, user, currentBudget, budget, formLabels, formInputs, formSections, monthlyBudgetTransactionsOptions, monthlyBudgetTransactionOptionsArray, emergencyFundTransactionsOptions, emergencyFundTransactionOptionsArray, savingsFundTransactionsOptions, savingsFundTransactionOptionsArray, expenseFundTransactionsOptions, expenseFundTransactionOptionsArray, surplusTransactionsOptions, surplusTransactionOptionsArray, debtTransactionsOptions, debtTransactionOptionsArray, tithingTransactionsOptions, tithingTransactionOptionsArray, mainCategoryOptionArrays;
+    var userInfo, user, currentBudget, budget;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -8287,73 +8464,17 @@ var _watchBudget = /*#__PURE__*/function () {
 
           case 11:
             ////////////////////////////////////////////
-            // SETUP ACCOUNT OPTIONS FOR TRANSACTIONS
-            formLabels = document.querySelectorAll('.form-label');
-            formInputs = document.querySelectorAll('.form-input');
-            formSections = document.querySelectorAll('.form-row__section'); ///////////////////////////////////////////////
-            // INITIALIZE ACCOUNT TRANSACTION OPTION ARRAYS
-            // MONTHLY BUDGET
-
-            monthlyBudgetTransactionsOptions = document.querySelectorAll('.monthly-budget-transaction');
-            monthlyBudgetTransactionOptionsArray = []; // EMERGENCY FUND
-
-            emergencyFundTransactionsOptions = document.querySelectorAll('.emergency-fund-transaction');
-            emergencyFundTransactionOptionsArray = []; // SAVINGS FUND
-
-            savingsFundTransactionsOptions = document.querySelectorAll('.savings-fund-transaction');
-            savingsFundTransactionOptionsArray = []; // EXPENSE FUND
-
-            expenseFundTransactionsOptions = document.querySelectorAll('.expense-fund-transaction');
-            expenseFundTransactionOptionsArray = []; // SURPLUS
-
-            surplusTransactionsOptions = document.querySelectorAll('.surplus-transaction');
-            surplusTransactionOptionsArray = []; // DEBT
-
-            debtTransactionsOptions = document.querySelectorAll('.debt-transaction');
-            debtTransactionOptionsArray = []; // TITHING
-
-            tithingTransactionsOptions = document.querySelectorAll('.tithing-transaction');
-            tithingTransactionOptionsArray = [];
-            mainCategoryOptionArrays = []; ///////////////////////////////
-            // MONTHLY BUDGET OPTIONS
-
-            pushIntoArray(monthlyBudgetTransactionsOptions, monthlyBudgetTransactionOptionsArray);
-            pushIntoArray(emergencyFundTransactionsOptions, emergencyFundTransactionOptionsArray);
-            pushIntoArray(savingsFundTransactionsOptions, savingsFundTransactionOptionsArray);
-            pushIntoArray(expenseFundTransactionsOptions, expenseFundTransactionOptionsArray);
-            pushIntoArray(surplusTransactionsOptions, surplusTransactionOptionsArray);
-            pushIntoArray(debtTransactionsOptions, debtTransactionOptionsArray);
-            pushIntoArray(tithingTransactionsOptions, tithingTransactionOptionsArray);
-            finalTransactionArrayPush(mainCategoryOptionArrays, [monthlyBudgetTransactionOptionsArray, emergencyFundTransactionOptionsArray, savingsFundTransactionOptionsArray, expenseFundTransactionOptionsArray, surplusTransactionOptionsArray, debtTransactionOptionsArray, tithingTransactionOptionsArray]);
-            if (user.latterDaySaint === true) mainCategoryOptionArrays.push(tithingTransactionOptionsArray); ////////////////////////////////////////////
-            // START BY WATCHING THE BUDGET NAVIGATION
-
-            _watchBudgetNavigation(); ////////////////////////////////////////////
-            // WATCH FOR ACCOUNT SELECTION
-
-
-            _watchForTransactions(mainCategoryOptionArrays); ////////////////////////////////////////////
-            // GET BANK ACCOUNT TOTAL
-
-
-            getDashboardAccountTotals(currentBudget); ////////////////////////////////////////////
-            // SETUP BILL CALENDAR
-
-            _setupBillCalendar(); ////////////////////////////////////////////
-            // SETUP BILL CURRENT MONTH
-
-
-            _setupCurrentMonth(); ////////////////////////////////////////////
+            // WATCH BUDGET MANAGEMENT PAGE
+            setupDashboard(user, currentBudget, budget); ////////////////////////////////////////////
             // WATCH BUDGET MANAGEMENT PAGE
 
-
-            _watchBudgetManagement(currentBudget, user); ////////////////////////////////////////////
+            _setupBudgetManagement(currentBudget, budget, user); ////////////////////////////////////////////
             // WATCH EDIT CATEGORY GOALS PAGE
 
 
-            _watchEditCategoryGoals(currentBudget, user);
+            _watchEditCategoryGoals(currentBudget, budget, user);
 
-          case 45:
+          case 14:
           case "end":
             return _context.stop();
         }

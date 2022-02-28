@@ -66,32 +66,32 @@ let filterObj = (object, allowedFields) => {
 
     if (key === `emergencyFund`) {
       filteredValues[i].emergencyFundGoal = Number(filteredValues[i].emergencyFundGoal);
-      filteredValues[i].amount = Number(filteredValues[i].amount);
+      filteredValues[i].amount = filteredValues[i].amount;
     }
 
     if (key === `savingsFund`) {
       filteredValues[i].savingsGoal = Number(filteredValues[i].savingsGoal);
       filteredValues[i].savingsPercentage = Number(filteredValues[i].savingsPercentage);
-      filteredValues[i].amount = Number(filteredValues[i].amount);
+      filteredValues[i].amount = filteredValues[i].amount;
     }
 
     if (key === `expenseFund`) {
-      filteredValues[i].amount = Number(filteredValues[i].amount);
+      filteredValues[i].amount = filteredValues[i].amount;
     }
 
     if (key === `surplus`) {
-      filteredValues[i].amount = Number(filteredValues[i].amount);
+      filteredValues[i].amount = filteredValues[i].amount;
     }
 
     if (key === `investmentFund`) {
       filteredValues[i].investmentGoal = Number(filteredValues[i].investmentGoal);
       filteredValues[i].investmentPercentage = Number(filteredValues[i].investmentPercentage);
-      filteredValues[i].amount = Number(filteredValues[i].amount);
+      filteredValues[i].amount = filteredValues[i].amount;
     }
 
     if (key === `debt`) {
       filteredValues[i].amount = Number(filteredValues[i].amount);
-      filteredValues[i].debtAmount = Number(filteredValues[i].debtAmount);
+      filteredValues[i].debtAmount = filteredValues[i].debtAmount;
     }
 
     if (key === `tithing`) {

@@ -106,7 +106,7 @@ class Calendar {
     const startDate = new Date(year, monthIndex, 1);
     let manipulatedDate = new Date(year, monthIndex, 1);
     let currentDate = new Date(year, monthIndex, this.getDay());
-    currentDate = new Date(currentDate.setDate(currentDate.getDate() + 1));
+    // currentDate = new Date(currentDate.setDate(currentDate.getDate() + 1));
     let dayIndex = startDate.getDay();
     days.forEach((d) => (d.textContent = ''));
     if ((dayStart && dayIndex) || (dayStart && dayIndex === 0)) {
@@ -132,7 +132,8 @@ class Calendar {
       if (d.textContent === '') d.classList.add(unusedDayClass);
       if (d.textContent !== '') {
         if (d.classList.contains('un-used-day')) d.classList.remove('un-used-day');
-        if (Number(d.textContent) === currentDayIndex - 1) {
+        // if (Number(d.textContent) === currentDayIndex - 1) {
+        if (Number(d.textContent) === currentDayIndex) {
           d.classList.add(currentDayClass);
         }
         d.addEventListener('click', (e) => {

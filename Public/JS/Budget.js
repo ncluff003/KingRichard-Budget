@@ -1,4 +1,5 @@
 import * as Budgets from './Create-Budget';
+import * as Manage from './Manage-Budget';
 import * as Categories from './Budget-Categories';
 class Account {
   constructor(options) {
@@ -13,7 +14,7 @@ export class Budget {
   }
 
   _addName(name) {
-    this.name = name;
+    return (this.name = name);
   }
 
   _addMainCategory(icon, title) {
@@ -138,6 +139,44 @@ export class Budget {
         this.accounts.debt.amount = Number(options.amount);
         this.accounts.debt.debtAmount = Number(options.debtAmount);
       }
+    }
+  }
+
+  _updateBudget(mode, update, options) {
+    if (mode === `Update`) {
+      if (update === `Budget Management`) {
+        let updateObject = options.updateObject;
+        updateObject.budgetId = options.budgetId;
+        updateObject.userId = options.userId;
+        updateObject.name = options.name;
+        updateObject.accounts = {
+          unAllocated: {
+            amount: options.unAllocatedAmount,
+          },
+          monthlyBudget: {
+            amount: options.monthlyBudgetAmount,
+          },
+          emergencyFund: options.emergencyFund,
+          savingsFund: options.savingsFund,
+          expenseFund: {
+            amount: options.expenseFundAmount,
+          },
+          surplus: {
+            amount: options.surplusAmount,
+          },
+          investmentFund: options.investmentFund,
+          debt: {
+            amount: options.debtAmount,
+            debtAmount: options.debtTotal,
+          },
+        };
+        if (options.user.latterDaySaint === true) {
+          updateObject.accounts.tithing = options.tithing;
+        }
+        console.log(updateObject);
+        Manage.updateMyBudget(updateObject);
+      }
+      console.log(`Updating...`);
     }
   }
 

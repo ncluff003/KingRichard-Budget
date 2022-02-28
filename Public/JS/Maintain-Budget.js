@@ -204,7 +204,7 @@ const getOverallBudget = (subCategories, overall) => {
   return overall;
 };
 
-const _watchEditCategoryGoals = (budget, user) => {
+const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
   const editCategoryGoalsContainer = document.querySelector('.budget-container__edit-category-goals-container--large');
   if (editCategoryGoalsContainer) {
     const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
@@ -287,7 +287,9 @@ const getTithing = (budget, user, currentTithingSetting) => {
 
 const getEmergencyFund = (budget, emergencySetting) => {
   let emergencyFundGoal, emergencyFundGoalTiming;
+  console.log(emergencySetting);
   let emergencyFund = {};
+  emergencyFund.emergencyGoalMeasurement = emergencySetting;
   if (emergencySetting === `Length Of Time`) {
     emergencyFundGoal = Number(document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__input').value);
     emergencyFundGoalTiming = document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__select').value;
@@ -301,8 +303,10 @@ const getEmergencyFund = (budget, emergencySetting) => {
     return emergencyFund;
   }
   if (emergencySetting === `Total Amount`) {
-    emergencyFundGoal = Number(document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__input').value);
+    emergencyFund.emergencyFundGoal = Number(document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__input').value);
+    console.log(emergencyFundGoal);
   }
+  return emergencyFund;
 };
 
 const getInvestmentFund = (budget) => {
@@ -336,37 +340,87 @@ const getBudgetName = (budget) => {
   return budgetName;
 };
 
-const watchBudgetManatementUpdates = (emergencySetting, currentTithingSetting, budget, user) => {
+const compileBudgetManatementUpdates = (emergencySetting, currentTithingSetting, budget, placeholderBudget, user) => {
+  /*
+    Quick note here...,
+
+    Building the update object outside of a method is alright, however, how this really should go down is to update the placeholder budget first.
+
+    Then, after the place holder budget is updated within the limits of the current page, there should be an object that is built based off of what CAN be updated on that page.
+    For the Budget Management Page, that would be the budget's name and the budget's accounts.  So, sending an object with THAT information would be most beneficial.
+    Another and final example for now would be the edit category goals page be fore changing the timing, goals, etc... on the placeholder budget and sending the whole main categories array
+    to the update functionality in the backend to update that budget that way.
+
+  */
   // GET BUDGET NAME
-  const budgetName = getBudgetName(budget);
+  let budgetName = getBudgetName(budget);
+  // The methods below are returning the objects of these accounts.  They are NOT returning the values themselves.
   const savingsFund = getSavingsFund(budget);
   const investmentFund = getInvestmentFund(budget);
   const emergencyFund = getEmergencyFund(budget, emergencySetting);
+  console.log(savingsFund, investmentFund, emergencyFund);
   let tithing;
   if (user.latterDaySaint === true) {
     tithing = getTithing(budget, user, currentTithingSetting);
+    let name = placeholderBudget._addName(budgetName);
+    placeholderBudget._updateBudget(`Update`, `Budget Management`, {
+      budgetId: budget._id,
+      userId: user._id,
+      user: user,
+      name: name,
+      unAllocatedAmount: placeholderBudget.accounts.unAllocated.amount,
+      monthlyBudgetAmount: placeholderBudget.accounts.monthlyBudget.amount,
+      emergencyFund: emergencyFund,
+      savingsFund: savingsFund,
+      expenseFundAmount: placeholderBudget.accounts.expenseFund.amount,
+      surplusAmount: placeholderBudget.accounts.surplus.amount,
+      investmentFund: investmentFund,
+      debtAmount: placeholderBudget.accounts.debt.amount,
+      debtTotal: Number(placeholderBudget.accounts.debt.debtAmount),
+      tithing: tithing,
+      updateObject: {},
+    });
   }
-  console.log(budgetName, savingsFund, investmentFund, emergencyFund, tithing);
-  const newBudget = buildUpdateObject(
-    budget,
-    user,
-    `Accounts`,
-    budgetName,
-    [`unAllocated`, `monthlyBudget`, `emergencyFund`, `savingsFund`, `expenseFund`, `surplus`, `investmentFund`, `debt`, `tithing`],
-    [
-      budget.accounts.unAllocated,
-      budget.accounts.monthlyBudget,
-      emergencyFund,
-      savingsFund,
-      budget.accounts.expenseFund,
-      budget.accounts.surplus,
-      investmentFund,
-      budget.accounts.debt,
-      tithing,
-    ]
-  );
-  console.log(newBudget);
-  Budgeting.updateMyBudget(newBudget);
+  console.log(budget);
+
+  if (user.latterDaySaint === false) {
+    let name = placeholderBudget._addName(budgetName);
+    placeholderBudget._updateBudget(`Update`, `Budget Management`, {
+      budgetId: budget._id,
+      userId: user._id,
+      name: name,
+      unAllocatedAmount: placeholderBudget.accounts.unAllocated.amount,
+      monthlyBudgetAmount: placeholderBudget.accounts.monthlyBudget.amount,
+      emergencyFund: emergencyFund,
+      savingsFund: savingsFund,
+      expenseFundamount: placeholderBudget.accounts.expenseFund.amount,
+      surplusAmount: placeholderBudget.accounts.surplus.amount,
+      investmentFund: investmentFund,
+      debtAmount: placeholderBudget.accounts.debt.amount,
+      debtTotal: Number(placeholderBudget.accounts.debt.debtAmount),
+      updateObject: {},
+    });
+  }
+  // const newBudget = buildUpdateObject(
+  //   budget,
+  //   user,
+  //   `Accounts`,
+  //   budgetName,
+  //   [`unAllocated`, `monthlyBudget`, `emergencyFund`, `savingsFund`, `expenseFund`, `surplus`, `investmentFund`, `debt`, `tithing`],
+  //   [
+  //     budget.accounts.unAllocated,
+  //     budget.accounts.monthlyBudget,
+  //     emergencyFund,
+  //     savingsFund,
+  //     budget.accounts.expenseFund,
+  //     budget.accounts.surplus,
+  //     investmentFund,
+  //     budget.accounts.debt,
+  //     tithing,
+  //   ]
+  // );
+  // console.log(newBudget, placeholderBudget);
+  // Budgeting.updateMyBudget(newBudget);
 };
 
 const changeEmergencyInput = (array, setting) => {
@@ -382,7 +436,7 @@ const changeEmergencyInput = (array, setting) => {
   }
 };
 
-const _watchBudgetManagement = (budget, user) => {
+const _setupBudgetManagement = (budget, placeholderBudget, user) => {
   const budgetNameDisplay = document.querySelector('.budget-container__budget-management-container--extra-small__budget-name-form__budget-name-display');
   const budgetNameInput = document.querySelector('.budget-container__budget-management-container--extra-small__budget-name-form__input');
   if (window.location.pathname.split('/')[6] === `Budget-Management`) {
@@ -457,7 +511,7 @@ const _watchBudgetManagement = (budget, user) => {
     updateSubmitButtons.forEach((ub) => {
       ub.addEventListener('click', (e) => {
         e.preventDefault();
-        watchBudgetManatementUpdates(emergencySetting, currentTithingSetting, budget, user);
+        compileBudgetManatementUpdates(emergencySetting, currentTithingSetting, budget, placeholderBudget, user);
       });
     });
     watchForBudgetExit();
@@ -831,25 +885,7 @@ const pushIntoArray = (arrayFiller, array) => {
   return array;
 };
 
-export const _watchBudget = async () => {
-  console.log(`WATCHING YOUR BUDGET`);
-  /////////////////////////////
-  // GET USER
-  const userInfo = await Updating.getSomePersonals();
-  const user = userInfo.data.data.user;
-
-  ////////////////////////////////////////////
-  // GET BUDGET INFORMATION
-  let currentBudget;
-  user.budgets.forEach((b) => {
-    if (b._id === window.location.pathname.split('/')[5]) currentBudget = b;
-  });
-  let budget = Budget.startToCreate();
-  budget._buildPlaceHolderBudget(currentBudget, user);
-  console.log(budget);
-
-  if (!currentBudget) return;
-
+const setupDashboard = (user, budget, placeholderBudget) => {
   ////////////////////////////////////////////
   // SETUP ACCOUNT OPTIONS FOR TRANSACTIONS
   const formLabels = document.querySelectorAll('.form-label');
@@ -920,7 +956,7 @@ export const _watchBudget = async () => {
 
   ////////////////////////////////////////////
   // GET BANK ACCOUNT TOTAL
-  getDashboardAccountTotals(currentBudget);
+  getDashboardAccountTotals(budget);
 
   ////////////////////////////////////////////
   // SETUP BILL CALENDAR
@@ -928,10 +964,34 @@ export const _watchBudget = async () => {
   ////////////////////////////////////////////
   // SETUP BILL CURRENT MONTH
   _setupCurrentMonth();
+};
+
+export const _watchBudget = async () => {
+  console.log(`WATCHING YOUR BUDGET`);
+  /////////////////////////////
+  // GET USER
+  const userInfo = await Updating.getSomePersonals();
+  const user = userInfo.data.data.user;
+
+  ////////////////////////////////////////////
+  // GET BUDGET INFORMATION
+  let currentBudget;
+  user.budgets.forEach((b) => {
+    if (b._id === window.location.pathname.split('/')[5]) currentBudget = b;
+  });
+  let budget = Budget.startToCreate();
+  budget._buildPlaceHolderBudget(currentBudget, user);
+  console.log(budget);
+
+  if (!currentBudget) return;
   ////////////////////////////////////////////
   // WATCH BUDGET MANAGEMENT PAGE
-  _watchBudgetManagement(currentBudget, user);
+  setupDashboard(user, currentBudget, budget);
+
+  ////////////////////////////////////////////
+  // WATCH BUDGET MANAGEMENT PAGE
+  _setupBudgetManagement(currentBudget, budget, user);
   ////////////////////////////////////////////
   // WATCH EDIT CATEGORY GOALS PAGE
-  _watchEditCategoryGoals(currentBudget, user);
+  _watchEditCategoryGoals(currentBudget, budget, user);
 };
