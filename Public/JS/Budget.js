@@ -1,5 +1,6 @@
 import * as Budgets from './Create-Budget';
 import * as Manage from './Manage-Budget';
+import * as Maintain from './Maintain-Budget';
 import * as Categories from './Budget-Categories';
 class Account {
   constructor(options) {
@@ -144,8 +145,8 @@ export class Budget {
 
   _updateBudget(mode, update, options) {
     if (mode === `Update`) {
+      let updateObject = options.updateObject;
       if (update === `Budget Management`) {
-        let updateObject = options.updateObject;
         updateObject.budgetId = options.budgetId;
         updateObject.userId = options.userId;
         updateObject.name = options.name;
@@ -175,6 +176,135 @@ export class Budget {
         }
         console.log(updateObject);
         Manage.updateMyBudget(updateObject);
+      }
+      if (update === `Edit Category Goals`) {
+        // Start Update Object With Budget And User IDs.
+        let updateObject = options.updateObject;
+        updateObject.budgetId = options.budgetId;
+        updateObject.userId = options.userId;
+        updateObject.mainCategories = [];
+        const mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
+
+        let mainCategoryIndex = 0;
+        let subCategoryIndex = 0;
+
+        let emptyArray = [];
+
+        options.budgetMainCategories.forEach((bmc, i) => {
+          updateObject.mainCategories.push(
+            Object.fromEntries([
+              [`title`, mainCategoryTitles[i].textContent],
+              [`subCategories`, emptyArray],
+            ])
+          );
+          if (updateObject.mainCategories.length === options.budgetMainCategories.length) {
+            return (mainCategoryIndex = 0);
+          }
+        });
+
+        // export const fillSubCategoryArray = (updateObject, index) => {
+        //   let mainCategoryIndex = index;
+        //   let tempArray = Array.from(document.querySelectorAll(`.sub-category-display__sub-category[data-subcategory="${index}"]`));
+        //   tempArray.forEach((temp, i) => {
+        //     let title = temp.firstChild.nextSibling.firstChild.textContent;
+        //     let goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
+        //     let amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+        //     let amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+        //     let percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
+        //     updateObject.mainCategories[index].subCategories.push(
+        //       Object.fromEntries([
+        //         [`title`, title],
+        //         [`goalAmount`, goalAmount],
+        //         [`amountSpent`, amountSpent],
+        //         [`amountRemaining`, amountRemaining],
+        //         [`percentageSpent`, percentageSpent],
+        //       ])
+        //     );
+        //     if (updateObject.mainCategories[mainCategoryIndex] === undefined) return;
+        //     if (updateObject.mainCategories[mainCategoryIndex].subCategories.length === tempArray.length) {
+        //       mainCategoryIndex++;
+        //       updateObject.mainCategories[mainCategoryIndex].subCategories = [];
+        //       console.log(`Onto the next index...`);
+        //       return mainCategoryIndex;
+        //     }
+        //     if (index === tempArray.length) {
+        //       mainCategoryIndex++;
+        //     }
+        //   });
+        // };
+
+        updateObject.mainCategories.forEach((mc, i) => {
+          // Maintain.fillSubCategoryArray(updateObject, i);
+          let mainCategoryIndex = i;
+          let tempArray = Array.from(document.querySelectorAll(`.sub-category-display__sub-category[data-subcategory="${i}"]`));
+          tempArray.forEach((temp, i) => {
+            let title = temp.firstChild.nextSibling.firstChild.textContent;
+            let goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
+            let amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+            let amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+            let percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
+            console.log(mc);
+            let timingOptions = options.budgetMainCategories[mainCategoryIndex].subCategories[i].timingOptions;
+
+            updateObject.mainCategories[mainCategoryIndex].subCategories.push(
+              Object.fromEntries([
+                [`title`, title],
+                [`goalAmount`, goalAmount],
+                [`amountSpent`, amountSpent],
+                [`amountRemaining`, amountRemaining],
+                [`percentageSpent`, percentageSpent],
+                [`timingOptions`, timingOptions],
+              ])
+            );
+            // if (updateObject.mainCategories[mainCategoryIndex] === undefined) return;
+            console.log(updateObject.mainCategories[mainCategoryIndex].subCategories.length, tempArray.length);
+            if (updateObject.mainCategories[mainCategoryIndex].subCategories.length === tempArray.length) {
+              mainCategoryIndex++;
+              if (updateObject.mainCategories[mainCategoryIndex] === undefined) return;
+              updateObject.mainCategories[mainCategoryIndex].subCategories = [];
+              console.log(`Onto the next index...`);
+              return mainCategoryIndex;
+            }
+            if (i === tempArray.length) {
+              mainCategoryIndex++;
+            }
+          });
+        });
+
+        // if (customObject === `Main Categories`) {
+        //  // budget.mainCategories would be the Custom Properties
+        //   const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
+        //   const mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
+        //   const mainCategoryObject = {};
+        //   const subCategoryObject = {};
+        //   console.log(customProperties);
+        //   let emptyArray = [];
+        //   budgetUpdateObject.mainCategories = [];
+        //   let mainCategoryIndex = 0;
+        //   let subCategoryIndex = 0;
+        //   let entries = [];
+        //   const subCategoriesSplitArray = [];
+        //   let subCategorySubArray = [];
+
+        //   // EVERYTHING DONE IN THIS 'FOREACH' IS DONE 3 TIMES!!!
+        //   customProperties.forEach((cp, i) => {
+        //     budgetUpdateObject.mainCategories.push(
+        //       Object.fromEntries([
+        //         [`title`, mainCategoryTitles[i].textContent],
+        //         [`subCategories`, emptyArray],
+        //       ])
+        //     );
+        //     if (budgetUpdateObject.mainCategories.length === customProperties.length) {
+        //       return (mainCategoryIndex = 0);
+        //     }
+        //   });
+        //   budgetUpdateObject.mainCategories.forEach((mc, i) => {
+        //     fillSubCategoryArray(budgetUpdateObject, i);
+        //   });
+        //   console.log(budgetUpdateObject);
+        // }
+        console.log(updateObject);
+        console.log(`Updating Category Goals...`);
       }
       console.log(`Updating...`);
     }

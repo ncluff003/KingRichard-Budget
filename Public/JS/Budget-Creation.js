@@ -331,7 +331,7 @@ export const calculateDayEnding = (endDigit, dateEnding, input) => {
   return dateEnding;
 };
 
-export const insertTiiming = (target, inputValues, timing, timingButtons, budget, index) => {
+export const insertTiming = (target, inputValues, timing, timingButtons, budget, index, placeholderBudget) => {
   let wording, dayEnding, dayEndingNumberOne;
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -540,7 +540,7 @@ export const insertTiiming = (target, inputValues, timing, timingButtons, budget
 
 /////////////////////////////////////////
 // WATCH FOR TIMING SETTING
-export const watchForSettingTiming = (budget, index, clickedItem, timing, fullBudget) => {
+export const watchForSettingTiming = (budget, index, clickedItem, timing, placeholderBudget, fullBudget) => {
   // Getting the timing.
   const monthlyTimingButton = document.querySelector('.sub-category-display__timing-container__monthly-container__button');
   const biMonthlyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-monthly-container__button');
@@ -576,7 +576,7 @@ export const watchForSettingTiming = (budget, index, clickedItem, timing, fullBu
       if (timing === `Monthly`) {
         timingArray = [];
         timingArray.push(monthlyTiming);
-        return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
+        return insertTiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
       }
       if (timing === `Bi-Monthly`) {
         e.preventDefault();
@@ -587,7 +587,7 @@ export const watchForSettingTiming = (budget, index, clickedItem, timing, fullBu
         timingArray = [];
         timingArray.push(timingOne);
         timingArray.push(timingTwo);
-        return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
+        return insertTiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
       }
 
       if (timing === `Bi-Weekly`) {
@@ -596,7 +596,7 @@ export const watchForSettingTiming = (budget, index, clickedItem, timing, fullBu
         const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
         timingArray = [];
         timingArray.push(biWeeklyTiming);
-        insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
+        insertTiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
         return;
       }
 
@@ -605,7 +605,7 @@ export const watchForSettingTiming = (budget, index, clickedItem, timing, fullBu
         const weeklyTiming = new Date(oldWeeklyTiming.setHours(oldWeeklyTiming.getHours() + 7));
         timingArray = [];
         timingArray.push(weeklyTiming);
-        insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
+        insertTiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
       }
     });
   });

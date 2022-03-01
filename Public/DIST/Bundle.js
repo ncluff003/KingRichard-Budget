@@ -5320,7 +5320,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "_watchEmergencyGoalSettings": () => (/* binding */ _watchEmergencyGoalSettings),
 /* harmony export */   "calculateDayEnding": () => (/* binding */ calculateDayEnding),
-/* harmony export */   "insertTiiming": () => (/* binding */ insertTiiming),
+/* harmony export */   "insertTiming": () => (/* binding */ insertTiming),
 /* harmony export */   "watchForSettingTiming": () => (/* binding */ watchForSettingTiming),
 /* harmony export */   "setupTimingFunctionContainer": () => (/* binding */ setupTimingFunctionContainer),
 /* harmony export */   "setupGoalSetting": () => (/* binding */ setupGoalSetting),
@@ -5742,7 +5742,7 @@ var calculateDayEnding = function calculateDayEnding(endDigit, dateEnding, input
   if (endDigit === 3) dateEnding = "rd";
   return dateEnding;
 };
-var insertTiiming = function insertTiiming(target, inputValues, timing, timingButtons, budget, index) {
+var insertTiming = function insertTiming(target, inputValues, timing, timingButtons, budget, index, placeholderBudget) {
   var wording, dayEnding, dayEndingNumberOne;
   var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -5927,7 +5927,7 @@ var insertTiiming = function insertTiiming(target, inputValues, timing, timingBu
 }; /////////////////////////////////////////
 // WATCH FOR TIMING SETTING
 
-var watchForSettingTiming = function watchForSettingTiming(budget, index, clickedItem, timing, fullBudget) {
+var watchForSettingTiming = function watchForSettingTiming(budget, index, clickedItem, timing, placeholderBudget, fullBudget) {
   // Getting the timing.
   var monthlyTimingButton = document.querySelector('.sub-category-display__timing-container__monthly-container__button');
   var biMonthlyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-monthly-container__button');
@@ -5964,7 +5964,7 @@ var watchForSettingTiming = function watchForSettingTiming(budget, index, clicke
       if (timing === "Monthly") {
         timingArray = [];
         timingArray.push(monthlyTiming);
-        return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
+        return insertTiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
       }
 
       if (timing === "Bi-Monthly") {
@@ -5976,7 +5976,7 @@ var watchForSettingTiming = function watchForSettingTiming(budget, index, clicke
         timingArray = [];
         timingArray.push(timingOne);
         timingArray.push(timingTwo);
-        return insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
+        return insertTiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
       }
 
       if (timing === "Bi-Weekly") {
@@ -5985,7 +5985,7 @@ var watchForSettingTiming = function watchForSettingTiming(budget, index, clicke
         var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
         timingArray = [];
         timingArray.push(biWeeklyTiming);
-        insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
+        insertTiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
         return;
       }
 
@@ -5994,7 +5994,7 @@ var watchForSettingTiming = function watchForSettingTiming(budget, index, clicke
         var weeklyTiming = new Date(oldWeeklyTiming.setHours(oldWeeklyTiming.getHours() + 7));
         timingArray = [];
         timingArray.push(weeklyTiming);
-        insertTiiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
+        insertTiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
       }
     });
   });
@@ -6639,8 +6639,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
 /* harmony import */ var _Create_Budget__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Create-Budget */ "./Public/JS/Create-Budget.js");
 /* harmony import */ var _Manage_Budget__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Manage-Budget */ "./Public/JS/Manage-Budget.js");
-/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
+/* harmony import */ var _Maintain_Budget__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Maintain-Budget */ "./Public/JS/Maintain-Budget.js");
+/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
 
 
 
@@ -6671,7 +6673,7 @@ var Budget = /*#__PURE__*/function () {
     key: "_addMainCategory",
     value: function _addMainCategory(icon, title) {
       // This is how main categories are added as objects with an icon and title.
-      this.mainCategories.push(new _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.MainCategory({
+      this.mainCategories.push(new _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__.MainCategory({
         icon: icon,
         title: title
       }));
@@ -6692,7 +6694,7 @@ var Budget = /*#__PURE__*/function () {
   }, {
     key: "_addSubCategory",
     value: function _addSubCategory(index, title) {
-      this.mainCategories[index].subCategories.push(new _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__.SubCategory({
+      this.mainCategories[index].subCategories.push(new _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__.SubCategory({
         title: title
       }));
       console.log(this.mainCategories[index].subCategories);
@@ -6836,8 +6838,9 @@ var Budget = /*#__PURE__*/function () {
     key: "_updateBudget",
     value: function _updateBudget(mode, update, options) {
       if (mode === "Update") {
+        var updateObject = options.updateObject;
+
         if (update === "Budget Management") {
-          var updateObject = options.updateObject;
           updateObject.budgetId = options.budgetId;
           updateObject.userId = options.userId;
           updateObject.name = options.name;
@@ -6869,6 +6872,120 @@ var Budget = /*#__PURE__*/function () {
 
           console.log(updateObject);
           _Manage_Budget__WEBPACK_IMPORTED_MODULE_3__.updateMyBudget(updateObject);
+        }
+
+        if (update === "Edit Category Goals") {
+          // Start Update Object With Budget And User IDs.
+          var _updateObject = options.updateObject;
+          _updateObject.budgetId = options.budgetId;
+          _updateObject.userId = options.userId;
+          _updateObject.mainCategories = [];
+          var mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
+          var mainCategoryIndex = 0;
+          var subCategoryIndex = 0;
+          var emptyArray = [];
+          options.budgetMainCategories.forEach(function (bmc, i) {
+            _updateObject.mainCategories.push(Object.fromEntries([["title", mainCategoryTitles[i].textContent], ["subCategories", emptyArray]]));
+
+            if (_updateObject.mainCategories.length === options.budgetMainCategories.length) {
+              return mainCategoryIndex = 0;
+            }
+          }); // export const fillSubCategoryArray = (updateObject, index) => {
+          //   let mainCategoryIndex = index;
+          //   let tempArray = Array.from(document.querySelectorAll(`.sub-category-display__sub-category[data-subcategory="${index}"]`));
+          //   tempArray.forEach((temp, i) => {
+          //     let title = temp.firstChild.nextSibling.firstChild.textContent;
+          //     let goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
+          //     let amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+          //     let amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+          //     let percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
+          //     updateObject.mainCategories[index].subCategories.push(
+          //       Object.fromEntries([
+          //         [`title`, title],
+          //         [`goalAmount`, goalAmount],
+          //         [`amountSpent`, amountSpent],
+          //         [`amountRemaining`, amountRemaining],
+          //         [`percentageSpent`, percentageSpent],
+          //       ])
+          //     );
+          //     if (updateObject.mainCategories[mainCategoryIndex] === undefined) return;
+          //     if (updateObject.mainCategories[mainCategoryIndex].subCategories.length === tempArray.length) {
+          //       mainCategoryIndex++;
+          //       updateObject.mainCategories[mainCategoryIndex].subCategories = [];
+          //       console.log(`Onto the next index...`);
+          //       return mainCategoryIndex;
+          //     }
+          //     if (index === tempArray.length) {
+          //       mainCategoryIndex++;
+          //     }
+          //   });
+          // };
+
+          _updateObject.mainCategories.forEach(function (mc, i) {
+            // Maintain.fillSubCategoryArray(updateObject, i);
+            var mainCategoryIndex = i;
+            var tempArray = Array.from(document.querySelectorAll(".sub-category-display__sub-category[data-subcategory=\"".concat(i, "\"]")));
+            tempArray.forEach(function (temp, i) {
+              var title = temp.firstChild.nextSibling.firstChild.textContent;
+              var goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
+              var amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+              var amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+              var percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
+              console.log(mc);
+              var timingOptions = options.budgetMainCategories[mainCategoryIndex].subCategories[i].timingOptions;
+
+              _updateObject.mainCategories[mainCategoryIndex].subCategories.push(Object.fromEntries([["title", title], ["goalAmount", goalAmount], ["amountSpent", amountSpent], ["amountRemaining", amountRemaining], ["percentageSpent", percentageSpent], ["timingOptions", timingOptions]])); // if (updateObject.mainCategories[mainCategoryIndex] === undefined) return;
+
+
+              console.log(_updateObject.mainCategories[mainCategoryIndex].subCategories.length, tempArray.length);
+
+              if (_updateObject.mainCategories[mainCategoryIndex].subCategories.length === tempArray.length) {
+                mainCategoryIndex++;
+                if (_updateObject.mainCategories[mainCategoryIndex] === undefined) return;
+                _updateObject.mainCategories[mainCategoryIndex].subCategories = [];
+                console.log("Onto the next index...");
+                return mainCategoryIndex;
+              }
+
+              if (i === tempArray.length) {
+                mainCategoryIndex++;
+              }
+            });
+          }); // if (customObject === `Main Categories`) {
+          //  // budget.mainCategories would be the Custom Properties
+          //   const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
+          //   const mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
+          //   const mainCategoryObject = {};
+          //   const subCategoryObject = {};
+          //   console.log(customProperties);
+          //   let emptyArray = [];
+          //   budgetUpdateObject.mainCategories = [];
+          //   let mainCategoryIndex = 0;
+          //   let subCategoryIndex = 0;
+          //   let entries = [];
+          //   const subCategoriesSplitArray = [];
+          //   let subCategorySubArray = [];
+          //   // EVERYTHING DONE IN THIS 'FOREACH' IS DONE 3 TIMES!!!
+          //   customProperties.forEach((cp, i) => {
+          //     budgetUpdateObject.mainCategories.push(
+          //       Object.fromEntries([
+          //         [`title`, mainCategoryTitles[i].textContent],
+          //         [`subCategories`, emptyArray],
+          //       ])
+          //     );
+          //     if (budgetUpdateObject.mainCategories.length === customProperties.length) {
+          //       return (mainCategoryIndex = 0);
+          //     }
+          //   });
+          //   budgetUpdateObject.mainCategories.forEach((mc, i) => {
+          //     fillSubCategoryArray(budgetUpdateObject, i);
+          //   });
+          //   console.log(budgetUpdateObject);
+          // }
+
+
+          console.log(_updateObject);
+          console.log("Updating Category Goals...");
         }
 
         console.log("Updating...");
@@ -7455,6 +7572,7 @@ var logout = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fillSubCategoryArray": () => (/* binding */ fillSubCategoryArray),
 /* harmony export */   "_watchBudget": () => (/* binding */ _watchBudget)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
@@ -7740,8 +7858,50 @@ var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placehold
       });
     });
     editCategoryGoalsSubmit.addEventListener('click', function (e) {
-      e.preventDefault();
-      var newBudget = buildUpdateObject(budget, user, "Main Categories", budget.name, budget.mainCategories, "Objects");
+      e.preventDefault(); // const newBudget = buildUpdateObject(budget, user, `Main Categories`, budget.name, budget.mainCategories, `Objects`);
+      // let budgetUpdateObject = {
+      //   budgetId: budget._id,
+      //   userId: user._id,
+      // };
+      // if (customObject === `Main Categories`) {
+      //   // budget.mainCategories would be the Custom Properties
+      //   const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
+      //   const mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
+      //   const mainCategoryObject = {};
+      //   const subCategoryObject = {};
+      //   console.log(customProperties);
+      //   let emptyArray = [];
+      //   budgetUpdateObject.mainCategories = [];
+      //   let mainCategoryIndex = 0;
+      //   let subCategoryIndex = 0;
+      //   let entries = [];
+      //   const subCategoriesSplitArray = [];
+      //   let subCategorySubArray = [];
+      //   // EVERYTHING DONE IN THIS 'FOREACH' IS DONE 3 TIMES!!!
+      //   customProperties.forEach((cp, i) => {
+      //     budgetUpdateObject.mainCategories.push(
+      //       Object.fromEntries([
+      //         [`title`, mainCategoryTitles[i].textContent],
+      //         [`subCategories`, emptyArray],
+      //       ])
+      //     );
+      //     if (budgetUpdateObject.mainCategories.length === customProperties.length) {
+      //       return (mainCategoryIndex = 0);
+      //     }
+      //   });
+      //   budgetUpdateObject.mainCategories.forEach((mc, i) => {
+      //     fillSubCategoryArray(budgetUpdateObject, i);
+      //   });
+      //   console.log(budgetUpdateObject);
+      // }
+
+      placeholderBudget._updateBudget("Update", "Edit Category Goals", {
+        budgetId: budget._id,
+        budgetMainCategories: budget.mainCategories,
+        userId: user._id,
+        user: user,
+        updateObject: {}
+      });
     });
   }
 };

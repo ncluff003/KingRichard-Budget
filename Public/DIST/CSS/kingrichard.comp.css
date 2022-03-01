@@ -1355,6 +1355,9 @@ html {
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__submit:hover, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__submit:hover, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__submit:hover, .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__submit:hover {
   color: #fafafa;
 }
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__update-budget-categories-button-container {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+}
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__update-budget-categories-button-container__button {
   font-size: 2rem;
   color: rgba(130, 42, 186, 0.8);

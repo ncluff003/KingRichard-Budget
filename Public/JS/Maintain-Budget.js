@@ -30,7 +30,7 @@ const setMainCategoryTitle = (mainCategory, title) => {
   return (mainCategory.title = title);
 };
 
-const fillSubCategoryArray = (updateObject, index) => {
+export const fillSubCategoryArray = (updateObject, index) => {
   let mainCategoryIndex = index;
   let tempArray = Array.from(document.querySelectorAll(`.sub-category-display__sub-category[data-subcategory="${index}"]`));
   tempArray.forEach((temp, i) => {
@@ -269,7 +269,53 @@ const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
     });
     editCategoryGoalsSubmit.addEventListener('click', (e) => {
       e.preventDefault();
-      const newBudget = buildUpdateObject(budget, user, `Main Categories`, budget.name, budget.mainCategories, `Objects`);
+      // const newBudget = buildUpdateObject(budget, user, `Main Categories`, budget.name, budget.mainCategories, `Objects`);
+
+      // let budgetUpdateObject = {
+      //   budgetId: budget._id,
+      //   userId: user._id,
+      // };
+
+      // if (customObject === `Main Categories`) {
+      //   // budget.mainCategories would be the Custom Properties
+      //   const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
+      //   const mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
+      //   const mainCategoryObject = {};
+      //   const subCategoryObject = {};
+      //   console.log(customProperties);
+      //   let emptyArray = [];
+      //   budgetUpdateObject.mainCategories = [];
+      //   let mainCategoryIndex = 0;
+      //   let subCategoryIndex = 0;
+      //   let entries = [];
+      //   const subCategoriesSplitArray = [];
+      //   let subCategorySubArray = [];
+
+      //   // EVERYTHING DONE IN THIS 'FOREACH' IS DONE 3 TIMES!!!
+      //   customProperties.forEach((cp, i) => {
+      //     budgetUpdateObject.mainCategories.push(
+      //       Object.fromEntries([
+      //         [`title`, mainCategoryTitles[i].textContent],
+      //         [`subCategories`, emptyArray],
+      //       ])
+      //     );
+      //     if (budgetUpdateObject.mainCategories.length === customProperties.length) {
+      //       return (mainCategoryIndex = 0);
+      //     }
+      //   });
+      //   budgetUpdateObject.mainCategories.forEach((mc, i) => {
+      //     fillSubCategoryArray(budgetUpdateObject, i);
+      //   });
+      //   console.log(budgetUpdateObject);
+      // }
+
+      placeholderBudget._updateBudget(`Update`, `Edit Category Goals`, {
+        budgetId: budget._id,
+        budgetMainCategories: budget.mainCategories,
+        userId: user._id,
+        user: user,
+        updateObject: {},
+      });
     });
   }
 };
