@@ -335,7 +335,7 @@ export const insertTiming = (target, inputValues, timing, timingButtons, budget,
   let wording, dayEnding, dayEndingNumberOne;
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  let currentMainCategory, subCategoryIndex;
+  let currentMainCategory, subCategoryIndex, mainIndex;
   ////////////////////////////
   // INITIALIZE 12 MONTH ARRAY
   const twelveMonthArray = [];
@@ -347,19 +347,29 @@ export const insertTiming = (target, inputValues, timing, timingButtons, budget,
 
     // Get Current Main Category
     budget.mainCategories.forEach((mc, i) => {
-      let categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
-      if (mc.title === categoryTitle) currentMainCategory = mc;
+      let categoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
+      categoryTitles.forEach((ct) => {
+        if (mc.title === ct.textContent) {
+          currentMainCategory = mc;
+          console.log(mainIndex, mc.title, ct);
+          return (mainIndex = i);
+        }
+      });
     });
 
-    budget.mainCategories[index].subCategories.forEach((sc) => {
-      if (sc.title === target.previousSibling.textContent) subCategoryIndex = currentMainCategory.subCategories.indexOf(sc);
+    budget.mainCategories.forEach((mc, i) => {
+      let mainCategoryIndex = i;
+      mc.subCategories.forEach((sc) => {
+        if (sc.title === target.previousSibling.textContent) subCategoryIndex = budget.mainCategories[mainCategoryIndex].subCategories.indexOf(sc);
+      });
     });
+
+    console.log(currentMainCategory, mainIndex, subCategoryIndex);
 
     ///////////////////////
     // SET TIMING OPTIONS
-    console.log(index, budget.mainCategories[index]);
     budget._updateSubCategory(`Creation`, `Timing`, {
-      index: index,
+      index: mainIndex,
       subCategoryIndex: subCategoryIndex,
       paymentCycle: timing,
       paymentSchedule: paymentSchedule,
@@ -367,7 +377,7 @@ export const insertTiming = (target, inputValues, timing, timingButtons, budget,
 
     ///////////////////////////////
     // GET THE DUE DATE
-    let dueDate = budget.mainCategories[index].subCategories[subCategoryIndex].timingOptions.dueDates[0];
+    let dueDate = budget.mainCategories[mainIndex].subCategories[subCategoryIndex].timingOptions.dueDates[0];
 
     //////////////////////////
     // GET LAST DIGIT OF DATE
@@ -399,16 +409,29 @@ export const insertTiming = (target, inputValues, timing, timingButtons, budget,
     // Create Payment Schedule
     let paymentSchedule = create12MonthArray(twelveMonthArray, inputValues, timing, days);
 
+    // Get Current Main Category
+    budget.mainCategories.forEach((mc, i) => {
+      let categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
+      if (mc.title === categoryTitle) {
+        currentMainCategory = mc;
+        mainIndex = i;
+      }
+    });
+    console.log(currentMainCategory, mainIndex, subCategoryIndex);
+
     // Get Correct Sub Category Index
-    budget.mainCategories[index].subCategories.forEach((sc) => {
-      if (sc.title === target.previousSibling.textContent) subCategoryIndex = budget.mainCategories[index].subCategories.indexOf(sc);
+    budget.mainCategories.forEach((mc, i) => {
+      let mainCategoryIndex = i;
+      mc.subCategories.forEach((sc) => {
+        if (sc.title === target.previousSibling.textContent) subCategoryIndex = budget.mainCategories[mainCategoryIndex].subCategories.indexOf(sc);
+      });
     });
 
     ///////////////////////
     // SET TIMING OPTIONS
 
     budget._updateSubCategory(`Creation`, `Timing`, {
-      index: index,
+      index: mainIndex,
       subCategoryIndex: subCategoryIndex,
       paymentCycle: timing,
       paymentSchedule: paymentSchedule,
@@ -416,8 +439,8 @@ export const insertTiming = (target, inputValues, timing, timingButtons, budget,
 
     ///////////////////////////////
     // GET THE DUE DATES
-    let dueDate1 = budget.mainCategories[index].subCategories[subCategoryIndex].timingOptions.dueDates[0][0];
-    let dueDate2 = budget.mainCategories[index].subCategories[subCategoryIndex].timingOptions.dueDates[0][1];
+    let dueDate1 = budget.mainCategories[mainIndex].subCategories[subCategoryIndex].timingOptions.dueDates[0][0];
+    let dueDate2 = budget.mainCategories[mainIndex].subCategories[subCategoryIndex].timingOptions.dueDates[0][1];
 
     //////////////////////////
     // GET LAST DIGIT OF DATES
@@ -449,16 +472,29 @@ export const insertTiming = (target, inputValues, timing, timingButtons, budget,
     // Create Payment Schedule
     let paymentSchedule = create12MonthArray(twelveMonthArray, inputValues[0], timing, days);
 
+    // Get Current Main Category
+    budget.mainCategories.forEach((mc, i) => {
+      let categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
+      if (mc.title === categoryTitle) {
+        currentMainCategory = mc;
+        mainIndex = i;
+      }
+    });
+    console.log(currentMainCategory, mainIndex, subCategoryIndex);
+
     // Get Correct Sub Category Index
-    budget.mainCategories[index].subCategories.forEach((sc) => {
-      if (sc.title === target.previousSibling.textContent) subCategoryIndex = budget.mainCategories[index].subCategories.indexOf(sc);
+    budget.mainCategories.forEach((mc, i) => {
+      let mainCategoryIndex = i;
+      mc.subCategories.forEach((sc) => {
+        if (sc.title === target.previousSibling.textContent) subCategoryIndex = budget.mainCategories[mainCategoryIndex].subCategories.indexOf(sc);
+      });
     });
 
     ///////////////////////
     // SET TIMING OPTIONS
 
     budget._updateSubCategory(`Creation`, `Timing`, {
-      index: index,
+      index: mainIndex,
       subCategoryIndex: subCategoryIndex,
       paymentCycle: timing,
       paymentSchedule: paymentSchedule,
@@ -466,7 +502,7 @@ export const insertTiming = (target, inputValues, timing, timingButtons, budget,
 
     ///////////////////////////////
     // GET THE DUE DATE
-    let dueDate = budget.mainCategories[index].subCategories[subCategoryIndex].timingOptions.dueDates[0];
+    let dueDate = budget.mainCategories[mainIndex].subCategories[subCategoryIndex].timingOptions.dueDates[0];
 
     //////////////////////////
     // GET LAST DIGIT OF DATE
@@ -494,16 +530,29 @@ export const insertTiming = (target, inputValues, timing, timingButtons, budget,
     // Create Payment Schedule
     let paymentSchedule = create12MonthArray(twelveMonthArray, inputValues[0], timing, days);
 
+    // Get Current Main Category
+    budget.mainCategories.forEach((mc, i) => {
+      let categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
+      if (mc.title === categoryTitle) {
+        currentMainCategory = mc;
+        mainIndex = i;
+      }
+    });
+    console.log(currentMainCategory, mainIndex, subCategoryIndex);
+
     // Get Correct Sub Category Index
-    budget.mainCategories[index].subCategories.forEach((sc) => {
-      if (sc.title === target.previousSibling.textContent) subCategoryIndex = budget.mainCategories[index].subCategories.indexOf(sc);
+    budget.mainCategories.forEach((mc, i) => {
+      let mainCategoryIndex = i;
+      mc.subCategories.forEach((sc) => {
+        if (sc.title === target.previousSibling.textContent) subCategoryIndex = budget.mainCategories[mainCategoryIndex].subCategories.indexOf(sc);
+      });
     });
 
     ///////////////////////
     // SET TIMING OPTIONS
 
     budget._updateSubCategory(`Creation`, `Timing`, {
-      index: index,
+      index: mainIndex,
       subCategoryIndex: subCategoryIndex,
       paymentCycle: timing,
       paymentSchedule: paymentSchedule,
@@ -511,7 +560,7 @@ export const insertTiming = (target, inputValues, timing, timingButtons, budget,
 
     ///////////////////////////////
     // GET THE DUE DATE
-    let dueDate = budget.mainCategories[index].subCategories[subCategoryIndex].timingOptions.dueDates[0];
+    let dueDate = budget.mainCategories[mainIndex].subCategories[subCategoryIndex].timingOptions.dueDates[0];
 
     //////////////////////////
     // GET LAST DIGIT OF DATE

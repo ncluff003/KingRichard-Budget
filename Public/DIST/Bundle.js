@@ -4228,13 +4228,13 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "_watchPhoneNumberInputs": () => (/* binding */ _watchPhoneNumberInputs),
-/* harmony export */   "_watchPasswordSubSectionButtons": () => (/* binding */ _watchPasswordSubSectionButtons),
-/* harmony export */   "_watchSubSectionButtons": () => (/* binding */ _watchSubSectionButtons),
-/* harmony export */   "_watchCommPreference": () => (/* binding */ _watchCommPreference),
 /* harmony export */   "_showProfileForm": () => (/* binding */ _showProfileForm),
-/* harmony export */   "_watchUserProfileButtons": () => (/* binding */ _watchUserProfileButtons),
-/* harmony export */   "_watchForLogin": () => (/* binding */ _watchForLogin)
+/* harmony export */   "_watchCommPreference": () => (/* binding */ _watchCommPreference),
+/* harmony export */   "_watchForLogin": () => (/* binding */ _watchForLogin),
+/* harmony export */   "_watchPasswordSubSectionButtons": () => (/* binding */ _watchPasswordSubSectionButtons),
+/* harmony export */   "_watchPhoneNumberInputs": () => (/* binding */ _watchPhoneNumberInputs),
+/* harmony export */   "_watchSubSectionButtons": () => (/* binding */ _watchSubSectionButtons),
+/* harmony export */   "_watchUserProfileButtons": () => (/* binding */ _watchUserProfileButtons)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
@@ -4570,8 +4570,8 @@ var _watchForLogin = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "_watchFormClosers": () => (/* binding */ _watchFormClosers),
-/* harmony export */   "_watchEntranceButtons": () => (/* binding */ _watchEntranceButtons)
+/* harmony export */   "_watchEntranceButtons": () => (/* binding */ _watchEntranceButtons),
+/* harmony export */   "_watchFormClosers": () => (/* binding */ _watchFormClosers)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
 /* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Login */ "./Public/JS/Login.js");
@@ -4748,14 +4748,14 @@ var createBudgetCard = function createBudgetCard(budgetName, createdAt, lastUpda
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "icons": () => (/* binding */ icons),
 /* harmony export */   "MainCategory": () => (/* binding */ MainCategory),
 /* harmony export */   "SubCategory": () => (/* binding */ SubCategory),
-/* harmony export */   "createSubCategory": () => (/* binding */ createSubCategory),
-/* harmony export */   "_verifySubCategory": () => (/* binding */ _verifySubCategory),
 /* harmony export */   "_clickIcon": () => (/* binding */ _clickIcon),
+/* harmony export */   "_verifySubCategory": () => (/* binding */ _verifySubCategory),
 /* harmony export */   "_watchCreateCategoryButton": () => (/* binding */ _watchCreateCategoryButton),
-/* harmony export */   "createCategories": () => (/* binding */ createCategories)
+/* harmony export */   "createCategories": () => (/* binding */ createCategories),
+/* harmony export */   "createSubCategory": () => (/* binding */ createSubCategory),
+/* harmony export */   "icons": () => (/* binding */ icons)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
@@ -5319,12 +5319,12 @@ var createCategories = function createCategories(icon, index) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "_watchEmergencyGoalSettings": () => (/* binding */ _watchEmergencyGoalSettings),
+/* harmony export */   "_watchForBudgetCreation": () => (/* binding */ _watchForBudgetCreation),
 /* harmony export */   "calculateDayEnding": () => (/* binding */ calculateDayEnding),
 /* harmony export */   "insertTiming": () => (/* binding */ insertTiming),
-/* harmony export */   "watchForSettingTiming": () => (/* binding */ watchForSettingTiming),
-/* harmony export */   "setupTimingFunctionContainer": () => (/* binding */ setupTimingFunctionContainer),
 /* harmony export */   "setupGoalSetting": () => (/* binding */ setupGoalSetting),
-/* harmony export */   "_watchForBudgetCreation": () => (/* binding */ _watchForBudgetCreation)
+/* harmony export */   "setupTimingFunctionContainer": () => (/* binding */ setupTimingFunctionContainer),
+/* harmony export */   "watchForSettingTiming": () => (/* binding */ watchForSettingTiming)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
@@ -5746,7 +5746,7 @@ var insertTiming = function insertTiming(target, inputValues, timing, timingButt
   var wording, dayEnding, dayEndingNumberOne;
   var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  var currentMainCategory, subCategoryIndex; ////////////////////////////
+  var currentMainCategory, subCategoryIndex, mainIndex; ////////////////////////////
   // INITIALIZE 12 MONTH ARRAY
 
   var twelveMonthArray = []; // GET MONTHLY TIMING
@@ -5756,18 +5756,26 @@ var insertTiming = function insertTiming(target, inputValues, timing, timingButt
     var paymentSchedule = create12MonthArray(twelveMonthArray, inputValues[0], timing, days); // Get Current Main Category
 
     budget.mainCategories.forEach(function (mc, i) {
-      var categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
-      if (mc.title === categoryTitle) currentMainCategory = mc;
+      var categoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
+      categoryTitles.forEach(function (ct) {
+        if (mc.title === ct.textContent) {
+          currentMainCategory = mc;
+          console.log(mainIndex, mc.title, ct);
+          return mainIndex = i;
+        }
+      });
     });
-    budget.mainCategories[index].subCategories.forEach(function (sc) {
-      if (sc.title === target.previousSibling.textContent) subCategoryIndex = currentMainCategory.subCategories.indexOf(sc);
-    }); ///////////////////////
+    budget.mainCategories.forEach(function (mc, i) {
+      var mainCategoryIndex = i;
+      mc.subCategories.forEach(function (sc) {
+        if (sc.title === target.previousSibling.textContent) subCategoryIndex = budget.mainCategories[mainCategoryIndex].subCategories.indexOf(sc);
+      });
+    });
+    console.log(currentMainCategory, mainIndex, subCategoryIndex); ///////////////////////
     // SET TIMING OPTIONS
 
-    console.log(index, budget.mainCategories[index]);
-
     budget._updateSubCategory("Creation", "Timing", {
-      index: index,
+      index: mainIndex,
       subCategoryIndex: subCategoryIndex,
       paymentCycle: timing,
       paymentSchedule: paymentSchedule
@@ -5775,7 +5783,7 @@ var insertTiming = function insertTiming(target, inputValues, timing, timingButt
     // GET THE DUE DATE
 
 
-    var dueDate = budget.mainCategories[index].subCategories[subCategoryIndex].timingOptions.dueDates[0]; //////////////////////////
+    var dueDate = budget.mainCategories[mainIndex].subCategories[subCategoryIndex].timingOptions.dueDates[0]; //////////////////////////
     // GET LAST DIGIT OF DATE
 
     dayEndingNumberOne = Number(dueDate.getDate().toString().split('')[dueDate.getDate().toString().length - 1]); ///////////////////////////////////////////////
@@ -5799,16 +5807,29 @@ var insertTiming = function insertTiming(target, inputValues, timing, timingButt
     // RETURN IF MONTH OF DATES DO NOT MATCH
     if (inputValues[0].getMonth() !== inputValues[1].getMonth()) return; // Create Payment Schedule
 
-    var _paymentSchedule = create12MonthArray(twelveMonthArray, inputValues, timing, days); // Get Correct Sub Category Index
+    var _paymentSchedule = create12MonthArray(twelveMonthArray, inputValues, timing, days); // Get Current Main Category
 
 
-    budget.mainCategories[index].subCategories.forEach(function (sc) {
-      if (sc.title === target.previousSibling.textContent) subCategoryIndex = budget.mainCategories[index].subCategories.indexOf(sc);
+    budget.mainCategories.forEach(function (mc, i) {
+      var categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
+
+      if (mc.title === categoryTitle) {
+        currentMainCategory = mc;
+        mainIndex = i;
+      }
+    });
+    console.log(currentMainCategory, mainIndex, subCategoryIndex); // Get Correct Sub Category Index
+
+    budget.mainCategories.forEach(function (mc, i) {
+      var mainCategoryIndex = i;
+      mc.subCategories.forEach(function (sc) {
+        if (sc.title === target.previousSibling.textContent) subCategoryIndex = budget.mainCategories[mainCategoryIndex].subCategories.indexOf(sc);
+      });
     }); ///////////////////////
     // SET TIMING OPTIONS
 
     budget._updateSubCategory("Creation", "Timing", {
-      index: index,
+      index: mainIndex,
       subCategoryIndex: subCategoryIndex,
       paymentCycle: timing,
       paymentSchedule: _paymentSchedule
@@ -5816,8 +5837,8 @@ var insertTiming = function insertTiming(target, inputValues, timing, timingButt
     // GET THE DUE DATES
 
 
-    var dueDate1 = budget.mainCategories[index].subCategories[subCategoryIndex].timingOptions.dueDates[0][0];
-    var dueDate2 = budget.mainCategories[index].subCategories[subCategoryIndex].timingOptions.dueDates[0][1]; //////////////////////////
+    var dueDate1 = budget.mainCategories[mainIndex].subCategories[subCategoryIndex].timingOptions.dueDates[0][0];
+    var dueDate2 = budget.mainCategories[mainIndex].subCategories[subCategoryIndex].timingOptions.dueDates[0][1]; //////////////////////////
     // GET LAST DIGIT OF DATES
 
     dayEndingNumberOne = Number(dueDate1.getDate().toString().split('')[dueDate1.getDate().toString().length - 1]);
@@ -5844,16 +5865,29 @@ var insertTiming = function insertTiming(target, inputValues, timing, timingButt
 
   if (timing === "Bi-Weekly") {
     // Create Payment Schedule
-    var _paymentSchedule2 = create12MonthArray(twelveMonthArray, inputValues[0], timing, days); // Get Correct Sub Category Index
+    var _paymentSchedule2 = create12MonthArray(twelveMonthArray, inputValues[0], timing, days); // Get Current Main Category
 
 
-    budget.mainCategories[index].subCategories.forEach(function (sc) {
-      if (sc.title === target.previousSibling.textContent) subCategoryIndex = budget.mainCategories[index].subCategories.indexOf(sc);
+    budget.mainCategories.forEach(function (mc, i) {
+      var categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
+
+      if (mc.title === categoryTitle) {
+        currentMainCategory = mc;
+        mainIndex = i;
+      }
+    });
+    console.log(currentMainCategory, mainIndex, subCategoryIndex); // Get Correct Sub Category Index
+
+    budget.mainCategories.forEach(function (mc, i) {
+      var mainCategoryIndex = i;
+      mc.subCategories.forEach(function (sc) {
+        if (sc.title === target.previousSibling.textContent) subCategoryIndex = budget.mainCategories[mainCategoryIndex].subCategories.indexOf(sc);
+      });
     }); ///////////////////////
     // SET TIMING OPTIONS
 
     budget._updateSubCategory("Creation", "Timing", {
-      index: index,
+      index: mainIndex,
       subCategoryIndex: subCategoryIndex,
       paymentCycle: timing,
       paymentSchedule: _paymentSchedule2
@@ -5861,7 +5895,7 @@ var insertTiming = function insertTiming(target, inputValues, timing, timingButt
     // GET THE DUE DATE
 
 
-    var _dueDate = budget.mainCategories[index].subCategories[subCategoryIndex].timingOptions.dueDates[0]; //////////////////////////
+    var _dueDate = budget.mainCategories[mainIndex].subCategories[subCategoryIndex].timingOptions.dueDates[0]; //////////////////////////
     // GET LAST DIGIT OF DATE
 
     dayEndingNumberOne = Number(_dueDate.getDate().toString().split('')[_dueDate.getDate().toString().length - 1]); ///////////////////////////////////////////////
@@ -5884,16 +5918,29 @@ var insertTiming = function insertTiming(target, inputValues, timing, timingButt
 
   if (timing === "Weekly") {
     // Create Payment Schedule
-    var _paymentSchedule3 = create12MonthArray(twelveMonthArray, inputValues[0], timing, days); // Get Correct Sub Category Index
+    var _paymentSchedule3 = create12MonthArray(twelveMonthArray, inputValues[0], timing, days); // Get Current Main Category
 
 
-    budget.mainCategories[index].subCategories.forEach(function (sc) {
-      if (sc.title === target.previousSibling.textContent) subCategoryIndex = budget.mainCategories[index].subCategories.indexOf(sc);
+    budget.mainCategories.forEach(function (mc, i) {
+      var categoryTitle = document.querySelector('.main-category-display__category-display__title').textContent;
+
+      if (mc.title === categoryTitle) {
+        currentMainCategory = mc;
+        mainIndex = i;
+      }
+    });
+    console.log(currentMainCategory, mainIndex, subCategoryIndex); // Get Correct Sub Category Index
+
+    budget.mainCategories.forEach(function (mc, i) {
+      var mainCategoryIndex = i;
+      mc.subCategories.forEach(function (sc) {
+        if (sc.title === target.previousSibling.textContent) subCategoryIndex = budget.mainCategories[mainCategoryIndex].subCategories.indexOf(sc);
+      });
     }); ///////////////////////
     // SET TIMING OPTIONS
 
     budget._updateSubCategory("Creation", "Timing", {
-      index: index,
+      index: mainIndex,
       subCategoryIndex: subCategoryIndex,
       paymentCycle: timing,
       paymentSchedule: _paymentSchedule3
@@ -5901,7 +5948,7 @@ var insertTiming = function insertTiming(target, inputValues, timing, timingButt
     // GET THE DUE DATE
 
 
-    var _dueDate2 = budget.mainCategories[index].subCategories[subCategoryIndex].timingOptions.dueDates[0]; //////////////////////////
+    var _dueDate2 = budget.mainCategories[mainIndex].subCategories[subCategoryIndex].timingOptions.dueDates[0]; //////////////////////////
     // GET LAST DIGIT OF DATE
 
     dayEndingNumberOne = Number(_dueDate2.getDate().toString().split('')[_dueDate2.getDate().toString().length - 1]); ///////////////////////////////////////////////
@@ -6704,6 +6751,13 @@ var Budget = /*#__PURE__*/function () {
     value: function _updateSubCategory(mode, update, options) {
       if (mode === "Creation") {
         if (update === "Timing") {
+          console.log(options.index, options.subCategoryIndex);
+          /*
+            GLITCH : In the place of setting timings for both the Budget Creation and Editing Category Goals, the main category titles and icons are both placed and cycled differently.
+              With creation, it just removes the class that the main category has for the icon, and adds the next or previous one.  It does the same thing for the titles.  In editing, it displays all 3, while making the main one as display: flex.  The method works on creation, so I likely
+              will adjust the edit category goals one for that purpose, with making sure that it does NOT negatively affect other things.
+          */
+
           this.mainCategories[options.index].subCategories[options.subCategoryIndex].timingOptions.paymentCycle = options.paymentCycle;
           this.mainCategories[options.index].subCategories[options.subCategoryIndex].timingOptions.paymentSchedule = options.paymentSchedule;
           this.mainCategories[options.index].subCategories[options.subCategoryIndex].timingOptions.dueDates = [this.mainCategories[options.index].subCategories[options.subCategoryIndex].timingOptions.paymentSchedule[0]];
@@ -6875,117 +6929,93 @@ var Budget = /*#__PURE__*/function () {
         }
 
         if (update === "Edit Category Goals") {
-          // Start Update Object With Budget And User IDs.
-          var _updateObject = options.updateObject;
-          _updateObject.budgetId = options.budgetId;
-          _updateObject.userId = options.userId;
-          _updateObject.mainCategories = [];
-          var mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
-          var mainCategoryIndex = 0;
-          var subCategoryIndex = 0;
-          var emptyArray = [];
-          options.budgetMainCategories.forEach(function (bmc, i) {
-            _updateObject.mainCategories.push(Object.fromEntries([["title", mainCategoryTitles[i].textContent], ["subCategories", emptyArray]]));
-
-            if (_updateObject.mainCategories.length === options.budgetMainCategories.length) {
-              return mainCategoryIndex = 0;
-            }
-          }); // export const fillSubCategoryArray = (updateObject, index) => {
-          //   let mainCategoryIndex = index;
-          //   let tempArray = Array.from(document.querySelectorAll(`.sub-category-display__sub-category[data-subcategory="${index}"]`));
+          console.log(options.updateObject); // Start Update Object With Budget And User IDs.
+          // let updateObject = options.updateObject;
+          // updateObject.budgetId = options.budgetId;
+          // updateObject.userId = options.userId;
+          // updateObject.mainCategories = [];
+          // const mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
+          // let mainCategoryIndex = 0;
+          // let subCategoryIndex = 0;
+          // let emptyArray = [];
+          // let temporaryObject;
+          // options.budgetMainCategories.forEach((bmc, i) => {
+          //   temporaryObject = Object.fromEntries([
+          //     [`title`, mainCategoryTitles[i].textContent],
+          //     [`icon`, options.budgetMainCategories[i].icon],
+          //     [`subCategories`, emptyArray],
+          //   ]);
+          //   updateObject.mainCategories.push(temporaryObject);
+          //   let tempArray = Array.from(document.querySelectorAll(`.sub-category-display__sub-category[data-subcategory="${i}"]`));
+          //   let mainCategoryIndex = i;
           //   tempArray.forEach((temp, i) => {
           //     let title = temp.firstChild.nextSibling.firstChild.textContent;
           //     let goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
           //     let amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
           //     let amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
           //     let percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
-          //     updateObject.mainCategories[index].subCategories.push(
+          //     let timingOptions = bmc.subCategories[i].timingOptions;
+          //     temporaryObject.subCategories.push(
           //       Object.fromEntries([
           //         [`title`, title],
           //         [`goalAmount`, goalAmount],
           //         [`amountSpent`, amountSpent],
           //         [`amountRemaining`, amountRemaining],
           //         [`percentageSpent`, percentageSpent],
+          //         [`timingOptions`, timingOptions],
           //       ])
           //     );
-          //     if (updateObject.mainCategories[mainCategoryIndex] === undefined) return;
-          //     if (updateObject.mainCategories[mainCategoryIndex].subCategories.length === tempArray.length) {
+          //     if (temporaryObject.subCategories.length === tempArray.length) {
           //       mainCategoryIndex++;
-          //       updateObject.mainCategories[mainCategoryIndex].subCategories = [];
-          //       console.log(`Onto the next index...`);
+          //       if (temporaryObject === undefined) return;
+          //       temporaryObject.subCategories = [];
           //       return mainCategoryIndex;
           //     }
-          //     if (index === tempArray.length) {
+          //     if (i === tempArray.length) {
           //       mainCategoryIndex++;
           //     }
           //   });
-          // };
-
-          _updateObject.mainCategories.forEach(function (mc, i) {
-            // Maintain.fillSubCategoryArray(updateObject, i);
-            var mainCategoryIndex = i;
-            var tempArray = Array.from(document.querySelectorAll(".sub-category-display__sub-category[data-subcategory=\"".concat(i, "\"]")));
-            tempArray.forEach(function (temp, i) {
-              var title = temp.firstChild.nextSibling.firstChild.textContent;
-              var goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
-              var amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
-              var amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
-              var percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
-              console.log(mc);
-              var timingOptions = options.budgetMainCategories[mainCategoryIndex].subCategories[i].timingOptions;
-
-              _updateObject.mainCategories[mainCategoryIndex].subCategories.push(Object.fromEntries([["title", title], ["goalAmount", goalAmount], ["amountSpent", amountSpent], ["amountRemaining", amountRemaining], ["percentageSpent", percentageSpent], ["timingOptions", timingOptions]])); // if (updateObject.mainCategories[mainCategoryIndex] === undefined) return;
-
-
-              console.log(_updateObject.mainCategories[mainCategoryIndex].subCategories.length, tempArray.length);
-
-              if (_updateObject.mainCategories[mainCategoryIndex].subCategories.length === tempArray.length) {
-                mainCategoryIndex++;
-                if (_updateObject.mainCategories[mainCategoryIndex] === undefined) return;
-                _updateObject.mainCategories[mainCategoryIndex].subCategories = [];
-                console.log("Onto the next index...");
-                return mainCategoryIndex;
-              }
-
-              if (i === tempArray.length) {
-                mainCategoryIndex++;
-              }
-            });
-          }); // if (customObject === `Main Categories`) {
-          //  // budget.mainCategories would be the Custom Properties
-          //   const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
-          //   const mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
-          //   const mainCategoryObject = {};
-          //   const subCategoryObject = {};
-          //   console.log(customProperties);
-          //   let emptyArray = [];
-          //   budgetUpdateObject.mainCategories = [];
-          //   let mainCategoryIndex = 0;
-          //   let subCategoryIndex = 0;
-          //   let entries = [];
-          //   const subCategoriesSplitArray = [];
-          //   let subCategorySubArray = [];
-          //   // EVERYTHING DONE IN THIS 'FOREACH' IS DONE 3 TIMES!!!
-          //   customProperties.forEach((cp, i) => {
-          //     budgetUpdateObject.mainCategories.push(
+          //   if (updateObject.mainCategories.length === options.budgetMainCategories.length) {
+          //     return (mainCategoryIndex = 0);
+          //   }
+          // });
+          // updateObject.mainCategories.forEach((mc, i) => {
+          //   // Maintain.fillSubCategoryArray(updateObject, i);
+          //   let mainCategoryIndex = i;
+          //   let tempArray = Array.from(document.querySelectorAll(`.sub-category-display__sub-category[data-subcategory="${i}"]`));
+          //   tempArray.forEach((temp, i) => {
+          //     let title = temp.firstChild.nextSibling.firstChild.textContent;
+          //     let goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
+          //     let amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+          //     let amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+          //     let percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
+          //     let timingOptions = options.budgetMainCategories[mainCategoryIndex].subCategories[i].timingOptions;
+          //     updateObject.mainCategories[mainCategoryIndex].subCategories.push(
           //       Object.fromEntries([
-          //         [`title`, mainCategoryTitles[i].textContent],
-          //         [`subCategories`, emptyArray],
+          //         [`title`, title],
+          //         [`goalAmount`, goalAmount],
+          //         [`amountSpent`, amountSpent],
+          //         [`amountRemaining`, amountRemaining],
+          //         [`percentageSpent`, percentageSpent],
+          //         [`timingOptions`, timingOptions],
           //       ])
           //     );
-          //     if (budgetUpdateObject.mainCategories.length === customProperties.length) {
-          //       return (mainCategoryIndex = 0);
+          //     if (updateObject.mainCategories[mainCategoryIndex].subCategories.length === tempArray.length) {
+          //       mainCategoryIndex++;
+          //       if (updateObject.mainCategories[mainCategoryIndex] === undefined) return;
+          //       updateObject.mainCategories[mainCategoryIndex].subCategories = [];
+          //       return mainCategoryIndex;
+          //     }
+          //     if (i === tempArray.length) {
+          //       mainCategoryIndex++;
           //     }
           //   });
-          //   budgetUpdateObject.mainCategories.forEach((mc, i) => {
-          //     fillSubCategoryArray(budgetUpdateObject, i);
-          //   });
-          //   console.log(budgetUpdateObject);
-          // }
+          // });
 
+          console.log("Updating Category Goals..."); // GLITCH : For some reason, ONLY the last Main Category had been pushed through.  So, the previous two had been erased completely.
 
-          console.log(_updateObject);
-          console.log("Updating Category Goals...");
+          console.log(updateObject.mainCategories);
+          _Manage_Budget__WEBPACK_IMPORTED_MODULE_3__.updateMyBudget(options.updateObject);
         }
 
         console.log("Updating...");
@@ -7007,71 +7037,73 @@ var Budget = /*#__PURE__*/function () {
     value: function _buildPlaceHolderBudget(budget, user) {
       var _this2 = this;
 
-      this._addTithingAccount(user);
+      if (budget) {
+        this._addTithingAccount(user);
 
-      this._addName(budget.name);
+        this._addName(budget.name);
 
-      if (user.latterDaySaint === true) {
-        this._updateAccounts("Creation", "Tithing Setting", {
-          setting: budget.accounts.tithing.tithingSetting
+        if (user.latterDaySaint === true) {
+          this._updateAccounts("Creation", "Tithing Setting", {
+            setting: budget.accounts.tithing.tithingSetting
+          });
+        }
+
+        this._updateAccounts("Creation", "Emergency Measurement", {
+          setting: budget.accounts.emergencyFund.emergencyGoalMeasurement
         });
-      }
 
-      this._updateAccounts("Creation", "Emergency Measurement", {
-        setting: budget.accounts.emergencyFund.emergencyGoalMeasurement
-      });
+        if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Length Of Time") {
+          this._updateAccounts("Creation", "Emergency Goal", {
+            goal: budget.accounts.emergencyFund.emergencyFundGoal,
+            goalTiming: budget.accounts.emergencyFund.emergencyFundGoalTiming
+          });
+        }
 
-      if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Length Of Time") {
-        this._updateAccounts("Creation", "Emergency Goal", {
-          goal: budget.accounts.emergencyFund.emergencyFundGoal,
-          goalTiming: budget.accounts.emergencyFund.emergencyFundGoalTiming
+        if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Total Amount") {
+          this._updateAccounts("Creation", "Emergency Goal", {
+            goal: budget.accounts.emergencyFund.emergencyFundGoal
+          });
+        }
+
+        this._updateAccounts("Creation", "Savings", {
+          goal: budget.accounts.savingsFund.savingsGoal,
+          percentage: budget.accounts.savingsFund.savingsPercentage
         });
-      }
 
-      if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Total Amount") {
-        this._updateAccounts("Creation", "Emergency Goal", {
-          goal: budget.accounts.emergencyFund.emergencyFundGoal
+        this._updateAccounts("Creation", "Investment", {
+          goal: budget.accounts.investmentFund.investmentGoal,
+          percentage: budget.accounts.investmentFund.investmentPercentage
         });
-      }
 
-      this._updateAccounts("Creation", "Savings", {
-        goal: budget.accounts.savingsFund.savingsGoal,
-        percentage: budget.accounts.savingsFund.savingsPercentage
-      });
+        this._updateAccounts("Creation", "Debt", {
+          amount: budget.accounts.debt.amount,
+          debtAmount: budget.accounts.debt.debtAmount
+        });
 
-      this._updateAccounts("Creation", "Investment", {
-        goal: budget.accounts.investmentFund.investmentGoal,
-        percentage: budget.accounts.investmentFund.investmentPercentage
-      });
+        budget.mainCategories.forEach(function (mc) {
+          var subCategories = [];
+          mc.subCategories.forEach(function (sc) {
+            subCategories.push({
+              title: sc.title,
+              timingOptions: sc.timingOptions,
+              goalAmount: sc.goalAmount,
+              amountSpent: sc.amountSpent,
+              amountRemaining: sc.amountRemaining,
+              percentageSpent: sc.percentageSpent,
+              surplus: sc.surplus
+            });
+          });
 
-      this._updateAccounts("Creation", "Debt", {
-        amount: budget.accounts.debt.amount,
-        debtAmount: budget.accounts.debt.debtAmount
-      });
-
-      budget.mainCategories.forEach(function (mc) {
-        var subCategories = [];
-        mc.subCategories.forEach(function (sc) {
-          subCategories.push({
-            title: sc.title,
-            timingOptions: sc.timingOptions,
-            goalAmount: sc.goalAmount,
-            amountSpent: sc.amountSpent,
-            amountRemaining: sc.amountRemaining,
-            percentageSpent: sc.percentageSpent,
-            surplus: sc.surplus
+          _this2.mainCategories.push({
+            icon: mc.title,
+            title: mc.title,
+            subCategories: subCategories
           });
         });
-
-        _this2.mainCategories.push({
-          icon: mc.title,
-          title: mc.title,
-          subCategories: subCategories
-        });
-      });
-      this.transactions = budget.transactions;
-      this.investments = budget.investments;
-      console.log(budget);
+        this.transactions = budget.transactions;
+        this.investments = budget.investments;
+        console.log(budget);
+      }
     }
   }]);
 
@@ -7572,8 +7604,8 @@ var logout = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "fillSubCategoryArray": () => (/* binding */ fillSubCategoryArray),
-/* harmony export */   "_watchBudget": () => (/* binding */ _watchBudget)
+/* harmony export */   "_watchBudget": () => (/* binding */ _watchBudget),
+/* harmony export */   "fillSubCategoryArray": () => (/* binding */ fillSubCategoryArray)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
@@ -7821,7 +7853,7 @@ var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placehold
     _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__.setupTimingFunctionContainer(timingFunctionContainer);
     var clickedItem, selectedTiming;
     var subCategoryIndex = 0;
-    _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__.watchForSettingTiming(budget, subCategoryIndex, clickedItem, selectedTiming, "Full Budget");
+    _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__.watchForSettingTiming(placeholderBudget, subCategoryIndex, clickedItem, selectedTiming, "Full Budget");
     console.log(budget, user);
     var money = new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -7858,49 +7890,79 @@ var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placehold
       });
     });
     editCategoryGoalsSubmit.addEventListener('click', function (e) {
-      e.preventDefault(); // const newBudget = buildUpdateObject(budget, user, `Main Categories`, budget.name, budget.mainCategories, `Objects`);
-      // let budgetUpdateObject = {
-      //   budgetId: budget._id,
-      //   userId: user._id,
-      // };
-      // if (customObject === `Main Categories`) {
-      //   // budget.mainCategories would be the Custom Properties
-      //   const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
-      //   const mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
-      //   const mainCategoryObject = {};
-      //   const subCategoryObject = {};
-      //   console.log(customProperties);
-      //   let emptyArray = [];
-      //   budgetUpdateObject.mainCategories = [];
-      //   let mainCategoryIndex = 0;
-      //   let subCategoryIndex = 0;
-      //   let entries = [];
-      //   const subCategoriesSplitArray = [];
-      //   let subCategorySubArray = [];
-      //   // EVERYTHING DONE IN THIS 'FOREACH' IS DONE 3 TIMES!!!
-      //   customProperties.forEach((cp, i) => {
-      //     budgetUpdateObject.mainCategories.push(
-      //       Object.fromEntries([
-      //         [`title`, mainCategoryTitles[i].textContent],
-      //         [`subCategories`, emptyArray],
-      //       ])
-      //     );
-      //     if (budgetUpdateObject.mainCategories.length === customProperties.length) {
-      //       return (mainCategoryIndex = 0);
-      //     }
-      //   });
-      //   budgetUpdateObject.mainCategories.forEach((mc, i) => {
-      //     fillSubCategoryArray(budgetUpdateObject, i);
-      //   });
-      //   console.log(budgetUpdateObject);
-      // }
+      e.preventDefault();
+      var updateObject = {};
+      updateObject.budgetId = budget._id;
+      updateObject.userId = user._id;
+      updateObject.mainCategories = [];
+      var mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
+      var mainCategoryIndex = 0;
+      var subCategoryIndex = 0;
+      var emptyArray = [];
+      var temporaryObject;
+      budget.mainCategories.forEach(function (bmc, i) {
+        temporaryObject = Object.fromEntries([["title", mainCategoryTitles[i].textContent], ["icon", budget.mainCategories[i].icon], ["subCategories", emptyArray]]);
+        updateObject.mainCategories[i] = temporaryObject;
+        console.log(updateObject);
+        var tempArray = Array.from(document.querySelectorAll(".sub-category-display__sub-category[data-subcategory=\"".concat(i, "\"]")));
+        var mainCategoryIndex = i;
+        tempArray.forEach(function (temp, i) {
+          var title = temp.firstChild.nextSibling.firstChild.textContent;
+          var goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
+          var amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+          var amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+          var percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
+          var timingOptions = bmc.subCategories[i].timingOptions;
+          temporaryObject.subCategories.push(Object.fromEntries([["title", title], ["goalAmount", goalAmount], ["amountSpent", amountSpent], ["amountRemaining", amountRemaining], ["percentageSpent", percentageSpent], ["timingOptions", timingOptions]]));
+
+          if (temporaryObject.subCategories.length === tempArray.length) {
+            mainCategoryIndex++;
+            if (temporaryObject === undefined) return;
+            temporaryObject.subCategories = [];
+            return mainCategoryIndex;
+          }
+
+          if (i === tempArray.length) {
+            mainCategoryIndex++;
+          }
+        });
+
+        if (updateObject.mainCategories.length === budget.mainCategories.length) {
+          return mainCategoryIndex = 0;
+        }
+      });
+      updateObject.mainCategories.forEach(function (mc, i) {
+        // Maintain.fillSubCategoryArray(updateObject, i);
+        var mainCategoryIndex = i;
+        var tempArray = Array.from(document.querySelectorAll(".sub-category-display__sub-category[data-subcategory=\"".concat(i, "\"]")));
+        tempArray.forEach(function (temp, i) {
+          var title = temp.firstChild.nextSibling.firstChild.textContent;
+          var goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
+          var amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+          var amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+          var percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
+          var timingOptions = budget.mainCategories[mainCategoryIndex].subCategories[i].timingOptions;
+          updateObject.mainCategories[mainCategoryIndex].subCategories.push(Object.fromEntries([["title", title], ["goalAmount", goalAmount], ["amountSpent", amountSpent], ["amountRemaining", amountRemaining], ["percentageSpent", percentageSpent], ["timingOptions", timingOptions]]));
+
+          if (updateObject.mainCategories[mainCategoryIndex].subCategories.length === tempArray.length) {
+            mainCategoryIndex++;
+            if (updateObject.mainCategories[mainCategoryIndex] === undefined) return;
+            updateObject.mainCategories[mainCategoryIndex].subCategories = [];
+            return mainCategoryIndex;
+          }
+
+          if (i === tempArray.length) {
+            mainCategoryIndex++;
+          }
+        });
+      });
 
       placeholderBudget._updateBudget("Update", "Edit Category Goals", {
         budgetId: budget._id,
         budgetMainCategories: budget.mainCategories,
         userId: user._id,
         user: user,
-        updateObject: {}
+        updateObject: updateObject
       });
     });
   }
@@ -8658,10 +8720,10 @@ var _watchBudget = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getMyBudget": () => (/* binding */ getMyBudget),
-/* harmony export */   "updateMyBudget": () => (/* binding */ updateMyBudget),
+/* harmony export */   "deleteMyBudget": () => (/* binding */ deleteMyBudget),
 /* harmony export */   "exitBudget": () => (/* binding */ exitBudget),
-/* harmony export */   "deleteMyBudget": () => (/* binding */ deleteMyBudget)
+/* harmony export */   "getMyBudget": () => (/* binding */ getMyBudget),
+/* harmony export */   "updateMyBudget": () => (/* binding */ updateMyBudget)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
@@ -8733,20 +8795,22 @@ var updateMyBudget = /*#__PURE__*/function () {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            console.log(_objectSpread({}, options));
+            console.log(_objectSpread({}, options)); // GLITCH : Somehow, here, the request.body = only having the last main category in the 'mainCategories'.  That will NEED to be addressed.
+
             _context2.prev = 1;
             _context2.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "PATCH",
               url: "/App/Users/".concat(options.userId, "/Budgets/").concat(options.budgetId, "/Budget-Management"),
-              data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify(_objectSpread({}, options))
+              data: qs__WEBPACK_IMPORTED_MODULE_4___default().parse(_objectSpread({}, options))
             });
 
           case 4:
             response = _context2.sent;
 
             if (response.statusText === 'OK') {
-              // Check if first name is not undefined or empty.
+              console.log("It is OKAY!!!"); // Check if first name is not undefined or empty.
+
               !options.firstname === undefined && !options.firstname === '' ? document.getElementById('firstname').value = options.value : document.getElementById('firstname').value = document.getElementById('firstname').value; // Check if last name is not undefined or empty.
 
               !options.lastname === undefined && !options.lastname === '' ? document.getElementById('lastname').value = options.value : document.getElementById('lastname').value = document.getElementById('lastname').value; // Check if username is not undefined or empty.
@@ -8924,11 +8988,11 @@ var newPerson = new Person("", "", "", "", "", "", "", "");
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "signup": () => (/* binding */ signup),
 /* harmony export */   "_nextPage": () => (/* binding */ _nextPage),
-/* harmony export */   "_watchTheLatterDaySaintSwitch": () => (/* binding */ _watchTheLatterDaySaintSwitch),
+/* harmony export */   "_setupSignupForm": () => (/* binding */ _setupSignupForm),
 /* harmony export */   "_watchFormSubmitButton": () => (/* binding */ _watchFormSubmitButton),
-/* harmony export */   "_setupSignupForm": () => (/* binding */ _setupSignupForm)
+/* harmony export */   "_watchTheLatterDaySaintSwitch": () => (/* binding */ _watchTheLatterDaySaintSwitch),
+/* harmony export */   "signup": () => (/* binding */ signup)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
@@ -9136,14 +9200,14 @@ var _setupSignupForm = function _setupSignupForm(page, pages, person) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getSomePersonals": () => (/* binding */ getSomePersonals),
-/* harmony export */   "updatePassword": () => (/* binding */ updatePassword),
-/* harmony export */   "updateMyPassword": () => (/* binding */ updateMyPassword),
-/* harmony export */   "updateMe": () => (/* binding */ updateMe),
+/* harmony export */   "_watchForProfileUpdates": () => (/* binding */ _watchForProfileUpdates),
+/* harmony export */   "_watchPasswordResetButton": () => (/* binding */ _watchPasswordResetButton),
 /* harmony export */   "deactivateMe": () => (/* binding */ deactivateMe),
 /* harmony export */   "deleteMe": () => (/* binding */ deleteMe),
-/* harmony export */   "_watchPasswordResetButton": () => (/* binding */ _watchPasswordResetButton),
-/* harmony export */   "_watchForProfileUpdates": () => (/* binding */ _watchForProfileUpdates)
+/* harmony export */   "getSomePersonals": () => (/* binding */ getSomePersonals),
+/* harmony export */   "updateMe": () => (/* binding */ updateMe),
+/* harmony export */   "updateMyPassword": () => (/* binding */ updateMyPassword),
+/* harmony export */   "updatePassword": () => (/* binding */ updatePassword)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");

@@ -19,16 +19,18 @@ export const getMyBudget = async (id, user) => {
 
 export const updateMyBudget = async (options) => {
   console.log({ ...options });
+  // GLITCH : Somehow, here, the request.body = only having the last main category in the 'mainCategories'.  That will NEED to be addressed.
   try {
     const response = await axios({
       method: `PATCH`,
       url: `/App/Users/${options.userId}/Budgets/${options.budgetId}/Budget-Management`,
-      data: qs.stringify({
+      data: qs.parse({
         ...options,
       }),
     });
 
     if (response.statusText === 'OK') {
+      console.log(`It is OKAY!!!`);
       // Check if first name is not undefined or empty.
       !options.firstname === undefined && !options.firstname === ''
         ? (document.getElementById('firstname').value = options.value)

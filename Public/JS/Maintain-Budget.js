@@ -230,7 +230,7 @@ const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
     Edit.setupTimingFunctionContainer(timingFunctionContainer);
     let clickedItem, selectedTiming;
     let subCategoryIndex = 0;
-    Edit.watchForSettingTiming(budget, subCategoryIndex, clickedItem, selectedTiming, `Full Budget`);
+    Edit.watchForSettingTiming(placeholderBudget, subCategoryIndex, clickedItem, selectedTiming, `Full Budget`);
     console.log(budget, user);
 
     const money = new Intl.NumberFormat('en-US', {
@@ -269,52 +269,104 @@ const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
     });
     editCategoryGoalsSubmit.addEventListener('click', (e) => {
       e.preventDefault();
-      // const newBudget = buildUpdateObject(budget, user, `Main Categories`, budget.name, budget.mainCategories, `Objects`);
 
-      // let budgetUpdateObject = {
-      //   budgetId: budget._id,
-      //   userId: user._id,
-      // };
+      let updateObject = {};
+      updateObject.budgetId = budget._id;
+      updateObject.userId = user._id;
+      updateObject.mainCategories = [];
+      const mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
 
-      // if (customObject === `Main Categories`) {
-      //   // budget.mainCategories would be the Custom Properties
-      //   const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
-      //   const mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
-      //   const mainCategoryObject = {};
-      //   const subCategoryObject = {};
-      //   console.log(customProperties);
-      //   let emptyArray = [];
-      //   budgetUpdateObject.mainCategories = [];
-      //   let mainCategoryIndex = 0;
-      //   let subCategoryIndex = 0;
-      //   let entries = [];
-      //   const subCategoriesSplitArray = [];
-      //   let subCategorySubArray = [];
+      let mainCategoryIndex = 0;
+      let subCategoryIndex = 0;
 
-      //   // EVERYTHING DONE IN THIS 'FOREACH' IS DONE 3 TIMES!!!
-      //   customProperties.forEach((cp, i) => {
-      //     budgetUpdateObject.mainCategories.push(
-      //       Object.fromEntries([
-      //         [`title`, mainCategoryTitles[i].textContent],
-      //         [`subCategories`, emptyArray],
-      //       ])
-      //     );
-      //     if (budgetUpdateObject.mainCategories.length === customProperties.length) {
-      //       return (mainCategoryIndex = 0);
-      //     }
-      //   });
-      //   budgetUpdateObject.mainCategories.forEach((mc, i) => {
-      //     fillSubCategoryArray(budgetUpdateObject, i);
-      //   });
-      //   console.log(budgetUpdateObject);
-      // }
+      let emptyArray = [];
+      let temporaryObject;
+
+      budget.mainCategories.forEach((bmc, i) => {
+        temporaryObject = Object.fromEntries([
+          [`title`, mainCategoryTitles[i].textContent],
+          [`icon`, budget.mainCategories[i].icon],
+          [`subCategories`, emptyArray],
+        ]);
+        updateObject.mainCategories[i] = temporaryObject;
+        console.log(updateObject);
+
+        let tempArray = Array.from(document.querySelectorAll(`.sub-category-display__sub-category[data-subcategory="${i}"]`));
+        let mainCategoryIndex = i;
+        tempArray.forEach((temp, i) => {
+          let title = temp.firstChild.nextSibling.firstChild.textContent;
+          let goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
+          let amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+          let amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+          let percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
+          let timingOptions = bmc.subCategories[i].timingOptions;
+
+          temporaryObject.subCategories.push(
+            Object.fromEntries([
+              [`title`, title],
+              [`goalAmount`, goalAmount],
+              [`amountSpent`, amountSpent],
+              [`amountRemaining`, amountRemaining],
+              [`percentageSpent`, percentageSpent],
+              [`timingOptions`, timingOptions],
+            ])
+          );
+          if (temporaryObject.subCategories.length === tempArray.length) {
+            mainCategoryIndex++;
+            if (temporaryObject === undefined) return;
+            temporaryObject.subCategories = [];
+            return mainCategoryIndex;
+          }
+          if (i === tempArray.length) {
+            mainCategoryIndex++;
+          }
+        });
+
+        if (updateObject.mainCategories.length === budget.mainCategories.length) {
+          return (mainCategoryIndex = 0);
+        }
+      });
+
+      updateObject.mainCategories.forEach((mc, i) => {
+        // Maintain.fillSubCategoryArray(updateObject, i);
+        let mainCategoryIndex = i;
+        let tempArray = Array.from(document.querySelectorAll(`.sub-category-display__sub-category[data-subcategory="${i}"]`));
+        tempArray.forEach((temp, i) => {
+          let title = temp.firstChild.nextSibling.firstChild.textContent;
+          let goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
+          let amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+          let amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+          let percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
+          let timingOptions = budget.mainCategories[mainCategoryIndex].subCategories[i].timingOptions;
+
+          updateObject.mainCategories[mainCategoryIndex].subCategories.push(
+            Object.fromEntries([
+              [`title`, title],
+              [`goalAmount`, goalAmount],
+              [`amountSpent`, amountSpent],
+              [`amountRemaining`, amountRemaining],
+              [`percentageSpent`, percentageSpent],
+              [`timingOptions`, timingOptions],
+            ])
+          );
+          if (updateObject.mainCategories[mainCategoryIndex].subCategories.length === tempArray.length) {
+            mainCategoryIndex++;
+            if (updateObject.mainCategories[mainCategoryIndex] === undefined) return;
+            updateObject.mainCategories[mainCategoryIndex].subCategories = [];
+            return mainCategoryIndex;
+          }
+          if (i === tempArray.length) {
+            mainCategoryIndex++;
+          }
+        });
+      });
 
       placeholderBudget._updateBudget(`Update`, `Edit Category Goals`, {
         budgetId: budget._id,
         budgetMainCategories: budget.mainCategories,
         userId: user._id,
         user: user,
-        updateObject: {},
+        updateObject: updateObject,
       });
     });
   }

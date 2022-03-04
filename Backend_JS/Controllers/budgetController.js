@@ -50,55 +50,61 @@ let filterObj = (object, allowedFields) => {
       obj[key] = object[key];
       return obj;
     }, {});
+  if (filtered.accounts) {
+    let filteredValues = Object.values(filtered.accounts);
+    let filteredKeys = Object.keys(filtered.accounts);
+    let newEntries = [];
 
-  let filteredValues = Object.values(filtered.accounts);
-  let filteredKeys = Object.keys(filtered.accounts);
-  let newEntries = [];
+    filteredKeys.forEach((key, i) => {
+      if (key === `unAllocated`) {
+        filteredValues[i].amount = Number(filteredValues[i].amount);
+      }
 
-  filteredKeys.forEach((key, i) => {
-    if (key === `unAllocated`) {
-      filteredValues[i].amount = Number(filteredValues[i].amount);
-    }
+      if (key === `monthlyBudget`) {
+        filteredValues[i].amount = Number(filteredValues[i].amount);
+      }
 
-    if (key === `monthlyBudget`) {
-      filteredValues[i].amount = Number(filteredValues[i].amount);
-    }
+      if (key === `emergencyFund`) {
+        filteredValues[i].emergencyFundGoal = Number(filteredValues[i].emergencyFundGoal);
+        filteredValues[i].amount = Number(filteredValues[i].amount);
+        if (isNaN(Number(filteredValues[i].amount))) filteredValues[i].amount = 0;
+      }
 
-    if (key === `emergencyFund`) {
-      filteredValues[i].emergencyFundGoal = Number(filteredValues[i].emergencyFundGoal);
-      filteredValues[i].amount = filteredValues[i].amount;
-    }
+      if (key === `savingsFund`) {
+        filteredValues[i].savingsGoal = Number(filteredValues[i].savingsGoal);
+        filteredValues[i].savingsPercentage = Number(filteredValues[i].savingsPercentage);
+        filteredValues[i].amount = Number(filteredValues[i].amount);
+      }
 
-    if (key === `savingsFund`) {
-      filteredValues[i].savingsGoal = Number(filteredValues[i].savingsGoal);
-      filteredValues[i].savingsPercentage = Number(filteredValues[i].savingsPercentage);
-      filteredValues[i].amount = filteredValues[i].amount;
-    }
+      if (key === `expenseFund`) {
+        filteredValues[i].amount = Number(filteredValues[i].amount);
+      }
 
-    if (key === `expenseFund`) {
-      filteredValues[i].amount = filteredValues[i].amount;
-    }
+      if (key === `surplus`) {
+        filteredValues[i].amount = Number(filteredValues[i].amount);
+      }
 
-    if (key === `surplus`) {
-      filteredValues[i].amount = filteredValues[i].amount;
-    }
+      if (key === `investmentFund`) {
+        filteredValues[i].investmentGoal = Number(filteredValues[i].investmentGoal);
+        filteredValues[i].investmentPercentage = Number(filteredValues[i].investmentPercentage);
+        filteredValues[i].amount = Number(filteredValues[i].amount);
+      }
 
-    if (key === `investmentFund`) {
-      filteredValues[i].investmentGoal = Number(filteredValues[i].investmentGoal);
-      filteredValues[i].investmentPercentage = Number(filteredValues[i].investmentPercentage);
-      filteredValues[i].amount = filteredValues[i].amount;
-    }
+      if (key === `debt`) {
+        filteredValues[i].amount = Number(filteredValues[i].amount);
+        filteredValues[i].debtAmount = Number(filteredValues[i].debtAmount);
+      }
 
-    if (key === `debt`) {
-      filteredValues[i].amount = Number(filteredValues[i].amount);
-      filteredValues[i].debtAmount = filteredValues[i].debtAmount;
-    }
+      if (key === `tithing`) {
+        filteredValues[i].amount = Number(filteredValues[i].amount);
+      }
+      newEntries.push([key, filteredValues[i]]);
+    });
+  }
+  // if (filtered.mainCategories) {
 
-    if (key === `tithing`) {
-      filteredValues[i].amount = Number(filteredValues[i].amount);
-    }
-    newEntries.push([key, filteredValues[i]]);
-  });
+  // }
+
   // filtered = Object.fromEntries(newEntries);
   return filtered;
   // const newObj = {};
@@ -197,7 +203,7 @@ exports.updateMyBudget = catchAsync(async (request, response, next) => {
     return next(new AppError(`This route is not for password updates.  Please use /updateMyPassword route.`, 400));
   }
   // UPDATE BUDGET DOCUMENT
-  const filteredBody = filterObj(request.body, [`name`, `accounts`]);
+  const filteredBody = filterObj(request.body, [`name`, `accounts`, `mainCategories`]);
   console.log(`--------------------------------------------`);
   console.log(`Budget`);
   console.log(`--------------------------------------------`);
