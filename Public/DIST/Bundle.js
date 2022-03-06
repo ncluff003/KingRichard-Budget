@@ -9576,7 +9576,8 @@ var deleteMe = /*#__PURE__*/function () {
 }(); ////////////////////////////////////
 // Watch Button To Reset Password
 
-var _watchPasswordResetButton = function _watchPasswordResetButton() {
+var _watchPasswordResetButton = function _watchPasswordResetButton(formButtons) {
+  console.log(formButtons);
   var resetPasswordButton = document.querySelector('.reset-password-form__section__button');
 
   if (resetPasswordButton) {
@@ -15570,6 +15571,7 @@ __webpack_require__.r(__webpack_exports__);
         isLoggedIn = false;
         console.log("App Has Started!");
         var domSignupFormPageNumber = document.querySelector('.signup-form__form-page__section__page-number');
+        var formButtons = document.querySelectorAll('.buttons');
         var newPerson = _Person__WEBPACK_IMPORTED_MODULE_10__.newPerson;
         newPerson.latterDaySaint = isLatterDaySaint; // WATCH THE ENTRANCE BUTTONS
 
@@ -15582,7 +15584,7 @@ __webpack_require__.r(__webpack_exports__);
         _Signup__WEBPACK_IMPORTED_MODULE_7__._watchTheLatterDaySaintSwitch(newPerson); // WATCH RESET BUTTON FOR PASSWORD RESETS
 
 
-        _Update_User__WEBPACK_IMPORTED_MODULE_6__._watchPasswordResetButton(); // WATCH FOR USER LOGIN
+        _Update_User__WEBPACK_IMPORTED_MODULE_6__._watchPasswordResetButton(formButtons); // WATCH FOR USER LOGIN
 
 
         _App_LoggedIn__WEBPACK_IMPORTED_MODULE_5__._watchForLogin(isLoggedIn);

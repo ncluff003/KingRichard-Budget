@@ -36214,6 +36214,9 @@ html {
   cursor: pointer;
   transition: color 0.5s;
 }
+.form-container:nth-of-type(6) {
+  display: flex;
+}
 
 .master-grid-container .app-flex-container {
   position: relative;

@@ -24,6 +24,7 @@ import * as Person from './Person';
       isLoggedIn = false;
       console.log(`App Has Started!`);
       let domSignupFormPageNumber = document.querySelector('.signup-form__form-page__section__page-number');
+      const formButtons = document.querySelectorAll('.buttons');
       const newPerson = Person.newPerson;
       newPerson.latterDaySaint = isLatterDaySaint;
       // WATCH THE ENTRANCE BUTTONS
@@ -33,7 +34,7 @@ import * as Person from './Person';
       // WATCH LATTER DAY SAINT SWITCH
       Signup._watchTheLatterDaySaintSwitch(newPerson);
       // WATCH RESET BUTTON FOR PASSWORD RESETS
-      Update._watchPasswordResetButton();
+      Update._watchPasswordResetButton(formButtons);
       // WATCH FOR USER LOGIN
       AppLoggedIn._watchForLogin(isLoggedIn);
     }

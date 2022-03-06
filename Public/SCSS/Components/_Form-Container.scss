@@ -14,4 +14,7 @@
       transition: color 0.5s;
     }
   }
+  &:nth-of-type(6) {
+    display: flex;
+  }
 }

@@ -248,7 +248,7 @@ exports.resetPassword = catchAsync(async (request, response, next) => {
 // RENDERING PASSWORD RESET FORM
 exports.renderPasswordReset = catchAsync(async (request, response, next) => {
   const resetToken = request.params.token;
-  const resetURL = `${request.protocol}://${request.get('host')}/users/resetPassword/${resetToken}`;
+  const resetURL = `${request.protocol}://${request.get('host')}/App/Users/ResetPassword/${resetToken}`;
 
   response.status(200).render('resetPassword', {
     title: `King Richard | Reset Password`,
@@ -269,7 +269,7 @@ exports.forgotPassword = catchAsync(async (request, response, next) => {
   await user.save({ validateBeforeSave: false });
 
   try {
-    const resetURL = `${request.protocol}://${request.get('host')}/users/resetPassword/${resetToken}`;
+    const resetURL = `${request.protocol}://${request.get('host')}/App/Users/ResetPassword/${resetToken}`;
     await new sendEmail(user, resetURL).sendResetPassword();
 
     // response.status(200).json({
