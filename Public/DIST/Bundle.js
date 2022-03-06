@@ -4573,17 +4573,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "_watchEntranceButtons": () => (/* binding */ _watchEntranceButtons),
 /* harmony export */   "_watchFormClosers": () => (/* binding */ _watchFormClosers)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
-/* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Login */ "./Public/JS/Login.js");
-/* harmony import */ var _Signup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Signup */ "./Public/JS/Signup.js");
+/* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Login */ "./Public/JS/Login.js");
+/* harmony import */ var _Signup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Signup */ "./Public/JS/Signup.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
-
 
  //////////////////////////////
 // Actually Close The Form
 
 var _closeTheForm = function _closeTheForm(index, page, pageElement, form) {
-  form[index].classList.toggle('form-container--open');
+  form[index].classList.toggle('open');
 
   if (pageElement) {
     pageElement.textContent = "Page ".concat(page + 1, " / 4");
@@ -4593,7 +4591,7 @@ var _closeTheForm = function _closeTheForm(index, page, pageElement, form) {
 
 
 var _watchFormClosers = function _watchFormClosers(pageElement, page, form) {
-  var formClosers = document.querySelectorAll('.form-close-icon');
+  var formClosers = document.querySelectorAll('.form-closure-icon');
   page = 0;
   formClosers.forEach(function (fc, i) {
     fc.addEventListener('click', function (e) {
@@ -4608,28 +4606,29 @@ var getLoggedIn = function getLoggedIn() {
   event.preventDefault();
   var loginUsername = document.getElementById('loginUsername').value;
   var loginPassword = document.getElementById('loginPassword').value;
-  var loginSubmit = document.querySelector('.login-form__section__button');
+  var buttons = document.querySelectorAll('.button');
+  var loginSubmit = buttons[2];
   loginSubmit.removeEventListener('click', getLoggedIn);
   console.log("Listener Stopped.");
-  _Login__WEBPACK_IMPORTED_MODULE_1__.login(loginUsername, loginPassword);
+  _Login__WEBPACK_IMPORTED_MODULE_0__.login(loginUsername, loginPassword);
 };
 
 var _watchEntranceButtons = function _watchEntranceButtons(person, form, formPage) {
   //////////////////////////////
   // Initialize Entrance Buttons.
-  var forgottenUsernameOrPasswordLink = document.querySelector('.login-form__section__forgot-username-or-password-link');
-  var entranceButtons = [].concat((0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(document.querySelectorAll('.entrance-button')), [forgottenUsernameOrPasswordLink]);
+  var buttons = document.querySelectorAll('.button');
+  var entranceButtons = [buttons[0], buttons[1], buttons[3]];
   entranceButtons.forEach(function (eb, i) {
     if (eb) {
       eb.addEventListener('click', function (e) {
         e.preventDefault(); //////////////////////////////////////////////////////////////
         // OPEN UP THE SELECTED FORM
 
-        form[i].classList.toggle('form-container--open'); //////////////////////////////////////////////////////////////
+        form[i].classList.toggle('open'); //////////////////////////////////////////////////////////////
         // OPEN UP THE SELECTED FORM
 
         if (i === 0) {
-          var loginSubmit = document.querySelector('.login-form__section__button');
+          var loginSubmit = buttons[2];
           loginSubmit.addEventListener('click', getLoggedIn);
           console.log("Listener Started.");
         } //////////////////////////////////////////////////////////////
@@ -4637,9 +4636,9 @@ var _watchEntranceButtons = function _watchEntranceButtons(person, form, formPag
 
 
         if (i === 1) {
-          var formPages = document.querySelectorAll('.signup-form__form-page');
+          var formPages = document.querySelectorAll('.form-page');
 
-          _Signup__WEBPACK_IMPORTED_MODULE_2__._setupSignupForm(formPage, formPages, person);
+          _Signup__WEBPACK_IMPORTED_MODULE_1__._setupSignupForm(formPage, formPages, person);
         }
       });
     }
@@ -7792,6 +7791,7 @@ var getSubCategoryTiming = function getSubCategoryTiming(budget, category) {
 
 var getSinglePercentageSpent = function getSinglePercentageSpent(spent, total) {
   var percentage = (spent / total).toFixed(2);
+  if (isNaN(percentage)) percentage = 0.0.toFixed(2);
   return percentage;
 };
 
@@ -7825,7 +7825,6 @@ var getOverallBudget = function getOverallBudget(subCategories, overall) {
   overall = arrayOfTotals.reduce(function (previous, current) {
     return Number(previous) + Number(current);
   }, initialValue);
-  console.log(overall);
   return overall;
 };
 
@@ -7861,18 +7860,51 @@ var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placehold
       minimumFractionDigits: 2
     });
     var individualPayments = document.querySelectorAll('.individual-payment');
+    var overallBudget = document.querySelectorAll('.budget-single-goal-summary__amount');
     individualPayments.forEach(function (ip, i) {
+      var overallSpent = overallBudget[1];
+      var overallRemaining = overallBudget[2];
+      var overallPercentageSpent = overallBudget[3];
+      var total = getOverallBudget(subCategories, overallBudget[0]);
+      var part = getOverallSpent(subCategories, overallSpent);
+
+      if (total - part < 0) {
+        overallRemaining.classList.add('negative');
+        overallRemaining.classList.remove('positive');
+      }
+
+      if (total - part === 0) {
+        overallRemaining.classList.remove('positive');
+        overallRemaining.classList.remove('negative');
+      }
+
+      if (total - part > 0) {
+        overallRemaining.classList.add('positive');
+        overallRemaining.classList.remove('negative');
+      }
+
+      var remainingValue = ip.closest('section').nextSibling.nextSibling.firstChild;
+
+      if (Number(remainingValue.textContent.split('$')[1]) > 0) {
+        remainingValue.classList.add('positive');
+        remainingValue.classList.remove('negative');
+      }
+
+      if (Number(remainingValue.textContent.split('$')[1]) === 0) {
+        remainingValue.classList.remove('positive');
+        remainingValue.classList.remove('negative');
+      }
+
+      if (Number(remainingValue.textContent.split('$')[1]) < 0) {
+        remainingValue.classList.remove('positive');
+        remainingValue.classList.add('negative');
+      }
+
       ip.addEventListener('keyup', function (e) {
         e.preventDefault();
-        console.log(ip.value);
-        var overallBudget = document.querySelectorAll('.budget-single-goal-summary__amount');
-        console.log(overallBudget[0]);
         var spent = ip.closest('section').nextSibling.firstChild;
         var remaining = ip.closest('section').nextSibling.nextSibling.firstChild;
         var percentageSpent = ip.closest('section').nextSibling.nextSibling.nextSibling.firstChild;
-        var overallSpent = overallBudget[1];
-        var overallRemaining = overallBudget[2];
-        var overallPercentageSpent = overallBudget[3];
         var total = getOverallBudget(subCategories, overallBudget[0]);
         var part = getOverallSpent(subCategories, overallSpent);
         var percentage = getOverallPercentageSpent(total, part);
@@ -7881,7 +7913,41 @@ var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placehold
         overallRemaining.textContent = money.format(total - part);
         overallPercentageSpent.textContent = "".concat(percentage, "%");
         spent.textContent = money.format(spent.textContent.split('$')[1]);
-        remaining.textContent = money.format(ip.value - 0);
+        remaining.textContent = money.format(ip.value - Number(spent.textContent.split('$')[1]));
+
+        if (total - part < 0) {
+          overallRemaining.classList.add('negative');
+          overallRemaining.classList.remove('positive');
+        }
+
+        if (total - part === 0) {
+          overallRemaining.classList.remove('positive');
+          overallRemaining.classList.remove('negative');
+        }
+
+        if (total - part > 0) {
+          overallRemaining.classList.add('positive');
+          overallRemaining.classList.remove('negative');
+        }
+
+        if (!Number(remaining.textContent.startsWith('-'))) {
+          remaining.classList.add('positive');
+          remaining.classList.remove('negative');
+          console.log(remaining.classList, Number(remaining.textContent.split('$')[1]));
+        }
+
+        if (Number(remaining.textContent.split('$')[1]) === 0) {
+          remaining.classList.remove('positive');
+          remaining.classList.remove('negative');
+          console.log(remaining.classList, Number(remaining.textContent.split('$')[1]));
+        }
+
+        if (Number(remaining.textContent.startsWith('-'))) {
+          remaining.classList.remove('positive');
+          remaining.classList.add('negative');
+          console.log(remaining.classList, Number(remaining.textContent.split('$')[1]));
+        }
+
         percentageSpent.textContent = "".concat(getSinglePercentageSpent(Number(spent.textContent.split('$')[1]), ip.value), "%");
       });
       ip.addEventListener('blur', function (e) {
@@ -9113,17 +9179,19 @@ var _changeLatterDaySaintStatus = function _changeLatterDaySaintStatus(lightSwit
 
 
 var _watchTheLatterDaySaintSwitch = function _watchTheLatterDaySaintSwitch(person) {
-  var latterDaySaint = document.querySelector('.signup-form__form-page__section__input--latter-day-saint');
+  var latterDaySaint = document.querySelector('.form-page__section__input--latter-day-saint');
 
   if (latterDaySaint) {
     latterDaySaint.addEventListener('click', function (e) {
-      _changeLatterDaySaintStatus(latterDaySaint, 'signup-form__form-page__section__input--latter-day-saint--switched', person);
+      _changeLatterDaySaintStatus(latterDaySaint, 'form-page__section__input--latter-day-saint--switched', person);
     });
   }
 }; // Watch The Submit Button
 
 var _watchFormSubmitButton = function _watchFormSubmitButton(page, pages, pageElement, person) {
-  var signupFormSubmit = document.querySelector('.signup-form__form-page__section__button');
+  var formButtons = document.querySelectorAll('.button--small');
+  console.log(formButtons);
+  var signupFormSubmit = formButtons[1];
 
   if (signupFormSubmit) {
     signupFormSubmit.addEventListener('click', function (e) {
@@ -9174,7 +9242,7 @@ var _watchFormSubmitButton = function _watchFormSubmitButton(page, pages, pageEl
 // SIGN UP FORM SETUP
 
 var _setupSignupForm = function _setupSignupForm(page, pages, person) {
-  var domSignupFormPageNumber = document.querySelector('.signup-form__form-page__section__page-number');
+  var domSignupFormPageNumber = document.querySelector('.form--signup__section__page-number');
 
   _watchFormSubmitButton(page, pages, domSignupFormPageNumber, person);
 

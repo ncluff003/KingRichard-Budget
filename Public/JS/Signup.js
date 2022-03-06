@@ -72,17 +72,19 @@ const _changeLatterDaySaintStatus = (lightSwitch, switchClass, person) => {
 
 // Watching The Latter Day Saint Switch
 export const _watchTheLatterDaySaintSwitch = (person) => {
-  const latterDaySaint = document.querySelector('.signup-form__form-page__section__input--latter-day-saint');
+  const latterDaySaint = document.querySelector('.form-page__section__input--latter-day-saint');
   if (latterDaySaint) {
     latterDaySaint.addEventListener('click', (e) => {
-      _changeLatterDaySaintStatus(latterDaySaint, 'signup-form__form-page__section__input--latter-day-saint--switched', person);
+      _changeLatterDaySaintStatus(latterDaySaint, 'form-page__section__input--latter-day-saint--switched', person);
     });
   }
 };
 
 // Watch The Submit Button
 export const _watchFormSubmitButton = (page, pages, pageElement, person) => {
-  const signupFormSubmit = document.querySelector('.signup-form__form-page__section__button');
+  const formButtons = document.querySelectorAll('.button--small');
+  console.log(formButtons);
+  const signupFormSubmit = formButtons[1];
   if (signupFormSubmit) {
     signupFormSubmit.addEventListener('click', (e) => {
       e.preventDefault();
@@ -131,7 +133,7 @@ export const _watchFormSubmitButton = (page, pages, pageElement, person) => {
 /////////////////////////
 // SIGN UP FORM SETUP
 export const _setupSignupForm = (page, pages, person) => {
-  let domSignupFormPageNumber = document.querySelector('.signup-form__form-page__section__page-number');
+  let domSignupFormPageNumber = document.querySelector('.form--signup__section__page-number');
   _watchFormSubmitButton(page, pages, domSignupFormPageNumber, person);
   if (page > 0 || page === undefined) {
     page = 0;

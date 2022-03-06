@@ -4,21 +4,6 @@
 ////////////////////////////////////////////////
 //  Master Grid Container
 .master-grid-container {
-  .entrance-button-container {
-    .entrance-button {
-      @include SizeAndPositioning(relative, 65%, 40%, flex, row, nowrap, center, center, 13%, 0, 0);
-      -moz-transform: translate(13%, 0);
-      background-color: rgba($colorLightestGrey, 0.125);
-      border: 0.3rem solid rgba($primaryColor, 0.75);
-      border-radius: 1.5rem;
-      &:hover {
-        cursor: pointer;
-        background-color: $primaryColor;
-        border: 0.3rem solid $primaryColor;
-        transition: background-color 0.5s, border 0.5s, color 0.5s;
-      }
-    }
-  }
   .form-container {
     .login-form,
     .signup-form,
@@ -556,6 +541,37 @@
           }
         }
       }
+    }
+  }
+}
+// End of Master Grid Container
+.button {
+  @include SizeAndPositioning(relative, 6rem, 40%, flex, row, nowrap, center, center, 13%, 0, 0);
+  -moz-transform: translate(13%, 0);
+  background-color: rgba($colorLightestGrey, 0.125);
+  border: 0.3rem solid rgba($primaryColor, 0.75);
+  border-radius: 1.5rem;
+  &:hover {
+    cursor: pointer;
+    background-color: $primaryColor;
+    border: 0.3rem solid $primaryColor;
+    transition: background-color 0.5s, border 0.5s, color 0.5s;
+  }
+  &--small {
+    width: 20%;
+    transform: translate(0, 0);
+    border-radius: 0.75rem;
+  }
+  &--borderless {
+    border: none;
+    height: min-content;
+    width: max-content;
+    margin-top: 0.75rem;
+    transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    &:hover {
+      border: none;
+      background-color: transparent;
     }
   }
 }

@@ -169,6 +169,7 @@ const getSubCategoryTiming = (budget, category) => {
 
 const getSinglePercentageSpent = (spent, total) => {
   let percentage = (spent / total).toFixed(2);
+  if (isNaN(percentage)) percentage = (0.0).toFixed(2);
   return percentage;
 };
 
@@ -200,7 +201,6 @@ const getOverallBudget = (subCategories, overall) => {
   });
   let initialValue = 0;
   overall = arrayOfTotals.reduce((previous, current) => Number(previous) + Number(current), initialValue);
-  console.log(overall);
   return overall;
 };
 
@@ -239,18 +239,43 @@ const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
       minimumFractionDigits: 2,
     });
     const individualPayments = document.querySelectorAll('.individual-payment');
+    const overallBudget = document.querySelectorAll('.budget-single-goal-summary__amount');
     individualPayments.forEach((ip, i) => {
+      let overallSpent = overallBudget[1];
+      let overallRemaining = overallBudget[2];
+      let overallPercentageSpent = overallBudget[3];
+      let total = getOverallBudget(subCategories, overallBudget[0]);
+      let part = getOverallSpent(subCategories, overallSpent);
+      if (total - part < 0) {
+        overallRemaining.classList.add('negative');
+        overallRemaining.classList.remove('positive');
+      }
+      if (total - part === 0) {
+        overallRemaining.classList.remove('positive');
+        overallRemaining.classList.remove('negative');
+      }
+      if (total - part > 0) {
+        overallRemaining.classList.add('positive');
+        overallRemaining.classList.remove('negative');
+      }
+      let remainingValue = ip.closest('section').nextSibling.nextSibling.firstChild;
+      if (Number(remainingValue.textContent.split('$')[1]) > 0) {
+        remainingValue.classList.add('positive');
+        remainingValue.classList.remove('negative');
+      }
+      if (Number(remainingValue.textContent.split('$')[1]) === 0) {
+        remainingValue.classList.remove('positive');
+        remainingValue.classList.remove('negative');
+      }
+      if (Number(remainingValue.textContent.split('$')[1]) < 0) {
+        remainingValue.classList.remove('positive');
+        remainingValue.classList.add('negative');
+      }
       ip.addEventListener('keyup', (e) => {
         e.preventDefault();
-        console.log(ip.value);
-        const overallBudget = document.querySelectorAll('.budget-single-goal-summary__amount');
-        console.log(overallBudget[0]);
         let spent = ip.closest('section').nextSibling.firstChild;
         let remaining = ip.closest('section').nextSibling.nextSibling.firstChild;
         let percentageSpent = ip.closest('section').nextSibling.nextSibling.nextSibling.firstChild;
-        let overallSpent = overallBudget[1];
-        let overallRemaining = overallBudget[2];
-        let overallPercentageSpent = overallBudget[3];
         let total = getOverallBudget(subCategories, overallBudget[0]);
         let part = getOverallSpent(subCategories, overallSpent);
         let percentage = getOverallPercentageSpent(total, part);
@@ -259,7 +284,34 @@ const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
         overallRemaining.textContent = money.format(total - part);
         overallPercentageSpent.textContent = `${percentage}%`;
         spent.textContent = money.format(spent.textContent.split('$')[1]);
-        remaining.textContent = money.format(ip.value - 0);
+        remaining.textContent = money.format(ip.value - Number(spent.textContent.split('$')[1]));
+        if (total - part < 0) {
+          overallRemaining.classList.add('negative');
+          overallRemaining.classList.remove('positive');
+        }
+        if (total - part === 0) {
+          overallRemaining.classList.remove('positive');
+          overallRemaining.classList.remove('negative');
+        }
+        if (total - part > 0) {
+          overallRemaining.classList.add('positive');
+          overallRemaining.classList.remove('negative');
+        }
+        if (!Number(remaining.textContent.startsWith('-'))) {
+          remaining.classList.add('positive');
+          remaining.classList.remove('negative');
+          console.log(remaining.classList, Number(remaining.textContent.split('$')[1]));
+        }
+        if (Number(remaining.textContent.split('$')[1]) === 0) {
+          remaining.classList.remove('positive');
+          remaining.classList.remove('negative');
+          console.log(remaining.classList, Number(remaining.textContent.split('$')[1]));
+        }
+        if (Number(remaining.textContent.startsWith('-'))) {
+          remaining.classList.remove('positive');
+          remaining.classList.add('negative');
+          console.log(remaining.classList, Number(remaining.textContent.split('$')[1]));
+        }
         percentageSpent.textContent = `${getSinglePercentageSpent(Number(spent.textContent.split('$')[1]), ip.value)}%`;
       });
       ip.addEventListener('blur', (e) => {

@@ -101,49 +101,17 @@ html {
   font-size: 7rem;
   color: #822aba;
 }
-.master-grid-container .entrance-button-container {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-}
-.master-grid-container .entrance-button-container .entrance-button {
-  font-size: 2.2rem;
-  color: rgba(130, 42, 186, 0.75);
-}
-.master-grid-container .entrance-button-container .entrance-button:hover {
-  color: #fafafa;
-}
 .master-grid-container .slogan {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   font-size: 3.6rem;
   color: #822aba;
 }
-.master-grid-container .form-container .form-close-icon {
+.master-grid-container .form-container .form-closure-icon {
   font-size: 4rem;
   color: rgba(130, 42, 186, 0.5);
 }
-.master-grid-container .form-container .form-close-icon:hover {
+.master-grid-container .form-container .form-closure-icon:hover {
   color: #822aba;
-}
-.master-grid-container .form-container .login-form,
-.master-grid-container .form-container .signup-form,
-.master-grid-container .form-container .forgotten-form,
-.master-grid-container .form-container .reset-password-form {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-}
-.master-grid-container .form-container .login-form__header__title,
-.master-grid-container .form-container .signup-form__header__title,
-.master-grid-container .form-container .forgotten-form__header__title,
-.master-grid-container .form-container .reset-password-form__header__title {
-  font-family: MADE Tommy Soft Bold, Verdana, sans-serif;
-  font-size: 10rem;
-  color: #822aba;
-}
-.master-grid-container .form-container .login-form__header__title--medium,
-.master-grid-container .form-container .signup-form__header__title--medium,
-.master-grid-container .form-container .forgotten-form__header__title--medium,
-.master-grid-container .form-container .reset-password-form__header__title--medium {
-  font-family: MADE Tommy Soft Bold, Verdana, sans-serif;
-  color: #822aba;
-  font-size: 6rem;
 }
 .master-grid-container .form-container .login-form__section__input,
 .master-grid-container .form-container .signup-form__section__input,
@@ -170,32 +138,6 @@ html {
 .master-grid-container .form-container .reset-password-form__section__label {
   font-size: 2rem;
   color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .form-container .login-form__section__button,
-.master-grid-container .form-container .signup-form__section__button,
-.master-grid-container .form-container .forgotten-form__section__button,
-.master-grid-container .form-container .reset-password-form__section__button {
-  font-size: 2.2rem;
-  color: rgba(130, 42, 186, 0.75);
-}
-.master-grid-container .form-container .login-form__section__button:hover,
-.master-grid-container .form-container .signup-form__section__button:hover,
-.master-grid-container .form-container .forgotten-form__section__button:hover,
-.master-grid-container .form-container .reset-password-form__section__button:hover {
-  color: #fafafa;
-}
-.master-grid-container .form-container .login-form__section__forgot-username-or-password-link,
-.master-grid-container .form-container .signup-form__section__forgot-username-or-password-link,
-.master-grid-container .form-container .forgotten-form__section__forgot-username-or-password-link,
-.master-grid-container .form-container .reset-password-form__section__forgot-username-or-password-link {
-  font-size: 1.6rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .form-container .login-form__section__forgot-username-or-password-link:hover,
-.master-grid-container .form-container .signup-form__section__forgot-username-or-password-link:hover,
-.master-grid-container .form-container .forgotten-form__section__forgot-username-or-password-link:hover,
-.master-grid-container .form-container .reset-password-form__section__forgot-username-or-password-link:hover {
-  color: #822aba;
 }
 .master-grid-container .form-container .login-form__form-page__section__input,
 .master-grid-container .form-container .signup-form__form-page__section__input,
@@ -1233,6 +1175,12 @@ html {
   font-size: 3rem;
   color: #822aba;
 }
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__budget-goal-summary-container .budget-single-goal-summary .positive {
+  color: #38d927;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__budget-goal-summary-container .budget-single-goal-summary .negative {
+  color: #cf352e;
+}
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .main-category-display__button-container {
   font-size: 6rem;
 }
@@ -1263,6 +1211,12 @@ html {
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__sub-category__section__content {
   font-size: 1.6rem;
   color: #822aba;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__sub-category__section .positive {
+  color: #38d927;
+}
+.master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__sub-category__section .negative {
+  color: #cf352e;
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__edit-category-goals-container--large__category-container .sub-category-display__sub-category__section__set-category-timing-button {
   font-size: 1.2rem;
@@ -1364,6 +1318,56 @@ html {
 }
 .master-grid-container .app-flex-container .app-viewport__display-container .budget-container__update-budget-categories-button-container__button:hover {
   color: #fafafa;
+}
+
+.button-container {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+}
+
+.button {
+  font-size: 2.2rem;
+  color: rgba(130, 42, 186, 0.75);
+}
+.button:hover {
+  color: #fafafa;
+}
+.button--borderless {
+  font-size: 1.6rem;
+}
+.button--borderless:hover {
+  color: #822aba;
+}
+
+.form {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+}
+.form__header__title {
+  font-family: MADE Tommy Soft Bold, Verdana, sans-serif;
+  font-size: 10rem;
+  color: #822aba;
+}
+.form__header__title--medium {
+  color: #822aba;
+  font-size: 6rem;
+}
+.form__section .form__input {
+  font-size: 2rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.form__section .form__input:focus {
+  color: #822aba;
+}
+.form__section .form__input:focus > label {
+  color: #822aba;
+}
+.form__section .form__label {
+  font-size: 2rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.form--signup .form-page__section .form-page__section__input-container--latter-day-saint .form-page__section__input--latter-day-saint__text--NO, .form--signup .form-page__section .form-page__section__input-container--latter-day-saint .form-page__section__input--latter-day-saint__text--YES {
+  font-size: 3rem;
+  color: #fafafa;
+  text-transform: capitalize;
 }
 
 .gridTV {
@@ -32872,27 +32876,6 @@ html {
   background-color: #38d927;
 }
 
-.master-grid-container .entrance-button-container .entrance-button {
-  position: relative;
-  height: 65%;
-  width: 40%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(13%, 0);
-  -moz-transform: translate(13%, 0);
-  background-color: rgba(221, 221, 221, 0.125);
-  border: 0.3rem solid rgba(130, 42, 186, 0.75);
-  border-radius: 1.5rem;
-}
-.master-grid-container .entrance-button-container .entrance-button:hover {
-  cursor: pointer;
-  background-color: #822aba;
-  border: 0.3rem solid #822aba;
-  transition: background-color 0.5s, border 0.5s, color 0.5s;
-}
 .master-grid-container .form-container .login-form__section__button,
 .master-grid-container .form-container .signup-form__section__button,
 .master-grid-container .form-container .forgotten-form__section__button,
@@ -33513,6 +33496,45 @@ html {
   transition: color 0.5s, background-color 0.5s, border 0.5s;
 }
 
+.button {
+  position: relative;
+  height: 6rem;
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(13%, 0);
+  -moz-transform: translate(13%, 0);
+  background-color: rgba(221, 221, 221, 0.125);
+  border: 0.3rem solid rgba(130, 42, 186, 0.75);
+  border-radius: 1.5rem;
+}
+.button:hover {
+  cursor: pointer;
+  background-color: #822aba;
+  border: 0.3rem solid #822aba;
+  transition: background-color 0.5s, border 0.5s, color 0.5s;
+}
+.button--small {
+  width: 20%;
+  transform: translate(0, 0);
+  border-radius: 0.75rem;
+}
+.button--borderless {
+  border: none;
+  height: min-content;
+  width: max-content;
+  margin-top: 0.75rem;
+  transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+}
+.button--borderless:hover {
+  border: none;
+  background-color: transparent;
+}
+
 .vertical-flex-container .flex-section {
   position: relative;
   height: 100vh;
@@ -33526,18 +33548,6 @@ html {
   background-color: #f2f2f2ff;
 }
 
-.master-grid-container .form-container {
-  position: relative;
-  height: 100%;
-  width: 100vw;
-  display: none;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  background-color: rgba(250, 250, 250, 0.95);
-}
 .master-grid-container .form-container--full-page {
   z-index: 1;
 }
@@ -33561,125 +33571,6 @@ html {
   cursor: pointer;
   transition: color 0.5s;
 }
-.master-grid-container .form-container--full-page .login-form,
-.master-grid-container .form-container--full-page .signup-form,
-.master-grid-container .form-container--full-page .forgotten-form,
-.master-grid-container .form-container--full-page .reset-password-form {
-  position: relative;
-  height: 100%;
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-}
-.master-grid-container .form-container--full-page .login-form__header,
-.master-grid-container .form-container--full-page .signup-form__header,
-.master-grid-container .form-container--full-page .forgotten-form__header,
-.master-grid-container .form-container--full-page .reset-password-form__header {
-  margin-bottom: 3rem;
-}
-.master-grid-container .form-container--full-page .login-form__section,
-.master-grid-container .form-container--full-page .signup-form__section,
-.master-grid-container .form-container--full-page .forgotten-form__section,
-.master-grid-container .form-container--full-page .reset-password-form__section {
-  position: relative;
-  height: min-content;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-}
-.master-grid-container .form-container--full-page .login-form__section:not(:last-of-type),
-.master-grid-container .form-container--full-page .signup-form__section:not(:last-of-type),
-.master-grid-container .form-container--full-page .forgotten-form__section:not(:last-of-type),
-.master-grid-container .form-container--full-page .reset-password-form__section:not(:last-of-type) {
-  margin-bottom: 3.5rem;
-}
-.master-grid-container .form-container--full-page .login-form__section__input,
-.master-grid-container .form-container--full-page .signup-form__section__input,
-.master-grid-container .form-container--full-page .forgotten-form__section__input,
-.master-grid-container .form-container--full-page .reset-password-form__section__input {
-  position: relative;
-  height: 6rem;
-  width: 40%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  padding: 1rem;
-  padding-left: 2rem;
-  background-color: rgba(221, 221, 221, 0.125);
-  border: 0.3rem solid rgba(130, 42, 186, 0.75);
-  border-radius: 0.75rem;
-}
-.master-grid-container .form-container--full-page .login-form__section__input::-webkit-input-placeholder, .master-grid-container .form-container--full-page .login-form__section__input::-moz-placeholder, .master-grid-container .form-container--full-page .login-form__section__input::placeholder,
-.master-grid-container .form-container--full-page .signup-form__section__input::-webkit-input-placeholder,
-.master-grid-container .form-container--full-page .signup-form__section__input::-moz-placeholder,
-.master-grid-container .form-container--full-page .signup-form__section__input::placeholder,
-.master-grid-container .form-container--full-page .forgotten-form__section__input::-webkit-input-placeholder,
-.master-grid-container .form-container--full-page .forgotten-form__section__input::-moz-placeholder,
-.master-grid-container .form-container--full-page .forgotten-form__section__input::placeholder,
-.master-grid-container .form-container--full-page .reset-password-form__section__input::-webkit-input-placeholder,
-.master-grid-container .form-container--full-page .reset-password-form__section__input::-moz-placeholder,
-.master-grid-container .form-container--full-page .reset-password-form__section__input::placeholder {
-  opacity: 0;
-}
-.master-grid-container .form-container--full-page .login-form__section__input:focus,
-.master-grid-container .form-container--full-page .signup-form__section__input:focus,
-.master-grid-container .form-container--full-page .forgotten-form__section__input:focus,
-.master-grid-container .form-container--full-page .reset-password-form__section__input:focus {
-  outline: none;
-}
-.master-grid-container .form-container--full-page .login-form__section__input:focus::-moz-placeholder, .master-grid-container .form-container--full-page .login-form__section__input:focus::placeholder,
-.master-grid-container .form-container--full-page .signup-form__section__input:focus::-moz-placeholder,
-.master-grid-container .form-container--full-page .signup-form__section__input:focus::placeholder,
-.master-grid-container .form-container--full-page .forgotten-form__section__input:focus::-moz-placeholder,
-.master-grid-container .form-container--full-page .forgotten-form__section__input:focus::placeholder,
-.master-grid-container .form-container--full-page .reset-password-form__section__input:focus::-moz-placeholder,
-.master-grid-container .form-container--full-page .reset-password-form__section__input:focus::placeholder {
-  opacity: 1;
-}
-.master-grid-container .form-container--full-page .login-form__section__input:focus::-webkit-input-placeholder,
-.master-grid-container .form-container--full-page .signup-form__section__input:focus::-webkit-input-placeholder,
-.master-grid-container .form-container--full-page .forgotten-form__section__input:focus::-webkit-input-placeholder,
-.master-grid-container .form-container--full-page .reset-password-form__section__input:focus::-webkit-input-placeholder {
-  opacity: 1;
-}
-.master-grid-container .form-container--full-page .login-form__section__input:not(:placeholder-shown) + label, .master-grid-container .form-container--full-page .login-form__section__input:focus + label,
-.master-grid-container .form-container--full-page .signup-form__section__input:not(:placeholder-shown) + label,
-.master-grid-container .form-container--full-page .signup-form__section__input:focus + label,
-.master-grid-container .form-container--full-page .forgotten-form__section__input:not(:placeholder-shown) + label,
-.master-grid-container .form-container--full-page .forgotten-form__section__input:focus + label,
-.master-grid-container .form-container--full-page .reset-password-form__section__input:not(:placeholder-shown) + label,
-.master-grid-container .form-container--full-page .reset-password-form__section__input:focus + label {
-  transform: translate(-5.5rem, -7rem) scale(0.75);
-}
-.master-grid-container .form-container--full-page .login-form__section__label,
-.master-grid-container .form-container--full-page .signup-form__section__label,
-.master-grid-container .form-container--full-page .forgotten-form__section__label,
-.master-grid-container .form-container--full-page .reset-password-form__section__label {
-  position: absolute;
-  height: 6rem;
-  width: 40%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  transform: rotate(0) translate(0, -50%);
-  top: 50%;
-  left: calc(30% + 2rem);
-  -moz-transform: translateY(-50%);
-  transition: transform 0.5s;
-}
 .master-grid-container .form-container--full-page .login-form__section__forgot-username-or-password-link,
 .master-grid-container .form-container--full-page .signup-form__section__forgot-username-or-password-link,
 .master-grid-container .form-container--full-page .forgotten-form__section__forgot-username-or-password-link,
@@ -33691,105 +33582,6 @@ html {
 .master-grid-container .form-container--full-page .forgotten-form__section__forgot-username-or-password-link:hover,
 .master-grid-container .form-container--full-page .reset-password-form__section__forgot-username-or-password-link:hover {
   cursor: pointer;
-}
-.master-grid-container .form-container--full-page .login-form__form-page,
-.master-grid-container .form-container--full-page .signup-form__form-page,
-.master-grid-container .form-container--full-page .forgotten-form__form-page,
-.master-grid-container .form-container--full-page .reset-password-form__form-page {
-  position: relative;
-  height: min-content;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  margin: 0 0 1rem;
-}
-.master-grid-container .form-container--full-page .login-form__form-page__section,
-.master-grid-container .form-container--full-page .signup-form__form-page__section,
-.master-grid-container .form-container--full-page .forgotten-form__form-page__section,
-.master-grid-container .form-container--full-page .reset-password-form__form-page__section {
-  position: relative;
-  height: min-content;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-}
-.master-grid-container .form-container--full-page .login-form__form-page__section:not(:last-of-type),
-.master-grid-container .form-container--full-page .signup-form__form-page__section:not(:last-of-type),
-.master-grid-container .form-container--full-page .forgotten-form__form-page__section:not(:last-of-type),
-.master-grid-container .form-container--full-page .reset-password-form__form-page__section:not(:last-of-type) {
-  margin-bottom: 3.5rem;
-}
-.master-grid-container .form-container--full-page .login-form__form-page__section__input,
-.master-grid-container .form-container--full-page .signup-form__form-page__section__input,
-.master-grid-container .form-container--full-page .forgotten-form__form-page__section__input,
-.master-grid-container .form-container--full-page .reset-password-form__form-page__section__input {
-  position: relative;
-  height: 6rem;
-  width: 40%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  padding: 1rem;
-  padding-left: 2rem;
-  background-color: rgba(221, 221, 221, 0.125);
-  border: 0.3rem solid rgba(130, 42, 186, 0.75);
-  border-radius: 0.75rem;
-}
-.master-grid-container .form-container--full-page .login-form__form-page__section__input::-webkit-input-placeholder, .master-grid-container .form-container--full-page .login-form__form-page__section__input::-moz-placeholder, .master-grid-container .form-container--full-page .login-form__form-page__section__input::placeholder,
-.master-grid-container .form-container--full-page .signup-form__form-page__section__input::-webkit-input-placeholder,
-.master-grid-container .form-container--full-page .signup-form__form-page__section__input::-moz-placeholder,
-.master-grid-container .form-container--full-page .signup-form__form-page__section__input::placeholder,
-.master-grid-container .form-container--full-page .forgotten-form__form-page__section__input::-webkit-input-placeholder,
-.master-grid-container .form-container--full-page .forgotten-form__form-page__section__input::-moz-placeholder,
-.master-grid-container .form-container--full-page .forgotten-form__form-page__section__input::placeholder,
-.master-grid-container .form-container--full-page .reset-password-form__form-page__section__input::-webkit-input-placeholder,
-.master-grid-container .form-container--full-page .reset-password-form__form-page__section__input::-moz-placeholder,
-.master-grid-container .form-container--full-page .reset-password-form__form-page__section__input::placeholder {
-  opacity: 0;
-}
-.master-grid-container .form-container--full-page .login-form__form-page__section__input:focus::-webkit-input-placeholder,
-.master-grid-container .form-container--full-page .signup-form__form-page__section__input:focus::-webkit-input-placeholder,
-.master-grid-container .form-container--full-page .forgotten-form__form-page__section__input:focus::-webkit-input-placeholder,
-.master-grid-container .form-container--full-page .reset-password-form__form-page__section__input:focus::-webkit-input-placeholder {
-  opacity: 1;
-}
-.master-grid-container .form-container--full-page .login-form__form-page__section__input:focus,
-.master-grid-container .form-container--full-page .signup-form__form-page__section__input:focus,
-.master-grid-container .form-container--full-page .forgotten-form__form-page__section__input:focus,
-.master-grid-container .form-container--full-page .reset-password-form__form-page__section__input:focus {
-  outline: none;
-}
-.master-grid-container .form-container--full-page .login-form__form-page__section__input:focus::-webkit-input-placeholder, .master-grid-container .form-container--full-page .login-form__form-page__section__input:focus::-moz-placeholder, .master-grid-container .form-container--full-page .login-form__form-page__section__input:focus::placeholder,
-.master-grid-container .form-container--full-page .signup-form__form-page__section__input:focus::-webkit-input-placeholder,
-.master-grid-container .form-container--full-page .signup-form__form-page__section__input:focus::-moz-placeholder,
-.master-grid-container .form-container--full-page .signup-form__form-page__section__input:focus::placeholder,
-.master-grid-container .form-container--full-page .forgotten-form__form-page__section__input:focus::-webkit-input-placeholder,
-.master-grid-container .form-container--full-page .forgotten-form__form-page__section__input:focus::-moz-placeholder,
-.master-grid-container .form-container--full-page .forgotten-form__form-page__section__input:focus::placeholder,
-.master-grid-container .form-container--full-page .reset-password-form__form-page__section__input:focus::-webkit-input-placeholder,
-.master-grid-container .form-container--full-page .reset-password-form__form-page__section__input:focus::-moz-placeholder,
-.master-grid-container .form-container--full-page .reset-password-form__form-page__section__input:focus::placeholder {
-  opacity: 1;
-}
-.master-grid-container .form-container--full-page .login-form__form-page__section__input:not(:placeholder-shown) + label, .master-grid-container .form-container--full-page .login-form__form-page__section__input:focus + label,
-.master-grid-container .form-container--full-page .signup-form__form-page__section__input:not(:placeholder-shown) + label,
-.master-grid-container .form-container--full-page .signup-form__form-page__section__input:focus + label,
-.master-grid-container .form-container--full-page .forgotten-form__form-page__section__input:not(:placeholder-shown) + label,
-.master-grid-container .form-container--full-page .forgotten-form__form-page__section__input:focus + label,
-.master-grid-container .form-container--full-page .reset-password-form__form-page__section__input:not(:placeholder-shown) + label,
-.master-grid-container .form-container--full-page .reset-password-form__form-page__section__input:focus + label {
-  transform: translate(-5.5rem, -7rem) scale(0.75);
 }
 .master-grid-container .form-container--full-page .login-form__form-page__section__label,
 .master-grid-container .form-container--full-page .signup-form__form-page__section__label,
@@ -36138,6 +35930,289 @@ html {
 }
 .master-grid-container .app-flex-container .app-viewport .budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container .selected {
   background-color: rgba(130, 42, 186, 0.8);
+}
+
+.form {
+  position: relative;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form__header {
+  margin-bottom: 3rem;
+}
+.form__section {
+  position: relative;
+  height: min-content;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form__section:not(:last-of-type) {
+  margin-bottom: 3.5rem;
+}
+.form__section .form__input {
+  position: relative;
+  height: 6rem;
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  padding: 1rem;
+  padding-left: 2rem;
+  background-color: rgba(221, 221, 221, 0.125);
+  border: 0.3rem solid rgba(130, 42, 186, 0.75);
+  border-radius: 0.75rem;
+}
+.form__section .form__input::-webkit-input-placeholder, .form__section .form__input::-moz-placeholder, .form__section .form__input::placeholder {
+  opacity: 0;
+}
+.form__section .form__input:focus::-webkit-input-placeholder {
+  opacity: 1;
+}
+.form__section .form__input:focus {
+  outline: none;
+}
+.form__section .form__input:focus::-webkit-input-placeholder, .form__section .form__input:focus::-moz-placeholder, .form__section .form__input:focus::placeholder {
+  opacity: 1;
+}
+.form__section .form__input:not(:placeholder-shown) + label, .form__section .form__input:focus + label {
+  transform: translate(-5.5rem, -7rem) scale(0.75);
+}
+.form__section .form__label {
+  position: absolute;
+  height: 6rem;
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, -50%);
+  top: 50%;
+  left: calc(30% + 2rem);
+  -moz-transform: translateY(-50%);
+  transition: transform 0.5s;
+}
+.form--signup .form-page {
+  position: relative;
+  height: min-content;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  margin: 0 0 1rem;
+}
+.form--signup .form-page__section {
+  position: relative;
+  height: min-content;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form--signup .form-page__section:not(:last-of-type) {
+  margin-bottom: 3.5rem;
+}
+.form--signup .form-page__section__input {
+  position: relative;
+  height: 6rem;
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  padding: 1rem;
+  padding-left: 2rem;
+  background-color: rgba(221, 221, 221, 0.125);
+  border: 0.3rem solid rgba(130, 42, 186, 0.75);
+  border-radius: 0.75rem;
+}
+.form--signup .form-page__section__input::-webkit-input-placeholder, .form--signup .form-page__section__input::-moz-placeholder, .form--signup .form-page__section__input::placeholder {
+  opacity: 0;
+}
+.form--signup .form-page__section__input:focus::-webkit-input-placeholder {
+  opacity: 1;
+}
+.form--signup .form-page__section__input:focus {
+  outline: none;
+}
+.form--signup .form-page__section__input:focus::-webkit-input-placeholder, .form--signup .form-page__section__input:focus::-moz-placeholder, .form--signup .form-page__section__input:focus::placeholder {
+  opacity: 1;
+}
+.form--signup .form-page__section__input:not(:placeholder-shown) + label, .form--signup .form-page__section__input:focus + label {
+  transform: translate(-5.5rem, -7rem) scale(0.75);
+}
+.form--signup .form-page__section__label {
+  position: absolute;
+  height: 6rem;
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, -50%);
+  top: 50%;
+  left: calc(30% + 2rem);
+  -moz-transform: translateY(-50%);
+  transition: transform 0.5s;
+}
+.form--signup .form-page__section .form-page__section__input-container--latter-day-saint {
+  position: relative;
+  height: 7rem;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form--signup .form-page__section .form-page__section__input-container--latter-day-saint .form-page__section__input--latter-day-saint {
+  position: relative;
+  height: 95%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(-15%, 0);
+  background-color: rgba(156, 67, 212, 0.8);
+  border: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-radius: 5rem;
+  padding: 0.25rem;
+  transition: background-color 0.5s, border 0.5s;
+}
+.form--signup .form-page__section .form-page__section__input-container--latter-day-saint .form-page__section__input--latter-day-saint__switch {
+  position: absolute;
+  height: 84%;
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, -50%);
+  top: 50%;
+  left: 2.75%;
+  background-color: rgba(101, 33, 144, 0.8);
+  border-radius: 5rem;
+  transition: background-color 0.5s, transform 0.5s, width 0.25s;
+}
+.form--signup .form-page__section .form-page__section__input-container--latter-day-saint .form-page__section__input--latter-day-saint__text--NO {
+  position: relative;
+  height: 100%;
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form--signup .form-page__section .form-page__section__input-container--latter-day-saint .form-page__section__input--latter-day-saint__text--YES {
+  position: relative;
+  height: 100%;
+  width: 70%;
+  display: none;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form--signup .form-page__section .form-page__section__input-container--latter-day-saint .form-page__section__input--latter-day-saint:hover {
+  cursor: pointer;
+}
+.form--signup .form-page__section .form-page__section__input-container--latter-day-saint .form-page__section__input--latter-day-saint--switched {
+  border: 0.3rem solid #2cae1f;
+  background-color: #60e152;
+  padding: 0.25rem;
+}
+.form--signup .form-page__section .form-page__section__input-container--latter-day-saint .form-page__section__input--latter-day-saint--switched .form-page__section__input--latter-day-saint__switch {
+  width: 94%;
+  background-color: #2cae1f;
+  transform: translate(0, -49%);
+}
+.form--signup .form-page__section .form-page__section__input-container--latter-day-saint .form-page__section__input--latter-day-saint--switched .form-page__section__input--latter-day-saint__text--NO {
+  display: none;
+}
+.form--signup .form-page__section .form-page__section__input-container--latter-day-saint .form-page__section__input--latter-day-saint--switched .form-page__section__input--latter-day-saint__text--YES {
+  display: flex;
+}
+.form--signup__section,
+.form--signup .switch-section {
+  flex-direction: row;
+  justify-content: center;
+}
+.form--signup__section__page-number,
+.form--signup .switch-section__page-number {
+  margin-right: 9rem;
+}
+.form--signup__section {
+  margin-top: 3.5rem;
+}
+.form--signup .switch-section {
+  margin-bottom: 2rem;
+}
+.form--signup .switch-section label {
+  position: relative;
+  top: 0;
+  left: 0;
+  transform: translate(10%, 0);
+}
+
+.form-container {
+  position: relative;
+  height: 100%;
+  width: 100vw;
+  display: none;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: rgba(250, 250, 250, 0.95);
+  z-index: 1;
+}
+.form-container .form-closure-icon {
+  position: absolute;
+  height: 2rem;
+  width: 2rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  top: 5rem;
+  right: 6rem;
+}
+.form-container .form-closure-icon:hover {
+  cursor: pointer;
+  transition: color 0.5s;
 }
 
 .master-grid-container .app-flex-container {
@@ -41715,7 +41790,7 @@ html {
 .master-grid-container .logo-container .logo-text {
   transform: translateX(6.25%);
 }
-.master-grid-container .entrance-button-container {
+.master-grid-container .button-container {
   position: relative;
   height: 100%;
   width: 100%;
@@ -41739,6 +41814,14 @@ html {
   align-items: center;
   transform: rotate(0) translate(5%, 0);
   z-index: 0;
+}
+
+.closed {
+  display: none;
+}
+
+.open {
+  display: flex;
 }
 
 .master-grid-container .app-flex-container .app-viewport__display-container {
@@ -47764,7 +47847,6 @@ I was thinking of iterating through the objects that were created.
     //////////////////////////////////
     /// Glitches To Fix
 
-    GLITCH : Sub Categories For The Budget Need To Be Correct As They Were Created.  Right Now, They Are NOT.
     GLITCH : Budget Navigation Button Needs To Stay WITH The Navigation Itself.
 
 
@@ -47773,7 +47855,7 @@ I was thinking of iterating through the objects that were created.
 
     ADJUST : Re-Do Enter Transaction Form To Accommodate For Expense Timing.  This Includes The JavaScript Along With The Styling AND HTML.
     ADJUST : Re-Do Enter Transaction Form To Accommodate For Expense AND Savings Marking Transaction Item As Need Or Surplus.  This Includes The JavaScript Along With The Styling AND HTML.
-
+    ADJUST : Right now, things work fairly well with regards to the budget and such, but the main thing to adjust is the structure of the code.  Especially regarding the fact that much of the time I use similar structured items in both the budget creation form, as well as throughout the budget.  So, I would love to be able to review each part of the creation phase of the budget along with the Budget Dashboard AND each other part of the budget that has similar structures to help them to actually fit well within the JavaScript.  It is making some aspects of the structuring pugs much more difficult then I feel it should be.
 
     //////////////////////////////////
     /// Features To Implement

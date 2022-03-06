@@ -17,23 +17,13 @@ html {
       color: $primaryColor;
     }
   }
-  .entrance-button-container {
-    font-family: MADE Tommy Soft, Verdana, sans-serif;
-    .entrance-button {
-      font-size: 2.2rem;
-      color: rgba($primaryColor, 0.75);
-      &:hover {
-        color: $colorOffWhite;
-      }
-    }
-  }
   .slogan {
     font-family: MADE Tommy Soft, Verdana, sans-serif;
     font-size: 3.6rem;
     color: $primaryColor;
   }
   .form-container {
-    .form-close-icon {
+    .form-closure-icon {
       font-size: 4rem;
       color: rgba($primaryColor, 0.5);
       &:hover {
@@ -44,19 +34,6 @@ html {
     .signup-form,
     .forgotten-form,
     .reset-password-form {
-      font-family: MADE Tommy Soft, Verdana, sans-serif;
-      &__header {
-        &__title {
-          font-family: MADE Tommy Soft Bold, Verdana, sans-serif;
-          font-size: 10rem;
-          color: $primaryColor;
-          &--medium {
-            font-family: MADE Tommy Soft Bold, Verdana, sans-serif;
-            color: $primaryColor;
-            font-size: 6rem;
-          }
-        }
-      }
       &__section {
         &__input {
           font-size: 2rem;
@@ -71,20 +48,6 @@ html {
         &__label {
           font-size: 2rem;
           color: rgba($primaryColor, 0.8);
-        }
-        &__button {
-          font-size: 2.2rem;
-          color: rgba($primaryColor, 0.75);
-          &:hover {
-            color: $colorOffWhite;
-          }
-        }
-        &__forgot-username-or-password-link {
-          font-size: 1.6rem;
-          color: rgba($primaryColor, 0.8);
-          &:hover {
-            color: $primaryColor;
-          }
         }
       }
       &__form-page {
@@ -1415,6 +1378,12 @@ html {
                     font-size: 3rem;
                     color: $primaryColor;
                   }
+                  .positive {
+                    color: $secondaryColor;
+                  }
+                  .negative {
+                    color: $colorError;
+                  }
                 }
               }
               &__category-container {
@@ -1457,6 +1426,12 @@ html {
                       &__content {
                         font-size: 1.6rem;
                         color: $primaryColor;
+                      }
+                      .positive {
+                        color: $secondaryColor;
+                      }
+                      .negative {
+                        color: $colorError;
                       }
                       &__set-category-timing-button {
                         font-size: 1.2rem;
@@ -1575,6 +1550,76 @@ html {
               &:hover {
                 color: $colorOffWhite;
               }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// End of Master Grid Container
+
+// BUTTON CONTAINER
+.button-container {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+}
+
+// BUTTONS
+.button {
+  font-size: 2.2rem;
+  color: rgba($primaryColor, 0.75);
+  &:hover {
+    color: $colorOffWhite;
+  }
+  &--borderless {
+    font-size: 1.6rem;
+    &:hover {
+      color: $primaryColor;
+    }
+  }
+}
+
+// FORMS
+.form {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  &__header {
+    &__title {
+      font-family: MADE Tommy Soft Bold, Verdana, sans-serif;
+      font-size: 10rem;
+      color: $primaryColor;
+      &--medium {
+        // font-family: MADE Tommy Soft Bold, Verdana, sans-serif;
+        color: $primaryColor;
+        font-size: 6rem;
+      }
+    }
+  }
+  &__section {
+    .form__input {
+      font-size: 2rem;
+      color: rgba($primaryColor, 0.8);
+      &:focus {
+        color: $primaryColor;
+        & > label {
+          color: $primaryColor;
+        }
+      }
+    }
+    .form__label {
+      font-size: 2rem;
+      color: rgba($primaryColor, 0.8);
+    }
+  }
+  &--signup {
+    .form-page {
+      &__section {
+        .form-page__section__input-container--latter-day-saint {
+          .form-page__section__input--latter-day-saint {
+            &__text--NO,
+            &__text--YES {
+              font-size: 3rem;
+              color: $colorOffWhite;
+              text-transform: capitalize;
             }
           }
         }

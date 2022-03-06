@@ -1,40 +1,40 @@
-div.form-container.r__form-container.form-container--full-page.r__form-container--full-page.column_1-24.row_1-18
-  i.fas.fa-window-close.form-close-icon
-  form.signup-form.r__signup-form
-    header.signup-form__header.r__signup-form__header 
-      p.signup-form__header__title.r__signup-form__header__title Signup 
-    section.signup-form__form-page
-      section.signup-form__form-page__section.r__signup-form__form-page__section 
-        input.signup-form__form-page__section__input.r__signup-form__form-page__section__input#firstname(type="text" name="firstname" placeholder="FIRST NAME" required)
-        label.signup-form__form-page__section__label.r__signup-form__form-page__section__label(for="firstname") Please Provide Your First Name
-      section.signup-form__form-page__section.r__signup-form__form-page__section 
-        input.signup-form__form-page__section__input.r__signup-form__form-page__section__input#lastname(type="text" name="lastname" placeholder="LAST NAME" required)
-        label.signup-form__form-page__section__label.r__signup-form__form-page__section__label(for="lastname") Please Provide Your Last Name
-    section.signup-form__form-page
-      section.login-form__section.r__login-form__section 
-        input.login-form__section__input.r__login-form__section__input#username(type="text" name="username" placeholder="USERNAME" required)
-        label.login-form__section__label.r__login-form__section__label(for="username") What will your Username Be?
-      section.signup-form__form-page__section.r__signup-form__form-page__section.switch-section.r__switch-section 
-        label.signup-form__form-page__section__label.r__signup-form__form-page__section__label(for="latterDaySaint") Are You A Latter Day Saint?
-        .signup-form__form-page__section__input-container--latter-day-saint 
-          .signup-form__form-page__section__input--latter-day-saint
-            .signup-form__form-page__section__input--latter-day-saint__switch 
-            p.signup-form__form-page__section__input--latter-day-saint__text--NO NO
-            p.signup-form__form-page__section__input--latter-day-saint__text--YES YES
-    section.signup-form__form-page
-      section.signup-form__form-page__section.r__signup-form__form-page__section 
-        input.signup-form__form-page__section__input.r__signup-form__form-page__section__input#email(type="email" name="email" placeholder="EMAIL ADDRESS" required)
-        label.signup-form__form-page__section__label.r__signup-form__form-page__section__label(for="email") Please Provide Your Email Address
-      section.signup-form__form-page__section.r__signup-form__form-page__section 
-        input.signup-form__form-page__section__input.r__signup-form__form-page__section__input#emailConfirmed(type="email" name="emailConfirmed" placeholder="EMAIL ADDRESS" required)
-        label.signup-form__form-page__section__label.r__signup-form__form-page__section__label(for="emailConfirmed") Please Confirm Your Email Address
-    section.signup-form__form-page
-      section.signup-form__form-page__section.r__signup-form__form-page__section 
-        input.signup-form__form-page__section__input.r__signup-form__form-page__section__input#password(type="password" name="password" placeholder="PASSWORD" required)
-        label.signup-form__form-page__section__label.r__signup-form__form-page__section__label(for="password") Please Provide Your Password
-      section.signup-form__form-page__section.r__signup-form__form-page__section 
-        input.signup-form__form-page__section__input.r__signup-form__form-page__section__input#passwordConfirmed(type="password" name="passwordConfirmed" placeholder="PASSWORD" required)
-        label.signup-form__form-page__section__label.r__signup-form__form-page__section__label(for="passwordConfirmed") Please Confirm Your Password
-    section.signup-form__form-page__section.r__signup-form__form-page__section.page-section.r__page-section 
-      p.signup-form__form-page__section__page-number.page-section__page-number.r__page-section__page-number= `Page 1 / 4`
-      button.signup-form__form-page__section__button.r__signup-form__form-page__section__button(type="button") Submit
+div.form-container.r__form-container.form-container--full-page.column_1-24.row_1-18
+  i.fas.fa-window-close.form-closure-icon.r__form-closure-icon
+  form.form.r__form.form--signup.r__form--signup.signup-form.r__signup-form
+    header.form__header.r__form__header.signup-form__header.r__signup-form__header 
+      p.form__header__title.r__form__header__title.signup-form__header__title.r__signup-form__header__title Signup 
+    section.form-page.r__form-page.signup-form__form-page
+      section.form-page__section.r__form-page__section.signup-form__form-page__section.r__signup-form__form-page__section 
+        input.form-page__section__input.r__form-page__section__input.signup-form__form-page__section__input.r__signup-form__form-page__section__input#firstname(type="text" name="firstname" placeholder="FIRST NAME" required)
+        label.form-page__section__label.r__form-page__section__label.signup-form__form-page__section__label.r__signup-form__form-page__section__label(for="firstname") Please Provide Your First Name
+      section.form-page__section.r__form-page__section.signup-form__form-page__section.r__signup-form__form-page__section 
+        input.form-page__section__input.r__form-page__section__input.signup-form__form-page__section__input.r__signup-form__form-page__section__input#lastname(type="text" name="lastname" placeholder="LAST NAME" required)
+        label.form-page__section__label.r__form-page__section__label.signup-form__form-page__section__label.r__signup-form__form-page__section__label(for="lastname") Please Provide Your Last Name
+    section.form-page.r__form-page.signup-form__form-page
+      section.form-page__section.r__form-page__section.login-form__section.r__login-form__section 
+        input.form-page__section__input.r__form-page__section__input.login-form__section__input.r__login-form__section__input#username(type="text" name="username" placeholder="USERNAME" required)
+        label.form-page__section__label.r__form-page__section__label.login-form__section__label.r__login-form__section__label(for="username") What will your Username Be?
+      section.form-page__section.r__form-page__section.signup-form__form-page__section.r__signup-form__form-page__section.switch-section.r__switch-section 
+        label.form-page__section__label.r__form-page__section__labell.signup-form__form-page__section__label.r__signup-form__form-page__section__label(for="latterDaySaint") Are You A Latter Day Saint?
+        .form-page__section__input-container--latter-day-saint 
+          .form-page__section__input--latter-day-saint
+            .form-page__section__input--latter-day-saint__switch 
+            p.form-page__section__input--latter-day-saint__text--NO NO
+            p.form-page__section__input--latter-day-saint__text--YES YES
+    section.form-page.r__form-page.signup-form__form-page
+      section.form-page__section.r__form-page__section.signup-form__form-page__section.r__signup-form__form-page__section 
+        input.form-page__section__input.r__form-page__section__input.signup-form__form-page__section__input.r__signup-form__form-page__section__input#email(type="email" name="email" placeholder="EMAIL ADDRESS" required)
+        label.form-page__section__label.r__form-page__section__label.signup-form__form-page__section__label.r__signup-form__form-page__section__label(for="email") Please Provide Your Email Address
+      section.form-page__section.r__form-page__section.signup-form__form-page__section.r__signup-form__form-page__section 
+        input.form-page__section__input.r__form-page__section__input.signup-form__form-page__section__input.r__signup-form__form-page__section__input#emailConfirmed(type="email" name="emailConfirmed" placeholder="EMAIL ADDRESS" required)
+        label.form-page__section__label.r__form-page__section__label.signup-form__form-page__section__label.r__signup-form__form-page__section__label(for="emailConfirmed") Please Confirm Your Email Address
+    section.form-page.r__form-page.signup-form__form-page
+      section.form-page__section.r__form-page__section.signup-form__form-page__section.r__signup-form__form-page__section 
+        input.form-page__section__input.r__form-page__section__input.signup-form__form-page__section__input.r__signup-form__form-page__section__input#password(type="password" name="password" placeholder="PASSWORD" required)
+        label.form-page__section__label.r__form-page__section__label.signup-form__form-page__section__label.r__signup-form__form-page__section__label(for="password") Please Provide Your Password
+      section.form-page__section.r__form-page__section.signup-form__form-page__section.r__signup-form__form-page__section 
+        input.form-page__section__input.r__form-page__section__input.signup-form__form-page__section__input.r__signup-form__form-page__section__input#passwordConfirmed(type="password" name="passwordConfirmed" placeholder="PASSWORD" required)
+        label.form-page__section__label.r__form-page__section__label.signup-form__form-page__section__label.r__signup-form__form-page__section__label(for="passwordConfirmed") Please Confirm Your Password
+    section.form__section.r__form__section.form--signup__section.r__form--signup__section.signup-form__form-page__section.r__signup-form__form-page__section.page-section.r__page-section 
+      p.form--signup__section__page-number.r__form--signup__section__page-number.signup-form__form-page__section__page-number.page-section__page-number.r__page-section__page-number= `Page 1 / 4`
+      button.button.r__button.button--small.r__button--small(type="button") Submit

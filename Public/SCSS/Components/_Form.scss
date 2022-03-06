@@ -5,8 +5,6 @@
 //  Master Grid Container
 .master-grid-container {
   .form-container {
-    @include SizeAndPositioning(relative, 100%, 100vw, none, row, nowrap, center, center, 0, 0, 0);
-    background-color: rgba($colorOffWhite, 0.95);
     &--full-page {
       &:nth-of-type(6) {
         display: flex;
@@ -25,51 +23,43 @@
       .signup-form,
       .forgotten-form,
       .reset-password-form {
-        @include SizeAndPositioning(relative, 100%, 50%, flex, column, nowrap, center, center, 0, 0, 0);
-        &__header {
-          margin-bottom: 3rem;
-        }
         &__section {
-          @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
-          &:not(:last-of-type) {
-            margin-bottom: 3.5rem;
-          }
-          &__input {
-            @include SizeAndPositioning(relative, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, 0, 0);
-            padding: 1rem;
-            padding-left: 2rem;
-            background-color: rgba($colorLightestGrey, 0.125);
-            border: 0.3rem solid rgba($primaryColor, 0.75);
-            border-radius: 0.75rem;
-            &::-webkit-input-placeholder,
-            &::-moz-placeholder,
-            &::placeholder {
-              opacity: 0;
-            }
-            &:focus {
-              outline: none;
-              &::-moz-placeholder,
-              &::placeholder {
-                opacity: 1;
-              }
-            }
-            &:focus {
-              &::-webkit-input-placeholder {
-                opacity: 1;
-              }
-            }
-            &:not(:placeholder-shown) + label,
-            &:focus + label {
-              transform: translate(-5.5rem, -7rem) scale(0.75);
-            }
-          }
-          &__label {
-            @include SizeAndPositioning(absolute, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, -50%, 0);
-            top: 50%;
-            left: calc(30% + 2rem);
-            -moz-transform: translateY(-50%);
-            transition: transform 0.5s;
-          }
+          // &__input {
+          //   @include SizeAndPositioning(relative, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+          //   padding: 1rem;
+          //   padding-left: 2rem;
+          //   background-color: rgba($colorLightestGrey, 0.125);
+          //   border: 0.3rem solid rgba($primaryColor, 0.75);
+          //   border-radius: 0.75rem;
+          //   &::-webkit-input-placeholder,
+          //   &::-moz-placeholder,
+          //   &::placeholder {
+          //     opacity: 0;
+          //   }
+          //   &:focus {
+          //     outline: none;
+          //     &::-moz-placeholder,
+          //     &::placeholder {
+          //       opacity: 1;
+          //     }
+          //   }
+          //   &:focus {
+          //     &::-webkit-input-placeholder {
+          //       opacity: 1;
+          //     }
+          //   }
+          //   &:not(:placeholder-shown) + label,
+          //   &:focus + label {
+          //     transform: translate(-5.5rem, -7rem) scale(0.75);
+          //   }
+          // }
+          // &__label {
+          //   @include SizeAndPositioning(absolute, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, -50%, 0);
+          //   top: 50%;
+          //   left: calc(30% + 2rem);
+          //   -moz-transform: translateY(-50%);
+          //   transition: transform 0.5s;
+          // }
           &__forgot-username-or-password-link {
             margin-top: 0.75rem;
             &:hover {
@@ -78,42 +68,40 @@
           }
         }
         &__form-page {
-          @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
-          margin: 0 0 1rem;
           &__section {
-            @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
-            &:not(:last-of-type) {
-              margin-bottom: 3.5rem;
-            }
+            // @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+            // &:not(:last-of-type) {
+            //   margin-bottom: 3.5rem;
+            // }
             &__input {
-              @include SizeAndPositioning(relative, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, 0, 0);
-              padding: 1rem;
-              padding-left: 2rem;
-              background-color: rgba($colorLightestGrey, 0.125);
-              border: 0.3rem solid rgba($primaryColor, 0.75);
-              border-radius: 0.75rem;
-              &::-webkit-input-placeholder,
-              &::-moz-placeholder,
-              &::placeholder {
-                opacity: 0;
-              }
-              &:focus {
-                &::-webkit-input-placeholder {
-                  opacity: 1;
-                }
-              }
-              &:focus {
-                outline: none;
-                &::-webkit-input-placeholder,
-                &::-moz-placeholder,
-                &::placeholder {
-                  opacity: 1;
-                }
-              }
-              &:not(:placeholder-shown) + label,
-              &:focus + label {
-                transform: translate(-5.5rem, -7rem) scale(0.75);
-              }
+              // @include SizeAndPositioning(relative, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+              // padding: 1rem;
+              // padding-left: 2rem;
+              // background-color: rgba($colorLightestGrey, 0.125);
+              // border: 0.3rem solid rgba($primaryColor, 0.75);
+              // border-radius: 0.75rem;
+              // &::-webkit-input-placeholder,
+              // &::-moz-placeholder,
+              // &::placeholder {
+              //   opacity: 0;
+              // }
+              // &:focus {
+              //   &::-webkit-input-placeholder {
+              //     opacity: 1;
+              //   }
+              // }
+              // &:focus {
+              //   outline: none;
+              //   &::-webkit-input-placeholder,
+              //   &::-moz-placeholder,
+              //   &::placeholder {
+              //     opacity: 1;
+              //   }
+              // }
+              // &:not(:placeholder-shown) + label,
+              // &:focus + label {
+              //   transform: translate(-5.5rem, -7rem) scale(0.75);
+              // }
             }
             &__label {
               @include SizeAndPositioning(absolute, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, -50%, 0);
@@ -1591,6 +1579,173 @@
           }
         }
       }
+    }
+  }
+}
+// End of Master Grid Container
+
+///////////////////////////////////
+// FORM COMPONENTS
+.form {
+  @include SizeAndPositioning(relative, 100%, 50%, flex, column, nowrap, center, center, 0, 0, 0);
+  &__header {
+    margin-bottom: 3rem;
+  }
+  &__section {
+    @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+    &:not(:last-of-type) {
+      margin-bottom: 3.5rem;
+    }
+    .form__input {
+      @include SizeAndPositioning(relative, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+      padding: 1rem;
+      padding-left: 2rem;
+      background-color: rgba($colorLightestGrey, 0.125);
+      border: 0.3rem solid rgba($primaryColor, 0.75);
+      border-radius: 0.75rem;
+      &::-webkit-input-placeholder,
+      &::-moz-placeholder,
+      &::placeholder {
+        opacity: 0;
+      }
+      &:focus {
+        &::-webkit-input-placeholder {
+          opacity: 1;
+        }
+      }
+      &:focus {
+        outline: none;
+        &::-webkit-input-placeholder,
+        &::-moz-placeholder,
+        &::placeholder {
+          opacity: 1;
+        }
+      }
+      &:not(:placeholder-shown) + label,
+      &:focus + label {
+        transform: translate(-5.5rem, -7rem) scale(0.75);
+      }
+    }
+    .form__label {
+      @include SizeAndPositioning(absolute, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, -50%, 0);
+      top: 50%;
+      left: calc(30% + 2rem);
+      -moz-transform: translateY(-50%);
+      transition: transform 0.5s;
+    }
+  }
+  &--signup {
+    .form-page {
+      @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+      margin: 0 0 1rem;
+      &__section {
+        @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+        &:not(:last-of-type) {
+          margin-bottom: 3.5rem;
+        }
+        &__input {
+          @include SizeAndPositioning(relative, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+          padding: 1rem;
+          padding-left: 2rem;
+          background-color: rgba($colorLightestGrey, 0.125);
+          border: 0.3rem solid rgba($primaryColor, 0.75);
+          border-radius: 0.75rem;
+          &::-webkit-input-placeholder,
+          &::-moz-placeholder,
+          &::placeholder {
+            opacity: 0;
+          }
+          &:focus {
+            &::-webkit-input-placeholder {
+              opacity: 1;
+            }
+          }
+          &:focus {
+            outline: none;
+            &::-webkit-input-placeholder,
+            &::-moz-placeholder,
+            &::placeholder {
+              opacity: 1;
+            }
+          }
+          &:not(:placeholder-shown) + label,
+          &:focus + label {
+            transform: translate(-5.5rem, -7rem) scale(0.75);
+          }
+        }
+        &__label {
+          @include SizeAndPositioning(absolute, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, -50%, 0);
+          top: 50%;
+          left: calc(30% + 2rem);
+          -moz-transform: translateY(-50%);
+          transition: transform 0.5s;
+        }
+        .form-page__section__input-container--latter-day-saint {
+          @include SizeAndPositioning(relative, 7rem, 20%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+          .form-page__section__input--latter-day-saint {
+            @include SizeAndPositioning(relative, 95%, 100%, flex, row, nowrap, center, center, -15%, 0, 0);
+            background-color: rgba($primaryColorLight, 0.8);
+            border: 0.3rem solid rgba($primaryColor, 0.8);
+            border-radius: 5rem;
+            padding: 0.25rem;
+            transition: background-color 0.5s, border 0.5s;
+            &__switch {
+              @include SizeAndPositioning(absolute, 84%, 30%, flex, row, nowrap, center, center, 0, -50%, 0);
+              top: 50%;
+              left: 2.75%;
+              background-color: rgba($primaryColorDark, 0.8);
+              border-radius: 5rem;
+              transition: background-color 0.5s, transform 0.5s, width 0.25s;
+            }
+            &__text--NO {
+              @include SizeAndPositioning(relative, 100%, 70%, flex, row, nowrap, center, center, 0, 0, 0);
+            }
+            &__text--YES {
+              @include SizeAndPositioning(relative, 100%, 70%, none, row, nowrap, center, center, 0, 0, 0);
+            }
+            &:hover {
+              cursor: pointer;
+            }
+            &--switched {
+              border: 0.3rem solid $secondaryColorDark;
+              background-color: $secondaryColorLight;
+              padding: 0.25rem;
+              .form-page__section__input--latter-day-saint__switch {
+                width: 94%;
+                background-color: $secondaryColorDark;
+                // transform: translate(215%, -49%);
+                transform: translate(0, -49%);
+              }
+              .form-page__section__input--latter-day-saint__text--NO {
+                display: none;
+              }
+              .form-page__section__input--latter-day-saint__text--YES {
+                display: flex;
+              }
+            }
+          }
+        }
+      }
+    }
+    &__section,
+    .switch-section {
+      flex-direction: row;
+      justify-content: center;
+      &__page-number {
+        margin-right: 9rem;
+      }
+    }
+    &__section {
+      margin-top: 3.5rem;
+    }
+    .switch-section {
+      label {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: translate(10%, 0);
+      }
+      margin-bottom: 2rem;
     }
   }
 }

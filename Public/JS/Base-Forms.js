@@ -4,7 +4,7 @@ import * as Signup from './Signup';
 //////////////////////////////
 // Actually Close The Form
 const _closeTheForm = (index, page, pageElement, form) => {
-  form[index].classList.toggle('form-container--open');
+  form[index].classList.toggle('open');
   if (pageElement) {
     pageElement.textContent = `Page ${page + 1} / 4`;
   }
@@ -13,7 +13,7 @@ const _closeTheForm = (index, page, pageElement, form) => {
 //////////////////////////////
 // Watch Form Closing Buttons
 export const _watchFormClosers = (pageElement, page, form) => {
-  const formClosers = document.querySelectorAll('.form-close-icon');
+  const formClosers = document.querySelectorAll('.form-closure-icon');
   page = 0;
   formClosers.forEach((fc, i) => {
     fc.addEventListener('click', (e) => {
@@ -27,7 +27,8 @@ const getLoggedIn = () => {
   event.preventDefault();
   const loginUsername = document.getElementById('loginUsername').value;
   const loginPassword = document.getElementById('loginPassword').value;
-  const loginSubmit = document.querySelector('.login-form__section__button');
+  const buttons = document.querySelectorAll('.button');
+  const loginSubmit = buttons[2];
   loginSubmit.removeEventListener('click', getLoggedIn);
   console.log(`Listener Stopped.`);
   Login.login(loginUsername, loginPassword);
@@ -36,20 +37,20 @@ const getLoggedIn = () => {
 export const _watchEntranceButtons = (person, form, formPage) => {
   //////////////////////////////
   // Initialize Entrance Buttons.
-  const forgottenUsernameOrPasswordLink = document.querySelector('.login-form__section__forgot-username-or-password-link');
-  const entranceButtons = [...document.querySelectorAll('.entrance-button'), forgottenUsernameOrPasswordLink];
+  const buttons = document.querySelectorAll('.button');
+  const entranceButtons = [buttons[0], buttons[1], buttons[3]];
   entranceButtons.forEach((eb, i) => {
     if (eb) {
       eb.addEventListener('click', (e) => {
         e.preventDefault();
         //////////////////////////////////////////////////////////////
         // OPEN UP THE SELECTED FORM
-        form[i].classList.toggle('form-container--open');
+        form[i].classList.toggle('open');
 
         //////////////////////////////////////////////////////////////
         // OPEN UP THE SELECTED FORM
         if (i === 0) {
-          const loginSubmit = document.querySelector('.login-form__section__button');
+          const loginSubmit = buttons[2];
           loginSubmit.addEventListener('click', getLoggedIn);
           console.log(`Listener Started.`);
         }
@@ -57,7 +58,7 @@ export const _watchEntranceButtons = (person, form, formPage) => {
         //////////////////////////////////////////////////////////////
         // SETUP THE SIGNUP FORM IF IT IS THE SELECTED FORM
         if (i === 1) {
-          const formPages = document.querySelectorAll('.signup-form__form-page');
+          const formPages = document.querySelectorAll('.form-page');
           Signup._setupSignupForm(formPage, formPages, person);
         }
       });
