@@ -4416,7 +4416,7 @@ var _watchUserProfileButtons = function _watchUserProfileButtons() {
   var userProfileHeader = document.querySelector('.user-profile-container__header__text');
   var userProfileContainer = document.querySelector('.user-profile-container');
   var userProfileContainerClose = document.querySelector('.user-profile-container__close');
-  var userProfileButtons = document.querySelectorAll('.app-navigation__main__navigation-links__link-container__link--link');
+  var userProfileButtons = document.querySelectorAll('.application-navigation__section--account-links__link-container__link--link');
   var latterDaySaintSwitch = document.querySelector('.user-profile-form__section__input--latter-day-saint');
 
   if (userProfileButtons[0]) {
@@ -4494,7 +4494,7 @@ var _watchUserProfileButtons = function _watchUserProfileButtons() {
 };
 
 var checkLoginStatus = function checkLoginStatus(login, checkElement) {
-  var appViewport = document.querySelector('.app-viewport');
+  var appViewport = document.querySelector('.application-viewport');
 
   if (appViewport) {
     return login = !login;

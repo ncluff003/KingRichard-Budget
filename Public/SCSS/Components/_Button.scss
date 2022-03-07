@@ -41,7 +41,7 @@
       }
     }
   }
-  .app-flex-container {
+  .application-flex-container {
     .app-navigation__main {
       &__user-information {
         &__update-picture {
@@ -61,7 +61,7 @@
         }
       }
     }
-    .app-viewport {
+    .application-viewport {
       &__display-container {
         .user-profile-container {
           // USER PROFILE FORM CONTAINER
@@ -556,6 +556,18 @@
     background-color: $primaryColor;
     border: 0.3rem solid $primaryColor;
     transition: background-color 0.5s, border 0.5s, color 0.5s;
+  }
+  &--extra-small {
+    @include SizeAndPositioning(relative, 7.5%, 40%, flex, row, nowrap, center, center, 0, 0, 0);
+    background-color: transparent;
+    border: none;
+    &--icon {
+      margin-right: 1rem;
+    }
+    &:hover {
+      background-color: transparent;
+      border: none;
+    }
   }
   &--small {
     width: 20%;

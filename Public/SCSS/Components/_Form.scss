@@ -24,42 +24,6 @@
       .forgotten-form,
       .reset-password-form {
         &__section {
-          // &__input {
-          //   @include SizeAndPositioning(relative, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, 0, 0);
-          //   padding: 1rem;
-          //   padding-left: 2rem;
-          //   background-color: rgba($colorLightestGrey, 0.125);
-          //   border: 0.3rem solid rgba($primaryColor, 0.75);
-          //   border-radius: 0.75rem;
-          //   &::-webkit-input-placeholder,
-          //   &::-moz-placeholder,
-          //   &::placeholder {
-          //     opacity: 0;
-          //   }
-          //   &:focus {
-          //     outline: none;
-          //     &::-moz-placeholder,
-          //     &::placeholder {
-          //       opacity: 1;
-          //     }
-          //   }
-          //   &:focus {
-          //     &::-webkit-input-placeholder {
-          //       opacity: 1;
-          //     }
-          //   }
-          //   &:not(:placeholder-shown) + label,
-          //   &:focus + label {
-          //     transform: translate(-5.5rem, -7rem) scale(0.75);
-          //   }
-          // }
-          // &__label {
-          //   @include SizeAndPositioning(absolute, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, -50%, 0);
-          //   top: 50%;
-          //   left: calc(30% + 2rem);
-          //   -moz-transform: translateY(-50%);
-          //   transition: transform 0.5s;
-          // }
           &__forgot-username-or-password-link {
             margin-top: 0.75rem;
             &:hover {
@@ -69,40 +33,6 @@
         }
         &__form-page {
           &__section {
-            // @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
-            // &:not(:last-of-type) {
-            //   margin-bottom: 3.5rem;
-            // }
-            &__input {
-              // @include SizeAndPositioning(relative, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, 0, 0);
-              // padding: 1rem;
-              // padding-left: 2rem;
-              // background-color: rgba($colorLightestGrey, 0.125);
-              // border: 0.3rem solid rgba($primaryColor, 0.75);
-              // border-radius: 0.75rem;
-              // &::-webkit-input-placeholder,
-              // &::-moz-placeholder,
-              // &::placeholder {
-              //   opacity: 0;
-              // }
-              // &:focus {
-              //   &::-webkit-input-placeholder {
-              //     opacity: 1;
-              //   }
-              // }
-              // &:focus {
-              //   outline: none;
-              //   &::-webkit-input-placeholder,
-              //   &::-moz-placeholder,
-              //   &::placeholder {
-              //     opacity: 1;
-              //   }
-              // }
-              // &:not(:placeholder-shown) + label,
-              // &:focus + label {
-              //   transform: translate(-5.5rem, -7rem) scale(0.75);
-              // }
-            }
             &__label {
               @include SizeAndPositioning(absolute, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, -50%, 0);
               top: 50%;
@@ -186,9 +116,9 @@
       display: flex;
     }
   }
-  .app-flex-container {
-    .app-viewport {
-      &__display-container {
+  .application-flex-container {
+    .application-viewport {
+      .application-display {
         .user-profile-container {
           // USER PROFILE FORM CONTAINER
           &__form-container {
@@ -1634,6 +1564,8 @@
       transition: transform 0.5s;
     }
   }
+
+  // SIGNUP FORM UNIQUE ASPECTS
   &--signup {
     .form-page {
       @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);

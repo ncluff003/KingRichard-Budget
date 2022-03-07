@@ -4,8 +4,8 @@
 ////////////////////////////////////////////////
 //  Master Grid Container
 .master-grid-container {
-  .app-flex-container {
-    .app-viewport.r__app-viewport {
+  .application-flex-container {
+    .application-viewport {
       .budget-container {
         @include SizeAndPositioning(relative, 100%, 100%, flex, row, wrap, space-evenly, center, 0, 0, 0);
         overflow-y: auto;

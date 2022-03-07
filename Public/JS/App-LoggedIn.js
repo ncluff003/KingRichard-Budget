@@ -139,7 +139,7 @@ export const _watchUserProfileButtons = () => {
   const userProfileHeader = document.querySelector('.user-profile-container__header__text');
   const userProfileContainer = document.querySelector('.user-profile-container');
   const userProfileContainerClose = document.querySelector('.user-profile-container__close');
-  const userProfileButtons = document.querySelectorAll('.app-navigation__main__navigation-links__link-container__link--link');
+  const userProfileButtons = document.querySelectorAll('.application-navigation__section--account-links__link-container__link--link');
   const latterDaySaintSwitch = document.querySelector('.user-profile-form__section__input--latter-day-saint');
   if (userProfileButtons[0]) {
     userProfileButtons.forEach((pb, i) => {
@@ -185,7 +185,7 @@ export const _watchUserProfileButtons = () => {
 };
 
 const checkLoginStatus = (login, checkElement) => {
-  const appViewport = document.querySelector('.app-viewport');
+  const appViewport = document.querySelector('.application-viewport');
   if (appViewport) {
     return (login = !login);
   }

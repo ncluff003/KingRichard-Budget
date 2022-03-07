@@ -2,58 +2,60 @@
 @use '../../../Public/SCSS/Utilities/Variables' as *;
 
 ////////////////////////////////////////////////
-//  Master Grid Container
-.master-grid-container {
-  .app-flex-container {
-    .app-navigation__main {
-      @include SizeAndPositioning(relative, 100%, 20%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
-      background-color: rgba($primaryColor, 0.95);
-      border-right: 0.5rem groove $tertiaryColor;
-      &__user-information {
-        @include SizeAndPositioning(relative, 35%, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
-        &__profile-picture-container {
-          @include SizeAndPositioning(relative, 74%, 60%, flex, row, nowrap, center, center, 0, 0, 0);
-          border-radius: 50%;
-          margin-bottom: 1rem;
-          &__picture {
-            @include SizingItem(relative, 100%, auto);
-          }
-        }
-      }
-      &__navigation-links {
-        @include SizeAndPositioning(relative, 30%, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
-        &__link-container {
-          @include SizeAndPositioning(relative, 100%, 100%, flex, column, nowrap, center, center, 0, 0, 0);
-          &__link {
-            @include SizeAndPositioning(relative, 20%, 80%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
-            &:not(:last-of-type) {
-              margin-bottom: 1.5rem;
-            }
-            &--link {
-              @include SizeAndPositioning(relative, 100%, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
-              border: 0.3rem solid $colorOffWhite;
-              border-radius: 1.25rem;
-              background-color: transparent;
-              &:hover {
-                cursor: pointer;
-                background-color: $secondaryColor;
-                transition: color 0.5s, background-color 0.5s;
-              }
-              &:active {
-                background-color: $tertiaryColor;
-              }
-            }
-          }
-        }
-      }
-      &__logo-container {
-        @include SizeAndPositioning(relative, 20%, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
-        &__logo {
-          @include SizingItem(relative, 80%, auto);
-          margin-bottom: 1rem;
-          transform: translateX(-15%);
+//  APPLICATION NAVIGATION
+.application-navigation {
+  @include SizeAndPositioning(relative, 100%, 20%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+  background-color: rgba($primaryColor, 0.95);
+  border-right: 0.5rem groove $tertiaryColor;
+  &__section {
+    @include SizeAndPositioning(relative, 30%, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+    &--user-information {
+      height: 35%;
+      &__profile-picture-container {
+        @include SizeAndPositioning(relative, 74%, 60%, flex, row, nowrap, center, center, 0, 0, 0);
+        border-radius: 50%;
+        margin-bottom: 1rem;
+        &__picture {
+          @include SizingItem(relative, 100%, auto);
         }
       }
     }
+    &--account-links {
+      &__link-container {
+        @include SizeAndPositioning(relative, 100%, 100%, flex, column, nowrap, center, center, 0, 0, 0);
+        &__link {
+          @include SizeAndPositioning(relative, 20%, 80%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
+          &:not(:last-of-type) {
+            margin-bottom: 1.5rem;
+          }
+          &--link {
+            @include SizeAndPositioning(relative, 100%, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
+            border: 0.3rem solid $colorOffWhite;
+            border-radius: 1.25rem;
+            background-color: transparent;
+            &:hover {
+              cursor: pointer;
+              background-color: $secondaryColor;
+              transition: color 0.5s, background-color 0.5s;
+            }
+            &:active {
+              background-color: $tertiaryColor;
+            }
+          }
+        }
+      }
+    }
+    &--application-logo {
+      height: 20%;
+      &__logo {
+        @include SizingItem(relative, 80%, auto);
+        margin-bottom: 1rem;
+        transform: translateX(-15%);
+      }
+    }
+  }
+  &__navigation-links {
+  }
+  &__logo-container {
   }
 }

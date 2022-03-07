@@ -1,0 +1,10 @@
+@use '../../../Public/SCSS/Utilities/Mixins' as *;
+@use '../../../Public/SCSS/Utilities/Variables' as *;
+
+.application-display {
+  @include SizeAndPositioning(absolute, 100%, 100%, grid, row, nowrap, center, center, 0, 0, 0);
+  @include gridLayout(100%, 100%, repeat(20, 1fr), repeat(16, 1fr), 0, 0);
+  @include gridPlacement(20, 20, 16, 16);
+  background-color: rgba($colorOffWhite, 0.9);
+  overflow-y: auto;
+}

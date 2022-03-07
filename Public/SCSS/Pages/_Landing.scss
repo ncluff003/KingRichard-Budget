@@ -2,28 +2,26 @@
 @use '../../../Public/SCSS/Utilities/Variables' as *;
 
 ////////////////////////////////////////////////
-//  Master Grid Container
-.master-grid-container {
-  .logo-container {
-    @include SizeAndPositioning(relative, 100%, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
-    z-index: 0;
-    .logo-image {
-      @include SizingItem(relative, 85%, auto);
-      margin-bottom: 3rem;
-    }
-    .logo-text {
-      transform: translateX(6.25%);
-    }
+//  LANDING PAGE STYLES
+.logo-container {
+  @include SizeAndPositioning(relative, 100%, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+  z-index: 0;
+  .logo-image {
+    @include SizingItem(relative, 85%, auto);
+    margin-bottom: 3rem;
   }
-  .button-container {
-    @include SizeAndPositioning(relative, 100%, 100%, flex, row, nowrap, space-evenly, center, 0, 2rem, 0);
-    -moz-transform: translateY(0);
-    z-index: 0;
+  .logo-text {
+    transform: translateX(6.25%);
   }
-  .slogan {
-    @include SizeAndPositioning(relative, 100%, 100%, flex, row, nowrap, center, center, 5%, 0, 0);
-    z-index: 0;
-  }
+}
+.button-container {
+  @include SizeAndPositioning(relative, 100%, 100%, flex, row, nowrap, space-evenly, center, 0, 2rem, 0);
+  -moz-transform: translateY(0);
+  z-index: 0;
+}
+.slogan {
+  @include SizeAndPositioning(relative, 100%, 100%, flex, row, nowrap, center, center, 5%, 0, 0);
+  z-index: 0;
 }
 
 .closed {
