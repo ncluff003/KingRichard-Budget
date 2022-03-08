@@ -45,7 +45,9 @@ export const _watchEntranceButtons = (person, form, formPage) => {
         e.preventDefault();
         //////////////////////////////////////////////////////////////
         // OPEN UP THE SELECTED FORM
-        form[i].classList.toggle('open');
+        if (form[i] !== undefined) {
+          form[i].classList.toggle('open');
+        }
 
         //////////////////////////////////////////////////////////////
         // OPEN UP THE SELECTED FORM

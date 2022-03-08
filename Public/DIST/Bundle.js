@@ -4255,7 +4255,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var commPreference;
 var latterDaySaint = false; // const _getUserInfo = () => {
 //   getSomePersonals();
 //   latterDaySaint = user.latterDaySaint;
@@ -4312,8 +4311,9 @@ var formatPhoneNumber = function formatPhoneNumber(value, number) {
 };
 
 var _watchPhoneNumberInputs = function _watchPhoneNumberInputs(number) {
-  var userProfileInputs = document.querySelectorAll('.user-profile-form__section__input');
-  var userProfileSubInputs = document.querySelectorAll('.user-profile-form__section__sub-section__input');
+  var userProfileInputs = document.querySelectorAll('.form__section__input');
+  var userProfileSubInputs = document.querySelectorAll('.form--user-profile__section__sub-section__input');
+  console.log(userProfileInputs, userProfileSubInputs);
   formatPhoneNumber(userProfileInputs[4].value);
   userProfileSubInputs[2].addEventListener('keyup', function (e) {
     userProfileSubInputs[2].value = formatPhoneNumber(userProfileSubInputs[2].value, number);
@@ -4324,20 +4324,22 @@ var _watchPhoneNumberInputs = function _watchPhoneNumberInputs(number) {
 };
 
 var _togglePasswordSubSections = function _togglePasswordSubSections() {
-  var userProfileSubSections = document.querySelectorAll('.user-profile-form__section__sub-section');
+  var userProfileSubSections = document.querySelectorAll('.form--user-profile__section__sub-section');
 
-  _openSubSections(userProfileSubSections[4], 'user-profile-form__section__sub-section--show');
+  _openSubSections(userProfileSubSections[4], 'form--user-profile__section__sub-section--show');
 
-  _openSubSections(userProfileSubSections[5], 'user-profile-form__section__sub-section--show');
+  _openSubSections(userProfileSubSections[5], 'form--user-profile__section__sub-section--show');
 
-  _openSubSections(userProfileSubSections[6], 'user-profile-form__section__sub-section--show');
+  _openSubSections(userProfileSubSections[6], 'form--user-profile__section__sub-section--show');
 
-  _openSubSections(userProfileSubSections[7], 'user-profile-form__section__sub-section--show');
+  _openSubSections(userProfileSubSections[7], 'form--user-profile__section__sub-section--show');
 };
 
 var _watchPasswordSubSectionButtons = function _watchPasswordSubSectionButtons() {
   var userProfilePasswordSubSectionButtons = document.querySelectorAll('.user-profile-form__section__button__password-button');
-  userProfilePasswordSubSectionButtons[0].addEventListener('click', function (e) {
+  var transparentButtons = document.querySelectorAll('.button--small-transparent');
+  console.log(transparentButtons);
+  transparentButtons[1].addEventListener('click', function (e) {
     e.preventDefault();
 
     _togglePasswordSubSections();
@@ -4349,26 +4351,26 @@ var _openSubSections = function _openSubSections(subSection, className) {
 };
 
 var _watchSubSectionButtons = function _watchSubSectionButtons() {
-  var userProfileSubSections = document.querySelectorAll('.user-profile-form__section__sub-section');
-  var userProfileFormSectionButtons = document.querySelectorAll('.user-profile-form__section__button');
+  var userProfileSubSections = document.querySelectorAll('.form--user-profile__section__sub-section');
+  var userProfileFormSectionButtons = document.querySelectorAll('.button--borderless-narrow');
   userProfileFormSectionButtons.forEach(function (button, i) {
     button.addEventListener('click', function (e) {
       e.preventDefault();
 
       if (i === 0) {
-        _openSubSections(userProfileSubSections[0], 'user-profile-form__section__sub-section--show');
+        _openSubSections(userProfileSubSections[0], 'form--user-profile__section__sub-section--show');
 
-        _openSubSections(userProfileSubSections[1], 'user-profile-form__section__sub-section--show');
+        _openSubSections(userProfileSubSections[1], 'form--user-profile__section__sub-section--show');
 
-        button.classList.toggle('user-profile-form__section__button--clicked');
+        button.classList.toggle('button--borderless-narrow--clicked');
       }
 
       if (i === 1) {
-        _openSubSections(userProfileSubSections[2], 'user-profile-form__section__sub-section--show');
+        _openSubSections(userProfileSubSections[2], 'form--user-profile__section__sub-section--show');
 
-        _openSubSections(userProfileSubSections[3], 'user-profile-form__section__sub-section--show');
+        _openSubSections(userProfileSubSections[3], 'form--user-profile__section__sub-section--show');
 
-        button.classList.toggle('user-profile-form__section__button--clicked');
+        button.classList.toggle('button--borderless-narrow--clicked');
       }
     });
   });
@@ -4376,8 +4378,6 @@ var _watchSubSectionButtons = function _watchSubSectionButtons() {
 // ALL ABOUT WATCHING COMMUNICATION PREFERENCES
 
 var _changeCommPreference = function _changeCommPreference() {
-  console.log(commPreference);
-
   if (commPreference === "Email") {
     return commPreference = "Text";
   } else {
@@ -4388,11 +4388,9 @@ var _changeCommPreference = function _changeCommPreference() {
 var _watchCommPreference = function _watchCommPreference(communicationSwitch) {
   if (communicationSwitch) {
     communicationSwitch.addEventListener('click', function (e) {
-      communicationSwitch.classList.toggle('user-profile-form__section__comm-switch--text-preferred');
+      communicationSwitch.classList.toggle('switch--comms--text-preferred');
 
       _changeCommPreference();
-
-      console.log(commPreference);
     });
   }
 }; ////////////////////////////////////////////
@@ -4400,8 +4398,8 @@ var _watchCommPreference = function _watchCommPreference(communicationSwitch) {
 
 var _watchLatterDaySaintSwitch = function _watchLatterDaySaintSwitch(ldsSwitch) {
   ldsSwitch.addEventListener('click', function (e) {
-    ldsSwitch.classList.toggle('user-profile-form__section__input--latter-day-saint--switched');
-    ldsSwitch.classList.toggle('r__user-profile-form__section__input--latter-day-saint--switched');
+    ldsSwitch.classList.toggle('switch--latter-day-saint--switched');
+    ldsSwitch.classList.toggle('r__switch--latter-day-saint--switched');
   });
 };
 
@@ -4411,13 +4409,13 @@ var _showProfileForm = function _showProfileForm(forms, index) {
   });
   forms[index].style.display = 'flex';
 };
-var _watchUserProfileButtons = function _watchUserProfileButtons() {
-  var userProfileForms = document.querySelectorAll('.user-profile-form');
-  var userProfileHeader = document.querySelector('.user-profile-container__header__text');
-  var userProfileContainer = document.querySelector('.user-profile-container');
-  var userProfileContainerClose = document.querySelector('.user-profile-container__close');
+var _watchUserProfileButtons = function _watchUserProfileButtons(communicationPreference) {
+  var userProfileForms = document.querySelectorAll('.form--user-profile');
+  var userProfileHeader = document.querySelector('.user-profile-section__header__text');
+  var userProfileContainer = document.querySelector('.user-profile-section');
+  var userProfileContainerClose = document.querySelector('.user-profile-closure-icon');
   var userProfileButtons = document.querySelectorAll('.application-navigation__section--account-links__link-container__link--link');
-  var latterDaySaintSwitch = document.querySelector('.user-profile-form__section__input--latter-day-saint');
+  var latterDaySaintSwitch = document.querySelector('.switch--latter-day-saint');
 
   if (userProfileButtons[0]) {
     userProfileButtons.forEach(function (pb, i) {
@@ -4435,9 +4433,9 @@ var _watchUserProfileButtons = function _watchUserProfileButtons() {
                   _showProfileForm(userProfileForms, i);
 
                   if (i === 0) {
-                    userProfileContainer.classList.add('user-profile-container--open');
+                    userProfileContainer.classList.add('user-profile-section--open');
                     userProfileContainerClose.addEventListener('click', function (e) {
-                      userProfileContainer.classList.remove('user-profile-container--open');
+                      userProfileContainer.classList.remove('user-profile-section--open');
                     });
 
                     _watchLatterDaySaintSwitch(latterDaySaintSwitch);
@@ -4448,9 +4446,9 @@ var _watchUserProfileButtons = function _watchUserProfileButtons() {
                     break;
                   }
 
-                  userProfileContainer.classList.add('user-profile-container--open');
+                  userProfileContainer.classList.add('user-profile-section--open');
                   userProfileContainerClose.addEventListener('click', function (e) {
-                    userProfileContainer.classList.remove('user-profile-container--open');
+                    userProfileContainer.classList.remove('user-profile-section--open');
                   }); /////////////////////////////////
                   // GET COMMUNICATION PREFERENCE
 
@@ -4460,20 +4458,20 @@ var _watchUserProfileButtons = function _watchUserProfileButtons() {
                 case 10:
                   userInfo = _context2.sent;
                   user = userInfo.data.data.user;
-                  commPreference = user.communicationPreference;
+                  communicationPreference = user.communicationPreference;
 
                 case 13:
                   if (i === 2) {
-                    userProfileContainer.classList.add('user-profile-container--open');
+                    userProfileContainer.classList.add('user-profile-section--open');
                     userProfileContainerClose.addEventListener('click', function (e) {
-                      userProfileContainer.classList.remove('user-profile-container--open');
+                      userProfileContainer.classList.remove('user-profile-section--open');
                     });
                   }
 
                   if (i === 3) {
-                    userProfileContainer.classList.add('user-profile-container--open');
+                    userProfileContainer.classList.add('user-profile-section--open');
                     userProfileContainerClose.addEventListener('click', function (e) {
-                      userProfileContainer.classList.remove('user-profile-container--open');
+                      userProfileContainer.classList.remove('user-profile-section--open');
                     });
                   }
 
@@ -4503,7 +4501,8 @@ var checkLoginStatus = function checkLoginStatus(login, checkElement) {
 
 var _watchForLogin = /*#__PURE__*/function () {
   var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee3(login) {
-    var status, commSwitch, formattedNumber, userInfo, user;
+    var status, _commPreference, commSwitch, formattedNumber, userInfo, user;
+
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
@@ -4516,7 +4515,7 @@ var _watchForLogin = /*#__PURE__*/function () {
               break;
             }
 
-            commSwitch = document.querySelector('.user-profile-form__section__comm-switch');
+            commSwitch = document.querySelector('.switch--comms');
             _context3.next = 6;
             return _Update_User__WEBPACK_IMPORTED_MODULE_2__.getSomePersonals();
 
@@ -4524,7 +4523,7 @@ var _watchForLogin = /*#__PURE__*/function () {
             userInfo = _context3.sent;
             user = userInfo.data.data.user; // WATCHING USER PROFILE NAVIGATION BUTTONS
 
-            _watchUserProfileButtons(); // WATCHING COMMUNICATION PREFERENCES
+            _watchUserProfileButtons(_commPreference); // WATCHING COMMUNICATION PREFERENCES
 
 
             _watchCommPreference(commSwitch); // WATCHING URSER PROFILE FORM BUTTONS
@@ -4624,8 +4623,11 @@ var _watchEntranceButtons = function _watchEntranceButtons(person, form, formPag
         e.preventDefault(); //////////////////////////////////////////////////////////////
         // OPEN UP THE SELECTED FORM
 
-        form[i].classList.toggle('open'); //////////////////////////////////////////////////////////////
+        if (form[i] !== undefined) {
+          form[i].classList.toggle('open');
+        } //////////////////////////////////////////////////////////////
         // OPEN UP THE SELECTED FORM
+
 
         if (i === 0) {
           var loginSubmit = buttons[2];
@@ -9244,17 +9246,19 @@ var _watchFormSubmitButton = function _watchFormSubmitButton(page, pages, pageEl
 var _setupSignupForm = function _setupSignupForm(page, pages, person) {
   var domSignupFormPageNumber = document.querySelector('.form--signup__section__page-number');
 
-  _watchFormSubmitButton(page, pages, domSignupFormPageNumber, person);
+  if (domSignupFormPageNumber) {
+    _watchFormSubmitButton(page, pages, domSignupFormPageNumber, person);
 
-  if (page > 0 || page === undefined) {
-    page = 0;
-    domSignupFormPageNumber.textContent = "Page ".concat(page + 1, " / 4");
+    if (page > 0 || page === undefined) {
+      page = 0;
+      domSignupFormPageNumber.textContent = "Page ".concat(page + 1, " / 4");
+    }
+
+    pages.forEach(function (fp, i) {
+      fp.style.display = 'none';
+    });
+    pages[0].style.display = 'flex';
   }
-
-  pages.forEach(function (fp, i) {
-    fp.style.display = 'none';
-  });
-  pages[0].style.display = 'flex';
 };
 
 /***/ }),
@@ -9593,15 +9597,17 @@ var _watchPasswordResetButton = function _watchPasswordResetButton(formButtons) 
 
 var _watchForProfileUpdates = /*#__PURE__*/function () {
   var _ref7 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee9(user) {
-    var userProfileFormButtons, userProfileSubSectionFormButtons, latterDaySaintSwitch, latterDaySaint;
+    var userProfileFormButtons, userProfileSubSectionFormButtons, transparentButtons, latterDaySaintSwitch, latterDaySaint;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee9$(_context9) {
       while (1) {
         switch (_context9.prev = _context9.next) {
           case 0:
             userProfileFormButtons = document.querySelectorAll('.user-profile-form__button');
             userProfileSubSectionFormButtons = document.querySelectorAll('.user-profile-form__section__sub-section__button');
-            latterDaySaintSwitch = document.querySelector('.user-profile-form__section__input--latter-day-saint');
-            userProfileFormButtons.forEach(function (b, i) {
+            transparentButtons = document.querySelectorAll('.button--small-transparent');
+            console.log(transparentButtons);
+            latterDaySaintSwitch = document.querySelector('.switch--latter-day-saint');
+            transparentButtons.forEach(function (b, i) {
               b.addEventListener('click', /*#__PURE__*/function () {
                 var _ref8 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee7(e) {
                   var firstname, lastname, username, updatedUserInfo, newEmail, newEmailConfirmed, newPhoneNumber, newPhoneNumberConfirmed, updateUserInfo;
@@ -9620,7 +9626,7 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
                           lastname = document.getElementById('lastname').value;
                           username = document.getElementById('username').value;
 
-                          if (latterDaySaintSwitch.classList.contains('user-profile-form__section__input--latter-day-saint--switched')) {
+                          if (latterDaySaintSwitch.classList.contains('switch--latter-day-saint--switched')) {
                             latterDaySaint = true;
                           }
 
@@ -9679,7 +9685,7 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
                           updateUserInfo = _context7.sent;
 
                         case 22:
-                          if (!(i === 2)) {
+                          if (!(i === 5)) {
                             _context7.next = 25;
                             break;
                           }
@@ -9688,7 +9694,7 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
                           return (0,_Login__WEBPACK_IMPORTED_MODULE_5__.logout)(user._id);
 
                         case 25:
-                          if (!(i === 3)) {
+                          if (!(i === 6)) {
                             _context7.next = 28;
                             break;
                           }
@@ -9697,7 +9703,7 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
                           return deactivateMe(user._id);
 
                         case 28:
-                          if (!(i === 4)) {
+                          if (!(i === 7)) {
                             _context7.next = 31;
                             break;
                           }
@@ -9718,7 +9724,7 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
                 };
               }());
             });
-            userProfileSubSectionFormButtons[0].addEventListener('click', /*#__PURE__*/function () {
+            transparentButtons[2].addEventListener('click', /*#__PURE__*/function () {
               var _ref9 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee8(e) {
                 var currentPassword, newPassword, newPasswordConfirmed, updateUserInfo;
                 return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee8$(_context8) {
@@ -9749,7 +9755,7 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
               };
             }());
 
-          case 5:
+          case 7:
           case "end":
             return _context9.stop();
         }

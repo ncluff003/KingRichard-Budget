@@ -42,27 +42,8 @@
     }
   }
   .application-flex-container {
-    .app-navigation__main {
-      &__user-information {
-        &__update-picture {
-          @include SizeAndPositioning(relative, 7.5%, 60%, flex, row, nowrap, center, center, 0, 0, 0);
-          background-color: transparent;
-          border: none;
-          &--icon {
-            margin-right: 1rem;
-          }
-          &:hover {
-            cursor: pointer;
-            .app-navigation__main__user-information__update-picture--icon,
-            .app-navigation__main__user-information__update-picture--text {
-              transition: color 0.5s;
-            }
-          }
-        }
-      }
-    }
     .application-viewport {
-      &__display-container {
+      .application-display {
         .user-profile-container {
           // USER PROFILE FORM CONTAINER
           &__form-container {
@@ -545,6 +526,41 @@
   }
 }
 // End of Master Grid Container
+
+// &__button {
+//   bottom: 0;
+//   right: 36.5%;
+//   background-color: transparent;
+//   border: none;
+//   &:hover {
+//     cursor: pointer;
+//     transition: color 0.5s, transform 0.5s;
+//   }
+//   &__password-button {
+//     @include SizeAndPositioning(relative, 7rem, 15%, flex, row, nowrap, center, center, 0, 0, 0);
+//     border: 0.3rem solid rgba($colorOffWhite, 0.75);
+//     border-radius: 1.25rem;
+//     background-color: transparent;
+//     margin: 1rem 0;
+//     &:focus {
+//       outline: none;
+//     }
+//     &--icon {
+//       margin-right: 1rem;
+//     }
+//     &:hover {
+//       cursor: pointer;
+//       background-color: $secondaryColor;
+//       border: 0.3rem solid $colorOffWhite;
+//       transition: background-color 0.5s, border 0.5s, color 0.5s;
+//     }
+//     &:active {
+//       background-color: $tertiaryColor;
+//       border: 0.3rem solid $colorDarkerGrey;
+//     }
+//   }
+// }
+
 .button {
   @include SizeAndPositioning(relative, 6rem, 40%, flex, row, nowrap, center, center, 13%, 0, 0);
   -moz-transform: translate(13%, 0);
@@ -573,6 +589,23 @@
     width: 20%;
     transform: translate(0, 0);
     border-radius: 0.75rem;
+    &-transparent {
+      background-color: transparent;
+      border: 0.3rem solid rgba($colorOffWhite, 0.75);
+      border-radius: 1.25rem;
+      background-color: transparent;
+      &--icon {
+        margin-right: 1rem;
+      }
+      &:hover {
+        background-color: $secondaryColor;
+        border: 0.3rem solid $colorOffWhite;
+      }
+      &:active {
+        background-color: $tertiaryColor;
+        border: 0.3rem solid $colorDarkerGrey;
+      }
+    }
   }
   &--borderless {
     border: none;
@@ -584,6 +617,15 @@
     &:hover {
       border: none;
       background-color: transparent;
+    }
+    &-narrow {
+      @include SizeAndPositioning(absolute, 3rem, 12.5%, flex, row, nowrap, center, center, 0, 0.75rem, 0);
+      bottom: 0;
+      right: 36.5%;
+      background-color: transparent;
+      &:hover {
+        transition: color 0.5s, transform 0.5s;
+      }
     }
   }
 }

@@ -134,13 +134,15 @@ export const _watchFormSubmitButton = (page, pages, pageElement, person) => {
 // SIGN UP FORM SETUP
 export const _setupSignupForm = (page, pages, person) => {
   let domSignupFormPageNumber = document.querySelector('.form--signup__section__page-number');
-  _watchFormSubmitButton(page, pages, domSignupFormPageNumber, person);
-  if (page > 0 || page === undefined) {
-    page = 0;
-    domSignupFormPageNumber.textContent = `Page ${page + 1} / 4`;
+  if (domSignupFormPageNumber) {
+    _watchFormSubmitButton(page, pages, domSignupFormPageNumber, person);
+    if (page > 0 || page === undefined) {
+      page = 0;
+      domSignupFormPageNumber.textContent = `Page ${page + 1} / 4`;
+    }
+    pages.forEach((fp, i) => {
+      fp.style.display = 'none';
+    });
+    pages[0].style.display = 'flex';
   }
-  pages.forEach((fp, i) => {
-    fp.style.display = 'none';
-  });
-  pages[0].style.display = 'flex';
 };

@@ -6,7 +6,6 @@ import * as Budgeting from './Maintain-Budget';
 import * as Update from './Update-User';
 import * as Manage from './Manage-Budget';
 
-let commPreference;
 let latterDaySaint = false;
 
 // const _getUserInfo = () => {
@@ -44,8 +43,9 @@ const formatPhoneNumber = (value, number) => {
 };
 
 export const _watchPhoneNumberInputs = (number) => {
-  const userProfileInputs = document.querySelectorAll('.user-profile-form__section__input');
-  const userProfileSubInputs = document.querySelectorAll('.user-profile-form__section__sub-section__input');
+  const userProfileInputs = document.querySelectorAll('.form__section__input');
+  const userProfileSubInputs = document.querySelectorAll('.form--user-profile__section__sub-section__input');
+  console.log(userProfileInputs, userProfileSubInputs);
   formatPhoneNumber(userProfileInputs[4].value);
   userProfileSubInputs[2].addEventListener('keyup', (e) => {
     userProfileSubInputs[2].value = formatPhoneNumber(userProfileSubInputs[2].value, number);
@@ -56,16 +56,18 @@ export const _watchPhoneNumberInputs = (number) => {
 };
 
 const _togglePasswordSubSections = () => {
-  const userProfileSubSections = document.querySelectorAll('.user-profile-form__section__sub-section');
-  _openSubSections(userProfileSubSections[4], 'user-profile-form__section__sub-section--show');
-  _openSubSections(userProfileSubSections[5], 'user-profile-form__section__sub-section--show');
-  _openSubSections(userProfileSubSections[6], 'user-profile-form__section__sub-section--show');
-  _openSubSections(userProfileSubSections[7], 'user-profile-form__section__sub-section--show');
+  const userProfileSubSections = document.querySelectorAll('.form--user-profile__section__sub-section');
+  _openSubSections(userProfileSubSections[4], 'form--user-profile__section__sub-section--show');
+  _openSubSections(userProfileSubSections[5], 'form--user-profile__section__sub-section--show');
+  _openSubSections(userProfileSubSections[6], 'form--user-profile__section__sub-section--show');
+  _openSubSections(userProfileSubSections[7], 'form--user-profile__section__sub-section--show');
 };
 
 export const _watchPasswordSubSectionButtons = () => {
   const userProfilePasswordSubSectionButtons = document.querySelectorAll('.user-profile-form__section__button__password-button');
-  userProfilePasswordSubSectionButtons[0].addEventListener('click', (e) => {
+  const transparentButtons = document.querySelectorAll('.button--small-transparent');
+  console.log(transparentButtons);
+  transparentButtons[1].addEventListener('click', (e) => {
     e.preventDefault();
     _togglePasswordSubSections();
   });
@@ -77,20 +79,20 @@ const _openSubSections = (subSection, className) => {
 };
 
 export const _watchSubSectionButtons = () => {
-  const userProfileSubSections = document.querySelectorAll('.user-profile-form__section__sub-section');
-  const userProfileFormSectionButtons = document.querySelectorAll('.user-profile-form__section__button');
+  const userProfileSubSections = document.querySelectorAll('.form--user-profile__section__sub-section');
+  const userProfileFormSectionButtons = document.querySelectorAll('.button--borderless-narrow');
   userProfileFormSectionButtons.forEach((button, i) => {
     button.addEventListener('click', (e) => {
       e.preventDefault();
       if (i === 0) {
-        _openSubSections(userProfileSubSections[0], 'user-profile-form__section__sub-section--show');
-        _openSubSections(userProfileSubSections[1], 'user-profile-form__section__sub-section--show');
-        button.classList.toggle('user-profile-form__section__button--clicked');
+        _openSubSections(userProfileSubSections[0], 'form--user-profile__section__sub-section--show');
+        _openSubSections(userProfileSubSections[1], 'form--user-profile__section__sub-section--show');
+        button.classList.toggle('button--borderless-narrow--clicked');
       }
       if (i === 1) {
-        _openSubSections(userProfileSubSections[2], 'user-profile-form__section__sub-section--show');
-        _openSubSections(userProfileSubSections[3], 'user-profile-form__section__sub-section--show');
-        button.classList.toggle('user-profile-form__section__button--clicked');
+        _openSubSections(userProfileSubSections[2], 'form--user-profile__section__sub-section--show');
+        _openSubSections(userProfileSubSections[3], 'form--user-profile__section__sub-section--show');
+        button.classList.toggle('button--borderless-narrow--clicked');
       }
     });
   });
@@ -99,7 +101,6 @@ export const _watchSubSectionButtons = () => {
 //////////////////////////////////////////////////
 // ALL ABOUT WATCHING COMMUNICATION PREFERENCES
 const _changeCommPreference = () => {
-  console.log(commPreference);
   if (commPreference === `Email`) {
     return (commPreference = `Text`);
   } else {
@@ -110,9 +111,8 @@ const _changeCommPreference = () => {
 export const _watchCommPreference = (communicationSwitch) => {
   if (communicationSwitch) {
     communicationSwitch.addEventListener('click', (e) => {
-      communicationSwitch.classList.toggle('user-profile-form__section__comm-switch--text-preferred');
+      communicationSwitch.classList.toggle('switch--comms--text-preferred');
       _changeCommPreference();
-      console.log(commPreference);
     });
   }
 };
@@ -122,8 +122,8 @@ export const _watchCommPreference = (communicationSwitch) => {
 
 const _watchLatterDaySaintSwitch = (ldsSwitch) => {
   ldsSwitch.addEventListener('click', (e) => {
-    ldsSwitch.classList.toggle('user-profile-form__section__input--latter-day-saint--switched');
-    ldsSwitch.classList.toggle('r__user-profile-form__section__input--latter-day-saint--switched');
+    ldsSwitch.classList.toggle('switch--latter-day-saint--switched');
+    ldsSwitch.classList.toggle('r__switch--latter-day-saint--switched');
   });
 };
 
@@ -134,13 +134,13 @@ export const _showProfileForm = (forms, index) => {
   forms[index].style.display = 'flex';
 };
 
-export const _watchUserProfileButtons = () => {
-  const userProfileForms = document.querySelectorAll('.user-profile-form');
-  const userProfileHeader = document.querySelector('.user-profile-container__header__text');
-  const userProfileContainer = document.querySelector('.user-profile-container');
-  const userProfileContainerClose = document.querySelector('.user-profile-container__close');
+export const _watchUserProfileButtons = (communicationPreference) => {
+  const userProfileForms = document.querySelectorAll('.form--user-profile');
+  const userProfileHeader = document.querySelector('.user-profile-section__header__text');
+  const userProfileContainer = document.querySelector('.user-profile-section');
+  const userProfileContainerClose = document.querySelector('.user-profile-closure-icon');
   const userProfileButtons = document.querySelectorAll('.application-navigation__section--account-links__link-container__link--link');
-  const latterDaySaintSwitch = document.querySelector('.user-profile-form__section__input--latter-day-saint');
+  const latterDaySaintSwitch = document.querySelector('.switch--latter-day-saint');
   if (userProfileButtons[0]) {
     userProfileButtons.forEach((pb, i) => {
       pb.addEventListener('click', async (e) => {
@@ -149,34 +149,34 @@ export const _watchUserProfileButtons = () => {
         userProfileHeader.textContent = clicked.closest('button').textContent;
         _showProfileForm(userProfileForms, i);
         if (i === 0) {
-          userProfileContainer.classList.add('user-profile-container--open');
+          userProfileContainer.classList.add('user-profile-section--open');
           userProfileContainerClose.addEventListener('click', (e) => {
-            userProfileContainer.classList.remove('user-profile-container--open');
+            userProfileContainer.classList.remove('user-profile-section--open');
           });
 
           _watchLatterDaySaintSwitch(latterDaySaintSwitch);
         }
         if (i === 1) {
-          userProfileContainer.classList.add('user-profile-container--open');
+          userProfileContainer.classList.add('user-profile-section--open');
           userProfileContainerClose.addEventListener('click', (e) => {
-            userProfileContainer.classList.remove('user-profile-container--open');
+            userProfileContainer.classList.remove('user-profile-section--open');
           });
           /////////////////////////////////
           // GET COMMUNICATION PREFERENCE
           const userInfo = await Update.getSomePersonals();
           const user = userInfo.data.data.user;
-          commPreference = user.communicationPreference;
+          communicationPreference = user.communicationPreference;
         }
         if (i === 2) {
-          userProfileContainer.classList.add('user-profile-container--open');
+          userProfileContainer.classList.add('user-profile-section--open');
           userProfileContainerClose.addEventListener('click', (e) => {
-            userProfileContainer.classList.remove('user-profile-container--open');
+            userProfileContainer.classList.remove('user-profile-section--open');
           });
         }
         if (i === 3) {
-          userProfileContainer.classList.add('user-profile-container--open');
+          userProfileContainer.classList.add('user-profile-section--open');
           userProfileContainerClose.addEventListener('click', (e) => {
-            userProfileContainer.classList.remove('user-profile-container--open');
+            userProfileContainer.classList.remove('user-profile-section--open');
           });
         }
       });
@@ -195,14 +195,15 @@ export const _watchForLogin = async (login) => {
   const status = checkLoginStatus(login);
   status === true ? console.log(`Logged In`) : console.log(`Logged Out`);
   if (status === true) {
-    const commSwitch = document.querySelector('.user-profile-form__section__comm-switch');
+    let commPreference;
+    const commSwitch = document.querySelector('.switch--comms');
     let formattedNumber;
     ///////////////////////////////////////
     // GET USER
     const userInfo = await Update.getSomePersonals();
     const user = userInfo.data.data.user;
     // WATCHING USER PROFILE NAVIGATION BUTTONS
-    _watchUserProfileButtons();
+    _watchUserProfileButtons(commPreference);
     // WATCHING COMMUNICATION PREFERENCES
     _watchCommPreference(commSwitch);
     // WATCHING URSER PROFILE FORM BUTTONS

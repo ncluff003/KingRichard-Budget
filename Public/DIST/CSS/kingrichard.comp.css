@@ -743,14 +743,14 @@ html {
 .master-grid-container .application-flex-container .application-viewport .application-display .budget-card-container__card--create:hover .budget-card-container__card--create__icon {
   color: #822aba;
 }
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__close {
+.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-section .user-profile-closure-icon {
   font-size: 4rem;
   color: rgba(250, 250, 250, 0.8);
 }
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__close:hover {
+.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-section .user-profile-closure-icon:hover {
   color: #fafafa;
 }
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__header__text {
+.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-section__header__text {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   font-size: 10rem;
   color: #fafafa;
@@ -1342,11 +1342,32 @@ html {
 .button--extra-small:hover .app-navigation__main__user-information__update-picture--text {
   color: #fafafa;
 }
+.button--small-transparent {
+  color: rgba(250, 250, 250, 0.8);
+}
+.button--small-transparent:hover {
+  color: #fafafa;
+}
+.button--small-transparent__password-button {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  font-size: 1.6rem;
+  color: rgba(250, 250, 250, 0.8);
+}
+.button--small-transparent__password-button:hover {
+  color: #fafafa;
+}
 .button--borderless {
   font-size: 1.6rem;
 }
 .button--borderless:hover {
   color: #822aba;
+}
+.button--borderless-narrow {
+  font-size: 1.6rem;
+  color: rgba(250, 250, 250, 0.8);
+}
+.button--borderless-narrow:hover {
+  color: #fafafa;
 }
 
 .form {
@@ -1379,6 +1400,48 @@ html {
   font-size: 3rem;
   color: #fafafa;
   text-transform: capitalize;
+}
+.form--user-profile__section {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+}
+.form--user-profile__section__label {
+  font-size: 2rem;
+  color: rgba(250, 250, 250, 0.8);
+}
+.form--user-profile__section__input {
+  font-size: 2rem;
+  color: rgba(250, 250, 250, 0.8);
+}
+.form--user-profile__section__input:focus {
+  color: #fafafa;
+}
+.form--user-profile__section__input:focus + label {
+  color: #fafafa;
+}
+.form--user-profile__section__sub-section {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  color: rgba(250, 250, 250, 0.8);
+}
+.form--user-profile__section__sub-section__input {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  font-size: 1.6rem;
+  color: rgba(250, 250, 250, 0.8);
+}
+.form--user-profile__section__sub-section__label {
+  font-size: 1.6rem;
+}
+
+.switch-container--latter-day-saint .switch--latter-day-saint__text--NO, .switch-container--latter-day-saint .switch--latter-day-saint__text--YES {
+  font-size: 3rem;
+  color: #fafafa;
+  text-transform: capitalize;
+}
+.switch--comms--email, .switch--comms--text {
+  font-size: 2rem;
+  color: #fafafa;
+}
+.switch--comms--email__text, .switch--comms--text__text {
+  font-size: 1.6rem;
 }
 
 .gridTV {
@@ -32767,7 +32830,7 @@ html {
   transform: translateX(-14%);
 }
 
-.user-profile-container {
+.user-profile-section {
   position: relative;
   height: 100%;
   width: 100%;
@@ -32780,7 +32843,7 @@ html {
   background-color: rgba(101, 33, 144, 0.95);
   z-index: 10;
 }
-.user-profile-container__close {
+.user-profile-section .user-profile-closure-icon {
   position: absolute;
   height: 4rem;
   width: 4rem;
@@ -32788,11 +32851,11 @@ html {
   right: 4rem;
   z-index: 10;
 }
-.user-profile-container__close:hover {
+.user-profile-section .user-profile-closure-icon:hover {
   cursor: pointer;
   transition: color 0.5s;
 }
-.user-profile-container__header {
+.user-profile-section__header {
   position: relative;
   height: 15%;
   width: 100%;
@@ -32803,7 +32866,7 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
 }
-.user-profile-container--open {
+.user-profile-section--open {
   display: flex;
 }
 
@@ -32926,30 +32989,7 @@ html {
   border: 0.3rem solid #822aba;
   transition: background-color 0.5s, border 0.5s, color 0.5s;
 }
-.master-grid-container .application-flex-container .app-navigation__main__user-information__update-picture {
-  position: relative;
-  height: 7.5%;
-  width: 60%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  background-color: transparent;
-  border: none;
-}
-.master-grid-container .application-flex-container .app-navigation__main__user-information__update-picture--icon {
-  margin-right: 1rem;
-}
-.master-grid-container .application-flex-container .app-navigation__main__user-information__update-picture:hover {
-  cursor: pointer;
-}
-.master-grid-container .application-flex-container .app-navigation__main__user-information__update-picture:hover .app-navigation__main__user-information__update-picture--icon,
-.master-grid-container .application-flex-container .app-navigation__main__user-information__update-picture:hover .app-navigation__main__user-information__update-picture--text {
-  transition: color 0.5s;
-}
-.master-grid-container .application-flex-container .application-viewport__display-container .user-profile-container__form-container .user-profile-form__button {
+.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__button {
   position: relative;
   height: 7rem;
   width: 15%;
@@ -32963,20 +33003,20 @@ html {
   border-radius: 1.25rem;
   background-color: transparent;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .user-profile-container__form-container .user-profile-form__button--icon {
+.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__button--icon {
   margin-right: 1rem;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .user-profile-container__form-container .user-profile-form__button:hover {
+.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__button:hover {
   cursor: pointer;
   background-color: #38d927;
   border: 0.3rem solid #fafafa;
   transition: background-color 0.5s, border 0.5s, color 0.5s;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .user-profile-container__form-container .user-profile-form__button:active {
+.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__button:active {
   background-color: #ffd700;
   border: 0.3rem solid #333333;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .user-profile-container__form-container .user-profile-form__section__button {
+.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__button {
   position: absolute;
   height: 3rem;
   width: 12.5%;
@@ -32991,11 +33031,11 @@ html {
   background-color: transparent;
   border: none;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .user-profile-container__form-container .user-profile-form__section__button:hover {
+.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__button:hover {
   cursor: pointer;
   transition: color 0.5s, transform 0.5s;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .user-profile-container__form-container .user-profile-form__section__button__password-button {
+.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__button__password-button {
   position: relative;
   height: 7rem;
   width: 15%;
@@ -33010,23 +33050,23 @@ html {
   background-color: transparent;
   margin: 1rem 0;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .user-profile-container__form-container .user-profile-form__section__button__password-button:focus {
+.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__button__password-button:focus {
   outline: none;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .user-profile-container__form-container .user-profile-form__section__button__password-button--icon {
+.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__button__password-button--icon {
   margin-right: 1rem;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .user-profile-container__form-container .user-profile-form__section__button__password-button:hover {
+.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__button__password-button:hover {
   cursor: pointer;
   background-color: #38d927;
   border: 0.3rem solid #fafafa;
   transition: background-color 0.5s, border 0.5s, color 0.5s;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .user-profile-container__form-container .user-profile-form__section__button__password-button:active {
+.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__button__password-button:active {
   background-color: #ffd700;
   border: 0.3rem solid #333333;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .user-profile-container__form-container .user-profile-form__section__sub-section__button {
+.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section__button {
   position: relative;
   height: 7rem;
   width: 15%;
@@ -33040,20 +33080,20 @@ html {
   border-radius: 1.25rem;
   background-color: transparent;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .user-profile-container__form-container .user-profile-form__section__sub-section__button--icon {
+.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section__button--icon {
   margin-right: 1rem;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .user-profile-container__form-container .user-profile-form__section__sub-section__button:hover {
+.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section__button:hover {
   cursor: pointer;
   background-color: #38d927;
   border: 0.3rem solid #fafafa;
   transition: background-color 0.5s, border 0.5s, color 0.5s;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .user-profile-container__form-container .user-profile-form__section__sub-section__button:active {
+.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section__button:active {
   background-color: #ffd700;
   border: 0.3rem solid #333333;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .user-profile-container__form-container .user-profile-form__section__set-main-category-title-container__button {
+.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__set-main-category-title-container__button {
   position: relative;
   height: 7rem;
   width: 15%;
@@ -33064,13 +33104,13 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .user-profile-container__form-container .user-profile-form .account-management-button.r__account-management-button {
+.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form .account-management-button.r__account-management-button {
   margin: 1rem 0;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category:hover .main-category__delete {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category:hover .main-category__delete {
   border: 0.2rem solid rgba(250, 250, 250, 0.8);
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category__delete {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category__delete {
   position: absolute;
   height: 2rem;
   width: 2rem;
@@ -33086,13 +33126,13 @@ html {
   border-radius: 50%;
   background-color: transparent;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category__delete:hover {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category__delete:hover {
   cursor: pointer;
   background-color: #fafafa;
   border: 0.2rem solid #fafafa;
   transition: background-color 0.5s, border 0.5s, color 0.5s;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__set-main-category-title-container__button {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__set-main-category-title-container__button {
   position: relative;
   height: 5rem;
   width: 25%;
@@ -33107,12 +33147,12 @@ html {
   background-color: transparent;
   margin-left: 1rem;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__set-main-category-title-container__button:hover {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__set-main-category-title-container__button:hover {
   cursor: pointer;
   background-color: #822aba;
   transition: color 0.5s, background-color 0.5s, border 0.5s;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button {
   position: relative;
   height: 6rem;
   width: 100%;
@@ -33126,17 +33166,17 @@ html {
   border: none;
   background-color: transparent;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button:hover {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button:hover {
   cursor: pointer;
   transition: color 0.5s;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button__icon {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button__icon {
   margin-right: 1rem;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden {
   display: none;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container .category-creation__input-container__button {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container .category-creation__input-container__button {
   position: relative;
   height: 50%;
   width: 20%;
@@ -33151,13 +33191,13 @@ html {
   border-radius: 0.5rem;
   margin-left: 1rem;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container .category-creation__input-container__button:hover {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container .category-creation__input-container__button:hover {
   cursor: pointer;
   border: 0.2rem solid #822aba;
   background-color: #822aba;
   transition: background-color 0.5s, color 0.5s, border 0.5s;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container .category-creation__controller__close {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container .category-creation__controller__close {
   position: relative;
   height: 50%;
   width: 50%;
@@ -33172,18 +33212,18 @@ html {
   border-radius: 0.5rem;
   margin-left: 1rem;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__sub-category-container .category-creation__controller__close:hover {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container .category-creation__controller__close:hover {
   cursor: pointer;
   border: 0.2rem solid #822aba;
   background-color: #822aba;
   transition: background-color 0.5s, color 0.5s, border 0.5s;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .main-category-display__button-container .left:hover,
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .main-category-display__button-container .right:hover {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .main-category-display__button-container .left:hover,
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .main-category-display__button-container .right:hover {
   cursor: pointer;
   transition: color 0.5s;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section {
   position: relative;
   height: 100%;
   width: 20%;
@@ -33194,23 +33234,23 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section:first-of-type {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section:first-of-type {
   justify-content: space-evenly;
   flex-direction: column;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section__set-category-timing-button {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section__set-category-timing-button {
   background-color: transparent;
   border: none;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section__set-category-timing-button:hover {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section__set-category-timing-button:hover {
   cursor: pointer;
   transition: color 0.5s;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section {
   cursor: pointer;
   background-color: #822aba;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button {
   position: relative;
   height: 7rem;
   width: 70%;
@@ -33226,13 +33266,13 @@ html {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:first-of-type, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:first-of-type, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:first-of-type, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:first-of-type {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:first-of-type, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:first-of-type, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:first-of-type, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:first-of-type {
   margin-top: 1rem;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:last-of-type, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:last-of-type, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:last-of-type, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:last-of-type {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:last-of-type, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:last-of-type, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:last-of-type, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:last-of-type {
   margin-bottom: 1rem;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button__icon, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button__icon, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button__icon, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button__icon {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button__icon, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button__icon, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button__icon, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button__icon {
   position: absolute;
   height: 5rem;
   width: 5rem;
@@ -33245,28 +33285,28 @@ html {
   top: 50%;
   left: 1rem;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover {
   cursor: pointer;
   background-color: #822aba;
   border: 0.3rem solid #822aba;
   transition: background-color 0.5s, border 0.5s, color 0.5s;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .path1,
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .path2,
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .path3, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .path1,
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .path2,
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .path3, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .path1,
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .path2,
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .path3, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .path1,
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .path2,
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .path3 {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .path1,
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .path2,
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .path3, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .path1,
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .path2,
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .path3, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .path1,
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .path2,
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .path3, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .path1,
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .path2,
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .path3 {
   transition: color 0.5s;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:active, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:active, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:active, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:active {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:active, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:active, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:active, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:active {
   background-color: #38d927;
   border: 0.3rem solid #38d927;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__submit, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__submit, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__submit, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__submit {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__submit, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__submit, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__submit, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__submit {
   position: relative;
   height: 5rem;
   width: 40%;
@@ -33282,20 +33322,20 @@ html {
   margin-bottom: 0.5rem;
   background-color: rgba(130, 42, 186, 0.8);
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__submit:hover, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__submit:hover, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__submit:hover, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__submit:hover {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__submit:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__submit:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__submit:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__submit:hover {
   cursor: pointer;
   background-color: #822aba;
   border: 0.3rem solid #822aba;
   transition: color 0.5s, background-color 0.5s, border 0.5s;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__submit:active, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__submit:active, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__submit:active, .master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__submit:active {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__submit:active, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__submit:active, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__submit:active, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__submit:active {
   background-color: #38d927;
   border: 0.3rem solid #38d927;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page-mechanisms__page-number {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page-mechanisms__page-number {
   margin-right: 2rem;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page-mechanisms__submit-button {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page-mechanisms__submit-button {
   position: relative;
   height: 5rem;
   width: 15%;
@@ -33309,12 +33349,12 @@ html {
   border-radius: 1.25rem;
   background-color: transparent;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page-mechanisms__submit-button:hover {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page-mechanisms__submit-button:hover {
   cursor: pointer;
   background-color: #822aba;
   transition: color 0.5s, background-color 0.5s, border 0.5s;
 }
-.master-grid-container .application-flex-container .application-viewport__display-container .budget-creation-form-container .budget-creation-form__page-mechanisms__submit-button:focus {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page-mechanisms__submit-button:focus {
   outline: none;
 }
 .master-grid-container .application-flex-container .application-viewport .budget-container__dashboard__container--small__header__button {
@@ -33540,6 +33580,23 @@ html {
   transform: translate(0, 0);
   border-radius: 0.75rem;
 }
+.button--small-transparent {
+  background-color: transparent;
+  border: 0.3rem solid rgba(250, 250, 250, 0.75);
+  border-radius: 1.25rem;
+  background-color: transparent;
+}
+.button--small-transparent--icon {
+  margin-right: 1rem;
+}
+.button--small-transparent:hover {
+  background-color: #38d927;
+  border: 0.3rem solid #fafafa;
+}
+.button--small-transparent:active {
+  background-color: #ffd700;
+  border: 0.3rem solid #333333;
+}
 .button--borderless {
   border: none;
   height: min-content;
@@ -33551,6 +33608,23 @@ html {
 .button--borderless:hover {
   border: none;
   background-color: transparent;
+}
+.button--borderless-narrow {
+  position: absolute;
+  height: 3rem;
+  width: 12.5%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0.75rem);
+  bottom: 0;
+  right: 36.5%;
+  background-color: transparent;
+}
+.button--borderless-narrow:hover {
+  transition: color 0.5s, transform 0.5s;
 }
 
 .vertical-flex-container .flex-section {
@@ -33619,139 +33693,17 @@ html {
   -moz-transform: translateY(-50%);
   transition: transform 0.5s;
 }
-.master-grid-container .form-container--full-page .login-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint,
-.master-grid-container .form-container--full-page .signup-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint,
-.master-grid-container .form-container--full-page .forgotten-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint,
-.master-grid-container .form-container--full-page .reset-password-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint {
-  position: relative;
-  height: 7rem;
-  width: 20%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-}
-.master-grid-container .form-container--full-page .login-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint,
-.master-grid-container .form-container--full-page .signup-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint,
-.master-grid-container .form-container--full-page .forgotten-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint,
-.master-grid-container .form-container--full-page .reset-password-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint {
-  position: relative;
-  height: 95%;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(-15%, 0);
-  background-color: rgba(156, 67, 212, 0.8);
-  border: 0.3rem solid rgba(130, 42, 186, 0.8);
-  border-radius: 5rem;
-  padding: 0.25rem;
-  transition: background-color 0.5s, border 0.5s;
-}
-.master-grid-container .form-container--full-page .login-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint__switch,
-.master-grid-container .form-container--full-page .signup-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint__switch,
-.master-grid-container .form-container--full-page .forgotten-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint__switch,
-.master-grid-container .form-container--full-page .reset-password-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint__switch {
-  position: absolute;
-  height: 84%;
-  width: 30%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, -50%);
-  top: 50%;
-  left: 2.75%;
-  background-color: rgba(101, 33, 144, 0.8);
-  border-radius: 5rem;
-  transition: background-color 0.5s, transform 0.5s, width 0.25s;
-}
-.master-grid-container .form-container--full-page .login-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint__text--NO,
-.master-grid-container .form-container--full-page .signup-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint__text--NO,
-.master-grid-container .form-container--full-page .forgotten-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint__text--NO,
-.master-grid-container .form-container--full-page .reset-password-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint__text--NO {
-  position: relative;
-  height: 100%;
-  width: 70%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-}
-.master-grid-container .form-container--full-page .login-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint__text--YES,
-.master-grid-container .form-container--full-page .signup-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint__text--YES,
-.master-grid-container .form-container--full-page .forgotten-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint__text--YES,
-.master-grid-container .form-container--full-page .reset-password-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint__text--YES {
-  position: relative;
-  height: 100%;
-  width: 70%;
-  display: none;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-}
-.master-grid-container .form-container--full-page .login-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint:hover,
-.master-grid-container .form-container--full-page .signup-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint:hover,
-.master-grid-container .form-container--full-page .forgotten-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint:hover,
-.master-grid-container .form-container--full-page .reset-password-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint:hover {
-  cursor: pointer;
-}
-.master-grid-container .form-container--full-page .login-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint--switched,
-.master-grid-container .form-container--full-page .signup-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint--switched,
-.master-grid-container .form-container--full-page .forgotten-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint--switched,
-.master-grid-container .form-container--full-page .reset-password-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint--switched {
-  border: 0.3rem solid #2cae1f;
-  background-color: #60e152;
-  padding: 0.25rem;
-}
-.master-grid-container .form-container--full-page .login-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint--switched .signup-form__form-page__section__input--latter-day-saint__switch,
-.master-grid-container .form-container--full-page .signup-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint--switched .signup-form__form-page__section__input--latter-day-saint__switch,
-.master-grid-container .form-container--full-page .forgotten-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint--switched .signup-form__form-page__section__input--latter-day-saint__switch,
-.master-grid-container .form-container--full-page .reset-password-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint--switched .signup-form__form-page__section__input--latter-day-saint__switch {
-  width: 94%;
-  background-color: #2cae1f;
-  transform: translate(0, -49%);
-}
-.master-grid-container .form-container--full-page .login-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint--switched .signup-form__form-page__section__input--latter-day-saint__text--NO,
-.master-grid-container .form-container--full-page .signup-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint--switched .signup-form__form-page__section__input--latter-day-saint__text--NO,
-.master-grid-container .form-container--full-page .forgotten-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint--switched .signup-form__form-page__section__input--latter-day-saint__text--NO,
-.master-grid-container .form-container--full-page .reset-password-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint--switched .signup-form__form-page__section__input--latter-day-saint__text--NO {
-  display: none;
-}
-.master-grid-container .form-container--full-page .login-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint--switched .signup-form__form-page__section__input--latter-day-saint__text--YES,
-.master-grid-container .form-container--full-page .signup-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint--switched .signup-form__form-page__section__input--latter-day-saint__text--YES,
-.master-grid-container .form-container--full-page .forgotten-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint--switched .signup-form__form-page__section__input--latter-day-saint__text--YES,
-.master-grid-container .form-container--full-page .reset-password-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint--switched .signup-form__form-page__section__input--latter-day-saint__text--YES {
-  display: flex;
-}
 .master-grid-container .form-container--full-page .login-form .page-section,
-.master-grid-container .form-container--full-page .login-form .switch-section,
 .master-grid-container .form-container--full-page .signup-form .page-section,
-.master-grid-container .form-container--full-page .signup-form .switch-section,
 .master-grid-container .form-container--full-page .forgotten-form .page-section,
-.master-grid-container .form-container--full-page .forgotten-form .switch-section,
-.master-grid-container .form-container--full-page .reset-password-form .page-section,
-.master-grid-container .form-container--full-page .reset-password-form .switch-section {
+.master-grid-container .form-container--full-page .reset-password-form .page-section {
   flex-direction: row;
   justify-content: center;
 }
 .master-grid-container .form-container--full-page .login-form .page-section__page-number,
-.master-grid-container .form-container--full-page .login-form .switch-section__page-number,
 .master-grid-container .form-container--full-page .signup-form .page-section__page-number,
-.master-grid-container .form-container--full-page .signup-form .switch-section__page-number,
 .master-grid-container .form-container--full-page .forgotten-form .page-section__page-number,
-.master-grid-container .form-container--full-page .forgotten-form .switch-section__page-number,
-.master-grid-container .form-container--full-page .reset-password-form .page-section__page-number,
-.master-grid-container .form-container--full-page .reset-password-form .switch-section__page-number {
+.master-grid-container .form-container--full-page .reset-password-form .page-section__page-number {
   margin-right: 9rem;
 }
 .master-grid-container .form-container--full-page .login-form .page-section,
@@ -33759,21 +33711,6 @@ html {
 .master-grid-container .form-container--full-page .forgotten-form .page-section,
 .master-grid-container .form-container--full-page .reset-password-form .page-section {
   margin-top: 3.5rem;
-}
-.master-grid-container .form-container--full-page .login-form .switch-section,
-.master-grid-container .form-container--full-page .signup-form .switch-section,
-.master-grid-container .form-container--full-page .forgotten-form .switch-section,
-.master-grid-container .form-container--full-page .reset-password-form .switch-section {
-  margin-bottom: 2rem;
-}
-.master-grid-container .form-container--full-page .login-form .switch-section label,
-.master-grid-container .form-container--full-page .signup-form .switch-section label,
-.master-grid-container .form-container--full-page .forgotten-form .switch-section label,
-.master-grid-container .form-container--full-page .reset-password-form .switch-section label {
-  position: relative;
-  top: 0;
-  left: 0;
-  transform: translate(10%, 0);
 }
 .master-grid-container .form-container--full-page .login-form ::-webkit-input-placeholder,
 .master-grid-container .form-container--full-page .signup-form ::-webkit-input-placeholder,
@@ -33805,213 +33742,6 @@ html {
   justify-content: center;
   align-items: center;
   transform: rotate(0) translate(0, 0);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section {
-  position: relative;
-  height: min-content;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__label {
-  position: absolute;
-  height: 7rem;
-  width: 25%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  transform: rotate(0) translate(0, -50%);
-  top: 50%;
-  left: calc(37.7% + 2rem);
-  -moz-transform: translateY(-50%);
-  transition: transform 0.5s;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__input {
-  position: relative;
-  height: 7rem;
-  width: 25%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  padding: 1rem;
-  padding-left: 2rem;
-  background-color: rgba(17, 17, 17, 0.5);
-  border: 0.3rem solid rgba(250, 250, 250, 0.75);
-  border-radius: 0.75rem;
-  margin: 2rem 0;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__input::-webkit-input-placeholder, .master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__input::-moz-placeholder, .master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__input::placeholder {
-  opacity: 0;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__input:focus::-webkit-input-placeholder {
-  opacity: 1;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__input:focus {
-  outline: none;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__input:focus::-webkit-input-placeholder, .master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__input:focus::-moz-placeholder, .master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__input:focus::placeholder {
-  opacity: 1;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__input:not(:placeholder-shown) + label, .master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__input:focus + label {
-  transform: translate(-6rem, -8.25rem) scale(0.75);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__input-container--latter-day-saint {
-  position: relative;
-  height: 7rem;
-  width: 12.5%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__input-container--latter-day-saint .user-profile-form__section__input--latter-day-saint {
-  position: relative;
-  height: 95%;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(-15%, 0);
-  background-color: rgba(156, 67, 212, 0.8);
-  border: 0.3rem solid rgba(130, 42, 186, 0.8);
-  border-radius: 5rem;
-  padding: 0.25rem;
-  transition: background-color 0.5s, border 0.5s;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__input-container--latter-day-saint .user-profile-form__section__input--latter-day-saint__switch {
-  position: absolute;
-  height: 84%;
-  width: 30%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, -50%);
-  top: 50%;
-  left: 2.75%;
-  background-color: rgba(101, 33, 144, 0.8);
-  border-radius: 5rem;
-  transition: background-color 0.5s, transform 0.5s, width 0.25s;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__input-container--latter-day-saint .user-profile-form__section__input--latter-day-saint__text--NO {
-  position: relative;
-  height: 100%;
-  width: 70%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__input-container--latter-day-saint .user-profile-form__section__input--latter-day-saint__text--YES {
-  position: relative;
-  height: 100%;
-  width: 70%;
-  display: none;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__input-container--latter-day-saint .user-profile-form__section__input--latter-day-saint:hover {
-  cursor: pointer;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__input-container--latter-day-saint .user-profile-form__section__input--latter-day-saint--switched {
-  border: 0.3rem solid #2cae1f;
-  background-color: #60e152;
-  padding: 0.25rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__input-container--latter-day-saint .user-profile-form__section__input--latter-day-saint--switched .user-profile-form__section__input--latter-day-saint__switch {
-  width: 94%;
-  background-color: #2cae1f;
-  transform: translate(0, -49%);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__input-container--latter-day-saint .user-profile-form__section__input--latter-day-saint--switched .user-profile-form__section__input--latter-day-saint__text--NO {
-  display: none;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__input-container--latter-day-saint .user-profile-form__section__input--latter-day-saint--switched .user-profile-form__section__input--latter-day-saint__text--YES {
-  display: flex;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section {
-  position: relative;
-  height: min-content;
-  width: 100%;
-  display: none;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  margin: 0.5rem 0;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section:first-of-type {
-  margin: 0 0 1rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section__input {
-  position: relative;
-  height: 6rem;
-  width: 17.5%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  transform: rotate(0) translate(15%, 0);
-  padding: 1rem;
-  padding-left: 2rem;
-  background-color: rgba(17, 17, 17, 0.5);
-  border: 0.3rem solid rgba(250, 250, 250, 0.75);
-  border-radius: 0.75rem;
-  margin: 0.5rem 0;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section__input::-webkit-input-placeholder, .master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section__input::-moz-placeholder, .master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section__input::placeholder {
-  opacity: 0;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section__input:focus {
-  outline: none;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section__input:focus::-webkit-input-placeholder, .master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section__input:focus::-moz-placeholder, .master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section__input:focus::placeholder {
-  opacity: 1;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section__input:not(:placeholder-shown) + label, .master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section__input:focus + label {
-  transform: translate(-4rem, -7rem) scale(0.75);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section__label {
-  position: absolute;
-  height: 6rem;
-  width: 17.5%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  transform: rotate(0) translate(0, -50%);
-  top: 50%;
-  left: calc(43.75% + 2rem);
-  -moz-transform: translateY(-50%);
-  transition: transform 0.5s;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section--show {
-  display: flex;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section--show .user-profile-form__section__label {
-  transform: translate(-4rem, -16.25rem) scale(0.75);
 }
 .master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__comm-switch {
   position: relative;
@@ -36201,6 +35931,289 @@ html {
   left: 0;
   transform: translate(10%, 0);
 }
+.form--user-profile {
+  width: 100%;
+  display: none;
+}
+.form--user-profile__section__input {
+  height: 7rem;
+  width: 25%;
+  padding: 1rem;
+  padding-left: 2rem;
+  background-color: rgba(17, 17, 17, 0.5);
+  border: 0.3rem solid rgba(250, 250, 250, 0.75);
+  border-radius: 0.75rem;
+  margin: 2rem 0;
+}
+.form--user-profile__section__input:focus {
+  outline: none;
+}
+.form--user-profile__section__input:focus::-webkit-input-placeholder, .form--user-profile__section__input:focus::-moz-placeholder, .form--user-profile__section__input:focus::placeholder {
+  opacity: 1;
+}
+.form--user-profile__section__input:not(:placeholder-shown) + label, .form--user-profile__section__input:focus + label {
+  transform: translate(-6rem, -4.75rem) scale(0.75);
+}
+.form--user-profile__section__label {
+  position: absolute;
+  height: 7rem;
+  width: 25%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, -50%);
+  left: calc(37.7% + 2rem);
+}
+.form--user-profile__section__sub-section {
+  position: relative;
+  height: min-content;
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  margin: 0.5rem 0;
+}
+.form--user-profile__section__sub-section:first-of-type {
+  margin: 0 0 1rem;
+}
+.form--user-profile__section__sub-section__input {
+  position: relative;
+  height: 6rem;
+  width: 17.5%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(15%, 0);
+  padding: 1rem;
+  padding-left: 2rem;
+  background-color: rgba(17, 17, 17, 0.5);
+  border: 0.3rem solid rgba(250, 250, 250, 0.75);
+  border-radius: 0.75rem;
+  margin: 0.5rem 0;
+}
+.form--user-profile__section__sub-section__input::-webkit-input-placeholder, .form--user-profile__section__sub-section__input::-moz-placeholder, .form--user-profile__section__sub-section__input::placeholder {
+  opacity: 0;
+}
+.form--user-profile__section__sub-section__input:focus {
+  outline: none;
+}
+.form--user-profile__section__sub-section__input:focus::-webkit-input-placeholder, .form--user-profile__section__sub-section__input:focus::-moz-placeholder, .form--user-profile__section__sub-section__input:focus::placeholder {
+  opacity: 1;
+}
+.form--user-profile__section__sub-section__input:not(:placeholder-shown) + label, .form--user-profile__section__sub-section__input:focus + label {
+  transform: translate(-4rem, -7rem) scale(0.75);
+}
+.form--user-profile__section__sub-section__label {
+  position: absolute;
+  height: 6rem;
+  width: 17.5%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, -50%);
+  top: 50%;
+  left: calc(43.75% + 2rem);
+  -moz-transform: translateY(-50%);
+  transition: transform 0.5s;
+}
+.form--user-profile__section__sub-section--show {
+  display: flex;
+}
+.form--user-profile__section__sub-section--show .user-profile-form__section__label {
+  transform: translate(-4rem, -16.25rem) scale(0.75);
+}
+
+.switch {
+  flex-direction: row;
+  justify-content: center;
+}
+.switch__page-number {
+  margin-right: 9rem;
+}
+.switch-container--latter-day-saint {
+  position: relative;
+  height: 7rem;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.switch-container--latter-day-saint .switch--latter-day-saint {
+  position: relative;
+  height: 95%;
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(-15%, 0);
+  background-color: rgba(156, 67, 212, 0.8);
+  border: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-radius: 5rem;
+  padding: 0.25rem;
+  transition: background-color 0.5s, border 0.5s;
+}
+.switch-container--latter-day-saint .switch--latter-day-saint__handle {
+  position: absolute;
+  height: 84%;
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, -50%);
+  top: 50%;
+  left: 2.75%;
+  background-color: rgba(101, 33, 144, 0.8);
+  border-radius: 5rem;
+  transition: background-color 0.5s, transform 0.5s, width 0.25s;
+}
+.switch-container--latter-day-saint .switch--latter-day-saint__text--NO {
+  position: relative;
+  height: 100%;
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.switch-container--latter-day-saint .switch--latter-day-saint__text--YES {
+  position: relative;
+  height: 100%;
+  width: 70%;
+  display: none;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.switch-container--latter-day-saint .switch--latter-day-saint:hover {
+  cursor: pointer;
+}
+.switch-container--latter-day-saint .switch--latter-day-saint--switched {
+  border: 0.3rem solid #2cae1f;
+  background-color: #60e152;
+  padding: 0.25rem;
+}
+.switch-container--latter-day-saint .switch--latter-day-saint--switched .switch--latter-day-saint__handle {
+  width: 94%;
+  background-color: #2cae1f;
+  transform: translate(0, -49%);
+}
+.switch-container--latter-day-saint .switch--latter-day-saint--switched .switch--latter-day-saint__text--NO {
+  display: none;
+}
+.switch-container--latter-day-saint .switch--latter-day-saint--switched .switch--latter-day-saint__text--YES {
+  display: flex;
+}
+.switch--comms {
+  position: relative;
+  height: 100%;
+  width: 15%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: rgba(17, 17, 17, 0.5);
+  border: 0.4rem solid rgba(250, 250, 250, 0.8);
+  border-radius: 8rem;
+  padding: 0.5rem;
+}
+.switch--comms--email, .switch--comms--text {
+  position: relative;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  z-index: 1;
+}
+.switch--comms--email {
+  border-top-left-radius: 8rem;
+  border-bottom-left-radius: 8rem;
+}
+.switch--comms--text {
+  border-top-right-radius: 8rem;
+  border-bottom-right-radius: 8rem;
+}
+.switch--comms:after {
+  position: absolute;
+  height: 85%;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, -50%);
+  top: 50%;
+  left: 0.5rem;
+  background-color: #38d927;
+  border-top-left-radius: 8rem;
+  border-bottom-left-radius: 8rem;
+  z-index: 0;
+  content: "";
+  transition: transform 0.5s, border-radius 0.5s;
+}
+.switch--comms--text-preferred:after {
+  position: absolute;
+  height: 85%;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(91%, -50%);
+  top: 50%;
+  left: 0.5rem;
+  background-color: #38d927;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 8rem;
+  border-bottom-right-radius: 8rem;
+  z-index: 0;
+  content: "";
+}
+.switch--comms:hover {
+  cursor: pointer;
+}
+
+.switch {
+  margin-bottom: 2rem;
+}
+.switch label {
+  position: relative;
+  top: 0;
+  left: 0;
+  transform: translate(10%, 0);
+  width: 12.5%;
+}
+.switch .comms-label {
+  width: 20%;
+}
 
 .form-container {
   position: relative;
@@ -36234,6 +36247,13 @@ html {
 }
 .form-container:nth-of-type(6) {
   display: flex;
+}
+.form-container--user-profile {
+  height: 85%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
 }
 
 .master-grid-container .application-flex-container {

@@ -165,16 +165,18 @@ export const _watchPasswordResetButton = (formButtons) => {
 export const _watchForProfileUpdates = async (user) => {
   const userProfileFormButtons = document.querySelectorAll('.user-profile-form__button');
   const userProfileSubSectionFormButtons = document.querySelectorAll('.user-profile-form__section__sub-section__button');
-  const latterDaySaintSwitch = document.querySelector('.user-profile-form__section__input--latter-day-saint');
+  const transparentButtons = document.querySelectorAll('.button--small-transparent');
+  console.log(transparentButtons);
+  const latterDaySaintSwitch = document.querySelector('.switch--latter-day-saint');
   let latterDaySaint;
-  userProfileFormButtons.forEach((b, i) => {
+  transparentButtons.forEach((b, i) => {
     b.addEventListener('click', async (e) => {
       e.preventDefault();
       if (i === 0) {
         const firstname = document.getElementById('firstname').value;
         const lastname = document.getElementById('lastname').value;
         const username = document.getElementById('username').value;
-        if (latterDaySaintSwitch.classList.contains('user-profile-form__section__input--latter-day-saint--switched')) {
+        if (latterDaySaintSwitch.classList.contains('switch--latter-day-saint--switched')) {
           latterDaySaint = true;
         }
         const updatedUserInfo = await updateMe({
@@ -214,20 +216,20 @@ export const _watchForProfileUpdates = async (user) => {
         });
       }
 
-      if (i === 2) {
+      if (i === 5) {
         await logout(user._id);
       }
 
-      if (i === 3) {
+      if (i === 6) {
         await deactivateMe(user._id);
       }
 
-      if (i === 4) {
+      if (i === 7) {
         await deleteMe(user._id);
       }
     });
   });
-  userProfileSubSectionFormButtons[0].addEventListener('click', async (e) => {
+  transparentButtons[2].addEventListener('click', async (e) => {
     e.preventDefault();
     console.log(userProfileSubSectionFormButtons);
     const currentPassword = document.getElementById('currentPassword').value;

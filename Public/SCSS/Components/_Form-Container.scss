@@ -1,6 +1,8 @@
 @use '../../../Public/SCSS/Utilities/Mixins' as *;
 @use '../../../Public/SCSS/Utilities/Variables' as *;
 
+///////////////////////
+// FORM CONTAINERS
 .form-container {
   @include SizeAndPositioning(relative, 100%, 100vw, none, row, nowrap, center, center, 0, 0, 0);
   background-color: rgba($colorOffWhite, 0.95);
@@ -16,5 +18,13 @@
   }
   &:nth-of-type(6) {
     display: flex;
+  }
+  &--user-profile {
+    // @include SizeAndPositioning(relative, 85%, 100%, flex, column, nowrap, center, center, 0, 0, 0);
+    height: 85%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
   }
 }

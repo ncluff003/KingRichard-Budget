@@ -1,26 +1,26 @@
-form.user-profile-form.r__user-profile-form
-  section.user-profile-form__section.r__user-profile-form__section 
-    input.user-profile-form__section__input.r__user-profile-form__section__input#firstname(type="text" name="firstname" placeholder="First Name" value=`${data.user.firstname}`)
-    label.user-profile-form__section__label.r__user-profile-form__section__label#firstnameLabel(for="firstname") First Name
-  section.user-profile-form__section.r__user-profile-form__section
-    input.user-profile-form__section__input.r__user-profile-form__section__input#lastname(type="text" name="lastname" placeholder="Last Name" value=`${data.user.lastname}`)
-    label.user-profile-form__section__label.r__user-profile-form__section__label#lastnameLabel(for="lastname") Last Name
-  section.user-profile-form__section.r__user-profile-form__section
-    input.user-profile-form__section__input.r__user-profile-form__section__input#username(type="text" name="username" placeholder="Username" value=`${data.user.username}`)
-    label.user-profile-form__section__label.r__user-profile-form__section__label#usernameLabel(for="username") Username
-  section.user-profile-form__section.r__user-profile-form__section.switch-section.r__switch-section 
-    label.user-profile-form__section__label.r__user-profile-form__section__label(for="latterDaySaint") Latter Day Saint
+form.form.r__form.form--user-profile.form--user-profile
+  section.form__section.r__form__section.form--user-profile__section.r__form--user-profile__section 
+    input.form__section__input.r__form__section__input.form--user-profile__section__input.r__form--user-profile__section__input#firstname(type="text" name="firstname" placeholder="First Name" value=`${data.user.firstname}`)
+    label.form__section__label.r__form__section__label.form--user-profile__section__label.r__form--user-profile__section__label#firstnameLabel(for="firstname") First Name
+  section.form__section.r__form__section.form--user-profile__section.r__form--user-profile__section
+    input.form__section__input.r__form__section__input.form--user-profile__section__input.r__form--user-profile__section__input#lastname(type="text" name="lastname" placeholder="Last Name" value=`${data.user.lastname}`)
+    label.form__section__label.r__form__section__label.form--user-profile__section__label.r__form--user-profile__section__label#lastnameLabel(for="lastname") Last Name
+  section.form__section.r__form__section.form--user-profile__section.r__form--user-profile__section
+    input.form__section__input.r__form__section__input.form--user-profile__section__input.r__form--user-profile__section__input#username(type="text" name="username" placeholder="Username" value=`${data.user.username}`)
+    label.form__section__label.r__form__section__label.form--user-profile__section__label.r__form--user-profile__section__label#usernameLabel(for="username") Username
+  section.form__section.r__form__section.form--user-profile__section.r__form--user-profile__section.switch.r__switch 
+    label.form__section__label.r__form__section__label.form--user-profile__section__label.r__form--user-profile__section__label(for="latterDaySaint") Latter Day Saint
     if !data.user.latterDaySaint
-      .user-profile-form__section__input-container--latter-day-saint.r__user-profile-form__section__input-container--latter-day-saint 
-        .user-profile-form__section__input--latter-day-saint.r__user-profile-form__section__input--latter-day-saint
-          .user-profile-form__section__input--latter-day-saint__switch.r__user-profile-form__section__input--latter-day-saint__switch 
-          p.user-profile-form__section__input--latter-day-saint__text--NO.r__user-profile-form__section__input--latter-day-saint__text--NO NO
-          p.user-profile-form__section__input--latter-day-saint__text--YES.r__user-profile-form__section__input--latter-day-saint__text--YES YES
+      .switch-container--latter-day-saint.r__switch-container--latter-day-saint 
+        .switch--latter-day-saint.r__switch--latter-day-saint
+          .switch--latter-day-saint__handle.r__switch--latter-day-saint__handle 
+          p.switch--latter-day-saint__text--NO.r__switch--latter-day-saint__text--NO NO
+          p.switch--latter-day-saint__text--YES.r__switch--latter-day-saint__text--YES YES
     else 
-      .user-profile-form__section__input-container--latter-day-saint.r__user-profile-form__section__input-container--latter-day-saint 
-        .user-profile-form__section__input--latter-day-saint.r__user-profile-form__section__input--latter-day-saint.user-profile-form__section__input--latter-day-saint--switched.r__user-profile-form__section__input--latter-day-saint--switched
-          .user-profile-form__section__input--latter-day-saint__switch.r__user-profile-form__section__input--latter-day-saint__switch 
-          p.user-profile-form__section__input--latter-day-saint__text--NO.r__user-profile-form__section__input--latter-day-saint__text--NO NO
-          p.user-profile-form__section__input--latter-day-saint__text--YES.r__user-profile-form__section__input--latter-day-saint__text--YES YES
-  section.user-profile-form__section.r__user-profile-form__section
-    button.user-profile-form__button.r__user-profile-form__button(type="submit") Update
+      .switch-container-container--latter-day-saint.r__switch-container-container--latter-day-saint 
+        .switch--latter-day-saint.r__switch--latter-day-saint.switch--latter-day-saint--switched.r__switch--latter-day-saint--switched
+          .switch--latter-day-saint__handle.r__switch--latter-day-saint__handle 
+          p.switch--latter-day-saint__text--NO.r__switch--latter-day-saint__text--NO NO
+          p.switch--latter-day-saint__text--YES.r__switch--latter-day-saint__text--YES YES
+  section.form__section.r__form__section.form--user-profile__section.r__form--user-profile__section 
+    button.button.r__button.button--small.r__button--small.button--small-transparent.r__button--small-transparent(type="submit") Update

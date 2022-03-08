@@ -790,8 +790,8 @@ html {
             }
           }
         }
-        .user-profile-container {
-          &__close {
+        .user-profile-section {
+          .user-profile-closure-icon {
             font-size: 4rem;
             color: rgba($colorOffWhite, 0.8);
             &:hover {
@@ -1593,10 +1593,33 @@ html {
       }
     }
   }
+  &--small {
+    &-transparent {
+      color: rgba($colorOffWhite, 0.8);
+      &:hover {
+        color: $colorOffWhite;
+      }
+      &__password-button {
+        font-family: MADE Tommy Soft, Verdana, sans-serif;
+        font-size: 1.6rem;
+        color: rgba($colorOffWhite, 0.8);
+        &:hover {
+          color: $colorOffWhite;
+        }
+      }
+    }
+  }
   &--borderless {
     font-size: 1.6rem;
     &:hover {
       color: $primaryColor;
+    }
+    &-narrow {
+      font-size: 1.6rem;
+      color: rgba($colorOffWhite, 0.8);
+      &:hover {
+        color: $colorOffWhite;
+      }
     }
   }
 }
@@ -1646,6 +1669,60 @@ html {
             }
           }
         }
+      }
+    }
+  }
+  // USER PROFILE FORM UNIQUE ASPECTS
+  &--user-profile {
+    &__section {
+      font-family: MADE Tommy Soft, Verdana, sans-serif;
+      &__label {
+        font-size: 2rem;
+        color: rgba($colorOffWhite, 0.8);
+      }
+      &__input {
+        font-size: 2rem;
+        color: rgba($colorOffWhite, 0.8);
+        &:focus {
+          color: $colorOffWhite;
+          & + label {
+            color: $colorOffWhite;
+          }
+        }
+      }
+      &__sub-section {
+        font-family: MADE Tommy Soft, Verdana, sans-serif;
+        color: rgba($colorOffWhite, 0.8);
+        &__input {
+          font-family: MADE Tommy Soft, Verdana, sans-serif;
+          font-size: 1.6rem;
+          color: rgba($colorOffWhite, 0.8);
+        }
+        &__label {
+          font-size: 1.6rem;
+        }
+      }
+    }
+  }
+}
+.switch {
+  &-container--latter-day-saint {
+    .switch--latter-day-saint {
+      &__text--NO,
+      &__text--YES {
+        font-size: 3rem;
+        color: $colorOffWhite;
+        text-transform: capitalize;
+      }
+    }
+  }
+  &--comms {
+    &--email,
+    &--text {
+      font-size: 2rem;
+      color: $colorOffWhite;
+      &__text {
+        font-size: 1.6rem;
       }
     }
   }
