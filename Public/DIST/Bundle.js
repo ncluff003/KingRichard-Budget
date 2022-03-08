@@ -9597,7 +9597,7 @@ var _watchPasswordResetButton = function _watchPasswordResetButton(formButtons) 
 
 var _watchForProfileUpdates = /*#__PURE__*/function () {
   var _ref7 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee9(user) {
-    var userProfileFormButtons, userProfileSubSectionFormButtons, transparentButtons, latterDaySaintSwitch, latterDaySaint;
+    var userProfileFormButtons, userProfileSubSectionFormButtons, transparentButtons, latterDaySaintSwitch, communicationSwitch, commPreference, latterDaySaint;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee9$(_context9) {
       while (1) {
         switch (_context9.prev = _context9.next) {
@@ -9607,6 +9607,7 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
             transparentButtons = document.querySelectorAll('.button--small-transparent');
             console.log(transparentButtons);
             latterDaySaintSwitch = document.querySelector('.switch--latter-day-saint');
+            communicationSwitch = document.getElementById('commSwitch');
             transparentButtons.forEach(function (b, i) {
               b.addEventListener('click', /*#__PURE__*/function () {
                 var _ref8 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee7(e) {
@@ -9644,10 +9645,11 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
 
                         case 9:
                           if (!(i === 1)) {
-                            _context7.next = 22;
+                            _context7.next = 23;
                             break;
                           }
 
+                          communicationSwitch.classList.contains('switch--comms--text-preferred') ? commPreference = "Text" : commPreference = "Email";
                           console.log(commPreference);
                           newEmail = document.getElementById('newEmail').value;
                           newEmailConfirmed = document.getElementById('newEmailConfirmed').value;
@@ -9671,7 +9673,7 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
                             newPhoneNumberConfirmed = document.getElementById('phoneNumber').value;
                           }
 
-                          _context7.next = 21;
+                          _context7.next = 22;
                           return updateMe({
                             email: newEmail,
                             emailConfirmed: newEmailConfirmed,
@@ -9681,37 +9683,37 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
                             id: user._id
                           });
 
-                        case 21:
+                        case 22:
                           updateUserInfo = _context7.sent;
 
-                        case 22:
+                        case 23:
                           if (!(i === 5)) {
-                            _context7.next = 25;
+                            _context7.next = 26;
                             break;
                           }
 
-                          _context7.next = 25;
+                          _context7.next = 26;
                           return (0,_Login__WEBPACK_IMPORTED_MODULE_5__.logout)(user._id);
 
-                        case 25:
+                        case 26:
                           if (!(i === 6)) {
-                            _context7.next = 28;
+                            _context7.next = 29;
                             break;
                           }
 
-                          _context7.next = 28;
+                          _context7.next = 29;
                           return deactivateMe(user._id);
 
-                        case 28:
+                        case 29:
                           if (!(i === 7)) {
-                            _context7.next = 31;
+                            _context7.next = 32;
                             break;
                           }
 
-                          _context7.next = 31;
+                          _context7.next = 32;
                           return deleteMe(user._id);
 
-                        case 31:
+                        case 32:
                         case "end":
                           return _context7.stop();
                       }
@@ -9755,7 +9757,7 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
               };
             }());
 
-          case 7:
+          case 8:
           case "end":
             return _context9.stop();
         }

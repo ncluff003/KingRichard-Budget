@@ -1333,6 +1333,7 @@
 // FORM COMPONENTS
 .form {
   @include SizeAndPositioning(relative, 100%, 50%, flex, column, nowrap, center, center, 0, 0, 0);
+  overflow-y: auto;
   &__header {
     margin-bottom: 3rem;
   }

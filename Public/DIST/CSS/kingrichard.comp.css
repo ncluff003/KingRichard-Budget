@@ -35690,6 +35690,7 @@ html {
   justify-content: center;
   align-items: center;
   transform: rotate(0) translate(0, 0);
+  overflow-y: auto;
 }
 .form__header {
   margin-bottom: 3rem;

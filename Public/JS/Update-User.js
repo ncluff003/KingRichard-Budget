@@ -168,6 +168,8 @@ export const _watchForProfileUpdates = async (user) => {
   const transparentButtons = document.querySelectorAll('.button--small-transparent');
   console.log(transparentButtons);
   const latterDaySaintSwitch = document.querySelector('.switch--latter-day-saint');
+  let communicationSwitch = document.getElementById('commSwitch');
+  let commPreference;
   let latterDaySaint;
   transparentButtons.forEach((b, i) => {
     b.addEventListener('click', async (e) => {
@@ -188,6 +190,7 @@ export const _watchForProfileUpdates = async (user) => {
         });
       }
       if (i === 1) {
+        communicationSwitch.classList.contains('switch--comms--text-preferred') ? (commPreference = `Text`) : (commPreference = `Email`);
         console.log(commPreference);
         let newEmail = document.getElementById('newEmail').value;
         let newEmailConfirmed = document.getElementById('newEmailConfirmed').value;
