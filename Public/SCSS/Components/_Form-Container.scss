@@ -27,4 +27,12 @@
     flex-direction: column;
     background-color: transparent;
   }
+  &--budget-creation {
+    // @include SizeAndPositioning(relative, 100%, 100%, none, row, nowrap, space-evenly, center, 0, 0, 0);
+    width: 100%;
+    justify-content: space-evenly;
+    &--shown {
+      display: flex;
+    }
+  }
 }

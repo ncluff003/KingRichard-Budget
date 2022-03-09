@@ -948,8 +948,8 @@ const _watchForSubCategoryKeyboardInput = () => {
 // GO TO PAGE
 const goToPage = (page, createBudgetPages) => {
   createBudgetPages.forEach((bp) => {
-    bp.classList.add('disappear');
-    if (createBudgetPages[page]) createBudgetPages[page].classList.remove('disappear');
+    bp.classList.add('closed');
+    if (createBudgetPages[page]) createBudgetPages[page].classList.remove('closed');
   });
 };
 
@@ -1031,10 +1031,11 @@ const _watchTIthingOptions = (budget) => {
 const _watchCreationFormCloser = (form, budget) => {
   // GLITCH: Budget creation form page is NOT resetting when the form is closed.
 
-  const formCloser = document.querySelector(`.budget-creation-form-close-icon`);
+  const formCloser = document.querySelectorAll(`.form-closure-icon`)[0];
+  console.log(formCloser);
   if (formCloser) {
     formCloser.addEventListener('click', (e) => {
-      form.classList.toggle(`budget-creation-form-container--shown`);
+      form.classList.toggle(`form-container--budget-creation--shown`);
       budget = undefined;
       console.log(budget);
     });
@@ -1044,7 +1045,7 @@ const _watchCreationFormCloser = (form, budget) => {
 const _watchCreationFormOpener = (form, button, budget) => {
   if (button) {
     button.addEventListener(`click`, (e) => {
-      form.classList.toggle(`budget-creation-form-container--shown`);
+      form.classList.toggle(`form-container--budget-creation--shown`);
       console.log(budget);
       return budget;
     });
@@ -1057,7 +1058,7 @@ const _setupBudgetCreation = (form, button, budget) => {
 };
 
 export const _watchForBudgetCreation = async () => {
-  const budgetCreationForm = document.querySelector('.budget-creation-form-container');
+  const budgetCreationForm = document.querySelector('.form-container--budget-creation');
   const budgetCreationFormOpenButton = document.querySelector('.budget-card-container__card--create');
   let budget;
   budget = Budget.startToCreate();

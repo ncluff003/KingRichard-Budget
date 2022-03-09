@@ -1342,158 +1342,112 @@
     &:not(:last-of-type) {
       margin-bottom: 3.5rem;
     }
-    .form__input {
-      @include SizeAndPositioning(relative, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, 0, 0);
-      padding: 1rem;
-      padding-left: 2rem;
-      background-color: rgba($colorLightestGrey, 0.125);
-      border: 0.3rem solid rgba($primaryColor, 0.75);
-      border-radius: 0.75rem;
+    &--switch {
+      @include SizeAndPositioning(relative, min-content, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+      margin-bottom: 2rem;
+    }
+    &--page {
+      @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+      flex-direction: row;
+      justify-content: center;
+      margin-top: 3.5rem;
+    }
+  }
+  &__input-container {
+    @include SizeAndPositioning(relative, 7rem, 20%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+  }
+  &__input {
+    @include SizeAndPositioning(relative, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+    padding: 1rem;
+    padding-left: 2rem;
+    background-color: rgba($colorLightestGrey, 0.125);
+    border: 0.3rem solid rgba($primaryColor, 0.75);
+    border-radius: 0.75rem;
+
+    &::-webkit-input-placeholder,
+    &::-moz-placeholder,
+    &::placeholder {
+      opacity: 0;
+    }
+    &:focus {
+      &::-webkit-input-placeholder {
+        opacity: 1;
+      }
+    }
+    &:focus {
+      outline: none;
       &::-webkit-input-placeholder,
       &::-moz-placeholder,
       &::placeholder {
-        opacity: 0;
-      }
-      &:focus {
-        &::-webkit-input-placeholder {
-          opacity: 1;
-        }
-      }
-      &:focus {
-        outline: none;
-        &::-webkit-input-placeholder,
-        &::-moz-placeholder,
-        &::placeholder {
-          opacity: 1;
-        }
-      }
-      &:not(:placeholder-shown) + label,
-      &:focus + label {
-        transform: translate(-5.5rem, -7rem) scale(0.75);
+        opacity: 1;
       }
     }
-    .form__label {
-      @include SizeAndPositioning(absolute, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, -50%, 0);
-      top: 50%;
-      left: calc(30% + 2rem);
-      -moz-transform: translateY(-50%);
+    &:not(:placeholder-shown) + label,
+    &:focus + label {
+      transform: translate(-5.5rem, -7rem) scale(0.75);
+    }
+    &--latter-day-saint {
+      @include SizeAndPositioning(relative, 95%, 100%, flex, row, nowrap, center, center, -15%, 0, 0);
+      background-color: rgba($primaryColorLight, 0.8);
+      border: 0.3rem solid rgba($primaryColor, 0.75);
+      border-radius: 5rem;
+      padding: 0.25rem;
+      transition: background-color 0.5s, border 0.5s;
+      &__switch {
+        @include SizeAndPositioning(absolute, 84%, 30%, flex, row, nowrap, center, center, 0, -50%, 0);
+        top: 50%;
+        left: 2.75%;
+        background-color: rgba($primaryColorDark, 0.8);
+        border-radius: 5rem;
+        transition: background-color 0.5s, transform 0.5s, width 0.25s;
+      }
+      &__text {
+        @include SizeAndPositioning(relative, 100%, 70%, flex, row, nowrap, center, center, 0, 0, 0);
+      }
+      &:hover {
+        cursor: pointer;
+      }
+      &--switched {
+        border: 0.3rem solid $secondaryColorDark;
+        background-color: $secondaryColorLight;
+        padding: 0.25rem;
+        .form__input--latter-day-saint__switch {
+          width: 94%;
+          background-color: $secondaryColorDark;
+          // transform: translate(215%, -49%);
+          transform: translate(0, -49%);
+        }
+
+        // OLD WAY OF CHANGING WHICH IS SHOWING.  NEW WAY WILL TOGGLE THE 'CLOSED' CLASS ON BOTH OF THEM.
+        // .form__input--latter-day-saint__text--NO {
+        //   display: none;
+        // }
+        // .form__input--latter-day-saint__text--YES {
+        //   display: flex;
+        // }
+      }
+    }
+  }
+  &__label {
+    @include SizeAndPositioning(absolute, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, -50%, 0);
+    top: 50%;
+    left: calc(30% + 2rem);
+    -moz-transform: translateY(-50%);
+    transition: transform 0.5s;
+    &--latter-day-saint {
+      @include SizeAndPositioning(relative, 6rem, 40%, flex, row, nowrap, flex-start, center, 10%, 0, 0);
+      top: 0;
+      left: 0;
+      transform: translate(10%, 0);
       transition: transform 0.5s;
     }
   }
 
-  // SIGNUP FORM UNIQUE ASPECTS
-  &--signup {
-    .form-page {
-      @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
-      margin: 0 0 1rem;
-      &__section {
-        @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
-        &:not(:last-of-type) {
-          margin-bottom: 3.5rem;
-        }
-        &__input {
-          @include SizeAndPositioning(relative, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, 0, 0);
-          padding: 1rem;
-          padding-left: 2rem;
-          background-color: rgba($colorLightestGrey, 0.125);
-          border: 0.3rem solid rgba($primaryColor, 0.75);
-          border-radius: 0.75rem;
-          &::-webkit-input-placeholder,
-          &::-moz-placeholder,
-          &::placeholder {
-            opacity: 0;
-          }
-          &:focus {
-            &::-webkit-input-placeholder {
-              opacity: 1;
-            }
-          }
-          &:focus {
-            outline: none;
-            &::-webkit-input-placeholder,
-            &::-moz-placeholder,
-            &::placeholder {
-              opacity: 1;
-            }
-          }
-          &:not(:placeholder-shown) + label,
-          &:focus + label {
-            transform: translate(-5.5rem, -7rem) scale(0.75);
-          }
-        }
-        &__label {
-          @include SizeAndPositioning(absolute, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, -50%, 0);
-          top: 50%;
-          left: calc(30% + 2rem);
-          -moz-transform: translateY(-50%);
-          transition: transform 0.5s;
-        }
-        .form-page__section__input-container--latter-day-saint {
-          @include SizeAndPositioning(relative, 7rem, 20%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
-          .form-page__section__input--latter-day-saint {
-            @include SizeAndPositioning(relative, 95%, 100%, flex, row, nowrap, center, center, -15%, 0, 0);
-            background-color: rgba($primaryColorLight, 0.8);
-            border: 0.3rem solid rgba($primaryColor, 0.8);
-            border-radius: 5rem;
-            padding: 0.25rem;
-            transition: background-color 0.5s, border 0.5s;
-            &__switch {
-              @include SizeAndPositioning(absolute, 84%, 30%, flex, row, nowrap, center, center, 0, -50%, 0);
-              top: 50%;
-              left: 2.75%;
-              background-color: rgba($primaryColorDark, 0.8);
-              border-radius: 5rem;
-              transition: background-color 0.5s, transform 0.5s, width 0.25s;
-            }
-            &__text--NO {
-              @include SizeAndPositioning(relative, 100%, 70%, flex, row, nowrap, center, center, 0, 0, 0);
-            }
-            &__text--YES {
-              @include SizeAndPositioning(relative, 100%, 70%, none, row, nowrap, center, center, 0, 0, 0);
-            }
-            &:hover {
-              cursor: pointer;
-            }
-            &--switched {
-              border: 0.3rem solid $secondaryColorDark;
-              background-color: $secondaryColorLight;
-              padding: 0.25rem;
-              .form-page__section__input--latter-day-saint__switch {
-                width: 94%;
-                background-color: $secondaryColorDark;
-                // transform: translate(215%, -49%);
-                transform: translate(0, -49%);
-              }
-              .form-page__section__input--latter-day-saint__text--NO {
-                display: none;
-              }
-              .form-page__section__input--latter-day-saint__text--YES {
-                display: flex;
-              }
-            }
-          }
-        }
-      }
-    }
-    &__section,
-    .switch-section {
-      flex-direction: row;
-      justify-content: center;
-      &__page-number {
-        margin-right: 9rem;
-      }
-    }
-    &__section {
-      margin-top: 3.5rem;
-    }
-    .switch-section {
-      label {
-        position: relative;
-        top: 0;
-        left: 0;
-        transform: translate(10%, 0);
-      }
-      margin-bottom: 2rem;
+  &__page {
+    @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+    margin: 0 0 1rem;
+    &-number {
+      margin-right: 9rem;
     }
   }
 
@@ -1575,6 +1529,693 @@
             transform: translate(-4rem, -16.25rem) scale(0.75);
           }
         }
+      }
+    }
+  }
+
+  // BUDGET CREATION FORM UNIQUE ASPECTS
+  &--budget-creation {
+    width: 100%;
+    &__header {
+      @include SizeAndPositioning(relative, 15%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+    }
+
+    &__page {
+      @include SizeAndPositioning(relative, 70%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+      &:nth-of-type(1),
+      &:nth-of-type(5),
+      &:nth-of-type(6),
+      &:nth-of-type(7) {
+        flex-direction: column;
+        & > .budget-creation-form__page__section {
+          & > .budget-creation-form__page__section__input {
+            width: 25%;
+            &:not(:placeholder-shown) + label,
+            &:focus + label {
+              transform: translate(-5rem, -7rem) scale(0.75);
+            }
+          }
+          & > .budget-creation-form__page__section__label {
+            width: 25%;
+            left: calc(30% + 12.5rem);
+          }
+        }
+      }
+      &:nth-of-type(6),
+      &:nth-of-type(7) {
+        & > .budget-creation-form__page__section {
+          & > .savings-percent-goal,
+          & > .investment-percent-goal {
+            &:first-of-type {
+              margin-bottom: 2.4rem;
+              & + label {
+                top: 21%;
+              }
+            }
+          }
+          .budget-creation-form__page__section__input {
+            &:last-of-type {
+              & + label {
+                top: 79%;
+              }
+              & + .emergency-checkbox-label,
+              & + .emergency-goal-label {
+                top: 50%;
+              }
+            }
+          }
+        }
+      }
+      &:nth-of-type(8) {
+        flex-direction: column;
+        & > .budget-creation-form__page__section {
+          & > .investment-percent-goal {
+            margin-bottom: 2.4rem;
+            &:first-of-type {
+              margin-bottom: 2.4rem;
+              & + label {
+                top: 21%;
+              }
+            }
+          }
+          & > .budget-creation-form__page__section__input {
+            width: 25%;
+            &:last-of-type {
+              & + label {
+                top: 79%;
+              }
+            }
+            &:not(:placeholder-shown) + label,
+            &:focus + label {
+              transform: translate(-5rem, -7rem) scale(0.75);
+            }
+          }
+          & > .budget-creation-form__page__section__label {
+            width: 25%;
+            left: calc(30% + 12.5rem);
+          }
+        }
+      }
+      &__section {
+        @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+        &:not(:last-of-type) {
+          margin-bottom: 3.5rem;
+        }
+        &__select {
+          @include SizeAndPositioning(relative, 6rem, 12.5%, flex, row, nowrap, center, center, 0, 0, 0);
+          background-color: rgba($primaryColor, 0.8);
+          border: 0.3rem solid rgba($primaryColor, 0.8);
+          border-top-right-radius: 0.9rem;
+          border-bottom-right-radius: 0.9rem;
+          &:focus {
+            background-color: $primaryColor;
+            border: 0.3rem solid $primaryColor;
+          }
+          option,
+          &__option {
+            background-color: $primaryColor;
+            &:hover {
+              background-color: $secondaryColor;
+            }
+          }
+        }
+        &__input {
+          @include SizeAndPositioning(relative, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+          padding: 1rem;
+          padding-left: 2rem;
+          background-color: rgba($colorLightestGrey, 0.125);
+          border: 0.3rem solid rgba($primaryColor, 0.75);
+          border-radius: 0.75rem;
+          &::-webkit-input-placeholder,
+          &::-moz-placeholder,
+          &::placeholder {
+            opacity: 0;
+          }
+          &:focus {
+            &::-webkit-input-placeholder {
+              opacity: 1;
+            }
+          }
+          &:focus {
+            outline: none;
+            &::-webkit-input-placeholder,
+            &::-moz-placeholder,
+            &::placeholder {
+              opacity: 1;
+            }
+          }
+          &:not(:placeholder-shown) + label,
+          &:focus + label {
+            transform: translate(-8.5rem, -7rem) scale(0.75);
+          }
+        }
+        &__label {
+          @include SizeAndPositioning(absolute, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, -50%, 0);
+          top: 50%;
+          left: calc(30% + 2rem);
+          -moz-transform: translateY(-50%);
+          transition: transform 0.5s;
+        }
+        &__main-category-container {
+          @include SizeAndPositioning(relative, 50rem, 40%, flex, row, nowrap, flex-start, flex-start, 0, 0, 0);
+          border: 0.3rem solid $primaryColor;
+          border-radius: 1.25rem;
+          flex-flow: row wrap;
+          overflow-y: auto;
+          &__create-main-category {
+            @include SizeAndPositioning(relative, 25%, 25%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+            border: 0.3rem solid rgba($primaryColor, 0.8);
+            border-top-left-radius: 0.9rem;
+            &:hover {
+              cursor: pointer;
+              border: 0.3rem solid $primaryColor;
+              background-color: $primaryColor;
+              transition: border 0.5s, background-color 0.5s;
+              .budget-creation-form__page__section__main-category-container__create-main-category__icon,
+              .budget-creation-form__page__section__main-category-container__create-main-category__text {
+                transition: color 0.5s;
+              }
+            }
+            &__icons-container {
+              @include SizeAndPositioning(relative, 80%, 100%, none, row, wrap, center, center, 0, 0, 0);
+              border: 0.3rem solid $primaryColor;
+              grid-template-columns: repeat(3, 1fr);
+              border-top-left-radius: 0.9rem;
+              border-top-right-radius: 0.9rem;
+              overflow-y: auto;
+              .icon-container {
+                @include SizeAndPositioning(relative, 100%, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+                padding: 3rem 0;
+                &:first-of-type {
+                  border-top-left-radius: 0.5rem;
+                }
+                z-index: 3;
+                &:hover {
+                  cursor: pointer;
+                  background-color: $primaryColor;
+                  transition: background-color 0.5s, color 0.5s;
+                }
+                &__icon {
+                  position: relative;
+                  z-index: 0;
+                  margin-bottom: 0.5rem;
+                }
+                &--clicked {
+                  background-color: $primaryColor;
+                }
+              }
+              &--open {
+                display: grid;
+              }
+            }
+            &--hidden {
+              display: none;
+            }
+          }
+          .main-category {
+            @include SizeAndPositioning(relative, 25%, 25%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+            border: 0.3rem solid rgba($primaryColor, 0.8);
+            &:first-of-type {
+              border-top-left-radius: 0.9rem;
+            }
+            &:nth-of-type(3) {
+              border-top-right-radius: 0.9rem;
+            }
+            &--hidden {
+              display: none;
+            }
+            &:hover {
+              cursor: pointer;
+              border: 0.3rem solid $primaryColor;
+              background-color: $primaryColor;
+              transition: border 0.5s, background-color 0.5s;
+              .budget-creation-form__page__section__main-category-container__create-main-category__icon,
+              .budget-creation-form__page__section__main-category-container__create-main-category__text {
+                transition: color 0.5s;
+              }
+            }
+          }
+          &--creating-category {
+            flex-direction: column;
+          }
+        }
+        &__set-main-category-title-container {
+          @include SizeAndPositioning(relative, 20%, 100%, none, row, nowrap, space-evenly, center, 0, 0, 0);
+          border-top: 0.3rem solid $primaryColor;
+          &__input {
+            @include SizeAndPositioning(relative, 5rem, 35%, flex, row, nowrap, center, center, 0, 0, 0);
+            border: 0.3rem solid rgba($primaryColor, 0.8);
+            border-radius: 1.25rem;
+            background-color: rgba($colorOffWhite, 0.8);
+            padding: 1rem;
+            &:focus {
+              outline: none;
+            }
+          }
+          &--open {
+            display: flex;
+          }
+        }
+        &__sub-category-container {
+          @include SizeAndPositioning(relative, 50rem, 35%, flex, column, nowrap, center, center, 0, 0, 0);
+          border: 0.3rem solid $primaryColor;
+          border-radius: 1rem;
+          &__main-category-display {
+            @include SizeAndPositioning(relative, 55%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+            &__left-button,
+            &__right-button {
+              @include SizeAndPositioning(relative, 100%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
+              &__icon {
+                &:hover {
+                  cursor: pointer;
+                  transition: color 0.5s;
+                }
+              }
+            }
+            &__category-information {
+              @include SizeAndPositioning(relative, 100%, 60%, flex, column, nowrap, center, center, 0, 0, 0);
+            }
+          }
+          &__sub-category-display {
+            @include SizeAndPositioning(relative, 45%, 100%, flex, column, nowrap, flex-start, center, 0, 0, 0);
+            border-top: 0.3rem solid $primaryColor;
+            overflow-y: auto;
+            &__sub-category {
+              @include SizeAndPositioning(relative, 6rem, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+              min-height: 6rem;
+              border-bottom: 0.3rem solid rgba($primaryColor, 0.8);
+              border-left: none;
+              border-right: none;
+              background-color: transparent;
+              .sub-category-title-container {
+                @include SizeAndPositioning(relative, 100%, 70%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+                padding-left: 2rem;
+              }
+              .sub-category-controller {
+                @include SizeAndPositioning(relative, 100%, 30%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
+                &__surplus-container {
+                  @include SizeAndPositioning(relative, 100%, 50%, flex, column, nowrap, center, center, 0, 0, 0);
+                  &__switch {
+                    @include SizeAndPositioning(relative, 40%, 75%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+                    border: 0.2rem solid rgba($primaryColorDark, 0.8);
+                    border-radius: 2rem;
+                    background-color: rgba($primaryColor, 0.8);
+                    transition: border 0.5s, background-color 0.5s, transform 0.5s;
+                    &__toggle {
+                      @include SizeAndPositioning(relative, 93%, 33%, flex, row, nowrap, center, center, 5%, 0, 0);
+                      border: 0.2rem solid rgba($colorOffWhite, 0.8);
+                      border-radius: 50%;
+                      background-color: rgba($primaryColorDark, 0.8);
+                      transition: border 0.5s, background-color 0.5s, transform 0.5s;
+                    }
+                    &--switched {
+                      @include SizeAndPositioning(relative, 40%, 75%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+                      border: 0.2rem solid rgba($secondaryColorDark, 0.8);
+                      border-radius: 2rem;
+                      background-color: rgba($secondaryColor, 0.8);
+                      .sub-category-controller__surplus-container__switch__toggle {
+                        @include SizeAndPositioning(relative, 93%, 33%, flex, row, nowrap, center, center, 200%, 0, 0);
+                        border-radius: 50%;
+                        background-color: rgba($secondaryColorDark, 0.8);
+                      }
+                    }
+                    &:hover {
+                      cursor: pointer;
+                    }
+                  }
+                }
+                &__icon {
+                  &:hover {
+                    cursor: pointer;
+                    transition: color 0.5s;
+                  }
+                }
+              }
+            }
+            .hidden {
+              display: none;
+            }
+            .category-creation {
+              display: none;
+              &__input-container {
+                @include SizeAndPositioning(relative, 100%, 70%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+                padding-left: 2rem;
+                &__input {
+                  @include SizeAndPositioning(relative, 50%, 50%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+                  padding-left: 1rem;
+                  border: 0.2rem solid rgba($primaryColor, 0.8);
+                  background-color: rgba($colorOffWhite, 0.25);
+                  border-radius: 0.5rem;
+                  &:focus {
+                    border: 0.2rem solid $primaryColor;
+                    outline: none;
+                  }
+                }
+              }
+              &__controller {
+                @include SizeAndPositioning(relative, 100%, 30%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
+                &__surplus-container {
+                  @include SizeAndPositioning(relative, 100%, 50%, flex, column, nowrap, center, center, 0, 0, 0);
+                  &__switch {
+                    @include SizeAndPositioning(relative, 40%, 75%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+                    border: 0.2rem solid rgba($primaryColorDark, 0.8);
+                    border-radius: 2rem;
+                    background-color: rgba($primaryColor, 0.8);
+                    transition: border 0.5s, background-color 0.5s, transform 0.5s;
+                    &__toggle {
+                      @include SizeAndPositioning(relative, 93%, 33%, flex, row, nowrap, center, center, 5%, 0, 0);
+                      border: 0.2rem solid rgba($colorOffWhite, 0.8);
+                      border-radius: 50%;
+                      background-color: rgba($primaryColorDark, 0.8);
+                      transition: border 0.5s, background-color 0.5s, transform 0.5s;
+                    }
+                    &--switched {
+                      @include SizeAndPositioning(relative, 40%, 75%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+                      border: 0.2rem solid rgba($secondaryColorDark, 0.8);
+                      border-radius: 2rem;
+                      background-color: rgba($secondaryColor, 0.8);
+                      .category-creation__controller__surplus-container__switch__toggle {
+                        @include SizeAndPositioning(relative, 93%, 33%, flex, row, nowrap, center, center, 0, 0, 0);
+                        border-radius: 50%;
+                        background-color: rgba($secondaryColorDark, 0.8);
+                      }
+                    }
+                    &:hover {
+                      cursor: pointer;
+                      @include SizeAndPositioning(relative, 40%, 75%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+                      border: 0.2rem solid rgba($secondaryColorDark, 0.8);
+                      border-radius: 2rem;
+                      background-color: rgba($secondaryColor, 0.8);
+                      .category-creation__controller__surplus-container__switch__toggle {
+                        @include SizeAndPositioning(relative, 93%, 33%, flex, row, nowrap, center, center, 200%, 0, 0);
+                        border-radius: 50%;
+                        background-color: rgba($secondaryColorDark, 0.8);
+                      }
+                    }
+                  }
+                }
+                &__icon {
+                  &:hover {
+                    cursor: pointer;
+                    transition: color 0.5s;
+                  }
+                }
+              }
+              &--shown {
+                display: flex;
+              }
+            }
+          }
+        }
+
+        //////////////////////////////////
+        // CREATE BUDGET FORM PAGE FOUR
+        &__month-container {
+          @include SizeAndPositioning(relative, 62.5rem, 75%, flex, column, nowrap, flex-start, center, 0, 0, 0);
+          border: 0.3rem solid $primaryColor;
+          border-radius: 1.25rem;
+          padding: 0.25rem;
+          &__header {
+            @include SizeAndPositioning(relative, 6rem, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+            background-color: $primaryColor;
+            border-top-left-radius: 0.8rem;
+            border-top-right-radius: 0.8rem;
+            border-bottom: 0.3rem solid $tertiaryColor;
+            &__icon {
+              @include SizeAndPositioning(absolute, 3rem, 3rem, flex, row, nowrap, center, center, 0, -50%, 0);
+              top: 50%;
+              left: 1rem;
+            }
+          }
+          &__budget-goal-summary-container {
+            @include SizeAndPositioning(relative, 14rem, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
+            .budget-single-goal-summary {
+              @include SizeAndPositioning(relative, 100%, 19%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+              background-color: $colorLightestGrey;
+              &__title,
+              &__amount {
+                @include SizeAndPositioning(relative, 50%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+              }
+            }
+          }
+          &__category-container {
+            @include SizeAndPositioning(relative, 42.5rem, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+            padding: 1.5rem;
+            .main-category-display {
+              @include SizeAndPositioning(relative, 100%, 40%, flex, row, nowrap, center, center, 0, 0, 0);
+              &__button-container {
+                @include SizeAndPositioning(relative, 100%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
+              }
+              &__category-display {
+                @include SizeAndPositioning(relative, 100%, 60%, flex, column, nowrap, center, center, 0, 0, 0);
+                &__title {
+                  margin-top: 2rem;
+                }
+              }
+            }
+            .sub-category-display {
+              @include SizeAndPositioning(relative, 100%, 60%, flex, column, nowrap, flex-start, center, 0, 0, 0);
+              margin-left: 1.5rem;
+              overflow-y: auto;
+              &__headers {
+                @include SizeAndPositioning(relative, 4rem, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
+                min-height: 4rem;
+                &__title-container {
+                  @include SizeAndPositioning(relative, 100%, 19.5%, flex, row, nowrap, center, center, 0, 0, 0);
+                  background-color: $primaryColor;
+                }
+              }
+              &__sub-category {
+                @include SizeAndPositioning(relative, 6rem, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
+                min-height: 10rem;
+                background-color: $colorLightestGrey;
+                &__section {
+                  @include SizeAndPositioning(relative, 100%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
+                  &:first-of-type {
+                    justify-content: space-evenly;
+                    flex-direction: column;
+                    padding: 0.5rem;
+                  }
+                  &__input {
+                    @include SizeAndPositioning(relative, 60%, 80%, flex, row, nowrap, center, center, 0, 0, 0);
+                    background-color: rgba($colorOffWhite, 0.35);
+                    border-radius: 0.5rem;
+                    border: 0.2rem solid rgba($primaryColor, 0.8);
+                    caret-color: $primaryColor;
+
+                    &:focus {
+                      outline: none;
+                      border: 0.2rem solid $primaryColor, 0.8;
+                      background-color: $colorOffWhite;
+                    }
+                  }
+                  &__content {
+                    @include SizeAndPositioning(relative, 75%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+                  }
+                }
+                &:hover {
+                  cursor: pointer;
+                  .sub-category-display__sub-category__section {
+                    background-color: $primaryColor;
+                    transition: background-color 0.5s;
+                    &__input {
+                      border: $colorOffWhite;
+                      &:focus {
+                        outline: none;
+                      }
+                    }
+                    &__content {
+                      transition: color 0.5s;
+                    }
+                  }
+                }
+                &--hidden {
+                  display: none;
+                }
+              }
+              &__timing-container {
+                @include SizeAndPositioning(absolute, calc(100% - 4rem), 100%, flex, column, nowrap, flex-start, center, 0, 0, 0);
+                background-color: rgba($colorOffWhite, 0.9);
+                min-height: calc(100% - 4rem);
+                overflow-y: auto;
+                top: 4rem;
+                left: 0;
+                z-index: 10;
+                &__close {
+                  @include SizeAndPositioning(absolute, 4rem, 4rem, flex, row, nowrap, center, center, 0, 0, 0);
+                  top: 2rem;
+                  right: 2rem;
+                  &:hover {
+                    cursor: pointer;
+                    transition: color 0.5s;
+                  }
+                }
+                &__monthly-container,
+                &__bi-monthly-container,
+                &__bi-weekly-container,
+                &__weekly-container {
+                  @include SizeAndPositioning(relative, min-content, 80%, flex, column, nowrap, center, center, 0, 0, 0);
+                  &__label {
+                    @include SizeAndPositioning(relative, 5rem, 60%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
+                    border: 0.3rem solid rgba($primaryColor, 0.8);
+                    border-radius: 0.8rem;
+                    padding: 1rem;
+                    margin: 0.25rem 0;
+                    &:first-of-type {
+                      margin-top: 0.5rem;
+                    }
+                    &:last-of-type {
+                      margin-bottom: 0.5rem;
+                    }
+                    &:focus {
+                      border: 0.3rem solid $primaryColor;
+                    }
+                    &__input,
+                    &__select {
+                      background-color: rgba($colorOffWhite, 0.25);
+                      border: 0.2rem solid rgba($primaryColor, 0.8);
+                      border-radius: 0.6rem;
+                      padding: 0.2rem;
+                      &:focus {
+                        border: 0.2rem solid $primaryColor;
+                        outline: none;
+                      }
+                    }
+                  }
+                  .element-hidden {
+                    display: none;
+                  }
+                }
+                &__hidden {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+      .emergency-section {
+        flex-direction: row;
+        justify-content: center;
+        &-header {
+          @include SizeAndPositioning(absolute, 6rem, 27.5%, flex, row, nowrap, center, center, 0, 0, 0);
+          left: calc(30% + 9.5rem);
+          top: 0;
+        }
+        #lengthOfTime,
+        #totalAmount {
+          display: none;
+          .emergency-checkbox-label,
+          & + label {
+            @include SizeAndPositioning(relative, 6rem, 12.5%, flex, row, nowrap, center, center, 0, 0, 0);
+            left: 0;
+            width: 12.5%;
+            border-top: 0.3rem solid $primaryColor;
+            border-bottom: 0.3rem solid $primaryColor;
+            margin-bottom: 4rem;
+            &:first-of-type {
+              border-left: 0.3rem solid $primaryColor;
+              border-top-left-radius: 0.9rem;
+              border-bottom-left-radius: 0.9rem;
+            }
+            &:nth-of-type(2) {
+              border-right: 0.3rem solid $primaryColor;
+              border-top-right-radius: 0.9rem;
+              border-bottom-right-radius: 0.9rem;
+            }
+            &:hover {
+              cursor: pointer;
+            }
+          }
+          & + .clicked-label {
+            background-color: $primaryColor;
+          }
+        }
+      }
+      .timing-section {
+        flex-direction: row;
+        justify-content: center;
+        #timingNumber {
+          width: 12.5%;
+          border-radius: 0;
+          border-top-left-radius: 0.9rem;
+          border-bottom-left-radius: 0.9rem;
+          border-right: none;
+        }
+      }
+      .emergency-input {
+        &:not(:first-of-type) {
+          display: none;
+        }
+      }
+      &-mechanisms {
+        @include SizeAndPositioning(relative, 15%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+      }
+      .tithing-section {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        #grossOption,
+        #netOption,
+        #surplusOption {
+          display: none;
+        }
+        #grossOptionLabel,
+        #netOptionLabel,
+        #surplusOptionLabel {
+          @include SizeAndPositioning(relative, 7rem, 10%, flex, row, nowrap, center, center, 0, 0, 0);
+          top: 0;
+          left: 0;
+          &:hover {
+            cursor: pointer;
+            background-color: $primaryColor;
+          }
+        }
+        #grossOptionLabel {
+          border-top: 0.3rem solid rgba($primaryColor, 0.8);
+          border-left: 0.3rem solid rgba($primaryColor, 0.8);
+          border-bottom: 0.3rem solid rgba($primaryColor, 0.8);
+          border-top-left-radius: 1.25rem;
+          border-bottom-left-radius: 1.25rem;
+          &:hover {
+            border-top: 0.3rem solid $primaryColor;
+            border-left: 0.3rem solid $primaryColor;
+            border-bottom: 0.3rem solid $primaryColor;
+            transition: border 0.5s, background-color 0.5s, color 0.5s;
+          }
+        }
+        #netOptionLabel {
+          border-top: 0.3rem solid rgba($primaryColor, 0.8);
+          border-bottom: 0.3rem solid rgba($primaryColor, 0.8);
+          &:hover {
+            border-top: 0.3rem solid $primaryColor;
+            border-bottom: 0.3rem solid $primaryColor;
+            transition: border 0.5s, background-color 0.5s, color 0.5s;
+          }
+        }
+        #surplusOptionLabel {
+          border-top: 0.3rem solid rgba($primaryColor, 0.8);
+          border-right: 0.3rem solid rgba($primaryColor, 0.8);
+          border-bottom: 0.3rem solid rgba($primaryColor, 0.8);
+          border-top-right-radius: 1.25rem;
+          border-bottom-right-radius: 1.25rem;
+          &:hover {
+            border-top: 0.3rem solid $primaryColor;
+            border-right: 0.3rem solid $primaryColor;
+            border-bottom: 0.3rem solid $primaryColor;
+            transition: border 0.5s, background-color 0.5s, color 0.5s;
+          }
+        }
+        .checked {
+          background-color: $primaryColor;
+          transition: background-color 0.5s, color 0.5s;
+        }
+      }
+    }
+
+    &__section {
+      &__page-display {
+        @include SizeAndPositioning(relative, 15%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
       }
     }
   }

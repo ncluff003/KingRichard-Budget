@@ -97,191 +97,6 @@ html {
   font-variant-ligatures: none;
 }
 
-.master-grid-container .logo-container .logo-text {
-  font-size: 7rem;
-  color: #822aba;
-}
-.master-grid-container .slogan {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-  font-size: 3.6rem;
-  color: #822aba;
-}
-.master-grid-container .form-container .form-closure-icon {
-  font-size: 4rem;
-  color: rgba(130, 42, 186, 0.5);
-}
-.master-grid-container .form-container .form-closure-icon:hover {
-  color: #822aba;
-}
-.master-grid-container .form-container .login-form__section__input,
-.master-grid-container .form-container .signup-form__section__input,
-.master-grid-container .form-container .forgotten-form__section__input,
-.master-grid-container .form-container .reset-password-form__section__input {
-  font-size: 2rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .form-container .login-form__section__input:focus,
-.master-grid-container .form-container .signup-form__section__input:focus,
-.master-grid-container .form-container .forgotten-form__section__input:focus,
-.master-grid-container .form-container .reset-password-form__section__input:focus {
-  color: #822aba;
-}
-.master-grid-container .form-container .login-form__section__input:focus > label,
-.master-grid-container .form-container .signup-form__section__input:focus > label,
-.master-grid-container .form-container .forgotten-form__section__input:focus > label,
-.master-grid-container .form-container .reset-password-form__section__input:focus > label {
-  color: #822aba;
-}
-.master-grid-container .form-container .login-form__section__label,
-.master-grid-container .form-container .signup-form__section__label,
-.master-grid-container .form-container .forgotten-form__section__label,
-.master-grid-container .form-container .reset-password-form__section__label {
-  font-size: 2rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .form-container .login-form__form-page__section__input,
-.master-grid-container .form-container .signup-form__form-page__section__input,
-.master-grid-container .form-container .forgotten-form__form-page__section__input,
-.master-grid-container .form-container .reset-password-form__form-page__section__input {
-  font-size: 2rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .form-container .login-form__form-page__section__input:focus,
-.master-grid-container .form-container .signup-form__form-page__section__input:focus,
-.master-grid-container .form-container .forgotten-form__form-page__section__input:focus,
-.master-grid-container .form-container .reset-password-form__form-page__section__input:focus {
-  color: #822aba;
-}
-.master-grid-container .form-container .login-form__form-page__section__input:focus > label,
-.master-grid-container .form-container .signup-form__form-page__section__input:focus > label,
-.master-grid-container .form-container .forgotten-form__form-page__section__input:focus > label,
-.master-grid-container .form-container .reset-password-form__form-page__section__input:focus > label {
-  color: #822aba;
-}
-.master-grid-container .form-container .login-form__form-page__section__label,
-.master-grid-container .form-container .signup-form__form-page__section__label,
-.master-grid-container .form-container .forgotten-form__form-page__section__label,
-.master-grid-container .form-container .reset-password-form__form-page__section__label {
-  font-size: 2rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .form-container .login-form__form-page__section__button,
-.master-grid-container .form-container .signup-form__form-page__section__button,
-.master-grid-container .form-container .forgotten-form__form-page__section__button,
-.master-grid-container .form-container .reset-password-form__form-page__section__button {
-  font-size: 2.2rem;
-  color: rgba(130, 42, 186, 0.75);
-}
-.master-grid-container .form-container .login-form__form-page__section__button:hover,
-.master-grid-container .form-container .signup-form__form-page__section__button:hover,
-.master-grid-container .form-container .forgotten-form__form-page__section__button:hover,
-.master-grid-container .form-container .reset-password-form__form-page__section__button:hover {
-  color: #fafafa;
-}
-.master-grid-container .form-container .login-form__form-page__section__page-number,
-.master-grid-container .form-container .signup-form__form-page__section__page-number,
-.master-grid-container .form-container .forgotten-form__form-page__section__page-number,
-.master-grid-container .form-container .reset-password-form__form-page__section__page-number {
-  font-size: 2rem;
-  color: #822aba;
-}
-.master-grid-container .form-container .login-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint__text--NO, .master-grid-container .form-container .login-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint__text--YES,
-.master-grid-container .form-container .signup-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint__text--NO,
-.master-grid-container .form-container .signup-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint__text--YES,
-.master-grid-container .form-container .forgotten-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint__text--NO,
-.master-grid-container .form-container .forgotten-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint__text--YES,
-.master-grid-container .form-container .reset-password-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint__text--NO,
-.master-grid-container .form-container .reset-password-form__form-page__section .signup-form__form-page__section__input-container--latter-day-saint .signup-form__form-page__section__input--latter-day-saint__text--YES {
-  font-size: 3rem;
-  color: #fafafa;
-  text-transform: capitalize;
-}
-.master-grid-container .application-flex-container .application-viewport .application-name {
-  font-size: 7rem;
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__label {
-  font-size: 2rem;
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__input {
-  font-size: 2rem;
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__input:focus {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__input:focus + label {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__input-container--latter-day-saint .user-profile-form__section__input--latter-day-saint__text--NO, .master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__input-container--latter-day-saint .user-profile-form__section__input--latter-day-saint__text--YES {
-  font-size: 3rem;
-  color: #fafafa;
-  text-transform: capitalize;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__button {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-  font-size: 1.6rem;
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__button:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__button__password-button {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-  font-size: 1.6rem;
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__button__password-button:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section__input {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-  font-size: 1.6rem;
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section__label {
-  font-size: 1.6rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section__button {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-  font-size: 2rem;
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section__button:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__comm-switch--email, .master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__comm-switch--text {
-  font-size: 2rem;
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__comm-switch--email__text, .master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__comm-switch--text__text {
-  font-size: 1.6rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__button {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-  color: rgba(250, 250, 250, 0.75);
-  font-size: 3rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__button--icon {
-  font-size: 2rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__button--text {
-  font-size: 1.6rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__button:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__button:active {
-  color: #333333;
-}
 .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .form-close-icon,
 .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form-close-icon {
   font-size: 4rem;
@@ -687,72 +502,6 @@ html {
   color: #fafafa;
 }
 .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page .tithing-section .checked {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-card-container__card {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-card-container__card__header__text {
-  font-size: 2.4rem;
-  font-family: Purely Me;
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-card-container__card__header__icon {
-  font-size: 2rem;
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-card-container__card__content__change-photo-button__icon {
-  font-size: 1.6rem;
-  color: rgba(130, 42, 186, 0.5);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-card-container__card__footer {
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-card-container__card__footer--top {
-  font-size: 1.8rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-card-container__card__footer--bottom {
-  font-size: 1.8rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-card-container__card:hover .budget-card-container__card__header__text {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-card-container__card:hover .budget-card-container__card__header__icon {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-card-container__card:hover .budget-card-container__card__header__icon:hover {
-  color: #38d927;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-card-container__card:hover .budget-card-container__card__content__change-photo-button:hover .budget-card-container__card__content__change-photo-button__icon {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-card-container__card:hover .budget-card-container__card__footer {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-card-container__card--create__header__text {
-  font-size: 2rem;
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-card-container__card--create__icon {
-  font-size: 10rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-card-container__card--create:hover .budget-card-container__card--create__header__text {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-card-container__card--create:hover .budget-card-container__card--create__icon {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-section .user-profile-closure-icon {
-  font-size: 4rem;
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-section .user-profile-closure-icon:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-section__header__text {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-  font-size: 10rem;
   color: #fafafa;
 }
 .master-grid-container .application-flex-container .application-viewport .application-display .budget-container .budget-navigation__link-list__list-item__link, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container .budget-navigation__link-list__list-item__link-button {
@@ -1279,6 +1028,22 @@ html {
   color: #fafafa;
 }
 
+.logo-container .logo-text {
+  font-size: 7rem;
+  color: #822aba;
+}
+
+.slogan {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  font-size: 3.6rem;
+  color: #822aba;
+}
+
+.application-name {
+  font-size: 7rem;
+  color: #822aba;
+}
+
 .application-navigation__section--user-information {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
 }
@@ -1370,6 +1135,27 @@ html {
   color: #fafafa;
 }
 
+.user-profile-section .user-profile-closure-icon {
+  font-size: 4rem;
+  color: rgba(250, 250, 250, 0.8);
+}
+.user-profile-section .user-profile-closure-icon:hover {
+  color: #fafafa;
+}
+.user-profile-section__header__text {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  font-size: 10rem;
+  color: #fafafa;
+}
+
+.form-container .form-closure-icon {
+  font-size: 4rem;
+  color: rgba(130, 42, 186, 0.5);
+}
+.form-container .form-closure-icon:hover {
+  color: #822aba;
+}
+
 .form {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
 }
@@ -1379,27 +1165,36 @@ html {
   color: #822aba;
 }
 .form__header__title--medium {
+  font-family: MADE Tommy Soft Bold, Verdana, sans-serif;
   color: #822aba;
   font-size: 6rem;
 }
-.form__section .form__input {
+.form__input {
   font-size: 2rem;
   color: rgba(130, 42, 186, 0.8);
 }
-.form__section .form__input:focus {
+.form__input:focus {
   color: #822aba;
 }
-.form__section .form__input:focus > label {
+.form__input:focus > label {
   color: #822aba;
 }
-.form__section .form__label {
-  font-size: 2rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.form--signup .form-page__section .form-page__section__input-container--latter-day-saint .form-page__section__input--latter-day-saint__text--NO, .form--signup .form-page__section .form-page__section__input-container--latter-day-saint .form-page__section__input--latter-day-saint__text--YES {
+.form__input--latter-day-saint__text {
   font-size: 3rem;
   color: #fafafa;
   text-transform: capitalize;
+}
+.form__label {
+  font-size: 2rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.form__label--latter-day-saint {
+  font-size: 2rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.form__page-number {
+  font-size: 2rem;
+  color: #822aba;
 }
 .form--user-profile__section {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
@@ -1430,6 +1225,405 @@ html {
 .form--user-profile__section__sub-section__label {
   font-size: 1.6rem;
 }
+.form--budget-creation__header__title {
+  font-family: MADE Tommy Soft Bold, Verdana, sans-serif;
+  font-size: 10rem;
+  color: #822aba;
+}
+.form--budget-creation__header__title--medium {
+  font-family: MADE Tommy Soft Bold, Verdana, sans-serif;
+  color: #822aba;
+  font-size: 6rem;
+}
+.form--budget-creation__page:nth-of-type(1), .form--budget-creation__page:nth-of-type(5), .form--budget-creation__page:nth-of-type(6), .form--budget-creation__page:nth-of-type(7) {
+  flex-direction: column;
+}
+.form--budget-creation__page:nth-of-type(1) > .budget-creation-form__page__section > .budget-creation-form__page__section__input, .form--budget-creation__page:nth-of-type(5) > .budget-creation-form__page__section > .budget-creation-form__page__section__input, .form--budget-creation__page:nth-of-type(6) > .budget-creation-form__page__section > .budget-creation-form__page__section__input, .form--budget-creation__page:nth-of-type(7) > .budget-creation-form__page__section > .budget-creation-form__page__section__input {
+  font-size: 1.6rem;
+}
+.form--budget-creation__page:nth-of-type(1) > .budget-creation-form__page__section > .budget-creation-form__page__section__label, .form--budget-creation__page:nth-of-type(5) > .budget-creation-form__page__section > .budget-creation-form__page__section__label, .form--budget-creation__page:nth-of-type(6) > .budget-creation-form__page__section > .budget-creation-form__page__section__label, .form--budget-creation__page:nth-of-type(7) > .budget-creation-form__page__section > .budget-creation-form__page__section__label {
+  font-size: 1.6rem;
+}
+.form--budget-creation__page:nth-of-type(8) {
+  flex-direction: column;
+}
+.form--budget-creation__page:nth-of-type(8) > .budget-creation-form__page__section > .budget-creation-form__page__section__input {
+  font-size: 1.6rem;
+}
+.form--budget-creation__page:nth-of-type(8) > .budget-creation-form__page__section > .budget-creation-form__page__section__label {
+  font-size: 1.6rem;
+}
+.form--budget-creation__page__section__select {
+  color: rgba(250, 250, 250, 0.8);
+  font-size: 2rem;
+  text-align: center;
+}
+.form--budget-creation__page__section__select:focus {
+  background-color: #822aba;
+  border: 0.3rem solid #822aba;
+  color: #fafafa;
+}
+.form--budget-creation__page__section__select option, .form--budget-creation__page__section__select__option {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  color: #fafafa;
+  font-weight: 300;
+}
+.form--budget-creation__page__section__input {
+  font-size: 2rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.form--budget-creation__page__section__input:focus {
+  color: #822aba;
+}
+.form--budget-creation__page__section__input:focus > label {
+  color: #822aba;
+}
+.form--budget-creation__page__section__label {
+  font-size: 2rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.form--budget-creation__page__section__button {
+  font-size: 2.2rem;
+  color: rgba(130, 42, 186, 0.75);
+}
+.form--budget-creation__page__section__button:hover {
+  color: #fafafa;
+}
+.form--budget-creation__page__section__main-category-container__create-main-category {
+  font-size: 2rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.form--budget-creation__page__section__main-category-container__create-main-category__icon {
+  font-size: 3rem;
+}
+.form--budget-creation__page__section__main-category-container__create-main-category:hover .budget-creation-form__page__section__main-category-container__create-main-category__icon {
+  color: #fafafa;
+}
+.form--budget-creation__page__section__main-category-container__create-main-category:hover .budget-creation-form__page__section__main-category-container__create-main-category__text {
+  color: #fafafa;
+}
+.form--budget-creation__page__section__main-category-container__create-main-category__icons-container .icon-container {
+  font-family: MADE Tommy Soft, Verdana, sans-serif !important;
+  font-size: 1.6rem;
+  color: #822aba;
+  text-align: center;
+}
+.form--budget-creation__page__section__main-category-container__create-main-category__icons-container .icon-container__icon {
+  font-size: 4rem;
+}
+.form--budget-creation__page__section__main-category-container__create-main-category__icons-container .icon-container:hover {
+  color: #fafafa;
+}
+.form--budget-creation__page__section__main-category-container__create-main-category__icons-container .icon-container--clicked {
+  color: #fafafa;
+}
+.form--budget-creation__page__section__main-category-container .main-category {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  font-size: 2rem;
+  color: #822aba;
+}
+.form--budget-creation__page__section__main-category-container .main-category__icon {
+  font-size: 3rem;
+}
+.form--budget-creation__page__section__main-category-container .main-category__delete {
+  font-size: 1.2rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.form--budget-creation__page__section__main-category-container .main-category:hover {
+  color: #fafafa;
+}
+.form--budget-creation__page__section__main-category-container .main-category:hover .main-category__delete {
+  color: rgba(250, 250, 250, 0.8);
+}
+.form--budget-creation__page__section__main-category-container .main-category:hover .main-category__delete:hover {
+  color: #822aba;
+}
+.form--budget-creation__page__section__set-main-category-title-container__input {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  font-size: 1.6rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.form--budget-creation__page__section__set-main-category-title-container__input:focus {
+  color: #822aba;
+}
+.form--budget-creation__page__section__set-main-category-title-container__button {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  font-size: 1.6rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.form--budget-creation__page__section__set-main-category-title-container__button:hover {
+  color: #fafafa;
+}
+.form--budget-creation__page__section__sub-category-container__main-category-display__left-button__icon, .form--budget-creation__page__section__sub-category-container__main-category-display__right-button__icon {
+  font-size: 5rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.form--budget-creation__page__section__sub-category-container__main-category-display__left-button__icon:hover, .form--budget-creation__page__section__sub-category-container__main-category-display__right-button__icon:hover {
+  color: #822aba;
+}
+.form--budget-creation__page__section__sub-category-container__main-category-display__left-button__icon {
+  color: rgba(130, 42, 186, 0.25);
+}
+.form--budget-creation__page__section__sub-category-container__main-category-display__category-information {
+  color: #822aba;
+}
+.form--budget-creation__page__section__sub-category-container__main-category-display__category-information__icon {
+  font-size: 16rem;
+}
+.form--budget-creation__page__section__sub-category-container__main-category-display__category-information__text {
+  font-size: 4rem;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display__sub-category .sub-category-title-container__title {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  font-size: 1.6rem;
+  color: #822aba;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  font-size: 1.6rem;
+  color: #822aba;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller__surplus-container__switch__toggle__icon {
+  font-size: 1.2rem;
+  color: rgba(250, 250, 250, 0.8);
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller__icon {
+  color: rgba(130, 42, 186, 0.8);
+  font-size: 2rem;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller__icon:hover {
+  color: #822aba;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display .category-creation__input-container {
+  font-size: 1.4rem;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display .category-creation__input-container__input {
+  color: rgba(130, 42, 186, 0.8);
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display .category-creation__input-container__input:focus {
+  color: #822aba;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display .category-creation__input-container__button {
+  color: rgba(130, 42, 186, 0.8);
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display .category-creation__input-container__button:hover {
+  color: #fafafa;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display .category-creation__controller {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  font-size: 1.6rem;
+  color: #822aba;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display .category-creation__controller__surplus-container__switch__toggle__icon {
+  font-size: 1.2rem;
+  color: rgba(250, 250, 250, 0.8);
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display .category-creation__controller__icon {
+  color: rgba(130, 42, 186, 0.8);
+  font-size: 2rem;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display .category-creation__controller__icon:hover {
+  color: #822aba;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display .category-creation__controller__close {
+  font-size: 1.4rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display .category-creation__controller__close:hover {
+  color: #fafafa;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display__sub-category-button {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  font-size: 1.6rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display__sub-category-button:hover {
+  color: #822aba;
+}
+.form--budget-creation__page__section__month-container__header {
+  font-size: 2.8rem;
+  color: #fafafa;
+}
+.form--budget-creation__page__section__month-container__header__title {
+  font-size: 4rem;
+  text-transform: uppercase;
+}
+.form--budget-creation__page__section__month-container__budget-goal-summary-container .budget-single-goal-summary__title {
+  font-size: 1.6rem;
+  color: #822aba;
+  text-align: center;
+}
+.form--budget-creation__page__section__month-container__budget-goal-summary-container .budget-single-goal-summary__amount {
+  font-size: 3rem;
+  color: #822aba;
+}
+.form--budget-creation__page__section__month-container__category-container .main-category-display__button-container {
+  font-size: 6rem;
+}
+.form--budget-creation__page__section__month-container__category-container .main-category-display__button-container .left {
+  color: rgba(130, 42, 186, 0.25);
+}
+.form--budget-creation__page__section__month-container__category-container .main-category-display__button-container .right {
+  color: rgba(130, 42, 186, 0.8);
+}
+.form--budget-creation__page__section__month-container__category-container .main-category-display__button-container .left:hover,
+.form--budget-creation__page__section__month-container__category-container .main-category-display__button-container .right:hover {
+  color: #822aba;
+}
+.form--budget-creation__page__section__month-container__category-container .main-category-display__category-display {
+  color: #822aba;
+}
+.form--budget-creation__page__section__month-container__category-container .main-category-display__category-display__icon {
+  font-size: 20rem;
+}
+.form--budget-creation__page__section__month-container__category-container .main-category-display__category-display__title {
+  font-size: 4rem;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__headers__title-container {
+  font-size: 1.2rem;
+  color: #fafafa;
+  text-align: center;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__sub-category__section__category-name {
+  font-size: 1.6rem;
+  color: #822aba;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__sub-category__section:first-of-type {
+  text-align: center;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__sub-category__section__set-category-timing-button {
+  font-size: 1.2rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__sub-category__section__input {
+  font-size: 2rem;
+  color: rgba(130, 42, 186, 0.8);
+  text-align: center;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__sub-category__section__input:focus {
+  color: #822aba;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__sub-category__section__content {
+  font-size: 2rem;
+  color: rgba(130, 42, 186, 0.8);
+  text-align: center;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section {
+  background-color: #822aba;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__category-name {
+  color: #fafafa;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__set-category-timing-button {
+  color: rgba(250, 250, 250, 0.8);
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__set-category-timing-button:hover {
+  color: #fafafa;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__input {
+  color: rgba(250, 250, 250, 0.8);
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__input:focus {
+  color: #822aba;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__content {
+  color: #fafafa;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__close {
+  font-size: 3rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__close:hover {
+  color: #822aba;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button__icon, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button__icon, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button__icon, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button__icon {
+  font-family: Icomoon;
+  font-size: 4rem;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button__icon .path1:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button__icon .path1:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button__icon .path1:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button__icon .path1:before {
+  color: #822aba;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button__text, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button__text, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button__text, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button__text {
+  font-size: 2.2rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path1:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path1:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path1:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path1:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path1:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path1:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path1:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path1:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path1:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path1:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path1:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path1:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path1:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path1:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path1:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path1:before {
+  color: #ffd700;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path2:before,
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path3:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path2:before,
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path3:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path2:before,
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path3:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path2:before,
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path3:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path2:before,
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path3:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path2:before,
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path3:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path2:before,
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path3:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path2:before,
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path3:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path2:before,
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path3:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path2:before,
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path3:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path2:before,
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path3:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path2:before,
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path3:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path2:before,
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path3:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path2:before,
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path3:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path2:before,
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path3:before, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path2:before,
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path3:before {
+  color: #333333;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__text, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__text, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__text, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__text, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__text, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__text, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__text, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__text, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__text, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__text, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__text, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__text, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__text, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__text, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__text, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__text {
+  color: #fafafa;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__label, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__label, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__label, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__label {
+  font-size: 1.4rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__label:focus, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__label:focus, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__label:focus, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__label:focus {
+  color: #822aba;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__label__input, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__label__select, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__label__input, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__label__select, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__label__input, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__label__select, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__label__input, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__label__select {
+  font-size: 1.4rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__label__input:focus, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__label__select:focus, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__label__input:focus, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__label__select:focus, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__label__input:focus, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__label__select:focus, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__label__input:focus, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__label__select:focus {
+  color: #822aba;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__submit, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__submit, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__submit, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__submit {
+  font-size: 2rem;
+  color: rgba(250, 250, 250, 0.8);
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__submit:hover, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__submit:hover, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__submit:hover, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__submit:hover {
+  color: #fafafa;
+}
+.form--budget-creation__page .emergency-section-header {
+  font-weight: 300;
+  color: #822aba;
+}
+.form--budget-creation__page .emergency-section #lengthOfTime + .clicked-label,
+.form--budget-creation__page .emergency-section #totalAmount + .clicked-label {
+  color: #fafafa;
+}
+.form--budget-creation__page-mechanisms__page-number {
+  font-size: 3rem;
+  color: #822aba;
+}
+.form--budget-creation__page-mechanisms__submit-button {
+  font-size: 2rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.form--budget-creation__page-mechanisms__submit-button:hover {
+  color: #fafafa;
+}
+.form--budget-creation__page .tithing-section #grossOptionLabel:hover,
+.form--budget-creation__page .tithing-section #netOptionLabel:hover,
+.form--budget-creation__page .tithing-section #surplusOptionLabel:hover {
+  color: #fafafa;
+}
+.form--budget-creation__page .tithing-section .checked {
+  color: #fafafa;
+}
+.form--budget-creation__section__page-display__number {
+  font-size: 3rem;
+  color: #822aba;
+}
 
 .switch-container--latter-day-saint .switch--latter-day-saint__text--NO, .switch-container--latter-day-saint .switch--latter-day-saint__text--YES {
   font-size: 3rem;
@@ -1442,6 +1636,61 @@ html {
 }
 .switch--comms--email__text, .switch--comms--text__text {
   font-size: 1.6rem;
+}
+
+.budget-card-container__card {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+}
+.budget-card-container__card__header__text {
+  font-size: 2.4rem;
+  font-family: Purely Me;
+  color: rgba(250, 250, 250, 0.8);
+}
+.budget-card-container__card__header__icon {
+  font-size: 2rem;
+  color: rgba(250, 250, 250, 0.8);
+}
+.budget-card-container__card__content__change-photo-button__icon {
+  font-size: 1.6rem;
+  color: rgba(130, 42, 186, 0.5);
+}
+.budget-card-container__card__footer {
+  color: rgba(250, 250, 250, 0.8);
+}
+.budget-card-container__card__footer--top {
+  font-size: 1.8rem;
+}
+.budget-card-container__card__footer--bottom {
+  font-size: 1.8rem;
+}
+.budget-card-container__card:hover .budget-card-container__card__header__text {
+  color: #fafafa;
+}
+.budget-card-container__card:hover .budget-card-container__card__header__icon {
+  color: #fafafa;
+}
+.budget-card-container__card:hover .budget-card-container__card__header__icon:hover {
+  color: #38d927;
+}
+.budget-card-container__card:hover .budget-card-container__card__content__change-photo-button:hover .budget-card-container__card__content__change-photo-button__icon {
+  color: #fafafa;
+}
+.budget-card-container__card:hover .budget-card-container__card__footer {
+  color: #fafafa;
+}
+.budget-card-container__card--create__header__text {
+  font-size: 2rem;
+  color: rgba(250, 250, 250, 0.8);
+}
+.budget-card-container__card--create__icon {
+  font-size: 10rem;
+  color: rgba(130, 42, 186, 0.8);
+}
+.budget-card-container__card--create:hover .budget-card-container__card--create__header__text {
+  color: #fafafa;
+}
+.budget-card-container__card--create:hover .budget-card-container__card--create__icon {
+  color: #822aba;
 }
 
 .gridTV {
@@ -32937,176 +33186,6 @@ html {
   background-color: #38d927;
 }
 
-.master-grid-container .form-container .login-form__section__button,
-.master-grid-container .form-container .signup-form__section__button,
-.master-grid-container .form-container .forgotten-form__section__button,
-.master-grid-container .form-container .reset-password-form__section__button {
-  position: relative;
-  height: 6rem;
-  width: 20%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  background-color: rgba(221, 221, 221, 0.125);
-  border: 0.3rem solid rgba(130, 42, 186, 0.75);
-  border-radius: 0.75rem;
-}
-.master-grid-container .form-container .login-form__section__button:hover,
-.master-grid-container .form-container .signup-form__section__button:hover,
-.master-grid-container .form-container .forgotten-form__section__button:hover,
-.master-grid-container .form-container .reset-password-form__section__button:hover {
-  cursor: pointer;
-  background-color: #822aba;
-  border: 0.3rem solid #822aba;
-  transition: background-color 0.5s, border 0.5s, color 0.5s;
-}
-.master-grid-container .form-container .login-form__form-page__section__button,
-.master-grid-container .form-container .signup-form__form-page__section__button,
-.master-grid-container .form-container .forgotten-form__form-page__section__button,
-.master-grid-container .form-container .reset-password-form__form-page__section__button {
-  position: relative;
-  height: 6rem;
-  width: 20%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  background-color: rgba(221, 221, 221, 0.125);
-  border: 0.3rem solid rgba(130, 42, 186, 0.75);
-  border-radius: 0.75rem;
-}
-.master-grid-container .form-container .login-form__form-page__section__button:hover,
-.master-grid-container .form-container .signup-form__form-page__section__button:hover,
-.master-grid-container .form-container .forgotten-form__form-page__section__button:hover,
-.master-grid-container .form-container .reset-password-form__form-page__section__button:hover {
-  cursor: pointer;
-  background-color: #822aba;
-  border: 0.3rem solid #822aba;
-  transition: background-color 0.5s, border 0.5s, color 0.5s;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__button {
-  position: relative;
-  height: 7rem;
-  width: 15%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  border: 0.3rem solid rgba(250, 250, 250, 0.75);
-  border-radius: 1.25rem;
-  background-color: transparent;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__button--icon {
-  margin-right: 1rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__button:hover {
-  cursor: pointer;
-  background-color: #38d927;
-  border: 0.3rem solid #fafafa;
-  transition: background-color 0.5s, border 0.5s, color 0.5s;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__button:active {
-  background-color: #ffd700;
-  border: 0.3rem solid #333333;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__button {
-  position: absolute;
-  height: 3rem;
-  width: 12.5%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0.75rem);
-  bottom: 0;
-  right: 36.5%;
-  background-color: transparent;
-  border: none;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__button:hover {
-  cursor: pointer;
-  transition: color 0.5s, transform 0.5s;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__button__password-button {
-  position: relative;
-  height: 7rem;
-  width: 15%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  border: 0.3rem solid rgba(250, 250, 250, 0.75);
-  border-radius: 1.25rem;
-  background-color: transparent;
-  margin: 1rem 0;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__button__password-button:focus {
-  outline: none;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__button__password-button--icon {
-  margin-right: 1rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__button__password-button:hover {
-  cursor: pointer;
-  background-color: #38d927;
-  border: 0.3rem solid #fafafa;
-  transition: background-color 0.5s, border 0.5s, color 0.5s;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__button__password-button:active {
-  background-color: #ffd700;
-  border: 0.3rem solid #333333;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section__button {
-  position: relative;
-  height: 7rem;
-  width: 15%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  border: 0.3rem solid rgba(250, 250, 250, 0.75);
-  border-radius: 1.25rem;
-  background-color: transparent;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section__button--icon {
-  margin-right: 1rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section__button:hover {
-  cursor: pointer;
-  background-color: #38d927;
-  border: 0.3rem solid #fafafa;
-  transition: background-color 0.5s, border 0.5s, color 0.5s;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__sub-section__button:active {
-  background-color: #ffd700;
-  border: 0.3rem solid #333333;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form__section__set-main-category-title-container__button {
-  position: relative;
-  height: 7rem;
-  width: 15%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .user-profile-container__form-container .user-profile-form .account-management-button.r__account-management-button {
-  margin: 1rem 0;
-}
 .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category:hover .main-category__delete {
   border: 0.2rem solid rgba(250, 250, 250, 0.8);
 }
@@ -35709,53 +35788,19 @@ html {
 .form__section:not(:last-of-type) {
   margin-bottom: 3.5rem;
 }
-.form__section .form__input {
+.form__section--switch {
   position: relative;
-  height: 6rem;
-  width: 40%;
+  height: min-content;
+  width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   transform: rotate(0) translate(0, 0);
-  padding: 1rem;
-  padding-left: 2rem;
-  background-color: rgba(221, 221, 221, 0.125);
-  border: 0.3rem solid rgba(130, 42, 186, 0.75);
-  border-radius: 0.75rem;
+  margin-bottom: 2rem;
 }
-.form__section .form__input::-webkit-input-placeholder, .form__section .form__input::-moz-placeholder, .form__section .form__input::placeholder {
-  opacity: 0;
-}
-.form__section .form__input:focus::-webkit-input-placeholder {
-  opacity: 1;
-}
-.form__section .form__input:focus {
-  outline: none;
-}
-.form__section .form__input:focus::-webkit-input-placeholder, .form__section .form__input:focus::-moz-placeholder, .form__section .form__input:focus::placeholder {
-  opacity: 1;
-}
-.form__section .form__input:not(:placeholder-shown) + label, .form__section .form__input:focus + label {
-  transform: translate(-5.5rem, -7rem) scale(0.75);
-}
-.form__section .form__label {
-  position: absolute;
-  height: 6rem;
-  width: 40%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  transform: rotate(0) translate(0, -50%);
-  top: 50%;
-  left: calc(30% + 2rem);
-  -moz-transform: translateY(-50%);
-  transition: transform 0.5s;
-}
-.form--signup .form-page {
+.form__section--page {
   position: relative;
   height: min-content;
   width: 100%;
@@ -35765,69 +35810,11 @@ html {
   justify-content: space-evenly;
   align-items: center;
   transform: rotate(0) translate(0, 0);
-  margin: 0 0 1rem;
-}
-.form--signup .form-page__section {
-  position: relative;
-  height: min-content;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-}
-.form--signup .form-page__section:not(:last-of-type) {
-  margin-bottom: 3.5rem;
-}
-.form--signup .form-page__section__input {
-  position: relative;
-  height: 6rem;
-  width: 40%;
-  display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-  padding: 1rem;
-  padding-left: 2rem;
-  background-color: rgba(221, 221, 221, 0.125);
-  border: 0.3rem solid rgba(130, 42, 186, 0.75);
-  border-radius: 0.75rem;
+  justify-content: center;
+  margin-top: 3.5rem;
 }
-.form--signup .form-page__section__input::-webkit-input-placeholder, .form--signup .form-page__section__input::-moz-placeholder, .form--signup .form-page__section__input::placeholder {
-  opacity: 0;
-}
-.form--signup .form-page__section__input:focus::-webkit-input-placeholder {
-  opacity: 1;
-}
-.form--signup .form-page__section__input:focus {
-  outline: none;
-}
-.form--signup .form-page__section__input:focus::-webkit-input-placeholder, .form--signup .form-page__section__input:focus::-moz-placeholder, .form--signup .form-page__section__input:focus::placeholder {
-  opacity: 1;
-}
-.form--signup .form-page__section__input:not(:placeholder-shown) + label, .form--signup .form-page__section__input:focus + label {
-  transform: translate(-5.5rem, -7rem) scale(0.75);
-}
-.form--signup .form-page__section__label {
-  position: absolute;
-  height: 6rem;
-  width: 40%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  transform: rotate(0) translate(0, -50%);
-  top: 50%;
-  left: calc(30% + 2rem);
-  -moz-transform: translateY(-50%);
-  transition: transform 0.5s;
-}
-.form--signup .form-page__section .form-page__section__input-container--latter-day-saint {
+.form__input-container {
   position: relative;
   height: 7rem;
   width: 20%;
@@ -35838,7 +35825,38 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
 }
-.form--signup .form-page__section .form-page__section__input-container--latter-day-saint .form-page__section__input--latter-day-saint {
+.form__input {
+  position: relative;
+  height: 6rem;
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  padding: 1rem;
+  padding-left: 2rem;
+  background-color: rgba(221, 221, 221, 0.125);
+  border: 0.3rem solid rgba(130, 42, 186, 0.75);
+  border-radius: 0.75rem;
+}
+.form__input::-webkit-input-placeholder, .form__input::-moz-placeholder, .form__input::placeholder {
+  opacity: 0;
+}
+.form__input:focus::-webkit-input-placeholder {
+  opacity: 1;
+}
+.form__input:focus {
+  outline: none;
+}
+.form__input:focus::-webkit-input-placeholder, .form__input:focus::-moz-placeholder, .form__input:focus::placeholder {
+  opacity: 1;
+}
+.form__input:not(:placeholder-shown) + label, .form__input:focus + label {
+  transform: translate(-5.5rem, -7rem) scale(0.75);
+}
+.form__input--latter-day-saint {
   position: relative;
   height: 95%;
   width: 100%;
@@ -35849,12 +35867,12 @@ html {
   align-items: center;
   transform: rotate(0) translate(-15%, 0);
   background-color: rgba(156, 67, 212, 0.8);
-  border: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border: 0.3rem solid rgba(130, 42, 186, 0.75);
   border-radius: 5rem;
   padding: 0.25rem;
   transition: background-color 0.5s, border 0.5s;
 }
-.form--signup .form-page__section .form-page__section__input-container--latter-day-saint .form-page__section__input--latter-day-saint__switch {
+.form__input--latter-day-saint__switch {
   position: absolute;
   height: 84%;
   width: 30%;
@@ -35870,7 +35888,7 @@ html {
   border-radius: 5rem;
   transition: background-color 0.5s, transform 0.5s, width 0.25s;
 }
-.form--signup .form-page__section .form-page__section__input-container--latter-day-saint .form-page__section__input--latter-day-saint__text--NO {
+.form__input--latter-day-saint__text {
   position: relative;
   height: 100%;
   width: 70%;
@@ -35881,56 +35899,63 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
 }
-.form--signup .form-page__section .form-page__section__input-container--latter-day-saint .form-page__section__input--latter-day-saint__text--YES {
-  position: relative;
-  height: 100%;
-  width: 70%;
-  display: none;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-}
-.form--signup .form-page__section .form-page__section__input-container--latter-day-saint .form-page__section__input--latter-day-saint:hover {
+.form__input--latter-day-saint:hover {
   cursor: pointer;
 }
-.form--signup .form-page__section .form-page__section__input-container--latter-day-saint .form-page__section__input--latter-day-saint--switched {
+.form__input--latter-day-saint--switched {
   border: 0.3rem solid #2cae1f;
   background-color: #60e152;
   padding: 0.25rem;
 }
-.form--signup .form-page__section .form-page__section__input-container--latter-day-saint .form-page__section__input--latter-day-saint--switched .form-page__section__input--latter-day-saint__switch {
+.form__input--latter-day-saint--switched .form__input--latter-day-saint__switch {
   width: 94%;
   background-color: #2cae1f;
   transform: translate(0, -49%);
 }
-.form--signup .form-page__section .form-page__section__input-container--latter-day-saint .form-page__section__input--latter-day-saint--switched .form-page__section__input--latter-day-saint__text--NO {
-  display: none;
-}
-.form--signup .form-page__section .form-page__section__input-container--latter-day-saint .form-page__section__input--latter-day-saint--switched .form-page__section__input--latter-day-saint__text--YES {
+.form__label {
+  position: absolute;
+  height: 6rem;
+  width: 40%;
   display: flex;
-}
-.form--signup__section,
-.form--signup .switch-section {
   flex-direction: row;
-  justify-content: center;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, -50%);
+  top: 50%;
+  left: calc(30% + 2rem);
+  -moz-transform: translateY(-50%);
+  transition: transform 0.5s;
 }
-.form--signup__section__page-number,
-.form--signup .switch-section__page-number {
-  margin-right: 9rem;
-}
-.form--signup__section {
-  margin-top: 3.5rem;
-}
-.form--signup .switch-section {
-  margin-bottom: 2rem;
-}
-.form--signup .switch-section label {
+.form__label--latter-day-saint {
   position: relative;
+  height: 6rem;
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(10%, 0);
   top: 0;
   left: 0;
   transform: translate(10%, 0);
+  transition: transform 0.5s;
+}
+.form__page {
+  position: relative;
+  height: min-content;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  margin: 0 0 1rem;
+}
+.form__page-number {
+  margin-right: 9rem;
 }
 .form--user-profile {
   width: 100%;
@@ -36031,6 +36056,1143 @@ html {
 }
 .form--user-profile__section__sub-section--show .user-profile-form__section__label {
   transform: translate(-4rem, -16.25rem) scale(0.75);
+}
+.form--budget-creation {
+  width: 100%;
+}
+.form--budget-creation__header {
+  position: relative;
+  height: 15%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form--budget-creation__page {
+  position: relative;
+  height: 70%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form--budget-creation__page:nth-of-type(1), .form--budget-creation__page:nth-of-type(5), .form--budget-creation__page:nth-of-type(6), .form--budget-creation__page:nth-of-type(7) {
+  flex-direction: column;
+}
+.form--budget-creation__page:nth-of-type(1) > .budget-creation-form__page__section > .budget-creation-form__page__section__input, .form--budget-creation__page:nth-of-type(5) > .budget-creation-form__page__section > .budget-creation-form__page__section__input, .form--budget-creation__page:nth-of-type(6) > .budget-creation-form__page__section > .budget-creation-form__page__section__input, .form--budget-creation__page:nth-of-type(7) > .budget-creation-form__page__section > .budget-creation-form__page__section__input {
+  width: 25%;
+}
+.form--budget-creation__page:nth-of-type(1) > .budget-creation-form__page__section > .budget-creation-form__page__section__input:not(:placeholder-shown) + label, .form--budget-creation__page:nth-of-type(1) > .budget-creation-form__page__section > .budget-creation-form__page__section__input:focus + label, .form--budget-creation__page:nth-of-type(5) > .budget-creation-form__page__section > .budget-creation-form__page__section__input:not(:placeholder-shown) + label, .form--budget-creation__page:nth-of-type(5) > .budget-creation-form__page__section > .budget-creation-form__page__section__input:focus + label, .form--budget-creation__page:nth-of-type(6) > .budget-creation-form__page__section > .budget-creation-form__page__section__input:not(:placeholder-shown) + label, .form--budget-creation__page:nth-of-type(6) > .budget-creation-form__page__section > .budget-creation-form__page__section__input:focus + label, .form--budget-creation__page:nth-of-type(7) > .budget-creation-form__page__section > .budget-creation-form__page__section__input:not(:placeholder-shown) + label, .form--budget-creation__page:nth-of-type(7) > .budget-creation-form__page__section > .budget-creation-form__page__section__input:focus + label {
+  transform: translate(-5rem, -7rem) scale(0.75);
+}
+.form--budget-creation__page:nth-of-type(1) > .budget-creation-form__page__section > .budget-creation-form__page__section__label, .form--budget-creation__page:nth-of-type(5) > .budget-creation-form__page__section > .budget-creation-form__page__section__label, .form--budget-creation__page:nth-of-type(6) > .budget-creation-form__page__section > .budget-creation-form__page__section__label, .form--budget-creation__page:nth-of-type(7) > .budget-creation-form__page__section > .budget-creation-form__page__section__label {
+  width: 25%;
+  left: calc(30% + 12.5rem);
+}
+.form--budget-creation__page:nth-of-type(6) > .budget-creation-form__page__section > .savings-percent-goal:first-of-type, .form--budget-creation__page:nth-of-type(6) > .budget-creation-form__page__section > .investment-percent-goal:first-of-type, .form--budget-creation__page:nth-of-type(7) > .budget-creation-form__page__section > .savings-percent-goal:first-of-type, .form--budget-creation__page:nth-of-type(7) > .budget-creation-form__page__section > .investment-percent-goal:first-of-type {
+  margin-bottom: 2.4rem;
+}
+.form--budget-creation__page:nth-of-type(6) > .budget-creation-form__page__section > .savings-percent-goal:first-of-type + label, .form--budget-creation__page:nth-of-type(6) > .budget-creation-form__page__section > .investment-percent-goal:first-of-type + label, .form--budget-creation__page:nth-of-type(7) > .budget-creation-form__page__section > .savings-percent-goal:first-of-type + label, .form--budget-creation__page:nth-of-type(7) > .budget-creation-form__page__section > .investment-percent-goal:first-of-type + label {
+  top: 21%;
+}
+.form--budget-creation__page:nth-of-type(6) > .budget-creation-form__page__section .budget-creation-form__page__section__input:last-of-type + label, .form--budget-creation__page:nth-of-type(7) > .budget-creation-form__page__section .budget-creation-form__page__section__input:last-of-type + label {
+  top: 79%;
+}
+.form--budget-creation__page:nth-of-type(6) > .budget-creation-form__page__section .budget-creation-form__page__section__input:last-of-type + .emergency-checkbox-label, .form--budget-creation__page:nth-of-type(6) > .budget-creation-form__page__section .budget-creation-form__page__section__input:last-of-type + .emergency-goal-label, .form--budget-creation__page:nth-of-type(7) > .budget-creation-form__page__section .budget-creation-form__page__section__input:last-of-type + .emergency-checkbox-label, .form--budget-creation__page:nth-of-type(7) > .budget-creation-form__page__section .budget-creation-form__page__section__input:last-of-type + .emergency-goal-label {
+  top: 50%;
+}
+.form--budget-creation__page:nth-of-type(8) {
+  flex-direction: column;
+}
+.form--budget-creation__page:nth-of-type(8) > .budget-creation-form__page__section > .investment-percent-goal {
+  margin-bottom: 2.4rem;
+}
+.form--budget-creation__page:nth-of-type(8) > .budget-creation-form__page__section > .investment-percent-goal:first-of-type {
+  margin-bottom: 2.4rem;
+}
+.form--budget-creation__page:nth-of-type(8) > .budget-creation-form__page__section > .investment-percent-goal:first-of-type + label {
+  top: 21%;
+}
+.form--budget-creation__page:nth-of-type(8) > .budget-creation-form__page__section > .budget-creation-form__page__section__input {
+  width: 25%;
+}
+.form--budget-creation__page:nth-of-type(8) > .budget-creation-form__page__section > .budget-creation-form__page__section__input:last-of-type + label {
+  top: 79%;
+}
+.form--budget-creation__page:nth-of-type(8) > .budget-creation-form__page__section > .budget-creation-form__page__section__input:not(:placeholder-shown) + label, .form--budget-creation__page:nth-of-type(8) > .budget-creation-form__page__section > .budget-creation-form__page__section__input:focus + label {
+  transform: translate(-5rem, -7rem) scale(0.75);
+}
+.form--budget-creation__page:nth-of-type(8) > .budget-creation-form__page__section > .budget-creation-form__page__section__label {
+  width: 25%;
+  left: calc(30% + 12.5rem);
+}
+.form--budget-creation__page__section {
+  position: relative;
+  height: min-content;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form--budget-creation__page__section:not(:last-of-type) {
+  margin-bottom: 3.5rem;
+}
+.form--budget-creation__page__section__select {
+  position: relative;
+  height: 6rem;
+  width: 12.5%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: rgba(130, 42, 186, 0.8);
+  border: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-top-right-radius: 0.9rem;
+  border-bottom-right-radius: 0.9rem;
+}
+.form--budget-creation__page__section__select:focus {
+  background-color: #822aba;
+  border: 0.3rem solid #822aba;
+}
+.form--budget-creation__page__section__select option, .form--budget-creation__page__section__select__option {
+  background-color: #822aba;
+}
+.form--budget-creation__page__section__select option:hover, .form--budget-creation__page__section__select__option:hover {
+  background-color: #38d927;
+}
+.form--budget-creation__page__section__input {
+  position: relative;
+  height: 6rem;
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  padding: 1rem;
+  padding-left: 2rem;
+  background-color: rgba(221, 221, 221, 0.125);
+  border: 0.3rem solid rgba(130, 42, 186, 0.75);
+  border-radius: 0.75rem;
+}
+.form--budget-creation__page__section__input::-webkit-input-placeholder, .form--budget-creation__page__section__input::-moz-placeholder, .form--budget-creation__page__section__input::placeholder {
+  opacity: 0;
+}
+.form--budget-creation__page__section__input:focus::-webkit-input-placeholder {
+  opacity: 1;
+}
+.form--budget-creation__page__section__input:focus {
+  outline: none;
+}
+.form--budget-creation__page__section__input:focus::-webkit-input-placeholder, .form--budget-creation__page__section__input:focus::-moz-placeholder, .form--budget-creation__page__section__input:focus::placeholder {
+  opacity: 1;
+}
+.form--budget-creation__page__section__input:not(:placeholder-shown) + label, .form--budget-creation__page__section__input:focus + label {
+  transform: translate(-8.5rem, -7rem) scale(0.75);
+}
+.form--budget-creation__page__section__label {
+  position: absolute;
+  height: 6rem;
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, -50%);
+  top: 50%;
+  left: calc(30% + 2rem);
+  -moz-transform: translateY(-50%);
+  transition: transform 0.5s;
+}
+.form--budget-creation__page__section__main-category-container {
+  position: relative;
+  height: 50rem;
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  transform: rotate(0) translate(0, 0);
+  border: 0.3rem solid #822aba;
+  border-radius: 1.25rem;
+  flex-flow: row wrap;
+  overflow-y: auto;
+}
+.form--budget-creation__page__section__main-category-container__create-main-category {
+  position: relative;
+  height: 25%;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-top-left-radius: 0.9rem;
+}
+.form--budget-creation__page__section__main-category-container__create-main-category:hover {
+  cursor: pointer;
+  border: 0.3rem solid #822aba;
+  background-color: #822aba;
+  transition: border 0.5s, background-color 0.5s;
+}
+.form--budget-creation__page__section__main-category-container__create-main-category:hover .budget-creation-form__page__section__main-category-container__create-main-category__icon,
+.form--budget-creation__page__section__main-category-container__create-main-category:hover .budget-creation-form__page__section__main-category-container__create-main-category__text {
+  transition: color 0.5s;
+}
+.form--budget-creation__page__section__main-category-container__create-main-category__icons-container {
+  position: relative;
+  height: 80%;
+  width: 100%;
+  display: none;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.3rem solid #822aba;
+  grid-template-columns: repeat(3, 1fr);
+  border-top-left-radius: 0.9rem;
+  border-top-right-radius: 0.9rem;
+  overflow-y: auto;
+}
+.form--budget-creation__page__section__main-category-container__create-main-category__icons-container .icon-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  padding: 3rem 0;
+  z-index: 3;
+}
+.form--budget-creation__page__section__main-category-container__create-main-category__icons-container .icon-container:first-of-type {
+  border-top-left-radius: 0.5rem;
+}
+.form--budget-creation__page__section__main-category-container__create-main-category__icons-container .icon-container:hover {
+  cursor: pointer;
+  background-color: #822aba;
+  transition: background-color 0.5s, color 0.5s;
+}
+.form--budget-creation__page__section__main-category-container__create-main-category__icons-container .icon-container__icon {
+  position: relative;
+  z-index: 0;
+  margin-bottom: 0.5rem;
+}
+.form--budget-creation__page__section__main-category-container__create-main-category__icons-container .icon-container--clicked {
+  background-color: #822aba;
+}
+.form--budget-creation__page__section__main-category-container__create-main-category__icons-container--open {
+  display: grid;
+}
+.form--budget-creation__page__section__main-category-container__create-main-category--hidden {
+  display: none;
+}
+.form--budget-creation__page__section__main-category-container .main-category {
+  position: relative;
+  height: 25%;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.3rem solid rgba(130, 42, 186, 0.8);
+}
+.form--budget-creation__page__section__main-category-container .main-category:first-of-type {
+  border-top-left-radius: 0.9rem;
+}
+.form--budget-creation__page__section__main-category-container .main-category:nth-of-type(3) {
+  border-top-right-radius: 0.9rem;
+}
+.form--budget-creation__page__section__main-category-container .main-category--hidden {
+  display: none;
+}
+.form--budget-creation__page__section__main-category-container .main-category:hover {
+  cursor: pointer;
+  border: 0.3rem solid #822aba;
+  background-color: #822aba;
+  transition: border 0.5s, background-color 0.5s;
+}
+.form--budget-creation__page__section__main-category-container .main-category:hover .budget-creation-form__page__section__main-category-container__create-main-category__icon,
+.form--budget-creation__page__section__main-category-container .main-category:hover .budget-creation-form__page__section__main-category-container__create-main-category__text {
+  transition: color 0.5s;
+}
+.form--budget-creation__page__section__main-category-container--creating-category {
+  flex-direction: column;
+}
+.form--budget-creation__page__section__set-main-category-title-container {
+  position: relative;
+  height: 20%;
+  width: 100%;
+  display: none;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border-top: 0.3rem solid #822aba;
+}
+.form--budget-creation__page__section__set-main-category-title-container__input {
+  position: relative;
+  height: 5rem;
+  width: 35%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-radius: 1.25rem;
+  background-color: rgba(250, 250, 250, 0.8);
+  padding: 1rem;
+}
+.form--budget-creation__page__section__set-main-category-title-container__input:focus {
+  outline: none;
+}
+.form--budget-creation__page__section__set-main-category-title-container--open {
+  display: flex;
+}
+.form--budget-creation__page__section__sub-category-container {
+  position: relative;
+  height: 50rem;
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.3rem solid #822aba;
+  border-radius: 1rem;
+}
+.form--budget-creation__page__section__sub-category-container__main-category-display {
+  position: relative;
+  height: 55%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form--budget-creation__page__section__sub-category-container__main-category-display__left-button, .form--budget-creation__page__section__sub-category-container__main-category-display__right-button {
+  position: relative;
+  height: 100%;
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form--budget-creation__page__section__sub-category-container__main-category-display__left-button__icon:hover, .form--budget-creation__page__section__sub-category-container__main-category-display__right-button__icon:hover {
+  cursor: pointer;
+  transition: color 0.5s;
+}
+.form--budget-creation__page__section__sub-category-container__main-category-display__category-information {
+  position: relative;
+  height: 100%;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display {
+  position: relative;
+  height: 45%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border-top: 0.3rem solid #822aba;
+  overflow-y: auto;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display__sub-category {
+  position: relative;
+  height: 6rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  min-height: 6rem;
+  border-bottom: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-left: none;
+  border-right: none;
+  background-color: transparent;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display__sub-category .sub-category-title-container {
+  position: relative;
+  height: 100%;
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  padding-left: 2rem;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller {
+  position: relative;
+  height: 100%;
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller__surplus-container {
+  position: relative;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller__surplus-container__switch {
+  position: relative;
+  height: 40%;
+  width: 75%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.2rem solid rgba(101, 33, 144, 0.8);
+  border-radius: 2rem;
+  background-color: rgba(130, 42, 186, 0.8);
+  transition: border 0.5s, background-color 0.5s, transform 0.5s;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller__surplus-container__switch__toggle {
+  position: relative;
+  height: 93%;
+  width: 33%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(5%, 0);
+  border: 0.2rem solid rgba(250, 250, 250, 0.8);
+  border-radius: 50%;
+  background-color: rgba(101, 33, 144, 0.8);
+  transition: border 0.5s, background-color 0.5s, transform 0.5s;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller__surplus-container__switch--switched {
+  position: relative;
+  height: 40%;
+  width: 75%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.2rem solid rgba(44, 174, 31, 0.8);
+  border-radius: 2rem;
+  background-color: rgba(56, 217, 39, 0.8);
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller__surplus-container__switch--switched .sub-category-controller__surplus-container__switch__toggle {
+  position: relative;
+  height: 93%;
+  width: 33%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(200%, 0);
+  border-radius: 50%;
+  background-color: rgba(44, 174, 31, 0.8);
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller__surplus-container__switch:hover {
+  cursor: pointer;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller__icon:hover {
+  cursor: pointer;
+  transition: color 0.5s;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display .hidden {
+  display: none;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display .category-creation {
+  display: none;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display .category-creation__input-container {
+  position: relative;
+  height: 100%;
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  padding-left: 2rem;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display .category-creation__input-container__input {
+  position: relative;
+  height: 50%;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  padding-left: 1rem;
+  border: 0.2rem solid rgba(130, 42, 186, 0.8);
+  background-color: rgba(250, 250, 250, 0.25);
+  border-radius: 0.5rem;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display .category-creation__input-container__input:focus {
+  border: 0.2rem solid #822aba;
+  outline: none;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display .category-creation__controller {
+  position: relative;
+  height: 100%;
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display .category-creation__controller__surplus-container {
+  position: relative;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display .category-creation__controller__surplus-container__switch {
+  position: relative;
+  height: 40%;
+  width: 75%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.2rem solid rgba(101, 33, 144, 0.8);
+  border-radius: 2rem;
+  background-color: rgba(130, 42, 186, 0.8);
+  transition: border 0.5s, background-color 0.5s, transform 0.5s;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display .category-creation__controller__surplus-container__switch__toggle {
+  position: relative;
+  height: 93%;
+  width: 33%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(5%, 0);
+  border: 0.2rem solid rgba(250, 250, 250, 0.8);
+  border-radius: 50%;
+  background-color: rgba(101, 33, 144, 0.8);
+  transition: border 0.5s, background-color 0.5s, transform 0.5s;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display .category-creation__controller__surplus-container__switch--switched {
+  position: relative;
+  height: 40%;
+  width: 75%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.2rem solid rgba(44, 174, 31, 0.8);
+  border-radius: 2rem;
+  background-color: rgba(56, 217, 39, 0.8);
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display .category-creation__controller__surplus-container__switch--switched .category-creation__controller__surplus-container__switch__toggle {
+  position: relative;
+  height: 93%;
+  width: 33%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border-radius: 50%;
+  background-color: rgba(44, 174, 31, 0.8);
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display .category-creation__controller__surplus-container__switch:hover {
+  cursor: pointer;
+  position: relative;
+  height: 40%;
+  width: 75%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.2rem solid rgba(44, 174, 31, 0.8);
+  border-radius: 2rem;
+  background-color: rgba(56, 217, 39, 0.8);
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display .category-creation__controller__surplus-container__switch:hover .category-creation__controller__surplus-container__switch__toggle {
+  position: relative;
+  height: 93%;
+  width: 33%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(200%, 0);
+  border-radius: 50%;
+  background-color: rgba(44, 174, 31, 0.8);
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display .category-creation__controller__icon:hover {
+  cursor: pointer;
+  transition: color 0.5s;
+}
+.form--budget-creation__page__section__sub-category-container__sub-category-display .category-creation--shown {
+  display: flex;
+}
+.form--budget-creation__page__section__month-container {
+  position: relative;
+  height: 62.5rem;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.3rem solid #822aba;
+  border-radius: 1.25rem;
+  padding: 0.25rem;
+}
+.form--budget-creation__page__section__month-container__header {
+  position: relative;
+  height: 6rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: #822aba;
+  border-top-left-radius: 0.8rem;
+  border-top-right-radius: 0.8rem;
+  border-bottom: 0.3rem solid #ffd700;
+}
+.form--budget-creation__page__section__month-container__header__icon {
+  position: absolute;
+  height: 3rem;
+  width: 3rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, -50%);
+  top: 50%;
+  left: 1rem;
+}
+.form--budget-creation__page__section__month-container__budget-goal-summary-container {
+  position: relative;
+  height: 14rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form--budget-creation__page__section__month-container__budget-goal-summary-container .budget-single-goal-summary {
+  position: relative;
+  height: 100%;
+  width: 19%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: #dddddd;
+}
+.form--budget-creation__page__section__month-container__budget-goal-summary-container .budget-single-goal-summary__title, .form--budget-creation__page__section__month-container__budget-goal-summary-container .budget-single-goal-summary__amount {
+  position: relative;
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form--budget-creation__page__section__month-container__category-container {
+  position: relative;
+  height: 42.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  padding: 1.5rem;
+}
+.form--budget-creation__page__section__month-container__category-container .main-category-display {
+  position: relative;
+  height: 100%;
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form--budget-creation__page__section__month-container__category-container .main-category-display__button-container {
+  position: relative;
+  height: 100%;
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form--budget-creation__page__section__month-container__category-container .main-category-display__category-display {
+  position: relative;
+  height: 100%;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form--budget-creation__page__section__month-container__category-container .main-category-display__category-display__title {
+  margin-top: 2rem;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display {
+  position: relative;
+  height: 100%;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  margin-left: 1.5rem;
+  overflow-y: auto;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__headers {
+  position: relative;
+  height: 4rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  min-height: 4rem;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__headers__title-container {
+  position: relative;
+  height: 100%;
+  width: 19.5%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: #822aba;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__sub-category {
+  position: relative;
+  height: 6rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  min-height: 10rem;
+  background-color: #dddddd;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__sub-category__section {
+  position: relative;
+  height: 100%;
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__sub-category__section:first-of-type {
+  justify-content: space-evenly;
+  flex-direction: column;
+  padding: 0.5rem;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__sub-category__section__input {
+  position: relative;
+  height: 60%;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: rgba(250, 250, 250, 0.35);
+  border-radius: 0.5rem;
+  border: 0.2rem solid rgba(130, 42, 186, 0.8);
+  caret-color: #822aba;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__sub-category__section__input:focus {
+  outline: none;
+  border: 0.2rem solid #822aba, 0.8;
+  background-color: #fafafa;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__sub-category__section__content {
+  position: relative;
+  height: 75%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__sub-category:hover {
+  cursor: pointer;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section {
+  background-color: #822aba;
+  transition: background-color 0.5s;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__input {
+  border: #fafafa;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__input:focus {
+  outline: none;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__content {
+  transition: color 0.5s;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__sub-category--hidden {
+  display: none;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container {
+  position: absolute;
+  height: calc(100% - 4rem);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: rgba(250, 250, 250, 0.9);
+  min-height: calc(100% - 4rem);
+  overflow-y: auto;
+  top: 4rem;
+  left: 0;
+  z-index: 10;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__close {
+  position: absolute;
+  height: 4rem;
+  width: 4rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  top: 2rem;
+  right: 2rem;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__close:hover {
+  cursor: pointer;
+  transition: color 0.5s;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container {
+  position: relative;
+  height: min-content;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__label, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__label, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__label, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__label {
+  position: relative;
+  height: 5rem;
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-radius: 0.8rem;
+  padding: 1rem;
+  margin: 0.25rem 0;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__label:first-of-type, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__label:first-of-type, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__label:first-of-type, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__label:first-of-type {
+  margin-top: 0.5rem;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__label:last-of-type, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__label:last-of-type, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__label:last-of-type, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__label:last-of-type {
+  margin-bottom: 0.5rem;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__label:focus, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__label:focus, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__label:focus, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__label:focus {
+  border: 0.3rem solid #822aba;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__label__input, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__label__select, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__label__input, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__label__select, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__label__input, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__label__select, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__label__input, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__label__select {
+  background-color: rgba(250, 250, 250, 0.25);
+  border: 0.2rem solid rgba(130, 42, 186, 0.8);
+  border-radius: 0.6rem;
+  padding: 0.2rem;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__label__input:focus, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__label__select:focus, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__label__input:focus, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__label__select:focus, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__label__input:focus, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__label__select:focus, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__label__input:focus, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__label__select:focus {
+  border: 0.2rem solid #822aba;
+  outline: none;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container .element-hidden, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container .element-hidden, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container .element-hidden, .form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container .element-hidden {
+  display: none;
+}
+.form--budget-creation__page__section__month-container__category-container .sub-category-display__timing-container__hidden {
+  display: none;
+}
+.form--budget-creation__page .emergency-section {
+  flex-direction: row;
+  justify-content: center;
+}
+.form--budget-creation__page .emergency-section-header {
+  position: absolute;
+  height: 6rem;
+  width: 27.5%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  left: calc(30% + 9.5rem);
+  top: 0;
+}
+.form--budget-creation__page .emergency-section #lengthOfTime,
+.form--budget-creation__page .emergency-section #totalAmount {
+  display: none;
+}
+.form--budget-creation__page .emergency-section #lengthOfTime .emergency-checkbox-label, .form--budget-creation__page .emergency-section #lengthOfTime + label,
+.form--budget-creation__page .emergency-section #totalAmount .emergency-checkbox-label,
+.form--budget-creation__page .emergency-section #totalAmount + label {
+  position: relative;
+  height: 6rem;
+  width: 12.5%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  left: 0;
+  width: 12.5%;
+  border-top: 0.3rem solid #822aba;
+  border-bottom: 0.3rem solid #822aba;
+  margin-bottom: 4rem;
+}
+.form--budget-creation__page .emergency-section #lengthOfTime .emergency-checkbox-label:first-of-type, .form--budget-creation__page .emergency-section #lengthOfTime + label:first-of-type,
+.form--budget-creation__page .emergency-section #totalAmount .emergency-checkbox-label:first-of-type,
+.form--budget-creation__page .emergency-section #totalAmount + label:first-of-type {
+  border-left: 0.3rem solid #822aba;
+  border-top-left-radius: 0.9rem;
+  border-bottom-left-radius: 0.9rem;
+}
+.form--budget-creation__page .emergency-section #lengthOfTime .emergency-checkbox-label:nth-of-type(2), .form--budget-creation__page .emergency-section #lengthOfTime + label:nth-of-type(2),
+.form--budget-creation__page .emergency-section #totalAmount .emergency-checkbox-label:nth-of-type(2),
+.form--budget-creation__page .emergency-section #totalAmount + label:nth-of-type(2) {
+  border-right: 0.3rem solid #822aba;
+  border-top-right-radius: 0.9rem;
+  border-bottom-right-radius: 0.9rem;
+}
+.form--budget-creation__page .emergency-section #lengthOfTime .emergency-checkbox-label:hover, .form--budget-creation__page .emergency-section #lengthOfTime + label:hover,
+.form--budget-creation__page .emergency-section #totalAmount .emergency-checkbox-label:hover,
+.form--budget-creation__page .emergency-section #totalAmount + label:hover {
+  cursor: pointer;
+}
+.form--budget-creation__page .emergency-section #lengthOfTime + .clicked-label,
+.form--budget-creation__page .emergency-section #totalAmount + .clicked-label {
+  background-color: #822aba;
+}
+.form--budget-creation__page .timing-section {
+  flex-direction: row;
+  justify-content: center;
+}
+.form--budget-creation__page .timing-section #timingNumber {
+  width: 12.5%;
+  border-radius: 0;
+  border-top-left-radius: 0.9rem;
+  border-bottom-left-radius: 0.9rem;
+  border-right: none;
+}
+.form--budget-creation__page .emergency-input:not(:first-of-type) {
+  display: none;
+}
+.form--budget-creation__page-mechanisms {
+  position: relative;
+  height: 15%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form--budget-creation__page .tithing-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.form--budget-creation__page .tithing-section #grossOption,
+.form--budget-creation__page .tithing-section #netOption,
+.form--budget-creation__page .tithing-section #surplusOption {
+  display: none;
+}
+.form--budget-creation__page .tithing-section #grossOptionLabel,
+.form--budget-creation__page .tithing-section #netOptionLabel,
+.form--budget-creation__page .tithing-section #surplusOptionLabel {
+  position: relative;
+  height: 7rem;
+  width: 10%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  top: 0;
+  left: 0;
+}
+.form--budget-creation__page .tithing-section #grossOptionLabel:hover,
+.form--budget-creation__page .tithing-section #netOptionLabel:hover,
+.form--budget-creation__page .tithing-section #surplusOptionLabel:hover {
+  cursor: pointer;
+  background-color: #822aba;
+}
+.form--budget-creation__page .tithing-section #grossOptionLabel {
+  border-top: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-left: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-bottom: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-top-left-radius: 1.25rem;
+  border-bottom-left-radius: 1.25rem;
+}
+.form--budget-creation__page .tithing-section #grossOptionLabel:hover {
+  border-top: 0.3rem solid #822aba;
+  border-left: 0.3rem solid #822aba;
+  border-bottom: 0.3rem solid #822aba;
+  transition: border 0.5s, background-color 0.5s, color 0.5s;
+}
+.form--budget-creation__page .tithing-section #netOptionLabel {
+  border-top: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-bottom: 0.3rem solid rgba(130, 42, 186, 0.8);
+}
+.form--budget-creation__page .tithing-section #netOptionLabel:hover {
+  border-top: 0.3rem solid #822aba;
+  border-bottom: 0.3rem solid #822aba;
+  transition: border 0.5s, background-color 0.5s, color 0.5s;
+}
+.form--budget-creation__page .tithing-section #surplusOptionLabel {
+  border-top: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-right: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-bottom: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-top-right-radius: 1.25rem;
+  border-bottom-right-radius: 1.25rem;
+}
+.form--budget-creation__page .tithing-section #surplusOptionLabel:hover {
+  border-top: 0.3rem solid #822aba;
+  border-right: 0.3rem solid #822aba;
+  border-bottom: 0.3rem solid #822aba;
+  transition: border 0.5s, background-color 0.5s, color 0.5s;
+}
+.form--budget-creation__page .tithing-section .checked {
+  background-color: #822aba;
+  transition: background-color 0.5s, color 0.5s;
+}
+.form--budget-creation__section__page-display {
+  position: relative;
+  height: 15%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
 }
 
 .switch {
@@ -36255,6 +37417,13 @@ html {
   display: flex;
   flex-direction: column;
   background-color: transparent;
+}
+.form-container--budget-creation {
+  width: 100%;
+  justify-content: space-evenly;
+}
+.form-container--budget-creation--shown {
+  display: flex;
 }
 
 .master-grid-container .application-flex-container {
@@ -47885,6 +49054,7 @@ I was thinking of iterating through the objects that were created.
     ADJUST : Re-Do Enter Transaction Form To Accommodate For Expense Timing.  This Includes The JavaScript Along With The Styling AND HTML.
     ADJUST : Re-Do Enter Transaction Form To Accommodate For Expense AND Savings Marking Transaction Item As Need Or Surplus.  This Includes The JavaScript Along With The Styling AND HTML.
     ADJUST : Right now, things work fairly well with regards to the budget and such, but the main thing to adjust is the structure of the code.  Especially regarding the fact that much of the time I use similar structured items in both the budget creation form, as well as throughout the budget.  So, I would love to be able to review each part of the creation phase of the budget along with the Budget Dashboard AND each other part of the budget that has similar structures to help them to actually fit well within the JavaScript.  It is making some aspects of the structuring pugs much more difficult then I feel it should be.
+    ADJUST : This one goes right in hand with the one above.  The code needs to be further deconstructed so that only the necessary parts are nested inside one another.  No more having the master flex container everywhere, for example.
 
     //////////////////////////////////
     /// Features To Implement

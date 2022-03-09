@@ -4339,7 +4339,7 @@ var _watchPasswordSubSectionButtons = function _watchPasswordSubSectionButtons()
   var userProfilePasswordSubSectionButtons = document.querySelectorAll('.user-profile-form__section__button__password-button');
   var transparentButtons = document.querySelectorAll('.button--small-transparent');
   console.log(transparentButtons);
-  transparentButtons[1].addEventListener('click', function (e) {
+  transparentButtons[2].addEventListener('click', function (e) {
     e.preventDefault();
 
     _togglePasswordSubSections();
@@ -4638,7 +4638,8 @@ var _watchEntranceButtons = function _watchEntranceButtons(person, form, formPag
 
 
         if (i === 1) {
-          var formPages = document.querySelectorAll('.form-page');
+          var formPages = document.querySelectorAll('.form__page');
+          console.log(formPage);
 
           _Signup__WEBPACK_IMPORTED_MODULE_1__._setupSignupForm(formPage, formPages, person);
         }
@@ -6343,8 +6344,8 @@ var _watchForSubCategoryKeyboardInput = function _watchForSubCategoryKeyboardInp
 
 var goToPage = function goToPage(page, createBudgetPages) {
   createBudgetPages.forEach(function (bp) {
-    bp.classList.add('disappear');
-    if (createBudgetPages[page]) createBudgetPages[page].classList.remove('disappear');
+    bp.classList.add('closed');
+    if (createBudgetPages[page]) createBudgetPages[page].classList.remove('closed');
   });
 }; /////////////////////////////////
 // SET BUDGET NAME
@@ -6447,11 +6448,12 @@ var _watchTIthingOptions = function _watchTIthingOptions(budget) {
 
 var _watchCreationFormCloser = function _watchCreationFormCloser(form, budget) {
   // GLITCH: Budget creation form page is NOT resetting when the form is closed.
-  var formCloser = document.querySelector(".budget-creation-form-close-icon");
+  var formCloser = document.querySelectorAll(".form-closure-icon")[0];
+  console.log(formCloser);
 
   if (formCloser) {
     formCloser.addEventListener('click', function (e) {
-      form.classList.toggle("budget-creation-form-container--shown");
+      form.classList.toggle("form-container--budget-creation--shown");
       budget = undefined;
       console.log(budget);
     });
@@ -6461,7 +6463,7 @@ var _watchCreationFormCloser = function _watchCreationFormCloser(form, budget) {
 var _watchCreationFormOpener = function _watchCreationFormOpener(form, button, budget) {
   if (button) {
     button.addEventListener("click", function (e) {
-      form.classList.toggle("budget-creation-form-container--shown");
+      form.classList.toggle("form-container--budget-creation--shown");
       console.log(budget);
       return budget;
     });
@@ -6481,7 +6483,7 @@ var _watchForBudgetCreation = /*#__PURE__*/function () {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            budgetCreationForm = document.querySelector('.budget-creation-form-container');
+            budgetCreationForm = document.querySelector('.form-container--budget-creation');
             budgetCreationFormOpenButton = document.querySelector('.budget-card-container__card--create');
             budget = _Budget__WEBPACK_IMPORTED_MODULE_6__.startToCreate();
 
@@ -9172,8 +9174,11 @@ var _nextPage = function _nextPage(pageNumber, pages, pageElement, person) {
   pageElement.textContent = "Page ".concat(pageNumber + 1, " / 4");
 }; // Change Latter Day Saint Status
 
-var _changeLatterDaySaintStatus = function _changeLatterDaySaintStatus(lightSwitch, switchClass, person) {
-  lightSwitch.classList.toggle(switchClass); // isLatterDaySaint = !isLatterDaySaint;
+var _changeLatterDaySaintStatus = function _changeLatterDaySaintStatus(valueOne, valueTwo, visibilityClass, switchClass, person) {
+  valueOne.classList.toggle(switchClass);
+  valueTwo.forEach(function (value) {
+    return value.classList.toggle('closed');
+  }); // isLatterDaySaint = !isLatterDaySaint;
 
   person.latterDaySaint = !person.latterDaySaint;
   console.log(person.latterDaySaint);
@@ -9181,11 +9186,12 @@ var _changeLatterDaySaintStatus = function _changeLatterDaySaintStatus(lightSwit
 
 
 var _watchTheLatterDaySaintSwitch = function _watchTheLatterDaySaintSwitch(person) {
-  var latterDaySaint = document.querySelector('.form-page__section__input--latter-day-saint');
+  var latterDaySaint = document.querySelector('.form__input--latter-day-saint');
+  var latterDaySaintValues = document.querySelectorAll('.form__input--latter-day-saint__text');
 
   if (latterDaySaint) {
     latterDaySaint.addEventListener('click', function (e) {
-      _changeLatterDaySaintStatus(latterDaySaint, 'form-page__section__input--latter-day-saint--switched', person);
+      _changeLatterDaySaintStatus(latterDaySaint, latterDaySaintValues, 'closed', 'form__input--latter-day-saint--switched', person);
     });
   }
 }; // Watch The Submit Button
@@ -9227,7 +9233,9 @@ var _watchFormSubmitButton = function _watchFormSubmitButton(page, pages, pageEl
         person.passwordConfirmed = passwordConfirmed; ///////////////////////////////////////////////////////////////////////////////////////////////////////////
         // CREATING A WAY TO GET THE LATTER DAY SAINT INFO IN WHILE STILL BEING ABLE TO LOG IN RIGHT AFTER SIGNING UP.
 
-        var signupForm = document.querySelector('.signup-form');
+        var forms = document.querySelectorAll('.form');
+        console.log(forms);
+        var signupForm = forms[1];
         signupFormSubmit.setAttribute("type", "submit");
         var latterDaySaint = document.createElement("input");
         latterDaySaint.value = person.latterDaySaint;
@@ -9244,7 +9252,7 @@ var _watchFormSubmitButton = function _watchFormSubmitButton(page, pages, pageEl
 // SIGN UP FORM SETUP
 
 var _setupSignupForm = function _setupSignupForm(page, pages, person) {
-  var domSignupFormPageNumber = document.querySelector('.form--signup__section__page-number');
+  var domSignupFormPageNumber = document.querySelector('.form__page-number');
 
   if (domSignupFormPageNumber) {
     _watchFormSubmitButton(page, pages, domSignupFormPageNumber, person);
@@ -9726,7 +9734,7 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
                 };
               }());
             });
-            transparentButtons[2].addEventListener('click', /*#__PURE__*/function () {
+            transparentButtons[4].addEventListener('click', /*#__PURE__*/function () {
               var _ref9 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee8(e) {
                 var currentPassword, newPassword, newPasswordConfirmed, updateUserInfo;
                 return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee8$(_context8) {
@@ -15578,7 +15586,7 @@ __webpack_require__.r(__webpack_exports__);
         signupFormPage = 0;
         isLoggedIn = false;
         console.log("App Has Started!");
-        var domSignupFormPageNumber = document.querySelector('.signup-form__form-page__section__page-number');
+        var domSignupFormPageNumber = document.querySelector('.form__page-number');
         var formButtons = document.querySelectorAll('.buttons');
         var newPerson = _Person__WEBPACK_IMPORTED_MODULE_10__.newPerson;
         newPerson.latterDaySaint = isLatterDaySaint; // WATCH THE ENTRANCE BUTTONS

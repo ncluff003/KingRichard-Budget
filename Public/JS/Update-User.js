@@ -232,7 +232,7 @@ export const _watchForProfileUpdates = async (user) => {
       }
     });
   });
-  transparentButtons[2].addEventListener('click', async (e) => {
+  transparentButtons[4].addEventListener('click', async (e) => {
     e.preventDefault();
     console.log(userProfileSubSectionFormButtons);
     const currentPassword = document.getElementById('currentPassword').value;

@@ -63,8 +63,9 @@ export const _nextPage = (pageNumber, pages, pageElement, person) => {
 };
 
 // Change Latter Day Saint Status
-const _changeLatterDaySaintStatus = (lightSwitch, switchClass, person) => {
-  lightSwitch.classList.toggle(switchClass);
+const _changeLatterDaySaintStatus = (valueOne, valueTwo, visibilityClass, switchClass, person) => {
+  valueOne.classList.toggle(switchClass);
+  valueTwo.forEach((value) => value.classList.toggle('closed'));
   // isLatterDaySaint = !isLatterDaySaint;
   person.latterDaySaint = !person.latterDaySaint;
   console.log(person.latterDaySaint);
@@ -72,10 +73,11 @@ const _changeLatterDaySaintStatus = (lightSwitch, switchClass, person) => {
 
 // Watching The Latter Day Saint Switch
 export const _watchTheLatterDaySaintSwitch = (person) => {
-  const latterDaySaint = document.querySelector('.form-page__section__input--latter-day-saint');
+  const latterDaySaint = document.querySelector('.form__input--latter-day-saint');
+  const latterDaySaintValues = document.querySelectorAll('.form__input--latter-day-saint__text');
   if (latterDaySaint) {
     latterDaySaint.addEventListener('click', (e) => {
-      _changeLatterDaySaintStatus(latterDaySaint, 'form-page__section__input--latter-day-saint--switched', person);
+      _changeLatterDaySaintStatus(latterDaySaint, latterDaySaintValues, 'closed', 'form__input--latter-day-saint--switched', person);
     });
   }
 };
@@ -115,7 +117,9 @@ export const _watchFormSubmitButton = (page, pages, pageElement, person) => {
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
         // CREATING A WAY TO GET THE LATTER DAY SAINT INFO IN WHILE STILL BEING ABLE TO LOG IN RIGHT AFTER SIGNING UP.
 
-        const signupForm = document.querySelector('.signup-form');
+        const forms = document.querySelectorAll('.form');
+        console.log(forms);
+        const signupForm = forms[1];
         signupFormSubmit.setAttribute(`type`, `submit`);
         const latterDaySaint = document.createElement(`input`);
         latterDaySaint.value = person.latterDaySaint;
@@ -133,7 +137,7 @@ export const _watchFormSubmitButton = (page, pages, pageElement, person) => {
 /////////////////////////
 // SIGN UP FORM SETUP
 export const _setupSignupForm = (page, pages, person) => {
-  let domSignupFormPageNumber = document.querySelector('.form--signup__section__page-number');
+  let domSignupFormPageNumber = document.querySelector('.form__page-number');
   if (domSignupFormPageNumber) {
     _watchFormSubmitButton(page, pages, domSignupFormPageNumber, person);
     if (page > 0 || page === undefined) {

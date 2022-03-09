@@ -67,7 +67,7 @@ export const _watchPasswordSubSectionButtons = () => {
   const userProfilePasswordSubSectionButtons = document.querySelectorAll('.user-profile-form__section__button__password-button');
   const transparentButtons = document.querySelectorAll('.button--small-transparent');
   console.log(transparentButtons);
-  transparentButtons[1].addEventListener('click', (e) => {
+  transparentButtons[2].addEventListener('click', (e) => {
     e.preventDefault();
     _togglePasswordSubSections();
   });

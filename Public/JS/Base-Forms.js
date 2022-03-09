@@ -60,7 +60,8 @@ export const _watchEntranceButtons = (person, form, formPage) => {
         //////////////////////////////////////////////////////////////
         // SETUP THE SIGNUP FORM IF IT IS THE SELECTED FORM
         if (i === 1) {
-          const formPages = document.querySelectorAll('.form-page');
+          const formPages = document.querySelectorAll('.form__page');
+          console.log(formPage);
           Signup._setupSignupForm(formPage, formPages, person);
         }
       });

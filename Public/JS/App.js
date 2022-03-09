@@ -23,7 +23,7 @@ import * as Person from './Person';
       signupFormPage = 0;
       isLoggedIn = false;
       console.log(`App Has Started!`);
-      let domSignupFormPageNumber = document.querySelector('.signup-form__form-page__section__page-number');
+      let domSignupFormPageNumber = document.querySelector('.form__page-number');
       const formButtons = document.querySelectorAll('.buttons');
       const newPerson = Person.newPerson;
       newPerson.latterDaySaint = isLatterDaySaint;

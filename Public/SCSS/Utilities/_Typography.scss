@@ -11,191 +11,9 @@ html {
 /////////////////////////////////
 // Master Grid Container
 .master-grid-container {
-  .logo-container {
-    .logo-text {
-      font-size: 7rem;
-      color: $primaryColor;
-    }
-  }
-  .slogan {
-    font-family: MADE Tommy Soft, Verdana, sans-serif;
-    font-size: 3.6rem;
-    color: $primaryColor;
-  }
-  .form-container {
-    .form-closure-icon {
-      font-size: 4rem;
-      color: rgba($primaryColor, 0.5);
-      &:hover {
-        color: $primaryColor;
-      }
-    }
-    .login-form,
-    .signup-form,
-    .forgotten-form,
-    .reset-password-form {
-      &__section {
-        &__input {
-          font-size: 2rem;
-          color: rgba($primaryColor, 0.8);
-          &:focus {
-            color: $primaryColor;
-            & > label {
-              color: $primaryColor;
-            }
-          }
-        }
-        &__label {
-          font-size: 2rem;
-          color: rgba($primaryColor, 0.8);
-        }
-      }
-      &__form-page {
-        &__section {
-          &__input {
-            font-size: 2rem;
-            color: rgba($primaryColor, 0.8);
-            &:focus {
-              color: $primaryColor;
-              & > label {
-                color: $primaryColor;
-              }
-            }
-          }
-          &__label {
-            font-size: 2rem;
-            color: rgba($primaryColor, 0.8);
-          }
-          &__button {
-            font-size: 2.2rem;
-            color: rgba($primaryColor, 0.75);
-            &:hover {
-              color: $colorOffWhite;
-            }
-          }
-          &__page-number {
-            font-size: 2rem;
-            color: $primaryColor;
-          }
-          .signup-form__form-page__section__input-container--latter-day-saint {
-            .signup-form__form-page__section__input--latter-day-saint {
-              &__text--NO,
-              &__text--YES {
-                font-size: 3rem;
-                color: $colorOffWhite;
-                text-transform: capitalize;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
   .application-flex-container {
     .application-viewport {
-      .application-name {
-        font-size: 7rem;
-        color: $primaryColor;
-      }
       .application-display {
-        .user-profile-container {
-          // USER PROFILE FORM CONTAINER
-          &__form-container {
-            // USER PROFILE FORM
-            .user-profile-form {
-              &__section {
-                font-family: MADE Tommy Soft, Verdana, sans-serif;
-                &__label {
-                  font-size: 2rem;
-                  color: rgba($colorOffWhite, 0.8);
-                }
-                &__input {
-                  font-size: 2rem;
-                  color: rgba($colorOffWhite, 0.8);
-                  &:focus {
-                    color: $colorOffWhite;
-                    & + label {
-                      color: $colorOffWhite;
-                    }
-                  }
-                }
-                &__input-container--latter-day-saint {
-                  .user-profile-form__section__input--latter-day-saint {
-                    &__text--NO,
-                    &__text--YES {
-                      font-size: 3rem;
-                      color: $colorOffWhite;
-                      text-transform: capitalize;
-                    }
-                  }
-                }
-                &__button {
-                  font-family: MADE Tommy Soft, Verdana, sans-serif;
-                  font-size: 1.6rem;
-                  color: rgba($colorOffWhite, 0.8);
-                  &:hover {
-                    color: $colorOffWhite;
-                  }
-                  &__password-button {
-                    font-family: MADE Tommy Soft, Verdana, sans-serif;
-                    font-size: 1.6rem;
-                    color: rgba($colorOffWhite, 0.8);
-                    &:hover {
-                      color: $colorOffWhite;
-                    }
-                  }
-                }
-                &__sub-section {
-                  font-family: MADE Tommy Soft, Verdana, sans-serif;
-                  color: rgba($colorOffWhite, 0.8);
-                  &__input {
-                    font-family: MADE Tommy Soft, Verdana, sans-serif;
-                    font-size: 1.6rem;
-                    color: rgba($colorOffWhite, 0.8);
-                  }
-                  &__label {
-                    font-size: 1.6rem;
-                  }
-                  &__button {
-                    font-family: MADE Tommy Soft, Verdana, sans-serif;
-                    font-size: 2rem;
-                    color: rgba($colorOffWhite, 0.8);
-                    &:hover {
-                      color: $colorOffWhite;
-                    }
-                  }
-                }
-                &__comm-switch {
-                  &--email,
-                  &--text {
-                    font-size: 2rem;
-                    color: $colorOffWhite;
-                    &__text {
-                      font-size: 1.6rem;
-                    }
-                  }
-                }
-              }
-              &__button {
-                font-family: MADE Tommy Soft, Verdana, sans-serif;
-                color: rgba($colorOffWhite, 0.75);
-                font-size: 3rem;
-                &--icon {
-                  font-size: 2rem;
-                }
-                &--text {
-                  font-size: 1.6rem;
-                }
-                &:hover {
-                  color: $colorOffWhite;
-                }
-                &:active {
-                  color: $colorDarkerGrey;
-                }
-              }
-            }
-          }
-        }
         .budget-creation-form-container {
           .form-close-icon,
           .budget-creation-form-close-icon {
@@ -707,102 +525,6 @@ html {
                   color: $colorOffWhite;
                 }
               }
-            }
-          }
-        }
-        .budget-card-container {
-          &__card {
-            font-family: MADE Tommy Soft, Verdana, sans-serif;
-            &__header {
-              &__text {
-                font-size: 2.4rem;
-                font-family: Purely Me;
-                color: rgba($colorOffWhite, 0.8);
-              }
-              &__icon {
-                font-size: 2rem;
-                color: rgba($colorOffWhite, 0.8);
-              }
-            }
-            &__content {
-              &__change-photo-button {
-                &__icon {
-                  font-size: 1.6rem;
-                  color: rgba($primaryColor, 0.5);
-                }
-              }
-            }
-            &__footer {
-              color: rgba($colorOffWhite, 0.8);
-              &--top {
-                font-size: 1.8rem;
-              }
-              &--bottom {
-                font-size: 1.8rem;
-              }
-            }
-            &:hover {
-              .budget-card-container__card__header {
-                &__text {
-                  color: $colorOffWhite;
-                }
-                &__icon {
-                  color: $colorOffWhite;
-                  &:hover {
-                    color: $secondaryColor;
-                  }
-                }
-              }
-              .budget-card-container__card__content {
-                &__change-photo-button {
-                  &:hover {
-                    .budget-card-container__card__content__change-photo-button__icon {
-                      color: $colorOffWhite;
-                    }
-                  }
-                }
-              }
-              .budget-card-container__card__footer {
-                color: $colorOffWhite;
-              }
-            }
-            &--create {
-              &__header {
-                &__text {
-                  font-size: 2rem;
-                  color: rgba($colorOffWhite, 0.8);
-                }
-              }
-              &__icon {
-                font-size: 10rem;
-                color: rgba($primaryColor, 0.8);
-              }
-              &:hover {
-                .budget-card-container__card--create__header {
-                  &__text {
-                    color: $colorOffWhite;
-                  }
-                }
-                .budget-card-container__card--create__icon {
-                  color: $primaryColor;
-                }
-              }
-            }
-          }
-        }
-        .user-profile-section {
-          .user-profile-closure-icon {
-            font-size: 4rem;
-            color: rgba($colorOffWhite, 0.8);
-            &:hover {
-              color: $colorOffWhite;
-            }
-          }
-          &__header {
-            &__text {
-              font-family: MADE Tommy Soft, Verdana, sans-serif;
-              font-size: 10rem;
-              color: $colorOffWhite;
             }
           }
         }
@@ -1507,6 +1229,25 @@ html {
 }
 // End of Master Grid Container
 
+// LANDING LOGO AND SLOGAN
+.logo-container {
+  .logo-text {
+    font-size: 7rem;
+    color: $primaryColor;
+  }
+}
+.slogan {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  font-size: 3.6rem;
+  color: $primaryColor;
+}
+
+// APPLICATION NAME -- LOGGED IN
+.application-name {
+  font-size: 7rem;
+  color: $primaryColor;
+}
+
 // APPLICATION NAVIGATION
 .application-navigation {
   &__section {
@@ -1624,7 +1365,34 @@ html {
   }
 }
 
+// USER PROFILE SECTION
+.user-profile-section {
+  .user-profile-closure-icon {
+    font-size: 4rem;
+    color: rgba($colorOffWhite, 0.8);
+    &:hover {
+      color: $colorOffWhite;
+    }
+  }
+  &__header {
+    &__text {
+      font-family: MADE Tommy Soft, Verdana, sans-serif;
+      font-size: 10rem;
+      color: $colorOffWhite;
+    }
+  }
+}
+
 // FORMS
+.form-container {
+  .form-closure-icon {
+    font-size: 4rem;
+    color: rgba($primaryColor, 0.5);
+    &:hover {
+      color: $primaryColor;
+    }
+  }
+}
 .form {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   &__header {
@@ -1633,45 +1401,46 @@ html {
       font-size: 10rem;
       color: $primaryColor;
       &--medium {
+        font-family: MADE Tommy Soft Bold, Verdana, sans-serif;
         color: $primaryColor;
         font-size: 6rem;
       }
     }
   }
-  &__section {
-    .form__input {
-      font-size: 2rem;
-      color: rgba($primaryColor, 0.8);
-      &:focus {
+  &__input {
+    font-size: 2rem;
+    color: rgba($primaryColor, 0.8);
+    &:focus {
+      color: $primaryColor;
+      & > label {
         color: $primaryColor;
-        & > label {
-          color: $primaryColor;
-        }
       }
     }
-    .form__label {
+    &--latter-day-saint {
+      &__text {
+        font-size: 3rem;
+        color: $colorOffWhite;
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  &__label {
+    font-size: 2rem;
+    color: rgba($primaryColor, 0.8);
+    &--latter-day-saint {
       font-size: 2rem;
       color: rgba($primaryColor, 0.8);
     }
   }
 
-  // SIGNUP FORM UNIQUE ASPECTS
-  &--signup {
-    .form-page {
-      &__section {
-        .form-page__section__input-container--latter-day-saint {
-          .form-page__section__input--latter-day-saint {
-            &__text--NO,
-            &__text--YES {
-              font-size: 3rem;
-              color: $colorOffWhite;
-              text-transform: capitalize;
-            }
-          }
-        }
-      }
+  &__page {
+    &-number {
+      font-size: 2rem;
+      color: $primaryColor;
     }
   }
+
   // USER PROFILE FORM UNIQUE ASPECTS
   &--user-profile {
     &__section {
@@ -1704,6 +1473,519 @@ html {
       }
     }
   }
+  &--budget-creation {
+    &__header {
+      &__title {
+        font-family: MADE Tommy Soft Bold, Verdana, sans-serif;
+        font-size: 10rem;
+        color: $primaryColor;
+        &--medium {
+          font-family: MADE Tommy Soft Bold, Verdana, sans-serif;
+          color: $primaryColor;
+          font-size: 6rem;
+        }
+      }
+    }
+
+    &__page {
+      &:nth-of-type(1),
+      &:nth-of-type(5),
+      &:nth-of-type(6),
+      &:nth-of-type(7) {
+        flex-direction: column;
+        & > .budget-creation-form__page__section {
+          & > .budget-creation-form__page__section__input {
+            font-size: 1.6rem;
+          }
+          & > .budget-creation-form__page__section__label {
+            font-size: 1.6rem;
+          }
+        }
+      }
+      &:nth-of-type(8) {
+        flex-direction: column;
+        & > .budget-creation-form__page__section {
+          & > .budget-creation-form__page__section__input {
+            font-size: 1.6rem;
+          }
+          & > .budget-creation-form__page__section__label {
+            font-size: 1.6rem;
+          }
+        }
+      }
+      &__section {
+        &__select {
+          color: rgba($colorOffWhite, 0.8);
+          font-size: 2rem;
+          text-align: center;
+          &:focus {
+            background-color: $primaryColor;
+            border: 0.3rem solid $primaryColor;
+            color: $colorOffWhite;
+          }
+          option,
+          &__option {
+            font-family: MADE Tommy Soft, Verdana, sans-serif;
+            color: $colorOffWhite;
+            font-weight: 300;
+          }
+        }
+        &__input {
+          font-size: 2rem;
+          color: rgba($primaryColor, 0.8);
+          &:focus {
+            color: $primaryColor;
+            & > label {
+              color: $primaryColor;
+            }
+          }
+        }
+        &__label {
+          font-size: 2rem;
+          color: rgba($primaryColor, 0.8);
+        }
+        &__button {
+          font-size: 2.2rem;
+          color: rgba($primaryColor, 0.75);
+          &:hover {
+            color: $colorOffWhite;
+          }
+        }
+        &__main-category-container {
+          &__create-main-category {
+            font-size: 2rem;
+            color: rgba($primaryColor, 0.8);
+            &__icon {
+              font-size: 3rem;
+            }
+            &:hover {
+              .budget-creation-form__page__section__main-category-container__create-main-category__icon {
+                color: $colorOffWhite;
+              }
+              .budget-creation-form__page__section__main-category-container__create-main-category__text {
+                color: $colorOffWhite;
+              }
+            }
+            &__icons-container {
+              .icon-container {
+                font-family: MADE Tommy Soft, Verdana, sans-serif !important;
+                font-size: 1.6rem;
+                color: $primaryColor;
+                text-align: center;
+                &__icon {
+                  font-size: 4rem;
+                }
+                &__text {
+                }
+                &:hover {
+                  color: $colorOffWhite;
+                }
+                &--clicked {
+                  color: $colorOffWhite;
+                }
+              }
+            }
+          }
+          .main-category {
+            font-family: MADE Tommy Soft, Verdana, sans-serif;
+            font-size: 2rem;
+            color: $primaryColor;
+            &__icon {
+              font-size: 3rem;
+            }
+            &__delete {
+              font-size: 1.2rem;
+              color: rgba($primaryColor, 0.8);
+            }
+            &:hover {
+              color: $colorOffWhite;
+              .main-category__delete {
+                color: rgba($colorOffWhite, 0.8);
+                &:hover {
+                  color: $primaryColor;
+                  // transition: color 0.5s;
+                }
+              }
+            }
+          }
+        }
+        &__set-main-category-title-container {
+          &__input {
+            font-family: MADE Tommy Soft, Verdana, sans-serif;
+            font-size: 1.6rem;
+            color: rgba($primaryColor, 0.8);
+            &:focus {
+              color: $primaryColor;
+            }
+          }
+          &__button {
+            font-family: MADE Tommy Soft, Verdana, sans-serif;
+            font-size: 1.6rem;
+            color: rgba($primaryColor, 0.8);
+            &:hover {
+              color: $colorOffWhite;
+            }
+          }
+        }
+        &__sub-category-container {
+          &__main-category-display {
+            &__left-button,
+            &__right-button {
+              &__icon {
+                font-size: 5rem;
+                color: rgba($primaryColor, 0.8);
+                &:hover {
+                  color: $primaryColor;
+                }
+              }
+            }
+            &__left-button {
+              &__icon {
+                color: rgba($primaryColor, 0.25);
+              }
+            }
+            &__category-information {
+              color: $primaryColor;
+              &__icon {
+                font-size: 16rem;
+              }
+              &__text {
+                font-size: 4rem;
+              }
+            }
+          }
+          &__sub-category-display {
+            &__sub-category {
+              .sub-category-title-container {
+                &__title {
+                  font-family: MADE Tommy Soft, Verdana, sans-serif;
+                  font-size: 1.6rem;
+                  color: $primaryColor;
+                }
+              }
+              .sub-category-controller {
+                font-family: MADE Tommy Soft, Verdana, sans-serif;
+                font-size: 1.6rem;
+                color: $primaryColor;
+                &__surplus-container {
+                  &__switch {
+                    &__toggle {
+                      &__icon {
+                        font-size: 1.2rem;
+                        color: rgba($colorOffWhite, 0.8);
+                      }
+                    }
+                  }
+                }
+                &__icon {
+                  color: rgba($primaryColor, 0.8);
+                  font-size: 2rem;
+                  &:hover {
+                    color: $primaryColor;
+                  }
+                }
+              }
+            }
+            .category-creation {
+              &__input-container {
+                font-size: 1.4rem;
+                &__input {
+                  color: rgba($primaryColor, 0.8);
+                  &:focus {
+                    color: $primaryColor;
+                  }
+                }
+                &__button {
+                  color: rgba($primaryColor, 0.8);
+                  &:hover {
+                    color: $colorOffWhite;
+                  }
+                }
+              }
+              &__controller {
+                font-family: MADE Tommy Soft, Verdana, sans-serif;
+                font-size: 1.6rem;
+                color: $primaryColor;
+                &__surplus-container {
+                  &__switch {
+                    &__toggle {
+                      &__icon {
+                        font-size: 1.2rem;
+                        color: rgba($colorOffWhite, 0.8);
+                      }
+                    }
+                    &--switched {
+                      .category-creation-controller__surplus-container__switch__toggle {
+                      }
+                    }
+                    &:hover {
+                      .category-creation-controller__surplus-container__switch__toggle {
+                      }
+                    }
+                  }
+                }
+                &__icon {
+                  color: rgba($primaryColor, 0.8);
+                  font-size: 2rem;
+                  &:hover {
+                    color: $primaryColor;
+                  }
+                }
+                &__close {
+                  font-size: 1.4rem;
+                  color: rgba($primaryColor, 0.8);
+                  &:hover {
+                    color: $colorOffWhite;
+                  }
+                }
+              }
+            }
+            &__sub-category-button {
+              font-family: MADE Tommy Soft, Verdana, sans-serif;
+              font-size: 1.6rem;
+              color: rgba($primaryColor, 0.8);
+              &:hover {
+                color: $primaryColor;
+              }
+            }
+          }
+        }
+        &__month-container {
+          &__header {
+            font-size: 2.8rem;
+            color: $colorOffWhite;
+            &__title {
+              font-size: 4rem;
+              text-transform: uppercase;
+            }
+          }
+          &__budget-goal-summary-container {
+            .budget-single-goal-summary {
+              &__title {
+                font-size: 1.6rem;
+                color: $primaryColor;
+                text-align: center;
+              }
+              &__amount {
+                font-size: 3rem;
+                color: $primaryColor;
+              }
+            }
+          }
+          &__category-container {
+            .main-category-display {
+              &__button-container {
+                font-size: 6rem;
+                .left {
+                  color: rgba($primaryColor, 0.25);
+                }
+                .right {
+                  color: rgba($primaryColor, 0.8);
+                }
+                .left,
+                .right {
+                  &:hover {
+                    color: $primaryColor;
+                  }
+                }
+              }
+              &__category-display {
+                color: $primaryColor;
+                &__icon {
+                  font-size: 20rem;
+                }
+                &__title {
+                  font-size: 4rem;
+                }
+              }
+            }
+            .sub-category-display {
+              &__headers {
+                &__title-container {
+                  font-size: 1.2rem;
+                  color: $colorOffWhite;
+                  text-align: center;
+                }
+              }
+              &__sub-category {
+                &__section {
+                  &__category-name {
+                    font-size: 1.6rem;
+                    color: $primaryColor;
+                  }
+                  &:first-of-type {
+                    text-align: center;
+                  }
+                  &__set-category-timing-button {
+                    font-size: 1.2rem;
+                    color: rgba($primaryColor, 0.8);
+                  }
+                  &__input {
+                    font-size: 2rem;
+                    color: rgba($primaryColor, 0.8);
+                    text-align: center;
+                    &:focus {
+                      color: $primaryColor;
+                    }
+                  }
+                  &__content {
+                    font-size: 2rem;
+                    color: rgba($primaryColor, 0.8);
+                    text-align: center;
+                  }
+                }
+                &:hover {
+                  .sub-category-display__sub-category__section {
+                    background-color: $primaryColor;
+                    &__category-name {
+                      color: $colorOffWhite;
+                    }
+                    &__set-category-timing-button {
+                      color: rgba($colorOffWhite, 0.8);
+                      &:hover {
+                        color: $colorOffWhite;
+                      }
+                    }
+                    &__input {
+                      color: rgba($colorOffWhite, 0.8);
+                      &:focus {
+                        color: $primaryColor;
+                      }
+                    }
+                    &__content {
+                      color: $colorOffWhite;
+                    }
+                  }
+                }
+              }
+              &__timing-container {
+                &__close {
+                  font-size: 3rem;
+                  color: rgba($primaryColor, 0.8);
+                  &:hover {
+                    color: $primaryColor;
+                  }
+                }
+                &__monthly-container,
+                &__bi-monthly-container,
+                &__bi-weekly-container,
+                &__weekly-container {
+                  &__button {
+                    &__icon {
+                      font-family: Icomoon;
+                      font-size: 4rem;
+                      .path1:before {
+                        color: $primaryColor;
+                      }
+                    }
+                    &__text {
+                      font-size: 2.2rem;
+                      color: rgba($primaryColor, 0.8);
+                    }
+                    &:hover {
+                      .sub-category-display__timing-container {
+                        &__monthly-container,
+                        &__bi-monthly-container,
+                        &__bi-weekly-container,
+                        &__weekly-container {
+                          &__button {
+                            &__icon {
+                              .path1:before {
+                                color: $tertiaryColor;
+                              }
+                              .path2:before,
+                              .path3:before {
+                                color: $colorDarkerGrey;
+                              }
+                            }
+                            &__text {
+                              color: $colorOffWhite;
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  &__label {
+                    font-size: 1.4rem;
+                    color: rgba($primaryColor, 0.8);
+                    &:focus {
+                      color: $primaryColor;
+                    }
+                    &__input,
+                    &__select {
+                      font-size: 1.4rem;
+                      color: rgba($primaryColor, 0.8);
+                      &:focus {
+                        color: $primaryColor;
+                      }
+                    }
+                  }
+                  &__submit {
+                    font-size: 2rem;
+                    color: rgba($colorOffWhite, 0.8);
+                    &:hover {
+                      color: $colorOffWhite;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .emergency-section {
+        &-header {
+          font-weight: 300;
+          color: $primaryColor;
+        }
+        #lengthOfTime,
+        #totalAmount {
+          & + .clicked-label {
+            color: $colorOffWhite;
+          }
+        }
+      }
+      &-mechanisms {
+        &__page-number {
+          font-size: 3rem;
+          color: $primaryColor;
+        }
+        &__submit-button {
+          font-size: 2rem;
+          color: rgba($primaryColor, 0.8);
+          &:hover {
+            color: $colorOffWhite;
+          }
+        }
+      }
+      .tithing-section {
+        #grossOption,
+        #netOption,
+        #surplusOption {
+        }
+        #grossOptionLabel,
+        #netOptionLabel,
+        #surplusOptionLabel {
+          &:hover {
+            color: $colorOffWhite;
+          }
+        }
+        .checked {
+          color: $colorOffWhite;
+        }
+      }
+    }
+
+    &__section {
+      &__page-display {
+        &__number {
+          font-size: 3rem;
+          color: $primaryColor;
+        }
+      }
+    }
+  }
 }
 .switch {
   &-container--latter-day-saint {
@@ -1723,6 +2005,88 @@ html {
       color: $colorOffWhite;
       &__text {
         font-size: 1.6rem;
+      }
+    }
+  }
+}
+
+// BUDGET CARDS
+.budget-card-container {
+  &__card {
+    font-family: MADE Tommy Soft, Verdana, sans-serif;
+    &__header {
+      &__text {
+        font-size: 2.4rem;
+        font-family: Purely Me;
+        color: rgba($colorOffWhite, 0.8);
+      }
+      &__icon {
+        font-size: 2rem;
+        color: rgba($colorOffWhite, 0.8);
+      }
+    }
+    &__content {
+      &__change-photo-button {
+        &__icon {
+          font-size: 1.6rem;
+          color: rgba($primaryColor, 0.5);
+        }
+      }
+    }
+    &__footer {
+      color: rgba($colorOffWhite, 0.8);
+      &--top {
+        font-size: 1.8rem;
+      }
+      &--bottom {
+        font-size: 1.8rem;
+      }
+    }
+    &:hover {
+      .budget-card-container__card__header {
+        &__text {
+          color: $colorOffWhite;
+        }
+        &__icon {
+          color: $colorOffWhite;
+          &:hover {
+            color: $secondaryColor;
+          }
+        }
+      }
+      .budget-card-container__card__content {
+        &__change-photo-button {
+          &:hover {
+            .budget-card-container__card__content__change-photo-button__icon {
+              color: $colorOffWhite;
+            }
+          }
+        }
+      }
+      .budget-card-container__card__footer {
+        color: $colorOffWhite;
+      }
+    }
+    &--create {
+      &__header {
+        &__text {
+          font-size: 2rem;
+          color: rgba($colorOffWhite, 0.8);
+        }
+      }
+      &__icon {
+        font-size: 10rem;
+        color: rgba($primaryColor, 0.8);
+      }
+      &:hover {
+        .budget-card-container__card--create__header {
+          &__text {
+            color: $colorOffWhite;
+          }
+        }
+        .budget-card-container__card--create__icon {
+          color: $primaryColor;
+        }
       }
     }
   }
