@@ -4346,29 +4346,28 @@ var _watchPasswordSubSectionButtons = function _watchPasswordSubSectionButtons()
   });
 }; // Open User Profile Form Sub Sections
 
-var _openSubSections = function _openSubSections(subSection, className) {
-  subSection.classList.toggle(className);
+var _openSubSections = function _openSubSections(subSectionArray, className) {
+  subSectionArray.forEach(function (ss) {
+    return ss.classList.toggle(className);
+  }); // subSection.classList.toggle(className);
 };
 
 var _watchSubSectionButtons = function _watchSubSectionButtons() {
-  var userProfileSubSections = document.querySelectorAll('.form--user-profile__section__sub-section');
+  var userProfileSubSections = document.querySelectorAll('.form__section--sub-section');
+  console.log(userProfileSubSections);
   var userProfileFormSectionButtons = document.querySelectorAll('.button--borderless-narrow');
   userProfileFormSectionButtons.forEach(function (button, i) {
     button.addEventListener('click', function (e) {
       e.preventDefault();
 
       if (i === 0) {
-        _openSubSections(userProfileSubSections[0], 'form--user-profile__section__sub-section--show');
-
-        _openSubSections(userProfileSubSections[1], 'form--user-profile__section__sub-section--show');
+        _openSubSections([userProfileSubSections[0], userProfileSubSections[1]], 'closed');
 
         button.classList.toggle('button--borderless-narrow--clicked');
       }
 
       if (i === 1) {
-        _openSubSections(userProfileSubSections[2], 'form--user-profile__section__sub-section--show');
-
-        _openSubSections(userProfileSubSections[3], 'form--user-profile__section__sub-section--show');
+        _openSubSections([userProfileSubSections[2], userProfileSubSections[3]], 'closed');
 
         button.classList.toggle('button--borderless-narrow--clicked');
       }
@@ -4410,7 +4409,7 @@ var _showProfileForm = function _showProfileForm(forms, index) {
   forms[index].style.display = 'flex';
 };
 var _watchUserProfileButtons = function _watchUserProfileButtons(communicationPreference) {
-  var userProfileForms = document.querySelectorAll('.form--user-profile');
+  var userProfileForms = document.querySelectorAll('.form--full-width');
   var userProfileHeader = document.querySelector('.user-profile-section__header__text');
   var userProfileContainer = document.querySelector('.user-profile-section');
   var userProfileContainerClose = document.querySelector('.user-profile-closure-icon');
@@ -4433,49 +4432,57 @@ var _watchUserProfileButtons = function _watchUserProfileButtons(communicationPr
                   _showProfileForm(userProfileForms, i);
 
                   if (i === 0) {
-                    userProfileContainer.classList.add('user-profile-section--open');
+                    userProfileContainer.classList.remove('closed');
+                    userProfileContainer.classList.add('open');
                     userProfileContainerClose.addEventListener('click', function (e) {
-                      userProfileContainer.classList.remove('user-profile-section--open');
+                      userProfileContainer.classList.add('closed');
+                      userProfileContainer.classList.remove('open');
                     });
 
                     _watchLatterDaySaintSwitch(latterDaySaintSwitch);
                   }
 
                   if (!(i === 1)) {
-                    _context2.next = 13;
+                    _context2.next = 14;
                     break;
                   }
 
-                  userProfileContainer.classList.add('user-profile-section--open');
+                  userProfileContainer.classList.remove('closed');
+                  userProfileContainer.classList.add('open');
                   userProfileContainerClose.addEventListener('click', function (e) {
-                    userProfileContainer.classList.remove('user-profile-section--open');
+                    userProfileContainer.classList.add('closed');
+                    userProfileContainer.classList.remove('open');
                   }); /////////////////////////////////
                   // GET COMMUNICATION PREFERENCE
 
-                  _context2.next = 10;
+                  _context2.next = 11;
                   return _Update_User__WEBPACK_IMPORTED_MODULE_2__.getSomePersonals();
 
-                case 10:
+                case 11:
                   userInfo = _context2.sent;
                   user = userInfo.data.data.user;
                   communicationPreference = user.communicationPreference;
 
-                case 13:
+                case 14:
                   if (i === 2) {
-                    userProfileContainer.classList.add('user-profile-section--open');
+                    userProfileContainer.classList.remove('closed');
+                    userProfileContainer.classList.add('open');
                     userProfileContainerClose.addEventListener('click', function (e) {
-                      userProfileContainer.classList.remove('user-profile-section--open');
+                      userProfileContainer.classList.add('closed');
+                      userProfileContainer.classList.remove('open');
                     });
                   }
 
                   if (i === 3) {
-                    userProfileContainer.classList.add('user-profile-section--open');
+                    userProfileContainer.classList.remove('closed');
+                    userProfileContainer.classList.add('open');
                     userProfileContainerClose.addEventListener('click', function (e) {
-                      userProfileContainer.classList.remove('user-profile-section--open');
+                      userProfileContainer.classList.add('closed');
+                      userProfileContainer.classList.remove('open');
                     });
                   }
 
-                case 15:
+                case 16:
                 case "end":
                   return _context2.stop();
               }

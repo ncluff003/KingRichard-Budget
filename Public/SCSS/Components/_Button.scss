@@ -445,6 +445,7 @@
     }
   }
   &--borderless {
+    @extend .button;
     border: none;
     height: min-content;
     width: max-content;
@@ -456,7 +457,11 @@
       background-color: transparent;
     }
     &-narrow {
-      @include SizeAndPositioning(absolute, 3rem, 12.5%, flex, row, nowrap, center, center, 0, 0.75rem, 0);
+      @extend .button--borderless;
+      position: absolute;
+      height: 3rem;
+      width: 12.5%;
+      transform: translate(0, 0.75rem);
       bottom: 0;
       right: 36.5%;
       background-color: transparent;

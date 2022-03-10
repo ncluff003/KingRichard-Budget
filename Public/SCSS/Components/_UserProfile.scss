@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////
 //  User Profile Container
 .user-profile-section {
-  @include SizeAndPositioning(relative, 100%, 100%, none, column, nowrap, center, center, 0, 0, 0);
+  @include SizeAndPositioning(relative, 100%, 100%, flex, column, nowrap, center, center, 0, 0, 0);
   background-color: rgba($primaryColorDark, 0.95);
   z-index: 10;
   .user-profile-closure-icon {

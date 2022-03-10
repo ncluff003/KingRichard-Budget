@@ -19,13 +19,13 @@
   &:nth-of-type(6) {
     display: flex;
   }
-  &--user-profile {
-    // @include SizeAndPositioning(relative, 85%, 100%, flex, column, nowrap, center, center, 0, 0, 0);
+  &--transparent {
+    @include SizeAndPositioning(relative, 100%, 100vw, none, row, nowrap, center, center, 0, 0, 0);
     height: 85%;
     width: 100%;
-    display: flex;
     flex-direction: column;
     background-color: transparent;
+    z-index: 1;
   }
   &--budget-creation {
     // @include SizeAndPositioning(relative, 100%, 100%, none, row, nowrap, space-evenly, center, 0, 0, 0);

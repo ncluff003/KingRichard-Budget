@@ -74,24 +74,24 @@ export const _watchPasswordSubSectionButtons = () => {
 };
 
 // Open User Profile Form Sub Sections
-const _openSubSections = (subSection, className) => {
-  subSection.classList.toggle(className);
+const _openSubSections = (subSectionArray, className) => {
+  subSectionArray.forEach((ss) => ss.classList.toggle(className));
+  // subSection.classList.toggle(className);
 };
 
 export const _watchSubSectionButtons = () => {
-  const userProfileSubSections = document.querySelectorAll('.form--user-profile__section__sub-section');
+  const userProfileSubSections = document.querySelectorAll('.form__section--sub-section');
+  console.log(userProfileSubSections);
   const userProfileFormSectionButtons = document.querySelectorAll('.button--borderless-narrow');
   userProfileFormSectionButtons.forEach((button, i) => {
     button.addEventListener('click', (e) => {
       e.preventDefault();
       if (i === 0) {
-        _openSubSections(userProfileSubSections[0], 'form--user-profile__section__sub-section--show');
-        _openSubSections(userProfileSubSections[1], 'form--user-profile__section__sub-section--show');
+        _openSubSections([userProfileSubSections[0], userProfileSubSections[1]], 'closed');
         button.classList.toggle('button--borderless-narrow--clicked');
       }
       if (i === 1) {
-        _openSubSections(userProfileSubSections[2], 'form--user-profile__section__sub-section--show');
-        _openSubSections(userProfileSubSections[3], 'form--user-profile__section__sub-section--show');
+        _openSubSections([userProfileSubSections[2], userProfileSubSections[3]], 'closed');
         button.classList.toggle('button--borderless-narrow--clicked');
       }
     });
@@ -135,7 +135,7 @@ export const _showProfileForm = (forms, index) => {
 };
 
 export const _watchUserProfileButtons = (communicationPreference) => {
-  const userProfileForms = document.querySelectorAll('.form--user-profile');
+  const userProfileForms = document.querySelectorAll('.form--full-width');
   const userProfileHeader = document.querySelector('.user-profile-section__header__text');
   const userProfileContainer = document.querySelector('.user-profile-section');
   const userProfileContainerClose = document.querySelector('.user-profile-closure-icon');
@@ -149,17 +149,21 @@ export const _watchUserProfileButtons = (communicationPreference) => {
         userProfileHeader.textContent = clicked.closest('button').textContent;
         _showProfileForm(userProfileForms, i);
         if (i === 0) {
-          userProfileContainer.classList.add('user-profile-section--open');
+          userProfileContainer.classList.remove('closed');
+          userProfileContainer.classList.add('open');
           userProfileContainerClose.addEventListener('click', (e) => {
-            userProfileContainer.classList.remove('user-profile-section--open');
+            userProfileContainer.classList.add('closed');
+            userProfileContainer.classList.remove('open');
           });
 
           _watchLatterDaySaintSwitch(latterDaySaintSwitch);
         }
         if (i === 1) {
-          userProfileContainer.classList.add('user-profile-section--open');
+          userProfileContainer.classList.remove('closed');
+          userProfileContainer.classList.add('open');
           userProfileContainerClose.addEventListener('click', (e) => {
-            userProfileContainer.classList.remove('user-profile-section--open');
+            userProfileContainer.classList.add('closed');
+            userProfileContainer.classList.remove('open');
           });
           /////////////////////////////////
           // GET COMMUNICATION PREFERENCE
@@ -168,15 +172,19 @@ export const _watchUserProfileButtons = (communicationPreference) => {
           communicationPreference = user.communicationPreference;
         }
         if (i === 2) {
-          userProfileContainer.classList.add('user-profile-section--open');
+          userProfileContainer.classList.remove('closed');
+          userProfileContainer.classList.add('open');
           userProfileContainerClose.addEventListener('click', (e) => {
-            userProfileContainer.classList.remove('user-profile-section--open');
+            userProfileContainer.classList.add('closed');
+            userProfileContainer.classList.remove('open');
           });
         }
         if (i === 3) {
-          userProfileContainer.classList.add('user-profile-section--open');
+          userProfileContainer.classList.remove('closed');
+          userProfileContainer.classList.add('open');
           userProfileContainerClose.addEventListener('click', (e) => {
-            userProfileContainer.classList.remove('user-profile-section--open');
+            userProfileContainer.classList.add('closed');
+            userProfileContainer.classList.remove('open');
           });
         }
       });

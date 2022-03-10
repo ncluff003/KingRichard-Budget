@@ -1,45 +1,45 @@
-form.form.r__form.form--user-profile.form--user-profile
-  section.form__section.r__form__section.form--user-profile__section.r__form--user-profile__section  
-    input.form__section__input.r__form__section__input.form--user-profile__section__input.r__form--user-profile__section__input#email(type="email" name="email" placeholder="Email" value=`${data.user.email}` readonly="true")
-    label.form__section__label.r__form__section__label.form--user-profile__section__label.r__form--user-profile__section__label#emailLabel(for="email") Email
-    button.button.r__button.button--borderless.r__button--borderless.button--borderless-narrow.r__button--borderless-narrow(type="button") New Email Address
-  section.form__section.r__form__section.form--user-profile__section__sub-section.r__form--user-profile__section__sub-section
-    input.form--user-profile__section__sub-section__input.r__form--user-profile__section__sub-section__input#newEmail(type="email" name="newEmail" placeholder="New Email")
-    label.form--user-profile__section__sub-section__label.r__form--user-profile__section__sub-section__label#newEmailLabell(for="newEmail") New Email Address
-  section.form__section.r__form__section.form--user-profile__section__sub-section.r__form--user-profile__section__sub-section
-    input.form--user-profile__section__sub-section__input.r__form--user-profile__section__sub-section__input#newEmailConfirmed(type="email" name="newEmailConfirmed" placeholder="New Email")
-    label.form--user-profile__section__sub-section__label.r__form--user-profile__section__sub-section__label#newEmailConfirmedLabell(for="newEmailConfirmed") Confirm New Email Address
-  section.form__section.r__form__section.form--user-profile__section.r__form--user-profile__section 
-    input.form__section__input.r__form__section__input.form--user-profile__section__input.r__form--user-profile__section__input#phoneNumber(type="tel" name="phoneNumber" placeholder="Phone Number" value=`${data.user.phoneNumber}` readonly="true")
-    label.form__section__label.r__form__section__label.form--user-profile__section__label.r__form--user-profile__section__label#phoneNumberLabel(for="phoneNumber") Phone Number
-    button.button.r__button.button--borderless.r__button--borderless.button--borderless-narrow.r__button--borderless-narrow(type="button") New Phone Number
-  section.form__section.r__form__section.form--user-profile__section__sub-section.r__form--user-profile__section__sub-section
-    input.form--user-profile__section__sub-section__input.r__form--user-profile__section__sub-section__input#newPhoneNumber(type="tel" name="newPhoneNumber" placeholder="New Phone Number")
-    label.form--user-profile__section__sub-section__label.r__form--user-profile__section__sub-section__label#newPhoneNumberLabell(for="newPhoneNumber") New Phone Number
-  section.form__section.r__form__section.form--user-profile__section__sub-section.r__form--user-profile__section__sub-section
-    input.form--user-profile__section__sub-section__input.r__form--user-profile__section__sub-section__input#newPhoneNumberConfirmed(type="tel" name="newPhoneNumberConfirmed" placeholder="New Phone Number")
-    label.form--user-profile__section__sub-section__label.r__form--user-profile__section__sub-section__label#newPhoneNumberConfirmedLabell(for="newPhoneNumberConfirmed") Confirm New Phone Number
-  section.form__section.r__form__section.form--user-profile__section.r__form--user-profile__section.switch.r__switch 
-    label.form__section__label.r__form__section__label.form--user-profile__section__label.r__form--user-profile__section__label.comms-label.r__comms-label(for="commPreference") Communication Preference
+form.form--full-width.r__form--full-width
+  section.form__section.r__form__section  
+    input.form__input--dark-small.r__form__input--dark-small#email(type="email" name="email" placeholder="Email" value=`${data.user.email}` readonly="true")
+    label.form__label--small.r__form__label--small#emailLabel(for="email") Email
+    button.button--borderless.r__button--borderless.button--borderless-narrow.r__button--borderless-narrow(type="button") New Email Address
+  section.form__section--sub-section.r__form__section--sub-section.closed
+    input.form__input--dark-extra-small.r__form__input--dark-extra-small#newEmail(type="email" name="newEmail" placeholder="New Email")
+    label.form__label--extra-small.r__form__label--extra-small#newEmailLabell(for="newEmail") New Email Address
+  section.form__section--sub-section.r__form__section--sub-section.closed
+    input.form__input--dark-extra-small.r__form__input--dark-extra-small#newEmailConfirmed(type="email" name="newEmailConfirmed" placeholder="New Email")
+    label.form__label--extra-small.r__form__label--extra-small#newEmailConfirmedLabell(for="newEmailConfirmed") Confirm New Email Address
+  section.form__section.r__form__section 
+    input.form__input--dark-small.r__form__input--dark-small#phoneNumber(type="tel" name="phoneNumber" placeholder="Phone Number" value=`${data.user.phoneNumber}` readonly="true")
+    label.form__label--small.r__form__label--small#phoneNumberLabel(for="phoneNumber") Phone Number
+    button.button--borderless.r__button--borderless.button--borderless-narrow.r__button--borderless-narrow(type="button") New Phone Number
+  section.form__section--sub-section.r__form__section--sub-section.closed
+    input.form__input--dark-extra-small.r__form__input--dark-extra-small#newPhoneNumber(type="tel" name="newPhoneNumber" placeholder="New Phone Number")
+    label.form__label--extra-small.r__form__label--extra-small#newPhoneNumberLabell(for="newPhoneNumber") New Phone Number
+  section.form__section--sub-section.r__form__section--sub-section.closed
+    input.form__input--dark-extra-small.r__form__input--dark-extra-small#newPhoneNumberConfirmed(type="tel" name="newPhoneNumberConfirmed" placeholder="New Phone Number")
+    label.form__label--extra-small.r__form__label--extra-small#newPhoneNumberConfirmedLabell(for="newPhoneNumberConfirmed") Confirm New Phone Number
+  section.form__section--switch.r__form__section--switch 
+    label.form__label--comms.r__form__label--comms(for="commPreference") Communication Preference
     - let commPreference = data.user.communicationPreference;
     - let textPreferred = false;
     - if (commPreference === `Email`) textPreferred = false;
     - if (commPreference === `Text`) textPreferred = true;
     if textPreferred
-      section.switch--comms.r__switch--comms.switch--comms--text-preferred.r__switch--comms--text-preferred#commSwitch
-        section.switch--comms--email 
-          i.far.fa-envelope.switch--comms--email__icon
-          p.switch--comms--email__text Email 
-        section.switch--comms--text 
-          i.fas.fa-mobile-alt.switch--comms--text__icon
-          p.switch--comms--text__text Text
+      section.form__input--comms--text-preferred.r__form__input--comms--text-preferred#commSwitch
+        section.form__input--comms--email 
+          i.far.fa-envelope.form__input--comms--email__icon
+          p.form__input--comms--email__text Email 
+        section.form__input--comms--text 
+          i.fas.fa-mobile-alt.form__input--comms--text__icon
+          p.form__input--comms--text__text Text
     else
-      section.switch--comms.r__switch--comms#commSwitch
-        section.switch--comms--email 
-          i.far.fa-envelope.switch--comms--email__icon
-          p.switch--comms--email__text Email 
-        section.switch--comms--text 
-          i.fas.fa-mobile-alt.switch--comms--text__icon
-          p.switch--comms--text__text Text
+      section.form__input--comms.r__form__input--comms#commSwitch
+        section.form__input--comms--email 
+          i.far.fa-envelope.form__input--comms--email__icon
+          p.form__input--comms--email__text Email 
+        section.form__input--comms--text 
+          i.fas.fa-mobile-alt.form__input--comms--text__icon
+          p.form__input--comms--text__text Text
   section.form__section.r__form__section.form--user-profile__section.r__form--user-profile__section 
     button.button.r__button.button--small.r__button--small.button--small-transparent.r__button--small-transparent(type="submit") Update
