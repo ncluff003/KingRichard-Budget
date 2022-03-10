@@ -411,7 +411,9 @@
     transition: background-color 0.5s, border 0.5s, color 0.5s;
   }
   &--extra-small {
-    @include SizeAndPositioning(relative, 7.5%, 40%, flex, row, nowrap, center, center, 0, 0, 0);
+    @extend .button;
+    height: 7.5%;
+    transform: translate(0, 0);
     background-color: transparent;
     border: none;
     &--icon {
@@ -423,10 +425,12 @@
     }
   }
   &--small {
+    @extend .button;
     width: 20%;
     transform: translate(0, 0);
     border-radius: 0.75rem;
     &-transparent {
+      @extend .button--small;
       background-color: transparent;
       border: 0.3rem solid rgba($colorOffWhite, 0.75);
       border-radius: 1.25rem;

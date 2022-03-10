@@ -4311,8 +4311,8 @@ var formatPhoneNumber = function formatPhoneNumber(value, number) {
 };
 
 var _watchPhoneNumberInputs = function _watchPhoneNumberInputs(number) {
-  var userProfileInputs = document.querySelectorAll('.form__section__input');
-  var userProfileSubInputs = document.querySelectorAll('.form--user-profile__section__sub-section__input');
+  var userProfileInputs = document.querySelectorAll('.form__input--dark-small');
+  var userProfileSubInputs = document.querySelectorAll('.form__input--dark-extra-small');
   console.log(userProfileInputs, userProfileSubInputs);
   formatPhoneNumber(userProfileInputs[4].value);
   userProfileSubInputs[2].addEventListener('keyup', function (e) {
@@ -4324,15 +4324,15 @@ var _watchPhoneNumberInputs = function _watchPhoneNumberInputs(number) {
 };
 
 var _togglePasswordSubSections = function _togglePasswordSubSections() {
-  var userProfileSubSections = document.querySelectorAll('.form--user-profile__section__sub-section');
+  var userProfileSubSections = document.querySelectorAll('.form__section--sub-section');
 
-  _openSubSections(userProfileSubSections[4], 'form--user-profile__section__sub-section--show');
+  _openSubSections([userProfileSubSections[4]], 'closed');
 
-  _openSubSections(userProfileSubSections[5], 'form--user-profile__section__sub-section--show');
+  _openSubSections([userProfileSubSections[5]], 'closed');
 
-  _openSubSections(userProfileSubSections[6], 'form--user-profile__section__sub-section--show');
+  _openSubSections([userProfileSubSections[6]], 'closed');
 
-  _openSubSections(userProfileSubSections[7], 'form--user-profile__section__sub-section--show');
+  _openSubSections([userProfileSubSections[7]], 'closed');
 };
 
 var _watchPasswordSubSectionButtons = function _watchPasswordSubSectionButtons() {
@@ -4341,8 +4341,8 @@ var _watchPasswordSubSectionButtons = function _watchPasswordSubSectionButtons()
   console.log(transparentButtons);
   transparentButtons[2].addEventListener('click', function (e) {
     e.preventDefault();
-
-    _togglePasswordSubSections();
+    console.log(transparentButtons[2]);
+    return _togglePasswordSubSections();
   });
 }; // Open User Profile Form Sub Sections
 
@@ -4356,6 +4356,7 @@ var _watchSubSectionButtons = function _watchSubSectionButtons() {
   var userProfileSubSections = document.querySelectorAll('.form__section--sub-section');
   console.log(userProfileSubSections);
   var userProfileFormSectionButtons = document.querySelectorAll('.button--borderless-narrow');
+  console.log(userProfileFormSectionButtons);
   userProfileFormSectionButtons.forEach(function (button, i) {
     button.addEventListener('click', function (e) {
       e.preventDefault();

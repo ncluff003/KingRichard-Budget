@@ -1474,6 +1474,9 @@
           content: '';
         }
       }
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     &--latter-day-saint {
@@ -1579,7 +1582,7 @@
     display: none;
     &__section {
       &__sub-section {
-        @include SizeAndPositioning(relative, min-content, 100%, none, column, nowrap, space-evenly, center, 0, 0, 0);
+        @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
         &:first-of-type {
           margin: 0 0 1rem;
         }

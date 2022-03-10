@@ -43,8 +43,8 @@ const formatPhoneNumber = (value, number) => {
 };
 
 export const _watchPhoneNumberInputs = (number) => {
-  const userProfileInputs = document.querySelectorAll('.form__section__input');
-  const userProfileSubInputs = document.querySelectorAll('.form--user-profile__section__sub-section__input');
+  const userProfileInputs = document.querySelectorAll('.form__input--dark-small');
+  const userProfileSubInputs = document.querySelectorAll('.form__input--dark-extra-small');
   console.log(userProfileInputs, userProfileSubInputs);
   formatPhoneNumber(userProfileInputs[4].value);
   userProfileSubInputs[2].addEventListener('keyup', (e) => {
@@ -56,11 +56,11 @@ export const _watchPhoneNumberInputs = (number) => {
 };
 
 const _togglePasswordSubSections = () => {
-  const userProfileSubSections = document.querySelectorAll('.form--user-profile__section__sub-section');
-  _openSubSections(userProfileSubSections[4], 'form--user-profile__section__sub-section--show');
-  _openSubSections(userProfileSubSections[5], 'form--user-profile__section__sub-section--show');
-  _openSubSections(userProfileSubSections[6], 'form--user-profile__section__sub-section--show');
-  _openSubSections(userProfileSubSections[7], 'form--user-profile__section__sub-section--show');
+  const userProfileSubSections = document.querySelectorAll('.form__section--sub-section');
+  _openSubSections([userProfileSubSections[4]], 'closed');
+  _openSubSections([userProfileSubSections[5]], 'closed');
+  _openSubSections([userProfileSubSections[6]], 'closed');
+  _openSubSections([userProfileSubSections[7]], 'closed');
 };
 
 export const _watchPasswordSubSectionButtons = () => {
@@ -69,7 +69,8 @@ export const _watchPasswordSubSectionButtons = () => {
   console.log(transparentButtons);
   transparentButtons[2].addEventListener('click', (e) => {
     e.preventDefault();
-    _togglePasswordSubSections();
+    console.log(transparentButtons[2]);
+    return _togglePasswordSubSections();
   });
 };
 
@@ -83,6 +84,7 @@ export const _watchSubSectionButtons = () => {
   const userProfileSubSections = document.querySelectorAll('.form__section--sub-section');
   console.log(userProfileSubSections);
   const userProfileFormSectionButtons = document.querySelectorAll('.button--borderless-narrow');
+  console.log(userProfileFormSectionButtons);
   userProfileFormSectionButtons.forEach((button, i) => {
     button.addEventListener('click', (e) => {
       e.preventDefault();

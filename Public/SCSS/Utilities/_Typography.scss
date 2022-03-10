@@ -1409,8 +1409,13 @@ html {
     }
   }
   &__section {
+    font-family: MADE Tommy Soft, Verdana, sans-serif;
     font-size: 2rem;
     color: rgba($primaryColor, 0.8);
+    &--sub-section {
+      @extend .form__section;
+      color: rgba($colorOffWhite, 0.8);
+    }
     &--switch {
       @extend .form__section;
     }
