@@ -1334,6 +1334,10 @@
 .form {
   @include SizeAndPositioning(relative, 100%, 50%, flex, column, nowrap, center, center, 0, 0, 0);
   overflow-y: auto;
+  &--full-width {
+    @extend .form;
+    width: 100%;
+  }
   &__header {
     margin-bottom: 3rem;
   }
@@ -1342,6 +1346,16 @@
     &:not(:last-of-type) {
       margin-bottom: 3.5rem;
     }
+    &--main-category-title {
+      @extend .form__section;
+      height: 20%;
+      flex-direction: row;
+      border-top: 0.3rem solid $primaryColor;
+      &:not(:last-of-type) {
+        margin-bottom: 0;
+      }
+    }
+    // @include SizeAndPositioning(relative, 20%, 100%, none, row, nowrap, space-evenly, center, 0, 0, 0);
     &--switch {
       @extend .form__section;
       flex-direction: row;
@@ -1353,6 +1367,10 @@
       flex-direction: row;
       justify-content: center;
       margin-top: 3.5rem;
+      &-number-display {
+        @extend .form__section;
+        flex-direction: row;
+      }
     }
     &--sub-section {
       @extend .form__section;
@@ -1423,6 +1441,17 @@
         &:focus + label {
           transform: translate(-4rem, -7rem) scale(0.75);
         }
+      }
+    }
+
+    &--main-category-title {
+      @extend .form__input;
+      width: 35%;
+      justify-content: center;
+      border-radius: 1.25rem;
+      background-color: rgba($colorOffWhite, 0.8);
+      &:focus {
+        outline: none;
       }
     }
 
@@ -1531,6 +1560,9 @@
       @extend .form__label;
       width: 25%;
       left: calc(37.7% + 2rem);
+      &-budget {
+        @extend .form__label;
+      }
     }
 
     &--extra-small {
@@ -1565,68 +1597,33 @@
   &__page {
     @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
     margin: 0 0 1rem;
-    &-number {
-      margin-right: 9rem;
-    }
-  }
-
-  &--full-width {
-    @include SizeAndPositioning(relative, 100%, 50%, flex, column, nowrap, center, center, 0, 0, 0);
-    overflow-y: auto;
-    width: 100%;
-  }
-
-  // USER PROFILE FORM UNIQUE ASPECTS
-  &--user-profile {
-    width: 100%;
-    display: none;
-    &__section {
-      &__sub-section {
-        @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
-        &:first-of-type {
-          margin: 0 0 1rem;
-        }
-        margin: 0.5rem 0;
-        &__input {
-          @include SizeAndPositioning(relative, 6rem, 17.5%, flex, row, nowrap, flex-start, center, 15%, 0, 0);
-          padding: 1rem;
-          padding-left: 2rem;
-          background-color: rgba($colorDarkestGrey, 0.5);
-          border: 0.3rem solid rgba($colorOffWhite, 0.75);
-          border-radius: 0.75rem;
-          margin: 0.5rem 0;
-          &::-webkit-input-placeholder,
-          &::-moz-placeholder,
-          &::placeholder {
-            opacity: 0;
-          }
-          &:focus {
-            outline: none;
-            &::-webkit-input-placeholder,
-            &::-moz-placeholder,
-            &::placeholder {
-              opacity: 1;
+    &--centered {
+      @extend .form__page;
+      height: 70%;
+      flex-direction: row;
+      justify-content: center;
+      &:nth-of-type(1),
+      &:nth-of-type(5),
+      &:nth-of-type(6),
+      &:nth-of-type(7) {
+        flex-direction: column;
+        & > .budget-creation-form__page__section {
+          & > .budget-creation-form__page__section__input {
+            width: 25%;
+            &:not(:placeholder-shown) + label,
+            &:focus + label {
+              transform: translate(-5rem, -7rem) scale(0.75);
             }
           }
-          &:not(:placeholder-shown) + label,
-          &:focus + label {
-            transform: translate(-4rem, -7rem) scale(0.75);
-          }
-        }
-        &__label {
-          @include SizeAndPositioning(absolute, 6rem, 17.5%, flex, row, nowrap, flex-start, center, 0, -50%, 0);
-          top: 50%;
-          left: calc(43.75% + 2rem);
-          -moz-transform: translateY(-50%);
-          transition: transform 0.5s;
-        }
-        &--show {
-          display: flex;
-          .user-profile-form__section__label {
-            transform: translate(-4rem, -16.25rem) scale(0.75);
+          & > .budget-creation-form__page__section__label {
+            width: 25%;
+            left: calc(30% + 12.5rem);
           }
         }
       }
+    }
+    &-number {
+      margin-right: 9rem;
     }
   }
 

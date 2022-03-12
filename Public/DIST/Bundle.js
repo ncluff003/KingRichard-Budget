@@ -4588,6 +4588,7 @@ __webpack_require__.r(__webpack_exports__);
 // Actually Close The Form
 
 var _closeTheForm = function _closeTheForm(index, page, pageElement, form) {
+  form[index].classList.toggle('closed');
   form[index].classList.toggle('open');
 
   if (pageElement) {
@@ -4632,6 +4633,7 @@ var _watchEntranceButtons = function _watchEntranceButtons(person, form, formPag
         // OPEN UP THE SELECTED FORM
 
         if (form[i] !== undefined) {
+          form[i].classList.toggle('closed');
           form[i].classList.toggle('open');
         } //////////////////////////////////////////////////////////////
         // OPEN UP THE SELECTED FORM
@@ -5041,13 +5043,13 @@ var _verifySubCategory = function _verifySubCategory(budget, index) {
 
 var removeMainCategory = /*#__PURE__*/function () {
   var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8___default().mark(function _callee(e, budget) {
-    var budgetPages, mainCategoryCreationPage, title, userInfo, user;
+    var budgetPages, title, userInfo, user;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            budgetPages = document.querySelectorAll('.budget-creation-form__page');
-            mainCategoryCreationPage = document.querySelector('.budget-creation-form__page');
+            budgetPages = document.querySelectorAll('.form__page--centered');
+            console.log(budgetPages, budgetPages[2].classList);
             title = e.target.closest('section').firstChild.nextElementSibling.textContent; /////////////////////////////
             // CHECK USER
 
@@ -5063,7 +5065,7 @@ var removeMainCategory = /*#__PURE__*/function () {
               break;
             }
 
-            if (!budgetPages[2].classList.contains("disappear")) {
+            if (!budgetPages[2].classList.contains("closed")) {
               _context.next = 10;
               break;
             }
@@ -5076,7 +5078,7 @@ var removeMainCategory = /*#__PURE__*/function () {
               break;
             }
 
-            if (budgetPages[2].classList.contains("disappear")) {
+            if (budgetPages[2].classList.contains("closed")) {
               _context.next = 13;
               break;
             }
@@ -5106,12 +5108,12 @@ var removeMainCategory = /*#__PURE__*/function () {
 
 
 var createMainCategory = function createMainCategory(element, budget, filteredArray) {
-  var mainCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container__input').value;
+  var mainCategoryTitle = document.querySelector('.form__input--main-category-title').value;
   mainCategoryTitle = mainCategoryTitle.split(' ').map(_capitalize).join(' '); // budget.mainCategories.push(new MainCategory({ icon: `${element}`, title: mainCategoryTitle }));
 
   budget._addMainCategory("".concat(element), mainCategoryTitle);
 
-  var mainCategoryContainer = document.querySelector('.budget-creation-form__page__section__main-category-container');
+  var mainCategoryContainer = document.querySelector('.budget-creation-container--main-categories');
   var mainCategory = document.createElement('section');
   mainCategory.classList.add('main-category');
   var iconImage = document.createElement('i');
@@ -5148,7 +5150,7 @@ var createMainCategory = function createMainCategory(element, budget, filteredAr
 
 
 var _verifyMainCategory = function _verifyMainCategory(icon, iconList, budget) {
-  var mainCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container__input').value.toLowerCase();
+  var mainCategoryTitle = document.querySelector('.form__input--main-category-title').value.toLowerCase();
   var filtered = budget.mainCategories.filter(function (mc) {
     if (mc.title.toLowerCase() === mainCategoryTitle) {
       return mc;
@@ -5172,7 +5174,7 @@ var _findClickedIcon = function _findClickedIcon(iconList, budget) {
 };
 
 var _setupCategoryCreation = function _setupCategoryCreation(budget) {
-  var createMainCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[0];
+  var createMainCategoryButton = document.querySelectorAll('.button--small-create-main-category')[0];
   var iconContainers = document.querySelectorAll('.icon-container');
 
   if (createMainCategoryButton) {
@@ -5235,15 +5237,23 @@ var _showCreatedIcons = function _showCreatedIcons() {
 
 
 var closeCategoryCreation = function closeCategoryCreation() {
-  var createCategoryButton = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category');
-  var mainCategoryContainer = document.querySelector('.budget-creation-form__page__section__main-category-container');
-  var closeCreateCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[1];
-  var iconsContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
-  var createCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container');
-  createCategoryTitle.classList.toggle('budget-creation-form__page__section__set-main-category-title-container--open');
-  iconsContainer.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category__icons-container--open');
-  createCategoryButton.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category--hidden');
-  mainCategoryContainer.classList.toggle('budget-creation-form__page__section__main-category-container--creating-category');
+  var createCategoryButton = document.querySelector('.button--medium-square');
+  var createMainCategoryButton = document.querySelectorAll('.button--small-create-main-category')[0];
+  var mainCategoryContainer = document.querySelector('.budget-creation-container--main-categories');
+  var closeCreateCategoryButton = document.querySelectorAll('.button--small-create-main-category')[1];
+  var iconsContainer = document.querySelector('.icons-container');
+  var createCategoryTitle = document.querySelector('.form__section--main-category-title');
+  createCategoryTitle.classList.toggle('closed');
+  createCategoryTitle.classList.toggle('open');
+  iconsContainer.classList.toggle('closed');
+  iconsContainer.classList.toggle('open-grid');
+  createCategoryButton.classList.toggle('closed');
+  createCategoryButton.classList.toggle('open');
+  createMainCategoryButton.classList.toggle('closed');
+  createMainCategoryButton.classList.toggle('open');
+  closeCreateCategoryButton.classList.toggle('closed');
+  closeCreateCategoryButton.classList.toggle('open');
+  mainCategoryContainer.classList.toggle('budget-creation-container--main-categories--creating');
 
   _showCreatedIcons();
 }; ////////////////////////////////////////
@@ -5251,21 +5261,29 @@ var closeCategoryCreation = function closeCategoryCreation() {
 
 
 var openCategoryCreation = function openCategoryCreation() {
-  var createCategoryButton = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category');
-  var mainCategoryContainer = document.querySelector('.budget-creation-form__page__section__main-category-container');
-  var closeCreateCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[1];
-  var iconsContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
-  var createCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container');
-  createCategoryTitle.classList.toggle('budget-creation-form__page__section__set-main-category-title-container--open');
-  iconsContainer.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category__icons-container--open');
-  createCategoryButton.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category--hidden');
-  mainCategoryContainer.classList.toggle('budget-creation-form__page__section__main-category-container--creating-category');
+  var createCategoryButton = document.querySelector('.button--medium-square');
+  var createMainCategoryButton = document.querySelectorAll('.button--small-create-main-category')[0];
+  var mainCategoryContainer = document.querySelector('.budget-creation-container--main-categories');
+  var closeCreateCategoryButton = document.querySelectorAll('.button--small-create-main-category')[1];
+  var iconsContainer = document.querySelector('.icons-container');
+  var createCategoryTitle = document.querySelector('.form__section--main-category-title');
+  createCategoryTitle.classList.toggle('closed');
+  createCategoryTitle.classList.toggle('open');
+  iconsContainer.classList.toggle('closed');
+  iconsContainer.classList.toggle('open-grid');
+  createCategoryButton.classList.toggle('closed');
+  createCategoryButton.classList.toggle('open');
+  createMainCategoryButton.classList.toggle('closed');
+  createMainCategoryButton.classList.toggle('open');
+  closeCreateCategoryButton.classList.toggle('closed');
+  closeCreateCategoryButton.classList.toggle('open');
+  mainCategoryContainer.classList.toggle('budget-creation-container--main-categories--creating');
 
   _hideCreatedIcons();
 };
 
 var _watchCreateCategoryButton = function _watchCreateCategoryButton(icon, budget) {
-  var createCategoryButton = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category');
+  var createCategoryButton = document.querySelector('.button--medium-square');
   createCategories(icon);
 
   if (createCategoryButton) {
@@ -5275,7 +5293,7 @@ var _watchCreateCategoryButton = function _watchCreateCategoryButton(icon, budge
     });
   }
 
-  var closeCreateCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[1];
+  var closeCreateCategoryButton = document.querySelectorAll('.button--small-create-main-category')[1];
 
   if (closeCreateCategoryButton) {
     closeCreateCategoryButton.addEventListener('click', function (e) {
@@ -5290,7 +5308,7 @@ var _watchCreateCategoryButton = function _watchCreateCategoryButton(icon, budge
 
 var createCategories = function createCategories(icon, index) {
   icons.forEach(function (iconImage, i) {
-    var mainContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
+    var mainContainer = document.querySelector('.icons-container');
 
     if (mainContainer) {
       var iconContainer = document.createElement("section");
@@ -6392,7 +6410,7 @@ var setupPage = function setupPage(page, createBudgetPages, createBudgetPagesNum
 
 
 var setPageCount = function setPageCount(pageNumber, createBudgetPages) {
-  var page = document.querySelector('.budget-creation-form__page-mechanisms__page-number');
+  var page = document.querySelector('.form__section--page-number-display__number');
 
   if (page) {
     page.textContent = "Page ".concat(pageNumber + 1, " / ").concat(createBudgetPages);
@@ -6461,7 +6479,8 @@ var _watchCreationFormCloser = function _watchCreationFormCloser(form, budget) {
 
   if (formCloser) {
     formCloser.addEventListener('click', function (e) {
-      form.classList.toggle("form-container--budget-creation--shown");
+      form.classList.toggle("closed");
+      form.classList.toggle("open");
       budget = undefined;
       console.log(budget);
     });
@@ -6471,7 +6490,8 @@ var _watchCreationFormCloser = function _watchCreationFormCloser(form, budget) {
 var _watchCreationFormOpener = function _watchCreationFormOpener(form, button, budget) {
   if (button) {
     button.addEventListener("click", function (e) {
-      form.classList.toggle("form-container--budget-creation--shown");
+      form.classList.toggle("closed");
+      form.classList.toggle("open");
       console.log(budget);
       return budget;
     });
@@ -6486,12 +6506,14 @@ var _setupBudgetCreation = function _setupBudgetCreation(form, button, budget) {
 
 var _watchForBudgetCreation = /*#__PURE__*/function () {
   var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee3() {
-    var budgetCreationForm, budgetCreationFormOpenButton, budget, budgetCreationFormPages, budgetCreationFormPagesNumber, currentPage, emergencyGoalSetting, clicked, selectedTiming, budgetContinueButton, budgetName, subCategoryIndex, icon, userInfo, user, latterDaySaintStatus, budgetNavButton;
+    var forms, budgetCreationForm, budgetCreationFormOpenButton, budget, budgetCreationFormPages, pages, budgetCreationFormPagesNumber, currentPage, emergencyGoalSetting, clicked, selectedTiming, buttons, budgetContinueButton, budgetName, subCategoryIndex, icon, userInfo, user, latterDaySaintStatus, budgetNavButton;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            budgetCreationForm = document.querySelector('.form-container--budget-creation');
+            forms = document.querySelectorAll('.form-container--full-width');
+            console.log(forms);
+            budgetCreationForm = forms[0];
             budgetCreationFormOpenButton = document.querySelector('.budget-card-container__card--create');
             budget = _Budget__WEBPACK_IMPORTED_MODULE_6__.startToCreate();
 
@@ -6500,19 +6522,23 @@ var _watchForBudgetCreation = /*#__PURE__*/function () {
 
 
             budgetCreationFormPages = document.querySelectorAll('.budget-creation-form__page');
-            budgetCreationFormPagesNumber = budgetCreationFormPages.length;
+            pages = document.querySelectorAll('.form__page--centered.r__form__page--centered');
+            console.log(pages.length);
+            budgetCreationFormPagesNumber = pages.length;
             currentPage = 0;
-            budgetContinueButton = document.querySelector('.budget-creation-form__page-mechanisms__submit-button'); //////////////////////////////////////////////////////////////
+            buttons = document.querySelectorAll('.button--small');
+            console.log(buttons);
+            budgetContinueButton = buttons[0]; //////////////////////////////////////////////////////////////
             // SET APPROPRIATE PAGE NUMBER DEPENDING ON USER INFORMATION
 
             setPageCount(currentPage, budgetCreationFormPagesNumber); ////////////////////////////////////////////////
             // INITIALIZE KEY VARIABLES INSIDE FUNCTION SCOPE
 
             subCategoryIndex = 0;
-            _context3.next = 12;
+            _context3.next = 18;
             return _Update_User__WEBPACK_IMPORTED_MODULE_4__.getSomePersonals();
 
-          case 12:
+          case 18:
             userInfo = _context3.sent;
             user = userInfo.data.data.user; //////////////////////////////////////
             // CHECK IF USER IS A LATTER DAY SAINT
@@ -6530,7 +6556,7 @@ var _watchForBudgetCreation = /*#__PURE__*/function () {
                 getBudgetName(budget); ////////////////////////////////
                 // SETUP BUDGET CREATION FORM
 
-                setupPage(currentPage, budgetCreationFormPages, budgetCreationFormPagesNumber, budget); /////////////////////////////
+                setupPage(currentPage, pages, budgetCreationFormPagesNumber, budget); /////////////////////////////
                 // IF NOT LATTER DAY SAINT
 
                 if (currentPage + 1 === 2 && latterDaySaintStatus === false) {
@@ -6666,7 +6692,7 @@ var _watchForBudgetCreation = /*#__PURE__*/function () {
 
             _Maintain_Budget__WEBPACK_IMPORTED_MODULE_5__._watchBudget();
 
-          case 18:
+          case 24:
           case "end":
             return _context3.stop();
         }

@@ -1335,6 +1335,7 @@ html {
     }
   }
   &--small {
+    @extend .button;
     &-transparent {
       color: rgba($colorOffWhite, 0.8);
       &:hover {
@@ -1349,6 +1350,10 @@ html {
         }
       }
     }
+    &-create-main-category {
+      @extend .button--small;
+      font-size: 1.6rem;
+    }
   }
   &--borderless {
     @extend .button;
@@ -1361,6 +1366,38 @@ html {
       color: rgba($colorOffWhite, 0.8);
       &:hover {
         color: $colorOffWhite;
+      }
+    }
+  }
+  &--medium-square {
+    font-size: 2rem;
+    color: rgba($primaryColor, 0.8);
+    &__icon {
+      font-size: 3rem;
+    }
+    &:hover {
+      .button--medium-square__icon,
+      .button--medium-square__text {
+        color: $colorOffWhite;
+      }
+    }
+    &__icons-container {
+      .icon-container {
+        font-family: MADE Tommy Soft, Verdana, sans-serif !important;
+        font-size: 1.6rem;
+        color: $primaryColor;
+        text-align: center;
+        &__icon {
+          font-size: 4rem;
+        }
+        &__text {
+        }
+        &:hover {
+          color: $colorOffWhite;
+        }
+        &--clicked {
+          color: $colorOffWhite;
+        }
       }
     }
   }
@@ -1384,18 +1421,55 @@ html {
   }
 }
 
+// BUDGET CREATION
+.main-category {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  font-size: 2rem;
+  color: $primaryColor;
+  &__icon {
+    font-size: 3rem;
+  }
+  &__delete {
+    font-size: 1.2rem;
+    color: rgba($primaryColor, 0.8);
+  }
+  &:hover {
+    color: $colorOffWhite;
+    .main-category__delete {
+      color: rgba($colorOffWhite, 0.8);
+      &:hover {
+        color: $primaryColor;
+      }
+    }
+  }
+}
+
+.icon-container {
+  font-family: MADE Tommy Soft, Verdana, sans-serif !important;
+  font-size: 1.6rem;
+  color: $primaryColor;
+  text-align: center;
+  &__icon {
+    font-size: 4rem;
+  }
+  &:hover {
+    color: $colorOffWhite;
+  }
+  &--clicked {
+    color: $colorOffWhite;
+  }
+}
+
 // FORMS
-.form-container {
-  .form-closure-icon {
+.form {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  &-closure-icon {
     font-size: 4rem;
     color: rgba($primaryColor, 0.5);
     &:hover {
       color: $primaryColor;
     }
   }
-}
-.form {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
   &__header {
     &__title {
       font-family: MADE Tommy Soft Bold, Verdana, sans-serif;
@@ -1419,6 +1493,10 @@ html {
     &--switch {
       @extend .form__section;
     }
+    &--page-number-display {
+      font-size: 3rem;
+      color: $primaryColor;
+    }
   }
   &__input {
     font-family: MADE Tommy Soft, Verdana, sans-serif;
@@ -1430,6 +1508,7 @@ html {
         color: $primaryColor;
       }
     }
+
     &--dark {
       @extend .form__input;
       color: rgba($colorOffWhite, 0.8);
@@ -1446,6 +1525,10 @@ html {
         @extend .form__input--dark;
         font-size: 1.6rem;
       }
+    }
+    &--main-category-title {
+      @extend .form__input;
+      font-size: 1.6rem;
     }
     &--latter-day-saint {
       @extend .form__input;
@@ -1473,6 +1556,10 @@ html {
     &--small {
       @extend .form__label;
       color: rgba($colorOffWhite, 0.8);
+      &-budget {
+        @extend .form__label;
+        font-size: 1.6rem;
+      }
     }
     &--extra-small {
       @extend .form__label--small;
@@ -1496,76 +1583,6 @@ html {
     &-number {
       font-size: 2rem;
       color: $primaryColor;
-    }
-  }
-
-  // SIGNUP FORM UNIQUE ASPECTS
-  &--signup {
-    .form-page {
-      &__section {
-        &__input {
-          font-size: 2rem;
-          color: rgba($primaryColor, 0.8);
-          &:focus {
-            color: $primaryColor;
-            & > label {
-              color: $primaryColor;
-            }
-          }
-        }
-        &__label {
-          font-size: 2rem;
-          color: rgba($primaryColor, 0.8);
-        }
-        .form-page__section__input-container--latter-day-saint {
-          .form-page__section__input--latter-day-saint {
-            &__text--NO,
-            &__text--YES {
-              font-size: 3rem;
-              color: $colorOffWhite;
-              text-transform: capitalize;
-            }
-          }
-        }
-      }
-    }
-    &__section {
-      &__page-number {
-        font-size: 2rem;
-        color: $primaryColor;
-      }
-    }
-  }
-  // USER PROFILE FORM UNIQUE ASPECTS
-  &--user-profile {
-    &__section {
-      font-family: MADE Tommy Soft, Verdana, sans-serif;
-      &__label {
-        font-size: 2rem;
-        color: rgba($colorOffWhite, 0.8);
-      }
-      &__input {
-        font-size: 2rem;
-        color: rgba($colorOffWhite, 0.8);
-        &:focus {
-          color: $colorOffWhite;
-          & + label {
-            color: $colorOffWhite;
-          }
-        }
-      }
-      &__sub-section {
-        font-family: MADE Tommy Soft, Verdana, sans-serif;
-        color: rgba($colorOffWhite, 0.8);
-        &__input {
-          font-family: MADE Tommy Soft, Verdana, sans-serif;
-          font-size: 1.6rem;
-          color: rgba($colorOffWhite, 0.8);
-        }
-        &__label {
-          font-size: 1.6rem;
-        }
-      }
     }
   }
 }

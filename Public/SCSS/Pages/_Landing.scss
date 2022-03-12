@@ -29,4 +29,7 @@
 }
 .open {
   display: flex;
+  &-grid {
+    display: grid;
+  }
 }

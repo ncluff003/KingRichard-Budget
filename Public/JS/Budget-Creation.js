@@ -985,7 +985,7 @@ const setupPage = (page, createBudgetPages, createBudgetPagesNumber, budget) => 
 /////////////////////////////////
 // SET CORRECT PAGE COUNT
 const setPageCount = (pageNumber, createBudgetPages) => {
-  const page = document.querySelector('.budget-creation-form__page-mechanisms__page-number');
+  const page = document.querySelector('.form__section--page-number-display__number');
   if (page) {
     page.textContent = `Page ${pageNumber + 1} / ${createBudgetPages}`;
   }
@@ -1035,7 +1035,8 @@ const _watchCreationFormCloser = (form, budget) => {
   console.log(formCloser);
   if (formCloser) {
     formCloser.addEventListener('click', (e) => {
-      form.classList.toggle(`form-container--budget-creation--shown`);
+      form.classList.toggle(`closed`);
+      form.classList.toggle(`open`);
       budget = undefined;
       console.log(budget);
     });
@@ -1045,7 +1046,8 @@ const _watchCreationFormCloser = (form, budget) => {
 const _watchCreationFormOpener = (form, button, budget) => {
   if (button) {
     button.addEventListener(`click`, (e) => {
-      form.classList.toggle(`form-container--budget-creation--shown`);
+      form.classList.toggle(`closed`);
+      form.classList.toggle(`open`);
       console.log(budget);
       return budget;
     });
@@ -1058,7 +1060,9 @@ const _setupBudgetCreation = (form, button, budget) => {
 };
 
 export const _watchForBudgetCreation = async () => {
-  const budgetCreationForm = document.querySelector('.form-container--budget-creation');
+  const forms = document.querySelectorAll('.form-container--full-width');
+  console.log(forms);
+  const budgetCreationForm = forms[0];
   const budgetCreationFormOpenButton = document.querySelector('.budget-card-container__card--create');
   let budget;
   budget = Budget.startToCreate();
@@ -1066,10 +1070,14 @@ export const _watchForBudgetCreation = async () => {
   ////////////////////////////
   // INITIALIZE KEY VARIABLES
   const budgetCreationFormPages = document.querySelectorAll('.budget-creation-form__page');
-  const budgetCreationFormPagesNumber = budgetCreationFormPages.length;
+  const pages = document.querySelectorAll('.form__page--centered.r__form__page--centered');
+  console.log(pages.length);
+  const budgetCreationFormPagesNumber = pages.length;
   let currentPage = 0;
   let emergencyGoalSetting, clicked, selectedTiming;
-  const budgetContinueButton = document.querySelector('.budget-creation-form__page-mechanisms__submit-button');
+  const buttons = document.querySelectorAll('.button--small');
+  console.log(buttons);
+  const budgetContinueButton = buttons[0];
   //////////////////////////////////////////////////////////////
   // SET APPROPRIATE PAGE NUMBER DEPENDING ON USER INFORMATION
   setPageCount(currentPage, budgetCreationFormPagesNumber);
@@ -1100,7 +1108,7 @@ export const _watchForBudgetCreation = async () => {
 
       ////////////////////////////////
       // SETUP BUDGET CREATION FORM
-      setupPage(currentPage, budgetCreationFormPages, budgetCreationFormPagesNumber, budget);
+      setupPage(currentPage, pages, budgetCreationFormPagesNumber, budget);
 
       /////////////////////////////
       // IF NOT LATTER DAY SAINT

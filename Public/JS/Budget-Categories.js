@@ -1187,18 +1187,18 @@ export const _verifySubCategory = (budget, index) => {
 ////////////////////////////////////////
 // MAIN CATEGORY DELETION PROCESS
 const removeMainCategory = async (e, budget) => {
-  const budgetPages = document.querySelectorAll('.budget-creation-form__page');
-  const mainCategoryCreationPage = document.querySelector('.budget-creation-form__page');
+  const budgetPages = document.querySelectorAll('.form__page--centered');
+  console.log(budgetPages, budgetPages[2].classList);
   let title = e.target.closest('section').firstChild.nextElementSibling.textContent;
   /////////////////////////////
   // CHECK USER
   const userInfo = await Update.getSomePersonals();
   const user = userInfo.data.data.user;
   if (user.latterDaySaint === true) {
-    if (budgetPages[2].classList.contains(`disappear`)) return;
+    if (budgetPages[2].classList.contains(`closed`)) return;
   }
   if (user.latterDaySaint === false) {
-    if (!budgetPages[2].classList.contains(`disappear`)) return;
+    if (!budgetPages[2].classList.contains(`closed`)) return;
   }
   budget._deleteMainCategory(title);
   e.target.closest('section').remove();
@@ -1209,11 +1209,11 @@ const removeMainCategory = async (e, budget) => {
 ////////////////////////////////////////
 // MAIN CATEGORY CREATION PROCESS
 const createMainCategory = (element, budget, filteredArray) => {
-  let mainCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container__input').value;
+  let mainCategoryTitle = document.querySelector('.form__input--main-category-title').value;
   mainCategoryTitle = mainCategoryTitle.split(' ').map(_capitalize).join(' ');
   // budget.mainCategories.push(new MainCategory({ icon: `${element}`, title: mainCategoryTitle }));
   budget._addMainCategory(`${element}`, mainCategoryTitle);
-  const mainCategoryContainer = document.querySelector('.budget-creation-form__page__section__main-category-container');
+  const mainCategoryContainer = document.querySelector('.budget-creation-container--main-categories');
   const mainCategory = document.createElement('section');
   mainCategory.classList.add('main-category');
   const iconImage = document.createElement('i');
@@ -1249,7 +1249,7 @@ const createMainCategory = (element, budget, filteredArray) => {
 // CREATE MAIN CATEGORY
 
 const _verifyMainCategory = (icon, iconList, budget) => {
-  let mainCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container__input').value.toLowerCase();
+  let mainCategoryTitle = document.querySelector('.form__input--main-category-title').value.toLowerCase();
   const filtered = budget.mainCategories.filter((mc) => {
     if (mc.title.toLowerCase() === mainCategoryTitle) {
       return mc;
@@ -1274,7 +1274,7 @@ const _findClickedIcon = (iconList, budget) => {
 };
 
 const _setupCategoryCreation = (budget) => {
-  const createMainCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[0];
+  const createMainCategoryButton = document.querySelectorAll('.button--small-create-main-category')[0];
   const iconContainers = document.querySelectorAll('.icon-container');
   if (createMainCategoryButton) {
     createMainCategoryButton.addEventListener('click', (e) => {
@@ -1333,35 +1333,51 @@ const _showCreatedIcons = () => {
 ////////////////////////////////////////
 // CLOSE CATEGORY CREATION
 const closeCategoryCreation = () => {
-  const createCategoryButton = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category');
-  const mainCategoryContainer = document.querySelector('.budget-creation-form__page__section__main-category-container');
-  const closeCreateCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[1];
-  const iconsContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
-  const createCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container');
-  createCategoryTitle.classList.toggle('budget-creation-form__page__section__set-main-category-title-container--open');
-  iconsContainer.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category__icons-container--open');
-  createCategoryButton.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category--hidden');
-  mainCategoryContainer.classList.toggle('budget-creation-form__page__section__main-category-container--creating-category');
+  const createCategoryButton = document.querySelector('.button--medium-square');
+  const createMainCategoryButton = document.querySelectorAll('.button--small-create-main-category')[0];
+  const mainCategoryContainer = document.querySelector('.budget-creation-container--main-categories');
+  const closeCreateCategoryButton = document.querySelectorAll('.button--small-create-main-category')[1];
+  const iconsContainer = document.querySelector('.icons-container');
+  const createCategoryTitle = document.querySelector('.form__section--main-category-title');
+  createCategoryTitle.classList.toggle('closed');
+  createCategoryTitle.classList.toggle('open');
+  iconsContainer.classList.toggle('closed');
+  iconsContainer.classList.toggle('open-grid');
+  createCategoryButton.classList.toggle('closed');
+  createCategoryButton.classList.toggle('open');
+  createMainCategoryButton.classList.toggle('closed');
+  createMainCategoryButton.classList.toggle('open');
+  closeCreateCategoryButton.classList.toggle('closed');
+  closeCreateCategoryButton.classList.toggle('open');
+  mainCategoryContainer.classList.toggle('budget-creation-container--main-categories--creating');
   _showCreatedIcons();
 };
 
 ////////////////////////////////////////
 // OPEN CATEGORY CREATION
 const openCategoryCreation = () => {
-  const createCategoryButton = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category');
-  const mainCategoryContainer = document.querySelector('.budget-creation-form__page__section__main-category-container');
-  const closeCreateCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[1];
-  const iconsContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
-  const createCategoryTitle = document.querySelector('.budget-creation-form__page__section__set-main-category-title-container');
-  createCategoryTitle.classList.toggle('budget-creation-form__page__section__set-main-category-title-container--open');
-  iconsContainer.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category__icons-container--open');
-  createCategoryButton.classList.toggle('budget-creation-form__page__section__main-category-container__create-main-category--hidden');
-  mainCategoryContainer.classList.toggle('budget-creation-form__page__section__main-category-container--creating-category');
+  const createCategoryButton = document.querySelector('.button--medium-square');
+  const createMainCategoryButton = document.querySelectorAll('.button--small-create-main-category')[0];
+  const mainCategoryContainer = document.querySelector('.budget-creation-container--main-categories');
+  const closeCreateCategoryButton = document.querySelectorAll('.button--small-create-main-category')[1];
+  const iconsContainer = document.querySelector('.icons-container');
+  const createCategoryTitle = document.querySelector('.form__section--main-category-title');
+  createCategoryTitle.classList.toggle('closed');
+  createCategoryTitle.classList.toggle('open');
+  iconsContainer.classList.toggle('closed');
+  iconsContainer.classList.toggle('open-grid');
+  createCategoryButton.classList.toggle('closed');
+  createCategoryButton.classList.toggle('open');
+  createMainCategoryButton.classList.toggle('closed');
+  createMainCategoryButton.classList.toggle('open');
+  closeCreateCategoryButton.classList.toggle('closed');
+  closeCreateCategoryButton.classList.toggle('open');
+  mainCategoryContainer.classList.toggle('budget-creation-container--main-categories--creating');
   _hideCreatedIcons();
 };
 
 export const _watchCreateCategoryButton = (icon, budget) => {
-  const createCategoryButton = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category');
+  const createCategoryButton = document.querySelector('.button--medium-square');
   createCategories(icon);
   if (createCategoryButton) {
     createCategoryButton.addEventListener('click', (e) => {
@@ -1369,7 +1385,7 @@ export const _watchCreateCategoryButton = (icon, budget) => {
       openCategoryCreation();
     });
   }
-  const closeCreateCategoryButton = document.querySelectorAll('.budget-creation-form__page__section__set-main-category-title-container__button')[1];
+  const closeCreateCategoryButton = document.querySelectorAll('.button--small-create-main-category')[1];
   if (closeCreateCategoryButton) {
     closeCreateCategoryButton.addEventListener('click', (e) => {
       e.preventDefault();
@@ -1383,7 +1399,7 @@ export const _watchCreateCategoryButton = (icon, budget) => {
 // SHOWING ICONS FOR MAIN CATEGORIES
 export const createCategories = (icon, index) => {
   icons.forEach((iconImage, i) => {
-    const mainContainer = document.querySelector('.budget-creation-form__page__section__main-category-container__create-main-category__icons-container');
+    const mainContainer = document.querySelector('.icons-container');
     if (mainContainer) {
       const iconContainer = document.createElement(`section`);
       iconContainer.classList.add('icon-container');

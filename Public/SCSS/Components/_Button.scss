@@ -410,6 +410,7 @@
     border: 0.3rem solid $primaryColor;
     transition: background-color 0.5s, border 0.5s, color 0.5s;
   }
+
   &--extra-small {
     @extend .button;
     height: 7.5%;
@@ -447,6 +448,12 @@
         border: 0.3rem solid $colorDarkerGrey;
       }
     }
+    &-create-main-category {
+      @extend .button--small;
+      width: 25%;
+      border-radius: 1.25rem;
+      margin-left: 1rem;
+    }
   }
   &--borderless {
     @extend .button;
@@ -471,6 +478,21 @@
       background-color: transparent;
       &:hover {
         transition: color 0.5s, transform 0.5s;
+      }
+    }
+  }
+  &--medium-square {
+    @include SizeAndPositioning(relative, 25%, 25%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+    border: 0.3rem solid rgba($primaryColor, 0.8);
+    border-top-left-radius: 0.9rem;
+    &:hover {
+      cursor: pointer;
+      border: 0.3rem solid $primaryColor;
+      background-color: $primaryColor;
+      transition: border 0.5s, background-color 0.5s;
+      .button--medium-square__icon,
+      .button--medium-square__text {
+        transition: color 0.5s;
       }
     }
   }

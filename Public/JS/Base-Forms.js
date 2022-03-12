@@ -4,6 +4,7 @@ import * as Signup from './Signup';
 //////////////////////////////
 // Actually Close The Form
 const _closeTheForm = (index, page, pageElement, form) => {
+  form[index].classList.toggle('closed');
   form[index].classList.toggle('open');
   if (pageElement) {
     pageElement.textContent = `Page ${page + 1} / 4`;
@@ -46,6 +47,7 @@ export const _watchEntranceButtons = (person, form, formPage) => {
         //////////////////////////////////////////////////////////////
         // OPEN UP THE SELECTED FORM
         if (form[i] !== undefined) {
+          form[i].classList.toggle('closed');
           form[i].classList.toggle('open');
         }
 
