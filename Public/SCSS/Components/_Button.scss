@@ -430,6 +430,7 @@
     width: 20%;
     transform: translate(0, 0);
     border-radius: 0.75rem;
+
     &-transparent {
       @extend .button--small;
       background-color: transparent;
@@ -454,6 +455,27 @@
       border-radius: 1.25rem;
       margin-left: 1rem;
     }
+
+    &-create-sub-category {
+      @extend .button--small;
+
+      @include SizeAndPositioning(relative, 50%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
+      height: 50%;
+      border: 0.2rem solid rgba($primaryColor, 0.8);
+      border-radius: 0.5rem;
+      background-color: rgba($colorOffWhite, 0.25);
+      margin-left: 1rem;
+
+      &:hover {
+        border: 0.2rem solid $primaryColor;
+        transition: background-color 0.5s, color 0.5s, border 0.5s;
+      }
+      &-close {
+        @extend .button--small-create-sub-category;
+        width: 50%;
+        justify-content: space-evenly;
+      }
+    }
   }
   &--borderless {
     @extend .button;
@@ -466,6 +488,9 @@
     &:hover {
       border: none;
       background-color: transparent;
+    }
+    &__icon {
+      margin-right: 1rem;
     }
     &-narrow {
       @extend .button--borderless;

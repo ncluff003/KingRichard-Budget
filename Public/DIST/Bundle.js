@@ -4900,8 +4900,6 @@ var createSubCategory = function createSubCategory(budget, index) {
   // Creating Sub Category Container
   var subCategory = document.createElement('section'); // Adding Sub Category Classes
 
-  subCategory.classList.add('budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category');
-  subCategory.classList.add('r__budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category');
   subCategory.classList.add('sub-category');
   subCategory.classList.add('r__sub-category');
   subCategory.dataset.category = "".concat(index); // Creating the title container
@@ -4916,7 +4914,7 @@ var createSubCategory = function createSubCategory(budget, index) {
   subCategoryTitleElement.classList.add('sub-category-title-container__title');
   subCategoryTitleElement.classList.add('r__sub-category-title-container__title'); // Select Category Creation Input
 
-  var subCategoryTitleInput = document.querySelector('.category-creation__input-container__input'); // Add Title Text Content
+  var subCategoryTitleInput = document.querySelector('.form__input--sub-category-title'); // Add Title Text Content
 
   subCategoryTitleElement.textContent = subCategoryTitleInput.value.split(' ').map(_capitalize).join(' '); // Creating Sub Category Controller
 
@@ -5001,7 +4999,7 @@ var createSubCategory = function createSubCategory(budget, index) {
   if (subCategoryTitleInput.value === '') return;
 
   if (subCategories.length === 0 && subCategoryTitleInput.value !== '' && subCategoryTitleInput.value !== undefined) {
-    document.querySelector('.budget-creation-form__page__section__sub-category-container__sub-category-display').insertAdjacentElement('afterbegin', subCategory);
+    document.querySelector('.budget-creation-container--sub-categories__sub-category-display').insertAdjacentElement('afterbegin', subCategory);
   }
 
   if (subCategories.length > 0) {
@@ -5015,7 +5013,7 @@ var createSubCategory = function createSubCategory(budget, index) {
 var _verifySubCategory = function _verifySubCategory(budget, index) {
   /////////////////////////////////////////////////
   // INITIALIZE NEEDED VARIABLES
-  var mainCategoryTitle = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__text').textContent.toLowerCase();
+  var mainCategoryTitle = document.querySelector('.budget-creation-container--sub-categories__main-category-display__category-information__text').textContent.toLowerCase();
   var categoryIndex; ////////////////////////////////////
   // GETTING THE MAIN CATEGORY INDEX
 
@@ -5026,7 +5024,7 @@ var _verifySubCategory = function _verifySubCategory(budget, index) {
     }
   }); // Get Category Creation Input Value In Lowercase
 
-  var subCategoryTitle = document.querySelector('.category-creation__input-container__input').value.toLowerCase(); //////////////////////////////////////////
+  var subCategoryTitle = document.querySelector('.form__input--sub-category-title').value.toLowerCase(); //////////////////////////////////////////
   // CHECKING SUB CATEGORIES VS INPUT VALUE
 
   var filtered = budget.mainCategories[categoryIndex].subCategories.filter(function (sc) {
@@ -6211,10 +6209,10 @@ var cycleMainCategories = function cycleMainCategories(direction, index, budget,
     textElement.textContent = budget.mainCategories[index].title;
     var subCategories = document.querySelectorAll('.sub-category');
     subCategories.forEach(function (sc, i) {
-      sc.classList.add('hidden');
+      sc.classList.add('closed');
 
       if (sc.dataset.category === "".concat(index)) {
-        sc.classList.remove('hidden');
+        sc.classList.remove('closed');
       }
     });
     return index;
@@ -6229,10 +6227,10 @@ var cycleMainCategories = function cycleMainCategories(direction, index, budget,
     var _subCategories = document.querySelectorAll('.sub-category');
 
     _subCategories.forEach(function (sc, i) {
-      sc.classList.add('hidden');
+      sc.classList.add('closed');
 
       if (sc.dataset.category === "".concat(index)) {
-        sc.classList.remove('hidden');
+        sc.classList.remove('closed');
       }
     });
 
@@ -6241,28 +6239,34 @@ var cycleMainCategories = function cycleMainCategories(direction, index, budget,
 };
 
 var closeSubCategoryCreationInput = function closeSubCategoryCreationInput(button, inputSection) {
-  button.classList.toggle('budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden');
-  inputSection.classList.toggle('category-creation--shown');
+  button.classList.toggle('closed');
+  button.classList.toggle('open');
+  inputSection.classList.toggle('closed');
+  inputSection.classList.toggle('open');
 };
 
 var setupSubCategoryCreation = function setupSubCategoryCreation(budget, index) {
-  var leftButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__left-button__icon');
-  var rightButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__right-button__icon');
-  var mainCategoryIcon = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__icon');
-  var mainCategoryText = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__text');
-  var subCategoryStartCreationButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button');
-  var subCategoryStopCreationButton = document.querySelector('.category-creation__controller__close');
-  var categoryCreationSection = document.querySelector('.category-creation');
+  var leftButton = document.querySelector('.budget-creation-container--sub-categories__main-category-display__left-button__icon');
+  var rightButton = document.querySelector('.budget-creation-container--sub-categories__main-category-display__right-button__icon');
+  var mainCategoryIcon = document.querySelector('.budget-creation-container--sub-categories__main-category-display__category-information__icon');
+  var mainCategoryText = document.querySelector('.budget-creation-container--sub-categories__main-category-display__category-information__text');
+  var borderlessButtons = document.querySelectorAll('.button--borderless');
+  console.log(borderlessButtons);
+  var subCategoryStartCreationButton = borderlessButtons[2];
+  var subCategoryStopCreationButton = document.querySelector('.button--small-create-sub-category-close');
+  var categoryCreationSection = document.querySelector('.form__section--sub-category-creation');
   var direction;
   mainCategoryIcon.classList.add(budget.mainCategories[index].icon);
   mainCategoryText.textContent = budget.mainCategories[index].title;
   leftButton.addEventListener('click', function (e) {
     index--;
+    if (index < 0) index = 0;
     direction = "Left";
     cycleMainCategories(direction, index, budget, mainCategoryIcon, mainCategoryText);
   });
   rightButton.addEventListener('click', function (e) {
     index++;
+    if (index > budget.mainCategories.length - 1) index = budget.mainCategories.length - 1;
     direction = "Right";
     cycleMainCategories(direction, index, budget, mainCategoryIcon, mainCategoryText);
   });
@@ -6270,10 +6274,10 @@ var setupSubCategoryCreation = function setupSubCategoryCreation(budget, index) 
     e.preventDefault();
     closeSubCategoryCreationInput(subCategoryStartCreationButton, categoryCreationSection);
   });
-  var subCategoryCreateButton = document.querySelector('.category-creation__input-container__button');
+  var subCategoryCreateButton = document.querySelector('.button--small-create-sub-category');
   subCategoryCreateButton.addEventListener('click', function (e) {
     e.preventDefault();
-    var subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
+    var subCategoryCreateInput = document.querySelector('.form__input--sub-category-title');
 
     _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__._verifySubCategory(budget, index);
 
@@ -6282,9 +6286,11 @@ var setupSubCategoryCreation = function setupSubCategoryCreation(budget, index) 
   });
   subCategoryStartCreationButton.addEventListener('click', function (e) {
     e.preventDefault();
-    subCategoryStartCreationButton.classList.toggle('budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden');
-    categoryCreationSection.classList.toggle('category-creation--shown');
-    var subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
+    subCategoryStartCreationButton.classList.toggle('closed');
+    subCategoryStartCreationButton.classList.toggle('open');
+    categoryCreationSection.classList.toggle('closed');
+    categoryCreationSection.classList.toggle('open');
+    var subCategoryCreateInput = document.querySelector('.form__input--sub-category-title');
     subCategoryCreateInput.value = '';
     subCategoryCreateInput.focus();
     console.log("Ready...");
@@ -6300,24 +6306,25 @@ var setupSubCategoryCreation = function setupSubCategoryCreation(budget, index) 
 var clickToCreateSubCategory = function clickToCreateSubCategory() {
   var e = event;
   e.preventDefault();
-  var subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
-  var subCategoryCreationButton = document.querySelector('.category-creation__input-container__button');
-  var subCategoryStartCreationButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button');
+  var subCategoryCreateInput = document.querySelector('.form__input--sub-category-title');
+  var borderlessButtons = document.querySelectorAll('.button--borderless');
+  var subCategoryCreationButton = document.querySelector('.button--small-create-sub-category');
+  var subCategoryStartCreationButton = borderlessButtons[2];
 
   if (e.key === "Enter") {
-    var categoryCreation = document.querySelector('.category-creation');
+    var categoryCreation = document.querySelector('.form__section--sub-category-creation');
 
-    if (categoryCreation.classList.contains('category-creation--shown')) {
+    if (categoryCreation.classList.contains('open')) {
       subCategoryCreationButton.click();
+      return;
     }
 
-    if (!subCategoryStartCreationButton.classList.contains("budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden")) {
-      subCategoryStartCreationButton.classList.toggle('budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button--hidden');
-      categoryCreation.classList.toggle('category-creation--shown');
-
-      var _subCategoryCreateInput = document.querySelector('.category-creation__input-container__input');
-
-      _subCategoryCreateInput.focus();
+    if (!subCategoryStartCreationButton.classList.contains("open")) {
+      subCategoryStartCreationButton.classList.toggle('open');
+      subCategoryStartCreationButton.classList.toggle('closed');
+      categoryCreation.classList.toggle('open');
+      categoryCreation.classList.toggle('closed');
+      subCategoryCreateInput.focus();
     }
   }
 }; //////////////////////////////////////////////////////////////
@@ -6343,8 +6350,8 @@ var _watchForCyclingCategoryGoals = function _watchForCyclingCategoryGoals() {
 
 
 var watchToCycleSubCategoryMainCategories = function watchToCycleSubCategoryMainCategories() {
-  var leftButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__left-button__icon');
-  var rightButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__right-button__icon');
+  var leftButton = document.querySelector('.budget-creation-container--sub-categories__main-category-display__left-button__icon');
+  var rightButton = document.querySelector('.budget-creation-container--sub-categories__main-category-display__right-button__icon');
   document.addEventListener("keyup", function (e) {
     e.preventDefault();
 
@@ -6361,7 +6368,8 @@ var watchToCycleSubCategoryMainCategories = function watchToCycleSubCategoryMain
 
 
 var _watchForSubCategoryKeyboardInput = function _watchForSubCategoryKeyboardInput() {
-  var subCategoryStartCreationButton = document.querySelector('.budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button');
+  var borderlessButtons = document.querySelectorAll('.button--borderless');
+  var subCategoryStartCreationButton = borderlessButtons[2];
   subCategoryStartCreationButton.focus();
   document.addEventListener("keyup", clickToCreateSubCategory);
 }; /////////////////////////////////

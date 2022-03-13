@@ -1024,8 +1024,6 @@ export const createSubCategory = (budget, index) => {
   // Creating Sub Category Container
   const subCategory = document.createElement('section');
   // Adding Sub Category Classes
-  subCategory.classList.add('budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category');
-  subCategory.classList.add('r__budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category');
   subCategory.classList.add('sub-category');
   subCategory.classList.add('r__sub-category');
   subCategory.dataset.category = `${index}`;
@@ -1043,7 +1041,7 @@ export const createSubCategory = (budget, index) => {
   subCategoryTitleElement.classList.add('r__sub-category-title-container__title');
 
   // Select Category Creation Input
-  const subCategoryTitleInput = document.querySelector('.category-creation__input-container__input');
+  const subCategoryTitleInput = document.querySelector('.form__input--sub-category-title');
 
   // Add Title Text Content
   subCategoryTitleElement.textContent = subCategoryTitleInput.value.split(' ').map(_capitalize).join(' ');
@@ -1140,7 +1138,7 @@ export const createSubCategory = (budget, index) => {
   const subCategories = document.querySelectorAll('.sub-category');
   if (subCategoryTitleInput.value === '') return;
   if (subCategories.length === 0 && subCategoryTitleInput.value !== '' && subCategoryTitleInput.value !== undefined) {
-    document.querySelector('.budget-creation-form__page__section__sub-category-container__sub-category-display').insertAdjacentElement('afterbegin', subCategory);
+    document.querySelector('.budget-creation-container--sub-categories__sub-category-display').insertAdjacentElement('afterbegin', subCategory);
   }
   if (subCategories.length > 0) {
     subCategories[subCategories.length - 1].insertAdjacentElement('afterend', subCategory);
@@ -1154,9 +1152,7 @@ export const createSubCategory = (budget, index) => {
 export const _verifySubCategory = (budget, index) => {
   /////////////////////////////////////////////////
   // INITIALIZE NEEDED VARIABLES
-  const mainCategoryTitle = document
-    .querySelector('.budget-creation-form__page__section__sub-category-container__main-category-display__category-information__text')
-    .textContent.toLowerCase();
+  const mainCategoryTitle = document.querySelector('.budget-creation-container--sub-categories__main-category-display__category-information__text').textContent.toLowerCase();
   let categoryIndex;
 
   ////////////////////////////////////
@@ -1168,7 +1164,7 @@ export const _verifySubCategory = (budget, index) => {
     }
   });
   // Get Category Creation Input Value In Lowercase
-  const subCategoryTitle = document.querySelector('.category-creation__input-container__input').value.toLowerCase();
+  const subCategoryTitle = document.querySelector('.form__input--sub-category-title').value.toLowerCase();
 
   //////////////////////////////////////////
   // CHECKING SUB CATEGORIES VS INPUT VALUE

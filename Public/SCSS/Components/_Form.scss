@@ -1355,6 +1355,132 @@
         margin-bottom: 0;
       }
     }
+
+    &--sub-category-creation {
+      @extend .form__section;
+      height: 6rem;
+      flex-direction: row;
+      justify-content: center;
+      min-height: 6rem;
+      border-bottom: 0.3rem solid rgba($primaryColor, 0.8);
+      border-left: none;
+      border-right: none;
+      background-color: transparent;
+      &__sub-category {
+        @include SizeAndPositioning(relative, 6rem, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+        .sub-category-title-container {
+          @include SizeAndPositioning(relative, 100%, 70%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+          padding-left: 2rem;
+        }
+        .sub-category-controller {
+          @include SizeAndPositioning(relative, 100%, 30%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
+          &__surplus-container {
+            @include SizeAndPositioning(relative, 100%, 50%, flex, column, nowrap, center, center, 0, 0, 0);
+            &__switch {
+              @include SizeAndPositioning(relative, 40%, 75%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+              border: 0.2rem solid rgba($primaryColorDark, 0.8);
+              border-radius: 2rem;
+              background-color: rgba($primaryColor, 0.8);
+              transition: border 0.5s, background-color 0.5s, transform 0.5s;
+              &__toggle {
+                @include SizeAndPositioning(relative, 93%, 33%, flex, row, nowrap, center, center, 5%, 0, 0);
+                border: 0.2rem solid rgba($colorOffWhite, 0.8);
+                border-radius: 50%;
+                background-color: rgba($primaryColorDark, 0.8);
+                transition: border 0.5s, background-color 0.5s, transform 0.5s;
+              }
+              &--switched {
+                @include SizeAndPositioning(relative, 40%, 75%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+                border: 0.2rem solid rgba($secondaryColorDark, 0.8);
+                border-radius: 2rem;
+                background-color: rgba($secondaryColor, 0.8);
+                .sub-category-controller__surplus-container__switch__toggle {
+                  @include SizeAndPositioning(relative, 93%, 33%, flex, row, nowrap, center, center, 200%, 0, 0);
+                  border-radius: 50%;
+                  background-color: rgba($secondaryColorDark, 0.8);
+                }
+              }
+              &:hover {
+                cursor: pointer;
+              }
+            }
+          }
+          &__icon {
+            &:hover {
+              cursor: pointer;
+              transition: color 0.5s;
+            }
+          }
+        }
+      }
+      &__input-container {
+        @include SizeAndPositioning(relative, 100%, 70%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+        padding-left: 2rem;
+        &__input {
+          @include SizeAndPositioning(relative, 50%, 50%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+          padding-left: 1rem;
+          border: 0.2rem solid rgba($primaryColor, 0.8);
+          background-color: rgba($colorOffWhite, 0.25);
+          border-radius: 0.5rem;
+          &:focus {
+            border: 0.2rem solid $primaryColor;
+            outline: none;
+          }
+        }
+      }
+      &__controller {
+        @include SizeAndPositioning(relative, 100%, 30%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
+        &__surplus-container {
+          @include SizeAndPositioning(relative, 100%, 50%, flex, column, nowrap, center, center, 0, 0, 0);
+          &__switch {
+            @include SizeAndPositioning(relative, 40%, 75%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+            border: 0.2rem solid rgba($primaryColorDark, 0.8);
+            border-radius: 2rem;
+            background-color: rgba($primaryColor, 0.8);
+            transition: border 0.5s, background-color 0.5s, transform 0.5s;
+            &__toggle {
+              @include SizeAndPositioning(relative, 93%, 33%, flex, row, nowrap, center, center, 5%, 0, 0);
+              border: 0.2rem solid rgba($colorOffWhite, 0.8);
+              border-radius: 50%;
+              background-color: rgba($primaryColorDark, 0.8);
+              transition: border 0.5s, background-color 0.5s, transform 0.5s;
+            }
+            &--switched {
+              @include SizeAndPositioning(relative, 40%, 75%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+              border: 0.2rem solid rgba($secondaryColorDark, 0.8);
+              border-radius: 2rem;
+              background-color: rgba($secondaryColor, 0.8);
+              .category-creation__controller__surplus-container__switch__toggle {
+                @include SizeAndPositioning(relative, 93%, 33%, flex, row, nowrap, center, center, 0, 0, 0);
+                border-radius: 50%;
+                background-color: rgba($secondaryColorDark, 0.8);
+              }
+            }
+            &:hover {
+              cursor: pointer;
+              @include SizeAndPositioning(relative, 40%, 75%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+              border: 0.2rem solid rgba($secondaryColorDark, 0.8);
+              border-radius: 2rem;
+              background-color: rgba($secondaryColor, 0.8);
+              .category-creation__controller__surplus-container__switch__toggle {
+                @include SizeAndPositioning(relative, 93%, 33%, flex, row, nowrap, center, center, 200%, 0, 0);
+                border-radius: 50%;
+                background-color: rgba($secondaryColorDark, 0.8);
+              }
+            }
+          }
+        }
+        &__icon {
+          &:hover {
+            cursor: pointer;
+            transition: color 0.5s;
+          }
+        }
+      }
+      &--shown {
+        display: flex;
+      }
+    }
     // @include SizeAndPositioning(relative, 20%, 100%, none, row, nowrap, space-evenly, center, 0, 0, 0);
     &--switch {
       @extend .form__section;
@@ -1385,6 +1511,14 @@
     &--latter-day-saint {
       @extend .form__input-container;
       width: 12%;
+    }
+    &--sub-category-title {
+      @extend .form__input-container;
+      height: 100%;
+      width: 70%;
+      flex-direction: row;
+      justify-content: flex-start;
+      padding-left: 2rem;
     }
   }
   &__input {
@@ -1451,6 +1585,22 @@
       border-radius: 1.25rem;
       background-color: rgba($colorOffWhite, 0.8);
       &:focus {
+        outline: none;
+      }
+    }
+
+    &--sub-category-title {
+      @extend .form__input;
+      height: 50%;
+      width: 50%;
+      padding: 0;
+      padding-left: 1rem;
+      border: 0.2rem solid rgba($primaryColor, 0.8);
+      background-color: rgba($colorOffWhite, 0.25);
+      border-radius: 0.5rem;
+
+      &:focus {
+        border: 0.2rem solid $primaryColor;
         outline: none;
       }
     }

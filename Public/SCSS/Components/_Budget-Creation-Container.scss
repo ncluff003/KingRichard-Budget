@@ -13,6 +13,37 @@
       flex-direction: column;
     }
   }
+
+  &--sub-categories {
+    @include SizeAndPositioning(relative, 50rem, 80%, flex, column, nowrap, center, center, 0, 0, 0);
+    border: 0.3rem solid $primaryColor;
+    border-radius: 1rem;
+    &__main-category-display {
+      @include SizeAndPositioning(relative, 55%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+      &__left-button,
+      &__right-button {
+        @include SizeAndPositioning(relative, 100%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
+        &__icon {
+          &:hover {
+            cursor: pointer;
+            transition: color 0.5s;
+          }
+        }
+      }
+      &__category-information {
+        @include SizeAndPositioning(relative, 100%, 60%, flex, column, nowrap, center, center, 0, 0, 0);
+      }
+    }
+    &__sub-category-display {
+      @include SizeAndPositioning(relative, 45%, 100%, flex, column, nowrap, flex-start, center, 0, 0, 0);
+      border-top: 0.3rem solid $primaryColor;
+      overflow-y: auto;
+    }
+  }
+}
+
+.category-creation-controller {
+  @include SizeAndPositioning(relative, 100%, 30%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
 }
 
 .icons-container {
@@ -83,6 +114,54 @@
       background-color: $colorOffWhite;
       border: 0.2rem solid $colorOffWhite;
       transition: background-color 0.5s, border 0.5s, color 0.5s;
+    }
+  }
+}
+
+// SUB-CATEGORY
+.sub-category {
+  @include SizeAndPositioning(relative, 6rem, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+  min-height: 6rem;
+  border-bottom: 0.3rem solid rgba($primaryColor, 0.8);
+  border-left: none;
+  border-right: none;
+  background-color: transparent;
+  &-title-container {
+    @include SizeAndPositioning(relative, 100%, 70%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+    padding-left: 2rem;
+  }
+  &-controller {
+    @include SizeAndPositioning(relative, 100%, 30%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
+    &__surplus-container {
+      @include SizeAndPositioning(relative, 100%, 50%, flex, column, nowrap, center, center, 0, 0, 0);
+      &__switch {
+        @include SizeAndPositioning(relative, 45%, 75%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+        border: 0.2rem solid rgba($primaryColorDark, 0.8);
+        border-radius: 2rem;
+        background-color: rgba($primaryColor, 0.8);
+        transition: border 0.5s, background-color 0.5s, transform 0.5s;
+        &__toggle {
+          @include SizeAndPositioning(relative, 93%, 33%, flex, row, nowrap, center, center, 5%, 0, 0);
+          border: 0.2rem solid rgba($colorOffWhite, 0.8);
+          border-radius: 50%;
+          background-color: rgba($primaryColorDark, 0.8);
+          transition: border 0.5s, background-color 0.5s, transform 0.5s;
+        }
+        &--switched {
+          @include SizeAndPositioning(relative, 45%, 75%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+          border: 0.2rem solid rgba($secondaryColorDark, 0.8);
+          border-radius: 2rem;
+          background-color: rgba($secondaryColor, 0.8);
+          .sub-category-controller__surplus-container__switch__toggle {
+            @include SizeAndPositioning(relative, 93%, 33%, flex, row, nowrap, center, center, 200%, 0, 0);
+            border-radius: 50%;
+            background-color: rgba($secondaryColorDark, 0.8);
+          }
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
   }
 }

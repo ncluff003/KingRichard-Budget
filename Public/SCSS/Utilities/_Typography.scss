@@ -1354,6 +1354,16 @@ html {
       @extend .button--small;
       font-size: 1.6rem;
     }
+    &-create-sub-category {
+      font-size: 1.6rem;
+      color: rgba($primaryColor, 0.8);
+      &:hover {
+        color: $colorOffWhite;
+      }
+      &-close {
+        @extend .button--small-create-sub-category;
+      }
+    }
   }
   &--borderless {
     @extend .button;
@@ -1444,6 +1454,53 @@ html {
   }
 }
 
+// SUB-CATEGORY
+.sub-category {
+  &-controller {
+    &__surplus-container {
+      &__switch {
+        &__toggle {
+          &__icon {
+            font-size: 1.2rem;
+            color: rgba($colorOffWhite, 0.8);
+          }
+        }
+      }
+    }
+  }
+}
+
+.budget-creation-container {
+  &--sub-categories {
+    &__main-category-display {
+      &__left-button,
+      &__right-button {
+        &__icon {
+          font-size: 5rem;
+          color: rgba($primaryColor, 0.8);
+          &:hover {
+            color: $primaryColor;
+          }
+        }
+      }
+      &__left-button {
+        &__icon {
+          color: rgba($primaryColor, 0.25);
+        }
+      }
+      &__category-information {
+        color: $primaryColor;
+        &__icon {
+          font-size: 16rem;
+        }
+        &__text {
+          font-size: 4rem;
+        }
+      }
+    }
+  }
+}
+
 .icon-container {
   font-family: MADE Tommy Soft, Verdana, sans-serif !important;
   font-size: 1.6rem;
@@ -1527,6 +1584,11 @@ html {
       }
     }
     &--main-category-title {
+      @extend .form__input;
+      font-size: 1.6rem;
+    }
+
+    &--sub-category-title {
       @extend .form__input;
       font-size: 1.6rem;
     }
