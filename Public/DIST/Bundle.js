@@ -5379,10 +5379,27 @@ var _watchEmergencyGoalSettings = function _watchEmergencyGoalSettings(budget, s
         label.classList.remove('clicked-label');
       });
       esl.classList.add('clicked-label');
-      emergencyInputs.forEach(function (ei) {
-        ei.style.display = 'none';
-      });
-      esl.textContent === "Length Of Time" ? emergencyInputs[1].style.display = "flex" : emergencyInputs[0].style.display = "flex";
+
+      if (esl.textContent === "Length Of Time") {
+        emergencyInputs[1].classList.toggle('closed');
+        emergencyInputs[1].classList.toggle('open');
+
+        if (emergencyInputs[0].classList.contains('open')) {
+          emergencyInputs[0].classList.toggle('closed');
+          emergencyInputs[0].classList.toggle('open');
+        }
+      }
+
+      if (esl.textContent === "Total Amount") {
+        emergencyInputs[0].classList.toggle('closed');
+        emergencyInputs[0].classList.toggle('open');
+
+        if (emergencyInputs[1].classList.contains('open')) {
+          emergencyInputs[1].classList.toggle('closed');
+          emergencyInputs[1].classList.toggle('open');
+        }
+      }
+
       setting = esl.textContent;
 
       if (setting === "Length Of Time") {
@@ -5520,7 +5537,7 @@ var getSinglePercentageSpent = function getSinglePercentageSpent(spent, total) {
 };
 
 var buildSubCategories = function buildSubCategories(categories, index, secondaryIndex, clickedItem) {
-  var timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
+  var timingFunctionContainer = document.querySelector('.timing-container');
   var money = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -5631,7 +5648,7 @@ var buildSubCategories = function buildSubCategories(categories, index, secondar
     _loop();
   }
 
-  var overallBudget = document.querySelectorAll('.budget-single-goal-summary__amount');
+  var overallBudget = document.querySelectorAll('.month-container__overall-budget-summary-container--single-summary__amount');
   var individualPayments = document.querySelectorAll('.individual-payment');
   subCategories.forEach(function (sc, i) {
     var input = sc.firstChild.nextSibling.firstChild;
@@ -6162,7 +6179,6 @@ var setupGoalSetting = function setupGoalSetting(budget, index, clickedItem, tim
   subCategories.forEach(function (sc, i) {
     if (Number(sc.dataset.category) === 0) {
       sc.classList.toggle('closed');
-      sc.classList.toggle('open');
     }
   }); /////////////////////////////////////////
   // SET UP TIMING FUNCTION CONTAINER
@@ -6181,10 +6197,12 @@ var setupGoalSetting = function setupGoalSetting(budget, index, clickedItem, tim
     mainCategoryIcon.classList.add(budget.mainCategories[index].icon);
     mainCategoryTitle.textContent = budget.mainCategories[index].title;
     subCategories.forEach(function (sc, i) {
-      sc.classList.add('sub-category-display__sub-category--hidden');
+      sc.classList.add('closed');
+      sc.classList.remove('open');
 
       if (Number(sc.dataset.category) === index) {
-        sc.classList.remove('sub-category-display__sub-category--hidden');
+        sc.classList.remove('closed');
+        sc.classList.add('open');
       }
     });
     timingFunctionContainer.style.height = getTimingContainerHeight(budget.mainCategories, index);
@@ -6200,10 +6218,12 @@ var setupGoalSetting = function setupGoalSetting(budget, index, clickedItem, tim
     mainCategoryIcon.classList.add(budget.mainCategories[index].icon);
     mainCategoryTitle.textContent = budget.mainCategories[index].title;
     subCategories.forEach(function (sc, i) {
-      sc.classList.add('sub-category-display__sub-category--hidden');
+      sc.classList.add('closed');
+      sc.classList.remove('open');
 
       if (Number(sc.dataset.category) === index) {
-        sc.classList.remove('sub-category-display__sub-category--hidden');
+        sc.classList.remove('closed');
+        sc.classList.add('open');
       }
     });
     timingFunctionContainer.style.height = getTimingContainerHeight(budget.mainCategories, index);

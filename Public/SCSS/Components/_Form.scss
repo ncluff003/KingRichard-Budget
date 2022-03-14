@@ -770,11 +770,6 @@
                   border-right: none;
                 }
               }
-              .emergency-input {
-                &:not(:first-of-type) {
-                  display: none;
-                }
-              }
               &-mechanisms {
                 @include SizeAndPositioning(relative, 15%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
               }
@@ -1485,6 +1480,58 @@
         display: flex;
       }
     }
+
+    &--emergency {
+      @extend .form__section;
+      flex-direction: row;
+      justify-content: center;
+      &__header {
+        @include SizeAndPositioning(absolute, 6rem, 27.5%, flex, row, nowrap, center, center, 0, 0, 0);
+        left: calc(30% + 9.5rem);
+        top: 0;
+      }
+      #lengthOfTime,
+      #totalAmount {
+        display: none;
+        .emergency-checkbox-label,
+        & + label {
+          @include SizeAndPositioning(relative, 6rem, 12.5%, flex, row, nowrap, center, center, 0, 0, 0);
+          left: 0;
+          width: 12.5%;
+          border-top: 0.3rem solid $primaryColor;
+          border-bottom: 0.3rem solid $primaryColor;
+          margin-bottom: 4rem;
+          &:first-of-type {
+            border-left: 0.3rem solid $primaryColor;
+            border-top-left-radius: 0.9rem;
+            border-bottom-left-radius: 0.9rem;
+          }
+          &:nth-of-type(2) {
+            border-right: 0.3rem solid $primaryColor;
+            border-top-right-radius: 0.9rem;
+            border-bottom-right-radius: 0.9rem;
+          }
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        & + .clicked-label {
+          background-color: $primaryColor;
+        }
+      }
+    }
+    &--timing {
+      @extend .form__section;
+      flex-direction: row;
+      justify-content: center;
+      #timingNumber {
+        width: 12.5%;
+        border-radius: 0;
+        border-top-left-radius: 0.9rem;
+        border-bottom-left-radius: 0.9rem;
+        border-right: none;
+      }
+    }
     // @include SizeAndPositioning(relative, 20%, 100%, none, row, nowrap, space-evenly, center, 0, 0, 0);
     &--switch {
       @extend .form__section;
@@ -1707,6 +1754,26 @@
       }
     }
   }
+
+  &__select {
+    @include SizeAndPositioning(relative, 6rem, 12.5%, flex, row, nowrap, center, center, 0, 0, 0);
+    background-color: rgba($primaryColor, 0.8);
+    border: 0.3rem solid rgba($primaryColor, 0.8);
+    border-top-right-radius: 0.9rem;
+    border-bottom-right-radius: 0.9rem;
+    &:focus {
+      background-color: $primaryColor;
+      border: 0.3rem solid $primaryColor;
+    }
+    option,
+    &__option {
+      background-color: $primaryColor;
+      &:hover {
+        background-color: $secondaryColor;
+      }
+    }
+  }
+
   &__label {
     @include SizeAndPositioning(absolute, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, -50%, 0);
     top: 50%;
@@ -1721,12 +1788,41 @@
       &-budget {
         @extend .form__label--small;
       }
+      &-timing {
+        @extend .form__label--small;
+        transition: transform 0.5s, color 0.5s;
+      }
     }
 
     &--extra-small {
       @extend .form__label;
       width: 17.5%;
       left: calc(43.75% + 2rem);
+      &-emergency {
+        @extend .form__label--extra-small;
+        position: relative;
+        width: 12.5%;
+        justify-content: center;
+        transform: translate(0, 0);
+        left: 0;
+        width: 12.5%;
+        border-top: 0.3rem solid $primaryColor;
+        border-bottom: 0.3rem solid $primaryColor;
+        margin-bottom: 4rem;
+        &:first-of-type {
+          border-left: 0.3rem solid $primaryColor;
+          border-top-left-radius: 0.9rem;
+          border-bottom-left-radius: 0.9rem;
+        }
+        &:nth-of-type(2) {
+          border-right: 0.3rem solid $primaryColor;
+          border-top-right-radius: 0.9rem;
+          border-bottom-right-radius: 0.9rem;
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
 
     &--comms {

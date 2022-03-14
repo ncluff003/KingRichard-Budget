@@ -13,10 +13,22 @@ export const _watchEmergencyGoalSettings = (budget, setting) => {
         label.classList.remove('clicked-label');
       });
       esl.classList.add('clicked-label');
-      emergencyInputs.forEach((ei) => {
-        ei.style.display = 'none';
-      });
-      esl.textContent === `Length Of Time` ? (emergencyInputs[1].style.display = `flex`) : (emergencyInputs[0].style.display = `flex`);
+      if (esl.textContent === `Length Of Time`) {
+        emergencyInputs[1].classList.toggle('closed');
+        emergencyInputs[1].classList.toggle('open');
+        if (emergencyInputs[0].classList.contains('open')) {
+          emergencyInputs[0].classList.toggle('closed');
+          emergencyInputs[0].classList.toggle('open');
+        }
+      }
+      if (esl.textContent === `Total Amount`) {
+        emergencyInputs[0].classList.toggle('closed');
+        emergencyInputs[0].classList.toggle('open');
+        if (emergencyInputs[1].classList.contains('open')) {
+          emergencyInputs[1].classList.toggle('closed');
+          emergencyInputs[1].classList.toggle('open');
+        }
+      }
       setting = esl.textContent;
       if (setting === `Length Of Time`) {
         console.log(emergencyInputs);
@@ -102,7 +114,7 @@ const getSinglePercentageSpent = (spent, total) => {
 };
 
 const buildSubCategories = (categories, index, secondaryIndex, clickedItem) => {
-  const timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
+  const timingFunctionContainer = document.querySelector('.timing-container');
   const money = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -202,7 +214,7 @@ const buildSubCategories = (categories, index, secondaryIndex, clickedItem) => {
     }
     sectionIndex++;
   }
-  const overallBudget = document.querySelectorAll('.budget-single-goal-summary__amount');
+  const overallBudget = document.querySelectorAll('.month-container__overall-budget-summary-container--single-summary__amount');
   const individualPayments = document.querySelectorAll('.individual-payment');
   subCategories.forEach((sc, i) => {
     let input = sc.firstChild.nextSibling.firstChild;
@@ -762,7 +774,6 @@ export const setupGoalSetting = (budget, index, clickedItem, timing) => {
   subCategories.forEach((sc, i) => {
     if (Number(sc.dataset.category) === 0) {
       sc.classList.toggle('closed');
-      sc.classList.toggle('open');
     }
   });
 
@@ -782,9 +793,11 @@ export const setupGoalSetting = (budget, index, clickedItem, timing) => {
     mainCategoryIcon.classList.add(budget.mainCategories[index].icon);
     mainCategoryTitle.textContent = budget.mainCategories[index].title;
     subCategories.forEach((sc, i) => {
-      sc.classList.add('sub-category-display__sub-category--hidden');
+      sc.classList.add('closed');
+      sc.classList.remove('open');
       if (Number(sc.dataset.category) === index) {
-        sc.classList.remove('sub-category-display__sub-category--hidden');
+        sc.classList.remove('closed');
+        sc.classList.add('open');
       }
     });
     timingFunctionContainer.style.height = getTimingContainerHeight(budget.mainCategories, index);
@@ -800,9 +813,11 @@ export const setupGoalSetting = (budget, index, clickedItem, timing) => {
     mainCategoryIcon.classList.add(budget.mainCategories[index].icon);
     mainCategoryTitle.textContent = budget.mainCategories[index].title;
     subCategories.forEach((sc, i) => {
-      sc.classList.add('sub-category-display__sub-category--hidden');
+      sc.classList.add('closed');
+      sc.classList.remove('open');
       if (Number(sc.dataset.category) === index) {
-        sc.classList.remove('sub-category-display__sub-category--hidden');
+        sc.classList.remove('closed');
+        sc.classList.add('open');
       }
     });
     timingFunctionContainer.style.height = getTimingContainerHeight(budget.mainCategories, index);

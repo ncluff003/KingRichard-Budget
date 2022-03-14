@@ -1406,7 +1406,7 @@ html {
   color: #822aba;
   font-size: 6rem;
 }
-.form__section, .form__section--page-number-display, .form__section--page-number-display__number, .form__section--switch, .form__section--sub-section {
+.form__section, .form__section--emergency, .form__section--page-number-display, .form__section--page-number-display__number, .form__section--switch, .form__section--sub-section {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   font-size: 2rem;
   color: rgba(130, 42, 186, 0.8);
@@ -1417,6 +1417,15 @@ html {
 .form__section--page-number-display, .form__section--page-number-display__number {
   font-size: 3rem;
   color: #822aba;
+}
+.form__section--emergency__header {
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #822aba;
+}
+.form__section--emergency #lengthOfTime + .clicked-label,
+.form__section--emergency #totalAmount + .clicked-label {
+  color: #fafafa;
 }
 .form__input, .form__input--comms, .form__input--comms--email, .form__input--comms--text, .form__input--latter-day-saint, .form__input--sub-category-title, .form__input--main-category-title, .form__input--dark, .form__input--dark-extra-small, .form__input--dark-small, .form__input--small {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
@@ -1458,7 +1467,23 @@ html {
 .form__input--comms--email__text, .form__input--comms--text__text {
   font-size: 1.6rem;
 }
-.form__label, .form__label--comms, .form__label--latter-day-saint, .form__label--latter-day-saint-white, .form__label--small-budget, .form__label--small, .form__label--extra-small {
+.form__select {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  color: rgba(250, 250, 250, 0.8);
+  font-size: 2rem;
+  text-align: center;
+}
+.form__select:focus {
+  background-color: #822aba;
+  border: 0.3rem solid #822aba;
+  color: #fafafa;
+}
+.form__select option, .form__select__option {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  color: #fafafa;
+  font-weight: 300;
+}
+.form__label, .form__label--comms, .form__label--latter-day-saint, .form__label--latter-day-saint-white, .form__label--small-timing, .form__label--small-budget, .form__label--small, .form__label--extra-small {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   font-size: 2rem;
   color: rgba(130, 42, 186, 0.8);
@@ -1467,6 +1492,9 @@ html {
   color: rgba(250, 250, 250, 0.8);
 }
 .form__label--small-budget {
+  font-size: 1.6rem;
+}
+.form__label--small-timing {
   font-size: 1.6rem;
 }
 .form__label--extra-small {
@@ -34952,9 +34980,6 @@ html {
   border-bottom-left-radius: 0.9rem;
   border-right: none;
 }
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page .emergency-input:not(:first-of-type) {
-  display: none;
-}
 .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page-mechanisms {
   position: relative;
   height: 15%;
@@ -35738,7 +35763,7 @@ html {
 .form__header {
   margin-bottom: 3rem;
 }
-.form__section, .form__section--sub-section, .form__section--page-number-display, .form__section--page, .form__section--switch, .form__section--sub-category-creation, .form__section--main-category-title {
+.form__section, .form__section--sub-section, .form__section--page-number-display, .form__section--page, .form__section--switch, .form__section--timing, .form__section--emergency, .form__section--sub-category-creation, .form__section--main-category-title {
   position: relative;
   height: min-content;
   width: 100%;
@@ -35749,7 +35774,7 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
 }
-.form__section:not(:last-of-type), .form__section--sub-section:not(:last-of-type), .form__section--page-number-display:not(:last-of-type), .form__section--page:not(:last-of-type), .form__section--switch:not(:last-of-type), .form__section--sub-category-creation:not(:last-of-type), .form__section--main-category-title:not(:last-of-type) {
+.form__section:not(:last-of-type), .form__section--sub-section:not(:last-of-type), .form__section--page-number-display:not(:last-of-type), .form__section--page:not(:last-of-type), .form__section--switch:not(:last-of-type), .form__section--timing:not(:last-of-type), .form__section--emergency:not(:last-of-type), .form__section--sub-category-creation:not(:last-of-type), .form__section--main-category-title:not(:last-of-type) {
   margin-bottom: 3.5rem;
 }
 .form__section--main-category-title {
@@ -36024,6 +36049,79 @@ html {
 .form__section--sub-category-creation--shown {
   display: flex;
 }
+.form__section--emergency {
+  flex-direction: row;
+  justify-content: center;
+}
+.form__section--emergency__header {
+  position: absolute;
+  height: 6rem;
+  width: 27.5%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  left: calc(30% + 9.5rem);
+  top: 0;
+}
+.form__section--emergency #lengthOfTime,
+.form__section--emergency #totalAmount {
+  display: none;
+}
+.form__section--emergency #lengthOfTime .emergency-checkbox-label, .form__section--emergency #lengthOfTime + label,
+.form__section--emergency #totalAmount .emergency-checkbox-label,
+.form__section--emergency #totalAmount + label {
+  position: relative;
+  height: 6rem;
+  width: 12.5%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  left: 0;
+  width: 12.5%;
+  border-top: 0.3rem solid #822aba;
+  border-bottom: 0.3rem solid #822aba;
+  margin-bottom: 4rem;
+}
+.form__section--emergency #lengthOfTime .emergency-checkbox-label:first-of-type, .form__section--emergency #lengthOfTime + label:first-of-type,
+.form__section--emergency #totalAmount .emergency-checkbox-label:first-of-type,
+.form__section--emergency #totalAmount + label:first-of-type {
+  border-left: 0.3rem solid #822aba;
+  border-top-left-radius: 0.9rem;
+  border-bottom-left-radius: 0.9rem;
+}
+.form__section--emergency #lengthOfTime .emergency-checkbox-label:nth-of-type(2), .form__section--emergency #lengthOfTime + label:nth-of-type(2),
+.form__section--emergency #totalAmount .emergency-checkbox-label:nth-of-type(2),
+.form__section--emergency #totalAmount + label:nth-of-type(2) {
+  border-right: 0.3rem solid #822aba;
+  border-top-right-radius: 0.9rem;
+  border-bottom-right-radius: 0.9rem;
+}
+.form__section--emergency #lengthOfTime .emergency-checkbox-label:hover, .form__section--emergency #lengthOfTime + label:hover,
+.form__section--emergency #totalAmount .emergency-checkbox-label:hover,
+.form__section--emergency #totalAmount + label:hover {
+  cursor: pointer;
+}
+.form__section--emergency #lengthOfTime + .clicked-label,
+.form__section--emergency #totalAmount + .clicked-label {
+  background-color: #822aba;
+}
+.form__section--timing {
+  flex-direction: row;
+  justify-content: center;
+}
+.form__section--timing #timingNumber {
+  width: 12.5%;
+  border-radius: 0;
+  border-top-left-radius: 0.9rem;
+  border-bottom-left-radius: 0.9rem;
+  border-right: none;
+}
 .form__section--switch {
   flex-direction: row;
   justify-content: center;
@@ -36266,7 +36364,32 @@ html {
   background-color: #2cae1f;
   transform: translate(0, -49%);
 }
-.form__label, .form__label--comms, .form__label--extra-small, .form__label--small, .form__label--small-budget {
+.form__select {
+  position: relative;
+  height: 6rem;
+  width: 12.5%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: rgba(130, 42, 186, 0.8);
+  border: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-top-right-radius: 0.9rem;
+  border-bottom-right-radius: 0.9rem;
+}
+.form__select:focus {
+  background-color: #822aba;
+  border: 0.3rem solid #822aba;
+}
+.form__select option, .form__select__option {
+  background-color: #822aba;
+}
+.form__select option:hover, .form__select__option:hover {
+  background-color: #38d927;
+}
+.form__label, .form__label--comms, .form__label--extra-small, .form__label--extra-small-emergency, .form__label--small, .form__label--small-timing, .form__label--small-budget {
   position: absolute;
   height: 6rem;
   width: 40%;
@@ -36281,13 +36404,40 @@ html {
   -moz-transform: translateY(-50%);
   transition: transform 0.5s;
 }
-.form__label--small, .form__label--small-budget {
+.form__label--small, .form__label--small-timing, .form__label--small-budget {
   width: 25%;
   left: calc(37.7% + 2rem);
 }
-.form__label--extra-small {
+.form__label--small-timing {
+  transition: transform 0.5s, color 0.5s;
+}
+.form__label--extra-small, .form__label--extra-small-emergency {
   width: 17.5%;
   left: calc(43.75% + 2rem);
+}
+.form__label--extra-small-emergency {
+  position: relative;
+  width: 12.5%;
+  justify-content: center;
+  transform: translate(0, 0);
+  left: 0;
+  width: 12.5%;
+  border-top: 0.3rem solid #822aba;
+  border-bottom: 0.3rem solid #822aba;
+  margin-bottom: 4rem;
+}
+.form__label--extra-small-emergency:first-of-type {
+  border-left: 0.3rem solid #822aba;
+  border-top-left-radius: 0.9rem;
+  border-bottom-left-radius: 0.9rem;
+}
+.form__label--extra-small-emergency:nth-of-type(2) {
+  border-right: 0.3rem solid #822aba;
+  border-top-right-radius: 0.9rem;
+  border-bottom-right-radius: 0.9rem;
+}
+.form__label--extra-small-emergency:hover {
+  cursor: pointer;
 }
 .form__label--comms {
   position: relative;

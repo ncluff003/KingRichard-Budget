@@ -1,19 +1,19 @@
-section.budget-creation-form__page__section.r__budget-creation-form__page__section.emergency-section.r__emergency-section
-  h2.emergency-section-header.r__emergency-section-header Which way would you like to measure your emergency goal?
+section.form__section--emergency.r__form__section--emergency
+  h2.form__section--emergency__header.r__form__section--emergency__header Which way would you like to measure your emergency goal?
   input.budget-creation-form__page__section__input.r__budget-creation-form__page__section__input.emergency-checkbox.r__emergency-checkbox#lengthOfTime(type="checkbox")
-  label.budget-creation-form__page__section__label.r__budget-creation-form__page__section__label.emergency-checkbox-label.r__emergency-checkbox-label(for="lengthOfTime") Length Of Time
+  label.form__label--extra-small-emergency.r__form__label--extra-small-emergency.emergency-checkbox-label.r__emergency-checkbox-label(for="lengthOfTime") Length Of Time
   if !data.user.latterDaySaint
     input.budget-creation-form__page__section__input.r__budget-creation-form__page__section__input.emergency-checkbox.r__emergency-checkbox#totalAmount(type="checkbox")
-    label.budget-creation-form__page__section__label.r__budget-creation-form__page__section__label.emergency-checkbox-label.r__emergency-checkbox-label(for="totalAmount") Total Amount
+    label.form__label--extra-small-emergency.r__form__label--extra-small-emergency.emergency-checkbox-label.r__emergency-checkbox-label(for="totalAmount") Total Amount
   else 
     input.budget-creation-form__page__section__input.r__budget-creation-form__page__section__input.emergency-checkbox.r__emergency-checkbox#totalAmount(type="checkbox")
-    label.budget-creation-form__page__section__label.r__budget-creation-form__page__section__label.emergency-checkbox-label.r__emergency-checkbox-label(for="totalAmount") Total Amount
-section.budget-creation-form__page__section.r__budget-creation-form__page__section.emergency-input.r__emergency-input
-  input.budget-creation-form__page__section__input.r__budget-creation-form__page__section__input#emergencyGoal(type="number" name="emergencyGoal" placeholder="EMERGENCY FUND GOAL" required)
-  label.budget-creation-form__page__section__label.r__budget-creation-form__page__section__label.emergency-goal-label.r__emergency-goal-label(for="emergencyGoal") What is your emergency fund goal amount?
-section.budget-creation-form__page__section.r__budget-creation-form__page__section.timing-section.r__timing-section.emergency-input.r__emergency-input
-  input.budget-creation-form__page__section__input.r__budget-creation-form__page__section__input.timing-input.r__timing-input#timingNumber(type="number" min="0")
+    label.form__label--extra-small-emergency.r__form__label--extra-small-emergency.emergency-checkbox-label.r__emergency-checkbox-label(for="totalAmount") Total Amount
+section.form__section.r__form__section.emergency-input.closed
+  input.form__input--small.r__form__input--small#emergencyGoal(type="number" name="emergencyGoal" placeholder="EMERGENCY FUND GOAL" required)
+  label.form__label--small-timing.r__form__label--small.emergency-goal-label.r__emergency-goal-label(for="emergencyGoal") What is your emergency fund goal amount?
+section.form__section--timing.r__form__section--timing.emergency-input.closed
+  input.form__input--small.r__form__input--small.timing-input.r__timing-input#timingNumber(type="number" min="0")
   - const timingOptions = [`Months`, `Weeks`]
-  select.budget-creation-form__page__section__select.r__budget-creation-form__page__section__select
+  select.form__select.r__form__select
     each timing in timingOptions
       option.budget-creation-form__page__section__select__option.r__budget-creation-form__page__section__select__option= `${timing}`
