@@ -533,6 +533,14 @@
     margin-top: 0.75rem;
     transform: translate(0, 0);
     -moz-transform: translate(0, 0);
+
+    &-set-timing-button {
+      @extend .button--borderless;
+      background-color: transparent;
+      border: none;
+      margin: 0;
+    }
+
     &:hover {
       border: none;
       background-color: transparent;

@@ -1405,6 +1405,10 @@ html {
     &:hover {
       color: $primaryColor;
     }
+    &-set-timing-button {
+      font-size: 1.2rem;
+      color: rgba($primaryColor, 0.8);
+    }
     &-narrow {
       @extend .button--borderless;
       color: rgba($colorOffWhite, 0.8);
@@ -1500,6 +1504,50 @@ html {
             font-size: 1.2rem;
             color: rgba($colorOffWhite, 0.8);
           }
+        }
+      }
+    }
+  }
+  &--month-view {
+    &__section {
+      &__category-name {
+        font-size: 1.6rem;
+        color: $primaryColor;
+      }
+      &:first-of-type {
+        text-align: center;
+      }
+      &__input {
+        font-size: 2rem;
+        color: rgba($primaryColor, 0.8);
+        text-align: center;
+        &:focus {
+          color: $primaryColor;
+        }
+      }
+    }
+    &__content {
+      font-size: 2rem;
+      color: rgba($primaryColor, 0.8);
+      text-align: center;
+    }
+
+    &:hover {
+      .sub-category--month-view__section {
+        &__category-name {
+          color: $colorOffWhite;
+        }
+        &__input {
+          color: rgba($colorOffWhite, 0.8);
+          &:focus {
+            color: $primaryColor;
+          }
+        }
+      }
+      .button--borderless-set-timing-button {
+        color: rgba($colorOffWhite, 0.8);
+        &:hover {
+          color: $colorOffWhite;
         }
       }
     }
@@ -1618,33 +1666,35 @@ html {
 
 // TIMING CONTAINER
 .timing-container {
-  &__close {
+  &__closure-icon {
     font-size: 3rem;
     color: rgba($primaryColor, 0.8);
     &:hover {
       color: $primaryColor;
     }
   }
-  &__label {
-    font-size: 1.4rem;
-    color: rgba($primaryColor, 0.8);
-    &:focus {
-      color: $primaryColor;
-    }
-    &__input,
-    &__select {
+  &__section {
+    &__label {
       font-size: 1.4rem;
       color: rgba($primaryColor, 0.8);
       &:focus {
         color: $primaryColor;
       }
+      &__input,
+      &__select {
+        font-size: 1.4rem;
+        color: rgba($primaryColor, 0.8);
+        &:focus {
+          color: $primaryColor;
+        }
+      }
     }
-  }
-  &__submit {
-    font-size: 2rem;
-    color: rgba($colorOffWhite, 0.8);
-    &:hover {
-      color: $colorOffWhite;
+    &__submit {
+      font-size: 2rem;
+      color: rgba($colorOffWhite, 0.8);
+      &:hover {
+        color: $colorOffWhite;
+      }
     }
   }
 }

@@ -1161,6 +1161,10 @@ html {
 .button--borderless:hover, .button--borderless-narrow:hover {
   color: #822aba;
 }
+.button--borderless-set-timing-button {
+  font-size: 1.2rem;
+  color: rgba(130, 42, 186, 0.8);
+}
 .button--borderless-narrow {
   color: rgba(250, 250, 250, 0.8);
 }
@@ -1232,6 +1236,41 @@ html {
 .sub-category-controller__surplus-container__switch__toggle__icon {
   font-size: 1.2rem;
   color: rgba(250, 250, 250, 0.8);
+}
+.sub-category--month-view__section__category-name {
+  font-size: 1.6rem;
+  color: #822aba;
+}
+.sub-category--month-view__section:first-of-type {
+  text-align: center;
+}
+.sub-category--month-view__section__input {
+  font-size: 2rem;
+  color: rgba(130, 42, 186, 0.8);
+  text-align: center;
+}
+.sub-category--month-view__section__input:focus {
+  color: #822aba;
+}
+.sub-category--month-view__content {
+  font-size: 2rem;
+  color: rgba(130, 42, 186, 0.8);
+  text-align: center;
+}
+.sub-category--month-view:hover .sub-category--month-view__section__category-name {
+  color: #fafafa;
+}
+.sub-category--month-view:hover .sub-category--month-view__section__input {
+  color: rgba(250, 250, 250, 0.8);
+}
+.sub-category--month-view:hover .sub-category--month-view__section__input:focus {
+  color: #822aba;
+}
+.sub-category--month-view:hover .button--borderless-set-timing-button {
+  color: rgba(250, 250, 250, 0.8);
+}
+.sub-category--month-view:hover .button--borderless-set-timing-button:hover {
+  color: #fafafa;
 }
 
 .budget-creation-container--sub-categories__main-category-display__left-button__icon, .budget-creation-container--sub-categories__main-category-display__right-button__icon {
@@ -1315,32 +1354,32 @@ html {
   color: #fafafa;
 }
 
-.timing-container__close {
+.timing-container__closure-icon {
   font-size: 3rem;
   color: rgba(130, 42, 186, 0.8);
 }
-.timing-container__close:hover {
+.timing-container__closure-icon:hover {
   color: #822aba;
 }
-.timing-container__label {
+.timing-container__section__label {
   font-size: 1.4rem;
   color: rgba(130, 42, 186, 0.8);
 }
-.timing-container__label:focus {
+.timing-container__section__label:focus {
   color: #822aba;
 }
-.timing-container__label__input, .timing-container__label__select {
+.timing-container__section__label__input, .timing-container__section__label__select {
   font-size: 1.4rem;
   color: rgba(130, 42, 186, 0.8);
 }
-.timing-container__label__input:focus, .timing-container__label__select:focus {
+.timing-container__section__label__input:focus, .timing-container__section__label__select:focus {
   color: #822aba;
 }
-.timing-container__submit {
+.timing-container__section__submit {
   font-size: 2rem;
   color: rgba(250, 250, 250, 0.8);
 }
-.timing-container__submit:hover {
+.timing-container__section__submit:hover {
   color: #fafafa;
 }
 
@@ -33432,7 +33471,7 @@ html {
   transition: color 0.5s, background-color 0.5s, border 0.5s;
 }
 
-.button, .button--borderless, .button--borderless-narrow, .button--small, .button--small-create-sub-category, .button--small-create-sub-category-close, .button--small-create-main-category, .button--small-transparent, .button--extra-small, .button--timing-button-submit, .button--timing-button {
+.button, .button--borderless, .button--borderless-narrow, .button--borderless-set-timing-button, .button--small, .button--small-create-sub-category, .button--small-create-sub-category-close, .button--small-create-main-category, .button--small-transparent, .button--extra-small, .button--timing-button-submit, .button--timing-button {
   position: relative;
   height: 6rem;
   width: 40%;
@@ -33447,7 +33486,7 @@ html {
   border: 0.3rem solid rgba(130, 42, 186, 0.75);
   border-radius: 1.5rem;
 }
-.button:hover, .button--borderless:hover, .button--borderless-narrow:hover, .button--small:hover, .button--small-create-sub-category:hover, .button--small-create-sub-category-close:hover, .button--small-create-main-category:hover, .button--small-transparent:hover, .button--extra-small:hover, .button--timing-button-submit:hover, .button--timing-button:hover {
+.button:hover, .button--borderless:hover, .button--borderless-narrow:hover, .button--borderless-set-timing-button:hover, .button--small:hover, .button--small-create-sub-category:hover, .button--small-create-sub-category-close:hover, .button--small-create-main-category:hover, .button--small-transparent:hover, .button--extra-small:hover, .button--timing-button-submit:hover, .button--timing-button:hover {
   cursor: pointer;
   background-color: #822aba;
   border: 0.3rem solid #822aba;
@@ -33566,7 +33605,7 @@ html {
   width: 50%;
   justify-content: space-evenly;
 }
-.button--borderless, .button--borderless-narrow {
+.button--borderless, .button--borderless-narrow, .button--borderless-set-timing-button {
   border: none;
   height: min-content;
   width: max-content;
@@ -33574,7 +33613,12 @@ html {
   transform: translate(0, 0);
   -moz-transform: translate(0, 0);
 }
-.button--borderless:hover, .button--borderless-narrow:hover {
+.button--borderless-set-timing-button {
+  background-color: transparent;
+  border: none;
+  margin: 0;
+}
+.button--borderless:hover, .button--borderless-narrow:hover, .button--borderless-set-timing-button:hover {
   border: none;
   background-color: transparent;
 }
@@ -34766,7 +34810,7 @@ html {
   left: 0;
   z-index: 10;
 }
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__close {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__closure-icon {
   position: absolute;
   height: 4rem;
   width: 4rem;
@@ -34779,7 +34823,7 @@ html {
   top: 2rem;
   right: 2rem;
 }
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__close:hover {
+.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__closure-icon:hover {
   cursor: pointer;
   transition: color 0.5s;
 }
@@ -34829,9 +34873,6 @@ html {
   outline: none;
 }
 .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container .element-hidden, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container .element-hidden, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container .element-hidden, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container .element-hidden {
-  display: none;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__hidden {
   display: none;
 }
 .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page .emergency-section {
@@ -47450,20 +47491,23 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
 }
+.sub-category--month-view__section__category-name {
+  transition: color 0.5s;
+}
 .sub-category--month-view:hover {
   cursor: pointer;
 }
-.sub-category--month-view:hover .sub-category-display__sub-category__section {
+.sub-category--month-view:hover .sub-category--month-view__section {
   background-color: #822aba;
   transition: background-color 0.5s;
 }
-.sub-category--month-view:hover .sub-category-display__sub-category__section__input {
+.sub-category--month-view:hover .sub-category--month-view__section__input {
   border: #fafafa;
 }
-.sub-category--month-view:hover .sub-category-display__sub-category__section__input:focus {
+.sub-category--month-view:hover .sub-category--month-view__section__input:focus {
   outline: none;
 }
-.sub-category--month-view:hover .sub-category-display__sub-category__section__content {
+.sub-category--month-view:hover .sub-category--month-view__section__content {
   transition: color 0.5s;
 }
 .sub-category--month-view--hidden {
@@ -47648,7 +47692,7 @@ html {
   left: 0;
   z-index: 10;
 }
-.timing-container__close {
+.timing-container__closure-icon {
   position: absolute;
   height: 4rem;
   width: 4rem;
@@ -47661,11 +47705,11 @@ html {
   top: 2rem;
   right: 2rem;
 }
-.timing-container__close:hover {
+.timing-container__closure-icon:hover {
   cursor: pointer;
   transition: color 0.5s;
 }
-.timing-container__monthly-container, .timing-container__bi-monthly-container, .timing-container__bi-weekly-container, .timing-container__weekly-container {
+.timing-container__section {
   position: relative;
   height: min-content;
   width: 80%;
@@ -47676,7 +47720,7 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
 }
-.timing-container__monthly-container__label, .timing-container__bi-monthly-container__label, .timing-container__bi-weekly-container__label, .timing-container__weekly-container__label {
+.timing-container__section__label {
   position: relative;
   height: 5rem;
   width: 60%;
@@ -47691,26 +47735,26 @@ html {
   padding: 1rem;
   margin: 0.25rem 0;
 }
-.timing-container__monthly-container__label:first-of-type, .timing-container__bi-monthly-container__label:first-of-type, .timing-container__bi-weekly-container__label:first-of-type, .timing-container__weekly-container__label:first-of-type {
+.timing-container__section__label:first-of-type {
   margin-top: 0.5rem;
 }
-.timing-container__monthly-container__label:last-of-type, .timing-container__bi-monthly-container__label:last-of-type, .timing-container__bi-weekly-container__label:last-of-type, .timing-container__weekly-container__label:last-of-type {
+.timing-container__section__label:last-of-type {
   margin-bottom: 0.5rem;
 }
-.timing-container__monthly-container__label:focus, .timing-container__bi-monthly-container__label:focus, .timing-container__bi-weekly-container__label:focus, .timing-container__weekly-container__label:focus {
+.timing-container__section__label:focus {
   border: 0.3rem solid #822aba;
 }
-.timing-container__monthly-container__label__input, .timing-container__monthly-container__label__select, .timing-container__bi-monthly-container__label__input, .timing-container__bi-monthly-container__label__select, .timing-container__bi-weekly-container__label__input, .timing-container__bi-weekly-container__label__select, .timing-container__weekly-container__label__input, .timing-container__weekly-container__label__select {
+.timing-container__section__label__input, .timing-container__section__label__select {
   background-color: rgba(250, 250, 250, 0.25);
   border: 0.2rem solid rgba(130, 42, 186, 0.8);
   border-radius: 0.6rem;
   padding: 0.2rem;
 }
-.timing-container__monthly-container__label__input:focus, .timing-container__monthly-container__label__select:focus, .timing-container__bi-monthly-container__label__input:focus, .timing-container__bi-monthly-container__label__select:focus, .timing-container__bi-weekly-container__label__input:focus, .timing-container__bi-weekly-container__label__select:focus, .timing-container__weekly-container__label__input:focus, .timing-container__weekly-container__label__select:focus {
+.timing-container__section__label__input:focus, .timing-container__section__label__select:focus {
   border: 0.2rem solid #822aba;
   outline: none;
 }
-.timing-container__monthly-container .element-hidden, .timing-container__bi-monthly-container .element-hidden, .timing-container__bi-weekly-container .element-hidden, .timing-container__weekly-container .element-hidden {
+.timing-container__section .element-hidden {
   display: none;
 }
 .timing-container__hidden {

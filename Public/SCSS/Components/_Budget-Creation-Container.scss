@@ -191,10 +191,13 @@
       &__content {
         @include SizeAndPositioning(relative, 75%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
       }
+      &__category-name {
+        transition: color 0.5s;
+      }
     }
     &:hover {
       cursor: pointer;
-      .sub-category-display__sub-category__section {
+      .sub-category--month-view__section {
         background-color: $primaryColor;
         transition: background-color 0.5s;
         &__input {

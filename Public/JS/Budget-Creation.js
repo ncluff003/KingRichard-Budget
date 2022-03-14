@@ -114,7 +114,7 @@ const buildSubCategories = (categories, index, secondaryIndex, clickedItem) => {
   const subCategory = document.createElement('section');
   subCategory.classList.add('sub-category--month-view');
   subCategory.classList.add('r__sub-category--month-view');
-  subCategory.classList.add('sub-category--month-view--hidden');
+  subCategory.classList.add('closed');
   subCategory.dataset.category = `${secondaryIndex}`;
 
   subCategoryDisplay.insertAdjacentElement('beforeend', subCategory);
@@ -138,8 +138,8 @@ const buildSubCategories = (categories, index, secondaryIndex, clickedItem) => {
     //////////////////////////////////////////
     // CREATE SUB CATEGORY TIMING BUTTON
     const subCategoryTimingButton = document.createElement('button');
-    subCategoryTimingButton.classList.add('sub-category--month-view__section__set-category-timing-button');
-    subCategoryTimingButton.classList.add('r__sub-category--month-view__section__set-category-timing-button');
+    subCategoryTimingButton.classList.add('button--borderless-set-timing-button');
+    subCategoryTimingButton.classList.add('r__button--borderless-set-timing-button');
     subCategoryTimingButton.textContent = `+ Timing`;
 
     const subCategories = document.querySelectorAll('.sub-category--month-view');
@@ -591,10 +591,12 @@ export const insertTiming = (target, inputValues, timing, timingButtons, budget,
 // WATCH FOR TIMING SETTING
 export const watchForSettingTiming = (budget, index, clickedItem, timing, placeholderBudget, fullBudget) => {
   // Getting the timing.
-  const monthlyTimingButton = document.querySelector('.sub-category-display__timing-container__monthly-container__button');
-  const biMonthlyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-monthly-container__button');
-  const biWeeklyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-weekly-container__button');
-  const weeklyTimingButton = document.querySelector('.sub-category-display__timing-container__weekly-container__button');
+  const timingButtons = document.querySelectorAll('.button--timing-button');
+  console.log(timingButtons);
+  const monthlyTimingButton = timingButtons[0];
+  const biMonthlyTimingButton = timingButtons[1];
+  const biWeeklyTimingButton = timingButtons[2];
+  const weeklyTimingButton = timingButtons[3];
   const timingInputButtons = [monthlyTimingButton, biMonthlyTimingButton, biWeeklyTimingButton, weeklyTimingButton];
 
   timingInputButtons.forEach((tib, i) => {
@@ -604,21 +606,24 @@ export const watchForSettingTiming = (budget, index, clickedItem, timing, placeh
     });
   });
 
-  const subCategoryTimingButtons = document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-button');
-  const timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
+  const subCategoryTimingButtons = document.querySelectorAll('.button--borderless-set-timing-button');
+  const timingFunctionContainer = document.querySelector('.timing-container');
   subCategoryTimingButtons.forEach((sctb, i) => {
     sctb.addEventListener('click', (e) => {
       e.preventDefault();
-      timingFunctionContainer.classList.toggle('sub-category-display__timing-container__hidden');
+      timingFunctionContainer.classList.toggle('closed');
+      timingFunctionContainer.classList.toggle('open');
       clickedItem = e.target;
     });
   });
-  const timingSubmitButtons = document.querySelectorAll('.timing-submit-button');
+  const timingSubmitButtons = document.querySelectorAll('.button--timing-button-submit');
+  const timingSectionInputs = document.querySelectorAll('.timing-container__section__label__input');
+  console.log(timingSectionInputs);
   timingSubmitButtons.forEach((tsb) => {
     tsb.addEventListener('click', (e) => {
       e.preventDefault();
       let timingArray = [];
-      const oldMonthlyTiming = new Date(document.querySelector('.sub-category-display__timing-container__monthly-container__label__input').value);
+      const oldMonthlyTiming = new Date(timingSectionInputs[0].value);
       const monthlyTiming = new Date(oldMonthlyTiming.setHours(oldMonthlyTiming.getHours() + 7));
       const subCategoryIndex = [...document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-button')].indexOf(clickedItem);
       const subCategoryTimingTarget = document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-text')[subCategoryIndex];
@@ -629,8 +634,8 @@ export const watchForSettingTiming = (budget, index, clickedItem, timing, placeh
       }
       if (timing === `Bi-Monthly`) {
         e.preventDefault();
-        const oldTimingOne = new Date(document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input')[0].value);
-        const oldTimingTwo = new Date(document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input')[1].value);
+        const oldTimingOne = new Date(timingSectionInputs[1].value);
+        const oldTimingTwo = new Date(timingSectionInputs[2].value);
         const timingOne = new Date(oldTimingOne.setHours(oldTimingOne.getHours() + 7));
         const timingTwo = new Date(oldTimingTwo.setHours(oldTimingTwo.getHours() + 7));
         timingArray = [];
@@ -640,9 +645,9 @@ export const watchForSettingTiming = (budget, index, clickedItem, timing, placeh
       }
 
       if (timing === `Bi-Weekly`) {
-        const oldBiWeeklyTiming = new Date(document.querySelector('.sub-category-display__timing-container__bi-weekly-container__label__input').value);
+        const oldBiWeeklyTiming = new Date(timingSectionInputs[3].value);
         const biWeeklyTiming = new Date(oldBiWeeklyTiming.setHours(oldBiWeeklyTiming.getHours() + 7));
-        const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
+        const subCategories = document.querySelectorAll('.sub-category--month-view');
         timingArray = [];
         timingArray.push(biWeeklyTiming);
         insertTiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
@@ -650,7 +655,8 @@ export const watchForSettingTiming = (budget, index, clickedItem, timing, placeh
       }
 
       if (timing === `Weekly`) {
-        const oldWeeklyTiming = new Date(document.querySelector('.sub-category-display__timing-container__weekly-container__label__select').value);
+        const timingSectionSelect = document.querySelector('.timing-container__section__label__select');
+        const oldWeeklyTiming = new Date(timingSectionSelect.value);
         const weeklyTiming = new Date(oldWeeklyTiming.setHours(oldWeeklyTiming.getHours() + 7));
         timingArray = [];
         timingArray.push(weeklyTiming);
@@ -663,30 +669,34 @@ export const watchForSettingTiming = (budget, index, clickedItem, timing, placeh
 /////////////////////////////////////////
 // SET UP TIMING FUNCTION CONTAINER
 export const setupTimingFunctionContainer = (container, timing) => {
-  const closeTimingFunctionContainer = document.querySelector('.sub-category-display__timing-container__close');
+  const closeTimingFunctionContainer = document.querySelector('.timing-container__closure-icon');
   /////////////////////////////////////////
   // INITIALIZE VARIABLES FOR TIMING INPUTS
-  const monthlyTimingButton = document.querySelector('.sub-category-display__timing-container__monthly-container__button');
-  const biMonthlyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-monthly-container__button');
-  const biWeeklyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-weekly-container__button');
-  const weeklyTimingButton = document.querySelector('.sub-category-display__timing-container__weekly-container__button');
+  const timingButtons = document.querySelectorAll('.button--timing-button');
+  const monthlyTimingButton = timingButtons[0];
+  const biMonthlyTimingButton = timingButtons[1];
+  const biWeeklyTimingButton = timingButtons[2];
+  const weeklyTimingButton = timingButtons[3];
   const timingInputButtons = [monthlyTimingButton, biMonthlyTimingButton, biWeeklyTimingButton, weeklyTimingButton];
 
+  const timingLabels = document.querySelectorAll('.timing-container__section__label');
+  const timingSubmitButtons = document.querySelectorAll('.button--timing-button-submit');
+  console.log(timingLabels, timingSubmitButtons);
   // Monthly Timing
-  const monthlyTimingLabel = document.querySelector('.sub-category-display__timing-container__monthly-container__label');
-  const monthlyTimingSubmit = document.querySelector('.sub-category-display__timing-container__monthly-container__submit');
+  const monthlyTimingLabel = timingLabels[0];
+  const monthlyTimingSubmit = timingSubmitButtons[0];
 
   // Bi-Monthly Timing
-  const biMonthlyTimingLabelOne = document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label')[0];
-  const biMonthlyTimingLabelTwo = document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label')[1];
-  const biMonthlyTimingSubmit = document.querySelector('.sub-category-display__timing-container__bi-monthly-container__submit');
+  const biMonthlyTimingLabelOne = timingLabels[1];
+  const biMonthlyTimingLabelTwo = timingLabels[2];
+  const biMonthlyTimingSubmit = timingSubmitButtons[1];
   // Bi-Weekly Timing
-  const biWeeklyTimingLabel = document.querySelector('.sub-category-display__timing-container__bi-weekly-container__label');
-  const biWeeklyTimingSubmit = document.querySelector('.sub-category-display__timing-container__bi-weekly-container__submit');
+  const biWeeklyTimingLabel = timingLabels[3];
+  const biWeeklyTimingSubmit = timingSubmitButtons[2];
 
   // Weekly Timing
-  const weeklyTimingLabel = document.querySelector('.sub-category-display__timing-container__weekly-container__label');
-  const weeklyTimingSubmit = document.querySelector('.sub-category-display__timing-container__weekly-container__submit');
+  const weeklyTimingLabel = timingLabels[4];
+  const weeklyTimingSubmit = timingSubmitButtons[3];
 
   const timingFunctionPages = [
     [monthlyTimingLabel, monthlyTimingSubmit],
@@ -701,23 +711,26 @@ export const setupTimingFunctionContainer = (container, timing) => {
     const index = i;
     timingFunctionPages.forEach((tfp, i) => {
       tfp.forEach((el) => {
-        el.classList.add('element-hidden');
+        el.classList.add('closed');
       });
     });
     tib.addEventListener('click', (e) => {
       timingFunctionPages.forEach((tfp, i) => {
         tfp.forEach((el) => {
-          el.classList.add('element-hidden');
+          el.classList.add('closed');
+          el.classList.remove('open');
         });
       });
       timingFunctionPages[index].forEach((te) => {
-        te.classList.remove('element-hidden');
+        te.classList.toggle('closed');
+        te.classList.toggle('open');
       });
     });
   });
   closeTimingFunctionContainer.addEventListener('click', (e) => {
     e.preventDefault();
-    container.classList.toggle('sub-category-display__timing-container__hidden');
+    container.classList.toggle('closed');
+    container.classList.toggle('open');
   });
 };
 
@@ -742,16 +755,17 @@ export const setupGoalSetting = (budget, index, clickedItem, timing) => {
       buildSubCategories(c.subCategories, i, dataIndex, clickedItem);
     });
   });
-  const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
+  const subCategories = document.querySelectorAll('.sub-category--month-view');
   subCategories.forEach((sc, i) => {
     if (Number(sc.dataset.category) === 0) {
-      sc.classList.remove('sub-category-display__sub-category--hidden');
+      sc.classList.toggle('closed');
+      sc.classList.toggle('open');
     }
   });
 
   /////////////////////////////////////////
   // SET UP TIMING FUNCTION CONTAINER
-  const timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
+  const timingFunctionContainer = document.querySelector('.timing-container');
   // This is NOT part of the methods of the class, so I will ignore this for now.
   setupTimingFunctionContainer(timingFunctionContainer);
   timingFunctionContainer.style.height = `${getTimingContainerHeight(budget.mainCategories, index)}rem`;

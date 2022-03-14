@@ -67,7 +67,7 @@
   top: 4rem;
   left: 0;
   z-index: 10;
-  &__close {
+  &__closure-icon {
     @include SizeAndPositioning(absolute, 4rem, 4rem, flex, row, nowrap, center, center, 0, 0, 0);
     top: 2rem;
     right: 2rem;
@@ -76,10 +76,7 @@
       transition: color 0.5s;
     }
   }
-  &__monthly-container,
-  &__bi-monthly-container,
-  &__bi-weekly-container,
-  &__weekly-container {
+  &__section {
     @include SizeAndPositioning(relative, min-content, 80%, flex, column, nowrap, center, center, 0, 0, 0);
     &__label {
       @include SizeAndPositioning(relative, 5rem, 60%, flex, row, nowrap, space-evenly, center, 0, 0, 0);

@@ -5532,7 +5532,7 @@ var buildSubCategories = function buildSubCategories(categories, index, secondar
   var subCategory = document.createElement('section');
   subCategory.classList.add('sub-category--month-view');
   subCategory.classList.add('r__sub-category--month-view');
-  subCategory.classList.add('sub-category--month-view--hidden');
+  subCategory.classList.add('closed');
   subCategory.dataset.category = "".concat(secondaryIndex);
   subCategoryDisplay.insertAdjacentElement('beforeend', subCategory);
   var numberOfSections = 5;
@@ -5553,8 +5553,8 @@ var buildSubCategories = function buildSubCategories(categories, index, secondar
     // CREATE SUB CATEGORY TIMING BUTTON
 
     var subCategoryTimingButton = document.createElement('button');
-    subCategoryTimingButton.classList.add('sub-category--month-view__section__set-category-timing-button');
-    subCategoryTimingButton.classList.add('r__sub-category--month-view__section__set-category-timing-button');
+    subCategoryTimingButton.classList.add('button--borderless-set-timing-button');
+    subCategoryTimingButton.classList.add('r__button--borderless-set-timing-button');
     subCategoryTimingButton.textContent = "+ Timing";
     var subCategories = document.querySelectorAll('.sub-category--month-view'); //////////////////////////////////////////
     // CREATE SUB CATEGORY TIMING DISPLAY
@@ -6002,10 +6002,12 @@ var insertTiming = function insertTiming(target, inputValues, timing, timingButt
 
 var watchForSettingTiming = function watchForSettingTiming(budget, index, clickedItem, timing, placeholderBudget, fullBudget) {
   // Getting the timing.
-  var monthlyTimingButton = document.querySelector('.sub-category-display__timing-container__monthly-container__button');
-  var biMonthlyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-monthly-container__button');
-  var biWeeklyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-weekly-container__button');
-  var weeklyTimingButton = document.querySelector('.sub-category-display__timing-container__weekly-container__button');
+  var timingButtons = document.querySelectorAll('.button--timing-button');
+  console.log(timingButtons);
+  var monthlyTimingButton = timingButtons[0];
+  var biMonthlyTimingButton = timingButtons[1];
+  var biWeeklyTimingButton = timingButtons[2];
+  var weeklyTimingButton = timingButtons[3];
   var timingInputButtons = [monthlyTimingButton, biMonthlyTimingButton, biWeeklyTimingButton, weeklyTimingButton];
   timingInputButtons.forEach(function (tib, i) {
     tib.addEventListener('click', function (e) {
@@ -6013,21 +6015,24 @@ var watchForSettingTiming = function watchForSettingTiming(budget, index, clicke
       timing = tib.firstChild.nextSibling.textContent;
     });
   });
-  var subCategoryTimingButtons = document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-button');
-  var timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
+  var subCategoryTimingButtons = document.querySelectorAll('.button--borderless-set-timing-button');
+  var timingFunctionContainer = document.querySelector('.timing-container');
   subCategoryTimingButtons.forEach(function (sctb, i) {
     sctb.addEventListener('click', function (e) {
       e.preventDefault();
-      timingFunctionContainer.classList.toggle('sub-category-display__timing-container__hidden');
+      timingFunctionContainer.classList.toggle('closed');
+      timingFunctionContainer.classList.toggle('open');
       clickedItem = e.target;
     });
   });
-  var timingSubmitButtons = document.querySelectorAll('.timing-submit-button');
+  var timingSubmitButtons = document.querySelectorAll('.button--timing-button-submit');
+  var timingSectionInputs = document.querySelectorAll('.timing-container__section__label__input');
+  console.log(timingSectionInputs);
   timingSubmitButtons.forEach(function (tsb) {
     tsb.addEventListener('click', function (e) {
       e.preventDefault();
       var timingArray = [];
-      var oldMonthlyTiming = new Date(document.querySelector('.sub-category-display__timing-container__monthly-container__label__input').value);
+      var oldMonthlyTiming = new Date(timingSectionInputs[0].value);
       var monthlyTiming = new Date(oldMonthlyTiming.setHours(oldMonthlyTiming.getHours() + 7));
 
       var subCategoryIndex = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(document.querySelectorAll('.sub-category-display__sub-category__section__set-category-timing-button')).indexOf(clickedItem);
@@ -6042,8 +6047,8 @@ var watchForSettingTiming = function watchForSettingTiming(budget, index, clicke
 
       if (timing === "Bi-Monthly") {
         e.preventDefault();
-        var oldTimingOne = new Date(document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input')[0].value);
-        var oldTimingTwo = new Date(document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input')[1].value);
+        var oldTimingOne = new Date(timingSectionInputs[1].value);
+        var oldTimingTwo = new Date(timingSectionInputs[2].value);
         var timingOne = new Date(oldTimingOne.setHours(oldTimingOne.getHours() + 7));
         var timingTwo = new Date(oldTimingTwo.setHours(oldTimingTwo.getHours() + 7));
         timingArray = [];
@@ -6053,9 +6058,9 @@ var watchForSettingTiming = function watchForSettingTiming(budget, index, clicke
       }
 
       if (timing === "Bi-Weekly") {
-        var oldBiWeeklyTiming = new Date(document.querySelector('.sub-category-display__timing-container__bi-weekly-container__label__input').value);
+        var oldBiWeeklyTiming = new Date(timingSectionInputs[3].value);
         var biWeeklyTiming = new Date(oldBiWeeklyTiming.setHours(oldBiWeeklyTiming.getHours() + 7));
-        var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
+        var subCategories = document.querySelectorAll('.sub-category--month-view');
         timingArray = [];
         timingArray.push(biWeeklyTiming);
         insertTiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
@@ -6063,7 +6068,8 @@ var watchForSettingTiming = function watchForSettingTiming(budget, index, clicke
       }
 
       if (timing === "Weekly") {
-        var oldWeeklyTiming = new Date(document.querySelector('.sub-category-display__timing-container__weekly-container__label__select').value);
+        var timingSectionSelect = document.querySelector('.timing-container__section__label__select');
+        var oldWeeklyTiming = new Date(timingSectionSelect.value);
         var weeklyTiming = new Date(oldWeeklyTiming.setHours(oldWeeklyTiming.getHours() + 7));
         timingArray = [];
         timingArray.push(weeklyTiming);
@@ -6075,50 +6081,57 @@ var watchForSettingTiming = function watchForSettingTiming(budget, index, clicke
 // SET UP TIMING FUNCTION CONTAINER
 
 var setupTimingFunctionContainer = function setupTimingFunctionContainer(container, timing) {
-  var closeTimingFunctionContainer = document.querySelector('.sub-category-display__timing-container__close'); /////////////////////////////////////////
+  var closeTimingFunctionContainer = document.querySelector('.timing-container__closure-icon'); /////////////////////////////////////////
   // INITIALIZE VARIABLES FOR TIMING INPUTS
 
-  var monthlyTimingButton = document.querySelector('.sub-category-display__timing-container__monthly-container__button');
-  var biMonthlyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-monthly-container__button');
-  var biWeeklyTimingButton = document.querySelector('.sub-category-display__timing-container__bi-weekly-container__button');
-  var weeklyTimingButton = document.querySelector('.sub-category-display__timing-container__weekly-container__button');
-  var timingInputButtons = [monthlyTimingButton, biMonthlyTimingButton, biWeeklyTimingButton, weeklyTimingButton]; // Monthly Timing
+  var timingButtons = document.querySelectorAll('.button--timing-button');
+  var monthlyTimingButton = timingButtons[0];
+  var biMonthlyTimingButton = timingButtons[1];
+  var biWeeklyTimingButton = timingButtons[2];
+  var weeklyTimingButton = timingButtons[3];
+  var timingInputButtons = [monthlyTimingButton, biMonthlyTimingButton, biWeeklyTimingButton, weeklyTimingButton];
+  var timingLabels = document.querySelectorAll('.timing-container__section__label');
+  var timingSubmitButtons = document.querySelectorAll('.button--timing-button-submit');
+  console.log(timingLabels, timingSubmitButtons); // Monthly Timing
 
-  var monthlyTimingLabel = document.querySelector('.sub-category-display__timing-container__monthly-container__label');
-  var monthlyTimingSubmit = document.querySelector('.sub-category-display__timing-container__monthly-container__submit'); // Bi-Monthly Timing
+  var monthlyTimingLabel = timingLabels[0];
+  var monthlyTimingSubmit = timingSubmitButtons[0]; // Bi-Monthly Timing
 
-  var biMonthlyTimingLabelOne = document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label')[0];
-  var biMonthlyTimingLabelTwo = document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label')[1];
-  var biMonthlyTimingSubmit = document.querySelector('.sub-category-display__timing-container__bi-monthly-container__submit'); // Bi-Weekly Timing
+  var biMonthlyTimingLabelOne = timingLabels[1];
+  var biMonthlyTimingLabelTwo = timingLabels[2];
+  var biMonthlyTimingSubmit = timingSubmitButtons[1]; // Bi-Weekly Timing
 
-  var biWeeklyTimingLabel = document.querySelector('.sub-category-display__timing-container__bi-weekly-container__label');
-  var biWeeklyTimingSubmit = document.querySelector('.sub-category-display__timing-container__bi-weekly-container__submit'); // Weekly Timing
+  var biWeeklyTimingLabel = timingLabels[3];
+  var biWeeklyTimingSubmit = timingSubmitButtons[2]; // Weekly Timing
 
-  var weeklyTimingLabel = document.querySelector('.sub-category-display__timing-container__weekly-container__label');
-  var weeklyTimingSubmit = document.querySelector('.sub-category-display__timing-container__weekly-container__submit');
+  var weeklyTimingLabel = timingLabels[4];
+  var weeklyTimingSubmit = timingSubmitButtons[3];
   var timingFunctionPages = [[monthlyTimingLabel, monthlyTimingSubmit], [biMonthlyTimingLabelOne, biMonthlyTimingLabelTwo, biMonthlyTimingSubmit], [biWeeklyTimingLabel, biWeeklyTimingSubmit], [weeklyTimingLabel, weeklyTimingSubmit]]; // sub-category-display__timing-container__monthly-container__label__input
 
   timingInputButtons.forEach(function (tib, i) {
     var index = i;
     timingFunctionPages.forEach(function (tfp, i) {
       tfp.forEach(function (el) {
-        el.classList.add('element-hidden');
+        el.classList.add('closed');
       });
     });
     tib.addEventListener('click', function (e) {
       timingFunctionPages.forEach(function (tfp, i) {
         tfp.forEach(function (el) {
-          el.classList.add('element-hidden');
+          el.classList.add('closed');
+          el.classList.remove('open');
         });
       });
       timingFunctionPages[index].forEach(function (te) {
-        te.classList.remove('element-hidden');
+        te.classList.toggle('closed');
+        te.classList.toggle('open');
       });
     });
   });
   closeTimingFunctionContainer.addEventListener('click', function (e) {
     e.preventDefault();
-    container.classList.toggle('sub-category-display__timing-container__hidden');
+    container.classList.toggle('closed');
+    container.classList.toggle('open');
   });
 };
 
@@ -6142,15 +6155,16 @@ var setupGoalSetting = function setupGoalSetting(budget, index, clickedItem, tim
       buildSubCategories(c.subCategories, i, dataIndex, clickedItem);
     });
   });
-  var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
+  var subCategories = document.querySelectorAll('.sub-category--month-view');
   subCategories.forEach(function (sc, i) {
     if (Number(sc.dataset.category) === 0) {
-      sc.classList.remove('sub-category-display__sub-category--hidden');
+      sc.classList.toggle('closed');
+      sc.classList.toggle('open');
     }
   }); /////////////////////////////////////////
   // SET UP TIMING FUNCTION CONTAINER
 
-  var timingFunctionContainer = document.querySelector('.sub-category-display__timing-container'); // This is NOT part of the methods of the class, so I will ignore this for now.
+  var timingFunctionContainer = document.querySelector('.timing-container'); // This is NOT part of the methods of the class, so I will ignore this for now.
 
   setupTimingFunctionContainer(timingFunctionContainer);
   timingFunctionContainer.style.height = "".concat(getTimingContainerHeight(budget.mainCategories, index), "rem");
