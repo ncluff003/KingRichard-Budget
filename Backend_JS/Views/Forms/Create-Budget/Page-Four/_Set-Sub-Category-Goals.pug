@@ -1,25 +1,25 @@
-section.budget-creation-form__page__section.r__budget-creation-form__page__section
-  section.budget-creation-form__page__section__month-container.r__budget-creation-form__page__section__month-container 
-    header.budget-creation-form__page__section__month-container__header.r__budget-creation-form__page__section__month-container__header 
-      i.fas.fa-file-invoice-dollar.budget-creation-form__page__section__month-container__header__icon.r__budget-creation-form__page__section__month-container__header__icon 
-      p.budget-creation-form__page__section__month-container__header__title.r__budget-creation-form__page__section__month-container__header__title= `${data.calendar.getMonth()}`
-    section.budget-creation-form__page__section__month-container__budget-goal-summary-container.r__budget-creation-form__page__section__month-container__budget-goal-summary-container 
-      section.budget-single-goal-summary.r__budget-single-goal-summary
-        p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Overall Budget
-        p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= 0
-      section.budget-single-goal-summary.r__budget-single-goal-summary
-        p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Overall Spent
-        p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= 0
-      section.budget-single-goal-summary.r__budget-single-goal-summary
-        p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Overall Remaining
-        p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= 0
-      section.budget-single-goal-summary.r__budget-single-goal-summary
-        p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Percentage Spent
-        p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `${0}%`
-      section.budget-single-goal-summary.r__budget-single-goal-summary
-        p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Percentage of Month Remaining
-        p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `${data.calendar.monthRemaining()}`
-    section.budget-creation-form__page__section__month-container__category-container.r__budget-creation-form__page__section__month-container__category-container
+section.form__section.r__form__section
+  section.month-container.r__month-container 
+    header.month-container__header.r__month-container__header 
+      i.fas.fa-file-invoice-dollar.month-container__header__icon.r__month-container__header__icon 
+      p.month-container__header__title.r__month-container__header__title= `${data.calendar.getMonth()}`
+    section.month-container__overall-budget-summary-container.r__month-container__overall-budget-summary-container 
+      section.month-container__overall-budget-summary-container--single-summary.r__month-container__overall-budget-summary-container--single-summary
+        p.month-container__overall-budget-summary-container--single-summary__title.r__month-container__overall-budget-summary-container--single-summary__title Overall Budget
+        p.month-container__overall-budget-summary-container--single-summary__amount.r__month-container__overall-budget-summary-container--single-summary__amount= 0
+      section.month-container__overall-budget-summary-container--single-summary.r__month-container__overall-budget-summary-container--single-summary
+        p.month-container__overall-budget-summary-container--single-summary__title.r__month-container__overall-budget-summary-container--single-summary__title Overall Spent
+        p.month-container__overall-budget-summary-container--single-summary__amount.r__month-container__overall-budget-summary-container--single-summary__amount= 0
+      section.month-container__overall-budget-summary-container--single-summary.r__month-container__overall-budget-summary-container--single-summary
+        p.month-container__overall-budget-summary-container--single-summary__title.r__month-container__overall-budget-summary-container--single-summary__title Overall Remaining
+        p.month-container__overall-budget-summary-container--single-summary__amount.r__month-container__overall-budget-summary-container--single-summary__amount= 0
+      section.month-container__overall-budget-summary-container--single-summary.r__month-container__overall-budget-summary-container--single-summary
+        p.month-container__overall-budget-summary-container--single-summary__title.r__month-container__overall-budget-summary-container--single-summary__title Percentage Spent
+        p.month-container__overall-budget-summary-container--single-summary__amount.r__month-container__overall-budget-summary-container--single-summary__amount= `${0}%`
+      section.month-container__overall-budget-summary-container--single-summary.r__month-container__overall-budget-summary-container--single-summary
+        p.month-container__overall-budget-summary-container--single-summary__title.r__month-container__overall-budget-summary-container--single-summary__title Percentage of Month Remaining
+        p.month-container__overall-budget-summary-container--single-summary__amount.r__month-container__overall-budget-summary-container--single-summary__amount= `${data.calendar.monthRemaining()}`
+    section.month-container__category-container.r__month-container__category-container
       section.main-category-display.r__main-category-display
         section.main-category-display__button-container.r__main-category-display__button-container
           i.fas.fa-arrow-alt-circle-left.main-category-display__button-container__icon.r__main-category-display__button-container__icon.left.r__left
@@ -33,48 +33,48 @@ section.budget-creation-form__page__section.r__budget-creation-form__page__secti
           - const subCategoryHeaders = [`Category`, `Individual Payment`, `Spent`, `Remaining`, `Percentage Spent`] 
           each header in subCategoryHeaders
             section.sub-category-display__headers__title-container.r__sub-category-display__headers__title-container= `${header}`
-        section.sub-category-display__timing-container.r__sub-category-display__timing-container.sub-category-display__timing-container__hidden
-          i.fas.fa-times.sub-category-display__timing-container__close.r__sub-category-display__timing-container__close
-          section.sub-category-display__timing-container__monthly-container.r__sub-category-display__timing-container__monthly-container
-            button.sub-category-display__timing-container__monthly-container__button.r__sub-category-display__timing-container__monthly-container__button
-              span.icon-calendar-month.sub-category-display__timing-container__monthly-container__button__icon.r__sub-category-display__timing-container__monthly-container__button__icon
+        section.timing-container.r__timing-container
+          i.fas.fa-times.timing-container__close.r__timing-container__close
+          section.timing-container__monthly-container.r__timing-container__monthly-container
+            button.button--timing-button.r__button--timing-button
+              span.icon-calendar-month.button--timing-button__icon.r__button--timing-button__icon
                 span.path1
                 span.path2
-              p.sub-category-display__timing-container__monthly-container__button__text.r__sub-category-display__timing-container__monthly-container__button__text Monthly
-            label.sub-category-display__timing-container__monthly-container__label.r__sub-category-display__timing-container__monthly-container__label Due Date
-              input.sub-category-display__timing-container__monthly-container__label__input.r__sub-category-display__timing-container__monthly-container__label__input(type="date")
-            button.sub-category-display__timing-container__monthly-container__submit.r__sub-category-display__timing-container__monthly-container__submit.timing-submit-button Submit
+              p.button--timing-button__text.r__button--timing-button__text Monthly
+            label.timing-container__label.r__timing-container__label Due Date
+              input.timing-container__label__input.r__timing-container__label__input(type="date")
+            button.button--timing-button-submit.r__button--timing-button-submit.timing-submit-button Submit
 
-          section.sub-category-display__timing-container__bi-monthly-container.r__sub-category-display__timing-container__bi-monthly-container
-            button.sub-category-display__timing-container__bi-monthly-container__button.r__sub-category-display__timing-container__bi-monthly-container__button
-              span.icon-calendar-bi-month.sub-category-display__timing-container__bi-monthly-container__button__icon.r__sub-category-display__timing-container__bi-monthly-container__button__icon
+          section.timing-container__bi-monthly-container.r__timing-container__bi-monthly-container
+            button.button--timing-button.r__button--timing-button
+              span.icon-calendar-bi-month.button--timing-button__icon.r__button--timing-button__icon
                 span.path1
                 span.path2
                 span.path3
-              p.sub-category-display__timing-container__bi-monthly-container__button__text.r__sub-category-display__timing-container__bi-monthly-container__button__text Bi-Monthly
-            label.sub-category-display__timing-container__bi-monthly-container__label.r__sub-category-display__timing-container__bi-monthly-container__label First Due Date
-              input.sub-category-display__timing-container__bi-monthly-container__label__input.r__sub-category-display__timing-container__bi-monthly-container__label__input(type="date") 
-            label.sub-category-display__timing-container__bi-monthly-container__label.r__sub-category-display__timing-container__bi-monthly-container__label Second Due Date
-              input.sub-category-display__timing-container__bi-monthly-container__label__input.r__sub-category-display__timing-container__bi-monthly-container__label__input(type="date") 
-            button.sub-category-display__timing-container__bi-monthly-container__submit.r__sub-category-display__timing-container__bi-monthly-container__submit.timing-submit-button Submit
-          section.sub-category-display__timing-container__bi-weekly-container.r__sub-category-display__timing-container__bi-weekly-container
-            button.sub-category-display__timing-container__bi-weekly-container__button.r__sub-category-display__timing-container__bi-weekly-container__button
-              span.icon-calendar-bi-weekly.sub-category-display__timing-container__bi-weekly-container__button__icon.r__sub-category-display__timing-container__bi-weekly-container__button__icon
+              p.button--timing-button__text.r__button--timing-button__text Bi-Monthly
+            label.timing-container__bi-monthly-container__label.r__timing-container__bi-monthly-container__label First Due Date
+              input.timing-container__bi-monthly-container__label__input.r__timing-container__bi-monthly-container__label__input(type="date") 
+            label.timing-container__label.r__timing-container__label Second Due Date
+              input.timing-container__label__input.r__timing-container__label__input(type="date") 
+            button.button--timing-button-submit.r__button--timing-button-submit.timing-submit-button Submit
+          section.timing-container__bi-weekly-container.r__timing-container__bi-weekly-container
+            button.button--timing-button.r__button--timing-button
+              span.icon-calendar-bi-weekly.button--timing-button__icon.r__button--timing-button__icon
                 span.path1
                 span.path2
-              p.sub-category-display__timing-container__bi-weekly-container__button__text.r__sub-category-display__timing-container__bi-weekly-container__button__text Bi-Weekly
-            label.sub-category-display__timing-container__bi-weekly-container__label.r__sub-category-display__timing-container__bi-weekly-container__label Start Date
-              input.sub-category-display__timing-container__bi-weekly-container__label__input.r__sub-category-display__timing-container__bi-weekly-container__label__input(type="date") 
-            button.sub-category-display__timing-container__bi-weekly-container__submit.r__sub-category-display__timing-container__bi-weekly-container__submit.timing-submit-button Submit
-          section.sub-category-display__timing-container__weekly-container.r__sub-category-display__timing-container__weekly-container
-            button.sub-category-display__timing-container__weekly-container__button.r__sub-category-display__timing-container__weekly-container__button
-              span.icon-calendar-week.sub-category-display__timing-container__weekly-container__button__icon.r__sub-category-display__timing-container__weekly-container__button__icon
+              p.button--timing-button__text.r__button--timing-button__text Bi-Weekly
+            label.timing-container__label.r__timing-container__label Start Date
+              input.timing-container__label__input.r__timing-container__label__input(type="date") 
+            button.button--timing-button-submit.r__button--timing-button-submit.timing-submit-button Submit
+          section.timing-container__weekly-container.r__timing-container__weekly-container
+            button.button--timing-button.r__button--timing-button
+              span.icon-calendar-week.button--timing-button__icon.r__button--timing-button__icon
                 span.path1
                 span.path2
-              p.sub-category-display__timing-container__weekly-container__button__text.r__sub-category-display__timing-container__weekly-container__button__text Weekly
-            label.sub-category-display__timing-container__weekly-container__label.r__sub-category-display__timing-container__weekly-container__label Weekday
+              p.button--timing-button__text.r__button--timing-button__text Weekly
+            label.timing-container__weekly-container__label.r__timing-container__weekly-container__label Weekday
               - const weekdays = [`Sunday`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`]
-              select.sub-category-display__timing-container__weekly-container__label__select.r__sub-category-display__timing-container__weekly-container__label__select
+              select.timing-container__weekly-container__label__select.r__timing-container__weekly-container__label__select
                 each day, index in weekdays
-                  option.sub-category-display__timing-container__weekly-container__label__select__option.sub-category-display__timing-container__weekly-container__label__select__option(value=`${index}`)= `${day}`
-            button.sub-category-display__timing-container__weekly-container__submit.r__sub-category-display__timing-container__weekly-container__submit.timing-submit-button Submit
+                  option.timing-container__weekly-container__label__select__option.timing-container__weekly-container__label__select__option(value=`${index}`)= `${day}`
+            button.button--timing-button-submit.r__button--timing-button-submit.timing-submit-button Submit

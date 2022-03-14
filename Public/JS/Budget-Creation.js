@@ -112,37 +112,37 @@ const buildSubCategories = (categories, index, secondaryIndex, clickedItem) => {
   // SELECT SUB CATEGORY DISPLAY
   const subCategoryDisplay = document.querySelector('.sub-category-display');
   const subCategory = document.createElement('section');
-  subCategory.classList.add('sub-category-display__sub-category');
-  subCategory.classList.add('r__sub-category-display__sub-category');
-  subCategory.classList.add('sub-category-display__sub-category--hidden');
+  subCategory.classList.add('sub-category--month-view');
+  subCategory.classList.add('r__sub-category--month-view');
+  subCategory.classList.add('sub-category--month-view--hidden');
   subCategory.dataset.category = `${secondaryIndex}`;
 
   subCategoryDisplay.insertAdjacentElement('beforeend', subCategory);
   const numberOfSections = 5;
   let sectionIndex = 0;
-  const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
+  const subCategories = document.querySelectorAll('.sub-category--month-view');
 
   while (sectionIndex < numberOfSections) {
     const subCategorySection = document.createElement('section');
-    subCategorySection.classList.add('sub-category-display__sub-category__section');
-    subCategorySection.classList.add('r__sub-category-display__sub-category__section');
+    subCategorySection.classList.add('sub-category--month-view__section');
+    subCategorySection.classList.add('r__sub-category--month-view__section');
     subCategory.insertAdjacentElement('beforeend', subCategorySection);
 
     ///////////////////////////////////////////
     // CREATE SUB CATEGORY NAME
     const subCategoryName = document.createElement('p');
-    subCategoryName.classList.add('sub-category-display__sub-category__section__category-name');
-    subCategoryName.classList.add('r__sub-category-display__sub-category__section__category-name');
+    subCategoryName.classList.add('sub-category--month-view__section__category-name');
+    subCategoryName.classList.add('r__sub-category--month-view__section__category-name');
     // subCategoryName.textContent = `${categories[index].title}`;
 
     //////////////////////////////////////////
     // CREATE SUB CATEGORY TIMING BUTTON
     const subCategoryTimingButton = document.createElement('button');
-    subCategoryTimingButton.classList.add('sub-category-display__sub-category__section__set-category-timing-button');
-    subCategoryTimingButton.classList.add('r__sub-category-display__sub-category__section__set-category-timing-button');
+    subCategoryTimingButton.classList.add('sub-category--month-view__section__set-category-timing-button');
+    subCategoryTimingButton.classList.add('r__sub-category--month-view__section__set-category-timing-button');
     subCategoryTimingButton.textContent = `+ Timing`;
 
-    const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
+    const subCategories = document.querySelectorAll('.sub-category--month-view');
     //////////////////////////////////////////
     // CREATE SUB CATEGORY TIMING DISPLAY
     if (sectionIndex === 0) {
@@ -152,8 +152,8 @@ const buildSubCategories = (categories, index, secondaryIndex, clickedItem) => {
     }
     if (sectionIndex === 1) {
       const subCategoryInput = document.createElement('input');
-      subCategoryInput.classList.add('sub-category-display__sub-category__section__input');
-      subCategoryInput.classList.add('r__sub-category-display__sub-category__section__input');
+      subCategoryInput.classList.add('sub-category--month-view__section__input');
+      subCategoryInput.classList.add('r__sub-category--month-view__section__input');
       subCategoryInput.classList.add('individual-payment');
       subCategoryInput.classList.add('r__individual-payment');
       subCategoryInput.type = `number`;
@@ -184,20 +184,20 @@ const buildSubCategories = (categories, index, secondaryIndex, clickedItem) => {
     }
     if (sectionIndex === 2) {
       const subCategoryContent = document.createElement('p');
-      subCategoryContent.classList.add('sub-category-display__sub-category__section__content');
-      subCategoryContent.classList.add('r__sub-category-display__sub-category__section__content');
+      subCategoryContent.classList.add('sub-category--month-view__section__content');
+      subCategoryContent.classList.add('r__sub-category--month-view__section__content');
       subCategorySection.insertAdjacentElement('beforeend', subCategoryContent);
     }
     if (sectionIndex === 3) {
       const subCategoryContent = document.createElement('p');
-      subCategoryContent.classList.add('sub-category-display__sub-category__section__content');
-      subCategoryContent.classList.add('r__sub-category-display__sub-category__section__content');
+      subCategoryContent.classList.add('sub-category--month-view__section__content');
+      subCategoryContent.classList.add('r__sub-category--month-view__section__content');
       subCategorySection.insertAdjacentElement('beforeend', subCategoryContent);
     }
     if (sectionIndex === 4) {
       const subCategoryContent = document.createElement('p');
-      subCategoryContent.classList.add('sub-category-display__sub-category__section__content');
-      subCategoryContent.classList.add('r__sub-category-display__sub-category__section__content');
+      subCategoryContent.classList.add('sub-category--month-view__section__content');
+      subCategoryContent.classList.add('r__sub-category--month-view__section__content');
       subCategorySection.insertAdjacentElement('beforeend', subCategoryContent);
     }
     sectionIndex++;

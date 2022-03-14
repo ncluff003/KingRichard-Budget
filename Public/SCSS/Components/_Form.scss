@@ -588,6 +588,13 @@
                       @include SizeAndPositioning(relative, 100%, 40%, flex, row, nowrap, center, center, 0, 0, 0);
                       &__button-container {
                         @include SizeAndPositioning(relative, 100%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
+                        .left,
+                        .right {
+                          &:hover {
+                            cursor: pointer;
+                            transition: color 0.5s;
+                          }
+                        }
                       }
                       &__category-display {
                         @include SizeAndPositioning(relative, 100%, 60%, flex, column, nowrap, center, center, 0, 0, 0);
@@ -1577,6 +1584,10 @@
         }
       }
     }
+    &--small {
+      @extend .form__input;
+      width: 25%;
+    }
 
     &--main-category-title {
       @extend .form__input;
@@ -1711,7 +1722,7 @@
       width: 25%;
       left: calc(37.7% + 2rem);
       &-budget {
-        @extend .form__label;
+        @extend .form__label--small;
       }
     }
 

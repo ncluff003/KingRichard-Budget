@@ -2,7 +2,7 @@
 @use '../../../Public/SCSS/Utilities/Variables' as *;
 
 .budget-creation-container {
-  @include SizeAndPositioning(relative, 50rem, 100%, flex, row, nowrap, flex-start, flex-start, 0, 0, 0);
+  @include SizeAndPositioning(relative, 50rem, 50%, flex, row, nowrap, flex-start, flex-start, 0, 0, 0);
   &--main-categories {
     @extend .budget-creation-container;
     border: 0.3rem solid $primaryColor;
@@ -15,7 +15,7 @@
   }
 
   &--sub-categories {
-    @include SizeAndPositioning(relative, 50rem, 80%, flex, column, nowrap, center, center, 0, 0, 0);
+    @include SizeAndPositioning(relative, 50rem, 40%, flex, column, nowrap, center, center, 0, 0, 0);
     border: 0.3rem solid $primaryColor;
     border-radius: 1rem;
     &__main-category-display {
@@ -162,6 +162,54 @@
           cursor: pointer;
         }
       }
+    }
+  }
+  &--month-view {
+    @include SizeAndPositioning(relative, 6rem, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
+    min-height: 10rem;
+    background-color: $colorLightestGrey;
+    &__section {
+      @include SizeAndPositioning(relative, 100%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
+      &:first-of-type {
+        justify-content: space-evenly;
+        flex-direction: column;
+        padding: 0.5rem;
+      }
+      &__input {
+        @include SizeAndPositioning(relative, 60%, 80%, flex, row, nowrap, center, center, 0, 0, 0);
+        background-color: rgba($colorOffWhite, 0.35);
+        border-radius: 0.5rem;
+        border: 0.2rem solid rgba($primaryColor, 0.8);
+        caret-color: $primaryColor;
+
+        &:focus {
+          outline: none;
+          border: 0.2rem solid $primaryColor, 0.8;
+          background-color: $colorOffWhite;
+        }
+      }
+      &__content {
+        @include SizeAndPositioning(relative, 75%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+      }
+    }
+    &:hover {
+      cursor: pointer;
+      .sub-category-display__sub-category__section {
+        background-color: $primaryColor;
+        transition: background-color 0.5s;
+        &__input {
+          border: $colorOffWhite;
+          &:focus {
+            outline: none;
+          }
+        }
+        &__content {
+          transition: color 0.5s;
+        }
+      }
+    }
+    &--hidden {
+      display: none;
     }
   }
 }

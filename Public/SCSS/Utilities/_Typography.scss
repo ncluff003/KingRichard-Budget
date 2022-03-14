@@ -1365,6 +1365,40 @@ html {
       }
     }
   }
+
+  &--timing-button {
+    &__icon {
+      font-family: Icomoon;
+      font-size: 4rem;
+      .path1:before {
+        color: $primaryColor;
+      }
+    }
+    &__text {
+      font-size: 2.2rem;
+      color: rgba($primaryColor, 0.8);
+    }
+    &:hover {
+      .button--timing-button {
+        &__icon {
+          .path1:before {
+            color: $tertiaryColor;
+          }
+          .path2:before,
+          .path3:before {
+            color: $colorDarkerGrey;
+          }
+        }
+        &__text {
+          color: $colorOffWhite;
+        }
+      }
+    }
+    &-submit {
+      @extend .button;
+      color: rgba($colorOffWhite, 0.75);
+    }
+  }
   &--borderless {
     @extend .button;
     font-size: 1.6rem;
@@ -1430,8 +1464,10 @@ html {
     }
   }
 }
-
+////////////////////////
 // BUDGET CREATION
+
+// MAIN CATEGORY
 .main-category {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   font-size: 2rem;
@@ -1470,6 +1506,7 @@ html {
   }
 }
 
+// BUDGET CREATION CONTAINER
 .budget-creation-container {
   &--sub-categories {
     &__main-category-display {
@@ -1501,6 +1538,68 @@ html {
   }
 }
 
+// MONTH CONTAINER
+.month-container {
+  &__header {
+    font-size: 2.8rem;
+    color: $colorOffWhite;
+    &__title {
+      font-size: 4rem;
+      text-transform: uppercase;
+    }
+  }
+  &__overall-budget-summary-container {
+    &--single-summary {
+      &__title {
+        font-size: 1.6rem;
+        color: $primaryColor;
+        text-align: center;
+      }
+      &__amount {
+        font-size: 3rem;
+        color: $primaryColor;
+      }
+    }
+  }
+  &__category-container {
+    .main-category-display {
+      &__button-container {
+        font-size: 6rem;
+        .left {
+          color: rgba($primaryColor, 0.25);
+        }
+        .right {
+          color: rgba($primaryColor, 0.8);
+        }
+        .left,
+        .right {
+          &:hover {
+            color: $primaryColor;
+          }
+        }
+      }
+      &__category-display {
+        color: $primaryColor;
+        &__icon {
+          font-size: 20rem;
+        }
+        &__title {
+          font-size: 4rem;
+        }
+      }
+    }
+    .sub-category-display {
+      &__headers {
+        &__title-container {
+          font-size: 1.2rem;
+          color: $colorOffWhite;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
 .icon-container {
   font-family: MADE Tommy Soft, Verdana, sans-serif !important;
   font-size: 1.6rem;
@@ -1514,6 +1613,39 @@ html {
   }
   &--clicked {
     color: $colorOffWhite;
+  }
+}
+
+// TIMING CONTAINER
+.timing-container {
+  &__close {
+    font-size: 3rem;
+    color: rgba($primaryColor, 0.8);
+    &:hover {
+      color: $primaryColor;
+    }
+  }
+  &__label {
+    font-size: 1.4rem;
+    color: rgba($primaryColor, 0.8);
+    &:focus {
+      color: $primaryColor;
+    }
+    &__input,
+    &__select {
+      font-size: 1.4rem;
+      color: rgba($primaryColor, 0.8);
+      &:focus {
+        color: $primaryColor;
+      }
+    }
+  }
+  &__submit {
+    font-size: 2rem;
+    color: rgba($colorOffWhite, 0.8);
+    &:hover {
+      color: $colorOffWhite;
+    }
   }
 }
 
@@ -1551,8 +1683,12 @@ html {
       @extend .form__section;
     }
     &--page-number-display {
+      @extend .form__section;
       font-size: 3rem;
       color: $primaryColor;
+      &__number {
+        @extend .form__section--page-number-display;
+      }
     }
   }
   &__input {
@@ -1564,6 +1700,10 @@ html {
       & > label {
         color: $primaryColor;
       }
+    }
+
+    &--small {
+      @extend .form__input;
     }
 
     &--dark {
