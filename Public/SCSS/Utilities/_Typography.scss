@@ -1525,13 +1525,12 @@ html {
           color: $primaryColor;
         }
       }
+      &__content {
+        font-size: 2rem;
+        color: rgba($primaryColor, 0.8);
+        text-align: center;
+      }
     }
-    &__content {
-      font-size: 2rem;
-      color: rgba($primaryColor, 0.8);
-      text-align: center;
-    }
-
     &:hover {
       .sub-category--month-view__section {
         &__category-name {
@@ -1542,6 +1541,9 @@ html {
           &:focus {
             color: $primaryColor;
           }
+        }
+        &__content {
+          color: $colorOffWhite;
         }
       }
       .button--borderless-set-timing-button {

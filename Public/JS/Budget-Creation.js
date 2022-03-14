@@ -162,7 +162,7 @@ const buildSubCategories = (categories, index, secondaryIndex, clickedItem) => {
 
       subCategoryInput.addEventListener('keyup', (e) => {
         e.preventDefault();
-        const overallBudget = document.querySelectorAll('.budget-single-goal-summary__amount');
+        const overallBudget = document.querySelectorAll('.month-container__overall-budget-summary-container--single-summary__amount');
         const individualPayments = document.querySelectorAll('.individual-payment');
         let spent = subCategoryInput.closest('section').nextSibling.firstChild;
         let remaining = subCategoryInput.closest('section').nextSibling.nextSibling.firstChild;
@@ -243,10 +243,11 @@ const create12MonthArray = (array, input, timing, days) => {
   let numberOfIterations;
   let startingIteration = 0;
 
+  const timingInputs = document.querySelectorAll('.timing-container__section__label__input');
   if (timing === `Monthly`) {
     ////////////////////////////////////////////////////
     // GET DATE AGAIN SO IT DOES NOT CHANGE MAGICALLY
-    const adjustedDate = new Date(document.querySelector('.sub-category-display__timing-container__monthly-container__label__input').value);
+    const adjustedDate = new Date(timingInputs[0].value);
     const selectedDate = new Date(adjustedDate.setHours(adjustedDate.getHours() + 7));
     const manipulated = input;
     array.push(selectedDate);
@@ -260,9 +261,9 @@ const create12MonthArray = (array, input, timing, days) => {
   if (timing === `Bi-Monthly`) {
     ////////////////////////////////////////////////////
     // GET DATE AGAIN SO IT DOES NOT CHANGE MAGICALLY
-    const adjustedDate1 = new Date(document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input')[0].value);
+    const adjustedDate1 = new Date(timingInputs[1].value);
     const selectedDate1 = new Date(adjustedDate1.setHours(adjustedDate1.getHours() + 7));
-    const adjustedDate2 = new Date(document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input')[1].value);
+    const adjustedDate2 = new Date(timingInputs[2].value);
     const selectedDate2 = new Date(adjustedDate2.setHours(adjustedDate2.getHours() + 7));
     const manipulated1 = input[0];
     const manipulated2 = input[1];
@@ -283,7 +284,7 @@ const create12MonthArray = (array, input, timing, days) => {
   if (timing === `Bi-Weekly`) {
     ////////////////////////////////////////////////////
     // GET DATE AGAIN SO IT DOES NOT CHANGE MAGICALLY
-    const adjustedDate = new Date(document.querySelector('.sub-category-display__timing-container__bi-weekly-container__label__input').value);
+    const adjustedDate = new Date(timingInputs[3].value);
     const selectedDate = new Date(adjustedDate.setHours(adjustedDate.getHours() + 7));
     const manipulated = input;
     array.push(selectedDate);
@@ -298,7 +299,8 @@ const create12MonthArray = (array, input, timing, days) => {
   if (timing === `Weekly`) {
     ////////////////////////////////////////////////////
     // GET DATE AGAIN SO IT DOES NOT CHANGE MAGICALLY
-    const selectedWeekDay = document.querySelector('.sub-category-display__timing-container__weekly-container__label__select').value;
+    const timingSelect = document.querySelector('.timing-container__section__label__select');
+    const selectedWeekDay = timingSelect.value;
     const currentDate1 = new Date();
     const currentDate2 = new Date();
     const nextWeekDay = getNextWeekDayDate(days, currentDate1, selectedWeekDay);
@@ -583,8 +585,9 @@ export const insertTiming = (target, inputValues, timing, timingButtons, budget,
     wording = `Due every ${day} of the month.`;
   }
   target.textContent = wording;
-  const timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
-  timingFunctionContainer.classList.toggle('sub-category-display__timing-container__hidden');
+  const timingFunctionContainer = document.querySelector('.timing-container');
+  timingFunctionContainer.classList.toggle('closed');
+  timingFunctionContainer.classList.toggle('open');
 };
 
 /////////////////////////////////////////

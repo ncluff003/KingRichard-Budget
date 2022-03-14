@@ -5576,7 +5576,7 @@ var buildSubCategories = function buildSubCategories(categories, index, secondar
       subCategorySection.insertAdjacentElement('beforeend', subCategoryInput);
       subCategoryInput.addEventListener('keyup', function (e) {
         e.preventDefault();
-        var overallBudget = document.querySelectorAll('.budget-single-goal-summary__amount');
+        var overallBudget = document.querySelectorAll('.month-container__overall-budget-summary-container--single-summary__amount');
         var individualPayments = document.querySelectorAll('.individual-payment');
         var spent = subCategoryInput.closest('section').nextSibling.firstChild;
         var remaining = subCategoryInput.closest('section').nextSibling.nextSibling.firstChild;
@@ -5673,11 +5673,12 @@ var checkMonth = function checkMonth(date) {
 var create12MonthArray = function create12MonthArray(array, input, timing, days) {
   var numberOfIterations;
   var startingIteration = 0;
+  var timingInputs = document.querySelectorAll('.timing-container__section__label__input');
 
   if (timing === "Monthly") {
     ////////////////////////////////////////////////////
     // GET DATE AGAIN SO IT DOES NOT CHANGE MAGICALLY
-    var adjustedDate = new Date(document.querySelector('.sub-category-display__timing-container__monthly-container__label__input').value);
+    var adjustedDate = new Date(timingInputs[0].value);
     var selectedDate = new Date(adjustedDate.setHours(adjustedDate.getHours() + 7));
     var manipulated = input;
     array.push(selectedDate);
@@ -5692,9 +5693,9 @@ var create12MonthArray = function create12MonthArray(array, input, timing, days)
   if (timing === "Bi-Monthly") {
     ////////////////////////////////////////////////////
     // GET DATE AGAIN SO IT DOES NOT CHANGE MAGICALLY
-    var adjustedDate1 = new Date(document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input')[0].value);
+    var adjustedDate1 = new Date(timingInputs[1].value);
     var selectedDate1 = new Date(adjustedDate1.setHours(adjustedDate1.getHours() + 7));
-    var adjustedDate2 = new Date(document.querySelectorAll('.sub-category-display__timing-container__bi-monthly-container__label__input')[1].value);
+    var adjustedDate2 = new Date(timingInputs[2].value);
     var selectedDate2 = new Date(adjustedDate2.setHours(adjustedDate2.getHours() + 7));
     var manipulated1 = input[0];
     var manipulated2 = input[1];
@@ -5715,7 +5716,7 @@ var create12MonthArray = function create12MonthArray(array, input, timing, days)
   if (timing === "Bi-Weekly") {
     ////////////////////////////////////////////////////
     // GET DATE AGAIN SO IT DOES NOT CHANGE MAGICALLY
-    var _adjustedDate = new Date(document.querySelector('.sub-category-display__timing-container__bi-weekly-container__label__input').value);
+    var _adjustedDate = new Date(timingInputs[3].value);
 
     var _selectedDate = new Date(_adjustedDate.setHours(_adjustedDate.getHours() + 7));
 
@@ -5732,7 +5733,8 @@ var create12MonthArray = function create12MonthArray(array, input, timing, days)
   if (timing === "Weekly") {
     ////////////////////////////////////////////////////
     // GET DATE AGAIN SO IT DOES NOT CHANGE MAGICALLY
-    var selectedWeekDay = document.querySelector('.sub-category-display__timing-container__weekly-container__label__select').value;
+    var timingSelect = document.querySelector('.timing-container__section__label__select');
+    var selectedWeekDay = timingSelect.value;
     var currentDate1 = new Date();
     var currentDate2 = new Date();
     var nextWeekDay = getNextWeekDayDate(days, currentDate1, selectedWeekDay);
@@ -5995,8 +5997,9 @@ var insertTiming = function insertTiming(target, inputValues, timing, timingButt
   }
 
   target.textContent = wording;
-  var timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
-  timingFunctionContainer.classList.toggle('sub-category-display__timing-container__hidden');
+  var timingFunctionContainer = document.querySelector('.timing-container');
+  timingFunctionContainer.classList.toggle('closed');
+  timingFunctionContainer.classList.toggle('open');
 }; /////////////////////////////////////////
 // WATCH FOR TIMING SETTING
 

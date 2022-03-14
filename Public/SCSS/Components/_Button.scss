@@ -537,6 +537,7 @@
     &-set-timing-button {
       @extend .button--borderless;
       background-color: transparent;
+      width: 100%;
       border: none;
       margin: 0;
     }
