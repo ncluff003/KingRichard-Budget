@@ -166,7 +166,6 @@ export const _watchForProfileUpdates = async (user) => {
   const userProfileFormButtons = document.querySelectorAll('.user-profile-form__button');
   const userProfileSubSectionFormButtons = document.querySelectorAll('.user-profile-form__section__sub-section__button');
   const transparentButtons = document.querySelectorAll('.button--small-transparent');
-  console.log(transparentButtons);
   const latterDaySaintSwitch = document.querySelector('.switch--latter-day-saint');
   let communicationSwitch = document.getElementById('commSwitch');
   let commPreference;

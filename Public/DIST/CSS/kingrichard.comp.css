@@ -1427,15 +1427,15 @@ html {
 .form__section--emergency #totalAmount + .clicked-label {
   color: #fafafa;
 }
-.form__input, .form__input--comms, .form__input--comms--email, .form__input--comms--text, .form__input--latter-day-saint, .form__input--sub-category-title, .form__input--main-category-title, .form__input--dark, .form__input--dark-extra-small, .form__input--dark-small, .form__input--small {
+.form__input, .form__input--comms, .form__input--comms--email, .form__input--comms--text, .form__input--latter-day-saint, .form__input--sub-category-title, .form__input--main-category-title, .form__input--dark, .form__input--dark-extra-small, .form__input--dark-small, .form__input--small, .form__input--small-savings-goal, .form__input--small-investment-goal {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   font-size: 2rem;
   color: rgba(130, 42, 186, 0.8);
 }
-.form__input:focus, .form__input--comms:focus, .form__input--comms--email:focus, .form__input--comms--text:focus, .form__input--latter-day-saint:focus, .form__input--sub-category-title:focus, .form__input--main-category-title:focus, .form__input--dark:focus, .form__input--dark-extra-small:focus, .form__input--dark-small:focus, .form__input--small:focus {
+.form__input:focus, .form__input--comms:focus, .form__input--comms--email:focus, .form__input--comms--text:focus, .form__input--latter-day-saint:focus, .form__input--sub-category-title:focus, .form__input--main-category-title:focus, .form__input--dark:focus, .form__input--dark-extra-small:focus, .form__input--dark-small:focus, .form__input--small:focus, .form__input--small-savings-goal:focus, .form__input--small-investment-goal:focus {
   color: #822aba;
 }
-.form__input:focus > label, .form__input--comms:focus > label, .form__input--comms--email:focus > label, .form__input--comms--text:focus > label, .form__input--latter-day-saint:focus > label, .form__input--sub-category-title:focus > label, .form__input--main-category-title:focus > label, .form__input--dark:focus > label, .form__input--dark-extra-small:focus > label, .form__input--dark-small:focus > label, .form__input--small:focus > label {
+.form__input:focus + label, .form__input--comms:focus + label, .form__input--comms--email:focus + label, .form__input--comms--text:focus + label, .form__input--latter-day-saint:focus + label, .form__input--sub-category-title:focus + label, .form__input--main-category-title:focus + label, .form__input--dark:focus + label, .form__input--dark-extra-small:focus + label, .form__input--dark-small:focus + label, .form__input--small:focus + label, .form__input--small-savings-goal:focus + label, .form__input--small-investment-goal:focus + label {
   color: #822aba;
 }
 .form__input--dark, .form__input--dark-extra-small, .form__input--dark-small {
@@ -1483,7 +1483,7 @@ html {
   color: #fafafa;
   font-weight: 300;
 }
-.form__label, .form__label--comms, .form__label--latter-day-saint, .form__label--latter-day-saint-white, .form__label--small-timing, .form__label--small-budget, .form__label--small, .form__label--extra-small {
+.form__label, .form__label--comms, .form__label--latter-day-saint, .form__label--latter-day-saint-white, .form__label--small-savings-goal, .form__label--small-investment-goal, .form__label--small-timing, .form__label--small-budget, .form__label--small, .form__label--extra-small {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   font-size: 2rem;
   color: rgba(130, 42, 186, 0.8);
@@ -1496,6 +1496,10 @@ html {
 }
 .form__label--small-timing {
   font-size: 1.6rem;
+}
+.form__label--small-savings-goal, .form__label--small-investment-goal {
+  font-size: 1.6rem;
+  color: rgba(130, 42, 186, 0.8);
 }
 .form__label--extra-small {
   font-size: 1.6rem;
@@ -36111,6 +36115,76 @@ html {
 .form__section--emergency #totalAmount + .clicked-label {
   background-color: #822aba;
 }
+.form__section--tithing {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.form__section--tithing #grossOption,
+.form__section--tithing #netOption,
+.form__section--tithing #surplusOption {
+  display: none;
+}
+.form__section--tithing #grossOptionLabel,
+.form__section--tithing #netOptionLabel,
+.form__section--tithing #surplusOptionLabel {
+  position: relative;
+  height: 7rem;
+  width: 10%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  top: 0;
+  left: 0;
+}
+.form__section--tithing #grossOptionLabel:hover,
+.form__section--tithing #netOptionLabel:hover,
+.form__section--tithing #surplusOptionLabel:hover {
+  cursor: pointer;
+  background-color: #822aba;
+}
+.form__section--tithing #grossOptionLabel {
+  border-top: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-left: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-bottom: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-top-left-radius: 1.25rem;
+  border-bottom-left-radius: 1.25rem;
+}
+.form__section--tithing #grossOptionLabel:hover {
+  border-top: 0.3rem solid #822aba;
+  border-left: 0.3rem solid #822aba;
+  border-bottom: 0.3rem solid #822aba;
+  transition: border 0.5s, background-color 0.5s, color 0.5s;
+}
+.form__section--tithing #netOptionLabel {
+  border-top: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-bottom: 0.3rem solid rgba(130, 42, 186, 0.8);
+}
+.form__section--tithing #netOptionLabel:hover {
+  border-top: 0.3rem solid #822aba;
+  border-bottom: 0.3rem solid #822aba;
+  transition: border 0.5s, background-color 0.5s, color 0.5s;
+}
+.form__section--tithing #surplusOptionLabel {
+  border-top: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-right: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-bottom: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-top-right-radius: 1.25rem;
+  border-bottom-right-radius: 1.25rem;
+}
+.form__section--tithing #surplusOptionLabel:hover {
+  border-top: 0.3rem solid #822aba;
+  border-right: 0.3rem solid #822aba;
+  border-bottom: 0.3rem solid #822aba;
+  transition: border 0.5s, background-color 0.5s, color 0.5s;
+}
+.form__section--tithing .checked {
+  background-color: #822aba;
+  transition: background-color 0.5s, color 0.5s;
+}
 .form__section--timing {
   flex-direction: row;
   justify-content: center;
@@ -36162,7 +36236,7 @@ html {
   justify-content: flex-start;
   padding-left: 2rem;
 }
-.form__input, .form__input--comms, .form__input--comms--text-preferred, .form__input--sub-category-title, .form__input--main-category-title, .form__input--small, .form__input--dark, .form__input--dark-extra-small, .form__input--dark-small {
+.form__input, .form__input--comms, .form__input--comms--text-preferred, .form__input--sub-category-title, .form__input--main-category-title, .form__input--small, .form__input--small-savings-goal, .form__input--small-investment-goal, .form__input--dark, .form__input--dark-extra-small, .form__input--dark-small {
   position: relative;
   height: 6rem;
   width: 40%;
@@ -36178,19 +36252,19 @@ html {
   border: 0.3rem solid rgba(130, 42, 186, 0.75);
   border-radius: 0.75rem;
 }
-.form__input::-webkit-input-placeholder, .form__input--comms::-webkit-input-placeholder, .form__input--comms--text-preferred::-webkit-input-placeholder, .form__input--sub-category-title::-webkit-input-placeholder, .form__input--main-category-title::-webkit-input-placeholder, .form__input--small::-webkit-input-placeholder, .form__input--dark::-webkit-input-placeholder, .form__input--dark-extra-small::-webkit-input-placeholder, .form__input--dark-small::-webkit-input-placeholder, .form__input::-moz-placeholder, .form__input--comms::-moz-placeholder, .form__input--comms--text-preferred::-moz-placeholder, .form__input--sub-category-title::-moz-placeholder, .form__input--main-category-title::-moz-placeholder, .form__input--small::-moz-placeholder, .form__input--dark::-moz-placeholder, .form__input--dark-extra-small::-moz-placeholder, .form__input--dark-small::-moz-placeholder, .form__input::placeholder, .form__input--comms::placeholder, .form__input--comms--text-preferred::placeholder, .form__input--sub-category-title::placeholder, .form__input--main-category-title::placeholder, .form__input--small::placeholder, .form__input--dark::placeholder, .form__input--dark-extra-small::placeholder, .form__input--dark-small::placeholder {
+.form__input::-webkit-input-placeholder, .form__input--comms::-webkit-input-placeholder, .form__input--comms--text-preferred::-webkit-input-placeholder, .form__input--sub-category-title::-webkit-input-placeholder, .form__input--main-category-title::-webkit-input-placeholder, .form__input--small::-webkit-input-placeholder, .form__input--small-savings-goal::-webkit-input-placeholder, .form__input--small-investment-goal::-webkit-input-placeholder, .form__input--dark::-webkit-input-placeholder, .form__input--dark-extra-small::-webkit-input-placeholder, .form__input--dark-small::-webkit-input-placeholder, .form__input::-moz-placeholder, .form__input--comms::-moz-placeholder, .form__input--comms--text-preferred::-moz-placeholder, .form__input--sub-category-title::-moz-placeholder, .form__input--main-category-title::-moz-placeholder, .form__input--small::-moz-placeholder, .form__input--small-savings-goal::-moz-placeholder, .form__input--small-investment-goal::-moz-placeholder, .form__input--dark::-moz-placeholder, .form__input--dark-extra-small::-moz-placeholder, .form__input--dark-small::-moz-placeholder, .form__input::placeholder, .form__input--comms::placeholder, .form__input--comms--text-preferred::placeholder, .form__input--sub-category-title::placeholder, .form__input--main-category-title::placeholder, .form__input--small::placeholder, .form__input--small-savings-goal::placeholder, .form__input--small-investment-goal::placeholder, .form__input--dark::placeholder, .form__input--dark-extra-small::placeholder, .form__input--dark-small::placeholder {
   opacity: 0;
 }
-.form__input:focus::-webkit-input-placeholder, .form__input--comms:focus::-webkit-input-placeholder, .form__input--comms--text-preferred:focus::-webkit-input-placeholder, .form__input--sub-category-title:focus::-webkit-input-placeholder, .form__input--main-category-title:focus::-webkit-input-placeholder, .form__input--small:focus::-webkit-input-placeholder, .form__input--dark:focus::-webkit-input-placeholder, .form__input--dark-extra-small:focus::-webkit-input-placeholder, .form__input--dark-small:focus::-webkit-input-placeholder {
+.form__input:focus::-webkit-input-placeholder, .form__input--comms:focus::-webkit-input-placeholder, .form__input--comms--text-preferred:focus::-webkit-input-placeholder, .form__input--sub-category-title:focus::-webkit-input-placeholder, .form__input--main-category-title:focus::-webkit-input-placeholder, .form__input--small:focus::-webkit-input-placeholder, .form__input--small-savings-goal:focus::-webkit-input-placeholder, .form__input--small-investment-goal:focus::-webkit-input-placeholder, .form__input--dark:focus::-webkit-input-placeholder, .form__input--dark-extra-small:focus::-webkit-input-placeholder, .form__input--dark-small:focus::-webkit-input-placeholder {
   opacity: 1;
 }
-.form__input:focus, .form__input--comms:focus, .form__input--comms--text-preferred:focus, .form__input--sub-category-title:focus, .form__input--main-category-title:focus, .form__input--small:focus, .form__input--dark:focus, .form__input--dark-extra-small:focus, .form__input--dark-small:focus {
+.form__input:focus, .form__input--comms:focus, .form__input--comms--text-preferred:focus, .form__input--sub-category-title:focus, .form__input--main-category-title:focus, .form__input--small:focus, .form__input--small-savings-goal:focus, .form__input--small-investment-goal:focus, .form__input--dark:focus, .form__input--dark-extra-small:focus, .form__input--dark-small:focus {
   outline: none;
 }
-.form__input:focus::-webkit-input-placeholder, .form__input--comms:focus::-webkit-input-placeholder, .form__input--comms--text-preferred:focus::-webkit-input-placeholder, .form__input--sub-category-title:focus::-webkit-input-placeholder, .form__input--main-category-title:focus::-webkit-input-placeholder, .form__input--small:focus::-webkit-input-placeholder, .form__input--dark:focus::-webkit-input-placeholder, .form__input--dark-extra-small:focus::-webkit-input-placeholder, .form__input--dark-small:focus::-webkit-input-placeholder, .form__input:focus::-moz-placeholder, .form__input--comms:focus::-moz-placeholder, .form__input--comms--text-preferred:focus::-moz-placeholder, .form__input--sub-category-title:focus::-moz-placeholder, .form__input--main-category-title:focus::-moz-placeholder, .form__input--small:focus::-moz-placeholder, .form__input--dark:focus::-moz-placeholder, .form__input--dark-extra-small:focus::-moz-placeholder, .form__input--dark-small:focus::-moz-placeholder, .form__input:focus::placeholder, .form__input--comms:focus::placeholder, .form__input--comms--text-preferred:focus::placeholder, .form__input--sub-category-title:focus::placeholder, .form__input--main-category-title:focus::placeholder, .form__input--small:focus::placeholder, .form__input--dark:focus::placeholder, .form__input--dark-extra-small:focus::placeholder, .form__input--dark-small:focus::placeholder {
+.form__input:focus::-webkit-input-placeholder, .form__input--comms:focus::-webkit-input-placeholder, .form__input--comms--text-preferred:focus::-webkit-input-placeholder, .form__input--sub-category-title:focus::-webkit-input-placeholder, .form__input--main-category-title:focus::-webkit-input-placeholder, .form__input--small:focus::-webkit-input-placeholder, .form__input--small-savings-goal:focus::-webkit-input-placeholder, .form__input--small-investment-goal:focus::-webkit-input-placeholder, .form__input--dark:focus::-webkit-input-placeholder, .form__input--dark-extra-small:focus::-webkit-input-placeholder, .form__input--dark-small:focus::-webkit-input-placeholder, .form__input:focus::-moz-placeholder, .form__input--comms:focus::-moz-placeholder, .form__input--comms--text-preferred:focus::-moz-placeholder, .form__input--sub-category-title:focus::-moz-placeholder, .form__input--main-category-title:focus::-moz-placeholder, .form__input--small:focus::-moz-placeholder, .form__input--small-savings-goal:focus::-moz-placeholder, .form__input--small-investment-goal:focus::-moz-placeholder, .form__input--dark:focus::-moz-placeholder, .form__input--dark-extra-small:focus::-moz-placeholder, .form__input--dark-small:focus::-moz-placeholder, .form__input:focus::placeholder, .form__input--comms:focus::placeholder, .form__input--comms--text-preferred:focus::placeholder, .form__input--sub-category-title:focus::placeholder, .form__input--main-category-title:focus::placeholder, .form__input--small:focus::placeholder, .form__input--small-savings-goal:focus::placeholder, .form__input--small-investment-goal:focus::placeholder, .form__input--dark:focus::placeholder, .form__input--dark-extra-small:focus::placeholder, .form__input--dark-small:focus::placeholder {
   opacity: 1;
 }
-.form__input:not(:placeholder-shown) + label, .form__input--comms:not(:placeholder-shown) + label, .form__input--comms--text-preferred:not(:placeholder-shown) + label, .form__input--sub-category-title:not(:placeholder-shown) + label, .form__input--main-category-title:not(:placeholder-shown) + label, .form__input--small:not(:placeholder-shown) + label, .form__input--dark:not(:placeholder-shown) + label, .form__input--dark-extra-small:not(:placeholder-shown) + label, .form__input--dark-small:not(:placeholder-shown) + label, .form__input:focus + label, .form__input--comms:focus + label, .form__input--comms--text-preferred:focus + label, .form__input--sub-category-title:focus + label, .form__input--main-category-title:focus + label, .form__input--small:focus + label, .form__input--dark:focus + label, .form__input--dark-extra-small:focus + label, .form__input--dark-small:focus + label {
+.form__input:not(:placeholder-shown) + label, .form__input--comms:not(:placeholder-shown) + label, .form__input--comms--text-preferred:not(:placeholder-shown) + label, .form__input--sub-category-title:not(:placeholder-shown) + label, .form__input--main-category-title:not(:placeholder-shown) + label, .form__input--small:not(:placeholder-shown) + label, .form__input--small-savings-goal:not(:placeholder-shown) + label, .form__input--small-investment-goal:not(:placeholder-shown) + label, .form__input--dark:not(:placeholder-shown) + label, .form__input--dark-extra-small:not(:placeholder-shown) + label, .form__input--dark-small:not(:placeholder-shown) + label, .form__input:focus + label, .form__input--comms:focus + label, .form__input--comms--text-preferred:focus + label, .form__input--sub-category-title:focus + label, .form__input--main-category-title:focus + label, .form__input--small:focus + label, .form__input--small-savings-goal:focus + label, .form__input--small-investment-goal:focus + label, .form__input--dark:focus + label, .form__input--dark-extra-small:focus + label, .form__input--dark-small:focus + label {
   transform: translate(-5.5rem, -7rem) scale(0.75);
 }
 .form__input--dark, .form__input--dark-extra-small, .form__input--dark-small {
@@ -36212,8 +36286,20 @@ html {
 .form__input--dark-extra-small:not(:placeholder-shown) + label, .form__input--dark-extra-small:focus + label {
   transform: translate(-4rem, -7rem) scale(0.75);
 }
-.form__input--small {
+.form__input--small, .form__input--small-savings-goal, .form__input--small-investment-goal {
   width: 25%;
+}
+.form__input--small-savings-goal:first-of-type, .form__input--small-investment-goal:first-of-type {
+  margin-bottom: 2.4rem;
+}
+.form__input--small-savings-goal:first-of-type + label, .form__input--small-investment-goal:first-of-type + label {
+  top: 21%;
+}
+.form__input--small-savings-goal:last-of-type + label, .form__input--small-investment-goal:last-of-type + label {
+  top: 79%;
+}
+.form__input--small-savings-goal:last-of-type + .emergency-checkbox-label, .form__input--small-savings-goal:last-of-type + .emergency-goal-label, .form__input--small-investment-goal:last-of-type + .emergency-checkbox-label, .form__input--small-investment-goal:last-of-type + .emergency-goal-label {
+  top: 50%;
 }
 .form__input--main-category-title {
   width: 35%;
@@ -36389,7 +36475,7 @@ html {
 .form__select option:hover, .form__select__option:hover {
   background-color: #38d927;
 }
-.form__label, .form__label--comms, .form__label--extra-small, .form__label--extra-small-emergency, .form__label--small, .form__label--small-timing, .form__label--small-budget {
+.form__label, .form__label--comms, .form__label--extra-small, .form__label--extra-small-emergency, .form__label--small, .form__label--small-savings-goal, .form__label--small-investment-goal, .form__label--small-timing, .form__label--small-budget {
   position: absolute;
   height: 6rem;
   width: 40%;
@@ -36404,11 +36490,14 @@ html {
   -moz-transform: translateY(-50%);
   transition: transform 0.5s;
 }
-.form__label--small, .form__label--small-timing, .form__label--small-budget {
+.form__label--small, .form__label--small-savings-goal, .form__label--small-investment-goal, .form__label--small-timing, .form__label--small-budget {
   width: 25%;
   left: calc(37.7% + 2rem);
 }
 .form__label--small-timing {
+  transition: transform 0.5s, color 0.5s;
+}
+.form__label--small-savings-goal, .form__label--small-investment-goal {
   transition: transform 0.5s, color 0.5s;
 }
 .form__label--extra-small, .form__label--extra-small-emergency {

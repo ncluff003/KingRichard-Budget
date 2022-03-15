@@ -31,11 +31,9 @@ export const _watchEmergencyGoalSettings = (budget, setting) => {
       }
       setting = esl.textContent;
       if (setting === `Length Of Time`) {
-        console.log(emergencyInputs);
         document.querySelector('#timingNumber').focus();
       }
       if (setting === `Total Amount`) {
-        console.log(emergencyInputs);
         document.querySelector('#emergencyGoal').focus();
       }
       if (budget) {
@@ -378,8 +376,6 @@ export const insertTiming = (target, inputValues, timing, timingButtons, budget,
       });
     });
 
-    console.log(currentMainCategory, mainIndex, subCategoryIndex);
-
     ///////////////////////
     // SET TIMING OPTIONS
     budget._updateSubCategory(`Creation`, `Timing`, {
@@ -431,7 +427,6 @@ export const insertTiming = (target, inputValues, timing, timingButtons, budget,
         mainIndex = i;
       }
     });
-    console.log(currentMainCategory, mainIndex, subCategoryIndex);
 
     // Get Correct Sub Category Index
     budget.mainCategories.forEach((mc, i) => {
@@ -494,7 +489,6 @@ export const insertTiming = (target, inputValues, timing, timingButtons, budget,
         mainIndex = i;
       }
     });
-    console.log(currentMainCategory, mainIndex, subCategoryIndex);
 
     // Get Correct Sub Category Index
     budget.mainCategories.forEach((mc, i) => {
@@ -552,7 +546,6 @@ export const insertTiming = (target, inputValues, timing, timingButtons, budget,
         mainIndex = i;
       }
     });
-    console.log(currentMainCategory, mainIndex, subCategoryIndex);
 
     // Get Correct Sub Category Index
     budget.mainCategories.forEach((mc, i) => {
@@ -607,7 +600,6 @@ export const insertTiming = (target, inputValues, timing, timingButtons, budget,
 export const watchForSettingTiming = (budget, index, clickedItem, timing, placeholderBudget, fullBudget) => {
   // Getting the timing.
   const timingButtons = document.querySelectorAll('.button--timing-button');
-  console.log(timingButtons);
   const monthlyTimingButton = timingButtons[0];
   const biMonthlyTimingButton = timingButtons[1];
   const biWeeklyTimingButton = timingButtons[2];
@@ -633,7 +625,6 @@ export const watchForSettingTiming = (budget, index, clickedItem, timing, placeh
   });
   const timingSubmitButtons = document.querySelectorAll('.button--timing-button-submit');
   const timingSectionInputs = document.querySelectorAll('.timing-container__section__label__input');
-  console.log(timingSectionInputs);
   timingSubmitButtons.forEach((tsb) => {
     tsb.addEventListener('click', (e) => {
       e.preventDefault();
@@ -696,7 +687,6 @@ export const setupTimingFunctionContainer = (container, timing) => {
 
   const timingLabels = document.querySelectorAll('.timing-container__section__label');
   const timingSubmitButtons = document.querySelectorAll('.button--timing-button-submit');
-  console.log(timingLabels, timingSubmitButtons);
   // Monthly Timing
   const monthlyTimingLabel = timingLabels[0];
   const monthlyTimingSubmit = timingSubmitButtons[0];
@@ -874,7 +864,6 @@ const setupSubCategoryCreation = (budget, index) => {
   let mainCategoryIcon = document.querySelector('.budget-creation-container--sub-categories__main-category-display__category-information__icon');
   let mainCategoryText = document.querySelector('.budget-creation-container--sub-categories__main-category-display__category-information__text');
   const borderlessButtons = document.querySelectorAll('.button--borderless');
-  console.log(borderlessButtons);
   const subCategoryStartCreationButton = borderlessButtons[2];
   const subCategoryStopCreationButton = document.querySelector('.button--small-create-sub-category-close');
   const categoryCreationSection = document.querySelector('.form__section--sub-category-creation');
@@ -1175,7 +1164,7 @@ export const _watchForBudgetCreation = async () => {
         if (budget.accounts.emergencyFund.emergencyGoalMeasurement === `Length Of Time`) {
           budget._updateAccounts(`Creation`, `Emergency Goal`, {
             goal: Number(document.querySelector('#timingNumber').value),
-            goalTiming: document.querySelector('.budget-creation-form__page__section__select').value,
+            goalTiming: document.querySelector('.form__select').value,
           });
         }
         if (budget.accounts.emergencyFund.emergencyGoalMeasurement === `Total Amount`) {

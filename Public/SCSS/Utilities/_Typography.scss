@@ -1763,13 +1763,17 @@ html {
     color: rgba($primaryColor, 0.8);
     &:focus {
       color: $primaryColor;
-      & > label {
+      & + label {
         color: $primaryColor;
       }
     }
 
     &--small {
       @extend .form__input;
+      &-savings-goal,
+      &-investment-goal {
+        @extend .form__input--small;
+      }
     }
 
     &--dark {
@@ -1850,6 +1854,12 @@ html {
       &-timing {
         @extend .form__label;
         font-size: 1.6rem;
+      }
+      &-savings-goal,
+      &-investment-goal {
+        @extend .form__label;
+        font-size: 1.6rem;
+        color: rgba($primaryColor, 0.8);
       }
     }
     &--extra-small {

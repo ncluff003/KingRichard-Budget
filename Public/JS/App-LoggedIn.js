@@ -45,7 +45,6 @@ const formatPhoneNumber = (value, number) => {
 export const _watchPhoneNumberInputs = (number) => {
   const userProfileInputs = document.querySelectorAll('.form__input--dark-small');
   const userProfileSubInputs = document.querySelectorAll('.form__input--dark-extra-small');
-  console.log(userProfileInputs, userProfileSubInputs);
   formatPhoneNumber(userProfileInputs[4].value);
   userProfileSubInputs[2].addEventListener('keyup', (e) => {
     userProfileSubInputs[2].value = formatPhoneNumber(userProfileSubInputs[2].value, number);
@@ -66,7 +65,6 @@ const _togglePasswordSubSections = () => {
 export const _watchPasswordSubSectionButtons = () => {
   const userProfilePasswordSubSectionButtons = document.querySelectorAll('.user-profile-form__section__button__password-button');
   const transparentButtons = document.querySelectorAll('.button--small-transparent');
-  console.log(transparentButtons);
   transparentButtons[2].addEventListener('click', (e) => {
     e.preventDefault();
     console.log(transparentButtons[2]);
@@ -82,9 +80,7 @@ const _openSubSections = (subSectionArray, className) => {
 
 export const _watchSubSectionButtons = () => {
   const userProfileSubSections = document.querySelectorAll('.form__section--sub-section');
-  console.log(userProfileSubSections);
   const userProfileFormSectionButtons = document.querySelectorAll('.button--borderless-narrow');
-  console.log(userProfileFormSectionButtons);
   userProfileFormSectionButtons.forEach((button, i) => {
     button.addEventListener('click', (e) => {
       e.preventDefault();

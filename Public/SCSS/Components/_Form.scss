@@ -1520,6 +1520,68 @@
         }
       }
     }
+
+    &--tithing {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      #grossOption,
+      #netOption,
+      #surplusOption {
+        display: none;
+      }
+      #grossOptionLabel,
+      #netOptionLabel,
+      #surplusOptionLabel {
+        @include SizeAndPositioning(relative, 7rem, 10%, flex, row, nowrap, center, center, 0, 0, 0);
+        top: 0;
+        left: 0;
+        &:hover {
+          cursor: pointer;
+          background-color: $primaryColor;
+        }
+      }
+      #grossOptionLabel {
+        border-top: 0.3rem solid rgba($primaryColor, 0.8);
+        border-left: 0.3rem solid rgba($primaryColor, 0.8);
+        border-bottom: 0.3rem solid rgba($primaryColor, 0.8);
+        border-top-left-radius: 1.25rem;
+        border-bottom-left-radius: 1.25rem;
+        &:hover {
+          border-top: 0.3rem solid $primaryColor;
+          border-left: 0.3rem solid $primaryColor;
+          border-bottom: 0.3rem solid $primaryColor;
+          transition: border 0.5s, background-color 0.5s, color 0.5s;
+        }
+      }
+      #netOptionLabel {
+        border-top: 0.3rem solid rgba($primaryColor, 0.8);
+        border-bottom: 0.3rem solid rgba($primaryColor, 0.8);
+        &:hover {
+          border-top: 0.3rem solid $primaryColor;
+          border-bottom: 0.3rem solid $primaryColor;
+          transition: border 0.5s, background-color 0.5s, color 0.5s;
+        }
+      }
+      #surplusOptionLabel {
+        border-top: 0.3rem solid rgba($primaryColor, 0.8);
+        border-right: 0.3rem solid rgba($primaryColor, 0.8);
+        border-bottom: 0.3rem solid rgba($primaryColor, 0.8);
+        border-top-right-radius: 1.25rem;
+        border-bottom-right-radius: 1.25rem;
+        &:hover {
+          border-top: 0.3rem solid $primaryColor;
+          border-right: 0.3rem solid $primaryColor;
+          border-bottom: 0.3rem solid $primaryColor;
+          transition: border 0.5s, background-color 0.5s, color 0.5s;
+        }
+      }
+      .checked {
+        background-color: $primaryColor;
+        transition: background-color 0.5s, color 0.5s;
+      }
+    }
+
     &--timing {
       @extend .form__section;
       flex-direction: row;
@@ -1631,6 +1693,25 @@
     &--small {
       @extend .form__input;
       width: 25%;
+      &-savings-goal,
+      &-investment-goal {
+        @extend .form__input--small;
+        &:first-of-type {
+          margin-bottom: 2.4rem;
+          & + label {
+            top: 21%;
+          }
+        }
+        &:last-of-type {
+          & + label {
+            top: 79%;
+          }
+          & + .emergency-checkbox-label,
+          & + .emergency-goal-label {
+            top: 50%;
+          }
+        }
+      }
     }
 
     &--main-category-title {
@@ -1789,6 +1870,11 @@
         @extend .form__label--small;
       }
       &-timing {
+        @extend .form__label--small;
+        transition: transform 0.5s, color 0.5s;
+      }
+      &-savings-goal,
+      &-investment-goal {
         @extend .form__label--small;
         transition: transform 0.5s, color 0.5s;
       }

@@ -4313,7 +4313,6 @@ var formatPhoneNumber = function formatPhoneNumber(value, number) {
 var _watchPhoneNumberInputs = function _watchPhoneNumberInputs(number) {
   var userProfileInputs = document.querySelectorAll('.form__input--dark-small');
   var userProfileSubInputs = document.querySelectorAll('.form__input--dark-extra-small');
-  console.log(userProfileInputs, userProfileSubInputs);
   formatPhoneNumber(userProfileInputs[4].value);
   userProfileSubInputs[2].addEventListener('keyup', function (e) {
     userProfileSubInputs[2].value = formatPhoneNumber(userProfileSubInputs[2].value, number);
@@ -4338,7 +4337,6 @@ var _togglePasswordSubSections = function _togglePasswordSubSections() {
 var _watchPasswordSubSectionButtons = function _watchPasswordSubSectionButtons() {
   var userProfilePasswordSubSectionButtons = document.querySelectorAll('.user-profile-form__section__button__password-button');
   var transparentButtons = document.querySelectorAll('.button--small-transparent');
-  console.log(transparentButtons);
   transparentButtons[2].addEventListener('click', function (e) {
     e.preventDefault();
     console.log(transparentButtons[2]);
@@ -4354,9 +4352,7 @@ var _openSubSections = function _openSubSections(subSectionArray, className) {
 
 var _watchSubSectionButtons = function _watchSubSectionButtons() {
   var userProfileSubSections = document.querySelectorAll('.form__section--sub-section');
-  console.log(userProfileSubSections);
   var userProfileFormSectionButtons = document.querySelectorAll('.button--borderless-narrow');
-  console.log(userProfileFormSectionButtons);
   userProfileFormSectionButtons.forEach(function (button, i) {
     button.addEventListener('click', function (e) {
       e.preventDefault();
@@ -5403,12 +5399,10 @@ var _watchEmergencyGoalSettings = function _watchEmergencyGoalSettings(budget, s
       setting = esl.textContent;
 
       if (setting === "Length Of Time") {
-        console.log(emergencyInputs);
         document.querySelector('#timingNumber').focus();
       }
 
       if (setting === "Total Amount") {
-        console.log(emergencyInputs);
         document.querySelector('#emergencyGoal').focus();
       }
 
@@ -5815,8 +5809,7 @@ var insertTiming = function insertTiming(target, inputValues, timing, timingButt
       mc.subCategories.forEach(function (sc) {
         if (sc.title === target.previousSibling.textContent) subCategoryIndex = budget.mainCategories[mainCategoryIndex].subCategories.indexOf(sc);
       });
-    });
-    console.log(currentMainCategory, mainIndex, subCategoryIndex); ///////////////////////
+    }); ///////////////////////
     // SET TIMING OPTIONS
 
     budget._updateSubCategory("Creation", "Timing", {
@@ -5862,8 +5855,7 @@ var insertTiming = function insertTiming(target, inputValues, timing, timingButt
         currentMainCategory = mc;
         mainIndex = i;
       }
-    });
-    console.log(currentMainCategory, mainIndex, subCategoryIndex); // Get Correct Sub Category Index
+    }); // Get Correct Sub Category Index
 
     budget.mainCategories.forEach(function (mc, i) {
       var mainCategoryIndex = i;
@@ -5920,8 +5912,7 @@ var insertTiming = function insertTiming(target, inputValues, timing, timingButt
         currentMainCategory = mc;
         mainIndex = i;
       }
-    });
-    console.log(currentMainCategory, mainIndex, subCategoryIndex); // Get Correct Sub Category Index
+    }); // Get Correct Sub Category Index
 
     budget.mainCategories.forEach(function (mc, i) {
       var mainCategoryIndex = i;
@@ -5973,8 +5964,7 @@ var insertTiming = function insertTiming(target, inputValues, timing, timingButt
         currentMainCategory = mc;
         mainIndex = i;
       }
-    });
-    console.log(currentMainCategory, mainIndex, subCategoryIndex); // Get Correct Sub Category Index
+    }); // Get Correct Sub Category Index
 
     budget.mainCategories.forEach(function (mc, i) {
       var mainCategoryIndex = i;
@@ -6023,7 +6013,6 @@ var insertTiming = function insertTiming(target, inputValues, timing, timingButt
 var watchForSettingTiming = function watchForSettingTiming(budget, index, clickedItem, timing, placeholderBudget, fullBudget) {
   // Getting the timing.
   var timingButtons = document.querySelectorAll('.button--timing-button');
-  console.log(timingButtons);
   var monthlyTimingButton = timingButtons[0];
   var biMonthlyTimingButton = timingButtons[1];
   var biWeeklyTimingButton = timingButtons[2];
@@ -6047,7 +6036,6 @@ var watchForSettingTiming = function watchForSettingTiming(budget, index, clicke
   });
   var timingSubmitButtons = document.querySelectorAll('.button--timing-button-submit');
   var timingSectionInputs = document.querySelectorAll('.timing-container__section__label__input');
-  console.log(timingSectionInputs);
   timingSubmitButtons.forEach(function (tsb) {
     tsb.addEventListener('click', function (e) {
       e.preventDefault();
@@ -6111,8 +6099,7 @@ var setupTimingFunctionContainer = function setupTimingFunctionContainer(contain
   var weeklyTimingButton = timingButtons[3];
   var timingInputButtons = [monthlyTimingButton, biMonthlyTimingButton, biWeeklyTimingButton, weeklyTimingButton];
   var timingLabels = document.querySelectorAll('.timing-container__section__label');
-  var timingSubmitButtons = document.querySelectorAll('.button--timing-button-submit');
-  console.log(timingLabels, timingSubmitButtons); // Monthly Timing
+  var timingSubmitButtons = document.querySelectorAll('.button--timing-button-submit'); // Monthly Timing
 
   var monthlyTimingLabel = timingLabels[0];
   var monthlyTimingSubmit = timingSubmitButtons[0]; // Bi-Monthly Timing
@@ -6288,7 +6275,6 @@ var setupSubCategoryCreation = function setupSubCategoryCreation(budget, index) 
   var mainCategoryIcon = document.querySelector('.budget-creation-container--sub-categories__main-category-display__category-information__icon');
   var mainCategoryText = document.querySelector('.budget-creation-container--sub-categories__main-category-display__category-information__text');
   var borderlessButtons = document.querySelectorAll('.button--borderless');
-  console.log(borderlessButtons);
   var subCategoryStartCreationButton = borderlessButtons[2];
   var subCategoryStopCreationButton = document.querySelector('.button--small-create-sub-category-close');
   var categoryCreationSection = document.querySelector('.form__section--sub-category-creation');
@@ -6631,7 +6617,7 @@ var _watchForBudgetCreation = /*#__PURE__*/function () {
                   if (budget.accounts.emergencyFund.emergencyGoalMeasurement === "Length Of Time") {
                     budget._updateAccounts("Creation", "Emergency Goal", {
                       goal: Number(document.querySelector('#timingNumber').value),
-                      goalTiming: document.querySelector('.budget-creation-form__page__section__select').value
+                      goalTiming: document.querySelector('.form__select').value
                     });
                   }
 
@@ -9692,7 +9678,6 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
             userProfileFormButtons = document.querySelectorAll('.user-profile-form__button');
             userProfileSubSectionFormButtons = document.querySelectorAll('.user-profile-form__section__sub-section__button');
             transparentButtons = document.querySelectorAll('.button--small-transparent');
-            console.log(transparentButtons);
             latterDaySaintSwitch = document.querySelector('.switch--latter-day-saint');
             communicationSwitch = document.getElementById('commSwitch');
             transparentButtons.forEach(function (b, i) {
@@ -9844,7 +9829,7 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
               };
             }());
 
-          case 8:
+          case 7:
           case "end":
             return _context9.stop();
         }
