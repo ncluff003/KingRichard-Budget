@@ -1,9 +1,9 @@
 section.budget-container.r__budget-container.column_1-20.row_1-16
   include _budget-navigation
   section.budget-container__navigation-button-container.r__budget-container__navigation-button-container
-    button.budget-container__navigation-button-container__button.r__budget-container__navigation-button-container__button(type="button")
+    button.button--budget-navigation.r__button--budget-navigation(type="button")
       .budget-container__navigation-button-container__button__icon.r__budget-container__navigation-button-container__button__icon  
     p.budget-container__navigation-button-container__text.r__budget-container__navigation-button-container #{data.budget.name}
   block Budget-Content 
-    section.budget-container__dashboard.r__budget-container__dashboard
+    section.budget-dashboard.r__budget-dashboard
       include ./Budget-Dashboard/_budget-dashboard

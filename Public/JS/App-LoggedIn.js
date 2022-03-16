@@ -137,7 +137,7 @@ export const _watchUserProfileButtons = (communicationPreference) => {
   const userProfileHeader = document.querySelector('.user-profile-section__header__text');
   const userProfileContainer = document.querySelector('.user-profile-section');
   const userProfileContainerClose = document.querySelector('.user-profile-closure-icon');
-  const userProfileButtons = document.querySelectorAll('.application-navigation__section--account-links__link-container__link--link');
+  const userProfileButtons = document.querySelectorAll('.navigation--side-screen__section--account-links__link-container__link--link');
   const latterDaySaintSwitch = document.querySelector('.switch--latter-day-saint');
   if (userProfileButtons[0]) {
     userProfileButtons.forEach((pb, i) => {

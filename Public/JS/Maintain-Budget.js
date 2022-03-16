@@ -994,16 +994,17 @@ const _watchForTransactions = (arrayOfArrays) => {
 };
 
 const _watchBudgetNavigation = () => {
-  const budgetNavButton = document.querySelector('.budget-container__navigation-button-container__button');
-  const budgetNavigation = document.querySelector('.budget-navigation');
-  const linkButtons = document.querySelectorAll('.budget-navigation__link-list__list-item__link-button');
+  const budgetNavButton = document.querySelector('.button--budget-navigation');
+  const budgetNavigation = document.querySelector('.navigation');
+  const linkButtons = document.querySelectorAll('.navigation__link-list__list-item__link-button');
 
   if (budgetNavButton) {
     budgetNavButton.addEventListener('click', (e) => {
       e.preventDefault();
-      budgetNavButton.classList.toggle('budget-container__navigation-button-container__button--clicked');
-      budgetNavigation.classList.toggle('budget-navigation--visible');
-      if (!budgetNavButton.classList.contains('budget-navigation--visible')) linkButtons.forEach((lb) => lb.closest('li').nextSibling.classList.remove('revealed'));
+      budgetNavButton.classList.toggle('button--budget-navigation--clicked');
+      budgetNavigation.classList.toggle('closed');
+      budgetNavigation.classList.toggle('open-navigation');
+      if (!budgetNavButton.classList.contains('budget-navigation--visible')) linkButtons.forEach((lb) => lb.closest('li').nextSibling.classList.add('closed'));
     });
   }
   if (linkButtons) {
@@ -1013,10 +1014,14 @@ const _watchBudgetNavigation = () => {
         const clicked = e.target.closest('li');
         const siblingLinkContainer = clicked.nextSibling;
         linkButtons.forEach((lb) => {
-          lb.closest('li').nextSibling.classList.remove('revealed');
+          lb.closest('li').nextSibling.classList.add('closed');
+          lb.closest('li').nextSibling.classList.remove('open');
           console.log(lb.closest('li'));
         });
-        !siblingLinkContainer.classList.contains('revealed') ? siblingLinkContainer.classList.toggle('revealed') : siblingLinkContainer.classList.remove('revealed');
+        if (!siblingLinkContainer.classList.contains('open')) {
+          siblingLinkContainer.classList.toggle('closed');
+          siblingLinkContainer.classList.toggle('open');
+        }
       });
     });
   }

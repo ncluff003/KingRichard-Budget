@@ -14,6 +14,43 @@ html {
   .application-flex-container {
     .application-viewport {
       .application-display {
+        .navigation {
+          &__link-list {
+            &__list-item {
+              &__link,
+              &__link-button {
+                font-family: MADE Tommy Soft, Verdana, sans-serif;
+                font-size: 2.4rem;
+                text-decoration: none;
+                color: rgba($colorOffWhite, 0.8);
+                &:hover {
+                  color: $colorOffWhite;
+                }
+                &:active {
+                  color: $colorDarkerGrey;
+                }
+              }
+              &__sub-link-container {
+                font-family: MADE Tommy Soft, Verdana, sans-serif;
+                font-size: 2rem;
+                &__sub-link {
+                  color: rgba($colorOffWhite, 0.8);
+                  text-decoration: none;
+                }
+                &:hover {
+                  .budget-navigation__link-lidt__link-item__sub-link-container__sub-link {
+                    color: $colorOffWhite;
+                  }
+                }
+                &:active {
+                  .budget-navigation__link-lidt__link-item__sub-link-container__sub-link {
+                    color: $colorDarkerGrey;
+                  }
+                }
+              }
+            }
+          }
+        }
         .budget-creation-form-container {
           .form-close-icon,
           .budget-creation-form-close-icon {
@@ -1248,63 +1285,97 @@ html {
   color: $primaryColor;
 }
 
-// APPLICATION NAVIGATION
-.application-navigation {
-  &__section {
-    &--user-information {
-      font-family: MADE Tommy Soft, Verdana, sans-serif;
-      &__update-picture {
+// NAVIGATION
+.navigation {
+  &__link-list {
+    &__list-item {
+      &__link,
+      &__link-button {
+        font-family: MADE Tommy Soft, Verdana, sans-serif;
+        font-size: 2.4rem;
+        text-decoration: none;
         color: rgba($colorOffWhite, 0.8);
-        &--icon {
-          font-size: 1.6rem;
+        &:hover {
+          color: $colorOffWhite;
         }
-        &--text {
-          font-size: 1.6rem;
+        &:active {
+          color: $colorDarkerGrey;
+        }
+      }
+      &__sub-link-container {
+        font-family: MADE Tommy Soft, Verdana, sans-serif;
+        font-size: 2rem;
+        &__sub-link {
+          color: rgba($colorOffWhite, 0.8);
+          text-decoration: none;
         }
         &:hover {
-          .app-navigation__main__user-information__update-picture--icon,
-          .app-navigation__main__user-information__update-picture--text {
+          .budget-navigation__link-lidt__link-item__sub-link-container__sub-link {
             color: $colorOffWhite;
           }
         }
-      }
-      &__username {
-        font-size: 3.6rem;
-        color: $colorOffWhite;
-      }
-    }
-    &--account-links {
-      font-family: MADE Tommy Soft, Verdana, sans-serif;
-      &__link-container {
-        &__link {
-          &--link {
-            font-size: 2rem;
-            color: rgba($colorOffWhite, 0.8);
-            &:link,
-            &:visited {
-              text-decoration: none;
-              color: rgba($colorOffWhite, 0.8);
-            }
-            &:hover {
-              color: $colorOffWhite;
-            }
-            &:active {
-              color: $colorDarkGrey;
-            }
+        &:active {
+          .budget-navigation__link-lidt__link-item__sub-link-container__sub-link {
+            color: $colorDarkerGrey;
           }
         }
       }
     }
-    &--application-logo {
-      &__text {
-        font-size: 3rem;
-        color: $colorOffWhite;
+  }
+  &--side-screen {
+    @extend .navigation;
+    &__section {
+      &--user-information {
+        font-family: MADE Tommy Soft, Verdana, sans-serif;
+        &__update-picture {
+          color: rgba($colorOffWhite, 0.8);
+          &--icon {
+            font-size: 1.6rem;
+          }
+          &--text {
+            font-size: 1.6rem;
+          }
+          &:hover {
+            .navigation--side-screen__section--user-information__update-picture--icon,
+            .navigation--side-screen__section--user-information__update-picture--text {
+              color: $colorOffWhite;
+            }
+          }
+        }
+        &__username {
+          font-size: 3.6rem;
+          color: $colorOffWhite;
+        }
+      }
+      &--account-links {
+        font-family: MADE Tommy Soft, Verdana, sans-serif;
+        &__link-container {
+          &__link {
+            &--link {
+              font-size: 2rem;
+              color: rgba($colorOffWhite, 0.8);
+              &:link,
+              &:visited {
+                text-decoration: none;
+                color: rgba($colorOffWhite, 0.8);
+              }
+              &:hover {
+                color: $colorOffWhite;
+              }
+              &:active {
+                color: $colorDarkGrey;
+              }
+            }
+          }
+        }
+      }
+      &--application-logo {
+        &__text {
+          font-size: 3rem;
+          color: $colorOffWhite;
+        }
       }
     }
-  }
-  &__navigation-links {
-  }
-  &__logo-container {
   }
 }
 

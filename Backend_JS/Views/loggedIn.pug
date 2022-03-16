@@ -3,27 +3,27 @@ extends base
 block App-Content 
   section.master-grid-container.r__master-grid-container
     section.application-flex-container.r__application-flex-container.column_1-24.row_1-18 
-      nav.application-navigation.r__application-navigation
-        section.application-navigation__section.r__application-navigation__section.application-navigation__section--user-information.r__application-navigation__section--user-information
-          section.application-navigation__section--user-information__profile-picture-container.r__application-navigation__section--user-information__profile-picture-container 
-            img.application-navigation__section--user-information__profile-picture-container__picture.r__application-navigation__section--user-information__profile-picture-container__picture(src=`/DIST/CSS/Images/Users/${data.user.photo}`)
+      nav.navigation--side-screen.r__navigation--side-screen
+        section.navigation--side-screen__section--user-information.r__navigation--side-screen__section--user-information
+          section.navigation--side-screen__section--user-information__profile-picture-container.r__navigation--side-screen__section--user-information__profile-picture-container 
+            img.navigation--side-screen__section--user-information__profile-picture-container__picture.r__navigation--side-screen__section--user-information__profile-picture-container__picture(src=`/DIST/CSS/Images/Users/${data.user.photo}`)
           button.button.r__button.button--extra-small.r__button--extra-small
             i.fas.fa-camera.button--extra-small--icon.r__button--extra-small--icon
             p.button--extra-small--text.r__button--extra-small--text Update Photo
-          p.application-navigation__section--user-information__username.r__application-navigation__section--user-information__username= `${data.user.firstname} ${data.user.lastname}`
-        section.application-navigation__section.r__application-navigation__section.application-navigation__section--account-links.r__application-navigation__section--account-links 
-          ul.application-navigation__section--account-links__link-container.r__application-navigation__section--account-links__link-container
-            li.application-navigation__section--account-links__link-container__link.r__application-navigation__section--account-links__link-container__link
-              button.application-navigation__section--account-links__link-container__link--link.r__application-navigation__section--account-links__link-container__link--link(href="#") Personal Information 
-            li.application-navigation__section--account-links__link-container__link.r__application-navigation__section--account-links__link-container__link
-              button.application-navigation__section--account-links__link-container__link--link.r__application-navigation__section--account-links__link-container__link--link(href="#") Communications
-            li.application-navigation__section--account-links__link-container__link.r__application-navigation__section--account-links__link-container__link
-              button.application-navigation__section--account-links__link-container__link--link.r__application-navigation__section--account-links__link-container__link--link(href="#") Password Management
-            li.application-navigation__section--account-links__link-container__link.r__application-navigation__section--account-links__link-container__link
-              button.application-navigation__section--account-links__link-container__link--link.r__application-navigation__section--account-links__link-container__link--link(href="#") Account Management
-        section.application-navigation__section.r__application-navigation__section.application-navigation__section--application-logo.r__application-navigation__section--application-logo  
-          img.application-navigation__section--application-logo__logo.r__application-navigation__section--application-logo__logo(src="/KingRichard-Logo-White.svg")
-          p.application-navigation__section--application-logo__text.r__application-navigation__section--application-logo__text King Richard              
+          p.navigation--side-screen__section--user-information__username.r__navigation--side-screen__section--user-information__username= `${data.user.firstname} ${data.user.lastname}`
+        section.navigation--side-screen__section--account-links.r__navigation--side-screen__section--account-links 
+          ul.navigation--side-screen__section--account-links__link-container.r__navigation--side-screen__section--account-links__link-container
+            li.navigation--side-screen__section--account-links__link-container__link.r__navigation--side-screen__section--account-links__link-container__link
+              button.navigation--side-screen__section--account-links__link-container__link--link.r__navigation--side-screen__section--account-links__link-container__link--link(href="#") Personal Information 
+            li.navigation--side-screen__section--account-links__link-container__link.r__navigation--side-screen__section--account-links__link-container__link
+              button.navigation--side-screen__section--account-links__link-container__link--link.r__navigation--side-screen__section--account-links__link-container__link--link(href="#") Communications
+            li.navigation--side-screen__section--account-links__link-container__link.r__navigation--side-screen__section--account-links__link-container__link
+              button.navigation--side-screen__section--account-links__link-container__link--link.r__navigation--side-screen__section--account-links__link-container__link--link(href="#") Password Management
+            li.navigation--side-screen__section--account-links__link-container__link.r__navigation--side-screen__section--account-links__link-container__link
+              button.navigation--side-screen__section--account-links__link-container__link--link.r__navigation--side-screen__section--account-links__link-container__link--link(href="#") Account Management
+        section.application-navigation__section--application-logo.r__application-navigation__section--application-logo  
+          img.navigation--side-screen__section--application-logo__logo.r__navigation--side-screen__section--application-logo__logo(src="/KingRichard-Logo-White.svg")
+          p.navigation--side-screen__section--application-logo__text.r__navigation--side-screen__section--application-logo__text King Richard              
       section.application-viewport.r__application-viewport
         img.application-logo.r__application-logo(src="/KingRichard-Logo.svg")
         p.application-name.r__application-name King Richard 

@@ -2,703 +2,601 @@
 @use '../../../Public/SCSS/Utilities/Variables' as *;
 
 ////////////////////////////////////////////////
-//  Master Grid Container
-.master-grid-container {
-  .application-flex-container {
-    .application-viewport {
-      .budget-container {
-        @include SizeAndPositioning(relative, 100%, 100%, flex, row, wrap, space-evenly, center, 0, 0, 0);
-        overflow-y: auto;
-        .budget-navigation {
-          @include SizeAndPositioning(relative, 100%, 100%, none, column, nowrap, center, center, 0, 0, 0);
-          background-color: rgba($primaryColorDark, 0.9);
-          opacity: 0;
-          transition: opacity 0.5s;
-          &__link-list {
-            @include SizeAndPositioning(relative, 85%, 50%, flex, column, nowrap, flex-start, center, 0, 0, 0);
-            overflow-y: auto;
-            &__list-item {
-              @include SizeAndPositioning(relative, max-content, 60%, flex, row, nowrap, center, center, 0, 0, 0);
-              min-height: 12.5%;
-              &:first-of-type {
-                margin-top: 0;
-              }
-              &:nth-of-type(4),
-              &:nth-of-type(6),
-              &:nth-of-type(8) {
-                flex-direction: column;
-                align-items: flex-end;
-                padding-right: 2rem;
-                display: none;
-                opacity: 0;
-              }
-              &:nth-of-type(4) {
-                margin: 3rem 0;
-              }
-              &:nth-of-type(6) {
-                min-height: 9%;
-              }
-              &:nth-of-type(8) {
-                margin: 11rem 0;
-              }
-              margin: 0.5rem 0;
-              &:last-of-type {
-                margin-bottom: 0;
-              }
-              list-style: none;
-              &__link,
-              &__link-button {
-                @include SizeAndPositioning(relative, 100%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
-                min-height: 8.345rem;
-                border-radius: 1.5rem;
-                border: 0.3rem solid rgba($colorOffWhite, 0.8);
-                background-color: rgba($primaryColorDarker, 0.8);
-                &:hover {
-                  cursor: pointer;
-                  border: 0.3rem solid $colorOffWhite;
-                  background-color: $secondaryColor;
-                  transition: border 0.5s, background-color 0.5s, color 0.5s;
-                  .budget-navigation__link-list__link-item__sub-link-container__sub-link {
-                    transition: border 0.5s, background-color 0.5s, color 0.5s;
-                  }
-                }
-                &:active {
-                  background-color: $tertiaryColor;
-                  .budget-navigation__link-list__link-item__sub-link-container__sub-link {
-                    background-color: $tertiaryColor;
-                  }
-                }
-              }
-              &__sub-link-container {
-                @include SizeAndPositioning(relative, 6.676rem, 60%, flex, column, nowrap, center, center, 0, 0, 0);
-                min-height: 6.676rem;
-                border-radius: 1.5rem;
-                border: 0.3rem solid rgba($colorOffWhite, 0.8);
-                background-color: rgba($primaryColorDarker, 0.8);
-                margin: 0.5rem 0;
-                &:hover {
-                  cursor: pointer;
-                  border: 0.3rem solid $colorOffWhite;
-                  background-color: $secondaryColor;
-                  transition: border 0.5s, background-color 0.5s, color 0.5s;
-                }
-                &:active {
-                  background-color: $tertiaryColor;
-                }
-                &__sub-link {
-                  @include SizeAndPositioning(relative, 100%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
-                }
-              }
-            }
-            .revealed {
-              display: flex;
-              opacity: 1;
-            }
-          }
-          &--visible {
-            display: flex;
-            opacity: 1;
-            position: sticky;
-            top: 0;
-            z-index: 10;
+//  BUDGET CONTAINER
+.budget-container {
+  &__navigation-button-container {
+    @include SizeAndPositioning(absolute, 7rem, 20%, flex, row, nowrap, space-between, center, 0, 0, 0);
+    top: 3rem;
+    left: 3rem;
+    padding: 1rem;
+    z-index: 10;
+    &__text {
+      transition: color 0.5s;
+    }
+    &__button {
+      @include SizeAndPositioning(relative, 0.75rem, 30%, flex, row, nowrap, center, center, 0, 0, 0);
+      z-index: 10;
+      background-color: rgba($primaryColor, 0.8);
+      border-radius: 0.4rem;
+      border: none;
+      transition: background-color 0.5s, width 0.5s;
+      &:before,
+      &:after {
+        content: '';
+        z-index: 10;
+        background-color: rgba($primaryColor, 0.8);
+        border-radius: 0.4rem;
+        border: none;
+        left: 0;
+      }
+      &:before {
+        @include SizeAndPositioning(absolute, 0.75rem, 50%, flex, row, nowrap, center, center, 0, -1.5rem, 0);
+        transition: background-color 0.5s, width 0.5s, transform 0.5s;
+      }
+      &:after {
+        @include SizeAndPositioning(absolute, 0.75rem, 75%, flex, row, nowrap, center, center, 0, 1.5rem, 0);
+        transition: background-color 0.5s, width 0.5s, transform 0.5s;
+      }
+      &:hover {
+        cursor: pointer;
+        width: 25%;
+        &:before {
+          width: 100%;
+        }
+        &:after {
+          width: 100%;
+        }
+      }
+      &--clicked {
+        background-color: transparent;
+        &:before {
+          transform: translate(0.5rem, 0) rotate(45deg);
+          background-color: $colorOffWhite;
+          width: 90%;
+        }
+        &:after {
+          transform: translate(0.5rem, 0) rotate(-45deg);
+          background-color: $colorOffWhite;
+          width: 90%;
+        }
+        &:hover {
+          &:before,
+          &:after {
+            width: 100%;
           }
         }
-        &__navigation-button-container {
-          @include SizeAndPositioning(absolute, 7rem, 20%, flex, row, nowrap, space-between, center, 0, 0, 0);
-          top: 3rem;
-          left: 3rem;
-          padding: 1rem;
-          z-index: 10;
-          &__text {
-            transition: color 0.5s;
-          }
-          &__button {
-            @include SizeAndPositioning(relative, 0.75rem, 30%, flex, row, nowrap, center, center, 0, 0, 0);
-            z-index: 10;
-            background-color: rgba($primaryColor, 0.8);
-            border-radius: 0.4rem;
-            border: none;
-            transition: background-color 0.5s, width 0.5s;
-            &:before,
-            &:after {
-              content: '';
-              z-index: 10;
-              background-color: rgba($primaryColor, 0.8);
-              border-radius: 0.4rem;
-              border: none;
-              left: 0;
-            }
-            &:before {
-              @include SizeAndPositioning(absolute, 0.75rem, 50%, flex, row, nowrap, center, center, 0, -1.5rem, 0);
-              transition: background-color 0.5s, width 0.5s, transform 0.5s;
-            }
-            &:after {
-              @include SizeAndPositioning(absolute, 0.75rem, 75%, flex, row, nowrap, center, center, 0, 1.5rem, 0);
-              transition: background-color 0.5s, width 0.5s, transform 0.5s;
-            }
-            &:hover {
-              cursor: pointer;
-              width: 25%;
-              &:before {
-                width: 100%;
-              }
-              &:after {
-                width: 100%;
-              }
-            }
-            &--clicked {
-              background-color: transparent;
-              &:before {
-                transform: translate(0.5rem, 0) rotate(45deg);
-                background-color: $colorOffWhite;
-                width: 90%;
-              }
-              &:after {
-                transform: translate(0.5rem, 0) rotate(-45deg);
-                background-color: $colorOffWhite;
-                width: 90%;
-              }
-              &:hover {
-                &:before,
-                &:after {
-                  width: 100%;
-                }
-              }
-            }
-          }
-        }
-        &__dashboard {
-          @include SizeAndPositioning(relative, min-content, 100%, flex, row, wrap, space-evenly, flex-start, 0, 0, 0);
-          padding: 12rem 10rem 10rem;
-          &__container {
-            &--extra-small {
-              @include SizeAndPositioning(relative, 22.5rem, 35rem, flex, column, nowrap, space-between, center, 0, 0, 0);
-              padding: 0.2rem;
-              border: 0.3rem solid $primaryColor;
-              border-radius: 0.5rem;
-              background-color: rgba($colorOffWhite, 0.8);
-              &__header {
-                @include SizeAndPositioning(relative, 25%, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
-                border-top-left-radius: 0.25rem;
-                border-top-right-radius: 0.25rem;
-                padding: 0 1.5rem;
-                background-color: $primaryColor;
-                border-bottom: 0.3rem solid $tertiaryColor;
-              }
-              &__content {
-                @include SizeAndPositioning(relative, 75%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
-              }
-              margin-bottom: 5rem;
-            }
-            &--small {
-              @include SizeAndPositioning(relative, 45rem, 55.8rem, flex, column, nowrap, space-between, center, 0, 0, 0);
-              padding: 0.2rem;
-              border: 0.3rem solid $primaryColor;
-              border-radius: 0.5rem;
-              background-color: rgba($colorOffWhite, 0.8);
-              &__header {
-                @include SizeAndPositioning(relative, 15%, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
-                border-top-left-radius: 0.25rem;
-                border-top-right-radius: 0.25rem;
-                padding: 0 1.5rem;
-                background-color: $primaryColor;
-                border-bottom: 0.3rem solid $tertiaryColor;
-                min-height: 15%;
-              }
-              &__content {
-                @include SizeAndPositioning(relative, 75%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
-              }
-              &__transaction-total {
-                @include SizeAndPositioning(relative, 37%, 100%, flex, column, nowrap, space-around, center, 0, 0, 0);
-                min-height: 20%;
-                background-color: $primaryColor;
-                border-bottom-left-radius: 0.4rem;
-                border-bottom-right-radius: 0.4rem;
-              }
-              margin-bottom: 5rem;
-
-              &-wide {
-                @include SizeAndPositioning(relative, 45rem, calc((55.8rem * 2) + 7rem), flex, row, nowrap, space-between, center, 0, 0, 0);
-                padding: 0.2rem;
-                border: 0.3rem solid $primaryColor;
-                border-radius: 0.5rem;
-                margin-bottom: 5rem;
-                background-color: rgba($colorOffWhite, 0.8);
-                .bill-calendar-container {
-                  @include SizeAndPositioning(relative, 100%, 50%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
-                  &:first-of-type {
-                    border-top-left-radius: 0.25rem;
-                    width: 35%;
-                  }
-                  &:nth-of-type(2) {
-                    border-top-right-radius: 0.25rem;
-                    width: 65%;
-                  }
-                  &__header {
-                    @include SizeAndPositioning(relative, 15%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
-                    padding: 0 1.5rem;
-                    background-color: $primaryColor;
-                    border-bottom: 0.3rem solid $tertiaryColor;
-                    min-height: 15%;
-                    &__icon {
-                      @include SizeAndPositioning(absolute, 100%, 6rem, flex, row, nowrap, center, center, 0, -50%, 0);
-                      top: 50%;
-                      left: 0;
-                    }
-                  }
-                  &__calendar-container {
-                    @include SizeAndPositioning(relative, 85%, 100%, flex, column, nowrap, center, center, 0, 0, 0);
-                    background-color: rgba($colorLightestGrey, 0.25);
-                    border-right: 0.2rem groove $primaryColor;
-                    padding: 3rem;
-                    &__calendar {
-                      @include SizeAndPositioning(relative, 100%, 100%, flex, column, nowrap, center, center, 0, 0, 0);
-                      padding: 0.2rem;
-                      &__header {
-                        @include SizeAndPositioning(relative, 20%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
-                        &__icon {
-                          margin: 0 1rem;
-                          &:hover {
-                            cursor: pointer;
-                            transition: color 0.5s;
-                          }
-                        }
-                      }
-                      &__weekdays {
-                        @include SizeAndPositioning(relative, 15%, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
-                        background-color: $primaryColor;
-                        margin-bottom: 0.2rem;
-                        &__weekday {
-                          @include SizeAndPositioning(relative, 100%, calc(100% / 7), flex, row, nowrap, center, center, 0, 0, 0);
-                        }
-                      }
-                      &__days {
-                        @include SizeAndPositioning(relative, 70%, 100%, grid, row, wrap, space-evenly, center, 0, 0, 0);
-                        @include gridLayout(100%, 100%, repeat(7, 1fr), repeat(6, 1fr), 0.2rem, 0.2rem);
-                        @include gridPlacement(7, 7, 5, 5);
-                        &__single-day {
-                          @include SizeAndPositioning(relative, 100%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
-                          border: 0.1rem solid $primaryColor;
-                          &:nth-of-type(7n + 1) {
-                            border-left: 0.2rem solid $primaryColor;
-                          }
-                          &:nth-of-type(7n) {
-                            border-right: 0.2rem solid $primaryColor;
-                          }
-                          &:hover {
-                            cursor: pointer;
-                            background-color: $primaryColor;
-                            transition: background-color 0.5s, color 0.5s;
-                          }
-                          &--current-day {
-                            background-color: rgba($primaryColor, 0.75);
-                          }
-                        }
-                        .un-used-day {
-                          @include SizeAndPositioning(relative, 100%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
-                          border: none;
-                          &:hover {
-                            cursor: default;
-                            background-color: transparent;
-                            transition: background-color 0.5s, color 0.5s;
-                          }
-                        }
-                      }
-                    }
-                  }
-                  &__upcoming-bills {
-                    @include SizeAndPositioning(relative, 85%, 100%, flex, column, nowrap, flex-start, center, 0, 0, 0);
-                    background-color: rgba($colorLightestGrey, 0.25);
-                    padding-top: 0.4rem;
-                    &__titles {
-                      @include SizeAndPositioning(relative, 4.4rem, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
-                      background-color: rgba($colorLightestGrey, 0.5);
-                      padding-bottom: 0.2rem;
-                      border-bottom: 0.2rem solid $primaryColor;
-                      &__title {
-                        @include SizeAndPositioning(relative, 100%, calc(20% - 0.4rem), flex, row, nowrap, center, center, 0, 0, 0);
-                        background-color: $primaryColor;
-                        border-top-left-radius: 0.5rem;
-                        border-top-right-radius: 0.5rem;
-                      }
-                    }
-                    &__bills {
-                      @include SizeAndPositioning(relative, min-content, 100%, flex, row, nowrap, center, center, 0, 0, 0);
-                      padding: 0 0.3rem;
-                      &__bill {
-                        @include SizeAndPositioning(relative, 7rem, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
-                        min-height: 7rem;
-                        background-color: rgba($colorLightestGrey, 0.25);
-                        &:nth-of-type(2n) {
-                          background-color: rgba($colorLightestGrey, 0.5);
-                        }
-                        &__bill-item {
-                          @include SizeAndPositioning(relative, 100%, 20%, flex, column, wrap, center, center, 0, 0, 0);
-                          &:nth-of-type(5) {
-                            .bill-calendar-container__upcoming-bills__bills__bill__bill-item__checkbox-container {
-                              @include SizeAndPositioning(relative, 100%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
-                              input[type='checkbox'] {
-                                margin-right: 0.5rem;
-                                appearance: none;
-                                -webkit-appearance: none;
-                                @include SizingItem(relative, 2rem, 2rem);
-                                border: 0.2rem solid $primaryColor;
-                                border-radius: 0.25rem;
-                                background-color: transparent;
-                                transition: background-color 0.5s, border 0.5s;
-                                &::after {
-                                  @include SizeAndPositioning(absolute, 100%, 100%, none, row, nowrap, center, center, 0, 0, 0);
-                                  content: '\f00c';
-                                  transition: color 0.5s;
-                                }
-                                &:hover {
-                                  cursor: pointer;
-                                }
-                                &:checked {
-                                  border: 0.2rem solid $secondaryColor;
-                                  background-color: $secondaryColor;
-                                  &:after {
-                                    display: flex;
-                                  }
-                                }
-                              }
-                              &__text {
-                                @include SizeAndPositioning(relative, 50%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
-                              }
-                            }
-                          }
-                        }
-                        &:hover {
-                          cursor: pointer;
-                          background-color: $primaryColor;
-                          transition: color 0.5s, background-color 0.5s;
-                          .bill-calendar-container__upcoming-bills__bills__bill__bill-item {
-                            input[type='checkbox'] {
-                              border: 0.2rem solid $colorOffWhite;
-                              transition: border 0.5s, background-color 0.5s;
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-            &--large {
-              @include SizeAndPositioning(relative, calc(45rem * 1.5), calc((55.8rem * 2) + 7rem), flex, column, nowrap, space-between, center, 0, 0, 0);
-              border: 0.3rem solid $primaryColor;
-              border-radius: 0.5rem;
-              padding: 0.2rem;
-              margin-bottom: 5rem;
-              background-color: rgba($colorOffWhite, 0.8);
-              &__header {
-                @include SizeAndPositioning(relative, 10%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
-                padding: 0 1.5rem;
-                background-color: $primaryColor;
-                border-bottom: 0.3rem solid $tertiaryColor;
-                min-height: 8%;
-                &__icon {
-                  @include SizeAndPositioning(absolute, 100%, 6rem, flex, row, nowrap, center, center, 0, -50%, 0);
-                  top: 50%;
-                  left: 0;
-                }
-              }
-              &__budget-goal-summary-container {
-                @include SizeAndPositioning(relative, 14rem, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
-                .budget-single-goal-summary {
-                  @include SizeAndPositioning(relative, 100%, 19%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
-                  background-color: $colorLightestGrey;
-                  &__title,
-                  &__amount {
-                    @include SizeAndPositioning(relative, 50%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
-                  }
-                }
-              }
-              &__category-container {
-                @include SizeAndPositioning(relative, 47rem, 100%, flex, row, nowrap, center, center, 0, 0, 0);
-                padding: 1.5rem;
-                .main-category-display {
-                  @include SizeAndPositioning(relative, 100%, 40%, flex, row, nowrap, center, center, 0, 0, 0);
-                  &__button-container {
-                    @include SizeAndPositioning(relative, 100%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
-                  }
-                  &__category-display {
-                    @include SizeAndPositioning(relative, 100%, 60%, flex, column, nowrap, center, center, 0, 0, 0);
-                    &__title {
-                      margin-top: 2rem;
-                    }
-                  }
-                }
-                .main-category-display {
-                  @include SizeAndPositioning(relative, 100%, 40%, flex, row, nowrap, center, center, 0, 0, 0);
-                  &__button-container {
-                    @include SizeAndPositioning(relative, 100%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
-                    .left,
-                    .right {
-                      &:hover {
-                        cursor: pointer;
-                        transition: color 0.5s;
-                      }
-                    }
-                  }
-                  &__category-display {
-                    @include SizeAndPositioning(relative, 100%, 60%, flex, column, nowrap, center, center, 0, 0, 0);
-                    &__title {
-                      margin-top: 2rem;
-                    }
-                  }
-                }
-                .sub-category-display {
-                  @include SizeAndPositioning(relative, 100%, 60%, flex, column, nowrap, flex-start, center, 0, 0, 0);
-                  margin-left: 1.5rem;
-                  overflow-y: auto;
-                  &__headers {
-                    @include SizeAndPositioning(relative, 4rem, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
-                    min-height: 4rem;
-                    &__title-container {
-                      @include SizeAndPositioning(relative, 100%, 19.5%, flex, row, nowrap, center, center, 0, 0, 0);
-                      background-color: $primaryColor;
-                    }
-                  }
-                  &__sub-category {
-                    @include SizeAndPositioning(relative, 6rem, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
-                    min-height: 10rem;
-                    background-color: rgba($colorLightestGrey, 0.25);
-                    &:nth-of-type(2n) {
-                      background-color: rgba($colorLightestGrey, 0.5);
-                    }
-                    &__section {
-                      @include SizeAndPositioning(relative, 100%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
-                    }
-                    &:hover {
-                      cursor: pointer;
-                      .sub-category-display__sub-category__section {
-                        background-color: $primaryColor;
-                        transition: background-color 0.5s, color 0.5s;
-                      }
-                    }
-                    &--hidden {
-                      display: none;
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
+      }
+    }
+  }
+  .budget-dashboard {
+    @include SizeAndPositioning(relative, min-content, 100%, flex, row, wrap, space-evenly, flex-start, 0, 0, 0);
+    padding: 12rem 10rem 10rem;
+    &__container {
+      &--extra-small {
+        @include SizeAndPositioning(relative, 22.5rem, 35rem, flex, column, nowrap, space-between, center, 0, 0, 0);
+        padding: 0.2rem;
+        border: 0.3rem solid $primaryColor;
+        border-radius: 0.5rem;
+        background-color: rgba($colorOffWhite, 0.8);
         &__header {
-          @include SizeAndPositioning(relative, 15%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
-          background-color: rgba($colorLightestGrey, 0.3);
+          @include SizeAndPositioning(relative, 25%, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
+          border-top-left-radius: 0.25rem;
+          border-top-right-radius: 0.25rem;
+          padding: 0 1.5rem;
+          background-color: $primaryColor;
+          border-bottom: 0.3rem solid $tertiaryColor;
         }
-        &__budget-management-container {
-          @include SizeAndPositioning(relative, 85%, 100%, flex, row, wrap, center, center, 0, 0, 0);
-          background-color: rgba($colorLightestGrey, 0.3);
-          &--extra-small {
-            @include SizeAndPositioning(relative, 22.5rem, 35rem, flex, column, nowrap, space-between, center, 0, 0, 0);
-            padding: 0.2rem;
-            border: 0.3rem solid $primaryColor;
-            border-radius: 0.5rem;
-            background-color: rgba($colorLightestGrey, 0.25);
-            margin: 0 6rem;
-            &__header {
-              @include SizeAndPositioning(relative, 25%, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
+        &__content {
+          @include SizeAndPositioning(relative, 75%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+        }
+        margin-bottom: 5rem;
+      }
+      &--small {
+        @include SizeAndPositioning(relative, 45rem, 55.8rem, flex, column, nowrap, space-between, center, 0, 0, 0);
+        padding: 0.2rem;
+        border: 0.3rem solid $primaryColor;
+        border-radius: 0.5rem;
+        background-color: rgba($colorOffWhite, 0.8);
+        &__header {
+          @include SizeAndPositioning(relative, 15%, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
+          border-top-left-radius: 0.25rem;
+          border-top-right-radius: 0.25rem;
+          padding: 0 1.5rem;
+          background-color: $primaryColor;
+          border-bottom: 0.3rem solid $tertiaryColor;
+          min-height: 15%;
+        }
+        &__content {
+          @include SizeAndPositioning(relative, 75%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+        }
+        &__transaction-total {
+          @include SizeAndPositioning(relative, 37%, 100%, flex, column, nowrap, space-around, center, 0, 0, 0);
+          min-height: 20%;
+          background-color: $primaryColor;
+          border-bottom-left-radius: 0.4rem;
+          border-bottom-right-radius: 0.4rem;
+        }
+        margin-bottom: 5rem;
+
+        &-wide {
+          @include SizeAndPositioning(relative, 45rem, calc((55.8rem * 2) + 7rem), flex, row, nowrap, space-between, center, 0, 0, 0);
+          padding: 0.2rem;
+          border: 0.3rem solid $primaryColor;
+          border-radius: 0.5rem;
+          margin-bottom: 5rem;
+          background-color: rgba($colorOffWhite, 0.8);
+          .bill-calendar-container {
+            @include SizeAndPositioning(relative, 100%, 50%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+            &:first-of-type {
               border-top-left-radius: 0.25rem;
-              border-top-right-radius: 0.25rem;
-              padding: 0 1.5rem;
-              background-color: $primaryColor;
-              border-bottom: 0.3rem solid $tertiaryColor;
+              width: 35%;
             }
-          }
-        }
-        &__edit-category-goals-container {
-          &--large {
-            @include SizeAndPositioning(relative, calc(45rem * 1.5), calc((55.8rem * 2) + 7rem), flex, column, nowrap, space-between, center, 0, 0, 0);
-            border: 0.3rem solid $primaryColor;
-            border-radius: 0.5rem;
-            padding: 0.2rem;
-            margin-bottom: 5rem;
-            background-color: rgba($colorOffWhite, 0.8);
+            &:nth-of-type(2) {
+              border-top-right-radius: 0.25rem;
+              width: 65%;
+            }
             &__header {
-              @include SizeAndPositioning(relative, 10%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+              @include SizeAndPositioning(relative, 15%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
               padding: 0 1.5rem;
               background-color: $primaryColor;
               border-bottom: 0.3rem solid $tertiaryColor;
-              min-height: 8%;
+              min-height: 15%;
               &__icon {
                 @include SizeAndPositioning(absolute, 100%, 6rem, flex, row, nowrap, center, center, 0, -50%, 0);
                 top: 50%;
                 left: 0;
               }
             }
-            &__budget-goal-summary-container {
-              @include SizeAndPositioning(relative, 14rem, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
-              .budget-single-goal-summary {
-                @include SizeAndPositioning(relative, 100%, 19%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
-                background-color: $colorLightestGrey;
-                &__title,
-                &__amount {
-                  @include SizeAndPositioning(relative, 50%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
-                }
-              }
-            }
-            &__category-container {
-              @include SizeAndPositioning(relative, 47rem, 100%, flex, row, nowrap, center, center, 0, 0, 0);
-              padding: 1.5rem;
-              .main-category-display {
-                @include SizeAndPositioning(relative, 100%, 40%, flex, row, nowrap, center, center, 0, 0, 0);
-                &__button-container {
-                  @include SizeAndPositioning(relative, 100%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
-                }
-                &__category-display {
-                  @include SizeAndPositioning(relative, 100%, 60%, flex, column, nowrap, center, center, 0, 0, 0);
-                  &__title {
-                    margin-top: 2rem;
-                  }
-                }
-              }
-              .main-category-display {
-                @include SizeAndPositioning(relative, 100%, 40%, flex, row, nowrap, center, center, 0, 0, 0);
-                &__button-container {
-                  @include SizeAndPositioning(relative, 100%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
-                  .left,
-                  .right {
+            &__calendar-container {
+              @include SizeAndPositioning(relative, 85%, 100%, flex, column, nowrap, center, center, 0, 0, 0);
+              background-color: rgba($colorLightestGrey, 0.25);
+              border-right: 0.2rem groove $primaryColor;
+              padding: 3rem;
+              &__calendar {
+                @include SizeAndPositioning(relative, 100%, 100%, flex, column, nowrap, center, center, 0, 0, 0);
+                padding: 0.2rem;
+                &__header {
+                  @include SizeAndPositioning(relative, 20%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+                  &__icon {
+                    margin: 0 1rem;
                     &:hover {
                       cursor: pointer;
                       transition: color 0.5s;
                     }
                   }
                 }
-                &__category-display {
-                  @include SizeAndPositioning(relative, 100%, 60%, flex, column, nowrap, center, center, 0, 0, 0);
-                  &__title {
-                    margin-top: 2rem;
+                &__weekdays {
+                  @include SizeAndPositioning(relative, 15%, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
+                  background-color: $primaryColor;
+                  margin-bottom: 0.2rem;
+                  &__weekday {
+                    @include SizeAndPositioning(relative, 100%, calc(100% / 7), flex, row, nowrap, center, center, 0, 0, 0);
+                  }
+                }
+                &__days {
+                  @include SizeAndPositioning(relative, 70%, 100%, grid, row, wrap, space-evenly, center, 0, 0, 0);
+                  @include gridLayout(100%, 100%, repeat(7, 1fr), repeat(6, 1fr), 0.2rem, 0.2rem);
+                  @include gridPlacement(7, 7, 5, 5);
+                  &__single-day {
+                    @include SizeAndPositioning(relative, 100%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+                    border: 0.1rem solid $primaryColor;
+                    &:nth-of-type(7n + 1) {
+                      border-left: 0.2rem solid $primaryColor;
+                    }
+                    &:nth-of-type(7n) {
+                      border-right: 0.2rem solid $primaryColor;
+                    }
+                    &:hover {
+                      cursor: pointer;
+                      background-color: $primaryColor;
+                      transition: background-color 0.5s, color 0.5s;
+                    }
+                    &--current-day {
+                      background-color: rgba($primaryColor, 0.75);
+                    }
+                  }
+                  .un-used-day {
+                    @include SizeAndPositioning(relative, 100%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+                    border: none;
+                    &:hover {
+                      cursor: default;
+                      background-color: transparent;
+                      transition: background-color 0.5s, color 0.5s;
+                    }
                   }
                 }
               }
-              .sub-category-display {
-                @include SizeAndPositioning(relative, 100%, 60%, flex, column, nowrap, flex-start, center, 0, 0, 0);
-                margin-left: 1.5rem;
-                overflow-y: auto;
-                &__headers {
-                  @include SizeAndPositioning(relative, 4rem, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
-                  min-height: 4rem;
-                  &__title-container {
-                    @include SizeAndPositioning(relative, 100%, 19.5%, flex, row, nowrap, center, center, 0, 0, 0);
-                    background-color: $primaryColor;
-                  }
+            }
+            &__upcoming-bills {
+              @include SizeAndPositioning(relative, 85%, 100%, flex, column, nowrap, flex-start, center, 0, 0, 0);
+              background-color: rgba($colorLightestGrey, 0.25);
+              padding-top: 0.4rem;
+              &__titles {
+                @include SizeAndPositioning(relative, 4.4rem, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
+                background-color: rgba($colorLightestGrey, 0.5);
+                padding-bottom: 0.2rem;
+                border-bottom: 0.2rem solid $primaryColor;
+                &__title {
+                  @include SizeAndPositioning(relative, 100%, calc(20% - 0.4rem), flex, row, nowrap, center, center, 0, 0, 0);
+                  background-color: $primaryColor;
+                  border-top-left-radius: 0.5rem;
+                  border-top-right-radius: 0.5rem;
                 }
-                &__sub-category {
-                  @include SizeAndPositioning(relative, 6rem, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
-                  min-height: 10rem;
+              }
+              &__bills {
+                @include SizeAndPositioning(relative, min-content, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+                padding: 0 0.3rem;
+                &__bill {
+                  @include SizeAndPositioning(relative, 7rem, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
+                  min-height: 7rem;
                   background-color: rgba($colorLightestGrey, 0.25);
                   &:nth-of-type(2n) {
                     background-color: rgba($colorLightestGrey, 0.5);
                   }
-                  &__section {
-                    @include SizeAndPositioning(relative, 100%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
-                    &:first-of-type {
-                      justify-content: space-evenly;
-                      flex-direction: column;
-                      padding: 0.5rem;
-                    }
-                    &__input {
-                      @include SizeAndPositioning(relative, 60%, 80%, flex, row, nowrap, center, center, 0, 0, 0);
-                      background-color: rgba($colorOffWhite, 0.35);
-                      border-radius: 0.5rem;
-                      border: 0.2rem solid rgba($primaryColor, 0.8);
-                      caret-color: $primaryColor;
-
-                      &:focus {
-                        outline: none;
-                        border: 0.2rem solid $primaryColor, 0.8;
-                        background-color: $colorOffWhite;
+                  &__bill-item {
+                    @include SizeAndPositioning(relative, 100%, 20%, flex, column, wrap, center, center, 0, 0, 0);
+                    &:nth-of-type(5) {
+                      .bill-calendar-container__upcoming-bills__bills__bill__bill-item__checkbox-container {
+                        @include SizeAndPositioning(relative, 100%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+                        input[type='checkbox'] {
+                          margin-right: 0.5rem;
+                          appearance: none;
+                          -webkit-appearance: none;
+                          @include SizingItem(relative, 2rem, 2rem);
+                          border: 0.2rem solid $primaryColor;
+                          border-radius: 0.25rem;
+                          background-color: transparent;
+                          transition: background-color 0.5s, border 0.5s;
+                          &::after {
+                            @include SizeAndPositioning(absolute, 100%, 100%, none, row, nowrap, center, center, 0, 0, 0);
+                            content: '\f00c';
+                            transition: color 0.5s;
+                          }
+                          &:hover {
+                            cursor: pointer;
+                          }
+                          &:checked {
+                            border: 0.2rem solid $secondaryColor;
+                            background-color: $secondaryColor;
+                            &:after {
+                              display: flex;
+                            }
+                          }
+                        }
+                        &__text {
+                          @include SizeAndPositioning(relative, 50%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+                        }
                       }
                     }
                   }
                   &:hover {
                     cursor: pointer;
-                    .sub-category-display__sub-category__section {
-                      background-color: $primaryColor;
-                      transition: background-color 0.5s, color 0.5s;
-                      &__input {
-                        border: $colorOffWhite;
-                        &:focus {
-                          outline: none;
-                        }
+                    background-color: $primaryColor;
+                    transition: color 0.5s, background-color 0.5s;
+                    .bill-calendar-container__upcoming-bills__bills__bill__bill-item {
+                      input[type='checkbox'] {
+                        border: 0.2rem solid $colorOffWhite;
+                        transition: border 0.5s, background-color 0.5s;
                       }
                     }
-                  }
-                  &--hidden {
-                    display: none;
-                  }
-                }
-                &__timing-container {
-                  @include SizeAndPositioning(absolute, calc(100% - 4rem), 100%, flex, column, nowrap, flex-start, center, 0, 0, 0);
-                  background-color: rgba($colorOffWhite, 0.9);
-                  min-height: calc(100% - 4rem);
-                  overflow-y: auto;
-                  top: 4rem;
-                  left: 0;
-                  z-index: 10;
-                  &__close {
-                    @include SizeAndPositioning(absolute, 4rem, 4rem, flex, row, nowrap, center, center, 0, 0, 0);
-                    top: 2rem;
-                    right: 2rem;
-                    &:hover {
-                      cursor: pointer;
-                      transition: color 0.5s;
-                    }
-                  }
-                  &__monthly-container,
-                  &__bi-monthly-container,
-                  &__bi-weekly-container,
-                  &__weekly-container {
-                    @include SizeAndPositioning(relative, min-content, 80%, flex, column, nowrap, center, center, 0, 0, 0);
-                    &__label {
-                      @include SizeAndPositioning(relative, 5rem, 60%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
-                      border: 0.3rem solid rgba($primaryColor, 0.8);
-                      border-radius: 0.8rem;
-                      padding: 1rem;
-                      margin: 0.25rem 0;
-                      &:first-of-type {
-                        margin-top: 0.5rem;
-                      }
-                      &:last-of-type {
-                        margin-bottom: 0.5rem;
-                      }
-                      &:focus {
-                        border: 0.3rem solid $primaryColor;
-                      }
-                      &__input,
-                      &__select {
-                        background-color: rgba($colorOffWhite, 0.25);
-                        border: 0.2rem solid rgba($primaryColor, 0.8);
-                        border-radius: 0.6rem;
-                        padding: 0.2rem;
-                        &:focus {
-                          border: 0.2rem solid $primaryColor;
-                          outline: none;
-                        }
-                      }
-                    }
-                    .element-hidden {
-                      display: none;
-                    }
-                  }
-                  &__hidden {
-                    display: none;
                   }
                 }
               }
             }
           }
         }
-        &__update-budget-categories-button-container {
+      }
+      &--large {
+        @include SizeAndPositioning(relative, calc(45rem * 1.5), calc((55.8rem * 2) + 7rem), flex, column, nowrap, space-between, center, 0, 0, 0);
+        border: 0.3rem solid $primaryColor;
+        border-radius: 0.5rem;
+        padding: 0.2rem;
+        margin-bottom: 5rem;
+        background-color: rgba($colorOffWhite, 0.8);
+        &__header {
           @include SizeAndPositioning(relative, 10%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
-          background-color: rgba($colorLightestGrey, 0.3);
+          padding: 0 1.5rem;
+          background-color: $primaryColor;
+          border-bottom: 0.3rem solid $tertiaryColor;
+          min-height: 8%;
+          &__icon {
+            @include SizeAndPositioning(absolute, 100%, 6rem, flex, row, nowrap, center, center, 0, -50%, 0);
+            top: 50%;
+            left: 0;
+          }
+        }
+        &__budget-goal-summary-container {
+          @include SizeAndPositioning(relative, 14rem, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
+          .budget-single-goal-summary {
+            @include SizeAndPositioning(relative, 100%, 19%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+            background-color: $colorLightestGrey;
+            &__title,
+            &__amount {
+              @include SizeAndPositioning(relative, 50%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+            }
+          }
+        }
+        &__category-container {
+          @include SizeAndPositioning(relative, 47rem, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+          padding: 1.5rem;
+          .main-category-display {
+            @include SizeAndPositioning(relative, 100%, 40%, flex, row, nowrap, center, center, 0, 0, 0);
+            &__button-container {
+              @include SizeAndPositioning(relative, 100%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
+            }
+            &__category-display {
+              @include SizeAndPositioning(relative, 100%, 60%, flex, column, nowrap, center, center, 0, 0, 0);
+              &__title {
+                margin-top: 2rem;
+              }
+            }
+          }
+          .main-category-display {
+            @include SizeAndPositioning(relative, 100%, 40%, flex, row, nowrap, center, center, 0, 0, 0);
+            &__button-container {
+              @include SizeAndPositioning(relative, 100%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
+              .left,
+              .right {
+                &:hover {
+                  cursor: pointer;
+                  transition: color 0.5s;
+                }
+              }
+            }
+            &__category-display {
+              @include SizeAndPositioning(relative, 100%, 60%, flex, column, nowrap, center, center, 0, 0, 0);
+              &__title {
+                margin-top: 2rem;
+              }
+            }
+          }
+          .sub-category-display {
+            @include SizeAndPositioning(relative, 100%, 60%, flex, column, nowrap, flex-start, center, 0, 0, 0);
+            margin-left: 1.5rem;
+            overflow-y: auto;
+            &__headers {
+              @include SizeAndPositioning(relative, 4rem, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
+              min-height: 4rem;
+              &__title-container {
+                @include SizeAndPositioning(relative, 100%, 19.5%, flex, row, nowrap, center, center, 0, 0, 0);
+                background-color: $primaryColor;
+              }
+            }
+            &__sub-category {
+              @include SizeAndPositioning(relative, 6rem, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
+              min-height: 10rem;
+              background-color: rgba($colorLightestGrey, 0.25);
+              &:nth-of-type(2n) {
+                background-color: rgba($colorLightestGrey, 0.5);
+              }
+              &__section {
+                @include SizeAndPositioning(relative, 100%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
+              }
+              &:hover {
+                cursor: pointer;
+                .sub-category-display__sub-category__section {
+                  background-color: $primaryColor;
+                  transition: background-color 0.5s, color 0.5s;
+                }
+              }
+              &--hidden {
+                display: none;
+              }
+            }
+          }
         }
       }
     }
+  }
+  &__header {
+    @include SizeAndPositioning(relative, 15%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+    background-color: rgba($colorLightestGrey, 0.3);
+  }
+  &__budget-management-container {
+    @include SizeAndPositioning(relative, 85%, 100%, flex, row, wrap, center, center, 0, 0, 0);
+    background-color: rgba($colorLightestGrey, 0.3);
+    &--extra-small {
+      @include SizeAndPositioning(relative, 22.5rem, 35rem, flex, column, nowrap, space-between, center, 0, 0, 0);
+      padding: 0.2rem;
+      border: 0.3rem solid $primaryColor;
+      border-radius: 0.5rem;
+      background-color: rgba($colorLightestGrey, 0.25);
+      margin: 0 6rem;
+      &__header {
+        @include SizeAndPositioning(relative, 25%, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+        padding: 0 1.5rem;
+        background-color: $primaryColor;
+        border-bottom: 0.3rem solid $tertiaryColor;
+      }
+    }
+  }
+  &__edit-category-goals-container {
+    &--large {
+      @include SizeAndPositioning(relative, calc(45rem * 1.5), calc((55.8rem * 2) + 7rem), flex, column, nowrap, space-between, center, 0, 0, 0);
+      border: 0.3rem solid $primaryColor;
+      border-radius: 0.5rem;
+      padding: 0.2rem;
+      margin-bottom: 5rem;
+      background-color: rgba($colorOffWhite, 0.8);
+      &__header {
+        @include SizeAndPositioning(relative, 10%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+        padding: 0 1.5rem;
+        background-color: $primaryColor;
+        border-bottom: 0.3rem solid $tertiaryColor;
+        min-height: 8%;
+        &__icon {
+          @include SizeAndPositioning(absolute, 100%, 6rem, flex, row, nowrap, center, center, 0, -50%, 0);
+          top: 50%;
+          left: 0;
+        }
+      }
+      &__budget-goal-summary-container {
+        @include SizeAndPositioning(relative, 14rem, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
+        .budget-single-goal-summary {
+          @include SizeAndPositioning(relative, 100%, 19%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+          background-color: $colorLightestGrey;
+          &__title,
+          &__amount {
+            @include SizeAndPositioning(relative, 50%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+          }
+        }
+      }
+      &__category-container {
+        @include SizeAndPositioning(relative, 47rem, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+        padding: 1.5rem;
+        .main-category-display {
+          @include SizeAndPositioning(relative, 100%, 40%, flex, row, nowrap, center, center, 0, 0, 0);
+          &__button-container {
+            @include SizeAndPositioning(relative, 100%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
+          }
+          &__category-display {
+            @include SizeAndPositioning(relative, 100%, 60%, flex, column, nowrap, center, center, 0, 0, 0);
+            &__title {
+              margin-top: 2rem;
+            }
+          }
+        }
+        .main-category-display {
+          @include SizeAndPositioning(relative, 100%, 40%, flex, row, nowrap, center, center, 0, 0, 0);
+          &__button-container {
+            @include SizeAndPositioning(relative, 100%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
+            .left,
+            .right {
+              &:hover {
+                cursor: pointer;
+                transition: color 0.5s;
+              }
+            }
+          }
+          &__category-display {
+            @include SizeAndPositioning(relative, 100%, 60%, flex, column, nowrap, center, center, 0, 0, 0);
+            &__title {
+              margin-top: 2rem;
+            }
+          }
+        }
+        .sub-category-display {
+          @include SizeAndPositioning(relative, 100%, 60%, flex, column, nowrap, flex-start, center, 0, 0, 0);
+          margin-left: 1.5rem;
+          overflow-y: auto;
+          &__headers {
+            @include SizeAndPositioning(relative, 4rem, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
+            min-height: 4rem;
+            &__title-container {
+              @include SizeAndPositioning(relative, 100%, 19.5%, flex, row, nowrap, center, center, 0, 0, 0);
+              background-color: $primaryColor;
+            }
+          }
+          &__sub-category {
+            @include SizeAndPositioning(relative, 6rem, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
+            min-height: 10rem;
+            background-color: rgba($colorLightestGrey, 0.25);
+            &:nth-of-type(2n) {
+              background-color: rgba($colorLightestGrey, 0.5);
+            }
+            &__section {
+              @include SizeAndPositioning(relative, 100%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
+              &:first-of-type {
+                justify-content: space-evenly;
+                flex-direction: column;
+                padding: 0.5rem;
+              }
+              &__input {
+                @include SizeAndPositioning(relative, 60%, 80%, flex, row, nowrap, center, center, 0, 0, 0);
+                background-color: rgba($colorOffWhite, 0.35);
+                border-radius: 0.5rem;
+                border: 0.2rem solid rgba($primaryColor, 0.8);
+                caret-color: $primaryColor;
+
+                &:focus {
+                  outline: none;
+                  border: 0.2rem solid $primaryColor, 0.8;
+                  background-color: $colorOffWhite;
+                }
+              }
+            }
+            &:hover {
+              cursor: pointer;
+              .sub-category-display__sub-category__section {
+                background-color: $primaryColor;
+                transition: background-color 0.5s, color 0.5s;
+                &__input {
+                  border: $colorOffWhite;
+                  &:focus {
+                    outline: none;
+                  }
+                }
+              }
+            }
+            &--hidden {
+              display: none;
+            }
+          }
+          &__timing-container {
+            @include SizeAndPositioning(absolute, calc(100% - 4rem), 100%, flex, column, nowrap, flex-start, center, 0, 0, 0);
+            background-color: rgba($colorOffWhite, 0.9);
+            min-height: calc(100% - 4rem);
+            overflow-y: auto;
+            top: 4rem;
+            left: 0;
+            z-index: 10;
+            &__close {
+              @include SizeAndPositioning(absolute, 4rem, 4rem, flex, row, nowrap, center, center, 0, 0, 0);
+              top: 2rem;
+              right: 2rem;
+              &:hover {
+                cursor: pointer;
+                transition: color 0.5s;
+              }
+            }
+            &__monthly-container,
+            &__bi-monthly-container,
+            &__bi-weekly-container,
+            &__weekly-container {
+              @include SizeAndPositioning(relative, min-content, 80%, flex, column, nowrap, center, center, 0, 0, 0);
+              &__label {
+                @include SizeAndPositioning(relative, 5rem, 60%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
+                border: 0.3rem solid rgba($primaryColor, 0.8);
+                border-radius: 0.8rem;
+                padding: 1rem;
+                margin: 0.25rem 0;
+                &:first-of-type {
+                  margin-top: 0.5rem;
+                }
+                &:last-of-type {
+                  margin-bottom: 0.5rem;
+                }
+                &:focus {
+                  border: 0.3rem solid $primaryColor;
+                }
+                &__input,
+                &__select {
+                  background-color: rgba($colorOffWhite, 0.25);
+                  border: 0.2rem solid rgba($primaryColor, 0.8);
+                  border-radius: 0.6rem;
+                  padding: 0.2rem;
+                  &:focus {
+                    border: 0.2rem solid $primaryColor;
+                    outline: none;
+                  }
+                }
+              }
+              .element-hidden {
+                display: none;
+              }
+            }
+            &__hidden {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+  &__update-budget-categories-button-container {
+    @include SizeAndPositioning(relative, 10%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+    background-color: rgba($colorLightestGrey, 0.3);
   }
 }

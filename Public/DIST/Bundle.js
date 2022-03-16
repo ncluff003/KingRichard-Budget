@@ -4410,7 +4410,7 @@ var _watchUserProfileButtons = function _watchUserProfileButtons(communicationPr
   var userProfileHeader = document.querySelector('.user-profile-section__header__text');
   var userProfileContainer = document.querySelector('.user-profile-section');
   var userProfileContainerClose = document.querySelector('.user-profile-closure-icon');
-  var userProfileButtons = document.querySelectorAll('.application-navigation__section--account-links__link-container__link--link');
+  var userProfileButtons = document.querySelectorAll('.navigation--side-screen__section--account-links__link-container__link--link');
   var latterDaySaintSwitch = document.querySelector('.switch--latter-day-saint');
 
   if (userProfileButtons[0]) {
@@ -8680,17 +8680,18 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
 };
 
 var _watchBudgetNavigation = function _watchBudgetNavigation() {
-  var budgetNavButton = document.querySelector('.budget-container__navigation-button-container__button');
-  var budgetNavigation = document.querySelector('.budget-navigation');
-  var linkButtons = document.querySelectorAll('.budget-navigation__link-list__list-item__link-button');
+  var budgetNavButton = document.querySelector('.button--budget-navigation');
+  var budgetNavigation = document.querySelector('.navigation');
+  var linkButtons = document.querySelectorAll('.navigation__link-list__list-item__link-button');
 
   if (budgetNavButton) {
     budgetNavButton.addEventListener('click', function (e) {
       e.preventDefault();
-      budgetNavButton.classList.toggle('budget-container__navigation-button-container__button--clicked');
-      budgetNavigation.classList.toggle('budget-navigation--visible');
+      budgetNavButton.classList.toggle('button--budget-navigation--clicked');
+      budgetNavigation.classList.toggle('closed');
+      budgetNavigation.classList.toggle('open-navigation');
       if (!budgetNavButton.classList.contains('budget-navigation--visible')) linkButtons.forEach(function (lb) {
-        return lb.closest('li').nextSibling.classList.remove('revealed');
+        return lb.closest('li').nextSibling.classList.add('closed');
       });
     });
   }
@@ -8702,10 +8703,15 @@ var _watchBudgetNavigation = function _watchBudgetNavigation() {
         var clicked = e.target.closest('li');
         var siblingLinkContainer = clicked.nextSibling;
         linkButtons.forEach(function (lb) {
-          lb.closest('li').nextSibling.classList.remove('revealed');
+          lb.closest('li').nextSibling.classList.add('closed');
+          lb.closest('li').nextSibling.classList.remove('open');
           console.log(lb.closest('li'));
         });
-        !siblingLinkContainer.classList.contains('revealed') ? siblingLinkContainer.classList.toggle('revealed') : siblingLinkContainer.classList.remove('revealed');
+
+        if (!siblingLinkContainer.classList.contains('open')) {
+          siblingLinkContainer.classList.toggle('closed');
+          siblingLinkContainer.classList.toggle('open');
+        }
       });
     });
   }
