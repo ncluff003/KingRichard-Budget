@@ -863,10 +863,10 @@ const _watchForTransactions = (arrayOfArrays) => {
   arrayOfArrays.forEach((a, i) => {
     a.forEach((c, i) => {
       // console.log(c);
-      c.style.display = `none`;
+      c.classList.add(`closed`);
     });
   });
-  const accountOptions = document.querySelectorAll('.account-selection__option');
+  const accountOptions = document.querySelectorAll('.form__select--accounts__option');
   let clicked;
   accountOptions.forEach((ao, i) => {
     ao.addEventListener('click', (e) => {

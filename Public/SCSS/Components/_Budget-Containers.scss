@@ -6,3 +6,57 @@
 .budget-container {
   @include SizeAndPositioning(relative, 100%, 100%, flex, row, wrap, space-evenly, center, 0, 0, 0);
 }
+
+.container {
+  &--extra-small {
+    @include SizeAndPositioning(relative, 22.5rem, 35rem, flex, column, nowrap, space-between, center, 0, 0, 0);
+    padding: 0.2rem;
+    border: 0.3rem solid $primaryColor;
+    border-radius: 0.5rem;
+    background-color: rgba($colorOffWhite, 0.8);
+    &__header {
+      @include SizeAndPositioning(relative, 25%, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
+      border-top-left-radius: 0.25rem;
+      border-top-right-radius: 0.25rem;
+      padding: 0 1.5rem;
+      background-color: $primaryColor;
+      border-bottom: 0.3rem solid $tertiaryColor;
+    }
+    &__content {
+      @include SizeAndPositioning(relative, 75%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+    }
+    margin-bottom: 5rem;
+  }
+
+  &--small {
+    @include SizeAndPositioning(relative, 45rem, 55.8rem, flex, column, nowrap, space-between, center, 0, 0, 0);
+    padding: 0.2rem;
+    border: 0.3rem solid $primaryColor;
+    border-radius: 0.5rem;
+    background-color: rgba($colorOffWhite, 0.8);
+    &__header {
+      @include SizeAndPositioning(relative, 15%, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
+      border-top-left-radius: 0.25rem;
+      border-top-right-radius: 0.25rem;
+      padding: 0 1.5rem;
+      background-color: $primaryColor;
+      border-bottom: 0.3rem solid $tertiaryColor;
+      min-height: 15%;
+    }
+    &__content {
+      @include SizeAndPositioning(relative, 75%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+      &--transaction {
+        @extend .container--small__content;
+        padding-bottom: 2rem;
+      }
+    }
+    &__transaction-total {
+      @include SizeAndPositioning(relative, 37%, 100%, flex, column, nowrap, space-around, center, 0, 0, 0);
+      min-height: 20%;
+      background-color: $primaryColor;
+      border-bottom-left-radius: 0.4rem;
+      border-bottom-right-radius: 0.4rem;
+    }
+    margin-bottom: 5rem;
+  }
+}

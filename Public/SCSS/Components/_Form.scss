@@ -1333,13 +1333,63 @@
 .form {
   @include SizeAndPositioning(relative, 100%, 50%, flex, column, nowrap, center, center, 0, 0, 0);
   overflow-y: auto;
+
+  // FULL WIDTH FORMS
   &--full-width {
     @extend .form;
     width: 100%;
   }
+
+  // TRANSACTION FORMS -- INCOME / TRANSACTION
+  &--transaction {
+    @extend .form;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+
+  // FORM HEADERS
   &__header {
     margin-bottom: 3rem;
   }
+
+  // FORM ROWS
+  &__row {
+    @include SizeAndPositioning(relative, 30%, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
+    &--income {
+      @extend .form__row;
+      &:first-of-type {
+        .form__section--enter-income {
+          justify-content: flex-start;
+        }
+        margin-bottom: 2rem;
+      }
+      &:nth-of-type(2) {
+        .form__section--enter-income {
+          width: 50%;
+          justify-content: flex-end;
+          &:first-of-type {
+            margin: 0;
+          }
+          .form-input {
+            width: 90%;
+            &:not(:placeholder-shown) + label,
+            &:focus + label {
+              transform: translate(-2rem, -3rem) scale(0.95);
+            }
+          }
+          .form-label {
+            -moz-transform: translate(-1.5rem, 0);
+          }
+        }
+      }
+    }
+    &--transaction {
+      @extend .form__row;
+      flex-wrap: wrap;
+    }
+  }
+
+  // FORM SECTIONS
   &__section {
     @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
     &:not(:last-of-type) {
@@ -1355,6 +1405,7 @@
       }
     }
 
+    // SUB CATEGORY CREATION SECTION
     &--sub-category-creation {
       @extend .form__section;
       height: 6rem;
@@ -1481,6 +1532,7 @@
       }
     }
 
+    // EMERGENCY SECTION
     &--emergency {
       @extend .form__section;
       flex-direction: row;
@@ -1521,6 +1573,7 @@
       }
     }
 
+    // TITHING SECTION
     &--tithing {
       display: flex;
       flex-direction: row;
@@ -1582,6 +1635,7 @@
       }
     }
 
+    // TIMING SECTION
     &--timing {
       @extend .form__section;
       flex-direction: row;
@@ -1595,12 +1649,16 @@
       }
     }
     // @include SizeAndPositioning(relative, 20%, 100%, none, row, nowrap, space-evenly, center, 0, 0, 0);
+
+    // SWITCH SECTION
     &--switch {
       @extend .form__section;
       flex-direction: row;
       justify-content: center;
       margin-bottom: 2rem;
     }
+
+    // PAGE SECTION
     &--page {
       @extend .form__section;
       flex-direction: row;
@@ -1611,6 +1669,79 @@
         flex-direction: row;
       }
     }
+
+    // ENTER INCOME / TRANSACTION SECTIONS
+    &--enter-income,
+    &--enter-transaction {
+      @extend .form__section;
+      height: 100%;
+      width: 33.3%;
+      flex-direction: column-reverse;
+      justify-content: center;
+      // @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+      // @include SizeAndPositioning(relative, 100%, 33.3%, flex, column-reverse, nowrap, center, center, 0, 0, 0);
+      &__monthly-budget {
+        @extend .form__section--enter-transaction;
+        align-items: flex-start;
+        &:not(:last-of-type) {
+          margin: 0;
+        }
+      }
+    }
+
+    // ENTER TRANSACTION SECTION UNIQUE ELEMENTS
+    &--enter-transaction {
+      margin: 0;
+      &:first-of-type {
+        margin: 0;
+      }
+      &__monthly-budget {
+        &__secondary {
+          @extend .form__section--enter-transaction__monthly-budget;
+          width: 40%;
+          margin-bottom: 2rem;
+          &:first-of-type,
+          &:last-of-type,
+          &:not(:last-of-type) {
+            margin-bottom: 2rem;
+          }
+        }
+      }
+    }
+
+    // EARLY INCOME VIEW SECTION
+    &--early-income-view {
+      @extend .form__section;
+      height: 40%;
+      flex-direction: row;
+      justify-content: space-between;
+      // @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+      // @include SizeAndPositioning(relative, 40%, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
+      &__income-view {
+        @include SizeAndPositioning(relative, 100%, 33%, flex, column, nowrap, center, center, 0, 0, 0);
+        border: 0.2rem solid $primaryColor;
+        &:first-of-type {
+          border-bottom-left-radius: 0.4rem;
+        }
+        &__header {
+          @include SizeAndPositioning(absolute, 1.5rem, max-content, flex, row, nowrap, center, center, 0, 0, 0);
+          top: 0.25rem;
+          left: 0.25rem;
+        }
+        &--purple {
+          @extend .form__section--early-income-view__income-view;
+          background-color: $primaryColor;
+          border: none;
+          border-bottom-right-radius: 0.4rem;
+          &__header {
+            @include SizeAndPositioning(absolute, 1.5rem, max-content, flex, row, nowrap, center, center, 0, 0, 0);
+            top: 0.25rem;
+            left: 0.25rem;
+          }
+        }
+      }
+    }
+
     &--sub-section {
       @extend .form__section;
       &:first-of-type {
@@ -1619,6 +1750,8 @@
       margin: 0.5rem 0;
     }
   }
+
+  // FORM INPUT CONTAINER
   &__input-container {
     @include SizeAndPositioning(relative, 7rem, 20%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
     &--latter-day-saint {
@@ -1634,6 +1767,8 @@
       padding-left: 2rem;
     }
   }
+
+  // FORM INPUTS
   &__input {
     @include SizeAndPositioning(relative, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, 0, 0);
     padding: 1rem;
@@ -1665,12 +1800,14 @@
       transform: translate(-5.5rem, -7rem) scale(0.75);
     }
 
+    // DARK FORM INPUTS
     &--dark {
       @extend .form__input;
       background-color: rgba($colorDarkestGrey, 0.5);
       border: 0.3rem solid rgba($colorOffWhite, 0.75);
       margin: 2rem 0;
 
+      // SMALL DARK INPUTS
       &-small {
         @extend .form__input--dark;
         width: 25%;
@@ -1679,6 +1816,8 @@
           transform: translate(-6rem, -7.25rem) scale(0.75);
         }
       }
+
+      // EXTRA SMALL DARK INPUTS
       &-extra-small {
         @extend .form__input--dark;
         width: 17.5%;
@@ -1690,6 +1829,8 @@
         }
       }
     }
+
+    // SMALL INPUTS
     &--small {
       @extend .form__input;
       width: 25%;
@@ -1714,6 +1855,7 @@
       }
     }
 
+    // MAIN CATEGORY TITLE INPUT
     &--main-category-title {
       @extend .form__input;
       width: 35%;
@@ -1725,6 +1867,7 @@
       }
     }
 
+    // SUB CATEGORY TITLE INPUT
     &--sub-category-title {
       @extend .form__input;
       height: 50%;
@@ -1741,6 +1884,7 @@
       }
     }
 
+    // COMMUNICATIONS INPUT
     &--comms {
       @extend .form__input;
       height: 100%;
@@ -1774,6 +1918,8 @@
         content: '';
         transition: transform 0.5s, border-radius 0.5s;
       }
+
+      // TEXT PREFERRED COMMUNICATIONS INPUT
       &--text-preferred {
         @extend .form__input--comms;
         &:after {
@@ -1794,6 +1940,7 @@
       }
     }
 
+    // LATTER DAY SAINT INPUT
     &--latter-day-saint {
       @include SizeAndPositioning(relative, 95%, 100%, flex, row, nowrap, center, center, -15%, 0, 0);
       background-color: rgba($primaryColorLight, 0.8);
@@ -1834,14 +1981,65 @@
         // }
       }
     }
+
+    // ENTER INCOME / TRANSACTION INPUTS
+    &--enter-income,
+    &--enter-transaction {
+      @extend .form__input;
+      height: 4rem;
+      width: 85%;
+      padding-left: 2rem;
+      padding: 0.5rem;
+      border: 0.2rem solid rgba($primaryColor, 0.8);
+      border-radius: 0.9rem;
+
+      &:not(:placeholder-shown) + label,
+      &:focus + label {
+        transform: translate(-1.25rem, -2.5rem) scale(0.95);
+      }
+      &:not(:placeholder-shown) + .form__label--enter-income__pay-label,
+      &:focus + .form__label--enter-income__pay-label {
+        transform: translate(-1.25rem, -7.75rem) scale(0.95);
+      }
+      &:not(:placeholder-shown) + .form__label--enter-transaction__transaction-label,
+      &:focus + .form__label--enter-transaction__transaction-label {
+        transform: translate(-1.25rem, -5rem) scale(0.95);
+      }
+
+      &:not(:placeholder-shown) + .form__label--monthly-budget-transaction,
+      &:focus + .form__label--monthly-budget-transaction {
+        transform: translate(-1rem, 1rem) scale(0.95);
+      }
+      transition: border 0.5s, color 0.5s;
+    }
   }
 
+  // FORM SELECTS
   &__select {
     @include SizeAndPositioning(relative, 6rem, 12.5%, flex, row, nowrap, center, center, 0, 0, 0);
     background-color: rgba($primaryColor, 0.8);
     border: 0.3rem solid rgba($primaryColor, 0.8);
     border-top-right-radius: 0.9rem;
     border-bottom-right-radius: 0.9rem;
+
+    &--accounts {
+      @extend .form__select;
+      height: 4rem;
+      width: max-content;
+      padding: 0.5rem;
+      background-color: transparent;
+      border: 0.2rem solid rgba($primaryColor, 0.8);
+      border-radius: 0.9rem;
+      &:hover {
+        cursor: pointer;
+        background-color: $primaryColor;
+        transition: background-color 0.5s, color 0.5s, border 0.5s;
+      }
+      &:focus {
+        border: 0.2rem solid $primaryColor;
+      }
+    }
+
     &:focus {
       background-color: $primaryColor;
       border: 0.3rem solid $primaryColor;
@@ -1853,14 +2051,100 @@
         background-color: $secondaryColor;
       }
     }
+
+    &--monthly-transaction {
+      @extend .form__select--accounts;
+    }
   }
 
+  // FORM LABELS
   &__label {
     @include SizeAndPositioning(absolute, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, -50%, 0);
     top: 50%;
     left: calc(30% + 2rem);
     -moz-transform: translateY(-50%);
     transition: transform 0.5s;
+
+    &--monthly-budget-transaction {
+      @extend .form__label;
+      position: relative;
+      height: 4rem;
+      width: max-content;
+      top: 0;
+      margin-bottom: 0.25rem;
+      transform: translate(0, 0);
+      left: calc(0% + 2rem);
+      transition: transform 0.5s;
+      -moz-transform: translate(-1rem, 3.6rem);
+      &__alt {
+        @extend .form__label--monthly-budget-transaction;
+        -moz-transform: translate(-0.75rem, 0.5rem);
+        &__text {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+    // @include SizeAndPositioning(absolute, 4rem, 75%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+    &--enter-income,
+    &--enter-transaction {
+      @extend .form__label;
+      height: 4rem;
+      width: 75%;
+      transform: translate(0, 0);
+      left: calc(7% + 2rem);
+      transition: transform 0.5s;
+      -moz-transform: translate(-0.75rem, 0.5rem);
+      &__pay-label {
+        @extend .form__label--enter-income;
+        -moz-transform: translate(-0.75rem, -4.75rem);
+      }
+      &__transaction-label {
+        @extend .form__label--enter-income;
+        -moz-transform: translate(-0.75rem, -2rem);
+      }
+      &__text {
+        transform: translate(-2rem, 0);
+      }
+      .form-input--tithing {
+        @include SizeAndPositioning(absolute, 4rem, 75%, flex, row, nowrap, center, center, 4rem, 0, 0);
+        border: 0.2rem solid $primaryColor;
+        border-radius: 5rem;
+        background-color: rgba($primaryColorDarker, 0.9);
+        &__switch {
+          @include SizeAndPositioning(absolute, 3.4rem, 3.4rem, flex, row, nowrap, flex-end, center, 0.2rem, -50%, 0);
+          top: 50%;
+          left: 0;
+          border-radius: 5rem;
+          background-color: $primaryColor;
+        }
+        &__text-no {
+          display: flex;
+        }
+        &__text-yes {
+          display: none;
+        }
+        &--tithed {
+          background-color: $secondaryColor;
+          border: 0.2rem solid $secondaryColorDark;
+          transition: border 0.5s, background-color 0.5s;
+          &__switch {
+            width: 96%;
+            background-color: $secondaryColor;
+            transition: color 0.5s, background-color 0.5s, width 0.5s;
+          }
+          &__text-no {
+            display: none;
+          }
+          &__text-yes {
+            display: flex;
+            z-index: 2;
+          }
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
 
     &--small {
       @extend .form__label;

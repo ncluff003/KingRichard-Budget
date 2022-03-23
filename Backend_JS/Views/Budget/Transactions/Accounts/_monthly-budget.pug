@@ -1,9 +1,12 @@
-label.form-label.r__form-label.monthly-budget-transaction.r__monthly-budget-transaction 
-  p.label-container__text.r__label-container__text Category
-  select.form-input.r__form-input#mainCategory
+label.form__label--monthly-budget-transaction__alt.r__form__label--monthly-budget-transaction.monthly-budget-transaction__alt.r__monthly-budget-transaction 
+  p.form__label--monthly-budget-transaction__alt__text.r__form__label--monthly-budget-transaction__alt__text Category
+  select.form__select--monthly-transaction.r__form__select--monthly-transaction#mainCategory
     each category in data.budget.mainCategories 
       option.category-selection.r__category-selection(value=`${category.title}`)= `${category.title}`
-label.form-label.r__form-label.monthly-budget-transaction.r__monthly-budget-transaction
-  p.label-container__text.r__label-container__text SubCategory
-  select.form-input.r__form-input#subCategory
+label.form__label--monthly-budget-transaction__alt.r__form__label--monthly-budget-transaction.monthly-budget-transaction__alt.r__monthly-budget-transaction
+  p.form__label--monthly-budget-transaction__alt__text.r__form__label--monthly-budget-transaction__alt__text SubCategory
+  select.form__select--monthly-transaction.r__form__select--monthly-transaction#subCategory
+    each category in data.budget.mainCategories
+      each subCategory in category.subCategories
+        option.form__select--monthly-transaction__option.r__form__select--monthly-transaction__option.closed= subCategory.title
   //- This is where depending on the main category, that category's sub categories will be put as options here.

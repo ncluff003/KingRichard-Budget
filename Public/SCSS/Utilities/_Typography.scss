@@ -1392,6 +1392,13 @@ html {
   &:hover {
     color: $colorOffWhite;
   }
+  &--transaction-button {
+    @extend .button;
+    font-size: 1.4rem;
+    &:hover {
+      color: $colorOffWhite;
+    }
+  }
   &--extra-small {
     color: rgba($colorOffWhite, 0.8);
     &--icon,
@@ -1433,6 +1440,16 @@ html {
       }
       &-close {
         @extend .button--small-create-sub-category;
+      }
+    }
+    &-container-header {
+      @extend .button--small;
+      color: rgba($colorOffWhite, 0.8);
+      &:hover {
+        color: $colorOffWhite;
+      }
+      &:active {
+        color: $colorDarkerGrey;
       }
     }
   }
@@ -1622,6 +1639,164 @@ html {
         &:hover {
           color: $colorOffWhite;
         }
+      }
+    }
+  }
+}
+
+// BUDGET CONTAINERS
+.container {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  &--extra-small {
+    &__header {
+      @extend .container;
+      color: $colorOffWhite;
+      font-size: 2.4rem;
+      &__icon {
+        font-size: 3rem;
+      }
+      &__text {
+      }
+    }
+    &__content {
+      @extend .container;
+      font-size: 4rem;
+      color: $primaryColor;
+    }
+  }
+
+  &--small {
+    @extend .container;
+    &__header {
+      font-size: 2.4rem;
+      color: $colorOffWhite;
+      &__icon {
+        font-size: 3rem;
+      }
+      &__text {
+      }
+    }
+    &__content {
+      color: $primaryColor;
+      .enter-income-form,
+      .enter-transaction-form {
+        .form-row {
+          .account-selection {
+            color: rgba($primaryColor, 0.8);
+            font-size: 1.4rem;
+            &:hover {
+              color: $colorOffWhite;
+            }
+            &:focus {
+              border: 0.2rem solid $primaryColor;
+            }
+          }
+          &__section {
+            .form-input {
+              color: rgba($primaryColor, 0.8);
+              font-size: 1.4rem;
+              &:focus {
+                color: $primaryColor;
+              }
+            }
+            .form-label {
+              font-size: 1.4rem;
+              .form-input--tithing {
+                color: $colorOffWhite;
+              }
+            }
+          }
+          .form-label {
+            .form-input {
+              color: rgba($primaryColor, 0.8);
+              font-size: 1.4rem;
+              &:hover {
+                color: $colorOffWhite;
+              }
+            }
+          }
+        }
+      }
+      .enter-transaction-form {
+        .form-row {
+          &:nth-of-type(1) {
+            .form-button {
+              color: rgba($primaryColor, 0.8);
+              font-size: 1.4rem;
+              &:hover {
+                color: $colorOffWhite;
+              }
+              &:focus {
+                border: 0.2rem solid $primaryColor;
+              }
+            }
+          }
+          &:nth-of-type(3) {
+            .label-container {
+              font-size: 1.26rem;
+              text-align: left;
+              select {
+                font-size: 1.4rem;
+              }
+            }
+          }
+          &:nth-of-type(4) {
+            .fully-paid-for {
+              .paid-for-container {
+                &__no,
+                &__yes {
+                  color: $colorOffWhite;
+                }
+              }
+            }
+          }
+          &:nth-of-type(3),
+          &:nth-of-type(4) {
+            .form-row__section {
+              &:nth-of-type(0),
+              &:nth-of-type(1),
+              &:nth-of-type(2),
+              &:nth-of-type(3),
+              &:nth-of-type(4),
+              &:nth-of-type(6),
+              &:nth-of-type(7),
+              &:nth-of-type(9),
+              &:nth-of-type(10),
+              &:nth-of-type(12),
+              &:nth-of-type(13) {
+                width: 50%;
+                .form-input {
+                  width: 90%;
+                }
+              }
+            }
+          }
+        }
+      }
+      .early-income-view {
+        &__investment,
+        &__savings,
+        &__un-allocated {
+          font-size: 3.2rem;
+          color: $primaryColor;
+          &__header {
+            font-size: 1.2rem;
+          }
+        }
+        &__un-allocated {
+          color: $colorOffWhite;
+        }
+      }
+    }
+    &__transaction-total {
+      @extend .container--small;
+      font-weight: bold;
+      font-size: 6rem;
+      color: $colorOffWhite;
+      &__heading {
+        @extend .container--small__transaction-total;
+        font-weight: normal;
+        font-size: 2rem;
       }
     }
   }
@@ -1827,6 +2002,24 @@ html {
         }
       }
     }
+    &--early-income-view {
+      @extend .form__section;
+      &__income-view {
+        @extend .form__section--early-income-view;
+        font-size: 3.2rem;
+        color: $primaryColor;
+        &__header {
+          font-size: 1.2rem;
+        }
+        &--purple {
+          @extend .form__section--early-income-view__income-view;
+          color: $colorOffWhite;
+          &__header {
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
   }
   &__input {
     font-family: MADE Tommy Soft, Verdana, sans-serif;
@@ -1891,6 +2084,11 @@ html {
         }
       }
     }
+    &--enter-income,
+    &--enter-transaction {
+      @extend .form__input;
+      font-size: 1.4rem;
+    }
   }
 
   &__select {
@@ -1909,12 +2107,28 @@ html {
       color: $colorOffWhite;
       font-weight: 300;
     }
+    &--accounts {
+      @extend .form__select;
+      color: rgba($primaryColor, 0.8);
+      font-size: 1.4rem;
+      &:hover {
+        color: $colorOffWhite;
+      }
+      &:focus {
+        border: 0.2rem solid $primaryColor;
+      }
+    }
   }
 
   &__label {
     font-family: MADE Tommy Soft, Verdana, sans-serif;
     font-size: 2rem;
     color: rgba($primaryColor, 0.8);
+
+    // font-size: 1.4rem;
+    // .form-input--tithing {
+    //   color: $colorOffWhite;
+    // }
     &--small {
       @extend .form__label;
       color: rgba($colorOffWhite, 0.8);
@@ -1948,6 +2162,31 @@ html {
     &--comms {
       @extend .form__label;
       color: $colorOffWhite;
+    }
+    &--enter-income,
+    &--enter-transaction {
+      @extend .form__label;
+      font-size: 1.4rem;
+      &__pay-label,
+      &__transaction-label {
+        @extend .form__label--enter-income;
+      }
+      .form-input--tithing {
+        color: $colorOffWhite;
+      }
+    }
+    &--monthly-budget-transaction {
+      @extend .form__label;
+      font-size: 1.26rem;
+      text-align: left;
+      select {
+        @extend .form__select--accounts;
+      }
+      &__text {
+      }
+      &__alt {
+        @extend .form__label--monthly-budget-transaction;
+      }
     }
   }
 

@@ -411,6 +411,23 @@
     transition: background-color 0.5s, border 0.5s, color 0.5s;
   }
 
+  &--transaction-button {
+    @extend .button;
+    height: 4rem;
+    width: 26.7%;
+    transform: translate(0, 0);
+    padding: 0.5rem;
+    border: 0.2rem solid rgba($primaryColor, 0.8);
+    border-radius: 0.9rem;
+    background-color: transparent;
+    &:hover {
+      border: 0.2rem solid $primaryColor;
+    }
+    &:focus {
+      border: 0.2rem solid $primaryColor;
+    }
+  }
+
   &--timing-button {
     @extend .button;
 
@@ -522,6 +539,23 @@
         @extend .button--small-create-sub-category;
         width: 50%;
         justify-content: space-evenly;
+      }
+    }
+    &-container-header {
+      @extend .button--small;
+      transform: translate(0, 0);
+      height: 75%;
+      width: 25%;
+      background-color: transparent;
+      border: 0.3rem solid rgba($colorOffWhite, 0.8);
+      border-radius: 0.9rem;
+      &:hover {
+        background-color: $secondaryColor;
+        border: 0.3rem solid $colorOffWhite;
+        transition: color 0.5s, background-color 0.5s, border 0.5s;
+      }
+      &:active {
+        background-color: $tertiaryColor;
       }
     }
   }

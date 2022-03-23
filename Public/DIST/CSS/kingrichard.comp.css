@@ -1142,12 +1142,18 @@ html {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
 }
 
-.button, .button--borderless, .button--borderless-narrow, .button--timing-button-submit, .button--small, .button--small-create-main-category {
+.button, .button--borderless, .button--borderless-narrow, .button--timing-button-submit, .button--small, .button--small-container-header, .button--small-create-main-category, .button--transaction-button {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   font-size: 2.2rem;
   color: rgba(130, 42, 186, 0.75);
 }
-.button:hover, .button--borderless:hover, .button--borderless-narrow:hover, .button--timing-button-submit:hover, .button--small:hover, .button--small-create-main-category:hover {
+.button:hover, .button--borderless:hover, .button--borderless-narrow:hover, .button--timing-button-submit:hover, .button--small:hover, .button--small-container-header:hover, .button--small-create-main-category:hover, .button--transaction-button:hover {
+  color: #fafafa;
+}
+.button--transaction-button {
+  font-size: 1.4rem;
+}
+.button--transaction-button:hover {
   color: #fafafa;
 }
 .button--extra-small {
@@ -1183,6 +1189,15 @@ html {
 }
 .button--small-create-sub-category:hover, .button--small-create-sub-category-close:hover {
   color: #fafafa;
+}
+.button--small-container-header {
+  color: rgba(250, 250, 250, 0.8);
+}
+.button--small-container-header:hover {
+  color: #fafafa;
+}
+.button--small-container-header:active {
+  color: #333333;
 }
 .button--timing-button__icon {
   font-family: Icomoon;
@@ -1329,6 +1344,115 @@ html {
   color: #fafafa;
 }
 
+.container, .container--small, .container--small__transaction-total, .container--small__transaction-total__heading, .container--extra-small__content, .container--extra-small__header {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+}
+.container--extra-small__header {
+  color: #fafafa;
+  font-size: 2.4rem;
+}
+.container--extra-small__header__icon {
+  font-size: 3rem;
+}
+.container--extra-small__content {
+  font-size: 4rem;
+  color: #822aba;
+}
+.container--small__header {
+  font-size: 2.4rem;
+  color: #fafafa;
+}
+.container--small__header__icon {
+  font-size: 3rem;
+}
+.container--small__content {
+  color: #822aba;
+}
+.container--small__content .enter-income-form .form-row .account-selection,
+.container--small__content .enter-transaction-form .form-row .account-selection {
+  color: rgba(130, 42, 186, 0.8);
+  font-size: 1.4rem;
+}
+.container--small__content .enter-income-form .form-row .account-selection:hover,
+.container--small__content .enter-transaction-form .form-row .account-selection:hover {
+  color: #fafafa;
+}
+.container--small__content .enter-income-form .form-row .account-selection:focus,
+.container--small__content .enter-transaction-form .form-row .account-selection:focus {
+  border: 0.2rem solid #822aba;
+}
+.container--small__content .enter-income-form .form-row__section .form-input,
+.container--small__content .enter-transaction-form .form-row__section .form-input {
+  color: rgba(130, 42, 186, 0.8);
+  font-size: 1.4rem;
+}
+.container--small__content .enter-income-form .form-row__section .form-input:focus,
+.container--small__content .enter-transaction-form .form-row__section .form-input:focus {
+  color: #822aba;
+}
+.container--small__content .enter-income-form .form-row__section .form-label,
+.container--small__content .enter-transaction-form .form-row__section .form-label {
+  font-size: 1.4rem;
+}
+.container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing,
+.container--small__content .enter-transaction-form .form-row__section .form-label .form-input--tithing {
+  color: #fafafa;
+}
+.container--small__content .enter-income-form .form-row .form-label .form-input,
+.container--small__content .enter-transaction-form .form-row .form-label .form-input {
+  color: rgba(130, 42, 186, 0.8);
+  font-size: 1.4rem;
+}
+.container--small__content .enter-income-form .form-row .form-label .form-input:hover,
+.container--small__content .enter-transaction-form .form-row .form-label .form-input:hover {
+  color: #fafafa;
+}
+.container--small__content .enter-transaction-form .form-row:nth-of-type(1) .form-button {
+  color: rgba(130, 42, 186, 0.8);
+  font-size: 1.4rem;
+}
+.container--small__content .enter-transaction-form .form-row:nth-of-type(1) .form-button:hover {
+  color: #fafafa;
+}
+.container--small__content .enter-transaction-form .form-row:nth-of-type(1) .form-button:focus {
+  border: 0.2rem solid #822aba;
+}
+.container--small__content .enter-transaction-form .form-row:nth-of-type(3) .label-container {
+  font-size: 1.26rem;
+  text-align: left;
+}
+.container--small__content .enter-transaction-form .form-row:nth-of-type(3) .label-container select {
+  font-size: 1.4rem;
+}
+.container--small__content .enter-transaction-form .form-row:nth-of-type(4) .fully-paid-for .paid-for-container__no, .container--small__content .enter-transaction-form .form-row:nth-of-type(4) .fully-paid-for .paid-for-container__yes {
+  color: #fafafa;
+}
+.container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(0), .container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(1), .container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(2), .container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(3), .container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(4), .container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(6), .container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(7), .container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(9), .container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(10), .container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(12), .container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(13), .container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(0), .container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(1), .container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(2), .container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(3), .container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(4), .container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(6), .container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(7), .container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(9), .container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(10), .container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(12), .container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(13) {
+  width: 50%;
+}
+.container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(0) .form-input, .container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(1) .form-input, .container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(2) .form-input, .container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(3) .form-input, .container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(4) .form-input, .container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(6) .form-input, .container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(7) .form-input, .container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(9) .form-input, .container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(10) .form-input, .container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(12) .form-input, .container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(13) .form-input, .container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(0) .form-input, .container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(1) .form-input, .container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(2) .form-input, .container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(3) .form-input, .container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(4) .form-input, .container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(6) .form-input, .container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(7) .form-input, .container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(9) .form-input, .container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(10) .form-input, .container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(12) .form-input, .container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(13) .form-input {
+  width: 90%;
+}
+.container--small__content .early-income-view__investment, .container--small__content .early-income-view__savings, .container--small__content .early-income-view__un-allocated {
+  font-size: 3.2rem;
+  color: #822aba;
+}
+.container--small__content .early-income-view__investment__header, .container--small__content .early-income-view__savings__header, .container--small__content .early-income-view__un-allocated__header {
+  font-size: 1.2rem;
+}
+.container--small__content .early-income-view__un-allocated {
+  color: #fafafa;
+}
+.container--small__transaction-total, .container--small__transaction-total__heading {
+  font-weight: bold;
+  font-size: 6rem;
+  color: #fafafa;
+}
+.container--small__transaction-total__heading {
+  font-weight: normal;
+  font-size: 2rem;
+}
+
 .budget-creation-container--sub-categories__main-category-display__left-button__icon, .budget-creation-container--sub-categories__main-category-display__right-button__icon {
   font-size: 5rem;
   color: rgba(130, 42, 186, 0.8);
@@ -1459,7 +1583,7 @@ html {
   color: #822aba;
   font-size: 6rem;
 }
-.form__section, .form__section--emergency, .form__section--page-number-display, .form__section--page-number-display__number, .form__section--switch, .form__section--sub-section {
+.form__section, .form__section--early-income-view, .form__section--early-income-view__income-view, .form__section--early-income-view__income-view--purple, .form__section--emergency, .form__section--page-number-display, .form__section--page-number-display__number, .form__section--switch, .form__section--sub-section {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   font-size: 2rem;
   color: rgba(130, 42, 186, 0.8);
@@ -1480,15 +1604,28 @@ html {
 .form__section--emergency #totalAmount + .clicked-label {
   color: #fafafa;
 }
-.form__input, .form__input--comms, .form__input--comms--email, .form__input--comms--text, .form__input--latter-day-saint, .form__input--sub-category-title, .form__input--main-category-title, .form__input--dark, .form__input--dark-extra-small, .form__input--dark-small, .form__input--small, .form__input--small-savings-goal, .form__input--small-investment-goal {
+.form__section--early-income-view__income-view, .form__section--early-income-view__income-view--purple {
+  font-size: 3.2rem;
+  color: #822aba;
+}
+.form__section--early-income-view__income-view__header {
+  font-size: 1.2rem;
+}
+.form__section--early-income-view__income-view--purple {
+  color: #fafafa;
+}
+.form__section--early-income-view__income-view--purple__header {
+  font-size: 1.2rem;
+}
+.form__input, .form__input--enter-income, .form__input--enter-transaction, .form__input--comms, .form__input--comms--email, .form__input--comms--text, .form__input--latter-day-saint, .form__input--sub-category-title, .form__input--main-category-title, .form__input--dark, .form__input--dark-extra-small, .form__input--dark-small, .form__input--small, .form__input--small-savings-goal, .form__input--small-investment-goal {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   font-size: 2rem;
   color: rgba(130, 42, 186, 0.8);
 }
-.form__input:focus, .form__input--comms:focus, .form__input--comms--email:focus, .form__input--comms--text:focus, .form__input--latter-day-saint:focus, .form__input--sub-category-title:focus, .form__input--main-category-title:focus, .form__input--dark:focus, .form__input--dark-extra-small:focus, .form__input--dark-small:focus, .form__input--small:focus, .form__input--small-savings-goal:focus, .form__input--small-investment-goal:focus {
+.form__input:focus, .form__input--enter-income:focus, .form__input--enter-transaction:focus, .form__input--comms:focus, .form__input--comms--email:focus, .form__input--comms--text:focus, .form__input--latter-day-saint:focus, .form__input--sub-category-title:focus, .form__input--main-category-title:focus, .form__input--dark:focus, .form__input--dark-extra-small:focus, .form__input--dark-small:focus, .form__input--small:focus, .form__input--small-savings-goal:focus, .form__input--small-investment-goal:focus {
   color: #822aba;
 }
-.form__input:focus + label, .form__input--comms:focus + label, .form__input--comms--email:focus + label, .form__input--comms--text:focus + label, .form__input--latter-day-saint:focus + label, .form__input--sub-category-title:focus + label, .form__input--main-category-title:focus + label, .form__input--dark:focus + label, .form__input--dark-extra-small:focus + label, .form__input--dark-small:focus + label, .form__input--small:focus + label, .form__input--small-savings-goal:focus + label, .form__input--small-investment-goal:focus + label {
+.form__input:focus + label, .form__input--enter-income:focus + label, .form__input--enter-transaction:focus + label, .form__input--comms:focus + label, .form__input--comms--email:focus + label, .form__input--comms--text:focus + label, .form__input--latter-day-saint:focus + label, .form__input--sub-category-title:focus + label, .form__input--main-category-title:focus + label, .form__input--dark:focus + label, .form__input--dark-extra-small:focus + label, .form__input--dark-small:focus + label, .form__input--small:focus + label, .form__input--small-savings-goal:focus + label, .form__input--small-investment-goal:focus + label {
   color: #822aba;
 }
 .form__input--dark, .form__input--dark-extra-small, .form__input--dark-small {
@@ -1520,23 +1657,36 @@ html {
 .form__input--comms--email__text, .form__input--comms--text__text {
   font-size: 1.6rem;
 }
-.form__select {
+.form__input--enter-income, .form__input--enter-transaction {
+  font-size: 1.4rem;
+}
+.form__select, .form__select--accounts, .form__label--monthly-budget-transaction select, .form__label--monthly-budget-transaction__alt select {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   color: rgba(250, 250, 250, 0.8);
   font-size: 2rem;
   text-align: center;
 }
-.form__select:focus {
+.form__select:focus, .form__select--accounts:focus, .form__label--monthly-budget-transaction select:focus, .form__label--monthly-budget-transaction__alt select:focus {
   background-color: #822aba;
   border: 0.3rem solid #822aba;
   color: #fafafa;
 }
-.form__select option, .form__select__option {
+.form__select option, .form__select--accounts option, .form__label--monthly-budget-transaction select option, .form__label--monthly-budget-transaction__alt select option, .form__select__option {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   color: #fafafa;
   font-weight: 300;
 }
-.form__label, .form__label--comms, .form__label--latter-day-saint, .form__label--latter-day-saint-white, .form__label--small-savings-goal, .form__label--small-investment-goal, .form__label--small-timing, .form__label--small-budget, .form__label--small, .form__label--extra-small {
+.form__select--accounts, .form__label--monthly-budget-transaction select, .form__label--monthly-budget-transaction__alt select {
+  color: rgba(130, 42, 186, 0.8);
+  font-size: 1.4rem;
+}
+.form__select--accounts:hover, .form__label--monthly-budget-transaction select:hover, .form__label--monthly-budget-transaction__alt select:hover {
+  color: #fafafa;
+}
+.form__select--accounts:focus, .form__label--monthly-budget-transaction select:focus, .form__label--monthly-budget-transaction__alt select:focus {
+  border: 0.2rem solid #822aba;
+}
+.form__label, .form__label--monthly-budget-transaction, .form__label--monthly-budget-transaction__alt, .form__label--enter-income, .form__label--enter-income__pay-label, .form__label--enter-income__transaction-label, .form__label--enter-transaction__pay-label, .form__label--enter-transaction__transaction-label, .form__label--enter-transaction, .form__label--comms, .form__label--latter-day-saint, .form__label--latter-day-saint-white, .form__label--small-savings-goal, .form__label--small-investment-goal, .form__label--small-timing, .form__label--small-budget, .form__label--small, .form__label--extra-small {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   font-size: 2rem;
   color: rgba(130, 42, 186, 0.8);
@@ -1565,6 +1715,16 @@ html {
 }
 .form__label--comms {
   color: #fafafa;
+}
+.form__label--enter-income, .form__label--enter-income__pay-label, .form__label--enter-income__transaction-label, .form__label--enter-transaction__pay-label, .form__label--enter-transaction__transaction-label, .form__label--enter-transaction {
+  font-size: 1.4rem;
+}
+.form__label--enter-income .form-input--tithing, .form__label--enter-income__pay-label .form-input--tithing, .form__label--enter-income__transaction-label .form-input--tithing, .form__label--enter-transaction__pay-label .form-input--tithing, .form__label--enter-transaction__transaction-label .form-input--tithing, .form__label--enter-transaction .form-input--tithing {
+  color: #fafafa;
+}
+.form__label--monthly-budget-transaction, .form__label--monthly-budget-transaction__alt {
+  font-size: 1.26rem;
+  text-align: left;
 }
 .form__page-number {
   font-size: 2rem;
@@ -33559,7 +33719,7 @@ html {
   transition: color 0.5s, background-color 0.5s, border 0.5s;
 }
 
-.button, .button--budget-navigation, .button--borderless, .button--borderless-narrow, .button--borderless-set-timing-button, .button--small, .button--small-create-sub-category, .button--small-create-sub-category-close, .button--small-create-main-category, .button--small-transparent, .button--extra-small, .button--timing-button-submit, .button--timing-button {
+.button, .button--budget-navigation, .button--borderless, .button--borderless-narrow, .button--borderless-set-timing-button, .button--small, .button--small-container-header, .button--small-create-sub-category, .button--small-create-sub-category-close, .button--small-create-main-category, .button--small-transparent, .button--extra-small, .button--timing-button-submit, .button--timing-button, .button--transaction-button {
   position: relative;
   height: 6rem;
   width: 40%;
@@ -33574,11 +33734,26 @@ html {
   border: 0.3rem solid rgba(130, 42, 186, 0.75);
   border-radius: 1.5rem;
 }
-.button:hover, .button--budget-navigation:hover, .button--borderless:hover, .button--borderless-narrow:hover, .button--borderless-set-timing-button:hover, .button--small:hover, .button--small-create-sub-category:hover, .button--small-create-sub-category-close:hover, .button--small-create-main-category:hover, .button--small-transparent:hover, .button--extra-small:hover, .button--timing-button-submit:hover, .button--timing-button:hover {
+.button:hover, .button--budget-navigation:hover, .button--borderless:hover, .button--borderless-narrow:hover, .button--borderless-set-timing-button:hover, .button--small:hover, .button--small-container-header:hover, .button--small-create-sub-category:hover, .button--small-create-sub-category-close:hover, .button--small-create-main-category:hover, .button--small-transparent:hover, .button--extra-small:hover, .button--timing-button-submit:hover, .button--timing-button:hover, .button--transaction-button:hover {
   cursor: pointer;
   background-color: #822aba;
   border: 0.3rem solid #822aba;
   transition: background-color 0.5s, border 0.5s, color 0.5s;
+}
+.button--transaction-button {
+  height: 4rem;
+  width: 26.7%;
+  transform: translate(0, 0);
+  padding: 0.5rem;
+  border: 0.2rem solid rgba(130, 42, 186, 0.8);
+  border-radius: 0.9rem;
+  background-color: transparent;
+}
+.button--transaction-button:hover {
+  border: 0.2rem solid #822aba;
+}
+.button--transaction-button:focus {
+  border: 0.2rem solid #822aba;
 }
 .button--timing-button {
   height: 7rem;
@@ -33642,7 +33817,7 @@ html {
   background-color: transparent;
   border: none;
 }
-.button--small, .button--small-create-sub-category, .button--small-create-sub-category-close, .button--small-create-main-category, .button--small-transparent {
+.button--small, .button--small-container-header, .button--small-create-sub-category, .button--small-create-sub-category-close, .button--small-create-main-category, .button--small-transparent {
   width: 20%;
   transform: translate(0, 0);
   border-radius: 0.75rem;
@@ -33692,6 +33867,22 @@ html {
 .button--small-create-sub-category-close {
   width: 50%;
   justify-content: space-evenly;
+}
+.button--small-container-header {
+  transform: translate(0, 0);
+  height: 75%;
+  width: 25%;
+  background-color: transparent;
+  border: 0.3rem solid rgba(250, 250, 250, 0.8);
+  border-radius: 0.9rem;
+}
+.button--small-container-header:hover {
+  background-color: #38d927;
+  border: 0.3rem solid #fafafa;
+  transition: color 0.5s, background-color 0.5s, border 0.5s;
+}
+.button--small-container-header:active {
+  background-color: #ffd700;
 }
 .button--borderless, .button--borderless-narrow, .button--borderless-set-timing-button {
   border: none;
@@ -35877,7 +36068,7 @@ html {
   background-color: rgba(130, 42, 186, 0.8);
 }
 
-.form, .form--full-width {
+.form, .form--transaction, .form--full-width {
   position: relative;
   height: 100%;
   width: 50%;
@@ -35892,10 +36083,50 @@ html {
 .form--full-width {
   width: 100%;
 }
+.form--transaction {
+  width: 100%;
+  justify-content: space-evenly;
+}
 .form__header {
   margin-bottom: 3rem;
 }
-.form__section, .form__section--sub-section, .form__section--page-number-display, .form__section--page, .form__section--switch, .form__section--timing, .form__section--emergency, .form__section--sub-category-creation, .form__section--main-category-title {
+.form__row, .form__row--transaction, .form__row--income {
+  position: relative;
+  height: 30%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form__row--income:first-of-type {
+  margin-bottom: 2rem;
+}
+.form__row--income:first-of-type .form__section--enter-income {
+  justify-content: flex-start;
+}
+.form__row--income:nth-of-type(2) .form__section--enter-income {
+  width: 50%;
+  justify-content: flex-end;
+}
+.form__row--income:nth-of-type(2) .form__section--enter-income:first-of-type {
+  margin: 0;
+}
+.form__row--income:nth-of-type(2) .form__section--enter-income .form-input {
+  width: 90%;
+}
+.form__row--income:nth-of-type(2) .form__section--enter-income .form-input:not(:placeholder-shown) + label, .form__row--income:nth-of-type(2) .form__section--enter-income .form-input:focus + label {
+  transform: translate(-2rem, -3rem) scale(0.95);
+}
+.form__row--income:nth-of-type(2) .form__section--enter-income .form-label {
+  -moz-transform: translate(-1.5rem, 0);
+}
+.form__row--transaction {
+  flex-wrap: wrap;
+}
+.form__section, .form__section--sub-section, .form__section--early-income-view, .form__section--enter-income, .form__section--enter-transaction, .form__section--enter-income__monthly-budget, .form__section--enter-transaction__monthly-budget, .form__section--enter-transaction__monthly-budget__secondary, .form__section--page-number-display, .form__section--page, .form__section--switch, .form__section--timing, .form__section--emergency, .form__section--sub-category-creation, .form__section--main-category-title {
   position: relative;
   height: min-content;
   width: 100%;
@@ -35906,7 +36137,7 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
 }
-.form__section:not(:last-of-type), .form__section--sub-section:not(:last-of-type), .form__section--page-number-display:not(:last-of-type), .form__section--page:not(:last-of-type), .form__section--switch:not(:last-of-type), .form__section--timing:not(:last-of-type), .form__section--emergency:not(:last-of-type), .form__section--sub-category-creation:not(:last-of-type), .form__section--main-category-title:not(:last-of-type) {
+.form__section:not(:last-of-type), .form__section--sub-section:not(:last-of-type), .form__section--early-income-view:not(:last-of-type), .form__section--enter-income:not(:last-of-type), .form__section--enter-transaction:not(:last-of-type), .form__section--enter-income__monthly-budget:not(:last-of-type), .form__section--enter-transaction__monthly-budget:not(:last-of-type), .form__section--enter-transaction__monthly-budget__secondary:not(:last-of-type), .form__section--page-number-display:not(:last-of-type), .form__section--page:not(:last-of-type), .form__section--switch:not(:last-of-type), .form__section--timing:not(:last-of-type), .form__section--emergency:not(:last-of-type), .form__section--sub-category-creation:not(:last-of-type), .form__section--main-category-title:not(:last-of-type) {
   margin-bottom: 3.5rem;
 }
 .form__section--main-category-title {
@@ -36337,6 +36568,82 @@ html {
 .form__section--page-number-display {
   flex-direction: row;
 }
+.form__section--enter-income, .form__section--enter-transaction, .form__section--enter-income__monthly-budget, .form__section--enter-transaction__monthly-budget, .form__section--enter-transaction__monthly-budget__secondary {
+  height: 100%;
+  width: 33.3%;
+  flex-direction: column-reverse;
+  justify-content: center;
+}
+.form__section--enter-income__monthly-budget, .form__section--enter-transaction__monthly-budget, .form__section--enter-transaction__monthly-budget__secondary {
+  align-items: flex-start;
+}
+.form__section--enter-income__monthly-budget:not(:last-of-type), .form__section--enter-transaction__monthly-budget:not(:last-of-type), .form__section--enter-transaction__monthly-budget__secondary:not(:last-of-type) {
+  margin: 0;
+}
+.form__section--enter-transaction, .form__section--enter-income__monthly-budget, .form__section--enter-transaction__monthly-budget, .form__section--enter-transaction__monthly-budget__secondary {
+  margin: 0;
+}
+.form__section--enter-transaction:first-of-type, .form__section--enter-income__monthly-budget:first-of-type, .form__section--enter-transaction__monthly-budget:first-of-type, .form__section--enter-transaction__monthly-budget__secondary:first-of-type {
+  margin: 0;
+}
+.form__section--enter-transaction__monthly-budget__secondary {
+  width: 40%;
+  margin-bottom: 2rem;
+}
+.form__section--enter-transaction__monthly-budget__secondary:first-of-type, .form__section--enter-transaction__monthly-budget__secondary:last-of-type, .form__section--enter-transaction__monthly-budget__secondary:not(:last-of-type) {
+  margin-bottom: 2rem;
+}
+.form__section--early-income-view {
+  height: 40%;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.form__section--early-income-view__income-view, .form__section--early-income-view__income-view--purple {
+  position: relative;
+  height: 100%;
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.2rem solid #822aba;
+}
+.form__section--early-income-view__income-view:first-of-type, .form__section--early-income-view__income-view--purple:first-of-type {
+  border-bottom-left-radius: 0.4rem;
+}
+.form__section--early-income-view__income-view__header {
+  position: absolute;
+  height: 1.5rem;
+  width: max-content;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  top: 0.25rem;
+  left: 0.25rem;
+}
+.form__section--early-income-view__income-view--purple {
+  background-color: #822aba;
+  border: none;
+  border-bottom-right-radius: 0.4rem;
+}
+.form__section--early-income-view__income-view--purple__header {
+  position: absolute;
+  height: 1.5rem;
+  width: max-content;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  top: 0.25rem;
+  left: 0.25rem;
+}
 .form__section--sub-section {
   margin: 0.5rem 0;
 }
@@ -36364,7 +36671,7 @@ html {
   justify-content: flex-start;
   padding-left: 2rem;
 }
-.form__input, .form__input--comms, .form__input--comms--text-preferred, .form__input--sub-category-title, .form__input--main-category-title, .form__input--small, .form__input--small-savings-goal, .form__input--small-investment-goal, .form__input--dark, .form__input--dark-extra-small, .form__input--dark-small {
+.form__input, .form__input--enter-income, .form__input--enter-transaction, .form__input--comms, .form__input--comms--text-preferred, .form__input--sub-category-title, .form__input--main-category-title, .form__input--small, .form__input--small-savings-goal, .form__input--small-investment-goal, .form__input--dark, .form__input--dark-extra-small, .form__input--dark-small {
   position: relative;
   height: 6rem;
   width: 40%;
@@ -36380,19 +36687,19 @@ html {
   border: 0.3rem solid rgba(130, 42, 186, 0.75);
   border-radius: 0.75rem;
 }
-.form__input::-webkit-input-placeholder, .form__input--comms::-webkit-input-placeholder, .form__input--comms--text-preferred::-webkit-input-placeholder, .form__input--sub-category-title::-webkit-input-placeholder, .form__input--main-category-title::-webkit-input-placeholder, .form__input--small::-webkit-input-placeholder, .form__input--small-savings-goal::-webkit-input-placeholder, .form__input--small-investment-goal::-webkit-input-placeholder, .form__input--dark::-webkit-input-placeholder, .form__input--dark-extra-small::-webkit-input-placeholder, .form__input--dark-small::-webkit-input-placeholder, .form__input::-moz-placeholder, .form__input--comms::-moz-placeholder, .form__input--comms--text-preferred::-moz-placeholder, .form__input--sub-category-title::-moz-placeholder, .form__input--main-category-title::-moz-placeholder, .form__input--small::-moz-placeholder, .form__input--small-savings-goal::-moz-placeholder, .form__input--small-investment-goal::-moz-placeholder, .form__input--dark::-moz-placeholder, .form__input--dark-extra-small::-moz-placeholder, .form__input--dark-small::-moz-placeholder, .form__input::placeholder, .form__input--comms::placeholder, .form__input--comms--text-preferred::placeholder, .form__input--sub-category-title::placeholder, .form__input--main-category-title::placeholder, .form__input--small::placeholder, .form__input--small-savings-goal::placeholder, .form__input--small-investment-goal::placeholder, .form__input--dark::placeholder, .form__input--dark-extra-small::placeholder, .form__input--dark-small::placeholder {
+.form__input::-webkit-input-placeholder, .form__input--enter-income::-webkit-input-placeholder, .form__input--enter-transaction::-webkit-input-placeholder, .form__input--comms::-webkit-input-placeholder, .form__input--comms--text-preferred::-webkit-input-placeholder, .form__input--sub-category-title::-webkit-input-placeholder, .form__input--main-category-title::-webkit-input-placeholder, .form__input--small::-webkit-input-placeholder, .form__input--small-savings-goal::-webkit-input-placeholder, .form__input--small-investment-goal::-webkit-input-placeholder, .form__input--dark::-webkit-input-placeholder, .form__input--dark-extra-small::-webkit-input-placeholder, .form__input--dark-small::-webkit-input-placeholder, .form__input::-moz-placeholder, .form__input--enter-income::-moz-placeholder, .form__input--enter-transaction::-moz-placeholder, .form__input--comms::-moz-placeholder, .form__input--comms--text-preferred::-moz-placeholder, .form__input--sub-category-title::-moz-placeholder, .form__input--main-category-title::-moz-placeholder, .form__input--small::-moz-placeholder, .form__input--small-savings-goal::-moz-placeholder, .form__input--small-investment-goal::-moz-placeholder, .form__input--dark::-moz-placeholder, .form__input--dark-extra-small::-moz-placeholder, .form__input--dark-small::-moz-placeholder, .form__input::placeholder, .form__input--enter-income::placeholder, .form__input--enter-transaction::placeholder, .form__input--comms::placeholder, .form__input--comms--text-preferred::placeholder, .form__input--sub-category-title::placeholder, .form__input--main-category-title::placeholder, .form__input--small::placeholder, .form__input--small-savings-goal::placeholder, .form__input--small-investment-goal::placeholder, .form__input--dark::placeholder, .form__input--dark-extra-small::placeholder, .form__input--dark-small::placeholder {
   opacity: 0;
 }
-.form__input:focus::-webkit-input-placeholder, .form__input--comms:focus::-webkit-input-placeholder, .form__input--comms--text-preferred:focus::-webkit-input-placeholder, .form__input--sub-category-title:focus::-webkit-input-placeholder, .form__input--main-category-title:focus::-webkit-input-placeholder, .form__input--small:focus::-webkit-input-placeholder, .form__input--small-savings-goal:focus::-webkit-input-placeholder, .form__input--small-investment-goal:focus::-webkit-input-placeholder, .form__input--dark:focus::-webkit-input-placeholder, .form__input--dark-extra-small:focus::-webkit-input-placeholder, .form__input--dark-small:focus::-webkit-input-placeholder {
+.form__input:focus::-webkit-input-placeholder, .form__input--enter-income:focus::-webkit-input-placeholder, .form__input--enter-transaction:focus::-webkit-input-placeholder, .form__input--comms:focus::-webkit-input-placeholder, .form__input--comms--text-preferred:focus::-webkit-input-placeholder, .form__input--sub-category-title:focus::-webkit-input-placeholder, .form__input--main-category-title:focus::-webkit-input-placeholder, .form__input--small:focus::-webkit-input-placeholder, .form__input--small-savings-goal:focus::-webkit-input-placeholder, .form__input--small-investment-goal:focus::-webkit-input-placeholder, .form__input--dark:focus::-webkit-input-placeholder, .form__input--dark-extra-small:focus::-webkit-input-placeholder, .form__input--dark-small:focus::-webkit-input-placeholder {
   opacity: 1;
 }
-.form__input:focus, .form__input--comms:focus, .form__input--comms--text-preferred:focus, .form__input--sub-category-title:focus, .form__input--main-category-title:focus, .form__input--small:focus, .form__input--small-savings-goal:focus, .form__input--small-investment-goal:focus, .form__input--dark:focus, .form__input--dark-extra-small:focus, .form__input--dark-small:focus {
+.form__input:focus, .form__input--enter-income:focus, .form__input--enter-transaction:focus, .form__input--comms:focus, .form__input--comms--text-preferred:focus, .form__input--sub-category-title:focus, .form__input--main-category-title:focus, .form__input--small:focus, .form__input--small-savings-goal:focus, .form__input--small-investment-goal:focus, .form__input--dark:focus, .form__input--dark-extra-small:focus, .form__input--dark-small:focus {
   outline: none;
 }
-.form__input:focus::-webkit-input-placeholder, .form__input--comms:focus::-webkit-input-placeholder, .form__input--comms--text-preferred:focus::-webkit-input-placeholder, .form__input--sub-category-title:focus::-webkit-input-placeholder, .form__input--main-category-title:focus::-webkit-input-placeholder, .form__input--small:focus::-webkit-input-placeholder, .form__input--small-savings-goal:focus::-webkit-input-placeholder, .form__input--small-investment-goal:focus::-webkit-input-placeholder, .form__input--dark:focus::-webkit-input-placeholder, .form__input--dark-extra-small:focus::-webkit-input-placeholder, .form__input--dark-small:focus::-webkit-input-placeholder, .form__input:focus::-moz-placeholder, .form__input--comms:focus::-moz-placeholder, .form__input--comms--text-preferred:focus::-moz-placeholder, .form__input--sub-category-title:focus::-moz-placeholder, .form__input--main-category-title:focus::-moz-placeholder, .form__input--small:focus::-moz-placeholder, .form__input--small-savings-goal:focus::-moz-placeholder, .form__input--small-investment-goal:focus::-moz-placeholder, .form__input--dark:focus::-moz-placeholder, .form__input--dark-extra-small:focus::-moz-placeholder, .form__input--dark-small:focus::-moz-placeholder, .form__input:focus::placeholder, .form__input--comms:focus::placeholder, .form__input--comms--text-preferred:focus::placeholder, .form__input--sub-category-title:focus::placeholder, .form__input--main-category-title:focus::placeholder, .form__input--small:focus::placeholder, .form__input--small-savings-goal:focus::placeholder, .form__input--small-investment-goal:focus::placeholder, .form__input--dark:focus::placeholder, .form__input--dark-extra-small:focus::placeholder, .form__input--dark-small:focus::placeholder {
+.form__input:focus::-webkit-input-placeholder, .form__input--enter-income:focus::-webkit-input-placeholder, .form__input--enter-transaction:focus::-webkit-input-placeholder, .form__input--comms:focus::-webkit-input-placeholder, .form__input--comms--text-preferred:focus::-webkit-input-placeholder, .form__input--sub-category-title:focus::-webkit-input-placeholder, .form__input--main-category-title:focus::-webkit-input-placeholder, .form__input--small:focus::-webkit-input-placeholder, .form__input--small-savings-goal:focus::-webkit-input-placeholder, .form__input--small-investment-goal:focus::-webkit-input-placeholder, .form__input--dark:focus::-webkit-input-placeholder, .form__input--dark-extra-small:focus::-webkit-input-placeholder, .form__input--dark-small:focus::-webkit-input-placeholder, .form__input:focus::-moz-placeholder, .form__input--enter-income:focus::-moz-placeholder, .form__input--enter-transaction:focus::-moz-placeholder, .form__input--comms:focus::-moz-placeholder, .form__input--comms--text-preferred:focus::-moz-placeholder, .form__input--sub-category-title:focus::-moz-placeholder, .form__input--main-category-title:focus::-moz-placeholder, .form__input--small:focus::-moz-placeholder, .form__input--small-savings-goal:focus::-moz-placeholder, .form__input--small-investment-goal:focus::-moz-placeholder, .form__input--dark:focus::-moz-placeholder, .form__input--dark-extra-small:focus::-moz-placeholder, .form__input--dark-small:focus::-moz-placeholder, .form__input:focus::placeholder, .form__input--enter-income:focus::placeholder, .form__input--enter-transaction:focus::placeholder, .form__input--comms:focus::placeholder, .form__input--comms--text-preferred:focus::placeholder, .form__input--sub-category-title:focus::placeholder, .form__input--main-category-title:focus::placeholder, .form__input--small:focus::placeholder, .form__input--small-savings-goal:focus::placeholder, .form__input--small-investment-goal:focus::placeholder, .form__input--dark:focus::placeholder, .form__input--dark-extra-small:focus::placeholder, .form__input--dark-small:focus::placeholder {
   opacity: 1;
 }
-.form__input:not(:placeholder-shown) + label, .form__input--comms:not(:placeholder-shown) + label, .form__input--comms--text-preferred:not(:placeholder-shown) + label, .form__input--sub-category-title:not(:placeholder-shown) + label, .form__input--main-category-title:not(:placeholder-shown) + label, .form__input--small:not(:placeholder-shown) + label, .form__input--small-savings-goal:not(:placeholder-shown) + label, .form__input--small-investment-goal:not(:placeholder-shown) + label, .form__input--dark:not(:placeholder-shown) + label, .form__input--dark-extra-small:not(:placeholder-shown) + label, .form__input--dark-small:not(:placeholder-shown) + label, .form__input:focus + label, .form__input--comms:focus + label, .form__input--comms--text-preferred:focus + label, .form__input--sub-category-title:focus + label, .form__input--main-category-title:focus + label, .form__input--small:focus + label, .form__input--small-savings-goal:focus + label, .form__input--small-investment-goal:focus + label, .form__input--dark:focus + label, .form__input--dark-extra-small:focus + label, .form__input--dark-small:focus + label {
+.form__input:not(:placeholder-shown) + label, .form__input--enter-income:not(:placeholder-shown) + label, .form__input--enter-transaction:not(:placeholder-shown) + label, .form__input--comms:not(:placeholder-shown) + label, .form__input--comms--text-preferred:not(:placeholder-shown) + label, .form__input--sub-category-title:not(:placeholder-shown) + label, .form__input--main-category-title:not(:placeholder-shown) + label, .form__input--small:not(:placeholder-shown) + label, .form__input--small-savings-goal:not(:placeholder-shown) + label, .form__input--small-investment-goal:not(:placeholder-shown) + label, .form__input--dark:not(:placeholder-shown) + label, .form__input--dark-extra-small:not(:placeholder-shown) + label, .form__input--dark-small:not(:placeholder-shown) + label, .form__input:focus + label, .form__input--enter-income:focus + label, .form__input--enter-transaction:focus + label, .form__input--comms:focus + label, .form__input--comms--text-preferred:focus + label, .form__input--sub-category-title:focus + label, .form__input--main-category-title:focus + label, .form__input--small:focus + label, .form__input--small-savings-goal:focus + label, .form__input--small-investment-goal:focus + label, .form__input--dark:focus + label, .form__input--dark-extra-small:focus + label, .form__input--dark-small:focus + label {
   transform: translate(-5.5rem, -7rem) scale(0.75);
 }
 .form__input--dark, .form__input--dark-extra-small, .form__input--dark-small {
@@ -36578,7 +36885,28 @@ html {
   background-color: #2cae1f;
   transform: translate(0, -49%);
 }
-.form__select {
+.form__input--enter-income, .form__input--enter-transaction {
+  height: 4rem;
+  width: 85%;
+  padding-left: 2rem;
+  padding: 0.5rem;
+  border: 0.2rem solid rgba(130, 42, 186, 0.8);
+  border-radius: 0.9rem;
+  transition: border 0.5s, color 0.5s;
+}
+.form__input--enter-income:not(:placeholder-shown) + label, .form__input--enter-income:focus + label, .form__input--enter-transaction:not(:placeholder-shown) + label, .form__input--enter-transaction:focus + label {
+  transform: translate(-1.25rem, -2.5rem) scale(0.95);
+}
+.form__input--enter-income:not(:placeholder-shown) + .form__label--enter-income__pay-label, .form__input--enter-income:focus + .form__label--enter-income__pay-label, .form__input--enter-transaction:not(:placeholder-shown) + .form__label--enter-income__pay-label, .form__input--enter-transaction:focus + .form__label--enter-income__pay-label {
+  transform: translate(-1.25rem, -7.75rem) scale(0.95);
+}
+.form__input--enter-income:not(:placeholder-shown) + .form__label--enter-transaction__transaction-label, .form__input--enter-income:focus + .form__label--enter-transaction__transaction-label, .form__input--enter-transaction:not(:placeholder-shown) + .form__label--enter-transaction__transaction-label, .form__input--enter-transaction:focus + .form__label--enter-transaction__transaction-label {
+  transform: translate(-1.25rem, -5rem) scale(0.95);
+}
+.form__input--enter-income:not(:placeholder-shown) + .form__label--monthly-budget-transaction, .form__input--enter-income:not(:placeholder-shown) + .form__label--monthly-budget-transaction__alt, .form__input--enter-income:focus + .form__label--monthly-budget-transaction, .form__input--enter-income:focus + .form__label--monthly-budget-transaction__alt, .form__input--enter-transaction:not(:placeholder-shown) + .form__label--monthly-budget-transaction, .form__input--enter-transaction:not(:placeholder-shown) + .form__label--monthly-budget-transaction__alt, .form__input--enter-transaction:focus + .form__label--monthly-budget-transaction, .form__input--enter-transaction:focus + .form__label--monthly-budget-transaction__alt {
+  transform: translate(-1rem, 1rem) scale(0.95);
+}
+.form__select, .form__select--accounts, .form__select--monthly-transaction {
   position: relative;
   height: 6rem;
   width: 12.5%;
@@ -36593,17 +36921,33 @@ html {
   border-top-right-radius: 0.9rem;
   border-bottom-right-radius: 0.9rem;
 }
-.form__select:focus {
+.form__select--accounts, .form__select--monthly-transaction {
+  height: 4rem;
+  width: max-content;
+  padding: 0.5rem;
+  background-color: transparent;
+  border: 0.2rem solid rgba(130, 42, 186, 0.8);
+  border-radius: 0.9rem;
+}
+.form__select--accounts:hover, .form__select--monthly-transaction:hover {
+  cursor: pointer;
+  background-color: #822aba;
+  transition: background-color 0.5s, color 0.5s, border 0.5s;
+}
+.form__select--accounts:focus, .form__select--monthly-transaction:focus {
+  border: 0.2rem solid #822aba;
+}
+.form__select:focus, .form__select--accounts:focus, .form__select--monthly-transaction:focus {
   background-color: #822aba;
   border: 0.3rem solid #822aba;
 }
-.form__select option, .form__select__option {
+.form__select option, .form__select--accounts option, .form__select--monthly-transaction option, .form__select__option {
   background-color: #822aba;
 }
-.form__select option:hover, .form__select__option:hover {
+.form__select option:hover, .form__select--accounts option:hover, .form__select--monthly-transaction option:hover, .form__select__option:hover {
   background-color: #38d927;
 }
-.form__label, .form__label--comms, .form__label--extra-small, .form__label--extra-small-emergency, .form__label--small, .form__label--small-savings-goal, .form__label--small-investment-goal, .form__label--small-timing, .form__label--small-budget {
+.form__label, .form__label--comms, .form__label--extra-small, .form__label--extra-small-emergency, .form__label--small, .form__label--small-savings-goal, .form__label--small-investment-goal, .form__label--small-timing, .form__label--small-budget, .form__label--enter-income, .form__label--enter-income__transaction-label, .form__label--enter-transaction__transaction-label, .form__label--enter-income__pay-label, .form__label--enter-transaction__pay-label, .form__label--enter-transaction, .form__label--monthly-budget-transaction, .form__label--monthly-budget-transaction__alt {
   position: absolute;
   height: 6rem;
   width: 40%;
@@ -36617,6 +36961,95 @@ html {
   left: calc(30% + 2rem);
   -moz-transform: translateY(-50%);
   transition: transform 0.5s;
+}
+.form__label--monthly-budget-transaction, .form__label--monthly-budget-transaction__alt {
+  position: relative;
+  height: 4rem;
+  width: max-content;
+  top: 0;
+  margin-bottom: 0.25rem;
+  transform: translate(0, 0);
+  left: calc(0% + 2rem);
+  transition: transform 0.5s;
+  -moz-transform: translate(-1rem, 3.6rem);
+}
+.form__label--monthly-budget-transaction__alt {
+  -moz-transform: translate(-0.75rem, 0.5rem);
+}
+.form__label--monthly-budget-transaction__alt__text {
+  margin-right: 0.5rem;
+}
+.form__label--enter-income, .form__label--enter-income__transaction-label, .form__label--enter-transaction__transaction-label, .form__label--enter-income__pay-label, .form__label--enter-transaction__pay-label, .form__label--enter-transaction {
+  height: 4rem;
+  width: 75%;
+  transform: translate(0, 0);
+  left: calc(7% + 2rem);
+  transition: transform 0.5s;
+  -moz-transform: translate(-0.75rem, 0.5rem);
+}
+.form__label--enter-income__pay-label, .form__label--enter-transaction__pay-label {
+  -moz-transform: translate(-0.75rem, -4.75rem);
+}
+.form__label--enter-income__transaction-label, .form__label--enter-transaction__transaction-label {
+  -moz-transform: translate(-0.75rem, -2rem);
+}
+.form__label--enter-income__text, .form__label--enter-transaction__text {
+  transform: translate(-2rem, 0);
+}
+.form__label--enter-income .form-input--tithing, .form__label--enter-income__pay-label .form-input--tithing, .form__label--enter-transaction__pay-label .form-input--tithing, .form__label--enter-income__transaction-label .form-input--tithing, .form__label--enter-transaction__transaction-label .form-input--tithing, .form__label--enter-transaction .form-input--tithing {
+  position: absolute;
+  height: 4rem;
+  width: 75%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(4rem, 0);
+  border: 0.2rem solid #822aba;
+  border-radius: 5rem;
+  background-color: rgba(72, 23, 103, 0.9);
+}
+.form__label--enter-income .form-input--tithing__switch, .form__label--enter-income__pay-label .form-input--tithing__switch, .form__label--enter-transaction__pay-label .form-input--tithing__switch, .form__label--enter-income__transaction-label .form-input--tithing__switch, .form__label--enter-transaction__transaction-label .form-input--tithing__switch, .form__label--enter-transaction .form-input--tithing__switch {
+  position: absolute;
+  height: 3.4rem;
+  width: 3.4rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  transform: rotate(0) translate(0.2rem, -50%);
+  top: 50%;
+  left: 0;
+  border-radius: 5rem;
+  background-color: #822aba;
+}
+.form__label--enter-income .form-input--tithing__text-no, .form__label--enter-income__pay-label .form-input--tithing__text-no, .form__label--enter-transaction__pay-label .form-input--tithing__text-no, .form__label--enter-income__transaction-label .form-input--tithing__text-no, .form__label--enter-transaction__transaction-label .form-input--tithing__text-no, .form__label--enter-transaction .form-input--tithing__text-no {
+  display: flex;
+}
+.form__label--enter-income .form-input--tithing__text-yes, .form__label--enter-income__pay-label .form-input--tithing__text-yes, .form__label--enter-transaction__pay-label .form-input--tithing__text-yes, .form__label--enter-income__transaction-label .form-input--tithing__text-yes, .form__label--enter-transaction__transaction-label .form-input--tithing__text-yes, .form__label--enter-transaction .form-input--tithing__text-yes {
+  display: none;
+}
+.form__label--enter-income .form-input--tithing--tithed, .form__label--enter-income__pay-label .form-input--tithing--tithed, .form__label--enter-transaction__pay-label .form-input--tithing--tithed, .form__label--enter-income__transaction-label .form-input--tithing--tithed, .form__label--enter-transaction__transaction-label .form-input--tithing--tithed, .form__label--enter-transaction .form-input--tithing--tithed {
+  background-color: #38d927;
+  border: 0.2rem solid #2cae1f;
+  transition: border 0.5s, background-color 0.5s;
+}
+.form__label--enter-income .form-input--tithing--tithed__switch, .form__label--enter-income__pay-label .form-input--tithing--tithed__switch, .form__label--enter-transaction__pay-label .form-input--tithing--tithed__switch, .form__label--enter-income__transaction-label .form-input--tithing--tithed__switch, .form__label--enter-transaction__transaction-label .form-input--tithing--tithed__switch, .form__label--enter-transaction .form-input--tithing--tithed__switch {
+  width: 96%;
+  background-color: #38d927;
+  transition: color 0.5s, background-color 0.5s, width 0.5s;
+}
+.form__label--enter-income .form-input--tithing--tithed__text-no, .form__label--enter-income__pay-label .form-input--tithing--tithed__text-no, .form__label--enter-transaction__pay-label .form-input--tithing--tithed__text-no, .form__label--enter-income__transaction-label .form-input--tithing--tithed__text-no, .form__label--enter-transaction__transaction-label .form-input--tithing--tithed__text-no, .form__label--enter-transaction .form-input--tithing--tithed__text-no {
+  display: none;
+}
+.form__label--enter-income .form-input--tithing--tithed__text-yes, .form__label--enter-income__pay-label .form-input--tithing--tithed__text-yes, .form__label--enter-transaction__pay-label .form-input--tithing--tithed__text-yes, .form__label--enter-income__transaction-label .form-input--tithing--tithed__text-yes, .form__label--enter-transaction__transaction-label .form-input--tithing--tithed__text-yes, .form__label--enter-transaction .form-input--tithing--tithed__text-yes {
+  display: flex;
+  z-index: 2;
+}
+.form__label--enter-income .form-input--tithing:hover, .form__label--enter-income__pay-label .form-input--tithing:hover, .form__label--enter-transaction__pay-label .form-input--tithing:hover, .form__label--enter-income__transaction-label .form-input--tithing:hover, .form__label--enter-transaction__transaction-label .form-input--tithing:hover, .form__label--enter-transaction .form-input--tithing:hover {
+  cursor: pointer;
 }
 .form__label--small, .form__label--small-savings-goal, .form__label--small-investment-goal, .form__label--small-timing, .form__label--small-budget {
   width: 25%;
@@ -47895,6 +48328,112 @@ html {
   justify-content: space-evenly;
   align-items: center;
   transform: rotate(0) translate(0, 0);
+}
+
+.container--extra-small {
+  position: relative;
+  height: 22.5rem;
+  width: 35rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  padding: 0.2rem;
+  border: 0.3rem solid #822aba;
+  border-radius: 0.5rem;
+  background-color: rgba(250, 250, 250, 0.8);
+  margin-bottom: 5rem;
+}
+.container--extra-small__header {
+  position: relative;
+  height: 25%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  padding: 0 1.5rem;
+  background-color: #822aba;
+  border-bottom: 0.3rem solid #ffd700;
+}
+.container--extra-small__content {
+  position: relative;
+  height: 75%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.container--small {
+  position: relative;
+  height: 45rem;
+  width: 55.8rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  padding: 0.2rem;
+  border: 0.3rem solid #822aba;
+  border-radius: 0.5rem;
+  background-color: rgba(250, 250, 250, 0.8);
+  margin-bottom: 5rem;
+}
+.container--small__header {
+  position: relative;
+  height: 15%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  padding: 0 1.5rem;
+  background-color: #822aba;
+  border-bottom: 0.3rem solid #ffd700;
+  min-height: 15%;
+}
+.container--small__content, .container--small__content--transaction {
+  position: relative;
+  height: 75%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.container--small__content--transaction {
+  padding-bottom: 2rem;
+}
+.container--small__transaction-total {
+  position: relative;
+  height: 37%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  min-height: 20%;
+  background-color: #822aba;
+  border-bottom-left-radius: 0.4rem;
+  border-bottom-right-radius: 0.4rem;
 }
 
 .month-container {

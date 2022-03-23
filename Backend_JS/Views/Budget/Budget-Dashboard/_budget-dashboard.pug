@@ -1,32 +1,32 @@
 mixin dashboardAccountOverview(icon, text, accountTotal) 
-  section.budget-container__dashboard__container--extra-small.r__budget-container__dashboard__container--extra-small
-    header.budget-container__dashboard__container--extra-small__header.r__budget-container__dashboard__container--extra-small__header
-      i.fas.budget-container__dashboard__container--extra-small__header__icon.r__budget-container__dashboard__container--extra-small__header__icon(class=`fa-${icon}`)
-      p.budget-container__dashboard__container--extra-small__header__text.r__budget-container__dashboard__container--extra-small__header__text=`${text}`
-    section.budget-container__dashboard__container--extra-small__content.r__budget-container__dashboard__container--extra-small__content
-      p.budget-container__dashboard__container--extra-small__content__account-total.r__budget-container__dashboard__container--extra-small__content__account-total=`${accountTotal}`
+  section.container--extra-small.r__container--extra-small
+    header.container--extra-small__header.r__container--extra-small__header
+      i.fas.container--extra-small__header__icon.r__container--extra-small__header__icon(class=`fa-${icon}`)
+      p.container--extra-small__header__text.r__container--extra-small__header__text=`${text}`
+    section.container--extra-small__content.r__container--extra-small__content
+      p.container--extra-small__content__account-total.r__container--extra-small__content__account-total=`${accountTotal}`
 +dashboardAccountOverview(`piggy-bank`, `Bank Account`, `$0`)
 +dashboardAccountOverview(`hand-holding-usd`, `Debt`, `$0`)
 +dashboardAccountOverview(`dollar-sign`, `Net Value`, `$0`)
-section.budget-container__dashboard__container--small.r__budget-container__dashboard__container--small
-  header.budget-container__dashboard__container--small__header.r__budget-container__dashboard__container--small__header
-    i.fas.fa-money-bill-alt.budget-container__dashboard__container--small__header__icon.r__budget-container__dashboard__container--small__header__icon
-    p.budget-container__dashboard__container--small__header__text.r__budget-container__dashboard__container--small__header__text Enter Income
-    button.budget-container__dashboard__container--small__header__button.r__budget-container__dashboard__container--small__header__button
-      p.budget-container__dashboard__container--small__header__button__text.r__budget-container__dashboard__container--small__header__button__text Submit
-  section.budget-container__dashboard__container--small__content.r__budget-container__dashboard__container--small__content
+section.container--small.r__container--small
+  header.container--small__header.r__container--small__header
+    i.fas.fa-money-bill-alt.container--small__header__icon.r__container--small__header__icon
+    p.container--small__header__text.r__container--small__header__text Enter Income
+    button.button--small-container-header.r__button--small-container-header
+      p.container--small__header__button__text.r__container--small__header__button__text Submit
+  section.container--small__content.r__container--small__content
     include ./../Income/_Enter-Income
-section.budget-container__dashboard__container--small.r__budget-container__dashboard__container--small
-  header.budget-container__dashboard__container--small__header.r__budget-container__dashboard__container--small__header
-    i.fas.fa-money-check-alt.budget-container__dashboard__container--small__header__icon.r__budget-container__dashboard__container--small__header__icon
-    p.budget-container__dashboard__container--small__header__text.r__budget-container__dashboard__container--small__header__text Enter Transaction
-    button.budget-container__dashboard__container--small__header__button.r__budget-container__dashboard__container--small__header__button
-      p.budget-container__dashboard__container--small__header__button__text.r__budget-container__dashboard__container--small__header__button__text Submit
-  section.budget-container__dashboard__container--small__content.r__budget-container__dashboard__container--small__content
+section.container--small.r__container--small
+  header.container--small__header.r__container--small__header
+    i.fas.fa-money-check-alt.container--small__header__icon.r__container--small__header__icon
+    p.container--small__header__text.r__container--small__header__text Enter Transaction
+    button.button--small-container-header.r__button--small-container-header
+      p.container--small__header__button__text.r__container--small__header__button__text Submit
+  section.container--small__content--transaction.r__container--small__content--transaction
     include ./../Transactions/_Enter-Transaction
-  section.budget-container__dashboard__container--small__transaction-total.r__budget-container__dashboard__container--small__transaction-total 
-    h3.budget-container__dashboard__container--small__transaction-total__heading.r__budget-container__dashboard__container--small__transaction-total__heading Total Spent 
-    p.budget-container__dashboard__container--small__transaction-total__amount.r__budget-container__dashboard__container--small__transaction-total__amount= `$0.00`
+  section.container--small__transaction-total.r__container--small__transaction-total 
+    h3.container--small__transaction-total__heading.r__container--small__transaction-total__heading Total Spent 
+    p.container--small__transaction-total__amount.r__container--small__transaction-total__amount= `$0.00`
 include ./../_upcoming-bills
 include ./../_monthly-budget
 

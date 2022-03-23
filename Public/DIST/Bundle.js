@@ -8546,15 +8546,16 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
   arrayOfArrays.forEach(function (a, i) {
     a.forEach(function (c, i) {
       // console.log(c);
-      c.style.display = "none";
+      c.classList.add("closed");
     });
   });
-  var accountOptions = document.querySelectorAll('.account-selection__option');
+  var accountOptions = document.querySelectorAll('.form__select--accounts__option');
   var clicked;
   accountOptions.forEach(function (ao, i) {
     ao.addEventListener('click', function (e) {
       e.preventDefault();
-      clicked = e.target; // MONTHLY BUDGET OPTIONS
+      clicked = e.target;
+      console.log(clicked.value); // MONTHLY BUDGET OPTIONS
 
       if (clicked.value === "Monthly Budget") {
         arrayOfArrays.forEach(function (a, i) {
