@@ -44,14 +44,15 @@
       min-height: 15%;
     }
     &__content {
-      @include SizeAndPositioning(relative, 75%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+      @include SizeAndPositioning(relative, 85%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
       &--transaction {
         @extend .container--small__content;
-        padding-bottom: 2rem;
+        height: 55%;
+        // padding-bottom: 2rem;
       }
     }
     &__transaction-total {
-      @include SizeAndPositioning(relative, 37%, 100%, flex, column, nowrap, space-around, center, 0, 0, 0);
+      @include SizeAndPositioning(relative, 30%, 100%, flex, column, nowrap, space-around, center, 0, 0, 0);
       min-height: 20%;
       background-color: $primaryColor;
       border-bottom-left-radius: 0.4rem;

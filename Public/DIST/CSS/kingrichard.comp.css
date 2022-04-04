@@ -1583,13 +1583,19 @@ html {
   color: #822aba;
   font-size: 6rem;
 }
-.form__section, .form__section--early-income-view, .form__section--early-income-view__income-view, .form__section--early-income-view__income-view--purple, .form__section--emergency, .form__section--page-number-display, .form__section--page-number-display__number, .form__section--switch, .form__section--sub-section {
+.form__section, .form__section--early-income-view, .form__section--early-income-view__income-view, .form__section--early-income-view__income-view--purple, .form__section--emergency, .form__section--page-number-display, .form__section--page-number-display__number, .form__section--switch, .form__section--switch__fully-paid-for, .form__section--sub-section {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   font-size: 2rem;
   color: rgba(130, 42, 186, 0.8);
 }
 .form__section--sub-section {
   color: rgba(250, 250, 250, 0.8);
+}
+.form__section--switch__fully-paid-for {
+  font-size: 1.4rem;
+}
+.form__section--switch__fully-paid-for .form__label--fully-paid-for .paid-for-container {
+  color: #fafafa;
 }
 .form__section--page-number-display, .form__section--page-number-display__number {
   font-size: 3rem;
@@ -1617,16 +1623,22 @@ html {
 .form__section--early-income-view__income-view--purple__header {
   font-size: 1.2rem;
 }
-.form__input, .form__input--enter-income, .form__input--enter-transaction, .form__input--comms, .form__input--comms--email, .form__input--comms--text, .form__input--latter-day-saint, .form__input--sub-category-title, .form__input--main-category-title, .form__input--dark, .form__input--dark-extra-small, .form__input--dark-small, .form__input--small, .form__input--small-savings-goal, .form__input--small-investment-goal {
+.form__input-container--paid-for {
+  color: #fafafa;
+}
+.form__input, .form__input--enter-income, .form__input--enter-transaction, .form__input--enter-income__alt, .form__input--enter-transaction__alt, .form__input--enter-income__alt-emergency-fund, .form__input--enter-transaction__alt-emergency-fund, .form__input--medium__alt-emergency-fund, .form__input--long__alt-emergency-fund, .form__input--medium__alt, .form__input--long__alt, .form__input--comms, .form__input--comms--email, .form__input--comms--text, .form__input--latter-day-saint, .form__input--sub-category-title, .form__input--main-category-title, .form__input--dark, .form__input--dark-extra-small, .form__input--dark-small, .form__input--small, .form__input--small-savings-goal, .form__input--small-investment-goal, .form__input--medium, .form__input--long {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   font-size: 2rem;
   color: rgba(130, 42, 186, 0.8);
 }
-.form__input:focus, .form__input--enter-income:focus, .form__input--enter-transaction:focus, .form__input--comms:focus, .form__input--comms--email:focus, .form__input--comms--text:focus, .form__input--latter-day-saint:focus, .form__input--sub-category-title:focus, .form__input--main-category-title:focus, .form__input--dark:focus, .form__input--dark-extra-small:focus, .form__input--dark-small:focus, .form__input--small:focus, .form__input--small-savings-goal:focus, .form__input--small-investment-goal:focus {
+.form__input:focus, .form__input--enter-income:focus, .form__input--enter-transaction:focus, .form__input--enter-income__alt:focus, .form__input--enter-transaction__alt:focus, .form__input--enter-income__alt-emergency-fund:focus, .form__input--enter-transaction__alt-emergency-fund:focus, .form__input--medium__alt-emergency-fund:focus, .form__input--long__alt-emergency-fund:focus, .form__input--medium__alt:focus, .form__input--long__alt:focus, .form__input--comms:focus, .form__input--comms--email:focus, .form__input--comms--text:focus, .form__input--latter-day-saint:focus, .form__input--sub-category-title:focus, .form__input--main-category-title:focus, .form__input--dark:focus, .form__input--dark-extra-small:focus, .form__input--dark-small:focus, .form__input--small:focus, .form__input--small-savings-goal:focus, .form__input--small-investment-goal:focus, .form__input--medium:focus, .form__input--long:focus {
   color: #822aba;
 }
-.form__input:focus + label, .form__input--enter-income:focus + label, .form__input--enter-transaction:focus + label, .form__input--comms:focus + label, .form__input--comms--email:focus + label, .form__input--comms--text:focus + label, .form__input--latter-day-saint:focus + label, .form__input--sub-category-title:focus + label, .form__input--main-category-title:focus + label, .form__input--dark:focus + label, .form__input--dark-extra-small:focus + label, .form__input--dark-small:focus + label, .form__input--small:focus + label, .form__input--small-savings-goal:focus + label, .form__input--small-investment-goal:focus + label {
+.form__input:focus + label, .form__input--enter-income:focus + label, .form__input--enter-transaction:focus + label, .form__input--enter-income__alt:focus + label, .form__input--enter-transaction__alt:focus + label, .form__input--enter-income__alt-emergency-fund:focus + label, .form__input--enter-transaction__alt-emergency-fund:focus + label, .form__input--medium__alt-emergency-fund:focus + label, .form__input--long__alt-emergency-fund:focus + label, .form__input--medium__alt:focus + label, .form__input--long__alt:focus + label, .form__input--comms:focus + label, .form__input--comms--email:focus + label, .form__input--comms--text:focus + label, .form__input--latter-day-saint:focus + label, .form__input--sub-category-title:focus + label, .form__input--main-category-title:focus + label, .form__input--dark:focus + label, .form__input--dark-extra-small:focus + label, .form__input--dark-small:focus + label, .form__input--small:focus + label, .form__input--small-savings-goal:focus + label, .form__input--small-investment-goal:focus + label, .form__input--medium:focus + label, .form__input--long:focus + label {
   color: #822aba;
+}
+.form__input--medium, .form__input--long {
+  font-size: 1.4rem;
 }
 .form__input--dark, .form__input--dark-extra-small, .form__input--dark-small {
   color: rgba(250, 250, 250, 0.8);
@@ -1657,36 +1669,36 @@ html {
 .form__input--comms--email__text, .form__input--comms--text__text {
   font-size: 1.6rem;
 }
-.form__input--enter-income, .form__input--enter-transaction {
+.form__input--enter-income, .form__input--enter-transaction, .form__input--enter-income__alt, .form__input--enter-transaction__alt, .form__input--enter-income__alt-emergency-fund, .form__input--enter-transaction__alt-emergency-fund, .form__input--medium__alt-emergency-fund, .form__input--long__alt-emergency-fund, .form__input--medium__alt, .form__input--long__alt {
   font-size: 1.4rem;
 }
-.form__select, .form__select--accounts, .form__label--monthly-budget-transaction select, .form__label--monthly-budget-transaction__alt select {
+.form__select, .form__select--accounts, .form__label--medium select, .form__label--medium__relative select, .form__label--long__relative select, .form__label--emergency-fund-transaction__relative select, .form__label--savings-fund-transaction__relative select, .form__label--expense-fund-transaction__relative select, .form__label--medium__alt-2 select, .form__label--long__alt-2 select, .form__label--emergency-fund-transaction__alt-2 select, .form__label--savings-fund-transaction__alt-2 select, .form__label--expense-fund-transaction__alt-2 select, .form__label--medium__alt select, .form__label--long__alt select, .form__label--emergency-fund-transaction__alt select, .form__label--savings-fund-transaction__alt select, .form__label--expense-fund-transaction__alt select, .form__label--long select, .form__label--emergency-fund-transaction select, .form__label--savings-fund-transaction select, .form__label--expense-fund-transaction select {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   color: rgba(250, 250, 250, 0.8);
   font-size: 2rem;
   text-align: center;
 }
-.form__select:focus, .form__select--accounts:focus, .form__label--monthly-budget-transaction select:focus, .form__label--monthly-budget-transaction__alt select:focus {
+.form__select:focus, .form__select--accounts:focus, .form__label--medium select:focus, .form__label--medium__relative select:focus, .form__label--long__relative select:focus, .form__label--emergency-fund-transaction__relative select:focus, .form__label--savings-fund-transaction__relative select:focus, .form__label--expense-fund-transaction__relative select:focus, .form__label--medium__alt-2 select:focus, .form__label--long__alt-2 select:focus, .form__label--emergency-fund-transaction__alt-2 select:focus, .form__label--savings-fund-transaction__alt-2 select:focus, .form__label--expense-fund-transaction__alt-2 select:focus, .form__label--medium__alt select:focus, .form__label--long__alt select:focus, .form__label--emergency-fund-transaction__alt select:focus, .form__label--savings-fund-transaction__alt select:focus, .form__label--expense-fund-transaction__alt select:focus, .form__label--long select:focus, .form__label--emergency-fund-transaction select:focus, .form__label--savings-fund-transaction select:focus, .form__label--expense-fund-transaction select:focus {
   background-color: #822aba;
   border: 0.3rem solid #822aba;
   color: #fafafa;
 }
-.form__select option, .form__select--accounts option, .form__label--monthly-budget-transaction select option, .form__label--monthly-budget-transaction__alt select option, .form__select__option {
+.form__select option, .form__select--accounts option, .form__label--medium select option, .form__label--medium__relative select option, .form__label--long__relative select option, .form__label--emergency-fund-transaction__relative select option, .form__label--savings-fund-transaction__relative select option, .form__label--expense-fund-transaction__relative select option, .form__label--medium__alt-2 select option, .form__label--long__alt-2 select option, .form__label--emergency-fund-transaction__alt-2 select option, .form__label--savings-fund-transaction__alt-2 select option, .form__label--expense-fund-transaction__alt-2 select option, .form__label--medium__alt select option, .form__label--long__alt select option, .form__label--emergency-fund-transaction__alt select option, .form__label--savings-fund-transaction__alt select option, .form__label--expense-fund-transaction__alt select option, .form__label--long select option, .form__label--emergency-fund-transaction select option, .form__label--savings-fund-transaction select option, .form__label--expense-fund-transaction select option, .form__select__option {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   color: #fafafa;
   font-weight: 300;
 }
-.form__select--accounts, .form__label--monthly-budget-transaction select, .form__label--monthly-budget-transaction__alt select {
+.form__select--accounts, .form__label--medium select, .form__label--medium__relative select, .form__label--long__relative select, .form__label--emergency-fund-transaction__relative select, .form__label--savings-fund-transaction__relative select, .form__label--expense-fund-transaction__relative select, .form__label--medium__alt-2 select, .form__label--long__alt-2 select, .form__label--emergency-fund-transaction__alt-2 select, .form__label--savings-fund-transaction__alt-2 select, .form__label--expense-fund-transaction__alt-2 select, .form__label--medium__alt select, .form__label--long__alt select, .form__label--emergency-fund-transaction__alt select, .form__label--savings-fund-transaction__alt select, .form__label--expense-fund-transaction__alt select, .form__label--long select, .form__label--emergency-fund-transaction select, .form__label--savings-fund-transaction select, .form__label--expense-fund-transaction select {
   color: rgba(130, 42, 186, 0.8);
   font-size: 1.4rem;
 }
-.form__select--accounts:hover, .form__label--monthly-budget-transaction select:hover, .form__label--monthly-budget-transaction__alt select:hover {
+.form__select--accounts:hover, .form__label--medium select:hover, .form__label--medium__relative select:hover, .form__label--long__relative select:hover, .form__label--emergency-fund-transaction__relative select:hover, .form__label--savings-fund-transaction__relative select:hover, .form__label--expense-fund-transaction__relative select:hover, .form__label--medium__alt-2 select:hover, .form__label--long__alt-2 select:hover, .form__label--emergency-fund-transaction__alt-2 select:hover, .form__label--savings-fund-transaction__alt-2 select:hover, .form__label--expense-fund-transaction__alt-2 select:hover, .form__label--medium__alt select:hover, .form__label--long__alt select:hover, .form__label--emergency-fund-transaction__alt select:hover, .form__label--savings-fund-transaction__alt select:hover, .form__label--expense-fund-transaction__alt select:hover, .form__label--long select:hover, .form__label--emergency-fund-transaction select:hover, .form__label--savings-fund-transaction select:hover, .form__label--expense-fund-transaction select:hover {
   color: #fafafa;
 }
-.form__select--accounts:focus, .form__label--monthly-budget-transaction select:focus, .form__label--monthly-budget-transaction__alt select:focus {
+.form__select--accounts:focus, .form__label--medium select:focus, .form__label--medium__relative select:focus, .form__label--long__relative select:focus, .form__label--emergency-fund-transaction__relative select:focus, .form__label--savings-fund-transaction__relative select:focus, .form__label--expense-fund-transaction__relative select:focus, .form__label--medium__alt-2 select:focus, .form__label--long__alt-2 select:focus, .form__label--emergency-fund-transaction__alt-2 select:focus, .form__label--savings-fund-transaction__alt-2 select:focus, .form__label--expense-fund-transaction__alt-2 select:focus, .form__label--medium__alt select:focus, .form__label--long__alt select:focus, .form__label--emergency-fund-transaction__alt select:focus, .form__label--savings-fund-transaction__alt select:focus, .form__label--expense-fund-transaction__alt select:focus, .form__label--long select:focus, .form__label--emergency-fund-transaction select:focus, .form__label--savings-fund-transaction select:focus, .form__label--expense-fund-transaction select:focus {
   border: 0.2rem solid #822aba;
 }
-.form__label, .form__label--monthly-budget-transaction, .form__label--monthly-budget-transaction__alt, .form__label--enter-income, .form__label--enter-income__pay-label, .form__label--enter-income__transaction-label, .form__label--enter-transaction__pay-label, .form__label--enter-transaction__transaction-label, .form__label--enter-transaction, .form__label--comms, .form__label--latter-day-saint, .form__label--latter-day-saint-white, .form__label--small-savings-goal, .form__label--small-investment-goal, .form__label--small-timing, .form__label--small-budget, .form__label--small, .form__label--extra-small {
+.form__label, .form__label--fully-paid-for, .form__label--medium, .form__label--medium__relative, .form__label--long__relative, .form__label--emergency-fund-transaction__relative, .form__label--savings-fund-transaction__relative, .form__label--expense-fund-transaction__relative, .form__label--medium__alt-2, .form__label--long__alt-2, .form__label--emergency-fund-transaction__alt-2, .form__label--savings-fund-transaction__alt-2, .form__label--expense-fund-transaction__alt-2, .form__label--medium__alt, .form__label--long__alt, .form__label--emergency-fund-transaction__alt, .form__label--savings-fund-transaction__alt, .form__label--expense-fund-transaction__alt, .form__label--long, .form__label--emergency-fund-transaction, .form__label--savings-fund-transaction, .form__label--expense-fund-transaction, .form__label--enter-income, .form__label--enter-income__pay-label, .form__label--enter-income__transaction-label, .form__label--enter-transaction__pay-label, .form__label--enter-transaction__transaction-label, .form__label--enter-transaction, .form__label--comms, .form__label--latter-day-saint, .form__label--latter-day-saint-white, .form__label--small-savings-goal, .form__label--small-investment-goal, .form__label--small-timing, .form__label--small-budget, .form__label--small, .form__label--extra-small {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   font-size: 2rem;
   color: rgba(130, 42, 186, 0.8);
@@ -1722,9 +1734,12 @@ html {
 .form__label--enter-income .form-input--tithing, .form__label--enter-income__pay-label .form-input--tithing, .form__label--enter-income__transaction-label .form-input--tithing, .form__label--enter-transaction__pay-label .form-input--tithing, .form__label--enter-transaction__transaction-label .form-input--tithing, .form__label--enter-transaction .form-input--tithing {
   color: #fafafa;
 }
-.form__label--monthly-budget-transaction, .form__label--monthly-budget-transaction__alt {
+.form__label--medium, .form__label--medium__relative, .form__label--long__relative, .form__label--emergency-fund-transaction__relative, .form__label--savings-fund-transaction__relative, .form__label--expense-fund-transaction__relative, .form__label--medium__alt-2, .form__label--long__alt-2, .form__label--emergency-fund-transaction__alt-2, .form__label--savings-fund-transaction__alt-2, .form__label--expense-fund-transaction__alt-2, .form__label--medium__alt, .form__label--long__alt, .form__label--emergency-fund-transaction__alt, .form__label--savings-fund-transaction__alt, .form__label--expense-fund-transaction__alt, .form__label--long, .form__label--emergency-fund-transaction, .form__label--savings-fund-transaction, .form__label--expense-fund-transaction {
   font-size: 1.26rem;
   text-align: left;
+}
+.form__label--fully-paid-for {
+  font-size: 1.4rem;
 }
 .form__page-number {
   font-size: 2rem;
@@ -36090,43 +36105,26 @@ html {
 .form__header {
   margin-bottom: 3rem;
 }
-.form__row, .form__row--transaction, .form__row--income {
+.form__row, .form__row--transaction, .form__row--income, .form__row--thirds {
   position: relative;
-  height: 30%;
+  height: 32.5%;
   width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-evenly;
-  align-items: center;
-  transform: rotate(0) translate(0, 0);
-}
-.form__row--income:first-of-type {
-  margin-bottom: 2rem;
-}
-.form__row--income:first-of-type .form__section--enter-income {
   justify-content: flex-start;
+  align-items: flex-end;
+  transform: rotate(0) translate(0, 0);
+  padding: 0 2rem 2rem;
 }
-.form__row--income:nth-of-type(2) .form__section--enter-income {
-  width: 50%;
-  justify-content: flex-end;
-}
-.form__row--income:nth-of-type(2) .form__section--enter-income:first-of-type {
-  margin: 0;
-}
-.form__row--income:nth-of-type(2) .form__section--enter-income .form-input {
-  width: 90%;
-}
-.form__row--income:nth-of-type(2) .form__section--enter-income .form-input:not(:placeholder-shown) + label, .form__row--income:nth-of-type(2) .form__section--enter-income .form-input:focus + label {
-  transform: translate(-2rem, -3rem) scale(0.95);
-}
-.form__row--income:nth-of-type(2) .form__section--enter-income .form-label {
-  -moz-transform: translate(-1.5rem, 0);
+.form__row--thirds {
+  height: 33.3%;
+  padding: 0 2rem;
 }
 .form__row--transaction {
   flex-wrap: wrap;
 }
-.form__section, .form__section--sub-section, .form__section--early-income-view, .form__section--enter-income, .form__section--enter-transaction, .form__section--enter-income__monthly-budget, .form__section--enter-transaction__monthly-budget, .form__section--enter-transaction__monthly-budget__secondary, .form__section--page-number-display, .form__section--page, .form__section--switch, .form__section--timing, .form__section--emergency, .form__section--sub-category-creation, .form__section--main-category-title {
+.form__section, .form__section--sub-section, .form__section--early-income-view, .form__section--enter-income, .form__section--enter-transaction, .form__section--enter-income__monthly-budget, .form__section--enter-income__emergency-fund, .form__section--enter-transaction__monthly-budget, .form__section--enter-transaction__monthly-budget__secondary, .form__section--enter-transaction__savings-fund__secondary, .form__section--enter-transaction__expense-fund__secondary, .form__section--enter-transaction__emergency-fund, .form__section--enter-transaction__emergency-fund__secondary, .form__section--long, .form__section--long__padded--topLeft, .form__section--long__padded--left, .form__section--long__padded, .form__section--medium, .form__section--medium__padded--topLeft, .form__section--medium__padded--left, .form__section--medium__padded, .form__section--medium__alt, .form__section--page-number-display, .form__section--page, .form__section--switch, .form__section--switch__fully-paid-for, .form__section--timing, .form__section--emergency, .form__section--sub-category-creation, .form__section--main-category-title {
   position: relative;
   height: min-content;
   width: 100%;
@@ -36137,7 +36135,7 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
 }
-.form__section:not(:last-of-type), .form__section--sub-section:not(:last-of-type), .form__section--early-income-view:not(:last-of-type), .form__section--enter-income:not(:last-of-type), .form__section--enter-transaction:not(:last-of-type), .form__section--enter-income__monthly-budget:not(:last-of-type), .form__section--enter-transaction__monthly-budget:not(:last-of-type), .form__section--enter-transaction__monthly-budget__secondary:not(:last-of-type), .form__section--page-number-display:not(:last-of-type), .form__section--page:not(:last-of-type), .form__section--switch:not(:last-of-type), .form__section--timing:not(:last-of-type), .form__section--emergency:not(:last-of-type), .form__section--sub-category-creation:not(:last-of-type), .form__section--main-category-title:not(:last-of-type) {
+.form__section:not(:last-of-type), .form__section--sub-section:not(:last-of-type), .form__section--early-income-view:not(:last-of-type), .form__section--enter-income:not(:last-of-type), .form__section--enter-transaction:not(:last-of-type), .form__section--enter-income__monthly-budget:not(:last-of-type), .form__section--enter-income__emergency-fund:not(:last-of-type), .form__section--enter-transaction__monthly-budget:not(:last-of-type), .form__section--enter-transaction__monthly-budget__secondary:not(:last-of-type), .form__section--enter-transaction__savings-fund__secondary:not(:last-of-type), .form__section--enter-transaction__expense-fund__secondary:not(:last-of-type), .form__section--enter-transaction__emergency-fund:not(:last-of-type), .form__section--enter-transaction__emergency-fund__secondary:not(:last-of-type), .form__section--long:not(:last-of-type), .form__section--long__padded--topLeft:not(:last-of-type), .form__section--long__padded--left:not(:last-of-type), .form__section--long__padded:not(:last-of-type), .form__section--medium:not(:last-of-type), .form__section--medium__padded--topLeft:not(:last-of-type), .form__section--medium__padded--left:not(:last-of-type), .form__section--medium__padded:not(:last-of-type), .form__section--medium__alt:not(:last-of-type), .form__section--page-number-display:not(:last-of-type), .form__section--page:not(:last-of-type), .form__section--switch:not(:last-of-type), .form__section--switch__fully-paid-for:not(:last-of-type), .form__section--timing:not(:last-of-type), .form__section--emergency:not(:last-of-type), .form__section--sub-category-creation:not(:last-of-type), .form__section--main-category-title:not(:last-of-type) {
   margin-bottom: 3.5rem;
 }
 .form__section--main-category-title {
@@ -36555,9 +36553,19 @@ html {
   border-bottom-left-radius: 0.9rem;
   border-right: none;
 }
-.form__section--switch {
+.form__section--switch, .form__section--switch__fully-paid-for {
   flex-direction: row;
   justify-content: center;
+  margin-bottom: 2rem;
+}
+.form__section--switch__fully-paid-for {
+  flex-direction: column-reverse;
+  height: 6rem;
+  min-height: 6rem;
+  width: 20%;
+  margin-bottom: 2rem;
+}
+.form__section--switch__fully-paid-for:not(:last-of-type), .form__section--switch__fully-paid-for:last-of-type {
   margin-bottom: 2rem;
 }
 .form__section--page {
@@ -36568,33 +36576,81 @@ html {
 .form__section--page-number-display {
   flex-direction: row;
 }
-.form__section--enter-income, .form__section--enter-transaction, .form__section--enter-income__monthly-budget, .form__section--enter-transaction__monthly-budget, .form__section--enter-transaction__monthly-budget__secondary {
+.form__section--medium, .form__section--medium__padded--topLeft, .form__section--medium__padded--left, .form__section--medium__padded, .form__section--medium__alt {
+  height: 100%;
+  width: 30%;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0 1rem 0 0;
+}
+.form__section--medium:not(:last-of-type), .form__section--medium__padded--topLeft:not(:last-of-type), .form__section--medium__padded--left:not(:last-of-type), .form__section--medium__padded:not(:last-of-type), .form__section--medium__alt:not(:last-of-type) {
+  margin: 0 1rem 0 0;
+}
+.form__section--medium__alt {
+  justify-content: flex-end;
+}
+.form__section--medium__padded--left {
+  padding-left: 1rem;
+}
+.form__section--medium__padded--topLeft {
+  padding-top: 2rem;
+}
+.form__section--long, .form__section--long__padded--topLeft, .form__section--long__padded--left, .form__section--long__padded {
+  height: 100%;
+  width: 40%;
+  flex-flow: column nowrap;
+  justify-content: center;
+  margin: 0 1rem 0 0;
+}
+.form__section--long:not(:last-of-type), .form__section--long__padded--topLeft:not(:last-of-type), .form__section--long__padded--left:not(:last-of-type), .form__section--long__padded:not(:last-of-type) {
+  margin: 0 1rem 0 0;
+}
+.form__section--long__padded--left {
+  padding-left: 1rem;
+}
+.form__section--long__padded--topLeft {
+  padding-top: 2rem;
+  padding-left: 1rem;
+}
+.form__section--enter-income, .form__section--enter-transaction, .form__section--enter-income__monthly-budget, .form__section--enter-income__emergency-fund, .form__section--enter-transaction__monthly-budget, .form__section--enter-transaction__monthly-budget__secondary, .form__section--enter-transaction__savings-fund__secondary, .form__section--enter-transaction__expense-fund__secondary, .form__section--enter-transaction__emergency-fund, .form__section--enter-transaction__emergency-fund__secondary {
   height: 100%;
   width: 33.3%;
   flex-direction: column-reverse;
   justify-content: center;
 }
-.form__section--enter-income__monthly-budget, .form__section--enter-transaction__monthly-budget, .form__section--enter-transaction__monthly-budget__secondary {
+.form__section--enter-income__monthly-budget, .form__section--enter-income__emergency-fund, .form__section--enter-transaction__monthly-budget, .form__section--enter-transaction__monthly-budget__secondary, .form__section--enter-transaction__savings-fund__secondary, .form__section--enter-transaction__expense-fund__secondary, .form__section--enter-transaction__emergency-fund, .form__section--enter-transaction__emergency-fund__secondary {
   align-items: flex-start;
 }
-.form__section--enter-income__monthly-budget:not(:last-of-type), .form__section--enter-transaction__monthly-budget:not(:last-of-type), .form__section--enter-transaction__monthly-budget__secondary:not(:last-of-type) {
+.form__section--enter-income__monthly-budget:not(:last-of-type), .form__section--enter-income__emergency-fund:not(:last-of-type), .form__section--enter-transaction__monthly-budget:not(:last-of-type), .form__section--enter-transaction__monthly-budget__secondary:not(:last-of-type), .form__section--enter-transaction__savings-fund__secondary:not(:last-of-type), .form__section--enter-transaction__expense-fund__secondary:not(:last-of-type), .form__section--enter-transaction__emergency-fund:not(:last-of-type), .form__section--enter-transaction__emergency-fund__secondary:not(:last-of-type) {
   margin: 0;
 }
-.form__section--enter-transaction, .form__section--enter-income__monthly-budget, .form__section--enter-transaction__monthly-budget, .form__section--enter-transaction__monthly-budget__secondary {
+.form__section--enter-transaction, .form__section--enter-income__monthly-budget, .form__section--enter-income__emergency-fund, .form__section--enter-transaction__monthly-budget, .form__section--enter-transaction__monthly-budget__secondary, .form__section--enter-transaction__savings-fund__secondary, .form__section--enter-transaction__expense-fund__secondary, .form__section--enter-transaction__emergency-fund, .form__section--enter-transaction__emergency-fund__secondary {
   margin: 0;
 }
-.form__section--enter-transaction:first-of-type, .form__section--enter-income__monthly-budget:first-of-type, .form__section--enter-transaction__monthly-budget:first-of-type, .form__section--enter-transaction__monthly-budget__secondary:first-of-type {
+.form__section--enter-transaction:first-of-type, .form__section--enter-income__monthly-budget:first-of-type, .form__section--enter-income__emergency-fund:first-of-type, .form__section--enter-transaction__monthly-budget:first-of-type, .form__section--enter-transaction__monthly-budget__secondary:first-of-type, .form__section--enter-transaction__savings-fund__secondary:first-of-type, .form__section--enter-transaction__expense-fund__secondary:first-of-type, .form__section--enter-transaction__emergency-fund:first-of-type, .form__section--enter-transaction__emergency-fund__secondary:first-of-type {
   margin: 0;
 }
-.form__section--enter-transaction__monthly-budget__secondary {
+.form__section--enter-transaction__monthly-budget__secondary, .form__section--enter-transaction__savings-fund__secondary, .form__section--enter-transaction__expense-fund__secondary {
+  min-height: 4rem;
   width: 40%;
   margin-bottom: 2rem;
 }
-.form__section--enter-transaction__monthly-budget__secondary:first-of-type, .form__section--enter-transaction__monthly-budget__secondary:last-of-type, .form__section--enter-transaction__monthly-budget__secondary:not(:last-of-type) {
+.form__section--enter-transaction__monthly-budget__secondary:first-of-type, .form__section--enter-transaction__monthly-budget__secondary:last-of-type, .form__section--enter-transaction__monthly-budget__secondary:not(:last-of-type), .form__section--enter-transaction__savings-fund__secondary:first-of-type, .form__section--enter-transaction__savings-fund__secondary:last-of-type, .form__section--enter-transaction__savings-fund__secondary:not(:last-of-type), .form__section--enter-transaction__expense-fund__secondary:first-of-type, .form__section--enter-transaction__expense-fund__secondary:last-of-type, .form__section--enter-transaction__expense-fund__secondary:not(:last-of-type) {
   margin-bottom: 2rem;
 }
+.form__section--enter-transaction__emergency-fund__secondary {
+  min-height: 4rem;
+  width: 36%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.form__section--enter-transaction__emergency-fund__secondary:first-of-type, .form__section--enter-transaction__emergency-fund__secondary:last-of-type, .form__section--enter-transaction__emergency-fund__secondary:not(:last-of-type) {
+  margin-bottom: 0;
+}
 .form__section--early-income-view {
-  height: 40%;
+  height: 35%;
   flex-direction: row;
   justify-content: space-between;
 }
@@ -36650,7 +36706,7 @@ html {
 .form__section--sub-section:first-of-type {
   margin: 0 0 1rem;
 }
-.form__input-container, .form__input-container--sub-category-title, .form__input-container--latter-day-saint {
+.form__input-container, .form__input-container--sub-category-title, .form__input-container--paid-for, .form__input-container--latter-day-saint {
   position: relative;
   height: 7rem;
   width: 20%;
@@ -36664,6 +36720,53 @@ html {
 .form__input-container--latter-day-saint {
   width: 12%;
 }
+.form__input-container--paid-for {
+  height: 4rem;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 0.2rem solid #652190;
+  border-radius: 0.5rem;
+  background-color: rgba(130, 42, 186, 0.8);
+}
+.form__input-container--paid-for:before {
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, -50%);
+  top: 50%;
+  left: 0;
+  content: "";
+  border-top-left-radius: 0.2rem;
+  border-bottom-left-radius: 0.2rem;
+  background-color: rgba(56, 217, 39, 0.95);
+  transition: border 0.5s, transform 0.5s;
+}
+.form__input-container--paid-for__no, .form__input-container--paid-for__yes {
+  position: relative;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form__input-container--paid-for:hover {
+  cursor: pointer;
+}
+.form__input-container--paid-for--clicked:before {
+  transform: translate(4.8rem, -50%);
+  border-radius: 0;
+  border-top-right-radius: 0.2rem;
+  border-bottom-right-radius: 0.2rem;
+}
 .form__input-container--sub-category-title {
   height: 100%;
   width: 70%;
@@ -36671,7 +36774,7 @@ html {
   justify-content: flex-start;
   padding-left: 2rem;
 }
-.form__input, .form__input--enter-income, .form__input--enter-transaction, .form__input--comms, .form__input--comms--text-preferred, .form__input--sub-category-title, .form__input--main-category-title, .form__input--small, .form__input--small-savings-goal, .form__input--small-investment-goal, .form__input--dark, .form__input--dark-extra-small, .form__input--dark-small {
+.form__input, .form__input--enter-income, .form__input--enter-transaction, .form__input--enter-income__alt, .form__input--enter-transaction__alt, .form__input--enter-income__alt-emergency-fund, .form__input--enter-transaction__alt-emergency-fund, .form__input--comms, .form__input--comms--text-preferred, .form__input--sub-category-title, .form__input--main-category-title, .form__input--small, .form__input--small-savings-goal, .form__input--small-investment-goal, .form__input--medium, .form__input--medium__alt, .form__input--long, .form__input--dark, .form__input--dark-extra-small, .form__input--dark-small {
   position: relative;
   height: 6rem;
   width: 40%;
@@ -36687,19 +36790,19 @@ html {
   border: 0.3rem solid rgba(130, 42, 186, 0.75);
   border-radius: 0.75rem;
 }
-.form__input::-webkit-input-placeholder, .form__input--enter-income::-webkit-input-placeholder, .form__input--enter-transaction::-webkit-input-placeholder, .form__input--comms::-webkit-input-placeholder, .form__input--comms--text-preferred::-webkit-input-placeholder, .form__input--sub-category-title::-webkit-input-placeholder, .form__input--main-category-title::-webkit-input-placeholder, .form__input--small::-webkit-input-placeholder, .form__input--small-savings-goal::-webkit-input-placeholder, .form__input--small-investment-goal::-webkit-input-placeholder, .form__input--dark::-webkit-input-placeholder, .form__input--dark-extra-small::-webkit-input-placeholder, .form__input--dark-small::-webkit-input-placeholder, .form__input::-moz-placeholder, .form__input--enter-income::-moz-placeholder, .form__input--enter-transaction::-moz-placeholder, .form__input--comms::-moz-placeholder, .form__input--comms--text-preferred::-moz-placeholder, .form__input--sub-category-title::-moz-placeholder, .form__input--main-category-title::-moz-placeholder, .form__input--small::-moz-placeholder, .form__input--small-savings-goal::-moz-placeholder, .form__input--small-investment-goal::-moz-placeholder, .form__input--dark::-moz-placeholder, .form__input--dark-extra-small::-moz-placeholder, .form__input--dark-small::-moz-placeholder, .form__input::placeholder, .form__input--enter-income::placeholder, .form__input--enter-transaction::placeholder, .form__input--comms::placeholder, .form__input--comms--text-preferred::placeholder, .form__input--sub-category-title::placeholder, .form__input--main-category-title::placeholder, .form__input--small::placeholder, .form__input--small-savings-goal::placeholder, .form__input--small-investment-goal::placeholder, .form__input--dark::placeholder, .form__input--dark-extra-small::placeholder, .form__input--dark-small::placeholder {
+.form__input::-webkit-input-placeholder, .form__input--enter-income::-webkit-input-placeholder, .form__input--enter-transaction::-webkit-input-placeholder, .form__input--enter-income__alt::-webkit-input-placeholder, .form__input--enter-transaction__alt::-webkit-input-placeholder, .form__input--enter-income__alt-emergency-fund::-webkit-input-placeholder, .form__input--enter-transaction__alt-emergency-fund::-webkit-input-placeholder, .form__input--comms::-webkit-input-placeholder, .form__input--comms--text-preferred::-webkit-input-placeholder, .form__input--sub-category-title::-webkit-input-placeholder, .form__input--main-category-title::-webkit-input-placeholder, .form__input--small::-webkit-input-placeholder, .form__input--small-savings-goal::-webkit-input-placeholder, .form__input--small-investment-goal::-webkit-input-placeholder, .form__input--medium::-webkit-input-placeholder, .form__input--medium__alt::-webkit-input-placeholder, .form__input--long::-webkit-input-placeholder, .form__input--dark::-webkit-input-placeholder, .form__input--dark-extra-small::-webkit-input-placeholder, .form__input--dark-small::-webkit-input-placeholder, .form__input::-moz-placeholder, .form__input--enter-income::-moz-placeholder, .form__input--enter-transaction::-moz-placeholder, .form__input--enter-income__alt::-moz-placeholder, .form__input--enter-transaction__alt::-moz-placeholder, .form__input--enter-income__alt-emergency-fund::-moz-placeholder, .form__input--enter-transaction__alt-emergency-fund::-moz-placeholder, .form__input--comms::-moz-placeholder, .form__input--comms--text-preferred::-moz-placeholder, .form__input--sub-category-title::-moz-placeholder, .form__input--main-category-title::-moz-placeholder, .form__input--small::-moz-placeholder, .form__input--small-savings-goal::-moz-placeholder, .form__input--small-investment-goal::-moz-placeholder, .form__input--medium::-moz-placeholder, .form__input--medium__alt::-moz-placeholder, .form__input--long::-moz-placeholder, .form__input--dark::-moz-placeholder, .form__input--dark-extra-small::-moz-placeholder, .form__input--dark-small::-moz-placeholder, .form__input::placeholder, .form__input--enter-income::placeholder, .form__input--enter-transaction::placeholder, .form__input--enter-income__alt::placeholder, .form__input--enter-transaction__alt::placeholder, .form__input--enter-income__alt-emergency-fund::placeholder, .form__input--enter-transaction__alt-emergency-fund::placeholder, .form__input--comms::placeholder, .form__input--comms--text-preferred::placeholder, .form__input--sub-category-title::placeholder, .form__input--main-category-title::placeholder, .form__input--small::placeholder, .form__input--small-savings-goal::placeholder, .form__input--small-investment-goal::placeholder, .form__input--medium::placeholder, .form__input--medium__alt::placeholder, .form__input--long::placeholder, .form__input--dark::placeholder, .form__input--dark-extra-small::placeholder, .form__input--dark-small::placeholder {
   opacity: 0;
 }
-.form__input:focus::-webkit-input-placeholder, .form__input--enter-income:focus::-webkit-input-placeholder, .form__input--enter-transaction:focus::-webkit-input-placeholder, .form__input--comms:focus::-webkit-input-placeholder, .form__input--comms--text-preferred:focus::-webkit-input-placeholder, .form__input--sub-category-title:focus::-webkit-input-placeholder, .form__input--main-category-title:focus::-webkit-input-placeholder, .form__input--small:focus::-webkit-input-placeholder, .form__input--small-savings-goal:focus::-webkit-input-placeholder, .form__input--small-investment-goal:focus::-webkit-input-placeholder, .form__input--dark:focus::-webkit-input-placeholder, .form__input--dark-extra-small:focus::-webkit-input-placeholder, .form__input--dark-small:focus::-webkit-input-placeholder {
+.form__input:focus::-webkit-input-placeholder, .form__input--enter-income:focus::-webkit-input-placeholder, .form__input--enter-transaction:focus::-webkit-input-placeholder, .form__input--enter-income__alt:focus::-webkit-input-placeholder, .form__input--enter-transaction__alt:focus::-webkit-input-placeholder, .form__input--enter-income__alt-emergency-fund:focus::-webkit-input-placeholder, .form__input--enter-transaction__alt-emergency-fund:focus::-webkit-input-placeholder, .form__input--comms:focus::-webkit-input-placeholder, .form__input--comms--text-preferred:focus::-webkit-input-placeholder, .form__input--sub-category-title:focus::-webkit-input-placeholder, .form__input--main-category-title:focus::-webkit-input-placeholder, .form__input--small:focus::-webkit-input-placeholder, .form__input--small-savings-goal:focus::-webkit-input-placeholder, .form__input--small-investment-goal:focus::-webkit-input-placeholder, .form__input--medium:focus::-webkit-input-placeholder, .form__input--medium__alt:focus::-webkit-input-placeholder, .form__input--long:focus::-webkit-input-placeholder, .form__input--dark:focus::-webkit-input-placeholder, .form__input--dark-extra-small:focus::-webkit-input-placeholder, .form__input--dark-small:focus::-webkit-input-placeholder {
   opacity: 1;
 }
-.form__input:focus, .form__input--enter-income:focus, .form__input--enter-transaction:focus, .form__input--comms:focus, .form__input--comms--text-preferred:focus, .form__input--sub-category-title:focus, .form__input--main-category-title:focus, .form__input--small:focus, .form__input--small-savings-goal:focus, .form__input--small-investment-goal:focus, .form__input--dark:focus, .form__input--dark-extra-small:focus, .form__input--dark-small:focus {
+.form__input:focus, .form__input--enter-income:focus, .form__input--enter-transaction:focus, .form__input--enter-income__alt:focus, .form__input--enter-transaction__alt:focus, .form__input--enter-income__alt-emergency-fund:focus, .form__input--enter-transaction__alt-emergency-fund:focus, .form__input--comms:focus, .form__input--comms--text-preferred:focus, .form__input--sub-category-title:focus, .form__input--main-category-title:focus, .form__input--small:focus, .form__input--small-savings-goal:focus, .form__input--small-investment-goal:focus, .form__input--medium:focus, .form__input--medium__alt:focus, .form__input--long:focus, .form__input--dark:focus, .form__input--dark-extra-small:focus, .form__input--dark-small:focus {
   outline: none;
 }
-.form__input:focus::-webkit-input-placeholder, .form__input--enter-income:focus::-webkit-input-placeholder, .form__input--enter-transaction:focus::-webkit-input-placeholder, .form__input--comms:focus::-webkit-input-placeholder, .form__input--comms--text-preferred:focus::-webkit-input-placeholder, .form__input--sub-category-title:focus::-webkit-input-placeholder, .form__input--main-category-title:focus::-webkit-input-placeholder, .form__input--small:focus::-webkit-input-placeholder, .form__input--small-savings-goal:focus::-webkit-input-placeholder, .form__input--small-investment-goal:focus::-webkit-input-placeholder, .form__input--dark:focus::-webkit-input-placeholder, .form__input--dark-extra-small:focus::-webkit-input-placeholder, .form__input--dark-small:focus::-webkit-input-placeholder, .form__input:focus::-moz-placeholder, .form__input--enter-income:focus::-moz-placeholder, .form__input--enter-transaction:focus::-moz-placeholder, .form__input--comms:focus::-moz-placeholder, .form__input--comms--text-preferred:focus::-moz-placeholder, .form__input--sub-category-title:focus::-moz-placeholder, .form__input--main-category-title:focus::-moz-placeholder, .form__input--small:focus::-moz-placeholder, .form__input--small-savings-goal:focus::-moz-placeholder, .form__input--small-investment-goal:focus::-moz-placeholder, .form__input--dark:focus::-moz-placeholder, .form__input--dark-extra-small:focus::-moz-placeholder, .form__input--dark-small:focus::-moz-placeholder, .form__input:focus::placeholder, .form__input--enter-income:focus::placeholder, .form__input--enter-transaction:focus::placeholder, .form__input--comms:focus::placeholder, .form__input--comms--text-preferred:focus::placeholder, .form__input--sub-category-title:focus::placeholder, .form__input--main-category-title:focus::placeholder, .form__input--small:focus::placeholder, .form__input--small-savings-goal:focus::placeholder, .form__input--small-investment-goal:focus::placeholder, .form__input--dark:focus::placeholder, .form__input--dark-extra-small:focus::placeholder, .form__input--dark-small:focus::placeholder {
+.form__input:focus::-webkit-input-placeholder, .form__input--enter-income:focus::-webkit-input-placeholder, .form__input--enter-transaction:focus::-webkit-input-placeholder, .form__input--enter-income__alt:focus::-webkit-input-placeholder, .form__input--enter-transaction__alt:focus::-webkit-input-placeholder, .form__input--enter-income__alt-emergency-fund:focus::-webkit-input-placeholder, .form__input--enter-transaction__alt-emergency-fund:focus::-webkit-input-placeholder, .form__input--comms:focus::-webkit-input-placeholder, .form__input--comms--text-preferred:focus::-webkit-input-placeholder, .form__input--sub-category-title:focus::-webkit-input-placeholder, .form__input--main-category-title:focus::-webkit-input-placeholder, .form__input--small:focus::-webkit-input-placeholder, .form__input--small-savings-goal:focus::-webkit-input-placeholder, .form__input--small-investment-goal:focus::-webkit-input-placeholder, .form__input--medium:focus::-webkit-input-placeholder, .form__input--medium__alt:focus::-webkit-input-placeholder, .form__input--long:focus::-webkit-input-placeholder, .form__input--dark:focus::-webkit-input-placeholder, .form__input--dark-extra-small:focus::-webkit-input-placeholder, .form__input--dark-small:focus::-webkit-input-placeholder, .form__input:focus::-moz-placeholder, .form__input--enter-income:focus::-moz-placeholder, .form__input--enter-transaction:focus::-moz-placeholder, .form__input--enter-income__alt:focus::-moz-placeholder, .form__input--enter-transaction__alt:focus::-moz-placeholder, .form__input--enter-income__alt-emergency-fund:focus::-moz-placeholder, .form__input--enter-transaction__alt-emergency-fund:focus::-moz-placeholder, .form__input--comms:focus::-moz-placeholder, .form__input--comms--text-preferred:focus::-moz-placeholder, .form__input--sub-category-title:focus::-moz-placeholder, .form__input--main-category-title:focus::-moz-placeholder, .form__input--small:focus::-moz-placeholder, .form__input--small-savings-goal:focus::-moz-placeholder, .form__input--small-investment-goal:focus::-moz-placeholder, .form__input--medium:focus::-moz-placeholder, .form__input--medium__alt:focus::-moz-placeholder, .form__input--long:focus::-moz-placeholder, .form__input--dark:focus::-moz-placeholder, .form__input--dark-extra-small:focus::-moz-placeholder, .form__input--dark-small:focus::-moz-placeholder, .form__input:focus::placeholder, .form__input--enter-income:focus::placeholder, .form__input--enter-transaction:focus::placeholder, .form__input--enter-income__alt:focus::placeholder, .form__input--enter-transaction__alt:focus::placeholder, .form__input--enter-income__alt-emergency-fund:focus::placeholder, .form__input--enter-transaction__alt-emergency-fund:focus::placeholder, .form__input--comms:focus::placeholder, .form__input--comms--text-preferred:focus::placeholder, .form__input--sub-category-title:focus::placeholder, .form__input--main-category-title:focus::placeholder, .form__input--small:focus::placeholder, .form__input--small-savings-goal:focus::placeholder, .form__input--small-investment-goal:focus::placeholder, .form__input--medium:focus::placeholder, .form__input--medium__alt:focus::placeholder, .form__input--long:focus::placeholder, .form__input--dark:focus::placeholder, .form__input--dark-extra-small:focus::placeholder, .form__input--dark-small:focus::placeholder {
   opacity: 1;
 }
-.form__input:not(:placeholder-shown) + label, .form__input--enter-income:not(:placeholder-shown) + label, .form__input--enter-transaction:not(:placeholder-shown) + label, .form__input--comms:not(:placeholder-shown) + label, .form__input--comms--text-preferred:not(:placeholder-shown) + label, .form__input--sub-category-title:not(:placeholder-shown) + label, .form__input--main-category-title:not(:placeholder-shown) + label, .form__input--small:not(:placeholder-shown) + label, .form__input--small-savings-goal:not(:placeholder-shown) + label, .form__input--small-investment-goal:not(:placeholder-shown) + label, .form__input--dark:not(:placeholder-shown) + label, .form__input--dark-extra-small:not(:placeholder-shown) + label, .form__input--dark-small:not(:placeholder-shown) + label, .form__input:focus + label, .form__input--enter-income:focus + label, .form__input--enter-transaction:focus + label, .form__input--comms:focus + label, .form__input--comms--text-preferred:focus + label, .form__input--sub-category-title:focus + label, .form__input--main-category-title:focus + label, .form__input--small:focus + label, .form__input--small-savings-goal:focus + label, .form__input--small-investment-goal:focus + label, .form__input--dark:focus + label, .form__input--dark-extra-small:focus + label, .form__input--dark-small:focus + label {
+.form__input:not(:placeholder-shown) + label, .form__input--enter-income:not(:placeholder-shown) + label, .form__input--enter-transaction:not(:placeholder-shown) + label, .form__input--enter-income__alt:not(:placeholder-shown) + label, .form__input--enter-transaction__alt:not(:placeholder-shown) + label, .form__input--enter-income__alt-emergency-fund:not(:placeholder-shown) + label, .form__input--enter-transaction__alt-emergency-fund:not(:placeholder-shown) + label, .form__input--comms:not(:placeholder-shown) + label, .form__input--comms--text-preferred:not(:placeholder-shown) + label, .form__input--sub-category-title:not(:placeholder-shown) + label, .form__input--main-category-title:not(:placeholder-shown) + label, .form__input--small:not(:placeholder-shown) + label, .form__input--small-savings-goal:not(:placeholder-shown) + label, .form__input--small-investment-goal:not(:placeholder-shown) + label, .form__input--medium:not(:placeholder-shown) + label, .form__input--medium__alt:not(:placeholder-shown) + label, .form__input--long:not(:placeholder-shown) + label, .form__input--dark:not(:placeholder-shown) + label, .form__input--dark-extra-small:not(:placeholder-shown) + label, .form__input--dark-small:not(:placeholder-shown) + label, .form__input:focus + label, .form__input--enter-income:focus + label, .form__input--enter-transaction:focus + label, .form__input--enter-income__alt:focus + label, .form__input--enter-transaction__alt:focus + label, .form__input--enter-income__alt-emergency-fund:focus + label, .form__input--enter-transaction__alt-emergency-fund:focus + label, .form__input--comms:focus + label, .form__input--comms--text-preferred:focus + label, .form__input--sub-category-title:focus + label, .form__input--main-category-title:focus + label, .form__input--small:focus + label, .form__input--small-savings-goal:focus + label, .form__input--small-investment-goal:focus + label, .form__input--medium:focus + label, .form__input--medium__alt:focus + label, .form__input--long:focus + label, .form__input--dark:focus + label, .form__input--dark-extra-small:focus + label, .form__input--dark-small:focus + label {
   transform: translate(-5.5rem, -7rem) scale(0.75);
 }
 .form__input--dark, .form__input--dark-extra-small, .form__input--dark-small {
@@ -36720,6 +36823,42 @@ html {
 }
 .form__input--dark-extra-small:not(:placeholder-shown) + label, .form__input--dark-extra-small:focus + label {
   transform: translate(-4rem, -7rem) scale(0.75);
+}
+.form__input--long {
+  height: 4rem;
+  min-height: 4rem;
+  width: 100%;
+  padding-left: 2rem;
+  padding: 0.5rem;
+  border: 0.2rem solid rgba(130, 42, 186, 0.8);
+  border-radius: 0.9rem;
+}
+.form__input--long:not(:placeholder-shown) + .form__label--long, .form__input--long:not(:placeholder-shown) + .form__label--long__alt, .form__input--long:focus + .form__label--long, .form__input--long:focus + .form__label--long__alt {
+  transform: translate(-1.5rem, -1rem) scale(0.95);
+}
+.form__input--long:not(:placeholder-shown) + .form__label--long__alt, .form__input--long:focus + .form__label--long__alt {
+  transform: translate(-0.5rem, 0rem) scale(0.95);
+}
+.form__input--medium, .form__input--medium__alt {
+  height: 4rem;
+  min-height: 4rem;
+  width: 90%;
+  padding-left: 2rem;
+  padding: 0.5rem;
+  border: 0.2rem solid rgba(130, 42, 186, 0.8);
+  border-radius: 0.9rem;
+}
+.form__input--medium:not(:placeholder-shown) + .form__label--medium, .form__input--medium:not(:placeholder-shown) + .form__label--savings-fund-transaction, .form__input--medium:not(:placeholder-shown) + .form__label--expense-fund-transaction, .form__input--medium:not(:placeholder-shown) + .form__label--emergency-fund-transaction, .form__input--medium:not(:placeholder-shown) + .form__label--medium__relative, .form__input--medium:not(:placeholder-shown) + .form__label--medium__alt-2, .form__input--medium:not(:placeholder-shown) + .form__label--medium__alt, .form__input--medium:not(:placeholder-shown) + .form__label--savings-fund-transaction__alt, .form__input--medium:not(:placeholder-shown) + .form__label--expense-fund-transaction__alt, .form__input--medium__alt:not(:placeholder-shown) + .form__label--medium, .form__input--medium__alt:not(:placeholder-shown) + .form__label--savings-fund-transaction, .form__input--medium__alt:not(:placeholder-shown) + .form__label--expense-fund-transaction, .form__input--medium__alt:not(:placeholder-shown) + .form__label--emergency-fund-transaction, .form__input--medium__alt:not(:placeholder-shown) + .form__label--medium__relative, .form__input--medium__alt:not(:placeholder-shown) + .form__label--medium__alt-2, .form__input--medium__alt:not(:placeholder-shown) + .form__label--medium__alt, .form__input--medium__alt:not(:placeholder-shown) + .form__label--savings-fund-transaction__alt, .form__input--medium__alt:not(:placeholder-shown) + .form__label--expense-fund-transaction__alt, .form__input--medium:focus + .form__label--medium, .form__input--medium:focus + .form__label--savings-fund-transaction, .form__input--medium:focus + .form__label--expense-fund-transaction, .form__input--medium:focus + .form__label--emergency-fund-transaction, .form__input--medium:focus + .form__label--medium__relative, .form__input--medium:focus + .form__label--medium__alt-2, .form__input--medium:focus + .form__label--medium__alt, .form__input--medium:focus + .form__label--savings-fund-transaction__alt, .form__input--medium:focus + .form__label--expense-fund-transaction__alt, .form__input--medium__alt:focus + .form__label--medium, .form__input--medium__alt:focus + .form__label--savings-fund-transaction, .form__input--medium__alt:focus + .form__label--expense-fund-transaction, .form__input--medium__alt:focus + .form__label--emergency-fund-transaction, .form__input--medium__alt:focus + .form__label--medium__relative, .form__input--medium__alt:focus + .form__label--medium__alt-2, .form__input--medium__alt:focus + .form__label--medium__alt, .form__input--medium__alt:focus + .form__label--savings-fund-transaction__alt, .form__input--medium__alt:focus + .form__label--expense-fund-transaction__alt {
+  transform: translate(-1.5rem, -1rem) scale(0.95);
+}
+.form__input--medium:not(:placeholder-shown) + .form__label--medium__alt-2, .form__input--medium__alt:not(:placeholder-shown) + .form__label--medium__alt-2, .form__input--medium:focus + .form__label--medium__alt-2, .form__input--medium__alt:focus + .form__label--medium__alt-2 {
+  transform: translate(-1.5rem, 0rem) scale(0.95);
+}
+.form__input--medium__alt {
+  width: 100%;
+}
+.form__input--medium__alt:not(:placeholder-shown) + .form__label--medium, .form__input--medium__alt:not(:placeholder-shown) + .form__label--savings-fund-transaction, .form__input--medium__alt:not(:placeholder-shown) + .form__label--expense-fund-transaction, .form__input--medium__alt:not(:placeholder-shown) + .form__label--emergency-fund-transaction, .form__input--medium__alt:not(:placeholder-shown) + .form__label--medium__relative, .form__input--medium__alt:not(:placeholder-shown) + .form__label--medium__alt-2, .form__input--medium__alt:not(:placeholder-shown) + .form__label--medium__alt, .form__input--medium__alt:not(:placeholder-shown) + .form__label--savings-fund-transaction__alt, .form__input--medium__alt:not(:placeholder-shown) + .form__label--expense-fund-transaction__alt, .form__input--medium__alt:focus + .form__label--medium, .form__input--medium__alt:focus + .form__label--savings-fund-transaction, .form__input--medium__alt:focus + .form__label--expense-fund-transaction, .form__input--medium__alt:focus + .form__label--emergency-fund-transaction, .form__input--medium__alt:focus + .form__label--medium__relative, .form__input--medium__alt:focus + .form__label--medium__alt-2, .form__input--medium__alt:focus + .form__label--medium__alt, .form__input--medium__alt:focus + .form__label--savings-fund-transaction__alt, .form__input--medium__alt:focus + .form__label--expense-fund-transaction__alt {
+  transform: translate(-1.5rem, 1rem) scale(0.95);
 }
 .form__input--small, .form__input--small-savings-goal, .form__input--small-investment-goal {
   width: 25%;
@@ -36885,28 +37024,35 @@ html {
   background-color: #2cae1f;
   transform: translate(0, -49%);
 }
-.form__input--enter-income, .form__input--enter-transaction {
+.form__input--enter-income, .form__input--enter-transaction, .form__input--enter-income__alt, .form__input--enter-transaction__alt, .form__input--enter-income__alt-emergency-fund, .form__input--enter-transaction__alt-emergency-fund {
   height: 4rem;
-  width: 85%;
+  min-height: 4rem;
+  width: 100%;
   padding-left: 2rem;
   padding: 0.5rem;
   border: 0.2rem solid rgba(130, 42, 186, 0.8);
   border-radius: 0.9rem;
   transition: border 0.5s, color 0.5s;
 }
-.form__input--enter-income:not(:placeholder-shown) + label, .form__input--enter-income:focus + label, .form__input--enter-transaction:not(:placeholder-shown) + label, .form__input--enter-transaction:focus + label {
-  transform: translate(-1.25rem, -2.5rem) scale(0.95);
+.form__input--enter-income:not(:placeholder-shown) + label, .form__input--enter-income:focus + label, .form__input--enter-transaction:not(:placeholder-shown) + label, .form__input--enter-income__alt:not(:placeholder-shown) + label, .form__input--enter-transaction__alt:not(:placeholder-shown) + label, .form__input--enter-income__alt-emergency-fund:not(:placeholder-shown) + label, .form__input--enter-transaction__alt-emergency-fund:not(:placeholder-shown) + label, .form__input--enter-transaction:focus + label, .form__input--enter-income__alt:focus + label, .form__input--enter-transaction__alt:focus + label, .form__input--enter-income__alt-emergency-fund:focus + label, .form__input--enter-transaction__alt-emergency-fund:focus + label {
+  transform: translate(-2.25rem, -5rem) scale(0.95);
 }
-.form__input--enter-income:not(:placeholder-shown) + .form__label--enter-income__pay-label, .form__input--enter-income:focus + .form__label--enter-income__pay-label, .form__input--enter-transaction:not(:placeholder-shown) + .form__label--enter-income__pay-label, .form__input--enter-transaction:focus + .form__label--enter-income__pay-label {
-  transform: translate(-1.25rem, -7.75rem) scale(0.95);
+.form__input--enter-income:not(:placeholder-shown) + .form__label--enter-income__pay-label, .form__input--enter-income:focus + .form__label--enter-income__pay-label, .form__input--enter-transaction:not(:placeholder-shown) + .form__label--enter-income__pay-label, .form__input--enter-income__alt:not(:placeholder-shown) + .form__label--enter-income__pay-label, .form__input--enter-transaction__alt:not(:placeholder-shown) + .form__label--enter-income__pay-label, .form__input--enter-income__alt-emergency-fund:not(:placeholder-shown) + .form__label--enter-income__pay-label, .form__input--enter-transaction__alt-emergency-fund:not(:placeholder-shown) + .form__label--enter-income__pay-label, .form__input--enter-transaction:focus + .form__label--enter-income__pay-label, .form__input--enter-income__alt:focus + .form__label--enter-income__pay-label, .form__input--enter-transaction__alt:focus + .form__label--enter-income__pay-label, .form__input--enter-income__alt-emergency-fund:focus + .form__label--enter-income__pay-label, .form__input--enter-transaction__alt-emergency-fund:focus + .form__label--enter-income__pay-label {
+  transform: translate(-2.25rem, -7.75rem) scale(0.95);
 }
-.form__input--enter-income:not(:placeholder-shown) + .form__label--enter-transaction__transaction-label, .form__input--enter-income:focus + .form__label--enter-transaction__transaction-label, .form__input--enter-transaction:not(:placeholder-shown) + .form__label--enter-transaction__transaction-label, .form__input--enter-transaction:focus + .form__label--enter-transaction__transaction-label {
-  transform: translate(-1.25rem, -5rem) scale(0.95);
+.form__input--enter-income:not(:placeholder-shown) + .form__label--enter-transaction__transaction-label, .form__input--enter-income:focus + .form__label--enter-transaction__transaction-label, .form__input--enter-transaction:not(:placeholder-shown) + .form__label--enter-transaction__transaction-label, .form__input--enter-income__alt:not(:placeholder-shown) + .form__label--enter-transaction__transaction-label, .form__input--enter-transaction__alt:not(:placeholder-shown) + .form__label--enter-transaction__transaction-label, .form__input--enter-income__alt-emergency-fund:not(:placeholder-shown) + .form__label--enter-transaction__transaction-label, .form__input--enter-transaction__alt-emergency-fund:not(:placeholder-shown) + .form__label--enter-transaction__transaction-label, .form__input--enter-transaction:focus + .form__label--enter-transaction__transaction-label, .form__input--enter-income__alt:focus + .form__label--enter-transaction__transaction-label, .form__input--enter-transaction__alt:focus + .form__label--enter-transaction__transaction-label, .form__input--enter-income__alt-emergency-fund:focus + .form__label--enter-transaction__transaction-label, .form__input--enter-transaction__alt-emergency-fund:focus + .form__label--enter-transaction__transaction-label {
+  transform: translate(-2.25rem, -3rem) scale(0.95);
 }
-.form__input--enter-income:not(:placeholder-shown) + .form__label--monthly-budget-transaction, .form__input--enter-income:not(:placeholder-shown) + .form__label--monthly-budget-transaction__alt, .form__input--enter-income:focus + .form__label--monthly-budget-transaction, .form__input--enter-income:focus + .form__label--monthly-budget-transaction__alt, .form__input--enter-transaction:not(:placeholder-shown) + .form__label--monthly-budget-transaction, .form__input--enter-transaction:not(:placeholder-shown) + .form__label--monthly-budget-transaction__alt, .form__input--enter-transaction:focus + .form__label--monthly-budget-transaction, .form__input--enter-transaction:focus + .form__label--monthly-budget-transaction__alt {
-  transform: translate(-1rem, 1rem) scale(0.95);
+.form__input--enter-income:not(:placeholder-shown) + .form__label--medium, .form__input--enter-income:not(:placeholder-shown) + .form__label--savings-fund-transaction, .form__input--enter-income:not(:placeholder-shown) + .form__label--expense-fund-transaction, .form__input--enter-income:not(:placeholder-shown) + .form__label--emergency-fund-transaction, .form__input--enter-income:not(:placeholder-shown) + .form__label--medium__relative, .form__input--enter-income:not(:placeholder-shown) + .form__label--medium__alt-2, .form__input--enter-income:not(:placeholder-shown) + .form__label--medium__alt, .form__input--enter-income:not(:placeholder-shown) + .form__label--savings-fund-transaction__alt, .form__input--enter-income:not(:placeholder-shown) + .form__label--expense-fund-transaction__alt, .form__input--enter-income:focus + .form__label--medium, .form__input--enter-income:focus + .form__label--savings-fund-transaction, .form__input--enter-income:focus + .form__label--expense-fund-transaction, .form__input--enter-income:focus + .form__label--emergency-fund-transaction, .form__input--enter-income:focus + .form__label--medium__relative, .form__input--enter-income:focus + .form__label--medium__alt-2, .form__input--enter-income:focus + .form__label--medium__alt, .form__input--enter-income:focus + .form__label--savings-fund-transaction__alt, .form__input--enter-income:focus + .form__label--expense-fund-transaction__alt, .form__input--enter-transaction:not(:placeholder-shown) + .form__label--medium, .form__input--enter-transaction:not(:placeholder-shown) + .form__label--savings-fund-transaction, .form__input--enter-transaction:not(:placeholder-shown) + .form__label--expense-fund-transaction, .form__input--enter-transaction:not(:placeholder-shown) + .form__label--emergency-fund-transaction, .form__input--enter-transaction:not(:placeholder-shown) + .form__label--medium__relative, .form__input--enter-transaction:not(:placeholder-shown) + .form__label--medium__alt-2, .form__input--enter-transaction:not(:placeholder-shown) + .form__label--medium__alt, .form__input--enter-transaction:not(:placeholder-shown) + .form__label--savings-fund-transaction__alt, .form__input--enter-transaction:not(:placeholder-shown) + .form__label--expense-fund-transaction__alt, .form__input--enter-income__alt:not(:placeholder-shown) + .form__label--medium, .form__input--enter-income__alt:not(:placeholder-shown) + .form__label--savings-fund-transaction, .form__input--enter-income__alt:not(:placeholder-shown) + .form__label--expense-fund-transaction, .form__input--enter-income__alt:not(:placeholder-shown) + .form__label--emergency-fund-transaction, .form__input--enter-income__alt:not(:placeholder-shown) + .form__label--medium__relative, .form__input--enter-income__alt:not(:placeholder-shown) + .form__label--medium__alt-2, .form__input--enter-income__alt:not(:placeholder-shown) + .form__label--medium__alt, .form__input--enter-income__alt:not(:placeholder-shown) + .form__label--savings-fund-transaction__alt, .form__input--enter-income__alt:not(:placeholder-shown) + .form__label--expense-fund-transaction__alt, .form__input--enter-transaction__alt:not(:placeholder-shown) + .form__label--medium, .form__input--enter-transaction__alt:not(:placeholder-shown) + .form__label--savings-fund-transaction, .form__input--enter-transaction__alt:not(:placeholder-shown) + .form__label--expense-fund-transaction, .form__input--enter-transaction__alt:not(:placeholder-shown) + .form__label--emergency-fund-transaction, .form__input--enter-transaction__alt:not(:placeholder-shown) + .form__label--medium__relative, .form__input--enter-transaction__alt:not(:placeholder-shown) + .form__label--medium__alt-2, .form__input--enter-transaction__alt:not(:placeholder-shown) + .form__label--medium__alt, .form__input--enter-transaction__alt:not(:placeholder-shown) + .form__label--savings-fund-transaction__alt, .form__input--enter-transaction__alt:not(:placeholder-shown) + .form__label--expense-fund-transaction__alt, .form__input--enter-income__alt-emergency-fund:not(:placeholder-shown) + .form__label--medium, .form__input--enter-income__alt-emergency-fund:not(:placeholder-shown) + .form__label--savings-fund-transaction, .form__input--enter-income__alt-emergency-fund:not(:placeholder-shown) + .form__label--expense-fund-transaction, .form__input--enter-income__alt-emergency-fund:not(:placeholder-shown) + .form__label--emergency-fund-transaction, .form__input--enter-income__alt-emergency-fund:not(:placeholder-shown) + .form__label--medium__relative, .form__input--enter-income__alt-emergency-fund:not(:placeholder-shown) + .form__label--medium__alt-2, .form__input--enter-income__alt-emergency-fund:not(:placeholder-shown) + .form__label--medium__alt, .form__input--enter-income__alt-emergency-fund:not(:placeholder-shown) + .form__label--savings-fund-transaction__alt, .form__input--enter-income__alt-emergency-fund:not(:placeholder-shown) + .form__label--expense-fund-transaction__alt, .form__input--enter-transaction__alt-emergency-fund:not(:placeholder-shown) + .form__label--medium, .form__input--enter-transaction__alt-emergency-fund:not(:placeholder-shown) + .form__label--savings-fund-transaction, .form__input--enter-transaction__alt-emergency-fund:not(:placeholder-shown) + .form__label--expense-fund-transaction, .form__input--enter-transaction__alt-emergency-fund:not(:placeholder-shown) + .form__label--emergency-fund-transaction, .form__input--enter-transaction__alt-emergency-fund:not(:placeholder-shown) + .form__label--medium__relative, .form__input--enter-transaction__alt-emergency-fund:not(:placeholder-shown) + .form__label--medium__alt-2, .form__input--enter-transaction__alt-emergency-fund:not(:placeholder-shown) + .form__label--medium__alt, .form__input--enter-transaction__alt-emergency-fund:not(:placeholder-shown) + .form__label--savings-fund-transaction__alt, .form__input--enter-transaction__alt-emergency-fund:not(:placeholder-shown) + .form__label--expense-fund-transaction__alt, .form__input--enter-transaction:focus + .form__label--medium, .form__input--enter-transaction:focus + .form__label--savings-fund-transaction, .form__input--enter-transaction:focus + .form__label--expense-fund-transaction, .form__input--enter-transaction:focus + .form__label--emergency-fund-transaction, .form__input--enter-transaction:focus + .form__label--medium__relative, .form__input--enter-transaction:focus + .form__label--medium__alt-2, .form__input--enter-transaction:focus + .form__label--medium__alt, .form__input--enter-transaction:focus + .form__label--savings-fund-transaction__alt, .form__input--enter-transaction:focus + .form__label--expense-fund-transaction__alt, .form__input--enter-income__alt:focus + .form__label--medium, .form__input--enter-income__alt:focus + .form__label--savings-fund-transaction, .form__input--enter-income__alt:focus + .form__label--expense-fund-transaction, .form__input--enter-income__alt:focus + .form__label--emergency-fund-transaction, .form__input--enter-income__alt:focus + .form__label--medium__relative, .form__input--enter-income__alt:focus + .form__label--medium__alt-2, .form__input--enter-income__alt:focus + .form__label--medium__alt, .form__input--enter-income__alt:focus + .form__label--savings-fund-transaction__alt, .form__input--enter-income__alt:focus + .form__label--expense-fund-transaction__alt, .form__input--enter-transaction__alt:focus + .form__label--medium, .form__input--enter-transaction__alt:focus + .form__label--savings-fund-transaction, .form__input--enter-transaction__alt:focus + .form__label--expense-fund-transaction, .form__input--enter-transaction__alt:focus + .form__label--emergency-fund-transaction, .form__input--enter-transaction__alt:focus + .form__label--medium__relative, .form__input--enter-transaction__alt:focus + .form__label--medium__alt-2, .form__input--enter-transaction__alt:focus + .form__label--medium__alt, .form__input--enter-transaction__alt:focus + .form__label--savings-fund-transaction__alt, .form__input--enter-transaction__alt:focus + .form__label--expense-fund-transaction__alt, .form__input--enter-income__alt-emergency-fund:focus + .form__label--medium, .form__input--enter-income__alt-emergency-fund:focus + .form__label--savings-fund-transaction, .form__input--enter-income__alt-emergency-fund:focus + .form__label--expense-fund-transaction, .form__input--enter-income__alt-emergency-fund:focus + .form__label--emergency-fund-transaction, .form__input--enter-income__alt-emergency-fund:focus + .form__label--medium__relative, .form__input--enter-income__alt-emergency-fund:focus + .form__label--medium__alt-2, .form__input--enter-income__alt-emergency-fund:focus + .form__label--medium__alt, .form__input--enter-income__alt-emergency-fund:focus + .form__label--savings-fund-transaction__alt, .form__input--enter-income__alt-emergency-fund:focus + .form__label--expense-fund-transaction__alt, .form__input--enter-transaction__alt-emergency-fund:focus + .form__label--medium, .form__input--enter-transaction__alt-emergency-fund:focus + .form__label--savings-fund-transaction, .form__input--enter-transaction__alt-emergency-fund:focus + .form__label--expense-fund-transaction, .form__input--enter-transaction__alt-emergency-fund:focus + .form__label--emergency-fund-transaction, .form__input--enter-transaction__alt-emergency-fund:focus + .form__label--medium__relative, .form__input--enter-transaction__alt-emergency-fund:focus + .form__label--medium__alt-2, .form__input--enter-transaction__alt-emergency-fund:focus + .form__label--medium__alt, .form__input--enter-transaction__alt-emergency-fund:focus + .form__label--savings-fund-transaction__alt, .form__input--enter-transaction__alt-emergency-fund:focus + .form__label--expense-fund-transaction__alt {
+  transform: translate(-1rem, 0.75rem) scale(0.95);
 }
-.form__select, .form__select--accounts, .form__select--monthly-transaction {
+.form__input--enter-income:not(:placeholder-shown) + .form__label--long, .form__input--enter-income:not(:placeholder-shown) + .form__label--long__alt, .form__input--enter-income:focus + .form__label--long, .form__input--enter-income:focus + .form__label--long__alt, .form__input--enter-transaction:not(:placeholder-shown) + .form__label--long, .form__input--enter-transaction:not(:placeholder-shown) + .form__label--long__alt, .form__input--enter-income__alt:not(:placeholder-shown) + .form__label--long, .form__input--enter-income__alt:not(:placeholder-shown) + .form__label--long__alt, .form__input--enter-transaction__alt:not(:placeholder-shown) + .form__label--long, .form__input--enter-transaction__alt:not(:placeholder-shown) + .form__label--long__alt, .form__input--enter-income__alt-emergency-fund:not(:placeholder-shown) + .form__label--long, .form__input--enter-income__alt-emergency-fund:not(:placeholder-shown) + .form__label--long__alt, .form__input--enter-transaction__alt-emergency-fund:not(:placeholder-shown) + .form__label--long, .form__input--enter-transaction__alt-emergency-fund:not(:placeholder-shown) + .form__label--long__alt, .form__input--enter-transaction:focus + .form__label--long, .form__input--enter-transaction:focus + .form__label--long__alt, .form__input--enter-income__alt:focus + .form__label--long, .form__input--enter-income__alt:focus + .form__label--long__alt, .form__input--enter-transaction__alt:focus + .form__label--long, .form__input--enter-transaction__alt:focus + .form__label--long__alt, .form__input--enter-income__alt-emergency-fund:focus + .form__label--long, .form__input--enter-income__alt-emergency-fund:focus + .form__label--long__alt, .form__input--enter-transaction__alt-emergency-fund:focus + .form__label--long, .form__input--enter-transaction__alt-emergency-fund:focus + .form__label--long__alt {
+  transform: translate(-1rem, 0.75rem) scale(0.95);
+}
+.form__input--enter-income:not(:placeholder-shown) + .form__label--emergency-fund-transaction, .form__input--enter-income:focus + .form__label--emergency-fund-transaction, .form__input--enter-transaction:not(:placeholder-shown) + .form__label--emergency-fund-transaction, .form__input--enter-income__alt:not(:placeholder-shown) + .form__label--emergency-fund-transaction, .form__input--enter-transaction__alt:not(:placeholder-shown) + .form__label--emergency-fund-transaction, .form__input--enter-income__alt-emergency-fund:not(:placeholder-shown) + .form__label--emergency-fund-transaction, .form__input--enter-transaction__alt-emergency-fund:not(:placeholder-shown) + .form__label--emergency-fund-transaction, .form__input--enter-transaction:focus + .form__label--emergency-fund-transaction, .form__input--enter-income__alt:focus + .form__label--emergency-fund-transaction, .form__input--enter-transaction__alt:focus + .form__label--emergency-fund-transaction, .form__input--enter-income__alt-emergency-fund:focus + .form__label--emergency-fund-transaction, .form__input--enter-transaction__alt-emergency-fund:focus + .form__label--emergency-fund-transaction {
+  transform: translate(-0.25rem, -5rem) scale(0.95);
+}
+.form__select, .form__select--accounts, .form__select--monthly-transaction, .form__select--savings-fund-transaction, .form__select--expense-fund-transaction {
   position: relative;
   height: 6rem;
   width: 12.5%;
@@ -36921,33 +37067,35 @@ html {
   border-top-right-radius: 0.9rem;
   border-bottom-right-radius: 0.9rem;
 }
-.form__select--accounts, .form__select--monthly-transaction {
+.form__select--accounts, .form__select--monthly-transaction, .form__select--savings-fund-transaction, .form__select--expense-fund-transaction {
+  align-self: center;
   height: 4rem;
   width: max-content;
   padding: 0.5rem;
   background-color: transparent;
   border: 0.2rem solid rgba(130, 42, 186, 0.8);
   border-radius: 0.9rem;
+  transform: translate(0, 1rem);
 }
-.form__select--accounts:hover, .form__select--monthly-transaction:hover {
+.form__select--accounts:hover, .form__select--monthly-transaction:hover, .form__select--savings-fund-transaction:hover, .form__select--expense-fund-transaction:hover {
   cursor: pointer;
   background-color: #822aba;
   transition: background-color 0.5s, color 0.5s, border 0.5s;
 }
-.form__select--accounts:focus, .form__select--monthly-transaction:focus {
+.form__select--accounts:focus, .form__select--monthly-transaction:focus, .form__select--savings-fund-transaction:focus, .form__select--expense-fund-transaction:focus {
   border: 0.2rem solid #822aba;
 }
-.form__select:focus, .form__select--accounts:focus, .form__select--monthly-transaction:focus {
+.form__select:focus, .form__select--accounts:focus, .form__select--monthly-transaction:focus, .form__select--savings-fund-transaction:focus, .form__select--expense-fund-transaction:focus {
   background-color: #822aba;
   border: 0.3rem solid #822aba;
 }
-.form__select option, .form__select--accounts option, .form__select--monthly-transaction option, .form__select__option {
+.form__select option, .form__select--accounts option, .form__select--monthly-transaction option, .form__select--savings-fund-transaction option, .form__select--expense-fund-transaction option, .form__select__option {
   background-color: #822aba;
 }
-.form__select option:hover, .form__select--accounts option:hover, .form__select--monthly-transaction option:hover, .form__select__option:hover {
+.form__select option:hover, .form__select--accounts option:hover, .form__select--monthly-transaction option:hover, .form__select--savings-fund-transaction option:hover, .form__select--expense-fund-transaction option:hover, .form__select__option:hover {
   background-color: #38d927;
 }
-.form__label, .form__label--comms, .form__label--extra-small, .form__label--extra-small-emergency, .form__label--small, .form__label--small-savings-goal, .form__label--small-investment-goal, .form__label--small-timing, .form__label--small-budget, .form__label--enter-income, .form__label--enter-income__transaction-label, .form__label--enter-transaction__transaction-label, .form__label--enter-income__pay-label, .form__label--enter-transaction__pay-label, .form__label--enter-transaction, .form__label--monthly-budget-transaction, .form__label--monthly-budget-transaction__alt {
+.form__label, .form__label--comms, .form__label--extra-small, .form__label--extra-small-emergency, .form__label--small, .form__label--small-savings-goal, .form__label--small-investment-goal, .form__label--small-timing, .form__label--small-budget, .form__label--enter-income, .form__label--enter-income__transaction-label, .form__label--enter-transaction__transaction-label, .form__label--enter-income__pay-label, .form__label--enter-transaction__pay-label, .form__label--enter-transaction, .form__label--fully-paid-for, .form__label--medium, .form__label--savings-fund-transaction, .form__label--expense-fund-transaction, .form__label--emergency-fund-transaction, .form__label--medium__relative, .form__label--medium__alt-2, .form__label--medium__alt, .form__label--savings-fund-transaction__alt, .form__label--expense-fund-transaction__alt, .form__label--long, .form__label--long__alt {
   position: absolute;
   height: 6rem;
   width: 40%;
@@ -36962,36 +37110,141 @@ html {
   -moz-transform: translateY(-50%);
   transition: transform 0.5s;
 }
-.form__label--monthly-budget-transaction, .form__label--monthly-budget-transaction__alt {
-  position: relative;
+.form__label--medium, .form__label--savings-fund-transaction, .form__label--expense-fund-transaction, .form__label--emergency-fund-transaction, .form__label--medium__relative, .form__label--medium__alt-2, .form__label--medium__alt, .form__label--savings-fund-transaction__alt, .form__label--expense-fund-transaction__alt, .form__label--long, .form__label--long__alt {
+  position: absolute;
   height: 4rem;
-  width: max-content;
+  width: 100%;
   top: 0;
   margin-bottom: 0.25rem;
   transform: translate(0, 0);
   left: calc(0% + 2rem);
   transition: transform 0.5s;
-  -moz-transform: translate(-1rem, 3.6rem);
+  -moz-transform: translate(-1rem, 2rem);
 }
-.form__label--monthly-budget-transaction__alt {
-  -moz-transform: translate(-0.75rem, 0.5rem);
+.form__label--medium .label-container, .form__label--savings-fund-transaction .label-container, .form__label--expense-fund-transaction .label-container, .form__label--emergency-fund-transaction .label-container, .form__label--medium__relative .label-container, .form__label--medium__alt-2 .label-container, .form__label--medium__alt .label-container, .form__label--savings-fund-transaction__alt .label-container, .form__label--expense-fund-transaction__alt .label-container, .form__label--long .label-container, .form__label--long__alt .label-container {
+  position: relative;
+  height: 100%;
+  width: 33.3%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, -0.7rem);
 }
-.form__label--monthly-budget-transaction__alt__text {
-  margin-right: 0.5rem;
+.form__label--medium .label-container__text, .form__label--savings-fund-transaction .label-container__text, .form__label--expense-fund-transaction .label-container__text, .form__label--emergency-fund-transaction .label-container__text, .form__label--medium__relative .label-container__text, .form__label--medium__alt-2 .label-container__text, .form__label--medium__alt .label-container__text, .form__label--savings-fund-transaction__alt .label-container__text, .form__label--expense-fund-transaction__alt .label-container__text, .form__label--long .label-container__text, .form__label--long__alt .label-container__text {
+  align-self: flex-start;
+  transform: translateX(2rem);
+}
+.form__label--medium__alt, .form__label--savings-fund-transaction__alt, .form__label--expense-fund-transaction__alt {
+  -moz-transform: translate(-1rem, 4rem);
+}
+.form__label--medium__alt-2 {
+  -moz-transform: translate(-1rem, 3rem);
+}
+.form__label--medium__relative {
+  position: relative;
+  height: 100%;
+  width: max-content;
+  flex-direction: column;
+  -moz-transform: translate(0, 0rem);
+}
+.form__label--medium__relative__text {
+  transform: translate(0rem, 1.25rem);
+  margin-bottom: 0.5rem;
+}
+.form__label--long__alt {
+  -moz-transform: translate(0rem, 3rem);
+}
+.form__label--emergency-fund-transaction {
+  position: absolute;
+  top: 50%;
+  left: 2.5rem;
+  transform: translate(0, -50%);
+  width: 85%;
+  z-index: 1;
+}
+.form__label--savings-fund-transaction__alt, .form__label--expense-fund-transaction__alt {
+  -moz-transform: translate(0, -0.3rem);
+}
+.form__label--savings-fund-transaction__alt__text, .form__label--expense-fund-transaction__alt__text {
+  margin-bottom: 0.5rem;
+}
+.form__label--fully-paid-for {
+  height: 100%;
+  width: 90%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  top: 57.5%;
+  left: 0;
+  transition: transform 0.5s;
+}
+.form__label--fully-paid-for .paid-for-container {
+  position: relative;
+  height: 4rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.2rem solid #652190;
+  border-radius: 0.5rem;
+  background-color: rgba(130, 42, 186, 0.8);
+}
+.form__label--fully-paid-for .paid-for-container:before {
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, -50%);
+  top: 50%;
+  left: 0;
+  content: "";
+  border-top-left-radius: 0.2rem;
+  border-bottom-left-radius: 0.2rem;
+  background-color: rgba(56, 217, 39, 0.95);
+  transition: border 0.5s, transform 0.5s;
+}
+.form__label--fully-paid-for .paid-for-container__no, .form__label--fully-paid-for .paid-for-container__yes {
+  position: relative;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form__label--fully-paid-for .paid-for-container:hover {
+  cursor: pointer;
+}
+.form__label--fully-paid-for .paid-for-container--clicked:before {
+  transform: translate(4.8rem, -50%);
+  border-radius: 0;
+  border-top-right-radius: 0.2rem;
+  border-bottom-right-radius: 0.2rem;
 }
 .form__label--enter-income, .form__label--enter-income__transaction-label, .form__label--enter-transaction__transaction-label, .form__label--enter-income__pay-label, .form__label--enter-transaction__pay-label, .form__label--enter-transaction {
   height: 4rem;
-  width: 75%;
+  width: 95%;
   transform: translate(0, 0);
   left: calc(7% + 2rem);
   transition: transform 0.5s;
-  -moz-transform: translate(-0.75rem, 0.5rem);
+  -moz-transform: translate(-1.75rem, -2rem);
 }
 .form__label--enter-income__pay-label, .form__label--enter-transaction__pay-label {
-  -moz-transform: translate(-0.75rem, -4.75rem);
+  -moz-transform: translate(-1.75rem, -4.75rem);
 }
 .form__label--enter-income__transaction-label, .form__label--enter-transaction__transaction-label {
-  -moz-transform: translate(-0.75rem, -2rem);
+  -moz-transform: translate(-2.25rem, 0);
 }
 .form__label--enter-income__text, .form__label--enter-transaction__text {
   transform: translate(-2rem, 0);
@@ -48408,7 +48661,7 @@ html {
 }
 .container--small__content, .container--small__content--transaction {
   position: relative;
-  height: 75%;
+  height: 85%;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -48418,11 +48671,11 @@ html {
   transform: rotate(0) translate(0, 0);
 }
 .container--small__content--transaction {
-  padding-bottom: 2rem;
+  height: 55%;
 }
 .container--small__transaction-total {
   position: relative;
-  height: 37%;
+  height: 30%;
   width: 100%;
   display: flex;
   flex-direction: column;

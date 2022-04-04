@@ -8543,6 +8543,7 @@ var getDashboardAccountTotals = function getDashboardAccountTotals(budget) {
 };
 
 var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
+  // arrayOfArrays = mainCategoryOptionArrays
   arrayOfArrays.forEach(function (a, i) {
     a.forEach(function (c, i) {
       // console.log(c);
@@ -8554,17 +8555,18 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
   accountOptions.forEach(function (ao, i) {
     ao.addEventListener('click', function (e) {
       e.preventDefault();
-      clicked = e.target;
-      console.log(clicked.value); // MONTHLY BUDGET OPTIONS
+      clicked = e.target; // MONTHLY BUDGET OPTIONS
 
       if (clicked.value === "Monthly Budget") {
         arrayOfArrays.forEach(function (a, i) {
           a.forEach(function (c, i) {
-            c.style.display = "none";
+            c.classList.add('closed');
+            c.classList.remove('open');
           });
         });
         arrayOfArrays[0].forEach(function (a, i) {
-          a.style.display = "flex";
+          a.classList.remove('closed');
+          a.classList.add('open');
           if (i === 0) a.classList.add('label-container');
           if (i === 1) a.classList.add('label-container');
         });
@@ -8574,11 +8576,13 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
       if (clicked.value === "Emergency Fund") {
         arrayOfArrays.forEach(function (a, i) {
           a.forEach(function (c, i) {
-            c.style.display = "none";
+            c.classList.add('closed');
+            c.classList.remove('open');
           });
         });
         arrayOfArrays[1].forEach(function (a, i) {
-          a.style.display = "flex";
+          a.classList.remove('closed');
+          a.classList.add('open');
         });
       } // SAVINGS FUND OPTIONS
 
@@ -8586,18 +8590,21 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
       if (clicked.value === "Savings Fund") {
         arrayOfArrays.forEach(function (a, i) {
           a.forEach(function (c, i) {
-            c.style.display = "none";
+            c.classList.add('closed');
+            c.classList.remove('open');
           });
         });
         arrayOfArrays[2].forEach(function (a, i) {
-          a.style.display = "flex";
+          a.classList.remove('closed');
+          a.classList.add('open');
           if (i === 0) a.classList.add('label-container');
           if (i === 1) a.classList.add('label-container');
 
           if (i === 4) {
-            a.firstChild.classList.add('fully-paid-for');
+            a.firstChild.classList.add('form__label--fully-paid-for');
+            a.firstChild.classList.add('r__form__label--fully-paid-for');
             a.firstChild.addEventListener('click', function (e) {
-              a.firstChild.firstChild.nextSibling.classList.toggle('paid-for-container--clicked');
+              a.firstChild.firstChild.nextSibling.classList.toggle('form__input-container--paid-for--clicked');
             });
           }
         });
@@ -8607,18 +8614,21 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
       if (clicked.value === "Expense Fund") {
         arrayOfArrays.forEach(function (a, i) {
           a.forEach(function (c, i) {
-            c.style.display = "none";
+            c.classList.add('closed');
+            c.classList.remove('open');
           });
         });
         arrayOfArrays[3].forEach(function (a, i) {
-          a.style.display = "flex";
+          a.classList.remove('closed');
+          a.classList.add('open');
           if (i === 0) a.classList.add('label-container');
           if (i === 1) a.classList.add('label-container');
 
           if (i === 4) {
-            a.firstChild.classList.add('fully-paid-for');
+            a.firstChild.classList.add('form__label--fully-paid-for');
+            a.firstChild.classList.add('r__form__label--fully-paid-for');
             a.firstChild.addEventListener('click', function (e) {
-              a.firstChild.firstChild.nextSibling.classList.toggle('paid-for-container--clicked');
+              a.firstChild.firstChild.nextSibling.classList.toggle('form__input-container--paid-for--clicked');
             });
           }
         });
@@ -8628,18 +8638,20 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
       if (clicked.value === "Surplus") {
         arrayOfArrays.forEach(function (a, i) {
           a.forEach(function (c, i) {
-            c.style.display = "none";
+            c.classList.add('closed');
+            c.classList.remove('open');
           });
         });
         arrayOfArrays[4].forEach(function (a, i) {
-          a.style.display = "flex";
+          a.classList.remove('closed');
+          a.classList.add('open');
           if (i === 0) a.classList.add('label-container');
           if (i === 1) a.classList.add('label-container');
 
           if (i === 4) {
             a.firstChild.classList.add('fully-paid-for');
             a.firstChild.addEventListener('click', function (e) {
-              a.firstChild.firstChild.nextSibling.classList.toggle('paid-for-container--clicked');
+              a.firstChild.firstChild.nextSibling.classList.toggle('form__input-container--paid-for--clicked');
             });
           }
         });
@@ -8649,17 +8661,19 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
       if (clicked.value === "Debt") {
         arrayOfArrays.forEach(function (a, i) {
           a.forEach(function (c, i) {
-            c.style.display = "none";
+            c.classList.add('closed');
+            c.classList.remove('open');
           });
         });
         arrayOfArrays[5].forEach(function (a, i) {
-          a.style.display = "flex";
+          a.classList.remove('closed');
+          a.classList.add('open');
           if (i === 0) a.classList.add('label-container');
 
           if (i === 3) {
             a.firstChild.classList.add('fully-paid-for');
             a.firstChild.addEventListener('click', function (e) {
-              a.firstChild.firstChild.nextSibling.classList.toggle('paid-for-container--clicked');
+              a.firstChild.firstChild.nextSibling.classList.toggle('form__input-container--paid-for--clicked');
             });
           }
         });
@@ -8669,11 +8683,13 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
       if (clicked.value === "Tithing") {
         arrayOfArrays.forEach(function (a, i) {
           a.forEach(function (c, i) {
-            c.style.display = "none";
+            c.classList.add('closed');
+            c.classList.remove('open');
           });
         });
         arrayOfArrays[6].forEach(function (a, i) {
-          a.style.display = "flex";
+          a.classList.remove('closed');
+          a.classList.add('open');
         });
       }
     });
@@ -8736,20 +8752,33 @@ var setupDashboard = function setupDashboard(user, budget, placeholderBudget) {
   // SETUP ACCOUNT OPTIONS FOR TRANSACTIONS
   var formLabels = document.querySelectorAll('.form-label');
   var formInputs = document.querySelectorAll('.form-input');
-  var formSections = document.querySelectorAll('.form-row__section'); ///////////////////////////////////////////////
+  var formSections = document.querySelectorAll('.form-row__section');
+  var relativeMediumFormLabels = document.querySelectorAll('.form__label--medium__relative');
+  var mediumFormSections = document.querySelectorAll('.form__section--medium');
+  var mediumLeftPaddedSections = document.querySelectorAll('.form__section--medium__padded--left');
+  var mediumTopLeftPaddedSections = document.querySelectorAll('.form__section--medium__padded--topLeft');
+  var longFormSections = document.querySelectorAll('.form__section--long');
+  var longTopLeftPaddedSections = document.querySelectorAll('.form__section--long__padded--topLeft');
+  console.log(relativeMediumFormLabels, mediumFormSections, longFormSections); ///////////////////////////////////////////////
   // INITIALIZE ACCOUNT TRANSACTION OPTION ARRAYS
   // MONTHLY BUDGET
 
-  var monthlyBudgetTransactionsOptions = document.querySelectorAll('.monthly-budget-transaction');
+  var monthlyBudgetTransactionsOptionsOne = [relativeMediumFormLabels[0], relativeMediumFormLabels[1]];
+  var monthlyBudgetTransactionsOptionsTwo = [mediumFormSections[5], longFormSections[0]];
+  console.log(monthlyBudgetTransactionsOptionsOne, monthlyBudgetTransactionsOptionsTwo);
   var monthlyBudgetTransactionOptionsArray = []; // EMERGENCY FUND
 
-  var emergencyFundTransactionsOptions = document.querySelectorAll('.emergency-fund-transaction');
+  var emergencyFundTransactionsOptions = [longTopLeftPaddedSections[0], mediumTopLeftPaddedSections[0]];
   var emergencyFundTransactionOptionsArray = []; // SAVINGS FUND
 
-  var savingsFundTransactionsOptions = document.querySelectorAll('.savings-fund-transaction');
+  var savingsFundTransactionsOptionsOne = document.querySelectorAll('.form__label--savings-fund-transaction__alt');
+  var savingsFundTransactionsOptionsTwo = document.querySelectorAll('.form__section--enter-transaction__savings-fund__secondary');
+  var savingsFundTransactionsOptionsThree = document.querySelectorAll('.form__section--switch__fully-paid-for')[0];
   var savingsFundTransactionOptionsArray = []; // EXPENSE FUND
 
-  var expenseFundTransactionsOptions = document.querySelectorAll('.expense-fund-transaction');
+  var expenseFundTransactionsOptionsOne = document.querySelectorAll('.form__label--expense-fund-transaction__alt');
+  var expenseFundTransactionsOptionsTwo = document.querySelectorAll('.form__section--enter-transaction__expense-fund__secondary');
+  var expenseFundTransactionsOptionsThree = document.querySelectorAll('.form__section--switch__fully-paid-for')[1];
   var expenseFundTransactionOptionsArray = []; // SURPLUS
 
   var surplusTransactionsOptions = document.querySelectorAll('.surplus-transaction');
@@ -8763,10 +8792,15 @@ var setupDashboard = function setupDashboard(user, budget, placeholderBudget) {
   var mainCategoryOptionArrays = []; ///////////////////////////////
   // MONTHLY BUDGET OPTIONS
 
-  pushIntoArray(monthlyBudgetTransactionsOptions, monthlyBudgetTransactionOptionsArray);
+  pushIntoArray(monthlyBudgetTransactionsOptionsOne, monthlyBudgetTransactionOptionsArray);
+  pushIntoArray(monthlyBudgetTransactionsOptionsTwo, monthlyBudgetTransactionOptionsArray);
   pushIntoArray(emergencyFundTransactionsOptions, emergencyFundTransactionOptionsArray);
-  pushIntoArray(savingsFundTransactionsOptions, savingsFundTransactionOptionsArray);
-  pushIntoArray(expenseFundTransactionsOptions, expenseFundTransactionOptionsArray);
+  pushIntoArray(savingsFundTransactionsOptionsOne, savingsFundTransactionOptionsArray);
+  pushIntoArray(savingsFundTransactionsOptionsTwo, savingsFundTransactionOptionsArray);
+  pushIntoArray([savingsFundTransactionsOptionsThree], savingsFundTransactionOptionsArray);
+  pushIntoArray(expenseFundTransactionsOptionsOne, expenseFundTransactionOptionsArray);
+  pushIntoArray(expenseFundTransactionsOptionsTwo, expenseFundTransactionOptionsArray);
+  pushIntoArray([expenseFundTransactionsOptionsThree], expenseFundTransactionOptionsArray);
   pushIntoArray(surplusTransactionsOptions, surplusTransactionOptionsArray);
   pushIntoArray(debtTransactionsOptions, debtTransactionOptionsArray);
   pushIntoArray(tithingTransactionsOptions, tithingTransactionOptionsArray);

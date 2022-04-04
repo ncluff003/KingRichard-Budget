@@ -1354,34 +1354,42 @@
 
   // FORM ROWS
   &__row {
-    @include SizeAndPositioning(relative, 30%, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
+    @include SizeAndPositioning(relative, 32.5%, 100%, flex, row, nowrap, flex-start, flex-end, 0, 0, 0);
+    padding: 0 2rem 2rem;
+    &--thirds {
+      @extend .form__row;
+      height: 33.3%;
+      padding: 0 2rem;
+      // align-items: center;
+    }
     &--income {
       @extend .form__row;
-      &:first-of-type {
-        .form__section--enter-income {
-          justify-content: flex-start;
-        }
-        margin-bottom: 2rem;
-      }
-      &:nth-of-type(2) {
-        .form__section--enter-income {
-          width: 50%;
-          justify-content: flex-end;
-          &:first-of-type {
-            margin: 0;
-          }
-          .form-input {
-            width: 90%;
-            &:not(:placeholder-shown) + label,
-            &:focus + label {
-              transform: translate(-2rem, -3rem) scale(0.95);
-            }
-          }
-          .form-label {
-            -moz-transform: translate(-1.5rem, 0);
-          }
-        }
-      }
+      // &:first-of-type {
+      //   .form__section--enter-income {
+      //     justify-content: flex-start;
+      //   }
+      //   margin-bottom: 2rem;
+      // }
+      // &:nth-of-type(2) {
+      //   justify-content: flex-start;
+      //   .form__section--medium {
+      //     justify-content: flex-end;
+      //     &:first-of-type {
+      //       margin: 0;
+      //       margin-right: 2.5rem;
+      //     }
+      //     .form-input {
+      //       width: 90%;
+      //       &:not(:placeholder-shown) + label,
+      //       &:focus + label {
+      //         transform: translate(-2rem, -3rem) scale(0.95);
+      //       }
+      //     }
+      //     .form-label {
+      //       -moz-transform: translate(-1.5rem, 0);
+      //     }
+      //   }
+      // }
     }
     &--transaction {
       @extend .form__row;
@@ -1656,6 +1664,20 @@
       flex-direction: row;
       justify-content: center;
       margin-bottom: 2rem;
+      &__fully-paid-for {
+        @extend .form__section--switch;
+        flex-direction: column-reverse;
+        height: 6rem;
+        min-height: 6rem;
+        width: 20%;
+        // @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+        // @include SizeAndPositioning(relative, 100%, 33.3%, flex, column-reverse, nowrap, center, center, 0, 0, 0);
+        margin-bottom: 2rem;
+        &:not(:last-of-type),
+        &:last-of-type {
+          margin-bottom: 2rem;
+        }
+      }
     }
 
     // PAGE SECTION
@@ -1670,6 +1692,60 @@
       }
     }
 
+    &--medium {
+      @extend .form__section;
+      height: 100%;
+      width: 30%;
+      flex-flow: column nowrap;
+      justify-content: center;
+      align-items: flex-start;
+      margin: 0 1rem 0 0;
+      &:not(:last-of-type) {
+        margin: 0 1rem 0 0;
+      }
+      &__alt {
+        @extend .form__section--medium;
+        justify-content: flex-end;
+      }
+
+      &__padded {
+        @extend .form__section--medium;
+        &--left {
+          @extend .form__section--medium;
+          padding-left: 1rem;
+        }
+        &--topLeft {
+          @extend .form__section--medium;
+          padding-top: 2rem;
+          // padding-left: 1rem;
+        }
+      }
+    }
+
+    &--long {
+      @extend .form__section;
+      height: 100%;
+      width: 40%;
+      flex-flow: column nowrap;
+      justify-content: center;
+      margin: 0 1rem 0 0;
+      &:not(:last-of-type) {
+        margin: 0 1rem 0 0;
+      }
+
+      &__padded {
+        @extend .form__section--long;
+        &--left {
+          @extend .form__section--long;
+          padding-left: 1rem;
+        }
+        &--topLeft {
+          @extend .form__section--long;
+          padding-top: 2rem;
+          padding-left: 1rem;
+        }
+      }
+    }
     // ENTER INCOME / TRANSACTION SECTIONS
     &--enter-income,
     &--enter-transaction {
@@ -1680,7 +1756,8 @@
       justify-content: center;
       // @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
       // @include SizeAndPositioning(relative, 100%, 33.3%, flex, column-reverse, nowrap, center, center, 0, 0, 0);
-      &__monthly-budget {
+      &__monthly-budget,
+      &__emergency-fund {
         @extend .form__section--enter-transaction;
         align-items: flex-start;
         &:not(:last-of-type) {
@@ -1695,9 +1772,12 @@
       &:first-of-type {
         margin: 0;
       }
-      &__monthly-budget {
+      &__monthly-budget,
+      &__savings-fund,
+      &__expense-fund {
         &__secondary {
           @extend .form__section--enter-transaction__monthly-budget;
+          min-height: 4rem;
           width: 40%;
           margin-bottom: 2rem;
           &:first-of-type,
@@ -1707,12 +1787,27 @@
           }
         }
       }
+      &__emergency-fund {
+        &__secondary {
+          @extend .form__section--enter-transaction__emergency-fund;
+          min-height: 4rem;
+          width: 36%;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          &:first-of-type,
+          &:last-of-type,
+          &:not(:last-of-type) {
+            margin-bottom: 0;
+          }
+        }
+      }
     }
 
     // EARLY INCOME VIEW SECTION
     &--early-income-view {
       @extend .form__section;
-      height: 40%;
+      height: 35%;
       flex-direction: row;
       justify-content: space-between;
       // @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
@@ -1757,6 +1852,41 @@
     &--latter-day-saint {
       @extend .form__input-container;
       width: 12%;
+    }
+    &--paid-for {
+      @extend .form__input-container;
+      height: 4rem;
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-between;
+      border: 0.2rem solid $primaryColorDark;
+      border-radius: 0.5rem;
+      background-color: rgba($primaryColor, 0.8);
+      &:before {
+        @include SizeAndPositioning(absolute, 100%, 50%, flex, row, nowrap, center, center, 0, -50%, 0);
+        top: 50%;
+        left: 0;
+        content: '';
+        border-top-left-radius: 0.2rem;
+        border-bottom-left-radius: 0.2rem;
+        background-color: rgba($secondaryColor, 0.95);
+        transition: border 0.5s, transform 0.5s;
+      }
+      &__no,
+      &__yes {
+        @include SizeAndPositioning(relative, 100%, 50%, flex, row, nowrap, center, center, 0, 0, 0);
+      }
+      &:hover {
+        cursor: pointer;
+      }
+      &--clicked {
+        &:before {
+          transform: translate(4.8rem, -50%);
+          border-radius: 0;
+          border-top-right-radius: 0.2rem;
+          border-bottom-right-radius: 0.2rem;
+        }
+      }
     }
     &--sub-category-title {
       @extend .form__input-container;
@@ -1826,6 +1956,60 @@
         &:not(:placeholder-shown) + label,
         &:focus + label {
           transform: translate(-4rem, -7rem) scale(0.75);
+        }
+      }
+    }
+
+    // LONG INPUTS
+    &--long {
+      @extend .form__input;
+      height: 4rem;
+      min-height: 4rem;
+      width: 100%;
+      padding-left: 2rem;
+      padding: 0.5rem;
+      border: 0.2rem solid rgba($primaryColor, 0.8);
+      border-radius: 0.9rem;
+
+      &:not(:placeholder-shown) + .form__label--long,
+      &:focus + .form__label--long {
+        transform: translate(-1.5rem, -1rem) scale(0.95);
+      }
+
+      &:not(:placeholder-shown) + .form__label--long__alt,
+      &:focus + .form__label--long__alt {
+        transform: translate(-0.5rem, 0rem) scale(0.95);
+      }
+    }
+
+    // MEDIUM INPUTS
+
+    &--medium {
+      @extend .form__input;
+      height: 4rem;
+      min-height: 4rem;
+      width: 90%;
+      padding-left: 2rem;
+      padding: 0.5rem;
+      border: 0.2rem solid rgba($primaryColor, 0.8);
+      border-radius: 0.9rem;
+
+      &:not(:placeholder-shown) + .form__label--medium,
+      &:focus + .form__label--medium {
+        transform: translate(-1.5rem, -1rem) scale(0.95);
+      }
+
+      &:not(:placeholder-shown) + .form__label--medium__alt-2,
+      &:focus + .form__label--medium__alt-2 {
+        transform: translate(-1.5rem, 0rem) scale(0.95);
+      }
+      &__alt {
+        @extend .form__input--medium;
+        width: 100%;
+
+        &:not(:placeholder-shown) + .form__label--medium,
+        &:focus + .form__label--medium {
+          transform: translate(-1.5rem, 1rem) scale(0.95);
         }
       }
     }
@@ -1987,7 +2171,8 @@
     &--enter-transaction {
       @extend .form__input;
       height: 4rem;
-      width: 85%;
+      min-height: 4rem;
+      width: 100%;
       padding-left: 2rem;
       padding: 0.5rem;
       border: 0.2rem solid rgba($primaryColor, 0.8);
@@ -1995,22 +2180,39 @@
 
       &:not(:placeholder-shown) + label,
       &:focus + label {
-        transform: translate(-1.25rem, -2.5rem) scale(0.95);
+        transform: translate(-2.25rem, -5rem) scale(0.95);
       }
       &:not(:placeholder-shown) + .form__label--enter-income__pay-label,
       &:focus + .form__label--enter-income__pay-label {
-        transform: translate(-1.25rem, -7.75rem) scale(0.95);
+        transform: translate(-2.25rem, -7.75rem) scale(0.95);
       }
       &:not(:placeholder-shown) + .form__label--enter-transaction__transaction-label,
       &:focus + .form__label--enter-transaction__transaction-label {
-        transform: translate(-1.25rem, -5rem) scale(0.95);
+        transform: translate(-2.25rem, -3rem) scale(0.95);
       }
 
-      &:not(:placeholder-shown) + .form__label--monthly-budget-transaction,
-      &:focus + .form__label--monthly-budget-transaction {
-        transform: translate(-1rem, 1rem) scale(0.95);
+      &:not(:placeholder-shown) + .form__label--medium,
+      &:focus + .form__label--medium {
+        transform: translate(-1rem, 0.75rem) scale(0.95);
+      }
+
+      &:not(:placeholder-shown) + .form__label--long,
+      &:focus + .form__label--long {
+        transform: translate(-1rem, 0.75rem) scale(0.95);
+      }
+
+      &:not(:placeholder-shown) + .form__label--emergency-fund-transaction,
+      &:focus + .form__label--emergency-fund-transaction {
+        transform: translate(-0.25rem, -5rem) scale(0.95);
       }
       transition: border 0.5s, color 0.5s;
+      &__alt {
+        @extend .form__input--enter-transaction;
+        &-emergency-fund {
+          @extend .form__input--enter-transaction__alt;
+        }
+        // width: max-content;
+      }
     }
   }
 
@@ -2024,12 +2226,14 @@
 
     &--accounts {
       @extend .form__select;
+      align-self: center;
       height: 4rem;
       width: max-content;
       padding: 0.5rem;
       background-color: transparent;
       border: 0.2rem solid rgba($primaryColor, 0.8);
       border-radius: 0.9rem;
+      transform: translate(0, 1rem);
       &:hover {
         cursor: pointer;
         background-color: $primaryColor;
@@ -2052,7 +2256,9 @@
       }
     }
 
-    &--monthly-transaction {
+    &--monthly-transaction,
+    &--savings-fund-transaction,
+    &--expense-fund-transaction {
       @extend .form__select--accounts;
     }
   }
@@ -2065,22 +2271,120 @@
     -moz-transform: translateY(-50%);
     transition: transform 0.5s;
 
-    &--monthly-budget-transaction {
+    &--medium,
+    &--long {
       @extend .form__label;
-      position: relative;
+      position: absolute;
       height: 4rem;
-      width: max-content;
+      width: 100%;
       top: 0;
       margin-bottom: 0.25rem;
       transform: translate(0, 0);
       left: calc(0% + 2rem);
       transition: transform 0.5s;
-      -moz-transform: translate(-1rem, 3.6rem);
-      &__alt {
-        @extend .form__label--monthly-budget-transaction;
-        -moz-transform: translate(-0.75rem, 0.5rem);
+      -moz-transform: translate(-1rem, 2rem);
+
+      .label-container {
+        @include SizeAndPositioning(relative, 100%, 33.3%, flex, column, nowrap, center, center, 0, -0.7rem, 0);
         &__text {
-          margin-right: 0.5rem;
+          align-self: flex-start;
+          transform: translateX(2rem);
+        }
+      }
+    }
+
+    &--medium {
+      &__alt {
+        @extend .form__label--medium;
+        -moz-transform: translate(-1rem, 4rem);
+        &-2 {
+          @extend .form__label--medium;
+          -moz-transform: translate(-1rem, 3rem);
+        }
+      }
+      &__relative {
+        @extend .form__label--medium;
+        position: relative;
+        height: 100%;
+        width: max-content;
+        flex-direction: column;
+        -moz-transform: translate(0, 0rem);
+        &__text {
+          transform: translate(0rem, 1.25rem);
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+
+    &--long {
+      &__alt {
+        @extend .form__label--long;
+        -moz-transform: translate(0rem, 3rem);
+      }
+    }
+
+    &--emergency-fund-transaction {
+      @extend .form__label--medium;
+      position: absolute;
+      top: 50%;
+      left: 2.5rem;
+      transform: translate(0, -50%);
+      width: 85%;
+      z-index: 1;
+    }
+
+    &--savings-fund-transaction,
+    &--expense-fund-transaction {
+      @extend .form__label--medium;
+      &__alt {
+        @extend .form__label--medium__alt;
+        -moz-transform: translate(0, -0.3rem);
+        &__text {
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+
+    &--fully-paid-for {
+      @extend .form__label;
+      height: 100%;
+      width: 90%;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      // transform: translate(0, calc(-50% + -0.9rem)), rotate(0);
+      top: 57.5%;
+      left: 0;
+      transition: transform 0.5s;
+      .paid-for-container {
+        @include SizeAndPositioning(relative, 4rem, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
+        border: 0.2rem solid $primaryColorDark;
+        border-radius: 0.5rem;
+        background-color: rgba($primaryColor, 0.8);
+        &:before {
+          @include SizeAndPositioning(absolute, 100%, 50%, flex, row, nowrap, center, center, 0, -50%, 0);
+          top: 50%;
+          left: 0;
+          content: '';
+          border-top-left-radius: 0.2rem;
+          border-bottom-left-radius: 0.2rem;
+          background-color: rgba($secondaryColor, 0.95);
+          transition: border 0.5s, transform 0.5s;
+        }
+        &__no,
+        &__yes {
+          @include SizeAndPositioning(relative, 100%, 50%, flex, row, nowrap, center, center, 0, 0, 0);
+        }
+        &:hover {
+          cursor: pointer;
+        }
+        &--clicked {
+          &:before {
+            transform: translate(4.8rem, -50%);
+            border-radius: 0;
+            border-top-right-radius: 0.2rem;
+            border-bottom-right-radius: 0.2rem;
+          }
         }
       }
     }
@@ -2089,18 +2393,18 @@
     &--enter-transaction {
       @extend .form__label;
       height: 4rem;
-      width: 75%;
+      width: 95%;
       transform: translate(0, 0);
       left: calc(7% + 2rem);
       transition: transform 0.5s;
-      -moz-transform: translate(-0.75rem, 0.5rem);
+      -moz-transform: translate(-1.75rem, -2rem);
       &__pay-label {
         @extend .form__label--enter-income;
-        -moz-transform: translate(-0.75rem, -4.75rem);
+        -moz-transform: translate(-1.75rem, -4.75rem);
       }
       &__transaction-label {
         @extend .form__label--enter-income;
-        -moz-transform: translate(-0.75rem, -2rem);
+        -moz-transform: translate(-2.25rem, 0);
       }
       &__text {
         transform: translate(-2rem, 0);

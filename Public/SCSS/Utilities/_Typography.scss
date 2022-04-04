@@ -1979,6 +1979,15 @@ html {
     }
     &--switch {
       @extend .form__section;
+      &__fully-paid-for {
+        @extend .form__section--switch;
+        font-size: 1.4rem;
+        .form__label--fully-paid-for {
+          .paid-for-container {
+            color: $colorOffWhite;
+          }
+        }
+      }
     }
     &--page-number-display {
       @extend .form__section;
@@ -2021,6 +2030,15 @@ html {
       }
     }
   }
+
+  // FORM INPUT CONTAINERS
+  &__input-container {
+    &--paid-for {
+      color: $colorOffWhite;
+    }
+  }
+
+  // FORM INPUTS
   &__input {
     font-family: MADE Tommy Soft, Verdana, sans-serif;
     font-size: 2rem;
@@ -2029,6 +2047,17 @@ html {
       color: $primaryColor;
       & + label {
         color: $primaryColor;
+      }
+    }
+    &--medium,
+    &--long {
+      @extend .form__input;
+      font-size: 1.4rem;
+      &__alt {
+        @extend .form__input--enter-transaction;
+        &-emergency-fund {
+          @extend .form__input--enter-transaction__alt;
+        }
       }
     }
 
@@ -2088,6 +2117,12 @@ html {
     &--enter-transaction {
       @extend .form__input;
       font-size: 1.4rem;
+      &__alt {
+        @extend .form__input--enter-transaction;
+        &-emergency-fund {
+          @extend .form__input--enter-transaction__alt;
+        }
+      }
     }
   }
 
@@ -2175,7 +2210,11 @@ html {
         color: $colorOffWhite;
       }
     }
-    &--monthly-budget-transaction {
+    &--medium,
+    &--long,
+    &--emergency-fund-transaction,
+    &--savings-fund-transaction,
+    &--expense-fund-transaction {
       @extend .form__label;
       font-size: 1.26rem;
       text-align: left;
@@ -2185,8 +2224,18 @@ html {
       &__text {
       }
       &__alt {
-        @extend .form__label--monthly-budget-transaction;
+        @extend .form__label--medium;
+        &-2 {
+          @extend .form__label--medium;
+        }
       }
+      &__relative {
+        @extend .form__label--medium;
+      }
+    }
+    &--fully-paid-for {
+      @extend .form__label;
+      font-size: 1.4rem;
     }
   }
 

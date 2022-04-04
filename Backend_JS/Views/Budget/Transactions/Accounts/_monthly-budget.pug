@@ -1,10 +1,10 @@
-label.form__label--monthly-budget-transaction__alt.r__form__label--monthly-budget-transaction.monthly-budget-transaction__alt.r__monthly-budget-transaction 
-  p.form__label--monthly-budget-transaction__alt__text.r__form__label--monthly-budget-transaction__alt__text Category
+label.form__label--medium__relative.r__form__label--medium__relative.monthly-budget-transaction.r__monthly-budget-transaction 
+  p.form__label--medium__relative__text.r__form__label--medium__relative__text Category
   select.form__select--monthly-transaction.r__form__select--monthly-transaction#mainCategory
     each category in data.budget.mainCategories 
       option.category-selection.r__category-selection(value=`${category.title}`)= `${category.title}`
-label.form__label--monthly-budget-transaction__alt.r__form__label--monthly-budget-transaction.monthly-budget-transaction__alt.r__monthly-budget-transaction
-  p.form__label--monthly-budget-transaction__alt__text.r__form__label--monthly-budget-transaction__alt__text SubCategory
+label.form__label--medium__relative.r__form__label--medium__relative.monthly-budget-transaction.r__monthly-budget-transaction
+  p.form__label--medium__relative__text.r__form__label--medium__relative__text SubCategory
   select.form__select--monthly-transaction.r__form__select--monthly-transaction#subCategory
     each category in data.budget.mainCategories
       each subCategory in category.subCategories

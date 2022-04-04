@@ -1,15 +1,14 @@
 form.form--transaction.r__form--transaction(method="POST" action=`/users/${data.user.id}/budgets/${data.budget.id}`) 
-  section.form__row.r__form__row
-    section.form__section--enter-transaction.r__form__section--enter-transaction
-      input.form__input--enter-transaction.r__form__input--enter-transaction#transactionDate(type="date")
-      label.form__label--enter-transaction__transaction-label.r__form__label--enter-transaction__transaction-label(for="transactionDate") Transaction Date
-    section.form__section--enter-transaction.r__form__section--enter-transaction
-      input.form__input--enter-transaction.r__form__input--enter-transaction#transactionLocation(type="text" placeholder="Transaction Location")
-      label.form__label--enter-transaction__transaction-label.r__form__label--enter-transaction__transaction-label(for="transactionLocation") Transaction Location
+  section.form__row--thirds.r__form__row--thirds
+    section.form__section--medium__alt.r__form__section--medium__alt
+      input.form__input--medium__alt.r__form__input--medium__alt#transactionDate(type="date")
+      label.form__label--medium__alt.r__form__label--medium__alt(for="transactionDate") Transaction Date
+    section.form__section--medium__alt.r__form__section--medium__alt
+      input.form__input--medium__alt.r__form__input--medium__alt#transactionLocation(type="text" placeholder="Transaction Location")
+      label.form__label--medium__alt.r__form__label--medium__alt(for="transactionLocation") Transaction Location
     button.button--transaction-button.r__button--transaction-button(type="button") Add item
-  section.form-row--items.r__form-row--items
-  section.form__row--transaction.r__form__row--transaction
+  section.form__row--thirds.r__form__row--thirds
     include ./Accounts/_transaction-options-1
-  section.form__row--transaction.r__form__row--transaction
+  section.form__row--thirds.r__form__row--thirds
     include ./Accounts/_transaction-options-2
   
