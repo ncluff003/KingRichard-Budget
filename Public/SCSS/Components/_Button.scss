@@ -476,6 +476,25 @@
     }
   }
 
+  &--extra-extra-small {
+    @extend .button;
+    height: 3.5rem;
+    width: 30%;
+    justify-content: column;
+    transform: translate(-5rem, 0.75rem);
+    align-self: flex-end;
+    background-color: rgba($primaryColor, 0.5);
+    border: 0.2rem solid rgba($primaryColor, 0.8);
+    border-radius: 0.5rem;
+    min-height: 3rem;
+    &:hover {
+      cursor: pointer;
+      background-color: $primaryColor;
+      border: 0.2rem solid $primaryColor;
+      transition: background-color 0.5s, color 0.5s, border 0.5s;
+    }
+  }
+
   &--extra-small {
     @extend .button;
     height: 7.5%;

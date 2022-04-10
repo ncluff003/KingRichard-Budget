@@ -1,8 +1,8 @@
-section.budget-container.r__budget-container.budget-container__dashboard__container--large.r__budget-container__dashboard__container--large 
-  header.budget-container.r__budget-container.budget-container__dashboard__container--large__header.r__budget-container__dashboard__container--large__header
-    i.fas.fa-file-invoice-dollar.budget-container__dashboard__container--large__header__icon.r__budget-container__dashboard__container--large__header__icon 
-    p.budget-container__dashboard__container--large__header__title.r__budget-container__dashboard__container--large__header__title= `${data.calendar.getMonth().toUpperCase()}`
-  section.budget-container__dashboard__container--large__budget-goal-summary-container.r__budget-container__dashboard__container--large__budget-goal-summary-container
+section.container--large.r__container--large 
+  header.container--large__header.r__container--large__header
+    i.fas.fa-file-invoice-dollar.container--large__header__icon.r__container--large__header__icon 
+    p.container--large__header__title.r__container--large__header__title= `${data.calendar.getMonth().toUpperCase()}`
+  section.budget-goal-summary-container.r__budget-goal-summary-container
     - let initialTotal = 0;
     - let subCategoryGoals = [];
     - data.budget.mainCategories.forEach(mc => mc.subCategories.forEach(sc => subCategoryGoals.push(sc.goalAmount)))
@@ -28,7 +28,7 @@ section.budget-container.r__budget-container.budget-container__dashboard__contai
     section.budget-single-goal-summary.r__budget-single-goal-summary
       p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Percentage of Month Remaining
       p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `${data.calendar.monthRemaining()}`
-  section.budget-container__dashboard__container--large__category-container.r__budget-container__dashboard__container--large__category-container
+  section.container--large__category-container.r__container--large__category-container
     //- section.main-category-display.r__main-category-display
     //-   section.main-category-display__button-container.r__main-category-display__button-container
     //-     i.fas.fa-arrow-alt-circle-left.main-category-display__button-container__icon.r__main-category-display__button-container__icon.left.r__left

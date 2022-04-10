@@ -1,10 +1,10 @@
-- const surplusTerms = [`Weekly`, `Bi-Weekly`, `Bi-Monthly`, `Monthly`, `Quarterly`, `Bi-Annually`, `Annually`,]
-label.form-label.r__form-label.surplus-transaction.r__surplus-transaction
-  p.label-container__text.r__label-container__text Surplus Goal Term
-  select.form-input.r__form-input#surplusTerm
+- const surplusTerms = [`Once`, `Weekly`, `Bi-Weekly`, `Bi-Monthly`, `Monthly`, `Quarterly`, `Bi-Annually`, `Annually`,]
+label.form__label--medium__relative.r__form__label--medium__relative.surplus-transaction.r__surplus-transaction
+  p.form__label--medium__relative__text.r__form__label--medium__relative__text Surplus Goal Term
+  select.form__select--surplus-fund-transaction.r__form__select--surplus-fund-transaction#surplusTerm
     each term in surplusTerms 
       option.category-selection.r__category-selection(value=`${term}`)= `${term}`
-label.form-label.r__form-label.surplus-transaction.r__surplus-transaction
-  p.label-container__text.r__label-container__text Surplus Items
-  select.form-input.r__form-input#surplusItems
+label.form__label--medium__relative.r__form__label--medium__relative.surplus-transaction.r__surplus-transaction
+  p.form__label--medium__relative__text.r__form__label--medium__relative__text Surplus Items
+  select.form__select--surplus-fund-transaction.r__form__select--surplus-fund-transaction#surplusItems
   //- Basically, depending on the surplus term chosen, first it will look for 'Surplus' items, and then for items inside that 'Term', and use that array to show a number of selection options.

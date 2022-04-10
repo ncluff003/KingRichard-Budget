@@ -7428,9 +7428,9 @@ var Calendar = /*#__PURE__*/function () {
     key: "_selectDay",
     value: function _selectDay(monthDays, singleDay) {
       monthDays.forEach(function (day, i) {
-        day.classList.remove('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
+        day.classList.remove('bill-calendar__days__single-day--current-day');
       });
-      singleDay.classList.add('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
+      singleDay.classList.add('bill-calendar__days__single-day--current-day');
     }
   }, {
     key: "_setupMonth",
@@ -7509,7 +7509,7 @@ var Calendar = /*#__PURE__*/function () {
     value: function makeCalendar(monthIndex, month, year, dayClass, currentDayClass, unusedDayClass) {
       var daysInMonth;
       daysInMonth = this._getDaysInMonth(month, daysInMonth, year);
-      var billMonth = document.querySelector('.bill-calendar-container__calendar-container__calendar__header__title');
+      var billMonth = document.querySelector('.bill-calendar__header__title');
       if (billMonth) billMonth.textContent = "".concat(month, " | ").concat(year);
 
       this._setupMonth(monthIndex, daysInMonth, year, dayClass, currentDayClass, unusedDayClass);
@@ -8435,8 +8435,8 @@ var _setupBillCalendar = function _setupBillCalendar() {
   var currentMonth = calendar.getMonth();
   var currentMonthIndex = calendar.getMonthIndex();
   var currentYear = calendar.getYear();
-  calendar.makeCalendar(currentMonthIndex, currentMonth, currentYear, '.bill-calendar-container__calendar-container__calendar__days__single-day', // NEEDS PERIOD FOR .querySelectorAll
-  'bill-calendar-container__calendar-container__calendar__days__single-day--current-day', // CLASS IS ONLY BEING ADDED via .classList.add
+  calendar.makeCalendar(currentMonthIndex, currentMonth, currentYear, '.bill-calendar__days__single-day', // NEEDS PERIOD FOR .querySelectorAll
+  'bill-calendar__days__single-day--current-day', // CLASS IS ONLY BEING ADDED via .classList.add
   'un-used-day' // CLASS IS ONLY BEING ADDED via .classList.add
   );
   var monthLeft = document.querySelector('.month-left');
@@ -8455,7 +8455,7 @@ var _setupBillCalendar = function _setupBillCalendar() {
       }
 
       console.log(currentYear);
-      calendar.goBackAMonth(currentMonthIndex, currentYear, '.bill-calendar-container__calendar-container__calendar__days__single-day', 'bill-calendar-container__calendar-container__calendar__days__single-day--current-day', 'un-used-day');
+      calendar.goBackAMonth(currentMonthIndex, currentYear, '.bill-calendar__days__single-day', 'bill-calendar__days__single-day--current-day', 'un-used-day');
     });
   }
 
@@ -8472,7 +8472,7 @@ var _setupBillCalendar = function _setupBillCalendar() {
       }
 
       console.log(currentYear);
-      calendar.goForwardAMonth(currentMonthIndex, currentYear, '.bill-calendar-container__calendar-container__calendar__days__single-day', 'bill-calendar-container__calendar-container__calendar__days__single-day--current-day', 'un-used-day');
+      calendar.goForwardAMonth(currentMonthIndex, currentYear, '.bill-calendar__days__single-day', 'bill-calendar__days__single-day--current-day', 'un-used-day');
     });
   }
 };
@@ -8625,10 +8625,10 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
           if (i === 1) a.classList.add('label-container');
 
           if (i === 4) {
-            a.firstChild.classList.add('form__label--fully-paid-for');
-            a.firstChild.classList.add('r__form__label--fully-paid-for');
-            a.firstChild.addEventListener('click', function (e) {
-              a.firstChild.firstChild.nextSibling.classList.toggle('form__input-container--paid-for--clicked');
+            a.nextSibling.firstChild.classList.add('form__label--fully-paid-for');
+            a.nextSibling.firstChild.classList.add('r__form__label--fully-paid-for');
+            a.nextSibling.firstChild.addEventListener('click', function (e) {
+              a.nextSibling.firstChild.firstChild.nextSibling.classList.toggle('form__input-container--paid-for--clicked');
             });
           }
         });
@@ -8759,7 +8759,9 @@ var setupDashboard = function setupDashboard(user, budget, placeholderBudget) {
   var mediumTopLeftPaddedSections = document.querySelectorAll('.form__section--medium__padded--topLeft');
   var longFormSections = document.querySelectorAll('.form__section--long');
   var longTopLeftPaddedSections = document.querySelectorAll('.form__section--long__padded--topLeft');
-  console.log(relativeMediumFormLabels, mediumFormSections, longFormSections); ///////////////////////////////////////////////
+  var paidForContainers = document.querySelectorAll('.form__section--switch__fully-paid-for');
+  var altPaidForContainers = document.querySelectorAll('.form__section--switch__fully-paid-for__alt');
+  console.log(relativeMediumFormLabels, mediumFormSections, longFormSections, paidForContainers, altPaidForContainers); ///////////////////////////////////////////////
   // INITIALIZE ACCOUNT TRANSACTION OPTION ARRAYS
   // MONTHLY BUDGET
 
@@ -8771,20 +8773,24 @@ var setupDashboard = function setupDashboard(user, budget, placeholderBudget) {
   var emergencyFundTransactionsOptions = [longTopLeftPaddedSections[0], mediumTopLeftPaddedSections[0]];
   var emergencyFundTransactionOptionsArray = []; // SAVINGS FUND
 
-  var savingsFundTransactionsOptionsOne = document.querySelectorAll('.form__label--savings-fund-transaction__alt');
-  var savingsFundTransactionsOptionsTwo = document.querySelectorAll('.form__section--enter-transaction__savings-fund__secondary');
+  var savingsFundTransactionsOptionsOne = [relativeMediumFormLabels[2], relativeMediumFormLabels[3]];
+  var savingsFundTransactionsOptionsTwo = [longFormSections[1], mediumFormSections[6]];
   var savingsFundTransactionsOptionsThree = document.querySelectorAll('.form__section--switch__fully-paid-for')[0];
   var savingsFundTransactionOptionsArray = []; // EXPENSE FUND
 
-  var expenseFundTransactionsOptionsOne = document.querySelectorAll('.form__label--expense-fund-transaction__alt');
-  var expenseFundTransactionsOptionsTwo = document.querySelectorAll('.form__section--enter-transaction__expense-fund__secondary');
-  var expenseFundTransactionsOptionsThree = document.querySelectorAll('.form__section--switch__fully-paid-for')[1];
+  var expenseFundTransactionsOptionsOne = [relativeMediumFormLabels[4], relativeMediumFormLabels[5], relativeMediumFormLabels[6]];
+  var expenseFundTransactionsOptionsTwo = [longFormSections[2], mediumFormSections[7]];
+  var expenseFundTransactionsOptionsThree = [altPaidForContainers[0]];
   var expenseFundTransactionOptionsArray = []; // SURPLUS
 
-  var surplusTransactionsOptions = document.querySelectorAll('.surplus-transaction');
+  var surplusTransactionsOptionsOne = [relativeMediumFormLabels[7], relativeMediumFormLabels[8]];
+  var surplusTransactionsOptionsTwo = [longFormSections[3], mediumFormSections[8]];
+  var surplusTransactionsOptionsThree = [altPaidForContainers[1]];
   var surplusTransactionOptionsArray = []; // DEBT
 
-  var debtTransactionsOptions = document.querySelectorAll('.debt-transaction');
+  var debtTransactionsOptionsOne = [relativeMediumFormLabels[9]];
+  var debtTransactionsOptionsTwo = [longFormSections[4], mediumFormSections[9]];
+  var debtTransactionsOptionsThree = [altPaidForContainers[2]];
   var debtTransactionOptionsArray = []; // TITHING
 
   var tithingTransactionsOptions = document.querySelectorAll('.tithing-transaction');
@@ -8800,9 +8806,13 @@ var setupDashboard = function setupDashboard(user, budget, placeholderBudget) {
   pushIntoArray([savingsFundTransactionsOptionsThree], savingsFundTransactionOptionsArray);
   pushIntoArray(expenseFundTransactionsOptionsOne, expenseFundTransactionOptionsArray);
   pushIntoArray(expenseFundTransactionsOptionsTwo, expenseFundTransactionOptionsArray);
-  pushIntoArray([expenseFundTransactionsOptionsThree], expenseFundTransactionOptionsArray);
-  pushIntoArray(surplusTransactionsOptions, surplusTransactionOptionsArray);
-  pushIntoArray(debtTransactionsOptions, debtTransactionOptionsArray);
+  pushIntoArray(expenseFundTransactionsOptionsThree, expenseFundTransactionOptionsArray);
+  pushIntoArray(surplusTransactionsOptionsOne, surplusTransactionOptionsArray);
+  pushIntoArray(surplusTransactionsOptionsTwo, surplusTransactionOptionsArray);
+  pushIntoArray(surplusTransactionsOptionsThree, surplusTransactionOptionsArray);
+  pushIntoArray(debtTransactionsOptionsOne, debtTransactionOptionsArray);
+  pushIntoArray(debtTransactionsOptionsTwo, debtTransactionOptionsArray);
+  pushIntoArray(debtTransactionsOptionsThree, debtTransactionOptionsArray);
   pushIntoArray(tithingTransactionsOptions, tithingTransactionOptionsArray);
   finalTransactionArrayPush(mainCategoryOptionArrays, [monthlyBudgetTransactionOptionsArray, emergencyFundTransactionOptionsArray, savingsFundTransactionOptionsArray, expenseFundTransactionOptionsArray, surplusTransactionOptionsArray, debtTransactionOptionsArray, tithingTransactionOptionsArray]);
   if (user.latterDaySaint === true) mainCategoryOptionArrays.push(tithingTransactionOptionsArray); ////////////////////////////////////////////

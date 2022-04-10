@@ -1,45 +1,45 @@
-section.budget-container.r__budget-container.budget-container__dashboard__container--small-wide.r__budget-container__dashboard__container--small-wide 
-  section.bill-calendar-container.r__bill-calendar-container 
-    header.bill-calendar-container__header.r__bill-calendar-container__header 
-      i.fas.fa-calendar-alt.bill-calendar-container__header__icon.r__bill-calendar-container__header__icon 
-      p.bill-calendar-container__header__text.r__bill-calendar-container__header__text Bill Calendar
-    section.bill-calendar-container__calendar-container.r__bill-calendar-container__calendar-container 
-      section.bill-calendar-container__calendar-container__calendar.r__bill-calendar-container__calendar-container__calendar 
-        header.bill-calendar-container__calendar-container__calendar__header.r__bill-calendar-container__calendar-container__calendar__header 
-          i.fas.fa-chevron-left.bill-calendar-container__calendar-container__calendar__header__icon.r__bill-calendar-container__calendar-container__calendar__header__icon.month-left.r__month-left
-          p.bill-calendar-container__calendar-container__calendar__header__title.r__bill-calendar-container__calendar-container__calendar__header__title= `${data.calendar.getMonth()}`
-          i.fas.fa-chevron-right.bill-calendar-container__calendar-container__calendar__header__icon.r__bill-calendar-container__calendar-container__calendar__header__icon.month-right.r__month-right
-        section.bill-calendar-container__calendar-container__calendar__weekdays.r__bill-calendar-container__calendar-container__calendar__weekdays 
+section.container--small-wide.r__container--small-wide 
+  section.container-divide--thirds.r__container-divide--thirds 
+    header.container-divide__header.r__container-divide__header 
+      i.fas.fa-calendar-alt.container-divide__header__icon.r__container-divide__header__icon 
+      p.container-divide__header__text.r__container-divide__header__text Bill Calendar
+    section.bill-calendar-container.r__bill-calendar-container 
+      section.bill-calendar.r__bill-calendar 
+        header.bill-calendar__header.r__bill-calendar__header 
+          i.fas.fa-chevron-left.bill-calendar__header__icon.r__bill-calendar__header__icon.month-left.r__month-left
+          p.bill-calendar__header__title.r__bill-calendar__header__title= `${data.calendar.getMonth()}`
+          i.fas.fa-chevron-right.bill-calendar__header__icon.r__bill-calendar__header__icon.month-right.r__month-right
+        section.bill-calendar__weekdays.r__bill-calendar__weekdays 
           - const weekdays = [ `Sunday`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` ]
             each day in weekdays 
-              p.bill-calendar-container__calendar-container__calendar__weekdays__weekday.r__bill-calendar-container__calendar-container__calendar__weekdays__weekday= `${day[0]}`
-        section.bill-calendar-container__calendar-container__calendar__days.r__bill-calendar-container__calendar-container__calendar__days 
+              p.bill-calendar__weekdays__weekday.r__bill-calendar__weekdays__weekday= `${day[0]}`
+        section.bill-calendar__days.r__bill-calendar__days 
           - const numberOfDaySquares = 42;
           - let startingSquare = 1
           while startingSquare <= numberOfDaySquares
-            p.bill-calendar-container__calendar-container__calendar__days__single-day.r__bill-calendar-container__calendar-container__calendar__days__single-day
+            p.bill-calendar__days__single-day.r__bill-calendar__days__single-day
             - startingSquare++
-  section.bill-calendar-container.r__bill-calendar-container 
-    header.bill-calendar-container__header.r__bill-calendar-container__header 
-      i.fas.fa-envelope-open-text.bill-calendar-container__header__icon.r__bill-calendar-container__header__icon 
-      p.bill-calendar-container__header__text.r__bill-calendar-container__header__text Upcoming Bills
-    section.bill-calendar-container__upcoming-bills.r__bill-calendar-container__upcoming-bills
+  section.container-divide--two-thirds.r__container-divide--two-thirds
+    header.container-divide__header.r__container-divide__header 
+      i.fas.fa-envelope-open-text.container-divide__header__icon.r__container-divide__header__icon 
+      p.container-divide__header__text.r__container-divide__header__text Upcoming Bills
+    section.upcoming-bills-container.r__upcoming-bills-container
       - const billInfo = [`Type`, `Due Date`, `Biller | Creditor`, `Amount`, `Paid?`]
-        section.bill-calendar-container__upcoming-bills__titles.r__bill-calendar-container__upcoming-bills__titles 
+        section.upcoming-bills-container__titles.r__upcoming-bills-container__titles 
           each title in billInfo 
-            section.bill-calendar-container__upcoming-bills__titles__title.r__bill-calendar-container__upcoming-bills__titles__title
-              p.bill-calendar-container__upcoming-bills__titles__title__text.r__bill-calendar-container__upcoming-bills__titles__title__text= `${title}`
-        section.bill-calendar-container__upcoming-bills__bills.r__bill-calendar-container__upcoming-bills__bills
-          section.bill-calendar-container__upcoming-bills__bills__bill.r__bill-calendar-container__upcoming-bills__bills__bill 
-            section.bill-calendar-container__upcoming-bills__bills__bill__bill-item.r__bill-calendar-container__upcoming-bills__bills__bill__bill-item
-              p.bill-calendar-container__upcoming-bills__bills__bill__bill-item__text.r__bill-calendar-container__upcoming-bills__bills__bill__bill-item__text Debt
-            section.bill-calendar-container__upcoming-bills__bills__bill__bill-item.r__bill-calendar-container__upcoming-bills__bills__bill__bill-item
-              p.bill-calendar-container__upcoming-bills__bills__bill__bill-item__text.r__bill-calendar-container__upcoming-bills__bills__bill__bill-item__text 23 February 2022
-            section.bill-calendar-container__upcoming-bills__bills__bill__bill-item.r__bill-calendar-container__upcoming-bills__bills__bill__bill-item
-              p.bill-calendar-container__upcoming-bills__bills__bill__bill-item__text.r__bill-calendar-container__upcoming-bills__bills__bill__bill-item__text Castle Pointe Apartments
-            section.bill-calendar-container__upcoming-bills__bills__bill__bill-item.r__bill-calendar-container__upcoming-bills__bills__bill__bill-item
-              p.bill-calendar-container__upcoming-bills__bills__bill__bill-item__text.r__bill-calendar-container__upcoming-bills__bills__bill__bill-item__text $237.49
-            section.bill-calendar-container__upcoming-bills__bills__bill__bill-item.r__bill-calendar-container__upcoming-bills__bills__bill__bill-item
-              section.bill-calendar-container__upcoming-bills__bills__bill__bill-item__checkbox-container 
-                input.bill-calendar-container__upcoming-bills__bills__bill__bill-item__checkbox-container__payment-checkbox.r__bill-calendar-container__upcoming-bills__bills__bill__bill-item__checkbox-container__payment-checkbox#paymentCheck(type="checkbox")
-                label.bill-calendar-container__upcoming-bills__bills__bill__bill-item__checkbox-container__payment-label.r__bill-calendar-container__upcoming-bills__bills__bill__bill-item__checkbox-container__payment-label(for="paymentCheck") Payment Made
+            section.upcoming-bills-container__titles__title.r__upcoming-bills__titles__title
+              p.upcoming-bills__titles__title__text.r__upcoming-bills__titles__title__text= `${title}`
+        section.upcoming-bills.r__upcoming-bills
+          section.upcoming-bills__bill.r__upcoming-bills__bill 
+            section.upcoming-bills__bill__bill-item.r__upcoming-bills__bill__bill-item
+              p.upcoming-bills__bill__bill-item__text.r__upcoming-bills__bill__bill-item__text Debt
+            section.upcoming-bills__bill__bill-item.r__upcoming-bills__bill__bill-item
+              p.upcoming-bills__bill__bill-item__text.r__upcoming-bills__bill__bill-item__text 23 February 2022
+            section.upcoming-bills__bill__bill-item.r__upcoming-bills__bill__bill-item
+              p.upcoming-bills__bill__bill-item__text.r__upcoming-bills__bill__bill-item__text Castle Pointe Apartments
+            section.upcoming-bills__bill__bill-item.r__upcoming-bills__bill__bill-item
+              p.upcoming-bills__bill__bill-item__text.r__upcoming-bills__bill__bill-item__text $237.49
+            section.upcoming-bills__bill__bill-item.r__upcoming-bills__bill__bill-item
+              section.upcoming-bills__bill__bill-item__checkbox-container.r__upcoming-bills__bill__bill-item__checkbox-container 
+                input.upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox.r__upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox#paymentCheck(type="checkbox")
+                label.upcoming-bills__bill__bill-item__checkbox-container__payment-label.r__upcoming-bills__bill__bill-item__checkbox-container__payment-label(for="paymentCheck") Payment Made

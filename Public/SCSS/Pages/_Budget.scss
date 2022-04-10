@@ -388,10 +388,10 @@
       }
     }
   }
-  &__header {
-    @include SizeAndPositioning(relative, 15%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
-    background-color: rgba($colorLightestGrey, 0.3);
-  }
+  // &__header {
+  //   @include SizeAndPositioning(relative, 15%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+  //   background-color: rgba($colorLightestGrey, 0.3);
+  // }
   &__budget-management-container {
     @include SizeAndPositioning(relative, 85%, 100%, flex, row, wrap, center, center, 0, 0, 0);
     background-color: rgba($colorLightestGrey, 0.3);
@@ -413,6 +413,8 @@
     }
   }
   &__edit-category-goals-container {
+    @include SizeAndPositioning(relative, 85%, 100%, flex, row, wrap, center, center, 0, 0, 0);
+    background-color: rgba($colorLightestGrey, 0.3);
     &--large {
       @include SizeAndPositioning(relative, calc(45rem * 1.5), calc((55.8rem * 2) + 7rem), flex, column, nowrap, space-between, center, 0, 0, 0);
       border: 0.3rem solid $primaryColor;

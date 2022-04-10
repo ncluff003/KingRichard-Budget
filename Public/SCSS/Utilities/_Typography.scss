@@ -825,45 +825,6 @@ html {
                         }
                       }
                     }
-                    &__upcoming-bills {
-                      &__titles {
-                        font-family: MADE Tommy Soft, Verdana, sans-serif;
-                        color: $colorOffWhite;
-                        &__title {
-                          font-size: 1.6rem;
-                        }
-                      }
-                      &__bills {
-                        font-family: MADE Tommy Soft, Verdana, sans-serif;
-                        &__bill {
-                          font-size: 1.6rem;
-                          color: rgba($primaryColor, 0.8);
-                          &__bill-item {
-                            text-align: center;
-                            &:nth-of-type(5) {
-                              input[type='checkbox'] {
-                                font-size: 1.2rem;
-                                &::after {
-                                  font-family: 'Font Awesome 5 Free';
-                                  font-weight: 900;
-                                }
-                                &:checked {
-                                  &:after {
-                                    color: $colorOffWhite;
-                                  }
-                                }
-                              }
-                            }
-                          }
-                          &:hover {
-                            color: $colorOffWhite;
-                          }
-                        }
-                      }
-                    }
-                    &__calendar-container,
-                    &__upcoming-bills {
-                    }
                   }
                 }
               }
@@ -1399,6 +1360,15 @@ html {
       color: $colorOffWhite;
     }
   }
+
+  &--extra-extra-small {
+    @extend .button;
+    font-size: 1.6rem;
+    color: rgba($colorOffWhite, 0.8);
+    &:hover {
+      color: $colorOffWhite;
+    }
+  }
   &--extra-small {
     color: rgba($colorOffWhite, 0.8);
     &--icon,
@@ -1663,6 +1633,19 @@ html {
       font-size: 4rem;
       color: $primaryColor;
     }
+
+    &__margin-left-and-right {
+      @extend .container--extra-small;
+      &__header {
+        font-size: 2.2rem;
+        color: $colorOffWhite;
+        &__icon {
+          font-size: 3rem;
+        }
+        &__text {
+        }
+      }
+    }
   }
 
   &--small {
@@ -1797,6 +1780,402 @@ html {
         @extend .container--small__transaction-total;
         font-weight: normal;
         font-size: 2rem;
+      }
+    }
+    &-wide {
+      @extend .container--small;
+      color: $colorOffWhite;
+      &__upcoming-bills {
+        &__titles {
+          font-family: MADE Tommy Soft, Verdana, sans-serif;
+          color: $colorOffWhite;
+          &__title {
+            font-size: 1.6rem;
+          }
+        }
+        &__bills {
+          font-family: MADE Tommy Soft, Verdana, sans-serif;
+          &__bill {
+            font-size: 1.6rem;
+            color: rgba($primaryColor, 0.8);
+            &__bill-item {
+              text-align: center;
+              &:nth-of-type(5) {
+                input[type='checkbox'] {
+                  font-size: 1.2rem;
+                  &::after {
+                    font-family: 'Font Awesome 5 Free';
+                    font-weight: 900;
+                  }
+                  &:checked {
+                    &:after {
+                      color: $colorOffWhite;
+                    }
+                  }
+                }
+              }
+            }
+            &:hover {
+              color: $colorOffWhite;
+            }
+          }
+        }
+      }
+      &__calendar-container,
+      &__upcoming-bills {
+      }
+    }
+  }
+
+  // LARGE BUDGET CONTAINERS
+  &--large {
+    font-family: MADE Tommy Soft, Verdana, sans-serif;
+    &__header {
+      @extend .container--large;
+      color: $colorOffWhite;
+      &__title {
+        font-size: 4.5rem;
+      }
+      &__icon {
+        font-size: 3rem;
+      }
+    }
+    &__budget-goal-summary-container {
+      .budget-single-goal-summary {
+        &__title {
+          font-size: 1.6rem;
+          color: $primaryColor;
+          text-align: center;
+        }
+        &__amount {
+          font-size: 3rem;
+          color: $primaryColor;
+        }
+      }
+    }
+    &__category-container {
+      .main-category-display {
+        &__button-container {
+          font-size: 6rem;
+          .left {
+            color: rgba($primaryColor, 0.25);
+          }
+          .right {
+            color: rgba($primaryColor, 0.8);
+          }
+          .left,
+          .right {
+            &:hover {
+              color: $primaryColor;
+            }
+          }
+        }
+        &__category-display {
+          color: $primaryColor;
+          &__icon {
+            font-size: 20rem;
+          }
+          &__title {
+            font-size: 4rem;
+          }
+        }
+      }
+      .sub-category-display {
+        // &__headers {
+        //   &__title-container {
+        //     font-size: 1.6rem;
+        //     color: $colorOffWhite;
+        //     text-align: center;
+        //   }
+        // }
+        &__sub-category {
+          &__section {
+            &__content {
+              font-size: 1.6rem;
+              color: $primaryColor;
+            }
+          }
+          &:hover {
+            .sub-category-display__sub-category__section {
+              &__content {
+                color: $colorOffWhite;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Containing Element For Bill Calendar
+  &-divide {
+    @extend .container--small;
+    color: $colorOffWhite;
+    &__header {
+      font-size: 2.4rem;
+      &__icon {
+        font-size: 3rem;
+      }
+    }
+  }
+}
+
+// BUDGET GOAL SUMMARY CONTAINER
+.budget-goal-summary-container {
+  .budget-single-goal-summary {
+    &__title {
+      font-size: 1.6rem;
+      color: $primaryColor;
+      text-align: center;
+    }
+    &__amount {
+      font-size: 3rem;
+      color: $primaryColor;
+    }
+  }
+}
+
+// MAIN CATEGORY DISPLAY
+
+.main-category-display {
+  &__button-container {
+    font-size: 6rem;
+    .left {
+      color: rgba($primaryColor, 0.25);
+    }
+    .right {
+      color: rgba($primaryColor, 0.8);
+    }
+    .left,
+    .right {
+      &:hover {
+        color: $primaryColor;
+      }
+    }
+  }
+  &__category-display {
+    color: $primaryColor;
+    &__icon {
+      font-size: 20rem;
+    }
+    &__title {
+      font-size: 4rem;
+    }
+  }
+}
+
+// SUB CATEGORY DISPLAY
+
+.sub-category-display {
+  &__headers {
+    &__title-container {
+      font-size: 1.2rem;
+      color: $colorOffWhite;
+      text-align: center;
+    }
+  }
+  &__sub-category {
+    &__section {
+      &__category-name {
+        font-size: 1.6rem;
+        color: $primaryColor;
+      }
+      &:first-of-type {
+        text-align: center;
+      }
+      &__set-category-timing-button {
+        font-size: 1.2rem;
+        color: rgba($primaryColor, 0.8);
+      }
+      &__input {
+        font-size: 2rem;
+        color: rgba($primaryColor, 0.8);
+        text-align: center;
+        &:focus {
+          color: $primaryColor;
+        }
+      }
+      &__content {
+        font-size: 2rem;
+        color: rgba($primaryColor, 0.8);
+        text-align: center;
+      }
+    }
+    &:hover {
+      .sub-category-display__sub-category__section {
+        background-color: $primaryColor;
+        &__category-name {
+          color: $colorOffWhite;
+        }
+        &__set-category-timing-button {
+          color: rgba($colorOffWhite, 0.8);
+          &:hover {
+            color: $colorOffWhite;
+          }
+        }
+        &__input {
+          color: rgba($colorOffWhite, 0.8);
+          &:focus {
+            color: $primaryColor;
+          }
+        }
+        &__content {
+          color: $colorOffWhite;
+        }
+      }
+    }
+  }
+  &__timing-container {
+    &__close {
+      font-size: 3rem;
+      color: rgba($primaryColor, 0.8);
+      &:hover {
+        color: $primaryColor;
+      }
+    }
+    &__monthly-container,
+    &__bi-monthly-container,
+    &__bi-weekly-container,
+    &__weekly-container {
+      &__button {
+        &__icon {
+          font-family: Icomoon;
+          font-size: 4rem;
+          .path1:before {
+            color: $primaryColor;
+          }
+        }
+        &__text {
+          font-size: 2.2rem;
+          color: rgba($primaryColor, 0.8);
+        }
+        &:hover {
+          .sub-category-display__timing-container {
+            &__monthly-container,
+            &__bi-monthly-container,
+            &__bi-weekly-container,
+            &__weekly-container {
+              &__button {
+                &__icon {
+                  .path1:before {
+                    color: $tertiaryColor;
+                  }
+                  .path2:before,
+                  .path3:before {
+                    color: $colorDarkerGrey;
+                  }
+                }
+                &__text {
+                  color: $colorOffWhite;
+                }
+              }
+            }
+          }
+        }
+      }
+      &__label {
+        font-size: 1.4rem;
+        color: rgba($primaryColor, 0.8);
+        &:focus {
+          color: $primaryColor;
+        }
+        &__input,
+        &__select {
+          font-size: 1.4rem;
+          color: rgba($primaryColor, 0.8);
+          &:focus {
+            color: $primaryColor;
+          }
+        }
+      }
+      &__submit {
+        font-size: 2rem;
+        color: rgba($colorOffWhite, 0.8);
+        &:hover {
+          color: $colorOffWhite;
+        }
+      }
+    }
+  }
+}
+
+// BILL CALENDAR
+.bill-calendar-container {
+  .bill-calendar {
+    &__header {
+      font-size: 2.4rem;
+      color: $primaryColor;
+      &__icon {
+        font-size: 3rem;
+        color: rgba($primaryColor, 0.25);
+        &--not-end {
+          &:hover {
+            color: $primaryColor;
+          }
+        }
+        &:hover {
+          color: $primaryColor;
+        }
+      }
+    }
+    &__weekdays {
+      &__weekday {
+        font-size: 1.6rem;
+      }
+    }
+    &__days {
+      &__single-day {
+        font-size: 2rem;
+        color: rgba($primaryColor, 0.8);
+        &:hover {
+          color: $colorOffWhite;
+        }
+        &--current-day {
+          color: $colorOffWhite;
+        }
+      }
+      .un-used-day {
+        &:hover {
+          background-color: $primaryColor;
+        }
+      }
+    }
+  }
+}
+
+// UPCOMING BILL CONTAINER
+.upcoming-bills-container {
+  &__titles {
+    font-family: MADE Tommy Soft, Verdana, sans-serif;
+    color: $colorOffWhite;
+    &__title {
+      font-size: 1.6rem;
+    }
+  }
+  .upcoming-bills {
+    font-family: MADE Tommy Soft, Verdana, sans-serif;
+    &__bill {
+      font-size: 1.6rem;
+      color: rgba($primaryColor, 0.8);
+      &__bill-item {
+        text-align: center;
+        &:nth-of-type(5) {
+          input[type='checkbox'] {
+            font-size: 1.2rem;
+            &::after {
+              font-family: 'Font Awesome 5 Free';
+              font-weight: 900;
+            }
+            &:checked {
+              &:after {
+                color: $colorOffWhite;
+              }
+            }
+          }
+        }
+      }
+      &:hover {
+        color: $colorOffWhite;
       }
     }
   }
@@ -1957,6 +2336,16 @@ html {
       color: $primaryColor;
     }
   }
+
+  &--extra-small {
+    @extend .form;
+    &__budget-name-display {
+      @extend .form--extra-small;
+      font-size: 3rem;
+      color: $primaryColor;
+    }
+  }
+
   &__header {
     &__title {
       font-family: MADE Tommy Soft Bold, Verdana, sans-serif;
@@ -1986,6 +2375,9 @@ html {
           .paid-for-container {
             color: $colorOffWhite;
           }
+        }
+        &__alt {
+          @extend .form__section--switch__fully-paid-for;
         }
       }
     }

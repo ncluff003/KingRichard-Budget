@@ -1,10 +1,10 @@
-- const savingsTerms = [`Weekly`, `Bi-Weekly`, `Bi-Monthly`, `Monthly`, `Quarterly`, `Bi-Annually`, `Annually`,]
-label.form__label--savings-fund-transaction__alt.r__form__label--savings-fund-transaction__alt.savings-fund-transaction.r__savings-fund-transaction
-  p.form__label--savings-fund-transaction__alt__text.r__form__label--savings-fund-transaction__alt__text Savings Goal Term
+- const savingsTerms = [`Once`,`Weekly`, `Bi-Weekly`, `Bi-Monthly`, `Monthly`, `Quarterly`, `Bi-Annually`, `Annually`,]
+label.form__label--medium__relative.r__form__label--medium__relative.savings-fund-transaction.r__savings-fund-transaction
+  p.form__label--medium__relative__text.r__form__label--medium__relative__text Savings Goal Term
   select.form__select--savings-fund-transaction.r__form__select--savings-fund-transaction#savingsTerm
     each term in savingsTerms 
       option.category-selection.r__category-selection(value=`${term}`)= `${term}`
-label.form__label--savings-fund-transaction__alt.r__form__label--savings-fund-transaction__alt.savings-fund-transaction.r__savings-fund-transaction 
-  p.form__label--savings-fund-transaction__alt__text.r__form__label--savings-fund-transaction__alt__text Savings Goal
+label.form__label--medium__relative.r__form__label--medium__relative.savings-fund-transaction.r__savings-fund-transaction 
+  p.form__label--medium__relative__text.r__form__label--medium__relative__text Savings Goal
   select.form__select--savings-fund-transaction.r__form__select--savings-fund-transaction#savingsGoals
   //- Basically, depending on the savings term chosen, first it will look for 'Savings' Goals, and then for items inside that 'Term', and use that array to show a number of selection options.

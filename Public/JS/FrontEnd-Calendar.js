@@ -95,9 +95,9 @@ class Calendar {
 
   _selectDay(monthDays, singleDay) {
     monthDays.forEach((day, i) => {
-      day.classList.remove('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
+      day.classList.remove('bill-calendar__days__single-day--current-day');
     });
-    singleDay.classList.add('bill-calendar-container__calendar-container__calendar__days__single-day--current-day');
+    singleDay.classList.add('bill-calendar__days__single-day--current-day');
   }
 
   _setupMonth(monthIndex, monthDays, year, dayClass, currentDayClass, unusedDayClass) {
@@ -159,7 +159,7 @@ class Calendar {
   makeCalendar(monthIndex, month, year, dayClass, currentDayClass, unusedDayClass) {
     let daysInMonth;
     daysInMonth = this._getDaysInMonth(month, daysInMonth, year);
-    const billMonth = document.querySelector('.bill-calendar-container__calendar-container__calendar__header__title');
+    const billMonth = document.querySelector('.bill-calendar__header__title');
     if (billMonth) billMonth.textContent = `${month} | ${year}`;
     this._setupMonth(monthIndex, daysInMonth, year, dayClass, currentDayClass, unusedDayClass);
   }
