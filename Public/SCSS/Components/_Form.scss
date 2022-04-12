@@ -1678,6 +1678,7 @@
 
     // TITHING SECTION
     &--tithing {
+      @extend .form__section;
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -1792,6 +1793,25 @@
       &-number-display {
         @extend .form__section;
         flex-direction: row;
+      }
+    }
+
+    &--small {
+      @extend .form__section;
+      &:not(:last-of-type) {
+        margin-bottom: 0;
+      }
+      &-thin {
+        @extend .form__section--small;
+        height: 20%;
+        width: 70%;
+        flex-direction: row;
+        justify-content: center;
+        min-height: 3.24rem;
+        &__taller {
+          @extend .form__section--small-thin;
+          height: 40%;
+        }
       }
     }
 
@@ -2001,6 +2021,21 @@
     }
   }
 
+  // &__select,
+  // &__input {
+  //   @include SizeAndPositioning(relative, 100%, 50%, flex, row, nowrap, center, center, 0, 0, 0);
+  //   border-top: 0.2rem solid $primaryColor;
+  //   border-bottom: 0.2rem solid $primaryColor;
+  //   padding-left: 1rem;
+  //   transition: background-color 0.5s, color 0.5s, border 0.5s;
+  //   &:focus {
+  //     outline: none;
+  //   }
+  //   &:hover {
+  //     cursor: pointer;
+  //   }
+  // }
+
   // FORM INPUTS
   &__input {
     @include SizeAndPositioning(relative, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, 0, 0);
@@ -2031,6 +2066,32 @@
     &:not(:placeholder-shown) + label,
     &:focus + label {
       transform: translate(-5.5rem, -7rem) scale(0.75);
+    }
+
+    &--half-left {
+      @extend .form__input;
+      height: 100%;
+      width: 50%;
+      justify-content: center;
+      border: none;
+      border-top: 0.2rem solid $primaryColor;
+      border-left: 0.2rem solid $primaryColor;
+      border-bottom: 0.2rem solid $primaryColor;
+      padding: 0 0 0 1rem;
+
+      border-radius: 0;
+      border-top-left-radius: 0.5rem;
+      border-bottom-left-radius: 0.5rem;
+      background-color: transparent;
+      transition: background-color 0.5s, color 0.5s, border 0.5s;
+
+      &:focus {
+        background-color: rgba($colorOffWhite, 0.25);
+        outline: none;
+      }
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     // DARK FORM INPUTS
@@ -2121,6 +2182,35 @@
     &--small {
       @extend .form__input;
       width: 25%;
+      &-thin {
+        @extend .form__input--small;
+        height: 20%;
+        width: 70%;
+        padding: 1rem;
+        border: 0.2rem solid rgba($primaryColor, 0.8);
+        border-radius: 0.5rem;
+
+        &:not(:placeholder-shown) + .form__label--small-thin,
+        &:focus + .form__label--small-thin {
+          transform: translate(-0.75rem, -4.25rem) scale(0.95);
+        }
+
+        &:nth-of-type(1) {
+          margin-bottom: 2rem;
+        }
+
+        &__placeholder-shown {
+          @extend .form__input--small-thin;
+          ::-webkit-input-placeholder,
+          &::placeholder,
+          &::-moz-placeholder {
+            opacity: 0.5;
+          }
+          &:nth-of-type(1) {
+            margin-bottom: 0;
+          }
+        }
+      }
       &-savings-goal,
       &-investment-goal {
         @extend .form__input--small;
@@ -2140,6 +2230,13 @@
           }
         }
       }
+    }
+
+    // INVISIBLE INPUTS
+    &--invisible-checkbox {
+      appearance: none;
+      -webkit-appearance: none;
+      display: none;
     }
 
     // MAIN CATEGORY TITLE INPUT
@@ -2366,8 +2463,38 @@
     &--debt-transaction {
       @extend .form__select--accounts;
     }
+
+    &--half-right {
+      @extend .form__select;
+      height: 100%;
+      width: 50%;
+      border-top: 0.2rem solid $primaryColor;
+      border-bottom: 0.2rem solid $primaryColor;
+      padding-left: 1rem;
+      transition: background-color 0.5s, color 0.5s, border 0.5s;
+      border-top-right-radius: 0.5rem;
+      border-bottom-right-radius: 0.5rem;
+      border-right: 0.2rem solid $primaryColor;
+      border-left: none;
+      background-color: rgba($primaryColor, 0.8);
+      &:focus {
+        outline: none;
+      }
+      &:hover {
+        background-color: $primaryColor;
+        cursor: pointer;
+      }
+    }
   }
 
+  // FORM LABEL CONTAINERS
+  &__label-container {
+    @include SizeAndPositioning(relative, 30%, 70%, flex, row, nowrap, center, center, 0, 0, 0);
+    min-height: 4.725rem;
+    .checked {
+      background-color: $primaryColor;
+    }
+  }
   // FORM LABELS
   &__label {
     @include SizeAndPositioning(absolute, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, -50%, 0);
@@ -2375,6 +2502,46 @@
     left: calc(30% + 2rem);
     -moz-transform: translateY(-50%);
     transition: transform 0.5s;
+
+    &--outer-checkbox {
+      @extend .form__label;
+      position: relative;
+      height: 20%;
+      width: 75%;
+      transform: translate(0, 0);
+      top: 0;
+      left: 0;
+      padding-left: 1.5rem;
+      min-height: 3.24rem;
+    }
+
+    &--checkbox-container {
+      @extend .form__label;
+      position: relative;
+      height: 100%;
+      width: 50%;
+      justify-content: center;
+      transform: translate(0, 0);
+      top: 0;
+      left: 0;
+      border-top: 0.2rem solid $primaryColor;
+      border-bottom: 0.2rem solid $primaryColor;
+      margin-bottom: 1rem;
+      transition: background-color 0.5s, color 0.5s;
+      &:nth-of-type(1) {
+        border-top-left-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
+        border-left: 0.2rem solid $primaryColor;
+      }
+      &:nth-of-type(2) {
+        border-top-right-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+        border-right: 0.2rem solid $primaryColor;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
 
     &--medium,
     &--long {
@@ -2407,6 +2574,7 @@
           -moz-transform: translate(-1rem, 3rem);
         }
       }
+
       &__relative {
         @extend .form__label--medium;
         position: relative;
@@ -2560,6 +2728,59 @@
       @extend .form__label;
       width: 25%;
       left: calc(37.7% + 2rem);
+      &-thin {
+        @extend .form__label--small;
+        @include SizeAndPositioning(absolute, 20%, 70%, flex, row, nowrap, flex-start, center, 0, -50%, 0);
+        top: 56%;
+        left: 6rem;
+        &:first-of-type {
+          top: 24%;
+        }
+        transition: transform 0.5s;
+        &__taller {
+          @extend .form__label--small-thin;
+          height: 100%;
+          &--thirds {
+            @extend .form__label--small-thin__taller;
+            top: 0;
+            left: 0;
+            transform: translate(0, 0);
+            width: 33.3%;
+            &:first-of-type {
+              top: 0;
+            }
+            &__tithing {
+              @extend .form__label--small-thin__taller--thirds;
+              position: relative;
+              justify-content: center;
+              &:first-of-type {
+                border-top: 0.2rem solid $primaryColor;
+                border-left: 0.2rem solid $primaryColor;
+                border-bottom: 0.2rem solid $primaryColor;
+                border-top-left-radius: 0.5rem;
+                border-bottom-left-radius: 0.5rem;
+              }
+              &:nth-of-type(2) {
+                border-top: 0.2rem solid $primaryColor;
+                border-bottom: 0.2rem solid $primaryColor;
+              }
+              &:nth-of-type(3) {
+                border-top: 0.2rem solid $primaryColor;
+                border-right: 0.2rem solid $primaryColor;
+                border-bottom: 0.2rem solid $primaryColor;
+                border-top-right-radius: 0.5rem;
+                border-bottom-right-radius: 0.5rem;
+              }
+              &:hover {
+                cursor: pointer;
+                background-color: $primaryColor;
+                transition: background-color 0.5s, border 0.5s, color 0.5s;
+              }
+            }
+          }
+        }
+      }
+
       &-budget {
         @extend .form__label--small;
       }

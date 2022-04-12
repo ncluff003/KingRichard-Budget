@@ -10,66 +10,66 @@ block Budget-Content
         p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text Edit Budget Name
       form.form--extra-small.r__form--extra-small
         section.form--extra-small__budget-name-display.r__form--extra-small__budget-name-display= `${data.budget.name}`
-        input.budget-container__budget-management-container--extra-small__budget-name-form__input.r__budget-container__budget-management-container--extra-small__budget-name-form__input(type="text" placeholder="New Budget Name")
+        input.form__input--small-thin__placeholder-shown.r__form__input--small-thin__placeholder-shown(type="text" placeholder="New Budget Name")
         button.button--extra-extra-small.r__button--extra-extra-small(type="button") Submit
     section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right
       header.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
         i.fas.fa-pencil-alt.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
         p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text Edit Savings Goal
       form.form--extra-small.r__form--extra-small
-        input.budget-container__budget-management-container--extra-small__budget-savings-goal-form__input.r__budget-container__budget-management-container--extra-small__budget-savings-goal-form__input#savingsGoal(type="number" name="savingsGoal" placeholder="SAVINGS FUND GOAL" value= `${data.budget.accounts.savingsFund.savingsGoal}` required)
-        label.budget-container__budget-management-container--extra-small__budget-savings-goal-form__label.r__budget-container__budget-management-container--extra-small__budget-savings-goal-form__label(for="savingsGoal") Savings Goal Amount?
-        input.budget-container__budget-management-container--extra-small__budget-savings-goal-form__input.r__budget-container__budget-management-container--extra-small__budget-savings-goal-form__input#savingsPercentGoal(type="number" name="savingsPercentGoal" placeholder="SAVINGS PERCENT GOAL" min="0" max="100" value= `${data.budget.accounts.savingsFund.savingsPercentage * 100}` required) 
-        label.budget-container__budget-management-container--extra-small__budget-savings-goal-form__label.r__budget-container__budget-management-container--extra-small__budget-savings-goal-form__label(for="savingsPercentGoal") Percent Going To Savings
-        button.budget-container__budget-management-container--extra-small__budget-savings-goal-form__submit.r__budget-container__budget-management-container--extra-small__budget-savings-goal-form__submit(type="button") Submit
+        input.form__input--small-thin.r__form__input--small-thin#savingsGoal(type="number" name="savingsGoal" placeholder="SAVINGS FUND GOAL" value= `${data.budget.accounts.savingsFund.savingsGoal}` required)
+        label.form__label--small-thin.r__form__label--small-thin(for="savingsGoal") Savings Goal Amount?
+        input.form__input--small-thin.r__form__input--small-thin#savingsPercentGoal(type="number" name="savingsPercentGoal" placeholder="SAVINGS PERCENT GOAL" min="0" max="100" value= `${data.budget.accounts.savingsFund.savingsPercentage * 100}` required) 
+        label.form__label--small-thin.r__form__label--small-thin(for="savingsPercentGoal") Percent Going To Savings
+        button.button--extra-extra-small.r__button--extra-extra-small(type="button") Submit
     section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right
       header.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
         i.fas.fa-pencil-alt.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
         p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text Edit Investment Goal
       form.form--extra-small.r__form--extra-small
-        input.budget-container__budget-management-container--extra-small__budget-investment-goal-form__input.r__budget-container__budget-management-container--extra-small__budget-investment-goal-form__input#investmentGoal(type="number" name="investmentGoal" placeholder="INVESTMENT FUND GOAL" value= `${data.budget.accounts.investmentFund.investmentGoal}` required)
-        label.budget-container__budget-management-container--extra-small__budget-investment-goal-form__label.r__budget-container__budget-management-container--extra-small__budget-investment-goal-form__label(for="investmentGoal") Investment Goal Amount?
-        input.budget-container__budget-management-container--extra-small__budget-investment-goal-form__input.r__budget-container__budget-management-container--extra-small__budget-investment-goal-form__input#investmentPercentGoal(type="number" name="investmentPercentGoal" placeholder="INVESTMENT PERCENT GOAL" min="0" max="100" value= `${data.budget.accounts.investmentFund.investmentPercentage * 100}` required)
-        label.budget-container__budget-management-container--extra-small__budget-investment-goal-form__label.r__budget-container__budget-management-container--extra-small__budget-investment-goal-form__label(for="investmentPercentGoal") Percent Going To Investment
-        button.budget-container__budget-management-container--extra-small__budget-investment-goal-form__submit.r__budget-container__budget-management-container--extra-small__budget-investment-goal-form__submit(type="button") Submit
+        input.form__input--small-thin.r__form__input--small-thin#investmentGoal(type="number" name="investmentGoal" placeholder="INVESTMENT FUND GOAL" value= `${data.budget.accounts.investmentFund.investmentGoal}` required)
+        label.form__label--small-thin.r__form__label--small-thin(for="investmentGoal") Investment Goal Amount?
+        input.form__input--small-thin.r__form__input--small-thin#investmentPercentGoal(type="number" name="investmentPercentGoal" placeholder="INVESTMENT PERCENT GOAL" min="0" max="100" value= `${data.budget.accounts.investmentFund.investmentPercentage * 100}` required)
+        label.form__label--small-thin.r__form__label--small-thin(for="investmentPercentGoal") Percent Going To Investment
+        button.button--extra-extra-small.r__button--extra-extra-small(type="button") Submit
     section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right
       header.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
         i.fas.fa-pencil-alt.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
         p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text Edit Emergency Fund Goal
       form.form--extra-small.r__form--extra-small
-        label.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label--checkbox-outer.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label--checkbox-outer What Will Be Your Emergency Fund Setting?
-        section.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container
-          label.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container Length Of Time
-            input.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container__input--checkbox.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container__input--checkbox(type="checkbox")
-          label.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container Total Amount
-            input.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container__input--checkbox.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container__input--checkbox(type="checkbox")
-        section.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container
+        label.form__label--outer-checkbox.r__form__label--outer-checkbox What Will Be Your Emergency Fund Setting?
+        section.form__label-container.r__form__label-container
+          label.form__label--checkbox-container.r__form__label--checkbox-container Length Of Time
+            input.form__input--invisible-checkbox.r__form__input--invisible-checkbox(type="checkbox")
+          label.form__label--checkbox-container.r__form__label--checkbox-container Total Amount
+            input.form__input--invisible-checkbox.r__form__input--invisible-checkbox(type="checkbox")
+        section.form__section--small-thin.r__form__section--small-thin.closed
           - const timingOptions= [`Months`, `Weeks`] 
-          input.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__input.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__input
-          select.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__select.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__select
+          input.form__input--half-left.r__form__input--half-left
+          select.form__select--half-right.r__form__select--half-right
             each timing in timingOptions 
               option.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__select__option.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__select__option(value=`${timing}`)= `${timing}`
         - let emergencyFundGoal = data.budget.accounts.emergencyFund.emergencyFundGoal
-        input.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__input.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__input#investmentGoal(type="number" name="investmentGoal" placeholder="INVESTMENT FUND GOAL" value= `${emergencyFundGoal}` required)
-        button.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__submit.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__submit(type="button") Submit
-    if data.user.latterDaySaint
+        input.form__input--small-thin__placeholder-shown.r__form__input--small-thin__placeholder-shown#investmentGoal(type="number" name="investmentGoal" placeholder="INVESTMENT FUND GOAL" value= `${emergencyFundGoal}` required)
+        button.button--extra-extra-small.r__button--extra-extra-small(type="button") Submit
+    if !data.user.latterDaySaint
       section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right
         header.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
           i.fas.fa-pencil-alt.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
           p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text Edit Tithing Setting
         form.form--extra-small.r__form--extra-small
-          section.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container.r__budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container
-            label.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container.r__budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container Gross
-              input.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox.r__budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox(type="checkbox")
-            label.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container.r__budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container Net
-              input.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox.r__budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox(type="checkbox")
-            label.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container.r__budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container Surplus
-              input.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox.r__budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox(type="checkbox")
-          button.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__submit.r__budget-container__budget-management-container--extra-small__budget-tithing-setting-form__submit(type="button") Submit
+          section.form__section--small-thin__taller.r__form__section--small-thin__taller
+            label.form__label--small-thin__taller--thirds__tithing.r__form__label--small-thin__taller--thirds__tithing Gross
+              input.form__input--invisible-checkbox.r__form__input--invisible-checkbox(type="checkbox")
+            label.form__label--small-thin__taller--thirds__tithing.r__form__label--small-thin__taller--thirds__tithing Net
+              input.form__input--invisible-checkbox.r__form__input--invisible-checkbox(type="checkbox")
+            label.form__label--small-thin__taller--thirds__tithing.r__form__label--small-thin__taller--thirds__tithing Surplus
+              input.form__input--invisible-checkbox.r__form__input--invisible-checkbox(type="checkbox")
+          button.button--extra-extra-small.r__button--extra-extra-small(type="button") Submit
     section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right
       header.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
         i.fas.fa-door-open.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
         p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text Exit or Delete Budget
       form.form--extra-small.r__form--extra-small
-        button.budget-container__budget-management-container--extra-small__budget-exit-or-delete-form__submit--exit.r__budget-container__budget-management-container--extra-small__budget-exit-or-delete-form__submit--exit(type="button") Exit Budget
-        button.budget-container__budget-management-container--extra-small__budget-exit-or-delete-form__submit--delete.r__budget-container__budget-management-container--extra-small__budget-exit-or-delete-form__submit--delete(type="button") Delete Budget
+        button.button--extra-extra-small__wide.r__button--extra-extra-small__wide(type="button") Exit Budget
+        button.button--extra-extra-small__wide.r__button--extra-extra-small__wide(type="button") Delete Budget

@@ -1368,6 +1368,9 @@ html {
     &:hover {
       color: $colorOffWhite;
     }
+    &__wide {
+      @extend .button--extra-extra-small;
+    }
   }
   &--extra-small {
     color: rgba($colorOffWhite, 0.8);
@@ -2441,6 +2444,16 @@ html {
         color: $primaryColor;
       }
     }
+
+    &--half-left {
+      @extend .form__input;
+      font-size: 1.6rem;
+      color: rgba($primaryColor, 0.8);
+      &:hover,
+      &:focus {
+        color: $primaryColor;
+      }
+    }
     &--medium,
     &--long {
       @extend .form__input;
@@ -2455,6 +2468,20 @@ html {
 
     &--small {
       @extend .form__input;
+      &-thin {
+        @extend .form__input--small;
+        font-size: 1.6rem;
+        color: rgba($primaryColor, 0.8);
+        &:focus {
+          color: $primaryColor;
+          & + label {
+            color: $primaryColor;
+          }
+        }
+        &__placeholder-shown {
+          @extend .form__input--small-thin;
+        }
+      }
       &-savings-goal,
       &-investment-goal {
         @extend .form__input--small;
@@ -2545,6 +2572,21 @@ html {
         border: 0.2rem solid $primaryColor;
       }
     }
+
+    &--half-right {
+      @extend .form__select;
+      font-size: 1.6rem;
+      color: rgba($colorOffWhite, 0.8);
+      &:hover {
+        color: $colorOffWhite;
+      }
+    }
+  }
+
+  &__label-container {
+    .checked {
+      color: $colorOffWhite;
+    }
   }
 
   &__label {
@@ -2556,9 +2598,39 @@ html {
     // .form-input--tithing {
     //   color: $colorOffWhite;
     // }
+
+    &--outer-checkbox {
+      @extend .form__label;
+      font-size: 1.1rem;
+      color: $primaryColor;
+    }
+
+    &--checkbox-container {
+      @extend .form__label;
+      font-size: 1.4rem;
+      color: $primaryColor;
+    }
+
     &--small {
       @extend .form__label;
       color: rgba($colorOffWhite, 0.8);
+
+      &-thin {
+        @extend .form__label;
+        font-size: 1.6rem;
+        &__taller {
+          @extend .form__label;
+          &--thirds {
+            @extend .form__label;
+            &__tithing {
+              @extend .form__label;
+              &:hover {
+                color: $colorOffWhite;
+              }
+            }
+          }
+        }
+      }
       &-budget {
         @extend .form__label;
         font-size: 1.6rem;

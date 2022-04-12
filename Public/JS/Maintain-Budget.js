@@ -8,7 +8,7 @@ import * as Edit from './Budget-Creation';
 // bill-calendar-container__calendar-container__calendar__days__single-day
 
 const watchForBudgetDeletion = () => {
-  const budgetDeleteButton = document.querySelector(`.budget-container__budget-management-container--extra-small__budget-exit-or-delete-form__submit--delete`);
+  const budgetDeleteButton = document.querySelectorAll(`.button--extra-extra-small__wide`)[1];
   const budgetId = window.location.pathname.split('/')[5];
   const userId = window.location.pathname.split('/')[3];
   budgetDeleteButton.addEventListener('click', (e) => {
@@ -18,7 +18,9 @@ const watchForBudgetDeletion = () => {
 };
 
 const watchForBudgetExit = () => {
-  const exitButton = document.querySelector('.budget-container__budget-management-container--extra-small__budget-exit-or-delete-form__submit--exit');
+  const submitButtons = document.querySelectorAll(`.button--extra-extra-small__wide`);
+  console.log(submitButtons);
+  const exitButton = document.querySelectorAll(`.button--extra-extra-small__wide`)[0];
   const userId = window.location.pathname.split('/')[3];
   exitButton.addEventListener('click', (e) => {
     e.preventDefault();
@@ -575,35 +577,61 @@ const compileBudgetManatementUpdates = (emergencySetting, currentTithingSetting,
 
 const changeEmergencyInput = (array, setting) => {
   if (setting === `Length Of Time`) {
-    array.forEach((eSetting) => eSetting.classList.remove('visible'));
-    array[0].classList.add('visible');
+    array.forEach((eSetting) => {
+      eSetting.classList.remove('closed');
+      eSetting.classList.remove('open');
+    });
+    array[0].classList.add('open');
+    array[1].classList.add('closed');
     console.log(setting);
   }
   if (setting === `Total Amount`) {
-    array.forEach((eSetting) => eSetting.classList.remove('visible'));
-    array[1].classList.add('visible');
+    array.forEach((eSetting) => {
+      eSetting.classList.remove('closed');
+      eSetting.classList.remove('open');
+    });
+    array[1].classList.add('open');
+    array[0].classList.add('closed');
     console.log(setting);
   }
 };
 
 const _setupBudgetManagement = (budget, placeholderBudget, user) => {
-  const budgetNameDisplay = document.querySelector('.budget-container__budget-management-container--extra-small__budget-name-form__budget-name-display');
-  const budgetNameInput = document.querySelector('.budget-container__budget-management-container--extra-small__budget-name-form__input');
+  const budgetNameDisplay = document.querySelector('.form--extra-small__budget-name-display');
+  const budgetNameInput = document.querySelectorAll('.form__input--small-thin__placeholder-shown')[0];
   if (window.location.pathname.split('/')[6] === `Budget-Management`) {
-    budgetNameInput.addEventListener('keyup', (e) => {
-      e.preventDefault();
-      budgetNameDisplay.textContent = budgetNameInput.value;
-    });
-    const emergencyFundSettings = document.querySelectorAll(
-      '.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container'
-    );
+    const invisibleCheckboxes = document.querySelectorAll('.form__input--invisible-checkbox');
+    if (budgetNameInput) {
+      budgetNameInput.addEventListener('keyup', (e) => {
+        e.preventDefault();
+        budgetNameDisplay.textContent = budgetNameInput.value;
+      });
+    }
+    const emergencyFundSettings = document.querySelectorAll('.form__label--checkbox-container');
     let emergencySetting;
 
-    const emergencySelectionContainer = document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container');
-    const emergencyTotalInput = document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__input');
+    const emergencySelectionContainer = document.querySelector('.form__section--small-thin');
+    const smallThinInputs = document.querySelectorAll('.form__input--small-thin');
+    console.log(smallThinInputs);
+    const emergencyTotalInput = document.querySelectorAll('.form__input--small-thin__placeholder-shown')[1];
     const emergencySettings = [emergencySelectionContainer, emergencyTotalInput];
     emergencySettings.forEach((eSetting) => eSetting.classList.remove('visible'));
-    budget.accounts.emergencyFund.emergencyGoalMeasurement === `Length Of Time` ? emergencySettings[0].classList.add('visible') : emergencySettings[1].classList.add('visible');
+    if (budget.accounts.emergencyFund.emergencyGoalMeasurement === `Length Of Time`) {
+      emergencySettings.forEach((es) => {
+        es.classList.add('closed');
+        es.classList.remove('open');
+      });
+      emergencySettings[0].classList.remove('closed');
+      emergencySettings[0].classList.add('open');
+    }
+    if (budget.accounts.emergencyFund.emergencyGoalMeasurement === `Total Amount`) {
+      emergencySettings.forEach((es) => {
+        es.classList.add('closed');
+        es.classList.remove('open');
+      });
+      emergencySettings[1].classList.remove('closed');
+      emergencySettings[1].classList.add('open');
+    }
 
     emergencyFundSettings.forEach((setting) => {
       setting.classList.remove('checked');
@@ -618,15 +646,36 @@ const _setupBudgetManagement = (budget, placeholderBudget, user) => {
       });
     });
 
-    const tithingCheckboxes = document.querySelectorAll(
-      '.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox'
-    );
+    console.log(invisibleCheckboxes);
+    const tithingCheckboxes = [invisibleCheckboxes[2], invisibleCheckboxes[3], invisibleCheckboxes[4]];
     let currentTithingSetting;
+    const budgetManagementSubmitButtons = document.querySelectorAll('.button--extra-extra-small');
+    const wideBudgetManagementSubmitButtons = document.querySelectorAll('.button--extra-extra-small__wide');
+    console.log(budgetManagementSubmitButtons);
+    const budgetNameSubmit = budgetManagementSubmitButtons[0];
+    const savingsGoalSubmit = budgetManagementSubmitButtons[1];
+    const investmentGoalSubmit = budgetManagementSubmitButtons[2];
+    const emergencyGoalSubmit = budgetManagementSubmitButtons[3];
+    const tithingSettingSubmit = budgetManagementSubmitButtons[4];
+    const updateSubmitButtons = [budgetNameSubmit, savingsGoalSubmit, investmentGoalSubmit, emergencyGoalSubmit];
+
+    if (user.latterDaySaint === true) {
+      updateSubmitButtons.push(tithingSettingSubmit);
+    }
+    updateSubmitButtons.forEach((ub) => {
+      ub.addEventListener('click', (e) => {
+        e.preventDefault();
+        compileBudgetManatementUpdates(emergencySetting, currentTithingSetting, budget, placeholderBudget, user);
+      });
+    });
+    watchForBudgetExit();
+    watchForBudgetDeletion();
+
+    console.log(`What is happening?`);
+
     if (!budget.accounts.tithing) return;
     if (budget.accounts.tithing.tithingSetting) {
-      const tithingSettings = document.querySelectorAll(
-        '.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container'
-      );
+      const tithingSettings = document.querySelectorAll('.form__label--small-thin__taller--thirds__tithing');
       const tithingCheckboxes = document.querySelectorAll(
         '.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox'
       );
@@ -648,24 +697,6 @@ const _setupBudgetManagement = (budget, placeholderBudget, user) => {
         });
       });
     }
-    const budgetNameSubmit = document.querySelector('.budget-container__budget-management-container--extra-small__budget-name-form__submit');
-    const savingsGoalSubmit = document.querySelector('.budget-container__budget-management-container--extra-small__budget-savings-goal-form__submit');
-    const investmentGoalSubmit = document.querySelector('.budget-container__budget-management-container--extra-small__budget-investment-goal-form__submit');
-    const emergencyGoalSubmit = document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__submit');
-    const tithingSettingSubmit = document.querySelector('.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__submit');
-    const updateSubmitButtons = [budgetNameSubmit, savingsGoalSubmit, investmentGoalSubmit, emergencyGoalSubmit];
-
-    if (user.latterDaySaint === true) {
-      updateSubmitButtons.push(tithingSettingSubmit);
-    }
-    updateSubmitButtons.forEach((ub) => {
-      ub.addEventListener('click', (e) => {
-        e.preventDefault();
-        compileBudgetManatementUpdates(emergencySetting, currentTithingSetting, budget, placeholderBudget, user);
-      });
-    });
-    watchForBudgetExit();
-    watchForBudgetDeletion();
   }
 };
 
@@ -853,7 +884,9 @@ const _watchForTransactions = (arrayOfArrays) => {
   arrayOfArrays.forEach((a, i) => {
     a.forEach((c, i) => {
       // console.log(c);
-      c.classList.add(`closed`);
+      if (c) {
+        c.classList.add(`closed`);
+      }
     });
   });
   const accountOptions = document.querySelectorAll('.form__select--accounts__option');

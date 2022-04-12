@@ -7694,7 +7694,7 @@ __webpack_require__.r(__webpack_exports__);
 // bill-calendar-container__calendar-container__calendar__days__single-day
 
 var watchForBudgetDeletion = function watchForBudgetDeletion() {
-  var budgetDeleteButton = document.querySelector(".budget-container__budget-management-container--extra-small__budget-exit-or-delete-form__submit--delete");
+  var budgetDeleteButton = document.querySelectorAll(".button--extra-extra-small__wide")[1];
   var budgetId = window.location.pathname.split('/')[5];
   var userId = window.location.pathname.split('/')[3];
   budgetDeleteButton.addEventListener('click', function (e) {
@@ -7704,7 +7704,9 @@ var watchForBudgetDeletion = function watchForBudgetDeletion() {
 };
 
 var watchForBudgetExit = function watchForBudgetExit() {
-  var exitButton = document.querySelector('.budget-container__budget-management-container--extra-small__budget-exit-or-delete-form__submit--exit');
+  var submitButtons = document.querySelectorAll(".button--extra-extra-small__wide");
+  console.log(submitButtons);
+  var exitButton = document.querySelectorAll(".button--extra-extra-small__wide")[0];
   var userId = window.location.pathname.split('/')[3];
   exitButton.addEventListener('click', function (e) {
     e.preventDefault();
@@ -8260,39 +8262,68 @@ var compileBudgetManatementUpdates = function compileBudgetManatementUpdates(eme
 var changeEmergencyInput = function changeEmergencyInput(array, setting) {
   if (setting === "Length Of Time") {
     array.forEach(function (eSetting) {
-      return eSetting.classList.remove('visible');
+      eSetting.classList.remove('closed');
+      eSetting.classList.remove('open');
     });
-    array[0].classList.add('visible');
+    array[0].classList.add('open');
+    array[1].classList.add('closed');
     console.log(setting);
   }
 
   if (setting === "Total Amount") {
     array.forEach(function (eSetting) {
-      return eSetting.classList.remove('visible');
+      eSetting.classList.remove('closed');
+      eSetting.classList.remove('open');
     });
-    array[1].classList.add('visible');
+    array[1].classList.add('open');
+    array[0].classList.add('closed');
     console.log(setting);
   }
 };
 
 var _setupBudgetManagement = function _setupBudgetManagement(budget, placeholderBudget, user) {
-  var budgetNameDisplay = document.querySelector('.budget-container__budget-management-container--extra-small__budget-name-form__budget-name-display');
-  var budgetNameInput = document.querySelector('.budget-container__budget-management-container--extra-small__budget-name-form__input');
+  var budgetNameDisplay = document.querySelector('.form--extra-small__budget-name-display');
+  var budgetNameInput = document.querySelectorAll('.form__input--small-thin__placeholder-shown')[0];
 
   if (window.location.pathname.split('/')[6] === "Budget-Management") {
-    budgetNameInput.addEventListener('keyup', function (e) {
-      e.preventDefault();
-      budgetNameDisplay.textContent = budgetNameInput.value;
-    });
-    var emergencyFundSettings = document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container');
+    var invisibleCheckboxes = document.querySelectorAll('.form__input--invisible-checkbox');
+
+    if (budgetNameInput) {
+      budgetNameInput.addEventListener('keyup', function (e) {
+        e.preventDefault();
+        budgetNameDisplay.textContent = budgetNameInput.value;
+      });
+    }
+
+    var emergencyFundSettings = document.querySelectorAll('.form__label--checkbox-container');
     var emergencySetting;
-    var emergencySelectionContainer = document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container');
-    var emergencyTotalInput = document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__input');
+    var emergencySelectionContainer = document.querySelector('.form__section--small-thin');
+    var smallThinInputs = document.querySelectorAll('.form__input--small-thin');
+    console.log(smallThinInputs);
+    var emergencyTotalInput = document.querySelectorAll('.form__input--small-thin__placeholder-shown')[1];
     var emergencySettings = [emergencySelectionContainer, emergencyTotalInput];
     emergencySettings.forEach(function (eSetting) {
       return eSetting.classList.remove('visible');
     });
-    budget.accounts.emergencyFund.emergencyGoalMeasurement === "Length Of Time" ? emergencySettings[0].classList.add('visible') : emergencySettings[1].classList.add('visible');
+
+    if (budget.accounts.emergencyFund.emergencyGoalMeasurement === "Length Of Time") {
+      emergencySettings.forEach(function (es) {
+        es.classList.add('closed');
+        es.classList.remove('open');
+      });
+      emergencySettings[0].classList.remove('closed');
+      emergencySettings[0].classList.add('open');
+    }
+
+    if (budget.accounts.emergencyFund.emergencyGoalMeasurement === "Total Amount") {
+      emergencySettings.forEach(function (es) {
+        es.classList.add('closed');
+        es.classList.remove('open');
+      });
+      emergencySettings[1].classList.remove('closed');
+      emergencySettings[1].classList.add('open');
+    }
+
     emergencyFundSettings.forEach(function (setting) {
       setting.classList.remove('checked');
       if (setting.textContent === budget.accounts.emergencyFund.emergencyGoalMeasurement) setting.classList.toggle('checked');
@@ -8307,12 +8338,36 @@ var _setupBudgetManagement = function _setupBudgetManagement(budget, placeholder
         changeEmergencyInput(emergencySettings, emergencySetting, budget);
       });
     });
-    var tithingCheckboxes = document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox');
+    console.log(invisibleCheckboxes);
+    var tithingCheckboxes = [invisibleCheckboxes[2], invisibleCheckboxes[3], invisibleCheckboxes[4]];
     var currentTithingSetting;
+    var budgetManagementSubmitButtons = document.querySelectorAll('.button--extra-extra-small');
+    var wideBudgetManagementSubmitButtons = document.querySelectorAll('.button--extra-extra-small__wide');
+    console.log(budgetManagementSubmitButtons);
+    var budgetNameSubmit = budgetManagementSubmitButtons[0];
+    var savingsGoalSubmit = budgetManagementSubmitButtons[1];
+    var investmentGoalSubmit = budgetManagementSubmitButtons[2];
+    var emergencyGoalSubmit = budgetManagementSubmitButtons[3];
+    var tithingSettingSubmit = budgetManagementSubmitButtons[4];
+    var updateSubmitButtons = [budgetNameSubmit, savingsGoalSubmit, investmentGoalSubmit, emergencyGoalSubmit];
+
+    if (user.latterDaySaint === true) {
+      updateSubmitButtons.push(tithingSettingSubmit);
+    }
+
+    updateSubmitButtons.forEach(function (ub) {
+      ub.addEventListener('click', function (e) {
+        e.preventDefault();
+        compileBudgetManatementUpdates(emergencySetting, currentTithingSetting, budget, placeholderBudget, user);
+      });
+    });
+    watchForBudgetExit();
+    watchForBudgetDeletion();
+    console.log("What is happening?");
     if (!budget.accounts.tithing) return;
 
     if (budget.accounts.tithing.tithingSetting) {
-      var tithingSettings = document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container');
+      var tithingSettings = document.querySelectorAll('.form__label--small-thin__taller--thirds__tithing');
 
       var _tithingCheckboxes = document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox');
 
@@ -8336,26 +8391,6 @@ var _setupBudgetManagement = function _setupBudgetManagement(budget, placeholder
         });
       });
     }
-
-    var budgetNameSubmit = document.querySelector('.budget-container__budget-management-container--extra-small__budget-name-form__submit');
-    var savingsGoalSubmit = document.querySelector('.budget-container__budget-management-container--extra-small__budget-savings-goal-form__submit');
-    var investmentGoalSubmit = document.querySelector('.budget-container__budget-management-container--extra-small__budget-investment-goal-form__submit');
-    var emergencyGoalSubmit = document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__submit');
-    var tithingSettingSubmit = document.querySelector('.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__submit');
-    var updateSubmitButtons = [budgetNameSubmit, savingsGoalSubmit, investmentGoalSubmit, emergencyGoalSubmit];
-
-    if (user.latterDaySaint === true) {
-      updateSubmitButtons.push(tithingSettingSubmit);
-    }
-
-    updateSubmitButtons.forEach(function (ub) {
-      ub.addEventListener('click', function (e) {
-        e.preventDefault();
-        compileBudgetManatementUpdates(emergencySetting, currentTithingSetting, budget, placeholderBudget, user);
-      });
-    });
-    watchForBudgetExit();
-    watchForBudgetDeletion();
   }
 };
 
@@ -8547,7 +8582,9 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays) {
   arrayOfArrays.forEach(function (a, i) {
     a.forEach(function (c, i) {
       // console.log(c);
-      c.classList.add("closed");
+      if (c) {
+        c.classList.add("closed");
+      }
     });
   });
   var accountOptions = document.querySelectorAll('.form__select--accounts__option');
