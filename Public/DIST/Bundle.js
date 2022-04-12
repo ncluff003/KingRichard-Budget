@@ -6963,6 +6963,7 @@ var Budget = /*#__PURE__*/function () {
         var updateObject = options.updateObject;
 
         if (update === "Budget Management") {
+          console.log(options.user);
           updateObject.budgetId = options.budgetId;
           updateObject.userId = options.userId;
           updateObject.name = options.name;
@@ -8125,8 +8126,8 @@ var getEmergencyFund = function getEmergencyFund(budget, emergencySetting) {
   emergencyFund.emergencyGoalMeasurement = emergencySetting;
 
   if (emergencySetting === "Length Of Time") {
-    emergencyFundGoal = Number(document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__input').value);
-    emergencyFundGoalTiming = document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__select').value;
+    emergencyFundGoal = Number(document.querySelector('.form__input--half-left').value);
+    emergencyFundGoalTiming = document.querySelector('.form__select--half-right').value;
     if (emergencyFundGoal === '' || emergencyFundGoal === undefined || emergencyFundGoal === null) emergencyFundGoal = budget.accounts.emergencyFund.emergencyFundGoal;
     if (emergencyFundGoalTiming === '' || emergencyFundGoalTiming === undefined || emergencyFundGoalTiming === null) emergencyFundGoalTiming = budget.accounts.emergencyFund.emergencyFundGoalTiming;
     emergencyFund.emergencyGoalMeasurement = emergencySetting;
@@ -8145,9 +8146,10 @@ var getEmergencyFund = function getEmergencyFund(budget, emergencySetting) {
 };
 
 var getInvestmentFund = function getInvestmentFund(budget) {
+  var budgetInputs = document.querySelectorAll('.form__input--small-thin');
   var investmentFund = {};
-  var investmentGoal = Number(document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-investment-goal-form__input')[0].value);
-  var investmentPercentage = Number(document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-investment-goal-form__input')[1].value);
+  var investmentGoal = Number(budgetInputs[0].value);
+  var investmentPercentage = Number(budgetInputs[1].value);
   if (investmentGoal === '' || investmentGoal === undefined || investmentGoal === null) investmentGoal = budget.accounts.investmentFund.investmentGoal;
   if (investmentPercentage === '' || investmentPercentage === undefined || investmentPercentage === null) investmentPercentage = budget.accounts.investmentFund.investmentPercentage;
   investmentFund.investmentGoal = investmentGoal;
@@ -8157,9 +8159,11 @@ var getInvestmentFund = function getInvestmentFund(budget) {
 };
 
 var getSavingsFund = function getSavingsFund(budget) {
+  var budgetInputs = document.querySelectorAll('.form__input--small-thin');
+  console.log(budgetInputs);
   var savingsFund = {};
-  var savingsGoal = Number(document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-savings-goal-form__input')[0].value);
-  var savingsPercentage = Number(document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-savings-goal-form__input')[1].value);
+  var savingsGoal = Number(budgetInputs[0].value);
+  var savingsPercentage = Number(budgetInputs[1].value);
   if (savingsGoal === '' || savingsGoal === undefined || savingsGoal === null) savingsGoal = budget.accounts.savingsFund.savingsGoal;
   if (savingsPercentage === '' || savingsPercentage === undefined || savingsPercentage === null) savingsPercentage = budget.accounts.savingsFund.savingsPercentage;
   savingsFund.savingsGoal = savingsGoal;
@@ -8169,7 +8173,9 @@ var getSavingsFund = function getSavingsFund(budget) {
 };
 
 var getBudgetName = function getBudgetName(budget) {
-  var budgetName = document.querySelector('.budget-container__budget-management-container--extra-small__budget-name-form__input').value;
+  var budgetInputs = document.querySelectorAll('.form__input--small-thin__placeholder-shown');
+  console.log(budgetInputs, budgetInputs[0].value);
+  var budgetName = budgetInputs[0].value;
   if (budgetName === '') budgetName = budget.name;
   return budgetName;
 };
@@ -8224,6 +8230,7 @@ var compileBudgetManatementUpdates = function compileBudgetManatementUpdates(eme
     placeholderBudget._updateBudget("Update", "Budget Management", {
       budgetId: budget._id,
       userId: user._id,
+      user: user,
       name: _name,
       unAllocatedAmount: placeholderBudget.accounts.unAllocated.amount,
       monthlyBudgetAmount: placeholderBudget.accounts.monthlyBudget.amount,

@@ -153,6 +153,7 @@ export class Budget {
     if (mode === `Update`) {
       let updateObject = options.updateObject;
       if (update === `Budget Management`) {
+        console.log(options.user);
         updateObject.budgetId = options.budgetId;
         updateObject.userId = options.userId;
         updateObject.name = options.name;

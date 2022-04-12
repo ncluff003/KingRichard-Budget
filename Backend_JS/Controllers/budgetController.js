@@ -78,6 +78,7 @@ let filterObj = (object, allowedFields) => {
 
       if (key === `expenseFund`) {
         filteredValues[i].amount = Number(filteredValues[i].amount);
+        if (isNaN(Number(filteredValues[i].amount))) filteredValues[i].amount = 0;
       }
 
       if (key === `surplus`) {

@@ -443,8 +443,8 @@ const getEmergencyFund = (budget, emergencySetting) => {
   let emergencyFund = {};
   emergencyFund.emergencyGoalMeasurement = emergencySetting;
   if (emergencySetting === `Length Of Time`) {
-    emergencyFundGoal = Number(document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__input').value);
-    emergencyFundGoalTiming = document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__select').value;
+    emergencyFundGoal = Number(document.querySelector('.form__input--half-left').value);
+    emergencyFundGoalTiming = document.querySelector('.form__select--half-right').value;
     if (emergencyFundGoal === '' || emergencyFundGoal === undefined || emergencyFundGoal === null) emergencyFundGoal = budget.accounts.emergencyFund.emergencyFundGoal;
     if (emergencyFundGoalTiming === '' || emergencyFundGoalTiming === undefined || emergencyFundGoalTiming === null)
       emergencyFundGoalTiming = budget.accounts.emergencyFund.emergencyFundGoalTiming;
@@ -462,9 +462,10 @@ const getEmergencyFund = (budget, emergencySetting) => {
 };
 
 const getInvestmentFund = (budget) => {
+  const budgetInputs = document.querySelectorAll('.form__input--small-thin');
   let investmentFund = {};
-  let investmentGoal = Number(document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-investment-goal-form__input')[0].value);
-  let investmentPercentage = Number(document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-investment-goal-form__input')[1].value);
+  let investmentGoal = Number(budgetInputs[0].value);
+  let investmentPercentage = Number(budgetInputs[1].value);
   if (investmentGoal === '' || investmentGoal === undefined || investmentGoal === null) investmentGoal = budget.accounts.investmentFund.investmentGoal;
   if (investmentPercentage === '' || investmentPercentage === undefined || investmentPercentage === null)
     investmentPercentage = budget.accounts.investmentFund.investmentPercentage;
@@ -475,9 +476,11 @@ const getInvestmentFund = (budget) => {
 };
 
 const getSavingsFund = (budget) => {
+  const budgetInputs = document.querySelectorAll('.form__input--small-thin');
+  console.log(budgetInputs);
   let savingsFund = {};
-  let savingsGoal = Number(document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-savings-goal-form__input')[0].value);
-  let savingsPercentage = Number(document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-savings-goal-form__input')[1].value);
+  let savingsGoal = Number(budgetInputs[0].value);
+  let savingsPercentage = Number(budgetInputs[1].value);
   if (savingsGoal === '' || savingsGoal === undefined || savingsGoal === null) savingsGoal = budget.accounts.savingsFund.savingsGoal;
   if (savingsPercentage === '' || savingsPercentage === undefined || savingsPercentage === null) savingsPercentage = budget.accounts.savingsFund.savingsPercentage;
   savingsFund.savingsGoal = savingsGoal;
@@ -487,7 +490,9 @@ const getSavingsFund = (budget) => {
 };
 
 const getBudgetName = (budget) => {
-  let budgetName = document.querySelector('.budget-container__budget-management-container--extra-small__budget-name-form__input').value;
+  const budgetInputs = document.querySelectorAll('.form__input--small-thin__placeholder-shown');
+  console.log(budgetInputs, budgetInputs[0].value);
+  let budgetName = budgetInputs[0].value;
   if (budgetName === '') budgetName = budget.name;
   return budgetName;
 };
@@ -540,6 +545,7 @@ const compileBudgetManatementUpdates = (emergencySetting, currentTithingSetting,
     placeholderBudget._updateBudget(`Update`, `Budget Management`, {
       budgetId: budget._id,
       userId: user._id,
+      user: user,
       name: name,
       unAllocatedAmount: placeholderBudget.accounts.unAllocated.amount,
       monthlyBudgetAmount: placeholderBudget.accounts.monthlyBudget.amount,
