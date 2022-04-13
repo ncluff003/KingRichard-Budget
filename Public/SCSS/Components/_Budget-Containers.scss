@@ -9,13 +9,31 @@
     @include SizeAndPositioning(relative, 15%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
     background-color: rgba($colorLightestGrey, 0.3);
   }
-  &__budget-management-container {
-    @include SizeAndPositioning(relative, 85%, 100%, flex, row, wrap, center, center, 0, 0, 0);
-    background-color: rgba($colorLightestGrey, 0.3);
-  }
 }
 
 .container {
+  &--budget-management {
+    @include SizeAndPositioning(relative, 85%, 100%, flex, row, wrap, center, center, 0, 0, 0);
+    background-color: rgba($colorLightestGrey, 0.3);
+  }
+
+  &--edit-category-goals {
+    @include SizeAndPositioning(relative, 85%, 100%, flex, row, wrap, center, center, 0, 0, 0);
+    background-color: rgba($colorLightestGrey, 0.3);
+    &--large {
+      @extend .container--edit-category-goals;
+      height: calc(45rem * 1.5);
+      width: calc((55.8rem * 2) + 7rem);
+      flex-flow: column nowrap;
+      justify-content: space-between;
+      border: 0.3rem solid $primaryColor;
+      border-radius: 0.5rem;
+      padding: 0.2rem;
+      margin-bottom: 5rem;
+      background-color: rgba($colorOffWhite, 0.8);
+    }
+  }
+
   &--extra-small {
     @include SizeAndPositioning(relative, 22.5rem, 35rem, flex, column, nowrap, space-between, center, 0, 0, 0);
     padding: 0.2rem;
@@ -209,12 +227,35 @@
           }
           &__section {
             @include SizeAndPositioning(relative, 100%, 20%, flex, row, nowrap, center, center, 0, 0, 0);
+            &__input {
+              border: $colorOffWhite;
+              &:focus {
+                background-color: rgba($colorOffWhite, 0.8);
+                outline: none;
+              }
+            }
+            .form__input--medium {
+              &:focus {
+                background-color: $colorOffWhite;
+                outline: none;
+              }
+            }
+            &:first-of-type {
+              flex-direction: column;
+            }
           }
           &:hover {
             cursor: pointer;
             .sub-category-display__sub-category__section {
               background-color: $primaryColor;
               transition: background-color 0.5s, color 0.5s;
+              .button--borderless-set-timing-button {
+                cursor: pointer;
+                transition: color 0.5s;
+              }
+              .form__input--medium {
+                background-color: rgba($colorOffWhite, 0.8);
+              }
             }
           }
           &--hidden {

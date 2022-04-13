@@ -3,7 +3,7 @@ extends ./../budgetLanding
 block Budget-Content 
   header.budget-container__header.r__budget-container__header
     p.budget-container__header__text.r__budget-container__header__text Budget Management
-  section.budget-container__budget-management-container.r__budget-container__budget-management-container
+  section.container--budget-management.r__container--budget-management
     section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right
       header.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
         i.fas.fa-pencil-alt.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
@@ -49,7 +49,7 @@ block Budget-Content
           input.form__input--half-left.r__form__input--half-left(type="number" value= `${emergencyFundGoal}`)
           select.form__select--half-right.r__form__select--half-right
             each timing in timingOptions 
-              option.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__select__option.r__budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__select__option(value=`${timing}`)= `${timing}`
+              option.form__select--half-right__option.r__form__select--half-right__option(value=`${timing}`)= `${timing}`
         input.form__input--small-thin__placeholder-shown.r__form__input--small-thin__placeholder-shown#investmentGoal(type="number" name="investmentGoal" placeholder="INVESTMENT FUND GOAL" value= `${emergencyFundGoal}` required)
         button.button--extra-extra-small.r__button--extra-extra-small(type="button") Submit
     if data.user.latterDaySaint

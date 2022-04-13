@@ -15,13 +15,13 @@ section.container--large.r__container--large
     - if (isNaN(overallPercentageSpent)) overallPercentageSpent = 0
     section.budget-single-goal-summary.r__budget-single-goal-summary
       p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Overall Budget
-      p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `$${overallBudget}`
+      p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `$${overallBudget.toFixed(2)}`
     section.budget-single-goal-summary.r__budget-single-goal-summary
       p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Overall Spent
-      p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `$${overallSpent}`
+      p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `$${overallSpent.toFixed(2)}`
     section.budget-single-goal-summary.r__budget-single-goal-summary
       p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Overall Remaining
-      p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `$${overallBudget - overallSpent}`
+      p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `$${(overallBudget - overallSpent).toFixed(2)}`
     section.budget-single-goal-summary.r__budget-single-goal-summary
       p.budget-single-goal-summary__title.r__budget-single-goal-summary__title Percentage Spent
       p.budget-single-goal-summary__amount.r__budget-single-goal-summary__amount= `${(overallPercentageSpent).toFixed(2)}%`
@@ -41,9 +41,9 @@ section.container--large.r__container--large
       section.main-category-display__button-container.r__main-category-display__button-container
         i.fas.fa-arrow-alt-circle-left.main-category-display__button-container__icon.r__main-category-display__button-container__icon.left.r__left
       section.main-category-display__category-display.r__main-category-display__category-display
-        each category, index in data.budget.mainCategories
-          i.fas.main-category-display__category-display__icon(class=`${category.icon}` data-category=`${index}`)
-          p.main-category-display__category-display__title.r__main-category-display__category-display__title(data-category=`${index}`)= `${category.title}`
+            i.fas.main-category-display__category-display__icon(class=`${data.budget.mainCategories[0].icon}` data-category=`${0}`)
+            p.main-category-display__category-display__title.r__main-category-display__category-display__title(data-category=`${0}`)= `${data.budget.mainCategories[0].title}`
+            
       section.main-category-display__button-container.r__main-category-display__button-container
         i.fas.fa-arrow-alt-circle-right.main-category-display__button-container__icon.r__main-category-display__button-container__icon.right.r__right
 

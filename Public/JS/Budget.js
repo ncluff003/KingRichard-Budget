@@ -327,7 +327,7 @@ export class Budget {
             surplus: sc.surplus,
           });
         });
-        this.mainCategories.push({ icon: mc.title, title: mc.title, subCategories: subCategories });
+        this.mainCategories.push({ icon: mc.icon, title: mc.title, subCategories: subCategories });
       });
       this.transactions = budget.transactions;
       this.investments = budget.investments;

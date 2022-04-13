@@ -23,20 +23,3 @@
   @include SizeAndPositioning(relative, 100%, 100%, flex, row, nowrap, center, center, 5%, 0, 0);
   z-index: 0;
 }
-
-.closed {
-  display: none;
-}
-.open {
-  display: flex;
-  &-grid {
-    display: grid;
-  }
-  &-navigation {
-    @extend .open;
-    opacity: 1;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-  }
-}

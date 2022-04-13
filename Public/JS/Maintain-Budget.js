@@ -131,7 +131,7 @@ const getSubCategoryTiming = (budget, category) => {
     let dayEnding;
     dayEnding = Edit.calculateDayEnding(endDigit, dayEnding, date);
     console.log(day, endDigit, dayEnding);
-    wording = `Due the ${day}${dayEnding} of ${months[date.getMonth()]}.`;
+    wording = `Due ${days[date.getDay()]}, the ${day}${dayEnding} of ${months[date.getMonth()]}.`;
     return wording;
   }
   if (category.timingOptions.paymentCycle === `Bi-Monthly`) {
@@ -163,7 +163,7 @@ const getSubCategoryTiming = (budget, category) => {
     let dayEnding;
     dayEnding = Edit.calculateDayEnding(endDigit, dayEnding, date);
     console.log(day, endDigit, dayEnding);
-    wording = `Due the ${day}${dayEnding} of ${months[date.getMonth()]}.`;
+    wording = `Due ${days[date.getDay()]}, the ${day}${dayEnding} of ${months[date.getMonth()]}.`;
     return wording;
   }
   // console.log(budget, category);
@@ -207,16 +207,16 @@ const getOverallBudget = (subCategories, overall) => {
 };
 
 const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
-  const editCategoryGoalsContainer = document.querySelector('.budget-container__edit-category-goals-container--large');
+  const editCategoryGoalsContainer = document.querySelectorAll('.container--large')[0];
   if (editCategoryGoalsContainer) {
     const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
-    const timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
+    const timingFunctionContainer = document.querySelector('.timing-container');
     const editCategoryGoalsSubmit = document.querySelector('.budget-container__update-budget-categories-button-container__button');
     // On load, retrieve the proper timings and dates for the correct sub-categories.
 
     const mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
     let allCategories = [];
-    mainCategoryTitles.forEach((mct, i) => {
+    placeholderBudget.mainCategories.forEach((mct, i) => {
       budget.mainCategories[i].subCategories.forEach((sc, i) => {
         allCategories.push(sc);
       });
@@ -225,6 +225,7 @@ const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
     allCategories.forEach((c, i) => {
       if (c.timingOptions.paymentCycle) {
         let timing = getSubCategoryTiming(budget, c);
+        console.log(subCategories[i], timing);
         subCategories[i].firstChild.nextSibling.firstChild.nextSibling.textContent = timing;
       }
     });
@@ -281,6 +282,7 @@ const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
         let total = getOverallBudget(subCategories, overallBudget[0]);
         let part = getOverallSpent(subCategories, overallSpent);
         let percentage = getOverallPercentageSpent(total, part);
+        console.log(overallBudget);
         overallBudget[0].textContent = money.format(getOverallBudget(subCategories, overallBudget[0]));
         overallSpent.textContent = money.format(part);
         overallRemaining.textContent = money.format(total - part);
@@ -336,10 +338,12 @@ const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
       let emptyArray = [];
       let temporaryObject;
 
+      console.log(budget.mainCategories, placeholderBudget.mainCategories);
+
       budget.mainCategories.forEach((bmc, i) => {
         temporaryObject = Object.fromEntries([
-          [`title`, mainCategoryTitles[i].textContent],
-          [`icon`, budget.mainCategories[i].icon],
+          [`title`, placeholderBudget.mainCategories[i].title],
+          [`icon`, placeholderBudget.mainCategories[i].icon],
           [`subCategories`, emptyArray],
         ]);
         updateObject.mainCategories[i] = temporaryObject;
@@ -706,70 +710,59 @@ const _setupBudgetManagement = (budget, placeholderBudget, user) => {
   }
 };
 
-const cycleMainCategories = (direction, index, icons, titles, subCats) => {
+const cycleMainCategories = (direction, index, subCats, budget) => {
+  const categoryIcon = document.querySelector('.main-category-display__category-display__icon');
+  const categoryTitle = document.querySelector('.main-category-display__category-display__title');
   if (direction === `left`) {
-    icons.forEach((ic) => {
-      ic.style.display = `none`;
-      icons[index].style.display = `flex`;
-    });
-    titles.forEach((t) => {
-      t.style.display = `none`;
-      titles[index].style.display = `flex`;
-    });
+    categoryIcon.classList.remove(categoryIcon.classList[2]);
+    categoryIcon.classList.add(`${budget.mainCategories[index].icon}`);
+    categoryTitle.textContent = budget.mainCategories[index].title;
+
     subCats.forEach((sc) => {
-      sc.classList.add('sub-category-display__sub-category--hidden');
-      if (Number(sc.dataset.subcategory) === index) sc.classList.remove('sub-category-display__sub-category--hidden');
+      sc.classList.add('closed');
+      if (Number(sc.dataset.subcategory) === index) sc.classList.remove('closed');
+      if (Number(sc.dataset.subcategory) === index) sc.classList.add('open');
     });
   }
   if (direction === `right`) {
-    icons.forEach((ic) => {
-      ic.style.display = `none`;
-      icons[index].style.display = `flex`;
-    });
-    titles.forEach((t) => {
-      t.style.display = `none`;
-      titles[index].style.display = `flex`;
-    });
+    categoryIcon.classList.remove(categoryIcon.classList[2]);
+    categoryIcon.classList.add(`${budget.mainCategories[index].icon}`);
+    categoryTitle.textContent = budget.mainCategories[index].title;
     subCats.forEach((sc) => {
-      sc.classList.add('sub-category-display__sub-category--hidden');
-      if (Number(sc.dataset.subcategory) === index) sc.classList.remove('sub-category-display__sub-category--hidden');
+      sc.classList.add('closed');
+      if (Number(sc.dataset.subcategory) === index) sc.classList.remove('closed');
+      if (Number(sc.dataset.subcategory) === index) sc.classList.add('open');
     });
   }
 };
 
-const _setupCurrentMonth = () => {
-  const categoryIcons = document.querySelectorAll('.main-category-display__category-display__icon');
-  const categoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
+const _setupCurrentMonth = (budget) => {
+  const categoryIcon = document.querySelector('.main-category-display__category-display__icon');
+  const categoryTitle = document.querySelector('.main-category-display__category-display__title');
   const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
   const leftButton = document.querySelector('.left');
   const rightButton = document.querySelector('.right');
   let categoryIndex = 0;
-  categoryIcons.forEach((c, i) => {
-    c.style.display = `none`;
-    if (i === 0) c.style.display = `flex`;
-  });
-  categoryTitles.forEach((t, i) => {
-    t.style.display = `none`;
-    if (i === 0) t.style.display = `flex`;
-  });
+  console.log(subCategories);
   subCategories.forEach((sc, i) => {
-    sc.classList.add('sub-category-display__sub-category--hidden');
-    if (Number(sc.dataset.subcategory) === 0) sc.classList.remove('sub-category-display__sub-category--hidden');
+    sc.classList.add('closed');
+    if (Number(sc.dataset.subcategory) === 0) sc.classList.remove('closed');
+    if (Number(sc.dataset.subcategory) === 0) sc.classList.add('open');
   });
   if (leftButton) {
     leftButton.addEventListener('click', (e) => {
       e.preventDefault();
       categoryIndex--;
       if (categoryIndex <= 0) categoryIndex = 0;
-      cycleMainCategories('left', categoryIndex, categoryIcons, categoryTitles, subCategories);
+      cycleMainCategories('left', categoryIndex, subCategories, budget);
     });
   }
   if (rightButton) {
     rightButton.addEventListener('click', (e) => {
       e.preventDefault();
       categoryIndex++;
-      if (categoryIndex >= categoryIcons.length - 1) categoryIndex = categoryIcons.length - 1;
-      cycleMainCategories('right', categoryIndex, categoryIcons, categoryTitles, subCategories);
+      if (categoryIndex >= budget.mainCategories.length - 1) categoryIndex = budget.mainCategories.length - 1;
+      cycleMainCategories('right', categoryIndex, subCategories, budget);
     });
   }
 };
@@ -1194,7 +1187,8 @@ const setupDashboard = (user, budget, placeholderBudget) => {
   _setupBillCalendar();
   ////////////////////////////////////////////
   // SETUP BILL CURRENT MONTH
-  _setupCurrentMonth();
+  _setupCurrentMonth(budget);
+  console.log(placeholderBudget);
 };
 
 export const _watchBudget = async () => {
@@ -1218,7 +1212,6 @@ export const _watchBudget = async () => {
   ////////////////////////////////////////////
   // WATCH BUDGET MANAGEMENT PAGE
   setupDashboard(user, currentBudget, budget);
-
   ////////////////////////////////////////////
   // WATCH BUDGET MANAGEMENT PAGE
   _setupBudgetManagement(currentBudget, budget, user);

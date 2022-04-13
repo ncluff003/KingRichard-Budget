@@ -614,6 +614,7 @@ export const watchForSettingTiming = (budget, index, clickedItem, timing, placeh
   });
 
   const subCategoryTimingButtons = document.querySelectorAll('.button--borderless-set-timing-button');
+  console.log(subCategoryTimingButtons);
   const timingFunctionContainer = document.querySelector('.timing-container');
   subCategoryTimingButtons.forEach((sctb, i) => {
     sctb.addEventListener('click', (e) => {

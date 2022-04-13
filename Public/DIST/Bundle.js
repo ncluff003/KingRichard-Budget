@@ -6025,6 +6025,7 @@ var watchForSettingTiming = function watchForSettingTiming(budget, index, clicke
     });
   });
   var subCategoryTimingButtons = document.querySelectorAll('.button--borderless-set-timing-button');
+  console.log(subCategoryTimingButtons);
   var timingFunctionContainer = document.querySelector('.timing-container');
   subCategoryTimingButtons.forEach(function (sctb, i) {
     sctb.addEventListener('click', function (e) {
@@ -7164,7 +7165,7 @@ var Budget = /*#__PURE__*/function () {
           });
 
           _this2.mainCategories.push({
-            icon: mc.title,
+            icon: mc.icon,
             title: mc.title,
             subCategories: subCategories
           });
@@ -7811,7 +7812,7 @@ var getSubCategoryTiming = function getSubCategoryTiming(budget, category) {
     var dayEnding;
     dayEnding = _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__.calculateDayEnding(endDigit, dayEnding, date);
     console.log(_day, endDigit, dayEnding);
-    wording = "Due the ".concat(_day).concat(dayEnding, " of ").concat(months[date.getMonth()], ".");
+    wording = "Due ".concat(days[date.getDay()], ", the ").concat(_day).concat(dayEnding, " of ").concat(months[date.getMonth()], ".");
     return wording;
   }
 
@@ -7855,7 +7856,7 @@ var getSubCategoryTiming = function getSubCategoryTiming(budget, category) {
 
     _dayEnding2 = _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__.calculateDayEnding(_endDigit2, _dayEnding2, _date);
     console.log(_day2, _endDigit2, _dayEnding2);
-    wording = "Due the ".concat(_day2).concat(_dayEnding2, " of ").concat(months[_date.getMonth()], ".");
+    wording = "Due ".concat(days[_date.getDay()], ", the ").concat(_day2).concat(_dayEnding2, " of ").concat(months[_date.getMonth()], ".");
     return wording;
   } // console.log(budget, category);
 
@@ -7901,16 +7902,16 @@ var getOverallBudget = function getOverallBudget(subCategories, overall) {
 };
 
 var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placeholderBudget, user) {
-  var editCategoryGoalsContainer = document.querySelector('.budget-container__edit-category-goals-container--large');
+  var editCategoryGoalsContainer = document.querySelectorAll('.container--large')[0];
 
   if (editCategoryGoalsContainer) {
     var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
-    var timingFunctionContainer = document.querySelector('.sub-category-display__timing-container');
+    var timingFunctionContainer = document.querySelector('.timing-container');
     var editCategoryGoalsSubmit = document.querySelector('.budget-container__update-budget-categories-button-container__button'); // On load, retrieve the proper timings and dates for the correct sub-categories.
 
     var mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
     var allCategories = [];
-    mainCategoryTitles.forEach(function (mct, i) {
+    placeholderBudget.mainCategories.forEach(function (mct, i) {
       budget.mainCategories[i].subCategories.forEach(function (sc, i) {
         allCategories.push(sc);
       });
@@ -7918,6 +7919,7 @@ var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placehold
     allCategories.forEach(function (c, i) {
       if (c.timingOptions.paymentCycle) {
         var timing = getSubCategoryTiming(budget, c);
+        console.log(subCategories[i], timing);
         subCategories[i].firstChild.nextSibling.firstChild.nextSibling.textContent = timing;
       }
     });
@@ -7980,6 +7982,7 @@ var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placehold
         var total = getOverallBudget(subCategories, overallBudget[0]);
         var part = getOverallSpent(subCategories, overallSpent);
         var percentage = getOverallPercentageSpent(total, part);
+        console.log(overallBudget);
         overallBudget[0].textContent = money.format(getOverallBudget(subCategories, overallBudget[0]));
         overallSpent.textContent = money.format(part);
         overallRemaining.textContent = money.format(total - part);
@@ -8038,8 +8041,9 @@ var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placehold
       var subCategoryIndex = 0;
       var emptyArray = [];
       var temporaryObject;
+      console.log(budget.mainCategories, placeholderBudget.mainCategories);
       budget.mainCategories.forEach(function (bmc, i) {
-        temporaryObject = Object.fromEntries([["title", mainCategoryTitles[i].textContent], ["icon", budget.mainCategories[i].icon], ["subCategories", emptyArray]]);
+        temporaryObject = Object.fromEntries([["title", placeholderBudget.mainCategories[i].title], ["icon", placeholderBudget.mainCategories[i].icon], ["subCategories", emptyArray]]);
         updateObject.mainCategories[i] = temporaryObject;
         console.log(updateObject);
         var tempArray = Array.from(document.querySelectorAll(".sub-category-display__sub-category[data-subcategory=\"".concat(i, "\"]")));
@@ -8401,56 +8405,45 @@ var _setupBudgetManagement = function _setupBudgetManagement(budget, placeholder
   }
 };
 
-var cycleMainCategories = function cycleMainCategories(direction, index, icons, titles, subCats) {
+var cycleMainCategories = function cycleMainCategories(direction, index, subCats, budget) {
+  var categoryIcon = document.querySelector('.main-category-display__category-display__icon');
+  var categoryTitle = document.querySelector('.main-category-display__category-display__title');
+
   if (direction === "left") {
-    icons.forEach(function (ic) {
-      ic.style.display = "none";
-      icons[index].style.display = "flex";
-    });
-    titles.forEach(function (t) {
-      t.style.display = "none";
-      titles[index].style.display = "flex";
-    });
+    categoryIcon.classList.remove(categoryIcon.classList[2]);
+    categoryIcon.classList.add("".concat(budget.mainCategories[index].icon));
+    categoryTitle.textContent = budget.mainCategories[index].title;
     subCats.forEach(function (sc) {
-      sc.classList.add('sub-category-display__sub-category--hidden');
-      if (Number(sc.dataset.subcategory) === index) sc.classList.remove('sub-category-display__sub-category--hidden');
+      sc.classList.add('closed');
+      if (Number(sc.dataset.subcategory) === index) sc.classList.remove('closed');
+      if (Number(sc.dataset.subcategory) === index) sc.classList.add('open');
     });
   }
 
   if (direction === "right") {
-    icons.forEach(function (ic) {
-      ic.style.display = "none";
-      icons[index].style.display = "flex";
-    });
-    titles.forEach(function (t) {
-      t.style.display = "none";
-      titles[index].style.display = "flex";
-    });
+    categoryIcon.classList.remove(categoryIcon.classList[2]);
+    categoryIcon.classList.add("".concat(budget.mainCategories[index].icon));
+    categoryTitle.textContent = budget.mainCategories[index].title;
     subCats.forEach(function (sc) {
-      sc.classList.add('sub-category-display__sub-category--hidden');
-      if (Number(sc.dataset.subcategory) === index) sc.classList.remove('sub-category-display__sub-category--hidden');
+      sc.classList.add('closed');
+      if (Number(sc.dataset.subcategory) === index) sc.classList.remove('closed');
+      if (Number(sc.dataset.subcategory) === index) sc.classList.add('open');
     });
   }
 };
 
-var _setupCurrentMonth = function _setupCurrentMonth() {
-  var categoryIcons = document.querySelectorAll('.main-category-display__category-display__icon');
-  var categoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
+var _setupCurrentMonth = function _setupCurrentMonth(budget) {
+  var categoryIcon = document.querySelector('.main-category-display__category-display__icon');
+  var categoryTitle = document.querySelector('.main-category-display__category-display__title');
   var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
   var leftButton = document.querySelector('.left');
   var rightButton = document.querySelector('.right');
   var categoryIndex = 0;
-  categoryIcons.forEach(function (c, i) {
-    c.style.display = "none";
-    if (i === 0) c.style.display = "flex";
-  });
-  categoryTitles.forEach(function (t, i) {
-    t.style.display = "none";
-    if (i === 0) t.style.display = "flex";
-  });
+  console.log(subCategories);
   subCategories.forEach(function (sc, i) {
-    sc.classList.add('sub-category-display__sub-category--hidden');
-    if (Number(sc.dataset.subcategory) === 0) sc.classList.remove('sub-category-display__sub-category--hidden');
+    sc.classList.add('closed');
+    if (Number(sc.dataset.subcategory) === 0) sc.classList.remove('closed');
+    if (Number(sc.dataset.subcategory) === 0) sc.classList.add('open');
   });
 
   if (leftButton) {
@@ -8458,7 +8451,8 @@ var _setupCurrentMonth = function _setupCurrentMonth() {
       e.preventDefault();
       categoryIndex--;
       if (categoryIndex <= 0) categoryIndex = 0;
-      cycleMainCategories('left', categoryIndex, categoryIcons, categoryTitles, subCategories);
+      console.log(categoryIndex);
+      cycleMainCategories('left', categoryIndex, subCategories, budget);
     });
   }
 
@@ -8466,8 +8460,9 @@ var _setupCurrentMonth = function _setupCurrentMonth() {
     rightButton.addEventListener('click', function (e) {
       e.preventDefault();
       categoryIndex++;
-      if (categoryIndex >= categoryIcons.length - 1) categoryIndex = categoryIcons.length - 1;
-      cycleMainCategories('right', categoryIndex, categoryIcons, categoryTitles, subCategories);
+      if (categoryIndex >= budget.mainCategories.length - 1) categoryIndex = budget.mainCategories.length - 1;
+      console.log(categoryIndex);
+      cycleMainCategories('right', categoryIndex, subCategories, budget);
     });
   }
 };
@@ -8877,7 +8872,9 @@ var setupDashboard = function setupDashboard(user, budget, placeholderBudget) {
   // SETUP BILL CURRENT MONTH
 
 
-  _setupCurrentMonth();
+  _setupCurrentMonth(budget);
+
+  console.log(placeholderBudget);
 };
 
 var _watchBudget = /*#__PURE__*/function () {
