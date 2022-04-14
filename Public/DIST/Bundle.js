@@ -5125,7 +5125,11 @@ var createMainCategory = function createMainCategory(element, budget, filteredAr
   iconsText.textContent = mainCategoryTitle;
   mainCategory.insertAdjacentElement('beforeend', iconImage);
   mainCategory.insertAdjacentElement('beforeend', iconsText);
-  mainCategory.insertAdjacentElement('beforeend', deleteButton);
+
+  if (mainCategoryContainer) {
+    mainCategory.insertAdjacentElement('beforeend', deleteButton);
+  }
+
   mainCategoryContainer.insertAdjacentElement('beforeend', mainCategory);
   var mainCategoryLength = document.querySelectorAll('.main-category').length;
 
@@ -5213,19 +5217,49 @@ var _clickIcon = function _clickIcon(icon) {
 
 var _hideCreatedIcons = function _hideCreatedIcons() {
   var mainCategories = document.querySelectorAll('.main-category');
-  if (mainCategories.length === 0) return;
-  mainCategories.forEach(function (mc) {
-    mc.classList.add('main-category--hidden');
-  });
+  var altMainCategories = document.querySelectorAll('.main-category__alt');
+  var mainCategoryContainer = document.querySelector('.budget-creation-container--main-categories');
+  var mainCategoryContainerTwo = document.querySelectorAll('.container--medium__half')[0];
+  console.log(altMainCategories);
+
+  if (mainCategoryContainer) {
+    if (mainCategories.length === 0) return;
+    mainCategories.forEach(function (mc) {
+      mc.classList.add('closed');
+      mc.classList.remove('open');
+    });
+  }
+
+  if (mainCategoryContainerTwo) {
+    if (altMainCategories.length === 0) return;
+    altMainCategories.forEach(function (amc) {
+      amc.classList.add('closed');
+      amc.classList.remove('open');
+    });
+  }
 }; ////////////////////////////////////////
 // SHOW CREATED ICONS
 
 
 var _showCreatedIcons = function _showCreatedIcons() {
   var mainCategories = document.querySelectorAll('.main-category');
-  mainCategories.forEach(function (mc) {
-    mc.classList.remove('main-category--hidden');
-  });
+  var altMainCategories = document.querySelectorAll('.main-category__alt');
+  var mainCategoryContainer = document.querySelector('.budget-creation-container--main-categories');
+  var mainCategoryContainerTwo = document.querySelectorAll('.container--medium__half')[0];
+
+  if (mainCategoryContainer) {
+    mainCategories.forEach(function (mc) {
+      mc.classList.add('open');
+      mc.classList.remove('closed');
+    });
+  }
+
+  if (mainCategoryContainerTwo) {
+    altMainCategories.forEach(function (amc) {
+      amc.classList.add('open');
+      amc.classList.remove('closed');
+    });
+  }
 }; ////////////////////////////////////////
 // CLOSE CATEGORY CREATION
 
@@ -5247,7 +5281,7 @@ var closeCategoryCreation = function closeCategoryCreation() {
   createMainCategoryButton.classList.toggle('open');
   closeCreateCategoryButton.classList.toggle('closed');
   closeCreateCategoryButton.classList.toggle('open');
-  mainCategoryContainer.classList.toggle('budget-creation-container--main-categories--creating');
+  if (mainCategoryContainer) mainCategoryContainer.classList.toggle('budget-creation-container--main-categories--creating');
 
   _showCreatedIcons();
 }; ////////////////////////////////////////
@@ -5261,6 +5295,7 @@ var openCategoryCreation = function openCategoryCreation() {
   var closeCreateCategoryButton = document.querySelectorAll('.button--small-create-main-category')[1];
   var iconsContainer = document.querySelector('.icons-container');
   var createCategoryTitle = document.querySelector('.form__section--main-category-title');
+  var mainCategoryContainerTwo = document.querySelectorAll('.container--medium__half')[0];
   createCategoryTitle.classList.toggle('closed');
   createCategoryTitle.classList.toggle('open');
   iconsContainer.classList.toggle('closed');
@@ -5271,7 +5306,7 @@ var openCategoryCreation = function openCategoryCreation() {
   createMainCategoryButton.classList.toggle('open');
   closeCreateCategoryButton.classList.toggle('closed');
   closeCreateCategoryButton.classList.toggle('open');
-  mainCategoryContainer.classList.toggle('budget-creation-container--main-categories--creating');
+  if (mainCategoryContainer) mainCategoryContainer.classList.toggle('budget-creation-container--main-categories--creating');
 
   _hideCreatedIcons();
 };
@@ -5345,6 +5380,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "calculateDayEnding": () => (/* binding */ calculateDayEnding),
 /* harmony export */   "insertTiming": () => (/* binding */ insertTiming),
 /* harmony export */   "setupGoalSetting": () => (/* binding */ setupGoalSetting),
+/* harmony export */   "setupSubCategoryCreation": () => (/* binding */ setupSubCategoryCreation),
 /* harmony export */   "setupTimingFunctionContainer": () => (/* binding */ setupTimingFunctionContainer),
 /* harmony export */   "watchForSettingTiming": () => (/* binding */ watchForSettingTiming)
 /* harmony export */ });
@@ -6019,10 +6055,12 @@ var watchForSettingTiming = function watchForSettingTiming(budget, index, clicke
   var weeklyTimingButton = timingButtons[3];
   var timingInputButtons = [monthlyTimingButton, biMonthlyTimingButton, biWeeklyTimingButton, weeklyTimingButton];
   timingInputButtons.forEach(function (tib, i) {
-    tib.addEventListener('click', function (e) {
-      e.preventDefault();
-      timing = tib.firstChild.nextSibling.textContent;
-    });
+    if (tib) {
+      tib.addEventListener('click', function (e) {
+        e.preventDefault();
+        timing = tib.firstChild.nextSibling.textContent;
+      });
+    }
   });
   var subCategoryTimingButtons = document.querySelectorAll('.button--borderless-set-timing-button');
   console.log(subCategoryTimingButtons);
@@ -6120,27 +6158,33 @@ var setupTimingFunctionContainer = function setupTimingFunctionContainer(contain
     var index = i;
     timingFunctionPages.forEach(function (tfp, i) {
       tfp.forEach(function (el) {
-        el.classList.add('closed');
+        if (el) el.classList.add('closed');
       });
     });
-    tib.addEventListener('click', function (e) {
-      timingFunctionPages.forEach(function (tfp, i) {
-        tfp.forEach(function (el) {
-          el.classList.add('closed');
-          el.classList.remove('open');
+
+    if (tib) {
+      tib.addEventListener('click', function (e) {
+        timingFunctionPages.forEach(function (tfp, i) {
+          tfp.forEach(function (el) {
+            el.classList.add('closed');
+            el.classList.remove('open');
+          });
+        });
+        timingFunctionPages[index].forEach(function (te) {
+          te.classList.toggle('closed');
+          te.classList.toggle('open');
         });
       });
-      timingFunctionPages[index].forEach(function (te) {
-        te.classList.toggle('closed');
-        te.classList.toggle('open');
-      });
+    }
+  });
+
+  if (closeTimingFunctionContainer) {
+    closeTimingFunctionContainer.addEventListener('click', function (e) {
+      e.preventDefault();
+      container.classList.toggle('closed');
+      container.classList.toggle('open');
     });
-  });
-  closeTimingFunctionContainer.addEventListener('click', function (e) {
-    e.preventDefault();
-    container.classList.toggle('closed');
-    container.classList.toggle('open');
-  });
+  }
 };
 
 var getTimingContainerHeight = function getTimingContainerHeight(categories, index) {
@@ -6235,9 +6279,11 @@ var cycleMainCategories = function cycleMainCategories(direction, index, budget,
     var subCategories = document.querySelectorAll('.sub-category');
     subCategories.forEach(function (sc, i) {
       sc.classList.add('closed');
+      sc.classList.remove('open');
 
       if (sc.dataset.category === "".concat(index)) {
         sc.classList.remove('closed');
+        sc.classList.add('open');
       }
     });
     return index;
@@ -6253,6 +6299,7 @@ var cycleMainCategories = function cycleMainCategories(direction, index, budget,
 
     _subCategories.forEach(function (sc, i) {
       sc.classList.add('closed');
+      console.log(sc.dataset.category);
 
       if (sc.dataset.category === "".concat(index)) {
         sc.classList.remove('closed');
@@ -6276,56 +6323,133 @@ var setupSubCategoryCreation = function setupSubCategoryCreation(budget, index) 
   var mainCategoryIcon = document.querySelector('.budget-creation-container--sub-categories__main-category-display__category-information__icon');
   var mainCategoryText = document.querySelector('.budget-creation-container--sub-categories__main-category-display__category-information__text');
   var borderlessButtons = document.querySelectorAll('.button--borderless');
+  console.log(borderlessButtons);
   var subCategoryStartCreationButton = borderlessButtons[2];
   var subCategoryStopCreationButton = document.querySelector('.button--small-create-sub-category-close');
   var categoryCreationSection = document.querySelector('.form__section--sub-category-creation');
   var direction;
-  mainCategoryIcon.classList.add(budget.mainCategories[index].icon);
-  mainCategoryText.textContent = budget.mainCategories[index].title;
-  leftButton.addEventListener('click', function (e) {
-    index--;
-    if (index < 0) index = 0;
-    direction = "Left";
-    cycleMainCategories(direction, index, budget, mainCategoryIcon, mainCategoryText);
-  });
-  rightButton.addEventListener('click', function (e) {
-    index++;
-    if (index > budget.mainCategories.length - 1) index = budget.mainCategories.length - 1;
-    direction = "Right";
-    cycleMainCategories(direction, index, budget, mainCategoryIcon, mainCategoryText);
-  });
-  subCategoryStopCreationButton.addEventListener('click', function (e) {
-    e.preventDefault();
-    closeSubCategoryCreationInput(subCategoryStartCreationButton, categoryCreationSection);
-  });
-  var subCategoryCreateButton = document.querySelector('.button--small-create-sub-category');
-  subCategoryCreateButton.addEventListener('click', function (e) {
-    e.preventDefault();
-    var subCategoryCreateInput = document.querySelector('.form__input--sub-category-title');
+  var mainCategoryDisplay = document.querySelector('.main-category-display');
+  var subCategoryCreationContainer = document.querySelector('.budget-creation-container--sub-categories.r__budget-creation-container--sub-categories'); // USED DURING BUDGET CREATION PROCESS
 
-    _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__._verifySubCategory(budget, index);
+  if (subCategoryCreationContainer) {
+    mainCategoryIcon.classList.add(budget.mainCategories[index].icon);
+    mainCategoryText.textContent = budget.mainCategories[index].title;
+    leftButton.addEventListener('click', function (e) {
+      index--;
+      if (index < 0) index = 0;
+      direction = "Left";
+      cycleMainCategories(direction, index, budget, mainCategoryIcon, mainCategoryText);
+    });
+    rightButton.addEventListener('click', function (e) {
+      index++;
+      if (index > budget.mainCategories.length - 1) index = budget.mainCategories.length - 1;
+      direction = "Right";
+      cycleMainCategories(direction, index, budget, mainCategoryIcon, mainCategoryText);
+    });
+    subCategoryStopCreationButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      closeSubCategoryCreationInput(subCategoryStartCreationButton, categoryCreationSection);
+    });
+    var subCategoryCreateButton = document.querySelector('.button--small-create-sub-category');
+    subCategoryCreateButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      var subCategoryCreateInput = document.querySelector('.form__input--sub-category-title');
 
-    subCategoryCreateInput.focus();
-    subCategoryCreateInput.value = '';
-  });
-  subCategoryStartCreationButton.addEventListener('click', function (e) {
-    e.preventDefault();
-    subCategoryStartCreationButton.classList.toggle('closed');
-    subCategoryStartCreationButton.classList.toggle('open');
-    categoryCreationSection.classList.toggle('closed');
-    categoryCreationSection.classList.toggle('open');
-    var subCategoryCreateInput = document.querySelector('.form__input--sub-category-title');
-    subCategoryCreateInput.value = '';
-    subCategoryCreateInput.focus();
-    console.log("Ready...");
-  });
+      _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__._verifySubCategory(budget, index);
 
-  _watchForSubCategoryKeyboardInput();
+      subCategoryCreateInput.focus();
+      subCategoryCreateInput.value = '';
+    });
+    subCategoryStartCreationButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      subCategoryStartCreationButton.classList.toggle('closed');
+      subCategoryStartCreationButton.classList.toggle('open');
+      categoryCreationSection.classList.toggle('closed');
+      categoryCreationSection.classList.toggle('open');
+      var subCategoryCreateInput = document.querySelector('.form__input--sub-category-title');
+      subCategoryCreateInput.value = '';
+      subCategoryCreateInput.focus();
+      console.log("Ready...");
+    });
 
-  watchToCycleSubCategoryMainCategories();
+    _watchForSubCategoryKeyboardInput();
+
+    watchToCycleSubCategoryMainCategories();
+  } // USED INSIDE BUDGET ON MANAGE CATEGORIES PAGE
+
+
+  if (mainCategoryDisplay) {
+    var mainCategoryIcon__alt = document.querySelector('.main-category-display__category-information__icon');
+    var mainCategoryText__alt = document.querySelector('.main-category-display__category-information__text');
+
+    var _leftButton = document.querySelector('.main-category-display__left-button__icon');
+
+    var _rightButton = document.querySelector('.main-category-display__right-button__icon');
+
+    mainCategoryIcon__alt.classList.add(budget.mainCategories[index].icon);
+    mainCategoryIcon__alt.dataset.category = index;
+    mainCategoryText__alt.textContent = budget.mainCategories[index].title;
+    mainCategoryText__alt.dataset.category = index;
+    console.log(budget);
+    var subCategories = document.querySelectorAll('.sub-category');
+    subCategories.forEach(function (sc, i) {
+      sc.classList.add('closed');
+      sc.classList.remove('open');
+
+      if (sc.dataset.category === "".concat(index)) {
+        sc.classList.remove('closed');
+        sc.classList.add('open');
+      }
+    });
+
+    _leftButton.addEventListener('click', function (e) {
+      index--;
+      if (index < 0) index = 0;
+      direction = "Left";
+      cycleMainCategories(direction, index, budget, mainCategoryIcon__alt, mainCategoryText__alt);
+    });
+
+    _rightButton.addEventListener('click', function (e) {
+      index++;
+      if (index > budget.mainCategories.length - 1) index = budget.mainCategories.length - 1;
+      direction = "Right";
+      cycleMainCategories(direction, index, budget, mainCategoryIcon__alt, mainCategoryText__alt);
+    });
+
+    subCategoryStartCreationButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      subCategoryStartCreationButton.classList.toggle('closed');
+      subCategoryStartCreationButton.classList.toggle('open');
+      categoryCreationSection.classList.toggle('closed');
+      categoryCreationSection.classList.toggle('open');
+      var subCategoryCreateInput = document.querySelector('.form__input--sub-category-title');
+      subCategoryCreateInput.value = '';
+      subCategoryCreateInput.focus();
+      console.log("Ready...");
+    });
+    subCategoryStopCreationButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      closeSubCategoryCreationInput(subCategoryStartCreationButton, categoryCreationSection);
+    });
+
+    var _subCategoryCreateButton = document.querySelector('.button--small-create-sub-category');
+
+    _subCategoryCreateButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      var subCategoryCreateInput = document.querySelector('.form__input--sub-category-title');
+
+      _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__._verifySubCategory(budget, index);
+
+      subCategoryCreateInput.focus();
+      subCategoryCreateInput.value = '';
+    });
+
+    _watchForSubCategoryKeyboardInput();
+
+    watchToCycleSubCategoryMainCategories();
+  }
 }; //////////////////////////////////////
 // LOG KEYBOARD KEY
-
 
 var clickToCreateSubCategory = function clickToCreateSubCategory() {
   var e = event;
@@ -7685,7 +7809,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Manage_Budget__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Manage-Budget */ "./Public/JS/Manage-Budget.js");
 /* harmony import */ var _Budget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Budget */ "./Public/JS/Budget.js");
 /* harmony import */ var _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Budget-Creation */ "./Public/JS/Budget-Creation.js");
+/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
 
 
 
@@ -7901,6 +8027,22 @@ var getOverallBudget = function getOverallBudget(subCategories, overall) {
   return overall;
 };
 
+var _watchManageCategories = function _watchManageCategories(budget, placeholderBudget, user) {
+  var mediumContainers = document.querySelectorAll('.container--medium');
+  var manageCategoryContainer = mediumContainers[0];
+  var icon, index;
+  var subCategoryIndex = 0;
+
+  if (manageCategoryContainer) {
+    console.log("Here we will manage your budget categories! \uD83D\uDE04");
+    _Budget_Categories__WEBPACK_IMPORTED_MODULE_7__.createCategories(icon, index);
+
+    _Budget_Categories__WEBPACK_IMPORTED_MODULE_7__._watchCreateCategoryButton(icon, placeholderBudget);
+
+    _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__.setupSubCategoryCreation(placeholderBudget, subCategoryIndex);
+  }
+};
+
 var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placeholderBudget, user) {
   var editCategoryGoalsContainer = document.querySelectorAll('.container--large')[0];
 
@@ -7920,7 +8062,7 @@ var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placehold
       if (c.timingOptions.paymentCycle) {
         var timing = getSubCategoryTiming(budget, c);
         console.log(subCategories[i], timing);
-        subCategories[i].firstChild.nextSibling.firstChild.nextSibling.textContent = timing;
+        if (subCategories[i].firstChild.nextSibling.firstChild.nextSibling) subCategories[i].firstChild.nextSibling.firstChild.nextSibling.textContent = timing;
       }
     });
     _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__.setupTimingFunctionContainer(timingFunctionContainer);
@@ -8030,83 +8172,86 @@ var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placehold
         ip.value = Number(ip.value).toFixed(2);
       });
     });
-    editCategoryGoalsSubmit.addEventListener('click', function (e) {
-      e.preventDefault();
-      var updateObject = {};
-      updateObject.budgetId = budget._id;
-      updateObject.userId = user._id;
-      updateObject.mainCategories = [];
-      var mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
-      var mainCategoryIndex = 0;
-      var subCategoryIndex = 0;
-      var emptyArray = [];
-      var temporaryObject;
-      console.log(budget.mainCategories, placeholderBudget.mainCategories);
-      budget.mainCategories.forEach(function (bmc, i) {
-        temporaryObject = Object.fromEntries([["title", placeholderBudget.mainCategories[i].title], ["icon", placeholderBudget.mainCategories[i].icon], ["subCategories", emptyArray]]);
-        updateObject.mainCategories[i] = temporaryObject;
-        console.log(updateObject);
-        var tempArray = Array.from(document.querySelectorAll(".sub-category-display__sub-category[data-subcategory=\"".concat(i, "\"]")));
-        var mainCategoryIndex = i;
-        tempArray.forEach(function (temp, i) {
-          var title = temp.firstChild.nextSibling.firstChild.textContent;
-          var goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
-          var amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
-          var amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
-          var percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
-          var timingOptions = bmc.subCategories[i].timingOptions;
-          temporaryObject.subCategories.push(Object.fromEntries([["title", title], ["goalAmount", goalAmount], ["amountSpent", amountSpent], ["amountRemaining", amountRemaining], ["percentageSpent", percentageSpent], ["timingOptions", timingOptions]]));
 
-          if (temporaryObject.subCategories.length === tempArray.length) {
-            mainCategoryIndex++;
-            if (temporaryObject === undefined) return;
-            temporaryObject.subCategories = [];
-            return mainCategoryIndex;
-          }
+    if (editCategoryGoalsSubmit) {
+      editCategoryGoalsSubmit.addEventListener('click', function (e) {
+        e.preventDefault();
+        var updateObject = {};
+        updateObject.budgetId = budget._id;
+        updateObject.userId = user._id;
+        updateObject.mainCategories = [];
+        var mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
+        var mainCategoryIndex = 0;
+        var subCategoryIndex = 0;
+        var emptyArray = [];
+        var temporaryObject;
+        console.log(budget.mainCategories, placeholderBudget.mainCategories);
+        budget.mainCategories.forEach(function (bmc, i) {
+          temporaryObject = Object.fromEntries([["title", placeholderBudget.mainCategories[i].title], ["icon", placeholderBudget.mainCategories[i].icon], ["subCategories", emptyArray]]);
+          updateObject.mainCategories[i] = temporaryObject;
+          console.log(updateObject);
+          var tempArray = Array.from(document.querySelectorAll(".sub-category-display__sub-category[data-subcategory=\"".concat(i, "\"]")));
+          var mainCategoryIndex = i;
+          tempArray.forEach(function (temp, i) {
+            var title = temp.firstChild.nextSibling.firstChild.textContent;
+            var goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
+            var amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+            var amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+            var percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
+            var timingOptions = bmc.subCategories[i].timingOptions;
+            temporaryObject.subCategories.push(Object.fromEntries([["title", title], ["goalAmount", goalAmount], ["amountSpent", amountSpent], ["amountRemaining", amountRemaining], ["percentageSpent", percentageSpent], ["timingOptions", timingOptions]]));
 
-          if (i === tempArray.length) {
-            mainCategoryIndex++;
-          }
-        });
+            if (temporaryObject.subCategories.length === tempArray.length) {
+              mainCategoryIndex++;
+              if (temporaryObject === undefined) return;
+              temporaryObject.subCategories = [];
+              return mainCategoryIndex;
+            }
 
-        if (updateObject.mainCategories.length === budget.mainCategories.length) {
-          return mainCategoryIndex = 0;
-        }
-      });
-      updateObject.mainCategories.forEach(function (mc, i) {
-        // Maintain.fillSubCategoryArray(updateObject, i);
-        var mainCategoryIndex = i;
-        var tempArray = Array.from(document.querySelectorAll(".sub-category-display__sub-category[data-subcategory=\"".concat(i, "\"]")));
-        tempArray.forEach(function (temp, i) {
-          var title = temp.firstChild.nextSibling.firstChild.textContent;
-          var goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
-          var amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
-          var amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
-          var percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
-          var timingOptions = budget.mainCategories[mainCategoryIndex].subCategories[i].timingOptions;
-          updateObject.mainCategories[mainCategoryIndex].subCategories.push(Object.fromEntries([["title", title], ["goalAmount", goalAmount], ["amountSpent", amountSpent], ["amountRemaining", amountRemaining], ["percentageSpent", percentageSpent], ["timingOptions", timingOptions]]));
+            if (i === tempArray.length) {
+              mainCategoryIndex++;
+            }
+          });
 
-          if (updateObject.mainCategories[mainCategoryIndex].subCategories.length === tempArray.length) {
-            mainCategoryIndex++;
-            if (updateObject.mainCategories[mainCategoryIndex] === undefined) return;
-            updateObject.mainCategories[mainCategoryIndex].subCategories = [];
-            return mainCategoryIndex;
-          }
-
-          if (i === tempArray.length) {
-            mainCategoryIndex++;
+          if (updateObject.mainCategories.length === budget.mainCategories.length) {
+            return mainCategoryIndex = 0;
           }
         });
-      });
+        updateObject.mainCategories.forEach(function (mc, i) {
+          // Maintain.fillSubCategoryArray(updateObject, i);
+          var mainCategoryIndex = i;
+          var tempArray = Array.from(document.querySelectorAll(".sub-category-display__sub-category[data-subcategory=\"".concat(i, "\"]")));
+          tempArray.forEach(function (temp, i) {
+            var title = temp.firstChild.nextSibling.firstChild.textContent;
+            var goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
+            var amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+            var amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+            var percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
+            var timingOptions = budget.mainCategories[mainCategoryIndex].subCategories[i].timingOptions;
+            updateObject.mainCategories[mainCategoryIndex].subCategories.push(Object.fromEntries([["title", title], ["goalAmount", goalAmount], ["amountSpent", amountSpent], ["amountRemaining", amountRemaining], ["percentageSpent", percentageSpent], ["timingOptions", timingOptions]]));
 
-      placeholderBudget._updateBudget("Update", "Edit Category Goals", {
-        budgetId: budget._id,
-        budgetMainCategories: budget.mainCategories,
-        userId: user._id,
-        user: user,
-        updateObject: updateObject
+            if (updateObject.mainCategories[mainCategoryIndex].subCategories.length === tempArray.length) {
+              mainCategoryIndex++;
+              if (updateObject.mainCategories[mainCategoryIndex] === undefined) return;
+              updateObject.mainCategories[mainCategoryIndex].subCategories = [];
+              return mainCategoryIndex;
+            }
+
+            if (i === tempArray.length) {
+              mainCategoryIndex++;
+            }
+          });
+        });
+
+        placeholderBudget._updateBudget("Update", "Edit Category Goals", {
+          budgetId: budget._id,
+          budgetMainCategories: budget.mainCategories,
+          userId: user._id,
+          user: user,
+          updateObject: updateObject
+        });
       });
-    });
+    }
   }
 };
 
@@ -8451,7 +8596,6 @@ var _setupCurrentMonth = function _setupCurrentMonth(budget) {
       e.preventDefault();
       categoryIndex--;
       if (categoryIndex <= 0) categoryIndex = 0;
-      console.log(categoryIndex);
       cycleMainCategories('left', categoryIndex, subCategories, budget);
     });
   }
@@ -8461,7 +8605,6 @@ var _setupCurrentMonth = function _setupCurrentMonth(budget) {
       e.preventDefault();
       categoryIndex++;
       if (categoryIndex >= budget.mainCategories.length - 1) categoryIndex = budget.mainCategories.length - 1;
-      console.log(categoryIndex);
       cycleMainCategories('right', categoryIndex, subCategories, budget);
     });
   }
@@ -8921,9 +9064,13 @@ var _watchBudget = /*#__PURE__*/function () {
             // WATCH EDIT CATEGORY GOALS PAGE
 
 
-            _watchEditCategoryGoals(currentBudget, budget, user);
+            _watchEditCategoryGoals(currentBudget, budget, user); ////////////////////////////////////////////
+            // WATCH MANAGE CATEGORIES PAGE
 
-          case 14:
+
+            _watchManageCategories(currentBudget, budget, user);
+
+          case 15:
           case "end":
             return _context.stop();
         }

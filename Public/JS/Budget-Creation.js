@@ -607,10 +607,12 @@ export const watchForSettingTiming = (budget, index, clickedItem, timing, placeh
   const timingInputButtons = [monthlyTimingButton, biMonthlyTimingButton, biWeeklyTimingButton, weeklyTimingButton];
 
   timingInputButtons.forEach((tib, i) => {
-    tib.addEventListener('click', (e) => {
-      e.preventDefault();
-      timing = tib.firstChild.nextSibling.textContent;
-    });
+    if (tib) {
+      tib.addEventListener('click', (e) => {
+        e.preventDefault();
+        timing = tib.firstChild.nextSibling.textContent;
+      });
+    }
   });
 
   const subCategoryTimingButtons = document.querySelectorAll('.button--borderless-set-timing-button');
@@ -717,27 +719,31 @@ export const setupTimingFunctionContainer = (container, timing) => {
     const index = i;
     timingFunctionPages.forEach((tfp, i) => {
       tfp.forEach((el) => {
-        el.classList.add('closed');
+        if (el) el.classList.add('closed');
       });
     });
-    tib.addEventListener('click', (e) => {
-      timingFunctionPages.forEach((tfp, i) => {
-        tfp.forEach((el) => {
-          el.classList.add('closed');
-          el.classList.remove('open');
+    if (tib) {
+      tib.addEventListener('click', (e) => {
+        timingFunctionPages.forEach((tfp, i) => {
+          tfp.forEach((el) => {
+            el.classList.add('closed');
+            el.classList.remove('open');
+          });
+        });
+        timingFunctionPages[index].forEach((te) => {
+          te.classList.toggle('closed');
+          te.classList.toggle('open');
         });
       });
-      timingFunctionPages[index].forEach((te) => {
-        te.classList.toggle('closed');
-        te.classList.toggle('open');
-      });
+    }
+  });
+  if (closeTimingFunctionContainer) {
+    closeTimingFunctionContainer.addEventListener('click', (e) => {
+      e.preventDefault();
+      container.classList.toggle('closed');
+      container.classList.toggle('open');
     });
-  });
-  closeTimingFunctionContainer.addEventListener('click', (e) => {
-    e.preventDefault();
-    container.classList.toggle('closed');
-    container.classList.toggle('open');
-  });
+  }
 };
 
 const getTimingContainerHeight = (categories, index) => {
@@ -830,8 +836,10 @@ const cycleMainCategories = (direction, index, budget, iconElement, textElement)
     const subCategories = document.querySelectorAll('.sub-category');
     subCategories.forEach((sc, i) => {
       sc.classList.add('closed');
+      sc.classList.remove('open');
       if (sc.dataset.category === `${index}`) {
         sc.classList.remove('closed');
+        sc.classList.add('open');
       }
     });
     return index;
@@ -844,6 +852,7 @@ const cycleMainCategories = (direction, index, budget, iconElement, textElement)
     const subCategories = document.querySelectorAll('.sub-category');
     subCategories.forEach((sc, i) => {
       sc.classList.add('closed');
+      console.log(sc.dataset.category);
       if (sc.dataset.category === `${index}`) {
         sc.classList.remove('closed');
       }
@@ -859,57 +868,130 @@ const closeSubCategoryCreationInput = (button, inputSection) => {
   inputSection.classList.toggle('open');
 };
 
-const setupSubCategoryCreation = (budget, index) => {
+export const setupSubCategoryCreation = (budget, index) => {
   const leftButton = document.querySelector('.budget-creation-container--sub-categories__main-category-display__left-button__icon');
   const rightButton = document.querySelector('.budget-creation-container--sub-categories__main-category-display__right-button__icon');
   let mainCategoryIcon = document.querySelector('.budget-creation-container--sub-categories__main-category-display__category-information__icon');
   let mainCategoryText = document.querySelector('.budget-creation-container--sub-categories__main-category-display__category-information__text');
   const borderlessButtons = document.querySelectorAll('.button--borderless');
+  console.log(borderlessButtons);
   const subCategoryStartCreationButton = borderlessButtons[2];
   const subCategoryStopCreationButton = document.querySelector('.button--small-create-sub-category-close');
   const categoryCreationSection = document.querySelector('.form__section--sub-category-creation');
   let direction;
-  mainCategoryIcon.classList.add(budget.mainCategories[index].icon);
-  mainCategoryText.textContent = budget.mainCategories[index].title;
-  leftButton.addEventListener('click', (e) => {
-    index--;
-    if (index < 0) index = 0;
-    direction = `Left`;
-    cycleMainCategories(direction, index, budget, mainCategoryIcon, mainCategoryText);
-  });
-  rightButton.addEventListener('click', (e) => {
-    index++;
-    if (index > budget.mainCategories.length - 1) index = budget.mainCategories.length - 1;
-    direction = `Right`;
-    cycleMainCategories(direction, index, budget, mainCategoryIcon, mainCategoryText);
-  });
-  subCategoryStopCreationButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    closeSubCategoryCreationInput(subCategoryStartCreationButton, categoryCreationSection);
-  });
+  const mainCategoryDisplay = document.querySelector('.main-category-display');
+  const subCategoryCreationContainer = document.querySelector('.budget-creation-container--sub-categories.r__budget-creation-container--sub-categories');
 
-  const subCategoryCreateButton = document.querySelector('.button--small-create-sub-category');
-  subCategoryCreateButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    const subCategoryCreateInput = document.querySelector('.form__input--sub-category-title');
-    Categories._verifySubCategory(budget, index);
-    subCategoryCreateInput.focus();
-    subCategoryCreateInput.value = '';
-  });
+  // USED DURING BUDGET CREATION PROCESS
+  if (subCategoryCreationContainer) {
+    mainCategoryIcon.classList.add(budget.mainCategories[index].icon);
+    mainCategoryText.textContent = budget.mainCategories[index].title;
+    leftButton.addEventListener('click', (e) => {
+      index--;
+      if (index < 0) index = 0;
+      direction = `Left`;
+      cycleMainCategories(direction, index, budget, mainCategoryIcon, mainCategoryText);
+    });
+    rightButton.addEventListener('click', (e) => {
+      index++;
+      if (index > budget.mainCategories.length - 1) index = budget.mainCategories.length - 1;
+      direction = `Right`;
+      cycleMainCategories(direction, index, budget, mainCategoryIcon, mainCategoryText);
+    });
+    subCategoryStopCreationButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeSubCategoryCreationInput(subCategoryStartCreationButton, categoryCreationSection);
+    });
 
-  subCategoryStartCreationButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    subCategoryStartCreationButton.classList.toggle('closed');
-    subCategoryStartCreationButton.classList.toggle('open');
-    categoryCreationSection.classList.toggle('closed');
-    categoryCreationSection.classList.toggle('open');
-    const subCategoryCreateInput = document.querySelector('.form__input--sub-category-title');
-    subCategoryCreateInput.value = '';
-    subCategoryCreateInput.focus();
-    console.log(`Ready...`);
-  });
-  _watchForSubCategoryKeyboardInput();
-  watchToCycleSubCategoryMainCategories();
+    const subCategoryCreateButton = document.querySelector('.button--small-create-sub-category');
+    subCategoryCreateButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      const subCategoryCreateInput = document.querySelector('.form__input--sub-category-title');
+      Categories._verifySubCategory(budget, index);
+      subCategoryCreateInput.focus();
+      subCategoryCreateInput.value = '';
+    });
+
+    subCategoryStartCreationButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      subCategoryStartCreationButton.classList.toggle('closed');
+      subCategoryStartCreationButton.classList.toggle('open');
+      categoryCreationSection.classList.toggle('closed');
+      categoryCreationSection.classList.toggle('open');
+      const subCategoryCreateInput = document.querySelector('.form__input--sub-category-title');
+      subCategoryCreateInput.value = '';
+      subCategoryCreateInput.focus();
+      console.log(`Ready...`);
+    });
+    _watchForSubCategoryKeyboardInput();
+    watchToCycleSubCategoryMainCategories();
+  }
+
+  // USED INSIDE BUDGET ON MANAGE CATEGORIES PAGE
+  if (mainCategoryDisplay) {
+    let mainCategoryIcon__alt = document.querySelector('.main-category-display__category-information__icon');
+    let mainCategoryText__alt = document.querySelector('.main-category-display__category-information__text');
+    const leftButton = document.querySelector('.main-category-display__left-button__icon');
+    const rightButton = document.querySelector('.main-category-display__right-button__icon');
+    mainCategoryIcon__alt.classList.add(budget.mainCategories[index].icon);
+    mainCategoryIcon__alt.dataset.category = index;
+    mainCategoryText__alt.textContent = budget.mainCategories[index].title;
+    mainCategoryText__alt.dataset.category = index;
+
+    console.log(budget);
+
+    const subCategories = document.querySelectorAll('.sub-category');
+    subCategories.forEach((sc, i) => {
+      sc.classList.add('closed');
+      sc.classList.remove('open');
+      if (sc.dataset.category === `${index}`) {
+        sc.classList.remove('closed');
+        sc.classList.add('open');
+      }
+    });
+
+    leftButton.addEventListener('click', (e) => {
+      index--;
+      if (index < 0) index = 0;
+      direction = `Left`;
+      cycleMainCategories(direction, index, budget, mainCategoryIcon__alt, mainCategoryText__alt);
+    });
+    rightButton.addEventListener('click', (e) => {
+      index++;
+      if (index > budget.mainCategories.length - 1) index = budget.mainCategories.length - 1;
+      direction = `Right`;
+      cycleMainCategories(direction, index, budget, mainCategoryIcon__alt, mainCategoryText__alt);
+    });
+
+    subCategoryStartCreationButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      subCategoryStartCreationButton.classList.toggle('closed');
+      subCategoryStartCreationButton.classList.toggle('open');
+      categoryCreationSection.classList.toggle('closed');
+      categoryCreationSection.classList.toggle('open');
+      const subCategoryCreateInput = document.querySelector('.form__input--sub-category-title');
+      subCategoryCreateInput.value = '';
+      subCategoryCreateInput.focus();
+      console.log(`Ready...`);
+    });
+
+    subCategoryStopCreationButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeSubCategoryCreationInput(subCategoryStartCreationButton, categoryCreationSection);
+    });
+
+    const subCategoryCreateButton = document.querySelector('.button--small-create-sub-category');
+    subCategoryCreateButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      const subCategoryCreateInput = document.querySelector('.form__input--sub-category-title');
+      Categories._verifySubCategory(budget, index);
+      subCategoryCreateInput.focus();
+      subCategoryCreateInput.value = '';
+    });
+
+    _watchForSubCategoryKeyboardInput();
+    watchToCycleSubCategoryMainCategories();
+  }
 };
 
 //////////////////////////////////////

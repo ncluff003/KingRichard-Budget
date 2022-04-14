@@ -3,3 +3,53 @@ extends ./../budgetLanding
 block Budget-Content 
   header.budget-container__header.r__budget-container__header
     p.budget-container__header__text.r__budget-container__header__text Manage Categories
+  section.container--medium.r__container--medium
+    section.container--medium__half.r__container--medium__half
+      section.button--medium-square.r__button--medium-square.open 
+        i.fas.fa-plus.button--medium-square__icon.r__.button--medium-square__icon
+        p.button--medium-square__text.r__.button--medium-square__text Create
+      each category, index in data.budget.mainCategories 
+        section.main-category__alt.r__main-category__alt.open 
+          i.fas.main-category__alt__icon.r__main-category__alt__icon(class=`${category.icon}`)
+          p.main-category__alt__text.r__main-category__alt__text= category.title
+      section.icons-container.r__icons-container.closed
+      section.form__section--main-category-title.r__form__section--main-category-title.closed
+        input.form__input--main-category-title.r__form__input--main-category-title(type="text")
+        button.button--small-create-main-category.r__button--small-create-main-category.closed(type="button") Create Main Category
+        button.button--small-create-main-category.r__button--small-create-main-category.closed(type="button") Close
+    section.container--medium__half.r__container--medium__half
+      section.main-category-display.r__main-category-display
+        section.main-category-display__left-button.r__main-category-display__left-button
+          i.fas.fa-arrow-alt-circle-left.main-category-display__left-button__icon.r__main-category-display__left-button__icon
+        section.main-category-display__category-information.r__main-category-display__category-information
+          i.fas.main-category-display__category-information__icon.r__main-category-display__category-information__icon
+          p.main-category-display__category-information__text.r__main-category-display__category-information__text
+        section.main-category-display__right-button.r__main-category-display__right-button
+          i.fas.fa-arrow-alt-circle-right.main-category-display__right-button__icon.r__main-category-display__right-button__icon
+        section.form__section--main-category-deletion.r__form__section--main-category-deletion
+          i.fas.fa-trash-alt.form__section--main-category-deletion__icon.r__form__section--main-category-deletion__icon
+          p.form__section--main-category-deletion__text.r__form__section--main-category-deletion__text Delete Main Category
+      section.sub-category-display.r__sub-category-display
+        each category, mainIndex in data.budget.mainCategories 
+          each subCategory in category.subCategories
+            section.sub-category.r__sub-category(data-category=`${mainIndex}`)
+              section.sub-category-title-container.r__sub-category-title-container
+                p.sub-category-title-container__title.r__sub-category-title-container__title= subCategory.title
+              section.sub-category-controller.r__sub-category-controller 
+                section.sub-category-controller__surplus-container.r__sub-category-controller__surplus-container
+                  p.sub-category-controller__surplus-container__title.r__sub-category-controller__surplus-container__title= `Surplus`
+                  section.sub-category-controller__surplus-container__switch__alt.r__sub-category-controller__surplus-container__switch__alt
+                    section.sub-category-controller__surplus-container__switch__alt__toggle.r__sub-category-controller__surplus-container__switch__alt__toggle
+                      i.fas.fa-times.sub-category-controller__surplus-container__switch__alt__toggle__icon.r__sub-category-controller__surplus-container__switch__alt__toggle__icon
+                i.fas.fa-trash-alt.sub-category-controller__icon.r__sub-category-controller__icon
+        section.form__section--sub-category-creation.r__form__section--sub-category-creation.closed
+          .form__input-container--sub-category-title.r__form__input-container--sub-category-title
+            input.form__input--sub-category-title.r__form__input--sub-category-title(type="text" placeholder="Sub Category Name")
+            button.button--small-create-sub-category.r__button--small-create-sub-category Create
+          .category-creation-controller.r__category-creation-controller 
+            button.button--small-create-sub-category-close.r__button--small-create-sub-category-close 
+              i.fas.fa-times.button--small-create-sub-category-close__icon.r__button--small-create-sub-category-close__icon 
+              p.button--small-create-sub-category-close__text.r__button--small-create-sub-category-close__text Close 
+        button.button--borderless.r__button--borderless.open
+          i.fas.fa-plus.button--borderless__icon.r__button--borderless__icon
+          p.button--borderless__text.r__button--borderless__text Add Sub Category

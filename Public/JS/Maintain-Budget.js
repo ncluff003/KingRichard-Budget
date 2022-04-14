@@ -3,6 +3,7 @@ import * as Calendar from './FrontEnd-Calendar';
 import * as Budgeting from './Manage-Budget';
 import * as Budget from './Budget';
 import * as Edit from './Budget-Creation';
+import * as Categories from './Budget-Categories';
 
 // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
@@ -206,6 +207,19 @@ const getOverallBudget = (subCategories, overall) => {
   return overall;
 };
 
+const _watchManageCategories = (budget, placeholderBudget, user) => {
+  const mediumContainers = document.querySelectorAll('.container--medium');
+  const manageCategoryContainer = mediumContainers[0];
+  let icon, index;
+  let subCategoryIndex = 0;
+  if (manageCategoryContainer) {
+    console.log(`Here we will manage your budget categories! 😄`);
+    Categories.createCategories(icon, index);
+    Categories._watchCreateCategoryButton(icon, placeholderBudget);
+    Edit.setupSubCategoryCreation(placeholderBudget, subCategoryIndex);
+  }
+};
+
 const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
   const editCategoryGoalsContainer = document.querySelectorAll('.container--large')[0];
   if (editCategoryGoalsContainer) {
@@ -226,7 +240,7 @@ const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
       if (c.timingOptions.paymentCycle) {
         let timing = getSubCategoryTiming(budget, c);
         console.log(subCategories[i], timing);
-        subCategories[i].firstChild.nextSibling.firstChild.nextSibling.textContent = timing;
+        if (subCategories[i].firstChild.nextSibling.firstChild.nextSibling) subCategories[i].firstChild.nextSibling.firstChild.nextSibling.textContent = timing;
       }
     });
 
@@ -323,110 +337,112 @@ const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
         ip.value = Number(ip.value).toFixed(2);
       });
     });
-    editCategoryGoalsSubmit.addEventListener('click', (e) => {
-      e.preventDefault();
+    if (editCategoryGoalsSubmit) {
+      editCategoryGoalsSubmit.addEventListener('click', (e) => {
+        e.preventDefault();
 
-      let updateObject = {};
-      updateObject.budgetId = budget._id;
-      updateObject.userId = user._id;
-      updateObject.mainCategories = [];
-      const mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
+        let updateObject = {};
+        updateObject.budgetId = budget._id;
+        updateObject.userId = user._id;
+        updateObject.mainCategories = [];
+        const mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
 
-      let mainCategoryIndex = 0;
-      let subCategoryIndex = 0;
+        let mainCategoryIndex = 0;
+        let subCategoryIndex = 0;
 
-      let emptyArray = [];
-      let temporaryObject;
+        let emptyArray = [];
+        let temporaryObject;
 
-      console.log(budget.mainCategories, placeholderBudget.mainCategories);
+        console.log(budget.mainCategories, placeholderBudget.mainCategories);
 
-      budget.mainCategories.forEach((bmc, i) => {
-        temporaryObject = Object.fromEntries([
-          [`title`, placeholderBudget.mainCategories[i].title],
-          [`icon`, placeholderBudget.mainCategories[i].icon],
-          [`subCategories`, emptyArray],
-        ]);
-        updateObject.mainCategories[i] = temporaryObject;
-        console.log(updateObject);
+        budget.mainCategories.forEach((bmc, i) => {
+          temporaryObject = Object.fromEntries([
+            [`title`, placeholderBudget.mainCategories[i].title],
+            [`icon`, placeholderBudget.mainCategories[i].icon],
+            [`subCategories`, emptyArray],
+          ]);
+          updateObject.mainCategories[i] = temporaryObject;
+          console.log(updateObject);
 
-        let tempArray = Array.from(document.querySelectorAll(`.sub-category-display__sub-category[data-subcategory="${i}"]`));
-        let mainCategoryIndex = i;
-        tempArray.forEach((temp, i) => {
-          let title = temp.firstChild.nextSibling.firstChild.textContent;
-          let goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
-          let amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
-          let amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
-          let percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
-          let timingOptions = bmc.subCategories[i].timingOptions;
+          let tempArray = Array.from(document.querySelectorAll(`.sub-category-display__sub-category[data-subcategory="${i}"]`));
+          let mainCategoryIndex = i;
+          tempArray.forEach((temp, i) => {
+            let title = temp.firstChild.nextSibling.firstChild.textContent;
+            let goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
+            let amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+            let amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+            let percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
+            let timingOptions = bmc.subCategories[i].timingOptions;
 
-          temporaryObject.subCategories.push(
-            Object.fromEntries([
-              [`title`, title],
-              [`goalAmount`, goalAmount],
-              [`amountSpent`, amountSpent],
-              [`amountRemaining`, amountRemaining],
-              [`percentageSpent`, percentageSpent],
-              [`timingOptions`, timingOptions],
-            ])
-          );
-          if (temporaryObject.subCategories.length === tempArray.length) {
-            mainCategoryIndex++;
-            if (temporaryObject === undefined) return;
-            temporaryObject.subCategories = [];
-            return mainCategoryIndex;
-          }
-          if (i === tempArray.length) {
-            mainCategoryIndex++;
-          }
-        });
+            temporaryObject.subCategories.push(
+              Object.fromEntries([
+                [`title`, title],
+                [`goalAmount`, goalAmount],
+                [`amountSpent`, amountSpent],
+                [`amountRemaining`, amountRemaining],
+                [`percentageSpent`, percentageSpent],
+                [`timingOptions`, timingOptions],
+              ])
+            );
+            if (temporaryObject.subCategories.length === tempArray.length) {
+              mainCategoryIndex++;
+              if (temporaryObject === undefined) return;
+              temporaryObject.subCategories = [];
+              return mainCategoryIndex;
+            }
+            if (i === tempArray.length) {
+              mainCategoryIndex++;
+            }
+          });
 
-        if (updateObject.mainCategories.length === budget.mainCategories.length) {
-          return (mainCategoryIndex = 0);
-        }
-      });
-
-      updateObject.mainCategories.forEach((mc, i) => {
-        // Maintain.fillSubCategoryArray(updateObject, i);
-        let mainCategoryIndex = i;
-        let tempArray = Array.from(document.querySelectorAll(`.sub-category-display__sub-category[data-subcategory="${i}"]`));
-        tempArray.forEach((temp, i) => {
-          let title = temp.firstChild.nextSibling.firstChild.textContent;
-          let goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
-          let amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
-          let amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
-          let percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
-          let timingOptions = budget.mainCategories[mainCategoryIndex].subCategories[i].timingOptions;
-
-          updateObject.mainCategories[mainCategoryIndex].subCategories.push(
-            Object.fromEntries([
-              [`title`, title],
-              [`goalAmount`, goalAmount],
-              [`amountSpent`, amountSpent],
-              [`amountRemaining`, amountRemaining],
-              [`percentageSpent`, percentageSpent],
-              [`timingOptions`, timingOptions],
-            ])
-          );
-          if (updateObject.mainCategories[mainCategoryIndex].subCategories.length === tempArray.length) {
-            mainCategoryIndex++;
-            if (updateObject.mainCategories[mainCategoryIndex] === undefined) return;
-            updateObject.mainCategories[mainCategoryIndex].subCategories = [];
-            return mainCategoryIndex;
-          }
-          if (i === tempArray.length) {
-            mainCategoryIndex++;
+          if (updateObject.mainCategories.length === budget.mainCategories.length) {
+            return (mainCategoryIndex = 0);
           }
         });
-      });
 
-      placeholderBudget._updateBudget(`Update`, `Edit Category Goals`, {
-        budgetId: budget._id,
-        budgetMainCategories: budget.mainCategories,
-        userId: user._id,
-        user: user,
-        updateObject: updateObject,
+        updateObject.mainCategories.forEach((mc, i) => {
+          // Maintain.fillSubCategoryArray(updateObject, i);
+          let mainCategoryIndex = i;
+          let tempArray = Array.from(document.querySelectorAll(`.sub-category-display__sub-category[data-subcategory="${i}"]`));
+          tempArray.forEach((temp, i) => {
+            let title = temp.firstChild.nextSibling.firstChild.textContent;
+            let goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
+            let amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+            let amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+            let percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
+            let timingOptions = budget.mainCategories[mainCategoryIndex].subCategories[i].timingOptions;
+
+            updateObject.mainCategories[mainCategoryIndex].subCategories.push(
+              Object.fromEntries([
+                [`title`, title],
+                [`goalAmount`, goalAmount],
+                [`amountSpent`, amountSpent],
+                [`amountRemaining`, amountRemaining],
+                [`percentageSpent`, percentageSpent],
+                [`timingOptions`, timingOptions],
+              ])
+            );
+            if (updateObject.mainCategories[mainCategoryIndex].subCategories.length === tempArray.length) {
+              mainCategoryIndex++;
+              if (updateObject.mainCategories[mainCategoryIndex] === undefined) return;
+              updateObject.mainCategories[mainCategoryIndex].subCategories = [];
+              return mainCategoryIndex;
+            }
+            if (i === tempArray.length) {
+              mainCategoryIndex++;
+            }
+          });
+        });
+
+        placeholderBudget._updateBudget(`Update`, `Edit Category Goals`, {
+          budgetId: budget._id,
+          budgetMainCategories: budget.mainCategories,
+          userId: user._id,
+          user: user,
+          updateObject: updateObject,
+        });
       });
-    });
+    }
   }
 };
 
@@ -1218,4 +1234,7 @@ export const _watchBudget = async () => {
   ////////////////////////////////////////////
   // WATCH EDIT CATEGORY GOALS PAGE
   _watchEditCategoryGoals(currentBudget, budget, user);
+  ////////////////////////////////////////////
+  // WATCH MANAGE CATEGORIES PAGE
+  _watchManageCategories(currentBudget, budget, user);
 };

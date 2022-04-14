@@ -1635,6 +1635,27 @@
       }
     }
 
+    // MAIN CATEGORY DELETION SECTION | MANAGE CATEGORIES
+    &--main-category-deletion {
+      @extend .form__section;
+      // @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+      position: absolute;
+      height: 10rem;
+      width: 10rem;
+      top: 0;
+      right: 0;
+      border-left: 0.3rem solid $primaryColor;
+      border-bottom: 0.3rem solid $primaryColor;
+      &:not(:last-of-type) {
+        margin-bottom: 0;
+      }
+      &:hover {
+        cursor: pointer;
+        background-color: $primaryColor;
+        transition: background-color 0.5s, color 0.5s;
+      }
+    }
+
     // EMERGENCY SECTION
     &--emergency {
       @extend .form__section;

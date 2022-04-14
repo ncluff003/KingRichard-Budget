@@ -1479,6 +1479,7 @@ html {
     }
   }
   &--medium-square {
+    @extend .button;
     font-size: 2rem;
     color: rgba($primaryColor, 0.8);
     &__icon {
@@ -1553,13 +1554,70 @@ html {
       }
     }
   }
+  &__alt {
+    @extend .main-category;
+    &__icon {
+      font-size: 3rem;
+    }
+  }
 }
+
+// &__sub-category {
+//   .sub-category-title-container {
+//     &__title {
+//       font-family: MADE Tommy Soft, Verdana, sans-serif;
+//       font-size: 1.6rem;
+//       color: $primaryColor;
+//     }
+//   }
+//   .sub-category-controller {
+//     font-family: MADE Tommy Soft, Verdana, sans-serif;
+//     font-size: 1.6rem;
+//     color: $primaryColor;
+//     &__surplus-container {
+//       &__switch {
+//         &__toggle {
+//           &__icon {
+//             font-size: 1.2rem;
+//             color: rgba($colorOffWhite, 0.8);
+//           }
+//         }
+//       }
+//     }
+//     &__icon {
+//       color: rgba($primaryColor, 0.8);
+//       font-size: 2rem;
+//       &:hover {
+//         color: $primaryColor;
+//       }
+//     }
+//   }
+// }
 
 // SUB-CATEGORY
 .sub-category {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  &-title-container {
+    @extend .sub-category;
+    &__title {
+      // font-family: MADE Tommy Soft, Verdana, sans-serif;
+      font-size: 1.6rem;
+      color: $primaryColor;
+    }
+  }
   &-controller {
+    font-size: 1.6rem;
+    color: $primaryColor;
+    &__icon {
+      color: rgba($primaryColor, 0.8);
+      font-size: 2rem;
+      &:hover {
+        color: $primaryColor;
+      }
+    }
     &__surplus-container {
-      &__switch {
+      &__switch,
+      &__switch__alt {
         &__toggle {
           &__icon {
             font-size: 1.2rem;
@@ -1830,6 +1888,41 @@ html {
       }
       &__calendar-container,
       &__upcoming-bills {
+      }
+    }
+  }
+
+  &--medium {
+    @extend .container;
+    &__half {
+      @extend .container;
+      &:nth-of-type(2) {
+        .main-category-display {
+          &__left-button,
+          &__right-button {
+            &__icon {
+              font-size: 5rem;
+              color: rgba($primaryColor, 0.8);
+              &:hover {
+                color: $primaryColor;
+              }
+            }
+          }
+          &__left-button {
+            &__icon {
+              color: rgba($primaryColor, 0.25);
+            }
+          }
+          &__category-information {
+            color: $primaryColor;
+            &__icon {
+              font-size: 16rem;
+            }
+            &__text {
+              font-size: 4rem;
+            }
+          }
+        }
       }
     }
   }
@@ -2407,6 +2500,21 @@ html {
         @extend .form__section--page-number-display;
       }
     }
+
+    &--main-category-deletion {
+      @extend .form__section;
+      &__icon {
+        font-size: 3rem;
+      }
+      &__text {
+        font-size: 1.2rem;
+        text-align: center;
+      }
+      &:hover {
+        color: $colorOffWhite;
+      }
+    }
+
     &--emergency {
       @extend .form__section;
       &__header {

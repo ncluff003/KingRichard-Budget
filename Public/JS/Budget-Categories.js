@@ -1227,7 +1227,9 @@ const createMainCategory = (element, budget, filteredArray) => {
   iconsText.textContent = mainCategoryTitle;
   mainCategory.insertAdjacentElement('beforeend', iconImage);
   mainCategory.insertAdjacentElement('beforeend', iconsText);
-  mainCategory.insertAdjacentElement('beforeend', deleteButton);
+  if (mainCategoryContainer) {
+    mainCategory.insertAdjacentElement('beforeend', deleteButton);
+  }
   mainCategoryContainer.insertAdjacentElement('beforeend', mainCategory);
   const mainCategoryLength = document.querySelectorAll('.main-category').length;
   if (mainCategoryLength === 3) {
@@ -1311,19 +1313,45 @@ export const _clickIcon = (icon) => {
 // HIDE CREATED ICONS
 const _hideCreatedIcons = () => {
   const mainCategories = document.querySelectorAll('.main-category');
-  if (mainCategories.length === 0) return;
-  mainCategories.forEach((mc) => {
-    mc.classList.add('main-category--hidden');
-  });
+  const altMainCategories = document.querySelectorAll('.main-category__alt');
+  const mainCategoryContainer = document.querySelector('.budget-creation-container--main-categories');
+  const mainCategoryContainerTwo = document.querySelectorAll('.container--medium__half')[0];
+  console.log(altMainCategories);
+  if (mainCategoryContainer) {
+    if (mainCategories.length === 0) return;
+    mainCategories.forEach((mc) => {
+      mc.classList.add('closed');
+      mc.classList.remove('open');
+    });
+  }
+  if (mainCategoryContainerTwo) {
+    if (altMainCategories.length === 0) return;
+    altMainCategories.forEach((amc) => {
+      amc.classList.add('closed');
+      amc.classList.remove('open');
+    });
+  }
 };
 
 ////////////////////////////////////////
 // SHOW CREATED ICONS
 const _showCreatedIcons = () => {
   const mainCategories = document.querySelectorAll('.main-category');
-  mainCategories.forEach((mc) => {
-    mc.classList.remove('main-category--hidden');
-  });
+  const altMainCategories = document.querySelectorAll('.main-category__alt');
+  const mainCategoryContainer = document.querySelector('.budget-creation-container--main-categories');
+  const mainCategoryContainerTwo = document.querySelectorAll('.container--medium__half')[0];
+  if (mainCategoryContainer) {
+    mainCategories.forEach((mc) => {
+      mc.classList.add('open');
+      mc.classList.remove('closed');
+    });
+  }
+  if (mainCategoryContainerTwo) {
+    altMainCategories.forEach((amc) => {
+      amc.classList.add('open');
+      amc.classList.remove('closed');
+    });
+  }
 };
 
 ////////////////////////////////////////
@@ -1345,7 +1373,7 @@ const closeCategoryCreation = () => {
   createMainCategoryButton.classList.toggle('open');
   closeCreateCategoryButton.classList.toggle('closed');
   closeCreateCategoryButton.classList.toggle('open');
-  mainCategoryContainer.classList.toggle('budget-creation-container--main-categories--creating');
+  if (mainCategoryContainer) mainCategoryContainer.classList.toggle('budget-creation-container--main-categories--creating');
   _showCreatedIcons();
 };
 
@@ -1358,6 +1386,7 @@ const openCategoryCreation = () => {
   const closeCreateCategoryButton = document.querySelectorAll('.button--small-create-main-category')[1];
   const iconsContainer = document.querySelector('.icons-container');
   const createCategoryTitle = document.querySelector('.form__section--main-category-title');
+  const mainCategoryContainerTwo = document.querySelectorAll('.container--medium__half')[0];
   createCategoryTitle.classList.toggle('closed');
   createCategoryTitle.classList.toggle('open');
   iconsContainer.classList.toggle('closed');
@@ -1368,7 +1397,7 @@ const openCategoryCreation = () => {
   createMainCategoryButton.classList.toggle('open');
   closeCreateCategoryButton.classList.toggle('closed');
   closeCreateCategoryButton.classList.toggle('open');
-  mainCategoryContainer.classList.toggle('budget-creation-container--main-categories--creating');
+  if (mainCategoryContainer) mainCategoryContainer.classList.toggle('budget-creation-container--main-categories--creating');
   _hideCreatedIcons();
 };
 
