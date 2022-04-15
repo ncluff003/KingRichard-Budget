@@ -1,4 +1,5 @@
 import * as Update from './Update-User';
+import * as Maintain from './Maintain-Budget';
 ////////////////////////////////
 // ICONS FOR MAIN CATEGORIES
 export const icons = [
@@ -1250,13 +1251,15 @@ const createMainCategory = (element, budget, filteredArray) => {
   if (mainCategoryContainerTwo) {
     budget._addMainCategory(`${element}`, mainCategoryTitle);
     const mainCategory = document.createElement('section');
-    mainCategory.classList.add('main-category');
+    mainCategory.classList.add('main-category__alt');
+    mainCategory.classList.add('r__main-category__alt');
+    mainCategory.classList.add('open');
     const iconImage = document.createElement('i');
     iconImage.classList.add('fas');
     iconImage.classList.add(`${element}`);
-    iconImage.classList.add('main-category__icon');
+    iconImage.classList.add('main-category__alt__icon');
     const iconsText = document.createElement('p');
-    iconsText.classList.add('main-category__text');
+    iconsText.classList.add('main-category__alt__text');
     // const deleteButton = document.createElement('button');
     // const deleteIcon = document.createElement('i');
     // deleteIcon.classList.add('fas');
@@ -1281,6 +1284,10 @@ const createMainCategory = (element, budget, filteredArray) => {
     //   });
     // }
     console.log(budget);
+    const mainCategories = document.querySelectorAll('.main-category__alt');
+    mainCategory.dataset.category = `${mainCategories.length - 1}`;
+
+    Maintain._watchForMainCategorySelection();
   }
 };
 

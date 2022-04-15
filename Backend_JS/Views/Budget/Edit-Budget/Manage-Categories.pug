@@ -10,7 +10,7 @@ block Budget-Content
         p.button--medium-square__text.r__.button--medium-square__text Create
       each category, index in data.budget.mainCategories 
         section.main-category__alt.r__main-category__alt.open(data-category=`${index}`) 
-          i.fas.main-category__alt__icon.r__main-category__alt__icon(class=`${category.icon}`)
+          i(class=`fas ${category.icon} main-category__alt__icon r__main-category__alt__icon`)
           p.main-category__alt__text.r__main-category__alt__text= category.title
       section.icons-container.r__icons-container.closed
       section.form__section--main-category-title.r__form__section--main-category-title.closed

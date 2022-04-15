@@ -4777,6 +4777,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
+/* harmony import */ var _Maintain_Budget__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Maintain-Budget */ "./Public/JS/Maintain-Budget.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
 
@@ -4795,6 +4796,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__["default"])(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 
  ////////////////////////////////
 // ICONS FOR MAIN CATEGORIES
@@ -5156,7 +5158,11 @@ var createMainCategory = function createMainCategory(element, budget, filteredAr
 
     var _mainCategory = document.createElement('section');
 
-    _mainCategory.classList.add('main-category');
+    _mainCategory.classList.add('main-category__alt');
+
+    _mainCategory.classList.add('r__main-category__alt');
+
+    _mainCategory.classList.add('open');
 
     var _iconImage = document.createElement('i');
 
@@ -5164,11 +5170,11 @@ var createMainCategory = function createMainCategory(element, budget, filteredAr
 
     _iconImage.classList.add("".concat(element));
 
-    _iconImage.classList.add('main-category__icon');
+    _iconImage.classList.add('main-category__alt__icon');
 
     var _iconsText = document.createElement('p');
 
-    _iconsText.classList.add('main-category__text'); // const deleteButton = document.createElement('button');
+    _iconsText.classList.add('main-category__alt__text'); // const deleteButton = document.createElement('button');
     // const deleteIcon = document.createElement('i');
     // deleteIcon.classList.add('fas');
     // deleteIcon.classList.add('fa-times');
@@ -5199,6 +5205,10 @@ var createMainCategory = function createMainCategory(element, budget, filteredAr
 
 
     console.log(budget);
+    var mainCategories = document.querySelectorAll('.main-category__alt');
+    _mainCategory.dataset.category = "".concat(mainCategories.length - 1);
+
+    _Maintain_Budget__WEBPACK_IMPORTED_MODULE_10__._watchForMainCategorySelection();
   }
 }; ////////////////////////////////////////
 // CREATE MAIN CATEGORY
@@ -7773,6 +7783,7 @@ var logout = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "_watchBudget": () => (/* binding */ _watchBudget),
+/* harmony export */   "_watchForMainCategorySelection": () => (/* binding */ _watchForMainCategorySelection),
 /* harmony export */   "fillSubCategoryArray": () => (/* binding */ fillSubCategoryArray),
 /* harmony export */   "updateBudget": () => (/* binding */ updateBudget)
 /* harmony export */ });
@@ -7796,31 +7807,43 @@ __webpack_require__.r(__webpack_exports__);
  // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
 
-var _watchForMainCategorySelection = function _watchForMainCategorySelection(budget, placeholderBudget, user) {
+var _watchCategoryForSelection = function _watchCategoryForSelection() {
+  var e = event;
+  e.preventDefault();
+  var mainCategories = document.querySelectorAll('.main-category__alt');
+  var mainCategoryIcon = document.querySelector('.main-category-display__category-information__icon');
+  var mainCategoryText = document.querySelector('.main-category-display__category-information__text');
+  var clicked = e.target;
+  mainCategories.forEach(function (mc) {
+    console.log(mc.firstChild);
+    if (mc.firstChild.nodeName === '#text') mc.removeChild(mc.firstChild);
+  });
+  var icon = clicked.closest('section').firstChild;
+  mainCategoryIcon.classList.remove(mainCategoryIcon.classList[3]);
+  mainCategoryIcon.classList.add(icon.classList[1]);
+  mainCategoryText.textContent = icon.nextSibling.textContent;
+  var index = clicked.closest('section').dataset.category;
+  var subCategories = document.querySelectorAll('.sub-category');
+  subCategories.forEach(function (sc, i) {
+    sc.classList.add('closed');
+    sc.classList.remove('open');
+
+    if (sc.dataset.category === "".concat(index)) {
+      sc.classList.remove('closed');
+      sc.classList.add('open');
+    }
+  });
+};
+
+var _watchForMainCategorySelection = function _watchForMainCategorySelection() {
   console.log("Watching your selection! \uD83D\uDC40");
   var mainCategories = document.querySelectorAll('.main-category__alt');
   var mainCategoryIcon = document.querySelector('.main-category-display__category-information__icon');
   var mainCategoryText = document.querySelector('.main-category-display__category-information__text');
   console.log(mainCategoryIcon.classList, mainCategoryText.textContent);
   mainCategories.forEach(function (mc) {
-    mc.addEventListener('click', function (e) {
-      e.preventDefault();
-      console.log(mc.firstChild.nextSibling.classList, mc.firstChild.nextSibling.nextSibling.textContent);
-      mainCategoryIcon.classList.remove(mainCategoryIcon.classList[3]);
-      mainCategoryIcon.classList.add(mc.firstChild.nextSibling.classList[3]);
-      mainCategoryText.textContent = mc.firstChild.nextSibling.nextSibling.textContent;
-      var index = mc.dataset.category;
-      var subCategories = document.querySelectorAll('.sub-category');
-      subCategories.forEach(function (sc, i) {
-        sc.classList.add('closed');
-        sc.classList.remove('open');
-
-        if (sc.dataset.category === "".concat(index)) {
-          sc.classList.remove('closed');
-          sc.classList.add('open');
-        }
-      });
-    });
+    mc.removeEventListener("click", _watchCategoryForSelection);
+    mc.addEventListener('click', _watchCategoryForSelection);
   });
 };
 
@@ -8059,18 +8082,7 @@ var updateBudget = function updateBudget(categoryType, action, budget, placehold
 };
 
 var _watchForBudgetCategoryUpdates = function _watchForBudgetCategoryUpdates(budget, placeholderBudget, user) {
-  console.log("We are WAITING..."); // const createMainCategoryButton = document.querySelectorAll('.button--small-create-main-category')[0];
-  // // createMainCategoryButton.addEventListener('click', (e) => {
-  // // });
-  // const iconContainers = document.querySelectorAll('.icon-container');
-  // if (createMainCategoryButton) {
-  //   createMainCategoryButton.addEventListener('click', (e) => {
-  //     e.preventDefault();
-  //     _findClickedIcon(iconContainers, budget);
-  //     closeCategoryCreation();
-  //     // updateBudget(`Main Categories`, `Add`, budget, placeholderBudget, user);
-  //   });
-  // }
+  console.log("We are WAITING...");
 };
 
 var _watchManageCategories = function _watchManageCategories(budget, placeholderBudget, user) {
