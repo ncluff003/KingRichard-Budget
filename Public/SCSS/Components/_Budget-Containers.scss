@@ -251,6 +251,9 @@
                         border-radius: 50%;
                         background-color: rgba($secondaryColorDark, 0.8);
                       }
+                      &:hover {
+                        cursor: pointer;
+                      }
                     }
                     &:hover {
                       cursor: pointer;

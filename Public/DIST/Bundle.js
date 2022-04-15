@@ -4930,11 +4930,22 @@ var createSubCategory = function createSubCategory(budget, index) {
 
   var surplusContainerSwitch = document.createElement('section');
   surplusContainerSwitch.classList.add('sub-category-controller__surplus-container__switch');
-  surplusContainerSwitch.classList.add('r__sub-category-controller__surplus-container__switch'); // Make Surplus Switch -- A SWITCH
+  surplusContainerSwitch.classList.add('r__sub-category-controller__surplus-container__switch'); // Create Surplus Switch Toggle
+
+  var surplusSwitchToggle = document.createElement('section');
+  surplusSwitchToggle.classList.add('sub-category-controller__surplus-container__switch__toggle');
+  surplusSwitchToggle.classList.add('r__sub-category-controller__surplus-container__switch__toggle');
+  var surplusSwitchToggleIcon = document.createElement('i');
+  surplusSwitchToggleIcon.classList.add('fas');
+  surplusSwitchToggleIcon.classList.add('fa-times');
+  surplusSwitchToggleIcon.classList.add('sub-category-controller__surplus-container__switch__toggle__icon');
+  surplusSwitchToggleIcon.classList.add('r__sub-category-controller__surplus-container__switch__toggle__icon'); // Make Surplus Switch -- A SWITCH
 
   surplusContainerSwitch.addEventListener('click', function (e) {
     e.preventDefault();
     surplusContainerSwitch.classList.toggle('sub-category-controller__surplus-container__switch--switched');
+    surplusSwitchToggleIcon.classList.toggle('fa-times');
+    surplusSwitchToggleIcon.classList.toggle('fa-check');
 
     var subCategoriesArray = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(document.querySelectorAll('.sub-category'));
 
@@ -4949,16 +4960,7 @@ var createSubCategory = function createSubCategory(budget, index) {
       mainIndex: categoryNumber,
       subIndex: subArray.indexOf(clicked.closest('.sub-category'))
     });
-  }); // Create Surplus Switch Toggle
-
-  var surplusSwitchToggle = document.createElement('section');
-  surplusSwitchToggle.classList.add('sub-category-controller__surplus-container__switch__toggle');
-  surplusSwitchToggle.classList.add('r__sub-category-controller__surplus-container__switch__toggle');
-  var surplusSwitchToggleIcon = document.createElement('i');
-  surplusSwitchToggleIcon.classList.add('fas');
-  surplusSwitchToggleIcon.classList.add('fa-times');
-  surplusSwitchToggleIcon.classList.add('sub-category-controller__surplus-container__switch__toggle__icon');
-  surplusSwitchToggleIcon.classList.add('r__sub-category-controller__surplus-container__switch__toggle__icon');
+  });
   var surplusCategoryTrashIcon = document.createElement('i');
   surplusCategoryTrashIcon.classList.add('fas');
   surplusCategoryTrashIcon.classList.add('fa-trash-alt');
@@ -7821,6 +7823,34 @@ __webpack_require__.r(__webpack_exports__);
  // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
 
+var _watchForMainCategorySelection = function _watchForMainCategorySelection(budget, placeholderBudget, user) {
+  console.log("Watching your selection! \uD83D\uDC40");
+  var mainCategories = document.querySelectorAll('.main-category__alt');
+  var mainCategoryIcon = document.querySelector('.main-category-display__category-information__icon');
+  var mainCategoryText = document.querySelector('.main-category-display__category-information__text');
+  console.log(mainCategoryIcon.classList, mainCategoryText.textContent);
+  mainCategories.forEach(function (mc) {
+    mc.addEventListener('click', function (e) {
+      e.preventDefault();
+      console.log(mc.firstChild.nextSibling.classList, mc.firstChild.nextSibling.nextSibling.textContent);
+      mainCategoryIcon.classList.remove(mainCategoryIcon.classList[3]);
+      mainCategoryIcon.classList.add(mc.firstChild.nextSibling.classList[3]);
+      mainCategoryText.textContent = mc.firstChild.nextSibling.nextSibling.textContent;
+      var index = mc.dataset.category;
+      var subCategories = document.querySelectorAll('.sub-category');
+      subCategories.forEach(function (sc, i) {
+        sc.classList.add('closed');
+        sc.classList.remove('open');
+
+        if (sc.dataset.category === "".concat(index)) {
+          sc.classList.remove('closed');
+          sc.classList.add('open');
+        }
+      });
+    });
+  });
+};
+
 var watchForBudgetDeletion = function watchForBudgetDeletion() {
   var budgetDeleteButton = document.querySelectorAll(".button--extra-extra-small__wide")[1];
   var budgetId = window.location.pathname.split('/')[5];
@@ -8040,6 +8070,8 @@ var _watchManageCategories = function _watchManageCategories(budget, placeholder
     _Budget_Categories__WEBPACK_IMPORTED_MODULE_7__._watchCreateCategoryButton(icon, placeholderBudget);
 
     _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__.setupSubCategoryCreation(placeholderBudget, subCategoryIndex);
+
+    _watchForMainCategorySelection(budget, placeholderBudget, user);
   }
 };
 

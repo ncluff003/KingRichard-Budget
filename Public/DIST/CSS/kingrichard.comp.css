@@ -1300,7 +1300,7 @@ html {
   color: #822aba;
 }
 .sub-category-controller__surplus-container__switch__toggle__icon, .sub-category-controller__surplus-container__switch__alt__toggle__icon {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: rgba(250, 250, 250, 0.8);
 }
 .sub-category--month-view__section__category-name {
@@ -49745,6 +49745,9 @@ html {
   transform: rotate(0) translate(200%, 0);
   border-radius: 50%;
   background-color: rgba(44, 174, 31, 0.8);
+}
+.container--medium__half:nth-of-type(2) .sub-category-display .sub-category .sub-category-controller__surplus-container__switch__alt--switched:hover {
+  cursor: pointer;
 }
 .container--medium__half:nth-of-type(2) .sub-category-display .sub-category .sub-category-controller__surplus-container__switch__alt:hover {
   cursor: pointer;

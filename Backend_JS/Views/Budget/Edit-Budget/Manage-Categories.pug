@@ -9,7 +9,7 @@ block Budget-Content
         i.fas.fa-plus.button--medium-square__icon.r__.button--medium-square__icon
         p.button--medium-square__text.r__.button--medium-square__text Create
       each category, index in data.budget.mainCategories 
-        section.main-category__alt.r__main-category__alt.open 
+        section.main-category__alt.r__main-category__alt.open(data-category=`${index}`) 
           i.fas.main-category__alt__icon.r__main-category__alt__icon(class=`${category.icon}`)
           p.main-category__alt__text.r__main-category__alt__text= category.title
       section.icons-container.r__icons-container.closed
@@ -38,9 +38,14 @@ block Budget-Content
               section.sub-category-controller.r__sub-category-controller 
                 section.sub-category-controller__surplus-container.r__sub-category-controller__surplus-container
                   p.sub-category-controller__surplus-container__title.r__sub-category-controller__surplus-container__title= `Surplus`
-                  section.sub-category-controller__surplus-container__switch__alt.r__sub-category-controller__surplus-container__switch__alt
-                    section.sub-category-controller__surplus-container__switch__alt__toggle.r__sub-category-controller__surplus-container__switch__alt__toggle
-                      i.fas.fa-times.sub-category-controller__surplus-container__switch__alt__toggle__icon.r__sub-category-controller__surplus-container__switch__alt__toggle__icon
+                  if subCategory.surplus
+                    section.sub-category-controller__surplus-container__switch__alt--switched.r__sub-category-controller__surplus-container__switch__alt--switched
+                      section.sub-category-controller__surplus-container__switch__alt__toggle.r__sub-category-controller__surplus-container__switch__alt__toggle
+                        i.fas.fa-check.sub-category-controller__surplus-container__switch__alt__toggle__icon.r__sub-category-controller__surplus-container__switch__alt__toggle__icon
+                  else  
+                    section.sub-category-controller__surplus-container__switch__alt.r__sub-category-controller__surplus-container__switch__alt
+                      section.sub-category-controller__surplus-container__switch__alt__toggle.r__sub-category-controller__surplus-container__switch__alt__toggle
+                        i.fas.fa-times.sub-category-controller__surplus-container__switch__alt__toggle__icon.r__sub-category-controller__surplus-container__switch__alt__toggle__icon
                 i.fas.fa-trash-alt.sub-category-controller__icon.r__sub-category-controller__icon
         section.form__section--sub-category-creation.r__form__section--sub-category-creation.closed
           .form__input-container--sub-category-title.r__form__input-container--sub-category-title

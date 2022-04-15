@@ -8,6 +8,35 @@ import * as Categories from './Budget-Categories';
 // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
 
+const _watchForMainCategorySelection = (budget, placeholderBudget, user) => {
+  console.log(`Watching your selection! 👀`);
+  const mainCategories = document.querySelectorAll('.main-category__alt');
+
+  const mainCategoryIcon = document.querySelector('.main-category-display__category-information__icon');
+  const mainCategoryText = document.querySelector('.main-category-display__category-information__text');
+  console.log(mainCategoryIcon.classList, mainCategoryText.textContent);
+
+  mainCategories.forEach((mc) => {
+    mc.addEventListener('click', (e) => {
+      e.preventDefault();
+      console.log(mc.firstChild.nextSibling.classList, mc.firstChild.nextSibling.nextSibling.textContent);
+      mainCategoryIcon.classList.remove(mainCategoryIcon.classList[3]);
+      mainCategoryIcon.classList.add(mc.firstChild.nextSibling.classList[3]);
+      mainCategoryText.textContent = mc.firstChild.nextSibling.nextSibling.textContent;
+      let index = mc.dataset.category;
+      const subCategories = document.querySelectorAll('.sub-category');
+      subCategories.forEach((sc, i) => {
+        sc.classList.add('closed');
+        sc.classList.remove('open');
+        if (sc.dataset.category === `${index}`) {
+          sc.classList.remove('closed');
+          sc.classList.add('open');
+        }
+      });
+    });
+  });
+};
+
 const watchForBudgetDeletion = () => {
   const budgetDeleteButton = document.querySelectorAll(`.button--extra-extra-small__wide`)[1];
   const budgetId = window.location.pathname.split('/')[5];
@@ -217,6 +246,7 @@ const _watchManageCategories = (budget, placeholderBudget, user) => {
     Categories.createCategories(icon, index);
     Categories._watchCreateCategoryButton(icon, placeholderBudget);
     Edit.setupSubCategoryCreation(placeholderBudget, subCategoryIndex);
+    _watchForMainCategorySelection(budget, placeholderBudget, user);
   }
 };
 

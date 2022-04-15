@@ -1068,21 +1068,6 @@ export const createSubCategory = (budget, index) => {
   surplusContainerSwitch.classList.add('sub-category-controller__surplus-container__switch');
   surplusContainerSwitch.classList.add('r__sub-category-controller__surplus-container__switch');
 
-  // Make Surplus Switch -- A SWITCH
-  surplusContainerSwitch.addEventListener('click', (e) => {
-    e.preventDefault();
-    surplusContainerSwitch.classList.toggle('sub-category-controller__surplus-container__switch--switched');
-    const subCategoriesArray = [...document.querySelectorAll('.sub-category')];
-    const clicked = e.target;
-    const subArray = subCategoriesArray.filter((sc, i) => {
-      return Number(sc.dataset.category) === index;
-    });
-    const categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
-    const categoryTitle = subCategoryTitleElement.textContent;
-
-    budget._updateSubCategory(`Creation`, `Surplus`, { mainIndex: categoryNumber, subIndex: subArray.indexOf(clicked.closest('.sub-category')) });
-  });
-
   // Create Surplus Switch Toggle
   const surplusSwitchToggle = document.createElement('section');
   surplusSwitchToggle.classList.add('sub-category-controller__surplus-container__switch__toggle');
@@ -1093,6 +1078,23 @@ export const createSubCategory = (budget, index) => {
   surplusSwitchToggleIcon.classList.add('fa-times');
   surplusSwitchToggleIcon.classList.add('sub-category-controller__surplus-container__switch__toggle__icon');
   surplusSwitchToggleIcon.classList.add('r__sub-category-controller__surplus-container__switch__toggle__icon');
+
+  // Make Surplus Switch -- A SWITCH
+  surplusContainerSwitch.addEventListener('click', (e) => {
+    e.preventDefault();
+    surplusContainerSwitch.classList.toggle('sub-category-controller__surplus-container__switch--switched');
+    surplusSwitchToggleIcon.classList.toggle('fa-times');
+    surplusSwitchToggleIcon.classList.toggle('fa-check');
+    const subCategoriesArray = [...document.querySelectorAll('.sub-category')];
+    const clicked = e.target;
+    const subArray = subCategoriesArray.filter((sc, i) => {
+      return Number(sc.dataset.category) === index;
+    });
+    const categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
+    const categoryTitle = subCategoryTitleElement.textContent;
+
+    budget._updateSubCategory(`Creation`, `Surplus`, { mainIndex: categoryNumber, subIndex: subArray.indexOf(clicked.closest('.sub-category')) });
+  });
 
   const surplusCategoryTrashIcon = document.createElement('i');
   surplusCategoryTrashIcon.classList.add('fas');
