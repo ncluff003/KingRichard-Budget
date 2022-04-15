@@ -236,6 +236,32 @@ const getOverallBudget = (subCategories, overall) => {
   return overall;
 };
 
+export const updateBudget = (categoryType, action, budget, placeholderBudget, user) => {
+  if (categoryType === `Main Categories`) {
+    console.log(categoryType);
+    if (action === `Add`) {
+      console.log(`Adding...`);
+      placeholderBudget._addMainCategory(`${element}`, mainCategoryTitle);
+    }
+    if (action === `Delete`) {
+      console.log(`Deleting...`);
+    }
+  }
+  if (categoryType === `Sub Categories`) {
+    console.log(categoryType);
+    if (action === `Add`) {
+      console.log(`Adding...`);
+    }
+    if (action === `Delete`) {
+      console.log(`Deleting...`);
+    }
+  }
+};
+
+const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
+  console.log(`We are WAITING...`);
+};
+
 const _watchManageCategories = (budget, placeholderBudget, user) => {
   const mediumContainers = document.querySelectorAll('.container--medium');
   const manageCategoryContainer = mediumContainers[0];
@@ -247,6 +273,7 @@ const _watchManageCategories = (budget, placeholderBudget, user) => {
     Categories._watchCreateCategoryButton(icon, placeholderBudget);
     Edit.setupSubCategoryCreation(placeholderBudget, subCategoryIndex);
     _watchForMainCategorySelection(budget, placeholderBudget, user);
+    _watchForBudgetCategoryUpdates(budget, placeholderBudget, user);
   }
 };
 

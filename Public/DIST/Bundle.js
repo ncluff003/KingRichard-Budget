@@ -4759,6 +4759,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "MainCategory": () => (/* binding */ MainCategory),
 /* harmony export */   "SubCategory": () => (/* binding */ SubCategory),
 /* harmony export */   "_clickIcon": () => (/* binding */ _clickIcon),
+/* harmony export */   "_verifyMainCategory": () => (/* binding */ _verifyMainCategory),
 /* harmony export */   "_verifySubCategory": () => (/* binding */ _verifySubCategory),
 /* harmony export */   "_watchCreateCategoryButton": () => (/* binding */ _watchCreateCategoryButton),
 /* harmony export */   "createCategories": () => (/* binding */ createCategories),
@@ -5107,43 +5108,97 @@ var createMainCategory = function createMainCategory(element, budget, filteredAr
   var mainCategoryTitle = document.querySelector('.form__input--main-category-title').value;
   mainCategoryTitle = mainCategoryTitle.split(' ').map(_capitalize).join(' '); // budget.mainCategories.push(new MainCategory({ icon: `${element}`, title: mainCategoryTitle }));
 
-  budget._addMainCategory("".concat(element), mainCategoryTitle);
-
   var mainCategoryContainer = document.querySelector('.budget-creation-container--main-categories');
-  var mainCategory = document.createElement('section');
-  mainCategory.classList.add('main-category');
-  var iconImage = document.createElement('i');
-  iconImage.classList.add('fas');
-  iconImage.classList.add("".concat(element));
-  iconImage.classList.add('main-category__icon');
-  var iconsText = document.createElement('p');
-  iconsText.classList.add('main-category__text');
-  var deleteButton = document.createElement('button');
-  var deleteIcon = document.createElement('i');
-  deleteIcon.classList.add('fas');
-  deleteIcon.classList.add('fa-times');
-  deleteButton.classList.add('main-category__delete');
-  deleteButton.insertAdjacentElement('beforeend', deleteIcon);
-  iconsText.textContent = mainCategoryTitle;
-  mainCategory.insertAdjacentElement('beforeend', iconImage);
-  mainCategory.insertAdjacentElement('beforeend', iconsText);
+  var mainCategoryContainerTwo = document.querySelectorAll('.container--medium__half')[0];
 
   if (mainCategoryContainer) {
-    mainCategory.insertAdjacentElement('beforeend', deleteButton);
+    budget._addMainCategory("".concat(element), mainCategoryTitle);
+
+    var mainCategory = document.createElement('section');
+    mainCategory.classList.add('main-category');
+    var iconImage = document.createElement('i');
+    iconImage.classList.add('fas');
+    iconImage.classList.add("".concat(element));
+    iconImage.classList.add('main-category__icon');
+    var iconsText = document.createElement('p');
+    iconsText.classList.add('main-category__text');
+    var deleteButton = document.createElement('button');
+    var deleteIcon = document.createElement('i');
+    deleteIcon.classList.add('fas');
+    deleteIcon.classList.add('fa-times');
+    deleteButton.classList.add('main-category__delete');
+    deleteButton.insertAdjacentElement('beforeend', deleteIcon);
+    iconsText.textContent = mainCategoryTitle;
+    mainCategory.insertAdjacentElement('beforeend', iconImage);
+    mainCategory.insertAdjacentElement('beforeend', iconsText);
+
+    if (mainCategoryContainer) {
+      mainCategory.insertAdjacentElement('beforeend', deleteButton);
+    }
+
+    mainCategoryContainer.insertAdjacentElement('beforeend', mainCategory);
+    var mainCategoryLength = document.querySelectorAll('.main-category').length;
+
+    if (mainCategoryLength === 3) {
+      document.querySelectorAll('.main-category')[2].style.borderTopRightRadius = "0.9rem";
+    }
+
+    if (deleteButton) {
+      deleteButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        removeMainCategory(e, budget, filteredArray);
+      });
+    }
   }
 
-  mainCategoryContainer.insertAdjacentElement('beforeend', mainCategory);
-  var mainCategoryLength = document.querySelectorAll('.main-category').length;
+  if (mainCategoryContainerTwo) {
+    budget._addMainCategory("".concat(element), mainCategoryTitle);
 
-  if (mainCategoryLength === 3) {
-    document.querySelectorAll('.main-category')[2].style.borderTopRightRadius = "0.9rem";
-  }
+    var _mainCategory = document.createElement('section');
 
-  if (deleteButton) {
-    deleteButton.addEventListener('click', function (e) {
-      e.preventDefault();
-      removeMainCategory(e, budget, filteredArray);
-    });
+    _mainCategory.classList.add('main-category');
+
+    var _iconImage = document.createElement('i');
+
+    _iconImage.classList.add('fas');
+
+    _iconImage.classList.add("".concat(element));
+
+    _iconImage.classList.add('main-category__icon');
+
+    var _iconsText = document.createElement('p');
+
+    _iconsText.classList.add('main-category__text'); // const deleteButton = document.createElement('button');
+    // const deleteIcon = document.createElement('i');
+    // deleteIcon.classList.add('fas');
+    // deleteIcon.classList.add('fa-times');
+    // deleteButton.classList.add('main-category__delete');
+    // deleteButton.insertAdjacentElement('beforeend', deleteIcon);
+
+
+    _iconsText.textContent = mainCategoryTitle;
+
+    _mainCategory.insertAdjacentElement('beforeend', _iconImage);
+
+    _mainCategory.insertAdjacentElement('beforeend', _iconsText); // if (mainCategoryContainerTwo) {
+    //   mainCategory.insertAdjacentElement('beforeend', deleteButton);
+    // }
+
+
+    mainCategoryContainerTwo.insertAdjacentElement('beforeend', _mainCategory);
+    var _mainCategoryLength = document.querySelectorAll('.main-category').length;
+
+    if (_mainCategoryLength === 3) {
+      document.querySelectorAll('.main-category')[2].style.borderTopRightRadius = "0.9rem";
+    } // if (deleteButton) {
+    //   deleteButton.addEventListener('click', (e) => {
+    //     e.preventDefault();
+    //     removeMainCategory(e, budget, filteredArray);
+    //   });
+    // }
+
+
+    console.log(budget);
   }
 }; ////////////////////////////////////////
 // CREATE MAIN CATEGORY
@@ -5163,7 +5218,6 @@ var _verifyMainCategory = function _verifyMainCategory(icon, iconList, budget) {
   });
 }; ////////////////////////////////////////
 // FIND CLICKED ICON
-
 
 var _findClickedIcon = function _findClickedIcon(iconList, budget) {
   iconList.forEach(function (icon) {
@@ -7125,89 +7179,7 @@ var Budget = /*#__PURE__*/function () {
         }
 
         if (update === "Edit Category Goals") {
-          console.log(options.updateObject); // Start Update Object With Budget And User IDs.
-          // let updateObject = options.updateObject;
-          // updateObject.budgetId = options.budgetId;
-          // updateObject.userId = options.userId;
-          // updateObject.mainCategories = [];
-          // const mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
-          // let mainCategoryIndex = 0;
-          // let subCategoryIndex = 0;
-          // let emptyArray = [];
-          // let temporaryObject;
-          // options.budgetMainCategories.forEach((bmc, i) => {
-          //   temporaryObject = Object.fromEntries([
-          //     [`title`, mainCategoryTitles[i].textContent],
-          //     [`icon`, options.budgetMainCategories[i].icon],
-          //     [`subCategories`, emptyArray],
-          //   ]);
-          //   updateObject.mainCategories.push(temporaryObject);
-          //   let tempArray = Array.from(document.querySelectorAll(`.sub-category-display__sub-category[data-subcategory="${i}"]`));
-          //   let mainCategoryIndex = i;
-          //   tempArray.forEach((temp, i) => {
-          //     let title = temp.firstChild.nextSibling.firstChild.textContent;
-          //     let goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
-          //     let amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
-          //     let amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
-          //     let percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
-          //     let timingOptions = bmc.subCategories[i].timingOptions;
-          //     temporaryObject.subCategories.push(
-          //       Object.fromEntries([
-          //         [`title`, title],
-          //         [`goalAmount`, goalAmount],
-          //         [`amountSpent`, amountSpent],
-          //         [`amountRemaining`, amountRemaining],
-          //         [`percentageSpent`, percentageSpent],
-          //         [`timingOptions`, timingOptions],
-          //       ])
-          //     );
-          //     if (temporaryObject.subCategories.length === tempArray.length) {
-          //       mainCategoryIndex++;
-          //       if (temporaryObject === undefined) return;
-          //       temporaryObject.subCategories = [];
-          //       return mainCategoryIndex;
-          //     }
-          //     if (i === tempArray.length) {
-          //       mainCategoryIndex++;
-          //     }
-          //   });
-          //   if (updateObject.mainCategories.length === options.budgetMainCategories.length) {
-          //     return (mainCategoryIndex = 0);
-          //   }
-          // });
-          // updateObject.mainCategories.forEach((mc, i) => {
-          //   // Maintain.fillSubCategoryArray(updateObject, i);
-          //   let mainCategoryIndex = i;
-          //   let tempArray = Array.from(document.querySelectorAll(`.sub-category-display__sub-category[data-subcategory="${i}"]`));
-          //   tempArray.forEach((temp, i) => {
-          //     let title = temp.firstChild.nextSibling.firstChild.textContent;
-          //     let goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
-          //     let amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
-          //     let amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
-          //     let percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
-          //     let timingOptions = options.budgetMainCategories[mainCategoryIndex].subCategories[i].timingOptions;
-          //     updateObject.mainCategories[mainCategoryIndex].subCategories.push(
-          //       Object.fromEntries([
-          //         [`title`, title],
-          //         [`goalAmount`, goalAmount],
-          //         [`amountSpent`, amountSpent],
-          //         [`amountRemaining`, amountRemaining],
-          //         [`percentageSpent`, percentageSpent],
-          //         [`timingOptions`, timingOptions],
-          //       ])
-          //     );
-          //     if (updateObject.mainCategories[mainCategoryIndex].subCategories.length === tempArray.length) {
-          //       mainCategoryIndex++;
-          //       if (updateObject.mainCategories[mainCategoryIndex] === undefined) return;
-          //       updateObject.mainCategories[mainCategoryIndex].subCategories = [];
-          //       return mainCategoryIndex;
-          //     }
-          //     if (i === tempArray.length) {
-          //       mainCategoryIndex++;
-          //     }
-          //   });
-          // });
-
+          console.log(options.updateObject);
           console.log("Updating Category Goals..."); // GLITCH : For some reason, ONLY the last Main Category had been pushed through.  So, the previous two had been erased completely.
 
           console.log(updateObject.mainCategories);
@@ -7801,7 +7773,8 @@ var logout = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "_watchBudget": () => (/* binding */ _watchBudget),
-/* harmony export */   "fillSubCategoryArray": () => (/* binding */ fillSubCategoryArray)
+/* harmony export */   "fillSubCategoryArray": () => (/* binding */ fillSubCategoryArray),
+/* harmony export */   "updateBudget": () => (/* binding */ updateBudget)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
@@ -8057,6 +8030,49 @@ var getOverallBudget = function getOverallBudget(subCategories, overall) {
   return overall;
 };
 
+var updateBudget = function updateBudget(categoryType, action, budget, placeholderBudget, user) {
+  if (categoryType === "Main Categories") {
+    console.log(categoryType);
+
+    if (action === "Add") {
+      console.log("Adding...");
+
+      placeholderBudget._addMainCategory("".concat(element), mainCategoryTitle);
+    }
+
+    if (action === "Delete") {
+      console.log("Deleting...");
+    }
+  }
+
+  if (categoryType === "Sub Categories") {
+    console.log(categoryType);
+
+    if (action === "Add") {
+      console.log("Adding...");
+    }
+
+    if (action === "Delete") {
+      console.log("Deleting...");
+    }
+  }
+};
+
+var _watchForBudgetCategoryUpdates = function _watchForBudgetCategoryUpdates(budget, placeholderBudget, user) {
+  console.log("We are WAITING..."); // const createMainCategoryButton = document.querySelectorAll('.button--small-create-main-category')[0];
+  // // createMainCategoryButton.addEventListener('click', (e) => {
+  // // });
+  // const iconContainers = document.querySelectorAll('.icon-container');
+  // if (createMainCategoryButton) {
+  //   createMainCategoryButton.addEventListener('click', (e) => {
+  //     e.preventDefault();
+  //     _findClickedIcon(iconContainers, budget);
+  //     closeCategoryCreation();
+  //     // updateBudget(`Main Categories`, `Add`, budget, placeholderBudget, user);
+  //   });
+  // }
+};
+
 var _watchManageCategories = function _watchManageCategories(budget, placeholderBudget, user) {
   var mediumContainers = document.querySelectorAll('.container--medium');
   var manageCategoryContainer = mediumContainers[0];
@@ -8072,6 +8088,8 @@ var _watchManageCategories = function _watchManageCategories(budget, placeholder
     _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__.setupSubCategoryCreation(placeholderBudget, subCategoryIndex);
 
     _watchForMainCategorySelection(budget, placeholderBudget, user);
+
+    _watchForBudgetCategoryUpdates(budget, placeholderBudget, user);
   }
 };
 

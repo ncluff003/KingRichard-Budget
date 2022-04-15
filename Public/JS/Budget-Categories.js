@@ -1210,45 +1210,84 @@ const createMainCategory = (element, budget, filteredArray) => {
   let mainCategoryTitle = document.querySelector('.form__input--main-category-title').value;
   mainCategoryTitle = mainCategoryTitle.split(' ').map(_capitalize).join(' ');
   // budget.mainCategories.push(new MainCategory({ icon: `${element}`, title: mainCategoryTitle }));
-  budget._addMainCategory(`${element}`, mainCategoryTitle);
   const mainCategoryContainer = document.querySelector('.budget-creation-container--main-categories');
-  const mainCategory = document.createElement('section');
-  mainCategory.classList.add('main-category');
-  const iconImage = document.createElement('i');
-  iconImage.classList.add('fas');
-  iconImage.classList.add(`${element}`);
-  iconImage.classList.add('main-category__icon');
-  const iconsText = document.createElement('p');
-  iconsText.classList.add('main-category__text');
-  const deleteButton = document.createElement('button');
-  const deleteIcon = document.createElement('i');
-  deleteIcon.classList.add('fas');
-  deleteIcon.classList.add('fa-times');
-  deleteButton.classList.add('main-category__delete');
-  deleteButton.insertAdjacentElement('beforeend', deleteIcon);
-  iconsText.textContent = mainCategoryTitle;
-  mainCategory.insertAdjacentElement('beforeend', iconImage);
-  mainCategory.insertAdjacentElement('beforeend', iconsText);
+  const mainCategoryContainerTwo = document.querySelectorAll('.container--medium__half')[0];
   if (mainCategoryContainer) {
-    mainCategory.insertAdjacentElement('beforeend', deleteButton);
+    budget._addMainCategory(`${element}`, mainCategoryTitle);
+    const mainCategory = document.createElement('section');
+    mainCategory.classList.add('main-category');
+    const iconImage = document.createElement('i');
+    iconImage.classList.add('fas');
+    iconImage.classList.add(`${element}`);
+    iconImage.classList.add('main-category__icon');
+    const iconsText = document.createElement('p');
+    iconsText.classList.add('main-category__text');
+    const deleteButton = document.createElement('button');
+    const deleteIcon = document.createElement('i');
+    deleteIcon.classList.add('fas');
+    deleteIcon.classList.add('fa-times');
+    deleteButton.classList.add('main-category__delete');
+    deleteButton.insertAdjacentElement('beforeend', deleteIcon);
+    iconsText.textContent = mainCategoryTitle;
+    mainCategory.insertAdjacentElement('beforeend', iconImage);
+    mainCategory.insertAdjacentElement('beforeend', iconsText);
+    if (mainCategoryContainer) {
+      mainCategory.insertAdjacentElement('beforeend', deleteButton);
+    }
+    mainCategoryContainer.insertAdjacentElement('beforeend', mainCategory);
+    const mainCategoryLength = document.querySelectorAll('.main-category').length;
+    if (mainCategoryLength === 3) {
+      document.querySelectorAll('.main-category')[2].style.borderTopRightRadius = `0.9rem`;
+    }
+    if (deleteButton) {
+      deleteButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        removeMainCategory(e, budget, filteredArray);
+      });
+    }
   }
-  mainCategoryContainer.insertAdjacentElement('beforeend', mainCategory);
-  const mainCategoryLength = document.querySelectorAll('.main-category').length;
-  if (mainCategoryLength === 3) {
-    document.querySelectorAll('.main-category')[2].style.borderTopRightRadius = `0.9rem`;
-  }
-  if (deleteButton) {
-    deleteButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      removeMainCategory(e, budget, filteredArray);
-    });
+
+  if (mainCategoryContainerTwo) {
+    budget._addMainCategory(`${element}`, mainCategoryTitle);
+    const mainCategory = document.createElement('section');
+    mainCategory.classList.add('main-category');
+    const iconImage = document.createElement('i');
+    iconImage.classList.add('fas');
+    iconImage.classList.add(`${element}`);
+    iconImage.classList.add('main-category__icon');
+    const iconsText = document.createElement('p');
+    iconsText.classList.add('main-category__text');
+    // const deleteButton = document.createElement('button');
+    // const deleteIcon = document.createElement('i');
+    // deleteIcon.classList.add('fas');
+    // deleteIcon.classList.add('fa-times');
+    // deleteButton.classList.add('main-category__delete');
+    // deleteButton.insertAdjacentElement('beforeend', deleteIcon);
+    iconsText.textContent = mainCategoryTitle;
+    mainCategory.insertAdjacentElement('beforeend', iconImage);
+    mainCategory.insertAdjacentElement('beforeend', iconsText);
+    // if (mainCategoryContainerTwo) {
+    //   mainCategory.insertAdjacentElement('beforeend', deleteButton);
+    // }
+    mainCategoryContainerTwo.insertAdjacentElement('beforeend', mainCategory);
+    const mainCategoryLength = document.querySelectorAll('.main-category').length;
+    if (mainCategoryLength === 3) {
+      document.querySelectorAll('.main-category')[2].style.borderTopRightRadius = `0.9rem`;
+    }
+    // if (deleteButton) {
+    //   deleteButton.addEventListener('click', (e) => {
+    //     e.preventDefault();
+    //     removeMainCategory(e, budget, filteredArray);
+    //   });
+    // }
+    console.log(budget);
   }
 };
 
 ////////////////////////////////////////
 // CREATE MAIN CATEGORY
 
-const _verifyMainCategory = (icon, iconList, budget) => {
+export const _verifyMainCategory = (icon, iconList, budget) => {
   let mainCategoryTitle = document.querySelector('.form__input--main-category-title').value.toLowerCase();
   const filtered = budget.mainCategories.filter((mc) => {
     if (mc.title.toLowerCase() === mainCategoryTitle) {
