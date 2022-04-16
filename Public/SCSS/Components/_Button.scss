@@ -628,18 +628,44 @@
       }
     }
   }
-  &--medium-square {
-    @include SizeAndPositioning(relative, 25%, 25%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
-    border: 0.3rem solid rgba($primaryColor, 0.8);
-    border-top-left-radius: 0.9rem;
-    &:hover {
-      cursor: pointer;
-      border: 0.3rem solid $primaryColor;
-      background-color: $primaryColor;
-      transition: border 0.5s, background-color 0.5s;
-      .button--medium-square__icon,
-      .button--medium-square__text {
-        transition: color 0.5s;
+  &--medium {
+    @extend .button;
+    &-square {
+      @include SizeAndPositioning(relative, 25%, 25%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+      border: 0.3rem solid rgba($primaryColor, 0.8);
+      border-top-left-radius: 0.9rem;
+      &:hover {
+        cursor: pointer;
+        border: 0.3rem solid $primaryColor;
+        background-color: $primaryColor;
+        transition: border 0.5s, background-color 0.5s;
+        .button--medium-square__icon,
+        .button--medium-square__text {
+          transition: color 0.5s;
+        }
+      }
+    }
+    // MAIN CATEGORY DELETION SECTION | MANAGE CATEGORIES
+    &-main-category-deletion {
+      @extend .button--medium;
+      position: absolute;
+      height: 10rem;
+      width: 10rem;
+      top: 0;
+      right: 0;
+      flex-flow: column nowrap;
+      transform: translate(0, 0);
+      border: none;
+      border-radius: 0;
+      border-left: 0.3rem solid $primaryColor;
+      border-bottom: 0.3rem solid $primaryColor;
+      &:hover {
+        cursor: pointer;
+        background-color: $primaryColor;
+        border: none;
+        border-left: 0.3rem solid $primaryColor;
+        border-bottom: 0.3rem solid $primaryColor;
+        transition: background-color 0.5s, color 0.5s;
       }
     }
   }

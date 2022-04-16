@@ -1478,36 +1478,53 @@ html {
       }
     }
   }
-  &--medium-square {
+  &--medium {
     @extend .button;
-    font-size: 2rem;
-    color: rgba($primaryColor, 0.8);
-    &__icon {
-      font-size: 3rem;
-    }
-    &:hover {
-      .button--medium-square__icon,
-      .button--medium-square__text {
-        color: $colorOffWhite;
+    &-square {
+      @extend .button--medium;
+      font-size: 2rem;
+      color: rgba($primaryColor, 0.8);
+      &__icon {
+        font-size: 3rem;
+      }
+      &:hover {
+        .button--medium-square__icon,
+        .button--medium-square__text {
+          color: $colorOffWhite;
+        }
+      }
+      &__icons-container {
+        .icon-container {
+          font-family: MADE Tommy Soft, Verdana, sans-serif !important;
+          font-size: 1.6rem;
+          color: $primaryColor;
+          text-align: center;
+          &__icon {
+            font-size: 4rem;
+          }
+          &__text {
+          }
+          &:hover {
+            color: $colorOffWhite;
+          }
+          &--clicked {
+            color: $colorOffWhite;
+          }
+        }
       }
     }
-    &__icons-container {
-      .icon-container {
-        font-family: MADE Tommy Soft, Verdana, sans-serif !important;
-        font-size: 1.6rem;
-        color: $primaryColor;
+
+    &-main-category-deletion {
+      @extend .button--medium;
+      &__icon {
+        font-size: 3rem;
+      }
+      &__text {
+        font-size: 1.2rem;
         text-align: center;
-        &__icon {
-          font-size: 4rem;
-        }
-        &__text {
-        }
-        &:hover {
-          color: $colorOffWhite;
-        }
-        &--clicked {
-          color: $colorOffWhite;
-        }
+      }
+      &:hover {
+        color: $colorOffWhite;
       }
     }
   }
@@ -2498,20 +2515,6 @@ html {
       color: $primaryColor;
       &__number {
         @extend .form__section--page-number-display;
-      }
-    }
-
-    &--main-category-deletion {
-      @extend .form__section;
-      &__icon {
-        font-size: 3rem;
-      }
-      &__text {
-        font-size: 1.2rem;
-        text-align: center;
-      }
-      &:hover {
-        color: $colorOffWhite;
       }
     }
 

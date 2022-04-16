@@ -8083,6 +8083,27 @@ var updateBudget = function updateBudget(categoryType, action, budget, placehold
 
 var _watchForBudgetCategoryUpdates = function _watchForBudgetCategoryUpdates(budget, placeholderBudget, user) {
   console.log("We are WAITING...");
+  var mainCategoryDeleteButton = document.querySelector('.button--medium-main-category-deletion');
+  var categoryIcon = document.querySelector('.main-category-display__category-information__icon');
+  var categoryTitle = document.querySelector('.main-category-display__category-information__text');
+  var categoryIndex;
+  mainCategoryDeleteButton.addEventListener('click', function (e) {
+    e.preventDefault();
+    var mainCategories = document.querySelectorAll('.main-category__alt');
+    console.log("Category Deleted.");
+    placeholderBudget.mainCategories.forEach(function (mc) {
+      if (mc.title === categoryTitle.textContent) {
+        categoryIndex = placeholderBudget.mainCategories.indexOf(mc);
+        console.log(categoryIndex, mainCategories[categoryIndex], mainCategories);
+        mainCategories[categoryIndex].remove();
+        console.log("Category Deleted Is: ".concat(mc.title), mc);
+        placeholderBudget.mainCategories = placeholderBudget.mainCategories.filter(function (category) {
+          if (category.title !== mc.title) return category;
+        });
+      }
+    });
+    console.log(placeholderBudget.mainCategories);
+  });
 };
 
 var _watchManageCategories = function _watchManageCategories(budget, placeholderBudget, user) {

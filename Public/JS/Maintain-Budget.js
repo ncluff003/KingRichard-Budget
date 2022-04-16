@@ -273,6 +273,28 @@ export const updateBudget = (categoryType, action, budget, placeholderBudget, us
 
 const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
   console.log(`We are WAITING...`);
+
+  const mainCategoryDeleteButton = document.querySelector('.button--medium-main-category-deletion');
+  const categoryIcon = document.querySelector('.main-category-display__category-information__icon');
+  const categoryTitle = document.querySelector('.main-category-display__category-information__text');
+  let categoryIndex;
+  mainCategoryDeleteButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    const mainCategories = document.querySelectorAll('.main-category__alt');
+    console.log(`Category Deleted.`);
+    placeholderBudget.mainCategories.forEach((mc) => {
+      if (mc.title === categoryTitle.textContent) {
+        categoryIndex = placeholderBudget.mainCategories.indexOf(mc);
+        console.log(categoryIndex, mainCategories[categoryIndex], mainCategories);
+        mainCategories[categoryIndex].remove();
+        console.log(`Category Deleted Is: ${mc.title}`, mc);
+        placeholderBudget.mainCategories = placeholderBudget.mainCategories.filter((category) => {
+          if (category.title !== mc.title) return category;
+        });
+      }
+    });
+    console.log(placeholderBudget.mainCategories);
+  });
 };
 
 const _watchManageCategories = (budget, placeholderBudget, user) => {
