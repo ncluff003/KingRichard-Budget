@@ -8089,6 +8089,7 @@ var _watchForBudgetCategoryUpdates = function _watchForBudgetCategoryUpdates(bud
   var categoryIndex;
   mainCategoryDeleteButton.addEventListener('click', function (e) {
     e.preventDefault();
+    categoryIcon.classList.remove(categoryIcon.classList[3]);
     var mainCategories = document.querySelectorAll('.main-category__alt');
     console.log("Category Deleted.");
     placeholderBudget.mainCategories.forEach(function (mc) {
@@ -8100,6 +8101,21 @@ var _watchForBudgetCategoryUpdates = function _watchForBudgetCategoryUpdates(bud
         placeholderBudget.mainCategories = placeholderBudget.mainCategories.filter(function (category) {
           if (category.title !== mc.title) return category;
         });
+      }
+    });
+    categoryIndex--;
+    console.log(categoryIndex);
+    console.log(placeholderBudget.mainCategories[categoryIndex], categoryIndex);
+    categoryIcon.classList.add(placeholderBudget.mainCategories[categoryIndex].icon);
+    categoryTitle.textContent = placeholderBudget.mainCategories[categoryIndex].title;
+    var subCategories = document.querySelectorAll('.sub-category');
+    subCategories.forEach(function (sc, i) {
+      sc.classList.add('closed');
+      sc.classList.remove('open');
+
+      if (sc.dataset.category === "".concat(categoryIndex)) {
+        sc.classList.remove('closed');
+        sc.classList.add('open');
       }
     });
     console.log(placeholderBudget.mainCategories);

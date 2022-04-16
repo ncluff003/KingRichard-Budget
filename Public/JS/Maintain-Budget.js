@@ -280,6 +280,7 @@ const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
   let categoryIndex;
   mainCategoryDeleteButton.addEventListener('click', (e) => {
     e.preventDefault();
+    categoryIcon.classList.remove(categoryIcon.classList[3]);
     const mainCategories = document.querySelectorAll('.main-category__alt');
     console.log(`Category Deleted.`);
     placeholderBudget.mainCategories.forEach((mc) => {
@@ -291,6 +292,20 @@ const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
         placeholderBudget.mainCategories = placeholderBudget.mainCategories.filter((category) => {
           if (category.title !== mc.title) return category;
         });
+      }
+    });
+    categoryIndex--;
+    console.log(categoryIndex);
+    console.log(placeholderBudget.mainCategories[categoryIndex], categoryIndex);
+    categoryIcon.classList.add(placeholderBudget.mainCategories[categoryIndex].icon);
+    categoryTitle.textContent = placeholderBudget.mainCategories[categoryIndex].title;
+    const subCategories = document.querySelectorAll('.sub-category');
+    subCategories.forEach((sc, i) => {
+      sc.classList.add('closed');
+      sc.classList.remove('open');
+      if (sc.dataset.category === `${categoryIndex}`) {
+        sc.classList.remove('closed');
+        sc.classList.add('open');
       }
     });
     console.log(placeholderBudget.mainCategories);
