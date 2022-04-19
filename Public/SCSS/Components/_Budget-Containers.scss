@@ -171,9 +171,11 @@
       overflow-y: auto;
       &:first-of-type {
         border-right: 0.3rem solid $primaryColor;
+        padding-right: 0.2rem;
       }
       &:nth-of-type(2) {
         @include SizeAndPositioning(relative, 100%, 50%, flex, column, nowrap, center, center, 0, 0, 0);
+        padding-left: 0.2rem;
         .main-category-display {
           @include SizeAndPositioning(relative, 55%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
           &__left-button,

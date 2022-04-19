@@ -8087,6 +8087,7 @@ var _watchForBudgetCategoryUpdates = function _watchForBudgetCategoryUpdates(bud
   var categoryIcon = document.querySelector('.main-category-display__category-information__icon');
   var categoryTitle = document.querySelector('.main-category-display__category-information__text');
   var categoryIndex;
+  var budgetMainCategoryLength = placeholderBudget.mainCategories.length;
   mainCategoryDeleteButton.addEventListener('click', function (e) {
     e.preventDefault();
     categoryIcon.classList.remove(categoryIcon.classList[3]);
@@ -8103,21 +8104,82 @@ var _watchForBudgetCategoryUpdates = function _watchForBudgetCategoryUpdates(bud
         });
       }
     });
-    categoryIndex--;
-    console.log(categoryIndex);
-    console.log(placeholderBudget.mainCategories[categoryIndex], categoryIndex);
-    categoryIcon.classList.add(placeholderBudget.mainCategories[categoryIndex].icon);
-    categoryTitle.textContent = placeholderBudget.mainCategories[categoryIndex].title;
     var subCategories = document.querySelectorAll('.sub-category');
-    subCategories.forEach(function (sc, i) {
-      sc.classList.add('closed');
-      sc.classList.remove('open');
 
-      if (sc.dataset.category === "".concat(categoryIndex)) {
-        sc.classList.remove('closed');
-        sc.classList.add('open');
-      }
-    });
+    if (categoryIndex === 0) {
+      // GLITCH: CLICKING THE MAIN CATEGORIES ON THE LEFT MAKES ALL SUB CATEGORIES GO WONKY.
+      subCategories.forEach(function (sc) {
+        if (Number(sc.dataset.category) === categoryIndex) {
+          sc.remove();
+        }
+
+        if (sc.dataset.category > categoryIndex) {
+          sc.dataset.category = sc.dataset.category - 1;
+        }
+      }); // CODE BELOW COULD BE PUT INTO A FUNCTION TO FOLLOW D.R.Y. PRINCIPLE.
+
+      categoryIcon.classList.add(placeholderBudget.mainCategories[categoryIndex].icon);
+      categoryTitle.textContent = placeholderBudget.mainCategories[categoryIndex].title;
+      subCategories.forEach(function (sc, i) {
+        sc.classList.add('closed');
+        sc.classList.remove('open');
+
+        if (sc.dataset.category === "".concat(categoryIndex)) {
+          sc.classList.remove('closed');
+          sc.classList.add('open');
+        }
+      });
+    }
+
+    if (categoryIndex > 0 && categoryIndex < placeholderBudget.mainCategories.length) {
+      console.log(placeholderBudget.mainCategories.length - 1); // GLITCH: CLICKING THE ARROWS ON THE RIGHT MAKES ALL SUB CATEGORIES GO WONKY.
+
+      console.log(categoryIndex);
+      subCategories.forEach(function (sc) {
+        if (Number(sc.dataset.category) === categoryIndex) {
+          sc.remove();
+        }
+
+        if (sc.dataset.category > categoryIndex) {
+          sc.dataset.category = sc.dataset.category - 1;
+        }
+      });
+      categoryIndex--;
+      categoryIcon.classList.add(placeholderBudget.mainCategories[categoryIndex].icon);
+      categoryTitle.textContent = placeholderBudget.mainCategories[categoryIndex].title;
+      subCategories.forEach(function (sc, i) {
+        sc.classList.add('closed');
+        sc.classList.remove('open');
+
+        if (sc.dataset.category === "".concat(categoryIndex)) {
+          sc.classList.remove('closed');
+          sc.classList.add('open');
+        }
+      });
+    }
+
+    if (categoryIndex === budgetMainCategoryLength - 1) {
+      console.log(categoryIndex);
+      subCategories.forEach(function (sc) {
+        if (Number(sc.dataset.category) === categoryIndex) {
+          sc.remove();
+        }
+      });
+      categoryIndex--;
+      categoryIcon.classList.add(placeholderBudget.mainCategories[categoryIndex].icon);
+      categoryTitle.textContent = placeholderBudget.mainCategories[categoryIndex].title;
+      subCategories.forEach(function (sc, i) {
+        sc.classList.add('closed');
+        sc.classList.remove('open');
+
+        if (sc.dataset.category === "".concat(categoryIndex)) {
+          sc.classList.remove('closed');
+          sc.classList.add('open');
+        }
+      });
+      budgetMainCategoryLength = budgetMainCategoryLength - 1;
+    }
+
     console.log(placeholderBudget.mainCategories);
   });
 };
