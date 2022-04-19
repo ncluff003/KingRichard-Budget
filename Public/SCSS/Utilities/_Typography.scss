@@ -1528,6 +1528,15 @@ html {
       }
     }
   }
+
+  &--large {
+    @extend .button;
+    &__thin {
+      @extend .button--large;
+      font-size: 2rem;
+      color: rgba($primaryColor, 0.8);
+    }
+  }
 }
 
 // USER PROFILE SECTION
@@ -2516,6 +2525,11 @@ html {
       &__number {
         @extend .form__section--page-number-display;
       }
+    }
+
+    &--update-budget {
+      @extend .form__section;
+      font-family: MADE Tommy Soft, Verdana, sans-serif;
     }
 
     &--emergency {

@@ -191,6 +191,10 @@ export class Budget {
         console.log(updateObject.mainCategories);
         Manage.updateMyBudget(options.updateObject);
       }
+
+      if (update === `Manage Categories`) {
+        console.log(`Updating Categories...`);
+      }
       console.log(`Updating...`);
     }
   }

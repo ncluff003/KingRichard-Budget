@@ -1022,6 +1022,8 @@ const _capitalize = (string) => {
 ////////////////////////////////////////
 // SUB CATEGORY CREATION PROCESS
 export const createSubCategory = (budget, index) => {
+  const mainCategoryContainer = document.querySelector('.budget-creation-container--main-categories');
+  const mainCategoryContainerTwo = document.querySelectorAll('.container--medium__half')[1];
   // Creating Sub Category Container
   const subCategory = document.createElement('section');
   // Adding Sub Category Classes
@@ -1064,79 +1066,156 @@ export const createSubCategory = (budget, index) => {
   surplusContainerTitle.classList.add('r__sub-category-controller__surplus-container__title');
   surplusContainerTitle.textContent = `Surplus?`;
 
-  // Create Surplus Switch
-  const surplusContainerSwitch = document.createElement('section');
-  surplusContainerSwitch.classList.add('sub-category-controller__surplus-container__switch');
-  surplusContainerSwitch.classList.add('r__sub-category-controller__surplus-container__switch');
+  if (mainCategoryContainer) {
+    // Create Surplus Switch
+    const surplusContainerSwitch = document.createElement('section');
+    surplusContainerSwitch.classList.add('sub-category-controller__surplus-container__switch');
+    surplusContainerSwitch.classList.add('r__sub-category-controller__surplus-container__switch');
 
-  // Create Surplus Switch Toggle
-  const surplusSwitchToggle = document.createElement('section');
-  surplusSwitchToggle.classList.add('sub-category-controller__surplus-container__switch__toggle');
-  surplusSwitchToggle.classList.add('r__sub-category-controller__surplus-container__switch__toggle');
+    // Create Surplus Switch Toggle
+    const surplusSwitchToggle = document.createElement('section');
+    surplusSwitchToggle.classList.add('sub-category-controller__surplus-container__switch__toggle');
+    surplusSwitchToggle.classList.add('r__sub-category-controller__surplus-container__switch__toggle');
 
-  const surplusSwitchToggleIcon = document.createElement('i');
-  surplusSwitchToggleIcon.classList.add('fas');
-  surplusSwitchToggleIcon.classList.add('fa-times');
-  surplusSwitchToggleIcon.classList.add('sub-category-controller__surplus-container__switch__toggle__icon');
-  surplusSwitchToggleIcon.classList.add('r__sub-category-controller__surplus-container__switch__toggle__icon');
+    const surplusSwitchToggleIcon = document.createElement('i');
+    surplusSwitchToggleIcon.classList.add('fas');
+    surplusSwitchToggleIcon.classList.add('fa-times');
+    surplusSwitchToggleIcon.classList.add('sub-category-controller__surplus-container__switch__toggle__icon');
+    surplusSwitchToggleIcon.classList.add('r__sub-category-controller__surplus-container__switch__toggle__icon');
 
-  // Make Surplus Switch -- A SWITCH
-  surplusContainerSwitch.addEventListener('click', (e) => {
-    e.preventDefault();
-    surplusContainerSwitch.classList.toggle('sub-category-controller__surplus-container__switch--switched');
-    surplusSwitchToggleIcon.classList.toggle('fa-times');
-    surplusSwitchToggleIcon.classList.toggle('fa-check');
-    const subCategoriesArray = [...document.querySelectorAll('.sub-category')];
-    const clicked = e.target;
-    const subArray = subCategoriesArray.filter((sc, i) => {
-      return Number(sc.dataset.category) === index;
+    // Make Surplus Switch -- A SWITCH
+    surplusContainerSwitch.addEventListener('click', (e) => {
+      e.preventDefault();
+      surplusContainerSwitch.classList.toggle('sub-category-controller__surplus-container__switch--switched');
+      surplusSwitchToggleIcon.classList.toggle('fa-times');
+      surplusSwitchToggleIcon.classList.toggle('fa-check');
+      const subCategoriesArray = [...document.querySelectorAll('.sub-category')];
+      const clicked = e.target;
+      const subArray = subCategoriesArray.filter((sc, i) => {
+        return Number(sc.dataset.category) === index;
+      });
+      const categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
+      const categoryTitle = subCategoryTitleElement.textContent;
+
+      budget._updateSubCategory(`Creation`, `Surplus`, { mainIndex: categoryNumber, subIndex: subArray.indexOf(clicked.closest('.sub-category')) });
     });
-    const categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
-    const categoryTitle = subCategoryTitleElement.textContent;
 
-    budget._updateSubCategory(`Creation`, `Surplus`, { mainIndex: categoryNumber, subIndex: subArray.indexOf(clicked.closest('.sub-category')) });
-  });
+    const surplusCategoryTrashIcon = document.createElement('i');
+    surplusCategoryTrashIcon.classList.add('fas');
+    surplusCategoryTrashIcon.classList.add('fa-trash-alt');
+    surplusCategoryTrashIcon.classList.add('sub-category-controller__icon');
+    surplusCategoryTrashIcon.classList.add('r__sub-category-controller__icon');
 
-  const surplusCategoryTrashIcon = document.createElement('i');
-  surplusCategoryTrashIcon.classList.add('fas');
-  surplusCategoryTrashIcon.classList.add('fa-trash-alt');
-  surplusCategoryTrashIcon.classList.add('sub-category-controller__icon');
-  surplusCategoryTrashIcon.classList.add('r__sub-category-controller__icon');
+    surplusCategoryTrashIcon.addEventListener('click', (e) => {
+      e.preventDefault();
+      const clicked = e.target;
+      const selectedSubCategory = clicked.closest('.sub-category');
 
-  surplusCategoryTrashIcon.addEventListener('click', (e) => {
-    e.preventDefault();
-    const clicked = e.target;
-    const selectedSubCategory = clicked.closest('.sub-category');
+      /////////////////////////////
+      // DELETE SUB CATEGORY
+      const subCategoriesArray = [...document.querySelectorAll('.sub-category')];
+      let subArray = subCategoriesArray.filter((sc, i) => {
+        return Number(sc.dataset.category) === index;
+      });
+      const categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
 
-    /////////////////////////////
-    // DELETE SUB CATEGORY
-    const subCategoriesArray = [...document.querySelectorAll('.sub-category')];
-    let subArray = subCategoriesArray.filter((sc, i) => {
-      return Number(sc.dataset.category) === index;
+      /////////////////////////////
+      // REMOVE DOM ELEMENT
+      selectedSubCategory.remove();
+
+      budget._deleteSubCategory(categoryNumber, subArray.indexOf(selectedSubCategory));
     });
-    const categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
+    surplusSwitchToggle.insertAdjacentElement('beforeend', surplusSwitchToggleIcon);
 
-    /////////////////////////////
-    // REMOVE DOM ELEMENT
-    selectedSubCategory.remove();
+    surplusContainerSwitch.insertAdjacentElement('beforeend', surplusSwitchToggle);
 
-    budget._deleteSubCategory(categoryNumber, subArray.indexOf(selectedSubCategory));
-  });
+    subCategorySurplusContainer.insertAdjacentElement('beforeend', surplusContainerTitle);
+    subCategorySurplusContainer.insertAdjacentElement('beforeend', surplusContainerSwitch);
 
-  surplusSwitchToggle.insertAdjacentElement('beforeend', surplusSwitchToggleIcon);
+    subCategoryController.insertAdjacentElement('beforeend', subCategorySurplusContainer);
+    subCategoryController.insertAdjacentElement('beforeend', surplusCategoryTrashIcon);
 
-  surplusContainerSwitch.insertAdjacentElement('beforeend', surplusSwitchToggle);
+    subCategoryTitleContainer.insertAdjacentElement('beforeend', subCategoryTitleElement);
 
-  subCategorySurplusContainer.insertAdjacentElement('beforeend', surplusContainerTitle);
-  subCategorySurplusContainer.insertAdjacentElement('beforeend', surplusContainerSwitch);
+    subCategory.insertAdjacentElement('beforeend', subCategoryTitleContainer);
+    subCategory.insertAdjacentElement('beforeend', subCategoryController);
+  }
 
-  subCategoryController.insertAdjacentElement('beforeend', subCategorySurplusContainer);
-  subCategoryController.insertAdjacentElement('beforeend', surplusCategoryTrashIcon);
+  if (mainCategoryContainerTwo) {
+    // Create Surplus Switch
+    const surplusContainerSwitch = document.createElement('section');
+    surplusContainerSwitch.classList.add('sub-category-controller__surplus-container__switch__alt');
+    surplusContainerSwitch.classList.add('r__sub-category-controller__surplus-container__switch__alt');
 
-  subCategoryTitleContainer.insertAdjacentElement('beforeend', subCategoryTitleElement);
+    // Create Surplus Switch Toggle
+    const surplusSwitchToggle = document.createElement('section');
+    surplusSwitchToggle.classList.add('sub-category-controller__surplus-container__switch__alt__toggle');
+    surplusSwitchToggle.classList.add('r__sub-category-controller__surplus-container__switch__alt__toggle');
 
-  subCategory.insertAdjacentElement('beforeend', subCategoryTitleContainer);
-  subCategory.insertAdjacentElement('beforeend', subCategoryController);
+    const surplusSwitchToggleIcon = document.createElement('i');
+    surplusSwitchToggleIcon.classList.add('fas');
+    surplusSwitchToggleIcon.classList.add('fa-times');
+    surplusSwitchToggleIcon.classList.add('sub-category-controller__surplus-container__switch__alt__toggle__icon');
+    surplusSwitchToggleIcon.classList.add('r__sub-category-controller__surplus-container__switch__alt__toggle__icon');
+
+    // Make Surplus Switch -- A SWITCH
+    surplusContainerSwitch.addEventListener('click', (e) => {
+      e.preventDefault();
+      surplusContainerSwitch.classList.toggle('sub-category-controller__surplus-container__switch__alt--switched');
+      surplusSwitchToggleIcon.classList.toggle('fa-times');
+      surplusSwitchToggleIcon.classList.toggle('fa-check');
+      const subCategoriesArray = [...document.querySelectorAll('.sub-category')];
+      const clicked = e.target;
+      const subArray = subCategoriesArray.filter((sc, i) => {
+        return Number(sc.dataset.category) === index;
+      });
+      const categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
+      const categoryTitle = subCategoryTitleElement.textContent;
+
+      budget._updateSubCategory(`Creation`, `Surplus`, { mainIndex: categoryNumber, subIndex: subArray.indexOf(clicked.closest('.sub-category')) });
+    });
+
+    const surplusCategoryTrashIcon = document.createElement('i');
+    surplusCategoryTrashIcon.classList.add('fas');
+    surplusCategoryTrashIcon.classList.add('fa-trash-alt');
+    surplusCategoryTrashIcon.classList.add('sub-category-controller__icon');
+    surplusCategoryTrashIcon.classList.add('r__sub-category-controller__icon');
+
+    surplusCategoryTrashIcon.addEventListener('click', (e) => {
+      e.preventDefault();
+      const clicked = e.target;
+      const selectedSubCategory = clicked.closest('.sub-category');
+
+      /////////////////////////////
+      // DELETE SUB CATEGORY
+      const subCategoriesArray = [...document.querySelectorAll('.sub-category')];
+      let subArray = subCategoriesArray.filter((sc, i) => {
+        return Number(sc.dataset.category) === index;
+      });
+      const categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
+
+      /////////////////////////////
+      // REMOVE DOM ELEMENT
+      selectedSubCategory.remove();
+
+      budget._deleteSubCategory(categoryNumber, subArray.indexOf(selectedSubCategory));
+    });
+
+    surplusSwitchToggle.insertAdjacentElement('beforeend', surplusSwitchToggleIcon);
+
+    surplusContainerSwitch.insertAdjacentElement('beforeend', surplusSwitchToggle);
+
+    subCategorySurplusContainer.insertAdjacentElement('beforeend', surplusContainerTitle);
+    subCategorySurplusContainer.insertAdjacentElement('beforeend', surplusContainerSwitch);
+
+    subCategoryController.insertAdjacentElement('beforeend', subCategorySurplusContainer);
+    subCategoryController.insertAdjacentElement('beforeend', surplusCategoryTrashIcon);
+
+    subCategoryTitleContainer.insertAdjacentElement('beforeend', subCategoryTitleElement);
+
+    subCategory.insertAdjacentElement('beforeend', subCategoryTitleContainer);
+    subCategory.insertAdjacentElement('beforeend', subCategoryController);
+  }
 
   const subCategories = document.querySelectorAll('.sub-category');
   if (subCategoryTitleInput.value === '') return;
@@ -1155,15 +1234,31 @@ export const createSubCategory = (budget, index) => {
 export const _verifySubCategory = (budget, index) => {
   /////////////////////////////////////////////////
   // INITIALIZE NEEDED VARIABLES
-  const mainCategoryTitle = document.querySelector('.budget-creation-container--sub-categories__main-category-display__category-information__text').textContent.toLowerCase();
+  const mainCategoryContainer = document.querySelector('.budget-creation-container--sub-categories');
+  const mainCategoryContainerTwo = document.querySelectorAll('.container--medium__half')[1];
+  let mainCategoryTitle, altMainCategoryTitle;
+  if (mainCategoryContainer) {
+    mainCategoryTitle = document.querySelector('.budget-creation-container--sub-categories__main-category-display__category-information__text').textContent.toLowerCase();
+  }
+  if (mainCategoryContainerTwo) {
+    altMainCategoryTitle = document.querySelector('.main-category-display__category-information__text').textContent.toLowerCase();
+  }
   let categoryIndex;
 
   ////////////////////////////////////
   // GETTING THE MAIN CATEGORY INDEX
   budget.mainCategories.forEach((mc, i) => {
-    if (mc.title.toLowerCase() === mainCategoryTitle) {
-      categoryIndex = i;
-      return categoryIndex;
+    if (mainCategoryContainer) {
+      if (mc.title.toLowerCase() === mainCategoryTitle) {
+        categoryIndex = i;
+        return categoryIndex;
+      }
+    }
+    if (mainCategoryContainerTwo) {
+      if (mc.title.toLowerCase() === altMainCategoryTitle) {
+        categoryIndex = i;
+        return categoryIndex;
+      }
     }
   });
   // Get Category Creation Input Value In Lowercase
@@ -1180,7 +1275,8 @@ export const _verifySubCategory = (budget, index) => {
   /////////////////////////////////////////////////
   // ALLOW ONLY ONE SUB CATEGORY WITH THAT NAME
   if (filtered.length >= 1) return;
-  createSubCategory(budget, index);
+  // Function below used to use 'index' instead of categoryIndex, so it will need to be double checked in the budget creation form.
+  createSubCategory(budget, categoryIndex);
 };
 
 ////////////////////////////////////////

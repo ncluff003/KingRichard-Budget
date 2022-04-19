@@ -1784,6 +1784,19 @@
       }
     }
 
+    // UPDATE BUDGET SECTION
+    &--update-budget {
+      @extend .form__section;
+      height: 10%;
+      flex-direction: row;
+      justify-content: center;
+      @include SizeAndPositioning(relative, 10%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+      background-color: rgba($colorLightestGrey, 0.3);
+      &:not(:last-of-type) {
+        margin-bottom: 0rem;
+      }
+    }
+
     // PAGE SECTION
     &--page {
       @extend .form__section;

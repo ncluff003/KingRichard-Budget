@@ -669,6 +669,20 @@
       }
     }
   }
+
+  &--large {
+    @extend .button;
+    &__thin {
+      @extend .button--large;
+      height: 75%;
+      width: 20%;
+      transform: translate(0, 0);
+      background-color: transparent;
+      border: 0.3rem solid rgba($primaryColor, 0.8);
+      border-radius: 0.9rem;
+    }
+  }
+
   &--budget-navigation {
     @extend .button;
     height: 0.75rem;

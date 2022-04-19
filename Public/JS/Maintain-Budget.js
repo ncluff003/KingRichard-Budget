@@ -16,7 +16,6 @@ const _watchCategoryForSelection = () => {
   const mainCategoryText = document.querySelector('.main-category-display__category-information__text');
   const clicked = e.target;
   mainCategories.forEach((mc) => {
-    console.log(mc.firstChild);
     if (mc.firstChild.nodeName === '#text') mc.removeChild(mc.firstChild);
   });
   let icon = clicked.closest('section').firstChild;
@@ -277,12 +276,14 @@ const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
   const mainCategoryDeleteButton = document.querySelector('.button--medium-main-category-deletion');
   const categoryIcon = document.querySelector('.main-category-display__category-information__icon');
   const categoryTitle = document.querySelector('.main-category-display__category-information__text');
-  let categoryIndex;
+  let categoryIndex, index;
   let budgetMainCategoryLength = placeholderBudget.mainCategories.length;
+  const subCategories = document.querySelectorAll('.sub-category');
+
   mainCategoryDeleteButton.addEventListener('click', (e) => {
     e.preventDefault();
     categoryIcon.classList.remove(categoryIcon.classList[3]);
-    const mainCategories = document.querySelectorAll('.main-category__alt');
+    let mainCategories = document.querySelectorAll('.main-category__alt');
     console.log(`Category Deleted.`);
     placeholderBudget.mainCategories.forEach((mc) => {
       if (mc.title === categoryTitle.textContent) {
@@ -295,7 +296,10 @@ const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
         });
       }
     });
-    const subCategories = document.querySelectorAll('.sub-category');
+    mainCategories = document.querySelectorAll('.main-category__alt');
+    mainCategories.forEach((mc, i) => {
+      mc.dataset.category = i;
+    });
     if (categoryIndex === 0) {
       // GLITCH: CLICKING THE MAIN CATEGORIES ON THE LEFT MAKES ALL SUB CATEGORIES GO WONKY.
       subCategories.forEach((sc) => {
@@ -308,9 +312,10 @@ const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
       });
 
       // CODE BELOW COULD BE PUT INTO A FUNCTION TO FOLLOW D.R.Y. PRINCIPLE.
-
-      categoryIcon.classList.add(placeholderBudget.mainCategories[categoryIndex].icon);
-      categoryTitle.textContent = placeholderBudget.mainCategories[categoryIndex].title;
+      if (placeholderBudget.mainCategories[categoryIndex]) {
+        categoryIcon.classList.add(placeholderBudget.mainCategories[categoryIndex].icon);
+        categoryTitle.textContent = placeholderBudget.mainCategories[categoryIndex].title;
+      }
       subCategories.forEach((sc, i) => {
         sc.classList.add('closed');
         sc.classList.remove('open');
@@ -353,9 +358,14 @@ const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
           sc.remove();
         }
       });
+      if (placeholderBudget.mainCategories.length === 0) {
+        categoryTitle.textContent = ``;
+      }
       categoryIndex--;
-      categoryIcon.classList.add(placeholderBudget.mainCategories[categoryIndex].icon);
-      categoryTitle.textContent = placeholderBudget.mainCategories[categoryIndex].title;
+      if (placeholderBudget.mainCategories[categoryIndex]) {
+        categoryIcon.classList.add(placeholderBudget.mainCategories[categoryIndex].icon);
+        categoryTitle.textContent = placeholderBudget.mainCategories[categoryIndex].title;
+      }
       subCategories.forEach((sc, i) => {
         sc.classList.add('closed');
         sc.classList.remove('open');
@@ -367,6 +377,64 @@ const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
       budgetMainCategoryLength = budgetMainCategoryLength - 1;
     }
     console.log(placeholderBudget.mainCategories);
+  });
+
+  // ADJUST: WE NEED TO MAKE SURE IT IS POSSIBLE FOR THE EXISTING SUB CATEGORIES TO BE REMOVED AS WELL AS MADE INTO SURPLUS AS WELL, IF NEEDED.
+  subCategories.forEach((sc, i) => {
+    const surplusSwitch = sc.firstChild.nextSibling.firstChild.nextSibling.firstChild.nextSibling;
+    surplusSwitch.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      // GET TARGET OF CLICK
+      const clicked = e.target;
+      surplusSwitch.classList.toggle('sub-category-controller__surplus-container__switch__alt--switched');
+      surplusSwitch.firstChild.firstChild.classList.toggle('fa-times');
+      surplusSwitch.firstChild.firstChild.classList.toggle('fa-check');
+      const categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
+      console.log(`I'm The Surplus Switch!`, categoryNumber);
+
+      placeholderBudget.mainCategories.forEach((mc, i) => {
+        if (mc.title === categoryTitle.textContent) index = i;
+      });
+
+      const subCategoriesArray = [...document.querySelectorAll('.sub-category')];
+      const subArray = subCategoriesArray.filter((sc, i) => {
+        return Number(sc.dataset.category) === index; // This is the Main Category's Index.
+      });
+      placeholderBudget._updateSubCategory(`Creation`, `Surplus`, { mainIndex: categoryNumber, subIndex: subArray.indexOf(clicked.closest('.sub-category')) });
+    });
+    const surplusCategoryTrashIcon = surplusSwitch.parentElement.nextSibling;
+
+    surplusCategoryTrashIcon.addEventListener('click', (e) => {
+      e.preventDefault();
+      const clicked = e.target;
+      const selectedSubCategory = clicked.closest('.sub-category');
+
+      placeholderBudget.mainCategories.forEach((mc, i) => {
+        if (mc.title === categoryTitle.textContent) index = i;
+      });
+
+      /////////////////////////////
+      // DELETE SUB CATEGORY
+      const subCategoriesArray = [...document.querySelectorAll('.sub-category')];
+      let subArray = subCategoriesArray.filter((sc, i) => {
+        return Number(sc.dataset.category) === index;
+      });
+      const categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
+
+      /////////////////////////////
+      // REMOVE DOM ELEMENT
+      selectedSubCategory.remove();
+
+      placeholderBudget._deleteSubCategory(categoryNumber, subArray.indexOf(selectedSubCategory));
+    });
+  });
+
+  const updateCategoryButton = document.querySelectorAll('.button--large__thin')[0];
+  updateCategoryButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log(`Updating...`);
+    placeholderBudget._updateBudget(`Update`, `Manage Categories`, {});
   });
 };
 
@@ -390,7 +458,7 @@ const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
   if (editCategoryGoalsContainer) {
     const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
     const timingFunctionContainer = document.querySelector('.timing-container');
-    const editCategoryGoalsSubmit = document.querySelector('.budget-container__update-budget-categories-button-container__button');
+    const editCategoryGoalsSubmit = document.querySelector('.button--large__thin');
     // On load, retrieve the proper timings and dates for the correct sub-categories.
 
     const mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');

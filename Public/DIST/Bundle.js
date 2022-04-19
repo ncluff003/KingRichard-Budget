@@ -4896,7 +4896,9 @@ var _capitalize = function _capitalize(string) {
 
 
 var createSubCategory = function createSubCategory(budget, index) {
-  // Creating Sub Category Container
+  var mainCategoryContainer = document.querySelector('.budget-creation-container--main-categories');
+  var mainCategoryContainerTwo = document.querySelectorAll('.container--medium__half')[1]; // Creating Sub Category Container
+
   var subCategory = document.createElement('section'); // Adding Sub Category Classes
 
   subCategory.classList.add('sub-category');
@@ -4929,73 +4931,169 @@ var createSubCategory = function createSubCategory(budget, index) {
   var surplusContainerTitle = document.createElement('p');
   surplusContainerTitle.classList.add('sub-category-controller__surplus-container__title');
   surplusContainerTitle.classList.add('r__sub-category-controller__surplus-container__title');
-  surplusContainerTitle.textContent = "Surplus?"; // Create Surplus Switch
+  surplusContainerTitle.textContent = "Surplus?";
 
-  var surplusContainerSwitch = document.createElement('section');
-  surplusContainerSwitch.classList.add('sub-category-controller__surplus-container__switch');
-  surplusContainerSwitch.classList.add('r__sub-category-controller__surplus-container__switch'); // Create Surplus Switch Toggle
+  if (mainCategoryContainer) {
+    // Create Surplus Switch
+    var surplusContainerSwitch = document.createElement('section');
+    surplusContainerSwitch.classList.add('sub-category-controller__surplus-container__switch');
+    surplusContainerSwitch.classList.add('r__sub-category-controller__surplus-container__switch'); // Create Surplus Switch Toggle
 
-  var surplusSwitchToggle = document.createElement('section');
-  surplusSwitchToggle.classList.add('sub-category-controller__surplus-container__switch__toggle');
-  surplusSwitchToggle.classList.add('r__sub-category-controller__surplus-container__switch__toggle');
-  var surplusSwitchToggleIcon = document.createElement('i');
-  surplusSwitchToggleIcon.classList.add('fas');
-  surplusSwitchToggleIcon.classList.add('fa-times');
-  surplusSwitchToggleIcon.classList.add('sub-category-controller__surplus-container__switch__toggle__icon');
-  surplusSwitchToggleIcon.classList.add('r__sub-category-controller__surplus-container__switch__toggle__icon'); // Make Surplus Switch -- A SWITCH
+    var surplusSwitchToggle = document.createElement('section');
+    surplusSwitchToggle.classList.add('sub-category-controller__surplus-container__switch__toggle');
+    surplusSwitchToggle.classList.add('r__sub-category-controller__surplus-container__switch__toggle');
+    var surplusSwitchToggleIcon = document.createElement('i');
+    surplusSwitchToggleIcon.classList.add('fas');
+    surplusSwitchToggleIcon.classList.add('fa-times');
+    surplusSwitchToggleIcon.classList.add('sub-category-controller__surplus-container__switch__toggle__icon');
+    surplusSwitchToggleIcon.classList.add('r__sub-category-controller__surplus-container__switch__toggle__icon'); // Make Surplus Switch -- A SWITCH
 
-  surplusContainerSwitch.addEventListener('click', function (e) {
-    e.preventDefault();
-    surplusContainerSwitch.classList.toggle('sub-category-controller__surplus-container__switch--switched');
-    surplusSwitchToggleIcon.classList.toggle('fa-times');
-    surplusSwitchToggleIcon.classList.toggle('fa-check');
+    surplusContainerSwitch.addEventListener('click', function (e) {
+      e.preventDefault();
+      surplusContainerSwitch.classList.toggle('sub-category-controller__surplus-container__switch--switched');
+      surplusSwitchToggleIcon.classList.toggle('fa-times');
+      surplusSwitchToggleIcon.classList.toggle('fa-check');
 
-    var subCategoriesArray = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(document.querySelectorAll('.sub-category'));
+      var subCategoriesArray = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(document.querySelectorAll('.sub-category'));
 
-    var clicked = e.target;
-    var subArray = subCategoriesArray.filter(function (sc, i) {
-      return Number(sc.dataset.category) === index;
+      var clicked = e.target;
+      var subArray = subCategoriesArray.filter(function (sc, i) {
+        return Number(sc.dataset.category) === index;
+      });
+      var categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
+      var categoryTitle = subCategoryTitleElement.textContent;
+
+      budget._updateSubCategory("Creation", "Surplus", {
+        mainIndex: categoryNumber,
+        subIndex: subArray.indexOf(clicked.closest('.sub-category'))
+      });
     });
-    var categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
-    var categoryTitle = subCategoryTitleElement.textContent;
+    var surplusCategoryTrashIcon = document.createElement('i');
+    surplusCategoryTrashIcon.classList.add('fas');
+    surplusCategoryTrashIcon.classList.add('fa-trash-alt');
+    surplusCategoryTrashIcon.classList.add('sub-category-controller__icon');
+    surplusCategoryTrashIcon.classList.add('r__sub-category-controller__icon');
+    surplusCategoryTrashIcon.addEventListener('click', function (e) {
+      e.preventDefault();
+      var clicked = e.target;
+      var selectedSubCategory = clicked.closest('.sub-category'); /////////////////////////////
+      // DELETE SUB CATEGORY
 
-    budget._updateSubCategory("Creation", "Surplus", {
-      mainIndex: categoryNumber,
-      subIndex: subArray.indexOf(clicked.closest('.sub-category'))
+      var subCategoriesArray = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(document.querySelectorAll('.sub-category'));
+
+      var subArray = subCategoriesArray.filter(function (sc, i) {
+        return Number(sc.dataset.category) === index;
+      });
+      var categoryNumber = Number(clicked.closest('.sub-category').dataset.category); /////////////////////////////
+      // REMOVE DOM ELEMENT
+
+      selectedSubCategory.remove();
+
+      budget._deleteSubCategory(categoryNumber, subArray.indexOf(selectedSubCategory));
     });
-  });
-  var surplusCategoryTrashIcon = document.createElement('i');
-  surplusCategoryTrashIcon.classList.add('fas');
-  surplusCategoryTrashIcon.classList.add('fa-trash-alt');
-  surplusCategoryTrashIcon.classList.add('sub-category-controller__icon');
-  surplusCategoryTrashIcon.classList.add('r__sub-category-controller__icon');
-  surplusCategoryTrashIcon.addEventListener('click', function (e) {
-    e.preventDefault();
-    var clicked = e.target;
-    var selectedSubCategory = clicked.closest('.sub-category'); /////////////////////////////
-    // DELETE SUB CATEGORY
+    surplusSwitchToggle.insertAdjacentElement('beforeend', surplusSwitchToggleIcon);
+    surplusContainerSwitch.insertAdjacentElement('beforeend', surplusSwitchToggle);
+    subCategorySurplusContainer.insertAdjacentElement('beforeend', surplusContainerTitle);
+    subCategorySurplusContainer.insertAdjacentElement('beforeend', surplusContainerSwitch);
+    subCategoryController.insertAdjacentElement('beforeend', subCategorySurplusContainer);
+    subCategoryController.insertAdjacentElement('beforeend', surplusCategoryTrashIcon);
+    subCategoryTitleContainer.insertAdjacentElement('beforeend', subCategoryTitleElement);
+    subCategory.insertAdjacentElement('beforeend', subCategoryTitleContainer);
+    subCategory.insertAdjacentElement('beforeend', subCategoryController);
+  }
 
-    var subCategoriesArray = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(document.querySelectorAll('.sub-category'));
+  if (mainCategoryContainerTwo) {
+    // Create Surplus Switch
+    var _surplusContainerSwitch = document.createElement('section');
 
-    var subArray = subCategoriesArray.filter(function (sc, i) {
-      return Number(sc.dataset.category) === index;
+    _surplusContainerSwitch.classList.add('sub-category-controller__surplus-container__switch__alt');
+
+    _surplusContainerSwitch.classList.add('r__sub-category-controller__surplus-container__switch__alt'); // Create Surplus Switch Toggle
+
+
+    var _surplusSwitchToggle = document.createElement('section');
+
+    _surplusSwitchToggle.classList.add('sub-category-controller__surplus-container__switch__alt__toggle');
+
+    _surplusSwitchToggle.classList.add('r__sub-category-controller__surplus-container__switch__alt__toggle');
+
+    var _surplusSwitchToggleIcon = document.createElement('i');
+
+    _surplusSwitchToggleIcon.classList.add('fas');
+
+    _surplusSwitchToggleIcon.classList.add('fa-times');
+
+    _surplusSwitchToggleIcon.classList.add('sub-category-controller__surplus-container__switch__alt__toggle__icon');
+
+    _surplusSwitchToggleIcon.classList.add('r__sub-category-controller__surplus-container__switch__alt__toggle__icon'); // Make Surplus Switch -- A SWITCH
+
+
+    _surplusContainerSwitch.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      _surplusContainerSwitch.classList.toggle('sub-category-controller__surplus-container__switch__alt--switched');
+
+      _surplusSwitchToggleIcon.classList.toggle('fa-times');
+
+      _surplusSwitchToggleIcon.classList.toggle('fa-check');
+
+      var subCategoriesArray = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(document.querySelectorAll('.sub-category'));
+
+      var clicked = e.target;
+      var subArray = subCategoriesArray.filter(function (sc, i) {
+        return Number(sc.dataset.category) === index;
+      });
+      var categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
+      var categoryTitle = subCategoryTitleElement.textContent;
+
+      budget._updateSubCategory("Creation", "Surplus", {
+        mainIndex: categoryNumber,
+        subIndex: subArray.indexOf(clicked.closest('.sub-category'))
+      });
     });
-    var categoryNumber = Number(clicked.closest('.sub-category').dataset.category); /////////////////////////////
-    // REMOVE DOM ELEMENT
 
-    selectedSubCategory.remove();
+    var _surplusCategoryTrashIcon = document.createElement('i');
 
-    budget._deleteSubCategory(categoryNumber, subArray.indexOf(selectedSubCategory));
-  });
-  surplusSwitchToggle.insertAdjacentElement('beforeend', surplusSwitchToggleIcon);
-  surplusContainerSwitch.insertAdjacentElement('beforeend', surplusSwitchToggle);
-  subCategorySurplusContainer.insertAdjacentElement('beforeend', surplusContainerTitle);
-  subCategorySurplusContainer.insertAdjacentElement('beforeend', surplusContainerSwitch);
-  subCategoryController.insertAdjacentElement('beforeend', subCategorySurplusContainer);
-  subCategoryController.insertAdjacentElement('beforeend', surplusCategoryTrashIcon);
-  subCategoryTitleContainer.insertAdjacentElement('beforeend', subCategoryTitleElement);
-  subCategory.insertAdjacentElement('beforeend', subCategoryTitleContainer);
-  subCategory.insertAdjacentElement('beforeend', subCategoryController);
+    _surplusCategoryTrashIcon.classList.add('fas');
+
+    _surplusCategoryTrashIcon.classList.add('fa-trash-alt');
+
+    _surplusCategoryTrashIcon.classList.add('sub-category-controller__icon');
+
+    _surplusCategoryTrashIcon.classList.add('r__sub-category-controller__icon');
+
+    _surplusCategoryTrashIcon.addEventListener('click', function (e) {
+      e.preventDefault();
+      var clicked = e.target;
+      var selectedSubCategory = clicked.closest('.sub-category'); /////////////////////////////
+      // DELETE SUB CATEGORY
+
+      var subCategoriesArray = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(document.querySelectorAll('.sub-category'));
+
+      var subArray = subCategoriesArray.filter(function (sc, i) {
+        return Number(sc.dataset.category) === index;
+      });
+      var categoryNumber = Number(clicked.closest('.sub-category').dataset.category); /////////////////////////////
+      // REMOVE DOM ELEMENT
+
+      selectedSubCategory.remove();
+
+      budget._deleteSubCategory(categoryNumber, subArray.indexOf(selectedSubCategory));
+    });
+
+    _surplusSwitchToggle.insertAdjacentElement('beforeend', _surplusSwitchToggleIcon);
+
+    _surplusContainerSwitch.insertAdjacentElement('beforeend', _surplusSwitchToggle);
+
+    subCategorySurplusContainer.insertAdjacentElement('beforeend', surplusContainerTitle);
+    subCategorySurplusContainer.insertAdjacentElement('beforeend', _surplusContainerSwitch);
+    subCategoryController.insertAdjacentElement('beforeend', subCategorySurplusContainer);
+    subCategoryController.insertAdjacentElement('beforeend', _surplusCategoryTrashIcon);
+    subCategoryTitleContainer.insertAdjacentElement('beforeend', subCategoryTitleElement);
+    subCategory.insertAdjacentElement('beforeend', subCategoryTitleContainer);
+    subCategory.insertAdjacentElement('beforeend', subCategoryController);
+  }
+
   var subCategories = document.querySelectorAll('.sub-category');
   if (subCategoryTitleInput.value === '') return;
 
@@ -5014,14 +5112,34 @@ var createSubCategory = function createSubCategory(budget, index) {
 var _verifySubCategory = function _verifySubCategory(budget, index) {
   /////////////////////////////////////////////////
   // INITIALIZE NEEDED VARIABLES
-  var mainCategoryTitle = document.querySelector('.budget-creation-container--sub-categories__main-category-display__category-information__text').textContent.toLowerCase();
+  var mainCategoryContainer = document.querySelector('.budget-creation-container--sub-categories');
+  var mainCategoryContainerTwo = document.querySelectorAll('.container--medium__half')[1];
+  var mainCategoryTitle, altMainCategoryTitle;
+
+  if (mainCategoryContainer) {
+    mainCategoryTitle = document.querySelector('.budget-creation-container--sub-categories__main-category-display__category-information__text').textContent.toLowerCase();
+  }
+
+  if (mainCategoryContainerTwo) {
+    altMainCategoryTitle = document.querySelector('.main-category-display__category-information__text').textContent.toLowerCase();
+  }
+
   var categoryIndex; ////////////////////////////////////
   // GETTING THE MAIN CATEGORY INDEX
 
   budget.mainCategories.forEach(function (mc, i) {
-    if (mc.title.toLowerCase() === mainCategoryTitle) {
-      categoryIndex = i;
-      return categoryIndex;
+    if (mainCategoryContainer) {
+      if (mc.title.toLowerCase() === mainCategoryTitle) {
+        categoryIndex = i;
+        return categoryIndex;
+      }
+    }
+
+    if (mainCategoryContainerTwo) {
+      if (mc.title.toLowerCase() === altMainCategoryTitle) {
+        categoryIndex = i;
+        return categoryIndex;
+      }
     }
   }); // Get Category Creation Input Value In Lowercase
 
@@ -5035,8 +5153,9 @@ var _verifySubCategory = function _verifySubCategory(budget, index) {
   }); /////////////////////////////////////////////////
   // ALLOW ONLY ONE SUB CATEGORY WITH THAT NAME
 
-  if (filtered.length >= 1) return;
-  createSubCategory(budget, index);
+  if (filtered.length >= 1) return; // Function below used to use 'index' instead of categoryIndex, so it will need to be double checked in the budget creation form.
+
+  createSubCategory(budget, categoryIndex);
 }; ////////////////////////////////////////
 // MAIN CATEGORY DELETION PROCESS
 
@@ -7196,6 +7315,10 @@ var Budget = /*#__PURE__*/function () {
           _Manage_Budget__WEBPACK_IMPORTED_MODULE_3__.updateMyBudget(options.updateObject);
         }
 
+        if (update === "Manage Categories") {
+          console.log("Updating Categories...");
+        }
+
         console.log("Updating...");
       }
     }
@@ -7788,15 +7911,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "updateBudget": () => (/* binding */ updateBudget)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
-/* harmony import */ var _FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FrontEnd-Calendar */ "./Public/JS/FrontEnd-Calendar.js");
-/* harmony import */ var _Manage_Budget__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Manage-Budget */ "./Public/JS/Manage-Budget.js");
-/* harmony import */ var _Budget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Budget */ "./Public/JS/Budget.js");
-/* harmony import */ var _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Budget-Creation */ "./Public/JS/Budget-Creation.js");
-/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
+/* harmony import */ var _FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./FrontEnd-Calendar */ "./Public/JS/FrontEnd-Calendar.js");
+/* harmony import */ var _Manage_Budget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Manage-Budget */ "./Public/JS/Manage-Budget.js");
+/* harmony import */ var _Budget__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Budget */ "./Public/JS/Budget.js");
+/* harmony import */ var _Budget_Creation__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Budget-Creation */ "./Public/JS/Budget-Creation.js");
+/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
 
 
 
@@ -7815,7 +7940,6 @@ var _watchCategoryForSelection = function _watchCategoryForSelection() {
   var mainCategoryText = document.querySelector('.main-category-display__category-information__text');
   var clicked = e.target;
   mainCategories.forEach(function (mc) {
-    console.log(mc.firstChild);
     if (mc.firstChild.nodeName === '#text') mc.removeChild(mc.firstChild);
   });
   var icon = clicked.closest('section').firstChild;
@@ -7853,7 +7977,7 @@ var watchForBudgetDeletion = function watchForBudgetDeletion() {
   var userId = window.location.pathname.split('/')[3];
   budgetDeleteButton.addEventListener('click', function (e) {
     e.preventDefault();
-    _Manage_Budget__WEBPACK_IMPORTED_MODULE_4__.deleteMyBudget(budgetId, userId);
+    _Manage_Budget__WEBPACK_IMPORTED_MODULE_5__.deleteMyBudget(budgetId, userId);
   });
 };
 
@@ -7864,7 +7988,7 @@ var watchForBudgetExit = function watchForBudgetExit() {
   var userId = window.location.pathname.split('/')[3];
   exitButton.addEventListener('click', function (e) {
     e.preventDefault();
-    _Manage_Budget__WEBPACK_IMPORTED_MODULE_4__.exitBudget(userId);
+    _Manage_Budget__WEBPACK_IMPORTED_MODULE_5__.exitBudget(userId);
   });
 };
 
@@ -7962,7 +8086,7 @@ var getSubCategoryTiming = function getSubCategoryTiming(budget, category) {
 
     var endDigit = Number(date.getDate().toString().split('')[date.getDate().toString().length - 1]);
     var dayEnding;
-    dayEnding = _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__.calculateDayEnding(endDigit, dayEnding, date);
+    dayEnding = _Budget_Creation__WEBPACK_IMPORTED_MODULE_7__.calculateDayEnding(endDigit, dayEnding, date);
     console.log(_day, endDigit, dayEnding);
     wording = "Due ".concat(days[date.getDay()], ", the ").concat(_day).concat(dayEnding, " of ").concat(months[date.getMonth()], ".");
     return wording;
@@ -7987,8 +8111,8 @@ var getSubCategoryTiming = function getSubCategoryTiming(budget, category) {
     var _endDigit = Number(dayOne.getDate().toString().split('')[dayOne.getDate().toString().length - 1]);
 
     var endDigitTwo = Number(dayTwo.getDate().toString().split('')[dayTwo.getDate().toString().length - 1]);
-    _dayEnding = _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__.calculateDayEnding(_endDigit, _dayEnding, dayOne.getDate());
-    dayEndingTwo = _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__.calculateDayEnding(_endDigit, dayEndingTwo, dayTwo.getDate());
+    _dayEnding = _Budget_Creation__WEBPACK_IMPORTED_MODULE_7__.calculateDayEnding(_endDigit, _dayEnding, dayOne.getDate());
+    dayEndingTwo = _Budget_Creation__WEBPACK_IMPORTED_MODULE_7__.calculateDayEnding(_endDigit, dayEndingTwo, dayTwo.getDate());
     console.log(dayOne, dayTwo, _endDigit, endDigitTwo, _dayEnding, dayEndingTwo);
     wording = "Due the ".concat(dayOne.getDate()).concat(_dayEnding, " & ").concat(dayTwo.getDate()).concat(dayEndingTwo, ", of ").concat(months[dayOne.getMonth()]);
     console.log(wording);
@@ -8006,7 +8130,7 @@ var getSubCategoryTiming = function getSubCategoryTiming(budget, category) {
 
     var _dayEnding2;
 
-    _dayEnding2 = _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__.calculateDayEnding(_endDigit2, _dayEnding2, _date);
+    _dayEnding2 = _Budget_Creation__WEBPACK_IMPORTED_MODULE_7__.calculateDayEnding(_endDigit2, _dayEnding2, _date);
     console.log(_day2, _endDigit2, _dayEnding2);
     wording = "Due ".concat(days[_date.getDay()], ", the ").concat(_day2).concat(_dayEnding2, " of ").concat(months[_date.getMonth()], ".");
     return wording;
@@ -8086,8 +8210,9 @@ var _watchForBudgetCategoryUpdates = function _watchForBudgetCategoryUpdates(bud
   var mainCategoryDeleteButton = document.querySelector('.button--medium-main-category-deletion');
   var categoryIcon = document.querySelector('.main-category-display__category-information__icon');
   var categoryTitle = document.querySelector('.main-category-display__category-information__text');
-  var categoryIndex;
+  var categoryIndex, index;
   var budgetMainCategoryLength = placeholderBudget.mainCategories.length;
+  var subCategories = document.querySelectorAll('.sub-category');
   mainCategoryDeleteButton.addEventListener('click', function (e) {
     e.preventDefault();
     categoryIcon.classList.remove(categoryIcon.classList[3]);
@@ -8104,7 +8229,10 @@ var _watchForBudgetCategoryUpdates = function _watchForBudgetCategoryUpdates(bud
         });
       }
     });
-    var subCategories = document.querySelectorAll('.sub-category');
+    mainCategories = document.querySelectorAll('.main-category__alt');
+    mainCategories.forEach(function (mc, i) {
+      mc.dataset.category = i;
+    });
 
     if (categoryIndex === 0) {
       // GLITCH: CLICKING THE MAIN CATEGORIES ON THE LEFT MAKES ALL SUB CATEGORIES GO WONKY.
@@ -8118,8 +8246,11 @@ var _watchForBudgetCategoryUpdates = function _watchForBudgetCategoryUpdates(bud
         }
       }); // CODE BELOW COULD BE PUT INTO A FUNCTION TO FOLLOW D.R.Y. PRINCIPLE.
 
-      categoryIcon.classList.add(placeholderBudget.mainCategories[categoryIndex].icon);
-      categoryTitle.textContent = placeholderBudget.mainCategories[categoryIndex].title;
+      if (placeholderBudget.mainCategories[categoryIndex]) {
+        categoryIcon.classList.add(placeholderBudget.mainCategories[categoryIndex].icon);
+        categoryTitle.textContent = placeholderBudget.mainCategories[categoryIndex].title;
+      }
+
       subCategories.forEach(function (sc, i) {
         sc.classList.add('closed');
         sc.classList.remove('open');
@@ -8165,9 +8296,18 @@ var _watchForBudgetCategoryUpdates = function _watchForBudgetCategoryUpdates(bud
           sc.remove();
         }
       });
+
+      if (placeholderBudget.mainCategories.length === 0) {
+        categoryTitle.textContent = "";
+      }
+
       categoryIndex--;
-      categoryIcon.classList.add(placeholderBudget.mainCategories[categoryIndex].icon);
-      categoryTitle.textContent = placeholderBudget.mainCategories[categoryIndex].title;
+
+      if (placeholderBudget.mainCategories[categoryIndex]) {
+        categoryIcon.classList.add(placeholderBudget.mainCategories[categoryIndex].icon);
+        categoryTitle.textContent = placeholderBudget.mainCategories[categoryIndex].title;
+      }
+
       subCategories.forEach(function (sc, i) {
         sc.classList.add('closed');
         sc.classList.remove('open');
@@ -8181,6 +8321,63 @@ var _watchForBudgetCategoryUpdates = function _watchForBudgetCategoryUpdates(bud
     }
 
     console.log(placeholderBudget.mainCategories);
+  }); // ADJUST: WE NEED TO MAKE SURE IT IS POSSIBLE FOR THE EXISTING SUB CATEGORIES TO BE REMOVED AS WELL AS MADE INTO SURPLUS AS WELL, IF NEEDED.
+
+  subCategories.forEach(function (sc, i) {
+    var surplusSwitch = sc.firstChild.nextSibling.firstChild.nextSibling.firstChild.nextSibling;
+    surplusSwitch.addEventListener('click', function (e) {
+      e.preventDefault(); // GET TARGET OF CLICK
+
+      var clicked = e.target;
+      surplusSwitch.classList.toggle('sub-category-controller__surplus-container__switch__alt--switched');
+      surplusSwitch.firstChild.firstChild.classList.toggle('fa-times');
+      surplusSwitch.firstChild.firstChild.classList.toggle('fa-check');
+      var categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
+      console.log("I'm The Surplus Switch!", categoryNumber);
+      placeholderBudget.mainCategories.forEach(function (mc, i) {
+        if (mc.title === categoryTitle.textContent) index = i;
+      });
+
+      var subCategoriesArray = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(document.querySelectorAll('.sub-category'));
+
+      var subArray = subCategoriesArray.filter(function (sc, i) {
+        return Number(sc.dataset.category) === index; // This is the Main Category's Index.
+      });
+
+      placeholderBudget._updateSubCategory("Creation", "Surplus", {
+        mainIndex: categoryNumber,
+        subIndex: subArray.indexOf(clicked.closest('.sub-category'))
+      });
+    });
+    var surplusCategoryTrashIcon = surplusSwitch.parentElement.nextSibling;
+    surplusCategoryTrashIcon.addEventListener('click', function (e) {
+      e.preventDefault();
+      var clicked = e.target;
+      var selectedSubCategory = clicked.closest('.sub-category');
+      placeholderBudget.mainCategories.forEach(function (mc, i) {
+        if (mc.title === categoryTitle.textContent) index = i;
+      }); /////////////////////////////
+      // DELETE SUB CATEGORY
+
+      var subCategoriesArray = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(document.querySelectorAll('.sub-category'));
+
+      var subArray = subCategoriesArray.filter(function (sc, i) {
+        return Number(sc.dataset.category) === index;
+      });
+      var categoryNumber = Number(clicked.closest('.sub-category').dataset.category); /////////////////////////////
+      // REMOVE DOM ELEMENT
+
+      selectedSubCategory.remove();
+
+      placeholderBudget._deleteSubCategory(categoryNumber, subArray.indexOf(selectedSubCategory));
+    });
+  });
+  var updateCategoryButton = document.querySelectorAll('.button--large__thin')[0];
+  updateCategoryButton.addEventListener('click', function (e) {
+    e.preventDefault();
+    console.log("Updating...");
+
+    placeholderBudget._updateBudget("Update", "Manage Categories", {});
   });
 };
 
@@ -8192,11 +8389,11 @@ var _watchManageCategories = function _watchManageCategories(budget, placeholder
 
   if (manageCategoryContainer) {
     console.log("Here we will manage your budget categories! \uD83D\uDE04");
-    _Budget_Categories__WEBPACK_IMPORTED_MODULE_7__.createCategories(icon, index);
+    _Budget_Categories__WEBPACK_IMPORTED_MODULE_8__.createCategories(icon, index);
 
-    _Budget_Categories__WEBPACK_IMPORTED_MODULE_7__._watchCreateCategoryButton(icon, placeholderBudget);
+    _Budget_Categories__WEBPACK_IMPORTED_MODULE_8__._watchCreateCategoryButton(icon, placeholderBudget);
 
-    _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__.setupSubCategoryCreation(placeholderBudget, subCategoryIndex);
+    _Budget_Creation__WEBPACK_IMPORTED_MODULE_7__.setupSubCategoryCreation(placeholderBudget, subCategoryIndex);
 
     _watchForMainCategorySelection(budget, placeholderBudget, user);
 
@@ -8210,7 +8407,7 @@ var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placehold
   if (editCategoryGoalsContainer) {
     var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
     var timingFunctionContainer = document.querySelector('.timing-container');
-    var editCategoryGoalsSubmit = document.querySelector('.budget-container__update-budget-categories-button-container__button'); // On load, retrieve the proper timings and dates for the correct sub-categories.
+    var editCategoryGoalsSubmit = document.querySelector('.button--large__thin'); // On load, retrieve the proper timings and dates for the correct sub-categories.
 
     var mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
     var allCategories = [];
@@ -8226,10 +8423,10 @@ var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placehold
         if (subCategories[i].firstChild.nextSibling.firstChild.nextSibling) subCategories[i].firstChild.nextSibling.firstChild.nextSibling.textContent = timing;
       }
     });
-    _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__.setupTimingFunctionContainer(timingFunctionContainer);
+    _Budget_Creation__WEBPACK_IMPORTED_MODULE_7__.setupTimingFunctionContainer(timingFunctionContainer);
     var clickedItem, selectedTiming;
     var subCategoryIndex = 0;
-    _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__.watchForSettingTiming(placeholderBudget, subCategoryIndex, clickedItem, selectedTiming, "Full Budget");
+    _Budget_Creation__WEBPACK_IMPORTED_MODULE_7__.watchForSettingTiming(placeholderBudget, subCategoryIndex, clickedItem, selectedTiming, "Full Budget");
     console.log(budget, user);
     var money = new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -8772,7 +8969,7 @@ var _setupCurrentMonth = function _setupCurrentMonth(budget) {
 };
 
 var _setupBillCalendar = function _setupBillCalendar() {
-  var calendar = _FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_3__.myCalendar;
+  var calendar = _FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_4__.myCalendar;
   var currentMonth = calendar.getMonth();
   var currentMonthIndex = calendar.getMonthIndex();
   var currentYear = calendar.getYear();
@@ -9182,9 +9379,9 @@ var setupDashboard = function setupDashboard(user, budget, placeholderBudget) {
 };
 
 var _watchBudget = /*#__PURE__*/function () {
-  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee() {
     var userInfo, user, currentBudget, budget;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
@@ -9192,7 +9389,7 @@ var _watchBudget = /*#__PURE__*/function () {
             // GET USER
 
             _context.next = 3;
-            return _Update_User__WEBPACK_IMPORTED_MODULE_2__.getSomePersonals();
+            return _Update_User__WEBPACK_IMPORTED_MODULE_3__.getSomePersonals();
 
           case 3:
             userInfo = _context.sent;
@@ -9202,7 +9399,7 @@ var _watchBudget = /*#__PURE__*/function () {
             user.budgets.forEach(function (b) {
               if (b._id === window.location.pathname.split('/')[5]) currentBudget = b;
             });
-            budget = _Budget__WEBPACK_IMPORTED_MODULE_5__.startToCreate();
+            budget = _Budget__WEBPACK_IMPORTED_MODULE_6__.startToCreate();
 
             budget._buildPlaceHolderBudget(currentBudget, user);
 

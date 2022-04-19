@@ -1112,12 +1112,12 @@ html {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
 }
 
-.button, .button--medium, .button--medium-main-category-deletion, .button--medium-square, .button--borderless, .button--borderless-narrow, .button--timing-button-submit, .button--small, .button--small-container-header, .button--small-create-main-category, .button--extra-extra-small, .button--extra-extra-small__wide, .button--transaction-button {
+.button, .button--large, .button--large__thin, .button--medium, .button--medium-main-category-deletion, .button--medium-square, .button--borderless, .button--borderless-narrow, .button--timing-button-submit, .button--small, .button--small-container-header, .button--small-create-main-category, .button--extra-extra-small, .button--extra-extra-small__wide, .button--transaction-button {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   font-size: 2.2rem;
   color: rgba(130, 42, 186, 0.75);
 }
-.button:hover, .button--medium:hover, .button--medium-main-category-deletion:hover, .button--medium-square:hover, .button--borderless:hover, .button--borderless-narrow:hover, .button--timing-button-submit:hover, .button--small:hover, .button--small-container-header:hover, .button--small-create-main-category:hover, .button--extra-extra-small:hover, .button--extra-extra-small__wide:hover, .button--transaction-button:hover {
+.button:hover, .button--large:hover, .button--large__thin:hover, .button--medium:hover, .button--medium-main-category-deletion:hover, .button--medium-square:hover, .button--borderless:hover, .button--borderless-narrow:hover, .button--timing-button-submit:hover, .button--small:hover, .button--small-container-header:hover, .button--small-create-main-category:hover, .button--extra-extra-small:hover, .button--extra-extra-small__wide:hover, .button--transaction-button:hover {
   color: #fafafa;
 }
 .button--transaction-button {
@@ -1251,6 +1251,10 @@ html {
 }
 .button--medium-main-category-deletion:hover {
   color: #fafafa;
+}
+.button--large__thin {
+  font-size: 2rem;
+  color: rgba(130, 42, 186, 0.8);
 }
 
 .user-profile-section .user-profile-closure-icon {
@@ -1934,7 +1938,7 @@ html {
   color: #822aba;
   font-size: 6rem;
 }
-.form__section, .form__section--early-income-view, .form__section--early-income-view__income-view, .form__section--early-income-view__income-view--purple, .form__section--emergency, .form__section--page-number-display, .form__section--page-number-display__number, .form__section--switch, .form__section--switch__fully-paid-for, .form__section--switch__fully-paid-for__alt, .form__section--sub-section {
+.form__section, .form__section--early-income-view, .form__section--early-income-view__income-view, .form__section--early-income-view__income-view--purple, .form__section--emergency, .form__section--update-budget, .form__section--page-number-display, .form__section--page-number-display__number, .form__section--switch, .form__section--switch__fully-paid-for, .form__section--switch__fully-paid-for__alt, .form__section--sub-section {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   font-size: 2rem;
   color: rgba(130, 42, 186, 0.8);
@@ -1951,6 +1955,9 @@ html {
 .form__section--page-number-display, .form__section--page-number-display__number {
   font-size: 3rem;
   color: #822aba;
+}
+.form__section--update-budget {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
 }
 .form__section--emergency__header {
   font-size: 1.4rem;
@@ -34126,7 +34133,7 @@ html {
   transition: color 0.5s, background-color 0.5s, border 0.5s;
 }
 
-.button, .button--budget-navigation, .button--medium, .button--medium-main-category-deletion, .button--borderless, .button--borderless-narrow, .button--borderless-set-timing-button, .button--small, .button--small-container-header, .button--small-create-sub-category, .button--small-create-sub-category-close, .button--small-create-main-category, .button--small-transparent, .button--extra-small, .button--extra-extra-small, .button--extra-extra-small__wide, .button--timing-button-submit, .button--timing-button, .button--transaction-button {
+.button, .button--budget-navigation, .button--large, .button--large__thin, .button--medium, .button--medium-main-category-deletion, .button--borderless, .button--borderless-narrow, .button--borderless-set-timing-button, .button--small, .button--small-container-header, .button--small-create-sub-category, .button--small-create-sub-category-close, .button--small-create-main-category, .button--small-transparent, .button--extra-small, .button--extra-extra-small, .button--extra-extra-small__wide, .button--timing-button-submit, .button--timing-button, .button--transaction-button {
   position: relative;
   height: 6rem;
   width: 40%;
@@ -34141,7 +34148,7 @@ html {
   border: 0.3rem solid rgba(130, 42, 186, 0.75);
   border-radius: 1.5rem;
 }
-.button:hover, .button--budget-navigation:hover, .button--medium:hover, .button--medium-main-category-deletion:hover, .button--borderless:hover, .button--borderless-narrow:hover, .button--borderless-set-timing-button:hover, .button--small:hover, .button--small-container-header:hover, .button--small-create-sub-category:hover, .button--small-create-sub-category-close:hover, .button--small-create-main-category:hover, .button--small-transparent:hover, .button--extra-small:hover, .button--extra-extra-small:hover, .button--extra-extra-small__wide:hover, .button--timing-button-submit:hover, .button--timing-button:hover, .button--transaction-button:hover {
+.button:hover, .button--budget-navigation:hover, .button--large:hover, .button--large__thin:hover, .button--medium:hover, .button--medium-main-category-deletion:hover, .button--borderless:hover, .button--borderless-narrow:hover, .button--borderless-set-timing-button:hover, .button--small:hover, .button--small-container-header:hover, .button--small-create-sub-category:hover, .button--small-create-sub-category-close:hover, .button--small-create-main-category:hover, .button--small-transparent:hover, .button--extra-small:hover, .button--extra-extra-small:hover, .button--extra-extra-small__wide:hover, .button--timing-button-submit:hover, .button--timing-button:hover, .button--transaction-button:hover {
   cursor: pointer;
   background-color: #822aba;
   border: 0.3rem solid #822aba;
@@ -34395,6 +34402,14 @@ html {
   border-left: 0.3rem solid #822aba;
   border-bottom: 0.3rem solid #822aba;
   transition: background-color 0.5s, color 0.5s;
+}
+.button--large__thin {
+  height: 75%;
+  width: 20%;
+  transform: translate(0, 0);
+  background-color: transparent;
+  border: 0.3rem solid rgba(130, 42, 186, 0.8);
+  border-radius: 0.9rem;
 }
 .button--budget-navigation {
   height: 0.75rem;
@@ -36611,7 +36626,7 @@ html {
 .form__row--transaction {
   flex-wrap: wrap;
 }
-.form__section, .form__section--sub-section, .form__section--early-income-view, .form__section--enter-income, .form__section--enter-transaction, .form__section--enter-income__monthly-budget, .form__section--enter-income__emergency-fund, .form__section--enter-transaction__monthly-budget, .form__section--enter-transaction__monthly-budget__secondary, .form__section--enter-transaction__savings-fund__secondary, .form__section--enter-transaction__expense-fund__secondary, .form__section--enter-transaction__emergency-fund, .form__section--enter-transaction__emergency-fund__secondary, .form__section--long, .form__section--long__padded--topLeft, .form__section--long__padded--left, .form__section--long__padded, .form__section--medium, .form__section--medium__padded--topLeft, .form__section--medium__padded--left, .form__section--medium__padded, .form__section--medium__alt, .form__section--small, .form__section--small-thin, .form__section--small-thin__taller, .form__section--page-number-display, .form__section--page, .form__section--switch, .form__section--switch__fully-paid-for, .form__section--switch__fully-paid-for__alt, .form__section--timing, .form__section--tithing, .form__section--emergency, .form__section--sub-category-creation, .form__section--main-category-title {
+.form__section, .form__section--sub-section, .form__section--early-income-view, .form__section--enter-income, .form__section--enter-transaction, .form__section--enter-income__monthly-budget, .form__section--enter-income__emergency-fund, .form__section--enter-transaction__monthly-budget, .form__section--enter-transaction__monthly-budget__secondary, .form__section--enter-transaction__savings-fund__secondary, .form__section--enter-transaction__expense-fund__secondary, .form__section--enter-transaction__emergency-fund, .form__section--enter-transaction__emergency-fund__secondary, .form__section--long, .form__section--long__padded--topLeft, .form__section--long__padded--left, .form__section--long__padded, .form__section--medium, .form__section--medium__padded--topLeft, .form__section--medium__padded--left, .form__section--medium__padded, .form__section--medium__alt, .form__section--small, .form__section--small-thin, .form__section--small-thin__taller, .form__section--page-number-display, .form__section--page, .form__section--update-budget, .form__section--switch, .form__section--switch__fully-paid-for, .form__section--switch__fully-paid-for__alt, .form__section--timing, .form__section--tithing, .form__section--emergency, .form__section--sub-category-creation, .form__section--main-category-title {
   position: relative;
   height: min-content;
   width: 100%;
@@ -36622,7 +36637,7 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
 }
-.form__section:not(:last-of-type), .form__section--sub-section:not(:last-of-type), .form__section--early-income-view:not(:last-of-type), .form__section--enter-income:not(:last-of-type), .form__section--enter-transaction:not(:last-of-type), .form__section--enter-income__monthly-budget:not(:last-of-type), .form__section--enter-income__emergency-fund:not(:last-of-type), .form__section--enter-transaction__monthly-budget:not(:last-of-type), .form__section--enter-transaction__monthly-budget__secondary:not(:last-of-type), .form__section--enter-transaction__savings-fund__secondary:not(:last-of-type), .form__section--enter-transaction__expense-fund__secondary:not(:last-of-type), .form__section--enter-transaction__emergency-fund:not(:last-of-type), .form__section--enter-transaction__emergency-fund__secondary:not(:last-of-type), .form__section--long:not(:last-of-type), .form__section--long__padded--topLeft:not(:last-of-type), .form__section--long__padded--left:not(:last-of-type), .form__section--long__padded:not(:last-of-type), .form__section--medium:not(:last-of-type), .form__section--medium__padded--topLeft:not(:last-of-type), .form__section--medium__padded--left:not(:last-of-type), .form__section--medium__padded:not(:last-of-type), .form__section--medium__alt:not(:last-of-type), .form__section--small:not(:last-of-type), .form__section--small-thin:not(:last-of-type), .form__section--small-thin__taller:not(:last-of-type), .form__section--page-number-display:not(:last-of-type), .form__section--page:not(:last-of-type), .form__section--switch:not(:last-of-type), .form__section--switch__fully-paid-for:not(:last-of-type), .form__section--switch__fully-paid-for__alt:not(:last-of-type), .form__section--timing:not(:last-of-type), .form__section--tithing:not(:last-of-type), .form__section--emergency:not(:last-of-type), .form__section--sub-category-creation:not(:last-of-type), .form__section--main-category-title:not(:last-of-type) {
+.form__section:not(:last-of-type), .form__section--sub-section:not(:last-of-type), .form__section--early-income-view:not(:last-of-type), .form__section--enter-income:not(:last-of-type), .form__section--enter-transaction:not(:last-of-type), .form__section--enter-income__monthly-budget:not(:last-of-type), .form__section--enter-income__emergency-fund:not(:last-of-type), .form__section--enter-transaction__monthly-budget:not(:last-of-type), .form__section--enter-transaction__monthly-budget__secondary:not(:last-of-type), .form__section--enter-transaction__savings-fund__secondary:not(:last-of-type), .form__section--enter-transaction__expense-fund__secondary:not(:last-of-type), .form__section--enter-transaction__emergency-fund:not(:last-of-type), .form__section--enter-transaction__emergency-fund__secondary:not(:last-of-type), .form__section--long:not(:last-of-type), .form__section--long__padded--topLeft:not(:last-of-type), .form__section--long__padded--left:not(:last-of-type), .form__section--long__padded:not(:last-of-type), .form__section--medium:not(:last-of-type), .form__section--medium__padded--topLeft:not(:last-of-type), .form__section--medium__padded--left:not(:last-of-type), .form__section--medium__padded:not(:last-of-type), .form__section--medium__alt:not(:last-of-type), .form__section--small:not(:last-of-type), .form__section--small-thin:not(:last-of-type), .form__section--small-thin__taller:not(:last-of-type), .form__section--page-number-display:not(:last-of-type), .form__section--page:not(:last-of-type), .form__section--update-budget:not(:last-of-type), .form__section--switch:not(:last-of-type), .form__section--switch__fully-paid-for:not(:last-of-type), .form__section--switch__fully-paid-for__alt:not(:last-of-type), .form__section--timing:not(:last-of-type), .form__section--tithing:not(:last-of-type), .form__section--emergency:not(:last-of-type), .form__section--sub-category-creation:not(:last-of-type), .form__section--main-category-title:not(:last-of-type) {
   margin-bottom: 3.5rem;
 }
 .form__section--main-category-title {
@@ -37060,6 +37075,24 @@ html {
 }
 .form__section--switch__fully-paid-for__alt:not(:last-of-type), .form__section--switch__fully-paid-for__alt:last-of-type {
   margin-bottom: 2.1rem;
+}
+.form__section--update-budget {
+  height: 10%;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+  height: 10%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: rgba(221, 221, 221, 0.3);
+}
+.form__section--update-budget:not(:last-of-type) {
+  margin-bottom: 0rem;
 }
 .form__section--page {
   flex-direction: row;
@@ -39427,6 +39460,7 @@ html {
   transform: rotate(0) translate(0, 0);
   top: 5rem;
   right: 6rem;
+  z-index: 10;
 }
 .form-container .form-closure-icon:hover, .form-container--full-width .form-closure-icon:hover {
   cursor: pointer;
@@ -49728,7 +49762,7 @@ html {
 .container--medium__half:nth-of-type(2) .sub-category-display .sub-category .sub-category-controller__surplus-container__switch__alt--switched {
   position: relative;
   height: 40%;
-  width: 75%;
+  width: 80%;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;

@@ -11,6 +11,7 @@
     @include SizeAndPositioning(absolute, 2rem, 2rem, flex, row, nowrap, center, center, 0, 0, 0);
     top: 5rem;
     right: 6rem;
+    z-index: 10;
     &:hover {
       cursor: pointer;
       transition: color 0.5s;
