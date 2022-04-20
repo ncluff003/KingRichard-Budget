@@ -149,7 +149,7 @@ export class Budget {
     }
   }
 
-  _updateBudget(mode, update, options) {
+  _updateBudget(mode, update, options, pageLink) {
     if (mode === `Update`) {
       let updateObject = options.updateObject;
       if (update === `Budget Management`) {
@@ -189,11 +189,13 @@ export class Budget {
         console.log(`Updating Category Goals...`);
         // GLITCH : For some reason, ONLY the last Main Category had been pushed through.  So, the previous two had been erased completely.
         console.log(updateObject.mainCategories);
-        Manage.updateMyBudget(options.updateObject);
+        Manage.updateMyBudget(options.updateObject, pageLink);
       }
 
       if (update === `Manage Categories`) {
         console.log(`Updating Categories...`);
+        console.log(options, options.updateObject);
+        Manage.updateMyBudget(options.updateObject, pageLink);
       }
       console.log(`Updating...`);
     }

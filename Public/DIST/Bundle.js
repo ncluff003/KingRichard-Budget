@@ -7268,7 +7268,7 @@ var Budget = /*#__PURE__*/function () {
     }
   }, {
     key: "_updateBudget",
-    value: function _updateBudget(mode, update, options) {
+    value: function _updateBudget(mode, update, options, pageLink) {
       if (mode === "Update") {
         var updateObject = options.updateObject;
 
@@ -7312,11 +7312,13 @@ var Budget = /*#__PURE__*/function () {
           console.log("Updating Category Goals..."); // GLITCH : For some reason, ONLY the last Main Category had been pushed through.  So, the previous two had been erased completely.
 
           console.log(updateObject.mainCategories);
-          _Manage_Budget__WEBPACK_IMPORTED_MODULE_3__.updateMyBudget(options.updateObject);
+          _Manage_Budget__WEBPACK_IMPORTED_MODULE_3__.updateMyBudget(options.updateObject, pageLink);
         }
 
         if (update === "Manage Categories") {
           console.log("Updating Categories...");
+          console.log(options, options.updateObject);
+          _Manage_Budget__WEBPACK_IMPORTED_MODULE_3__.updateMyBudget(options.updateObject, pageLink);
         }
 
         console.log("Updating...");
@@ -8376,8 +8378,17 @@ var _watchForBudgetCategoryUpdates = function _watchForBudgetCategoryUpdates(bud
   updateCategoryButton.addEventListener('click', function (e) {
     e.preventDefault();
     console.log("Updating...");
+    console.log(placeholderBudget, budget);
 
-    placeholderBudget._updateBudget("Update", "Manage Categories", {});
+    placeholderBudget._updateBudget("Update", "Manage Categories", {
+      updateObject: {
+        budgetMainCategories: budget.mainCategories,
+        budgetId: budget._id,
+        userId: user._id,
+        user: user,
+        mainCategories: placeholderBudget.mainCategories
+      }
+    }, "Manage-Categories");
   });
 };
 
@@ -8607,7 +8618,7 @@ var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placehold
           userId: user._id,
           user: user,
           updateObject: updateObject
-        });
+        }, "Edit-Category-Goals");
       });
     }
   }
@@ -8687,7 +8698,7 @@ var getBudgetName = function getBudgetName(budget) {
   return budgetName;
 };
 
-var compileBudgetManatementUpdates = function compileBudgetManatementUpdates(emergencySetting, currentTithingSetting, budget, placeholderBudget, user) {
+var compileBudgetManagementUpdates = function compileBudgetManagementUpdates(emergencySetting, currentTithingSetting, budget, placeholderBudget, user) {
   /*
     Quick note here...,
      Building the update object outside of a method is alright, however, how this really should go down is to update the placeholder budget first.
@@ -8726,7 +8737,7 @@ var compileBudgetManatementUpdates = function compileBudgetManatementUpdates(eme
       debtTotal: Number(placeholderBudget.accounts.debt.debtAmount),
       tithing: tithing,
       updateObject: {}
-    });
+    }, "Budget-Management");
   }
 
   console.log(budget);
@@ -8749,7 +8760,7 @@ var compileBudgetManatementUpdates = function compileBudgetManatementUpdates(eme
       debtAmount: placeholderBudget.accounts.debt.amount,
       debtTotal: Number(placeholderBudget.accounts.debt.debtAmount),
       updateObject: {}
-    });
+    }, "Budget-Management");
   } // const newBudget = buildUpdateObject(
   //   budget,
   //   user,
@@ -8872,7 +8883,7 @@ var _setupBudgetManagement = function _setupBudgetManagement(budget, placeholder
     updateSubmitButtons.forEach(function (ub) {
       ub.addEventListener('click', function (e) {
         e.preventDefault();
-        compileBudgetManatementUpdates(emergencySetting, currentTithingSetting, budget, placeholderBudget, user);
+        compileBudgetManagementUpdates(emergencySetting, currentTithingSetting, budget, placeholderBudget, user);
       });
     });
     watchForBudgetExit();
@@ -9521,19 +9532,19 @@ var getMyBudget = /*#__PURE__*/function () {
   };
 }();
 var updateMyBudget = /*#__PURE__*/function () {
-  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee2(options) {
+  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee2(options, pageLink) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            console.log(_objectSpread({}, options)); // GLITCH : Somehow, here, the request.body = only having the last main category in the 'mainCategories'.  That will NEED to be addressed.
+            console.log(_objectSpread({}, options), pageLink); // GLITCH : Somehow, here, the request.body = only having the last main category in the 'mainCategories'.  That will NEED to be addressed.
 
             _context2.prev = 1;
             _context2.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "PATCH",
-              url: "/App/Users/".concat(options.userId, "/Budgets/").concat(options.budgetId, "/Budget-Management"),
+              url: "/App/Users/".concat(options.userId, "/Budgets/").concat(options.budgetId, "/").concat(pageLink),
               data: qs__WEBPACK_IMPORTED_MODULE_4___default().parse(_objectSpread({}, options))
             });
 
@@ -9581,7 +9592,7 @@ var updateMyBudget = /*#__PURE__*/function () {
     }, _callee2, null, [[1, 8]]);
   }));
 
-  return function updateMyBudget(_x3) {
+  return function updateMyBudget(_x3, _x4) {
     return _ref2.apply(this, arguments);
   };
 }();
@@ -9605,7 +9616,7 @@ var exitBudget = /*#__PURE__*/function () {
     }, _callee3);
   }));
 
-  return function exitBudget(_x4) {
+  return function exitBudget(_x5) {
     return _ref3.apply(this, arguments);
   };
 }();
@@ -9650,7 +9661,7 @@ var deleteMyBudget = /*#__PURE__*/function () {
     }, _callee4, null, [[0, 8]]);
   }));
 
-  return function deleteMyBudget(_x5, _x6) {
+  return function deleteMyBudget(_x6, _x7) {
     return _ref4.apply(this, arguments);
   };
 }();

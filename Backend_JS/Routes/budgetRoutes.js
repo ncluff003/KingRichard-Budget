@@ -35,8 +35,8 @@ router
   .get(authController.protect, budgetController.getBudgetManagement)
   .patch(authController.protect, budgetController.updateMyBudget)
   .delete(authController.protect, budgetController.deleteBudget);
-router.route(`/:id/Edit-Category-Goals`).get(authController.protect, budgetController.getEditCategoryGoals);
-router.route(`/:id/Manage-Categories`).get(authController.protect, budgetController.getManageCategories);
+router.route(`/:id/Edit-Category-Goals`).get(authController.protect, budgetController.getEditCategoryGoals).patch(authController.protect, budgetController.updateMyBudget);
+router.route(`/:id/Manage-Categories`).get(authController.protect, budgetController.getManageCategories).patch(authController.protect, budgetController.updateMyBudget);
 router.route(`/:id/Allocate-Income`).get(authController.protect, budgetController.getAllocateIncome);
 router.route(`/:id/Transaction-Planner`).get(authController.protect, budgetController.getTransactionPlanner);
 router.route(`/:id/Investment-Planner`).get(authController.protect, budgetController.getInvestmentPlanner);

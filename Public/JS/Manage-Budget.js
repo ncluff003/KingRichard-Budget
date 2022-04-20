@@ -17,13 +17,13 @@ export const getMyBudget = async (id, user) => {
   }
 };
 
-export const updateMyBudget = async (options) => {
-  console.log({ ...options });
+export const updateMyBudget = async (options, pageLink) => {
+  console.log({ ...options }, pageLink);
   // GLITCH : Somehow, here, the request.body = only having the last main category in the 'mainCategories'.  That will NEED to be addressed.
   try {
     const response = await axios({
       method: `PATCH`,
-      url: `/App/Users/${options.userId}/Budgets/${options.budgetId}/Budget-Management`,
+      url: `/App/Users/${options.userId}/Budgets/${options.budgetId}/${pageLink}`,
       data: qs.parse({
         ...options,
       }),
