@@ -318,6 +318,7 @@ const create12MonthArray = (array, input, timing, days) => {
     const adjustedDate = nextWeekDay;
     const selectedDate = adjustedDate;
     const manipulated = currentDate1;
+    console.log(selectedDate, firstDate);
     array.push(selectedDate);
     numberOfIterations = 51;
 
@@ -568,7 +569,7 @@ export const insertTiming = (target, inputValues, timing, timingButtons, budget,
     ///////////////////////////////
     // GET THE DUE DATE
     let dueDate = budget.mainCategories[mainIndex].subCategories[subCategoryIndex].timingOptions.dueDates[0];
-
+    console.log(dueDate);
     //////////////////////////
     // GET LAST DIGIT OF DATE
     dayEndingNumberOne = Number(dueDate.getDate().toString().split('')[dueDate.getDate().toString().length - 1]);
@@ -667,6 +668,10 @@ export const watchForSettingTiming = (budget, index, clickedItem, timing, placeh
         const timingSectionSelect = document.querySelector('.timing-container__section__label__select');
         const oldWeeklyTiming = new Date(timingSectionSelect.value);
         const weeklyTiming = new Date(oldWeeklyTiming.setHours(oldWeeklyTiming.getHours() + 7));
+        // const weeklyTiming = new Date(oldWeeklyTiming.setHours(oldWeeklyTiming.getHours() + (oldMonthlyTiming.getTimezoneOffset() + 1)));
+
+        // Date Sat Apr 23 2022 20:11:15 GMT-0600 (Mountain Daylight Time)
+        // Date Sat Apr 23 2022 20:12:21 GMT-0600 (Mountain Daylight Time)
         timingArray = [];
         timingArray.push(weeklyTiming);
         insertTiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
@@ -933,64 +938,67 @@ export const setupSubCategoryCreation = (budget, index) => {
     let mainCategoryText__alt = document.querySelector('.main-category-display__category-information__text');
     const leftButton = document.querySelector('.main-category-display__left-button__icon');
     const rightButton = document.querySelector('.main-category-display__right-button__icon');
-    mainCategoryIcon__alt.classList.add(budget.mainCategories[index].icon);
-    mainCategoryIcon__alt.dataset.category = index;
-    mainCategoryText__alt.textContent = budget.mainCategories[index].title;
-    mainCategoryText__alt.dataset.category = index;
 
-    console.log(budget);
+    if (mainCategoryIcon__alt) {
+      mainCategoryIcon__alt.classList.add(budget.mainCategories[index].icon);
+      mainCategoryIcon__alt.dataset.category = index;
+      mainCategoryText__alt.textContent = budget.mainCategories[index].title;
+      mainCategoryText__alt.dataset.category = index;
 
-    const subCategories = document.querySelectorAll('.sub-category');
-    subCategories.forEach((sc, i) => {
-      sc.classList.add('closed');
-      sc.classList.remove('open');
-      if (sc.dataset.category === `${index}`) {
-        sc.classList.remove('closed');
-        sc.classList.add('open');
-      }
-    });
+      console.log(budget);
 
-    leftButton.addEventListener('click', (e) => {
-      index--;
-      if (index < 0) index = 0;
-      direction = `Left`;
-      cycleMainCategories(direction, index, budget, mainCategoryIcon__alt, mainCategoryText__alt);
-    });
-    rightButton.addEventListener('click', (e) => {
-      index++;
-      if (index > budget.mainCategories.length - 1) index = budget.mainCategories.length - 1;
-      direction = `Right`;
-      cycleMainCategories(direction, index, budget, mainCategoryIcon__alt, mainCategoryText__alt);
-    });
+      const subCategories = document.querySelectorAll('.sub-category');
+      subCategories.forEach((sc, i) => {
+        sc.classList.add('closed');
+        sc.classList.remove('open');
+        if (sc.dataset.category === `${index}`) {
+          sc.classList.remove('closed');
+          sc.classList.add('open');
+        }
+      });
 
-    subCategoryStartCreationButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      subCategoryStartCreationButton.classList.toggle('closed');
-      subCategoryStartCreationButton.classList.toggle('open');
-      categoryCreationSection.classList.toggle('closed');
-      categoryCreationSection.classList.toggle('open');
-      const subCategoryCreateInput = document.querySelector('.form__input--sub-category-title');
-      subCategoryCreateInput.value = '';
-      subCategoryCreateInput.focus();
-      console.log(`Ready...`);
-    });
+      leftButton.addEventListener('click', (e) => {
+        index--;
+        if (index < 0) index = 0;
+        direction = `Left`;
+        cycleMainCategories(direction, index, budget, mainCategoryIcon__alt, mainCategoryText__alt);
+      });
+      rightButton.addEventListener('click', (e) => {
+        index++;
+        if (index > budget.mainCategories.length - 1) index = budget.mainCategories.length - 1;
+        direction = `Right`;
+        cycleMainCategories(direction, index, budget, mainCategoryIcon__alt, mainCategoryText__alt);
+      });
 
-    subCategoryStopCreationButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      closeSubCategoryCreationInput(subCategoryStartCreationButton, categoryCreationSection);
-    });
+      subCategoryStartCreationButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        subCategoryStartCreationButton.classList.toggle('closed');
+        subCategoryStartCreationButton.classList.toggle('open');
+        categoryCreationSection.classList.toggle('closed');
+        categoryCreationSection.classList.toggle('open');
+        const subCategoryCreateInput = document.querySelector('.form__input--sub-category-title');
+        subCategoryCreateInput.value = '';
+        subCategoryCreateInput.focus();
+        console.log(`Ready...`);
+      });
 
-    const subCategoryCreateButton = document.querySelector('.button--small-create-sub-category');
-    subCategoryCreateButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      const subCategoryCreateInput = document.querySelector('.form__input--sub-category-title');
-      Categories._verifySubCategory(budget, index);
-      subCategoryCreateInput.focus();
-      subCategoryCreateInput.value = '';
-    });
+      subCategoryStopCreationButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeSubCategoryCreationInput(subCategoryStartCreationButton, categoryCreationSection);
+      });
 
-    _watchForSubCategoryKeyboardInput();
-    watchToCycleSubCategoryMainCategories();
+      const subCategoryCreateButton = document.querySelector('.button--small-create-sub-category');
+      subCategoryCreateButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        const subCategoryCreateInput = document.querySelector('.form__input--sub-category-title');
+        Categories._verifySubCategory(budget, index);
+        subCategoryCreateInput.focus();
+        subCategoryCreateInput.value = '';
+      });
+
+      _watchForSubCategoryKeyboardInput();
+      watchToCycleSubCategoryMainCategories();
+    }
   }
 };
 

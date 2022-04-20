@@ -5974,6 +5974,7 @@ var create12MonthArray = function create12MonthArray(array, input, timing, days)
     var _adjustedDate2 = nextWeekDay;
     var _selectedDate2 = _adjustedDate2;
     var _manipulated2 = currentDate1;
+    console.log(_selectedDate2, firstDate);
     array.push(_selectedDate2);
     numberOfIterations = 51;
 
@@ -6204,7 +6205,8 @@ var insertTiming = function insertTiming(target, inputValues, timing, timingButt
     // GET THE DUE DATE
 
 
-    var _dueDate2 = budget.mainCategories[mainIndex].subCategories[subCategoryIndex].timingOptions.dueDates[0]; //////////////////////////
+    var _dueDate2 = budget.mainCategories[mainIndex].subCategories[subCategoryIndex].timingOptions.dueDates[0];
+    console.log(_dueDate2); //////////////////////////
     // GET LAST DIGIT OF DATE
 
     dayEndingNumberOne = Number(_dueDate2.getDate().toString().split('')[_dueDate2.getDate().toString().length - 1]); ///////////////////////////////////////////////
@@ -6302,7 +6304,10 @@ var watchForSettingTiming = function watchForSettingTiming(budget, index, clicke
       if (timing === "Weekly") {
         var timingSectionSelect = document.querySelector('.timing-container__section__label__select');
         var oldWeeklyTiming = new Date(timingSectionSelect.value);
-        var weeklyTiming = new Date(oldWeeklyTiming.setHours(oldWeeklyTiming.getHours() + 7));
+        var weeklyTiming = new Date(oldWeeklyTiming.setHours(oldWeeklyTiming.getHours() + 7)); // const weeklyTiming = new Date(oldWeeklyTiming.setHours(oldWeeklyTiming.getHours() + (oldMonthlyTiming.getTimezoneOffset() + 1)));
+        // Date Sat Apr 23 2022 20:11:15 GMT-0600 (Mountain Daylight Time)
+        // Date Sat Apr 23 2022 20:12:21 GMT-0600 (Mountain Daylight Time)
+
         timingArray = [];
         timingArray.push(weeklyTiming);
         insertTiming(clickedItem, timingArray, timing, subCategoryTimingButtons, budget, index);
@@ -6571,67 +6576,69 @@ var setupSubCategoryCreation = function setupSubCategoryCreation(budget, index) 
 
     var _rightButton = document.querySelector('.main-category-display__right-button__icon');
 
-    mainCategoryIcon__alt.classList.add(budget.mainCategories[index].icon);
-    mainCategoryIcon__alt.dataset.category = index;
-    mainCategoryText__alt.textContent = budget.mainCategories[index].title;
-    mainCategoryText__alt.dataset.category = index;
-    console.log(budget);
-    var subCategories = document.querySelectorAll('.sub-category');
-    subCategories.forEach(function (sc, i) {
-      sc.classList.add('closed');
-      sc.classList.remove('open');
+    if (mainCategoryIcon__alt) {
+      mainCategoryIcon__alt.classList.add(budget.mainCategories[index].icon);
+      mainCategoryIcon__alt.dataset.category = index;
+      mainCategoryText__alt.textContent = budget.mainCategories[index].title;
+      mainCategoryText__alt.dataset.category = index;
+      console.log(budget);
+      var subCategories = document.querySelectorAll('.sub-category');
+      subCategories.forEach(function (sc, i) {
+        sc.classList.add('closed');
+        sc.classList.remove('open');
 
-      if (sc.dataset.category === "".concat(index)) {
-        sc.classList.remove('closed');
-        sc.classList.add('open');
-      }
-    });
+        if (sc.dataset.category === "".concat(index)) {
+          sc.classList.remove('closed');
+          sc.classList.add('open');
+        }
+      });
 
-    _leftButton.addEventListener('click', function (e) {
-      index--;
-      if (index < 0) index = 0;
-      direction = "Left";
-      cycleMainCategories(direction, index, budget, mainCategoryIcon__alt, mainCategoryText__alt);
-    });
+      _leftButton.addEventListener('click', function (e) {
+        index--;
+        if (index < 0) index = 0;
+        direction = "Left";
+        cycleMainCategories(direction, index, budget, mainCategoryIcon__alt, mainCategoryText__alt);
+      });
 
-    _rightButton.addEventListener('click', function (e) {
-      index++;
-      if (index > budget.mainCategories.length - 1) index = budget.mainCategories.length - 1;
-      direction = "Right";
-      cycleMainCategories(direction, index, budget, mainCategoryIcon__alt, mainCategoryText__alt);
-    });
+      _rightButton.addEventListener('click', function (e) {
+        index++;
+        if (index > budget.mainCategories.length - 1) index = budget.mainCategories.length - 1;
+        direction = "Right";
+        cycleMainCategories(direction, index, budget, mainCategoryIcon__alt, mainCategoryText__alt);
+      });
 
-    subCategoryStartCreationButton.addEventListener('click', function (e) {
-      e.preventDefault();
-      subCategoryStartCreationButton.classList.toggle('closed');
-      subCategoryStartCreationButton.classList.toggle('open');
-      categoryCreationSection.classList.toggle('closed');
-      categoryCreationSection.classList.toggle('open');
-      var subCategoryCreateInput = document.querySelector('.form__input--sub-category-title');
-      subCategoryCreateInput.value = '';
-      subCategoryCreateInput.focus();
-      console.log("Ready...");
-    });
-    subCategoryStopCreationButton.addEventListener('click', function (e) {
-      e.preventDefault();
-      closeSubCategoryCreationInput(subCategoryStartCreationButton, categoryCreationSection);
-    });
+      subCategoryStartCreationButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        subCategoryStartCreationButton.classList.toggle('closed');
+        subCategoryStartCreationButton.classList.toggle('open');
+        categoryCreationSection.classList.toggle('closed');
+        categoryCreationSection.classList.toggle('open');
+        var subCategoryCreateInput = document.querySelector('.form__input--sub-category-title');
+        subCategoryCreateInput.value = '';
+        subCategoryCreateInput.focus();
+        console.log("Ready...");
+      });
+      subCategoryStopCreationButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        closeSubCategoryCreationInput(subCategoryStartCreationButton, categoryCreationSection);
+      });
 
-    var _subCategoryCreateButton = document.querySelector('.button--small-create-sub-category');
+      var _subCategoryCreateButton = document.querySelector('.button--small-create-sub-category');
 
-    _subCategoryCreateButton.addEventListener('click', function (e) {
-      e.preventDefault();
-      var subCategoryCreateInput = document.querySelector('.form__input--sub-category-title');
+      _subCategoryCreateButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        var subCategoryCreateInput = document.querySelector('.form__input--sub-category-title');
 
-      _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__._verifySubCategory(budget, index);
+        _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__._verifySubCategory(budget, index);
 
-      subCategoryCreateInput.focus();
-      subCategoryCreateInput.value = '';
-    });
+        subCategoryCreateInput.focus();
+        subCategoryCreateInput.value = '';
+      });
 
-    _watchForSubCategoryKeyboardInput();
+      _watchForSubCategoryKeyboardInput();
 
-    watchToCycleSubCategoryMainCategories();
+      watchToCycleSubCategoryMainCategories();
+    }
   }
 }; //////////////////////////////////////
 // LOG KEYBOARD KEY
@@ -8075,8 +8082,10 @@ var getSubCategoryTiming = function getSubCategoryTiming(budget, category) {
 
   if (category.timingOptions.paymentCycle === "Weekly") {
     console.log("Weekly", category.timingOptions.dueDates);
+    console.log(new Date('2022-04-24T01:08:49.484Z').getTimezoneOffset() * 60 * 1000);
     var day = days[new Date("".concat(category.timingOptions.dueDates[0])).getDay()];
     wording = "Due every ".concat(day, " of the month.");
+    console.log(budget.mainCategories[3].subCategories[3].timingOptions.dueDates[0]);
     return wording;
   }
 
@@ -8215,6 +8224,7 @@ var _watchForBudgetCategoryUpdates = function _watchForBudgetCategoryUpdates(bud
   var categoryIndex, index;
   var budgetMainCategoryLength = placeholderBudget.mainCategories.length;
   var subCategories = document.querySelectorAll('.sub-category');
+  console.log(placeholderBudget.mainCategories.length);
   mainCategoryDeleteButton.addEventListener('click', function (e) {
     e.preventDefault();
     categoryIcon.classList.remove(categoryIcon.classList[3]);
@@ -8223,7 +8233,6 @@ var _watchForBudgetCategoryUpdates = function _watchForBudgetCategoryUpdates(bud
     placeholderBudget.mainCategories.forEach(function (mc) {
       if (mc.title === categoryTitle.textContent) {
         categoryIndex = placeholderBudget.mainCategories.indexOf(mc);
-        console.log(categoryIndex, mainCategories[categoryIndex], mainCategories);
         mainCategories[categoryIndex].remove();
         console.log("Category Deleted Is: ".concat(mc.title), mc);
         placeholderBudget.mainCategories = placeholderBudget.mainCategories.filter(function (category) {
@@ -8262,12 +8271,11 @@ var _watchForBudgetCategoryUpdates = function _watchForBudgetCategoryUpdates(bud
           sc.classList.add('open');
         }
       });
+      budgetMainCategoryLength = budgetMainCategoryLength - 1;
+      console.log(budgetMainCategoryLength, placeholderBudget.mainCategories);
     }
 
     if (categoryIndex > 0 && categoryIndex < placeholderBudget.mainCategories.length) {
-      console.log(placeholderBudget.mainCategories.length - 1); // GLITCH: CLICKING THE ARROWS ON THE RIGHT MAKES ALL SUB CATEGORIES GO WONKY.
-
-      console.log(categoryIndex);
       subCategories.forEach(function (sc) {
         if (Number(sc.dataset.category) === categoryIndex) {
           sc.remove();
@@ -8289,6 +8297,8 @@ var _watchForBudgetCategoryUpdates = function _watchForBudgetCategoryUpdates(bud
           sc.classList.add('open');
         }
       });
+      budgetMainCategoryLength = budgetMainCategoryLength - 1;
+      console.log(budgetMainCategoryLength, placeholderBudget.mainCategories);
     }
 
     if (categoryIndex === budgetMainCategoryLength - 1) {
@@ -8320,6 +8330,7 @@ var _watchForBudgetCategoryUpdates = function _watchForBudgetCategoryUpdates(bud
         }
       });
       budgetMainCategoryLength = budgetMainCategoryLength - 1;
+      console.log(budgetMainCategoryLength, placeholderBudget.mainCategories);
     }
 
     console.log(placeholderBudget.mainCategories);

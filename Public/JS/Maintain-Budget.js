@@ -161,8 +161,10 @@ const getSubCategoryTiming = (budget, category) => {
   let wording;
   if (category.timingOptions.paymentCycle === `Weekly`) {
     console.log(`Weekly`, category.timingOptions.dueDates);
+    console.log(new Date('2022-04-24T01:08:49.484Z').getTimezoneOffset() * 60 * 1000);
     let day = days[new Date(`${category.timingOptions.dueDates[0]}`).getDay()];
     wording = `Due every ${day} of the month.`;
+    console.log(budget.mainCategories[3].subCategories[3].timingOptions.dueDates[0]);
     return wording;
   }
   if (category.timingOptions.paymentCycle === `Bi-Weekly`) {
@@ -279,6 +281,7 @@ const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
   let categoryIndex, index;
   let budgetMainCategoryLength = placeholderBudget.mainCategories.length;
   const subCategories = document.querySelectorAll('.sub-category');
+  console.log(placeholderBudget.mainCategories.length);
 
   mainCategoryDeleteButton.addEventListener('click', (e) => {
     e.preventDefault();
@@ -288,7 +291,6 @@ const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
     placeholderBudget.mainCategories.forEach((mc) => {
       if (mc.title === categoryTitle.textContent) {
         categoryIndex = placeholderBudget.mainCategories.indexOf(mc);
-        console.log(categoryIndex, mainCategories[categoryIndex], mainCategories);
         mainCategories[categoryIndex].remove();
         console.log(`Category Deleted Is: ${mc.title}`, mc);
         placeholderBudget.mainCategories = placeholderBudget.mainCategories.filter((category) => {
@@ -324,12 +326,11 @@ const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
           sc.classList.add('open');
         }
       });
+      budgetMainCategoryLength = budgetMainCategoryLength - 1;
+      console.log(budgetMainCategoryLength, placeholderBudget.mainCategories);
     }
 
     if (categoryIndex > 0 && categoryIndex < placeholderBudget.mainCategories.length) {
-      console.log(placeholderBudget.mainCategories.length - 1);
-      // GLITCH: CLICKING THE ARROWS ON THE RIGHT MAKES ALL SUB CATEGORIES GO WONKY.
-      console.log(categoryIndex);
       subCategories.forEach((sc) => {
         if (Number(sc.dataset.category) === categoryIndex) {
           sc.remove();
@@ -349,6 +350,8 @@ const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
           sc.classList.add('open');
         }
       });
+      budgetMainCategoryLength = budgetMainCategoryLength - 1;
+      console.log(budgetMainCategoryLength, placeholderBudget.mainCategories);
     }
 
     if (categoryIndex === budgetMainCategoryLength - 1) {
@@ -375,6 +378,7 @@ const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
         }
       });
       budgetMainCategoryLength = budgetMainCategoryLength - 1;
+      console.log(budgetMainCategoryLength, placeholderBudget.mainCategories);
     }
     console.log(placeholderBudget.mainCategories);
   });
