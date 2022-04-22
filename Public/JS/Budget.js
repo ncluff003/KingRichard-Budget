@@ -121,6 +121,7 @@ export class Budget {
     if (mode === `Creation`) {
       if (update === `Tithing Setting`) {
         this.accounts.tithing.tithingSetting = options.setting;
+        this.accounts.tithing.amount = Number(options.amount);
       }
       if (update === `Emergency Measurement`) {
         this.accounts.emergencyFund.emergencyGoalMeasurement = options.setting;
@@ -129,18 +130,31 @@ export class Budget {
         if (this.accounts.emergencyFund.emergencyGoalMeasurement === `Length Of Time`) {
           this.accounts.emergencyFund.emergencyFundGoal = options.goal;
           this.accounts.emergencyFund.emergencyFundGoalTiming = options.goalTiming;
+          this.accounts.emergencyFund.amount = options.amount;
         }
         if (this.accounts.emergencyFund.emergencyGoalMeasurement === `Total Amount`) {
           this.accounts.emergencyFund.emergencyFundGoal = options.goal;
+          this.accounts.emergencyFund.amount = options.amount;
         }
+      }
+      if (update === `Expense Fund`) {
+        this.accounts.expenseFund.amount = Number(options.amount);
+      }
+      if (update === `Surplus`) {
+        this.accounts.surplus.amount = Number(options.amount);
+      }
+      if (update === `Monthly Budget`) {
+        this.accounts.monthlyBudget.amount = Number(options.amount);
       }
       if (update === `Savings`) {
         this.accounts.savingsFund.savingsPercentage = Number(options.percentage);
         this.accounts.savingsFund.savingsGoal = Number(options.goal);
+        this.accounts.savingsFund.amount = Number(options.amount);
       }
       if (update === `Investment`) {
         this.accounts.investmentFund.investmentPercentage = Number(options.percentage);
         this.accounts.investmentFund.investmentGoal = Number(options.goal);
+        this.accounts.investmentFund.amount = Number(options.amount);
       }
       if (update === `Debt`) {
         this.accounts.debt.amount = Number(options.amount);
@@ -225,20 +239,32 @@ export class Budget {
       this._addTithingAccount(user);
       this._addName(budget.name);
       if (user.latterDaySaint === true) {
-        this._updateAccounts(`Creation`, `Tithing Setting`, { setting: budget.accounts.tithing.tithingSetting });
+        this._updateAccounts(`Creation`, `Tithing Setting`, { setting: budget.accounts.tithing.tithingSetting, amount: budget.accounts.tithing.amount });
       }
       this._updateAccounts(`Creation`, `Emergency Measurement`, { setting: budget.accounts.emergencyFund.emergencyGoalMeasurement });
       if (this.accounts.emergencyFund.emergencyGoalMeasurement === `Length Of Time`) {
         this._updateAccounts(`Creation`, `Emergency Goal`, {
           goal: budget.accounts.emergencyFund.emergencyFundGoal,
           goalTiming: budget.accounts.emergencyFund.emergencyFundGoalTiming,
+          amount: budget.accounts.emergencyFund.amount,
         });
       }
       if (this.accounts.emergencyFund.emergencyGoalMeasurement === `Total Amount`) {
-        this._updateAccounts(`Creation`, `Emergency Goal`, { goal: budget.accounts.emergencyFund.emergencyFundGoal });
+        this._updateAccounts(`Creation`, `Emergency Goal`, { goal: budget.accounts.emergencyFund.emergencyFundGoal, amount: budget.accounts.emergencyFund.amount });
       }
-      this._updateAccounts(`Creation`, `Savings`, { goal: budget.accounts.savingsFund.savingsGoal, percentage: budget.accounts.savingsFund.savingsPercentage });
-      this._updateAccounts(`Creation`, `Investment`, { goal: budget.accounts.investmentFund.investmentGoal, percentage: budget.accounts.investmentFund.investmentPercentage });
+      this._updateAccounts(`Creation`, `Monthly Budget`, { amount: budget.accounts.monthlyBudget.amount });
+      this._updateAccounts(`Creation`, `Savings`, {
+        goal: budget.accounts.savingsFund.savingsGoal,
+        percentage: budget.accounts.savingsFund.savingsPercentage,
+        amount: budget.accounts.savingsFund.amount,
+      });
+      this._updateAccounts(`Creation`, `Investment`, {
+        goal: budget.accounts.investmentFund.investmentGoal,
+        percentage: budget.accounts.investmentFund.investmentPercentage,
+        amount: budget.accounts.investmentFund.amount,
+      });
+      this._updateAccounts(`Creation`, `Expense Fund`, { amount: budget.accounts.expenseFund.amount });
+      this._updateAccounts(`Creation`, `Surplus`, { amount: budget.accounts.surplus.amount });
       this._updateAccounts(`Creation`, `Debt`, { amount: budget.accounts.debt.amount, debtAmount: budget.accounts.debt.debtAmount });
       budget.mainCategories.forEach((mc) => {
         let subCategories = [];

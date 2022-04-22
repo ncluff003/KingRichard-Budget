@@ -7240,6 +7240,7 @@ var Budget = /*#__PURE__*/function () {
       if (mode === "Creation") {
         if (update === "Tithing Setting") {
           this.accounts.tithing.tithingSetting = options.setting;
+          this.accounts.tithing.amount = Number(options.amount);
         }
 
         if (update === "Emergency Measurement") {
@@ -7250,21 +7251,37 @@ var Budget = /*#__PURE__*/function () {
           if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Length Of Time") {
             this.accounts.emergencyFund.emergencyFundGoal = options.goal;
             this.accounts.emergencyFund.emergencyFundGoalTiming = options.goalTiming;
+            this.accounts.emergencyFund.amount = options.amount;
           }
 
           if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Total Amount") {
             this.accounts.emergencyFund.emergencyFundGoal = options.goal;
+            this.accounts.emergencyFund.amount = options.amount;
           }
+        }
+
+        if (update === "Expense Fund") {
+          this.accounts.expenseFund.amount = Number(options.amount);
+        }
+
+        if (update === "Surplus") {
+          this.accounts.surplus.amount = Number(options.amount);
+        }
+
+        if (update === "Monthly Budget") {
+          this.accounts.monthlyBudget.amount = Number(options.amount);
         }
 
         if (update === "Savings") {
           this.accounts.savingsFund.savingsPercentage = Number(options.percentage);
           this.accounts.savingsFund.savingsGoal = Number(options.goal);
+          this.accounts.savingsFund.amount = Number(options.amount);
         }
 
         if (update === "Investment") {
           this.accounts.investmentFund.investmentPercentage = Number(options.percentage);
           this.accounts.investmentFund.investmentGoal = Number(options.goal);
+          this.accounts.investmentFund.amount = Number(options.amount);
         }
 
         if (update === "Debt") {
@@ -7364,7 +7381,8 @@ var Budget = /*#__PURE__*/function () {
 
         if (user.latterDaySaint === true) {
           this._updateAccounts("Creation", "Tithing Setting", {
-            setting: budget.accounts.tithing.tithingSetting
+            setting: budget.accounts.tithing.tithingSetting,
+            amount: budget.accounts.tithing.amount
           });
         }
 
@@ -7375,24 +7393,40 @@ var Budget = /*#__PURE__*/function () {
         if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Length Of Time") {
           this._updateAccounts("Creation", "Emergency Goal", {
             goal: budget.accounts.emergencyFund.emergencyFundGoal,
-            goalTiming: budget.accounts.emergencyFund.emergencyFundGoalTiming
+            goalTiming: budget.accounts.emergencyFund.emergencyFundGoalTiming,
+            amount: budget.accounts.emergencyFund.amount
           });
         }
 
         if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Total Amount") {
           this._updateAccounts("Creation", "Emergency Goal", {
-            goal: budget.accounts.emergencyFund.emergencyFundGoal
+            goal: budget.accounts.emergencyFund.emergencyFundGoal,
+            amount: budget.accounts.emergencyFund.amount
           });
         }
 
+        this._updateAccounts("Creation", "Monthly Budget", {
+          amount: budget.accounts.monthlyBudget.amount
+        });
+
         this._updateAccounts("Creation", "Savings", {
           goal: budget.accounts.savingsFund.savingsGoal,
-          percentage: budget.accounts.savingsFund.savingsPercentage
+          percentage: budget.accounts.savingsFund.savingsPercentage,
+          amount: budget.accounts.savingsFund.amount
         });
 
         this._updateAccounts("Creation", "Investment", {
           goal: budget.accounts.investmentFund.investmentGoal,
-          percentage: budget.accounts.investmentFund.investmentPercentage
+          percentage: budget.accounts.investmentFund.investmentPercentage,
+          amount: budget.accounts.investmentFund.amount
+        });
+
+        this._updateAccounts("Creation", "Expense Fund", {
+          amount: budget.accounts.expenseFund.amount
+        });
+
+        this._updateAccounts("Creation", "Surplus", {
+          amount: budget.accounts.surplus.amount
         });
 
         this._updateAccounts("Creation", "Debt", {
@@ -8266,7 +8300,14 @@ var _watchIncomeAllocation = function _watchIncomeAllocation(budget, placeholder
       savingsFundAllocation = allocationInputs[2].value;
       expenseFundAllocation = allocationInputs[3].value;
       debtAllocation = allocationInputs[4].value;
-      investmentFundAllocation = allocationInputs[5].value;
+      investmentFundAllocation = allocationInputs[5].value; // DOUBLE CHECK IF IT IS A NUMBER
+
+      if (isNaN(monthlyBudgetAllocation)) monthlyBudgetAllocation = 0;
+      if (isNaN(emergencyFundAllocation)) emergencyFundAllocation = 0;
+      if (isNaN(savingsFundAllocation)) savingsFundAllocation = 0;
+      if (isNaN(expenseFundAllocation)) expenseFundAllocation = 0;
+      if (isNaN(debtAllocation)) debtAllocation = 0;
+      if (isNaN(investmentFundAllocation)) investmentFundAllocation = 0;
       var updateObject = {
         budgetId: budget._id,
         userId: user._id,
@@ -9234,7 +9275,7 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays, budget
       incomePreviewAmounts[0].textContent = money.format(netIncomeInput.value * investmentPercentage);
       incomePreviewAmounts[1].textContent = money.format(netIncomeInput.value * savingsPercentage);
       incomePreviewAmounts[2].textContent = money.format(netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1]));
-    }); // MUSTDO: As soon as submit is hit, transfer all of the income stated in each amount to the correct accounts.
+    }); // ENTERING INCOME
 
     headerSubmitButtons[0].addEventListener('click', function (e) {
       var unAllocatedAmount = budget.accounts.unAllocated.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1]);

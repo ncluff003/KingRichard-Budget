@@ -317,6 +317,14 @@ const _watchIncomeAllocation = (budget, placeholderBudget, user) => {
       debtAllocation = allocationInputs[4].value;
       investmentFundAllocation = allocationInputs[5].value;
 
+      // DOUBLE CHECK IF IT IS A NUMBER
+      if (isNaN(monthlyBudgetAllocation)) monthlyBudgetAllocation = 0;
+      if (isNaN(emergencyFundAllocation)) emergencyFundAllocation = 0;
+      if (isNaN(savingsFundAllocation)) savingsFundAllocation = 0;
+      if (isNaN(expenseFundAllocation)) expenseFundAllocation = 0;
+      if (isNaN(debtAllocation)) debtAllocation = 0;
+      if (isNaN(investmentFundAllocation)) investmentFundAllocation = 0;
+
       const updateObject = {
         budgetId: budget._id,
         userId: user._id,
@@ -1292,7 +1300,7 @@ const _watchForTransactions = (arrayOfArrays, budget, placeholderBudget, user) =
       );
     });
 
-    // MUSTDO: As soon as submit is hit, transfer all of the income stated in each amount to the correct accounts.
+    // ENTERING INCOME
     headerSubmitButtons[0].addEventListener('click', (e) => {
       const unAllocatedAmount = budget.accounts.unAllocated.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1]);
       const savingsAmount = budget.accounts.savingsFund.amount + Number(incomePreviewAmounts[1].textContent.split('$')[1]);
