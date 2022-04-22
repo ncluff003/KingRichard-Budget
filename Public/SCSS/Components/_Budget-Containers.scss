@@ -35,12 +35,21 @@
     }
   }
 
+  &--allocate-income {
+    @extend .container--budget-management;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+
   &--extra-small {
     @include SizeAndPositioning(relative, 22.5rem, 35rem, flex, column, nowrap, space-between, center, 0, 0, 0);
     padding: 0.2rem;
     border: 0.3rem solid $primaryColor;
     border-radius: 0.5rem;
     background-color: rgba($colorOffWhite, 0.8);
+
+    min-height: 22.5rem;
     &__header {
       @include SizeAndPositioning(relative, 25%, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
       border-top-left-radius: 0.25rem;

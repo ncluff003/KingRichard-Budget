@@ -182,7 +182,7 @@ export class Budget {
           updateObject.accounts.tithing = options.tithing;
         }
         console.log(updateObject);
-        Manage.updateMyBudget(updateObject);
+        Manage.updateMyBudget(updateObject, pageLink);
       }
       if (update === `Edit Category Goals`) {
         console.log(options.updateObject);
@@ -195,6 +195,11 @@ export class Budget {
       if (update === `Manage Categories`) {
         console.log(`Updating Categories...`);
         console.log(options, options.updateObject);
+        Manage.updateMyBudget(options.updateObject, pageLink);
+      }
+
+      if (update === `Enter Income`) {
+        console.log(`Entering Income...`);
         Manage.updateMyBudget(options.updateObject, pageLink);
       }
       console.log(`Updating...`);

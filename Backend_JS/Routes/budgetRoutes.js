@@ -29,7 +29,8 @@ const budgetController = require(`./../Controllers/budgetController`);
 router.route(`/`).post(authController.protect, budgetController.createBudget);
 router.route(`/RetrieveBudget`).get(authController.protect, budgetController.retrieveBudgetInfo);
 
-router.route(`/:id/Dashboard`).get(authController.protect, budgetController.getBudgetDashboard);
+router.route(`/:id/Dashboard`).get(authController.protect, budgetController.getBudgetDashboard).patch(authController.protect, budgetController.updateMyBudget);
+router.route(`/:id/Enter-Income`).patch(authController.protect, budgetController.updateMyBudget);
 router
   .route(`/:id/Budget-Management`)
   .get(authController.protect, budgetController.getBudgetManagement)

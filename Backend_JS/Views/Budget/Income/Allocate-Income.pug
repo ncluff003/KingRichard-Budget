@@ -3,3 +3,31 @@ extends ./../budgetLanding
 block Budget-Content 
   header.budget-container__header.r__budget-container__header
     p.budget-container__header__text.r__budget-container__header__text Allocate Income
+  section.container--allocate-income.r__container--allocate-income
+    section.container--extra-small.r__container--extra-small
+      section.container--extra-small__header.r__container--extra-small__header
+        i.fas.fa-piggy-bank.container--extra-small__header__icon.r__container--extra-small__header__icon 
+        p.container--extra-small__header__text.r__container--extra-small__header__text Un-Allocated Amount
+      section.container--extra-small__content.r__container--extra-small__content
+        p.un-allocated-account-total.r__un-allocated-account-total= `${(data.budget.accounts.unAllocated.amount).toFixed(2)}`
+    form.form--framed.r__form--framed
+      section.form__section.r__form__section
+        input.form__input.r__form__input#monthlyBudgetAccount(type="number" min="0.00" placeholder="0.00")
+        label.form__label.r__form__label(for="monthlyBudgetAccount") Monthly Budget Account
+      section.form__section.r__form__section
+        input.form__input.r__form__input#emergencyAccount(type="number" min="0.00" placeholder="0.00")
+        label.form__label.r__form__label(for="emergencyAccount") Emergency Account
+      section.form__section.r__form__section
+        input.form__input.r__form__input#savingsAccount(type="number" min="0.00" placeholder="0.00")
+        label.form__label.r__form__label(for="savingsAccount") Savings Account
+      section.form__section.r__form__section
+        input.form__input.r__form__input#expenseAccount(type="number" min="0.00" placeholder="0.00")
+        label.form__label.r__form__label(for="expenseAccount") Expense Account
+      section.form__section.r__form__section
+        input.form__input.r__form__input#debtAccount(type="number" min="0.00" placeholder="0.00")
+        label.form__label.r__form__label(for="debtAccount") Debt Account
+      section.form__section.r__form__section
+        input.form__input.r__form__input#investmentAccount(type="number" min="0.00" placeholder="0.00")
+        label.form__label.r__form__label(for="investmentAccount") Investment Account
+      section.form__section.r__form__section
+        button.button--small-purple.r__button--small-purple(type="button") Allocate

@@ -272,6 +272,142 @@ export const updateBudget = (categoryType, action, budget, placeholderBudget, us
   }
 };
 
+const _watchIncomeAllocation = (budget, placeholderBudget, user) => {
+  const incomeAllocationContainer = document.querySelector('.container--allocate-income');
+  const unAllocatedTotal = document.querySelector('.un-allocated-account-total');
+  const money = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+  });
+  if (incomeAllocationContainer) {
+    console.log(`Allocating...`);
+    unAllocatedTotal.textContent = money.format(unAllocatedTotal.textContent);
+    console.log(unAllocatedTotal.textContent.split('$'));
+    const allocateIncomeButton = document.querySelector('.button--small-purple');
+    allocateIncomeButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      // INITIALIZE NEEDED VARIABLES
+      let unAllocatedAmount = Number(unAllocatedTotal.textContent.split('$')[1].split(',').join(''));
+      let totalAllocationAmount = 0;
+      // SELECT INPUTS FOR INCOME ALLOCATION
+      const allocationInputs = document.querySelectorAll('.form__input');
+
+      // GET TOTAL AMOUNT OF ALL INPUTS
+      allocationInputs.forEach((ai, i) => {
+        // ADD VALUE TO CURRENT TOTAL
+        totalAllocationAmount += Number(ai.value);
+      });
+      console.log(totalAllocationAmount);
+
+      // DOUBLE CHECK TO MAKE SURE ALLOCATED AMOUNT DOES NOT EXCEED UN-ALLOCATED INCOME
+      totalAllocationAmount <= unAllocatedAmount
+        ? (unAllocatedTotal.textContent = money.format(unAllocatedAmount - totalAllocationAmount))
+        : alert(`You do not have all that money! Please lower one of your accounts amounts!`);
+      console.log(unAllocatedTotal.textContent);
+
+      // INITIALIZE SEPARATE ACCOUNTS ALLOCATED TOTALS
+      let monthlyBudgetAllocation, emergencyFundAllocation, savingsFundAllocation, expenseFundAllocation, debtAllocation, investmentFundAllocation;
+
+      // GET EACH SEPARATE ACCOUNTS ALLOCATED INCOME
+      monthlyBudgetAllocation = allocationInputs[0].value;
+      emergencyFundAllocation = allocationInputs[1].value;
+      savingsFundAllocation = allocationInputs[2].value;
+      expenseFundAllocation = allocationInputs[3].value;
+      debtAllocation = allocationInputs[4].value;
+      investmentFundAllocation = allocationInputs[5].value;
+
+      const updateObject = {
+        budgetId: budget._id,
+        userId: user._id,
+        user: user,
+        accounts: {
+          unAllocated: {
+            amount: Number(unAllocatedTotal.textContent.split('$')[1].split(',').join('')),
+          },
+          monthlyBudget: {
+            amount: Number(monthlyBudgetAllocation),
+          },
+          emergencyFund: {
+            emergencyFundGoal: placeholderBudget.accounts.emergencyFund.emergencyFundGoal,
+            emergencyGoalMeasurement: placeholderBudget.accounts.emergencyFund.emergencyGoalMeasurement,
+            emergencyFundGoalTiming: placeholderBudget.accounts.emergencyFund.emergencyFundGoalTiming,
+            amount: Number(emergencyFundAllocation),
+          },
+          savingsFund: {
+            savingsGoal: placeholderBudget.accounts.savingsFund.savingsGoal,
+            savingsPercentage: placeholderBudget.accounts.savingsFund.savingsPercentage,
+            amount: Number(savingsFundAllocation),
+          },
+          expenseFund: {
+            amount: Number(expenseFundAllocation),
+          },
+          surplus: {
+            amount: placeholderBudget.accounts.surplus.amount,
+          },
+          investmentFund: {
+            investmentGoal: placeholderBudget.accounts.investmentFund.investmentGoal,
+            investmentPercentage: placeholderBudget.accounts.investmentFund.investmentPercentage,
+            amount: Number(investmentFundAllocation),
+          },
+          debt: {
+            debtAmount: placeholderBudget.accounts.debt.debtAmount,
+            amount: Number(debtAllocation),
+          },
+        },
+      };
+
+      console.log(updateObject);
+
+      allocationInputs.forEach((ai) => {
+        ai.value = '';
+      });
+
+      // unAllocatedAmount = unAllocatedAmount - ai.value;
+      // if (unAllocatedAmount < 0) return console.error(`You will not be able to allocate that much!!!`);
+      // console.log(unAllocatedAmount, money.format(unAllocatedAmount));
+      // console.log(totalAllocationAmount);
+      // if (unAllocatedAmount >= 0) unAllocatedTotal.textContent = money.format(unAllocatedAmount);
+
+      if (budget.accounts.unAllocated.amount === 0 || Number(unAllocatedTotal.textContent.split('$')[1] < 0)) {
+        return alert(`You do not have enough money to make that allocation.  Please make a deposit.`);
+      }
+      console.log(budget.accounts.unAllocated.amount, Number(unAllocatedTotal.textContent.split('$')[1].split(',').join('')));
+
+      console.log(allocationInputs);
+
+      console.log(unAllocatedAmount);
+      unAllocatedAmount = Number(unAllocatedTotal.textContent.split('$')[1].split(',').join(''));
+
+      // const updateObject = {
+      //   budgetId: budget._id,
+      //   userId: user._id,
+      //   user: user,
+      //   accounts: {
+      //     unAllocated: {
+      //       amount: unAllocatedAmount,
+      //     },
+      //     monthlyBudget: budget.accounts.monthlyBudget,
+      //     emergencyFund: budget.accounts.emergencyFund,
+      //     savingsFund: {
+      //       savingsGoal: budget.accounts.savingsFund.savingsGoal,
+      //       savingsPercentage: budget.accounts.savingsFund.savingsPercentage,
+      //       amount: savingsAmount,
+      //     },
+      //     expenseFund: budget.accounts.expenseFund,
+      //     surplus: budget.accounts.surplus,
+      //     investmentFund: {
+      //       investmentGoal: budget.accounts.investmentFund.investmentGoal,
+      //       investmentPercentage: budget.accounts.investmentFund.investmentPercentage,
+      //       amount: investmentAmount,
+      //     },
+      //     debt: budget.accounts.debt,
+      //   },
+      // };
+    });
+  }
+};
+
 const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
   console.log(`We are WAITING...`);
 
@@ -1159,7 +1295,96 @@ const getDashboardAccountTotals = (budget) => {
   // budget-container__dashboard__container--extra-small__content__account-total
 };
 
-const _watchForTransactions = (arrayOfArrays) => {
+const _watchForTransactions = (arrayOfArrays, budget, placeholderBudget, user) => {
+  const dashboard = document.querySelector('.budget-dashboard');
+  if (dashboard) {
+    const money = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+    });
+    const headerSubmitButtons = document.querySelectorAll('.button--small-container-header');
+    console.log(headerSubmitButtons);
+    const incomeInputs = document.querySelectorAll('.form__input--enter-income');
+    console.log(incomeInputs);
+    // MUSTDO: Separate income into investment, savings, and un-allocated after every keystroke into net pay.
+    const incomeDateInput = incomeInputs[0];
+    const incomeFromInput = incomeInputs[1];
+    const grossIncomeInput = incomeInputs[2];
+    const netIncomeInput = incomeInputs[3];
+    console.log(grossIncomeInput, netIncomeInput);
+
+    const investmentPercentage = budget.accounts.investmentFund.investmentPercentage;
+    const savingsPercentage = budget.accounts.savingsFund.savingsPercentage;
+    const incomePreviewAmounts = [
+      ...document.querySelectorAll('.form__section--early-income-view__income-view__amount'),
+      document.querySelector('.form__section--early-income-view__income-view--purple__amount'),
+    ];
+    console.log(investmentPercentage, savingsPercentage);
+
+    netIncomeInput.addEventListener('keyup', (e) => {
+      e.preventDefault();
+      console.log(netIncomeInput.value);
+      incomePreviewAmounts[0].textContent = money.format(netIncomeInput.value * investmentPercentage);
+      incomePreviewAmounts[1].textContent = money.format(netIncomeInput.value * savingsPercentage);
+      incomePreviewAmounts[2].textContent = money.format(
+        netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1])
+      );
+    });
+
+    // MUSTDO: As soon as submit is hit, transfer all of the income stated in each amount to the correct accounts.
+    headerSubmitButtons[0].addEventListener('click', (e) => {
+      const unAllocatedAmount = budget.accounts.unAllocated.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1]);
+      const savingsAmount = budget.accounts.savingsFund.amount + Number(incomePreviewAmounts[1].textContent.split('$')[1]);
+      const investmentAmount = budget.accounts.investmentFund.amount + Number(incomePreviewAmounts[0].textContent.split('$')[1]);
+      const updateObject = {
+        budgetId: budget._id,
+        userId: user._id,
+        user: user,
+        accounts: {
+          unAllocated: {
+            amount: unAllocatedAmount,
+          },
+          monthlyBudget: budget.accounts.monthlyBudget,
+          emergencyFund: budget.accounts.emergencyFund,
+          savingsFund: {
+            savingsGoal: budget.accounts.savingsFund.savingsGoal,
+            savingsPercentage: budget.accounts.savingsFund.savingsPercentage,
+            amount: savingsAmount,
+          },
+          expenseFund: budget.accounts.expenseFund,
+          surplus: budget.accounts.surplus,
+          investmentFund: {
+            investmentGoal: budget.accounts.investmentFund.investmentGoal,
+            investmentPercentage: budget.accounts.investmentFund.investmentPercentage,
+            amount: investmentAmount,
+          },
+          debt: budget.accounts.debt,
+        },
+      };
+
+      console.log(updateObject, typeof budget.accounts.investmentFund.amount);
+
+      placeholderBudget._updateBudget(
+        `Update`,
+        `Enter Income`,
+        {
+          updateObject: updateObject,
+        },
+        `Enter-Income`
+      );
+      incomeDateInput.value = '';
+      incomeFromInput.value = '';
+      grossIncomeInput.value = '';
+      netIncomeInput.value = '';
+      incomePreviewAmounts[0].textContent = money.format(0);
+      incomePreviewAmounts[1].textContent = money.format(0);
+      incomePreviewAmounts[2].textContent = money.format(0);
+    });
+  }
+
+  // ** TOP PRIORITY ** When it is possible, record the income as a deposit transaction in the recent transactions page.
+
   // arrayOfArrays = mainCategoryOptionArrays
 
   arrayOfArrays.forEach((a, i) => {
@@ -1458,7 +1683,7 @@ const setupDashboard = (user, budget, placeholderBudget) => {
 
   ////////////////////////////////////////////
   // WATCH FOR ACCOUNT SELECTION
-  _watchForTransactions(mainCategoryOptionArrays);
+  _watchForTransactions(mainCategoryOptionArrays, budget, placeholderBudget, user);
 
   ////////////////////////////////////////////
   // GET BANK ACCOUNT TOTAL
@@ -1503,4 +1728,7 @@ export const _watchBudget = async () => {
   ////////////////////////////////////////////
   // WATCH MANAGE CATEGORIES PAGE
   _watchManageCategories(currentBudget, budget, user);
+  ////////////////////////////////////////////
+  // WATCH FOR INCOME ALLOCATION
+  _watchIncomeAllocation(currentBudget, budget, user);
 };
