@@ -202,6 +202,11 @@ export class Budget {
         console.log(`Entering Income...`);
         Manage.updateMyBudget(options.updateObject, pageLink);
       }
+
+      if (update === `Allocate Income`) {
+        console.log(`Allocating...`);
+        Manage.updateMyBudget(options.updateObject, pageLink);
+      }
       console.log(`Updating...`);
     }
   }

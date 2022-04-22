@@ -326,21 +326,21 @@ const _watchIncomeAllocation = (budget, placeholderBudget, user) => {
             amount: Number(unAllocatedTotal.textContent.split('$')[1].split(',').join('')),
           },
           monthlyBudget: {
-            amount: Number(monthlyBudgetAllocation),
+            amount: Number(monthlyBudgetAllocation) + budget.accounts.monthlyBudget.amount,
           },
           emergencyFund: {
             emergencyFundGoal: placeholderBudget.accounts.emergencyFund.emergencyFundGoal,
             emergencyGoalMeasurement: placeholderBudget.accounts.emergencyFund.emergencyGoalMeasurement,
             emergencyFundGoalTiming: placeholderBudget.accounts.emergencyFund.emergencyFundGoalTiming,
-            amount: Number(emergencyFundAllocation),
+            amount: Number(emergencyFundAllocation) + budget.accounts.emergencyFund.amount,
           },
           savingsFund: {
             savingsGoal: placeholderBudget.accounts.savingsFund.savingsGoal,
             savingsPercentage: placeholderBudget.accounts.savingsFund.savingsPercentage,
-            amount: Number(savingsFundAllocation),
+            amount: Number(savingsFundAllocation) + budget.accounts.savingsFund.amount,
           },
           expenseFund: {
-            amount: Number(expenseFundAllocation),
+            amount: Number(expenseFundAllocation) + budget.accounts.expenseFund.amount,
           },
           surplus: {
             amount: placeholderBudget.accounts.surplus.amount,
@@ -348,62 +348,22 @@ const _watchIncomeAllocation = (budget, placeholderBudget, user) => {
           investmentFund: {
             investmentGoal: placeholderBudget.accounts.investmentFund.investmentGoal,
             investmentPercentage: placeholderBudget.accounts.investmentFund.investmentPercentage,
-            amount: Number(investmentFundAllocation),
+            amount: Number(investmentFundAllocation) + budget.accounts.investmentFund.amount,
           },
           debt: {
             debtAmount: placeholderBudget.accounts.debt.debtAmount,
-            amount: Number(debtAllocation),
+            amount: Number(debtAllocation) + budget.accounts.debt.amount,
           },
         },
       };
 
       console.log(updateObject);
 
+      placeholderBudget._updateBudget(`Update`, `Allocate Income`, { updateObject: updateObject }, `Allocate-Income`);
+
       allocationInputs.forEach((ai) => {
         ai.value = '';
       });
-
-      // unAllocatedAmount = unAllocatedAmount - ai.value;
-      // if (unAllocatedAmount < 0) return console.error(`You will not be able to allocate that much!!!`);
-      // console.log(unAllocatedAmount, money.format(unAllocatedAmount));
-      // console.log(totalAllocationAmount);
-      // if (unAllocatedAmount >= 0) unAllocatedTotal.textContent = money.format(unAllocatedAmount);
-
-      if (budget.accounts.unAllocated.amount === 0 || Number(unAllocatedTotal.textContent.split('$')[1] < 0)) {
-        return alert(`You do not have enough money to make that allocation.  Please make a deposit.`);
-      }
-      console.log(budget.accounts.unAllocated.amount, Number(unAllocatedTotal.textContent.split('$')[1].split(',').join('')));
-
-      console.log(allocationInputs);
-
-      console.log(unAllocatedAmount);
-      unAllocatedAmount = Number(unAllocatedTotal.textContent.split('$')[1].split(',').join(''));
-
-      // const updateObject = {
-      //   budgetId: budget._id,
-      //   userId: user._id,
-      //   user: user,
-      //   accounts: {
-      //     unAllocated: {
-      //       amount: unAllocatedAmount,
-      //     },
-      //     monthlyBudget: budget.accounts.monthlyBudget,
-      //     emergencyFund: budget.accounts.emergencyFund,
-      //     savingsFund: {
-      //       savingsGoal: budget.accounts.savingsFund.savingsGoal,
-      //       savingsPercentage: budget.accounts.savingsFund.savingsPercentage,
-      //       amount: savingsAmount,
-      //     },
-      //     expenseFund: budget.accounts.expenseFund,
-      //     surplus: budget.accounts.surplus,
-      //     investmentFund: {
-      //       investmentGoal: budget.accounts.investmentFund.investmentGoal,
-      //       investmentPercentage: budget.accounts.investmentFund.investmentPercentage,
-      //       amount: investmentAmount,
-      //     },
-      //     debt: budget.accounts.debt,
-      //   },
-      // };
     });
   }
 };
@@ -1345,21 +1305,21 @@ const _watchForTransactions = (arrayOfArrays, budget, placeholderBudget, user) =
           unAllocated: {
             amount: unAllocatedAmount,
           },
-          monthlyBudget: budget.accounts.monthlyBudget,
-          emergencyFund: budget.accounts.emergencyFund,
+          monthlyBudget: placeholderBudget.accounts.monthlyBudget,
+          emergencyFund: placeholderBudget.accounts.emergencyFund,
           savingsFund: {
-            savingsGoal: budget.accounts.savingsFund.savingsGoal,
-            savingsPercentage: budget.accounts.savingsFund.savingsPercentage,
+            savingsGoal: placeholderBudget.accounts.savingsFund.savingsGoal,
+            savingsPercentage: placeholderBudget.accounts.savingsFund.savingsPercentage,
             amount: savingsAmount,
           },
-          expenseFund: budget.accounts.expenseFund,
-          surplus: budget.accounts.surplus,
+          expenseFund: placeholderBudget.accounts.expenseFund,
+          surplus: placeholderBudget.accounts.surplus,
           investmentFund: {
-            investmentGoal: budget.accounts.investmentFund.investmentGoal,
-            investmentPercentage: budget.accounts.investmentFund.investmentPercentage,
+            investmentGoal: placeholderBudget.accounts.investmentFund.investmentGoal,
+            investmentPercentage: placeholderBudget.accounts.investmentFund.investmentPercentage,
             amount: investmentAmount,
           },
-          debt: budget.accounts.debt,
+          debt: placeholderBudget.accounts.debt,
         },
       };
 
