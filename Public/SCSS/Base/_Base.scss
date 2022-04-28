@@ -70,3 +70,15 @@ body {
     z-index: 10;
   }
 }
+
+.extend-enter-transaction {
+  margin-bottom: 7rem;
+  overflow-y: visible;
+}
+
+.extend-transaction-plan {
+  @include Taller(9rem, 2);
+  .form__row--transaction {
+    margin-bottom: 9rem;
+  }
+}

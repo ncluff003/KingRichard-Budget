@@ -1379,10 +1379,70 @@
 //   }
 // }
 ///////////////////////////////////
+// TRANSACTION DISPLAY
+.transaction-plan-display {
+  @include SizeAndPositioning(relative, 90%, 100%, flex, column, nowrap, flex-start, center, 0, 0, 0);
+}
+
+.transaction-plan-creation {
+  @include SizeAndPositioning(relative, 9rem, 100%, flex, row, wrap, space-evenly, center, 0, 0, 0);
+  min-height: 9rem;
+  border-bottom: 0.2rem solid $primaryColor;
+}
+
+.transaction-plan,
+.transaction-plan__alt {
+  @extend .transaction-plan-creation;
+  justify-content: space-between;
+  height: 10rem;
+  &:nth-of-type(2n) {
+    background-color: $colorLightestGrey;
+  }
+  &__alt {
+    @extend .transaction-plan;
+    .transaction-plan__part,
+    .transaction-plan__alt__part {
+      width: calc(100% / 13);
+    }
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: $primaryColor;
+
+    .button--extra-extra-small__transaction-plan-small {
+      border: 0.2rem solid rgba($colorOffWhite, 0.8);
+      &:hover {
+        background-color: $secondaryColor;
+      }
+    }
+
+    transition: color 0.5s, background-color 0.5s;
+  }
+  &__part {
+    @include SizeAndPositioning(relative, 100%, calc(100% / 12), flex, column, nowrap, space-evenly, center, 0, 0, 0);
+    padding: 0.5rem;
+    // &:not(:last-of-type) {
+    //   border-right: 0.2rem solid $primaryColor;
+    // }
+    &__header {
+      @include SizeAndPositioning(relative, 3rem, 100%, flex, row, wrap, center, center, 0, 0, 0);
+    }
+  }
+}
+
+///////////////////////////////////
 // FORM COMPONENTS
 .form {
   @include SizeAndPositioning(relative, 100%, 50%, flex, column, nowrap, center, center, 0, 0, 0);
   overflow-y: auto;
+
+  &--transaction-plan {
+    @extend .form;
+    height: 100%;
+    width: 100%;
+    justify-content: space-evenly;
+    overflow-y: visible;
+  }
 
   &--framed {
     @extend .form;
@@ -1433,6 +1493,19 @@
   &__row {
     @include SizeAndPositioning(relative, 32.5%, 100%, flex, row, nowrap, flex-start, flex-end, 0, 0, 0);
     padding: 0 2rem 2rem;
+    &--transaction {
+      @extend .form__row;
+      height: 100%;
+      padding: 0 2rem;
+      flex-wrap: wrap;
+
+      /* 
+        This is the way to get the proper result right now.  It depends on if the width of the select option becomes longer than 10.5rem.
+        
+        If it does, then, the current row, gets a margin bottom of 9rem.  The transaction-plan-creation container will also get a height of 18rem.  If it is NOT that length, and it will adjust automatically, it will remove that margin altogether.
+        
+      */
+    }
     &--thirds {
       @extend .form__row;
       min-height: 33.3%;
@@ -1889,6 +1962,21 @@
         }
       }
     }
+
+    &--transaction-plan {
+      @extend .form__section--medium;
+      width: max-content;
+      &__alt {
+        @extend .form__section--transaction-plan;
+        width: max-content;
+      }
+    }
+
+    &--select {
+      @extend .form__section--medium;
+      width: max-content;
+    }
+
     // ENTER INCOME / TRANSACTION SECTIONS
     &--enter-income,
     &--enter-transaction {
@@ -2062,8 +2150,15 @@
     padding: 1rem;
     padding-left: 2rem;
     background-color: rgba($colorLightestGrey, 0.125);
-    border: 0.3rem solid rgba($primaryColor, 0.75);
+    border: 0.2rem solid rgba($primaryColor, 0.75);
     border-radius: 0.75rem;
+
+    &:valid {
+      border: 0.2rem solid rgba($secondaryColor, 0.75);
+    }
+    &:invalid {
+      border: 0.2rem solid rgba($colorError, 0.75);
+    }
 
     &::-webkit-input-placeholder,
     &::-moz-placeholder,
@@ -2081,6 +2176,12 @@
       &::-moz-placeholder,
       &::placeholder {
         opacity: 1;
+      }
+      &:valid {
+        border: 0.2rem solid $secondaryColor;
+      }
+      &:invalid {
+        border: 0.2rem solid $colorError;
       }
     }
     &:not(:placeholder-shown) + label,
@@ -2105,9 +2206,30 @@
       background-color: transparent;
       transition: background-color 0.5s, color 0.5s, border 0.5s;
 
+      &:valid {
+        border-top: 0.2rem solid rgba($secondaryColor, 0.75);
+        border-left: 0.2rem solid rgba($secondaryColor, 0.75);
+        border-bottom: 0.2rem solid rgba($secondaryColor, 0.75);
+      }
+      &:invalid {
+        border-top: 0.2rem solid rgba($colorError, 0.75);
+        border-left: 0.2rem solid rgba($colorError, 0.75);
+        border-bottom: 0.2rem solid rgba($colorError, 0.75);
+      }
+
       &:focus {
         background-color: rgba($colorOffWhite, 0.25);
         outline: none;
+        &:valid {
+          border-top: 0.2rem solid $secondaryColor;
+          border-left: 0.2rem solid $secondaryColor;
+          border-bottom: 0.2rem solid $secondaryColor;
+        }
+        &:invalid {
+          border-top: 0.2rem solid $colorError;
+          border-left: 0.2rem solid $colorError;
+          border-bottom: 0.2rem solid $colorError;
+        }
       }
       &:hover {
         cursor: pointer;
@@ -2187,6 +2309,16 @@
       &:focus + .form__label--medium__alt-2 {
         transform: translate(-1.5rem, 0rem) scale(0.95);
       }
+
+      &:not(:placeholder-shown) + .form__label--medium__alt-3,
+      &:focus + .form__label--medium__alt-3 {
+        transform: translate(-1.5rem, -0.5rem) scale(0.95);
+      }
+
+      &:not(:placeholder-shown) + .form__label--medium__alt-4,
+      &:focus + .form__label--medium__alt-4 {
+        transform: translate(-1.5rem, -0.5rem) scale(0.95);
+      }
       &__alt {
         @extend .form__input--medium;
         width: 100%;
@@ -2195,6 +2327,16 @@
         &:focus + .form__label--medium {
           transform: translate(-1.5rem, 1rem) scale(0.95);
         }
+
+        &:not(:placeholder-shown) + .form__label--medium__alt-3,
+        &:focus + .form__label--medium__alt-3 {
+          transform: translate(-1.5rem, -0.5rem) scale(0.95);
+        }
+
+        &:not(:placeholder-shown) + .form__label--medium__alt-4,
+        &:focus + .form__label--medium__alt-4 {
+          transform: translate(-1.5rem, -0.5rem) scale(0.95);
+        }
       }
     }
 
@@ -2202,6 +2344,13 @@
     &--small {
       @extend .form__input;
       width: 25%;
+
+      &-short {
+        @extend .form__input--medium;
+        height: 4rem;
+        min-height: 4rem;
+        width: 12.5rem;
+      }
       &-thin {
         @extend .form__input--small;
         height: 20%;
@@ -2249,6 +2398,17 @@
             top: 50%;
           }
         }
+      }
+    }
+
+    &--transaction-plan {
+      @extend .form__input--small-short;
+      height: 3rem;
+      min-height: 3rem;
+      width: 8rem;
+      background-color: rgba($colorOffWhite, 0.5);
+      &:focus {
+        background-color: $colorOffWhite;
       }
     }
 
@@ -2523,6 +2683,18 @@
     -moz-transform: translateY(-50%);
     transition: transform 0.5s;
 
+    &--select {
+      @extend .form__label;
+      height: 4rem;
+      top: 0;
+      left: 0;
+      transform: translate(1rem, 0.5rem);
+      &__transaction {
+        @extend .form__label--select;
+        width: max-content;
+      }
+    }
+
     &--outer-checkbox {
       @extend .form__label;
       position: relative;
@@ -2593,6 +2765,15 @@
           @extend .form__label--medium;
           -moz-transform: translate(-1rem, 3rem);
         }
+        &-3 {
+          @extend .form__label--medium;
+          -moz-transform: translate(-1rem, 3rem);
+        }
+        &-4 {
+          @extend .form__label--medium;
+          -moz-transform: translate(-1rem, 2.4rem);
+          width: 12.5rem;
+        }
       }
 
       &__relative {
@@ -2642,7 +2823,7 @@
     &--fully-paid-for {
       @extend .form__label;
       height: 100%;
-      width: 90%;
+      width: max-content;
       flex-direction: column;
       justify-content: center;
       align-items: flex-start;

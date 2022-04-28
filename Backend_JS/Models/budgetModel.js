@@ -203,7 +203,7 @@ const budgetSchema = new mongoose.Schema({
           type: String,
           enum: [`Weekly`, `Bi-Weekly`, `Bi-Monthly`, `Monthly`, `Quarterly`, `Bi-Annually`, `Annually`],
         },
-        description: {
+        name: {
           type: String,
         },
         amountSaved: {
@@ -217,7 +217,7 @@ const budgetSchema = new mongoose.Schema({
         },
         paidStatus: {
           type: String,
-          enum: [`Paid Off`, `Partially Paid`, `Not Paid`],
+          enum: [`Overpaid`, `Paid Off`, `Partially Paid`, `Unpaid`],
         },
       },
     ],
@@ -295,6 +295,30 @@ const budgetSchema = new mongoose.Schema({
       },
       valueDifference: {
         type: Number, // I will find out the correct way to add a function here to simply make the value here the current value minus the initial investment.
+      },
+    },
+  ],
+  debts: [
+    {
+      date: {
+        type: Date,
+      },
+      lender: {
+        type: String,
+        required: [true, `Every debt requires a lender.`],
+      },
+      initialAmount: {
+        type: Number,
+        required: [true, `Every debt started somewhere at a specific number.`],
+      },
+      amountOwed: {
+        type: Number,
+        default: this.initialAmount,
+      },
+      status: {
+        type: String,
+        enum: [`Unpaid`, `Partially Paid`, `Paid Off`],
+        default: `Unpaid`,
       },
     },
   ],

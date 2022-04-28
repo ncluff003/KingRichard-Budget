@@ -148,7 +148,6 @@ export const deleteMe = async (id) => {
 ////////////////////////////////////
 // Watch Button To Reset Password
 export const _watchPasswordResetButton = (formButtons) => {
-  console.log(formButtons);
   const resetPasswordButton = document.querySelector('.reset-password-form__section__button');
   if (resetPasswordButton) {
     resetPasswordButton.addEventListener('click', (e) => {

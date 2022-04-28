@@ -80,6 +80,10 @@
   transform: rotate($rotate) translate($horizontal, $vertical);
 }
 
+@mixin Taller($height, $multiplier) {
+  height: calc($height * $multiplier);
+}
+
 @mixin CreateCircle($position, $circleHeight, $circleWidth, $childHeight, $childWidth) {
   position: $position;
   height: $circleHeight;

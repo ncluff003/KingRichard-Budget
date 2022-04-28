@@ -617,7 +617,6 @@ export const watchForSettingTiming = (budget, index, clickedItem, timing, placeh
   });
 
   const subCategoryTimingButtons = document.querySelectorAll('.button--borderless-set-timing-button');
-  console.log(subCategoryTimingButtons);
   const timingFunctionContainer = document.querySelector('.timing-container');
   subCategoryTimingButtons.forEach((sctb, i) => {
     sctb.addEventListener('click', (e) => {
@@ -1156,13 +1155,11 @@ const _watchCreationFormCloser = (form, budget) => {
   // GLITCH: Budget creation form page is NOT resetting when the form is closed.
 
   const formCloser = document.querySelectorAll(`.form-closure-icon`)[0];
-  console.log(formCloser);
   if (formCloser) {
     formCloser.addEventListener('click', (e) => {
       form.classList.toggle(`closed`);
       form.classList.toggle(`open`);
       budget = undefined;
-      console.log(budget);
     });
   }
 };
@@ -1172,7 +1169,6 @@ const _watchCreationFormOpener = (form, button, budget) => {
     button.addEventListener(`click`, (e) => {
       form.classList.toggle(`closed`);
       form.classList.toggle(`open`);
-      console.log(budget);
       return budget;
     });
   }
@@ -1185,7 +1181,6 @@ const _setupBudgetCreation = (form, button, budget) => {
 
 export const _watchForBudgetCreation = async () => {
   const forms = document.querySelectorAll('.form-container--full-width');
-  console.log(forms);
   const budgetCreationForm = forms[0];
   const budgetCreationFormOpenButton = document.querySelector('.budget-card-container__card--create');
   let budget;
@@ -1195,12 +1190,10 @@ export const _watchForBudgetCreation = async () => {
   // INITIALIZE KEY VARIABLES
   const budgetCreationFormPages = document.querySelectorAll('.budget-creation-form__page');
   const pages = document.querySelectorAll('.form__page--centered.r__form__page--centered');
-  console.log(pages.length);
   const budgetCreationFormPagesNumber = pages.length;
   let currentPage = 0;
   let emergencyGoalSetting, clicked, selectedTiming;
   const buttons = document.querySelectorAll('.button--small');
-  console.log(buttons);
   const budgetContinueButton = buttons[0];
   //////////////////////////////////////////////////////////////
   // SET APPROPRIATE PAGE NUMBER DEPENDING ON USER INFORMATION
@@ -1267,6 +1260,7 @@ export const _watchForBudgetCreation = async () => {
         budget._updateAccounts(`Creation`, `Savings`, {
           percentage: Number(document.querySelector('#savingsPercentGoal').value) / 100,
           goal: Number(document.querySelector('#savingsGoal').value),
+          amount: 0,
         });
         document.querySelector('#investmentPercentGoal').focus();
       }
@@ -1274,6 +1268,7 @@ export const _watchForBudgetCreation = async () => {
         budget._updateAccounts(`Creation`, `Investment`, {
           percentage: Number(document.querySelector('#investmentPercentGoal').value) / 100,
           goal: Number(document.querySelector('#investmentGoal').value),
+          amount: 0,
         });
         budget._submit(budget, user);
       }
@@ -1316,6 +1311,7 @@ export const _watchForBudgetCreation = async () => {
         budget._updateAccounts(`Creation`, `Savings`, {
           percentage: Number(document.querySelector('#savingsPercentGoal').value) / 100,
           goal: Number(document.querySelector('#savingsGoal').value),
+          amount: 0,
         });
         document.querySelector('#investmentPercentGoal').focus();
       }
@@ -1323,6 +1319,7 @@ export const _watchForBudgetCreation = async () => {
         budget._updateAccounts(`Creation`, `Investment`, {
           percentage: Number(document.querySelector('#investmentPercentGoal').value) / 100,
           goal: Number(document.querySelector('#investmentGoal').value),
+          amount: 0,
         });
         budget._submit(budget, user);
       }

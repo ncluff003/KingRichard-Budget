@@ -160,29 +160,22 @@ const getSubCategoryTiming = (budget, category) => {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   let wording;
   if (category.timingOptions.paymentCycle === `Weekly`) {
-    console.log(`Weekly`, category.timingOptions.dueDates);
-    console.log(new Date('2022-04-24T01:08:49.484Z').getTimezoneOffset() * 60 * 1000);
     let day = days[new Date(`${category.timingOptions.dueDates[0]}`).getDay()];
     wording = `Due every ${day} of the month.`;
-    console.log(budget.mainCategories[3].subCategories[3].timingOptions.dueDates[0]);
     return wording;
   }
   if (category.timingOptions.paymentCycle === `Bi-Weekly`) {
-    console.log(`Bi-Weekly`, category.timingOptions.dueDates);
     let date = new Date(`${category.timingOptions.dueDates[0]}`);
     let day = date.getDate();
     let endDigit = Number(date.getDate().toString().split('')[date.getDate().toString().length - 1]);
     let dayEnding;
     dayEnding = Edit.calculateDayEnding(endDigit, dayEnding, date);
-    console.log(day, endDigit, dayEnding);
     wording = `Due ${days[date.getDay()]}, the ${day}${dayEnding} of ${months[date.getMonth()]}.`;
     return wording;
   }
   if (category.timingOptions.paymentCycle === `Bi-Monthly`) {
     let dayOne, dayTwo, dayEnding, dayEndingTwo;
     category.timingOptions.dueDates[0].forEach((dd, i) => {
-      console.log(`Bi-Monthly`, dd);
-      console.log(new Date(`${dd}`));
       if (i === 0) {
         dayOne = new Date(`${dd}`);
       }
@@ -194,23 +187,18 @@ const getSubCategoryTiming = (budget, category) => {
     let endDigitTwo = Number(dayTwo.getDate().toString().split('')[dayTwo.getDate().toString().length - 1]);
     dayEnding = Edit.calculateDayEnding(endDigit, dayEnding, dayOne.getDate());
     dayEndingTwo = Edit.calculateDayEnding(endDigit, dayEndingTwo, dayTwo.getDate());
-    console.log(dayOne, dayTwo, endDigit, endDigitTwo, dayEnding, dayEndingTwo);
     wording = `Due the ${dayOne.getDate()}${dayEnding} & ${dayTwo.getDate()}${dayEndingTwo}, of ${months[dayOne.getMonth()]}`;
-    console.log(wording);
     return wording;
   }
   if (category.timingOptions.paymentCycle === `Monthly`) {
-    console.log(`Monthly`, category.timingOptions.dueDates);
     let date = new Date(`${category.timingOptions.dueDates[0]}`);
     let day = date.getDate();
     let endDigit = Number(date.getDate().toString().split('')[date.getDate().toString().length - 1]);
     let dayEnding;
     dayEnding = Edit.calculateDayEnding(endDigit, dayEnding, date);
-    console.log(day, endDigit, dayEnding);
     wording = `Due ${days[date.getDay()]}, the ${day}${dayEnding} of ${months[date.getMonth()]}.`;
     return wording;
   }
-  // console.log(budget, category);
 };
 
 const getSinglePercentageSpent = (spent, total) => {
@@ -272,6 +260,139 @@ export const updateBudget = (categoryType, action, budget, placeholderBudget, us
   }
 };
 
+const createPlannedTransaction = (budget, placeholderBudget, user) => {
+  console.log(`Creating Plan...`);
+};
+
+const showTransactionPlanOptions = (array, allOptions) => {
+  allOptions.forEach((optionArray) => {
+    optionArray.forEach((arrayItem) => {
+      arrayItem.classList.remove('open');
+      arrayItem.classList.add('closed');
+    });
+  });
+  array.forEach((arrayItem) => {
+    arrayItem.classList.remove('closed');
+    arrayItem.classList.add('open');
+  });
+};
+
+const setupTransactionPlanning = (budget, placeholderBudget, user) => {
+  const transactionPlanCreationContainer = document.querySelector('.transaction-plan-creation');
+  const transactionRows = document.querySelectorAll('.form__row--transaction');
+
+  const expenseTransactionOptionsArray = [];
+  const savingsTransactionOptionsArray = [];
+  const debtTransactionOptionsArray = [];
+  const surplusTransactionOptionsArray = [];
+  const commonTransactionOptionsArray = [expenseTransactionOptionsArray, savingsTransactionOptionsArray, debtTransactionOptionsArray, surplusTransactionOptionsArray];
+
+  const accountOptions = document.querySelectorAll('.form__select__option');
+  const transactionPlanAccountOptions = [accountOptions[0], accountOptions[1], accountOptions[2], accountOptions[3]];
+
+  const transactionPlanSections = document.querySelectorAll('.form__section--transaction-plan');
+  const accountSelectionContainers = document.querySelectorAll('.form__select--accounts');
+  const formSelectSections = document.querySelectorAll('.form__section--select');
+
+  const submitPlanButton = document.querySelector('.button--extra-extra-small__transaction-plan');
+
+  commonTransactionOptionsArray.forEach((array) => {
+    pushIntoArray(
+      [
+        transactionPlanSections[0],
+        transactionPlanSections[1],
+        transactionPlanSections[2],
+        transactionPlanSections[3],
+        transactionPlanSections[4],
+        // transactionPlanSections[5],
+        transactionPlanSections[6],
+        formSelectSections[1],
+        formSelectSections[2],
+        accountSelectionContainers[5],
+      ],
+      array
+    );
+  });
+
+  pushIntoArray([accountSelectionContainers[1], transactionPlanSections[5]], expenseTransactionOptionsArray);
+  pushIntoArray([accountSelectionContainers[2], transactionPlanSections[5]], savingsTransactionOptionsArray);
+  pushIntoArray([accountSelectionContainers[3], formSelectSections[3], accountSelectionContainers[6]], debtTransactionOptionsArray);
+  pushIntoArray([accountSelectionContainers[4]], surplusTransactionOptionsArray);
+
+  console.log(commonTransactionOptionsArray);
+  console.log(transactionPlanSections, accountSelectionContainers);
+
+  transactionPlanAccountOptions.forEach((ao) => {
+    if (ao) {
+      ao.addEventListener('click', (e) => {
+        if (ao.value === `Expense Fund`) {
+          showTransactionPlanOptions(expenseTransactionOptionsArray, commonTransactionOptionsArray);
+          if (!transactionPlanCreationContainer.classList.contains('extend-transaction-plan')) {
+            transactionPlanCreationContainer.classList.toggle('extend-transaction-plan');
+          }
+        }
+        if (ao.value === `Savings Fund`) {
+          showTransactionPlanOptions(savingsTransactionOptionsArray, commonTransactionOptionsArray);
+          if (!transactionPlanCreationContainer.classList.contains('extend-transaction-plan')) {
+            transactionPlanCreationContainer.classList.toggle('extend-transaction-plan');
+          }
+        }
+        if (ao.value === `Debt`) {
+          showTransactionPlanOptions(debtTransactionOptionsArray, commonTransactionOptionsArray);
+          if (!transactionPlanCreationContainer.classList.contains('extend-transaction-plan')) {
+            transactionPlanCreationContainer.classList.toggle('extend-transaction-plan');
+          }
+        }
+        if (ao.value === `Surplus`) {
+          showTransactionPlanOptions(surplusTransactionOptionsArray, commonTransactionOptionsArray);
+          if (!transactionPlanCreationContainer.classList.contains('extend-transaction-plan')) {
+            transactionPlanCreationContainer.classList.toggle('extend-transaction-plan');
+          }
+        }
+      });
+    }
+  });
+
+  if (submitPlanButton) {
+    submitPlanButton.addEventListener('click', (e) => {
+      createPlannedTransaction(budget, placeholderBudget, user);
+    });
+  }
+};
+
+const startPlanning = (budget, placeholderBudget, user) => {
+  const transactionPlanCreationContainer = document.querySelector('.transaction-plan-creation');
+  transactionPlanCreationContainer.classList.toggle('closed');
+  transactionPlanCreationContainer.classList.toggle('open');
+  // The same button must reset the extended transaction class to the original size.
+  // if (transactionPlanCreationContainer.classList.contains('extend-transaction-plan')) {
+  //   transactionPlanCreationContainer.classList.toggle('extend-transaction-plan');
+  // }
+};
+
+const _watchTransactionPlanner = (budget, placeholderBudget, user) => {
+  console.log(`Planning...`);
+
+  const borderlessButtons = document.querySelectorAll('.button--borderless');
+  const startPlanningButton = borderlessButtons[2];
+
+  const accountSelection = document.querySelectorAll('.form__select--accounts')[0];
+  if (startPlanningButton) {
+    startPlanningButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      startPlanning(budget, placeholderBudget, user);
+    });
+  }
+
+  setupTransactionPlanning(budget, placeholderBudget, user);
+
+  const altMediumInputs = document.querySelectorAll('.form__input--medium__alt');
+  console.log(altMediumInputs);
+  const currentDate = altMediumInputs[0];
+  currentDate.value = new Date();
+  console.log(currentDate);
+};
+
 const _watchIncomeAllocation = (budget, placeholderBudget, user) => {
   const incomeAllocationContainer = document.querySelector('.container--allocate-income');
   const unAllocatedTotal = document.querySelector('.un-allocated-account-total');
@@ -283,7 +404,6 @@ const _watchIncomeAllocation = (budget, placeholderBudget, user) => {
   if (incomeAllocationContainer) {
     console.log(`Allocating...`);
     unAllocatedTotal.textContent = money.format(unAllocatedTotal.textContent);
-    console.log(unAllocatedTotal.textContent.split('$'));
     const allocateIncomeButton = document.querySelector('.button--small-purple');
     allocateIncomeButton.addEventListener('click', (e) => {
       e.preventDefault();
@@ -298,13 +418,11 @@ const _watchIncomeAllocation = (budget, placeholderBudget, user) => {
         // ADD VALUE TO CURRENT TOTAL
         totalAllocationAmount += Number(ai.value);
       });
-      console.log(totalAllocationAmount);
 
       // DOUBLE CHECK TO MAKE SURE ALLOCATED AMOUNT DOES NOT EXCEED UN-ALLOCATED INCOME
       totalAllocationAmount <= unAllocatedAmount
         ? (unAllocatedTotal.textContent = money.format(unAllocatedAmount - totalAllocationAmount))
         : alert(`You do not have all that money! Please lower one of your accounts amounts!`);
-      console.log(unAllocatedTotal.textContent);
 
       // INITIALIZE SEPARATE ACCOUNTS ALLOCATED TOTALS
       let monthlyBudgetAllocation, emergencyFundAllocation, savingsFundAllocation, expenseFundAllocation, debtAllocation, investmentFundAllocation;
@@ -385,18 +503,15 @@ const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
   let categoryIndex, index;
   let budgetMainCategoryLength = placeholderBudget.mainCategories.length;
   const subCategories = document.querySelectorAll('.sub-category');
-  console.log(placeholderBudget.mainCategories.length);
 
   mainCategoryDeleteButton.addEventListener('click', (e) => {
     e.preventDefault();
     categoryIcon.classList.remove(categoryIcon.classList[3]);
     let mainCategories = document.querySelectorAll('.main-category__alt');
-    console.log(`Category Deleted.`);
     placeholderBudget.mainCategories.forEach((mc) => {
       if (mc.title === categoryTitle.textContent) {
         categoryIndex = placeholderBudget.mainCategories.indexOf(mc);
         mainCategories[categoryIndex].remove();
-        console.log(`Category Deleted Is: ${mc.title}`, mc);
         placeholderBudget.mainCategories = placeholderBudget.mainCategories.filter((category) => {
           if (category.title !== mc.title) return category;
         });
@@ -431,7 +546,6 @@ const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
         }
       });
       budgetMainCategoryLength = budgetMainCategoryLength - 1;
-      console.log(budgetMainCategoryLength, placeholderBudget.mainCategories);
     }
 
     if (categoryIndex > 0 && categoryIndex < placeholderBudget.mainCategories.length) {
@@ -455,11 +569,9 @@ const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
         }
       });
       budgetMainCategoryLength = budgetMainCategoryLength - 1;
-      console.log(budgetMainCategoryLength, placeholderBudget.mainCategories);
     }
 
     if (categoryIndex === budgetMainCategoryLength - 1) {
-      console.log(categoryIndex);
       subCategories.forEach((sc) => {
         if (Number(sc.dataset.category) === categoryIndex) {
           sc.remove();
@@ -482,9 +594,7 @@ const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
         }
       });
       budgetMainCategoryLength = budgetMainCategoryLength - 1;
-      console.log(budgetMainCategoryLength, placeholderBudget.mainCategories);
     }
-    console.log(placeholderBudget.mainCategories);
   });
 
   // ADJUST: WE NEED TO MAKE SURE IT IS POSSIBLE FOR THE EXISTING SUB CATEGORIES TO BE REMOVED AS WELL AS MADE INTO SURPLUS AS WELL, IF NEEDED.
@@ -499,7 +609,6 @@ const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
       surplusSwitch.firstChild.firstChild.classList.toggle('fa-times');
       surplusSwitch.firstChild.firstChild.classList.toggle('fa-check');
       const categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
-      console.log(`I'm The Surplus Switch!`, categoryNumber);
 
       placeholderBudget.mainCategories.forEach((mc, i) => {
         if (mc.title === categoryTitle.textContent) index = i;
@@ -542,7 +651,6 @@ const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
   updateCategoryButton.addEventListener('click', (e) => {
     e.preventDefault();
     console.log(`Updating...`);
-    console.log(placeholderBudget, budget);
     placeholderBudget._updateBudget(
       `Update`,
       `Manage Categories`,
@@ -566,7 +674,6 @@ const _watchManageCategories = (budget, placeholderBudget, user) => {
   let icon, index;
   let subCategoryIndex = 0;
   if (manageCategoryContainer) {
-    console.log(`Here we will manage your budget categories! 😄`);
     Categories.createCategories(icon, index);
     Categories._watchCreateCategoryButton(icon, placeholderBudget);
     Edit.setupSubCategoryCreation(placeholderBudget, subCategoryIndex);
@@ -594,8 +701,9 @@ const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
     allCategories.forEach((c, i) => {
       if (c.timingOptions.paymentCycle) {
         let timing = getSubCategoryTiming(budget, c);
-        console.log(subCategories[i], timing);
-        if (subCategories[i].firstChild.nextSibling.firstChild.nextSibling) subCategories[i].firstChild.nextSibling.firstChild.nextSibling.textContent = timing;
+        if (subCategories[i]) {
+          if (subCategories[i].firstChild.nextSibling.firstChild.nextSibling) subCategories[i].firstChild.nextSibling.firstChild.nextSibling.textContent = timing;
+        }
       }
     });
 
@@ -603,7 +711,6 @@ const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
     let clickedItem, selectedTiming;
     let subCategoryIndex = 0;
     Edit.watchForSettingTiming(placeholderBudget, subCategoryIndex, clickedItem, selectedTiming, `Full Budget`);
-    console.log(budget, user);
 
     const money = new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -651,7 +758,6 @@ const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
         let total = getOverallBudget(subCategories, overallBudget[0]);
         let part = getOverallSpent(subCategories, overallSpent);
         let percentage = getOverallPercentageSpent(total, part);
-        console.log(overallBudget);
         overallBudget[0].textContent = money.format(getOverallBudget(subCategories, overallBudget[0]));
         overallSpent.textContent = money.format(part);
         overallRemaining.textContent = money.format(total - part);
@@ -673,12 +779,10 @@ const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
         if (!Number(remaining.textContent.startsWith('-'))) {
           remaining.classList.add('positive');
           remaining.classList.remove('negative');
-          console.log(remaining.classList, Number(remaining.textContent.split('$')[1]));
         }
         if (Number(remaining.textContent.split('$')[1]) === 0) {
           remaining.classList.remove('positive');
           remaining.classList.remove('negative');
-          console.log(remaining.classList, Number(remaining.textContent.split('$')[1]));
         }
         if (Number(remaining.textContent.startsWith('-'))) {
           remaining.classList.remove('positive');
@@ -708,8 +812,6 @@ const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
         let emptyArray = [];
         let temporaryObject;
 
-        console.log(budget.mainCategories, placeholderBudget.mainCategories);
-
         budget.mainCategories.forEach((bmc, i) => {
           temporaryObject = Object.fromEntries([
             [`title`, placeholderBudget.mainCategories[i].title],
@@ -717,7 +819,6 @@ const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
             [`subCategories`, emptyArray],
           ]);
           updateObject.mainCategories[i] = temporaryObject;
-          console.log(updateObject);
 
           let tempArray = Array.from(document.querySelectorAll(`.sub-category-display__sub-category[data-subcategory="${i}"]`));
           let mainCategoryIndex = i;
@@ -819,7 +920,6 @@ const getTithing = (budget, user, currentTithingSetting) => {
 
 const getEmergencyFund = (budget, emergencySetting) => {
   let emergencyFundGoal, emergencyFundGoalTiming;
-  console.log(emergencySetting);
   let emergencyFund = {};
   emergencyFund.emergencyGoalMeasurement = emergencySetting;
   if (emergencySetting === `Length Of Time`) {
@@ -836,7 +936,6 @@ const getEmergencyFund = (budget, emergencySetting) => {
   }
   if (emergencySetting === `Total Amount`) {
     emergencyFund.emergencyFundGoal = Number(document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__input').value);
-    console.log(emergencyFundGoal);
   }
   return emergencyFund;
 };
@@ -857,7 +956,6 @@ const getInvestmentFund = (budget) => {
 
 const getSavingsFund = (budget) => {
   const budgetInputs = document.querySelectorAll('.form__input--small-thin');
-  console.log(budgetInputs);
   let savingsFund = {};
   let savingsGoal = Number(budgetInputs[0].value);
   let savingsPercentage = Number(budgetInputs[1].value);
@@ -871,7 +969,6 @@ const getSavingsFund = (budget) => {
 
 const getBudgetName = (budget) => {
   const budgetInputs = document.querySelectorAll('.form__input--small-thin__placeholder-shown');
-  console.log(budgetInputs, budgetInputs[0].value);
   let budgetName = budgetInputs[0].value;
   if (budgetName === '') budgetName = budget.name;
   return budgetName;
@@ -895,7 +992,6 @@ const compileBudgetManagementUpdates = (emergencySetting, currentTithingSetting,
   const savingsFund = getSavingsFund(budget);
   const investmentFund = getInvestmentFund(budget);
   const emergencyFund = getEmergencyFund(budget, emergencySetting);
-  console.log(savingsFund, investmentFund, emergencyFund);
   let tithing;
   if (user.latterDaySaint === true) {
     tithing = getTithing(budget, user, currentTithingSetting);
@@ -923,7 +1019,6 @@ const compileBudgetManagementUpdates = (emergencySetting, currentTithingSetting,
       `Budget-Management`
     );
   }
-  console.log(budget);
 
   if (user.latterDaySaint === false) {
     let name = placeholderBudget._addName(budgetName);
@@ -949,26 +1044,6 @@ const compileBudgetManagementUpdates = (emergencySetting, currentTithingSetting,
       `Budget-Management`
     );
   }
-  // const newBudget = buildUpdateObject(
-  //   budget,
-  //   user,
-  //   `Accounts`,
-  //   budgetName,
-  //   [`unAllocated`, `monthlyBudget`, `emergencyFund`, `savingsFund`, `expenseFund`, `surplus`, `investmentFund`, `debt`, `tithing`],
-  //   [
-  //     budget.accounts.unAllocated,
-  //     budget.accounts.monthlyBudget,
-  //     emergencyFund,
-  //     savingsFund,
-  //     budget.accounts.expenseFund,
-  //     budget.accounts.surplus,
-  //     investmentFund,
-  //     budget.accounts.debt,
-  //     tithing,
-  //   ]
-  // );
-  // console.log(newBudget, placeholderBudget);
-  // Budgeting.updateMyBudget(newBudget);
 };
 
 const changeEmergencyInput = (array, setting) => {
@@ -979,7 +1054,6 @@ const changeEmergencyInput = (array, setting) => {
     });
     array[0].classList.add('open');
     array[1].classList.add('closed');
-    console.log(setting);
   }
   if (setting === `Total Amount`) {
     array.forEach((eSetting) => {
@@ -988,7 +1062,6 @@ const changeEmergencyInput = (array, setting) => {
     });
     array[1].classList.add('open');
     array[0].classList.add('closed');
-    console.log(setting);
   }
 };
 
@@ -1067,8 +1140,6 @@ const _setupBudgetManagement = (budget, placeholderBudget, user) => {
     watchForBudgetExit();
     watchForBudgetDeletion();
 
-    console.log(`What is happening?`);
-
     if (!budget.accounts.tithing) return;
     if (budget.accounts.tithing.tithingSetting) {
       const tithingSettings = document.querySelectorAll('.form__label--small-thin__taller--thirds__tithing');
@@ -1129,7 +1200,6 @@ const _setupCurrentMonth = (budget) => {
   const leftButton = document.querySelector('.left');
   const rightButton = document.querySelector('.right');
   let categoryIndex = 0;
-  console.log(subCategories);
   subCategories.forEach((sc, i) => {
     sc.classList.add('closed');
     if (Number(sc.dataset.subcategory) === 0) sc.classList.remove('closed');
@@ -1175,13 +1245,10 @@ const _setupBillCalendar = () => {
     monthLeft.addEventListener('click', (e) => {
       e.preventDefault();
       currentMonthIndex--;
-      console.log(currentMonthIndex);
       if (currentMonthIndex === -1) {
         currentMonthIndex = 11;
         currentYear--;
-        console.log(currentYear);
       }
-      console.log(currentYear);
       calendar.goBackAMonth(currentMonthIndex, currentYear, '.bill-calendar__days__single-day', 'bill-calendar__days__single-day--current-day', 'un-used-day');
     });
   }
@@ -1189,13 +1256,10 @@ const _setupBillCalendar = () => {
     monthRight.addEventListener('click', (e) => {
       e.preventDefault();
       currentMonthIndex++;
-      console.log(currentMonthIndex);
       if (currentMonthIndex === 12) {
         currentMonthIndex = 0;
         currentYear++;
-        console.log(currentYear);
       }
-      console.log(currentYear);
       calendar.goForwardAMonth(currentMonthIndex, currentYear, '.bill-calendar__days__single-day', 'bill-calendar__days__single-day--current-day', 'un-used-day');
     });
   }
@@ -1272,15 +1336,12 @@ const _watchForTransactions = (arrayOfArrays, budget, placeholderBudget, user) =
       minimumFractionDigits: 2,
     });
     const headerSubmitButtons = document.querySelectorAll('.button--small-container-header');
-    console.log(headerSubmitButtons);
     const incomeInputs = document.querySelectorAll('.form__input--enter-income');
-    console.log(incomeInputs);
     // MUSTDO: Separate income into investment, savings, and un-allocated after every keystroke into net pay.
     const incomeDateInput = incomeInputs[0];
     const incomeFromInput = incomeInputs[1];
     const grossIncomeInput = incomeInputs[2];
     const netIncomeInput = incomeInputs[3];
-    console.log(grossIncomeInput, netIncomeInput);
 
     const investmentPercentage = budget.accounts.investmentFund.investmentPercentage;
     const savingsPercentage = budget.accounts.savingsFund.savingsPercentage;
@@ -1288,11 +1349,9 @@ const _watchForTransactions = (arrayOfArrays, budget, placeholderBudget, user) =
       ...document.querySelectorAll('.form__section--early-income-view__income-view__amount'),
       document.querySelector('.form__section--early-income-view__income-view--purple__amount'),
     ];
-    console.log(investmentPercentage, savingsPercentage);
 
     netIncomeInput.addEventListener('keyup', (e) => {
       e.preventDefault();
-      console.log(netIncomeInput.value);
       incomePreviewAmounts[0].textContent = money.format(netIncomeInput.value * investmentPercentage);
       incomePreviewAmounts[1].textContent = money.format(netIncomeInput.value * savingsPercentage);
       incomePreviewAmounts[2].textContent = money.format(
@@ -1331,8 +1390,6 @@ const _watchForTransactions = (arrayOfArrays, budget, placeholderBudget, user) =
         },
       };
 
-      console.log(updateObject, typeof budget.accounts.investmentFund.amount);
-
       placeholderBudget._updateBudget(
         `Update`,
         `Enter Income`,
@@ -1355,6 +1412,7 @@ const _watchForTransactions = (arrayOfArrays, budget, placeholderBudget, user) =
 
   // arrayOfArrays = mainCategoryOptionArrays
 
+  const rowThirds = document.querySelectorAll('.form__row--thirds');
   arrayOfArrays.forEach((a, i) => {
     a.forEach((c, i) => {
       // console.log(c);
@@ -1372,6 +1430,9 @@ const _watchForTransactions = (arrayOfArrays, budget, placeholderBudget, user) =
 
       // MONTHLY BUDGET OPTIONS
       if (clicked.value === `Monthly Budget`) {
+        if (rowThirds[1].classList.contains('extend-enter-transaction')) {
+          rowThirds[1].classList.toggle('extend-enter-transaction');
+        }
         arrayOfArrays.forEach((a, i) => {
           a.forEach((c, i) => {
             c.classList.add('closed');
@@ -1388,6 +1449,9 @@ const _watchForTransactions = (arrayOfArrays, budget, placeholderBudget, user) =
 
       // EMERGENCY FUND OPTIONS
       if (clicked.value === `Emergency Fund`) {
+        if (rowThirds[1].classList.contains('extend-enter-transaction')) {
+          rowThirds[1].classList.toggle('extend-enter-transaction');
+        }
         arrayOfArrays.forEach((a, i) => {
           a.forEach((c, i) => {
             c.classList.add('closed');
@@ -1402,6 +1466,9 @@ const _watchForTransactions = (arrayOfArrays, budget, placeholderBudget, user) =
 
       // SAVINGS FUND OPTIONS
       if (clicked.value === `Savings Fund`) {
+        if (rowThirds[1].classList.contains('extend-enter-transaction')) {
+          rowThirds[1].classList.toggle('extend-enter-transaction');
+        }
         arrayOfArrays.forEach((a, i) => {
           a.forEach((c, i) => {
             c.classList.add('closed');
@@ -1425,6 +1492,23 @@ const _watchForTransactions = (arrayOfArrays, budget, placeholderBudget, user) =
 
       // EXPENSE FUND OPTIONS
       if (clicked.value === `Expense Fund`) {
+        const expenseFundTransactionSelects = document.querySelectorAll('.form__select--expense-fund-transaction');
+        let expenseSelectWidth;
+        // if (!rowThirds[1].classList.contains('extend-enter-transaction')) {
+        //   rowThirds[1].classList.toggle('extend-enter-transaction');
+        // }
+        let extendedRow = rowThirds[1];
+        let expenseTitles =
+          extendedRow.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.nextSibling
+            .childNodes;
+        expenseTitles.forEach((expense) => {
+          if (expense.text.length >= 8 && !rowThirds[1].classList.contains('extend-enter-transaction')) {
+            rowThirds[1].classList.add('extend-enter-transaction');
+            console.log(`Extended.`);
+          }
+        });
+        if (expenseFundTransactionSelects[2].getBoundingClientRect().width > 0) expenseSelectWidth = expenseFundTransactionSelects[2].getBoundingClientRect().width;
+        console.log(expenseFundTransactionSelects[2].getBoundingClientRect().width);
         arrayOfArrays.forEach((a, i) => {
           a.forEach((c, i) => {
             c.classList.add('closed');
@@ -1448,6 +1532,9 @@ const _watchForTransactions = (arrayOfArrays, budget, placeholderBudget, user) =
 
       // SURPLUS OPTIONS
       if (clicked.value === `Surplus`) {
+        if (rowThirds[1].classList.contains('extend-enter-transaction')) {
+          rowThirds[1].classList.toggle('extend-enter-transaction');
+        }
         arrayOfArrays.forEach((a, i) => {
           a.forEach((c, i) => {
             c.classList.add('closed');
@@ -1470,6 +1557,9 @@ const _watchForTransactions = (arrayOfArrays, budget, placeholderBudget, user) =
 
       // DEBT OPTIONS
       if (clicked.value === `Debt`) {
+        if (rowThirds[1].classList.contains('extend-enter-transaction')) {
+          rowThirds[1].classList.toggle('extend-enter-transaction');
+        }
         arrayOfArrays.forEach((a, i) => {
           a.forEach((c, i) => {
             c.classList.add('closed');
@@ -1491,6 +1581,9 @@ const _watchForTransactions = (arrayOfArrays, budget, placeholderBudget, user) =
 
       // TITHING OPTIONS
       if (clicked.value === `Tithing`) {
+        if (rowThirds[1].classList.contains('extend-enter-transaction')) {
+          rowThirds[1].classList.toggle('extend-enter-transaction');
+        }
         arrayOfArrays.forEach((a, i) => {
           a.forEach((c, i) => {
             c.classList.add('closed');
@@ -1570,15 +1663,14 @@ const setupDashboard = (user, budget, placeholderBudget) => {
 
   const paidForContainers = document.querySelectorAll('.form__section--switch__fully-paid-for');
   const altPaidForContainers = document.querySelectorAll('.form__section--switch__fully-paid-for__alt');
-
-  console.log(relativeMediumFormLabels, mediumFormSections, longFormSections, paidForContainers, altPaidForContainers);
   ///////////////////////////////////////////////
   // INITIALIZE ACCOUNT TRANSACTION OPTION ARRAYS
+
+  console.log(relativeMediumFormLabels);
 
   // MONTHLY BUDGET
   const monthlyBudgetTransactionsOptionsOne = [relativeMediumFormLabels[0], relativeMediumFormLabels[1]];
   const monthlyBudgetTransactionsOptionsTwo = [mediumFormSections[5], longFormSections[0]];
-  console.log(monthlyBudgetTransactionsOptionsOne, monthlyBudgetTransactionsOptionsTwo);
   const monthlyBudgetTransactionOptionsArray = [];
 
   // EMERGENCY FUND
@@ -1604,7 +1696,7 @@ const setupDashboard = (user, budget, placeholderBudget) => {
   const surplusTransactionOptionsArray = [];
 
   // DEBT
-  const debtTransactionsOptionsOne = [relativeMediumFormLabels[9]];
+  const debtTransactionsOptionsOne = [relativeMediumFormLabels[9], relativeMediumFormLabels[10]];
   const debtTransactionsOptionsTwo = [longFormSections[4], mediumFormSections[9]];
   const debtTransactionsOptionsThree = [altPaidForContainers[2]];
   const debtTransactionOptionsArray = [];
@@ -1663,7 +1755,6 @@ const setupDashboard = (user, budget, placeholderBudget) => {
   ////////////////////////////////////////////
   // SETUP BILL CURRENT MONTH
   _setupCurrentMonth(budget);
-  console.log(placeholderBudget);
 };
 
 export const _watchBudget = async () => {
@@ -1699,4 +1790,7 @@ export const _watchBudget = async () => {
   ////////////////////////////////////////////
   // WATCH FOR INCOME ALLOCATION
   _watchIncomeAllocation(currentBudget, budget, user);
+  ////////////////////////////////////////////
+  // WATCH FOR INCOME ALLOCATION
+  _watchTransactionPlanner(currentBudget, budget, user);
 };

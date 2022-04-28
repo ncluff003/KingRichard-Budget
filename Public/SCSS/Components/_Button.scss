@@ -493,6 +493,21 @@
       border: 0.2rem solid $primaryColor;
       transition: background-color 0.5s, color 0.5s, border 0.5s;
     }
+    &__transaction-plan {
+      @extend .button--extra-extra-small;
+      height: 4rem;
+      width: 10rem;
+      transform: translate(0rem, 0rem);
+      align-self: center;
+      border-radius: 0.5rem;
+      min-height: 3.24rem;
+      &-small {
+        @extend .button--extra-extra-small__transaction-plan;
+        height: 3rem;
+        width: 8rem;
+        min-height: 3rem;
+      }
+    }
     &__wide {
       @extend .button--extra-extra-small;
       height: 20%;

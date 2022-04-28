@@ -1391,6 +1391,13 @@ html {
     &:hover {
       color: $colorOffWhite;
     }
+    &__transaction-plan {
+      @extend .button--extra-extra-small;
+      font-size: 1.4rem;
+      &-small {
+        @extend .button--extra-extra-small__transaction-plan;
+      }
+    }
     &__wide {
       @extend .button--extra-extra-small;
     }
@@ -2091,6 +2098,23 @@ html {
   }
 }
 
+// TRANSACTION PLANNER SURPLUS CONTAINER
+.surplus-container {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  &__text {
+    @extend .surplus-container;
+    font-size: 1.4rem;
+    color: $primaryColor;
+  }
+  &__switch {
+    &__toggle {
+      @extend .surplus-container;
+      font-size: 1.2rem;
+      color: $colorOffWhite;
+    }
+  }
+}
+
 // MAIN CATEGORY DISPLAY
 
 .main-category-display {
@@ -2490,6 +2514,36 @@ html {
   }
 }
 
+.transaction-plan,
+.transaction-plan__alt {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  color: $primaryColor;
+  &:hover {
+    color: $colorOffWhite;
+    .transaction-plan__part,
+    .transaction-plan__alt__part {
+      color: $colorOffWhite;
+    }
+  }
+  &__alt {
+    @extend .transaction-plan;
+  }
+  &__part {
+    @extend .transaction-plan;
+    font-size: 1.3rem;
+    &__header {
+      text-align: center;
+      &__text {
+        text-decoration: underline;
+      }
+    }
+    &__text {
+      font-size: 1.2rem;
+      text-align: center;
+    }
+  }
+}
+
 // FORMS
 .form {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
@@ -2612,6 +2666,14 @@ html {
       }
     }
 
+    &--transaction-plan {
+      @extend .form__input--small-thin;
+      font-size: 1.4rem;
+      &-short {
+        @extend .form__input--transaction-plan;
+      }
+    }
+
     &--half-left {
       @extend .form__input;
       font-size: 1.6rem;
@@ -2635,6 +2697,9 @@ html {
 
     &--small {
       @extend .form__input;
+      &-short {
+        @extend .form__input--medium;
+      }
       &-thin {
         @extend .form__input--small;
         font-size: 1.6rem;
@@ -2766,6 +2831,14 @@ html {
     //   color: $colorOffWhite;
     // }
 
+    &--select {
+      @extend .form__label;
+      font-size: 1.26rem;
+      &__transaction {
+        @extend .form__label--select;
+      }
+    }
+
     &--outer-checkbox {
       @extend .form__label;
       font-size: 1.1rem;
@@ -2857,6 +2930,12 @@ html {
       &__alt {
         @extend .form__label--medium;
         &-2 {
+          @extend .form__label--medium;
+        }
+        &-3 {
+          @extend .form__label--medium;
+        }
+        &-4 {
           @extend .form__label--medium;
         }
       }

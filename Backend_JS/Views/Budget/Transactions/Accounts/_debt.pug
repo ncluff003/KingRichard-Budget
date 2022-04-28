@@ -1,3 +1,9 @@
 label.form__label--medium__relative.r__form__label--medium__relative.debt-transaction.r__debt-transaction
   p.form__label--medium__relative__text.r__form__label--medium__relative__text Lender 
   select.form__select--debt-transaction.r__form__select--debt-transaction
+label.form__label--medium__relative.r__form__label--medium__relative.debt-transaction.r__debt-transaction  
+  p.form__label--medium__relative__text.r__form__label--medium__relative__text Debt Timing
+  select.form__select--expense-fund-transaction.r__form__select--expense-fund-transaction#debts
+    - const debtTimings = [`Once`,`Weekly`,`Bi-Weekly`,`Bi-Monthly`,`Monthly`,`Quarterly`,`Bi-Annually`,`Annually`]
+    each timing in debtTimings 
+      option.category-selection.r__category-selection(value=`${timing}`)= `${timing}`

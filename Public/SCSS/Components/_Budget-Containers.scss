@@ -410,3 +410,34 @@
     }
   }
 }
+
+.surplus-container {
+  @include SizeAndPositioning(relative, 100%, 8rem, flex, column, nowrap, center, center, 0, 0, 0);
+  &__text {
+    margin-bottom: 0.25rem;
+  }
+  &__switch {
+    @include SizeAndPositioning(relative, 2.5rem, 80%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+    border: 0.2rem solid rgba($primaryColorDark, 0.8);
+    border-radius: 4rem;
+    background-color: rgba($primaryColor, 0.8);
+    padding: 0.1rem;
+    &__toggle {
+      @include SizeAndPositioning(relative, 100%, 33%, flex, row, nowrap, center, center, 0, 0, 0);
+      border: 0.2rem solid rgba($colorOffWhite, 0.8);
+      border-radius: 4rem;
+      background-color: rgba($primaryColor, 0.8);
+      transition: transform 0.5s;
+    }
+    &--switched {
+      @extend .surplus-container__switch;
+      border: 0.2rem solid rgba($secondaryColorDark, 0.8);
+      background-color: rgba($secondaryColor, 0.8);
+      .surplus-container__switch__toggle {
+        @extend .surplus-container__switch__toggle;
+        transform: translate(202%, 0);
+        background-color: rgba($secondaryColor, 0.8);
+      }
+    }
+  }
+}
