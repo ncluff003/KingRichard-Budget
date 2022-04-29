@@ -260,20 +260,85 @@ export const updateBudget = (categoryType, action, budget, placeholderBudget, us
   }
 };
 
-const createPlannedTransaction = (budget, placeholderBudget, user) => {
+const displayTransaction = (container, plan) => {
+  console.log(container, plan);
+  container.insertAdjacentElement('afterbegin', plan);
+};
+
+const buildTransaction = (options) => {
+  console.log(options);
+};
+
+const createPlannedTransaction = (accountSelect, budget, placeholderBudget, user) => {
   console.log(`Creating Plan...`);
+  const transactionDisplay = document.querySelector('.transaction-plan-display');
+  let numSections;
+  let sectionStart = 0;
+  if (accountSelect.value === `Expense Fund`) {
+    const transactionPlan = document.createElement('section');
+    numSections = 12;
+    while (sectionStart < numSections) {
+      const transactionPlanPart = document.createElement('section');
+      transactionPlanPart.classList.add(`transaction-plan__part`);
+      transactionPlan.insertAdjacentElement('beforeend', transactionPlanPart);
+      sectionStart++;
+    }
+    displayTransaction(transactionDisplay, transactionPlan);
+    console.log(accountSelect.value);
+    transactionPlan.classList.add('transaction-plan');
+  }
+  if (accountSelect.value === `Savings Fund`) {
+    console.log(accountSelect.value);
+  }
+  if (accountSelect.value === `Debt`) {
+    const altTransactionPlan = document.createElement('section');
+    numSections = 13;
+    while (sectionStart < numSections) {
+      const transactionPlanPart = document.createElement('section');
+      transactionPlanPart.classList.add(`transaction-plan__alt__part`);
+      altTransactionPlan.insertAdjacentElement('beforeend', transactionPlanPart);
+      sectionStart++;
+    }
+    console.log(accountSelect.value);
+    altTransactionPlan.classList.add('transaction-plan__alt');
+    displayTransaction(transactionDisplay, altTransactionPlan);
+  }
+  if (accountSelect.value === `Surplus`) {
+    console.log(accountSelect.value);
+  }
+};
+
+const checkSelectedTiming = () => {
+  const transactionPlanSections = document.querySelectorAll('.form__section--transaction-plan');
+  const formSelectSections = document.querySelectorAll('.form__section--select');
+  console.log(formSelectSections);
+  console.log(formSelectSections[2].firstChild.nextSibling.nextSibling, formSelectSections[2].firstChild.nextSibling.nextSibling.value);
+  if (formSelectSections[2].firstChild.nextSibling.nextSibling.value === `Bi-Monthly` || formSelectSections[2].firstChild.nextSibling.nextSibling.value === `Bi-Annually`) {
+    transactionPlanSections[4].classList.remove('closed');
+    transactionPlanSections[4].classList.add('open');
+  }
+  if (formSelectSections[2].firstChild.nextSibling.nextSibling.value !== `Bi-Monthly` && formSelectSections[2].firstChild.nextSibling.nextSibling.value !== `Bi-Annually`) {
+    transactionPlanSections[4].classList.remove('open');
+    transactionPlanSections[4].classList.add('closed');
+  }
 };
 
 const showTransactionPlanOptions = (array, allOptions) => {
-  allOptions.forEach((optionArray) => {
-    optionArray.forEach((arrayItem) => {
+  allOptions.forEach((optionArray, i) => {
+    optionArray.forEach((arrayItem, i) => {
       arrayItem.classList.remove('open');
       arrayItem.classList.add('closed');
     });
   });
-  array.forEach((arrayItem) => {
+  console.log(array);
+  array.forEach((arrayItem, i) => {
+    if (i === 0) return;
     arrayItem.classList.remove('closed');
     arrayItem.classList.add('open');
+    if (i === 1) {
+      arrayItem.removeEventListener('click', checkSelectedTiming);
+      arrayItem.addEventListener('click', checkSelectedTiming);
+    }
   });
 };
 
@@ -299,15 +364,14 @@ const setupTransactionPlanning = (budget, placeholderBudget, user) => {
   commonTransactionOptionsArray.forEach((array) => {
     pushIntoArray(
       [
+        transactionPlanSections[4],
+        formSelectSections[2],
         transactionPlanSections[0],
         transactionPlanSections[1],
         transactionPlanSections[2],
         transactionPlanSections[3],
-        transactionPlanSections[4],
-        // transactionPlanSections[5],
         transactionPlanSections[6],
         formSelectSections[1],
-        formSelectSections[2],
         accountSelectionContainers[5],
       ],
       array
@@ -355,7 +419,7 @@ const setupTransactionPlanning = (budget, placeholderBudget, user) => {
 
   if (submitPlanButton) {
     submitPlanButton.addEventListener('click', (e) => {
-      createPlannedTransaction(budget, placeholderBudget, user);
+      createPlannedTransaction(accountSelectionContainers[0], budget, placeholderBudget, user);
     });
   }
 };

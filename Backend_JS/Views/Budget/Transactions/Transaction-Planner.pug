@@ -35,7 +35,7 @@ block Budget-Content
           p.transaction-plan__part__text.r__transaction-plan__part__text $249.99
         section.transaction-plan__part.r__transaction-plan__part 
           header.transaction-plan__part__header.r__transaction-plan__part__header 
-            p.transaction-plan__part__header__text.r__transaction-plan__part__header__text Due Date 
+            p.transaction-plan__part__header__text.r__transaction-plan__part__header__text Due Date One 
           p.transaction-plan__part__text.r__transaction-plan__part__text 8th April 2022
         section.transaction-plan__part.r__transaction-plan__part 
           header.transaction-plan__part__header.r__transaction-plan__part__header 
@@ -90,7 +90,7 @@ block Budget-Content
           p.transaction-plan__alt__part__text.r__transaction-plan__alt__part__text $398.50
         section.transaction-plan__alt__part.r__transaction-plan__alt__part 
           header.transaction-plan__alt__part__header.r__transaction-plan__alt__part__header 
-            p.transaction-plan__alt__part__header__text.r__transaction-plan__alt__part__header__text Due Date 
+            p.transaction-plan__alt__part__header__text.r__transaction-plan__alt__part__header__text Due Date One
           p.transaction-plan__alt__part__text.r__transaction-plan__alt__part__text 8th April 2022
         section.transaction-plan__alt__part.r__transaction-plan__alt__part 
           header.transaction-plan__alt__part__header.r__transaction-plan__alt__part__header 
@@ -123,9 +123,6 @@ block Budget-Content
                 select.form__select--accounts.r__form__select--accounts
                   each account in accounts 
                     option.form__select__option.r__form__select__option= `${account}`
-              section.form__section--transaction-plan.r__form__section--transaction-plan.closed 
-                input.form__input--medium__alt.r__form__input--medium__alt#transactionDate(type="date" value=`${new Date()}`)
-                label.form__label--medium__alt-3.r__form__label--medium__alt-3(for="transactionDate") Date
               section.form__section--transaction-plan.r__form__section--transaction-plan.closed 
                 input.form__input--small-short.r__form__input--small-short#location(type="text" placeholder="Location" maxLength="250" minLength="3")
                 label.form__label--medium__alt-4.r__form__label--medium__alt-4(for="location") Location
@@ -167,7 +164,10 @@ block Budget-Content
                 label.form__label--medium__alt-4.r__form__label--medium__alt-4(for="transactionAmount") Amount
               section.form__section--transaction-plan.r__form__section--transaction-plan.closed 
                 input.form__input--medium__alt.r__form__input--medium__alt#transactionDate(type="date")
-                label.form__label--medium__alt-3.r__form__label--medium__alt-3(for="transactionDate") Due Date
+                label.form__label--medium__alt-3.r__form__label--medium__alt-3(for="transactionDate") Due Date One
+              section.form__section--transaction-plan.r__form__section--transaction-plan.closed 
+                input.form__input--medium__alt.r__form__input--medium__alt#transactionDate(type="date" value=`${new Date()}`)
+                label.form__label--medium__alt-3.r__form__label--medium__alt-3(for="transactionDate") Due Date Two
               section.form__section--transaction-plan.r__form__section--transaction-plan.closed
                 section.surplus-container.r__surplus-container 
                   p.surplus-container__text.r__surplus-container__text Surplus?

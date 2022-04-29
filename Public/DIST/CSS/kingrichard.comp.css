@@ -36634,6 +36634,7 @@ html {
   justify-content: flex-start;
   align-items: center;
   transform: rotate(0) translate(0, 0);
+  overflow-y: auto;
 }
 
 .transaction-plan-creation, .transaction-plan, .transaction-plan__alt,
@@ -52002,6 +52003,7 @@ body {
 
 .extend-transaction-plan {
   height: 18rem;
+  min-height: 18rem;
 }
 .extend-transaction-plan .form__row--transaction {
   margin-bottom: 9rem;

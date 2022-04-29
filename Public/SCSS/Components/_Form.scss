@@ -1382,6 +1382,7 @@
 // TRANSACTION DISPLAY
 .transaction-plan-display {
   @include SizeAndPositioning(relative, 90%, 100%, flex, column, nowrap, flex-start, center, 0, 0, 0);
+  overflow-y: auto;
 }
 
 .transaction-plan-creation {

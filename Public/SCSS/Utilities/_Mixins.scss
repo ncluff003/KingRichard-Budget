@@ -82,6 +82,7 @@
 
 @mixin Taller($height, $multiplier) {
   height: calc($height * $multiplier);
+  min-height: calc($height * $multiplier);
 }
 
 @mixin CreateCircle($position, $circleHeight, $circleWidth, $childHeight, $childWidth) {

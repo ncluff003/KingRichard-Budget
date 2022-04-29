@@ -8243,20 +8243,98 @@ var updateBudget = function updateBudget(categoryType, action, budget, placehold
   }
 };
 
-var createPlannedTransaction = function createPlannedTransaction(budget, placeholderBudget, user) {
+var displayTransaction = function displayTransaction(container, plan) {
+  console.log(container, plan);
+  container.insertAdjacentElement('afterbegin', plan);
+};
+
+var buildTransaction = function buildTransaction(options) {
+  console.log(options);
+};
+
+var createPlannedTransaction = function createPlannedTransaction(accountSelect, budget, placeholderBudget, user) {
   console.log("Creating Plan...");
+  var transactionDisplay = document.querySelector('.transaction-plan-display');
+  var numSections;
+  var sectionStart = 0;
+
+  if (accountSelect.value === "Expense Fund") {
+    var transactionPlan = document.createElement('section');
+    numSections = 12;
+
+    while (sectionStart < numSections) {
+      var transactionPlanPart = document.createElement('section');
+      transactionPlanPart.classList.add("transaction-plan__part");
+      transactionPlan.insertAdjacentElement('beforeend', transactionPlanPart);
+      sectionStart++;
+    }
+
+    displayTransaction(transactionDisplay, transactionPlan);
+    console.log(accountSelect.value);
+    transactionPlan.classList.add('transaction-plan');
+  }
+
+  if (accountSelect.value === "Savings Fund") {
+    console.log(accountSelect.value);
+  }
+
+  if (accountSelect.value === "Debt") {
+    var altTransactionPlan = document.createElement('section');
+    numSections = 13;
+
+    while (sectionStart < numSections) {
+      var _transactionPlanPart = document.createElement('section');
+
+      _transactionPlanPart.classList.add("transaction-plan__alt__part");
+
+      altTransactionPlan.insertAdjacentElement('beforeend', _transactionPlanPart);
+      sectionStart++;
+    }
+
+    console.log(accountSelect.value);
+    altTransactionPlan.classList.add('transaction-plan__alt');
+    displayTransaction(transactionDisplay, altTransactionPlan);
+  }
+
+  if (accountSelect.value === "Surplus") {
+    console.log(accountSelect.value);
+  }
+};
+
+var checkSelectedTiming = function checkSelectedTiming() {
+  var transactionPlanSections = document.querySelectorAll('.form__section--transaction-plan');
+  var formSelectSections = document.querySelectorAll('.form__section--select');
+  console.log(formSelectSections);
+  console.log(formSelectSections[2].firstChild.nextSibling.nextSibling, formSelectSections[2].firstChild.nextSibling.nextSibling.value);
+
+  if (formSelectSections[2].firstChild.nextSibling.nextSibling.value === "Bi-Monthly" || formSelectSections[2].firstChild.nextSibling.nextSibling.value === "Bi-Annually") {
+    transactionPlanSections[4].classList.remove('closed');
+    transactionPlanSections[4].classList.add('open');
+  }
+
+  if (formSelectSections[2].firstChild.nextSibling.nextSibling.value !== "Bi-Monthly" && formSelectSections[2].firstChild.nextSibling.nextSibling.value !== "Bi-Annually") {
+    transactionPlanSections[4].classList.remove('open');
+    transactionPlanSections[4].classList.add('closed');
+  }
 };
 
 var showTransactionPlanOptions = function showTransactionPlanOptions(array, allOptions) {
-  allOptions.forEach(function (optionArray) {
-    optionArray.forEach(function (arrayItem) {
+  allOptions.forEach(function (optionArray, i) {
+    optionArray.forEach(function (arrayItem, i) {
       arrayItem.classList.remove('open');
       arrayItem.classList.add('closed');
     });
   });
-  array.forEach(function (arrayItem) {
+  console.log(array);
+  array.forEach(function (arrayItem, i) {
+    if (i === 0) return;
     arrayItem.classList.remove('closed');
     arrayItem.classList.add('open');
+
+    if (i === 1) {
+      arrayItem.removeEventListener('click', checkSelectedTiming);
+      arrayItem.addEventListener('click', checkSelectedTiming);
+    }
   });
 };
 
@@ -8275,8 +8353,7 @@ var setupTransactionPlanning = function setupTransactionPlanning(budget, placeho
   var formSelectSections = document.querySelectorAll('.form__section--select');
   var submitPlanButton = document.querySelector('.button--extra-extra-small__transaction-plan');
   commonTransactionOptionsArray.forEach(function (array) {
-    pushIntoArray([transactionPlanSections[0], transactionPlanSections[1], transactionPlanSections[2], transactionPlanSections[3], transactionPlanSections[4], // transactionPlanSections[5],
-    transactionPlanSections[6], formSelectSections[1], formSelectSections[2], accountSelectionContainers[5]], array);
+    pushIntoArray([transactionPlanSections[4], formSelectSections[2], transactionPlanSections[0], transactionPlanSections[1], transactionPlanSections[2], transactionPlanSections[3], transactionPlanSections[6], formSelectSections[1], accountSelectionContainers[5]], array);
   });
   pushIntoArray([accountSelectionContainers[1], transactionPlanSections[5]], expenseTransactionOptionsArray);
   pushIntoArray([accountSelectionContainers[2], transactionPlanSections[5]], savingsTransactionOptionsArray);
@@ -8324,7 +8401,7 @@ var setupTransactionPlanning = function setupTransactionPlanning(budget, placeho
 
   if (submitPlanButton) {
     submitPlanButton.addEventListener('click', function (e) {
-      createPlannedTransaction(budget, placeholderBudget, user);
+      createPlannedTransaction(accountSelectionContainers[0], budget, placeholderBudget, user);
     });
   }
 };
@@ -8332,7 +8409,10 @@ var setupTransactionPlanning = function setupTransactionPlanning(budget, placeho
 var startPlanning = function startPlanning(budget, placeholderBudget, user) {
   var transactionPlanCreationContainer = document.querySelector('.transaction-plan-creation');
   transactionPlanCreationContainer.classList.toggle('closed');
-  transactionPlanCreationContainer.classList.toggle('open');
+  transactionPlanCreationContainer.classList.toggle('open'); // The same button must reset the extended transaction class to the original size.
+  // if (transactionPlanCreationContainer.classList.contains('extend-transaction-plan')) {
+  //   transactionPlanCreationContainer.classList.toggle('extend-transaction-plan');
+  // }
 };
 
 var _watchTransactionPlanner = function _watchTransactionPlanner(budget, placeholderBudget, user) {
