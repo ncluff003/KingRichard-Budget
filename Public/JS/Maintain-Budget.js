@@ -260,6 +260,10 @@ export const updateBudget = (categoryType, action, budget, placeholderBudget, us
   }
 };
 
+const insertElement = (container, element) => {
+  container.insertAdjacentElement('beforeend', element);
+};
+
 const displayTransaction = (container, plan) => {
   console.log(container, plan);
   container.insertAdjacentElement('afterbegin', plan);
@@ -267,6 +271,176 @@ const displayTransaction = (container, plan) => {
 
 const buildTransaction = (options) => {
   console.log(options);
+};
+
+const getDueDate = (date) => {
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const selectedDate = new Date(date);
+  const currentTimezoneOffset = selectedDate.getTimezoneOffset() / 60;
+  console.log(currentTimezoneOffset, selectedDate.getHours(), selectedDate.getHours() / 60);
+  console.log(
+    date,
+    selectedDate,
+    new Date(selectedDate.setHours(selectedDate.getHours() + new Date().getTimezoneOffset() / 60)),
+    selectedDate.getTimezoneOffset() / 60,
+    new Date(date).setHours(selectedDate.getHours() + Number(currentTimezoneOffset))
+  );
+  return `${new Date(selectedDate.setHours(selectedDate.getHours() + new Date().getTimezoneOffset() / 60)).getDate()} ${months[new Date(date).getMonth()]} ${new Date(
+    date
+  ).getFullYear()}`;
+};
+
+const getCurrentDate = () => {
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  return `${new Date().getDate()} ${months[new Date().getMonth()]} ${new Date().getFullYear()}`;
+};
+
+const buildTransactionPlan = (number, numberOfSections, plan, classType) => {
+  const transactionPlanSelects = document.querySelectorAll('.form__select--accounts');
+  const smallShortTransactionPlanInputs = document.querySelectorAll('.form__input--small-short');
+  const altMediumTransactionPlanInputs = document.querySelectorAll('.form__input--medium__alt');
+  console.log(altMediumTransactionPlanInputs);
+  const money = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+  });
+  console.log(transactionPlanSelects, smallShortTransactionPlanInputs);
+  if (classType === `original`) {
+    while (number < numberOfSections) {
+      const transactionPlanPartHeader = document.createElement('header');
+      const transactionPlanPartHeaderText = document.createElement('p');
+      const transactionPlanPartText = document.createElement('p');
+      // Add Classes For First Part
+      transactionPlanPartHeader.classList.add('transaction-plan__part__header');
+      transactionPlanPartHeader.classList.add('r__transaction-plan__part__header');
+      transactionPlanPartHeaderText.classList.add('transaction-plan__part__header__text');
+      transactionPlanPartHeaderText.classList.add('r__transaction-plan__part__header__text');
+      transactionPlanPartText.classList.add('transaction-plan__part__text');
+      transactionPlanPartText.classList.add('r__transaction-plan__part__text');
+
+      // Add Content For First Part
+      transactionPlanPartHeaderText.textContent = `Date`;
+      transactionPlanPartText.textContent = getCurrentDate();
+
+      const transactionPlanPart = document.createElement('section');
+      transactionPlanPart.classList.add(`transaction-plan__part`);
+      plan.insertAdjacentElement('beforeend', transactionPlanPart);
+
+      if (number === 0) {
+        // INSERT DOM ELEMENTS INTO FIRST PART
+        insertElement(transactionPlanPart, transactionPlanPartHeader);
+        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+        insertElement(transactionPlanPart, transactionPlanPartText);
+      }
+      if (number === 1) {
+        // INSERT DOM ELEMENTS INTO FIRST PART
+        console.log(transactionPlanSelects[0].value);
+        transactionPlanPartHeaderText.textContent = `Account`;
+        transactionPlanPartText.textContent = `${transactionPlanSelects[0].value}`;
+        insertElement(transactionPlanPart, transactionPlanPartHeader);
+        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+        insertElement(transactionPlanPart, transactionPlanPartText);
+      }
+
+      number++;
+    }
+  }
+  if (classType === `alt`) {
+    while (number < numberOfSections) {
+      // Initialize Variables For First Part
+      const transactionPlanPartHeader = document.createElement('header');
+      const transactionPlanPartHeaderText = document.createElement('p');
+      const transactionPlanPartText = document.createElement('p');
+
+      // Add Classes For First Part
+      transactionPlanPartHeader.classList.add('transaction-plan__alt__part__header');
+      transactionPlanPartHeader.classList.add('r__transaction-plan__alt__part__header');
+      transactionPlanPartHeaderText.classList.add('transaction-plan__alt__part__header__text');
+      transactionPlanPartHeaderText.classList.add('r__transaction-plan__alt__part__header__text');
+      transactionPlanPartText.classList.add('transaction-plan__alt__part__text');
+      transactionPlanPartText.classList.add('r__transaction-plan__alt__part__text');
+
+      // Add Content For First Part
+      transactionPlanPartHeaderText.textContent = `Date`;
+      transactionPlanPartText.textContent = getCurrentDate();
+
+      const transactionPlanPart = document.createElement('section');
+      transactionPlanPart.classList.add(`transaction-plan__alt__part`);
+      plan.insertAdjacentElement('beforeend', transactionPlanPart);
+
+      if (number === 0) {
+        // INSERT DOM ELEMENTS INTO FIRST PART
+        insertElement(transactionPlanPart, transactionPlanPartHeader);
+        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+        insertElement(transactionPlanPart, transactionPlanPartText);
+      }
+      if (number === 1) {
+        // INSERT DOM ELEMENTS INTO FIRST PART
+        console.log(transactionPlanSelects[0].value);
+        transactionPlanPartHeaderText.textContent = `Account`;
+        transactionPlanPartText.textContent = `${transactionPlanSelects[0].value}`;
+        insertElement(transactionPlanPart, transactionPlanPartHeader);
+        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+        insertElement(transactionPlanPart, transactionPlanPartText);
+      }
+      if (number === 2) {
+        // INSERT DOM ELEMENTS INTO FIRST PART
+        console.log(transactionPlanSelects[0].value);
+        transactionPlanPartHeaderText.textContent = `Transaction Type`;
+        transactionPlanPartText.textContent = `${transactionPlanSelects[3].value}`;
+        insertElement(transactionPlanPart, transactionPlanPartHeader);
+        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+        insertElement(transactionPlanPart, transactionPlanPartText);
+      }
+      if (number === 3) {
+        // INSERT DOM ELEMENTS INTO FIRST PART
+        console.log(transactionPlanSelects[0].value);
+        transactionPlanPartHeaderText.textContent = `Lender`;
+        transactionPlanPartText.textContent = `${transactionPlanSelects[6].value}`;
+        insertElement(transactionPlanPart, transactionPlanPartHeader);
+        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+        insertElement(transactionPlanPart, transactionPlanPartText);
+      }
+      if (number === 4) {
+        // INSERT DOM ELEMENTS INTO FIRST PART
+        console.log(transactionPlanSelects[0].value);
+        transactionPlanPartHeaderText.textContent = `Transaction Name`;
+        transactionPlanPartText.textContent = `${smallShortTransactionPlanInputs[1].value}`;
+        insertElement(transactionPlanPart, transactionPlanPartHeader);
+        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+        insertElement(transactionPlanPart, transactionPlanPartText);
+      }
+      if (number === 5) {
+        // INSERT DOM ELEMENTS INTO FIRST PART
+        console.log(transactionPlanSelects[0].value);
+        transactionPlanPartHeaderText.textContent = `Location`;
+        transactionPlanPartText.textContent = `${smallShortTransactionPlanInputs[0].value}`;
+        insertElement(transactionPlanPart, transactionPlanPartHeader);
+        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+        insertElement(transactionPlanPart, transactionPlanPartText);
+      }
+      if (number === 6) {
+        // INSERT DOM ELEMENTS INTO FIRST PART
+        console.log(transactionPlanSelects[0].value);
+        transactionPlanPartHeaderText.textContent = `Amount`;
+        transactionPlanPartText.textContent = `${money.format(Number(smallShortTransactionPlanInputs[2].value))}`;
+        insertElement(transactionPlanPart, transactionPlanPartHeader);
+        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+        insertElement(transactionPlanPart, transactionPlanPartText);
+      }
+      if (number === 6) {
+        // INSERT DOM ELEMENTS INTO FIRST PART
+        console.log(transactionPlanSelects[0].value);
+        transactionPlanPartHeaderText.textContent = `Due Date One`;
+        transactionPlanPartText.textContent = getDueDate(altMediumTransactionPlanInputs[0].value);
+        insertElement(transactionPlanPart, transactionPlanPartHeader);
+        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+        insertElement(transactionPlanPart, transactionPlanPartText);
+      }
+      number++;
+    }
+  }
 };
 
 const createPlannedTransaction = (accountSelect, budget, placeholderBudget, user) => {
@@ -277,15 +451,10 @@ const createPlannedTransaction = (accountSelect, budget, placeholderBudget, user
   if (accountSelect.value === `Expense Fund`) {
     const transactionPlan = document.createElement('section');
     numSections = 12;
-    while (sectionStart < numSections) {
-      const transactionPlanPart = document.createElement('section');
-      transactionPlanPart.classList.add(`transaction-plan__part`);
-      transactionPlan.insertAdjacentElement('beforeend', transactionPlanPart);
-      sectionStart++;
-    }
+    buildTransactionPlan(sectionStart, numSections, transactionPlan, `original`);
+    transactionPlan.classList.add('transaction-plan');
     displayTransaction(transactionDisplay, transactionPlan);
     console.log(accountSelect.value);
-    transactionPlan.classList.add('transaction-plan');
   }
   if (accountSelect.value === `Savings Fund`) {
     console.log(accountSelect.value);
@@ -293,12 +462,8 @@ const createPlannedTransaction = (accountSelect, budget, placeholderBudget, user
   if (accountSelect.value === `Debt`) {
     const altTransactionPlan = document.createElement('section');
     numSections = 13;
-    while (sectionStart < numSections) {
-      const transactionPlanPart = document.createElement('section');
-      transactionPlanPart.classList.add(`transaction-plan__alt__part`);
-      altTransactionPlan.insertAdjacentElement('beforeend', transactionPlanPart);
-      sectionStart++;
-    }
+
+    buildTransactionPlan(sectionStart, numSections, altTransactionPlan, `alt`);
     console.log(accountSelect.value);
     altTransactionPlan.classList.add('transaction-plan__alt');
     displayTransaction(transactionDisplay, altTransactionPlan);
@@ -311,8 +476,7 @@ const createPlannedTransaction = (accountSelect, budget, placeholderBudget, user
 const checkSelectedTiming = () => {
   const transactionPlanSections = document.querySelectorAll('.form__section--transaction-plan');
   const formSelectSections = document.querySelectorAll('.form__section--select');
-  console.log(formSelectSections);
-  console.log(formSelectSections[2].firstChild.nextSibling.nextSibling, formSelectSections[2].firstChild.nextSibling.nextSibling.value);
+
   if (formSelectSections[2].firstChild.nextSibling.nextSibling.value === `Bi-Monthly` || formSelectSections[2].firstChild.nextSibling.nextSibling.value === `Bi-Annually`) {
     transactionPlanSections[4].classList.remove('closed');
     transactionPlanSections[4].classList.add('open');
@@ -382,9 +546,6 @@ const setupTransactionPlanning = (budget, placeholderBudget, user) => {
   pushIntoArray([accountSelectionContainers[2], transactionPlanSections[5]], savingsTransactionOptionsArray);
   pushIntoArray([accountSelectionContainers[3], formSelectSections[3], accountSelectionContainers[6]], debtTransactionOptionsArray);
   pushIntoArray([accountSelectionContainers[4]], surplusTransactionOptionsArray);
-
-  console.log(commonTransactionOptionsArray);
-  console.log(transactionPlanSections, accountSelectionContainers);
 
   transactionPlanAccountOptions.forEach((ao) => {
     if (ao) {
