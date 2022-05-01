@@ -195,13 +195,15 @@ const budgetSchema = new mongoose.Schema({
           enum: [`Need`, `Surplue`],
           required: [true, `Every Transaction Must Be Deemed Needed Or Surplus.`], // Expenses AND Savings Will Need Option For Whether It Is Surplus Or Not On Enter Transaction Form.
         },
-        dueDate: {
-          type: Date,
-          required: [true, `Every Transaction Must Have A Due Date`],
-        },
+        dueDates: [
+          {
+            type: Date,
+            required: [true, `Every Transaction Must Have A Due Date`],
+          },
+        ],
         timing: {
           type: String,
-          enum: [`Weekly`, `Bi-Weekly`, `Bi-Monthly`, `Monthly`, `Quarterly`, `Bi-Annually`, `Annually`],
+          enum: [`Once`, `Weekly`, `Bi-Weekly`, `Bi-Monthly`, `Monthly`, `Quarterly`, `Bi-Annually`, `Annually`],
         },
         name: {
           type: String,
@@ -212,7 +214,6 @@ const budgetSchema = new mongoose.Schema({
         },
         paid: {
           type: Boolean,
-          enum: [],
           default: false,
         },
         paidStatus: {
@@ -250,7 +251,7 @@ const budgetSchema = new mongoose.Schema({
             },
             timing: {
               type: String,
-              enum: [`Weekly`, `Bi-Weekly`, `Bi-Monthly`, `Monthly`, `Quarterly`, `Bi-Annually`, `Annually`],
+              enum: [`Once`, `Weekly`, `Bi-Weekly`, `Bi-Monthly`, `Monthly`, `Quarterly`, `Bi-Annually`, `Annually`],
             },
             expenditure: {
               type: String,
