@@ -1935,27 +1935,28 @@ html {
   color: #fafafa;
 }
 
-.transaction-plan, .transaction-plan__alt-double, .transaction-plan__alt, .transaction-plan__part, .transaction-plan__alt__part, .transaction-plan__alt-double__part, .transaction-plan__double {
+.transaction-plan, .transaction-plan__double, .transaction-plan__alt-double, .transaction-plan__alt, .transaction-plan__part, .transaction-plan__double__part, .transaction-plan__alt__part, .transaction-plan__alt-double__part {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   color: #822aba;
 }
-.transaction-plan:hover, .transaction-plan__alt-double:hover, .transaction-plan__alt:hover, .transaction-plan__part:hover, .transaction-plan__alt__part:hover, .transaction-plan__alt-double__part:hover, .transaction-plan__double:hover {
+.transaction-plan:hover, .transaction-plan__double:hover, .transaction-plan__alt-double:hover, .transaction-plan__alt:hover, .transaction-plan__part:hover, .transaction-plan__double__part:hover, .transaction-plan__alt__part:hover, .transaction-plan__alt-double__part:hover {
   color: #fafafa;
 }
-.transaction-plan:hover .transaction-plan__part, .transaction-plan:hover .transaction-plan__alt-double__part, .transaction-plan__alt-double:hover .transaction-plan__part, .transaction-plan__alt-double:hover .transaction-plan__alt__part, .transaction-plan__alt-double:hover .transaction-plan__alt-double__part, .transaction-plan__alt:hover .transaction-plan__part, .transaction-plan__alt:hover .transaction-plan__alt__part, .transaction-plan__alt:hover .transaction-plan__alt-double__part, .transaction-plan__part:hover .transaction-plan__part, .transaction-plan__alt__part:hover .transaction-plan__part, .transaction-plan__part:hover .transaction-plan__alt__part, .transaction-plan__alt__part:hover .transaction-plan__alt__part, .transaction-plan__alt-double__part:hover .transaction-plan__part, .transaction-plan__alt-double__part:hover .transaction-plan__alt__part, .transaction-plan__part:hover .transaction-plan__alt-double__part, .transaction-plan__alt__part:hover .transaction-plan__alt-double__part, .transaction-plan__alt-double__part:hover .transaction-plan__alt-double__part, .transaction-plan__double:hover .transaction-plan__part, .transaction-plan__double:hover .transaction-plan__alt__part, .transaction-plan__double:hover .transaction-plan__alt-double__part,
-.transaction-plan:hover .transaction-plan__alt__part {
+.transaction-plan:hover .transaction-plan__part, .transaction-plan:hover .transaction-plan__double__part, .transaction-plan__double:hover .transaction-plan__part, .transaction-plan__double:hover .transaction-plan__double__part, .transaction-plan:hover .transaction-plan__alt-double__part, .transaction-plan__double:hover .transaction-plan__alt-double__part, .transaction-plan__alt-double:hover .transaction-plan__part, .transaction-plan__alt-double:hover .transaction-plan__double__part, .transaction-plan__alt-double:hover .transaction-plan__alt__part, .transaction-plan__alt-double:hover .transaction-plan__alt-double__part, .transaction-plan__alt:hover .transaction-plan__part, .transaction-plan__alt:hover .transaction-plan__double__part, .transaction-plan__alt:hover .transaction-plan__alt__part, .transaction-plan__alt:hover .transaction-plan__alt-double__part, .transaction-plan__part:hover .transaction-plan__part, .transaction-plan__double__part:hover .transaction-plan__part, .transaction-plan__part:hover .transaction-plan__double__part, .transaction-plan__double__part:hover .transaction-plan__double__part, .transaction-plan__alt__part:hover .transaction-plan__part, .transaction-plan__alt__part:hover .transaction-plan__double__part, .transaction-plan__part:hover .transaction-plan__alt__part, .transaction-plan__double__part:hover .transaction-plan__alt__part, .transaction-plan__alt__part:hover .transaction-plan__alt__part, .transaction-plan__alt-double__part:hover .transaction-plan__part, .transaction-plan__alt-double__part:hover .transaction-plan__double__part, .transaction-plan__alt-double__part:hover .transaction-plan__alt__part, .transaction-plan__part:hover .transaction-plan__alt-double__part, .transaction-plan__double__part:hover .transaction-plan__alt-double__part, .transaction-plan__alt__part:hover .transaction-plan__alt-double__part, .transaction-plan__alt-double__part:hover .transaction-plan__alt-double__part,
+.transaction-plan:hover .transaction-plan__alt__part,
+.transaction-plan__double:hover .transaction-plan__alt__part {
   color: #fafafa;
 }
-.transaction-plan__part, .transaction-plan__alt__part, .transaction-plan__alt-double__part {
+.transaction-plan__part, .transaction-plan__double__part, .transaction-plan__alt__part, .transaction-plan__alt-double__part {
   font-size: 1.3rem;
 }
-.transaction-plan__part__header, .transaction-plan__alt__part__header, .transaction-plan__alt-double__part__header {
+.transaction-plan__part__header, .transaction-plan__double__part__header, .transaction-plan__alt__part__header, .transaction-plan__alt-double__part__header {
   text-align: center;
 }
-.transaction-plan__part__header__text, .transaction-plan__alt__part__header__text, .transaction-plan__alt-double__part__header__text {
+.transaction-plan__part__header__text, .transaction-plan__double__part__header__text, .transaction-plan__alt__part__header__text, .transaction-plan__alt-double__part__header__text {
   text-decoration: underline;
 }
-.transaction-plan__part__text, .transaction-plan__alt__part__text, .transaction-plan__alt-double__part__text {
+.transaction-plan__part__text, .transaction-plan__double__part__text, .transaction-plan__alt__part__text, .transaction-plan__alt-double__part__text {
   font-size: 1.2rem;
   text-align: center;
 }

@@ -8324,6 +8324,228 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
         insertElement(transactionPlanPart, transactionPlanPartText);
       }
 
+      if (number === 2) {
+        // INSERT DOM ELEMENTS INTO FIRST PART
+        console.log(transactionPlanSelects[0].value);
+        transactionPlanPartHeaderText.textContent = "Transaction Type";
+        transactionPlanPartText.textContent = "".concat(transactionPlanSelects[3].value);
+        insertElement(transactionPlanPart, transactionPlanPartHeader);
+        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+        insertElement(transactionPlanPart, transactionPlanPartText);
+      }
+
+      if (number === 3) {
+        // INSERT DOM ELEMENTS INTO FIRST PART
+        console.log(transactionPlanSelects[0].value);
+        transactionPlanPartHeaderText.textContent = "Transaction Name";
+        transactionPlanPartText.textContent = "".concat(smallShortTransactionPlanInputs[1].value);
+        insertElement(transactionPlanPart, transactionPlanPartHeader);
+        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+        insertElement(transactionPlanPart, transactionPlanPartText);
+      }
+
+      if (number === 4) {
+        // INSERT DOM ELEMENTS INTO FIRST PART
+        console.log(transactionPlanSelects[0].value);
+        transactionPlanPartHeaderText.textContent = "Location";
+        transactionPlanPartText.textContent = "".concat(smallShortTransactionPlanInputs[0].value);
+        insertElement(transactionPlanPart, transactionPlanPartHeader);
+        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+        insertElement(transactionPlanPart, transactionPlanPartText);
+      }
+
+      if (number === 5) {
+        // INSERT DOM ELEMENTS INTO FIRST PART
+        console.log(transactionPlanSelects[0].value);
+        transactionPlanPartHeaderText.textContent = "Amount";
+        transactionPlanPartText.textContent = "".concat(money.format(Number(smallShortTransactionPlanInputs[2].value)));
+        insertElement(transactionPlanPart, transactionPlanPartHeader);
+        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+        insertElement(transactionPlanPart, transactionPlanPartText);
+      }
+
+      if (number === 6) {
+        // INSERT DOM ELEMENTS INTO FIRST PART
+        console.log(transactionPlanSelects[0].value);
+        transactionPlanPartHeaderText.textContent = "Due Date One";
+        transactionPlanPartText.textContent = getDueDate(altMediumTransactionPlanInputs[0].value);
+        insertElement(transactionPlanPart, transactionPlanPartHeader);
+        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+        insertElement(transactionPlanPart, transactionPlanPartText);
+      }
+
+      if (number === 7) {
+        // transactionPlanPartHeader.classList.add('transaction-plan__alt__part__header');
+        // transactionPlanPartHeader.classList.add('r__transaction-plan__alt__part__header');
+        // transactionPlanPartHeaderText.classList.add('transaction-plan__alt__part__header__text');
+        // transactionPlanPartHeaderText.classList.add('r__transaction-plan__alt__part__header__text');
+        // transactionPlanPartText.classList.add('transaction-plan__alt__part__text');
+        // transactionPlanPartText.classList.add('r__transaction-plan__alt__part__text');
+        // INSERT DOM ELEMENTS INTO FIRST PART
+        console.log(transactionPlanSelects[0].value);
+        transactionPlanPartHeaderText.textContent = "Timing";
+        transactionPlanPartText.textContent = "".concat(transactionPlanSelects[5].value);
+        console.log(altMediumTransactionPlanInputs[1].value);
+
+        if (altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
+          replaceClassName(transactionPlanPartHeader, "transaction-plan__part__header", 'transaction-plan__double__part__header');
+          replaceClassName(transactionPlanPartHeader, "r__transaction-plan__part__header", 'r__transaction-plan__double__part__header');
+          transactionPlanPartHeaderText.textContent = "Due Date Two";
+          transactionPlanPartText.textContent = getDueDate(altMediumTransactionPlanInputs[1].value);
+        }
+
+        insertElement(transactionPlanPart, transactionPlanPartHeader);
+        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+        insertElement(transactionPlanPart, transactionPlanPartText);
+      }
+
+      if (number === 8) {
+        // INSERT DOM ELEMENTS INTO FIRST PART
+        console.log(transactionPlanSelects[0].value);
+        transactionPlanPartHeaderText.textContent = "Amount Saved";
+        transactionPlanPartText.textContent = money.format(0);
+        console.log(altMediumTransactionPlanInputs[1].value);
+
+        if (altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
+          replaceClassName(transactionPlanPartHeader, "transaction-plan__part__header", 'transaction-plan__double__part__header');
+          replaceClassName(transactionPlanPartHeader, "r__transaction-plan__part__header", 'r__transaction-plan__double__part__header');
+          transactionPlanPartHeaderText.textContent = "Timing";
+          transactionPlanPartText.textContent = "".concat(transactionPlanSelects[5].value);
+        }
+
+        insertElement(transactionPlanPart, transactionPlanPartHeader);
+        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+        insertElement(transactionPlanPart, transactionPlanPartText);
+      }
+
+      if (number === 9) {
+        // INSERT DOM ELEMENTS INTO FIRST PART
+        console.log(transactionPlanSelects[0].value);
+        insertElement(transactionPlanPart, transactionPlanPartHeader);
+        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+
+        if (!altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
+          transactionPlanPartHeaderText.textContent = "Apply Money";
+          var transactionPlanInput = document.createElement('input');
+          var transactionPlanButton = document.createElement('button');
+          transactionPlanButton.textContent = "Apply";
+          transactionPlanInput.classList.add('form__input--transaction-plan');
+          transactionPlanInput.classList.add('r__form__input--transaction-plan');
+          transactionPlanButton.classList.add('button--extra-extra-small__transaction-plan-small');
+          transactionPlanButton.classList.add('r__button--extra-extra-small__transaction-plan-small');
+          transactionPlanInput.type = 'number';
+          transactionPlanInput.min = 0;
+          transactionPlanInput.placeholder = '$0.00';
+          console.log(altMediumTransactionPlanInputs[1].value);
+          insertElement(transactionPlanPart, transactionPlanInput);
+          insertElement(transactionPlanPart, transactionPlanButton);
+        }
+
+        if (altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
+          replaceClassName(transactionPlanPartHeader, "transaction-plan__part__header", 'transaction-plan__double__part__header');
+          replaceClassName(transactionPlanPartHeader, "r__transaction-plan__part__header", 'r__transaction-plan__double__part__header');
+          transactionPlanPartHeaderText.textContent = "Amount Saved";
+          transactionPlanPartText.textContent = money.format(0);
+          insertElement(transactionPlanPart, transactionPlanPartText);
+        }
+      }
+
+      if (number === 10) {
+        // INSERT DOM ELEMENTS INTO FIRST PART
+        console.log(transactionPlanSelects[0].value);
+        insertElement(transactionPlanPart, transactionPlanPartHeader);
+        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+
+        if (!altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
+          transactionPlanPartHeaderText.textContent = "Paid In Full?";
+
+          var _transactionPlanButton = document.createElement('button');
+
+          _transactionPlanButton.textContent = "Paid";
+
+          _transactionPlanButton.classList.add('button--extra-extra-small__transaction-plan-small');
+
+          _transactionPlanButton.classList.add('r__button--extra-extra-small__transaction-plan-small');
+
+          console.log(altMediumTransactionPlanInputs[1].value);
+          insertElement(transactionPlanPart, _transactionPlanButton);
+        }
+
+        if (altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
+          replaceClassName(transactionPlanPartHeader, "transaction-plan__part__header", 'transaction-plan__double__part__header');
+          replaceClassName(transactionPlanPartHeader, "r__transaction-plan__part__header", 'r__transaction-plan__double__part__header');
+          transactionPlanPartHeaderText.textContent = "Apply Money";
+
+          var _transactionPlanInput = document.createElement('input');
+
+          var _transactionPlanButton2 = document.createElement('button');
+
+          _transactionPlanButton2.textContent = "Apply";
+
+          _transactionPlanInput.classList.add('form__input--transaction-plan');
+
+          _transactionPlanInput.classList.add('r__form__input--transaction-plan');
+
+          _transactionPlanButton2.classList.add('button--extra-extra-small__transaction-plan-small');
+
+          _transactionPlanButton2.classList.add('r__button--extra-extra-small__transaction-plan-small');
+
+          _transactionPlanInput.type = 'number';
+          _transactionPlanInput.min = 0;
+          _transactionPlanInput.placeholder = '$0.00';
+          console.log(altMediumTransactionPlanInputs[1].value);
+          insertElement(transactionPlanPart, _transactionPlanInput);
+          insertElement(transactionPlanPart, _transactionPlanButton2);
+        }
+      }
+
+      if (number === 11) {
+        // INSERT DOM ELEMENTS INTO FIRST PART
+        console.log(transactionPlanSelects[0].value);
+        insertElement(transactionPlanPart, transactionPlanPartHeader);
+        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+
+        if (!altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
+          transactionPlanPartHeaderText.textContent = "Status";
+          transactionPlanPartText.textContent = "Unpaid";
+          console.log(altMediumTransactionPlanInputs[1].value);
+          insertElement(transactionPlanPart, transactionPlanPartText);
+        }
+
+        if (altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
+          replaceClassName(transactionPlanPartHeader, "transaction-plan__part__header", 'transaction-plan__double__part__header');
+          replaceClassName(transactionPlanPartHeader, "r__transaction-plan__part__header", 'r__transaction-plan__double__part__header');
+          transactionPlanPartHeaderText.textContent = "Paid In Full?";
+
+          var _transactionPlanButton3 = document.createElement('button');
+
+          _transactionPlanButton3.textContent = "Paid";
+
+          _transactionPlanButton3.classList.add('button--extra-extra-small__transaction-plan-small');
+
+          _transactionPlanButton3.classList.add('r__button--extra-extra-small__transaction-plan-small');
+
+          console.log(altMediumTransactionPlanInputs[1].value);
+          insertElement(transactionPlanPart, _transactionPlanButton3);
+        }
+      }
+
+      if (number === 12) {
+        // INSERT DOM ELEMENTS INTO FIRST PART
+        console.log(transactionPlanSelects[0].value);
+        insertElement(transactionPlanPart, transactionPlanPartHeader);
+        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+
+        if (altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
+          replaceClassName(transactionPlanPartHeader, "transaction-plan__part__header", 'transaction-plan__double__part__header');
+          replaceClassName(transactionPlanPartHeader, "r__transaction-plan__part__header", 'r__transaction-plan__double__part__header');
+          transactionPlanPartHeaderText.textContent = "Status";
+          transactionPlanPartText.textContent = "Unpaid";
+          console.log(altMediumTransactionPlanInputs[1].value);
+          insertElement(transactionPlanPart, transactionPlanPartText);
+        }
+      }
+
       number++;
     }
   }
@@ -8490,19 +8712,27 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
 
         if (!altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
           _transactionPlanPartHeaderText.textContent = "Apply Money";
-          var transactionPlanInput = document.createElement('input');
-          var transactionPlanButton = document.createElement('button');
-          transactionPlanButton.textContent = "Apply";
-          transactionPlanInput.classList.add('form__input--transaction-plan');
-          transactionPlanInput.classList.add('r__form__input--transaction-plan');
-          transactionPlanButton.classList.add('button--extra-extra-small__transaction-plan-small');
-          transactionPlanButton.classList.add('r__button--extra-extra-small__transaction-plan-small');
-          transactionPlanInput.type = 'number';
-          transactionPlanInput.min = 0;
-          transactionPlanInput.placeholder = '$0.00';
+
+          var _transactionPlanInput2 = document.createElement('input');
+
+          var _transactionPlanButton4 = document.createElement('button');
+
+          _transactionPlanButton4.textContent = "Apply";
+
+          _transactionPlanInput2.classList.add('form__input--transaction-plan');
+
+          _transactionPlanInput2.classList.add('r__form__input--transaction-plan');
+
+          _transactionPlanButton4.classList.add('button--extra-extra-small__transaction-plan-small');
+
+          _transactionPlanButton4.classList.add('r__button--extra-extra-small__transaction-plan-small');
+
+          _transactionPlanInput2.type = 'number';
+          _transactionPlanInput2.min = 0;
+          _transactionPlanInput2.placeholder = '$0.00';
           console.log(altMediumTransactionPlanInputs[1].value);
-          insertElement(_transactionPlanPart, transactionPlanInput);
-          insertElement(_transactionPlanPart, transactionPlanButton);
+          insertElement(_transactionPlanPart, _transactionPlanInput2);
+          insertElement(_transactionPlanPart, _transactionPlanButton4);
         }
 
         if (altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
@@ -8523,16 +8753,16 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
         if (!altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
           _transactionPlanPartHeaderText.textContent = "Paid In Full?";
 
-          var _transactionPlanButton = document.createElement('button');
+          var _transactionPlanButton5 = document.createElement('button');
 
-          _transactionPlanButton.textContent = "Paid";
+          _transactionPlanButton5.textContent = "Paid";
 
-          _transactionPlanButton.classList.add('button--extra-extra-small__transaction-plan-small');
+          _transactionPlanButton5.classList.add('button--extra-extra-small__transaction-plan-small');
 
-          _transactionPlanButton.classList.add('r__button--extra-extra-small__transaction-plan-small');
+          _transactionPlanButton5.classList.add('r__button--extra-extra-small__transaction-plan-small');
 
           console.log(altMediumTransactionPlanInputs[1].value);
-          insertElement(_transactionPlanPart, _transactionPlanButton);
+          insertElement(_transactionPlanPart, _transactionPlanButton5);
         }
 
         if (altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
@@ -8540,26 +8770,26 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
           replaceClassName(_transactionPlanPartHeader, "r__transaction-plan__alt__part__header", 'r__transaction-plan__alt-double__part__header');
           _transactionPlanPartHeaderText.textContent = "Apply Money";
 
-          var _transactionPlanInput = document.createElement('input');
+          var _transactionPlanInput3 = document.createElement('input');
 
-          var _transactionPlanButton2 = document.createElement('button');
+          var _transactionPlanButton6 = document.createElement('button');
 
-          _transactionPlanButton2.textContent = "Apply";
+          _transactionPlanButton6.textContent = "Apply";
 
-          _transactionPlanInput.classList.add('form__input--transaction-plan');
+          _transactionPlanInput3.classList.add('form__input--transaction-plan');
 
-          _transactionPlanInput.classList.add('r__form__input--transaction-plan');
+          _transactionPlanInput3.classList.add('r__form__input--transaction-plan');
 
-          _transactionPlanButton2.classList.add('button--extra-extra-small__transaction-plan-small');
+          _transactionPlanButton6.classList.add('button--extra-extra-small__transaction-plan-small');
 
-          _transactionPlanButton2.classList.add('r__button--extra-extra-small__transaction-plan-small');
+          _transactionPlanButton6.classList.add('r__button--extra-extra-small__transaction-plan-small');
 
-          _transactionPlanInput.type = 'number';
-          _transactionPlanInput.min = 0;
-          _transactionPlanInput.placeholder = '$0.00';
+          _transactionPlanInput3.type = 'number';
+          _transactionPlanInput3.min = 0;
+          _transactionPlanInput3.placeholder = '$0.00';
           console.log(altMediumTransactionPlanInputs[1].value);
-          insertElement(_transactionPlanPart, _transactionPlanInput);
-          insertElement(_transactionPlanPart, _transactionPlanButton2);
+          insertElement(_transactionPlanPart, _transactionPlanInput3);
+          insertElement(_transactionPlanPart, _transactionPlanButton6);
         }
       }
 
@@ -8581,16 +8811,16 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
           replaceClassName(_transactionPlanPartHeader, "r__transaction-plan__alt__part__header", 'r__transaction-plan__alt-double__part__header');
           _transactionPlanPartHeaderText.textContent = "Paid In Full?";
 
-          var _transactionPlanButton3 = document.createElement('button');
+          var _transactionPlanButton7 = document.createElement('button');
 
-          _transactionPlanButton3.textContent = "Paid";
+          _transactionPlanButton7.textContent = "Paid";
 
-          _transactionPlanButton3.classList.add('button--extra-extra-small__transaction-plan-small');
+          _transactionPlanButton7.classList.add('button--extra-extra-small__transaction-plan-small');
 
-          _transactionPlanButton3.classList.add('r__button--extra-extra-small__transaction-plan-small');
+          _transactionPlanButton7.classList.add('r__button--extra-extra-small__transaction-plan-small');
 
           console.log(altMediumTransactionPlanInputs[1].value);
-          insertElement(_transactionPlanPart, _transactionPlanButton3);
+          insertElement(_transactionPlanPart, _transactionPlanButton7);
         }
       }
 
@@ -8622,7 +8852,7 @@ var createPlannedTransaction = function createPlannedTransaction(accountSelect, 
   var numSections;
   var sectionStart = 0;
 
-  if (accountSelect.value === "Expense Fund") {
+  if (accountSelect.value === "Expense Fund" || accountSelect.value === "Savings Fund" || accountSelect.value === "Surplus") {
     var transactionPlan = document.createElement('section');
     numSections = 12;
     if (transactionPlanSelects[5].value === "Bi-Monthly" || transactionPlanSelects[5].value === "Bi-Annually") numSections = 13;
@@ -8632,11 +8862,10 @@ var createPlannedTransaction = function createPlannedTransaction(accountSelect, 
     numSections === 13 ? transactionPlan.classList.add('r__transaction-plan__double') : transactionPlan.classList.add('r__transaction-plan');
     displayTransaction(transactionDisplay, transactionPlan);
     console.log(accountSelect.value);
-  }
+  } // if (accountSelect.value === `Savings Fund`) {
+  //   console.log(accountSelect.value);
+  // }
 
-  if (accountSelect.value === "Savings Fund") {
-    console.log(accountSelect.value);
-  }
 
   if (accountSelect.value === "Debt") {
     var altTransactionPlan = document.createElement('section');
@@ -8649,11 +8878,10 @@ var createPlannedTransaction = function createPlannedTransaction(accountSelect, 
     numSections === 14 ? altTransactionPlan.classList.add('transaction-plan__alt-double') : altTransactionPlan.classList.add('transaction-plan__alt');
     numSections === 14 ? altTransactionPlan.classList.add('r__transaction-plan__alt-double') : altTransactionPlan.classList.add('r__transaction-plan__alt');
     displayTransaction(transactionDisplay, altTransactionPlan);
-  }
+  } // if (accountSelect.value === `Surplus`) {
+  //   console.log(accountSelect.value);
+  // }
 
-  if (accountSelect.value === "Surplus") {
-    console.log(accountSelect.value);
-  }
 };
 
 var checkSelectedTiming = function checkSelectedTiming() {

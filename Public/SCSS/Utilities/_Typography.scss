@@ -2524,9 +2524,6 @@ html {
       color: $colorOffWhite;
     }
   }
-  &__double {
-    @extend .transaction-plan;
-  }
   &__part {
     @extend .transaction-plan;
     font-size: 1.3rem;
@@ -2561,6 +2558,22 @@ html {
       }
     }
   }
+  &__part {
+    @extend .transaction-plan__part;
+    &__header {
+      @extend .transaction-plan__part__header;
+      &__text {
+        @extend .transaction-plan__part__header__text;
+      }
+    }
+    &__text {
+      @extend .transaction-plan__part__text;
+    }
+  }
+}
+
+.transaction-plan__double {
+  @extend .transaction-plan;
   &__part {
     @extend .transaction-plan__part;
     &__header {
