@@ -1393,18 +1393,12 @@
 
 .transaction-plan,
 .transaction-plan__alt {
+  // Every Other Account {
   @extend .transaction-plan-creation;
   justify-content: space-between;
   height: 10rem;
   &:nth-of-type(2n) {
     background-color: $colorLightestGrey;
-  }
-  &__alt {
-    @extend .transaction-plan;
-    .transaction-plan__part,
-    .transaction-plan__alt__part {
-      width: calc(100% / 13);
-    }
   }
   &:hover {
     cursor: pointer;
@@ -1427,6 +1421,34 @@
     // }
     &__header {
       @include SizeAndPositioning(relative, 3rem, 100%, flex, row, wrap, center, center, 0, 0, 0);
+    }
+  }
+}
+
+.transaction-plan__double {
+  @extend .transaction-plan;
+  &__part {
+    @extend .transaction-plan__part;
+    width: calc(100% / 13);
+  }
+}
+
+.transaction-plan__alt {
+  &-double {
+    @extend .transaction-plan;
+    &__part {
+      @extend .transaction-plan__part;
+      width: calc(100% / 14);
+      &__header {
+        @extend .transaction-plan__part__header;
+      }
+    }
+  }
+  &__part {
+    @extend .transaction-plan__part;
+    width: calc(100% / 13);
+    &__header {
+      @extend .transaction-plan__part__header;
     }
   }
 }

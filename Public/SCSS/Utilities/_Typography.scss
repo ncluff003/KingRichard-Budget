@@ -2514,8 +2514,7 @@ html {
   }
 }
 
-.transaction-plan,
-.transaction-plan__alt {
+.transaction-plan {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   color: $primaryColor;
   &:hover {
@@ -2525,7 +2524,7 @@ html {
       color: $colorOffWhite;
     }
   }
-  &__alt {
+  &__double {
     @extend .transaction-plan;
   }
   &__part {
@@ -2540,6 +2539,38 @@ html {
     &__text {
       font-size: 1.2rem;
       text-align: center;
+    }
+  }
+}
+
+.transaction-plan__alt {
+  @extend .transaction-plan;
+  &-double {
+    @extend .transaction-plan;
+    &__part {
+      @extend .transaction-plan__part;
+      &__header {
+        @extend .transaction-plan__part__header;
+        font-size: 1.2rem;
+        &__text {
+          @extend .transaction-plan__part__header__text;
+        }
+      }
+      &__text {
+        @extend .transaction-plan__part__text;
+      }
+    }
+  }
+  &__part {
+    @extend .transaction-plan__part;
+    &__header {
+      @extend .transaction-plan__part__header;
+      &__text {
+        @extend .transaction-plan__part__header__text;
+      }
+    }
+    &__text {
+      @extend .transaction-plan__part__text;
     }
   }
 }

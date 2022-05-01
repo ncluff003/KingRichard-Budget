@@ -1935,48 +1935,34 @@ html {
   color: #fafafa;
 }
 
-.transaction-plan, .transaction-plan__part,
-.transaction-plan__alt__part,
-.transaction-plan__alt__alt,
-.transaction-plan__alt {
+.transaction-plan, .transaction-plan__alt-double, .transaction-plan__alt, .transaction-plan__part, .transaction-plan__alt__part, .transaction-plan__alt-double__part, .transaction-plan__double {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   color: #822aba;
 }
-.transaction-plan:hover, .transaction-plan__part:hover,
-.transaction-plan__alt__part:hover,
-.transaction-plan__alt__alt:hover,
-.transaction-plan__alt:hover {
+.transaction-plan:hover, .transaction-plan__alt-double:hover, .transaction-plan__alt:hover, .transaction-plan__part:hover, .transaction-plan__alt__part:hover, .transaction-plan__alt-double__part:hover, .transaction-plan__double:hover {
   color: #fafafa;
 }
-.transaction-plan:hover .transaction-plan__part, .transaction-plan__part:hover .transaction-plan__part,
-.transaction-plan__alt__part:hover .transaction-plan__part,
-.transaction-plan__alt__alt:hover .transaction-plan__part,
-.transaction-plan:hover .transaction-plan__alt__part,
-.transaction-plan__part:hover .transaction-plan__alt__part,
-.transaction-plan__alt__part:hover .transaction-plan__alt__part,
-.transaction-plan__alt__alt:hover .transaction-plan__alt__part,
-.transaction-plan__alt:hover .transaction-plan__part,
-.transaction-plan__alt:hover .transaction-plan__alt__part {
+.transaction-plan:hover .transaction-plan__part, .transaction-plan:hover .transaction-plan__alt-double__part, .transaction-plan__alt-double:hover .transaction-plan__part, .transaction-plan__alt-double:hover .transaction-plan__alt__part, .transaction-plan__alt-double:hover .transaction-plan__alt-double__part, .transaction-plan__alt:hover .transaction-plan__part, .transaction-plan__alt:hover .transaction-plan__alt__part, .transaction-plan__alt:hover .transaction-plan__alt-double__part, .transaction-plan__part:hover .transaction-plan__part, .transaction-plan__alt__part:hover .transaction-plan__part, .transaction-plan__part:hover .transaction-plan__alt__part, .transaction-plan__alt__part:hover .transaction-plan__alt__part, .transaction-plan__alt-double__part:hover .transaction-plan__part, .transaction-plan__alt-double__part:hover .transaction-plan__alt__part, .transaction-plan__part:hover .transaction-plan__alt-double__part, .transaction-plan__alt__part:hover .transaction-plan__alt-double__part, .transaction-plan__alt-double__part:hover .transaction-plan__alt-double__part, .transaction-plan__double:hover .transaction-plan__part, .transaction-plan__double:hover .transaction-plan__alt__part, .transaction-plan__double:hover .transaction-plan__alt-double__part,
+.transaction-plan:hover .transaction-plan__alt__part {
   color: #fafafa;
 }
-.transaction-plan__part,
-.transaction-plan__alt__part {
+.transaction-plan__part, .transaction-plan__alt__part, .transaction-plan__alt-double__part {
   font-size: 1.3rem;
 }
-.transaction-plan__part__header,
-.transaction-plan__alt__part__header {
+.transaction-plan__part__header, .transaction-plan__alt__part__header, .transaction-plan__alt-double__part__header {
   text-align: center;
 }
-.transaction-plan__part__header__text,
-.transaction-plan__alt__part__header__text {
+.transaction-plan__part__header__text, .transaction-plan__alt__part__header__text, .transaction-plan__alt-double__part__header__text {
   text-decoration: underline;
 }
-.transaction-plan__part__text,
-.transaction-plan__alt__part__text {
+.transaction-plan__part__text, .transaction-plan__alt__part__text, .transaction-plan__alt-double__part__text {
   font-size: 1.2rem;
   text-align: center;
 }
 
+.transaction-plan__alt-double__part__header {
+  font-size: 1.2rem;
+}
 .form, .form--extra-small, .form--extra-small__budget-name-display {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
 }
@@ -36637,8 +36623,8 @@ html {
   overflow-y: auto;
 }
 
-.transaction-plan-creation, .transaction-plan, .transaction-plan__alt,
-.transaction-plan__alt__alt {
+.transaction-plan-creation, .transaction-plan, .transaction-plan__alt-double, .transaction-plan__double,
+.transaction-plan__alt {
   position: relative;
   height: 9rem;
   width: 100%;
@@ -36652,41 +36638,30 @@ html {
   border-bottom: 0.2rem solid #822aba;
 }
 
-.transaction-plan,
-.transaction-plan__alt__alt,
+.transaction-plan, .transaction-plan__alt-double, .transaction-plan__double,
 .transaction-plan__alt {
   justify-content: space-between;
   height: 10rem;
 }
-.transaction-plan:nth-of-type(2n),
-.transaction-plan__alt__alt:nth-of-type(2n),
+.transaction-plan:nth-of-type(2n), .transaction-plan__alt-double:nth-of-type(2n), .transaction-plan__double:nth-of-type(2n),
 .transaction-plan__alt:nth-of-type(2n) {
   background-color: #dddddd;
 }
-.transaction-plan__alt .transaction-plan__part,
-.transaction-plan__alt .transaction-plan__alt__part,
-.transaction-plan__alt__alt .transaction-plan__part,
-.transaction-plan__alt__alt .transaction-plan__alt__part {
-  width: 7.6923076923%;
-}
-.transaction-plan:hover,
-.transaction-plan__alt__alt:hover,
+.transaction-plan:hover, .transaction-plan__alt-double:hover, .transaction-plan__double:hover,
 .transaction-plan__alt:hover {
   cursor: pointer;
   background-color: #822aba;
   transition: color 0.5s, background-color 0.5s;
 }
-.transaction-plan:hover .button--extra-extra-small__transaction-plan-small,
-.transaction-plan__alt__alt:hover .button--extra-extra-small__transaction-plan-small,
+.transaction-plan:hover .button--extra-extra-small__transaction-plan-small, .transaction-plan__alt-double:hover .button--extra-extra-small__transaction-plan-small, .transaction-plan__double:hover .button--extra-extra-small__transaction-plan-small,
 .transaction-plan__alt:hover .button--extra-extra-small__transaction-plan-small {
   border: 0.2rem solid rgba(250, 250, 250, 0.8);
 }
-.transaction-plan:hover .button--extra-extra-small__transaction-plan-small:hover,
-.transaction-plan__alt__alt:hover .button--extra-extra-small__transaction-plan-small:hover,
+.transaction-plan:hover .button--extra-extra-small__transaction-plan-small:hover, .transaction-plan__alt-double:hover .button--extra-extra-small__transaction-plan-small:hover, .transaction-plan__double:hover .button--extra-extra-small__transaction-plan-small:hover,
 .transaction-plan__alt:hover .button--extra-extra-small__transaction-plan-small:hover {
   background-color: #38d927;
 }
-.transaction-plan__part,
+.transaction-plan__part, .transaction-plan__alt-double__part, .transaction-plan__double__part,
 .transaction-plan__alt__part {
   position: relative;
   height: 100%;
@@ -36699,7 +36674,7 @@ html {
   transform: rotate(0) translate(0, 0);
   padding: 0.5rem;
 }
-.transaction-plan__part__header,
+.transaction-plan__part__header, .transaction-plan__alt-double__part__header,
 .transaction-plan__alt__part__header {
   position: relative;
   height: 3rem;
@@ -36712,6 +36687,16 @@ html {
   transform: rotate(0) translate(0, 0);
 }
 
+.transaction-plan__double__part {
+  width: 7.6923076923%;
+}
+
+.transaction-plan__alt-double__part {
+  width: 7.1428571429%;
+}
+.transaction-plan__alt__part {
+  width: 7.6923076923%;
+}
 .form, .form--transaction, .form--extra-small, .form--full-width, .form--framed, .form--transaction-plan {
   position: relative;
   height: 100%;
