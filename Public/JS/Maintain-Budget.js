@@ -334,6 +334,70 @@ const getPaymentSchedule = (paymentArray, paymentCycle, dates) => {
     }
     return paymentArray;
   }
+  if (paymentCycle === `Quarterly`) {
+    payments = 4;
+    while (paymentStart < payments) {
+      let adjustedDate = new Date(dates[0]);
+      let selectedDate = new Date(adjustedDate.setHours(adjustedDate.getHours() + new Date().getTimezoneOffset() / 60));
+      if (paymentStart === 0) {
+        paymentArray.push(adjustedDate);
+      }
+      if (paymentStart === 1) {
+        selectedDate = new Date(selectedDate.setMonth(selectedDate.getMonth() + 3));
+        paymentArray.push(selectedDate);
+      }
+      if (paymentStart > 1) {
+        selectedDate = new Date(selectedDate.setMonth(selectedDate.getMonth() + 3 * paymentStart));
+        paymentArray.push(selectedDate);
+      }
+      paymentStart++;
+    }
+    return paymentArray;
+  }
+  if (paymentCycle === `Bi-Annual`) {
+    payments = 7; // Gives them 7 years of payments ahead.
+    while (paymentStart < payments) {
+      let adjustedDate1 = new Date(dates[0]);
+      let adjustedDate2 = new Date(dates[1]);
+      let selectedDate1 = new Date(adjustedDate1.setHours(adjustedDate1.getHours() + new Date().getTimezoneOffset() / 60));
+      let selectedDate2 = new Date(adjustedDate2.setHours(adjustedDate2.getHours() + new Date().getTimezoneOffset() / 60));
+      if (paymentStart === 0) {
+        paymentArray.push([adjustedDate1, adjustedDate2]);
+      }
+      if (paymentStart === 1) {
+        selectedDate1 = new Date(selectedDate1.setFullYear(selectedDate1.getFullYear() + 1));
+        selectedDate2 = new Date(selectedDate2.setFullYear(selectedDate2.getFullYear() + 1));
+        paymentArray.push([selectedDate1, selectedDate2]);
+      }
+      if (paymentStart > 1) {
+        selectedDate1 = new Date(selectedDate1.setFullYear(selectedDate1.getFullYear() + 1 * paymentStart));
+        selectedDate2 = new Date(selectedDate2.setFullYear(selectedDate2.getFullYear() + 1 * paymentStart));
+        paymentArray.push([selectedDate1, selectedDate2]);
+      }
+      paymentStart++;
+    }
+    return paymentArray;
+  }
+  if (paymentCycle === `Annual`) {
+    payments = 10; // Gives them 10 years of payments ahead.
+    while (paymentStart < payments) {
+      let adjustedDate = new Date(dates[0]);
+      let selectedDate = new Date(adjustedDate.setHours(adjustedDate.getHours() + new Date().getTimezoneOffset() / 60));
+      if (paymentStart === 0) {
+        paymentArray.push(adjustedDate);
+      }
+      if (paymentStart === 1) {
+        selectedDate = new Date(selectedDate.setFullYear(selectedDate.getFullYear() + 1));
+        paymentArray.push(selectedDate);
+      }
+      if (paymentStart > 1) {
+        selectedDate = new Date(selectedDate.setFullYear(selectedDate.getFullYear() + 1 * paymentStart));
+        paymentArray.push(selectedDate);
+      }
+      paymentStart++;
+    }
+    return paymentArray;
+  }
 };
 
 const getDatabaseDueDate = (date) => {

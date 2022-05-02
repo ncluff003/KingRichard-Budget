@@ -8345,6 +8345,96 @@ var getPaymentSchedule = function getPaymentSchedule(paymentArray, paymentCycle,
 
     return paymentArray;
   }
+
+  if (paymentCycle === "Quarterly") {
+    payments = 4;
+
+    while (paymentStart < payments) {
+      var _adjustedDate3 = new Date(dates[0]);
+
+      var _selectedDate3 = new Date(_adjustedDate3.setHours(_adjustedDate3.getHours() + new Date().getTimezoneOffset() / 60));
+
+      if (paymentStart === 0) {
+        paymentArray.push(_adjustedDate3);
+      }
+
+      if (paymentStart === 1) {
+        _selectedDate3 = new Date(_selectedDate3.setMonth(_selectedDate3.getMonth() + 3));
+        paymentArray.push(_selectedDate3);
+      }
+
+      if (paymentStart > 1) {
+        _selectedDate3 = new Date(_selectedDate3.setMonth(_selectedDate3.getMonth() + 3 * paymentStart));
+        paymentArray.push(_selectedDate3);
+      }
+
+      paymentStart++;
+    }
+
+    return paymentArray;
+  }
+
+  if (paymentCycle === "Bi-Annual") {
+    payments = 7; // Gives them 7 years of payments ahead.
+
+    while (paymentStart < payments) {
+      var _adjustedDate4 = new Date(dates[0]);
+
+      var _adjustedDate5 = new Date(dates[1]);
+
+      var _selectedDate4 = new Date(_adjustedDate4.setHours(_adjustedDate4.getHours() + new Date().getTimezoneOffset() / 60));
+
+      var _selectedDate5 = new Date(_adjustedDate5.setHours(_adjustedDate5.getHours() + new Date().getTimezoneOffset() / 60));
+
+      if (paymentStart === 0) {
+        paymentArray.push([_adjustedDate4, _adjustedDate5]);
+      }
+
+      if (paymentStart === 1) {
+        _selectedDate4 = new Date(_selectedDate4.setFullYear(_selectedDate4.getFullYear() + 1));
+        _selectedDate5 = new Date(_selectedDate5.setFullYear(_selectedDate5.getFullYear() + 1));
+        paymentArray.push([_selectedDate4, _selectedDate5]);
+      }
+
+      if (paymentStart > 1) {
+        _selectedDate4 = new Date(_selectedDate4.setFullYear(_selectedDate4.getFullYear() + 1 * paymentStart));
+        _selectedDate5 = new Date(_selectedDate5.setFullYear(_selectedDate5.getFullYear() + 1 * paymentStart));
+        paymentArray.push([_selectedDate4, _selectedDate5]);
+      }
+
+      paymentStart++;
+    }
+
+    return paymentArray;
+  }
+
+  if (paymentCycle === "Annual") {
+    payments = 10; // Gives them 10 years of payments ahead.
+
+    while (paymentStart < payments) {
+      var _adjustedDate6 = new Date(dates[0]);
+
+      var _selectedDate6 = new Date(_adjustedDate6.setHours(_adjustedDate6.getHours() + new Date().getTimezoneOffset() / 60));
+
+      if (paymentStart === 0) {
+        paymentArray.push(_adjustedDate6);
+      }
+
+      if (paymentStart === 1) {
+        _selectedDate6 = new Date(_selectedDate6.setFullYear(_selectedDate6.getFullYear() + 1));
+        paymentArray.push(_selectedDate6);
+      }
+
+      if (paymentStart > 1) {
+        _selectedDate6 = new Date(_selectedDate6.setFullYear(_selectedDate6.getFullYear() + 1 * paymentStart));
+        paymentArray.push(_selectedDate6);
+      }
+
+      paymentStart++;
+    }
+
+    return paymentArray;
+  }
 };
 
 var getDatabaseDueDate = function getDatabaseDueDate(date) {
