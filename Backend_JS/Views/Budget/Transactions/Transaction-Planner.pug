@@ -128,7 +128,7 @@ block Budget-Content
                 label.form__label--medium__alt-4.r__form__label--medium__alt-4(for="location") Location
             - let expenseTransactionTypes = [`Expense`, `Bill`, `Subscription`, `Other`]
             - let savingsTransactionTypes = [`Expense`, `Subscription`, `Vacations`, `Tuition`, `Other`]
-            - let debtTransactionTypes = [`Credit Card`, `Loan`, `Taxes`, `Other`]
+            - let debtTransactionTypes = [`Credit Card`, `Loan`, `Taxes`, `Debt`, `Other`]
             - let surplusTransactionTypes = [`Expense`, `Subscription`, `Discretionary`, `Food`, `Other`]
               section.form__section--select.r__form__section--select.closed 
                 label.form__label--select__transaction.r__form__label--select__transaction Transaction Type
@@ -145,7 +145,7 @@ block Budget-Content
                   each transaction in surplusTransactionTypes 
                     option.form__select__option.r__form__select__option= `${transaction}`
               section.form__section--select.r__form__section--select.closed 
-                - const debtTimingsTwo = [`Once`,`Weekly`,`Bi-Weekly`,`Bi-Monthly`,`Monthly`,`Quarterly`,`Bi-Annually`,`Annually`]
+                - const debtTimingsTwo = [`Once`,`Weekly`,`Bi-Weekly`,`Bi-Monthly`,`Monthly`,`Quarterly`,`Bi-Annual`,`Annual`]
                   label.form__label--select__transaction.r__form__label--select__transaction Timing
                   select.form__select--accounts.r__form__select--accounts                
                     each timing in debtTimingsTwo 

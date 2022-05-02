@@ -178,12 +178,12 @@ const budgetSchema = new mongoose.Schema({
         },
         account: {
           type: String,
-          enum: [`Expense`, `Savings`, `Debt`, `Surplus`],
+          enum: [`Expense Fund`, `Savings Fund`, `Debt`, `Surplus`],
           required: [true, `Every Transaction Must Come From An Account`], // Goes To Account
         },
         subAccount: {
           type: String,
-          enum: [`Bill`, `Debt`, `Subscription`, `Other`],
+          enum: [`Bill`, `Debt`, `Subscription`, `Other`, `Loan`, `Credit Card`, `Taxes`, `Expense`, `Discretionary`, `Food`, `Vacations`, `Tuition`],
           required: [true, `Every Transaction Needs A Type Given.`], // Goes To Expenditure In Recent Transactions
         },
         amount: {
@@ -195,15 +195,15 @@ const budgetSchema = new mongoose.Schema({
           enum: [`Need`, `Surplue`],
           required: [true, `Every Transaction Must Be Deemed Needed Or Surplus.`], // Expenses AND Savings Will Need Option For Whether It Is Surplus Or Not On Enter Transaction Form.
         },
-        dueDates: [
-          {
-            type: Date,
-            required: [true, `Every Transaction Must Have A Due Date`],
+        timingOptions: {
+          paymentCycle: {
+            type: String,
+            enum: [`Once`, `Weekly`, `Bi-Weekly`, `Bi-Monthly`, `Monthly`, `Quarterly`, `Bi-Annually`, `Annually`],
           },
-        ],
-        timing: {
-          type: String,
-          enum: [`Once`, `Weekly`, `Bi-Weekly`, `Bi-Monthly`, `Monthly`, `Quarterly`, `Bi-Annually`, `Annually`],
+          dueDates: [],
+          paymentSchedule: {
+            type: mongoose.Mixed,
+          },
         },
         name: {
           type: String,

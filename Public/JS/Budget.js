@@ -221,6 +221,12 @@ export class Budget {
         console.log(`Allocating...`);
         Manage.updateMyBudget(options.updateObject, pageLink);
       }
+
+      if (update === `Transaction Planner`) {
+        console.log(`Planning...`, options);
+        // Manage.updateMyBudget(options.updateObject, pageLink);
+      }
+
       console.log(`Updating...`);
     }
   }
