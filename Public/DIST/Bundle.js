@@ -8220,6 +8220,46 @@ var displayTransaction = function displayTransaction(container, plan) {
   container.insertAdjacentElement('afterbegin', plan);
 };
 
+var getPaymentSchedule = function getPaymentSchedule(paymentArray, paymentCycle, dates) {
+  var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var payments;
+  var paymentStart = 0;
+  console.log("Scheduling Payments...");
+  console.log(paymentCycle, dates);
+
+  if (paymentCycle === "Once") {
+    paymentArray.push(dates[0]);
+    return paymentArray;
+  }
+
+  if (paymentCycle === "Weekly") {
+    payments = 52;
+
+    while (paymentStart < payments) {
+      var adjustedDate = new Date(dates[0]);
+      var selectedDate = new Date(adjustedDate.setHours(adjustedDate.getHours() + new Date().getTimezoneOffset() / 60));
+
+      if (paymentStart === 0) {
+        paymentArray.push(adjustedDate);
+      }
+
+      if (paymentStart === 1) {
+        selectedDate = new Date(selectedDate.setDate(selectedDate.getDate() + 7));
+        paymentArray.push(selectedDate);
+      }
+
+      if (paymentStart > 1) {
+        selectedDate = new Date(selectedDate.setDate(selectedDate.getDate() + 7 * paymentStart));
+        paymentArray.push(selectedDate);
+      }
+
+      paymentStart++;
+    }
+
+    return paymentArray;
+  }
+};
+
 var getDatabaseDueDate = function getDatabaseDueDate(date) {
   return new Date(new Date(date).setHours(new Date(date).getHours() + new Date().getTimezoneOffset() / 60));
 };
@@ -8266,10 +8306,13 @@ var finalizeTransactionPlan = function finalizeTransactionPlan(budget, placehold
     console.log("2 Payments..");
   }
 
+  plannedTransaction.timingOptions.paymentSchedule = []; // After the due dates, it is setting the payment schedule using the selected payment cycle.
+
+  getPaymentSchedule(plannedTransaction.timingOptions.paymentSchedule, plannedTransaction.timingOptions.paymentCycle, plannedTransaction.timingOptions.dueDates);
+
   if (selects[0].value === "Debt") {
     plannedTransaction.subAccount = selects[3].value;
-    plannedTransaction.need = "Need"; // After the due dates, it is setting the payment schedule using the selected payment cycle.
-    // Get the transaction name here.
+    plannedTransaction.need = "Need"; // Get the transaction name here.
     // Get amount saved here.
     // Get whether or not it has been paid.  This will be a Boolean value.
     // Get the status of the payment.  It should be one of the next four values: `Overpaid`, `Paid Off`, `Partially Paid`, `Unpaid`.
