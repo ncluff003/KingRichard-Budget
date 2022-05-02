@@ -37339,6 +37339,9 @@ html {
 .form__section--transaction-plan__alt {
   width: max-content;
 }
+.form__section--transaction-plan .surplus-container__switch:hover, .form__section--transaction-plan__alt .surplus-container__switch:hover {
+  cursor: pointer;
+}
 .form__section--select {
   width: max-content;
 }

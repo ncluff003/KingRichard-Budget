@@ -1993,6 +1993,13 @@
         @extend .form__section--transaction-plan;
         width: max-content;
       }
+      .surplus-container {
+        &__switch {
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
     }
 
     &--select {

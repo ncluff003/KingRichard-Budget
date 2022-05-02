@@ -8486,13 +8486,40 @@ var finalizeTransactionPlan = function finalizeTransactionPlan(budget, placehold
   plannedTransaction.timingOptions.paymentSchedule = []; // After the due dates, it is setting the payment schedule using the selected payment cycle.
 
   getPaymentSchedule(plannedTransaction.timingOptions.paymentSchedule, plannedTransaction.timingOptions.paymentCycle, plannedTransaction.timingOptions.dueDates);
+  plannedTransaction.name = smallInputs[1].value;
+  plannedTransaction.amountSaved = 0;
+  plannedTransaction.paid = false;
+  plannedTransaction.paidStatus = "Unpaid";
+
+  if (selects[0].value === "Expense Fund") {
+    plannedTransaction.subAccount = selects[3].value;
+    console.log(smallInputs[2].closest('.form__section--transaction-plan').nextSibling.nextSibling.nextSibling.firstChild.firstChild.nextSibling.nextSibling);
+    var surplusSwitch = smallInputs[2].closest('.form__section--transaction-plan').nextSibling.nextSibling.nextSibling.firstChild.firstChild.nextSibling.nextSibling;
+    plannedTransaction.need = "Need";
+
+    if (surplusSwitch.classList.contains('surplus-container__switch--switched')) {
+      plannedTransaction.need = "Surplus";
+    }
+  }
+
+  if (selects[0].value === "Savings Fund") {
+    plannedTransaction.subAccount = selects[3].value;
+    var _surplusSwitch = smallInputs[2].closest('.form__section--transaction-plan').nextSibling.nextSibling.nextSibling.firstChild.firstChild.nextSibling.nextSibling;
+    plannedTransaction.need = "Need";
+
+    if (_surplusSwitch.classList.contains('surplus-container__switch--switched')) {
+      plannedTransaction.need = "Surplus";
+    }
+  }
 
   if (selects[0].value === "Debt") {
     plannedTransaction.subAccount = selects[3].value;
-    plannedTransaction.need = "Need"; // Get the transaction name here.
-    // Get amount saved here.
-    // Get whether or not it has been paid.  This will be a Boolean value.
-    // Get the status of the payment.  It should be one of the next four values: `Overpaid`, `Paid Off`, `Partially Paid`, `Unpaid`.
+    plannedTransaction.need = "Need";
+  }
+
+  if (selects[0].value === "Surplus") {
+    plannedTransaction.subAccount = selects[3].value;
+    plannedTransaction.need = "Surplus";
   }
 
   updateObject.transactions.plannedTransactions.push(plannedTransaction);
@@ -9158,10 +9185,28 @@ var setupTransactionPlanning = function setupTransactionPlanning(budget, placeho
       });
     }
   });
+  var smallShortTransactionPlanInputs = document.querySelectorAll('.form__input--small-short');
+  console.log(smallShortTransactionPlanInputs, smallShortTransactionPlanInputs[2].closest('.form__section--transaction-plan').nextSibling.nextSibling.nextSibling.firstChild.firstChild.nextSibling.nextSibling);
+  var surplusSwitch = smallShortTransactionPlanInputs[2].closest('.form__section--transaction-plan').nextSibling.nextSibling.nextSibling.firstChild.firstChild.nextSibling.nextSibling;
+  var surplusSwitchIcon = surplusSwitch.firstChild.nextSibling.firstChild.nextSibling;
+
+  if (surplusSwitch) {
+    surplusSwitch.addEventListener('click', function (e) {
+      e.preventDefault();
+      surplusSwitch.classList.toggle('surplus-container__switch--switched');
+      surplusSwitchIcon.classList.toggle('fa-times');
+      surplusSwitchIcon.classList.toggle('fa-check');
+    });
+  }
 
   if (submitPlanButton) {
     submitPlanButton.addEventListener('click', function (e) {
       createPlannedTransaction(accountSelectionContainers[0], budget, placeholderBudget, user);
+      surplusSwitch.classList.remove('surplus-container__switch--switched');
+      surplusSwitchIcon.classList.toggle('fa-times');
+      surplusSwitchIcon.classList.toggle('fa-check');
+      transactionPlanCreationContainer.classList.toggle('closed');
+      transactionPlanCreationContainer.classList.toggle('open');
     });
   }
 };
