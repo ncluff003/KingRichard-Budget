@@ -224,7 +224,7 @@ export class Budget {
 
       if (update === `Transaction Planner`) {
         console.log(`Planning...`, options);
-        // Manage.updateMyBudget(options.updateObject, pageLink);
+        Manage.updateMyBudget(options.updateObject, pageLink);
       }
 
       console.log(`Updating...`);

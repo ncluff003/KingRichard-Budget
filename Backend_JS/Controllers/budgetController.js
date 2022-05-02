@@ -102,6 +102,31 @@ let filterObj = (object, allowedFields) => {
       newEntries.push([key, filteredValues[i]]);
     });
   }
+  if (filtered.transactions) {
+    let filteredValues = Object.values(filtered.transactions);
+    let filteredKeys = Object.keys(filtered.transactions);
+    let newEntries = [];
+
+    filteredKeys.forEach((key, i) => {
+      if (key === `plannedTransactions`) {
+        let filteredValues = Object.values(filtered.transactions);
+        let filteredKeys = Object.keys(filtered.transactions);
+        let newEntries = [];
+        filteredKeys.forEach((key, i) => {
+          if (key === `amount`) {
+            filteredValues[i].amount = Number(filteredValues[i].amount);
+            if (isNaN(Number(filteredValues[i].amount))) filteredValues[i].amount = 0;
+          }
+          if (key === `amountSaved`) {
+            filteredValues[i].amount = Number(filteredValues[i].amount);
+            if (isNaN(Number(filteredValues[i].amount))) filteredValues[i].amount = 0;
+          }
+          newEntries.push([key, filteredValues[i]]);
+        });
+      }
+      newEntries.push([key, filteredValues[i]]);
+    });
+  }
   // if (filtered.mainCategories) {
 
   // }
@@ -204,7 +229,7 @@ exports.updateMyBudget = catchAsync(async (request, response, next) => {
     return next(new AppError(`This route is not for password updates.  Please use /updateMyPassword route.`, 400));
   }
   // UPDATE BUDGET DOCUMENT
-  const filteredBody = filterObj(request.body, [`name`, `accounts`, `mainCategories`]);
+  const filteredBody = filterObj(request.body, [`name`, `accounts`, `mainCategories`, `transactions`]);
   console.log(`--------------------------------------------`);
   console.log(`Budget`);
   console.log(`--------------------------------------------`);

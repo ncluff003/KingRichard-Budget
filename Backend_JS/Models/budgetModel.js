@@ -172,6 +172,9 @@ const budgetSchema = new mongoose.Schema({
           enum: [`Deposit`, `Withdrawal`],
           required: [true, `Every Transaction Is Either A Deposit Or Withdrawal`],
         },
+        lender: {
+          type: String,
+        },
         location: {
           type: String,
           required: [true, `Every Transaction Happened Somewhere.`],
@@ -192,7 +195,7 @@ const budgetSchema = new mongoose.Schema({
         },
         need: {
           type: String,
-          enum: [`Need`, `Surplue`],
+          enum: [`Need`, `Surplus`],
           required: [true, `Every Transaction Must Be Deemed Needed Or Surplus.`], // Expenses AND Savings Will Need Option For Whether It Is Surplus Or Not On Enter Transaction Form.
         },
         timingOptions: {

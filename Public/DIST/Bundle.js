@@ -7353,7 +7353,8 @@ var Budget = /*#__PURE__*/function () {
         }
 
         if (update === "Transaction Planner") {
-          console.log("Planning...", options); // Manage.updateMyBudget(options.updateObject, pageLink);
+          console.log("Planning...", options);
+          _Manage_Budget__WEBPACK_IMPORTED_MODULE_3__.updateMyBudget(options.updateObject, pageLink);
         }
 
         console.log("Updating...");
@@ -8217,7 +8218,7 @@ var insertElement = function insertElement(container, element) {
 };
 
 var displayTransaction = function displayTransaction(container, plan) {
-  container.insertAdjacentElement('afterbegin', plan);
+  container.insertAdjacentElement('beforebegin', plan);
 };
 
 var getPaymentSchedule = function getPaymentSchedule(paymentArray, paymentCycle, dates) {
@@ -8448,6 +8449,11 @@ var getDueDate = function getDueDate(date) {
   return "".concat(new Date(selectedDate.setHours(selectedDate.getHours() + new Date().getTimezoneOffset() / 60)).getDate(), " ").concat(months[new Date(date).getMonth()], " ").concat(new Date(date).getFullYear());
 };
 
+var getTransactionPlanDate = function getTransactionPlanDate(date) {
+  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  return "".concat(new Date(date).getDate(), " ").concat(months[new Date(date).getMonth()], " ").concat(new Date(date).getFullYear());
+};
+
 var getCurrentDate = function getCurrentDate() {
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   return "".concat(new Date().getDate(), " ").concat(months[new Date().getMonth()], " ").concat(new Date().getFullYear());
@@ -8459,7 +8465,11 @@ var replaceClassName = function replaceClassName(element, classReplaced, replace
 };
 
 var finalizeTransactionPlan = function finalizeTransactionPlan(budget, placeholderBudget, user, selects, smallInputs, mediumInputs) {
-  var updateObject = {};
+  console.log(budget, user);
+  var updateObject = {
+    budgetId: budget._id,
+    userId: user._id
+  };
   var plannedTransaction = {};
   updateObject.transactions = {};
   updateObject.transactions.recentTransactions = budget.transactions.recentTransactions;
@@ -8515,6 +8525,7 @@ var finalizeTransactionPlan = function finalizeTransactionPlan(budget, placehold
   if (selects[0].value === "Debt") {
     plannedTransaction.subAccount = selects[3].value;
     plannedTransaction.need = "Need";
+    plannedTransaction.lender = selects[6].value;
   }
 
   if (selects[0].value === "Surplus") {
@@ -8524,7 +8535,9 @@ var finalizeTransactionPlan = function finalizeTransactionPlan(budget, placehold
 
   updateObject.transactions.plannedTransactions.push(plannedTransaction);
 
-  placeholderBudget._updateBudget("Update", "Transaction Planner", updateObject, "Transaction-Planner");
+  placeholderBudget._updateBudget("Update", "Transaction Planner", {
+    updateObject: updateObject
+  }, "Transaction-Planner");
 };
 
 var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudget, user, number, numberOfSections, plan, classType) {
@@ -9056,7 +9069,7 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
   finalizeTransactionPlan(budget, placeholderBudget, user, transactionPlanSelects, smallShortTransactionPlanInputs, altMediumTransactionPlanInputs);
 };
 
-var createPlannedTransaction = function createPlannedTransaction(accountSelect, budget, placeholderBudget, user) {
+var createPlannedTransaction = function createPlannedTransaction(accountSelect, budget, placeholderBudget, user, creationContainer) {
   console.log("Creating Plan...");
   var transactionDisplay = document.querySelector('.transaction-plan-display');
   var transactionPlanSelects = document.querySelectorAll('.form__select--accounts');
@@ -9070,7 +9083,7 @@ var createPlannedTransaction = function createPlannedTransaction(accountSelect, 
     buildTransactionPlan(budget, placeholderBudget, user, sectionStart, numSections, transactionPlan, "original");
     numSections === 13 ? transactionPlan.classList.add('transaction-plan__double') : transactionPlan.classList.add('transaction-plan');
     numSections === 13 ? transactionPlan.classList.add('r__transaction-plan__double') : transactionPlan.classList.add('r__transaction-plan');
-    displayTransaction(transactionDisplay, transactionPlan);
+    displayTransaction(creationContainer, transactionPlan);
   }
 
   if (accountSelect.value === "Debt") {
@@ -9080,7 +9093,7 @@ var createPlannedTransaction = function createPlannedTransaction(accountSelect, 
     buildTransactionPlan(budget, placeholderBudget, user, sectionStart, numSections, altTransactionPlan, "alt");
     numSections === 14 ? altTransactionPlan.classList.add('transaction-plan__alt-double') : altTransactionPlan.classList.add('transaction-plan__alt');
     numSections === 14 ? altTransactionPlan.classList.add('r__transaction-plan__alt-double') : altTransactionPlan.classList.add('r__transaction-plan__alt');
-    displayTransaction(transactionDisplay, altTransactionPlan);
+    displayTransaction(creationContainer, altTransactionPlan);
   }
 };
 
@@ -9127,6 +9140,751 @@ var showTransactionPlanOptions = function showTransactionPlanOptions(array, allO
   });
 };
 
+var displayExistingTransactionPlans = function displayExistingTransactionPlans(budget, placeholderBudget, user) {
+  console.log("These are existing.");
+  var transactionPlanCreation = document.querySelector('.transaction-plan-creation');
+  var transactionPlans = [];
+  var numberOfSections;
+  budget.transactions.plannedTransactions.forEach(function (transaction, i) {
+    transactionPlans.push(transaction);
+    transactionPlans.sort(function (a, b) {
+      return new Date(a.date) - new Date(b.date);
+    });
+  });
+  console.log(transactionPlans // transactionPlans.sort((a, b) => new Date(b.date) - new Date(a.date))
+  );
+  var money = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+  });
+  transactionPlans.forEach(function (transaction, i) {
+    var sectionStart = 0;
+
+    if (transaction.account !== "Debt") {
+      // Decision if NOT Debt Transaction
+      var transactionPlan = document.createElement('section');
+
+      if (transaction.timingOptions.paymentCycle === "Bi-Monthly" || transaction.timingOptions.paymentCycle === "Bi-Annual") {
+        transactionPlan.classList.add('transaction-plan__double');
+        transactionPlan.classList.add('r__transaction-plan__double');
+        numberOfSections = 13;
+
+        while (sectionStart < numberOfSections) {
+          console.log(sectionStart); // Initialize Variables For First Part
+
+          var transactionPlanPartHeader = document.createElement('header');
+          var transactionPlanPartHeaderText = document.createElement('p');
+          var transactionPlanPartText = document.createElement('p'); // Add Classes For First Part
+
+          transactionPlanPartHeader.classList.add('transaction-plan__double__part__header');
+          transactionPlanPartHeader.classList.add('r__transaction-plan__double__part__header');
+          transactionPlanPartHeaderText.classList.add('transaction-plan__double__part__header__text');
+          transactionPlanPartHeaderText.classList.add('r__transaction-plan__double__part__header__text');
+          transactionPlanPartText.classList.add('transaction-plan__double__part__text');
+          transactionPlanPartText.classList.add('r__transaction-plan__double__part__text'); // Add Content For First Part
+
+          transactionPlanPartHeaderText.textContent = "Date";
+          transactionPlanPartText.textContent = getTransactionPlanDate(transaction.date);
+          var transactionPlanPart = document.createElement('section');
+          transactionPlanPart.classList.add("transaction-plan__double__part");
+          transactionPlan.insertAdjacentElement('beforeend', transactionPlanPart);
+
+          if (sectionStart === 0) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            insertElement(transactionPlanPart, transactionPlanPartHeader);
+            insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+            insertElement(transactionPlanPart, transactionPlanPartText);
+          }
+
+          if (sectionStart === 1) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            transactionPlanPartHeaderText.textContent = "Account";
+            transactionPlanPartText.textContent = "".concat(transaction.account);
+            insertElement(transactionPlanPart, transactionPlanPartHeader);
+            insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+            insertElement(transactionPlanPart, transactionPlanPartText);
+          }
+
+          if (sectionStart === 2) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            transactionPlanPartHeaderText.textContent = "Transaction Type";
+            transactionPlanPartText.textContent = "".concat(transaction.subAccount);
+            insertElement(transactionPlanPart, transactionPlanPartHeader);
+            insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+            insertElement(transactionPlanPart, transactionPlanPartText);
+          }
+
+          if (sectionStart === 3) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            transactionPlanPartHeaderText.textContent = "Transaction Name";
+            transactionPlanPartText.textContent = "".concat(transaction.name);
+            insertElement(transactionPlanPart, transactionPlanPartHeader);
+            insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+            insertElement(transactionPlanPart, transactionPlanPartText);
+          }
+
+          if (sectionStart === 4) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            transactionPlanPartHeaderText.textContent = "Location";
+            transactionPlanPartText.textContent = "".concat(transaction.location);
+            insertElement(transactionPlanPart, transactionPlanPartHeader);
+            insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+            insertElement(transactionPlanPart, transactionPlanPartText);
+          }
+
+          if (sectionStart === 5) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            transactionPlanPartHeaderText.textContent = "Amount";
+            transactionPlanPartText.textContent = money.format(transaction.amount);
+            insertElement(transactionPlanPart, transactionPlanPartHeader);
+            insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+            insertElement(transactionPlanPart, transactionPlanPartText);
+          }
+
+          if (sectionStart === 6) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            transactionPlanPartHeaderText.textContent = "Due Date One";
+            transactionPlanPartText.textContent = "".concat(getTransactionPlanDate(transaction.timingOptions.dueDates[0]));
+            insertElement(transactionPlanPart, transactionPlanPartHeader);
+            insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+            insertElement(transactionPlanPart, transactionPlanPartText);
+          }
+
+          if (sectionStart === 7) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            transactionPlanPartHeaderText.textContent = "Due Date Two";
+            transactionPlanPartText.textContent = "".concat(getTransactionPlanDate(transaction.timingOptions.dueDates[1]));
+            insertElement(transactionPlanPart, transactionPlanPartHeader);
+            insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+            insertElement(transactionPlanPart, transactionPlanPartText);
+          }
+
+          if (sectionStart === 8) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            transactionPlanPartHeaderText.textContent = "Timing";
+            transactionPlanPartText.textContent = "".concat(transaction.timingOptions.paymentCycle);
+            insertElement(transactionPlanPart, transactionPlanPartHeader);
+            insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+            insertElement(transactionPlanPart, transactionPlanPartText);
+          }
+
+          if (sectionStart === 9) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            transactionPlanPartHeaderText.textContent = "Amount Saved";
+            transactionPlanPartText.textContent = money.format(transaction.amountSaved);
+            insertElement(transactionPlanPart, transactionPlanPartHeader);
+            insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+            insertElement(transactionPlanPart, transactionPlanPartText);
+          }
+
+          if (sectionStart === 10) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            transactionPlanPartHeaderText.textContent = "Apply Money";
+            var transactionPlanInput = document.createElement('input');
+            var transactionPlanButton = document.createElement('button');
+            transactionPlanButton.textContent = "Apply";
+            transactionPlanInput.classList.add('form__input--transaction-plan');
+            transactionPlanInput.classList.add('r__form__input--transaction-plan');
+            transactionPlanButton.classList.add('button--extra-extra-small__transaction-plan-small');
+            transactionPlanButton.classList.add('r__button--extra-extra-small__transaction-plan-small');
+            transactionPlanInput.type = 'number';
+            transactionPlanInput.min = 0;
+            transactionPlanInput.placeholder = '$0.00';
+            insertElement(transactionPlanPart, transactionPlanPartHeader);
+            insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+            insertElement(transactionPlanPart, transactionPlanInput);
+            insertElement(transactionPlanPart, transactionPlanButton);
+          }
+
+          if (sectionStart === 11) {
+            transactionPlanPartHeaderText.textContent = "Paid In Full?";
+
+            var _transactionPlanButton8 = document.createElement('button');
+
+            _transactionPlanButton8.textContent = "Paid";
+
+            _transactionPlanButton8.classList.add('button--extra-extra-small__transaction-plan-small');
+
+            _transactionPlanButton8.classList.add('r__button--extra-extra-small__transaction-plan-small');
+
+            insertElement(transactionPlanPart, transactionPlanPartHeader);
+            insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+            insertElement(transactionPlanPart, _transactionPlanButton8);
+          }
+
+          if (sectionStart === 12) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            transactionPlanPartHeaderText.textContent = "Status";
+            transactionPlanPartText.textContent = "".concat(transaction.paidStatus);
+            insertElement(transactionPlanPart, transactionPlanPartHeader);
+            insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+            insertElement(transactionPlanPart, transactionPlanPartText);
+          }
+
+          sectionStart++;
+        }
+      }
+
+      if (transaction.timingOptions.paymentCycle !== "Bi-Monthly" && transaction.timingOptions.paymentCycle !== "Bi-Annual") {
+        transactionPlan.classList.add('transaction-plan');
+        transactionPlan.classList.add('r__transaction-plan');
+        numberOfSections = 12;
+
+        while (sectionStart < numberOfSections) {
+          console.log(sectionStart); // Initialize Variables For First Part
+
+          var _transactionPlanPartHeader2 = document.createElement('header');
+
+          var _transactionPlanPartHeaderText2 = document.createElement('p');
+
+          var _transactionPlanPartText2 = document.createElement('p'); // Add Classes For First Part
+
+
+          _transactionPlanPartHeader2.classList.add('transaction-plan__part__header');
+
+          _transactionPlanPartHeader2.classList.add('r__transaction-plan__part__header');
+
+          _transactionPlanPartHeaderText2.classList.add('transaction-plan__part__header__text');
+
+          _transactionPlanPartHeaderText2.classList.add('r__transaction-plan__part__header__text');
+
+          _transactionPlanPartText2.classList.add('transaction-plan__part__text');
+
+          _transactionPlanPartText2.classList.add('r__transaction-plan__part__text'); // Add Content For First Part
+
+
+          _transactionPlanPartHeaderText2.textContent = "Date";
+          _transactionPlanPartText2.textContent = getTransactionPlanDate(transaction.date);
+
+          var _transactionPlanPart2 = document.createElement('section');
+
+          _transactionPlanPart2.classList.add("transaction-plan__part");
+
+          transactionPlan.insertAdjacentElement('beforeend', _transactionPlanPart2);
+
+          if (sectionStart === 0) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            insertElement(_transactionPlanPart2, _transactionPlanPartHeader2);
+            insertElement(_transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
+            insertElement(_transactionPlanPart2, _transactionPlanPartText2);
+          }
+
+          if (sectionStart === 1) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText2.textContent = "Account";
+            _transactionPlanPartText2.textContent = "".concat(transaction.account);
+            insertElement(_transactionPlanPart2, _transactionPlanPartHeader2);
+            insertElement(_transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
+            insertElement(_transactionPlanPart2, _transactionPlanPartText2);
+          }
+
+          if (sectionStart === 2) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText2.textContent = "Transaction Type";
+            _transactionPlanPartText2.textContent = "".concat(transaction.subAccount);
+            insertElement(_transactionPlanPart2, _transactionPlanPartHeader2);
+            insertElement(_transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
+            insertElement(_transactionPlanPart2, _transactionPlanPartText2);
+          }
+
+          if (sectionStart === 3) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText2.textContent = "Transaction Name";
+            _transactionPlanPartText2.textContent = "".concat(transaction.name);
+            insertElement(_transactionPlanPart2, _transactionPlanPartHeader2);
+            insertElement(_transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
+            insertElement(_transactionPlanPart2, _transactionPlanPartText2);
+          }
+
+          if (sectionStart === 4) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText2.textContent = "Location";
+            _transactionPlanPartText2.textContent = "".concat(transaction.location);
+            insertElement(_transactionPlanPart2, _transactionPlanPartHeader2);
+            insertElement(_transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
+            insertElement(_transactionPlanPart2, _transactionPlanPartText2);
+          }
+
+          if (sectionStart === 5) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText2.textContent = "Amount";
+            _transactionPlanPartText2.textContent = money.format(transaction.amount);
+            insertElement(_transactionPlanPart2, _transactionPlanPartHeader2);
+            insertElement(_transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
+            insertElement(_transactionPlanPart2, _transactionPlanPartText2);
+          }
+
+          if (sectionStart === 6) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText2.textContent = "Due Date One";
+            _transactionPlanPartText2.textContent = "".concat(getTransactionPlanDate(transaction.timingOptions.dueDates[0]));
+            insertElement(_transactionPlanPart2, _transactionPlanPartHeader2);
+            insertElement(_transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
+            insertElement(_transactionPlanPart2, _transactionPlanPartText2);
+          }
+
+          if (sectionStart === 7) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText2.textContent = "Timing";
+            _transactionPlanPartText2.textContent = "".concat(transaction.timingOptions.paymentCycle);
+            insertElement(_transactionPlanPart2, _transactionPlanPartHeader2);
+            insertElement(_transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
+            insertElement(_transactionPlanPart2, _transactionPlanPartText2);
+          }
+
+          if (sectionStart === 8) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText2.textContent = "Amount Saved";
+            _transactionPlanPartText2.textContent = money.format(transaction.amountSaved);
+            insertElement(_transactionPlanPart2, _transactionPlanPartHeader2);
+            insertElement(_transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
+            insertElement(_transactionPlanPart2, _transactionPlanPartText2);
+          }
+
+          if (sectionStart === 9) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText2.textContent = "Apply Money";
+
+            var _transactionPlanInput4 = document.createElement('input');
+
+            var _transactionPlanButton9 = document.createElement('button');
+
+            _transactionPlanButton9.textContent = "Apply";
+
+            _transactionPlanInput4.classList.add('form__input--transaction-plan');
+
+            _transactionPlanInput4.classList.add('r__form__input--transaction-plan');
+
+            _transactionPlanButton9.classList.add('button--extra-extra-small__transaction-plan-small');
+
+            _transactionPlanButton9.classList.add('r__button--extra-extra-small__transaction-plan-small');
+
+            _transactionPlanInput4.type = 'number';
+            _transactionPlanInput4.min = 0;
+            _transactionPlanInput4.placeholder = '$0.00';
+            insertElement(_transactionPlanPart2, _transactionPlanPartHeader2);
+            insertElement(_transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
+            insertElement(_transactionPlanPart2, _transactionPlanInput4);
+            insertElement(_transactionPlanPart2, _transactionPlanButton9);
+          }
+
+          if (sectionStart === 10) {
+            _transactionPlanPartHeaderText2.textContent = "Paid In Full?";
+
+            var _transactionPlanButton10 = document.createElement('button');
+
+            _transactionPlanButton10.textContent = "Paid";
+
+            _transactionPlanButton10.classList.add('button--extra-extra-small__transaction-plan-small');
+
+            _transactionPlanButton10.classList.add('r__button--extra-extra-small__transaction-plan-small');
+
+            insertElement(_transactionPlanPart2, _transactionPlanPartHeader2);
+            insertElement(_transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
+            insertElement(_transactionPlanPart2, _transactionPlanButton10);
+          }
+
+          if (sectionStart === 11) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText2.textContent = "Status";
+            _transactionPlanPartText2.textContent = "".concat(transaction.paidStatus);
+            insertElement(_transactionPlanPart2, _transactionPlanPartHeader2);
+            insertElement(_transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
+            insertElement(_transactionPlanPart2, _transactionPlanPartText2);
+          }
+
+          sectionStart++;
+        }
+      }
+
+      transactionPlanCreation.insertAdjacentElement('beforebegin', transactionPlan);
+    } // Decision if IS Debt Transaction
+
+
+    if (transaction.account === "Debt") {
+      var _transactionPlan = document.createElement('section');
+
+      if (transaction.timingOptions.paymentCycle === "Bi-Monthly" || transaction.timingOptions.paymentCycle === "Bi-Annual") {
+        _transactionPlan.classList.add('transaction-plan__alt-double');
+
+        _transactionPlan.classList.add('r__transaction-plan__alt-double');
+
+        numberOfSections = 14;
+
+        while (sectionStart < numberOfSections) {
+          console.log(sectionStart); // Initialize Variables For First Part
+
+          var _transactionPlanPartHeader3 = document.createElement('header');
+
+          var _transactionPlanPartHeaderText3 = document.createElement('p');
+
+          var _transactionPlanPartText3 = document.createElement('p'); // Add Classes For First Part
+
+
+          _transactionPlanPartHeader3.classList.add('transaction-plan__alt-double__part__header');
+
+          _transactionPlanPartHeader3.classList.add('r__transaction-plan__alt-double__part__header');
+
+          _transactionPlanPartHeaderText3.classList.add('transaction-plan__alt-double__part__header__text');
+
+          _transactionPlanPartHeaderText3.classList.add('r__transaction-plan__alt-double__part__header__text');
+
+          _transactionPlanPartText3.classList.add('transaction-plan__alt-double__part__text');
+
+          _transactionPlanPartText3.classList.add('r__transaction-plan__alt-double__part__text'); // Add Content For First Part
+
+
+          _transactionPlanPartHeaderText3.textContent = "Date";
+          _transactionPlanPartText3.textContent = getTransactionPlanDate(transaction.date);
+
+          var _transactionPlanPart3 = document.createElement('section');
+
+          _transactionPlanPart3.classList.add("transaction-plan__alt-double__part");
+
+          _transactionPlan.insertAdjacentElement('beforeend', _transactionPlanPart3);
+
+          if (sectionStart === 0) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
+            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            insertElement(_transactionPlanPart3, _transactionPlanPartText3);
+          }
+
+          if (sectionStart === 1) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText3.textContent = "Account";
+            _transactionPlanPartText3.textContent = "".concat(transaction.account);
+            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
+            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            insertElement(_transactionPlanPart3, _transactionPlanPartText3);
+          }
+
+          if (sectionStart === 2) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText3.textContent = "Transaction Type";
+            _transactionPlanPartText3.textContent = "".concat(transaction.subAccount);
+            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
+            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            insertElement(_transactionPlanPart3, _transactionPlanPartText3);
+          }
+
+          if (sectionStart === 3) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText3.textContent = "Lender";
+            _transactionPlanPartText3.textContent = "".concat(transaction.lender);
+            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
+            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            insertElement(_transactionPlanPart3, _transactionPlanPartText3);
+          }
+
+          if (sectionStart === 4) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText3.textContent = "Transaction Name";
+            _transactionPlanPartText3.textContent = "".concat(transaction.name);
+            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
+            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            insertElement(_transactionPlanPart3, _transactionPlanPartText3);
+          }
+
+          if (sectionStart === 5) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText3.textContent = "Location";
+            _transactionPlanPartText3.textContent = "".concat(transaction.location);
+            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
+            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            insertElement(_transactionPlanPart3, _transactionPlanPartText3);
+          }
+
+          if (sectionStart === 6) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText3.textContent = "Amount";
+            _transactionPlanPartText3.textContent = money.format(transaction.amount);
+            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
+            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            insertElement(_transactionPlanPart3, _transactionPlanPartText3);
+          }
+
+          if (sectionStart === 7) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText3.textContent = "Due Date One";
+            _transactionPlanPartText3.textContent = "".concat(getTransactionPlanDate(transaction.timingOptions.dueDates[0]));
+            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
+            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            insertElement(_transactionPlanPart3, _transactionPlanPartText3);
+          }
+
+          if (sectionStart === 8) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText3.textContent = "Due Date Two";
+            _transactionPlanPartText3.textContent = "".concat(getTransactionPlanDate(transaction.timingOptions.dueDates[1]));
+            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
+            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            insertElement(_transactionPlanPart3, _transactionPlanPartText3);
+          }
+
+          if (sectionStart === 9) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText3.textContent = "Timing";
+            _transactionPlanPartText3.textContent = "".concat(transaction.timingOptions.paymentCycle);
+            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
+            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            insertElement(_transactionPlanPart3, _transactionPlanPartText3);
+          }
+
+          if (sectionStart === 10) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText3.textContent = "Amount Saved";
+            _transactionPlanPartText3.textContent = money.format(transaction.amountSaved);
+            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
+            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            insertElement(_transactionPlanPart3, _transactionPlanPartText3);
+          }
+
+          if (sectionStart === 11) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText3.textContent = "Apply Money";
+
+            var _transactionPlanInput5 = document.createElement('input');
+
+            var _transactionPlanButton11 = document.createElement('button');
+
+            _transactionPlanButton11.textContent = "Apply";
+
+            _transactionPlanInput5.classList.add('form__input--transaction-plan');
+
+            _transactionPlanInput5.classList.add('r__form__input--transaction-plan');
+
+            _transactionPlanButton11.classList.add('button--extra-extra-small__transaction-plan-small');
+
+            _transactionPlanButton11.classList.add('r__button--extra-extra-small__transaction-plan-small');
+
+            _transactionPlanInput5.type = 'number';
+            _transactionPlanInput5.min = 0;
+            _transactionPlanInput5.placeholder = '$0.00';
+            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
+            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            insertElement(_transactionPlanPart3, _transactionPlanInput5);
+            insertElement(_transactionPlanPart3, _transactionPlanButton11);
+          }
+
+          if (sectionStart === 12) {
+            _transactionPlanPartHeaderText3.textContent = "Paid In Full?";
+
+            var _transactionPlanButton12 = document.createElement('button');
+
+            _transactionPlanButton12.textContent = "Paid";
+
+            _transactionPlanButton12.classList.add('button--extra-extra-small__transaction-plan-small');
+
+            _transactionPlanButton12.classList.add('r__button--extra-extra-small__transaction-plan-small');
+
+            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
+            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            insertElement(_transactionPlanPart3, _transactionPlanButton12);
+          }
+
+          if (sectionStart === 13) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText3.textContent = "Status";
+            _transactionPlanPartText3.textContent = "".concat(transaction.paidStatus);
+            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
+            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            insertElement(_transactionPlanPart3, _transactionPlanPartText3);
+          }
+
+          sectionStart++;
+        }
+      }
+
+      if (transaction.timingOptions.paymentCycle !== "Bi-Monthly" && transaction.timingOptions.paymentCycle !== "Bi-Annual") {
+        _transactionPlan.classList.add('transaction-plan__alt');
+
+        _transactionPlan.classList.add('r__transaction-plan__alt');
+
+        numberOfSections = 13;
+
+        while (sectionStart < numberOfSections) {
+          console.log(sectionStart); // Initialize Variables For First Part
+
+          var _transactionPlanPartHeader4 = document.createElement('header');
+
+          var _transactionPlanPartHeaderText4 = document.createElement('p');
+
+          var _transactionPlanPartText4 = document.createElement('p'); // Add Classes For First Part
+
+
+          _transactionPlanPartHeader4.classList.add('transaction-plan__alt__part__header');
+
+          _transactionPlanPartHeader4.classList.add('r__transaction-plan__alt__part__header');
+
+          _transactionPlanPartHeaderText4.classList.add('transaction-plan__alt__part__header__text');
+
+          _transactionPlanPartHeaderText4.classList.add('r__transaction-plan__alt__part__header__text');
+
+          _transactionPlanPartText4.classList.add('transaction-plan__alt__part__text');
+
+          _transactionPlanPartText4.classList.add('r__transaction-plan__alt__part__text'); // Add Content For First Part
+
+
+          _transactionPlanPartHeaderText4.textContent = "Date";
+          _transactionPlanPartText4.textContent = getTransactionPlanDate(transaction.date);
+
+          var _transactionPlanPart4 = document.createElement('section');
+
+          _transactionPlanPart4.classList.add("transaction-plan__alt__part");
+
+          _transactionPlan.insertAdjacentElement('beforeend', _transactionPlanPart4);
+
+          if (sectionStart === 0) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
+            insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
+            insertElement(_transactionPlanPart4, _transactionPlanPartText4);
+          }
+
+          if (sectionStart === 1) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText4.textContent = "Account";
+            _transactionPlanPartText4.textContent = "".concat(transaction.account);
+            insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
+            insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
+            insertElement(_transactionPlanPart4, _transactionPlanPartText4);
+          }
+
+          if (sectionStart === 2) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText4.textContent = "Transaction Type";
+            _transactionPlanPartText4.textContent = "".concat(transaction.subAccount);
+            insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
+            insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
+            insertElement(_transactionPlanPart4, _transactionPlanPartText4);
+          }
+
+          if (sectionStart === 3) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText4.textContent = "Lender";
+            _transactionPlanPartText4.textContent = "".concat(transaction.lender);
+            insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
+            insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
+            insertElement(_transactionPlanPart4, _transactionPlanPartText4);
+          }
+
+          if (sectionStart === 4) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText4.textContent = "Transaction Name";
+            _transactionPlanPartText4.textContent = "".concat(transaction.name);
+            insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
+            insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
+            insertElement(_transactionPlanPart4, _transactionPlanPartText4);
+          }
+
+          if (sectionStart === 5) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText4.textContent = "Location";
+            _transactionPlanPartText4.textContent = "".concat(transaction.location);
+            insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
+            insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
+            insertElement(_transactionPlanPart4, _transactionPlanPartText4);
+          }
+
+          if (sectionStart === 6) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText4.textContent = "Amount";
+            _transactionPlanPartText4.textContent = money.format(transaction.amount);
+            insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
+            insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
+            insertElement(_transactionPlanPart4, _transactionPlanPartText4);
+          }
+
+          if (sectionStart === 7) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText4.textContent = "Due Date One";
+            _transactionPlanPartText4.textContent = "".concat(getTransactionPlanDate(transaction.timingOptions.dueDates[0]));
+            insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
+            insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
+            insertElement(_transactionPlanPart4, _transactionPlanPartText4);
+          }
+
+          if (sectionStart === 8) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText4.textContent = "Timing";
+            _transactionPlanPartText4.textContent = "".concat(transaction.timingOptions.paymentCycle);
+            insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
+            insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
+            insertElement(_transactionPlanPart4, _transactionPlanPartText4);
+          }
+
+          if (sectionStart === 9) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText4.textContent = "Amount Saved";
+            _transactionPlanPartText4.textContent = money.format(transaction.amountSaved);
+            insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
+            insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
+            insertElement(_transactionPlanPart4, _transactionPlanPartText4);
+          }
+
+          if (sectionStart === 10) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText4.textContent = "Apply Money";
+
+            var _transactionPlanInput6 = document.createElement('input');
+
+            var _transactionPlanButton13 = document.createElement('button');
+
+            _transactionPlanButton13.textContent = "Apply";
+
+            _transactionPlanInput6.classList.add('form__input--transaction-plan');
+
+            _transactionPlanInput6.classList.add('r__form__input--transaction-plan');
+
+            _transactionPlanButton13.classList.add('button--extra-extra-small__transaction-plan-small');
+
+            _transactionPlanButton13.classList.add('r__button--extra-extra-small__transaction-plan-small');
+
+            _transactionPlanInput6.type = 'number';
+            _transactionPlanInput6.min = 0;
+            _transactionPlanInput6.placeholder = '$0.00';
+            insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
+            insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
+            insertElement(_transactionPlanPart4, _transactionPlanInput6);
+            insertElement(_transactionPlanPart4, _transactionPlanButton13);
+          }
+
+          if (sectionStart === 11) {
+            _transactionPlanPartHeaderText4.textContent = "Paid In Full?";
+
+            var _transactionPlanButton14 = document.createElement('button');
+
+            _transactionPlanButton14.textContent = "Paid";
+
+            _transactionPlanButton14.classList.add('button--extra-extra-small__transaction-plan-small');
+
+            _transactionPlanButton14.classList.add('r__button--extra-extra-small__transaction-plan-small');
+
+            insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
+            insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
+            insertElement(_transactionPlanPart4, _transactionPlanButton14);
+          }
+
+          if (sectionStart === 12) {
+            // INSERT DOM ELEMENTS INTO FIRST PART
+            _transactionPlanPartHeaderText4.textContent = "Status";
+            _transactionPlanPartText4.textContent = "".concat(transaction.paidStatus);
+            insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
+            insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
+            insertElement(_transactionPlanPart4, _transactionPlanPartText4);
+          }
+
+          sectionStart++;
+        }
+      }
+
+      transactionPlanCreation.insertAdjacentElement('beforebegin', _transactionPlan);
+    }
+  });
+};
+
 var setupTransactionPlanning = function setupTransactionPlanning(budget, placeholderBudget, user) {
   var transactionPlanCreationContainer = document.querySelector('.transaction-plan-creation');
   var transactionRows = document.querySelectorAll('.form__row--transaction');
@@ -9140,6 +9898,7 @@ var setupTransactionPlanning = function setupTransactionPlanning(budget, placeho
   var transactionPlanSections = document.querySelectorAll('.form__section--transaction-plan');
   var accountSelectionContainers = document.querySelectorAll('.form__select--accounts');
   var formSelectSections = document.querySelectorAll('.form__section--select');
+  displayExistingTransactionPlans(budget, placeholderBudget, user);
   var submitPlanButton = document.querySelector('.button--extra-extra-small__transaction-plan');
   commonTransactionOptionsArray.forEach(function (array) {
     pushIntoArray([transactionPlanSections[4], formSelectSections[2], transactionPlanSections[0], transactionPlanSections[1], transactionPlanSections[2], transactionPlanSections[3], transactionPlanSections[6], formSelectSections[1], accountSelectionContainers[5]], array);
@@ -9201,12 +9960,12 @@ var setupTransactionPlanning = function setupTransactionPlanning(budget, placeho
 
   if (submitPlanButton) {
     submitPlanButton.addEventListener('click', function (e) {
-      createPlannedTransaction(accountSelectionContainers[0], budget, placeholderBudget, user);
+      createPlannedTransaction(accountSelectionContainers[0], budget, placeholderBudget, user, transactionPlanCreationContainer);
       surplusSwitch.classList.remove('surplus-container__switch--switched');
-      surplusSwitchIcon.classList.toggle('fa-times');
-      surplusSwitchIcon.classList.toggle('fa-check');
-      transactionPlanCreationContainer.classList.toggle('closed');
-      transactionPlanCreationContainer.classList.toggle('open');
+      surplusSwitchIcon.classList.add('fa-times');
+      surplusSwitchIcon.classList.remove('fa-check');
+      transactionPlanCreationContainer.classList.add('closed');
+      transactionPlanCreationContainer.classList.remove('open');
     });
   }
 };
