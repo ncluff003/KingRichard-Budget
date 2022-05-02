@@ -8258,6 +8258,93 @@ var getPaymentSchedule = function getPaymentSchedule(paymentArray, paymentCycle,
 
     return paymentArray;
   }
+
+  if (paymentCycle === "Bi-Weekly") {
+    payments = 26;
+
+    while (paymentStart < payments) {
+      var _adjustedDate = new Date(dates[0]);
+
+      var _selectedDate = new Date(_adjustedDate.setHours(_adjustedDate.getHours() + new Date().getTimezoneOffset() / 60));
+
+      if (paymentStart === 0) {
+        paymentArray.push(_adjustedDate);
+      }
+
+      if (paymentStart === 1) {
+        _selectedDate = new Date(_selectedDate.setDate(_selectedDate.getDate() + 14));
+        paymentArray.push(_selectedDate);
+      }
+
+      if (paymentStart > 1) {
+        _selectedDate = new Date(_selectedDate.setDate(_selectedDate.getDate() + 14 * paymentStart));
+        paymentArray.push(_selectedDate);
+      }
+
+      paymentStart++;
+    }
+
+    return paymentArray;
+  }
+
+  if (paymentCycle === "Bi-Monthly") {
+    payments = 12;
+
+    while (paymentStart < payments) {
+      var adjustedDate1 = new Date(dates[0]);
+      var adjustedDate2 = new Date(dates[1]);
+      var selectedDate1 = new Date(adjustedDate1.setHours(adjustedDate1.getHours() + new Date().getTimezoneOffset() / 60));
+      var selectedDate2 = new Date(adjustedDate2.setHours(adjustedDate2.getHours() + new Date().getTimezoneOffset() / 60));
+
+      if (paymentStart === 0) {
+        paymentArray.push([adjustedDate1, adjustedDate2]);
+      }
+
+      if (paymentStart === 1) {
+        selectedDate1 = new Date(selectedDate1.setMonth(selectedDate1.getMonth() + 1));
+        selectedDate2 = new Date(selectedDate2.setMonth(selectedDate2.getMonth() + 1));
+        paymentArray.push([selectedDate1, selectedDate2]);
+      }
+
+      if (paymentStart > 1) {
+        selectedDate1 = new Date(selectedDate1.setMonth(selectedDate1.getMonth() + 1 * paymentStart));
+        selectedDate2 = new Date(selectedDate2.setMonth(selectedDate2.getMonth() + 1 * paymentStart));
+        paymentArray.push([selectedDate1, selectedDate2]);
+      }
+
+      paymentStart++;
+    }
+
+    return paymentArray;
+  }
+
+  if (paymentCycle === "Monthly") {
+    payments = 12;
+
+    while (paymentStart < payments) {
+      var _adjustedDate2 = new Date(dates[0]);
+
+      var _selectedDate2 = new Date(_adjustedDate2.setHours(_adjustedDate2.getHours() + new Date().getTimezoneOffset() / 60));
+
+      if (paymentStart === 0) {
+        paymentArray.push(_adjustedDate2);
+      }
+
+      if (paymentStart === 1) {
+        _selectedDate2 = new Date(_selectedDate2.setMonth(_selectedDate2.getMonth() + 1));
+        paymentArray.push(_selectedDate2);
+      }
+
+      if (paymentStart > 1) {
+        _selectedDate2 = new Date(_selectedDate2.setMonth(_selectedDate2.getMonth() + 1 * paymentStart));
+        paymentArray.push(_selectedDate2);
+      }
+
+      paymentStart++;
+    }
+
+    return paymentArray;
+  }
 };
 
 var getDatabaseDueDate = function getDatabaseDueDate(date) {
