@@ -8216,7 +8216,9 @@ var getOverallBudget = function getOverallBudget(subCategories, overall) {
 };
 
 var insertElement = function insertElement(container, element) {
-  container.insertAdjacentElement('beforeend', element);
+  if (container) {
+    container.insertAdjacentElement('beforeend', element);
+  }
 };
 
 var displayTransaction = function displayTransaction(container, plan) {

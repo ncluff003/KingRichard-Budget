@@ -1,8 +1,22 @@
 extends ./../budgetLanding
 
+mixin dashboardAccountOverview(icon, text, accountTotal) 
+  section.container--extra-small.r__container--extra-small
+    header.container--extra-small__header.r__container--extra-small__header
+      i.fas.container--extra-small__header__icon.r__container--extra-small__header__icon(class=`fa-${icon}`)
+      p.container--extra-small__header__text.r__container--extra-small__header__text=`${text}`
+    section.container--extra-small__content.r__container--extra-small__content
+      p.container--extra-small__content__account-total.r__container--extra-small__content__account-total=`${accountTotal}`
+
+
 block Budget-Content 
   header.budget-container__header.r__budget-container__header
     p.budget-container__header__text.r__budget-container__header__text Transaction Planner
+  - const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 })
+  +dashboardAccountOverview(`receipt`, `Expense Fund`, `${money.format(data.budget.accounts.expenseFund.amount)}`)
+  +dashboardAccountOverview(`piggy-bank`, `Savings Fund Fund`, `${money.format(data.budget.accounts.savingsFund.amount)}`)
+  +dashboardAccountOverview(`hand-holding-usd`, `Debt`, `${money.format(data.budget.accounts.debt.amount)}`)
+  +dashboardAccountOverview(`dollar-sign`, `Surplus`, `${money.format(data.budget.accounts.surplus.amount)}`)
   section.container--large.r__container--large
     header.container--large__header.r__container--large__header
       i.fas.fa-file-invoice-dollar.container--large__header__icon.r__container--large__header__icon 

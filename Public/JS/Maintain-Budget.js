@@ -233,7 +233,9 @@ const getOverallBudget = (subCategories, overall) => {
 };
 
 const insertElement = (container, element) => {
-  container.insertAdjacentElement('beforeend', element);
+  if (container) {
+    container.insertAdjacentElement('beforeend', element);
+  }
 };
 
 const displayTransaction = (container, plan) => {

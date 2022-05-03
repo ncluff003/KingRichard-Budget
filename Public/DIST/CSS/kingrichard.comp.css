@@ -49572,6 +49572,7 @@ html {
   justify-content: space-evenly;
   align-items: center;
   transform: rotate(0) translate(0, 0);
+  overflow-y: auto;
 }
 .budget-container__header {
   position: relative;

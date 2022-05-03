@@ -30,21 +30,3 @@ section.container--small-wide.r__container--small-wide
             section.upcoming-bills-container__titles__title.r__upcoming-bills__titles__title
               p.upcoming-bills__titles__title__text.r__upcoming-bills__titles__title__text= `${title}`
         section.upcoming-bills.r__upcoming-bills
-          //- each transaction in data.budget.transactions.plannedTransactions 
-          //-   - const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-          //-   section.upcoming-bills__bill.r__upcoming-bills__bill 
-          //-     section.upcoming-bills__bill__bill-item.r__upcoming-bills__bill__bill-item
-          //-       p.upcoming-bills__bill__bill-item__text.r__upcoming-bills__bill__bill-item__text= transaction.account
-          //-     section.upcoming-bills__bill__bill-item.r__upcoming-bills__bill__bill-item
-          //-       p.upcoming-bills__bill__bill-item__text.r__upcoming-bills__bill__bill-item__text= `${transaction.date.getDate()} ${months[transaction.date.getMonth()]} ${transaction.date.getFullYear()}`
-          //-     section.upcoming-bills__bill__bill-item.r__upcoming-bills__bill__bill-item
-          //-       if transaction.lender
-          //-         p.upcoming-bills__bill__bill-item__text.r__upcoming-bills__bill__bill-item__text= transaction.lender
-          //-       else
-          //-         p.upcoming-bills__bill__bill-item__text.r__upcoming-bills__bill__bill-item__text= transaction.location
-          //-     section.upcoming-bills__bill__bill-item.r__upcoming-bills__bill__bill-item
-          //-       p.upcoming-bills__bill__bill-item__text.r__upcoming-bills__bill__bill-item__text= `$${transaction.amount}`
-          //-     section.upcoming-bills__bill__bill-item.r__upcoming-bills__bill__bill-item
-          //-       section.upcoming-bills__bill__bill-item__checkbox-container.r__upcoming-bills__bill__bill-item__checkbox-container 
-          //-         input.upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox.r__upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox#paymentCheck(type="checkbox")
-          //-         label.upcoming-bills__bill__bill-item__checkbox-container__payment-label.r__upcoming-bills__bill__bill-item__checkbox-container__payment-label(for="paymentCheck") Payment Made
