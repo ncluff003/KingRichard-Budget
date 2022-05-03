@@ -1038,8 +1038,6 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
         transactionPlan.classList.add('r__transaction-plan__double');
         numberOfSections = 13;
         while (sectionStart < numberOfSections) {
-          console.log(sectionStart);
-
           // Initialize Variables For First Part
           const transactionPlanPartHeader = document.createElement('header');
           const transactionPlanPartHeaderText = document.createElement('p');
@@ -1183,8 +1181,6 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
         transactionPlan.classList.add('r__transaction-plan');
         numberOfSections = 12;
         while (sectionStart < numberOfSections) {
-          console.log(sectionStart);
-
           // Initialize Variables For First Part
           const transactionPlanPartHeader = document.createElement('header');
           const transactionPlanPartHeaderText = document.createElement('p');
@@ -1315,7 +1311,9 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
           sectionStart++;
         }
       }
-      transactionPlanCreation.insertAdjacentElement('beforebegin', transactionPlan);
+      if (transactionPlanCreation) {
+        transactionPlanCreation.insertAdjacentElement('beforebegin', transactionPlan);
+      }
     }
     // Decision if IS Debt Transaction
     if (transaction.account === `Debt`) {
@@ -1325,8 +1323,6 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
         transactionPlan.classList.add('r__transaction-plan__alt-double');
         numberOfSections = 14;
         while (sectionStart < numberOfSections) {
-          console.log(sectionStart);
-
           // Initialize Variables For First Part
           const transactionPlanPartHeader = document.createElement('header');
           const transactionPlanPartHeaderText = document.createElement('p');
@@ -1478,8 +1474,6 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
         transactionPlan.classList.add('r__transaction-plan__alt');
         numberOfSections = 13;
         while (sectionStart < numberOfSections) {
-          console.log(sectionStart);
-
           // Initialize Variables For First Part
           const transactionPlanPartHeader = document.createElement('header');
           const transactionPlanPartHeaderText = document.createElement('p');
@@ -1618,7 +1612,9 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
           sectionStart++;
         }
       }
-      transactionPlanCreation.insertAdjacentElement('beforebegin', transactionPlan);
+      if (transactionPlanCreation) {
+        transactionPlanCreation.insertAdjacentElement('beforebegin', transactionPlan);
+      }
     }
   });
 };
@@ -1696,31 +1692,28 @@ const setupTransactionPlanning = (budget, placeholderBudget, user) => {
     }
   });
   const smallShortTransactionPlanInputs = document.querySelectorAll('.form__input--small-short');
-  console.log(
-    smallShortTransactionPlanInputs,
-    smallShortTransactionPlanInputs[2].closest('.form__section--transaction-plan').nextSibling.nextSibling.nextSibling.firstChild.firstChild.nextSibling.nextSibling
-  );
-  const surplusSwitch =
-    smallShortTransactionPlanInputs[2].closest('.form__section--transaction-plan').nextSibling.nextSibling.nextSibling.firstChild.firstChild.nextSibling.nextSibling;
-  const surplusSwitchIcon = surplusSwitch.firstChild.nextSibling.firstChild.nextSibling;
-  if (surplusSwitch) {
-    surplusSwitch.addEventListener('click', (e) => {
-      e.preventDefault();
-      surplusSwitch.classList.toggle('surplus-container__switch--switched');
-      surplusSwitchIcon.classList.toggle('fa-times');
-      surplusSwitchIcon.classList.toggle('fa-check');
-    });
-  }
-
-  if (submitPlanButton) {
-    submitPlanButton.addEventListener('click', (e) => {
-      createPlannedTransaction(accountSelectionContainers[0], budget, placeholderBudget, user, transactionPlanCreationContainer);
-      surplusSwitch.classList.remove('surplus-container__switch--switched');
-      surplusSwitchIcon.classList.add('fa-times');
-      surplusSwitchIcon.classList.remove('fa-check');
-      transactionPlanCreationContainer.classList.add('closed');
-      transactionPlanCreationContainer.classList.remove('open');
-    });
+  if (smallShortTransactionPlanInputs[0]) {
+    const surplusSwitch =
+      smallShortTransactionPlanInputs[2].closest('.form__section--transaction-plan').nextSibling.nextSibling.nextSibling.firstChild.firstChild.nextSibling.nextSibling;
+    const surplusSwitchIcon = surplusSwitch.firstChild.nextSibling.firstChild.nextSibling;
+    if (surplusSwitch) {
+      surplusSwitch.addEventListener('click', (e) => {
+        e.preventDefault();
+        surplusSwitch.classList.toggle('surplus-container__switch--switched');
+        surplusSwitchIcon.classList.toggle('fa-times');
+        surplusSwitchIcon.classList.toggle('fa-check');
+      });
+    }
+    if (submitPlanButton) {
+      submitPlanButton.addEventListener('click', (e) => {
+        createPlannedTransaction(accountSelectionContainers[0], budget, placeholderBudget, user, transactionPlanCreationContainer);
+        surplusSwitch.classList.remove('surplus-container__switch--switched');
+        surplusSwitchIcon.classList.add('fa-times');
+        surplusSwitchIcon.classList.remove('fa-check');
+        transactionPlanCreationContainer.classList.add('closed');
+        transactionPlanCreationContainer.classList.remove('open');
+      });
+    }
   }
 };
 
@@ -2574,7 +2567,208 @@ const _setupCurrentMonth = (budget) => {
   }
 };
 
-const _setupBillCalendar = () => {
+const selectDayAndShowTransactions = (event) => {
+  const upcomingTransactions = document.querySelectorAll('.upcoming-bills__bill');
+  const e = event;
+  const selectedDay = e.target;
+  const monthHeader = document.querySelector('.bill-calendar__header__title');
+  const splitMonthHeader = monthHeader.textContent.split(' ');
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  console.log(monthHeader.textContent.split(' '));
+  console.log(Number(selectedDay.textContent));
+  upcomingTransactions.forEach((transaction, i) => {
+    transaction.classList.remove('open');
+    transaction.classList.add('closed');
+    let date = new Date(transaction.firstChild.nextSibling.firstChild.textContent);
+    console.log(date);
+    if (date.getFullYear() !== Number(splitMonthHeader[2])) return;
+    if (months[date.getMonth()] !== splitMonthHeader[0]) return;
+    if (date.getDate() === Number(selectedDay.textContent)) {
+      transaction.classList.remove('closed');
+      transaction.classList.add('open');
+    }
+  });
+};
+
+// WATCH FOR CALENDAR DAY SELECTION FOR TO DISPLAY CORRECT TRANSACTIONS
+const _watchDaySelection = () => {
+  const calendarDays = document.querySelectorAll('.bill-calendar__days__single-day');
+  calendarDays.forEach((day, i) => {
+    day.addEventListener('click', selectDayAndShowTransactions);
+  });
+};
+
+// DISPLAY UPCOMING TRANSACTIONS -- NEED TO DO THIS HERE INSTEAD OF PUG FOR THE REASON OF THE TRANSACTIONS THAT HAVE TWO DUE DATES.
+const displayUpcomingTransactions = (container, transactions) => {
+  console.log(`Transactions...`);
+  const money = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+  });
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  transactions.forEach((transaction, i) => {
+    // CREATE THE BILL CONTAINER
+    const upcomingBill = document.createElement('section');
+    let upcomingBillTwo;
+    if (transaction.timingOptions.paymentCycle === `Bi-Annual` || transaction.timingOptions.paymentCycle === `Bi-Monthly`) {
+      upcomingBillTwo = document.createElement('section');
+    }
+    upcomingBill.classList.add('upcoming-bills__bill');
+    upcomingBill.classList.add('r__upcoming-bills__bill');
+    if (transaction.timingOptions.paymentCycle === `Bi-Annual` || transaction.timingOptions.paymentCycle === `Bi-Monthly`) {
+      upcomingBillTwo.classList.add('upcoming-bills__bill');
+      upcomingBillTwo.classList.add('r__upcoming-bills__bill');
+    }
+    let billSections = 5;
+    let billSectionStart = 0;
+    // START CREATING THE BILL'S SECTIONS AND FILLING THEM
+    if (transaction.timingOptions.paymentCycle !== `Bi-Annual` && transaction.timingOptions.paymentCycle !== `Bi-Monthly`) {
+      while (billSectionStart < billSections) {
+        const billSection = document.createElement('section');
+        billSection.classList.add('upcoming-bills__bill__bill-item');
+        billSection.classList.add('r__upcoming-bills__bill__bill-item');
+        insertElement(upcomingBill, billSection);
+
+        if (billSectionStart === 0) {
+          const billAccount = document.createElement('p');
+          billAccount.classList.add('upcoming-bills__bill__bill-item__text');
+          billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
+          billAccount.textContent = transaction.account;
+          insertElement(billSection, billAccount);
+        }
+        if (billSectionStart === 1) {
+          const billAccount = document.createElement('p');
+          billAccount.classList.add('upcoming-bills__bill__bill-item__text');
+          billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
+          billAccount.textContent = `${new Date(transaction.timingOptions.dueDates[0]).getDate()} ${months[new Date(transaction.timingOptions.dueDates[0]).getMonth()]} ${new Date(
+            transaction.timingOptions.dueDates[0]
+          ).getFullYear()}`;
+          insertElement(billSection, billAccount);
+        }
+        if (billSectionStart === 2) {
+          const billAccount = document.createElement('p');
+          billAccount.classList.add('upcoming-bills__bill__bill-item__text');
+          billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
+          billAccount.textContent = transaction.lender;
+          if (!transaction.lender) {
+            billAccount.textContent = transaction.location;
+          }
+          insertElement(billSection, billAccount);
+        }
+        if (billSectionStart === 3) {
+          const billAccount = document.createElement('p');
+          billAccount.classList.add('upcoming-bills__bill__bill-item__text');
+          billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
+          billAccount.textContent = money.format(transaction.amount);
+          insertElement(billSection, billAccount);
+        }
+        if (billSectionStart === 4) {
+          const paidOrNot = document.createElement('section');
+          paidOrNot.classList.add('upcoming-bills__bill__bill-item__checkbox-container');
+          paidOrNot.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container');
+          const paidOrNotInput = document.createElement('input');
+          paidOrNotInput.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
+          paidOrNotInput.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
+          paidOrNotInput.id = `paymentCheck`;
+          paidOrNotInput.type = `checkbox`;
+          const paidOrNotLabel = document.createElement('label');
+          paidOrNotLabel.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-label');
+          paidOrNotLabel.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-label');
+          paidOrNotLabel.textContent = `Payment Made`;
+          paidOrNotLabel.for = `paymentCheck`;
+          insertElement(paidOrNot, paidOrNotInput);
+          insertElement(paidOrNot, paidOrNotLabel);
+          insertElement(billSection, paidOrNot);
+        }
+        billSectionStart++;
+      }
+      insertElement(container, upcomingBill);
+    }
+    if (transaction.timingOptions.paymentCycle === `Bi-Annual` || transaction.timingOptions.paymentCycle === `Bi-Monthly`) {
+      while (billSectionStart < billSections) {
+        const billSection = document.createElement('section');
+        billSection.classList.add('upcoming-bills__bill__bill-item');
+        billSection.classList.add('r__upcoming-bills__bill__bill-item');
+        insertElement(upcomingBillTwo, billSection);
+
+        if (billSectionStart === 0) {
+          const billAccount = document.createElement('p');
+          billAccount.classList.add('upcoming-bills__bill__bill-item__text');
+          billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
+          billAccount.textContent = transaction.account;
+          insertElement(billSection, billAccount);
+        }
+        if (billSectionStart === 1) {
+          const billAccount = document.createElement('p');
+          billAccount.classList.add('upcoming-bills__bill__bill-item__text');
+          billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
+          billAccount.textContent = `${new Date(transaction.timingOptions.dueDates[1]).getDate()} ${months[new Date(transaction.timingOptions.dueDates[1]).getMonth()]} ${new Date(
+            transaction.timingOptions.dueDates[1]
+          ).getFullYear()}`;
+          insertElement(billSection, billAccount);
+        }
+        if (billSectionStart === 2) {
+          const billAccount = document.createElement('p');
+          billAccount.classList.add('upcoming-bills__bill__bill-item__text');
+          billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
+          billAccount.textContent = transaction.lender;
+          if (!transaction.lender) {
+            billAccount.textContent = transaction.location;
+          }
+          insertElement(billSection, billAccount);
+        }
+        if (billSectionStart === 3) {
+          const billAccount = document.createElement('p');
+          billAccount.classList.add('upcoming-bills__bill__bill-item__text');
+          billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
+          billAccount.textContent = money.format(transaction.amount);
+          insertElement(billSection, billAccount);
+        }
+        if (billSectionStart === 4) {
+          const paidOrNot = document.createElement('section');
+          paidOrNot.classList.add('upcoming-bills__bill__bill-item__checkbox-container');
+          paidOrNot.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container');
+          const paidOrNotInput = document.createElement('input');
+          paidOrNotInput.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
+          paidOrNotInput.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
+          paidOrNotInput.id = `paymentCheck`;
+          paidOrNotInput.type = `checkbox`;
+          const paidOrNotLabel = document.createElement('label');
+          paidOrNotLabel.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-label');
+          paidOrNotLabel.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-label');
+          paidOrNotLabel.textContent = `Payment Made`;
+          paidOrNotLabel.for = `paymentCheck`;
+          insertElement(paidOrNot, paidOrNotInput);
+          insertElement(paidOrNot, paidOrNotLabel);
+          insertElement(billSection, paidOrNot);
+        }
+        billSectionStart++;
+      }
+      insertElement(container, upcomingBillTwo);
+    }
+    console.log(upcomingBill);
+    // section.upcoming-bills__bill.r__upcoming-bills__bill
+    //   section.upcoming-bills__bill__bill-item.r__upcoming-bills__bill__bill-item
+    //     p.upcoming-bills__bill__bill-item__text.r__upcoming-bills__bill__bill-item__text= transaction.account
+    //   section.upcoming-bills__bill__bill-item.r__upcoming-bills__bill__bill-item
+    //     p.upcoming-bills__bill__bill-item__text.r__upcoming-bills__bill__bill-item__text= `${transaction.date.getDate()} ${months[transaction.date.getMonth()]} ${transaction.date.getFullYear()}`
+    //   section.upcoming-bills__bill__bill-item.r__upcoming-bills__bill__bill-item
+    //     if transaction.lender
+    //       p.upcoming-bills__bill__bill-item__text.r__upcoming-bills__bill__bill-item__text= transaction.lender
+    //     else
+    //       p.upcoming-bills__bill__bill-item__text.r__upcoming-bills__bill__bill-item__text= transaction.location
+    //   section.upcoming-bills__bill__bill-item.r__upcoming-bills__bill__bill-item
+    //     p.upcoming-bills__bill__bill-item__text.r__upcoming-bills__bill__bill-item__text= `$${transaction.amount}`
+    //   section.upcoming-bills__bill__bill-item.r__upcoming-bills__bill__bill-item
+    //     section.upcoming-bills__bill__bill-item__checkbox-container.r__upcoming-bills__bill__bill-item__checkbox-container
+    //       input.upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox.r__upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox#paymentCheck(type="checkbox")
+    //       label.upcoming-bills__bill__bill-item__checkbox-container__payment-label.r__upcoming-bills__bill__bill-item__checkbox-container__payment-label(for="paymentCheck") Payment Made
+  });
+};
+
+// SETTING UP BILL / TRANSACTION CALENDAR
+const _setupBillCalendar = (budget) => {
   const calendar = Calendar.myCalendar;
   let currentMonth = calendar.getMonth();
   let currentMonthIndex = calendar.getMonthIndex();
@@ -2614,6 +2808,24 @@ const _setupBillCalendar = () => {
       calendar.goForwardAMonth(currentMonthIndex, currentYear, '.bill-calendar__days__single-day', 'bill-calendar__days__single-day--current-day', 'un-used-day');
     });
   }
+
+  const upcomingBillsContainer = document.querySelector('.upcoming-bills');
+  displayUpcomingTransactions(upcomingBillsContainer, budget.transactions.plannedTransactions);
+
+  const upcomingTransactions = document.querySelectorAll('.upcoming-bills__bill');
+  console.log(upcomingTransactions);
+  let currentDay = document.querySelector('.bill-calendar__days__single-day--current-day');
+  upcomingTransactions.forEach((transaction, i) => {
+    transaction.classList.add('closed');
+    console.log(transaction.firstChild.nextSibling.firstChild.textContent);
+    let date = new Date(transaction.firstChild.nextSibling.firstChild.textContent);
+    console.log(date, date.getDate(), currentDay.textContent, typeof date.getDate(), typeof currentDay.textContent);
+    if (date.getDate() === Number(currentDay.textContent)) {
+      transaction.classList.remove('closed');
+      transaction.classList.add('open');
+    }
+  });
+  _watchDaySelection();
 };
 
 const calculateTotal = (accountType, budget) => {
@@ -3097,7 +3309,7 @@ const setupDashboard = (user, budget, placeholderBudget) => {
 
   ////////////////////////////////////////////
   // SETUP BILL CALENDAR
-  _setupBillCalendar();
+  _setupBillCalendar(budget);
   ////////////////////////////////////////////
   // SETUP BILL CURRENT MONTH
   _setupCurrentMonth(budget);

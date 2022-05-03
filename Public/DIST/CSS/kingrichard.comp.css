@@ -50997,6 +50997,7 @@ html {
   background-color: rgba(221, 221, 221, 0.5);
   padding-bottom: 0.2rem;
   border-bottom: 0.2rem solid #822aba;
+  min-height: 4.4rem;
 }
 .upcoming-bills-container__titles__title {
   position: relative;
@@ -51017,12 +51018,13 @@ html {
   height: min-content;
   width: 100%;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  flex-direction: column;
+  flex-wrap: flex-start;
   justify-content: center;
   align-items: center;
   transform: rotate(0) translate(0, 0);
   padding: 0 0.3rem;
+  overflow-y: auto;
 }
 .upcoming-bills-container .upcoming-bills__bill {
   position: relative;

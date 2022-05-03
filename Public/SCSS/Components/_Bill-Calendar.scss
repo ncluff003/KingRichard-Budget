@@ -73,6 +73,7 @@
     background-color: rgba($colorLightestGrey, 0.5);
     padding-bottom: 0.2rem;
     border-bottom: 0.2rem solid $primaryColor;
+    min-height: 4.4rem;
     &__title {
       @include SizeAndPositioning(relative, 100%, calc(20% - 0.4rem), flex, row, nowrap, center, center, 0, 0, 0);
       background-color: $primaryColor;
@@ -81,12 +82,16 @@
     }
   }
   .upcoming-bills {
-    @include SizeAndPositioning(relative, min-content, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+    @include SizeAndPositioning(relative, min-content, 100%, flex, column, flex-start, center, center, 0, 0, 0);
     padding: 0 0.3rem;
+    overflow-y: auto;
     &__bill {
       @include SizeAndPositioning(relative, 7rem, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
       min-height: 7rem;
       background-color: rgba($colorLightestGrey, 0.25);
+      // &:first-of-type {
+      //   margin-top: 23.4rem;
+      // }
       &:nth-of-type(2n) {
         background-color: rgba($colorLightestGrey, 0.5);
       }
