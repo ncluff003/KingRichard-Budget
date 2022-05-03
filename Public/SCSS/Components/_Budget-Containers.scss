@@ -61,6 +61,19 @@
     }
     &__content {
       @include SizeAndPositioning(relative, 75%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+      &__applied-container {
+        @include SizeAndPositioning(absolute, 30%, 50%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+        bottom: 0;
+        left: 0;
+        border-top: 0.3rem solid $primaryColor;
+        border-right: 0.3rem solid $primaryColor;
+      }
+      &__un-applied-container {
+        @include SizeAndPositioning(absolute, 30%, 50%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+        bottom: 0;
+        right: 0;
+        border-top: 0.3rem solid $primaryColor;
+      }
     }
     margin-bottom: 5rem;
 
@@ -79,6 +92,32 @@
       &:nth-of-type(4) {
         .form--extra-small {
           justify-content: flex-start;
+        }
+      }
+    }
+    &-evenly-spaced {
+      @extend .container--extra-small;
+      &__header {
+        @extend .container--extra-small__header;
+      }
+      &__content {
+        @extend .container--extra-small__content;
+        justify-content: space-evenly;
+        &__account-total {
+          transform: translate(0, -2rem);
+        }
+        &__applied-container {
+          @include SizeAndPositioning(absolute, 30%, 50%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+          bottom: 0;
+          left: 0;
+          border-top: 0.3rem solid $primaryColor;
+          border-right: 0.3rem solid $primaryColor;
+        }
+        &__un-applied-container {
+          @include SizeAndPositioning(absolute, 30%, 50%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+          bottom: 0;
+          right: 0;
+          border-top: 0.3rem solid $primaryColor;
         }
       }
     }

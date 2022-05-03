@@ -508,6 +508,26 @@ const buildTransactionPlan = (budget, placeholderBudget, user, number, numberOfS
     currency: 'USD',
     minimumFractionDigits: 2,
   });
+
+  let expenseAppliedTotal = 0;
+  let savingsAppliedTotal = 0;
+  let debtAppliedTotal = 0;
+  let surplusAppliedTotal = 0;
+  budget.transactions.plannedTransactions.forEach((transaction, i) => {
+    if (transaction.account === `Expense Fund`) {
+      expenseAppliedTotal += transaction.amountSaved;
+    }
+    if (transaction.account === `Savings Fund`) {
+      savingsAppliedTotal += transaction.amountSaved;
+    }
+    if (transaction.account === `Debt`) {
+      debtAppliedTotal += transaction.amountSaved;
+    }
+    if (transaction.account === `Surplus`) {
+      surplusAppliedTotal += transaction.amountSaved;
+    }
+  });
+
   if (classType === `original`) {
     while (number < numberOfSections) {
       const transactionPlanPartHeader = document.createElement('header');
@@ -1151,6 +1171,13 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
             transactionPlanInput.type = 'number';
             transactionPlanInput.min = 0;
             transactionPlanInput.placeholder = '$0.00';
+            transactionPlanButton.addEventListener('click', (e) => {
+              console.log(transactionPlanInput.value, typeof transactionPlanInput.value);
+              console.log(transactionPlanButton.parentElement.previousSibling);
+              transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(
+                Number(transactionPlanInput.value) + Number(transaction.amountSaved)
+              );
+            });
             insertElement(transactionPlanPart, transactionPlanPartHeader);
             insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
             insertElement(transactionPlanPart, transactionPlanInput);
@@ -1286,6 +1313,13 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
             transactionPlanInput.type = 'number';
             transactionPlanInput.min = 0;
             transactionPlanInput.placeholder = '$0.00';
+            transactionPlanButton.addEventListener('click', (e) => {
+              console.log(transactionPlanInput.value, typeof transactionPlanInput.value);
+              console.log(transactionPlanButton.parentElement.previousSibling);
+              transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(
+                Number(transactionPlanInput.value) + Number(transaction.amountSaved)
+              );
+            });
             insertElement(transactionPlanPart, transactionPlanPartHeader);
             insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
             insertElement(transactionPlanPart, transactionPlanInput);
@@ -1444,6 +1478,13 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
             transactionPlanInput.type = 'number';
             transactionPlanInput.min = 0;
             transactionPlanInput.placeholder = '$0.00';
+            transactionPlanButton.addEventListener('click', (e) => {
+              console.log(transactionPlanInput.value, typeof transactionPlanInput.value);
+              console.log(transactionPlanButton.parentElement.previousSibling);
+              transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(
+                Number(transactionPlanInput.value) + Number(transaction.amountSaved)
+              );
+            });
             insertElement(transactionPlanPart, transactionPlanPartHeader);
             insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
             insertElement(transactionPlanPart, transactionPlanInput);
@@ -1587,6 +1628,13 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
             transactionPlanInput.type = 'number';
             transactionPlanInput.min = 0;
             transactionPlanInput.placeholder = '$0.00';
+            transactionPlanButton.addEventListener('click', (e) => {
+              console.log(transactionPlanInput.value, typeof transactionPlanInput.value);
+              console.log(transactionPlanButton.parentElement.previousSibling);
+              transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(
+                Number(transactionPlanInput.value) + Number(transaction.amountSaved)
+              );
+            });
             insertElement(transactionPlanPart, transactionPlanPartHeader);
             insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
             insertElement(transactionPlanPart, transactionPlanInput);
@@ -1693,6 +1741,26 @@ const setupTransactionPlanning = (budget, placeholderBudget, user) => {
       });
     }
   });
+
+  let expenseAppliedTotal = 0;
+  let savingsAppliedTotal = 0;
+  let debtAppliedTotal = 0;
+  let surplusAppliedTotal = 0;
+  budget.transactions.plannedTransactions.forEach((transaction, i) => {
+    if (transaction.account === `Expense Fund`) {
+      expenseAppliedTotal += transaction.amountSaved;
+    }
+    if (transaction.account === `Savings Fund`) {
+      savingsAppliedTotal += transaction.amountSaved;
+    }
+    if (transaction.account === `Debt`) {
+      debtAppliedTotal += transaction.amountSaved;
+    }
+    if (transaction.account === `Surplus`) {
+      surplusAppliedTotal += transaction.amountSaved;
+    }
+  });
+
   const smallShortTransactionPlanInputs = document.querySelectorAll('.form__input--small-short');
   if (smallShortTransactionPlanInputs[0]) {
     const surplusSwitch =
@@ -1716,6 +1784,29 @@ const setupTransactionPlanning = (budget, placeholderBudget, user) => {
         transactionPlanCreationContainer.classList.remove('open');
       });
     }
+
+    const money = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+    });
+
+    const appliedMoney = document.querySelectorAll('.container--extra-small-evenly-spaced__content__applied-container__applied');
+    const unAppliedMoney = document.querySelectorAll('.container--extra-small-evenly-spaced__content__un-applied-container__un-applied');
+
+    // APPLIED TOTALS
+    appliedMoney[0].textContent = money.format(expenseAppliedTotal);
+    appliedMoney[1].textContent = money.format(savingsAppliedTotal);
+    appliedMoney[2].textContent = money.format(debtAppliedTotal);
+    appliedMoney[3].textContent = money.format(surplusAppliedTotal);
+
+    // UNAPPLIED TOTALS
+    unAppliedMoney[0].textContent = money.format(budget.accounts.expenseFund.amount - expenseAppliedTotal);
+    unAppliedMoney[1].textContent = money.format(budget.accounts.savingsFund.amount - savingsAppliedTotal);
+    unAppliedMoney[2].textContent = money.format(budget.accounts.debt.amount - debtAppliedTotal);
+    unAppliedMoney[3].textContent = money.format(budget.accounts.surplus.amount - surplusAppliedTotal);
+
+    // transaction-plan__part__text
   }
 };
 

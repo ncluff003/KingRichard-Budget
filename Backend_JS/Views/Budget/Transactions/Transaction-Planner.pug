@@ -1,22 +1,28 @@
 extends ./../budgetLanding
 
-mixin dashboardAccountOverview(icon, text, accountTotal) 
-  section.container--extra-small.r__container--extra-small
-    header.container--extra-small__header.r__container--extra-small__header
-      i.fas.container--extra-small__header__icon.r__container--extra-small__header__icon(class=`fa-${icon}`)
-      p.container--extra-small__header__text.r__container--extra-small__header__text=`${text}`
-    section.container--extra-small__content.r__container--extra-small__content
-      p.container--extra-small__content__account-total.r__container--extra-small__content__account-total=`${accountTotal}`
+mixin dashboardAccountOverview(icon, text, accountTotal, appliedTotal, unAppliedTotal) 
+  section.container--extra-small-evenly-spaced.r__container--extra-small-evenly-spaced
+    header.container--extra-small-evenly-spaced__header.r__container--extra-small-evenly-spaced__header
+      i.fas.container--extra-small-evenly-spaced__header__icon.r__container--extra-small-evenly-spaced__header__icon(class=`fa-${icon}`)
+      p.container--extra-small-evenly-spaced__header__text.r__container--extra-small-evenly-spaced__header__text=`${text}`
+    section.container--extra-small-evenly-spaced__content.r__container--extra-small-evenly-spaced__content
+      p.container--extra-small-evenly-spaced__content__account-total.r__container--extra-small-evenly-spaced__content__account-total=`${accountTotal}`
+      section.container--extra-small-evenly-spaced__content__applied-container.r__container--extra-small-evenly-spaced__content__applied-container
+        p.container--extra-small-evenly-spaced__content__applied-container__heading.r__container--extra-small-evenly-spaced__content__applied-container__heading Applied
+        p.container--extra-small-evenly-spaced__content__applied-container__applied.r__container--extra-small-evenly-spaced__content__applied-container__applied=`${appliedTotal}`
+      section.container--extra-small-evenly-spaced__content__un-applied-container.r__container--extra-small-evenly-spaced__content__un-applied-container
+        p.container--extra-small-evenly-spaced__content__un-applied-container__heading.r__container--extra-small-evenly-spaced__content__un-applied-container__heading Un-Applied
+        p.container--extra-small-evenly-spaced__content__un-applied-container__un-applied.r__container--extra-small-evenly-spaced__content__un-applied-container__un-applied=`${unAppliedTotal}`
 
 
 block Budget-Content 
   header.budget-container__header.r__budget-container__header
     p.budget-container__header__text.r__budget-container__header__text Transaction Planner
   - const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 })
-  +dashboardAccountOverview(`receipt`, `Expense Fund`, `${money.format(data.budget.accounts.expenseFund.amount)}`)
-  +dashboardAccountOverview(`piggy-bank`, `Savings Fund Fund`, `${money.format(data.budget.accounts.savingsFund.amount)}`)
-  +dashboardAccountOverview(`hand-holding-usd`, `Debt`, `${money.format(data.budget.accounts.debt.amount)}`)
-  +dashboardAccountOverview(`dollar-sign`, `Surplus`, `${money.format(data.budget.accounts.surplus.amount)}`)
+  +dashboardAccountOverview(`receipt`, `Expense Fund`, `${money.format(data.budget.accounts.expenseFund.amount)}`, money.format(0), money.format(0))
+  +dashboardAccountOverview(`piggy-bank`, `Savings Fund Fund`, `${money.format(data.budget.accounts.savingsFund.amount)}`, money.format(0), money.format(0))
+  +dashboardAccountOverview(`hand-holding-usd`, `Debt`, `${money.format(data.budget.accounts.debt.amount)}`, money.format(0), money.format(0))
+  +dashboardAccountOverview(`dollar-sign`, `Surplus`, `${money.format(data.budget.accounts.surplus.amount)}`, money.format(0), money.format(0))
   section.container--large.r__container--large
     header.container--large__header.r__container--large__header
       i.fas.fa-file-invoice-dollar.container--large__header__icon.r__container--large__header__icon 
