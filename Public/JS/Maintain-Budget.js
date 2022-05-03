@@ -1031,6 +1031,48 @@ const showTransactionPlanOptions = (array, allOptions) => {
   });
 };
 
+const updateTransactionPlanningAccountDisplays = (budget, placeholderBudget, user) => {
+  const money = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+  });
+  console.log(`Updating...`);
+  const appliedMoney = document.querySelectorAll('.container--extra-small-evenly-spaced__content__applied-container__applied');
+  const unAppliedMoney = document.querySelectorAll('.container--extra-small-evenly-spaced__content__un-applied-container__un-applied');
+
+  let expenseAppliedTotal = 0;
+  let savingsAppliedTotal = 0;
+  let debtAppliedTotal = 0;
+  let surplusAppliedTotal = 0;
+  budget.transactions.plannedTransactions.forEach((transaction, i) => {
+    if (transaction.account === `Expense Fund`) {
+      expenseAppliedTotal += transaction.amountSaved;
+    }
+    if (transaction.account === `Savings Fund`) {
+      savingsAppliedTotal += transaction.amountSaved;
+    }
+    if (transaction.account === `Debt`) {
+      debtAppliedTotal += transaction.amountSaved;
+    }
+    if (transaction.account === `Surplus`) {
+      surplusAppliedTotal += transaction.amountSaved;
+    }
+  });
+
+  // APPLIED TOTALS
+  appliedMoney[0].textContent = money.format(expenseAppliedTotal);
+  appliedMoney[1].textContent = money.format(savingsAppliedTotal);
+  appliedMoney[2].textContent = money.format(debtAppliedTotal);
+  appliedMoney[3].textContent = money.format(surplusAppliedTotal);
+
+  // UNAPPLIED TOTALS
+  unAppliedMoney[0].textContent = money.format(budget.accounts.expenseFund.amount - expenseAppliedTotal);
+  unAppliedMoney[1].textContent = money.format(budget.accounts.savingsFund.amount - savingsAppliedTotal);
+  unAppliedMoney[2].textContent = money.format(budget.accounts.debt.amount - debtAppliedTotal);
+  unAppliedMoney[3].textContent = money.format(budget.accounts.surplus.amount - surplusAppliedTotal);
+};
+
 const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
   console.log(`These are existing.`);
   const transactionPlanCreation = document.querySelector('.transaction-plan-creation');
@@ -1188,6 +1230,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
                 plannedTransactions: transactionPlans,
               };
               placeholderBudget._updateBudget(`Update`, `Apply Money`, { updateObject: updateObject }, `Transaction-Planner`);
+              updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user);
             });
             insertElement(transactionPlanPart, transactionPlanPartHeader);
             insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
@@ -1341,6 +1384,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
                 plannedTransactions: transactionPlans,
               };
               placeholderBudget._updateBudget(`Update`, `Apply Money`, { updateObject: updateObject }, `Transaction-Planner`);
+              updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user);
             });
             insertElement(transactionPlanPart, transactionPlanPartHeader);
             insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
@@ -1517,6 +1561,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
                 plannedTransactions: transactionPlans,
               };
               placeholderBudget._updateBudget(`Update`, `Apply Money`, { updateObject: updateObject }, `Transaction-Planner`);
+              updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user);
             });
             insertElement(transactionPlanPart, transactionPlanPartHeader);
             insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
@@ -1678,6 +1723,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
                 plannedTransactions: transactionPlans,
               };
               placeholderBudget._updateBudget(`Update`, `Apply Money`, { updateObject: updateObject }, `Transaction-Planner`);
+              updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user);
             });
             insertElement(transactionPlanPart, transactionPlanPartHeader);
             insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
