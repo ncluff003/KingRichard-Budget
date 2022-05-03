@@ -7357,6 +7357,11 @@ var Budget = /*#__PURE__*/function () {
           _Manage_Budget__WEBPACK_IMPORTED_MODULE_3__.updateMyBudget(options.updateObject, pageLink);
         }
 
+        if (update === "Apply Money") {
+          console.log("Applying...", options);
+          _Manage_Budget__WEBPACK_IMPORTED_MODULE_3__.updateMyBudget(options.updateObject, pageLink);
+        }
+
         console.log("Updating...");
       }
     }
@@ -9320,6 +9325,20 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
                 console.log(transactionPlanInput.value, (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_2__["default"])(transactionPlanInput.value));
                 console.log(transactionPlanButton.parentElement.previousSibling);
                 transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
+                transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
+                console.log(transaction.amountSaved);
+                var updateObject = {
+                  budgetId: budget._id,
+                  userId: user._id
+                };
+                updateObject.transactions = {
+                  recentTransactions: budget.transactions.recentTransactions,
+                  plannedTransactions: transactionPlans
+                };
+
+                placeholderBudget._updateBudget("Update", "Apply Money", {
+                  updateObject: updateObject
+                }, "Transaction-Planner");
               });
               insertElement(transactionPlanPart, transactionPlanPartHeader);
               insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
@@ -9485,6 +9504,20 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
                 console.log(transactionPlanInput.value, (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_2__["default"])(transactionPlanInput.value));
                 console.log(transactionPlanButton.parentElement.previousSibling);
                 transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
+                transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
+                console.log(transaction.amountSaved, transactionPlans);
+                var updateObject = {
+                  budgetId: budget._id,
+                  userId: user._id
+                };
+                updateObject.transactions = {
+                  recentTransactions: budget.transactions.recentTransactions,
+                  plannedTransactions: transactionPlans
+                };
+
+                placeholderBudget._updateBudget("Update", "Apply Money", {
+                  updateObject: updateObject
+                }, "Transaction-Planner");
               });
               insertElement(_transactionPlanPart2, _transactionPlanPartHeader2);
               insertElement(_transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
@@ -9684,6 +9717,20 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
                 console.log(transactionPlanInput.value, (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_2__["default"])(transactionPlanInput.value));
                 console.log(transactionPlanButton.parentElement.previousSibling);
                 transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
+                transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
+                console.log(transaction.amountSaved);
+                var updateObject = {
+                  budgetId: budget._id,
+                  userId: user._id
+                };
+                updateObject.transactions = {
+                  recentTransactions: budget.transactions.recentTransactions,
+                  plannedTransactions: transactionPlans
+                };
+
+                placeholderBudget._updateBudget("Update", "Apply Money", {
+                  updateObject: updateObject
+                }, "Transaction-Planner");
               });
               insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
               insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
@@ -9865,6 +9912,20 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
                 console.log(transactionPlanInput.value, (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_2__["default"])(transactionPlanInput.value));
                 console.log(transactionPlanButton.parentElement.previousSibling);
                 transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
+                transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
+                console.log(transaction.amountSaved);
+                var updateObject = {
+                  budgetId: budget._id,
+                  userId: user._id
+                };
+                updateObject.transactions = {
+                  recentTransactions: budget.transactions.recentTransactions,
+                  plannedTransactions: transactionPlans
+                };
+
+                placeholderBudget._updateBudget("Update", "Apply Money", {
+                  updateObject: updateObject
+                }, "Transaction-Planner");
               });
               insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
               insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);

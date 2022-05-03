@@ -227,6 +227,11 @@ export class Budget {
         Manage.updateMyBudget(options.updateObject, pageLink);
       }
 
+      if (update === `Apply Money`) {
+        console.log(`Applying...`, options);
+        Manage.updateMyBudget(options.updateObject, pageLink);
+      }
+
       console.log(`Updating...`);
     }
   }

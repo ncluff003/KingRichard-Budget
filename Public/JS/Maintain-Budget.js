@@ -1177,6 +1177,17 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
               transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(
                 Number(transactionPlanInput.value) + Number(transaction.amountSaved)
               );
+              transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
+              console.log(transaction.amountSaved);
+              let updateObject = {
+                budgetId: budget._id,
+                userId: user._id,
+              };
+              updateObject.transactions = {
+                recentTransactions: budget.transactions.recentTransactions,
+                plannedTransactions: transactionPlans,
+              };
+              placeholderBudget._updateBudget(`Update`, `Apply Money`, { updateObject: updateObject }, `Transaction-Planner`);
             });
             insertElement(transactionPlanPart, transactionPlanPartHeader);
             insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
@@ -1319,6 +1330,17 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
               transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(
                 Number(transactionPlanInput.value) + Number(transaction.amountSaved)
               );
+              transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
+              console.log(transaction.amountSaved, transactionPlans);
+              let updateObject = {
+                budgetId: budget._id,
+                userId: user._id,
+              };
+              updateObject.transactions = {
+                recentTransactions: budget.transactions.recentTransactions,
+                plannedTransactions: transactionPlans,
+              };
+              placeholderBudget._updateBudget(`Update`, `Apply Money`, { updateObject: updateObject }, `Transaction-Planner`);
             });
             insertElement(transactionPlanPart, transactionPlanPartHeader);
             insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
@@ -1484,6 +1506,17 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
               transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(
                 Number(transactionPlanInput.value) + Number(transaction.amountSaved)
               );
+              transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
+              console.log(transaction.amountSaved);
+              let updateObject = {
+                budgetId: budget._id,
+                userId: user._id,
+              };
+              updateObject.transactions = {
+                recentTransactions: budget.transactions.recentTransactions,
+                plannedTransactions: transactionPlans,
+              };
+              placeholderBudget._updateBudget(`Update`, `Apply Money`, { updateObject: updateObject }, `Transaction-Planner`);
             });
             insertElement(transactionPlanPart, transactionPlanPartHeader);
             insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
@@ -1634,6 +1667,17 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
               transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(
                 Number(transactionPlanInput.value) + Number(transaction.amountSaved)
               );
+              transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
+              console.log(transaction.amountSaved);
+              let updateObject = {
+                budgetId: budget._id,
+                userId: user._id,
+              };
+              updateObject.transactions = {
+                recentTransactions: budget.transactions.recentTransactions,
+                plannedTransactions: transactionPlans,
+              };
+              placeholderBudget._updateBudget(`Update`, `Apply Money`, { updateObject: updateObject }, `Transaction-Planner`);
             });
             insertElement(transactionPlanPart, transactionPlanPartHeader);
             insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
