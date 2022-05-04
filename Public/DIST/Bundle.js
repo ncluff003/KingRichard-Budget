@@ -7993,6 +7993,16 @@ __webpack_require__.r(__webpack_exports__);
  // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
 
+var _watchInvestmentPlanner = function _watchInvestmentPlanner(budget, placeholderBudget, user) {
+  var longFormSections = document.querySelectorAll('.form__section--long');
+
+  if (longFormSections[0] && longFormSections[0].classList.contains('closed')) {
+    replaceClassName(longFormSections[0], "closed", "open");
+  }
+
+  console.log(longFormSections);
+};
+
 var _watchCategoryForSelection = function _watchCategoryForSelection() {
   var e = event;
   e.preventDefault();
@@ -8509,9 +8519,10 @@ var finalizeTransactionPlan = function finalizeTransactionPlan(budget, placehold
   plannedTransaction.amountSaved = 0;
   plannedTransaction.paid = false;
   plannedTransaction.paidStatus = "Unpaid";
+  console.log(selects);
 
   if (selects[0].value === "Expense Fund") {
-    plannedTransaction.subAccount = selects[3].value;
+    plannedTransaction.subAccount = selects[1].value;
     console.log(smallInputs[2].closest('.form__section--transaction-plan').nextSibling.nextSibling.nextSibling.firstChild.firstChild.nextSibling.nextSibling);
     var surplusSwitch = smallInputs[2].closest('.form__section--transaction-plan').nextSibling.nextSibling.nextSibling.firstChild.firstChild.nextSibling.nextSibling;
     plannedTransaction.need = "Need";
@@ -8522,7 +8533,7 @@ var finalizeTransactionPlan = function finalizeTransactionPlan(budget, placehold
   }
 
   if (selects[0].value === "Savings Fund") {
-    plannedTransaction.subAccount = selects[3].value;
+    plannedTransaction.subAccount = selects[2].value;
     var _surplusSwitch = smallInputs[2].closest('.form__section--transaction-plan').nextSibling.nextSibling.nextSibling.firstChild.firstChild.nextSibling.nextSibling;
     plannedTransaction.need = "Need";
 
@@ -8538,7 +8549,7 @@ var finalizeTransactionPlan = function finalizeTransactionPlan(budget, placehold
   }
 
   if (selects[0].value === "Surplus") {
-    plannedTransaction.subAccount = selects[3].value;
+    plannedTransaction.subAccount = selects[4].value;
     plannedTransaction.need = "Surplus";
   }
 
@@ -8619,7 +8630,22 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
       if (number === 2) {
         // INSERT DOM ELEMENTS INTO FIRST PART
         transactionPlanPartHeaderText.textContent = "Transaction Type";
-        transactionPlanPartText.textContent = "".concat(transactionPlanSelects[3].value);
+        console.log(transactionPlanSelects[0].value);
+        console.log(transactionPlanSelects[1], transactionPlanSelects[1].value);
+
+        if (transactionPlanSelects[0].value === "Expense Fund") {
+          console.log(transactionPlanSelects[1], transactionPlanSelects[1].value);
+          transactionPlanPartText.textContent = "".concat(transactionPlanSelects[1].value);
+        }
+
+        if (transactionPlanSelects[0].value === "Savings Fund") {
+          transactionPlanPartText.textContent = "".concat(transactionPlanSelects[2].value);
+        }
+
+        if (transactionPlanSelects[0].value === "Surplus") {
+          transactionPlanPartText.textContent = "".concat(transactionPlanSelects[4].value);
+        }
+
         insertElement(transactionPlanPart, transactionPlanPartHeader);
         insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
         insertElement(transactionPlanPart, transactionPlanPartText);
@@ -10170,7 +10196,7 @@ var _watchTransactionPlanner = function _watchTransactionPlanner(budget, placeho
   setupTransactionPlanning(budget, placeholderBudget, user);
   var altMediumInputs = document.querySelectorAll('.form__input--medium__alt');
   var currentDate = altMediumInputs[0];
-  currentDate.value = new Date();
+  if (currentDate) currentDate.value = new Date();
 };
 
 var _watchIncomeAllocation = function _watchIncomeAllocation(budget, placeholderBudget, user) {
@@ -11494,7 +11520,18 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays, budget
       if (clicked.value === "Savings Fund") {
         if (rowThirds[1].classList.contains('extend-enter-transaction')) {
           rowThirds[1].classList.toggle('extend-enter-transaction');
-        }
+        } // ALLOW FOR EXTENDED ROW FOR SAVINGS FUND ITEMS
+        //
+        // let expenseTitles =
+        //   extendedRow.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.nextSibling
+        //     .childNodes;
+        // expenseTitles.forEach((expense) => {
+        //   if (expense.text.length >= 8 && !rowThirds[1].classList.contains('extend-enter-transaction')) {
+        //     rowThirds[1].classList.add('extend-enter-transaction');
+        //     console.log(`Extended.`);
+        //   }
+        // });
+
 
         arrayOfArrays.forEach(function (a, i) {
           a.forEach(function (c, i) {
@@ -11587,7 +11624,18 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays, budget
       if (clicked.value === "Debt") {
         if (rowThirds[1].classList.contains('extend-enter-transaction')) {
           rowThirds[1].classList.toggle('extend-enter-transaction');
-        }
+        } // ALLOW FOR EXTENDED ROW FOR SAVINGS FUND ITEMS
+        //
+        // let expenseTitles =
+        //   extendedRow.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.nextSibling
+        //     .childNodes;
+        // expenseTitles.forEach((expense) => {
+        //   if (expense.text.length >= 8 && !rowThirds[1].classList.contains('extend-enter-transaction')) {
+        //     rowThirds[1].classList.add('extend-enter-transaction');
+        //     console.log(`Extended.`);
+        //   }
+        // });
+
 
         arrayOfArrays.forEach(function (a, i) {
           a.forEach(function (c, i) {
@@ -11691,7 +11739,7 @@ var setupDashboard = function setupDashboard(user, budget, placeholderBudget) {
   var mediumLeftPaddedSections = document.querySelectorAll('.form__section--medium__padded--left');
   var mediumTopLeftPaddedSections = document.querySelectorAll('.form__section--medium__padded--topLeft');
   var longFormSections = document.querySelectorAll('.form__section--long');
-  var longTopLeftPaddedSections = document.querySelectorAll('.form__section--long__padded--topLeft');
+  var longLeftPaddedSections = document.querySelectorAll('.form__section--long__padded--topLeft');
   var paidForContainers = document.querySelectorAll('.form__section--switch__fully-paid-for');
   var altPaidForContainers = document.querySelectorAll('.form__section--switch__fully-paid-for__alt'); ///////////////////////////////////////////////
   // INITIALIZE ACCOUNT TRANSACTION OPTION ARRAYS
@@ -11701,7 +11749,7 @@ var setupDashboard = function setupDashboard(user, budget, placeholderBudget) {
   var monthlyBudgetTransactionsOptionsTwo = [mediumFormSections[5], longFormSections[0]];
   var monthlyBudgetTransactionOptionsArray = []; // EMERGENCY FUND
 
-  var emergencyFundTransactionsOptions = [longTopLeftPaddedSections[0], mediumTopLeftPaddedSections[0]];
+  var emergencyFundTransactionsOptions = [longLeftPaddedSections[0], mediumTopLeftPaddedSections[0]];
   var emergencyFundTransactionOptionsArray = []; // SAVINGS FUND
 
   var savingsFundTransactionsOptionsOne = [relativeMediumFormLabels[2], relativeMediumFormLabels[3]];
@@ -11823,9 +11871,13 @@ var _watchBudget = /*#__PURE__*/function () {
             // WATCH FOR INCOME ALLOCATION
 
 
-            _watchTransactionPlanner(currentBudget, budget, user);
+            _watchTransactionPlanner(currentBudget, budget, user); ////////////////////////////////////////////
+            // WATCH FOR INCOME ALLOCATION
 
-          case 17:
+
+            _watchInvestmentPlanner(currentBudget, budget, user);
+
+          case 18:
           case "end":
             return _context.stop();
         }

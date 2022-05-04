@@ -1766,6 +1766,11 @@ html {
           text-decoration: underline;
         }
       }
+      &-icon {
+        @extend .container--extra-small__content;
+        font-size: 8rem;
+        color: rgba($primaryColor, 0.8);
+      }
     }
 
     &__margin-left-and-right {
@@ -1804,6 +1809,22 @@ html {
             text-decoration: underline;
           }
         }
+      }
+    }
+    &__row {
+      &__header {
+        @extend .container--extra-small__header;
+        &__icon {
+          @extend .container--extra-small__header__icon;
+        }
+      }
+      &__content {
+        @extend .container--extra-small__content;
+      }
+    }
+    &:hover {
+      .container--extra-small__content-icon {
+        color: $primaryColor;
       }
     }
   }
@@ -2100,6 +2121,19 @@ html {
               }
             }
           }
+        }
+      }
+    }
+  }
+
+  &--extra-large {
+    @extend .container--large;
+    color: $primaryColor;
+    &__half {
+      &__header {
+        &__text {
+          @extend .container--extra-large;
+          font-size: 3.6rem;
         }
       }
     }
@@ -2724,6 +2758,12 @@ html {
         }
       }
     }
+    &--long {
+      @extend .form__section;
+      &-short {
+        @extend .form__section--long;
+      }
+    }
   }
 
   // FORM INPUT CONTAINERS
@@ -2758,6 +2798,9 @@ html {
     &--long {
       @extend .form__input;
       font-size: 1.4rem;
+      &-short {
+        @extend .form__input--long;
+      }
       &__alt {
         @extend .form__input--enter-transaction;
         &-emergency-fund {
@@ -2769,6 +2812,9 @@ html {
     &--small {
       @extend .form__input;
       &-short {
+        @extend .form__input--medium;
+      }
+      &-shorter {
         @extend .form__input--medium;
       }
       &-thin {
@@ -2882,6 +2928,9 @@ html {
       &:focus {
         border: 0.2rem solid $primaryColor;
       }
+      &-short {
+        @extend .form__select--accounts;
+      }
     }
 
     &--half-right {
@@ -2933,6 +2982,11 @@ html {
     &--small {
       @extend .form__label;
       color: rgba($colorOffWhite, 0.8);
+
+      &-shorter {
+        @extend .form__label;
+        font-size: 1.2rem;
+      }
 
       &-thin {
         @extend .form__label;
@@ -3025,6 +3079,13 @@ html {
     &--fully-paid-for {
       @extend .form__label;
       font-size: 1.4rem;
+    }
+
+    &--long {
+      &-short {
+        @extend .form__label--long;
+        font-size: 1.6rem;
+      }
     }
   }
 

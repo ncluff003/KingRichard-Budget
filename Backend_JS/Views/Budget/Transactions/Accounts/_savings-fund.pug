@@ -7,4 +7,9 @@ label.form__label--medium__relative.r__form__label--medium__relative.savings-fun
 label.form__label--medium__relative.r__form__label--medium__relative.savings-fund-transaction.r__savings-fund-transaction 
   p.form__label--medium__relative__text.r__form__label--medium__relative__text Savings Goal
   select.form__select--savings-fund-transaction.r__form__select--savings-fund-transaction#savingsGoals
+    each transaction in data.budget.transactions.plannedTransactions
+      - let savingsTransaction = false;
+      - if (transaction.account === `Savings Fund`) savingsTransaction = true; 
+      if savingsTransaction
+        option= `${transaction.name}`
   //- Basically, depending on the savings term chosen, first it will look for 'Savings' Goals, and then for items inside that 'Term', and use that array to show a number of selection options.

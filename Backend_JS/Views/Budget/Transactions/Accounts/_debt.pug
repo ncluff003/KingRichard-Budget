@@ -1,6 +1,11 @@
 label.form__label--medium__relative.r__form__label--medium__relative.debt-transaction.r__debt-transaction
   p.form__label--medium__relative__text.r__form__label--medium__relative__text Lender 
   select.form__select--debt-transaction.r__form__select--debt-transaction
+    each transaction in data.budget.transactions.plannedTransactions
+      - let debtTransaction = false;
+      - if (transaction.account === `Debt`) debtTransaction = true; 
+      if debtTransaction
+        option= `${transaction.lender}`
 label.form__label--medium__relative.r__form__label--medium__relative.debt-transaction.r__debt-transaction  
   p.form__label--medium__relative__text.r__form__label--medium__relative__text Debt Timing
   select.form__select--expense-fund-transaction.r__form__select--expense-fund-transaction#debts

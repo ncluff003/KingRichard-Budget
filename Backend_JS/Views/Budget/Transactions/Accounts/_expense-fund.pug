@@ -13,5 +13,9 @@ label.form__label--medium__relative.r__form__label--medium__relative.expense-fun
 label.form__label--medium__relative.r__form__label--medium__relative.expense-fund-transaction.r__expense-fund-transaction  
   p.form__label--medium__relative__text.r__form__label--medium__relative__text Expense
   select.form__select--expense-fund-transaction.r__form__select--expense-fund-transaction#expenses
-    option Black Beans
+    each transaction in data.budget.transactions.plannedTransactions
+      - let expenseTransaction = false;
+      - if (transaction.account === `Expense Fund`) expenseTransaction = true; 
+      if expenseTransaction
+        option= `${transaction.name}`
   //- This is where the expenses that are either expenses or bills planned.  It depends on the expense type you selected.

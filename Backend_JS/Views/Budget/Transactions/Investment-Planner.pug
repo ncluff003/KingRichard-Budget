@@ -3,3 +3,37 @@ extends ./../budgetLanding
 block Budget-Content 
   header.budget-container__header.r__budget-container__header
     p.budget-container__header__text.r__budget-container__header__text Investment Planner
+  section.container--extra-large.r__container--extra-large
+    section.container--extra-large__half.r__container--extra-large__half
+      section.container--extra-large__half__header.r__container--extra-large__half__header 
+        p.container--extra-large__half__header__text.r__container--extra-large__half__header__text Active Investments
+      section.investment-container.investment-container
+        section.container--extra-small.r__container--extra-small 
+          section.container--extra-small__header.r__container--extra-small__header
+            i.fas.fa-chart-line.container--extra-small__header__icon.r__container--extra-small__header__icon
+            p.container--extra-small__header__text.r__container--extra-small__header__text Add Investment
+          section.container--extra-small__content.r__container--extra-small__content
+            i.fas.fa-plus.container--extra-small__content-icon.r__container--extra-small__content-icon.closed
+            form.form--extra-small__column.r__form--extra-small__column
+              section.form__row--thirds.r__form__row--thirds
+                - investmentTypes = [`Stock`, `Real Estate`, `Timeshare`, `Other`]
+                  select.form__select--accounts-short.r__form__select--accounts-short
+                    each investmentType in investmentTypes 
+                      option.form__select__option.r__form__select__option= `${investmentType}`
+                section.form__section--long-half.r__form__section--long-half
+                  input.form__input--small-shorter.r__form__input--small-shorter#investmentName(type="text" placeholder="Investment Name")
+                  label.form__label--small-shorter.r__form__label--small-shorter(for="investmentName") Investment Name
+              section.form__row--thirds.r__form__row--thirds
+                section.form__section--long-short.r__form__section--long-short
+                  input.form__input--long-short.r__form__input--long-short#investmentDescription(type="text" placeholder="Description")
+                  label.form__label--long-short.r__form__label--long-short(for="investmentDescription") Investment Description
+              section.form__row--thirds.r__form__row--thirds
+                section.form__section--long-half.r__form__section--long-half
+                  input.form__input--small-shorter.r__form__input--small-shorter#initialInvestment(type="text" placeholder="Initial Amount")
+                  label.form__label--small-shorter.r__form__label--small-shorter(for="initialInvestment") Investment Investment
+                button.button--extra-extra-small.r__button--extra-extra-small(type="button") Create
+
+    section.container--extra-large__half.r__container--extra-large__half
+      section.container--extra-large__half__header.r__container--extra-large__half__header 
+        p.container--extra-large__half__header__text.r__container--extra-large__half__header__text Settled Investments
+      section.investment-container.investment-container
