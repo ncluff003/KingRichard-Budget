@@ -618,12 +618,12 @@
       &-half {
         @extend .form__section--long;
         width: 50%;
-        justify-content: flex-end;
+        justify-content: center;
       }
       &-short {
         @extend .form__section--long;
         width: 100%;
-        justify-content: flex-end;
+        justify-content: center;
       }
     }
 
@@ -964,7 +964,7 @@
         min-height: 3.5rem;
         &:not(:placeholder-shown) + .form__label--long-short,
         &:focus + .form__label--long-short {
-          transform: translate(-4.5rem, -1rem) scale(0.75);
+          transform: translate(-4.5rem, -1.5rem) scale(0.75);
         }
       }
     }
@@ -1036,12 +1036,12 @@
         @extend .form__input--medium;
         height: 3.5rem;
         min-height: 3.5rem;
-        width: 75%;
-        align-self: flex-end;
+        width: 110%;
+        align-self: flex-start;
 
         &:not(:placeholder-shown) + .form__label--small-shorter,
         &:focus + .form__label--small-shorter {
-          transform: translate(3rem, -3.5rem) scale(0.85);
+          transform: translate(-1rem, -4.25rem) scale(0.85);
         }
       }
       &-thin {
@@ -1320,7 +1320,8 @@
         height: 3.5rem;
         min-height: 3.5rem;
         padding: 0.25rem;
-        align-self: flex-end;
+        align-self: center;
+        margin-right: 2rem;
       }
     }
 
@@ -1495,7 +1496,7 @@
       -moz-transform: translate(0rem, 2rem);
       &-short {
         @extend .form__label--long;
-        -moz-transform: translate(-1rem, 1.6rem);
+        -moz-transform: translate(-1rem, 0.9rem);
       }
       &__alt {
         @extend .form__label--long;
@@ -1638,8 +1639,8 @@
         @extend .form__label;
         height: 3.5rem;
         min-height: 3.5rem;
-        width: 75%;
-        transform: translate(3.5rem, -0.75rem);
+        width: 100%;
+        transform: translate(0rem, -1.9rem);
         left: 1rem;
       }
       &-thin {

@@ -482,7 +482,7 @@
     width: 30%;
     justify-content: column;
     transform: translate(-5rem, 0.75rem);
-    align-self: flex-end;
+    align-self: center;
     background-color: rgba($primaryColor, 0.5);
     border: 0.2rem solid rgba($primaryColor, 0.8);
     border-radius: 0.5rem;
@@ -492,6 +492,10 @@
       background-color: $primaryColor;
       border: 0.2rem solid $primaryColor;
       transition: background-color 0.5s, color 0.5s, border 0.5s;
+    }
+    &__alt {
+      @extend .button--extra-extra-small;
+      transform: translate(4rem, 0rem);
     }
     &__transaction-plan {
       @extend .button--extra-extra-small;
@@ -645,6 +649,13 @@
       background-color: transparent;
       &:hover {
         transition: color 0.5s, transform 0.5s;
+      }
+      &__investment {
+        @extend .button--borderless-narrow;
+        height: 2rem;
+        right: 1rem;
+        bottom: 0rem;
+        transform: translate(0, 0);
       }
     }
   }

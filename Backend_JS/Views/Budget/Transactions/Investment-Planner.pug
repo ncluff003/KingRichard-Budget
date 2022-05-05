@@ -8,13 +8,27 @@ block Budget-Content
       section.container--extra-large__half__header.r__container--extra-large__half__header 
         p.container--extra-large__half__header__text.r__container--extra-large__half__header__text Active Investments
       section.investment-container.investment-container
-        section.container--extra-small.r__container--extra-small 
-          section.container--extra-small__header.r__container--extra-small__header
-            i.fas.fa-chart-line.container--extra-small__header__icon.r__container--extra-small__header__icon
-            p.container--extra-small__header__text.r__container--extra-small__header__text Add Investment
-          section.container--extra-small__content.r__container--extra-small__content
-            i.fas.fa-plus.container--extra-small__content-icon.r__container--extra-small__content-icon.closed
-            form.form--extra-small__column.r__form--extra-small__column
+        section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right 
+          section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
+            i.fas.fa-comment-dollar.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
+            p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text Investment Fund
+          section.container--extra-small__margin-left-and-right__content.r__container--extra-small__margin-left-and-right__content
+            - const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 })
+            p.container--extra-small__margin-left-and-right__content__account-total.r__container--extra-small__margin-left-and-right__content__account-total=`${money.format(data.budget.accounts.investmentFund.amount)}`
+        section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right 
+          section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
+            i.fas.fa-chart-line.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
+            p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text PureNSpiration
+            p.container--extra-small__margin-left-and-right__header__investment-type.r__container--extra-small__margin-left-and-right__header__investment-type Stock
+          section.container--extra-small__margin-left-and-right__content__column.r__container--extra-small__margin-left-and-right__content__column
+        section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right 
+          section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
+            i.fas.fa-chart-line.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
+            p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text Add Investment
+            button.button--borderless-narrow__investment.r__button--borderless-narrow__investment.closed Close
+          section.container--extra-small__margin-left-and-right__content.r__container--extra-small__margin-left-and-right__content
+            i.fas.fa-plus.container--extra-small__margin-left-and-right__content-icon.r__container--extra-small__margin-left-and-right__content-icon.open
+            form.form--extra-small__column.r__form--extra-small__column.closed
               section.form__row--thirds.r__form__row--thirds
                 - investmentTypes = [`Stock`, `Real Estate`, `Timeshare`, `Other`]
                   select.form__select--accounts-short.r__form__select--accounts-short
@@ -29,9 +43,9 @@ block Budget-Content
                   label.form__label--long-short.r__form__label--long-short(for="investmentDescription") Investment Description
               section.form__row--thirds.r__form__row--thirds
                 section.form__section--long-half.r__form__section--long-half
-                  input.form__input--small-shorter.r__form__input--small-shorter#initialInvestment(type="text" placeholder="Initial Amount")
-                  label.form__label--small-shorter.r__form__label--small-shorter(for="initialInvestment") Investment Investment
-                button.button--extra-extra-small.r__button--extra-extra-small(type="button") Create
+                  input.form__input--small-shorter.r__form__input--small-shorter#initialInvestment(type="text" placeholder="$0.00")
+                  label.form__label--small-shorter.r__form__label--small-shorter(for="initialInvestment") Initial Investment
+                button.button--extra-extra-small__alt.r__button--extra-extra-small__alt(type="button") Create
 
     section.container--extra-large__half.r__container--extra-large__half
       section.container--extra-large__half__header.r__container--extra-large__half__header 

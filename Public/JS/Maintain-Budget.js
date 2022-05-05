@@ -8,12 +8,33 @@ import * as Categories from './Budget-Categories';
 // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
 
+const closeInvestmentCreation = (event) => {
+  const closeInvestmentCreationButton = document.querySelector('.button--borderless-narrow__investment');
+  const addInvestmentButton = document.querySelector('.container--extra-small__margin-left-and-right__content-icon');
+  const addInvestmentForm = document.querySelector('.form--extra-small__column');
+  closeInvestmentCreationButton.removeEventListener(`click`, closeInvestmentCreation);
+  replaceClassName(closeInvestmentCreationButton, `open`, `closed`);
+  replaceClassName(addInvestmentForm, `open`, `closed`);
+  replaceClassName(addInvestmentButton, `closed`, `open`);
+};
+
 const _watchInvestmentPlanner = (budget, placeholderBudget, user) => {
   const longFormSections = document.querySelectorAll('.form__section--long');
   if (longFormSections[0] && longFormSections[0].classList.contains('closed')) {
     replaceClassName(longFormSections[0], `closed`, `open`);
   }
-  console.log(longFormSections);
+  const addInvestmentButton = document.querySelector('.container--extra-small__margin-left-and-right__content-icon');
+  const closeInvestmentCreationButton = document.querySelector('.button--borderless-narrow__investment');
+  const addInvestmentForm = document.querySelector('.form--extra-small__column');
+  if (addInvestmentButton) {
+    addInvestmentButton.addEventListener('click', (e) => {
+      closeInvestmentCreationButton.classList.toggle('open');
+      closeInvestmentCreationButton.classList.toggle('closed');
+      replaceClassName(addInvestmentForm, `closed`, `open`);
+      replaceClassName(addInvestmentButton, `open`, `closed`);
+      closeInvestmentCreationButton.addEventListener('click', closeInvestmentCreation);
+    });
+  }
 };
 
 const _watchCategoryForSelection = () => {
@@ -2950,23 +2971,6 @@ const displayUpcomingTransactions = (container, transactions) => {
       }
       insertElement(container, upcomingBillTwo);
     }
-    console.log(upcomingBill);
-    // section.upcoming-bills__bill.r__upcoming-bills__bill
-    //   section.upcoming-bills__bill__bill-item.r__upcoming-bills__bill__bill-item
-    //     p.upcoming-bills__bill__bill-item__text.r__upcoming-bills__bill__bill-item__text= transaction.account
-    //   section.upcoming-bills__bill__bill-item.r__upcoming-bills__bill__bill-item
-    //     p.upcoming-bills__bill__bill-item__text.r__upcoming-bills__bill__bill-item__text= `${transaction.date.getDate()} ${months[transaction.date.getMonth()]} ${transaction.date.getFullYear()}`
-    //   section.upcoming-bills__bill__bill-item.r__upcoming-bills__bill__bill-item
-    //     if transaction.lender
-    //       p.upcoming-bills__bill__bill-item__text.r__upcoming-bills__bill__bill-item__text= transaction.lender
-    //     else
-    //       p.upcoming-bills__bill__bill-item__text.r__upcoming-bills__bill__bill-item__text= transaction.location
-    //   section.upcoming-bills__bill__bill-item.r__upcoming-bills__bill__bill-item
-    //     p.upcoming-bills__bill__bill-item__text.r__upcoming-bills__bill__bill-item__text= `$${transaction.amount}`
-    //   section.upcoming-bills__bill__bill-item.r__upcoming-bills__bill__bill-item
-    //     section.upcoming-bills__bill__bill-item__checkbox-container.r__upcoming-bills__bill__bill-item__checkbox-container
-    //       input.upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox.r__upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox#paymentCheck(type="checkbox")
-    //       label.upcoming-bills__bill__bill-item__checkbox-container__payment-label.r__upcoming-bills__bill__bill-item__checkbox-container__payment-label(for="paymentCheck") Payment Made
   });
 };
 

@@ -44,11 +44,12 @@
   }
 
   &--extra-small {
-    @include SizeAndPositioning(relative, 22.5rem, 35rem, flex, column, nowrap, space-between, center, 0, 0, 0);
+    @include SizeAndPositioning(relative, 25rem, 35rem, flex, column, nowrap, space-between, center, 0, 0, 0);
     padding: 0.2rem;
     border: 0.3rem solid $primaryColor;
     border-radius: 0.5rem;
     background-color: rgba($colorOffWhite, 0.8);
+    min-width: 35rem;
 
     min-height: 22.5rem;
     &__header {
@@ -88,6 +89,19 @@
         padding: 0 1.5rem;
         background-color: $primaryColor;
         border-bottom: 0.3rem solid $tertiaryColor;
+        &__investment-type {
+          @include SizeAndPositioning(absolute, max-content, max-content, flex, row, nowrap, center, center, 0, 0, 0);
+          bottom: 0;
+          right: 1.5rem;
+        }
+      }
+      &__content {
+        @include SizeAndPositioning(relative, 75%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+        &__column {
+          @extend .container--extra-small__margin-left-and-right__content;
+          flex-flow: column nowrap;
+          justify-content: space-evenly;
+        }
       }
       &:nth-of-type(4) {
         .form--extra-small {
@@ -123,7 +137,8 @@
     }
     &:hover {
       cursor: pointer;
-      .container--extra-small__content-icon {
+      .container--extra-small__content-icon,
+      .container--extra-small__margin-left-and-right__content-icon {
         transition: color 0.5s;
       }
     }
@@ -455,6 +470,7 @@
     &__half {
       @include SizeAndPositioning(relative, 50%, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
       background-color: rgba($colorOffWhite, 0.5);
+      overflow-x: auto;
       &:first-of-type {
         border-bottom: 0.3rem solid $primaryColor;
       }
@@ -462,7 +478,7 @@
         @include SizeAndPositioning(relative, 15%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
       }
       .investment-container {
-        @include SizeAndPositioning(relative, 85%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+        @include SizeAndPositioning(relative, 85%, 100%, flex, row, nowrap, flex-start, center, 0, 0, 0);
       }
     }
   }
