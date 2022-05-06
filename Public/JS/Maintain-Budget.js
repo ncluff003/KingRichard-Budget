@@ -55,6 +55,11 @@ const closeInvestmentCreation = (event) => {
 
 const addInvestment = (options) => {
   console.log(options);
+  const money = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+  });
   const investmentContainers = document.querySelectorAll('.container--extra-small__margin-left-and-right');
   const investmentAccountPreview = investmentContainers[0];
   console.log(investmentContainers);
@@ -100,6 +105,136 @@ const addInvestment = (options) => {
   investmentHeaderType.textContent = options.type;
 
   insertElement(investmentHeader, investmentHeaderType);
+
+  // CREATE INVESTMENT CONTENT
+  const investmentContent = document.createElement('section');
+  investmentContent.classList.add('container--extra-small__margin-left-and-right__content__column');
+  investmentContent.classList.add('r__container--extra-small__margin-left-and-right__content__column');
+
+  insertElement(investmentShellContainer, investmentContent);
+
+  // CREATE INVESTMENT EXPLANATORY CONTENT
+  const investmentExplanationSection = document.createElement('section');
+  investmentExplanationSection.classList.add('investment-explanatory-information');
+  investmentExplanationSection.classList.add('r__investment-explanatory-information');
+
+  insertElement(investmentContent, investmentExplanationSection);
+
+  const investmentDescription = document.createElement('section');
+  investmentDescription.classList.add('investment-description');
+  investmentDescription.classList.add('r__investment-description');
+
+  insertElement(investmentExplanationSection, investmentDescription);
+
+  const investmentDescriptionText = document.createElement('p');
+  investmentDescriptionText.classList.add('investment-description__text');
+  investmentDescriptionText.classList.add('r__investment-description__text');
+  investmentDescriptionText.textContent = options.description;
+
+  insertElement(investmentDescription, investmentDescriptionText);
+
+  const investmentSettleContainer = document.createElement('section');
+  investmentSettleContainer.classList.add('investment-settle-container');
+  investmentSettleContainer.classList.add('r__investment-settle-container');
+
+  insertElement(investmentExplanationSection, investmentSettleContainer);
+
+  const investementSettleButton = document.createElement('button');
+  investementSettleButton.classList.add('button--settle');
+  investementSettleButton.classList.add('r__button--settle');
+
+  insertElement(investmentSettleContainer, investementSettleButton);
+
+  const investementSettleButtonText = document.createElement('p');
+  investementSettleButtonText.classList.add('button--settle__text');
+  investementSettleButtonText.classList.add('r__button--settle__text');
+  investementSettleButtonText.textContent = `Settle`;
+
+  insertElement(investementSettleButton, investementSettleButtonText);
+
+  const investmentValueInformationContainer = document.createElement('section');
+  investmentValueInformationContainer.classList.add('investment-value-information');
+  investmentValueInformationContainer.classList.add('r__investment-value-information');
+
+  insertElement(investmentContent, investmentValueInformationContainer);
+
+  const investmentValueInformationContainerHalfOne = document.createElement('section');
+  const investmentValueInformationContainerHalfTwo = document.createElement('section');
+
+  investmentValueInformationContainerHalfOne.classList.add('investment-value-information__half');
+  investmentValueInformationContainerHalfOne.classList.add('r__investment-value-information__half');
+
+  investmentValueInformationContainerHalfTwo.classList.add('investment-value-information__half');
+  investmentValueInformationContainerHalfTwo.classList.add('r__investment-value-information__half');
+
+  insertElement(investmentValueInformationContainer, investmentValueInformationContainerHalfOne);
+  insertElement(investmentValueInformationContainer, investmentValueInformationContainerHalfTwo);
+
+  const investmentValueInformationContainerHalfOneHeader = document.createElement('p');
+  const investmentValueInformationContainerHalfTwoHeader = document.createElement('p');
+
+  investmentValueInformationContainerHalfOneHeader.classList.add('investment-value-information__half__header');
+  investmentValueInformationContainerHalfTwoHeader.classList.add('investment-value-information__half__header');
+  investmentValueInformationContainerHalfOneHeader.classList.add('r__investment-value-information__half__header');
+  investmentValueInformationContainerHalfTwoHeader.classList.add('r__investment-value-information__half__header');
+
+  investmentValueInformationContainerHalfOneHeader.textContent = `Initial Investment`;
+  investmentValueInformationContainerHalfTwoHeader.textContent = `Current Value`;
+
+  insertElement(investmentValueInformationContainerHalfOne, investmentValueInformationContainerHalfOneHeader);
+  insertElement(investmentValueInformationContainerHalfTwo, investmentValueInformationContainerHalfTwoHeader);
+
+  const investmentValueInformationContainerHalfOneText = document.createElement('p');
+  investmentValueInformationContainerHalfOneText.classList.add('investment-value-information__half__text');
+  investmentValueInformationContainerHalfOneText.classList.add('r__investment-value-information__half__text');
+  investmentValueInformationContainerHalfOneText.textContent = money.format(options.initialInvestment);
+
+  insertElement(investmentValueInformationContainerHalfOne, investmentValueInformationContainerHalfOneText);
+
+  const investmentInputContainer = document.createElement('section');
+  investmentInputContainer.classList.add('investment-input-container');
+  investmentInputContainer.classList.add('r__investment-input-container');
+
+  insertElement(investmentValueInformationContainerHalfTwo, investmentInputContainer);
+
+  const investmentInput = document.createElement('input');
+  investmentInput.classList.add('form__input--investment');
+  investmentInput.classList.add('r__form__input--investment');
+  investmentInput.type = `number`;
+  investmentInput.placeholder = `Enter New Value`;
+  investmentInput.readOnly = true;
+
+  insertElement(investmentInputContainer, investmentInput);
+
+  const investmentValueConfirmationButton = document.createElement('button');
+  investmentValueConfirmationButton.classList.add('button--confirm-value');
+  investmentValueConfirmationButton.classList.add('r__button--confirm-value');
+
+  const investmentValueConfirmationButtonIcon = document.createElement('i');
+  investmentValueConfirmationButtonIcon.classList.add('fas');
+  investmentValueConfirmationButtonIcon.classList.add('fa-check');
+  investmentValueConfirmationButtonIcon.classList.add('button--confirm-value__icon');
+  investmentValueConfirmationButtonIcon.classList.add('r__button--confirm-value__icon');
+
+  insertElement(investmentValueConfirmationButton, investmentValueConfirmationButtonIcon);
+  insertElement(investmentInputContainer, investmentValueConfirmationButton);
+
+  const investmentUpdateValueTextLink = document.createElement('p');
+  investmentUpdateValueTextLink.classList.add('investment-value-information__half__update-text');
+  investmentUpdateValueTextLink.classList.add('r__investment-value-information__half__update-text');
+  investmentUpdateValueTextLink.textContent = `Update Value`;
+
+  insertElement(investmentValueInformationContainerHalfTwo, investmentUpdateValueTextLink);
+
+  const openUpdateCurrentValueButtons = document.querySelectorAll('.investment-value-information__half__update-text');
+  if (openUpdateCurrentValueButtons[0]) {
+    openUpdateCurrentValueButtons.forEach((button) => {
+      button.removeEventListener('click', _watchForCurrentValueUpdate);
+    });
+    openUpdateCurrentValueButtons.forEach((button) => {
+      button.addEventListener('click', _watchForCurrentValueUpdate);
+    });
+  }
 
   // section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right
   //         section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header

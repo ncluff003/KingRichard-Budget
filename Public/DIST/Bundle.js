@@ -8363,6 +8363,11 @@ var closeInvestmentCreation = function closeInvestmentCreation(event) {
 
 var addInvestment = function addInvestment(options) {
   console.log(options);
+  var money = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+  });
   var investmentContainers = document.querySelectorAll('.container--extra-small__margin-left-and-right');
   var investmentAccountPreview = investmentContainers[0];
   console.log(investmentContainers);
@@ -8408,7 +8413,102 @@ var addInvestment = function addInvestment(options) {
   investmentHeaderType.classList.add('container--extra-small__margin-left-and-right__header__investment-type');
   investmentHeaderType.classList.add('r__container--extra-small__margin-left-and-right__header__investment-type');
   investmentHeaderType.textContent = options.type;
-  insertElement(investmentHeader, investmentHeaderType); // section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right
+  insertElement(investmentHeader, investmentHeaderType); // CREATE INVESTMENT CONTENT
+
+  var investmentContent = document.createElement('section');
+  investmentContent.classList.add('container--extra-small__margin-left-and-right__content__column');
+  investmentContent.classList.add('r__container--extra-small__margin-left-and-right__content__column');
+  insertElement(investmentShellContainer, investmentContent); // CREATE INVESTMENT EXPLANATORY CONTENT
+
+  var investmentExplanationSection = document.createElement('section');
+  investmentExplanationSection.classList.add('investment-explanatory-information');
+  investmentExplanationSection.classList.add('r__investment-explanatory-information');
+  insertElement(investmentContent, investmentExplanationSection);
+  var investmentDescription = document.createElement('section');
+  investmentDescription.classList.add('investment-description');
+  investmentDescription.classList.add('r__investment-description');
+  insertElement(investmentExplanationSection, investmentDescription);
+  var investmentDescriptionText = document.createElement('p');
+  investmentDescriptionText.classList.add('investment-description__text');
+  investmentDescriptionText.classList.add('r__investment-description__text');
+  investmentDescriptionText.textContent = options.description;
+  insertElement(investmentDescription, investmentDescriptionText);
+  var investmentSettleContainer = document.createElement('section');
+  investmentSettleContainer.classList.add('investment-settle-container');
+  investmentSettleContainer.classList.add('r__investment-settle-container');
+  insertElement(investmentExplanationSection, investmentSettleContainer);
+  var investementSettleButton = document.createElement('button');
+  investementSettleButton.classList.add('button--settle');
+  investementSettleButton.classList.add('r__button--settle');
+  insertElement(investmentSettleContainer, investementSettleButton);
+  var investementSettleButtonText = document.createElement('p');
+  investementSettleButtonText.classList.add('button--settle__text');
+  investementSettleButtonText.classList.add('r__button--settle__text');
+  investementSettleButtonText.textContent = "Settle";
+  insertElement(investementSettleButton, investementSettleButtonText);
+  var investmentValueInformationContainer = document.createElement('section');
+  investmentValueInformationContainer.classList.add('investment-value-information');
+  investmentValueInformationContainer.classList.add('r__investment-value-information');
+  insertElement(investmentContent, investmentValueInformationContainer);
+  var investmentValueInformationContainerHalfOne = document.createElement('section');
+  var investmentValueInformationContainerHalfTwo = document.createElement('section');
+  investmentValueInformationContainerHalfOne.classList.add('investment-value-information__half');
+  investmentValueInformationContainerHalfOne.classList.add('r__investment-value-information__half');
+  investmentValueInformationContainerHalfTwo.classList.add('investment-value-information__half');
+  investmentValueInformationContainerHalfTwo.classList.add('r__investment-value-information__half');
+  insertElement(investmentValueInformationContainer, investmentValueInformationContainerHalfOne);
+  insertElement(investmentValueInformationContainer, investmentValueInformationContainerHalfTwo);
+  var investmentValueInformationContainerHalfOneHeader = document.createElement('p');
+  var investmentValueInformationContainerHalfTwoHeader = document.createElement('p');
+  investmentValueInformationContainerHalfOneHeader.classList.add('investment-value-information__half__header');
+  investmentValueInformationContainerHalfTwoHeader.classList.add('investment-value-information__half__header');
+  investmentValueInformationContainerHalfOneHeader.classList.add('r__investment-value-information__half__header');
+  investmentValueInformationContainerHalfTwoHeader.classList.add('r__investment-value-information__half__header');
+  investmentValueInformationContainerHalfOneHeader.textContent = "Initial Investment";
+  investmentValueInformationContainerHalfTwoHeader.textContent = "Current Value";
+  insertElement(investmentValueInformationContainerHalfOne, investmentValueInformationContainerHalfOneHeader);
+  insertElement(investmentValueInformationContainerHalfTwo, investmentValueInformationContainerHalfTwoHeader);
+  var investmentValueInformationContainerHalfOneText = document.createElement('p');
+  investmentValueInformationContainerHalfOneText.classList.add('investment-value-information__half__text');
+  investmentValueInformationContainerHalfOneText.classList.add('r__investment-value-information__half__text');
+  investmentValueInformationContainerHalfOneText.textContent = money.format(options.initialInvestment);
+  insertElement(investmentValueInformationContainerHalfOne, investmentValueInformationContainerHalfOneText);
+  var investmentInputContainer = document.createElement('section');
+  investmentInputContainer.classList.add('investment-input-container');
+  investmentInputContainer.classList.add('r__investment-input-container');
+  insertElement(investmentValueInformationContainerHalfTwo, investmentInputContainer);
+  var investmentInput = document.createElement('input');
+  investmentInput.classList.add('form__input--investment');
+  investmentInput.classList.add('r__form__input--investment');
+  investmentInput.type = "number";
+  investmentInput.placeholder = "Enter New Value";
+  investmentInput.readOnly = true;
+  insertElement(investmentInputContainer, investmentInput);
+  var investmentValueConfirmationButton = document.createElement('button');
+  investmentValueConfirmationButton.classList.add('button--confirm-value');
+  investmentValueConfirmationButton.classList.add('r__button--confirm-value');
+  var investmentValueConfirmationButtonIcon = document.createElement('i');
+  investmentValueConfirmationButtonIcon.classList.add('fas');
+  investmentValueConfirmationButtonIcon.classList.add('fa-check');
+  investmentValueConfirmationButtonIcon.classList.add('button--confirm-value__icon');
+  investmentValueConfirmationButtonIcon.classList.add('r__button--confirm-value__icon');
+  insertElement(investmentValueConfirmationButton, investmentValueConfirmationButtonIcon);
+  insertElement(investmentInputContainer, investmentValueConfirmationButton);
+  var investmentUpdateValueTextLink = document.createElement('p');
+  investmentUpdateValueTextLink.classList.add('investment-value-information__half__update-text');
+  investmentUpdateValueTextLink.classList.add('r__investment-value-information__half__update-text');
+  investmentUpdateValueTextLink.textContent = "Update Value";
+  insertElement(investmentValueInformationContainerHalfTwo, investmentUpdateValueTextLink);
+  var openUpdateCurrentValueButtons = document.querySelectorAll('.investment-value-information__half__update-text');
+
+  if (openUpdateCurrentValueButtons[0]) {
+    openUpdateCurrentValueButtons.forEach(function (button) {
+      button.removeEventListener('click', _watchForCurrentValueUpdate);
+    });
+    openUpdateCurrentValueButtons.forEach(function (button) {
+      button.addEventListener('click', _watchForCurrentValueUpdate);
+    });
+  } // section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right
   //         section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
   //           i.fas.fa-chart-line.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
   //           p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text PureNSpiration
@@ -8432,6 +8532,7 @@ var addInvestment = function addInvestment(options) {
   //                 button.button--confirm-value.r__button--confirm-value
   //                   i.fas.fa-check.button--confirm-value__icon.r__button--confirm-value__icon
   //               p.investment-value-information__half__update-text.r__investment-value-information__half__update-text Update Value
+
 };
 
 var _watchInvestmentPlanner = function _watchInvestmentPlanner(budget, placeholderBudget, user) {
