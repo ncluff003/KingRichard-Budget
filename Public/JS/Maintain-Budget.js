@@ -8,6 +8,41 @@ import * as Categories from './Budget-Categories';
 // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
 
+const watchInvestmentValueConfirmationButtons = (event) => {
+  const e = event;
+  e.preventDefault();
+  const confirmInvestmentValueButtons = document.querySelectorAll('.button--confirm-value');
+  const clicked = e.target.closest('.button--confirm-value');
+  let index = [...confirmInvestmentValueButtons].indexOf(clicked);
+  console.log(index);
+  confirmInvestmentValueButtons[index].removeEventListener('click', watchInvestmentValueConfirmationButtons);
+  const updateCurrentValueInput = document.querySelectorAll('.form__input--investment');
+  console.log(Number(updateCurrentValueInput[index].value));
+  updateCurrentValueInput[index].setAttribute(`readonly`, true);
+};
+
+const _watchForCurrentValueUpdate = (event) => {
+  const e = event;
+  e.preventDefault();
+  const clicked = e.target;
+  let indexCheckElement = clicked.closest('.investment-value-information__half__update-text');
+  const openUpdateCurrentValueButtons = document.querySelectorAll('.investment-value-information__half__update-text');
+  let index = [...openUpdateCurrentValueButtons].indexOf(indexCheckElement);
+  const updateCurrentValueInput = document.querySelectorAll('.form__input--investment');
+  if (updateCurrentValueInput[index].readOnly === true) {
+    updateCurrentValueInput[index].removeAttribute(`readonly`);
+    console.log(updateCurrentValueInput[index].readOnly);
+    const confirmInvestmentValueButtons = document.querySelectorAll('.button--confirm-value');
+    console.log(confirmInvestmentValueButtons[index]);
+    return confirmInvestmentValueButtons[index].addEventListener('click', watchInvestmentValueConfirmationButtons);
+  }
+  console.log(updateCurrentValueInput[index].readOnly);
+  if (updateCurrentValueInput[index].readOnly === '' || updateCurrentValueInput[index].readOnly === false) {
+    return updateCurrentValueInput[index].setAttribute(`readonly`, true);
+  }
+  console.log(`I want to update.`);
+};
+
 const closeInvestmentCreation = (event) => {
   const closeInvestmentCreationButton = document.querySelector('.button--borderless-narrow__investment');
   const addInvestmentButton = document.querySelector('.container--extra-small__margin-left-and-right__content-icon');
@@ -16,6 +51,80 @@ const closeInvestmentCreation = (event) => {
   replaceClassName(closeInvestmentCreationButton, `open`, `closed`);
   replaceClassName(addInvestmentForm, `open`, `closed`);
   replaceClassName(addInvestmentButton, `closed`, `open`);
+};
+
+const addInvestment = (options) => {
+  console.log(options);
+  const investmentContainers = document.querySelectorAll('.container--extra-small__margin-left-and-right');
+  const investmentAccountPreview = investmentContainers[0];
+  console.log(investmentContainers);
+  const investmentShellContainer = document.createElement('section');
+  investmentShellContainer.classList.add('container--extra-small__margin-left-and-right');
+  investmentShellContainer.classList.add('r__container--extra-small__margin-left-and-right');
+  investmentAccountPreview.insertAdjacentElement('afterend', investmentShellContainer);
+  const investmentHeader = document.createElement('section');
+  investmentHeader.classList.add('container--extra-small__margin-left-and-right__header');
+  investmentHeader.classList.add('r__container--extra-small__margin-left-and-right__header');
+  insertElement(investmentShellContainer, investmentHeader);
+  // Set Appropriate Icons For Investment Type
+  // In order: Stock, Real Estate, Timeshare, Other
+  const investmentTypeIcons = [`arrow-trend-up`, `sign-hanging`, `calendar-clock`, `asterisk`];
+  const investmentHeaderIcon = document.createElement('i');
+  investmentHeaderIcon.classList.add(`fas`);
+  investmentHeaderIcon.classList.add('container--extra-small__margin-left-and-right__header__icon');
+  investmentHeaderIcon.classList.add('r__container--extra-small__margin-left-and-right__header__icon');
+  if (options.type === `Stock`) {
+    investmentHeaderIcon.classList.add(`fa-chart-line`);
+  }
+  if (options.type === `Real Estate`) {
+    investmentHeaderIcon.classList.add(`fa-sign-hanging`);
+  }
+  if (options.type === `Timeshare`) {
+    investmentHeaderIcon.classList.add(`fa-clock`);
+  }
+  if (options.type === `Other`) {
+    investmentHeaderIcon.classList.add(`fa-asterisk`);
+  }
+
+  insertElement(investmentHeader, investmentHeaderIcon);
+  const investmentHeaderText = document.createElement('p');
+  investmentHeaderText.classList.add('container--extra-small__margin-left-and-right__header__text');
+  investmentHeaderText.classList.add('r__container--extra-small__margin-left-and-right__header__text');
+  investmentHeaderText.textContent = options.name;
+
+  insertElement(investmentHeader, investmentHeaderText);
+
+  const investmentHeaderType = document.createElement('p');
+  investmentHeaderType.classList.add('container--extra-small__margin-left-and-right__header__investment-type');
+  investmentHeaderType.classList.add('r__container--extra-small__margin-left-and-right__header__investment-type');
+  investmentHeaderType.textContent = options.type;
+
+  insertElement(investmentHeader, investmentHeaderType);
+
+  // section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right
+  //         section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
+  //           i.fas.fa-chart-line.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
+  //           p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text PureNSpiration
+  //           p.container--extra-small__margin-left-and-right__header__investment-type.r__container--extra-small__margin-left-and-right__header__investment-type Stock
+  //         section.container--extra-small__margin-left-and-right__content__column.r__container--extra-small__margin-left-and-right__content__column
+  //           section.investment-explanatory-information.r__investment-explanatory-information
+  //             section.investment-description.r__investment-description
+  //               p.investment-description__text.r__investment-description__text Company In Utah
+  //             section.investment-settle-container.r__investment-settle-container
+  //               button.button--settle.r__button--settle
+  //                 p.button--settle__text.r__button--settle__text Settle
+  //               //- p.investment-settle-container__graph-link.r__investment-settle-container__graph-link View Graph
+  //           section.investment-value-information.r__investment-value-information
+  //             section.investment-value-information__half.r__investment-value-information__half
+  //               p.investment-value-information__half__header.r__investment-value-information__half__header Initial Investment
+  //               p.investment-value-information__half__text.r__investment-value-information__half__text= `${money.format(0)}`
+  //             section.investment-value-information__half.r__investment-value-information__half
+  //               p.investment-value-information__half__header.r__investment-value-information__half__header Current Value
+  //               section.investment-input-container.r__investment-input-container
+  //                 input.form__input--investment.r__form__input--investment#updateInvestmentValue(type="number" placeholder="Enter New Value" readonly="true")
+  //                 button.button--confirm-value.r__button--confirm-value
+  //                   i.fas.fa-check.button--confirm-value__icon.r__button--confirm-value__icon
+  //               p.investment-value-information__half__update-text.r__investment-value-information__half__update-text Update Value
 };
 
 const _watchInvestmentPlanner = (budget, placeholderBudget, user) => {
@@ -33,6 +142,22 @@ const _watchInvestmentPlanner = (budget, placeholderBudget, user) => {
       replaceClassName(addInvestmentForm, `closed`, `open`);
       replaceClassName(addInvestmentButton, `open`, `closed`);
       closeInvestmentCreationButton.addEventListener('click', closeInvestmentCreation);
+    });
+    const investmentType = document.querySelector('.form__select--accounts-short');
+    const investmentName = document.getElementById('investmentName');
+    const investmentDescription = document.getElementById('investmentDescription');
+    const initialInvestment = document.getElementById('initialInvestment');
+    const createInvestmentButton = document.querySelector('.button--extra-extra-small__alt');
+    createInvestmentButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      addInvestment({ type: investmentType.value, name: investmentName.value, description: investmentDescription.value, initialInvestment: Number(initialInvestment.value) });
+    });
+  }
+
+  const openUpdateCurrentValueButtons = document.querySelectorAll('.investment-value-information__half__update-text');
+  if (openUpdateCurrentValueButtons[0]) {
+    openUpdateCurrentValueButtons.forEach((button) => {
+      button.addEventListener('click', _watchForCurrentValueUpdate);
     });
   }
 };

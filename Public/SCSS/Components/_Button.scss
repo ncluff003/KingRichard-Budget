@@ -411,6 +411,35 @@
     transition: background-color 0.5s, border 0.5s, color 0.5s;
   }
 
+  &--settle {
+    @extend .button;
+    height: 3rem;
+    width: 40%;
+    border-radius: 5rem;
+    border: 0.2rem solid rgba($primaryColor, 0.75);
+    transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    &:hover {
+      border: 0.2rem solid $primaryColor;
+    }
+  }
+
+  &--confirm-value {
+    @include SizeAndPositioning(relative, 95%, 15%, flex, row, nowrap, center, center, 0, 0, 0);
+    background-color: rgba($primaryColor, 0.8);
+    border: 0.2rem solid rgba($primaryColor, 0.8);
+    border-left: none;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    &:hover {
+      cursor: pointer;
+      background-color: $secondaryColor;
+      border: 0.2rem solid $secondaryColor;
+      border-left: none;
+      transition: border 0.5s, background-color 0.5s, color 0.5s;
+    }
+  }
+
   &--transaction-button {
     @extend .button;
     height: 4rem;

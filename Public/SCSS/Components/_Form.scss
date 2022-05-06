@@ -191,35 +191,6 @@
         margin-bottom: 8rem;
       }
     }
-    &--income {
-      @extend .form__row;
-      // &:first-of-type {
-      //   .form__section--enter-income {
-      //     justify-content: flex-start;
-      //   }
-      //   margin-bottom: 2rem;
-      // }
-      // &:nth-of-type(2) {
-      //   justify-content: flex-start;
-      //   .form__section--medium {
-      //     justify-content: flex-end;
-      //     &:first-of-type {
-      //       margin: 0;
-      //       margin-right: 2.5rem;
-      //     }
-      //     .form-input {
-      //       width: 90%;
-      //       &:not(:placeholder-shown) + label,
-      //       &:focus + label {
-      //         transform: translate(-2rem, -3rem) scale(0.95);
-      //       }
-      //     }
-      //     .form-label {
-      //       -moz-transform: translate(-1.5rem, 0);
-      //     }
-      //   }
-      // }
-    }
     &--transaction {
       @extend .form__row;
       flex-wrap: wrap;
@@ -800,21 +771,6 @@
     }
   }
 
-  // &__select,
-  // &__input {
-  //   @include SizeAndPositioning(relative, 100%, 50%, flex, row, nowrap, center, center, 0, 0, 0);
-  //   border-top: 0.2rem solid $primaryColor;
-  //   border-bottom: 0.2rem solid $primaryColor;
-  //   padding-left: 1rem;
-  //   transition: background-color 0.5s, color 0.5s, border 0.5s;
-  //   &:focus {
-  //     outline: none;
-  //   }
-  //   &:hover {
-  //     cursor: pointer;
-  //   }
-  // }
-
   // FORM INPUTS
   &__input {
     @include SizeAndPositioning(relative, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, 0, 0);
@@ -1092,6 +1048,18 @@
           }
         }
       }
+    }
+
+    &--investment {
+      @extend .form__input--small-thin;
+      margin-bottom: 0;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-right: none;
+      &:nth-last-of-type(1) {
+        margin-bottom: 0;
+      }
+      width: 50%;
     }
 
     &--transaction-plan {

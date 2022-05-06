@@ -21,6 +21,24 @@ block Budget-Content
             p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text PureNSpiration
             p.container--extra-small__margin-left-and-right__header__investment-type.r__container--extra-small__margin-left-and-right__header__investment-type Stock
           section.container--extra-small__margin-left-and-right__content__column.r__container--extra-small__margin-left-and-right__content__column
+            section.investment-explanatory-information.r__investment-explanatory-information
+              section.investment-description.r__investment-description 
+                p.investment-description__text.r__investment-description__text Company In Utah
+              section.investment-settle-container.r__investment-settle-container 
+                button.button--settle.r__button--settle 
+                  p.button--settle__text.r__button--settle__text Settle
+                //- p.investment-settle-container__graph-link.r__investment-settle-container__graph-link View Graph
+            section.investment-value-information.r__investment-value-information
+              section.investment-value-information__half.r__investment-value-information__half
+                p.investment-value-information__half__header.r__investment-value-information__half__header Initial Investment
+                p.investment-value-information__half__text.r__investment-value-information__half__text= `${money.format(0)}`
+              section.investment-value-information__half.r__investment-value-information__half
+                p.investment-value-information__half__header.r__investment-value-information__half__header Current Value
+                section.investment-input-container.r__investment-input-container
+                  input.form__input--investment.r__form__input--investment#updateInvestmentValue(type="number" placeholder="Enter New Value" readonly="true")
+                  button.button--confirm-value.r__button--confirm-value
+                    i.fas.fa-check.button--confirm-value__icon.r__button--confirm-value__icon
+                p.investment-value-information__half__update-text.r__investment-value-information__half__update-text Update Value
         section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right 
           section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
             i.fas.fa-chart-line.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
@@ -51,3 +69,15 @@ block Budget-Content
       section.container--extra-large__half__header.r__container--extra-large__half__header 
         p.container--extra-large__half__header__text.r__container--extra-large__half__header__text Settled Investments
       section.investment-container.investment-container
+        section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right 
+          section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
+            i.fas.fa-chart-line.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
+            p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text PureNSpiration
+            p.container--extra-small__margin-left-and-right__header__investment-type.r__container--extra-small__margin-left-and-right__header__investment-type Stock
+          section.container--extra-small__margin-left-and-right__content__column.r__container--extra-small__margin-left-and-right__content__column
+            section.investment-explanatory-information.r__investment-explanatory-information
+              section.investment-description.r__investment-description 
+                p.investment-description__text.r__investment-description__text Company In Utah
+                //- p.investment-settle-container__graph-link.r__investment-settle-container__graph-link View Graph
+            section.investment-value-information--settled.r__investment-value-information--settled
+              p.investment-value-information--settled__text.r__.investment-value-information--settled__text= `Gained $5,000`

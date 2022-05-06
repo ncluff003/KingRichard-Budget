@@ -101,6 +101,35 @@
           @extend .container--extra-small__margin-left-and-right__content;
           flex-flow: column nowrap;
           justify-content: space-evenly;
+          .investment-explanatory-information {
+            @include SizeAndPositioning(relative, 65%, 100%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+            border-bottom: 0.2rem solid $primaryColor;
+            .investment-description,
+            .investment-settle-container {
+              @include SizeAndPositioning(relative, 50%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+            }
+          }
+          .investment-value-information,
+          .investment-value-information--settled {
+            @include SizeAndPositioning(relative, 35%, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
+            &__half {
+              @include SizeAndPositioning(relative, 100%, 50%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+              &:first-of-type {
+                border-right: 0.2rem solid $primaryColor;
+              }
+              &:nth-of-type(2) {
+                justify-content: center;
+              }
+              .investment-input-container {
+                @include SizeAndPositioning(relative, 40%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+              }
+              &__update-text {
+                @include SizeAndPositioning(absolute, max-content, max-content, flex, row, nowrap, center, center, 0, 0, 0);
+                bottom: -0.25rem;
+                right: 0.5rem;
+              }
+            }
+          }
         }
       }
       &:nth-of-type(4) {

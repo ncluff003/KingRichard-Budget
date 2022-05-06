@@ -1366,6 +1366,20 @@ html {
     color: $colorOffWhite;
   }
 
+  &--settle {
+    @extend .button;
+    font-size: 1.4rem;
+  }
+
+  &--confirm-value {
+    @extend .button;
+    font-size: 1.4rem;
+    color: rgba($colorOffWhite, 0.8);
+    &:hover {
+      color: $colorOffWhite;
+    }
+  }
+
   &--budget-navigation {
     @extend .button;
     font-size: 2.8rem;
@@ -1801,6 +1815,32 @@ html {
           @extend .container--extra-small__content;
           font-size: 8rem;
           color: rgba($primaryColor, 0.8);
+        }
+        &__column {
+          .investment-explanatory-information {
+            .investment-description {
+              @extend .container;
+              font-size: 2rem;
+              color: $primaryColor;
+            }
+          }
+          .investment-value-information,
+          .investment-value-information--settled {
+            @extend .container;
+            &__half {
+              &__header {
+                font-size: 1.6rem;
+                text-align: center;
+                text-decoration: underline;
+              }
+              &__text {
+                font-size: 1.4rem;
+              }
+            }
+            &__text {
+              font-size: 2.4rem;
+            }
+          }
         }
       }
     }
@@ -2803,6 +2843,11 @@ html {
       & + label {
         color: $primaryColor;
       }
+    }
+
+    &--investment {
+      @extend .form__input;
+      font-size: 1.2rem;
     }
 
     &--half-left {
