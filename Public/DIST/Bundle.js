@@ -7677,6 +7677,35 @@ var Budget = /*#__PURE__*/function () {
           _Manage_Budget__WEBPACK_IMPORTED_MODULE_3__.updateMyBudget(options.updateObject, pageLink);
         }
 
+        if (update === "Add Investment") {
+          console.log("Investing...", options, options.investments);
+          var investmentType = document.querySelector('.form__select--accounts-short');
+          var investmentName = document.getElementById('investmentName');
+          var investmentDescription = document.getElementById('investmentDescription');
+          var initialInvestment = document.getElementById('initialInvestment');
+          var currentValue = initialInvestment.value;
+          var valueDifference = Number(currentValue - initialInvestment.value);
+          if (isNaN(valueDifference)) valueDifference = 0;
+          options.updateObject.investments.push({
+            investmentType: investmentType.value,
+            investmentName: investmentName.value,
+            investmentDescription: investmentDescription.value,
+            initialInvestment: Number(initialInvestment.value),
+            currentValue: Number(currentValue),
+            valueDifference: valueDifference
+          });
+          _Manage_Budget__WEBPACK_IMPORTED_MODULE_3__.updateMyBudget(options.updateObject, pageLink);
+        }
+
+        if (update === "Update Investment") {
+          console.log("Updating...", options);
+          _Manage_Budget__WEBPACK_IMPORTED_MODULE_3__.updateMyBudget(options.updateObject, pageLink);
+        }
+
+        if (update === "Settle Investment") {
+          console.log("Settling...", options); // Manage.updateMyBudget(options.updateObject, pageLink);
+        }
+
         console.log("Updating...");
       }
     }
@@ -7778,6 +7807,7 @@ var Budget = /*#__PURE__*/function () {
         });
         this.transactions = budget.transactions;
         this.investments = budget.investments;
+        this.debts = budget.debts;
         console.log(budget);
       }
     }
@@ -8308,38 +8338,245 @@ __webpack_require__.r(__webpack_exports__);
  // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
 
-var watchInvestmentValueConfirmationButtons = function watchInvestmentValueConfirmationButtons(event) {
-  var e = event;
-  e.preventDefault();
-  var confirmInvestmentValueButtons = document.querySelectorAll('.button--confirm-value');
-  var clicked = e.target.closest('.button--confirm-value');
+var settleInvestment = function settleInvestment(investments, index, budget, placeholderBudget, user) {
+  console.log(investments, index);
+  var investmentContainers = document.querySelectorAll('.investment-container');
+  console.log(investmentContainers);
+  var settledInvestmentShellContainer = document.createElement('section');
+  settledInvestmentShellContainer.classList.add('container--extra-small__margin-left-and-right');
+  settledInvestmentShellContainer.classList.add('r__container--extra-small__margin-left-and-right');
+  insertElement(investmentContainers[1], settledInvestmentShellContainer);
+  var settledInvestmentContainerHeader = document.createElement('section');
+  settledInvestmentContainerHeader.classList.add('container--extra-small__margin-left-and-right__header');
+  settledInvestmentContainerHeader.classList.add('r__container--extra-small__margin-left-and-right__header');
+  insertElement(settledInvestmentShellContainer, settledInvestmentContainerHeader);
+  var investmentTypeIcons = ["arrow-trend-up", "sign-hanging", "calendar-clock", "asterisk"];
+  var investmentHeaderIcon = document.createElement('i');
+  investmentHeaderIcon.classList.add("fas");
+  investmentHeaderIcon.classList.add('container--extra-small__margin-left-and-right__header__icon');
+  investmentHeaderIcon.classList.add('r__container--extra-small__margin-left-and-right__header__icon');
 
-  var index = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(confirmInvestmentValueButtons).indexOf(clicked);
+  if (investments[index].firstChild.firstChild) {
+    if (investments[index].firstChild.firstChild.classList.contains("fa-chart-line")) {
+      investmentHeaderIcon.classList.add("fa-chart-line");
+    }
+
+    if (investments[index].firstChild.firstChild.classList.contains('fa-sign-hanging')) {
+      investmentHeaderIcon.classList.add("fa-sign-hanging");
+    }
+
+    if (investments[index].firstChild.firstChild.classList.contains('fa-clock')) {
+      investmentHeaderIcon.classList.add("fa-clock");
+    }
+
+    if (investments[index].firstChild.firstChild.classList.contains('fa-asterisk')) {
+      investmentHeaderIcon.classList.add("fa-asterisk");
+    }
+
+    insertElement(settledInvestmentContainerHeader, investmentHeaderIcon);
+    var investmentHeaderText = document.createElement('p');
+    investmentHeaderText.classList.add('container--extra-small__margin-left-and-right__header__text');
+    investmentHeaderText.classList.add('r__container--extra-small__margin-left-and-right__header__text');
+    investmentHeaderText.textContent = investments[index].firstChild.firstChild.nextSibling.textContent;
+    insertElement(settledInvestmentContainerHeader, investmentHeaderText); // CREATE INVESTMENT CONTENT
+
+    var investmentContent = document.createElement('section');
+    investmentContent.classList.add('container--extra-small__margin-left-and-right__content__column');
+    investmentContent.classList.add('r__container--extra-small__margin-left-and-right__content__column');
+    insertElement(settledInvestmentShellContainer, investmentContent); // CREATE INVESTMENT EXPLANATORY CONTENT
+
+    var investmentExplanationSection = document.createElement('section');
+    investmentExplanationSection.classList.add('investment-explanatory-information');
+    investmentExplanationSection.classList.add('r__investment-explanatory-information');
+    insertElement(investmentContent, investmentExplanationSection);
+    var investmentDescription = document.createElement('section');
+    investmentDescription.classList.add('investment-description');
+    investmentDescription.classList.add('r__investment-description');
+    insertElement(investmentExplanationSection, investmentDescription);
+    var investmentDescriptionText = document.createElement('p');
+    investmentDescriptionText.classList.add('investment-description__text');
+    investmentDescriptionText.classList.add('r__investment-description__text');
+    investmentDescriptionText.textContent = investments[index].firstChild.nextSibling.firstChild.firstChild.firstChild.textContent;
+    var settledInvestmentValueContainer = document.createElement('section');
+    settledInvestmentValueContainer.classList.add('investment-value-information--settled');
+    settledInvestmentValueContainer.classList.add('r__investment-value-information--settled');
+    insertElement(investmentContent, settledInvestmentValueContainer);
+    var settledValueContainerText = document.createElement('p');
+    settledValueContainerText.classList.add('investment-value-information--settled__text');
+    settledValueContainerText.classList.add('r__investment-value-information--settled__text');
+    console.log(investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild.nextSibling, investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild);
+
+    if (budget.investments[index - 1].valueDifference < 0) {
+      settledValueContainerText.textContent = "Lost ".concat(Number(budget.investments[index - 1].initialInvestment - budget.investments[index - 1].currentValue));
+      settledInvestmentShellContainer.classList.add('negative-investment');
+    }
+
+    if (budget.investments[index - 1].valueDifference === 0) {
+      settledValueContainerText.textContent = "Broke Even";
+      settledInvestmentShellContainer.classList.add('neutral-investment');
+    }
+
+    if (budget.investments[index - 1].valueDifference > 0) {
+      settledValueContainerText.textContent = "Gained ".concat(Number(budget.investments[index - 1].currentValue - budget.investments[index - 1].initialInvestment));
+      settledInvestmentShellContainer.classList.add('positive-investment');
+    }
+
+    var investmentInitialValue = Number(investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild.firstChild.nextSibling.textContent.split('$')[1]);
+    console.log(investmentInitialValue);
+    insertElement(settledInvestmentValueContainer, settledValueContainerText);
+  }
+
+  if (!investments[index].firstChild.firstChild) {
+    console.log(investments[index].firstChild.nextSibling.firstChild);
+
+    if (investments[index].firstChild.nextSibling.firstChild.classList.contains("fa-chart-line")) {
+      investmentHeaderIcon.classList.add("fa-chart-line");
+    }
+
+    if (investments[index].firstChild.nextSibling.firstChild.classList.contains('fa-sign-hanging')) {
+      investmentHeaderIcon.classList.add("fa-sign-hanging");
+    }
+
+    if (investments[index].firstChild.nextSibling.firstChild.classList.contains('fa-clock')) {
+      investmentHeaderIcon.classList.add("fa-clock");
+    }
+
+    if (investments[index].firstChild.nextSibling.firstChild.classList.contains('fa-asterisk')) {
+      investmentHeaderIcon.classList.add("fa-asterisk");
+    }
+
+    insertElement(settledInvestmentContainerHeader, investmentHeaderIcon);
+
+    var _investmentHeaderText = document.createElement('p');
+
+    _investmentHeaderText.classList.add('container--extra-small__margin-left-and-right__header__text');
+
+    _investmentHeaderText.classList.add('r__container--extra-small__margin-left-and-right__header__text');
+
+    _investmentHeaderText.textContent = investments[index].firstChild.nextSibling.firstChild.nextSibling.textContent;
+    insertElement(settledInvestmentContainerHeader, _investmentHeaderText); // CREATE INVESTMENT CONTENT
+
+    var _investmentContent = document.createElement('section');
+
+    _investmentContent.classList.add('container--extra-small__margin-left-and-right__content__column');
+
+    _investmentContent.classList.add('r__container--extra-small__margin-left-and-right__content__column');
+
+    insertElement(settledInvestmentShellContainer, _investmentContent); // CREATE INVESTMENT EXPLANATORY CONTENT
+
+    var _investmentExplanationSection = document.createElement('section');
+
+    _investmentExplanationSection.classList.add('investment-explanatory-information');
+
+    _investmentExplanationSection.classList.add('r__investment-explanatory-information');
+
+    insertElement(_investmentContent, _investmentExplanationSection);
+
+    var _investmentDescription = document.createElement('section');
+
+    _investmentDescription.classList.add('investment-description');
+
+    _investmentDescription.classList.add('r__investment-description');
+
+    insertElement(_investmentExplanationSection, _investmentDescription);
+
+    var _investmentDescriptionText = document.createElement('p');
+
+    _investmentDescriptionText.classList.add('investment-description__text');
+
+    _investmentDescriptionText.classList.add('r__investment-description__text');
+
+    console.log(investments[index].firstChild.nextSibling.nextSibling.firstChild.firstChild.textContent);
+    _investmentDescriptionText.textContent = investments[index].firstChild.nextSibling.nextSibling.firstChild.firstChild.textContent;
+    insertElement(_investmentDescription, _investmentDescriptionText);
+
+    var _settledInvestmentValueContainer = document.createElement('section');
+
+    _settledInvestmentValueContainer.classList.add('investment-value-information--settled');
+
+    _settledInvestmentValueContainer.classList.add('r__investment-value-information--settled');
+
+    insertElement(_investmentContent, _settledInvestmentValueContainer);
+
+    var _settledValueContainerText = document.createElement('p');
+
+    _settledValueContainerText.classList.add('investment-value-information--settled__text');
+
+    _settledValueContainerText.classList.add('r__investment-value-information--settled__text');
+
+    console.log(investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild.nextSibling, investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild);
+
+    if (budget.investments[index - 1].valueDifference < 0) {
+      _settledValueContainerText.textContent = "Lost ".concat(Number(budget.investments[index - 1].initialInvestment - budget.investments[index - 1].currentValue));
+      settledInvestmentShellContainer.classList.add('negative-investment');
+    }
+
+    if (budget.investments[index - 1].valueDifference === 0) {
+      _settledValueContainerText.textContent = "Broke Even";
+      settledInvestmentShellContainer.classList.add('neutral-investment');
+    }
+
+    if (budget.investments[index - 1].valueDifference > 0) {
+      _settledValueContainerText.textContent = "Gained ".concat(Number(budget.investments[index - 1].currentValue - budget.investments[index - 1].initialInvestment));
+      settledInvestmentShellContainer.classList.add('positive-investment');
+    }
+
+    var _investmentInitialValue = Number(investments[index].firstChild.nextSibling.nextSibling.firstChild.nextSibling.firstChild.firstChild.nextSibling.textContent.split('$')[1]);
+
+    console.log(_investmentInitialValue);
+    insertElement(_settledInvestmentValueContainer, _settledValueContainerText);
+  } // investments[index].remove();
+  // section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right
+  // section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
+  //   i.fas.fa-chart-line.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
+  //   p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text PureNSpiration
+  //   p.container--extra-small__margin-left-and-right__header__investment-type.r__container--extra-small__margin-left-and-right__header__investment-type Stock
+  // section.container--extra-small__margin-left-and-right__content__column.r__container--extra-small__margin-left-and-right__content__column
+  //   section.investment-explanatory-information.r__investment-explanatory-information
+  //     section.investment-description.r__investment-description
+  //       p.investment-description__text.r__investment-description__text Company In Utah
+  //       //- p.investment-settle-container__graph-link.r__investment-settle-container__graph-link View Graph
+  //   section.investment-value-information--settled.r__investment-value-information--settled
+  //     p.investment-value-information--settled__text.r__.investment-value-information--settled__text= `Gained $5,000`
+
+};
+
+var watchInvestmentValueConfirmationButtons = function watchInvestmentValueConfirmationButtons(event, index, budget, placeholderBudget, user) {
+  // const e = event;
+  // e.preventDefault();
+  var confirmInvestmentValueButtons = document.querySelectorAll('.button--confirm-value'); // const clicked = e.target.closest('.button--confirm-value');
+  // let index = [...confirmInvestmentValueButtons].indexOf(clicked);
 
   console.log(index);
+  var investments = budget.investments;
+  console.log(investments[index]);
   confirmInvestmentValueButtons[index].removeEventListener('click', watchInvestmentValueConfirmationButtons);
   var updateCurrentValueInput = document.querySelectorAll('.form__input--investment');
   console.log(Number(updateCurrentValueInput[index].value));
+  investments[index].currentValue = Number(updateCurrentValueInput[index].value);
+  investments[index].valueDifference = Number(investments[index].currentValue - investments[index].initialInvestment);
   updateCurrentValueInput[index].setAttribute("readonly", true);
+  console.log(investments[index]);
+
+  placeholderBudget._updateBudget('Update', "Update Investment", {
+    updateObject: {
+      budgetId: budget._id,
+      userId: user._id,
+      investments: investments
+    }
+  }, "Investment-Planner");
 };
 
-var _watchForCurrentValueUpdate = function _watchForCurrentValueUpdate(event) {
-  var e = event;
-  e.preventDefault();
-  var clicked = e.target;
-  var indexCheckElement = clicked.closest('.investment-value-information__half__update-text');
-  var openUpdateCurrentValueButtons = document.querySelectorAll('.investment-value-information__half__update-text');
-
-  var index = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(openUpdateCurrentValueButtons).indexOf(indexCheckElement);
-
+var _watchForCurrentValueUpdate = function _watchForCurrentValueUpdate(event, index, budget, placeholderBudget, user) {
   var updateCurrentValueInput = document.querySelectorAll('.form__input--investment');
+  console.log(index);
 
   if (updateCurrentValueInput[index].readOnly === true) {
     updateCurrentValueInput[index].removeAttribute("readonly");
     console.log(updateCurrentValueInput[index].readOnly);
     var confirmInvestmentValueButtons = document.querySelectorAll('.button--confirm-value');
     console.log(confirmInvestmentValueButtons[index]);
-    return confirmInvestmentValueButtons[index].addEventListener('click', watchInvestmentValueConfirmationButtons);
+    return confirmInvestmentValueButtons[index].addEventListener('click', watchInvestmentValueConfirmationButtons.bind(null, event, index, budget, placeholderBudget, user));
   }
 
   console.log(updateCurrentValueInput[index].readOnly);
@@ -8349,6 +8586,7 @@ var _watchForCurrentValueUpdate = function _watchForCurrentValueUpdate(event) {
   }
 
   console.log("I want to update.");
+  console.log(index);
 };
 
 var closeInvestmentCreation = function closeInvestmentCreation(event) {
@@ -8437,15 +8675,24 @@ var addInvestment = function addInvestment(options) {
   investmentSettleContainer.classList.add('investment-settle-container');
   investmentSettleContainer.classList.add('r__investment-settle-container');
   insertElement(investmentExplanationSection, investmentSettleContainer);
-  var investementSettleButton = document.createElement('button');
-  investementSettleButton.classList.add('button--settle');
-  investementSettleButton.classList.add('r__button--settle');
-  insertElement(investmentSettleContainer, investementSettleButton);
-  var investementSettleButtonText = document.createElement('p');
-  investementSettleButtonText.classList.add('button--settle__text');
-  investementSettleButtonText.classList.add('r__button--settle__text');
-  investementSettleButtonText.textContent = "Settle";
-  insertElement(investementSettleButton, investementSettleButtonText);
+  var investmentSettleButton = document.createElement('button');
+  investmentSettleButton.classList.add('button--settle');
+  investmentSettleButton.classList.add('r__button--settle');
+  insertElement(investmentSettleContainer, investmentSettleButton);
+  var investmentSettleButtonText = document.createElement('p');
+  investmentSettleButtonText.classList.add('button--settle__text');
+  investmentSettleButtonText.classList.add('r__button--settle__text');
+  investmentSettleButtonText.textContent = "Settle";
+  investmentSettleButton.addEventListener('click', function (e) {
+    e.preventDefault();
+    var clicked = e.target;
+    var investmentShellContainers = document.querySelectorAll('.container--extra-small__margin-left-and-right');
+
+    var currentInvestmentIndex = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(investmentShellContainers).indexOf(clicked.closest('.container--extra-small__margin-left-and-right'));
+
+    settleInvestment(investmentShellContainers, currentInvestmentIndex, options.budget, options.placeholderBudget, options.user);
+  });
+  insertElement(investmentSettleButton, investmentSettleButtonText);
   var investmentValueInformationContainer = document.createElement('section');
   investmentValueInformationContainer.classList.add('investment-value-information');
   investmentValueInformationContainer.classList.add('r__investment-value-information');
@@ -8499,40 +8746,26 @@ var addInvestment = function addInvestment(options) {
   investmentUpdateValueTextLink.classList.add('r__investment-value-information__half__update-text');
   investmentUpdateValueTextLink.textContent = "Update Value";
   insertElement(investmentValueInformationContainerHalfTwo, investmentUpdateValueTextLink);
-  var openUpdateCurrentValueButtons = document.querySelectorAll('.investment-value-information__half__update-text');
-
-  if (openUpdateCurrentValueButtons[0]) {
-    openUpdateCurrentValueButtons.forEach(function (button) {
-      button.removeEventListener('click', _watchForCurrentValueUpdate);
-    });
-    openUpdateCurrentValueButtons.forEach(function (button) {
-      button.addEventListener('click', _watchForCurrentValueUpdate);
-    });
-  } // section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right
-  //         section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
-  //           i.fas.fa-chart-line.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
-  //           p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text PureNSpiration
-  //           p.container--extra-small__margin-left-and-right__header__investment-type.r__container--extra-small__margin-left-and-right__header__investment-type Stock
-  //         section.container--extra-small__margin-left-and-right__content__column.r__container--extra-small__margin-left-and-right__content__column
-  //           section.investment-explanatory-information.r__investment-explanatory-information
-  //             section.investment-description.r__investment-description
-  //               p.investment-description__text.r__investment-description__text Company In Utah
-  //             section.investment-settle-container.r__investment-settle-container
-  //               button.button--settle.r__button--settle
-  //                 p.button--settle__text.r__button--settle__text Settle
-  //               //- p.investment-settle-container__graph-link.r__investment-settle-container__graph-link View Graph
-  //           section.investment-value-information.r__investment-value-information
-  //             section.investment-value-information__half.r__investment-value-information__half
-  //               p.investment-value-information__half__header.r__investment-value-information__half__header Initial Investment
-  //               p.investment-value-information__half__text.r__investment-value-information__half__text= `${money.format(0)}`
-  //             section.investment-value-information__half.r__investment-value-information__half
-  //               p.investment-value-information__half__header.r__investment-value-information__half__header Current Value
-  //               section.investment-input-container.r__investment-input-container
-  //                 input.form__input--investment.r__form__input--investment#updateInvestmentValue(type="number" placeholder="Enter New Value" readonly="true")
-  //                 button.button--confirm-value.r__button--confirm-value
-  //                   i.fas.fa-check.button--confirm-value__icon.r__button--confirm-value__icon
-  //               p.investment-value-information__half__update-text.r__investment-value-information__half__update-text Update Value
-
+  window.location.reload(); // GLITCH: RIGHT NOW, WHAT HAPPENS IS THAT UNLESS THE USER REFRESHES THE BROWSER, THEY CANNOT UPDATE THE NEWEST OR NEWLY CREATED INVESTMENTS.
+  // Right now, I am forcing the reload of the page to solve the issue for now.  However, I would like to not have to do that.
+  // if (openUpdateCurrentValueButtons[0]) {
+  //   openUpdateCurrentValueButtons.forEach((button, i) => {
+  //     if (i === openUpdateCurrentValueButtons.length - 1) {
+  //       let index = i;
+  //       let boundListener = _watchForCurrentValueUpdate.bind(null, event, index, options.budget, options.placeholderBudget, options.user);
+  //       button.removeEventListener('click', boundListener);
+  //       const openUpdateCurrentValueButtons = document.querySelectorAll('.investment-value-information__half__update-text');
+  //     }
+  //   });
+  //   openUpdateCurrentValueButtons.forEach((button, i) => {
+  //     let index = i;
+  //     if (i === openUpdateCurrentValueButtons.length - 1) {
+  //       let boundListener = _watchForCurrentValueUpdate.bind(null, event, index, options.budget, options.placeholderBudget, options.user);
+  //       console.log(button, openUpdateCurrentValueButtons);
+  //       button.addEventListener('click', boundListener);
+  //     }
+  //   });
+  // }
 };
 
 var _watchInvestmentPlanner = function _watchInvestmentPlanner(budget, placeholderBudget, user) {
@@ -8565,16 +8798,87 @@ var _watchInvestmentPlanner = function _watchInvestmentPlanner(budget, placehold
         type: investmentType.value,
         name: investmentName.value,
         description: investmentDescription.value,
-        initialInvestment: Number(initialInvestment.value)
+        initialInvestment: Number(initialInvestment.value),
+        budget: budget,
+        placeholderBudget: placeholderBudget,
+        user: user
       });
+
+      placeholderBudget._updateBudget("Update", "Add Investment", {
+        updateObject: {
+          budgetId: budget._id,
+          userId: user._id,
+          investments: placeholderBudget.investments
+        }
+      }, "Investment-Planner");
     });
   }
 
+  var investmentHeaderIcons = document.querySelectorAll('.container--extra-small__margin-left-and-right__header__icon');
+
+  if (investmentHeaderIcons[1]) {
+    var investmentTypeSelect = document.querySelectorAll('.form__select--accounts-short');
+    console.log(investmentTypeSelect);
+    placeholderBudget.investments.forEach(function (investment, i) {
+      if (investment.investmentType === "Stock") {
+        if (investmentHeaderIcons[i + 1].classList[1] !== "fa-chart-line") {
+          replaceClassName(investmentHeaderIcons[i + 1], investmentHeaderIcons[i + 1].classList[1], "fa-chart-line");
+        }
+
+        console.log(investmentHeaderIcons[i + 1].classList);
+      }
+
+      if (investment.investmentType === "Real Estate") {
+        if (investmentHeaderIcons[i + 1].classList[1] !== "fa-sign-hanging") {
+          replaceClassName(investmentHeaderIcons[i + 1], investmentHeaderIcons[i + 1].classList[1], "fa-sign-hanging");
+        }
+
+        console.log(investmentHeaderIcons[i + 1].classList);
+      }
+
+      if (investment.investmentType === "Timeshare") {
+        if (investmentHeaderIcons[i + 1].classList[1] !== "fa-clock") {
+          replaceClassName(investmentHeaderIcons[i + 1], investmentHeaderIcons[i + 1].classList[1], "fa-clock");
+        }
+
+        console.log(investmentHeaderIcons[i + 1].classList);
+      }
+
+      if (investment.investmentType === "Other") {
+        if (investmentHeaderIcons[i + 1].classList[1] !== "fa-asterisk") {
+          replaceClassName(investmentHeaderIcons[i + 1], investmentHeaderIcons[i + 1].classList[1], "fa-asterisk");
+        }
+
+        console.log(investmentHeaderIcons[i + 1].classList);
+      }
+    });
+  }
+
+  var investmentContainers = document.querySelectorAll('.container--extra-small__margin-left-and-right');
+  var investmentValueInformationContainers = document.querySelectorAll('.investment-value-information');
+  var investmentSettleButtons = document.querySelectorAll('.button--settle');
+  investmentSettleButtons.forEach(function (button, i) {
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+      var clicked = e.target;
+
+      var currentInvestmentIndex = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(investmentContainers).indexOf(clicked.closest('.container--extra-small__margin-left-and-right'));
+
+      console.log(currentInvestmentIndex);
+      settleInvestment(investmentContainers, currentInvestmentIndex, budget, placeholderBudget, user);
+    });
+  });
+  console.log(investmentValueInformationContainers, investmentContainers);
   var openUpdateCurrentValueButtons = document.querySelectorAll('.investment-value-information__half__update-text');
 
   if (openUpdateCurrentValueButtons[0]) {
-    openUpdateCurrentValueButtons.forEach(function (button) {
-      button.addEventListener('click', _watchForCurrentValueUpdate);
+    openUpdateCurrentValueButtons.forEach(function (button, i) {
+      var index = i;
+
+      var boundListener = _watchForCurrentValueUpdate.bind(null, event, index, budget, placeholderBudget, user); // button.removeEventListener(`click`, boundListener);
+
+
+      button.addEventListener('click', boundListener); // addEventListener('click', myPrettyHandler.bind(null, event, arg1, ... ));
     });
   }
 };

@@ -2361,6 +2361,45 @@ html {
   color: #822aba;
 }
 
+.positive-investment {
+  border-color: #38d927;
+}
+.positive-investment .container--extra-small__margin-left-and-right__header {
+  background-color: #38d927;
+}
+.positive-investment .container--extra-small__margin-left-and-right__content__column .investment-explanatory-information .investment-description__text {
+  color: #38d927;
+}
+.positive-investment .container--extra-small__margin-left-and-right__content__column .investment-value-information--settled__text {
+  color: #38d927;
+}
+
+.neutral-investment {
+  border-color: #822aba;
+}
+.neutral-investment .container--extra-small__margin-left-and-right__header {
+  background-color: #822aba;
+}
+.neutral-investment .container--extra-small__margin-left-and-right__content__column .investment-explanatory-information .investment-description__text {
+  color: #822aba;
+}
+.neutral-investment .container--extra-small__margin-left-and-right__content__column .investment-value-information--settled__text {
+  color: #822aba;
+}
+
+.negative-investment {
+  border-color: #cf352e;
+}
+.negative-investment .container--extra-small__margin-left-and-right__header {
+  background-color: #cf352e;
+}
+.negative-investment .container--extra-small__margin-left-and-right__content__column .investment-explanatory-information .investment-description__text {
+  color: #cf352e;
+}
+.negative-investment .container--extra-small__margin-left-and-right__content__column .investment-value-information--settled__text {
+  color: #cf352e;
+}
+
 .gridTV {
   display: grid;
   height: 100vh;
@@ -50392,6 +50431,36 @@ body {
 }
 .extend-transaction-plan .form__row--transaction {
   margin-bottom: 9rem;
+}
+
+.positive-investment {
+  border-color: #38d927;
+}
+.positive-investment .container--extra-small__margin-left-and-right__header {
+  background-color: #38d927;
+}
+.positive-investment .container--extra-small__margin-left-and-right__content__column .investment-explanatory-information {
+  border-bottom-color: #38d927;
+}
+
+.neutral-investment {
+  border-color: #822aba;
+}
+.neutral-investment .container--extra-small__margin-left-and-right__header {
+  background-color: #822aba;
+}
+.neutral-investment .container--extra-small__margin-left-and-right__content__column .investment-explanatory-information {
+  border-bottom-color: #822aba;
+}
+
+.negative-investment {
+  border-color: #cf352e;
+}
+.negative-investment .container--extra-small__margin-left-and-right__header {
+  background-color: #cf352e;
+}
+.negative-investment .container--extra-small__margin-left-and-right__content__column .investment-explanatory-information {
+  border-bottom-color: #cf352e;
 }
 
 /*!

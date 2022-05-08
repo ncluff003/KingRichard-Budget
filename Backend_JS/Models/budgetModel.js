@@ -280,9 +280,17 @@ const budgetSchema = new mongoose.Schema({
   },
   investments: [
     {
-      name: {
+      investmentType: {
         type: String,
-        required: [true, `Every Investment Must Have A Name`],
+        enum: [`Stock`, `Real Estate`, `Timeshare`, `Other`],
+        required: [true, `Every Investment Must Have A Type`],
+      },
+      investmentName: {
+        type: String,
+        required: [true, `Every Investment Must Be Named`],
+      },
+      investmentDescription: {
+        type: String,
       },
       initialInvestment: {
         type: Number,

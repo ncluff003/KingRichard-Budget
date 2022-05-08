@@ -232,6 +232,36 @@ export class Budget {
         Manage.updateMyBudget(options.updateObject, pageLink);
       }
 
+      if (update === `Add Investment`) {
+        console.log(`Investing...`, options, options.investments);
+        const investmentType = document.querySelector('.form__select--accounts-short');
+        const investmentName = document.getElementById('investmentName');
+        const investmentDescription = document.getElementById('investmentDescription');
+        const initialInvestment = document.getElementById('initialInvestment');
+        let currentValue = initialInvestment.value;
+        let valueDifference = Number(currentValue - initialInvestment.value);
+        if (isNaN(valueDifference)) valueDifference = 0;
+        options.updateObject.investments.push({
+          investmentType: investmentType.value,
+          investmentName: investmentName.value,
+          investmentDescription: investmentDescription.value,
+          initialInvestment: Number(initialInvestment.value),
+          currentValue: Number(currentValue),
+          valueDifference: valueDifference,
+        });
+        Manage.updateMyBudget(options.updateObject, pageLink);
+      }
+
+      if (update === `Update Investment`) {
+        console.log(`Updating...`, options);
+        Manage.updateMyBudget(options.updateObject, pageLink);
+      }
+
+      if (update === `Settle Investment`) {
+        console.log(`Settling...`, options);
+        // Manage.updateMyBudget(options.updateObject, pageLink);
+      }
+
       console.log(`Updating...`);
     }
   }
@@ -294,6 +324,7 @@ export class Budget {
       });
       this.transactions = budget.transactions;
       this.investments = budget.investments;
+      this.debts = budget.debts;
       console.log(budget);
     }
   }

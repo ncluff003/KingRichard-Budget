@@ -82,3 +82,37 @@ body {
     margin-bottom: 9rem;
   }
 }
+
+.positive-investment {
+  border-color: $secondaryColor;
+  .container--extra-small__margin-left-and-right__header {
+    background-color: $secondaryColor;
+  }
+  .container--extra-small__margin-left-and-right__content__column {
+    .investment-explanatory-information {
+      border-bottom-color: $secondaryColor;
+    }
+  }
+}
+.neutral-investment {
+  border-color: $primaryColor;
+  .container--extra-small__margin-left-and-right__header {
+    background-color: $primaryColor;
+  }
+  .container--extra-small__margin-left-and-right__content__column {
+    .investment-explanatory-information {
+      border-bottom-color: $primaryColor;
+    }
+  }
+}
+.negative-investment {
+  border-color: $colorError;
+  .container--extra-small__margin-left-and-right__header {
+    background-color: $colorError;
+  }
+  .container--extra-small__margin-left-and-right__content__column {
+    .investment-explanatory-information {
+      border-bottom-color: $colorError;
+    }
+  }
+}

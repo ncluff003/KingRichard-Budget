@@ -3265,3 +3265,64 @@ html {
     }
   }
 }
+
+.positive-investment {
+  border-color: $secondaryColor;
+  .container--extra-small__margin-left-and-right__header {
+    background-color: $secondaryColor;
+  }
+  .container--extra-small__margin-left-and-right__content__column {
+    .investment-explanatory-information {
+      .investment-description {
+        &__text {
+          color: $secondaryColor;
+        }
+      }
+    }
+    .investment-value-information--settled {
+      &__text {
+        color: $secondaryColor;
+      }
+    }
+  }
+}
+.neutral-investment {
+  border-color: $primaryColor;
+  .container--extra-small__margin-left-and-right__header {
+    background-color: $primaryColor;
+  }
+  .container--extra-small__margin-left-and-right__content__column {
+    .investment-explanatory-information {
+      .investment-description {
+        &__text {
+          color: $primaryColor;
+        }
+      }
+    }
+    .investment-value-information--settled {
+      &__text {
+        color: $primaryColor;
+      }
+    }
+  }
+}
+.negative-investment {
+  border-color: $colorError;
+  .container--extra-small__margin-left-and-right__header {
+    background-color: $colorError;
+  }
+  .container--extra-small__margin-left-and-right__content__column {
+    .investment-explanatory-information {
+      .investment-description {
+        &__text {
+          color: $colorError;
+        }
+      }
+    }
+    .investment-value-information--settled {
+      &__text {
+        color: $colorError;
+      }
+    }
+  }
+}
