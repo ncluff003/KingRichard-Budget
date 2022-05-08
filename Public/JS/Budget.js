@@ -259,7 +259,7 @@ export class Budget {
 
       if (update === `Settle Investment`) {
         console.log(`Settling...`, options);
-        // Manage.updateMyBudget(options.updateObject, pageLink);
+        Manage.updateMyBudget(options.updateObject, pageLink);
       }
 
       console.log(`Updating...`);

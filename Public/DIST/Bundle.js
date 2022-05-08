@@ -7703,7 +7703,8 @@ var Budget = /*#__PURE__*/function () {
         }
 
         if (update === "Settle Investment") {
-          console.log("Settling...", options); // Manage.updateMyBudget(options.updateObject, pageLink);
+          console.log("Settling...", options);
+          _Manage_Budget__WEBPACK_IMPORTED_MODULE_3__.updateMyBudget(options.updateObject, pageLink);
         }
 
         console.log("Updating...");
@@ -8338,7 +8339,7 @@ __webpack_require__.r(__webpack_exports__);
  // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
 
-var settleInvestment = function settleInvestment(investments, index, budget, placeholderBudget, user) {
+var settleInvestment = function settleInvestment(investments, index, dataIndex, budget, placeholderBudget, user) {
   console.log(investments, index);
   var investmentContainers = document.querySelectorAll('.investment-container');
   console.log(investmentContainers);
@@ -8406,18 +8407,18 @@ var settleInvestment = function settleInvestment(investments, index, budget, pla
     settledValueContainerText.classList.add('r__investment-value-information--settled__text');
     console.log(investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild.nextSibling, investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild);
 
-    if (budget.investments[index - 1].valueDifference < 0) {
-      settledValueContainerText.textContent = "Lost ".concat(Number(budget.investments[index - 1].initialInvestment - budget.investments[index - 1].currentValue));
+    if (budget.investments[dataIndex].valueDifference < 0) {
+      settledValueContainerText.textContent = "Lost ".concat(Number(budget.investments[dataIndex].initialInvestment - budget.investments[dataIndex].currentValue));
       settledInvestmentShellContainer.classList.add('negative-investment');
     }
 
-    if (budget.investments[index - 1].valueDifference === 0) {
+    if (budget.investments[dataIndex].valueDifference === 0) {
       settledValueContainerText.textContent = "Broke Even";
       settledInvestmentShellContainer.classList.add('neutral-investment');
     }
 
-    if (budget.investments[index - 1].valueDifference > 0) {
-      settledValueContainerText.textContent = "Gained ".concat(Number(budget.investments[index - 1].currentValue - budget.investments[index - 1].initialInvestment));
+    if (budget.investments[dataIndex].valueDifference > 0) {
+      settledValueContainerText.textContent = "Gained ".concat(Number(budget.investments[dataIndex].currentValue - budget.investments[dataIndex].initialInvestment));
       settledInvestmentShellContainer.classList.add('positive-investment');
     }
 
@@ -8525,7 +8526,26 @@ var settleInvestment = function settleInvestment(investments, index, budget, pla
 
     console.log(_investmentInitialValue);
     insertElement(_settledInvestmentValueContainer, _settledValueContainerText);
-  } // investments[index].remove();
+  }
+
+  console.log(index, index - 1);
+  budget.investments[dataIndex].settled = !budget.investments[dataIndex].settled;
+  console.log(budget.investments[index].settled);
+
+  placeholderBudget._updateBudget("Update", "Settle Investment", {
+    updateObject: {
+      budgetId: budget._id,
+      userId: user._id,
+      investments: budget.investments
+    }
+  }, "Investment-Planner");
+
+  investments[index].remove();
+  window.location.reload();
+  /*
+  Here is my problem that I have.  Right now it works well enough, however, later on, something about having a settled investment and the previous investment container removed,
+  seems to lead me to thinking there will be problems with the indexes and finding the correct investments to settle.
+  */
   // section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right
   // section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
   //   i.fas.fa-chart-line.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
@@ -8538,10 +8558,9 @@ var settleInvestment = function settleInvestment(investments, index, budget, pla
   //       //- p.investment-settle-container__graph-link.r__investment-settle-container__graph-link View Graph
   //   section.investment-value-information--settled.r__investment-value-information--settled
   //     p.investment-value-information--settled__text.r__.investment-value-information--settled__text= `Gained $5,000`
-
 };
 
-var watchInvestmentValueConfirmationButtons = function watchInvestmentValueConfirmationButtons(event, index, budget, placeholderBudget, user) {
+var watchInvestmentValueConfirmationButtons = function watchInvestmentValueConfirmationButtons(event, index, secondaryIndex, budget, placeholderBudget, user) {
   // const e = event;
   // e.preventDefault();
   var confirmInvestmentValueButtons = document.querySelectorAll('.button--confirm-value'); // const clicked = e.target.closest('.button--confirm-value');
@@ -8553,10 +8572,10 @@ var watchInvestmentValueConfirmationButtons = function watchInvestmentValueConfi
   confirmInvestmentValueButtons[index].removeEventListener('click', watchInvestmentValueConfirmationButtons);
   var updateCurrentValueInput = document.querySelectorAll('.form__input--investment');
   console.log(Number(updateCurrentValueInput[index].value));
-  investments[index].currentValue = Number(updateCurrentValueInput[index].value);
-  investments[index].valueDifference = Number(investments[index].currentValue - investments[index].initialInvestment);
+  investments[secondaryIndex].currentValue = Number(updateCurrentValueInput[index].value);
+  investments[secondaryIndex].valueDifference = Number(investments[secondaryIndex].currentValue - investments[secondaryIndex].initialInvestment);
   updateCurrentValueInput[index].setAttribute("readonly", true);
-  console.log(investments[index]);
+  console.log(investments[secondaryIndex]);
 
   placeholderBudget._updateBudget('Update', "Update Investment", {
     updateObject: {
@@ -8567,7 +8586,7 @@ var watchInvestmentValueConfirmationButtons = function watchInvestmentValueConfi
   }, "Investment-Planner");
 };
 
-var _watchForCurrentValueUpdate = function _watchForCurrentValueUpdate(event, index, budget, placeholderBudget, user) {
+var _watchForCurrentValueUpdate = function _watchForCurrentValueUpdate(event, index, secondaryIndex, budget, placeholderBudget, user) {
   var updateCurrentValueInput = document.querySelectorAll('.form__input--investment');
   console.log(index);
 
@@ -8576,7 +8595,7 @@ var _watchForCurrentValueUpdate = function _watchForCurrentValueUpdate(event, in
     console.log(updateCurrentValueInput[index].readOnly);
     var confirmInvestmentValueButtons = document.querySelectorAll('.button--confirm-value');
     console.log(confirmInvestmentValueButtons[index]);
-    return confirmInvestmentValueButtons[index].addEventListener('click', watchInvestmentValueConfirmationButtons.bind(null, event, index, budget, placeholderBudget, user));
+    return confirmInvestmentValueButtons[index].addEventListener('click', watchInvestmentValueConfirmationButtons.bind(null, event, index, secondaryIndex, budget, placeholderBudget, user));
   }
 
   console.log(updateCurrentValueInput[index].readOnly);
@@ -8612,6 +8631,8 @@ var addInvestment = function addInvestment(options) {
   var investmentShellContainer = document.createElement('section');
   investmentShellContainer.classList.add('container--extra-small__margin-left-and-right');
   investmentShellContainer.classList.add('r__container--extra-small__margin-left-and-right');
+  investmentShellContainer.dataset.investment = options.budget.investments.length;
+  console.log(investmentShellContainer.dataset.investment);
   investmentAccountPreview.insertAdjacentElement('afterend', investmentShellContainer);
   var investmentHeader = document.createElement('section');
   investmentHeader.classList.add('container--extra-small__margin-left-and-right__header');
@@ -8690,7 +8711,7 @@ var addInvestment = function addInvestment(options) {
 
     var currentInvestmentIndex = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(investmentShellContainers).indexOf(clicked.closest('.container--extra-small__margin-left-and-right'));
 
-    settleInvestment(investmentShellContainers, currentInvestmentIndex, options.budget, options.placeholderBudget, options.user);
+    settleInvestment(investmentShellContainers, currentInvestmentIndex, Number(investmentShellContainers[currentInvestmentIndex].dataset.investment), options.budget, options.placeholderBudget, options.user);
   });
   insertElement(investmentSettleButton, investmentSettleButtonText);
   var investmentValueInformationContainer = document.createElement('section');
@@ -8745,8 +8766,8 @@ var addInvestment = function addInvestment(options) {
   investmentUpdateValueTextLink.classList.add('investment-value-information__half__update-text');
   investmentUpdateValueTextLink.classList.add('r__investment-value-information__half__update-text');
   investmentUpdateValueTextLink.textContent = "Update Value";
-  insertElement(investmentValueInformationContainerHalfTwo, investmentUpdateValueTextLink);
-  window.location.reload(); // GLITCH: RIGHT NOW, WHAT HAPPENS IS THAT UNLESS THE USER REFRESHES THE BROWSER, THEY CANNOT UPDATE THE NEWEST OR NEWLY CREATED INVESTMENTS.
+  insertElement(investmentValueInformationContainerHalfTwo, investmentUpdateValueTextLink); // window.location.reload();
+  // GLITCH: RIGHT NOW, WHAT HAPPENS IS THAT UNLESS THE USER REFRESHES THE BROWSER, THEY CANNOT UPDATE THE NEWEST OR NEWLY CREATED INVESTMENTS.
   // Right now, I am forcing the reload of the page to solve the issue for now.  However, I would like to not have to do that.
   // if (openUpdateCurrentValueButtons[0]) {
   //   openUpdateCurrentValueButtons.forEach((button, i) => {
@@ -8814,46 +8835,6 @@ var _watchInvestmentPlanner = function _watchInvestmentPlanner(budget, placehold
     });
   }
 
-  var investmentHeaderIcons = document.querySelectorAll('.container--extra-small__margin-left-and-right__header__icon');
-
-  if (investmentHeaderIcons[1]) {
-    var investmentTypeSelect = document.querySelectorAll('.form__select--accounts-short');
-    console.log(investmentTypeSelect);
-    placeholderBudget.investments.forEach(function (investment, i) {
-      if (investment.investmentType === "Stock") {
-        if (investmentHeaderIcons[i + 1].classList[1] !== "fa-chart-line") {
-          replaceClassName(investmentHeaderIcons[i + 1], investmentHeaderIcons[i + 1].classList[1], "fa-chart-line");
-        }
-
-        console.log(investmentHeaderIcons[i + 1].classList);
-      }
-
-      if (investment.investmentType === "Real Estate") {
-        if (investmentHeaderIcons[i + 1].classList[1] !== "fa-sign-hanging") {
-          replaceClassName(investmentHeaderIcons[i + 1], investmentHeaderIcons[i + 1].classList[1], "fa-sign-hanging");
-        }
-
-        console.log(investmentHeaderIcons[i + 1].classList);
-      }
-
-      if (investment.investmentType === "Timeshare") {
-        if (investmentHeaderIcons[i + 1].classList[1] !== "fa-clock") {
-          replaceClassName(investmentHeaderIcons[i + 1], investmentHeaderIcons[i + 1].classList[1], "fa-clock");
-        }
-
-        console.log(investmentHeaderIcons[i + 1].classList);
-      }
-
-      if (investment.investmentType === "Other") {
-        if (investmentHeaderIcons[i + 1].classList[1] !== "fa-asterisk") {
-          replaceClassName(investmentHeaderIcons[i + 1], investmentHeaderIcons[i + 1].classList[1], "fa-asterisk");
-        }
-
-        console.log(investmentHeaderIcons[i + 1].classList);
-      }
-    });
-  }
-
   var investmentContainers = document.querySelectorAll('.container--extra-small__margin-left-and-right');
   var investmentValueInformationContainers = document.querySelectorAll('.investment-value-information');
   var investmentSettleButtons = document.querySelectorAll('.button--settle');
@@ -8864,8 +8845,8 @@ var _watchInvestmentPlanner = function _watchInvestmentPlanner(budget, placehold
 
       var currentInvestmentIndex = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(investmentContainers).indexOf(clicked.closest('.container--extra-small__margin-left-and-right'));
 
-      console.log(currentInvestmentIndex);
-      settleInvestment(investmentContainers, currentInvestmentIndex, budget, placeholderBudget, user);
+      console.log(currentInvestmentIndex, investmentContainers[currentInvestmentIndex].dataset.investment);
+      settleInvestment(investmentContainers, currentInvestmentIndex, Number(investmentContainers[currentInvestmentIndex].dataset.investment), budget, placeholderBudget, user);
     });
   });
   console.log(investmentValueInformationContainers, investmentContainers);
@@ -8873,9 +8854,10 @@ var _watchInvestmentPlanner = function _watchInvestmentPlanner(budget, placehold
 
   if (openUpdateCurrentValueButtons[0]) {
     openUpdateCurrentValueButtons.forEach(function (button, i) {
-      var index = i;
+      var index = Number(openUpdateCurrentValueButtons[i].closest('.container--extra-small__margin-left-and-right').dataset.investment);
+      console.log(openUpdateCurrentValueButtons[i].closest('.container--extra-small__margin-left-and-right').dataset.investment);
 
-      var boundListener = _watchForCurrentValueUpdate.bind(null, event, index, budget, placeholderBudget, user); // button.removeEventListener(`click`, boundListener);
+      var boundListener = _watchForCurrentValueUpdate.bind(null, event, i, index, budget, placeholderBudget, user); // button.removeEventListener(`click`, boundListener);
 
 
       button.addEventListener('click', boundListener); // addEventListener('click', myPrettyHandler.bind(null, event, arg1, ... ));

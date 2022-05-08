@@ -1,5 +1,49 @@
 extends ./../budgetLanding
 
+mixin unSettledInvestment(name, type, initial, current, description, data)
+  - let iconClass
+  - const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 })
+  - type === `Stock` ? iconClass = `fa-chart-line` : type === `Real Estate` ? iconClass = `fa-sign-hanging` : type === `Timeshare` ? iconClass = `fa-clock` : iconClass = `fa-asterisk`
+  section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right(data-investment=`${data}`) 
+    section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
+      i.fas.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon(class=`${iconClass}`)
+      p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text= `${name}`
+      p.container--extra-small__margin-left-and-right__header__investment-type.r__container--extra-small__margin-left-and-right__header__investment-type= `${type}`
+    section.container--extra-small__margin-left-and-right__content__column.r__container--extra-small__margin-left-and-right__content__column
+      section.investment-explanatory-information.r__investment-explanatory-information
+        section.investment-description.r__investment-description 
+          p.investment-description__text.r__investment-description__text= `${description}`
+        section.investment-settle-container.r__investment-settle-container 
+          button.button--settle.r__button--settle 
+            p.button--settle__text.r__button--settle__text Settle
+          //- p.investment-settle-container__graph-link.r__investment-settle-container__graph-link View Graph
+      section.investment-value-information.r__investment-value-information
+        section.investment-value-information__half.r__investment-value-information__half
+          p.investment-value-information__half__header.r__investment-value-information__half__header Initial Investment
+          p.investment-value-information__half__text.r__investment-value-information__half__text= `${money.format(initial)}`
+        section.investment-value-information__half.r__investment-value-information__half
+          p.investment-value-information__half__header.r__investment-value-information__half__header Current Value
+          section.investment-input-container.r__investment-input-container
+            input.form__input--investment.r__form__input--investment#updateInvestmentValue(type="number" placeholder="Enter New Value" value= `${money.format(current)}` readonly="true")
+            button.button--confirm-value.r__button--confirm-value
+              i.fas.fa-check.button--confirm-value__icon.r__button--confirm-value__icon
+          p.investment-value-information__half__update-text.r__investment-value-information__half__update-text Update Value
+
+mixin settledInvestment(name, type, description, classname, resultText, data)
+  - let iconClass
+  - type === `Stock` ? iconClass = `fa-chart-line` : type === `Real Estate` ? iconClass = `fa-sign-hanging` : type === `Timeshare` ? iconClass = `fa-clock` : iconClass = `fa-asterisk`
+  section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right(class=`${classname}` data-investment=`${data}`) 
+    section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
+      i.fas.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon(class=`${iconClass}`)
+      p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text= `${name}`
+      p.container--extra-small__margin-left-and-right__header__investment-type.r__container--extra-small__margin-left-and-right__header__investment-type= `${type}`
+    section.container--extra-small__margin-left-and-right__content__column.r__container--extra-small__margin-left-and-right__content__column
+      section.investment-explanatory-information.r__investment-explanatory-information
+        section.investment-description.r__investment-description 
+          p.investment-description__text.r__investment-description__text= `${description}`
+      section.investment-value-information--settled.r__investment-value-information--settled 
+        p.investment-value-information--settled__text.r__investment-value-information--settled__text= `${resultText}`
+
 block Budget-Content 
   header.budget-container__header.r__budget-container__header
     p.budget-container__header__text.r__budget-container__header__text Investment Planner
@@ -15,31 +59,10 @@ block Budget-Content
           section.container--extra-small__margin-left-and-right__content.r__container--extra-small__margin-left-and-right__content
             - const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 })
             p.container--extra-small__margin-left-and-right__content__account-total.r__container--extra-small__margin-left-and-right__content__account-total=`${money.format(data.budget.accounts.investmentFund.amount)}`
-        each investment in data.budget.investments 
-          section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right 
-            section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
-              i.fas.fa-chart-line.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
-              p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text= `${investment.investmentName}`
-              p.container--extra-small__margin-left-and-right__header__investment-type.r__container--extra-small__margin-left-and-right__header__investment-type= `${investment.investmentType}`
-            section.container--extra-small__margin-left-and-right__content__column.r__container--extra-small__margin-left-and-right__content__column
-              section.investment-explanatory-information.r__investment-explanatory-information
-                section.investment-description.r__investment-description 
-                  p.investment-description__text.r__investment-description__text= `${investment.investmentDescription}`
-                section.investment-settle-container.r__investment-settle-container 
-                  button.button--settle.r__button--settle 
-                    p.button--settle__text.r__button--settle__text Settle
-                  //- p.investment-settle-container__graph-link.r__investment-settle-container__graph-link View Graph
-              section.investment-value-information.r__investment-value-information
-                section.investment-value-information__half.r__investment-value-information__half
-                  p.investment-value-information__half__header.r__investment-value-information__half__header Initial Investment
-                  p.investment-value-information__half__text.r__investment-value-information__half__text= `${money.format(investment.initialInvestment)}`
-                section.investment-value-information__half.r__investment-value-information__half
-                  p.investment-value-information__half__header.r__investment-value-information__half__header Current Value
-                  section.investment-input-container.r__investment-input-container
-                    input.form__input--investment.r__form__input--investment#updateInvestmentValue(type="number" placeholder="Enter New Value" value= `${money.format(investment.currentValue)}` readonly="true")
-                    button.button--confirm-value.r__button--confirm-value
-                      i.fas.fa-check.button--confirm-value__icon.r__button--confirm-value__icon
-                  p.investment-value-information__half__update-text.r__investment-value-information__half__update-text Update Value
+        each investment, index in data.budget.investments 
+          if !investment.settled
+            +unSettledInvestment(investment.investmentName, investment.investmentType, investment.initialInvestment, investment.currentValue, investment.investmentDescription, index)
+            
         section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right 
           section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
             i.fas.fa-chart-line.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
@@ -70,3 +93,17 @@ block Budget-Content
       section.container--extra-large__half__header.r__container--extra-large__half__header 
         p.container--extra-large__half__header__text.r__container--extra-large__half__header__text Settled Investments
       section.investment-container.investment-container
+        each investment, index in data.budget.investments 
+          if investment.settled
+            - let isPositive = false;
+            - let isNeutral = false;
+            - let isNegative = fales;
+            - if (investment.valueDifference > 0) isPositive = true;
+            - if (investment.valueDifference === 0) isNeutral = true;
+            - if (investment.valueDifference < 0) isNegative = true;
+              if isPositive
+                +settledInvestment(investment.investmentName, investment.investmentType, investment.investmentDescription, `positive-investment`, `Gained ${investment.valueDifference}`, index)
+              else if isNeutral 
+                +settledInvestment(investment.investmentName, investment.investmentType, investment.investmentDescription, `neutral-investment`, `Broke Even`, index)
+              else if isNegative
+                +settledInvestment(investment.investmentName, investment.investmentType, investment.investmentDescription, `negative-investment`, `Lost ${investment.valueDifference}`, index)
