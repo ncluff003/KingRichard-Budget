@@ -23,3 +23,38 @@
     background-color: rgba($colorLightestGrey, 0.3);
   }
 }
+
+///////////////////////////////////
+// DEBT DISPLAY
+
+.debt {
+  @include SizeAndPositioning(relative, 9rem, 100%, flex, row, wrap, space-evenly, center, 0, 0, 0);
+  min-height: 9rem;
+  border-bottom: 0.2rem solid $primaryColor;
+  &:nth-of-type(2n) {
+    background-color: $colorLightestGrey;
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: $primaryColor;
+
+    .form__section--debt {
+      .debt-title,
+      .debt-text {
+        transition: color 0.5s;
+      }
+
+      .button--extra-extra-small__transaction-plan {
+        border-color: rgba($colorOffWhite, 0.8);
+        &:hover {
+          background-color: $secondaryColor;
+        }
+      }
+    }
+
+    transition: color 0.5s, background-color 0.5s;
+  }
+  &--paid {
+    @extend .debt;
+  }
+}

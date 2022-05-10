@@ -8,6 +8,18 @@ import * as Categories from './Budget-Categories';
 // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
 
+const _watchDebtManager = (budget, placeholderBudget, user) => {
+  console.log(`Watching Your Debts...`);
+  const addDebtButton = document.getElementById('addDebtButton');
+  const debtLender = document.getElementById('debtLender');
+  const debtAmount = document.getElementById('debtAmount');
+  const debtTypes = document.querySelectorAll('.form__select--accounts')[0];
+  addDebtButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log(debtLender.value, Number(debtAmount.value), debtTypes.value);
+  });
+};
+
 const settleInvestment = (investments, index, dataIndex, budget, placeholderBudget, user) => {
   console.log(investments, index);
 
@@ -88,10 +100,7 @@ const settleInvestment = (investments, index, dataIndex, budget, placeholderBudg
     const settledValueContainerText = document.createElement('p');
     settledValueContainerText.classList.add('investment-value-information--settled__text');
     settledValueContainerText.classList.add('r__investment-value-information--settled__text');
-    console.log(
-      investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild.nextSibling,
-      investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild
-    );
+    console.log(investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild.nextSibling, investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild);
 
     if (budget.investments[dataIndex].valueDifference < 0) {
       settledValueContainerText.textContent = `Lost ${Number(budget.investments[dataIndex].initialInvestment - budget.investments[dataIndex].currentValue)}`;
@@ -172,10 +181,7 @@ const settleInvestment = (investments, index, dataIndex, budget, placeholderBudg
     const settledValueContainerText = document.createElement('p');
     settledValueContainerText.classList.add('investment-value-information--settled__text');
     settledValueContainerText.classList.add('r__investment-value-information--settled__text');
-    console.log(
-      investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild.nextSibling,
-      investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild
-    );
+    console.log(investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild.nextSibling, investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild);
 
     if (budget.investments[index - 1].valueDifference < 0) {
       settledValueContainerText.textContent = `Lost ${Number(budget.investments[index - 1].initialInvestment - budget.investments[index - 1].currentValue)}`;
@@ -200,12 +206,7 @@ const settleInvestment = (investments, index, dataIndex, budget, placeholderBudg
 
   budget.investments[dataIndex].settled = !budget.investments[dataIndex].settled;
   console.log(budget.investments[index].settled);
-  placeholderBudget._updateBudget(
-    `Update`,
-    `Settle Investment`,
-    { updateObject: { budgetId: budget._id, userId: user._id, investments: budget.investments } },
-    `Investment-Planner`
-  );
+  placeholderBudget._updateBudget(`Update`, `Settle Investment`, { updateObject: { budgetId: budget._id, userId: user._id, investments: budget.investments } }, `Investment-Planner`);
   investments[index].remove();
   window.location.reload();
 };
@@ -237,10 +238,7 @@ const _watchForCurrentValueUpdate = (event, index, secondaryIndex, budget, place
     console.log(updateCurrentValueInput[index].readOnly);
     const confirmInvestmentValueButtons = document.querySelectorAll('.button--confirm-value');
     console.log(confirmInvestmentValueButtons[index]);
-    return confirmInvestmentValueButtons[index].addEventListener(
-      'click',
-      watchInvestmentValueConfirmationButtons.bind(null, event, index, secondaryIndex, budget, placeholderBudget, user)
-    );
+    return confirmInvestmentValueButtons[index].addEventListener('click', watchInvestmentValueConfirmationButtons.bind(null, event, index, secondaryIndex, budget, placeholderBudget, user));
   }
   console.log(updateCurrentValueInput[index].readOnly);
   if (updateCurrentValueInput[index].readOnly === '' || updateCurrentValueInput[index].readOnly === false) {
@@ -952,9 +950,7 @@ const getDueDate = (date) => {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const selectedDate = new Date(date);
   const currentTimezoneOffset = selectedDate.getTimezoneOffset() / 60;
-  return `${new Date(selectedDate.setHours(selectedDate.getHours() + new Date().getTimezoneOffset() / 60)).getDate()} ${months[new Date(date).getMonth()]} ${new Date(
-    date
-  ).getFullYear()}`;
+  return `${new Date(selectedDate.setHours(selectedDate.getHours() + new Date().getTimezoneOffset() / 60)).getDate()} ${months[new Date(date).getMonth()]} ${new Date(date).getFullYear()}`;
 };
 
 const getTransactionPlanDate = (date) => {
@@ -1563,26 +1559,28 @@ const checkSelectedTiming = () => {
 const showTransactionPlanOptions = (array, allOptions) => {
   const altMediumTransactionPlanInputs = document.querySelectorAll('.form__input--medium__alt');
   const transactionPlanSelects = document.querySelectorAll('.form__select--accounts');
-  if (altMediumTransactionPlanInputs[1].classList.contains('open')) {
-    altMediumTransactionPlanInputs[1].classList.remove('open');
-    altMediumTransactionPlanInputs[1].classList.add('closed');
-  }
-  transactionPlanSelects[5].value = transactionPlanSelects[5].firstChild.nextSibling.value;
-  allOptions.forEach((optionArray, i) => {
-    optionArray.forEach((arrayItem, i) => {
-      arrayItem.classList.remove('open');
-      arrayItem.classList.add('closed');
-    });
-  });
-  array.forEach((arrayItem, i) => {
-    if (i === 0) return;
-    arrayItem.classList.remove('closed');
-    arrayItem.classList.add('open');
-    if (i === 1) {
-      arrayItem.removeEventListener('click', checkSelectedTiming);
-      arrayItem.addEventListener('click', checkSelectedTiming);
+  if (altMediumTransactionPlanInputs[1]) {
+    if (altMediumTransactionPlanInputs[1].classList.contains('open')) {
+      altMediumTransactionPlanInputs[1].classList.remove('open');
+      altMediumTransactionPlanInputs[1].classList.add('closed');
     }
-  });
+    transactionPlanSelects[5].value = transactionPlanSelects[5].firstChild.nextSibling.value;
+    allOptions.forEach((optionArray, i) => {
+      optionArray.forEach((arrayItem, i) => {
+        arrayItem.classList.remove('open');
+        arrayItem.classList.add('closed');
+      });
+    });
+    array.forEach((arrayItem, i) => {
+      if (i === 0) return;
+      arrayItem.classList.remove('closed');
+      arrayItem.classList.add('open');
+      if (i === 1) {
+        arrayItem.removeEventListener('click', checkSelectedTiming);
+        arrayItem.addEventListener('click', checkSelectedTiming);
+      }
+    });
+  }
 };
 
 const updateTransactionPlanningAccountDisplays = (budget, placeholderBudget, user) => {
@@ -1770,9 +1768,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
             transactionPlanButton.addEventListener('click', (e) => {
               console.log(transactionPlanInput.value, typeof transactionPlanInput.value);
               console.log(transactionPlanButton.parentElement.previousSibling);
-              transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(
-                Number(transactionPlanInput.value) + Number(transaction.amountSaved)
-              );
+              transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
               transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
               console.log(transaction.amountSaved);
               let updateObject = {
@@ -1924,9 +1920,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
             transactionPlanButton.addEventListener('click', (e) => {
               console.log(transactionPlanInput.value, typeof transactionPlanInput.value);
               console.log(transactionPlanButton.parentElement.previousSibling);
-              transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(
-                Number(transactionPlanInput.value) + Number(transaction.amountSaved)
-              );
+              transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
               transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
               console.log(transaction.amountSaved, transactionPlans);
               let updateObject = {
@@ -2101,9 +2095,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
             transactionPlanButton.addEventListener('click', (e) => {
               console.log(transactionPlanInput.value, typeof transactionPlanInput.value);
               console.log(transactionPlanButton.parentElement.previousSibling);
-              transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(
-                Number(transactionPlanInput.value) + Number(transaction.amountSaved)
-              );
+              transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
               transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
               console.log(transaction.amountSaved);
               let updateObject = {
@@ -2263,9 +2255,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
             transactionPlanButton.addEventListener('click', (e) => {
               console.log(transactionPlanInput.value, typeof transactionPlanInput.value);
               console.log(transactionPlanButton.parentElement.previousSibling);
-              transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(
-                Number(transactionPlanInput.value) + Number(transaction.amountSaved)
-              );
+              transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
               transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
               console.log(transaction.amountSaved);
               let updateObject = {
@@ -2372,8 +2362,10 @@ const setupTransactionPlanning = (budget, placeholderBudget, user) => {
         }
         if (ao.value === `Debt`) {
           showTransactionPlanOptions(debtTransactionOptionsArray, commonTransactionOptionsArray);
-          if (!transactionPlanCreationContainer.classList.contains('extend-transaction-plan')) {
-            transactionPlanCreationContainer.classList.toggle('extend-transaction-plan');
+          if (transactionPlanCreationContainer) {
+            if (!transactionPlanCreationContainer.classList.contains('extend-transaction-plan')) {
+              transactionPlanCreationContainer.classList.toggle('extend-transaction-plan');
+            }
           }
         }
         if (ao.value === `Surplus`) {
@@ -2407,50 +2399,51 @@ const setupTransactionPlanning = (budget, placeholderBudget, user) => {
 
   const smallShortTransactionPlanInputs = document.querySelectorAll('.form__input--small-short');
   if (smallShortTransactionPlanInputs[0]) {
-    const surplusSwitch =
-      smallShortTransactionPlanInputs[2].closest('.form__section--transaction-plan').nextSibling.nextSibling.nextSibling.firstChild.firstChild.nextSibling.nextSibling;
-    const surplusSwitchIcon = surplusSwitch.firstChild.nextSibling.firstChild.nextSibling;
-    if (surplusSwitch) {
-      surplusSwitch.addEventListener('click', (e) => {
-        e.preventDefault();
-        surplusSwitch.classList.toggle('surplus-container__switch--switched');
-        surplusSwitchIcon.classList.toggle('fa-times');
-        surplusSwitchIcon.classList.toggle('fa-check');
+    if (smallShortTransactionPlanInputs[2]) {
+      const surplusSwitch = smallShortTransactionPlanInputs[2].closest('.form__section--transaction-plan').nextSibling.nextSibling.nextSibling.firstChild.firstChild.nextSibling.nextSibling;
+      const surplusSwitchIcon = surplusSwitch.firstChild.nextSibling.firstChild.nextSibling;
+      if (surplusSwitch) {
+        surplusSwitch.addEventListener('click', (e) => {
+          e.preventDefault();
+          surplusSwitch.classList.toggle('surplus-container__switch--switched');
+          surplusSwitchIcon.classList.toggle('fa-times');
+          surplusSwitchIcon.classList.toggle('fa-check');
+        });
+      }
+      if (submitPlanButton) {
+        submitPlanButton.addEventListener('click', (e) => {
+          createPlannedTransaction(accountSelectionContainers[0], budget, placeholderBudget, user, transactionPlanCreationContainer);
+          surplusSwitch.classList.remove('surplus-container__switch--switched');
+          surplusSwitchIcon.classList.add('fa-times');
+          surplusSwitchIcon.classList.remove('fa-check');
+          transactionPlanCreationContainer.classList.add('closed');
+          transactionPlanCreationContainer.classList.remove('open');
+        });
+      }
+
+      const money = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2,
       });
+
+      const appliedMoney = document.querySelectorAll('.container--extra-small-evenly-spaced__content__applied-container__applied');
+      const unAppliedMoney = document.querySelectorAll('.container--extra-small-evenly-spaced__content__un-applied-container__un-applied');
+
+      // APPLIED TOTALS
+      appliedMoney[0].textContent = money.format(expenseAppliedTotal);
+      appliedMoney[1].textContent = money.format(savingsAppliedTotal);
+      appliedMoney[2].textContent = money.format(debtAppliedTotal);
+      appliedMoney[3].textContent = money.format(surplusAppliedTotal);
+
+      // UNAPPLIED TOTALS
+      unAppliedMoney[0].textContent = money.format(budget.accounts.expenseFund.amount - expenseAppliedTotal);
+      unAppliedMoney[1].textContent = money.format(budget.accounts.savingsFund.amount - savingsAppliedTotal);
+      unAppliedMoney[2].textContent = money.format(budget.accounts.debt.amount - debtAppliedTotal);
+      unAppliedMoney[3].textContent = money.format(budget.accounts.surplus.amount - surplusAppliedTotal);
+
+      // transaction-plan__part__text
     }
-    if (submitPlanButton) {
-      submitPlanButton.addEventListener('click', (e) => {
-        createPlannedTransaction(accountSelectionContainers[0], budget, placeholderBudget, user, transactionPlanCreationContainer);
-        surplusSwitch.classList.remove('surplus-container__switch--switched');
-        surplusSwitchIcon.classList.add('fa-times');
-        surplusSwitchIcon.classList.remove('fa-check');
-        transactionPlanCreationContainer.classList.add('closed');
-        transactionPlanCreationContainer.classList.remove('open');
-      });
-    }
-
-    const money = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 2,
-    });
-
-    const appliedMoney = document.querySelectorAll('.container--extra-small-evenly-spaced__content__applied-container__applied');
-    const unAppliedMoney = document.querySelectorAll('.container--extra-small-evenly-spaced__content__un-applied-container__un-applied');
-
-    // APPLIED TOTALS
-    appliedMoney[0].textContent = money.format(expenseAppliedTotal);
-    appliedMoney[1].textContent = money.format(savingsAppliedTotal);
-    appliedMoney[2].textContent = money.format(debtAppliedTotal);
-    appliedMoney[3].textContent = money.format(surplusAppliedTotal);
-
-    // UNAPPLIED TOTALS
-    unAppliedMoney[0].textContent = money.format(budget.accounts.expenseFund.amount - expenseAppliedTotal);
-    unAppliedMoney[1].textContent = money.format(budget.accounts.savingsFund.amount - savingsAppliedTotal);
-    unAppliedMoney[2].textContent = money.format(budget.accounts.debt.amount - debtAppliedTotal);
-    unAppliedMoney[3].textContent = money.format(budget.accounts.surplus.amount - surplusAppliedTotal);
-
-    // transaction-plan__part__text
   }
 };
 
@@ -3010,8 +3003,7 @@ const getEmergencyFund = (budget, emergencySetting) => {
     emergencyFundGoal = Number(document.querySelector('.form__input--half-left').value);
     emergencyFundGoalTiming = document.querySelector('.form__select--half-right').value;
     if (emergencyFundGoal === '' || emergencyFundGoal === undefined || emergencyFundGoal === null) emergencyFundGoal = budget.accounts.emergencyFund.emergencyFundGoal;
-    if (emergencyFundGoalTiming === '' || emergencyFundGoalTiming === undefined || emergencyFundGoalTiming === null)
-      emergencyFundGoalTiming = budget.accounts.emergencyFund.emergencyFundGoalTiming;
+    if (emergencyFundGoalTiming === '' || emergencyFundGoalTiming === undefined || emergencyFundGoalTiming === null) emergencyFundGoalTiming = budget.accounts.emergencyFund.emergencyFundGoalTiming;
     emergencyFund.emergencyGoalMeasurement = emergencySetting;
     emergencyFund.emergencyFundGoal = emergencyFundGoal;
     emergencyFund.emergencyFundGoalTiming = emergencyFundGoalTiming;
@@ -3030,8 +3022,7 @@ const getInvestmentFund = (budget) => {
   let investmentGoal = Number(budgetInputs[0].value);
   let investmentPercentage = Number(budgetInputs[1].value);
   if (investmentGoal === '' || investmentGoal === undefined || investmentGoal === null) investmentGoal = budget.accounts.investmentFund.investmentGoal;
-  if (investmentPercentage === '' || investmentPercentage === undefined || investmentPercentage === null)
-    investmentPercentage = budget.accounts.investmentFund.investmentPercentage;
+  if (investmentPercentage === '' || investmentPercentage === undefined || investmentPercentage === null) investmentPercentage = budget.accounts.investmentFund.investmentPercentage;
   investmentFund.investmentGoal = investmentGoal;
   investmentFund.investmentPercentage = investmentPercentage / 100;
   investmentFund.amount = budget.accounts.investmentFund.amount;
@@ -3637,9 +3628,7 @@ const _watchForTransactions = (arrayOfArrays, budget, placeholderBudget, user) =
       e.preventDefault();
       incomePreviewAmounts[0].textContent = money.format(netIncomeInput.value * investmentPercentage);
       incomePreviewAmounts[1].textContent = money.format(netIncomeInput.value * savingsPercentage);
-      incomePreviewAmounts[2].textContent = money.format(
-        netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1])
-      );
+      incomePreviewAmounts[2].textContent = money.format(netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1]));
     });
 
     // ENTERING INCOME
@@ -3794,8 +3783,7 @@ const _watchForTransactions = (arrayOfArrays, budget, placeholderBudget, user) =
         // }
         let extendedRow = rowThirds[1];
         let expenseTitles =
-          extendedRow.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.nextSibling
-            .childNodes;
+          extendedRow.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.childNodes;
         expenseTitles.forEach((expense) => {
           if (expense.text.length >= 8 && !rowThirds[1].classList.contains('extend-enter-transaction')) {
             rowThirds[1].classList.add('extend-enter-transaction');
@@ -4100,4 +4088,7 @@ export const _watchBudget = async () => {
   ////////////////////////////////////////////
   // WATCH FOR INCOME ALLOCATION
   _watchInvestmentPlanner(currentBudget, budget, user);
+  ////////////////////////////////////////////
+  // WATCH FOR INCOME ALLOCATION
+  _watchDebtManager(currentBudget, budget, user);
 };

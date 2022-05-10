@@ -509,7 +509,7 @@
     @extend .button;
     height: 3.5rem;
     width: 30%;
-    justify-content: column;
+    justify-content: space-evenly;
     transform: translate(-5rem, 0.75rem);
     align-self: center;
     background-color: rgba($primaryColor, 0.5);

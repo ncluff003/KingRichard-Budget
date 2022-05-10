@@ -8339,6 +8339,18 @@ __webpack_require__.r(__webpack_exports__);
  // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
 
+var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, user) {
+  console.log("Watching Your Debts...");
+  var addDebtButton = document.getElementById('addDebtButton');
+  var debtLender = document.getElementById('debtLender');
+  var debtAmount = document.getElementById('debtAmount');
+  var debtTypes = document.querySelectorAll('.form__select--accounts')[0];
+  addDebtButton.addEventListener('click', function (e) {
+    e.preventDefault();
+    console.log(debtLender.value, Number(debtAmount.value), debtTypes.value);
+  });
+};
+
 var settleInvestment = function settleInvestment(investments, index, dataIndex, budget, placeholderBudget, user) {
   console.log(investments, index);
   var investmentContainers = document.querySelectorAll('.investment-container');
@@ -8542,22 +8554,6 @@ var settleInvestment = function settleInvestment(investments, index, dataIndex, 
 
   investments[index].remove();
   window.location.reload();
-  /*
-  Here is my problem that I have.  Right now it works well enough, however, later on, something about having a settled investment and the previous investment container removed,
-  seems to lead me to thinking there will be problems with the indexes and finding the correct investments to settle.
-  */
-  // section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right
-  // section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
-  //   i.fas.fa-chart-line.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
-  //   p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text PureNSpiration
-  //   p.container--extra-small__margin-left-and-right__header__investment-type.r__container--extra-small__margin-left-and-right__header__investment-type Stock
-  // section.container--extra-small__margin-left-and-right__content__column.r__container--extra-small__margin-left-and-right__content__column
-  //   section.investment-explanatory-information.r__investment-explanatory-information
-  //     section.investment-description.r__investment-description
-  //       p.investment-description__text.r__investment-description__text Company In Utah
-  //       //- p.investment-settle-container__graph-link.r__investment-settle-container__graph-link View Graph
-  //   section.investment-value-information--settled.r__investment-value-information--settled
-  //     p.investment-value-information--settled__text.r__.investment-value-information--settled__text= `Gained $5,000`
 };
 
 var watchInvestmentValueConfirmationButtons = function watchInvestmentValueConfirmationButtons(event, index, secondaryIndex, budget, placeholderBudget, user) {
@@ -10034,28 +10030,30 @@ var showTransactionPlanOptions = function showTransactionPlanOptions(array, allO
   var altMediumTransactionPlanInputs = document.querySelectorAll('.form__input--medium__alt');
   var transactionPlanSelects = document.querySelectorAll('.form__select--accounts');
 
-  if (altMediumTransactionPlanInputs[1].classList.contains('open')) {
-    altMediumTransactionPlanInputs[1].classList.remove('open');
-    altMediumTransactionPlanInputs[1].classList.add('closed');
-  }
-
-  transactionPlanSelects[5].value = transactionPlanSelects[5].firstChild.nextSibling.value;
-  allOptions.forEach(function (optionArray, i) {
-    optionArray.forEach(function (arrayItem, i) {
-      arrayItem.classList.remove('open');
-      arrayItem.classList.add('closed');
-    });
-  });
-  array.forEach(function (arrayItem, i) {
-    if (i === 0) return;
-    arrayItem.classList.remove('closed');
-    arrayItem.classList.add('open');
-
-    if (i === 1) {
-      arrayItem.removeEventListener('click', checkSelectedTiming);
-      arrayItem.addEventListener('click', checkSelectedTiming);
+  if (altMediumTransactionPlanInputs[1]) {
+    if (altMediumTransactionPlanInputs[1].classList.contains('open')) {
+      altMediumTransactionPlanInputs[1].classList.remove('open');
+      altMediumTransactionPlanInputs[1].classList.add('closed');
     }
-  });
+
+    transactionPlanSelects[5].value = transactionPlanSelects[5].firstChild.nextSibling.value;
+    allOptions.forEach(function (optionArray, i) {
+      optionArray.forEach(function (arrayItem, i) {
+        arrayItem.classList.remove('open');
+        arrayItem.classList.add('closed');
+      });
+    });
+    array.forEach(function (arrayItem, i) {
+      if (i === 0) return;
+      arrayItem.classList.remove('closed');
+      arrayItem.classList.add('open');
+
+      if (i === 1) {
+        arrayItem.removeEventListener('click', checkSelectedTiming);
+        arrayItem.addEventListener('click', checkSelectedTiming);
+      }
+    });
+  }
 };
 
 var updateTransactionPlanningAccountDisplays = function updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user) {
@@ -10952,8 +10950,10 @@ var setupTransactionPlanning = function setupTransactionPlanning(budget, placeho
         if (ao.value === "Debt") {
           showTransactionPlanOptions(debtTransactionOptionsArray, commonTransactionOptionsArray);
 
-          if (!transactionPlanCreationContainer.classList.contains('extend-transaction-plan')) {
-            transactionPlanCreationContainer.classList.toggle('extend-transaction-plan');
+          if (transactionPlanCreationContainer) {
+            if (!transactionPlanCreationContainer.classList.contains('extend-transaction-plan')) {
+              transactionPlanCreationContainer.classList.toggle('extend-transaction-plan');
+            }
           }
         }
 
@@ -10991,46 +10991,48 @@ var setupTransactionPlanning = function setupTransactionPlanning(budget, placeho
   var smallShortTransactionPlanInputs = document.querySelectorAll('.form__input--small-short');
 
   if (smallShortTransactionPlanInputs[0]) {
-    var surplusSwitch = smallShortTransactionPlanInputs[2].closest('.form__section--transaction-plan').nextSibling.nextSibling.nextSibling.firstChild.firstChild.nextSibling.nextSibling;
-    var surplusSwitchIcon = surplusSwitch.firstChild.nextSibling.firstChild.nextSibling;
+    if (smallShortTransactionPlanInputs[2]) {
+      var surplusSwitch = smallShortTransactionPlanInputs[2].closest('.form__section--transaction-plan').nextSibling.nextSibling.nextSibling.firstChild.firstChild.nextSibling.nextSibling;
+      var surplusSwitchIcon = surplusSwitch.firstChild.nextSibling.firstChild.nextSibling;
 
-    if (surplusSwitch) {
-      surplusSwitch.addEventListener('click', function (e) {
-        e.preventDefault();
-        surplusSwitch.classList.toggle('surplus-container__switch--switched');
-        surplusSwitchIcon.classList.toggle('fa-times');
-        surplusSwitchIcon.classList.toggle('fa-check');
+      if (surplusSwitch) {
+        surplusSwitch.addEventListener('click', function (e) {
+          e.preventDefault();
+          surplusSwitch.classList.toggle('surplus-container__switch--switched');
+          surplusSwitchIcon.classList.toggle('fa-times');
+          surplusSwitchIcon.classList.toggle('fa-check');
+        });
+      }
+
+      if (submitPlanButton) {
+        submitPlanButton.addEventListener('click', function (e) {
+          createPlannedTransaction(accountSelectionContainers[0], budget, placeholderBudget, user, transactionPlanCreationContainer);
+          surplusSwitch.classList.remove('surplus-container__switch--switched');
+          surplusSwitchIcon.classList.add('fa-times');
+          surplusSwitchIcon.classList.remove('fa-check');
+          transactionPlanCreationContainer.classList.add('closed');
+          transactionPlanCreationContainer.classList.remove('open');
+        });
+      }
+
+      var money = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2
       });
+      var appliedMoney = document.querySelectorAll('.container--extra-small-evenly-spaced__content__applied-container__applied');
+      var unAppliedMoney = document.querySelectorAll('.container--extra-small-evenly-spaced__content__un-applied-container__un-applied'); // APPLIED TOTALS
+
+      appliedMoney[0].textContent = money.format(expenseAppliedTotal);
+      appliedMoney[1].textContent = money.format(savingsAppliedTotal);
+      appliedMoney[2].textContent = money.format(debtAppliedTotal);
+      appliedMoney[3].textContent = money.format(surplusAppliedTotal); // UNAPPLIED TOTALS
+
+      unAppliedMoney[0].textContent = money.format(budget.accounts.expenseFund.amount - expenseAppliedTotal);
+      unAppliedMoney[1].textContent = money.format(budget.accounts.savingsFund.amount - savingsAppliedTotal);
+      unAppliedMoney[2].textContent = money.format(budget.accounts.debt.amount - debtAppliedTotal);
+      unAppliedMoney[3].textContent = money.format(budget.accounts.surplus.amount - surplusAppliedTotal); // transaction-plan__part__text
     }
-
-    if (submitPlanButton) {
-      submitPlanButton.addEventListener('click', function (e) {
-        createPlannedTransaction(accountSelectionContainers[0], budget, placeholderBudget, user, transactionPlanCreationContainer);
-        surplusSwitch.classList.remove('surplus-container__switch--switched');
-        surplusSwitchIcon.classList.add('fa-times');
-        surplusSwitchIcon.classList.remove('fa-check');
-        transactionPlanCreationContainer.classList.add('closed');
-        transactionPlanCreationContainer.classList.remove('open');
-      });
-    }
-
-    var money = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 2
-    });
-    var appliedMoney = document.querySelectorAll('.container--extra-small-evenly-spaced__content__applied-container__applied');
-    var unAppliedMoney = document.querySelectorAll('.container--extra-small-evenly-spaced__content__un-applied-container__un-applied'); // APPLIED TOTALS
-
-    appliedMoney[0].textContent = money.format(expenseAppliedTotal);
-    appliedMoney[1].textContent = money.format(savingsAppliedTotal);
-    appliedMoney[2].textContent = money.format(debtAppliedTotal);
-    appliedMoney[3].textContent = money.format(surplusAppliedTotal); // UNAPPLIED TOTALS
-
-    unAppliedMoney[0].textContent = money.format(budget.accounts.expenseFund.amount - expenseAppliedTotal);
-    unAppliedMoney[1].textContent = money.format(budget.accounts.savingsFund.amount - savingsAppliedTotal);
-    unAppliedMoney[2].textContent = money.format(budget.accounts.debt.amount - debtAppliedTotal);
-    unAppliedMoney[3].textContent = money.format(budget.accounts.surplus.amount - surplusAppliedTotal); // transaction-plan__part__text
   }
 };
 
@@ -12720,9 +12722,13 @@ var _watchBudget = /*#__PURE__*/function () {
             // WATCH FOR INCOME ALLOCATION
 
 
-            _watchInvestmentPlanner(currentBudget, budget, user);
+            _watchInvestmentPlanner(currentBudget, budget, user); ////////////////////////////////////////////
+            // WATCH FOR INCOME ALLOCATION
 
-          case 18:
+
+            _watchDebtManager(currentBudget, budget, user);
+
+          case 19:
           case "end":
             return _context.stop();
         }

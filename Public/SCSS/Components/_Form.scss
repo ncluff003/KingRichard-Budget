@@ -8,10 +8,22 @@
   overflow-y: auto;
 }
 
+.debt-display,
+.debt-display--paid {
+  @extend .transaction-plan-display;
+  height: 50%;
+  justify-content: flex-start;
+}
+
 .transaction-plan-creation {
   @include SizeAndPositioning(relative, 9rem, 100%, flex, row, wrap, space-evenly, center, 0, 0, 0);
   min-height: 9rem;
   border-bottom: 0.2rem solid $primaryColor;
+}
+
+.add-debt-container {
+  @extend .transaction-plan-creation;
+  justify-content: space-evenly;
 }
 
 .transaction-plan,
@@ -154,11 +166,19 @@
       flex-wrap: wrap;
 
       /* 
-        This is the way to get the proper result right now.  It depends on if the width of the select option becomes longer than 10.5rem.
-        
-        If it does, then, the current row, gets a margin bottom of 9rem.  The transaction-plan-creation container will also get a height of 18rem.  If it is NOT that length, and it will adjust automatically, it will remove that margin altogether.
-        
+      This is the way to get the proper result right now.  It depends on if the width of the select option becomes longer than 10.5rem.
+      
+      If it does, then, the current row, gets a margin bottom of 9rem.  The transaction-plan-creation container will also get a height of 18rem.  If it is NOT that length, and it will adjust automatically, it will remove that margin altogether.
+      
       */
+    }
+    &--debt {
+      @extend .form__row--transaction;
+      justify-content: space-evenly;
+      &-creation {
+        @extend .form__row--debt;
+        justify-content: center;
+      }
     }
     &--thirds {
       @extend .form__row;
@@ -594,7 +614,21 @@
       &-short {
         @extend .form__section--long;
         width: 100%;
-        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    &--debt {
+      @extend .form__section--medium;
+      width: calc(100% / 7);
+      align-items: center;
+      margin: 0;
+      &:not(:last-of-type) {
+        margin: 0;
+      }
+      &-paid {
+        @extend .form__section--debt;
+        width: calc(100% / 6);
       }
     }
 
@@ -987,6 +1021,11 @@
         height: 4rem;
         min-height: 4rem;
         width: 12.5rem;
+
+        &:not(:placeholder-shown) + .form__label--small-short,
+        &:focus + .form__label--small-short {
+          transform: translate(-1rem, -4.5rem) scale(0.85);
+        }
       }
       &-shorter {
         @extend .form__input--medium;
@@ -1603,6 +1642,14 @@
       @extend .form__label;
       width: 25%;
       left: calc(37.7% + 2rem);
+      &-short {
+        @extend .form__label;
+        height: 3.5rem;
+        min-height: 3.5rem;
+        width: 100%;
+        transform: translate(0rem, -1.9rem);
+        left: 1rem;
+      }
       &-shorter {
         @extend .form__label;
         height: 3.5rem;

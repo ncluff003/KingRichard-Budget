@@ -62,7 +62,7 @@ block Budget-Content
         each investment, index in data.budget.investments 
           if !investment.settled
             +unSettledInvestment(investment.investmentName, investment.investmentType, investment.initialInvestment, investment.currentValue, investment.investmentDescription, index)
-            
+
         section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right 
           section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
             i.fas.fa-chart-line.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
@@ -102,8 +102,8 @@ block Budget-Content
             - if (investment.valueDifference === 0) isNeutral = true;
             - if (investment.valueDifference < 0) isNegative = true;
               if isPositive
-                +settledInvestment(investment.investmentName, investment.investmentType, investment.investmentDescription, `positive-investment`, `Gained ${investment.valueDifference}`, index)
+                +settledInvestment(investment.investmentName, investment.investmentType, investment.investmentDescription, `positive-investment`, `Gained $${investment.valueDifference}`, index)
               else if isNeutral 
                 +settledInvestment(investment.investmentName, investment.investmentType, investment.investmentDescription, `neutral-investment`, `Broke Even`, index)
               else if isNegative
-                +settledInvestment(investment.investmentName, investment.investmentType, investment.investmentDescription, `negative-investment`, `Lost ${investment.valueDifference}`, index)
+                +settledInvestment(investment.investmentName, investment.investmentType, investment.investmentDescription, `negative-investment`, `Lost $${investment.valueDifference}`, index)

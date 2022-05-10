@@ -2643,6 +2643,20 @@ html {
   }
 }
 
+.debt,
+.debt--paid {
+  &:hover {
+    color: $colorOffWhite;
+    .form__section--debt {
+      .debt-title,
+      .debt-text {
+        color: $colorOffWhite;
+        transition: color 0.5s;
+      }
+    }
+  }
+}
+
 .transaction-plan {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   color: $primaryColor;
@@ -2753,6 +2767,25 @@ html {
     font-family: MADE Tommy Soft, Verdana, sans-serif;
     font-size: 2rem;
     color: rgba($primaryColor, 0.8);
+    &--debt {
+      @extend .form__section;
+      color: $primaryColor;
+      font-size: 1.6rem;
+      text-align: center;
+      .debt-title {
+        text-decoration: underline;
+      }
+      .debt-text {
+        font-size: 1.4rem;
+      }
+      &:hover {
+        color: $colorOffWhite;
+      }
+      &-paid {
+        @extend .form__section--debt;
+      }
+    }
+
     &--sub-section {
       @extend .form__section;
       color: rgba($colorOffWhite, 0.8);
@@ -3047,6 +3080,11 @@ html {
     &--small {
       @extend .form__label;
       color: rgba($colorOffWhite, 0.8);
+
+      &-short {
+        @extend .form__label;
+        font-size: 1.4rem;
+      }
 
       &-shorter {
         @extend .form__label;

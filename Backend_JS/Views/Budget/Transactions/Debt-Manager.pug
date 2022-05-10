@@ -3,3 +3,81 @@ extends ./../budgetLanding
 block Budget-Content 
   header.budget-container__header.r__budget-container__header
     p.budget-container__header__text.r__budget-container__header__text Debt Manager
+  //- section.container--extra-small.r__container--extra-small 
+  //-   section.container--extra-small__header.r__container--extra-small__header
+  - const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 })
+  - const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  section.container--large.r__container--large 
+    section.container--large__header.r__container--large__header 
+      i.fas.fa-file-invoice-dollar.container--large__header__icon.r__container--large__header__icon
+      p.container--large__header__title.r__container--large__header__title= `${'Unpaid Debts'.toUpperCase()}`
+    section.debt-display.r__debt-display 
+      section.debt.r__debt 
+        section.form__section--debt.r__form__section--debt 
+          p.debt-title.r__debt-title Date 
+          p.debt-text.r__debt-text= `${new Date().getDate()} ${months[new Date().getMonth()]} ${new Date().getFullYear()}`
+        section.form__section--debt.r__form__section--debt 
+          p.debt-title.r__debt-title Lender 
+          p.debt-text.r__debt-text= `Wells Fargo`
+        section.form__section--debt.r__form__section--debt 
+          p.debt-title.r__debt-title Type 
+          p.debt-text.r__debt-text= `Credit Card`
+        section.form__section--debt.r__form__section--debt 
+          p.debt-title.r__debt-title Initial Amount 
+          p.debt-text.r__debt-text= `${money.format(4000)}`
+        section.form__section--debt.r__form__section--debt 
+          p.debt-title.r__debt-title Current Amount 
+          p.debt-text.r__debt-text= `${money.format(5000)}`
+        section.form__section--debt.r__form__section--debt 
+          p.debt-title.r__debt-title Status 
+          p.debt-text.r__debt-text= `Partially Paid`
+        section.form__section--debt.r__form__section--debt
+          button.button--extra-extra-small__transaction-plan.r__button--extra-extra-small__transaction-plan 
+            i.fas.fa-handshake.button--extra-extra-small__transaction-plan__icon.r__button--extra-extra-small__transaction-plan__icon
+            p.button__text.r__button--extra-extra-small__transaction-plan__text Paid Off
+      
+      section.add-debt-container.r__add-debt-container
+        form.form--full-width.r__form--full-width
+          section.form__row--debt-creation.r__form__row--debt-creation 
+            section.form__section--transaction-plan.r__form__section--transaction-plan 
+              input.form__input--small-short.r__form__input--small-short#debtLender(type=`text` placeholder=`Who Lent The Money? $$$`)
+              label.form__label--small-short.r__form__label--small-short(for=`debtLender`) Lender
+            section.form__section--transaction-plan.r__form__section--transaction-plan 
+              - let debtTypes = [`Credit Card`, `Loan`, `Taxes`, `Debt`, `Other`]
+                select.form__select--accounts.r__form__select--accounts
+                  each debtType in debtTypes 
+                    option.form__select__option.r__form__select__option= `${debtType}`
+
+            section.form__section--transaction-plan.r__form__section--transaction-plan 
+              input.form__input--small-short.r__form__input--small-short#debtAmount(type=`number` placeholder=`${money.format(0)}`)
+              label.form__label--small-short.r__form__label--small-short(for=`debtAmount`) Initial Amount
+            button.button--extra-extra-small__transaction-plan.r__button--extra-extra-small__transaction-plan#addDebtButton 
+              i.fas.fa-hand-holding-dollar.button__icon.r__button__icon
+              p.button__text.r__button__text Add Debt
+      button.button--borderless.r__button--borderless.open
+        i.fas.fa-plus.button--borderless__icon.r__button--borderless__icon
+        p.button--borderless__text.r__button--borderless__text Add Debt
+
+    section.container--large__header.r__container--large__header 
+      i.fas.fa-handshake.container--large__header__icon.r__container--large__header__icon
+      p.container--large__header__title.r__container--large__header__title= `${'Debts Paid Off'.toUpperCase()}`
+    section.debt-display--paid.r__debt-display--paid
+      section.debt.r__debt 
+        section.form__section--debt-paid.r__form__section--debt-paid 
+          p.debt-title.r__debt-title Date 
+          p.debt-text.r__debt-text= `${new Date().getDate()} ${months[new Date().getMonth()]} ${new Date().getFullYear()}`
+        section.form__section--debt-paid.r__form__section--debt-paid 
+          p.debt-title.r__debt-title Lender 
+          p.debt-text.r__debt-text= `Wells Fargo`
+        section.form__section--debt-paid.r__form__section--debt-paid 
+          p.debt-title.r__debt-title Type 
+          p.debt-text.r__debt-text= `Credit Card`
+        section.form__section--debt-paid.r__form__section--debt-paid 
+          p.debt-title.r__debt-title Initial Amount 
+          p.debt-text.r__debt-text= `${money.format(4000)}`
+        section.form__section--debt-paid.r__form__section--debt-paid 
+          p.debt-title.r__debt-title Current Amount 
+          p.debt-text.r__debt-text= `${money.format(5000)}`
+        section.form__section--debt-paid.r__form__section--debt-paid 
+          p.debt-title.r__debt-title Status 
+          p.debt-text.r__debt-text= `Paid Off`
