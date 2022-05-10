@@ -2025,10 +2025,18 @@ html {
 .debt:hover .form__section--debt .debt-title, .debt:hover .form__section--debt-paid .debt-title,
 .debt:hover .form__section--debt .debt-text,
 .debt:hover .form__section--debt-paid .debt-text,
+.debt:hover .form__section--debt .debt--paid-title,
+.debt:hover .form__section--debt-paid .debt--paid-title,
+.debt:hover .form__section--debt .debt--paid-text,
+.debt:hover .form__section--debt-paid .debt--paid-text,
 .debt--paid:hover .form__section--debt .debt-title,
 .debt--paid:hover .form__section--debt-paid .debt-title,
 .debt--paid:hover .form__section--debt .debt-text,
-.debt--paid:hover .form__section--debt-paid .debt-text {
+.debt--paid:hover .form__section--debt-paid .debt-text,
+.debt--paid:hover .form__section--debt .debt--paid-title,
+.debt--paid:hover .form__section--debt-paid .debt--paid-title,
+.debt--paid:hover .form__section--debt .debt--paid-text,
+.debt--paid:hover .form__section--debt-paid .debt--paid-text {
   color: #fafafa;
   transition: color 0.5s;
 }
@@ -2096,10 +2104,14 @@ html {
   font-size: 1.6rem;
   text-align: center;
 }
-.form__section--debt .debt-title, .form__section--debt-paid .debt-title {
+.form__section--debt .debt-title, .form__section--debt-paid .debt-title,
+.form__section--debt .debt--paid-title,
+.form__section--debt-paid .debt--paid-title {
   text-decoration: underline;
 }
-.form__section--debt .debt-text, .form__section--debt-paid .debt-text {
+.form__section--debt .debt-text, .form__section--debt-paid .debt-text,
+.form__section--debt .debt--paid-text,
+.form__section--debt-paid .debt--paid-text {
   font-size: 1.4rem;
 }
 .form__section--debt:hover, .form__section--debt-paid:hover {

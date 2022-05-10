@@ -2649,7 +2649,9 @@ html {
     color: $colorOffWhite;
     .form__section--debt {
       .debt-title,
-      .debt-text {
+      .debt-text,
+      .debt--paid-title,
+      .debt--paid-text {
         color: $colorOffWhite;
         transition: color 0.5s;
       }
@@ -2772,10 +2774,12 @@ html {
       color: $primaryColor;
       font-size: 1.6rem;
       text-align: center;
-      .debt-title {
+      .debt-title,
+      .debt--paid-title {
         text-decoration: underline;
       }
-      .debt-text {
+      .debt-text,
+      .debt--paid-text {
         font-size: 1.4rem;
       }
       &:hover {

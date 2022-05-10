@@ -10,13 +10,148 @@ import * as Categories from './Budget-Categories';
 
 const _watchDebtManager = (budget, placeholderBudget, user) => {
   console.log(`Watching Your Debts...`);
+  const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const addDebtButton = document.getElementById('addDebtButton');
   const debtLender = document.getElementById('debtLender');
   const debtAmount = document.getElementById('debtAmount');
   const debtTypes = document.querySelectorAll('.form__select--accounts')[0];
+  const debts = document.querySelectorAll('.debt');
+  let numberOfUnpaidSections, numberOfPaidSections, sectionStart;
   addDebtButton.addEventListener('click', (e) => {
     e.preventDefault();
     console.log(debtLender.value, Number(debtAmount.value), debtTypes.value);
+    const debtDisplay = document.querySelector('.debt-display');
+    const debt = document.createElement('section');
+    numberOfUnpaidSections = 7;
+    numberOfPaidSections = 6;
+    sectionStart = 0;
+    debt.classList.add('debt');
+    debt.classList.add('r__debt');
+    if (debts.length === 0) {
+      debtDisplay.insertAdjacentElement('afterbegin', debt);
+    }
+    if (debts.length > 0) {
+      debts[debts.length - 1].insertAdjacentElement('afterend', debt);
+    }
+    while (sectionStart < numberOfUnpaidSections) {
+      const debtSection = document.createElement('section');
+      debtSection.classList.add('form__section--debt');
+      debtSection.classList.add('r__form__section--debt');
+      insertElement(debt, debtSection);
+
+      if (sectionStart === 0) {
+        const sectionHeader = document.createElement('p');
+        sectionHeader.classList.add('debt-title');
+        sectionHeader.classList.add('r__debt-title');
+        sectionHeader.textContent = `Date`;
+
+        const sectionContent = document.createElement('p');
+        sectionContent.classList.add('debt-text');
+        sectionContent.classList.add('r__debt-text');
+        sectionContent.textContent = `${new Date().getDate()} ${months[new Date().getMonth()]} ${new Date().getFullYear()}`;
+
+        insertElement(debtSection, sectionHeader);
+        insertElement(debtSection, sectionContent);
+      }
+
+      if (sectionStart === 1) {
+        const sectionHeader = document.createElement('p');
+        sectionHeader.classList.add('debt-title');
+        sectionHeader.classList.add('r__debt-title');
+        sectionHeader.textContent = `Lender`;
+
+        const sectionContent = document.createElement('p');
+        sectionContent.classList.add('debt-text');
+        sectionContent.classList.add('r__debt-text');
+        sectionContent.textContent = debtLender.value;
+
+        insertElement(debtSection, sectionHeader);
+        insertElement(debtSection, sectionContent);
+      }
+
+      if (sectionStart === 2) {
+        const sectionHeader = document.createElement('p');
+        sectionHeader.classList.add('debt-title');
+        sectionHeader.classList.add('r__debt-title');
+        sectionHeader.textContent = `Type`;
+
+        const sectionContent = document.createElement('p');
+        sectionContent.classList.add('debt-text');
+        sectionContent.classList.add('r__debt-text');
+        sectionContent.textContent = debtTypes.value;
+
+        insertElement(debtSection, sectionHeader);
+        insertElement(debtSection, sectionContent);
+      }
+
+      if (sectionStart === 3) {
+        const sectionHeader = document.createElement('p');
+        sectionHeader.classList.add('debt-title');
+        sectionHeader.classList.add('r__debt-title');
+        sectionHeader.textContent = `Initial Amount`;
+
+        const sectionContent = document.createElement('p');
+        sectionContent.classList.add('debt-text');
+        sectionContent.classList.add('r__debt-text');
+        sectionContent.textContent = money.format(Number(debtAmount.value));
+
+        insertElement(debtSection, sectionHeader);
+        insertElement(debtSection, sectionContent);
+      }
+
+      if (sectionStart === 4) {
+        const sectionHeader = document.createElement('p');
+        sectionHeader.classList.add('debt-title');
+        sectionHeader.classList.add('r__debt-title');
+        sectionHeader.textContent = `Current Amount`;
+
+        const sectionContent = document.createElement('p');
+        sectionContent.classList.add('debt-text');
+        sectionContent.classList.add('r__debt-text');
+        sectionContent.textContent = money.format(Number(debtAmount.value));
+
+        insertElement(debtSection, sectionHeader);
+        insertElement(debtSection, sectionContent);
+      }
+
+      if (sectionStart === 5) {
+        const sectionHeader = document.createElement('p');
+        sectionHeader.classList.add('debt-title');
+        sectionHeader.classList.add('r__debt-title');
+        sectionHeader.textContent = `Status`;
+
+        const sectionContent = document.createElement('p');
+        sectionContent.classList.add('debt-text');
+        sectionContent.classList.add('r__debt-text');
+        sectionContent.textContent = `Unpaid`;
+
+        insertElement(debtSection, sectionHeader);
+        insertElement(debtSection, sectionContent);
+      }
+
+      if (sectionStart === 6) {
+        const paidOffButton = document.createElement('button');
+        paidOffButton.classList.add('button--extra-extra-small__transaction-plan');
+        paidOffButton.classList.add('r__button--extra-extra-small__transaction-plan');
+
+        const paidOffButtonIcon = document.createElement('i');
+        paidOffButtonIcon.classList.add('fas');
+        paidOffButtonIcon.classList.add('fa-handshake');
+        paidOffButtonIcon.classList.add('button--extra-extra-small__transaction-plan__icon');
+        paidOffButtonIcon.classList.add('r__button--extra-extra-small__transaction-plan__icon');
+
+        const paidOffButtonText = document.createElement('p');
+        paidOffButtonText.classList.add('button--extra-extra-small__transaction-plan__text');
+        paidOffButtonText.classList.add('r__button--extra-extra-small__transaction-plan__text');
+        paidOffButtonText.textContent = `Paid Off`;
+
+        insertElement(paidOffButton, paidOffButtonIcon);
+        insertElement(paidOffButton, paidOffButtonText);
+        insertElement(debtSection, paidOffButton);
+      }
+      sectionStart++;
+    }
   });
 };
 
