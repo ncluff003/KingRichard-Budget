@@ -243,7 +243,7 @@ exports.updateMyBudget = catchAsync(async (request, response, next) => {
     return next(new AppError(`This route is not for password updates.  Please use /updateMyPassword route.`, 400));
   }
   // UPDATE BUDGET DOCUMENT
-  const filteredBody = filterObj(request.body, [`name`, `accounts`, `mainCategories`, `transactions`, `investments`]);
+  const filteredBody = filterObj(request.body, [`name`, `accounts`, `mainCategories`, `transactions`, `investments`, `debts`]);
   console.log(`--------------------------------------------`);
   console.log(`Budget`);
   console.log(`--------------------------------------------`);
@@ -331,18 +331,7 @@ exports.getBudgetManagement = catchAsync(async (request, response, next) => {
   request.budget = budget;
   request.budgetId = budget._id;
   console.log(request.budgetId);
-  createAndSendToken(
-    user,
-    201,
-    `render`,
-    request,
-    response,
-    `./Budget/Budget-Management/Budget-Management`,
-    `King Richard | ${budget.name}`,
-    { budget: budget, calendar: Calendar },
-    200,
-    `Success`
-  );
+  createAndSendToken(user, 201, `render`, request, response, `./Budget/Budget-Management/Budget-Management`, `King Richard | ${budget.name}`, { budget: budget, calendar: Calendar }, 200, `Success`);
 });
 
 exports.getEditCategoryGoals = catchAsync(async (request, response, next) => {
@@ -352,18 +341,7 @@ exports.getEditCategoryGoals = catchAsync(async (request, response, next) => {
   if (!budget) {
     return next(new AppError('No budget found with that ID', 404));
   }
-  createAndSendToken(
-    user,
-    201,
-    `render`,
-    request,
-    response,
-    `./Budget/Edit-Budget/Edit-Category-Goals`,
-    `King Richard | ${budget.name}`,
-    { budget: budget, calendar: Calendar },
-    200,
-    `Success`
-  );
+  createAndSendToken(user, 201, `render`, request, response, `./Budget/Edit-Budget/Edit-Category-Goals`, `King Richard | ${budget.name}`, { budget: budget, calendar: Calendar }, 200, `Success`);
 });
 
 exports.getManageCategories = catchAsync(async (request, response, next) => {
@@ -373,18 +351,7 @@ exports.getManageCategories = catchAsync(async (request, response, next) => {
   if (!budget) {
     return next(new AppError('No budget found with that ID', 404));
   }
-  createAndSendToken(
-    user,
-    201,
-    `render`,
-    request,
-    response,
-    `./Budget/Edit-Budget/Manage-Categories`,
-    `King Richard | ${budget.name}`,
-    { budget: budget, calendar: Calendar },
-    200,
-    `Success`
-  );
+  createAndSendToken(user, 201, `render`, request, response, `./Budget/Edit-Budget/Manage-Categories`, `King Richard | ${budget.name}`, { budget: budget, calendar: Calendar }, 200, `Success`);
 });
 
 exports.getAllocateIncome = catchAsync(async (request, response, next) => {
@@ -394,18 +361,7 @@ exports.getAllocateIncome = catchAsync(async (request, response, next) => {
   if (!budget) {
     return next(new AppError('No budget found with that ID', 404));
   }
-  createAndSendToken(
-    user,
-    201,
-    `render`,
-    request,
-    response,
-    `./Budget/Income/Allocate-Income`,
-    `King Richard | ${budget.name}`,
-    { budget: budget, calendar: Calendar },
-    200,
-    `Success`
-  );
+  createAndSendToken(user, 201, `render`, request, response, `./Budget/Income/Allocate-Income`, `King Richard | ${budget.name}`, { budget: budget, calendar: Calendar }, 200, `Success`);
 });
 
 exports.getTransactionPlanner = catchAsync(async (request, response, next) => {
@@ -415,18 +371,7 @@ exports.getTransactionPlanner = catchAsync(async (request, response, next) => {
   if (!budget) {
     return next(new AppError('No budget found with that ID', 404));
   }
-  createAndSendToken(
-    user,
-    201,
-    `render`,
-    request,
-    response,
-    `./Budget/Transactions/Transaction-Planner`,
-    `King Richard | ${budget.name}`,
-    { budget: budget, calendar: Calendar },
-    200,
-    `Success`
-  );
+  createAndSendToken(user, 201, `render`, request, response, `./Budget/Transactions/Transaction-Planner`, `King Richard | ${budget.name}`, { budget: budget, calendar: Calendar }, 200, `Success`);
 });
 
 exports.getInvestmentPlanner = catchAsync(async (request, response, next) => {
@@ -436,18 +381,7 @@ exports.getInvestmentPlanner = catchAsync(async (request, response, next) => {
   if (!budget) {
     return next(new AppError('No budget found with that ID', 404));
   }
-  createAndSendToken(
-    user,
-    201,
-    `render`,
-    request,
-    response,
-    `./Budget/Transactions/Investment-Planner`,
-    `King Richard | ${budget.name}`,
-    { budget: budget, calendar: Calendar },
-    200,
-    `Success`
-  );
+  createAndSendToken(user, 201, `render`, request, response, `./Budget/Transactions/Investment-Planner`, `King Richard | ${budget.name}`, { budget: budget, calendar: Calendar }, 200, `Success`);
 });
 
 exports.getDebtManager = catchAsync(async (request, response, next) => {
@@ -457,18 +391,7 @@ exports.getDebtManager = catchAsync(async (request, response, next) => {
   if (!budget) {
     return next(new AppError('No budget found with that ID', 404));
   }
-  createAndSendToken(
-    user,
-    201,
-    `render`,
-    request,
-    response,
-    `./Budget/Transactions/Debt-Manager`,
-    `King Richard | ${budget.name}`,
-    { budget: budget, calendar: Calendar },
-    200,
-    `Success`
-  );
+  createAndSendToken(user, 201, `render`, request, response, `./Budget/Transactions/Debt-Manager`, `King Richard | ${budget.name}`, { budget: budget, calendar: Calendar }, 200, `Success`);
 });
 
 exports.getRecentTransactions = catchAsync(async (request, response, next) => {
@@ -478,18 +401,7 @@ exports.getRecentTransactions = catchAsync(async (request, response, next) => {
   if (!budget) {
     return next(new AppError('No budget found with that ID', 404));
   }
-  createAndSendToken(
-    user,
-    201,
-    `render`,
-    request,
-    response,
-    `./Budget/Transactions/Recent-Transactions`,
-    `King Richard | ${budget.name}`,
-    { budget: budget, calendar: Calendar },
-    200,
-    `Success`
-  );
+  createAndSendToken(user, 201, `render`, request, response, `./Budget/Transactions/Recent-Transactions`, `King Richard | ${budget.name}`, { budget: budget, calendar: Calendar }, 200, `Success`);
 });
 
 exports.getAccountManagement = catchAsync(async (request, response, next) => {
@@ -499,18 +411,7 @@ exports.getAccountManagement = catchAsync(async (request, response, next) => {
   if (!budget) {
     return next(new AppError('No budget found with that ID', 404));
   }
-  createAndSendToken(
-    user,
-    201,
-    `render`,
-    request,
-    response,
-    `./Budget/Account-Management/Account-Management`,
-    `King Richard | ${budget.name}`,
-    { budget: budget, calendar: Calendar },
-    200,
-    `Success`
-  );
+  createAndSendToken(user, 201, `render`, request, response, `./Budget/Account-Management/Account-Management`, `King Richard | ${budget.name}`, { budget: budget, calendar: Calendar }, 200, `Success`);
 });
 
 exports.getInviteUsers = catchAsync(async (request, response, next) => {
@@ -520,18 +421,7 @@ exports.getInviteUsers = catchAsync(async (request, response, next) => {
   if (!budget) {
     return next(new AppError('No budget found with that ID', 404));
   }
-  createAndSendToken(
-    user,
-    201,
-    `render`,
-    request,
-    response,
-    `./Budget/Invite-Users/Invite-Users`,
-    `King Richard | ${budget.name}`,
-    { budget: budget, calendar: Calendar },
-    200,
-    `Success`
-  );
+  createAndSendToken(user, 201, `render`, request, response, `./Budget/Invite-Users/Invite-Users`, `King Richard | ${budget.name}`, { budget: budget, calendar: Calendar }, 200, `Success`);
 });
 
 // exports.getBudgets = catchAsync(async (request, response, next) => {

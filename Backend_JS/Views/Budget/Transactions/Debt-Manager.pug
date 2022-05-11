@@ -11,30 +11,31 @@ block Budget-Content
     section.container--large__header.r__container--large__header 
       i.fas.fa-file-invoice-dollar.container--large__header__icon.r__container--large__header__icon
       p.container--large__header__title.r__container--large__header__title= `${'Unpaid Debts'.toUpperCase()}`
-    section.debt-display.r__debt-display 
-      section.debt.r__debt 
-        section.form__section--debt.r__form__section--debt 
-          p.debt-title.r__debt-title Date 
-          p.debt-text.r__debt-text= `${new Date().getDate()} ${months[new Date().getMonth()]} ${new Date().getFullYear()}`
-        section.form__section--debt.r__form__section--debt 
-          p.debt-title.r__debt-title Lender 
-          p.debt-text.r__debt-text= `Wells Fargo`
-        section.form__section--debt.r__form__section--debt 
-          p.debt-title.r__debt-title Type 
-          p.debt-text.r__debt-text= `Credit Card`
-        section.form__section--debt.r__form__section--debt 
-          p.debt-title.r__debt-title Initial Amount 
-          p.debt-text.r__debt-text= `${money.format(4000)}`
-        section.form__section--debt.r__form__section--debt 
-          p.debt-title.r__debt-title Current Amount 
-          p.debt-text.r__debt-text= `${money.format(5000)}`
-        section.form__section--debt.r__form__section--debt 
-          p.debt-title.r__debt-title Status 
-          p.debt-text.r__debt-text= `Partially Paid`
-        section.form__section--debt.r__form__section--debt
-          button.button--extra-extra-small__transaction-plan.r__button--extra-extra-small__transaction-plan 
-            i.fas.fa-handshake.button--extra-extra-small__transaction-plan__icon.r__button--extra-extra-small__transaction-plan__icon
-            p.button--extra-small__transaction-plan__text.r__button--extra-extra-small__transaction-plan__text Paid Off
+    section.debt-display.r__debt-display
+      each debt in data.budget.debts
+        section.debt.r__debt 
+          section.form__section--debt.r__form__section--debt 
+            p.debt-title.r__debt-title Date 
+            p.debt-text.r__debt-text= `${debt.date.getDate()} ${months[debt.date.getMonth()]} ${debt.date.getFullYear()}`
+          section.form__section--debt.r__form__section--debt 
+            p.debt-title.r__debt-title Lender 
+            p.debt-text.r__debt-text= `${debt.lender}`
+          section.form__section--debt.r__form__section--debt 
+            p.debt-title.r__debt-title Type 
+            p.debt-text.r__debt-text= `${debt.debtType}`
+          section.form__section--debt.r__form__section--debt 
+            p.debt-title.r__debt-title Initial Amount 
+            p.debt-text.r__debt-text= `${money.format(debt.initialDebt)}`
+          section.form__section--debt.r__form__section--debt 
+            p.debt-title.r__debt-title Current Amount 
+            p.debt-text.r__debt-text= `${money.format(debt.amountOwed)}`
+          section.form__section--debt.r__form__section--debt 
+            p.debt-title.r__debt-title Status 
+            p.debt-text.r__debt-text= `${debt.status}`
+          section.form__section--debt.r__form__section--debt
+            button.button--extra-extra-small__transaction-plan.r__button--extra-extra-small__transaction-plan 
+              i.fas.fa-handshake.button--extra-extra-small__transaction-plan__icon.r__button--extra-extra-small__transaction-plan__icon
+              p.button--extra-small__transaction-plan__text.r__button--extra-extra-small__transaction-plan__text Paid Off
       
       section.add-debt-container.r__add-debt-container
         form.form--full-width.r__form--full-width

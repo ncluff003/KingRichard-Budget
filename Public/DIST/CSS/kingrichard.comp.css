@@ -183,11 +183,15 @@ html {
   color: #fafafa;
 }
 
-.button-container, .budget-container, .budget-container__navigation-button-container, .button-container__navigation-button-container {
+.button-container, .budget-container, .budget-container__header__text, .budget-container__navigation-button-container, .button-container__navigation-button-container {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
 }
 .budget-container__navigation-button-container {
   font-size: 2.8rem;
+  color: #822aba;
+}
+.budget-container__header__text {
+  font-size: 7rem;
   color: #822aba;
 }
 

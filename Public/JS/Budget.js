@@ -262,6 +262,11 @@ export class Budget {
         Manage.updateMyBudget(options.updateObject, pageLink);
       }
 
+      if (update === `Add Debt`) {
+        console.log(`Adding Debt...`, options);
+        Manage.updateMyBudget(options.updateObject, pageLink);
+      }
+
       console.log(`Updating...`);
     }
   }

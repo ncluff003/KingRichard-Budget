@@ -144,6 +144,13 @@ html {
     font-size: 2.8rem;
     color: $primaryColor;
   }
+  &__header {
+    &__text {
+      @extend .budget-container;
+      font-size: 7rem;
+      color: $primaryColor;
+    }
+  }
 }
 
 // BUTTONS

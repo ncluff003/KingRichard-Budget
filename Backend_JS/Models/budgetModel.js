@@ -323,7 +323,7 @@ const budgetSchema = new mongoose.Schema({
         type: String,
         enum: [`Credit Card`, `Loan`, `Taxes`, `Debt`, `Other`],
       },
-      initialAmount: {
+      initialDebt: {
         type: Number,
         required: [true, `Every debt started somewhere at a specific number.`],
       },

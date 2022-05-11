@@ -247,6 +247,9 @@ const _watchForProfilePictureChange = (user) => {
     console.log(form.data);
 
     Update.updateUserPhoto(form);
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
   });
 };
 
