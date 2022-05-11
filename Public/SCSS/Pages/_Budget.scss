@@ -44,7 +44,8 @@
         transition: color 0.5s;
       }
 
-      .button--extra-extra-small__transaction-plan {
+      .button--extra-extra-small__transaction-plan,
+      .button--extra-extra-small__debt-transaction-plan {
         border-color: rgba($colorOffWhite, 0.8);
         &:hover {
           background-color: $secondaryColor;

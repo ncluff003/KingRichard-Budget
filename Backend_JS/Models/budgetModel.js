@@ -336,6 +336,9 @@ const budgetSchema = new mongoose.Schema({
         enum: [`Unpaid`, `Partially Paid`, `Paid Off`],
         default: `Unpaid`,
       },
+      datePaid: {
+        type: Date,
+      },
     },
   ],
 });

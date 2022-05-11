@@ -4864,9 +4864,7 @@ var _watchForProfilePictureChange = function _watchForProfilePictureChange(user)
     form.append('photo', document.getElementById('photo').files[0]);
     console.log(form.data);
     _Update_User__WEBPACK_IMPORTED_MODULE_3__.updateUserPhoto(form);
-    setTimeout(function () {
-      window.location.reload();
-    }, 2000);
+    _Maintain_Budget__WEBPACK_IMPORTED_MODULE_7__.reloadPage();
   });
 };
 
@@ -8386,7 +8384,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "_watchBudget": () => (/* binding */ _watchBudget),
 /* harmony export */   "_watchForMainCategorySelection": () => (/* binding */ _watchForMainCategorySelection),
-/* harmony export */   "fillSubCategoryArray": () => (/* binding */ fillSubCategoryArray)
+/* harmony export */   "fillSubCategoryArray": () => (/* binding */ fillSubCategoryArray),
+/* harmony export */   "reloadPage": () => (/* binding */ reloadPage)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
@@ -8412,12 +8411,178 @@ __webpack_require__.r(__webpack_exports__);
  // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
 
-var payDebtOff = function payDebtOff(budget, placeholderBudget, user, debt) {
+var reloadPage = function reloadPage() {
+  setTimeout(function () {
+    window.location.reload();
+  }, 2000);
+};
+
+var payDebtOff = function payDebtOff(budget, placeholderBudget, user, debt, paidSections, sectionStart) {
   console.log("Paying Off...", debt);
+  var money = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+  });
+  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  sectionStart = 0;
+  paidSections = 6;
+  var debtDisplay = document.querySelectorAll('.debt-display--paid')[0];
+  var upaidDebts = document.querySelectorAll('.debt');
+  var paidDebts = document.querySelectorAll('.debt--paid');
+  var paidDebt = document.createElement('section');
+  paidDebt.classList.add('debt--paid');
+  paidDebt.classList.add('r__debt--paid');
+  paidDebt.dataset.debt = budget.debts.indexOf(debt);
+  var updateObject = {
+    budgetId: budget._id,
+    userId: user._id,
+    debts: budget.debts
+  };
+
+  if (paidDebts.length === 0) {
+    debtDisplay.insertAdjacentElement('afterbegin', paidDebt);
+  }
+
+  if (paidDebts.length > 0) {
+    paidDebts[paidDebts.length - 1].insertAdjacentElement('afterend', paidDebt);
+  }
+
+  while (sectionStart < paidSections) {
+    var debtSection = document.createElement('section');
+    debtSection.classList.add('form__section--debt-paid');
+    debtSection.classList.add('r__form__section--debt-paid');
+    insertElement(paidDebt, debtSection);
+    console.log(debtDisplay, sectionStart);
+
+    if (sectionStart === 0) {
+      var sectionHeader = document.createElement('p');
+      sectionHeader.classList.add('debt--paid-title');
+      sectionHeader.classList.add('r__debt--paid-title');
+      sectionHeader.textContent = "Date";
+      var sectionContent = document.createElement('p');
+      sectionContent.classList.add('debt--paid-text');
+      sectionContent.classList.add('r__debt--paid-text');
+      sectionContent.textContent = "".concat(new Date(debt.date).getDate(), " ").concat(months[new Date(debt.date).getMonth()], " ").concat(new Date(debt.date).getFullYear());
+      insertElement(debtSection, sectionHeader);
+      insertElement(debtSection, sectionContent);
+    }
+
+    if (sectionStart === 1) {
+      var _sectionHeader = document.createElement('p');
+
+      _sectionHeader.classList.add('debt--paid-title');
+
+      _sectionHeader.classList.add('r__debt--paid-title');
+
+      _sectionHeader.textContent = "Lender";
+
+      var _sectionContent = document.createElement('p');
+
+      _sectionContent.classList.add('debt--paid-text');
+
+      _sectionContent.classList.add('r__debt--paid-text');
+
+      _sectionContent.textContent = debt.lender;
+      insertElement(debtSection, _sectionHeader);
+      insertElement(debtSection, _sectionContent);
+    }
+
+    if (sectionStart === 2) {
+      var _sectionHeader2 = document.createElement('p');
+
+      _sectionHeader2.classList.add('debt--paid-title');
+
+      _sectionHeader2.classList.add('r__debt--paid-title');
+
+      _sectionHeader2.textContent = "Type";
+
+      var _sectionContent2 = document.createElement('p');
+
+      _sectionContent2.classList.add('debt--paid-text');
+
+      _sectionContent2.classList.add('r__debt--paid-text');
+
+      _sectionContent2.textContent = debt.debtType;
+      insertElement(debtSection, _sectionHeader2);
+      insertElement(debtSection, _sectionContent2);
+    }
+
+    if (sectionStart === 3) {
+      var _sectionHeader3 = document.createElement('p');
+
+      _sectionHeader3.classList.add('debt--paid-title');
+
+      _sectionHeader3.classList.add('r__debt--paid-title');
+
+      _sectionHeader3.textContent = "Initial Debt";
+
+      var _sectionContent3 = document.createElement('p');
+
+      _sectionContent3.classList.add('debt--paid-text');
+
+      _sectionContent3.classList.add('r__debt--paid-text');
+
+      _sectionContent3.textContent = money.format(Number(debt.initialDebt));
+      insertElement(debtSection, _sectionHeader3);
+      insertElement(debtSection, _sectionContent3);
+    }
+
+    if (sectionStart === 4) {
+      var _sectionHeader4 = document.createElement('p');
+
+      _sectionHeader4.classList.add('debt--paid-title');
+
+      _sectionHeader4.classList.add('r__debt--paid-title');
+
+      _sectionHeader4.textContent = "Amount Owed";
+
+      var _sectionContent4 = document.createElement('p');
+
+      _sectionContent4.classList.add('debt--paid-text');
+
+      _sectionContent4.classList.add('r__debt--paid-text');
+
+      _sectionContent4.textContent = money.format(Number(debt.amountOwed));
+      insertElement(debtSection, _sectionHeader4);
+      insertElement(debtSection, _sectionContent4);
+    }
+
+    if (sectionStart === 5) {
+      var _sectionHeader5 = document.createElement('p');
+
+      _sectionHeader5.classList.add('debt--paid-title');
+
+      _sectionHeader5.classList.add('r__debt--paid-title');
+
+      _sectionHeader5.textContent = "Status";
+
+      var _sectionContent5 = document.createElement('p');
+
+      _sectionContent5.classList.add('debt--paid-text');
+
+      _sectionContent5.classList.add('r__debt--paid-text');
+
+      _sectionContent5.textContent = "".concat(debt.status);
+      insertElement(debtSection, _sectionHeader5);
+      insertElement(debtSection, _sectionContent5);
+    }
+
+    sectionStart++;
+  }
+
+  updateObject.debts[budget.debts.indexOf(debt)].status = "Paid Off";
+  updateObject.debts[budget.debts.indexOf(debt)].datePaid = new Date();
+
+  placeholderBudget._updateBudget("Update", "Add Debt", {
+    updateObject: updateObject
+  }, "Debt-Manager");
 };
 
 var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, user) {
   console.log("Watching Your Debts...");
+  var debtDisplay = document.querySelectorAll('.debt-display--paid');
+  console.log(debtDisplay);
   var money = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -8448,13 +8613,14 @@ var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, us
       sectionStart = 0;
       debt.classList.add('debt');
       debt.classList.add('r__debt');
+      debt.dataset.debt = budget.debts.length;
 
-      if (debts.length === 0) {
+      if (_debts.length === 0) {
         debtDisplay.insertAdjacentElement('afterbegin', debt);
       }
 
-      if (debts.length > 0) {
-        debts[debts.length - 1].insertAdjacentElement('afterend', debt);
+      if (_debts.length > 0) {
+        _debts[_debts.length - 1].insertAdjacentElement('afterend', debt);
       }
 
       while (sectionStart < numberOfUnpaidSections) {
@@ -8478,108 +8644,108 @@ var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, us
         }
 
         if (sectionStart === 1) {
-          var _sectionHeader = document.createElement('p');
+          var _sectionHeader6 = document.createElement('p');
 
-          _sectionHeader.classList.add('debt-title');
+          _sectionHeader6.classList.add('debt-title');
 
-          _sectionHeader.classList.add('r__debt-title');
+          _sectionHeader6.classList.add('r__debt-title');
 
-          _sectionHeader.textContent = "Lender";
+          _sectionHeader6.textContent = "Lender";
 
-          var _sectionContent = document.createElement('p');
+          var _sectionContent6 = document.createElement('p');
 
-          _sectionContent.classList.add('debt-text');
+          _sectionContent6.classList.add('debt-text');
 
-          _sectionContent.classList.add('r__debt-text');
+          _sectionContent6.classList.add('r__debt-text');
 
-          _sectionContent.textContent = debtLender.value;
+          _sectionContent6.textContent = debtLender.value;
           debtObject.lender = debtLender.value;
-          insertElement(debtSection, _sectionHeader);
-          insertElement(debtSection, _sectionContent);
+          insertElement(debtSection, _sectionHeader6);
+          insertElement(debtSection, _sectionContent6);
         }
 
         if (sectionStart === 2) {
-          var _sectionHeader2 = document.createElement('p');
+          var _sectionHeader7 = document.createElement('p');
 
-          _sectionHeader2.classList.add('debt-title');
+          _sectionHeader7.classList.add('debt-title');
 
-          _sectionHeader2.classList.add('r__debt-title');
+          _sectionHeader7.classList.add('r__debt-title');
 
-          _sectionHeader2.textContent = "Type";
+          _sectionHeader7.textContent = "Type";
 
-          var _sectionContent2 = document.createElement('p');
+          var _sectionContent7 = document.createElement('p');
 
-          _sectionContent2.classList.add('debt-text');
+          _sectionContent7.classList.add('debt-text');
 
-          _sectionContent2.classList.add('r__debt-text');
+          _sectionContent7.classList.add('r__debt-text');
 
-          _sectionContent2.textContent = debtTypes.value;
+          _sectionContent7.textContent = debtTypes.value;
           debtObject.debtType = debtTypes.value;
-          insertElement(debtSection, _sectionHeader2);
-          insertElement(debtSection, _sectionContent2);
+          insertElement(debtSection, _sectionHeader7);
+          insertElement(debtSection, _sectionContent7);
         }
 
         if (sectionStart === 3) {
-          var _sectionHeader3 = document.createElement('p');
+          var _sectionHeader8 = document.createElement('p');
 
-          _sectionHeader3.classList.add('debt-title');
+          _sectionHeader8.classList.add('debt-title');
 
-          _sectionHeader3.classList.add('r__debt-title');
+          _sectionHeader8.classList.add('r__debt-title');
 
-          _sectionHeader3.textContent = "Initial Debt";
+          _sectionHeader8.textContent = "Initial Debt";
 
-          var _sectionContent3 = document.createElement('p');
+          var _sectionContent8 = document.createElement('p');
 
-          _sectionContent3.classList.add('debt-text');
+          _sectionContent8.classList.add('debt-text');
 
-          _sectionContent3.classList.add('r__debt-text');
+          _sectionContent8.classList.add('r__debt-text');
 
-          _sectionContent3.textContent = money.format(Number(debtAmount.value));
+          _sectionContent8.textContent = money.format(Number(debtAmount.value));
           debtObject.initialDebt = Number(debtAmount.value);
-          insertElement(debtSection, _sectionHeader3);
-          insertElement(debtSection, _sectionContent3);
+          insertElement(debtSection, _sectionHeader8);
+          insertElement(debtSection, _sectionContent8);
         }
 
         if (sectionStart === 4) {
-          var _sectionHeader4 = document.createElement('p');
+          var _sectionHeader9 = document.createElement('p');
 
-          _sectionHeader4.classList.add('debt-title');
+          _sectionHeader9.classList.add('debt-title');
 
-          _sectionHeader4.classList.add('r__debt-title');
+          _sectionHeader9.classList.add('r__debt-title');
 
-          _sectionHeader4.textContent = "Amount Owed";
+          _sectionHeader9.textContent = "Amount Owed";
 
-          var _sectionContent4 = document.createElement('p');
+          var _sectionContent9 = document.createElement('p');
 
-          _sectionContent4.classList.add('debt-text');
+          _sectionContent9.classList.add('debt-text');
 
-          _sectionContent4.classList.add('r__debt-text');
+          _sectionContent9.classList.add('r__debt-text');
 
-          _sectionContent4.textContent = money.format(Number(debtAmount.value));
+          _sectionContent9.textContent = money.format(Number(debtAmount.value));
           debtObject.amountOwed = debtObject.initialDebt;
-          insertElement(debtSection, _sectionHeader4);
-          insertElement(debtSection, _sectionContent4);
+          insertElement(debtSection, _sectionHeader9);
+          insertElement(debtSection, _sectionContent9);
         }
 
         if (sectionStart === 5) {
-          var _sectionHeader5 = document.createElement('p');
+          var _sectionHeader10 = document.createElement('p');
 
-          _sectionHeader5.classList.add('debt-title');
+          _sectionHeader10.classList.add('debt-title');
 
-          _sectionHeader5.classList.add('r__debt-title');
+          _sectionHeader10.classList.add('r__debt-title');
 
-          _sectionHeader5.textContent = "Status";
+          _sectionHeader10.textContent = "Status";
 
-          var _sectionContent5 = document.createElement('p');
+          var _sectionContent10 = document.createElement('p');
 
-          _sectionContent5.classList.add('debt-text');
+          _sectionContent10.classList.add('debt-text');
 
-          _sectionContent5.classList.add('r__debt-text');
+          _sectionContent10.classList.add('r__debt-text');
 
-          _sectionContent5.textContent = "Unpaid";
+          _sectionContent10.textContent = "Unpaid";
           debtObject.status = "Unpaid";
-          insertElement(debtSection, _sectionHeader5);
-          insertElement(debtSection, _sectionContent5);
+          insertElement(debtSection, _sectionHeader10);
+          insertElement(debtSection, _sectionContent10);
         }
 
         if (sectionStart === 6) {
@@ -8597,11 +8763,10 @@ var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, us
           paidOffButtonText.textContent = "Paid Off";
           insertElement(paidOffButton, paidOffButtonIcon);
           insertElement(paidOffButton, paidOffButtonText);
-          insertElement(debtSection, paidOffButton);
-          paidOffButton.addEventListener('click', function (e) {
-            e.preventDefault();
-            payDebtOff(budget, placeholderBudget, user, debtObject);
-          });
+          insertElement(debtSection, paidOffButton); // paidOffButton.addEventListener('click', (e) => {
+          //   e.preventDefault();
+          //   payDebtOff(budget, placeholderBudget, user, debtObject, numberOfPaidSections, sectionStart);
+          // });
         }
 
         sectionStart++;
@@ -8613,8 +8778,23 @@ var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, us
       placeholderBudget._updateBudget("Update", "Add Debt", {
         updateObject: updateObject
       }, "Debt-Manager");
+
+      reloadPage();
     });
-    var debtPayOffButtons = document.querySelectorAll('.button--extra-extra-small__transaction-plan');
+    var debtPayOffButtons = document.querySelectorAll('.button--extra-extra-small__debt-transaction-plan');
+
+    var _debts = document.querySelectorAll('.debt');
+
+    debtPayOffButtons.forEach(function (button, i) {
+      button.addEventListener('click', function (e) {
+        e.preventDefault();
+        numberOfPaidSections = 6;
+        sectionStart = 0;
+        payDebtOff(budget, placeholderBudget, user, budget.debts[_debts[i].dataset.debt], numberOfPaidSections, sectionStart);
+
+        _debts[i].remove();
+      });
+    });
     console.log(debtPayOffButtons);
   }
 };

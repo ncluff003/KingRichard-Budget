@@ -543,7 +543,8 @@
       @extend .button--extra-extra-small;
       transform: translate(4rem, 0rem);
     }
-    &__transaction-plan {
+    &__transaction-plan,
+    &__debt-transaction-plan {
       @extend .button--extra-extra-small;
       height: 4rem;
       width: 10rem;

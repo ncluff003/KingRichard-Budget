@@ -195,12 +195,12 @@ html {
   color: #822aba;
 }
 
-.button, .button--large, .button--large__thin, .button--medium, .button--medium-main-category-deletion, .button--medium-square, .button--borderless, .button--borderless-narrow, .button--borderless-narrow__investment, .button--timing-button-submit, .button--small, .button--small-container-header, .button--small-create-main-category, .button--small-purple, .button--extra-extra-small, .button--extra-extra-small__alt, .button--extra-extra-small__wide, .button--extra-extra-small__transaction-plan, .button--extra-extra-small__transaction-plan-small, .button--transaction-button, .button--budget-navigation, .button--confirm-value, .button--settle, .button--update-photo {
+.button, .button--large, .button--large__thin, .button--medium, .button--medium-main-category-deletion, .button--medium-square, .button--borderless, .button--borderless-narrow, .button--borderless-narrow__investment, .button--timing-button-submit, .button--small, .button--small-container-header, .button--small-create-main-category, .button--small-purple, .button--extra-extra-small, .button--extra-extra-small__alt, .button--extra-extra-small__wide, .button--extra-extra-small__transaction-plan, .button--extra-extra-small__transaction-plan-small, .button--extra-extra-small__debt-transaction-plan-small, .button--extra-extra-small__debt-transaction-plan, .button--transaction-button, .button--budget-navigation, .button--confirm-value, .button--settle, .button--update-photo {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   font-size: 2.2rem;
   color: rgba(130, 42, 186, 0.75);
 }
-.button:hover, .button--large:hover, .button--large__thin:hover, .button--medium:hover, .button--medium-main-category-deletion:hover, .button--medium-square:hover, .button--borderless:hover, .button--borderless-narrow:hover, .button--borderless-narrow__investment:hover, .button--timing-button-submit:hover, .button--small:hover, .button--small-container-header:hover, .button--small-create-main-category:hover, .button--small-purple:hover, .button--extra-extra-small:hover, .button--extra-extra-small__alt:hover, .button--extra-extra-small__wide:hover, .button--extra-extra-small__transaction-plan:hover, .button--extra-extra-small__transaction-plan-small:hover, .button--transaction-button:hover, .button--budget-navigation:hover, .button--confirm-value:hover, .button--settle:hover, .button--update-photo:hover {
+.button:hover, .button--large:hover, .button--large__thin:hover, .button--medium:hover, .button--medium-main-category-deletion:hover, .button--medium-square:hover, .button--borderless:hover, .button--borderless-narrow:hover, .button--borderless-narrow__investment:hover, .button--timing-button-submit:hover, .button--small:hover, .button--small-container-header:hover, .button--small-create-main-category:hover, .button--small-purple:hover, .button--extra-extra-small:hover, .button--extra-extra-small__alt:hover, .button--extra-extra-small__wide:hover, .button--extra-extra-small__transaction-plan:hover, .button--extra-extra-small__transaction-plan-small:hover, .button--extra-extra-small__debt-transaction-plan-small:hover, .button--extra-extra-small__debt-transaction-plan:hover, .button--transaction-button:hover, .button--budget-navigation:hover, .button--confirm-value:hover, .button--settle:hover, .button--update-photo:hover {
   color: #fafafa;
 }
 .button--update-photo {
@@ -233,14 +233,14 @@ html {
 .button--transaction-button:hover {
   color: #fafafa;
 }
-.button--extra-extra-small, .button--extra-extra-small__alt, .button--extra-extra-small__wide, .button--extra-extra-small__transaction-plan, .button--extra-extra-small__transaction-plan-small {
+.button--extra-extra-small, .button--extra-extra-small__alt, .button--extra-extra-small__wide, .button--extra-extra-small__transaction-plan, .button--extra-extra-small__transaction-plan-small, .button--extra-extra-small__debt-transaction-plan-small, .button--extra-extra-small__debt-transaction-plan {
   font-size: 1.6rem;
   color: rgba(250, 250, 250, 0.8);
 }
-.button--extra-extra-small:hover, .button--extra-extra-small__alt:hover, .button--extra-extra-small__wide:hover, .button--extra-extra-small__transaction-plan:hover, .button--extra-extra-small__transaction-plan-small:hover {
+.button--extra-extra-small:hover, .button--extra-extra-small__alt:hover, .button--extra-extra-small__wide:hover, .button--extra-extra-small__transaction-plan:hover, .button--extra-extra-small__transaction-plan-small:hover, .button--extra-extra-small__debt-transaction-plan-small:hover, .button--extra-extra-small__debt-transaction-plan:hover {
   color: #fafafa;
 }
-.button--extra-extra-small__transaction-plan, .button--extra-extra-small__transaction-plan-small {
+.button--extra-extra-small__transaction-plan, .button--extra-extra-small__transaction-plan-small, .button--extra-extra-small__debt-transaction-plan-small, .button--extra-extra-small__debt-transaction-plan {
   font-size: 1.4rem;
 }
 .button--extra-small {
@@ -33477,7 +33477,7 @@ html {
   transition: color 0.5s, background-color 0.5s, border 0.5s;
 }
 
-.button, .button--budget-navigation, .button--large, .button--large__thin, .button--medium, .button--medium-main-category-deletion, .button--borderless, .button--borderless-narrow, .button--borderless-narrow__investment, .button--borderless-set-timing-button, .button--small, .button--small-container-header, .button--small-create-sub-category, .button--small-create-sub-category-close, .button--small-create-main-category, .button--small-transparent, .button--small-purple, .button--extra-small, .button--extra-extra-small, .button--extra-extra-small__wide, .button--extra-extra-small__transaction-plan, .button--extra-extra-small__transaction-plan-small, .button--extra-extra-small__alt, .button--timing-button-submit, .button--timing-button, .button--transaction-button, .button--settle {
+.button, .button--budget-navigation, .button--large, .button--large__thin, .button--medium, .button--medium-main-category-deletion, .button--borderless, .button--borderless-narrow, .button--borderless-narrow__investment, .button--borderless-set-timing-button, .button--small, .button--small-container-header, .button--small-create-sub-category, .button--small-create-sub-category-close, .button--small-create-main-category, .button--small-transparent, .button--small-purple, .button--extra-small, .button--extra-extra-small, .button--extra-extra-small__wide, .button--extra-extra-small__transaction-plan, .button--extra-extra-small__transaction-plan-small, .button--extra-extra-small__debt-transaction-plan-small, .button--extra-extra-small__debt-transaction-plan, .button--extra-extra-small__alt, .button--timing-button-submit, .button--timing-button, .button--transaction-button, .button--settle {
   position: relative;
   height: 6rem;
   width: 40%;
@@ -33492,7 +33492,7 @@ html {
   border: 0.3rem solid rgba(130, 42, 186, 0.75);
   border-radius: 1.5rem;
 }
-.button:hover, .button--budget-navigation:hover, .button--large:hover, .button--large__thin:hover, .button--medium:hover, .button--medium-main-category-deletion:hover, .button--borderless:hover, .button--borderless-narrow:hover, .button--borderless-narrow__investment:hover, .button--borderless-set-timing-button:hover, .button--small:hover, .button--small-container-header:hover, .button--small-create-sub-category:hover, .button--small-create-sub-category-close:hover, .button--small-create-main-category:hover, .button--small-transparent:hover, .button--small-purple:hover, .button--extra-small:hover, .button--extra-extra-small:hover, .button--extra-extra-small__wide:hover, .button--extra-extra-small__transaction-plan:hover, .button--extra-extra-small__transaction-plan-small:hover, .button--extra-extra-small__alt:hover, .button--timing-button-submit:hover, .button--timing-button:hover, .button--transaction-button:hover, .button--settle:hover {
+.button:hover, .button--budget-navigation:hover, .button--large:hover, .button--large__thin:hover, .button--medium:hover, .button--medium-main-category-deletion:hover, .button--borderless:hover, .button--borderless-narrow:hover, .button--borderless-narrow__investment:hover, .button--borderless-set-timing-button:hover, .button--small:hover, .button--small-container-header:hover, .button--small-create-sub-category:hover, .button--small-create-sub-category-close:hover, .button--small-create-main-category:hover, .button--small-transparent:hover, .button--small-purple:hover, .button--extra-small:hover, .button--extra-extra-small:hover, .button--extra-extra-small__wide:hover, .button--extra-extra-small__transaction-plan:hover, .button--extra-extra-small__transaction-plan-small:hover, .button--extra-extra-small__debt-transaction-plan-small:hover, .button--extra-extra-small__debt-transaction-plan:hover, .button--extra-extra-small__alt:hover, .button--timing-button-submit:hover, .button--timing-button:hover, .button--transaction-button:hover, .button--settle:hover {
   cursor: pointer;
   background-color: #822aba;
   border: 0.3rem solid #822aba;
@@ -33619,7 +33619,7 @@ html {
   background-color: #38d927;
   border: 0.3rem solid #38d927;
 }
-.button--extra-extra-small, .button--extra-extra-small__wide, .button--extra-extra-small__transaction-plan, .button--extra-extra-small__transaction-plan-small, .button--extra-extra-small__alt {
+.button--extra-extra-small, .button--extra-extra-small__wide, .button--extra-extra-small__transaction-plan, .button--extra-extra-small__transaction-plan-small, .button--extra-extra-small__debt-transaction-plan-small, .button--extra-extra-small__debt-transaction-plan, .button--extra-extra-small__alt {
   height: 3.5rem;
   width: 30%;
   justify-content: space-evenly;
@@ -33630,7 +33630,7 @@ html {
   border-radius: 0.5rem;
   min-height: 3rem;
 }
-.button--extra-extra-small:hover, .button--extra-extra-small__wide:hover, .button--extra-extra-small__transaction-plan:hover, .button--extra-extra-small__transaction-plan-small:hover, .button--extra-extra-small__alt:hover {
+.button--extra-extra-small:hover, .button--extra-extra-small__wide:hover, .button--extra-extra-small__transaction-plan:hover, .button--extra-extra-small__transaction-plan-small:hover, .button--extra-extra-small__debt-transaction-plan-small:hover, .button--extra-extra-small__debt-transaction-plan:hover, .button--extra-extra-small__alt:hover {
   cursor: pointer;
   background-color: #822aba;
   border: 0.2rem solid #822aba;
@@ -33639,7 +33639,7 @@ html {
 .button--extra-extra-small__alt {
   transform: translate(4rem, 0rem);
 }
-.button--extra-extra-small__transaction-plan, .button--extra-extra-small__transaction-plan-small {
+.button--extra-extra-small__transaction-plan, .button--extra-extra-small__transaction-plan-small, .button--extra-extra-small__debt-transaction-plan-small, .button--extra-extra-small__debt-transaction-plan {
   height: 4rem;
   width: 10rem;
   transform: translate(0rem, 0rem);
@@ -33647,7 +33647,7 @@ html {
   border-radius: 0.5rem;
   min-height: 3.24rem;
 }
-.button--extra-extra-small__transaction-plan-small {
+.button--extra-extra-small__transaction-plan-small, .button--extra-extra-small__debt-transaction-plan-small {
   height: 3rem;
   width: 8rem;
   min-height: 3rem;
@@ -49750,10 +49750,14 @@ html {
 .debt--paid:hover .form__section--debt .debt-text {
   transition: color 0.5s;
 }
-.debt:hover .form__section--debt .button--extra-extra-small__transaction-plan, .debt--paid:hover .form__section--debt .button--extra-extra-small__transaction-plan {
+.debt:hover .form__section--debt .button--extra-extra-small__transaction-plan, .debt--paid:hover .form__section--debt .button--extra-extra-small__transaction-plan,
+.debt:hover .form__section--debt .button--extra-extra-small__debt-transaction-plan,
+.debt--paid:hover .form__section--debt .button--extra-extra-small__debt-transaction-plan {
   border-color: rgba(250, 250, 250, 0.8);
 }
-.debt:hover .form__section--debt .button--extra-extra-small__transaction-plan:hover, .debt--paid:hover .form__section--debt .button--extra-extra-small__transaction-plan:hover {
+.debt:hover .form__section--debt .button--extra-extra-small__transaction-plan:hover, .debt--paid:hover .form__section--debt .button--extra-extra-small__transaction-plan:hover,
+.debt:hover .form__section--debt .button--extra-extra-small__debt-transaction-plan:hover,
+.debt--paid:hover .form__section--debt .button--extra-extra-small__debt-transaction-plan:hover {
   background-color: #38d927;
 }
 /*

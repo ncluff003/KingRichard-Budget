@@ -210,7 +210,8 @@ html {
     &:hover {
       color: $colorOffWhite;
     }
-    &__transaction-plan {
+    &__transaction-plan,
+    &__debt-transaction-plan {
       @extend .button--extra-extra-small;
       font-size: 1.4rem;
       &-small {
