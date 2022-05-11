@@ -57,6 +57,18 @@ export const updateMyPassword = async (currentPassword, newPassword, newPassword
   }
 };
 
+export const updateUserPhoto = async (options) => {
+  try {
+    const response = await axios({
+      method: `PATCH`,
+      url: `/App/Users/${options.id}/UpdateMe`,
+      data: options,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const updateMe = async (options) => {
   try {
     const response = await axios({

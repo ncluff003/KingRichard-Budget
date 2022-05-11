@@ -101,8 +101,13 @@
           border-radius: 50%;
           margin-bottom: 1rem;
           &__picture {
-            @include SizingItem(relative, 100%, auto);
+            @include SizingItem(relative, 100%, 100%);
+            border: 0.5rem solid $colorOffWhite;
+            border-radius: 50%;
           }
+        }
+        &__update-picture-container {
+          @include SizeAndPositioning(relative, max-content, max-content, flex, row, nowrap, space-evenly, center, 0, 0, 0);
         }
       }
       &--account-links {

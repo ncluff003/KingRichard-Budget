@@ -1,0 +1,11 @@
+@use '../../../Public/SCSS/Utilities/Mixins' as *;
+@use '../../../Public/SCSS/Utilities/Variables' as *;
+
+.modal {
+  @include SizeAndPositioning(absolute, 100vh, 100vw, flex, column, nowrap, center, center, 0, 0, 0);
+  background-color: rgba($colorOffWhite, 0.95);
+  &--update-photo {
+    @extend .modal;
+    z-index: 100;
+  }
+}

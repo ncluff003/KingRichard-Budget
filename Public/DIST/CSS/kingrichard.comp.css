@@ -96,925 +96,6 @@ html {
   font-variant-ligatures: none;
 }
 
-.master-grid-container .application-flex-container .application-viewport .application-display .navigation__link-list__list-item__link, .master-grid-container .application-flex-container .application-viewport .application-display .navigation__link-list__list-item__link-button {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-  font-size: 2.4rem;
-  text-decoration: none;
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .navigation__link-list__list-item__link:hover, .master-grid-container .application-flex-container .application-viewport .application-display .navigation__link-list__list-item__link-button:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .navigation__link-list__list-item__link:active, .master-grid-container .application-flex-container .application-viewport .application-display .navigation__link-list__list-item__link-button:active {
-  color: #333333;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .navigation__link-list__list-item__sub-link-container {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-  font-size: 2rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .navigation__link-list__list-item__sub-link-container__sub-link {
-  color: rgba(250, 250, 250, 0.8);
-  text-decoration: none;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .navigation__link-list__list-item__sub-link-container:hover .budget-navigation__link-lidt__link-item__sub-link-container__sub-link {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .navigation__link-list__list-item__sub-link-container:active .budget-navigation__link-lidt__link-item__sub-link-container__sub-link {
-  color: #333333;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .form-close-icon,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form-close-icon {
-  font-size: 4rem;
-  color: rgba(130, 42, 186, 0.5);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .form-close-icon:hover,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form-close-icon:hover {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__header__title {
-  font-family: MADE Tommy Soft Bold, Verdana, sans-serif;
-  font-size: 10rem;
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__header__title--medium {
-  font-family: MADE Tommy Soft Bold, Verdana, sans-serif;
-  color: #822aba;
-  font-size: 6rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page:nth-of-type(1), .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page:nth-of-type(5), .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page:nth-of-type(6), .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page:nth-of-type(7) {
-  flex-direction: column;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page:nth-of-type(1) > .budget-creation-form__page__section > .budget-creation-form__page__section__input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page:nth-of-type(5) > .budget-creation-form__page__section > .budget-creation-form__page__section__input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page:nth-of-type(6) > .budget-creation-form__page__section > .budget-creation-form__page__section__input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page:nth-of-type(7) > .budget-creation-form__page__section > .budget-creation-form__page__section__input {
-  font-size: 1.6rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page:nth-of-type(1) > .budget-creation-form__page__section > .budget-creation-form__page__section__label, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page:nth-of-type(5) > .budget-creation-form__page__section > .budget-creation-form__page__section__label, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page:nth-of-type(6) > .budget-creation-form__page__section > .budget-creation-form__page__section__label, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page:nth-of-type(7) > .budget-creation-form__page__section > .budget-creation-form__page__section__label {
-  font-size: 1.6rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page:nth-of-type(8) {
-  flex-direction: column;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page:nth-of-type(8) > .budget-creation-form__page__section > .budget-creation-form__page__section__input {
-  font-size: 1.6rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page:nth-of-type(8) > .budget-creation-form__page__section > .budget-creation-form__page__section__label {
-  font-size: 1.6rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__select {
-  color: rgba(250, 250, 250, 0.8);
-  font-size: 2rem;
-  text-align: center;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__select:focus {
-  background-color: #822aba;
-  border: 0.3rem solid #822aba;
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__select option, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__select__option {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-  color: #fafafa;
-  font-weight: 300;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__input {
-  font-size: 2rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__input:focus {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__input:focus > label {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__label {
-  font-size: 2rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__button {
-  font-size: 2.2rem;
-  color: rgba(130, 42, 186, 0.75);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__button:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category {
-  font-size: 2rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category__icon {
-  font-size: 3rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category:hover .budget-creation-form__page__section__main-category-container__create-main-category__icon {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category:hover .budget-creation-form__page__section__main-category-container__create-main-category__text {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category__icons-container .icon-container {
-  font-family: MADE Tommy Soft, Verdana, sans-serif !important;
-  font-size: 1.6rem;
-  color: #822aba;
-  text-align: center;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category__icons-container .icon-container__icon {
-  font-size: 4rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category__icons-container .icon-container:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__main-category-container__create-main-category__icons-container .icon-container--clicked {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category__alt {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-  font-size: 2rem;
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category__icon {
-  font-size: 3rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category__delete {
-  font-size: 1.2rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category__alt:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category:hover .main-category__delete, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category__alt:hover .main-category__delete {
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category:hover .main-category__delete:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__main-category-container .main-category__alt:hover .main-category__delete:hover {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__set-main-category-title-container__input {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-  font-size: 1.6rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__set-main-category-title-container__input:focus {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__set-main-category-title-container__button {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-  font-size: 1.6rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__set-main-category-title-container__button:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__main-category-display__left-button__icon, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__main-category-display__right-button__icon {
-  font-size: 5rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__main-category-display__left-button__icon:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__main-category-display__right-button__icon:hover {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__main-category-display__left-button__icon {
-  color: rgba(130, 42, 186, 0.25);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__main-category-display__category-information {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__main-category-display__category-information__icon {
-  font-size: 16rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__main-category-display__category-information__text {
-  font-size: 4rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category .sub-category-title-container__title {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-  font-size: 1.6rem;
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-  font-size: 1.6rem;
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller__surplus-container__switch__toggle__icon {
-  font-size: 1.2rem;
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller__icon {
-  color: rgba(130, 42, 186, 0.8);
-  font-size: 2rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category .sub-category-controller__icon:hover {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__input-container {
-  font-size: 1.4rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__input-container__input {
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__input-container__input:focus {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__input-container__button {
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__input-container__button:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__controller {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-  font-size: 1.6rem;
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__controller__surplus-container__switch__toggle__icon {
-  font-size: 1.2rem;
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__controller__icon {
-  color: rgba(130, 42, 186, 0.8);
-  font-size: 2rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__controller__icon:hover {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__controller__close {
-  font-size: 1.4rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display .category-creation__controller__close:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-  font-size: 1.6rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__sub-category-container__sub-category-display__sub-category-button:hover {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__header {
-  font-size: 2.8rem;
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__header__title {
-  font-size: 4rem;
-  text-transform: uppercase;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__budget-goal-summary-container .budget-single-goal-summary__title {
-  font-size: 1.6rem;
-  color: #822aba;
-  text-align: center;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__budget-goal-summary-container .budget-single-goal-summary__amount {
-  font-size: 3rem;
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .main-category-display__button-container {
-  font-size: 6rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .main-category-display__button-container .left {
-  color: rgba(130, 42, 186, 0.25);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .main-category-display__button-container .right {
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .main-category-display__button-container .left:hover,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .main-category-display__button-container .right:hover {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .main-category-display__category-display {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .main-category-display__category-display__icon {
-  font-size: 20rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .main-category-display__category-display__title {
-  font-size: 4rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__headers__title-container {
-  font-size: 1.2rem;
-  color: #fafafa;
-  text-align: center;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section__category-name {
-  font-size: 1.6rem;
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section:first-of-type {
-  text-align: center;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section__set-category-timing-button {
-  font-size: 1.2rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section__input {
-  font-size: 2rem;
-  color: rgba(130, 42, 186, 0.8);
-  text-align: center;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section__input:focus {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category__section__content {
-  font-size: 2rem;
-  color: rgba(130, 42, 186, 0.8);
-  text-align: center;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section {
-  background-color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__category-name {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__set-category-timing-button {
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__set-category-timing-button:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__input {
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__input:focus {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__content {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__close {
-  font-size: 3rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__close:hover {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button__icon, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button__icon, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button__icon, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button__icon {
-  font-family: Icomoon;
-  font-size: 4rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button__icon .path1:before {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button__text {
-  font-size: 2.2rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path1:before {
-  color: #ffd700;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path3:before {
-  color: #333333;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__text {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__label, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__label, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__label, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__label {
-  font-size: 1.4rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__label:focus, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__label:focus, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__label:focus, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__label:focus {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__label__input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__label__select, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__label__input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__label__select, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__label__input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__label__select, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__label__input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__label__select {
-  font-size: 1.4rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__label__input:focus, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__label__select:focus, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__label__input:focus, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__label__select:focus, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__label__input:focus, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__label__select:focus, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__label__input:focus, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__label__select:focus {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__submit, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__submit, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__submit, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__submit {
-  font-size: 2rem;
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__monthly-container__submit:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-monthly-container__submit:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__bi-weekly-container__submit:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page__section__month-container__category-container .sub-category-display__timing-container__weekly-container__submit:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page .emergency-section-header {
-  font-weight: 300;
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page .emergency-section #lengthOfTime + .clicked-label,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page .emergency-section #totalAmount + .clicked-label {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page-mechanisms__page-number {
-  font-size: 3rem;
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page-mechanisms__submit-button {
-  font-size: 2rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page-mechanisms__submit-button:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page .tithing-section #grossOptionLabel:hover,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page .tithing-section #netOptionLabel:hover,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page .tithing-section #surplusOptionLabel:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-creation-form-container .budget-creation-form__page .tithing-section .checked {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container .budget-navigation__link-list__list-item__link, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__navigation-button-container .budget-navigation__link-list__list-item__link, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container .budget-navigation__link-list__list-item__link-button, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__navigation-button-container .budget-navigation__link-list__list-item__link-button {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-  font-size: 2.4rem;
-  text-decoration: none;
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container .budget-navigation__link-list__list-item__link:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__navigation-button-container .budget-navigation__link-list__list-item__link:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container .budget-navigation__link-list__list-item__link-button:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__navigation-button-container .budget-navigation__link-list__list-item__link-button:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container .budget-navigation__link-list__list-item__link:active, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__navigation-button-container .budget-navigation__link-list__list-item__link:active, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container .budget-navigation__link-list__list-item__link-button:active, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__navigation-button-container .budget-navigation__link-list__list-item__link-button:active {
-  color: #333333;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container .budget-navigation__link-list__list-item__sub-link-container, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__navigation-button-container .budget-navigation__link-list__list-item__sub-link-container {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-  font-size: 2rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container .budget-navigation__link-list__list-item__sub-link-container__sub-link, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__navigation-button-container .budget-navigation__link-list__list-item__sub-link-container__sub-link {
-  color: rgba(250, 250, 250, 0.8);
-  text-decoration: none;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container .budget-navigation__link-list__list-item__sub-link-container:hover .budget-navigation__link-lidt__link-item__sub-link-container__sub-link, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__navigation-button-container .budget-navigation__link-list__list-item__sub-link-container:hover .budget-navigation__link-lidt__link-item__sub-link-container__sub-link {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container .budget-navigation__link-list__list-item__sub-link-container:active .budget-navigation__link-lidt__link-item__sub-link-container__sub-link, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__navigation-button-container .budget-navigation__link-list__list-item__sub-link-container:active .budget-navigation__link-lidt__link-item__sub-link-container__sub-link {
-  color: #333333;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--extra-small__header {
-  font-size: 2.4rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--extra-small__header__icon {
-  font-size: 3rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--extra-small__content {
-  font-size: 4rem;
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__header {
-  font-size: 2.4rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__header__icon {
-  font-size: 3rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__header__button {
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__header__button:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__header__button:active {
-  color: #333333;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-income-form .form-row .account-selection,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row .account-selection {
-  color: rgba(130, 42, 186, 0.8);
-  font-size: 1.4rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-income-form .form-row .account-selection:hover,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row .account-selection:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-income-form .form-row .account-selection:focus,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row .account-selection:focus {
-  border: 0.2rem solid #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section .form-input {
-  color: rgba(130, 42, 186, 0.8);
-  font-size: 1.4rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-input:focus,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section .form-input:focus {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section .form-label {
-  font-size: 1.4rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-income-form .form-row__section .form-label .form-input--tithing,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row__section .form-label .form-input--tithing {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-income-form .form-row .form-label .form-input,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row .form-label .form-input {
-  color: rgba(130, 42, 186, 0.8);
-  font-size: 1.4rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-income-form .form-row .form-label .form-input:hover,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row .form-label .form-input:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(1) .form-button {
-  color: rgba(130, 42, 186, 0.8);
-  font-size: 1.4rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(1) .form-button:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(1) .form-button:focus {
-  border: 0.2rem solid #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .label-container {
-  font-size: 1.26rem;
-  text-align: left;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .label-container select {
-  font-size: 1.4rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(4) .fully-paid-for .paid-for-container__no, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(4) .fully-paid-for .paid-for-container__yes {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(0), .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(1), .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(2), .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(3), .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(4), .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(6), .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(7), .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(9), .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(10), .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(12), .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(13), .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(0), .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(1), .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(2), .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(3), .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(4), .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(6), .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(7), .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(9), .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(10), .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(12), .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(13) {
-  width: 50%;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(0) .form-input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(1) .form-input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(2) .form-input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(3) .form-input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(4) .form-input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(6) .form-input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(7) .form-input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(9) .form-input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(10) .form-input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(12) .form-input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(3) .form-row__section:nth-of-type(13) .form-input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(0) .form-input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(1) .form-input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(2) .form-input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(3) .form-input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(4) .form-input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(6) .form-input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(7) .form-input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(9) .form-input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(10) .form-input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(12) .form-input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .enter-transaction-form .form-row:nth-of-type(4) .form-row__section:nth-of-type(13) .form-input {
-  width: 90%;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .early-income-view__investment, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .early-income-view__savings, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .early-income-view__un-allocated {
-  font-size: 3.2rem;
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .early-income-view__investment__header, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .early-income-view__savings__header, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .early-income-view__un-allocated__header {
-  font-size: 1.2rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__content .early-income-view__un-allocated {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__transaction-total {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-  font-weight: bold;
-  font-size: 6rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small__transaction-total__heading {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-  font-weight: normal;
-  font-size: 2rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small-wide .bill-calendar-container__header {
-  font-size: 2.4rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small-wide .bill-calendar-container__header__icon {
-  font-size: 3rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small-wide .bill-calendar-container__calendar-container__calendar__header {
-  font-size: 2.4rem;
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small-wide .bill-calendar-container__calendar-container__calendar__header__icon {
-  font-size: 3rem;
-  color: rgba(130, 42, 186, 0.25);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small-wide .bill-calendar-container__calendar-container__calendar__header__icon--not-end:hover {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small-wide .bill-calendar-container__calendar-container__calendar__header__icon:hover {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small-wide .bill-calendar-container__calendar-container__calendar__weekdays__weekday {
-  font-size: 1.6rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small-wide .bill-calendar-container__calendar-container__calendar__days__single-day {
-  font-size: 2rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small-wide .bill-calendar-container__calendar-container__calendar__days__single-day:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small-wide .bill-calendar-container__calendar-container__calendar__days__single-day--current-day {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--small-wide .bill-calendar-container__calendar-container__calendar__days .un-used-day:hover {
-  background-color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--large {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--large__header__title {
-  font-size: 4.5rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--large__header__icon {
-  font-size: 3rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--large__budget-goal-summary-container .budget-single-goal-summary__title {
-  font-size: 1.6rem;
-  color: #822aba;
-  text-align: center;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--large__budget-goal-summary-container .budget-single-goal-summary__amount {
-  font-size: 3rem;
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--large__category-container .main-category-display__button-container {
-  font-size: 6rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--large__category-container .main-category-display__button-container .left {
-  color: rgba(130, 42, 186, 0.25);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--large__category-container .main-category-display__button-container .right {
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--large__category-container .main-category-display__button-container .left:hover,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--large__category-container .main-category-display__button-container .right:hover {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--large__category-container .main-category-display__category-display {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--large__category-container .main-category-display__category-display__icon {
-  font-size: 20rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--large__category-container .main-category-display__category-display__title {
-  font-size: 4rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--large__category-container .sub-category-display__headers__title-container {
-  font-size: 1.6rem;
-  color: #fafafa;
-  text-align: center;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--large__category-container .sub-category-display__sub-category__section__content {
-  font-size: 1.6rem;
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__dashboard__container--large__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__content {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__header {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-  font-size: 7rem;
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__header {
-  font-size: 2.2rem;
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__header__icon {
-  font-size: 3rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-name-form, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-savings-goal-form, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-investment-goal-form, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-emergency-goal-form, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-tithing-setting-form, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-exit-or-delete-form {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-name-form__budget-name-display, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-savings-goal-form__budget-name-display, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-investment-goal-form__budget-name-display, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__budget-name-display, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-tithing-setting-form__budget-name-display, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-exit-or-delete-form__budget-name-display {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-  font-size: 3rem;
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-name-form__input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-savings-goal-form__input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-investment-goal-form__input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-tithing-setting-form__input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-exit-or-delete-form__input {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-  font-size: 1.6rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-name-form__input:focus, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-savings-goal-form__input:focus, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-investment-goal-form__input:focus, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__input:focus, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-tithing-setting-form__input:focus, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-exit-or-delete-form__input:focus {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-name-form__submit, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-name-form__submit--exit, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-name-form__submit--delete, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-savings-goal-form__submit, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-savings-goal-form__submit--exit, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-savings-goal-form__submit--delete, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-investment-goal-form__submit, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-investment-goal-form__submit--exit, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-investment-goal-form__submit--delete, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__submit, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__submit--exit, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__submit--delete, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-tithing-setting-form__submit, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-tithing-setting-form__submit--exit, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-tithing-setting-form__submit--delete, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-exit-or-delete-form__submit, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-exit-or-delete-form__submit--exit, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-exit-or-delete-form__submit--delete {
-  font-size: 1.6rem;
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-name-form__submit:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-name-form__submit--exit:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-name-form__submit--delete:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-savings-goal-form__submit:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-savings-goal-form__submit--exit:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-savings-goal-form__submit--delete:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-investment-goal-form__submit:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-investment-goal-form__submit--exit:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-investment-goal-form__submit--delete:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__submit:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__submit--exit:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__submit--delete:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-tithing-setting-form__submit:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-tithing-setting-form__submit--exit:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-tithing-setting-form__submit--delete:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-exit-or-delete-form__submit:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-exit-or-delete-form__submit--exit:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-exit-or-delete-form__submit--delete:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-savings-goal-form__input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-investment-goal-form__input {
-  font-size: 1.6rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-savings-goal-form__input:focus, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-investment-goal-form__input:focus {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-savings-goal-form__input + label, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-investment-goal-form__input + label {
-  font-size: 1.6rem;
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label--checkbox-outer {
-  font-size: 1.1rem;
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container:nth-of-type(1) {
-  font-size: 1.4rem;
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container--checkbox-container:nth-of-type(2) {
-  font-size: 1.4rem;
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__label-container .checked {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__select {
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__select:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__input {
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__input:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__input:focus {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-emergency-goal-form__selection-container__select {
-  font-size: 1.6rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container {
-  font-size: 2rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container .selected {
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__header {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__header__title {
-  font-size: 4.5rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__header__icon {
-  font-size: 3rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__budget-goal-summary-container .budget-single-goal-summary__title {
-  font-size: 1.6rem;
-  color: #822aba;
-  text-align: center;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__budget-goal-summary-container .budget-single-goal-summary__amount {
-  font-size: 3rem;
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__budget-goal-summary-container .budget-single-goal-summary .positive {
-  color: #38d927;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__budget-goal-summary-container .budget-single-goal-summary .negative {
-  color: #cf352e;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .main-category-display__button-container {
-  font-size: 6rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .main-category-display__button-container .left {
-  color: rgba(130, 42, 186, 0.25);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .main-category-display__button-container .right {
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .main-category-display__button-container .left:hover,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .main-category-display__button-container .right:hover {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .main-category-display__category-display {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .main-category-display__category-display__icon {
-  font-size: 20rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .main-category-display__category-display__title {
-  font-size: 4rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__headers__title-container {
-  font-size: 1.2rem;
-  color: #fafafa;
-  text-align: center;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__sub-category__section__content {
-  font-size: 1.6rem;
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__sub-category__section .positive {
-  color: #38d927;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__sub-category__section .negative {
-  color: #cf352e;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__sub-category__section__set-category-timing-button {
-  font-size: 1.2rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__sub-category__section__input {
-  font-size: 2rem;
-  color: rgba(130, 42, 186, 0.8);
-  text-align: center;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__sub-category__section__input:focus {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__content {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__set-category-timing-button {
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__set-category-timing-button:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__input {
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__sub-category:hover .sub-category-display__sub-category__section__input:focus {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__close {
-  font-size: 3rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__close:hover {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button__icon, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button__icon, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button__icon, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button__icon {
-  font-family: Icomoon;
-  font-size: 4rem;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button__icon .path1:before {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button__text {
-  font-size: 2.2rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path1:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path1:before {
-  color: #ffd700;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__icon .path3:before, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path2:before,
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__icon .path3:before {
-  color: #333333;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__monthly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__button:hover .sub-category-display__timing-container__weekly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__monthly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-monthly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__bi-weekly-container__button__text, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__button:hover .sub-category-display__timing-container__weekly-container__button__text {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__label, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__label, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__label, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__label {
-  font-size: 1.4rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__label:focus, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__label:focus, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__label:focus, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__label:focus {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__label__input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__label__select, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__label__input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__label__select, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__label__input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__label__select, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__label__input, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__label__select {
-  font-size: 1.4rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__label__input:focus, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__label__select:focus, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__label__input:focus, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__label__select:focus, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__label__input:focus, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__label__select:focus, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__label__input:focus, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__label__select:focus {
-  color: #822aba;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__submit, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__submit, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__submit, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__submit {
-  font-size: 2rem;
-  color: rgba(250, 250, 250, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__monthly-container__submit:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-monthly-container__submit:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__bi-weekly-container__submit:hover, .master-grid-container .application-flex-container .application-viewport .application-display .budget-container__edit-category-goals-container--large__category-container .sub-category-display__timing-container__weekly-container__submit:hover {
-  color: #fafafa;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__update-budget-categories-button-container {
-  font-family: MADE Tommy Soft, Verdana, sans-serif;
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__update-budget-categories-button-container__button {
-  font-size: 2rem;
-  color: rgba(130, 42, 186, 0.8);
-}
-.master-grid-container .application-flex-container .application-viewport .application-display .budget-container__update-budget-categories-button-container__button:hover {
-  color: #fafafa;
-}
-
 .logo-container .logo-text {
   font-size: 7rem;
   color: #822aba;
@@ -1031,6 +112,9 @@ html {
   color: #822aba;
 }
 
+.modal, .modal--update-photo {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+}
 .navigation__link-list__list-item__link, .navigation__link-list__list-item__link-button {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   font-size: 2.4rem;
@@ -1107,12 +191,19 @@ html {
   color: #822aba;
 }
 
-.button, .button--large, .button--large__thin, .button--medium, .button--medium-main-category-deletion, .button--medium-square, .button--borderless, .button--borderless-narrow, .button--borderless-narrow__investment, .button--timing-button-submit, .button--small, .button--small-container-header, .button--small-create-main-category, .button--small-purple, .button--extra-extra-small, .button--extra-extra-small__alt, .button--extra-extra-small__wide, .button--extra-extra-small__transaction-plan, .button--extra-extra-small__transaction-plan-small, .button--transaction-button, .button--budget-navigation, .button--confirm-value, .button--settle {
+.button, .button--large, .button--large__thin, .button--medium, .button--medium-main-category-deletion, .button--medium-square, .button--borderless, .button--borderless-narrow, .button--borderless-narrow__investment, .button--timing-button-submit, .button--small, .button--small-container-header, .button--small-create-main-category, .button--small-purple, .button--extra-extra-small, .button--extra-extra-small__alt, .button--extra-extra-small__wide, .button--extra-extra-small__transaction-plan, .button--extra-extra-small__transaction-plan-small, .button--transaction-button, .button--budget-navigation, .button--confirm-value, .button--settle, .button--update-photo {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   font-size: 2.2rem;
   color: rgba(130, 42, 186, 0.75);
 }
-.button:hover, .button--large:hover, .button--large__thin:hover, .button--medium:hover, .button--medium-main-category-deletion:hover, .button--medium-square:hover, .button--borderless:hover, .button--borderless-narrow:hover, .button--borderless-narrow__investment:hover, .button--timing-button-submit:hover, .button--small:hover, .button--small-container-header:hover, .button--small-create-main-category:hover, .button--small-purple:hover, .button--extra-extra-small:hover, .button--extra-extra-small__alt:hover, .button--extra-extra-small__wide:hover, .button--extra-extra-small__transaction-plan:hover, .button--extra-extra-small__transaction-plan-small:hover, .button--transaction-button:hover, .button--budget-navigation:hover, .button--confirm-value:hover, .button--settle:hover {
+.button:hover, .button--large:hover, .button--large__thin:hover, .button--medium:hover, .button--medium-main-category-deletion:hover, .button--medium-square:hover, .button--borderless:hover, .button--borderless-narrow:hover, .button--borderless-narrow__investment:hover, .button--timing-button-submit:hover, .button--small:hover, .button--small-container-header:hover, .button--small-create-main-category:hover, .button--small-purple:hover, .button--extra-extra-small:hover, .button--extra-extra-small__alt:hover, .button--extra-extra-small__wide:hover, .button--extra-extra-small__transaction-plan:hover, .button--extra-extra-small__transaction-plan-small:hover, .button--transaction-button:hover, .button--budget-navigation:hover, .button--confirm-value:hover, .button--settle:hover, .button--update-photo:hover {
+  color: #fafafa;
+}
+.button--update-photo {
+  font-size: 1.2rem;
+  color: rgba(250, 250, 250, 0.8);
+}
+.button--update-photo:hover {
   color: #fafafa;
 }
 .button--settle {
@@ -2070,14 +1161,18 @@ html {
 .transaction-plan__alt-double__part__header {
   font-size: 1.2rem;
 }
-.form, .form--extra-small, .form--extra-small__budget-name-display {
+.form, .form--extra-small, .form--extra-small__budget-name-display, .form__path-preview {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
 }
-.form-closure-icon {
+.form-closure-icon, .form-closure-icon__alt {
   font-size: 4rem;
   color: rgba(130, 42, 186, 0.5);
 }
-.form-closure-icon:hover {
+.form-closure-icon:hover, .form-closure-icon__alt:hover {
+  color: #822aba;
+}
+.form__path-preview {
+  font-size: 1.6rem;
   color: #822aba;
 }
 .form--extra-small__budget-name-display {
@@ -2331,6 +1426,20 @@ html {
 }
 .form__label--long-short {
   font-size: 1.4rem;
+}
+.form__label--photo-upload {
+  font-family: MADE Tommy Soft, Verdana, sans-serif;
+  color: rgba(130, 42, 186, 0.8);
+}
+.form__label--photo-upload__icon, .form__label--photo-upload__text {
+  font-size: 1.6rem;
+}
+.form__label--photo-upload:hover {
+  color: #822aba;
+}
+.form__label--photo-upload:hover .app-navigation__main__user-information__update-picture__icon,
+.form__label--photo-upload:hover .app-navigation__main__user-information__update-picture__text {
+  color: #822aba;
 }
 .form__page-number {
   font-size: 2rem;
@@ -34385,6 +33494,29 @@ html {
   border: 0.3rem solid #822aba;
   transition: background-color 0.5s, border 0.5s, color 0.5s;
 }
+.button--update-photo {
+  position: relative;
+  height: 4rem;
+  width: max-content;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: rgba(130, 42, 186, 0.8);
+  padding: 0.25rem 0.5rem;
+  border: 0.2rem solid rgba(250, 250, 250, 0.8);
+  border-radius: 0.5rem;
+}
+.button--update-photo:hover {
+  cursor: pointer;
+  background-color: #38d927;
+  transition: background-color 0.5s, color 0.5s;
+}
+.button--update-photo__icon {
+  margin-right: 0.5rem;
+}
 .button--settle {
   height: 3rem;
   width: 40%;
@@ -34888,7 +34020,7 @@ html {
 .transaction-plan__alt__part {
   width: 7.6923076923%;
 }
-.form, .form--transaction, .form--extra-small, .form--extra-small__column, .form--extra-small__row, .form--full-width, .form--framed, .form--transaction-plan {
+.form, .form--transaction, .form--extra-small, .form--extra-small__column, .form--extra-small__row, .form--full-width, .form--framed, .form--transaction-plan, .form--update-photo {
   position: relative;
   height: 100%;
   width: 50%;
@@ -34899,6 +34031,74 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
   overflow-y: auto;
+}
+.form__path-preview {
+  position: relative;
+  height: 4rem;
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border: 0.2rem solid #822aba;
+  border-radius: 0.5rem;
+  padding: 0.3rem;
+  background-color: rgba(250, 250, 250, 0.8);
+  margin: 0 1rem 0 0;
+}
+.form__preview-photo-container {
+  position: relative;
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.form__preview-photo-container__picture-frame {
+  position: relative;
+  height: 40rem;
+  width: 40rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  border-radius: 50%;
+  background-color: rgba(130, 42, 186, 0.4);
+  padding: 0.5rem;
+}
+.form__preview-photo-container__picture-frame img {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+.form-closure-icon, .form-closure-icon__alt {
+  position: absolute;
+  height: 2rem;
+  width: 2rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  top: 5rem;
+  right: 6rem;
+  z-index: 10;
+}
+.form-closure-icon:hover, .form-closure-icon__alt:hover {
+  cursor: pointer;
+  transition: color 0.5s;
+}
+.form-closure-icon__alt {
+  top: 3rem;
 }
 .form--transaction-plan {
   height: 100%;
@@ -34952,7 +34152,7 @@ html {
 .form__header {
   margin-bottom: 3rem;
 }
-.form__row, .form__row--thirds, .form__row--thirds--extended, .form__row--transaction, .form__row--debt, .form__row--debt-creation {
+.form__row, .form__row--thirds, .form__row--thirds--extended, .form__row--transaction, .form__row--debt, .form__row--debt-creation, .form__row--update-photo {
   position: relative;
   height: 32.5%;
   width: 100%;
@@ -34963,6 +34163,10 @@ html {
   align-items: flex-end;
   transform: rotate(0) translate(0, 0);
   padding: 0 2rem 2rem;
+}
+.form__row--update-photo {
+  justify-content: center;
+  align-items: center;
 }
 .form__row--transaction, .form__row--debt, .form__row--debt-creation {
   height: 100%;
@@ -36138,6 +35342,30 @@ html {
 .form__input--enter-income:not(:placeholder-shown) + .form__label--emergency-fund-transaction, .form__input--enter-income:focus + .form__label--emergency-fund-transaction, .form__input--enter-transaction:not(:placeholder-shown) + .form__label--emergency-fund-transaction, .form__input--enter-income__alt:not(:placeholder-shown) + .form__label--emergency-fund-transaction, .form__input--enter-transaction__alt:not(:placeholder-shown) + .form__label--emergency-fund-transaction, .form__input--enter-income__alt-emergency-fund:not(:placeholder-shown) + .form__label--emergency-fund-transaction, .form__input--enter-transaction__alt-emergency-fund:not(:placeholder-shown) + .form__label--emergency-fund-transaction, .form__input--enter-transaction:focus + .form__label--emergency-fund-transaction, .form__input--enter-income__alt:focus + .form__label--emergency-fund-transaction, .form__input--enter-transaction__alt:focus + .form__label--emergency-fund-transaction, .form__input--enter-income__alt-emergency-fund:focus + .form__label--emergency-fund-transaction, .form__input--enter-transaction__alt-emergency-fund:focus + .form__label--emergency-fund-transaction {
   transform: translate(-0.25rem, -5rem) scale(0.95);
 }
+.form__input--photo-upload {
+  position: absolute;
+  height: 7.5%;
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  visibility: hidden;
+  background-color: transparent;
+  border: none;
+  border-radius: 1.5rem;
+}
+.form__input--photo-upload--icon {
+  margin-right: 1rem;
+}
+.form__input--photo-upload:hover {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  transition: background-color 0.5s, border 0.5s, color 0.5s;
+}
 .form__select, .form__select--half-right, .form__select--accounts, .form__select--monthly-transaction, .form__select--savings-fund-transaction, .form__select--expense-fund-transaction, .form__select--surplus-fund-transaction, .form__select--debt-transaction, .form__select--accounts-short {
   position: relative;
   height: 6rem;
@@ -36624,6 +35852,34 @@ html {
 }
 .form__label--latter-day-saint-white {
   width: 15%;
+}
+.form__label--photo-upload {
+  position: relative;
+  height: 7.5%;
+  width: max-content;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: transparent;
+  border: none;
+  border-radius: 1.5rem;
+  margin-right: 1rem;
+}
+.form__label--photo-upload__icon {
+  margin-right: 1rem;
+}
+.form__label--photo-upload:hover {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  transition: background-color 0.5s, border 0.5s, color 0.5s;
+}
+.form__label--photo-upload:hover .app-navigation__main__user-information__update-picture__icon,
+.form__label--photo-upload:hover .app-navigation__main__user-information__update-picture__text {
+  transition: color 0.5s;
 }
 .form__page, .form__page--centered {
   position: relative;
@@ -50054,7 +49310,20 @@ html {
 .navigation--side-screen__section--user-information__profile-picture-container__picture {
   position: relative;
   height: 100%;
-  width: auto;
+  width: 100%;
+  border: 0.5rem solid #fafafa;
+  border-radius: 50%;
+}
+.navigation--side-screen__section--user-information__update-picture-container {
+  position: relative;
+  height: max-content;
+  width: max-content;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
 }
 .navigation--side-screen__section--account-links__link-container {
   position: relative;
@@ -50112,6 +49381,22 @@ html {
   width: auto;
   margin-bottom: 1rem;
   transform: translateX(-15%);
+}
+
+.modal, .modal--update-photo {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  background-color: rgba(250, 250, 250, 0.95);
+}
+.modal--update-photo {
+  z-index: 100;
 }
 
 .logo-container {

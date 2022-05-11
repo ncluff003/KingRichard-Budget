@@ -4,6 +4,7 @@ import * as Signup from './Signup';
 //////////////////////////////
 // Actually Close The Form
 const _closeTheForm = (index, page, pageElement, form) => {
+  console.log(index);
   form[index].classList.toggle('closed');
   form[index].classList.toggle('open');
   if (pageElement) {
@@ -55,8 +56,10 @@ export const _watchEntranceButtons = (person, form, formPage) => {
         // OPEN UP THE SELECTED FORM
         if (i === 0) {
           const loginSubmit = buttons[2];
-          loginSubmit.addEventListener('click', getLoggedIn);
-          console.log(`Listener Started.`);
+          if (loginSubmit) {
+            loginSubmit.addEventListener('click', getLoggedIn);
+            console.log(`Listener Started.`);
+          }
         }
 
         //////////////////////////////////////////////////////////////

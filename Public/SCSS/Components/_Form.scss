@@ -94,6 +94,49 @@
   @include SizeAndPositioning(relative, 100%, 50%, flex, column, nowrap, center, center, 0, 0, 0);
   overflow-y: auto;
 
+  &__path-preview {
+    @include SizeAndPositioning(relative, 4rem, 20%, flex, row, nowrap, center, center, 0, 0, 0);
+    border: 0.2rem solid $primaryColor;
+    border-radius: 0.5rem;
+    padding: 0.3rem;
+    background-color: rgba($colorOffWhite, 0.8);
+    margin: 0 1rem 0 0;
+  }
+
+  &__preview-photo-container {
+    @include SizeAndPositioning(relative, 50%, 100%, flex, column, nowrap, center, center, 0, 0, 0);
+    &__picture-frame {
+      @include SizeAndPositioning(relative, 40rem, 40rem, flex, row, nowrap, center, center, 0, 0, 0);
+      border-radius: 50%;
+      background-color: rgba($primaryColor, 0.4);
+      padding: 0.5rem;
+      img {
+        @include SizingItem(relative, 100%, 100%);
+        border-radius: 50%;
+      }
+    }
+  }
+
+  &-closure-icon,
+  &-closure-icon__alt {
+    @include SizeAndPositioning(absolute, 2rem, 2rem, flex, row, nowrap, center, center, 0, 0, 0);
+    top: 5rem;
+    right: 6rem;
+    z-index: 10;
+    &:hover {
+      cursor: pointer;
+      transition: color 0.5s;
+    }
+  }
+
+  &-closure-icon__alt {
+    top: 3rem;
+  }
+
+  &--update-photo {
+    @extend .form;
+  }
+
   &--transaction-plan {
     @extend .form;
     height: 100%;
@@ -159,6 +202,12 @@
   &__row {
     @include SizeAndPositioning(relative, 32.5%, 100%, flex, row, nowrap, flex-start, flex-end, 0, 0, 0);
     padding: 0 2rem 2rem;
+
+    &--update-photo {
+      @extend .form__row;
+      justify-content: center;
+      align-items: center;
+    }
     &--transaction {
       @extend .form__row;
       height: 100%;
@@ -1294,6 +1343,25 @@
         // width: max-content;
       }
     }
+
+    &--photo-upload {
+      @include SizeAndPositioning(absolute, 7.5%, 40%, flex, row, nowrap, center, center, 0, 0, 0);
+      visibility: hidden;
+      background-color: transparent;
+      border: none;
+      border-radius: 1.5rem;
+
+      &--icon {
+        margin-right: 1rem;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        transition: background-color 0.5s, border 0.5s, color 0.5s;
+      }
+    }
   }
 
   // FORM SELECTS
@@ -1775,6 +1843,29 @@
       &-white {
         @extend .form__label--latter-day-saint;
         width: 15%;
+      }
+    }
+
+    &--photo-upload {
+      @include SizeAndPositioning(relative, 7.5%, max-content, flex, row, nowrap, center, center, 0, 0, 0);
+      background-color: transparent;
+      border: none;
+      border-radius: 1.5rem;
+      margin-right: 1rem;
+
+      &__icon {
+        margin-right: 1rem;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        transition: background-color 0.5s, border 0.5s, color 0.5s;
+        .app-navigation__main__user-information__update-picture__icon,
+        .app-navigation__main__user-information__update-picture__text {
+          transition: color 0.5s;
+        }
       }
     }
   }

@@ -4165,7 +4165,7 @@ const setupDashboard = (user, budget, placeholderBudget) => {
 
   if (user.latterDaySaint === true) mainCategoryOptionArrays.push(tithingTransactionOptionsArray);
   ////////////////////////////////////////////
-  // START BY WATCHING THE BUDGET NAVIGATION
+  // WATCH THE BUDGET NAVIGATION
   _watchBudgetNavigation();
 
   ////////////////////////////////////////////

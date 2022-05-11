@@ -411,6 +411,23 @@
     transition: background-color 0.5s, border 0.5s, color 0.5s;
   }
 
+  &--update-photo {
+    @include SizeAndPositioning(relative, 4rem, max-content, flex, row, nowrap, space-evenly, center, 0, 0, 0);
+    background-color: rgba($primaryColor, 0.8);
+    padding: 0.25rem 0.5rem;
+    border: 0.2rem solid rgba($colorOffWhite, 0.8);
+    border-radius: 0.5rem;
+    &:hover {
+      cursor: pointer;
+      background-color: $secondaryColor;
+      transition: background-color 0.5s, color 0.5s;
+    }
+
+    &__icon {
+      margin-right: 0.5rem;
+    }
+  }
+
   &--settle {
     @extend .button;
     height: 3rem;

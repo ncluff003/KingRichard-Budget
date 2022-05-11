@@ -4551,16 +4551,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "_watchSubSectionButtons": () => (/* binding */ _watchSubSectionButtons),
 /* harmony export */   "_watchUserProfileButtons": () => (/* binding */ _watchUserProfileButtons)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
-/* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Login */ "./Public/JS/Login.js");
-/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
-/* harmony import */ var _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Budget-Creation */ "./Public/JS/Budget-Creation.js");
-/* harmony import */ var _Maintain_Budget__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Maintain-Budget */ "./Public/JS/Maintain-Budget.js");
-/* harmony import */ var _Manage_Budget__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Manage-Budget */ "./Public/JS/Manage-Budget.js");
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js");
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Update_User__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Update-User */ "./Public/JS/Update-User.js");
+/* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Login */ "./Public/JS/Login.js");
+/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
+/* harmony import */ var _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Budget-Creation */ "./Public/JS/Budget-Creation.js");
+/* harmony import */ var _Maintain_Budget__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Maintain-Budget */ "./Public/JS/Maintain-Budget.js");
+/* harmony import */ var _Manage_Budget__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Manage-Budget */ "./Public/JS/Manage-Budget.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
 
 
 
@@ -4576,13 +4578,13 @@ var latterDaySaint = false; // const _getUserInfo = () => {
 // };
 
 var enterBudget = /*#__PURE__*/function () {
-  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(budgetId, user) {
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee(budgetId, user) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return _Manage_Budget__WEBPACK_IMPORTED_MODULE_7__.getMyBudget(budgetId, user);
+            return _Manage_Budget__WEBPACK_IMPORTED_MODULE_8__.getMyBudget(budgetId, user);
 
           case 2:
           case "end":
@@ -4731,9 +4733,9 @@ var _watchUserProfileButtons = function _watchUserProfileButtons(communicationPr
   if (userProfileButtons[0]) {
     userProfileButtons.forEach(function (pb, i) {
       pb.addEventListener('click', /*#__PURE__*/function () {
-        var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2(e) {
+        var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee2(e) {
           var clicked, userInfo, user;
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee2$(_context2) {
             while (1) {
               switch (_context2.prev = _context2.next) {
                 case 0:
@@ -4768,7 +4770,7 @@ var _watchUserProfileButtons = function _watchUserProfileButtons(communicationPr
                   // GET COMMUNICATION PREFERENCE
 
                   _context2.next = 11;
-                  return _Update_User__WEBPACK_IMPORTED_MODULE_2__.getSomePersonals();
+                  return _Update_User__WEBPACK_IMPORTED_MODULE_3__.getSomePersonals();
 
                 case 11:
                   userInfo = _context2.sent;
@@ -4808,6 +4810,61 @@ var _watchUserProfileButtons = function _watchUserProfileButtons(communicationPr
       }());
     });
   }
+}; //////////////////////////////
+// Actually Close The Form
+
+var _closeTheForm = function _closeTheForm(form) {
+  form.classList.toggle('closed');
+  form.classList.toggle('open');
+};
+
+var openPhotoUpdateModal = function openPhotoUpdateModal(modal) {
+  modal.classList.toggle('closed');
+  modal.classList.toggle('open');
+};
+
+var _watchForProfilePictureChange = function _watchForProfilePictureChange(user) {
+  console.log('Watching...');
+  var startUpdatingPhotoButton = document.querySelectorAll('.button--extra-small')[0];
+  var photoUpdateModal = document.querySelector('.modal--update-photo');
+  startUpdatingPhotoButton.addEventListener('click', function (e) {
+    e.preventDefault();
+    console.log(startUpdatingPhotoButton);
+    openPhotoUpdateModal(photoUpdateModal);
+  });
+  var stopUpdatingPhotoButton = document.querySelector('.form-closure-icon__alt');
+  stopUpdatingPhotoButton.addEventListener('click', function (e) {
+    _closeTheForm(photoUpdateModal);
+  }); // Works as the image preview code.
+
+  var previewPath = document.querySelector('.form__path-preview');
+  var photoInput = document.getElementById('photo');
+  var image = document.querySelector('.form__preview-photo-container__picture-frame__image');
+  var reader = new FileReader(); // Update.updateMe()
+
+  reader.onload = function (e) {
+    image.src = e.target.result;
+  };
+
+  photoInput.onchange = function (e) {
+    var _e$target$files = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(e.target.files, 1),
+        file = _e$target$files[0];
+
+    console.log(file);
+    reader.readAsDataURL(file);
+    previewPath.textContent = file.name;
+  };
+
+  console.log(photoInput.value);
+  var saveProfilePictureButton = document.querySelector('.button--update-photo');
+  saveProfilePictureButton.addEventListener('click', function (e) {
+    e.preventDefault();
+    var form = new FormData();
+    form.append('userId', "".concat(user._id));
+    form.append('photo', document.getElementById('photo').files[0]);
+    console.log(form.data);
+    _Update_User__WEBPACK_IMPORTED_MODULE_3__.updateUserPhoto(form);
+  });
 };
 
 var checkLoginStatus = function checkLoginStatus(login, checkElement) {
@@ -4819,10 +4876,10 @@ var checkLoginStatus = function checkLoginStatus(login, checkElement) {
 };
 
 var _watchForLogin = /*#__PURE__*/function () {
-  var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee3(login) {
+  var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee3(login) {
     var status, _commPreference, commSwitch, formattedNumber, userInfo, user;
 
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee3$(_context3) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
@@ -4830,17 +4887,21 @@ var _watchForLogin = /*#__PURE__*/function () {
             status === true ? console.log("Logged In") : console.log("Logged Out");
 
             if (!(status === true)) {
-              _context3.next = 16;
+              _context3.next = 17;
               break;
             }
 
             commSwitch = document.querySelector('.switch--comms');
             _context3.next = 6;
-            return _Update_User__WEBPACK_IMPORTED_MODULE_2__.getSomePersonals();
+            return _Update_User__WEBPACK_IMPORTED_MODULE_3__.getSomePersonals();
 
           case 6:
             userInfo = _context3.sent;
-            user = userInfo.data.data.user; // WATCHING USER PROFILE NAVIGATION BUTTONS
+            user = userInfo.data.data.user; /////////////////////////////////////////////////
+            // START BY WATCHING FOR PROFILE PICTURE CHANGE
+
+            _watchForProfilePictureChange(user); // WATCHING USER PROFILE NAVIGATION BUTTONS
+
 
             _watchUserProfileButtons(_commPreference); // WATCHING COMMUNICATION PREFERENCES
 
@@ -4856,15 +4917,15 @@ var _watchForLogin = /*#__PURE__*/function () {
             _watchPhoneNumberInputs(formattedNumber); // WATCH FOR USER PROFILE UPDATES
 
 
-            _Update_User__WEBPACK_IMPORTED_MODULE_2__._watchForProfileUpdates(user); // WATCHING FOR BUDGET SELECTION
+            _Update_User__WEBPACK_IMPORTED_MODULE_3__._watchForProfileUpdates(user); // WATCHING FOR BUDGET SELECTION
 
 
             _watchBudgetSelection(user); // WATCHING FOR CREATION OF BUDGETS
 
 
-            _Budget_Creation__WEBPACK_IMPORTED_MODULE_5__._watchForBudgetCreation();
+            _Budget_Creation__WEBPACK_IMPORTED_MODULE_6__._watchForBudgetCreation();
 
-          case 16:
+          case 17:
           case "end":
             return _context3.stop();
         }
@@ -4899,6 +4960,7 @@ __webpack_require__.r(__webpack_exports__);
 // Actually Close The Form
 
 var _closeTheForm = function _closeTheForm(index, page, pageElement, form) {
+  console.log(index);
   form[index].classList.toggle('closed');
   form[index].classList.toggle('open');
 
@@ -4952,8 +5014,11 @@ var _watchEntranceButtons = function _watchEntranceButtons(person, form, formPag
 
         if (i === 0) {
           var loginSubmit = buttons[2];
-          loginSubmit.addEventListener('click', getLoggedIn);
-          console.log("Listener Started.");
+
+          if (loginSubmit) {
+            loginSubmit.addEventListener('click', getLoggedIn);
+            console.log("Listener Started.");
+          }
         } //////////////////////////////////////////////////////////////
         // SETUP THE SIGNUP FORM IF IT IS THE SELECTED FORM
 
@@ -12805,7 +12870,7 @@ var setupDashboard = function setupDashboard(user, budget, placeholderBudget) {
   pushIntoArray(tithingTransactionsOptions, tithingTransactionOptionsArray);
   finalTransactionArrayPush(mainCategoryOptionArrays, [monthlyBudgetTransactionOptionsArray, emergencyFundTransactionOptionsArray, savingsFundTransactionOptionsArray, expenseFundTransactionOptionsArray, surplusTransactionOptionsArray, debtTransactionOptionsArray, tithingTransactionOptionsArray]);
   if (user.latterDaySaint === true) mainCategoryOptionArrays.push(tithingTransactionOptionsArray); ////////////////////////////////////////////
-  // START BY WATCHING THE BUDGET NAVIGATION
+  // WATCH THE BUDGET NAVIGATION
 
   _watchBudgetNavigation(); ////////////////////////////////////////////
   // WATCH FOR ACCOUNT SELECTION
@@ -13412,7 +13477,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getSomePersonals": () => (/* binding */ getSomePersonals),
 /* harmony export */   "updateMe": () => (/* binding */ updateMe),
 /* harmony export */   "updateMyPassword": () => (/* binding */ updateMyPassword),
-/* harmony export */   "updatePassword": () => (/* binding */ updatePassword)
+/* harmony export */   "updatePassword": () => (/* binding */ updatePassword),
+/* harmony export */   "updateUserPhoto": () => (/* binding */ updateUserPhoto)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
@@ -13567,7 +13633,7 @@ var updateMyPassword = /*#__PURE__*/function () {
     return _ref3.apply(this, arguments);
   };
 }();
-var updateMe = /*#__PURE__*/function () {
+var updateUserPhoto = /*#__PURE__*/function () {
   var _ref4 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee4(options) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee4$(_context4) {
@@ -13579,11 +13645,48 @@ var updateMe = /*#__PURE__*/function () {
             return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "PATCH",
               url: "/App/Users/".concat(options.id, "/UpdateMe"),
-              data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify(_objectSpread({}, options))
+              data: options
             });
 
           case 3:
             response = _context4.sent;
+            _context4.next = 9;
+            break;
+
+          case 6:
+            _context4.prev = 6;
+            _context4.t0 = _context4["catch"](0);
+            console.log(_context4.t0);
+
+          case 9:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[0, 6]]);
+  }));
+
+  return function updateUserPhoto(_x7) {
+    return _ref4.apply(this, arguments);
+  };
+}();
+var updateMe = /*#__PURE__*/function () {
+  var _ref5 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee5(options) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            _context5.prev = 0;
+            _context5.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
+              method: "PATCH",
+              url: "/App/Users/".concat(options.id, "/UpdateMe"),
+              data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify(_objectSpread({}, options))
+            });
+
+          case 3:
+            response = _context5.sent;
 
             if (response.statusText === 'OK') {
               // Check if first name is not undefined or empty.
@@ -13609,47 +13712,6 @@ var updateMe = /*#__PURE__*/function () {
               document.getElementById('newPhoneNumberConfirmed').value = '';
             }
 
-            _context4.next = 10;
-            break;
-
-          case 7:
-            _context4.prev = 7;
-            _context4.t0 = _context4["catch"](0);
-            console.log(_context4.t0);
-
-          case 10:
-          case "end":
-            return _context4.stop();
-        }
-      }
-    }, _callee4, null, [[0, 7]]);
-  }));
-
-  return function updateMe(_x7) {
-    return _ref4.apply(this, arguments);
-  };
-}();
-var deactivateMe = /*#__PURE__*/function () {
-  var _ref5 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee5(id) {
-    var response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee5$(_context5) {
-      while (1) {
-        switch (_context5.prev = _context5.next) {
-          case 0:
-            _context5.prev = 0;
-            _context5.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
-              method: "DELETE",
-              url: "/App/Users/".concat(id, "/DeactivateMe")
-            });
-
-          case 3:
-            response = _context5.sent;
-
-            if (response.statusText === 'Success') {
-              window.location.assign('/App');
-            }
-
             _context5.next = 10;
             break;
 
@@ -13666,11 +13728,11 @@ var deactivateMe = /*#__PURE__*/function () {
     }, _callee5, null, [[0, 7]]);
   }));
 
-  return function deactivateMe(_x8) {
+  return function updateMe(_x8) {
     return _ref5.apply(this, arguments);
   };
 }();
-var deleteMe = /*#__PURE__*/function () {
+var deactivateMe = /*#__PURE__*/function () {
   var _ref6 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee6(id) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee6$(_context6) {
@@ -13681,13 +13743,13 @@ var deleteMe = /*#__PURE__*/function () {
             _context6.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "DELETE",
-              url: "/App/Users/".concat(id, "/DeleteMe")
+              url: "/App/Users/".concat(id, "/DeactivateMe")
             });
 
           case 3:
             response = _context6.sent;
 
-            if (response.statusText === 'No Content') {
+            if (response.statusText === 'Success') {
               window.location.assign('/App');
             }
 
@@ -13707,8 +13769,49 @@ var deleteMe = /*#__PURE__*/function () {
     }, _callee6, null, [[0, 7]]);
   }));
 
-  return function deleteMe(_x9) {
+  return function deactivateMe(_x9) {
     return _ref6.apply(this, arguments);
+  };
+}();
+var deleteMe = /*#__PURE__*/function () {
+  var _ref7 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee7(id) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee7$(_context7) {
+      while (1) {
+        switch (_context7.prev = _context7.next) {
+          case 0:
+            _context7.prev = 0;
+            _context7.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
+              method: "DELETE",
+              url: "/App/Users/".concat(id, "/DeleteMe")
+            });
+
+          case 3:
+            response = _context7.sent;
+
+            if (response.statusText === 'No Content') {
+              window.location.assign('/App');
+            }
+
+            _context7.next = 10;
+            break;
+
+          case 7:
+            _context7.prev = 7;
+            _context7.t0 = _context7["catch"](0);
+            console.log(_context7.t0);
+
+          case 10:
+          case "end":
+            return _context7.stop();
+        }
+      }
+    }, _callee7, null, [[0, 7]]);
+  }));
+
+  return function deleteMe(_x10) {
+    return _ref7.apply(this, arguments);
   };
 }(); ////////////////////////////////////
 // Watch Button To Reset Password
@@ -13728,11 +13831,11 @@ var _watchPasswordResetButton = function _watchPasswordResetButton(formButtons) 
 // ALL ABOUT WATCHING USER PROFILE FORM BUTTONS
 
 var _watchForProfileUpdates = /*#__PURE__*/function () {
-  var _ref7 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee9(user) {
+  var _ref8 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee10(user) {
     var userProfileFormButtons, userProfileSubSectionFormButtons, transparentButtons, latterDaySaintSwitch, communicationSwitch, commPreference, latterDaySaint;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee9$(_context9) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee10$(_context10) {
       while (1) {
-        switch (_context9.prev = _context9.next) {
+        switch (_context10.prev = _context10.next) {
           case 0:
             userProfileFormButtons = document.querySelectorAll('.user-profile-form__button');
             userProfileSubSectionFormButtons = document.querySelectorAll('.user-profile-form__section__sub-section__button');
@@ -13741,16 +13844,16 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
             communicationSwitch = document.getElementById('commSwitch');
             transparentButtons.forEach(function (b, i) {
               b.addEventListener('click', /*#__PURE__*/function () {
-                var _ref8 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee7(e) {
+                var _ref9 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee8(e) {
                   var firstname, lastname, username, updatedUserInfo, newEmail, newEmailConfirmed, newPhoneNumber, newPhoneNumberConfirmed, updateUserInfo;
-                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee7$(_context7) {
+                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee8$(_context8) {
                     while (1) {
-                      switch (_context7.prev = _context7.next) {
+                      switch (_context8.prev = _context8.next) {
                         case 0:
                           e.preventDefault();
 
                           if (!(i === 0)) {
-                            _context7.next = 9;
+                            _context8.next = 9;
                             break;
                           }
 
@@ -13762,7 +13865,7 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
                             latterDaySaint = true;
                           }
 
-                          _context7.next = 8;
+                          _context8.next = 8;
                           return updateMe({
                             firstname: firstname,
                             lastname: lastname,
@@ -13772,11 +13875,11 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
                           });
 
                         case 8:
-                          updatedUserInfo = _context7.sent;
+                          updatedUserInfo = _context8.sent;
 
                         case 9:
                           if (!(i === 1)) {
-                            _context7.next = 23;
+                            _context8.next = 23;
                             break;
                           }
 
@@ -13804,7 +13907,7 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
                             newPhoneNumberConfirmed = document.getElementById('phoneNumber').value;
                           }
 
-                          _context7.next = 22;
+                          _context8.next = 22;
                           return updateMe({
                             email: newEmail,
                             emailConfirmed: newEmailConfirmed,
@@ -13815,89 +13918,89 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
                           });
 
                         case 22:
-                          updateUserInfo = _context7.sent;
+                          updateUserInfo = _context8.sent;
 
                         case 23:
                           if (!(i === 5)) {
-                            _context7.next = 26;
+                            _context8.next = 26;
                             break;
                           }
 
-                          _context7.next = 26;
+                          _context8.next = 26;
                           return (0,_Login__WEBPACK_IMPORTED_MODULE_5__.logout)(user._id);
 
                         case 26:
                           if (!(i === 6)) {
-                            _context7.next = 29;
+                            _context8.next = 29;
                             break;
                           }
 
-                          _context7.next = 29;
+                          _context8.next = 29;
                           return deactivateMe(user._id);
 
                         case 29:
                           if (!(i === 7)) {
-                            _context7.next = 32;
+                            _context8.next = 32;
                             break;
                           }
 
-                          _context7.next = 32;
+                          _context8.next = 32;
                           return deleteMe(user._id);
 
                         case 32:
                         case "end":
-                          return _context7.stop();
+                          return _context8.stop();
                       }
                     }
-                  }, _callee7);
+                  }, _callee8);
                 }));
 
-                return function (_x11) {
-                  return _ref8.apply(this, arguments);
+                return function (_x12) {
+                  return _ref9.apply(this, arguments);
                 };
               }());
             });
             transparentButtons[4].addEventListener('click', /*#__PURE__*/function () {
-              var _ref9 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee8(e) {
+              var _ref10 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee9(e) {
                 var currentPassword, newPassword, newPasswordConfirmed, updateUserInfo;
-                return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee8$(_context8) {
+                return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee9$(_context9) {
                   while (1) {
-                    switch (_context8.prev = _context8.next) {
+                    switch (_context9.prev = _context9.next) {
                       case 0:
                         e.preventDefault();
                         console.log(userProfileSubSectionFormButtons);
                         currentPassword = document.getElementById('currentPassword').value;
                         newPassword = document.getElementById('newPassword').value;
                         newPasswordConfirmed = document.getElementById('newPasswordConfirmed').value;
-                        _context8.next = 7;
+                        _context9.next = 7;
                         return updateMyPassword(currentPassword, newPassword, newPasswordConfirmed, user._id);
 
                       case 7:
-                        updateUserInfo = _context8.sent;
+                        updateUserInfo = _context9.sent;
 
                       case 8:
                       case "end":
-                        return _context8.stop();
+                        return _context9.stop();
                     }
                   }
-                }, _callee8);
+                }, _callee9);
               }));
 
-              return function (_x12) {
-                return _ref9.apply(this, arguments);
+              return function (_x13) {
+                return _ref10.apply(this, arguments);
               };
             }());
 
           case 7:
           case "end":
-            return _context9.stop();
+            return _context10.stop();
         }
       }
-    }, _callee9);
+    }, _callee10);
   }));
 
-  return function _watchForProfileUpdates(_x10) {
-    return _ref7.apply(this, arguments);
+  return function _watchForProfileUpdates(_x11) {
+    return _ref8.apply(this, arguments);
   };
 }();
 
@@ -21576,6 +21679,23 @@ function _arrayLikeToArray(arr, len) {
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _arrayWithHoles)
+/* harmony export */ });
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js":
 /*!**********************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js ***!
@@ -21808,6 +21928,66 @@ function _iterableToArray(iter) {
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _iterableToArrayLimit)
+/* harmony export */ });
+function _iterableToArrayLimit(arr, i) {
+  var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
+
+  if (_i == null) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+
+  var _s, _e;
+
+  try {
+    for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/nonIterableRest.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/nonIterableRest.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _nonIterableRest)
+/* harmony export */ });
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js":
 /*!**********************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js ***!
@@ -21870,6 +22050,31 @@ function _setPrototypeOf(o, p) {
   };
 
   return _setPrototypeOf(o, p);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/slicedToArray.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ _slicedToArray)
+/* harmony export */ });
+/* harmony import */ var _arrayWithHoles_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./arrayWithHoles.js */ "./node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js");
+/* harmony import */ var _iterableToArrayLimit_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./iterableToArrayLimit.js */ "./node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js");
+/* harmony import */ var _unsupportedIterableToArray_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./unsupportedIterableToArray.js */ "./node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js");
+/* harmony import */ var _nonIterableRest_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./nonIterableRest.js */ "./node_modules/@babel/runtime/helpers/esm/nonIterableRest.js");
+
+
+
+
+function _slicedToArray(arr, i) {
+  return (0,_arrayWithHoles_js__WEBPACK_IMPORTED_MODULE_0__["default"])(arr) || (0,_iterableToArrayLimit_js__WEBPACK_IMPORTED_MODULE_1__["default"])(arr, i) || (0,_unsupportedIterableToArray_js__WEBPACK_IMPORTED_MODULE_2__["default"])(arr, i) || (0,_nonIterableRest_js__WEBPACK_IMPORTED_MODULE_3__["default"])();
 }
 
 /***/ }),

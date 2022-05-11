@@ -5,12 +5,15 @@
 //  Third Party Modules
 const dotenv = require('dotenv');
 const jwt = require(`jsonwebtoken`);
+
 ////////////////////////////////////////////
 //  Third Party Module Instances
 
 ////////////////////////////////////////////
 //  Third Party Middleware
 const crypto = require('crypto');
+const multer = require('multer');
+const sharp = require('sharp');
 
 ////////////////////////////////////////////
 //  Third Party Config Files
@@ -34,6 +37,34 @@ const User = require(`./../Models/userModel`);
 
 ////////////////////////////////////////////
 //  My Functions
+
+// const multerStorage = multer.diskStorage({
+//   destination: (request, file, cb) => {
+//     cb(null, './../../Public/DEST/CSS/Images/Users');
+//   },
+//   filename: (request, file, cb) => {
+//     // Give User Photos A Unique Name
+//     // user-user._id-current_time_stamp
+
+//     const extension = file.mimetype.split('/')[1];
+//     cb(null, `user-${request.user._id}-${Date.now()}.${extension}`);
+//   },
+// });
+
+const multerStorage = multer.memoryStorage();
+
+const multerFilter = (request, file, cb) => {
+  if (file.mimetype.startsWith('image')) {
+    cb(null, true);
+  } else {
+    cb(new AppError(`Not an image, please only upload images`, 400), false);
+  }
+};
+
+const upload = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter,
+});
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -101,9 +132,24 @@ exports.getMe = catchAsync(async (request, response, next) => {
   });
 });
 
+exports.uploadUserPhoto = upload.single('photo');
+
+exports.resizeUserPhoto = (request, response, next) => {
+  if (!request.file) return next();
+
+  request.file.filename = `user-${request.user._id}-${Date.now()}.jpeg`;
+
+  sharp(request.file.buffer).resize(500, 500).toFormat('jpeg').jpeg({ quality: 90 }).toFile(`Public/DIST/CSS/Images/Users/${request.file.filename}`);
+
+  next();
+};
+
 exports.updateMe = catchAsync(async (request, response, next) => {
   console.log('----------------------------------------------------------------');
   console.log(request.body);
+  console.log('----------------------------------------------------------------');
+  console.log('----------------------------------------------------------------');
+  console.log(request.file);
   console.log('----------------------------------------------------------------');
   // CREATE ERROR IF USER TRIES TO POST PASSWORD DATA
   if (request.body.password || request.body.passwordConfirmed) {
@@ -122,7 +168,11 @@ exports.updateMe = catchAsync(async (request, response, next) => {
     'communicationPreference',
     'photo',
     'latterDaySaint',
+    'form'
   );
+
+  // IF A USER UPLOADS A PHOTO IT SHOULD BE REFLECTED IN THE USER'S PHOTO ON THE DATABASE, WHICH IN TURN SHOULD REFLECT IN THE REST OF THE BUDGET WHEN THE USER IS LOGGED IN.
+  if (request.file) filteredBody.photo = request.file.filename;
   const updatedUser = await User.findByIdAndUpdate(request.user.id, filteredBody, { new: true, runValidators: true });
   createAndSendToken(updatedUser, 200, `render`, request, response, `loggedIn`, `King Richard | Home`, { calendar: Calendar });
 });

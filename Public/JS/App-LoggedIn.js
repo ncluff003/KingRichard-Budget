@@ -190,6 +190,66 @@ export const _watchUserProfileButtons = (communicationPreference) => {
   }
 };
 
+//////////////////////////////
+// Actually Close The Form
+const _closeTheForm = (form) => {
+  form.classList.toggle('closed');
+  form.classList.toggle('open');
+};
+
+const openPhotoUpdateModal = (modal) => {
+  modal.classList.toggle('closed');
+  modal.classList.toggle('open');
+};
+
+const _watchForProfilePictureChange = (user) => {
+  console.log('Watching...');
+  const startUpdatingPhotoButton = document.querySelectorAll('.button--extra-small')[0];
+  const photoUpdateModal = document.querySelector('.modal--update-photo');
+  startUpdatingPhotoButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log(startUpdatingPhotoButton);
+    openPhotoUpdateModal(photoUpdateModal);
+  });
+
+  const stopUpdatingPhotoButton = document.querySelector('.form-closure-icon__alt');
+  stopUpdatingPhotoButton.addEventListener('click', (e) => {
+    _closeTheForm(photoUpdateModal);
+  });
+
+  // Works as the image preview code.
+  const previewPath = document.querySelector('.form__path-preview');
+  const photoInput = document.getElementById('photo');
+  const image = document.querySelector('.form__preview-photo-container__picture-frame__image');
+  const reader = new FileReader();
+
+  // Update.updateMe()
+
+  reader.onload = (e) => {
+    image.src = e.target.result;
+  };
+
+  photoInput.onchange = (e) => {
+    const [file] = e.target.files;
+    console.log(file);
+    reader.readAsDataURL(file);
+    previewPath.textContent = file.name;
+  };
+
+  console.log(photoInput.value);
+
+  const saveProfilePictureButton = document.querySelector('.button--update-photo');
+  saveProfilePictureButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    const form = new FormData();
+    form.append('userId', `${user._id}`);
+    form.append('photo', document.getElementById('photo').files[0]);
+    console.log(form.data);
+
+    Update.updateUserPhoto(form);
+  });
+};
+
 const checkLoginStatus = (login, checkElement) => {
   const appViewport = document.querySelector('.application-viewport');
   if (appViewport) {
@@ -208,6 +268,9 @@ export const _watchForLogin = async (login) => {
     // GET USER
     const userInfo = await Update.getSomePersonals();
     const user = userInfo.data.data.user;
+    /////////////////////////////////////////////////
+    // START BY WATCHING FOR PROFILE PICTURE CHANGE
+    _watchForProfilePictureChange(user);
     // WATCHING USER PROFILE NAVIGATION BUTTONS
     _watchUserProfileButtons(commPreference);
     // WATCHING COMMUNICATION PREFERENCES

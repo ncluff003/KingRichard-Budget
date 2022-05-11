@@ -4,6 +4,7 @@
 ////////////////////////////////////////////
 //  Third Party Modules
 const express = require('express');
+const multer = require('multer');
 
 ////////////////////////////////////////////
 //  Third Party Module Instances
@@ -37,7 +38,7 @@ router.route(`/:id`).get(authController.login).post(authController.login);
 router.route('/:id/Me').get(authController.protect, userController.getMe);
 router.route(`/:id/Logout`).get(authController.logout);
 router.route(`/:id/UpdateMyPassword`).post(authController.protect, authController.updateMyPassword);
-router.route(`/:id/UpdateMe`).patch(authController.protect, userController.updateMe);
+router.route(`/:id/UpdateMe`).patch(authController.protect, userController.uploadUserPhoto, userController.resizeUserPhoto, userController.updateMe);
 router.route(`/:id/DeactivateMe`).delete(authController.protect, userController.deactivateMe);
 router.route(`/:id/DeleteMe`).delete(authController.protect, userController.deleteMe);
 
@@ -53,3 +54,7 @@ router.use(`/:id/Budgets`, budgetRouter);
 ////////////////////////////////////////////
 //  Exported Router
 module.exports = router;
+
+// button--extra-small | This is the class for Update Photo Button.
+
+// I placed this class here because it will be using a user route to upload the photo for the user.
