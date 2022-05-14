@@ -1758,7 +1758,7 @@ html {
       @extend .form__section;
       &__income-view {
         @extend .form__section--early-income-view;
-        font-size: 3.2rem;
+        font-size: 2.4rem;
         color: $primaryColor;
         &__header {
           font-size: 1.2rem;
@@ -1796,6 +1796,13 @@ html {
       color: $primaryColor;
       & + label {
         color: $primaryColor;
+      }
+    }
+
+    &--tithing {
+      color: $colorOffWhite;
+      &--tithed {
+        @extend .form__input--tithing;
       }
     }
 

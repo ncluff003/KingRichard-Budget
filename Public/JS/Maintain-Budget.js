@@ -4,6 +4,7 @@ import * as Budgeting from './Manage-Budget';
 import * as Budget from './Budget';
 import * as Edit from './Budget-Creation';
 import * as Categories from './Budget-Categories';
+import * as Transaction from './Transaction';
 
 // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
@@ -3985,6 +3986,9 @@ const showTransactionOptions = (optionText, transactionOptionArrays, transaction
         }
       }
     }
+    if (optionText === `Tithing`) {
+      option.classList.add('lowered');
+    }
   });
 };
 
@@ -3995,6 +3999,10 @@ const resetTransactionOptions = (allOptions) => {
       optionItem.classList.add('closed');
     });
   });
+};
+
+const toggleClass = (element, className) => {
+  return element.classList.toggle(className);
 };
 
 const _watchForTransactions = (budget, placeholderBudget, user) => {
@@ -4024,61 +4032,146 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
       ...document.querySelectorAll('.form__section--early-income-view__income-view__amount'),
       document.querySelector('.form__section--early-income-view__income-view--purple__amount'),
     ];
+    console.log(incomePreviewAmounts);
+    let tithed = false;
 
     netIncomeInput.addEventListener('keyup', (e) => {
       e.preventDefault();
       incomePreviewAmounts[0].textContent = money.format(netIncomeInput.value * investmentPercentage);
       incomePreviewAmounts[1].textContent = money.format(netIncomeInput.value * savingsPercentage);
-      if (user.isLatterDaySaint === true) {
+      if (user.latterDaySaint === true) {
+        incomePreviewAmounts[2].textContent = money.format(0);
         if (budget.accounts.tithing.tithingSetting === `Gross`) {
           incomePreviewAmounts[2].textContent = money.format(grossIncomeInput.value * 0.1);
         }
         if (budget.accounts.tithing.tithingSetting === `Net`) {
           incomePreviewAmounts[2].textContent = money.format(netIncomeInput.value * 0.1);
         }
-        incomePreviewAmounts[3].textContent = money.format(
-          netIncomeInput.value -
-            Number(incomePreviewAmounts[0].textContent.split('$')[1]) -
-            Number(incomePreviewAmounts[1].textContent.split('$')[1]) -
-            Number(incomePreviewAmounts[1].textContent.split('$')[2])
+        if (budget.accounts.tithing.tithingSetting !== `Surplus`) {
+          incomePreviewAmounts[3].textContent = money.format(
+            netIncomeInput.value -
+              Number(incomePreviewAmounts[0].textContent.split('$')[1]) -
+              Number(incomePreviewAmounts[1].textContent.split('$')[1]) -
+              Number(incomePreviewAmounts[2].textContent.split('$')[1])
+          );
+        }
+        if (budget.accounts.tithing.tithingSetting === `Surplus`) {
+          incomePreviewAmounts[2].textContent = money.format(
+            netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1])
+          );
+        }
+      }
+      if (user.latterDaySaint === false) {
+        incomePreviewAmounts[2].textContent = money.format(
+          netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1])
         );
       }
     });
 
+    const tithedSwitch = document.querySelector('.form__input--tithing');
+    if (tithedSwitch) {
+      tithedSwitch.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleClass(tithedSwitch, `form__input--tithing`);
+        toggleClass(tithedSwitch, `form__input--tithing--tithed`);
+        tithed = !tithed;
+        console.log(tithed);
+      });
+    }
+
     // ENTERING INCOME
     headerSubmitButtons[0].addEventListener('click', (e) => {
+      let updateObject, transaction, netAmount;
+
       let unAllocatedAmount = budget.accounts.unAllocated.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1]);
       const savingsAmount = budget.accounts.savingsFund.amount + Number(incomePreviewAmounts[1].textContent.split('$')[1]);
       const investmentAmount = budget.accounts.investmentFund.amount + Number(incomePreviewAmounts[0].textContent.split('$')[1]);
-      let updateObject = {
-        budgetId: budget._id,
-        userId: user._id,
-        user: user,
-        accounts: {
-          unAllocated: {
-            amount: unAllocatedAmount,
+      if (user.latterDaySaint === false) {
+        netAmount = Number(incomePreviewAmounts[2].textContent.split('$')[1]);
+        console.log(incomePreviewAmounts[2].textContent.split('$')[1]);
+        if (incomePreviewAmounts[2].textContent.split('$')[1].includes(',')) {
+          netAmount = Number(incomePreviewAmounts[2].textContent.split('$')[1].split(',').join(''));
+          unAllocatedAmount = budget.accounts.unAllocated.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1].split(',').join(''));
+        }
+        transaction = new Transaction.Transaction({ date: incomeDateInput.value, type: `Deposit`, location: incomeFromInput.value });
+        transaction.addToReceipt({
+          account: `Un-Allocated`,
+          grossAmount: Number(grossIncomeInput.value),
+          netAmount: Number(netIncomeInput.value),
+          deposited: Number(netAmount),
+          user: user,
+          budget: budget,
+        });
+        placeholderBudget.transactions.recentTransactions.push(transaction);
+        updateObject = {
+          budgetId: budget._id,
+          userId: user._id,
+          user: user,
+          accounts: {
+            unAllocated: {
+              amount: unAllocatedAmount,
+            },
+            monthlyBudget: placeholderBudget.accounts.monthlyBudget,
+            emergencyFund: placeholderBudget.accounts.emergencyFund,
+            savingsFund: {
+              savingsGoal: placeholderBudget.accounts.savingsFund.savingsGoal,
+              savingsPercentage: placeholderBudget.accounts.savingsFund.savingsPercentage,
+              amount: savingsAmount,
+            },
+            expenseFund: placeholderBudget.accounts.expenseFund,
+            surplus: placeholderBudget.accounts.surplus,
+            investmentFund: {
+              investmentGoal: placeholderBudget.accounts.investmentFund.investmentGoal,
+              investmentPercentage: placeholderBudget.accounts.investmentFund.investmentPercentage,
+              amount: investmentAmount,
+            },
+            debt: placeholderBudget.accounts.debt,
           },
-          monthlyBudget: placeholderBudget.accounts.monthlyBudget,
-          emergencyFund: placeholderBudget.accounts.emergencyFund,
-          savingsFund: {
-            savingsGoal: placeholderBudget.accounts.savingsFund.savingsGoal,
-            savingsPercentage: placeholderBudget.accounts.savingsFund.savingsPercentage,
-            amount: savingsAmount,
-          },
-          expenseFund: placeholderBudget.accounts.expenseFund,
-          surplus: placeholderBudget.accounts.surplus,
-          investmentFund: {
-            investmentGoal: placeholderBudget.accounts.investmentFund.investmentGoal,
-            investmentPercentage: placeholderBudget.accounts.investmentFund.investmentPercentage,
-            amount: investmentAmount,
-          },
-          debt: placeholderBudget.accounts.debt,
-        },
-      };
-      if (user.isLatterDaySaint === true) {
-        let tithingAmount = budget.accounts.unAllocated.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1]);
-        placeholderBudget.accounts.tithing.amount = Number(tithingAmount);
-        unAllocatedAmount = budget.accounts.unAllocated.amount + Number(incomePreviewAmounts[3].textContent.split('$')[1]);
+          transactions: placeholderBudget.transactions,
+        };
+      }
+      if (user.latterDaySaint === true) {
+        transaction = new Transaction.Transaction({ date: new Date(incomeDateInput.value), type: `Deposit`, location: incomeFromInput.value });
+        // This may not be the final place for this.  Only because if I make it so that the tithing account only shows up when a Latter Day Saint has Gross or Net calculated tithing.
+        if (budget.accounts.tithing.tithingSetting !== `Surplus`) {
+          netAmount = Number(incomePreviewAmounts[3].textContent.split('$')[1]);
+          console.log(incomePreviewAmounts[2].textContent.split('$')[1]);
+          if (incomePreviewAmounts[3].textContent.split('$')[1].includes(',')) {
+            netAmount = Number(incomePreviewAmounts[3].textContent.split('$')[1].split(',').join(''));
+            unAllocatedAmount = budget.accounts.unAllocated.amount + Number(incomePreviewAmounts[3].textContent.split('$')[1].split(',').join(''));
+          }
+          transaction.addToReceipt({
+            account: `Un-Allocated`,
+            grossAmount: Number(grossIncomeInput.value),
+            netAmount: Number(netIncomeInput.value),
+            deposited: Number(netAmount),
+            tithed: tithed,
+            user: user,
+            budget: budget,
+          });
+          let tithingAmount = budget.accounts.tithing.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1]);
+          if (Number(incomePreviewAmounts[2].textContent.split('$')[1].contains(','))) {
+            tithingAmount = budget.accounts.tithing.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1]).split(',').join('');
+          }
+          placeholderBudget.accounts.tithing.amount = Number(tithingAmount);
+        }
+        if (budget.accounts.tithing.tithingSetting === `Surplus`) {
+          netAmount = Number(incomePreviewAmounts[2].textContent.split('$')[1]);
+          console.log(incomePreviewAmounts[2].textContent.split('$')[1]);
+          if (incomePreviewAmounts[2].textContent.split('$')[1].includes(',')) {
+            netAmount = Number(incomePreviewAmounts[2].textContent.split('$')[1].split(',').join(''));
+            unAllocatedAmount = budget.accounts.unAllocated.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1].split(',').join(''));
+          }
+          transaction.addToReceipt({
+            account: `Un-Allocated`,
+            grossAmount: Number(grossIncomeInput.value),
+            netAmount: Number(netIncomeInput.value),
+            deposited: Number(netAmount),
+            user: user,
+            budget: budget,
+          });
+        }
+        placeholderBudget.transactions.recentTransactions.push(transaction);
         updateObject = {
           budgetId: budget._id,
           userId: user._id,
@@ -4104,6 +4197,7 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
             debt: placeholderBudget.accounts.debt,
             tithing: placeholderBudget.accounts.tithing,
           },
+          transactions: placeholderBudget.transactions,
         };
       }
 

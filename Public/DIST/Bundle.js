@@ -7724,7 +7724,7 @@ var Budget = /*#__PURE__*/function () {
         }
 
         if (update === "Enter Income") {
-          console.log("Entering Income...");
+          console.log("Entering Income...", options);
           _Manage_Budget__WEBPACK_IMPORTED_MODULE_3__.updateMyBudget(options.updateObject, pageLink);
         }
 
@@ -8398,7 +8398,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Budget__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Budget */ "./Public/JS/Budget.js");
 /* harmony import */ var _Budget_Creation__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Budget-Creation */ "./Public/JS/Budget-Creation.js");
 /* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
+/* harmony import */ var _Transaction__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Transaction */ "./Public/JS/Transaction.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
 
 
 
@@ -12772,6 +12774,10 @@ var showTransactionOptions = function showTransactionOptions(optionText, transac
         }
       }
     }
+
+    if (optionText === "Tithing") {
+      option.classList.add('lowered');
+    }
   });
 };
 
@@ -12782,6 +12788,10 @@ var resetTransactionOptions = function resetTransactionOptions(allOptions) {
       optionItem.classList.add('closed');
     });
   });
+};
+
+var toggleClass = function toggleClass(element, className) {
+  return element.classList.toggle(className);
 };
 
 var _watchForTransactions = function _watchForTransactions(budget, placeholderBudget, user) {
@@ -12800,45 +12810,199 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
     var incomeFromInput = incomeInputs[1];
     var grossIncomeInput = incomeInputs[2];
     var netIncomeInput = incomeInputs[3];
+    var tithingInput;
+
+    if (user.isLatterDaySaint === true) {
+      tithingInput = incomeInputs[3];
+      netIncomeInput = incomeInputs[4];
+    }
+
     var investmentPercentage = budget.accounts.investmentFund.investmentPercentage;
     var savingsPercentage = budget.accounts.savingsFund.savingsPercentage;
     var incomePreviewAmounts = [].concat((0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(document.querySelectorAll('.form__section--early-income-view__income-view__amount')), [document.querySelector('.form__section--early-income-view__income-view--purple__amount')]);
+    console.log(incomePreviewAmounts);
+    var tithed = false;
     netIncomeInput.addEventListener('keyup', function (e) {
       e.preventDefault();
       incomePreviewAmounts[0].textContent = money.format(netIncomeInput.value * investmentPercentage);
       incomePreviewAmounts[1].textContent = money.format(netIncomeInput.value * savingsPercentage);
-      incomePreviewAmounts[2].textContent = money.format(netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1]));
-    }); // ENTERING INCOME
+
+      if (user.latterDaySaint === true) {
+        incomePreviewAmounts[2].textContent = money.format(0);
+
+        if (budget.accounts.tithing.tithingSetting === "Gross") {
+          incomePreviewAmounts[2].textContent = money.format(grossIncomeInput.value * 0.1);
+        }
+
+        if (budget.accounts.tithing.tithingSetting === "Net") {
+          incomePreviewAmounts[2].textContent = money.format(netIncomeInput.value * 0.1);
+        }
+
+        if (budget.accounts.tithing.tithingSetting !== "Surplus") {
+          incomePreviewAmounts[3].textContent = money.format(netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1]) - Number(incomePreviewAmounts[2].textContent.split('$')[1]));
+        }
+
+        if (budget.accounts.tithing.tithingSetting === "Surplus") {
+          incomePreviewAmounts[2].textContent = money.format(netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1]));
+        }
+      }
+
+      if (user.latterDaySaint === false) {
+        incomePreviewAmounts[2].textContent = money.format(netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1]));
+      }
+    });
+    var tithedSwitch = document.querySelector('.form__input--tithing');
+
+    if (tithedSwitch) {
+      tithedSwitch.addEventListener('click', function (e) {
+        e.preventDefault();
+        toggleClass(tithedSwitch, "form__input--tithing");
+        toggleClass(tithedSwitch, "form__input--tithing--tithed");
+        tithed = !tithed;
+        console.log(tithed);
+      });
+    } // ENTERING INCOME
+
 
     headerSubmitButtons[0].addEventListener('click', function (e) {
+      var updateObject, transaction, netAmount;
       var unAllocatedAmount = budget.accounts.unAllocated.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1]);
       var savingsAmount = budget.accounts.savingsFund.amount + Number(incomePreviewAmounts[1].textContent.split('$')[1]);
       var investmentAmount = budget.accounts.investmentFund.amount + Number(incomePreviewAmounts[0].textContent.split('$')[1]);
-      var updateObject = {
-        budgetId: budget._id,
-        userId: user._id,
-        user: user,
-        accounts: {
-          unAllocated: {
-            amount: unAllocatedAmount
-          },
-          monthlyBudget: placeholderBudget.accounts.monthlyBudget,
-          emergencyFund: placeholderBudget.accounts.emergencyFund,
-          savingsFund: {
-            savingsGoal: placeholderBudget.accounts.savingsFund.savingsGoal,
-            savingsPercentage: placeholderBudget.accounts.savingsFund.savingsPercentage,
-            amount: savingsAmount
-          },
-          expenseFund: placeholderBudget.accounts.expenseFund,
-          surplus: placeholderBudget.accounts.surplus,
-          investmentFund: {
-            investmentGoal: placeholderBudget.accounts.investmentFund.investmentGoal,
-            investmentPercentage: placeholderBudget.accounts.investmentFund.investmentPercentage,
-            amount: investmentAmount
-          },
-          debt: placeholderBudget.accounts.debt
+
+      if (user.latterDaySaint === false) {
+        netAmount = Number(incomePreviewAmounts[2].textContent.split('$')[1]);
+        console.log(incomePreviewAmounts[2].textContent.split('$')[1]);
+
+        if (incomePreviewAmounts[2].textContent.split('$')[1].includes(',')) {
+          netAmount = Number(incomePreviewAmounts[2].textContent.split('$')[1].split(',').join(''));
+          unAllocatedAmount = budget.accounts.unAllocated.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1].split(',').join(''));
         }
-      };
+
+        transaction = new _Transaction__WEBPACK_IMPORTED_MODULE_10__.Transaction({
+          date: incomeDateInput.value,
+          type: "Deposit",
+          location: incomeFromInput.value
+        });
+        transaction.addToReceipt({
+          account: "Un-Allocated",
+          grossAmount: Number(grossIncomeInput.value),
+          netAmount: Number(netIncomeInput.value),
+          deposited: Number(netAmount),
+          user: user,
+          budget: budget
+        });
+        placeholderBudget.transactions.recentTransactions.push(transaction);
+        updateObject = {
+          budgetId: budget._id,
+          userId: user._id,
+          user: user,
+          accounts: {
+            unAllocated: {
+              amount: unAllocatedAmount
+            },
+            monthlyBudget: placeholderBudget.accounts.monthlyBudget,
+            emergencyFund: placeholderBudget.accounts.emergencyFund,
+            savingsFund: {
+              savingsGoal: placeholderBudget.accounts.savingsFund.savingsGoal,
+              savingsPercentage: placeholderBudget.accounts.savingsFund.savingsPercentage,
+              amount: savingsAmount
+            },
+            expenseFund: placeholderBudget.accounts.expenseFund,
+            surplus: placeholderBudget.accounts.surplus,
+            investmentFund: {
+              investmentGoal: placeholderBudget.accounts.investmentFund.investmentGoal,
+              investmentPercentage: placeholderBudget.accounts.investmentFund.investmentPercentage,
+              amount: investmentAmount
+            },
+            debt: placeholderBudget.accounts.debt
+          },
+          transactions: placeholderBudget.transactions
+        };
+      }
+
+      if (user.latterDaySaint === true) {
+        transaction = new _Transaction__WEBPACK_IMPORTED_MODULE_10__.Transaction({
+          date: new Date(incomeDateInput.value),
+          type: "Deposit",
+          location: incomeFromInput.value
+        }); // This may not be the final place for this.  Only because if I make it so that the tithing account only shows up when a Latter Day Saint has Gross or Net calculated tithing.
+
+        if (budget.accounts.tithing.tithingSetting !== "Surplus") {
+          netAmount = Number(incomePreviewAmounts[3].textContent.split('$')[1]);
+          console.log(incomePreviewAmounts[2].textContent.split('$')[1]);
+
+          if (incomePreviewAmounts[3].textContent.split('$')[1].includes(',')) {
+            netAmount = Number(incomePreviewAmounts[3].textContent.split('$')[1].split(',').join(''));
+            unAllocatedAmount = budget.accounts.unAllocated.amount + Number(incomePreviewAmounts[3].textContent.split('$')[1].split(',').join(''));
+          }
+
+          transaction.addToReceipt({
+            account: "Un-Allocated",
+            grossAmount: Number(grossIncomeInput.value),
+            netAmount: Number(netIncomeInput.value),
+            deposited: Number(netAmount),
+            tithed: tithed,
+            user: user,
+            budget: budget
+          });
+          var tithingAmount = budget.accounts.tithing.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1]);
+
+          if (Number(incomePreviewAmounts[2].textContent.split('$')[1].contains(','))) {
+            tithingAmount = budget.accounts.tithing.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1]).split(',').join('');
+          }
+
+          placeholderBudget.accounts.tithing.amount = Number(tithingAmount);
+        }
+
+        if (budget.accounts.tithing.tithingSetting === "Surplus") {
+          netAmount = Number(incomePreviewAmounts[2].textContent.split('$')[1]);
+          console.log(incomePreviewAmounts[2].textContent.split('$')[1]);
+
+          if (incomePreviewAmounts[2].textContent.split('$')[1].includes(',')) {
+            netAmount = Number(incomePreviewAmounts[2].textContent.split('$')[1].split(',').join(''));
+            unAllocatedAmount = budget.accounts.unAllocated.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1].split(',').join(''));
+          }
+
+          transaction.addToReceipt({
+            account: "Un-Allocated",
+            grossAmount: Number(grossIncomeInput.value),
+            netAmount: Number(netIncomeInput.value),
+            deposited: Number(netAmount),
+            user: user,
+            budget: budget
+          });
+        }
+
+        placeholderBudget.transactions.recentTransactions.push(transaction);
+        updateObject = {
+          budgetId: budget._id,
+          userId: user._id,
+          user: user,
+          accounts: {
+            unAllocated: {
+              amount: unAllocatedAmount
+            },
+            monthlyBudget: placeholderBudget.accounts.monthlyBudget,
+            emergencyFund: placeholderBudget.accounts.emergencyFund,
+            savingsFund: {
+              savingsGoal: placeholderBudget.accounts.savingsFund.savingsGoal,
+              savingsPercentage: placeholderBudget.accounts.savingsFund.savingsPercentage,
+              amount: savingsAmount
+            },
+            expenseFund: placeholderBudget.accounts.expenseFund,
+            surplus: placeholderBudget.accounts.surplus,
+            investmentFund: {
+              investmentGoal: placeholderBudget.accounts.investmentFund.investmentGoal,
+              investmentPercentage: placeholderBudget.accounts.investmentFund.investmentPercentage,
+              amount: investmentAmount
+            },
+            debt: placeholderBudget.accounts.debt,
+            tithing: placeholderBudget.accounts.tithing
+          },
+          transactions: placeholderBudget.transactions
+        };
+      }
 
       placeholderBudget._updateBudget("Update", "Enter Income", {
         updateObject: updateObject
@@ -13610,6 +13774,57 @@ var _setupSignupForm = function _setupSignupForm(page, pages, person) {
     pages[0].style.display = 'flex';
   }
 };
+
+/***/ }),
+
+/***/ "./Public/JS/Transaction.js":
+/*!**********************************!*\
+  !*** ./Public/JS/Transaction.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Transaction": () => (/* binding */ Transaction)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
+
+
+var Transaction = /*#__PURE__*/function () {
+  function Transaction(options) {
+    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, Transaction);
+
+    this.transactionDate = new Date(new Date(options.date).setHours(new Date(options.date).getHours() + new Date().getTimezoneOffset() / 60));
+    this.transactionType = options.type;
+    this.location = options.location;
+    this.receipt = [];
+  }
+
+  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(Transaction, [{
+    key: "addToReceipt",
+    value: function addToReceipt(options) {
+      if (this.transactionType === "Deposit") {
+        var receiptObject = {};
+        receiptObject.account = options.account;
+        receiptObject.grossAmount = options.grossAmount;
+        receiptObject.netAmount = options.netAmount;
+        receiptObject.amount = options.deposited;
+
+        if (options.user.latterDaySaint === true) {
+          if (options.budget.accounts.tithing.tithingSetting !== "Surplus") {
+            receiptObject.tithed = options.tithed;
+          }
+        }
+
+        this.receipt.push(receiptObject);
+      }
+    }
+  }]);
+
+  return Transaction;
+}();
 
 /***/ }),
 

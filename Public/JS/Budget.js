@@ -213,7 +213,7 @@ export class Budget {
       }
 
       if (update === `Enter Income`) {
-        console.log(`Entering Income...`);
+        console.log(`Entering Income...`, options);
         Manage.updateMyBudget(options.updateObject, pageLink);
       }
 

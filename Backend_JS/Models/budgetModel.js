@@ -227,11 +227,11 @@ const budgetSchema = new mongoose.Schema({
     ],
     recentTransactions: [
       {
-        date: {
+        transactionDate: {
           type: Date,
           required: [true, `Every Transaction Must Have A Date`],
         },
-        type: {
+        transactionType: {
           type: String,
           enum: [`Deposit`, `Withdrawal`],
           required: [true, `Every Transaction Is Either A Deposit Or Withdrawal`],
@@ -244,7 +244,6 @@ const budgetSchema = new mongoose.Schema({
           {
             account: {
               type: String,
-              required: [true, `Every Transaction Must Come From An Account`],
             },
             category: {
               type: String,
@@ -262,15 +261,23 @@ const budgetSchema = new mongoose.Schema({
             lender: {
               type: String,
             },
+            grossAmount: {
+              type: Number,
+            },
+            netAmount: {
+              type: Number,
+            },
             amount: {
               type: Number,
               required: [true, `Every Transaction Had An Ammount.`],
             },
             description: {
               type: String,
-              required: [true, `Every Transaction Must Come From An Account`],
             },
             fullyPaid: {
+              type: Boolean,
+            },
+            tithed: {
               type: Boolean,
             },
           },

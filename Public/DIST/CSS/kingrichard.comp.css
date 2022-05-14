@@ -1315,7 +1315,7 @@ html {
   color: #fafafa;
 }
 .form__section--early-income-view__income-view, .form__section--early-income-view__income-view--purple {
-  font-size: 3.2rem;
+  font-size: 2.4rem;
   color: #822aba;
 }
 .form__section--early-income-view__income-view__header {
@@ -1340,6 +1340,9 @@ html {
 }
 .form__input:focus + label, .form__input--enter-income:focus + label, .form__input--enter-transaction:focus + label, .form__input--enter-income__alt:focus + label, .form__input--enter-transaction__alt:focus + label, .form__input--enter-income__alt-emergency-fund:focus + label, .form__input--enter-transaction__alt-emergency-fund:focus + label, .form__input--medium__alt-emergency-fund:focus + label, .form__input--long__alt-emergency-fund:focus + label, .form__input--medium__alt:focus + label, .form__input--long__alt:focus + label, .form__input--comms:focus + label, .form__input--comms--email:focus + label, .form__input--comms--text:focus + label, .form__input--latter-day-saint:focus + label, .form__input--sub-category-title:focus + label, .form__input--main-category-title:focus + label, .form__input--dark:focus + label, .form__input--dark-extra-small:focus + label, .form__input--dark-small:focus + label, .form__input--small:focus + label, .form__input--small-savings-goal:focus + label, .form__input--small-investment-goal:focus + label, .form__input--small-thin:focus + label, .form__input--transaction-plan:focus + label, .form__input--transaction-plan-short:focus + label, .form__input--small-thin__placeholder-shown:focus + label, .form__input--small-thinner:focus + label, .form__input--small-thinner__wider:focus + label, .form__input--small-thinner__wide:focus + label, .form__input--medium:focus + label, .form__input--small-shorter:focus + label, .form__input--small-short:focus + label, .form__input--long:focus + label, .form__input--medium-short:focus + label, .form__input--long-short:focus + label, .form__input--half-left:focus + label, .form__input--investment:focus + label {
   color: #822aba;
+}
+.form__input--tithing, .form__input--tithing--tithed {
+  color: #fafafa;
 }
 .form__input--investment {
   font-size: 1.2rem;
@@ -35193,6 +35196,61 @@ html {
 }
 .form__input:not(:placeholder-shown) + label, .form__input--enter-income:not(:placeholder-shown) + label, .form__input--enter-transaction:not(:placeholder-shown) + label, .form__input--enter-income__alt:not(:placeholder-shown) + label, .form__input--enter-transaction__alt:not(:placeholder-shown) + label, .form__input--enter-income__alt-emergency-fund:not(:placeholder-shown) + label, .form__input--enter-transaction__alt-emergency-fund:not(:placeholder-shown) + label, .form__input--comms:not(:placeholder-shown) + label, .form__input--comms--text-preferred:not(:placeholder-shown) + label, .form__input--sub-category-title:not(:placeholder-shown) + label, .form__input--main-category-title:not(:placeholder-shown) + label, .form__input--small:not(:placeholder-shown) + label, .form__input--small-savings-goal:not(:placeholder-shown) + label, .form__input--small-investment-goal:not(:placeholder-shown) + label, .form__input--small-thin:not(:placeholder-shown) + label, .form__input--investment:not(:placeholder-shown) + label, .form__input--small-thin__placeholder-shown:not(:placeholder-shown) + label, .form__input--small-thinner:not(:placeholder-shown) + label, .form__input--small-thinner__wider:not(:placeholder-shown) + label, .form__input--small-thinner__wide:not(:placeholder-shown) + label, .form__input--medium:not(:placeholder-shown) + label, .form__input--small-shorter:not(:placeholder-shown) + label, .form__input--small-short:not(:placeholder-shown) + label, .form__input--transaction-plan:not(:placeholder-shown) + label, .form__input--medium__alt:not(:placeholder-shown) + label, .form__input--long:not(:placeholder-shown) + label, .form__input--long-short:not(:placeholder-shown) + label, .form__input--dark:not(:placeholder-shown) + label, .form__input--dark-extra-small:not(:placeholder-shown) + label, .form__input--dark-small:not(:placeholder-shown) + label, .form__input--half-left:not(:placeholder-shown) + label, .form__input:focus + label, .form__input--enter-income:focus + label, .form__input--enter-transaction:focus + label, .form__input--enter-income__alt:focus + label, .form__input--enter-transaction__alt:focus + label, .form__input--enter-income__alt-emergency-fund:focus + label, .form__input--enter-transaction__alt-emergency-fund:focus + label, .form__input--comms:focus + label, .form__input--comms--text-preferred:focus + label, .form__input--sub-category-title:focus + label, .form__input--main-category-title:focus + label, .form__input--small:focus + label, .form__input--small-savings-goal:focus + label, .form__input--small-investment-goal:focus + label, .form__input--small-thin:focus + label, .form__input--investment:focus + label, .form__input--small-thin__placeholder-shown:focus + label, .form__input--small-thinner:focus + label, .form__input--small-thinner__wider:focus + label, .form__input--small-thinner__wide:focus + label, .form__input--medium:focus + label, .form__input--small-shorter:focus + label, .form__input--small-short:focus + label, .form__input--transaction-plan:focus + label, .form__input--medium__alt:focus + label, .form__input--long:focus + label, .form__input--long-short:focus + label, .form__input--dark:focus + label, .form__input--dark-extra-small:focus + label, .form__input--dark-small:focus + label, .form__input--half-left:focus + label {
   transform: translate(-5.5rem, -7rem) scale(0.75);
+}
+.form__input--tithing, .form__input--tithing--tithed {
+  position: absolute;
+  height: 4rem;
+  width: 75%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(4rem, 0);
+  border: 0.2rem solid #822aba;
+  border-radius: 5rem;
+  background-color: rgba(72, 23, 103, 0.9);
+}
+.form__input--tithing__switch {
+  position: absolute;
+  height: 3.4rem;
+  width: 3.4rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  transform: rotate(0) translate(0.2rem, -50%);
+  top: 50%;
+  left: 0;
+  border-radius: 5rem;
+  background-color: #822aba;
+}
+.form__input--tithing__text-no {
+  display: flex;
+}
+.form__input--tithing__text-yes {
+  display: none;
+}
+.form__input--tithing--tithed {
+  background-color: #38d927;
+  border: 0.2rem solid #2cae1f;
+  transition: border 0.5s, background-color 0.5s;
+}
+.form__input--tithing--tithed .form__input--tithing__switch {
+  width: 96%;
+  background-color: #38d927;
+  transition: color 0.5s, background-color 0.5s, width 0.5s;
+}
+.form__input--tithing--tithed .form__input--tithing__text-no {
+  display: none;
+}
+.form__input--tithing--tithed .form__input--tithing__text-yes {
+  display: flex;
+  z-index: 2;
+}
+.form__input--tithing:hover, .form__input--tithing--tithed:hover {
+  cursor: pointer;
 }
 .form__input--half-left {
   height: 100%;

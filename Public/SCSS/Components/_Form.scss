@@ -991,6 +991,47 @@
       transform: translate(-5.5rem, -7rem) scale(0.75);
     }
 
+    &--tithing {
+      @include SizeAndPositioning(absolute, 4rem, 75%, flex, row, nowrap, center, center, 4rem, 0, 0);
+      border: 0.2rem solid $primaryColor;
+      border-radius: 5rem;
+      background-color: rgba($primaryColorDarker, 0.9);
+      &__switch {
+        @include SizeAndPositioning(absolute, 3.4rem, 3.4rem, flex, row, nowrap, flex-end, center, 0.2rem, -50%, 0);
+        top: 50%;
+        left: 0;
+        border-radius: 5rem;
+        background-color: $primaryColor;
+      }
+      &__text-no {
+        display: flex;
+      }
+      &__text-yes {
+        display: none;
+      }
+      &--tithed {
+        @extend .form__input--tithing;
+        background-color: $secondaryColor;
+        border: 0.2rem solid $secondaryColorDark;
+        transition: border 0.5s, background-color 0.5s;
+        .form__input--tithing__switch {
+          width: 96%;
+          background-color: $secondaryColor;
+          transition: color 0.5s, background-color 0.5s, width 0.5s;
+        }
+        .form__input--tithing__text-no {
+          display: none;
+        }
+        .form__input--tithing__text-yes {
+          display: flex;
+          z-index: 2;
+        }
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
     &--half-left {
       @extend .form__input;
       height: 100%;
