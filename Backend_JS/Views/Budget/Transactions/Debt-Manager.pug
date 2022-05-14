@@ -44,7 +44,7 @@ block Budget-Content
         form.form--full-width.r__form--full-width
           section.form__row--debt-creation.r__form__row--debt-creation 
             section.form__section--transaction-plan.r__form__section--transaction-plan 
-              input.form__input--small-short.r__form__input--small-short#debtLender(type=`text` placeholder=`Who Lent The Money? $$$`)
+              input.form__input--small-short.r__form__input--small-short#debtLender(type=`text` placeholder=`Who Lent The Money? $$$` maxLength=`25`)
               label.form__label--small-short.r__form__label--small-short(for=`debtLender`) Lender
             section.form__section--transaction-plan.r__form__section--transaction-plan 
               - let debtTypes = [`Credit Card`, `Loan`, `Taxes`, `Debt`, `Other`]

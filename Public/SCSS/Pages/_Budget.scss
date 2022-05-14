@@ -59,3 +59,45 @@
     @extend .debt;
   }
 }
+
+///////////////////////////////////
+// RECENT TRASACTIONS
+
+.recent-transaction {
+  @include SizeAndPositioning(relative, 5rem, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
+
+  &:nth-of-type(2n) {
+    background-color: $colorLightestGrey;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: $primaryColor;
+    transition: background-color 0.5s, color 0.5s;
+
+    .button--extra-extra-small__view-receipt {
+      border: 0.2rem solid rgba($colorOffWhite, 0.8);
+    }
+  }
+  &__section {
+    @include SizeAndPositioning(relative, 100%, 10%, flex, row, nowrap, center, center, 0, 0, 0);
+    padding: 0 0.5rem;
+    margin: 0 0.2rem;
+    &__part {
+      @include SizeAndPositioning(relative, 100%, calc(100% / 5), flex, column, nowrap, space-evenly, center, 0, 0, 0);
+      &__header {
+        @include SizingItem(relative, 50%, 100%);
+      }
+    }
+    &:nth-of-type(1) {
+      margin: 0 0.2rem 0 0;
+    }
+    &:nth-of-type(6) {
+      width: 50%;
+      margin: 0 0 0 0.2rem;
+      justify-content: space-evenly;
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+}

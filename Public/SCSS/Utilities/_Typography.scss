@@ -33,6 +33,48 @@ html {
   &--update-photo {
     @extend .modal;
   }
+
+  &--receipt {
+    @extend .modal;
+    color: $primaryColor;
+    &__closure-icon {
+      font-size: 4rem;
+      color: rgba($primaryColor, 0.8);
+      &:hover {
+        color: $primaryColor;
+      }
+    }
+    &__digital-receipt {
+      &__container {
+        &__header {
+          font-family: MADE Tommy Soft Bold, Verdana, sans-serif;
+          font-size: 5rem;
+          &__secondary-title-container {
+            font-family: MADE Tommy Soft, Verdana, sans-serif;
+            font-size: 2rem;
+          }
+        }
+        &__item-container {
+          &__row {
+            font-size: 1.2rem;
+            .receipt-row__transaction-details-section {
+              font-size: 1.2rem;
+            }
+          }
+        }
+        &__footer {
+          .footer-title {
+            &:first-of-type {
+              font-size: 3rem;
+            }
+            &:nth-of-type(2) {
+              font-size: 4rem;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 // NAVIGATION
@@ -217,6 +259,10 @@ html {
       &-small {
         @extend .button--extra-extra-small__transaction-plan;
       }
+    }
+    &__view-receipt {
+      @extend .button--extra-extra-small;
+      font-size: 1.2rem;
     }
     &__wide {
       @extend .button--extra-extra-small;
@@ -820,13 +866,13 @@ html {
     }
     &__transaction-total {
       @extend .container--small;
-      font-weight: bold;
-      font-size: 6rem;
+      font-family: MADE Tommy Soft Bold, Verdana, sans-serif;
+      font-size: 4rem;
       color: $colorOffWhite;
       &__heading {
         @extend .container--small__transaction-total;
-        font-weight: normal;
-        font-size: 2rem;
+        font-family: MADE Tommy Soft, Verdana, sans-serif;
+        font-size: 3rem;
       }
     }
     &-wide {
@@ -922,6 +968,16 @@ html {
         font-size: 3rem;
       }
     }
+
+    &__transaction-title-container {
+      @extend .container;
+      &__transaction-title {
+        font-size: 1.4rem;
+        color: $colorOffWhite;
+        text-align: center;
+      }
+    }
+
     &__budget-goal-summary-container {
       .budget-single-goal-summary {
         &__title {
@@ -1013,6 +1069,31 @@ html {
       font-size: 2.4rem;
       &__icon {
         font-size: 3rem;
+      }
+    }
+  }
+}
+
+// RECENT TRANSACTIONS
+.recent-transaction {
+  @extend .container;
+  color: $primaryColor;
+  &:hover {
+    color: $colorOffWhite;
+  }
+  &__section {
+    font-size: 1.2rem;
+    text-align: center;
+
+    &__header {
+      font-size: 1.4rem;
+      text-decoration: underline;
+    }
+    &__part {
+      font-size: 1.2rem;
+      &__header {
+        font-size: 1.3rem;
+        text-decoration: underline;
       }
     }
   }
@@ -1582,6 +1663,29 @@ html {
     font-family: MADE Tommy Soft, Verdana, sans-serif;
     font-size: 2rem;
     color: rgba($primaryColor, 0.8);
+
+    &--transaction-receipt {
+      @extend .form__section;
+      .receipt-header {
+        &__text {
+          font-size: 3rem;
+          font-variant: small-caps;
+          text-decoration: underline;
+          color: $primaryColor;
+        }
+        &__secondary-titles {
+          font-size: 1.6rem;
+        }
+      }
+      .receipt-item-container {
+        &__row {
+          font-size: 1.3rem;
+          .transaction-item-details {
+          }
+        }
+      }
+    }
+
     &--debt {
       @extend .form__section;
       color: $primaryColor;
@@ -1732,6 +1836,25 @@ html {
       &-shorter {
         @extend .form__input--medium;
       }
+
+      &-thinner {
+        @extend .form__input--small;
+        font-size: 1.2rem;
+        color: rgba($primaryColor, 0.8);
+        &:focus {
+          color: $primaryColor;
+          & + label {
+            color: $primaryColor;
+          }
+        }
+        &__wide {
+          @extend .form__input--small-thinner;
+        }
+        &__wider {
+          @extend .form__input--small-thinner;
+        }
+      }
+
       &-thin {
         @extend .form__input--small;
         font-size: 1.6rem;
@@ -1906,6 +2029,20 @@ html {
       &-shorter {
         @extend .form__label;
         font-size: 1.4rem;
+      }
+
+      &-thinner {
+        @extend .form__label;
+        font-size: 1.2rem;
+        &__transaction {
+          @extend .form__label--small-thinner;
+        }
+        &__wide {
+          @extend .form__label--small-thinner;
+        }
+        &__wider {
+          @extend .form__label--small-thinner;
+        }
       }
 
       &-thin {

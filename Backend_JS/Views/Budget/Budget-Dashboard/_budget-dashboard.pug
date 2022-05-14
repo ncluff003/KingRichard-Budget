@@ -8,6 +8,9 @@ mixin dashboardAccountOverview(icon, text, accountTotal)
 +dashboardAccountOverview(`piggy-bank`, `Bank Account`, `$0`)
 +dashboardAccountOverview(`hand-holding-usd`, `Debt`, `$0`)
 +dashboardAccountOverview(`dollar-sign`, `Net Value`, `$0`)
+
+  - const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 })
+  - const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 section.container--small.r__container--small
   header.container--small__header.r__container--small__header
     i.fas.fa-money-bill-alt.container--small__header__icon.r__container--small__header__icon
@@ -25,8 +28,8 @@ section.container--small.r__container--small
   section.container--small__content--transaction.r__container--small__content--transaction
     include ./../Transactions/_Enter-Transaction
   section.container--small__transaction-total.r__container--small__transaction-total 
-    h3.container--small__transaction-total__heading.r__container--small__transaction-total__heading Total Spent 
-    p.container--small__transaction-total__amount.r__container--small__transaction-total__amount= `$0.00`
+    h3.container--small__transaction-total__heading.r__container--small__transaction-total__heading Total Spent: 
+    p.container--small__transaction-total__amount.r__container--small__transaction-total__amount= `${money.format(0)}`
 include ./../_upcoming-bills
 include ./../_monthly-budget
 

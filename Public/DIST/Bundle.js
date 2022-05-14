@@ -8417,6 +8417,28 @@ var reloadPage = function reloadPage() {
   }, 2000);
 };
 
+var showElement = function showElement(element) {
+  element.classList.toggle('closed');
+  element.classList.toggle('open');
+};
+
+var _watchRecentTransactions = function _watchRecentTransactions(budget, placeholderBudget, user) {
+  console.log("Listing Transactions");
+  var receiptModal = document.querySelector('.modal--receipt');
+  var receiptModalClosureIcon = document.querySelector('.modal--receipt__closure-icon');
+  var viewReceiptButton = document.querySelector('.button--extra-extra-small__view-receipt');
+
+  if (viewReceiptButton) {
+    viewReceiptButton.addEventListener('click', function (e) {
+      console.log(viewReceiptButton);
+      showElement(receiptModal);
+    });
+    receiptModalClosureIcon.addEventListener('click', function (e) {
+      showElement(receiptModal);
+    });
+  }
+};
+
 var payDebtOff = function payDebtOff(budget, placeholderBudget, user, debt, paidSections, sectionStart) {
   console.log("Paying Off...", debt);
   var money = new Intl.NumberFormat('en-US', {
@@ -9234,12 +9256,10 @@ var addInvestment = function addInvestment(options) {
 };
 
 var _watchInvestmentPlanner = function _watchInvestmentPlanner(budget, placeholderBudget, user) {
-  var longFormSections = document.querySelectorAll('.form__section--long');
-
-  if (longFormSections[0] && longFormSections[0].classList.contains('closed')) {
-    replaceClassName(longFormSections[0], "closed", "open");
-  }
-
+  // const longFormSections = document.querySelectorAll('.form__section--long');
+  // if (longFormSections[0] && longFormSections[0].classList.contains('closed')) {
+  //   console.log(longFormSections[0]);
+  // replaceClassName(longFormSections[0], `closed`, `open`);
   var addInvestmentButton = document.querySelector('.container--extra-small__margin-left-and-right__content-icon');
   var closeInvestmentCreationButton = document.querySelector('.button--borderless-narrow__investment');
   var addInvestmentForm = document.querySelector('.form--extra-small__column');
@@ -9299,7 +9319,6 @@ var _watchInvestmentPlanner = function _watchInvestmentPlanner(budget, placehold
   if (openUpdateCurrentValueButtons[0]) {
     openUpdateCurrentValueButtons.forEach(function (button, i) {
       var index = Number(openUpdateCurrentValueButtons[i].closest('.container--extra-small__margin-left-and-right').dataset.investment);
-      console.log(openUpdateCurrentValueButtons[i].closest('.container--extra-small__margin-left-and-right').dataset.investment);
 
       var boundListener = _watchForCurrentValueUpdate.bind(null, event, i, index, budget, placeholderBudget, user); // button.removeEventListener(`click`, boundListener);
 
@@ -12609,9 +12628,7 @@ var _setupBillCalendar = function _setupBillCalendar(budget) {
   var currentDay = document.querySelector('.bill-calendar__days__single-day--current-day');
   upcomingTransactions.forEach(function (transaction, i) {
     transaction.classList.add('closed');
-    console.log(transaction.firstChild.nextSibling.firstChild.textContent);
     var date = new Date(transaction.firstChild.nextSibling.firstChild.textContent);
-    console.log(date, date.getDate(), currentDay.textContent, (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(date.getDate()), (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(currentDay.textContent));
 
     if (date.getDate() === Number(currentDay.textContent)) {
       transaction.classList.remove('closed');
@@ -12687,7 +12704,87 @@ var getDashboardAccountTotals = function getDashboardAccountTotals(budget) {
   calculateTotal("Net Value", budget); // budget-container__dashboard__container--extra-small__content__account-total
 };
 
-var _watchForTransactions = function _watchForTransactions(arrayOfArrays, budget, placeholderBudget, user) {
+var showTransactionOptions = function showTransactionOptions(optionText, transactionOptionArrays, transactionOptions) {
+  transactionOptionArrays.forEach(function (array) {
+    array.forEach(function (arrayItem) {
+      arrayItem.classList.remove('open');
+      arrayItem.classList.add('closed');
+      arrayItem.firstChild.classList.remove('lowered');
+    });
+  });
+  transactionOptions.forEach(function (option, i) {
+    option.classList.remove('closed');
+    option.classList.add('open');
+
+    if (optionText === "Monthly Budget") {
+      console.log(optionText);
+      option.classList.remove('lowered');
+
+      if (i === 2) {
+        option.classList.remove('lowered');
+
+        if (transactionOptions[i - 1].getBoundingClientRect().width < 115) {
+          option.classList.add('lowered');
+        }
+      }
+    }
+
+    if (optionText === "Emergency Fund") {
+      option.classList.add('lowered');
+    }
+
+    if (optionText === "Savings Fund") {
+      option.classList.remove('raised');
+    }
+
+    if (optionText === "Expense Fund") {
+      option.classList.remove('lowered');
+
+      if (i === 2) {
+        console.log(option.firstChild.nextSibling.getBoundingClientRect().width);
+        option.classList.remove('raised');
+
+        if (option.firstChild.nextSibling.getBoundingClientRect().width > 133.5) {
+          option.classList.add('raised');
+        }
+      }
+    }
+
+    if (optionText === "Surplus") {
+      option.classList.remove('raised');
+    }
+
+    if (optionText === "Investment") {
+      option.classList.remove('raised');
+
+      if (i === 1) {
+        option.classList.add('lowered');
+      }
+    }
+
+    if (optionText === "Debt") {
+      if (i === 2) {
+        option.classList.remove('raised');
+        console.log(transactionOptions[i - 1].getBoundingClientRect().width);
+
+        if (transactionOptions[i - 1].getBoundingClientRect().width > 115) {
+          option.classList.add('raised');
+        }
+      }
+    }
+  });
+};
+
+var resetTransactionOptions = function resetTransactionOptions(allOptions) {
+  allOptions.forEach(function (option) {
+    option.forEach(function (optionItem) {
+      optionItem.classList.remove('open');
+      optionItem.classList.add('closed');
+    });
+  });
+};
+
+var _watchForTransactions = function _watchForTransactions(budget, placeholderBudget, user) {
   var dashboard = document.querySelector('.budget-dashboard');
 
   if (dashboard) {
@@ -12756,221 +12853,99 @@ var _watchForTransactions = function _watchForTransactions(arrayOfArrays, budget
       incomePreviewAmounts[2].textContent = money.format(0);
     });
   } // ** TOP PRIORITY ** When it is possible, record the income as a deposit transaction in the recent transactions page.
-  // arrayOfArrays = mainCategoryOptionArrays
+  ////////////////////////////////////////////
+  // INITIALIZE TRANSACTION OPTIONS
 
 
-  var rowThirds = document.querySelectorAll('.form__row--thirds');
-  arrayOfArrays.forEach(function (a, i) {
-    a.forEach(function (c, i) {
-      if (c) {
-        c.classList.add("closed");
-      }
-    });
-  });
-  var accountOptions = document.querySelectorAll('.form__select--accounts__option');
-  var clicked;
-  accountOptions.forEach(function (ao, i) {
-    ao.addEventListener('click', function (e) {
+  var transactionSelects = document.querySelectorAll('.form__section--select');
+  var transactionOptions = document.querySelectorAll('.form__section--transaction-option');
+  var transactionButtons = document.querySelectorAll('.button--transaction-button');
+  var transactionCreationContainer = document.querySelector('.form__section--transaction-item-creation');
+  console.log(transactionSelects, transactionOptions, transactionButtons, transactionCreationContainer);
+  var accountSelection = transactionSelects[0]; //////////////////////////////////////////
+  // UNIVERSAL TRANSACTION OPTIONS
+
+  var addTransactionItemButton = transactionButtons[0];
+  var transactionDescription = transactionOptions[1];
+  var transactionAmount = transactionOptions[2];
+  var transactionName = transactionOptions[0];
+  var transactionType = transactionSelects[3];
+  var transactionTiming = transactionSelects[4];
+  var transactionItem = transactionSelects[6];
+  var transactionSaveButton = transactionButtons[1]; //////////////////////////////////////////
+  // MONTHLY BUDGET TRANSACTION OPTIONS
+
+  var mainCategorySelect = transactionSelects[1];
+  var subCategorySelect = transactionSelects[2]; //////////////////////////////////////////
+  // DEBT TRANSACTION OPTIONS
+
+  var transactionLender = transactionSelects[5]; //////////////////////////////////////////
+  // BUILD TRANSACTION OPTIONS
+
+  var monthlyBudgetTransactionOptions = buildTransactionOptions([mainCategorySelect, subCategorySelect, transactionDescription, transactionAmount, transactionSaveButton]);
+  var emergencyFundTransactionsOptions = buildTransactionOptions([transactionDescription, transactionAmount, transactionSaveButton]);
+  var savingsFundTransactionOptions = buildTransactionOptions([transactionTiming, transactionItem, transactionDescription, transactionAmount, transactionSaveButton]);
+  var expenseFundTransactionOptions = buildTransactionOptions([transactionType, transactionTiming, transactionItem, transactionDescription, transactionAmount, transactionSaveButton]);
+  var surplusTransactionOptions = buildTransactionOptions([transactionTiming, transactionItem, transactionDescription, transactionAmount, transactionSaveButton]);
+  var investmentTransactionOptions = buildTransactionOptions([transactionType, transactionName, transactionDescription, transactionAmount, transactionSaveButton]);
+  var debtTransactionOptions = buildTransactionOptions([transactionTiming, transactionLender, transactionItem, transactionDescription, transactionAmount, transactionSaveButton]);
+  var tithingTransactionsOptions = buildTransactionOptions([transactionAmount, transactionSaveButton]);
+  var allTransactionOptions = [monthlyBudgetTransactionOptions, emergencyFundTransactionsOptions, savingsFundTransactionOptions, expenseFundTransactionOptions, surplusTransactionOptions, investmentTransactionOptions, debtTransactionOptions, tithingTransactionsOptions];
+
+  if (addTransactionItemButton) {
+    addTransactionItemButton.addEventListener('click', function (e) {
       e.preventDefault();
-      clicked = e.target; // MONTHLY BUDGET OPTIONS
 
-      if (clicked.value === "Monthly Budget") {
-        if (rowThirds[1].classList.contains('extend-enter-transaction')) {
-          rowThirds[1].classList.toggle('extend-enter-transaction');
-        }
+      if (transactionCreationContainer.classList.contains('open')) {
+        resetTransactionOptions(allTransactionOptions);
+        return transactionCreationContainer.classList.toggle('closed');
+      }
 
-        arrayOfArrays.forEach(function (a, i) {
-          a.forEach(function (c, i) {
-            c.classList.add('closed');
-            c.classList.remove('open');
-          });
-        });
-        arrayOfArrays[0].forEach(function (a, i) {
-          a.classList.remove('closed');
-          a.classList.add('open');
-          if (i === 0) a.classList.add('label-container');
-          if (i === 1) a.classList.add('label-container');
-        });
-      } // EMERGENCY FUND OPTIONS
-
-
-      if (clicked.value === "Emergency Fund") {
-        if (rowThirds[1].classList.contains('extend-enter-transaction')) {
-          rowThirds[1].classList.toggle('extend-enter-transaction');
-        }
-
-        arrayOfArrays.forEach(function (a, i) {
-          a.forEach(function (c, i) {
-            c.classList.add('closed');
-            c.classList.remove('open');
-          });
-        });
-        arrayOfArrays[1].forEach(function (a, i) {
-          a.classList.remove('closed');
-          a.classList.add('open');
-        });
-      } // SAVINGS FUND OPTIONS
-
-
-      if (clicked.value === "Savings Fund") {
-        if (rowThirds[1].classList.contains('extend-enter-transaction')) {
-          rowThirds[1].classList.toggle('extend-enter-transaction');
-        } // ALLOW FOR EXTENDED ROW FOR SAVINGS FUND ITEMS
-        //
-        // let expenseTitles =
-        //   extendedRow.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.nextSibling
-        //     .childNodes;
-        // expenseTitles.forEach((expense) => {
-        //   if (expense.text.length >= 8 && !rowThirds[1].classList.contains('extend-enter-transaction')) {
-        //     rowThirds[1].classList.add('extend-enter-transaction');
-        //     console.log(`Extended.`);
-        //   }
-        // });
-
-
-        arrayOfArrays.forEach(function (a, i) {
-          a.forEach(function (c, i) {
-            c.classList.add('closed');
-            c.classList.remove('open');
-          });
-        });
-        arrayOfArrays[2].forEach(function (a, i) {
-          a.classList.remove('closed');
-          a.classList.add('open');
-          if (i === 0) a.classList.add('label-container');
-          if (i === 1) a.classList.add('label-container');
-
-          if (i === 4) {
-            a.firstChild.classList.add('form__label--fully-paid-for');
-            a.firstChild.classList.add('r__form__label--fully-paid-for');
-            a.firstChild.addEventListener('click', function (e) {
-              a.firstChild.firstChild.nextSibling.classList.toggle('form__input-container--paid-for--clicked');
-            });
-          }
-        });
-      } // EXPENSE FUND OPTIONS
-
-
-      if (clicked.value === "Expense Fund") {
-        var expenseFundTransactionSelects = document.querySelectorAll('.form__select--expense-fund-transaction');
-        var expenseSelectWidth; // if (!rowThirds[1].classList.contains('extend-enter-transaction')) {
-        //   rowThirds[1].classList.toggle('extend-enter-transaction');
-        // }
-
-        var extendedRow = rowThirds[1];
-        var expenseTitles = extendedRow.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.childNodes;
-        expenseTitles.forEach(function (expense) {
-          if (expense.text.length >= 8 && !rowThirds[1].classList.contains('extend-enter-transaction')) {
-            rowThirds[1].classList.add('extend-enter-transaction');
-            console.log("Extended.");
-          }
-        });
-        if (expenseFundTransactionSelects[2].getBoundingClientRect().width > 0) expenseSelectWidth = expenseFundTransactionSelects[2].getBoundingClientRect().width;
-        arrayOfArrays.forEach(function (a, i) {
-          a.forEach(function (c, i) {
-            c.classList.add('closed');
-            c.classList.remove('open');
-          });
-        });
-        arrayOfArrays[3].forEach(function (a, i) {
-          a.classList.remove('closed');
-          a.classList.add('open');
-          if (i === 0) a.classList.add('label-container');
-          if (i === 1) a.classList.add('label-container');
-
-          if (i === 4) {
-            a.nextSibling.firstChild.classList.add('form__label--fully-paid-for');
-            a.nextSibling.firstChild.classList.add('r__form__label--fully-paid-for');
-            a.nextSibling.firstChild.addEventListener('click', function (e) {
-              a.nextSibling.firstChild.firstChild.nextSibling.classList.toggle('form__input-container--paid-for--clicked');
-            });
-          }
-        });
-      } // SURPLUS OPTIONS
-
-
-      if (clicked.value === "Surplus") {
-        if (rowThirds[1].classList.contains('extend-enter-transaction')) {
-          rowThirds[1].classList.toggle('extend-enter-transaction');
-        }
-
-        arrayOfArrays.forEach(function (a, i) {
-          a.forEach(function (c, i) {
-            c.classList.add('closed');
-            c.classList.remove('open');
-          });
-        });
-        arrayOfArrays[4].forEach(function (a, i) {
-          a.classList.remove('closed');
-          a.classList.add('open');
-          if (i === 0) a.classList.add('label-container');
-          if (i === 1) a.classList.add('label-container');
-
-          if (i === 4) {
-            a.firstChild.classList.add('fully-paid-for');
-            a.firstChild.addEventListener('click', function (e) {
-              a.firstChild.firstChild.nextSibling.classList.toggle('form__input-container--paid-for--clicked');
-            });
-          }
-        });
-      } // DEBT OPTIONS
-
-
-      if (clicked.value === "Debt") {
-        if (rowThirds[1].classList.contains('extend-enter-transaction')) {
-          rowThirds[1].classList.toggle('extend-enter-transaction');
-        } // ALLOW FOR EXTENDED ROW FOR SAVINGS FUND ITEMS
-        //
-        // let expenseTitles =
-        //   extendedRow.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.nextSibling
-        //     .childNodes;
-        // expenseTitles.forEach((expense) => {
-        //   if (expense.text.length >= 8 && !rowThirds[1].classList.contains('extend-enter-transaction')) {
-        //     rowThirds[1].classList.add('extend-enter-transaction');
-        //     console.log(`Extended.`);
-        //   }
-        // });
-
-
-        arrayOfArrays.forEach(function (a, i) {
-          a.forEach(function (c, i) {
-            c.classList.add('closed');
-            c.classList.remove('open');
-          });
-        });
-        arrayOfArrays[5].forEach(function (a, i) {
-          a.classList.remove('closed');
-          a.classList.add('open');
-          if (i === 0) a.classList.add('label-container');
-
-          if (i === 3) {
-            a.firstChild.classList.add('fully-paid-for');
-            a.firstChild.addEventListener('click', function (e) {
-              a.firstChild.firstChild.nextSibling.classList.toggle('form__input-container--paid-for--clicked');
-            });
-          }
-        });
-      } // TITHING OPTIONS
-
-
-      if (clicked.value === "Tithing") {
-        if (rowThirds[1].classList.contains('extend-enter-transaction')) {
-          rowThirds[1].classList.toggle('extend-enter-transaction');
-        }
-
-        arrayOfArrays.forEach(function (a, i) {
-          a.forEach(function (c, i) {
-            c.classList.add('closed');
-            c.classList.remove('open');
-          });
-        });
-        arrayOfArrays[6].forEach(function (a, i) {
-          a.classList.remove('closed');
-          a.classList.add('open');
-        });
+      if (transactionCreationContainer.classList.contains('closed')) {
+        return transactionCreationContainer.classList.toggle('open');
       }
     });
-  });
+  }
+
+  if (accountSelection) {
+    (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(accountSelection.firstChild.nextSibling.children).forEach(function (option) {
+      option.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        if (option.textContent === "Monthly Budget") {
+          showTransactionOptions(option.textContent, allTransactionOptions, monthlyBudgetTransactionOptions);
+        }
+
+        if (option.textContent === "Emergency Fund") {
+          showTransactionOptions(option.textContent, allTransactionOptions, emergencyFundTransactionsOptions);
+        }
+
+        if (option.textContent === "Savings Fund") {
+          showTransactionOptions(option.textContent, allTransactionOptions, savingsFundTransactionOptions);
+        }
+
+        if (option.textContent === "Expense Fund") {
+          showTransactionOptions(option.textContent, allTransactionOptions, expenseFundTransactionOptions);
+        }
+
+        if (option.textContent === "Surplus") {
+          showTransactionOptions(option.textContent, allTransactionOptions, surplusTransactionOptions);
+        }
+
+        if (option.textContent === "Investment") {
+          showTransactionOptions(option.textContent, allTransactionOptions, investmentTransactionOptions);
+        }
+
+        if (option.textContent === "Debt") {
+          showTransactionOptions(option.textContent, allTransactionOptions, debtTransactionOptions);
+        }
+
+        if (option.textContent === "Tithing") {
+          showTransactionOptions(option.textContent, allTransactionOptions, tithingTransactionsOptions);
+        }
+      });
+    });
+  }
 };
 
 var _watchBudgetNavigation = function _watchBudgetNavigation() {
@@ -12997,6 +12972,14 @@ var _watchBudgetNavigation = function _watchBudgetNavigation() {
         var clicked = e.target.closest('li');
         var siblingLinkContainer = clicked.nextSibling;
         linkButtons.forEach(function (lb) {
+          // if (lb.closest('li').nextSibling.classList.contains('open')) {
+          //   lb.closest('li').nextSibling.classList.add('closed');
+          //   lb.closest('li').nextSibling.classList.remove('open');
+          // }
+          // if (lb.closest('li').nextSibling.classList.contains('closed')) {
+          //   lb.closest('li').nextSibling.classList.add('closed');
+          //   lb.closest('li').nextSibling.classList.remove('open');
+          // }
           lb.closest('li').nextSibling.classList.add('closed');
           lb.closest('li').nextSibling.classList.remove('open');
         });
@@ -13023,80 +13006,25 @@ var pushIntoArray = function pushIntoArray(arrayFiller, array) {
   return array;
 };
 
+var buildTransactionOptions = function buildTransactionOptions(options) {
+  var transactionOptions = [];
+  options.forEach(function (option, i) {
+    if (option) {
+      option.classList.add('closed');
+      transactionOptions.push(option);
+    }
+  });
+  return transactionOptions;
+};
+
 var setupDashboard = function setupDashboard(user, budget, placeholderBudget) {
   ////////////////////////////////////////////
-  // SETUP ACCOUNT OPTIONS FOR TRANSACTIONS
-  var formLabels = document.querySelectorAll('.form-label');
-  var formInputs = document.querySelectorAll('.form-input');
-  var formSections = document.querySelectorAll('.form-row__section');
-  var relativeMediumFormLabels = document.querySelectorAll('.form__label--medium__relative');
-  var mediumFormSections = document.querySelectorAll('.form__section--medium');
-  var mediumLeftPaddedSections = document.querySelectorAll('.form__section--medium__padded--left');
-  var mediumTopLeftPaddedSections = document.querySelectorAll('.form__section--medium__padded--topLeft');
-  var longFormSections = document.querySelectorAll('.form__section--long');
-  var longLeftPaddedSections = document.querySelectorAll('.form__section--long__padded--topLeft');
-  var paidForContainers = document.querySelectorAll('.form__section--switch__fully-paid-for');
-  var altPaidForContainers = document.querySelectorAll('.form__section--switch__fully-paid-for__alt'); ///////////////////////////////////////////////
-  // INITIALIZE ACCOUNT TRANSACTION OPTION ARRAYS
-  // MONTHLY BUDGET
-
-  var monthlyBudgetTransactionsOptionsOne = [relativeMediumFormLabels[0], relativeMediumFormLabels[1]];
-  var monthlyBudgetTransactionsOptionsTwo = [mediumFormSections[5], longFormSections[0]];
-  var monthlyBudgetTransactionOptionsArray = []; // EMERGENCY FUND
-
-  var emergencyFundTransactionsOptions = [longLeftPaddedSections[0], mediumTopLeftPaddedSections[0]];
-  var emergencyFundTransactionOptionsArray = []; // SAVINGS FUND
-
-  var savingsFundTransactionsOptionsOne = [relativeMediumFormLabels[2], relativeMediumFormLabels[3]];
-  var savingsFundTransactionsOptionsTwo = [longFormSections[1], mediumFormSections[6]];
-  var savingsFundTransactionsOptionsThree = document.querySelectorAll('.form__section--switch__fully-paid-for')[0];
-  var savingsFundTransactionOptionsArray = []; // EXPENSE FUND
-
-  var expenseFundTransactionsOptionsOne = [relativeMediumFormLabels[4], relativeMediumFormLabels[5], relativeMediumFormLabels[6]];
-  var expenseFundTransactionsOptionsTwo = [longFormSections[2], mediumFormSections[7]];
-  var expenseFundTransactionsOptionsThree = [altPaidForContainers[0]];
-  var expenseFundTransactionOptionsArray = []; // SURPLUS
-
-  var surplusTransactionsOptionsOne = [relativeMediumFormLabels[7], relativeMediumFormLabels[8]];
-  var surplusTransactionsOptionsTwo = [longFormSections[3], mediumFormSections[8]];
-  var surplusTransactionsOptionsThree = [altPaidForContainers[1]];
-  var surplusTransactionOptionsArray = []; // DEBT
-
-  var debtTransactionsOptionsOne = [relativeMediumFormLabels[9], relativeMediumFormLabels[10]];
-  var debtTransactionsOptionsTwo = [longFormSections[4], mediumFormSections[9]];
-  var debtTransactionsOptionsThree = [altPaidForContainers[2]];
-  var debtTransactionOptionsArray = []; // TITHING
-
-  var tithingTransactionsOptions = document.querySelectorAll('.tithing-transaction');
-  var tithingTransactionOptionsArray = [];
-  var mainCategoryOptionArrays = []; ///////////////////////////////
-  // MONTHLY BUDGET OPTIONS
-
-  pushIntoArray(monthlyBudgetTransactionsOptionsOne, monthlyBudgetTransactionOptionsArray);
-  pushIntoArray(monthlyBudgetTransactionsOptionsTwo, monthlyBudgetTransactionOptionsArray);
-  pushIntoArray(emergencyFundTransactionsOptions, emergencyFundTransactionOptionsArray);
-  pushIntoArray(savingsFundTransactionsOptionsOne, savingsFundTransactionOptionsArray);
-  pushIntoArray(savingsFundTransactionsOptionsTwo, savingsFundTransactionOptionsArray);
-  pushIntoArray([savingsFundTransactionsOptionsThree], savingsFundTransactionOptionsArray);
-  pushIntoArray(expenseFundTransactionsOptionsOne, expenseFundTransactionOptionsArray);
-  pushIntoArray(expenseFundTransactionsOptionsTwo, expenseFundTransactionOptionsArray);
-  pushIntoArray(expenseFundTransactionsOptionsThree, expenseFundTransactionOptionsArray);
-  pushIntoArray(surplusTransactionsOptionsOne, surplusTransactionOptionsArray);
-  pushIntoArray(surplusTransactionsOptionsTwo, surplusTransactionOptionsArray);
-  pushIntoArray(surplusTransactionsOptionsThree, surplusTransactionOptionsArray);
-  pushIntoArray(debtTransactionsOptionsOne, debtTransactionOptionsArray);
-  pushIntoArray(debtTransactionsOptionsTwo, debtTransactionOptionsArray);
-  pushIntoArray(debtTransactionsOptionsThree, debtTransactionOptionsArray);
-  pushIntoArray(tithingTransactionsOptions, tithingTransactionOptionsArray);
-  finalTransactionArrayPush(mainCategoryOptionArrays, [monthlyBudgetTransactionOptionsArray, emergencyFundTransactionOptionsArray, savingsFundTransactionOptionsArray, expenseFundTransactionOptionsArray, surplusTransactionOptionsArray, debtTransactionOptionsArray, tithingTransactionOptionsArray]);
-  if (user.latterDaySaint === true) mainCategoryOptionArrays.push(tithingTransactionOptionsArray); ////////////////////////////////////////////
   // WATCH THE BUDGET NAVIGATION
-
   _watchBudgetNavigation(); ////////////////////////////////////////////
   // WATCH FOR ACCOUNT SELECTION
 
 
-  _watchForTransactions(mainCategoryOptionArrays, budget, placeholderBudget, user); ////////////////////////////////////////////
+  _watchForTransactions(budget, placeholderBudget, user); ////////////////////////////////////////////
   // GET BANK ACCOUNT TOTAL
 
 
@@ -13174,9 +13102,13 @@ var _watchBudget = /*#__PURE__*/function () {
             // WATCH FOR INCOME ALLOCATION
 
 
-            _watchDebtManager(currentBudget, budget, user);
+            _watchDebtManager(currentBudget, budget, user); ////////////////////////////////////////////
+            // WATCH FOR INCOME ALLOCATION
 
-          case 19:
+
+            _watchRecentTransactions(currentBudget, budget, user);
+
+          case 20:
           case "end":
             return _context.stop();
         }

@@ -14,6 +14,27 @@ export const reloadPage = () => {
   }, 2000);
 };
 
+const showElement = (element) => {
+  element.classList.toggle('closed');
+  element.classList.toggle('open');
+};
+
+const _watchRecentTransactions = (budget, placeholderBudget, user) => {
+  console.log(`Listing Transactions`);
+  const receiptModal = document.querySelector('.modal--receipt');
+  const receiptModalClosureIcon = document.querySelector('.modal--receipt__closure-icon');
+  const viewReceiptButton = document.querySelector('.button--extra-extra-small__view-receipt');
+  if (viewReceiptButton) {
+    viewReceiptButton.addEventListener('click', (e) => {
+      console.log(viewReceiptButton);
+      showElement(receiptModal);
+    });
+    receiptModalClosureIcon.addEventListener('click', (e) => {
+      showElement(receiptModal);
+    });
+  }
+};
+
 const payDebtOff = (budget, placeholderBudget, user, debt, paidSections, sectionStart) => {
   console.log(`Paying Off...`, debt);
   const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
@@ -784,10 +805,11 @@ const addInvestment = (options) => {
 };
 
 const _watchInvestmentPlanner = (budget, placeholderBudget, user) => {
-  const longFormSections = document.querySelectorAll('.form__section--long');
-  if (longFormSections[0] && longFormSections[0].classList.contains('closed')) {
-    replaceClassName(longFormSections[0], `closed`, `open`);
-  }
+  // const longFormSections = document.querySelectorAll('.form__section--long');
+  // if (longFormSections[0] && longFormSections[0].classList.contains('closed')) {
+  //   console.log(longFormSections[0]);
+  // replaceClassName(longFormSections[0], `closed`, `open`);
+
   const addInvestmentButton = document.querySelector('.container--extra-small__margin-left-and-right__content-icon');
   const closeInvestmentCreationButton = document.querySelector('.button--borderless-narrow__investment');
   const addInvestmentForm = document.querySelector('.form--extra-small__column');
@@ -848,7 +870,6 @@ const _watchInvestmentPlanner = (budget, placeholderBudget, user) => {
   if (openUpdateCurrentValueButtons[0]) {
     openUpdateCurrentValueButtons.forEach((button, i) => {
       let index = Number(openUpdateCurrentValueButtons[i].closest('.container--extra-small__margin-left-and-right').dataset.investment);
-      console.log(openUpdateCurrentValueButtons[i].closest('.container--extra-small__margin-left-and-right').dataset.investment);
       let boundListener = _watchForCurrentValueUpdate.bind(null, event, i, index, budget, placeholderBudget, user);
       // button.removeEventListener(`click`, boundListener);
       button.addEventListener('click', boundListener);
@@ -3837,9 +3858,7 @@ const _setupBillCalendar = (budget) => {
   let currentDay = document.querySelector('.bill-calendar__days__single-day--current-day');
   upcomingTransactions.forEach((transaction, i) => {
     transaction.classList.add('closed');
-    console.log(transaction.firstChild.nextSibling.firstChild.textContent);
     let date = new Date(transaction.firstChild.nextSibling.firstChild.textContent);
-    console.log(date, date.getDate(), currentDay.textContent, typeof date.getDate(), typeof currentDay.textContent);
     if (date.getDate() === Number(currentDay.textContent)) {
       transaction.classList.remove('closed');
       transaction.classList.add('open');
@@ -3910,7 +3929,75 @@ const getDashboardAccountTotals = (budget) => {
   // budget-container__dashboard__container--extra-small__content__account-total
 };
 
-const _watchForTransactions = (arrayOfArrays, budget, placeholderBudget, user) => {
+const showTransactionOptions = (optionText, transactionOptionArrays, transactionOptions) => {
+  transactionOptionArrays.forEach((array) => {
+    array.forEach((arrayItem) => {
+      arrayItem.classList.remove('open');
+      arrayItem.classList.add('closed');
+      arrayItem.firstChild.classList.remove('lowered');
+    });
+  });
+
+  transactionOptions.forEach((option, i) => {
+    option.classList.remove('closed');
+    option.classList.add('open');
+    if (optionText === `Monthly Budget`) {
+      console.log(optionText);
+      option.classList.remove('lowered');
+      if (i === 2) {
+        option.classList.remove('lowered');
+        if (transactionOptions[i - 1].getBoundingClientRect().width < 115) {
+          option.classList.add('lowered');
+        }
+      }
+    }
+    if (optionText === `Emergency Fund`) {
+      option.classList.add('lowered');
+    }
+    if (optionText === `Savings Fund`) {
+      option.classList.remove('raised');
+    }
+    if (optionText === `Expense Fund`) {
+      option.classList.remove('lowered');
+      if (i === 2) {
+        console.log(option.firstChild.nextSibling.getBoundingClientRect().width);
+        option.classList.remove('raised');
+        if (option.firstChild.nextSibling.getBoundingClientRect().width > 133.5) {
+          option.classList.add('raised');
+        }
+      }
+    }
+    if (optionText === `Surplus`) {
+      option.classList.remove('raised');
+    }
+    if (optionText === `Investment`) {
+      option.classList.remove('raised');
+      if (i === 1) {
+        option.classList.add('lowered');
+      }
+    }
+    if (optionText === `Debt`) {
+      if (i === 2) {
+        option.classList.remove('raised');
+        console.log(transactionOptions[i - 1].getBoundingClientRect().width);
+        if (transactionOptions[i - 1].getBoundingClientRect().width > 115) {
+          option.classList.add('raised');
+        }
+      }
+    }
+  });
+};
+
+const resetTransactionOptions = (allOptions) => {
+  allOptions.forEach((option) => {
+    option.forEach((optionItem) => {
+      optionItem.classList.remove('open');
+      optionItem.classList.add('closed');
+    });
+  });
+};
+
+const _watchForTransactions = (budget, placeholderBudget, user) => {
   const dashboard = document.querySelector('.budget-dashboard');
   if (dashboard) {
     const money = new Intl.NumberFormat('en-US', {
@@ -3924,7 +4011,12 @@ const _watchForTransactions = (arrayOfArrays, budget, placeholderBudget, user) =
     const incomeDateInput = incomeInputs[0];
     const incomeFromInput = incomeInputs[1];
     const grossIncomeInput = incomeInputs[2];
-    const netIncomeInput = incomeInputs[3];
+    let netIncomeInput = incomeInputs[3];
+    let tithingInput;
+    if (user.isLatterDaySaint === true) {
+      tithingInput = incomeInputs[3];
+      netIncomeInput = incomeInputs[4];
+    }
 
     const investmentPercentage = budget.accounts.investmentFund.investmentPercentage;
     const savingsPercentage = budget.accounts.savingsFund.savingsPercentage;
@@ -3937,15 +4029,28 @@ const _watchForTransactions = (arrayOfArrays, budget, placeholderBudget, user) =
       e.preventDefault();
       incomePreviewAmounts[0].textContent = money.format(netIncomeInput.value * investmentPercentage);
       incomePreviewAmounts[1].textContent = money.format(netIncomeInput.value * savingsPercentage);
-      incomePreviewAmounts[2].textContent = money.format(netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1]));
+      if (user.isLatterDaySaint === true) {
+        if (budget.accounts.tithing.tithingSetting === `Gross`) {
+          incomePreviewAmounts[2].textContent = money.format(grossIncomeInput.value * 0.1);
+        }
+        if (budget.accounts.tithing.tithingSetting === `Net`) {
+          incomePreviewAmounts[2].textContent = money.format(netIncomeInput.value * 0.1);
+        }
+        incomePreviewAmounts[3].textContent = money.format(
+          netIncomeInput.value -
+            Number(incomePreviewAmounts[0].textContent.split('$')[1]) -
+            Number(incomePreviewAmounts[1].textContent.split('$')[1]) -
+            Number(incomePreviewAmounts[1].textContent.split('$')[2])
+        );
+      }
     });
 
     // ENTERING INCOME
     headerSubmitButtons[0].addEventListener('click', (e) => {
-      const unAllocatedAmount = budget.accounts.unAllocated.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1]);
+      let unAllocatedAmount = budget.accounts.unAllocated.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1]);
       const savingsAmount = budget.accounts.savingsFund.amount + Number(incomePreviewAmounts[1].textContent.split('$')[1]);
       const investmentAmount = budget.accounts.investmentFund.amount + Number(incomePreviewAmounts[0].textContent.split('$')[1]);
-      const updateObject = {
+      let updateObject = {
         budgetId: budget._id,
         userId: user._id,
         user: user,
@@ -3970,6 +4075,37 @@ const _watchForTransactions = (arrayOfArrays, budget, placeholderBudget, user) =
           debt: placeholderBudget.accounts.debt,
         },
       };
+      if (user.isLatterDaySaint === true) {
+        let tithingAmount = budget.accounts.unAllocated.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1]);
+        placeholderBudget.accounts.tithing.amount = Number(tithingAmount);
+        unAllocatedAmount = budget.accounts.unAllocated.amount + Number(incomePreviewAmounts[3].textContent.split('$')[1]);
+        updateObject = {
+          budgetId: budget._id,
+          userId: user._id,
+          user: user,
+          accounts: {
+            unAllocated: {
+              amount: unAllocatedAmount,
+            },
+            monthlyBudget: placeholderBudget.accounts.monthlyBudget,
+            emergencyFund: placeholderBudget.accounts.emergencyFund,
+            savingsFund: {
+              savingsGoal: placeholderBudget.accounts.savingsFund.savingsGoal,
+              savingsPercentage: placeholderBudget.accounts.savingsFund.savingsPercentage,
+              amount: savingsAmount,
+            },
+            expenseFund: placeholderBudget.accounts.expenseFund,
+            surplus: placeholderBudget.accounts.surplus,
+            investmentFund: {
+              investmentGoal: placeholderBudget.accounts.investmentFund.investmentGoal,
+              investmentPercentage: placeholderBudget.accounts.investmentFund.investmentPercentage,
+              amount: investmentAmount,
+            },
+            debt: placeholderBudget.accounts.debt,
+            tithing: placeholderBudget.accounts.tithing,
+          },
+        };
+      }
 
       placeholderBudget._updateBudget(
         `Update`,
@@ -3991,216 +4127,100 @@ const _watchForTransactions = (arrayOfArrays, budget, placeholderBudget, user) =
 
   // ** TOP PRIORITY ** When it is possible, record the income as a deposit transaction in the recent transactions page.
 
-  // arrayOfArrays = mainCategoryOptionArrays
+  ////////////////////////////////////////////
+  // INITIALIZE TRANSACTION OPTIONS
+  const transactionSelects = document.querySelectorAll('.form__section--select');
+  const transactionOptions = document.querySelectorAll('.form__section--transaction-option');
+  const transactionButtons = document.querySelectorAll('.button--transaction-button');
+  const transactionCreationContainer = document.querySelector('.form__section--transaction-item-creation');
+  console.log(transactionSelects, transactionOptions, transactionButtons, transactionCreationContainer);
 
-  const rowThirds = document.querySelectorAll('.form__row--thirds');
-  arrayOfArrays.forEach((a, i) => {
-    a.forEach((c, i) => {
-      if (c) {
-        c.classList.add(`closed`);
-      }
-    });
-  });
-  const accountOptions = document.querySelectorAll('.form__select--accounts__option');
-  let clicked;
-  accountOptions.forEach((ao, i) => {
-    ao.addEventListener('click', (e) => {
+  const accountSelection = transactionSelects[0];
+  //////////////////////////////////////////
+  // UNIVERSAL TRANSACTION OPTIONS
+  const addTransactionItemButton = transactionButtons[0];
+  const transactionDescription = transactionOptions[1];
+  const transactionAmount = transactionOptions[2];
+  const transactionName = transactionOptions[0];
+  const transactionType = transactionSelects[3];
+  const transactionTiming = transactionSelects[4];
+  const transactionItem = transactionSelects[6];
+  const transactionSaveButton = transactionButtons[1];
+
+  //////////////////////////////////////////
+  // MONTHLY BUDGET TRANSACTION OPTIONS
+  const mainCategorySelect = transactionSelects[1];
+  const subCategorySelect = transactionSelects[2];
+
+  //////////////////////////////////////////
+  // DEBT TRANSACTION OPTIONS
+  const transactionLender = transactionSelects[5];
+
+  //////////////////////////////////////////
+  // BUILD TRANSACTION OPTIONS
+  const monthlyBudgetTransactionOptions = buildTransactionOptions([mainCategorySelect, subCategorySelect, transactionDescription, transactionAmount, transactionSaveButton]);
+  const emergencyFundTransactionsOptions = buildTransactionOptions([transactionDescription, transactionAmount, transactionSaveButton]);
+  const savingsFundTransactionOptions = buildTransactionOptions([transactionTiming, transactionItem, transactionDescription, transactionAmount, transactionSaveButton]);
+  const expenseFundTransactionOptions = buildTransactionOptions([transactionType, transactionTiming, transactionItem, transactionDescription, transactionAmount, transactionSaveButton]);
+  const surplusTransactionOptions = buildTransactionOptions([transactionTiming, transactionItem, transactionDescription, transactionAmount, transactionSaveButton]);
+  const investmentTransactionOptions = buildTransactionOptions([transactionType, transactionName, transactionDescription, transactionAmount, transactionSaveButton]);
+  const debtTransactionOptions = buildTransactionOptions([transactionTiming, transactionLender, transactionItem, transactionDescription, transactionAmount, transactionSaveButton]);
+  const tithingTransactionsOptions = buildTransactionOptions([transactionAmount, transactionSaveButton]);
+
+  const allTransactionOptions = [
+    monthlyBudgetTransactionOptions,
+    emergencyFundTransactionsOptions,
+    savingsFundTransactionOptions,
+    expenseFundTransactionOptions,
+    surplusTransactionOptions,
+    investmentTransactionOptions,
+    debtTransactionOptions,
+    tithingTransactionsOptions,
+  ];
+  if (addTransactionItemButton) {
+    addTransactionItemButton.addEventListener('click', (e) => {
       e.preventDefault();
-      clicked = e.target;
-
-      // MONTHLY BUDGET OPTIONS
-      if (clicked.value === `Monthly Budget`) {
-        if (rowThirds[1].classList.contains('extend-enter-transaction')) {
-          rowThirds[1].classList.toggle('extend-enter-transaction');
-        }
-        arrayOfArrays.forEach((a, i) => {
-          a.forEach((c, i) => {
-            c.classList.add('closed');
-            c.classList.remove('open');
-          });
-        });
-        arrayOfArrays[0].forEach((a, i) => {
-          a.classList.remove('closed');
-          a.classList.add('open');
-          if (i === 0) a.classList.add('label-container');
-          if (i === 1) a.classList.add('label-container');
-        });
+      if (transactionCreationContainer.classList.contains('open')) {
+        resetTransactionOptions(allTransactionOptions);
+        return transactionCreationContainer.classList.toggle('closed');
       }
-
-      // EMERGENCY FUND OPTIONS
-      if (clicked.value === `Emergency Fund`) {
-        if (rowThirds[1].classList.contains('extend-enter-transaction')) {
-          rowThirds[1].classList.toggle('extend-enter-transaction');
-        }
-        arrayOfArrays.forEach((a, i) => {
-          a.forEach((c, i) => {
-            c.classList.add('closed');
-            c.classList.remove('open');
-          });
-        });
-        arrayOfArrays[1].forEach((a, i) => {
-          a.classList.remove('closed');
-          a.classList.add('open');
-        });
-      }
-
-      // SAVINGS FUND OPTIONS
-      if (clicked.value === `Savings Fund`) {
-        if (rowThirds[1].classList.contains('extend-enter-transaction')) {
-          rowThirds[1].classList.toggle('extend-enter-transaction');
-        }
-
-        // ALLOW FOR EXTENDED ROW FOR SAVINGS FUND ITEMS
-        //
-        // let expenseTitles =
-        //   extendedRow.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.nextSibling
-        //     .childNodes;
-        // expenseTitles.forEach((expense) => {
-        //   if (expense.text.length >= 8 && !rowThirds[1].classList.contains('extend-enter-transaction')) {
-        //     rowThirds[1].classList.add('extend-enter-transaction');
-        //     console.log(`Extended.`);
-        //   }
-        // });
-
-        arrayOfArrays.forEach((a, i) => {
-          a.forEach((c, i) => {
-            c.classList.add('closed');
-            c.classList.remove('open');
-          });
-        });
-        arrayOfArrays[2].forEach((a, i) => {
-          a.classList.remove('closed');
-          a.classList.add('open');
-          if (i === 0) a.classList.add('label-container');
-          if (i === 1) a.classList.add('label-container');
-          if (i === 4) {
-            a.firstChild.classList.add('form__label--fully-paid-for');
-            a.firstChild.classList.add('r__form__label--fully-paid-for');
-            a.firstChild.addEventListener('click', (e) => {
-              a.firstChild.firstChild.nextSibling.classList.toggle('form__input-container--paid-for--clicked');
-            });
-          }
-        });
-      }
-
-      // EXPENSE FUND OPTIONS
-      if (clicked.value === `Expense Fund`) {
-        const expenseFundTransactionSelects = document.querySelectorAll('.form__select--expense-fund-transaction');
-        let expenseSelectWidth;
-        // if (!rowThirds[1].classList.contains('extend-enter-transaction')) {
-        //   rowThirds[1].classList.toggle('extend-enter-transaction');
-        // }
-        let extendedRow = rowThirds[1];
-        let expenseTitles =
-          extendedRow.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.nextSibling.childNodes;
-        expenseTitles.forEach((expense) => {
-          if (expense.text.length >= 8 && !rowThirds[1].classList.contains('extend-enter-transaction')) {
-            rowThirds[1].classList.add('extend-enter-transaction');
-            console.log(`Extended.`);
-          }
-        });
-        if (expenseFundTransactionSelects[2].getBoundingClientRect().width > 0) expenseSelectWidth = expenseFundTransactionSelects[2].getBoundingClientRect().width;
-        arrayOfArrays.forEach((a, i) => {
-          a.forEach((c, i) => {
-            c.classList.add('closed');
-            c.classList.remove('open');
-          });
-        });
-        arrayOfArrays[3].forEach((a, i) => {
-          a.classList.remove('closed');
-          a.classList.add('open');
-          if (i === 0) a.classList.add('label-container');
-          if (i === 1) a.classList.add('label-container');
-          if (i === 4) {
-            a.nextSibling.firstChild.classList.add('form__label--fully-paid-for');
-            a.nextSibling.firstChild.classList.add('r__form__label--fully-paid-for');
-            a.nextSibling.firstChild.addEventListener('click', (e) => {
-              a.nextSibling.firstChild.firstChild.nextSibling.classList.toggle('form__input-container--paid-for--clicked');
-            });
-          }
-        });
-      }
-
-      // SURPLUS OPTIONS
-      if (clicked.value === `Surplus`) {
-        if (rowThirds[1].classList.contains('extend-enter-transaction')) {
-          rowThirds[1].classList.toggle('extend-enter-transaction');
-        }
-        arrayOfArrays.forEach((a, i) => {
-          a.forEach((c, i) => {
-            c.classList.add('closed');
-            c.classList.remove('open');
-          });
-        });
-        arrayOfArrays[4].forEach((a, i) => {
-          a.classList.remove('closed');
-          a.classList.add('open');
-          if (i === 0) a.classList.add('label-container');
-          if (i === 1) a.classList.add('label-container');
-          if (i === 4) {
-            a.firstChild.classList.add('fully-paid-for');
-            a.firstChild.addEventListener('click', (e) => {
-              a.firstChild.firstChild.nextSibling.classList.toggle('form__input-container--paid-for--clicked');
-            });
-          }
-        });
-      }
-
-      // DEBT OPTIONS
-      if (clicked.value === `Debt`) {
-        if (rowThirds[1].classList.contains('extend-enter-transaction')) {
-          rowThirds[1].classList.toggle('extend-enter-transaction');
-        }
-
-        // ALLOW FOR EXTENDED ROW FOR SAVINGS FUND ITEMS
-        //
-        // let expenseTitles =
-        //   extendedRow.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.nextSibling
-        //     .childNodes;
-        // expenseTitles.forEach((expense) => {
-        //   if (expense.text.length >= 8 && !rowThirds[1].classList.contains('extend-enter-transaction')) {
-        //     rowThirds[1].classList.add('extend-enter-transaction');
-        //     console.log(`Extended.`);
-        //   }
-        // });
-
-        arrayOfArrays.forEach((a, i) => {
-          a.forEach((c, i) => {
-            c.classList.add('closed');
-            c.classList.remove('open');
-          });
-        });
-        arrayOfArrays[5].forEach((a, i) => {
-          a.classList.remove('closed');
-          a.classList.add('open');
-          if (i === 0) a.classList.add('label-container');
-          if (i === 3) {
-            a.firstChild.classList.add('fully-paid-for');
-            a.firstChild.addEventListener('click', (e) => {
-              a.firstChild.firstChild.nextSibling.classList.toggle('form__input-container--paid-for--clicked');
-            });
-          }
-        });
-      }
-
-      // TITHING OPTIONS
-      if (clicked.value === `Tithing`) {
-        if (rowThirds[1].classList.contains('extend-enter-transaction')) {
-          rowThirds[1].classList.toggle('extend-enter-transaction');
-        }
-        arrayOfArrays.forEach((a, i) => {
-          a.forEach((c, i) => {
-            c.classList.add('closed');
-            c.classList.remove('open');
-          });
-        });
-        arrayOfArrays[6].forEach((a, i) => {
-          a.classList.remove('closed');
-          a.classList.add('open');
-        });
+      if (transactionCreationContainer.classList.contains('closed')) {
+        return transactionCreationContainer.classList.toggle('open');
       }
     });
-  });
+  }
+
+  if (accountSelection) {
+    [...accountSelection.firstChild.nextSibling.children].forEach((option) => {
+      option.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (option.textContent === `Monthly Budget`) {
+          showTransactionOptions(option.textContent, allTransactionOptions, monthlyBudgetTransactionOptions);
+        }
+        if (option.textContent === `Emergency Fund`) {
+          showTransactionOptions(option.textContent, allTransactionOptions, emergencyFundTransactionsOptions);
+        }
+        if (option.textContent === `Savings Fund`) {
+          showTransactionOptions(option.textContent, allTransactionOptions, savingsFundTransactionOptions);
+        }
+        if (option.textContent === `Expense Fund`) {
+          showTransactionOptions(option.textContent, allTransactionOptions, expenseFundTransactionOptions);
+        }
+        if (option.textContent === `Surplus`) {
+          showTransactionOptions(option.textContent, allTransactionOptions, surplusTransactionOptions);
+        }
+        if (option.textContent === `Investment`) {
+          showTransactionOptions(option.textContent, allTransactionOptions, investmentTransactionOptions);
+        }
+        if (option.textContent === `Debt`) {
+          showTransactionOptions(option.textContent, allTransactionOptions, debtTransactionOptions);
+        }
+        if (option.textContent === `Tithing`) {
+          showTransactionOptions(option.textContent, allTransactionOptions, tithingTransactionsOptions);
+        }
+      });
+    });
+  }
 };
 
 const _watchBudgetNavigation = () => {
@@ -4224,6 +4244,14 @@ const _watchBudgetNavigation = () => {
         const clicked = e.target.closest('li');
         const siblingLinkContainer = clicked.nextSibling;
         linkButtons.forEach((lb) => {
+          // if (lb.closest('li').nextSibling.classList.contains('open')) {
+          //   lb.closest('li').nextSibling.classList.add('closed');
+          //   lb.closest('li').nextSibling.classList.remove('open');
+          // }
+          // if (lb.closest('li').nextSibling.classList.contains('closed')) {
+          //   lb.closest('li').nextSibling.classList.add('closed');
+          //   lb.closest('li').nextSibling.classList.remove('open');
+          // }
           lb.closest('li').nextSibling.classList.add('closed');
           lb.closest('li').nextSibling.classList.remove('open');
         });
@@ -4249,102 +4277,25 @@ const pushIntoArray = (arrayFiller, array) => {
   return array;
 };
 
+const buildTransactionOptions = (options) => {
+  let transactionOptions = [];
+  options.forEach((option, i) => {
+    if (option) {
+      option.classList.add('closed');
+      transactionOptions.push(option);
+    }
+  });
+  return transactionOptions;
+};
+
 const setupDashboard = (user, budget, placeholderBudget) => {
-  ////////////////////////////////////////////
-  // SETUP ACCOUNT OPTIONS FOR TRANSACTIONS
-  const formLabels = document.querySelectorAll('.form-label');
-  const formInputs = document.querySelectorAll('.form-input');
-  const formSections = document.querySelectorAll('.form-row__section');
-
-  const relativeMediumFormLabels = document.querySelectorAll('.form__label--medium__relative');
-
-  const mediumFormSections = document.querySelectorAll('.form__section--medium');
-  const mediumLeftPaddedSections = document.querySelectorAll('.form__section--medium__padded--left');
-  const mediumTopLeftPaddedSections = document.querySelectorAll('.form__section--medium__padded--topLeft');
-  const longFormSections = document.querySelectorAll('.form__section--long');
-  const longLeftPaddedSections = document.querySelectorAll('.form__section--long__padded--topLeft');
-
-  const paidForContainers = document.querySelectorAll('.form__section--switch__fully-paid-for');
-  const altPaidForContainers = document.querySelectorAll('.form__section--switch__fully-paid-for__alt');
-  ///////////////////////////////////////////////
-  // INITIALIZE ACCOUNT TRANSACTION OPTION ARRAYS
-
-  // MONTHLY BUDGET
-  const monthlyBudgetTransactionsOptionsOne = [relativeMediumFormLabels[0], relativeMediumFormLabels[1]];
-  const monthlyBudgetTransactionsOptionsTwo = [mediumFormSections[5], longFormSections[0]];
-  const monthlyBudgetTransactionOptionsArray = [];
-
-  // EMERGENCY FUND
-  const emergencyFundTransactionsOptions = [longLeftPaddedSections[0], mediumTopLeftPaddedSections[0]];
-  const emergencyFundTransactionOptionsArray = [];
-
-  // SAVINGS FUND
-  const savingsFundTransactionsOptionsOne = [relativeMediumFormLabels[2], relativeMediumFormLabels[3]];
-  const savingsFundTransactionsOptionsTwo = [longFormSections[1], mediumFormSections[6]];
-  const savingsFundTransactionsOptionsThree = document.querySelectorAll('.form__section--switch__fully-paid-for')[0];
-  const savingsFundTransactionOptionsArray = [];
-
-  // EXPENSE FUND
-  const expenseFundTransactionsOptionsOne = [relativeMediumFormLabels[4], relativeMediumFormLabels[5], relativeMediumFormLabels[6]];
-  const expenseFundTransactionsOptionsTwo = [longFormSections[2], mediumFormSections[7]];
-  const expenseFundTransactionsOptionsThree = [altPaidForContainers[0]];
-  const expenseFundTransactionOptionsArray = [];
-
-  // SURPLUS
-  const surplusTransactionsOptionsOne = [relativeMediumFormLabels[7], relativeMediumFormLabels[8]];
-  const surplusTransactionsOptionsTwo = [longFormSections[3], mediumFormSections[8]];
-  const surplusTransactionsOptionsThree = [altPaidForContainers[1]];
-  const surplusTransactionOptionsArray = [];
-
-  // DEBT
-  const debtTransactionsOptionsOne = [relativeMediumFormLabels[9], relativeMediumFormLabels[10]];
-  const debtTransactionsOptionsTwo = [longFormSections[4], mediumFormSections[9]];
-  const debtTransactionsOptionsThree = [altPaidForContainers[2]];
-  const debtTransactionOptionsArray = [];
-
-  // TITHING
-  const tithingTransactionsOptions = document.querySelectorAll('.tithing-transaction');
-  const tithingTransactionOptionsArray = [];
-
-  const mainCategoryOptionArrays = [];
-
-  ///////////////////////////////
-  // MONTHLY BUDGET OPTIONS
-  pushIntoArray(monthlyBudgetTransactionsOptionsOne, monthlyBudgetTransactionOptionsArray);
-  pushIntoArray(monthlyBudgetTransactionsOptionsTwo, monthlyBudgetTransactionOptionsArray);
-  pushIntoArray(emergencyFundTransactionsOptions, emergencyFundTransactionOptionsArray);
-  pushIntoArray(savingsFundTransactionsOptionsOne, savingsFundTransactionOptionsArray);
-  pushIntoArray(savingsFundTransactionsOptionsTwo, savingsFundTransactionOptionsArray);
-  pushIntoArray([savingsFundTransactionsOptionsThree], savingsFundTransactionOptionsArray);
-  pushIntoArray(expenseFundTransactionsOptionsOne, expenseFundTransactionOptionsArray);
-  pushIntoArray(expenseFundTransactionsOptionsTwo, expenseFundTransactionOptionsArray);
-  pushIntoArray(expenseFundTransactionsOptionsThree, expenseFundTransactionOptionsArray);
-  pushIntoArray(surplusTransactionsOptionsOne, surplusTransactionOptionsArray);
-  pushIntoArray(surplusTransactionsOptionsTwo, surplusTransactionOptionsArray);
-  pushIntoArray(surplusTransactionsOptionsThree, surplusTransactionOptionsArray);
-  pushIntoArray(debtTransactionsOptionsOne, debtTransactionOptionsArray);
-  pushIntoArray(debtTransactionsOptionsTwo, debtTransactionOptionsArray);
-  pushIntoArray(debtTransactionsOptionsThree, debtTransactionOptionsArray);
-  pushIntoArray(tithingTransactionsOptions, tithingTransactionOptionsArray);
-
-  finalTransactionArrayPush(mainCategoryOptionArrays, [
-    monthlyBudgetTransactionOptionsArray,
-    emergencyFundTransactionOptionsArray,
-    savingsFundTransactionOptionsArray,
-    expenseFundTransactionOptionsArray,
-    surplusTransactionOptionsArray,
-    debtTransactionOptionsArray,
-    tithingTransactionOptionsArray,
-  ]);
-
-  if (user.latterDaySaint === true) mainCategoryOptionArrays.push(tithingTransactionOptionsArray);
   ////////////////////////////////////////////
   // WATCH THE BUDGET NAVIGATION
   _watchBudgetNavigation();
 
   ////////////////////////////////////////////
   // WATCH FOR ACCOUNT SELECTION
-  _watchForTransactions(mainCategoryOptionArrays, budget, placeholderBudget, user);
+  _watchForTransactions(budget, placeholderBudget, user);
 
   ////////////////////////////////////////////
   // GET BANK ACCOUNT TOTAL
@@ -4400,4 +4351,7 @@ export const _watchBudget = async () => {
   ////////////////////////////////////////////
   // WATCH FOR INCOME ALLOCATION
   _watchDebtManager(currentBudget, budget, user);
+  ////////////////////////////////////////////
+  // WATCH FOR INCOME ALLOCATION
+  _watchRecentTransactions(currentBudget, budget, user);
 };

@@ -203,6 +203,15 @@
     @include SizeAndPositioning(relative, 32.5%, 100%, flex, row, nowrap, flex-start, flex-end, 0, 0, 0);
     padding: 0 2rem 2rem;
 
+    &--transaction-header {
+      @extend .form__row;
+      height: 7rem;
+      min-height: 7rem;
+      padding: 0;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
     &--update-photo {
       @extend .form__row;
       justify-content: center;
@@ -272,6 +281,71 @@
     &:not(:last-of-type) {
       margin-bottom: 3.5rem;
     }
+
+    &--transaction-receipt {
+      @include SizeAndPositioning(relative, max-content, 100%, flex, column, nowrap, flex-start, center, 0, 0, 0);
+      .receipt-header {
+        @include SizeAndPositioning(relative, 6rem, 75%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+        border-bottom: 0.2rem solid rgba($primaryColor, 0.5);
+        &__secondary-titles {
+          @include SizeAndPositioning(relative, max-content, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
+        }
+      }
+
+      .receipt-item-container {
+        @include SizeAndPositioning(relative, max-content, 80%, flex, column, nowrap, flex-start, center, 0, 0, 0);
+        &__row {
+          @include SizeAndPositioning(relative, 4rem, 95%, flex, row, nowrap, space-between, center, 0, 0, 0);
+          min-height: 4rem;
+          padding: 0 1rem;
+          // &:last-of-type {
+          //   margin-bottom: 3rem;
+          // }
+          .transaction-item-details {
+            @include SizeAndPositioning(relative, 100%, 50%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+            &__detail {
+              &:first-of-type {
+                margin-right: 1rem;
+              }
+            }
+          }
+          .transaction-item-cost {
+            @extend .transaction-item-details;
+            justify-content: flex-end;
+          }
+          &:nth-of-type(2n) {
+            background-color: $colorLightestGrey;
+          }
+        }
+      }
+
+      .receipt-footer {
+        @extend .receipt-header;
+        justify-content: space-around;
+        border-bottom: none;
+        border-top: 0.2rem solid rgba($primaryColor, 0.5);
+      }
+    }
+
+    &--transaction-header {
+      @extend .form__section;
+      height: 100%;
+      width: 30%;
+      &:not(:last-of-type) {
+        margin-bottom: 0rem;
+      }
+    }
+
+    &--transaction-item-creation {
+      @extend .form__section;
+      height: 14rem;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-flow: row wrap;
+      border-bottom: 0.2rem solid $primaryColor;
+      padding: 1rem 0 1rem 1rem;
+    }
+
     &--main-category-title {
       @extend .form__section;
       height: 20%;
@@ -699,7 +773,25 @@
 
     &--select {
       @extend .form__section--medium;
+      justify-content: flex-start;
+      height: max-content;
       width: max-content;
+      margin: 0 1rem 2rem 0;
+      &:not(:last-of-type) {
+        margin: 0 1rem 2rem 0;
+      }
+    }
+
+    &--transaction-option {
+      @extend .form__section--medium;
+      flex-flow: column nowrap;
+      height: max-content;
+      width: max-content;
+      justify-content: flex-start;
+      margin: 0 1rem 2rem 0;
+      &:not(:last-of-type) {
+        margin: 0 1rem 2rem 0;
+      }
     }
 
     // ENTER INCOME / TRANSACTION SECTIONS
@@ -1088,6 +1180,43 @@
           transform: translate(-1rem, -4.25rem) scale(0.85);
         }
       }
+      &-thinner {
+        @extend .form__input--small;
+        height: 3rem;
+        width: 15rem;
+        padding: 0.2rem;
+
+        &:not(:placeholder-shown) + .form__label--small-thinner,
+        &:focus + .form__label--small-thinner {
+          transform: translate(-5.5rem, -4rem) scale(0.9);
+        }
+
+        &:not(:placeholder-shown) + .form__label--small-thinner__transaction,
+        &:focus + .form__label--small-thinner__transaction {
+          transform: translate(-1rem, -3.75rem) scale(0.9);
+        }
+
+        &__wide {
+          @extend .form__input--small-thinner;
+          width: 85%;
+
+          &:not(:placeholder-shown) + .form__label--small-thinner__wide,
+          &:focus + .form__label--small-thinner__wide {
+            transform: translate(-1rem, -4rem) scale(0.9);
+          }
+        }
+
+        &__wider {
+          @extend .form__input--small-thinner;
+          width: 15rem;
+          transform: translate(0, 0);
+
+          &:not(:placeholder-shown) + .form__label--small-thinner__wider,
+          &:focus + .form__label--small-thinner__wider {
+            transform: translate(-1rem, -2.25rem) scale(0.9);
+          }
+        }
+      }
       &-thin {
         @extend .form__input--small;
         height: 20%;
@@ -1374,10 +1503,9 @@
 
     &--accounts {
       @extend .form__select;
-      align-self: center;
-      height: 4rem;
+      height: 3rem;
       width: max-content;
-      padding: 0.5rem;
+      padding: 0.25rem;
       background-color: transparent;
       border: 0.2rem solid rgba($primaryColor, 0.8);
       border-radius: 0.9rem;
@@ -1461,10 +1589,12 @@
 
     &--select {
       @extend .form__label;
-      height: 4rem;
+      position: relative;
+      width: max-content;
+      height: max-content;
       top: 0;
       left: 0;
-      transform: translate(1rem, -0.5rem);
+      transform: translate(1rem, 0rem);
       &__transaction {
         @extend .form__label--select;
         width: max-content;
@@ -1725,6 +1855,34 @@
         width: 100%;
         transform: translate(0rem, -1.9rem);
         left: 1rem;
+      }
+      &-thinner {
+        @extend .form__label--small;
+        height: 3rem;
+        width: 70%;
+        &__transaction {
+          @extend .form__label--small-thinner;
+          top: 50%;
+          left: 1rem;
+          // transform: translate(0, 0);
+          // -moz-transform: translate(0, 0);
+        }
+        &__wide {
+          @extend .form__label--small-thinner;
+          width: 85%;
+          left: 2rem;
+        }
+        &__wider {
+          @extend .form__label--small-thinner;
+          width: 90%;
+          top: 0;
+          left: 1rem;
+          transform: translate(0, 0);
+          -moz-transform: translate(0, 0);
+        }
+        // width: 25%;
+        // left: calc(37.7% + 2rem);
+        // @include SizeAndPositioning(absolute, 6rem, 40%, flex, row, nowrap, flex-start, center, 0, -50%, 0);
       }
       &-thin {
         @extend .form__label--small;

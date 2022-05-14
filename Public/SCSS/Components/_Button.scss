@@ -459,8 +459,8 @@
 
   &--transaction-button {
     @extend .button;
-    height: 4rem;
-    width: 26.7%;
+    height: 3rem;
+    width: max-content;
     transform: translate(0, 0);
     padding: 0.5rem;
     border: 0.2rem solid rgba($primaryColor, 0.8);
@@ -544,7 +544,8 @@
       transform: translate(4rem, 0rem);
     }
     &__transaction-plan,
-    &__debt-transaction-plan {
+    &__debt-transaction-plan,
+    &__view-receipt {
       @extend .button--extra-extra-small;
       height: 4rem;
       width: 10rem;
@@ -557,6 +558,16 @@
         height: 3rem;
         width: 8rem;
         min-height: 3rem;
+      }
+    }
+
+    &__view-receipt {
+      width: 100%;
+      justify-content: space-evenly;
+      padding: 0 0.3rem;
+      &:hover {
+        background-color: $secondaryColor;
+        border: 0.2rem solid $colorOffWhite;
       }
     }
     &__wide {

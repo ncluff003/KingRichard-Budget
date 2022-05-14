@@ -1,0 +1,10 @@
+block secondRow 
+  include _monthly-budget
+  include _emergency-fund
+  include _savings-fund
+  include _expense-fund
+  include _surplus
+  include _investment-fund
+  include _debt
+  if data.user.latterDaySaint
+    include _tithing

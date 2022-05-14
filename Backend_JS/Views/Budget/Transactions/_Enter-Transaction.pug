@@ -1,14 +1,106 @@
-form.form--transaction.r__form--transaction(method="POST" action=`/users/${data.user.id}/budgets/${data.budget.id}`) 
-  section.form__row--thirds.r__form__row--thirds
-    section.form__section--medium__alt.r__form__section--medium__alt
-      input.form__input--medium__alt.r__form__input--medium__alt#transactionDate(type="date")
-      label.form__label--medium__alt.r__form__label--medium__alt(for="transactionDate") Transaction Date
-    section.form__section--medium__alt.r__form__section--medium__alt
-      input.form__input--medium__alt.r__form__input--medium__alt#transactionLocation(type="text" placeholder="Transaction Location")
-      label.form__label--medium__alt.r__form__label--medium__alt(for="transactionLocation") Transaction Location
-    button.button--transaction-button.r__button--transaction-button(type="button") Add item
-  section.form__row--thirds.r__form__row--thirds
-    include ./Accounts/_transaction-options-1
-  section.form__row--thirds.r__form__row--thirds
-    include ./Accounts/_transaction-options-2
+form.form--transaction.r__form--transaction(method="POST" action=`/users/${data.user.id}/budgets/${data.budget.id}`)
+  - const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 })
+  - const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']; 
+  section.form__row--transaction-header.r__form__row--transaction-header
+    section.form__section--transaction-header.r__form__section--transaction-header
+      input.form__input--small-thinner.r__form__input--small-thinner#transactionDate(type="date")
+      label.form__label--small-thinner.r__form__label--small-thinner(for="transactionDate") Transaction Date
+    section.form__section--transaction-header.r__form__section--transaction-header
+      input.form__input--small-thinner__wide.r__form__input--small-thinner__wide#transactionLocation(type="text" placeholder="Transaction Location")
+      label.form__label--small-thinner__wide.r__form__label--small-thinner__wide(for="transactionLocation") Transaction Location
+    section.form__section--transaction-header.r__form__section--transaction-header
+      button.button--transaction-button.r__button--transaction-button(type="button") Add item
+  section.form__section--transaction-item-creation.r__form__section--transaction-item-creation.closed
+    section.form__section--select.r__form__section--select
+      - let accounts = [`Monthly Budget`,`Emergency Fund`,`Savings Fund`,`Expense Fund`,`Surplus`, `Investment`,`Debt`,`Tithing`]; 
+      - if (data.user.latterDaySaint === false) accounts = accounts.filter((a, i) => { if (a !== `Tithing`) return a});
+        label.form__label--select.r__form__label--select Accounts
+        select.form__select--accounts.r__form__select--accounts
+          each account in accounts
+            option.form__select--accounts__option.r__form__select--accounts__option(value=`${account}`)= `${account}`
+    section.form__section--select.r__form__section--select
+      label.form__label--select.r__form__label--select Category
+      select.form__select--accounts.r__form__select--accounts#mainCategory
+        each category in data.budget.mainCategories 
+          option.category-selection.r__category-selection(value=`${category.title}`)= `${category.title}`
+    section.form__section--select.r__form__section--select
+      label.form__label--select.r__form__label--select Sub Category
+      select.form__select--accounts.r__form__select--accounts#subCategory
+        each category in data.budget.mainCategories
+          each subCategory in category.subCategories
+            option.form__select--monthly-transaction__option.r__form__select--monthly-transaction__option.closed= subCategory.title
+        //- option Electric -- If the number of letters are 9, or a certain length of this container, this will need to be 'lowered'; | [ 8.69rem ] is the magic width.
+    section.form__section--select.r__form__section--select
+      - const expenseTypes = [`Expense`, `Bill`, `Subscription`]
+      label.form__label--select.r__form__label--select Transaction Type
+      select.form__select--accounts.r__form__select--accounts#transactionType
+        each expenseType in expenseTypes 
+          option.category-selection.r__category-selection(value=`${expenseType}`)= `${expenseType}`
+    section.form__section--select.r__form__section--select
+      - const savingsTerms = [`Once`,`Weekly`, `Bi-Weekly`, `Bi-Monthly`, `Monthly`, `Quarterly`, `Bi-Annually`, `Annually`]
+      label.form__label--select.r__form__label--select Timing
+      select.form__select--accounts.r__form__select--accounts#timing
+        each term in savingsTerms 
+          option.category-selection.r__category-selection(value=`${term}`)= `${term}`
+    section.form__section--select.r__form__section--select
+      label.form__label--select.r__form__label--select Lender
+      select.form__select--accounts.r__form__select--accounts#lender
+        option Mountain America Credit Union
+    section.form__section--select.r__form__section--select
+      label.form__label--select.r__form__label--select Item | Expense | Goal
+      select.form__select--accounts.r__form__select--accounts#savingsGoals
+        each transaction in data.budget.transactions.plannedTransactions
+          - let savingsTransaction = false;
+          - if (transaction.account === `Savings Fund`) savingsTransaction = true; 
+          if savingsTransaction
+            option= `${transaction.name}`
+        option Snickers Barrrrr
+    section.form__section--transaction-option.r__form__section--transaction-option
+      input.form__input--small-thinner.r__form__input--small-thinner#transactionName(type="text" placeholder="Name")
+      label.form__label--small-thinner__transaction.r__form__label--small-thinner__transaction(for="transactionName") Transaction Name
+    section.form__section--transaction-option.r__form__section--transaction-option
+      //- input.form__input--small-thinner__wider.r__form__input--small-thinner__wider#transactionDescription(type="text" placeholder="Description")
+      input.form__input--small-thinner__wider.r__form__input--small-thinner__wider.lowered#transactionDescription(type="text" placeholder="Description")
+      label.form__label--small-thinner__wider.r__form__label--small-thinner__wider(for="transactionDescription") Transaction Description
+    section.form__section--transaction-option.r__form__section--transaction-option
+      input.form__input--small-thinner.r__form__input--small-thinner#transactionAmount(type="number" min="0" placeholder="$0.00")
+      label.form__label--small-thinner__transaction.r__form__label--small-thinner__transaction(for="transactionAmount") Amount Spent
+    section.form__section--transaction-option.r__form__section--transaction-option
+      button.button--transaction-button.r__button--transaction-button
+        p.button--transaction-button__text.r__button--transaction-button__text Save
+  section.form__section--transaction-receipt.r__form__section--transaction-receipt
+    header.receipt-header.r__receipt-header
+      p.receipt-header__text.r__receipt-header__text Receipt
+      section.receipt-header__secondary-titles.r__receipt-header__seccondary-titles
+        p.secondary-title.r__secondary-title Transaction Details
+        p.secondary-title.r__secondary-title Total
+    section.receipt-item-container.r__receipt-item-container
+      section.receipt-item-container__row.r__receipt-item-container__row 
+        section.transaction-item-details.r__transaction-item-details
+          p.transaction-item-details__detail.r__transaction-item-details__detail PAC Auto Finance
+          p.transaction-item-details__detail.r__transaction-item-details__detail Car Payment
+        section.transaction-item-cost.r__transaction-item-cost
+          p.transaction-item-cost__cost.r__transaction-item-cost__cost= `${money.format(398.50)}`
+      section.receipt-item-container__row.r__receipt-item-container__row 
+        section.transaction-item-details.r__transaction-item-details
+          p.transaction-item-details__detail.r__transaction-item-details__detail PAC Auto Finance
+        section.transaction-item-cost.r__transaction-item-cost
+          p.transaction-item-cost__cost.r__transaction-item-cost__cost= `${money.format(398.50)}`
+
+    //- footer.receipt-footer.r__receipt-footer
+    //-   p.footer-title.r__footer-title Total
+    //-   p.footer-title.r__footer-title= `${money.format(5.99 * data.budget.transactions.recentTransactions.length)}`
+
+
+
+      //- section.modal--receipt__digital-receipt__container__item-container__row.r__modal--receipt__digital-receipt__container__item-container__row
+      //-   section.receipt-row__transaction-details-section.r__receipt-row__transaction-details-section
+      //-     p.receipt-row__name-section__name.r__receipt-row__name-section__name Sample Item
+      //-   section.receipt-row__transaction-cost-section.r__receipt-row__transaction-cost-section
+      //-     p.receipt-row__cost-section__cost.r__receipt-row__cost-section__cost $5.99
+      //- section.modal--receipt__digital-receipt__container__item-container__row.r__modal--receipt__digital-receipt__container__item-container__row
+      //-   section.receipt-row__transaction-details-section.r__receipt-row__transaction-details-section
+      //-     p.receipt-row__transaction-details-section__name.r__receipt-row__transaction-details-section__name PAC Auto Finance
+      //-     p.receipt-row__transaction-details-section__name.r__receipt-row__transaction-details-section__name Car Payment
+
   

@@ -8,4 +8,67 @@
     @extend .modal;
     z-index: 100;
   }
+
+  &--receipt {
+    @extend .modal;
+    width: 100%;
+    background-color: rgba($colorDarkestGrey, 0.85);
+    z-index: 10;
+    &__closure-icon {
+      @include SizeAndPositioning(absolute, 2rem, 2rem, flex, row, nowrap, center, center, 0, 0, 0);
+      top: 5rem;
+      right: 6rem;
+      z-index: 10;
+      &:hover {
+        cursor: pointer;
+        transition: color 0.5s;
+      }
+    }
+    &__digital-receipt {
+      @include SizeAndPositioning(relative, 80%, 80%, flex, column, nowrap, center, center, 0, 0, 0);
+      background-image: url('Images/receipt.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center center;
+      padding-top: 5rem;
+      overflow-y: auto;
+      &__container {
+        @include SizeAndPositioning(relative, 60rem, 50%, flex, column, nowrap, space-around, center, 0, -3rem, 0);
+        min-height: 60rem;
+        -moz-transform: translate(0, -3rem);
+        overflow-y: auto;
+        &__header {
+          @include SizeAndPositioning(relative, 20%, 80%, flex, column, nowrap, space-evenly, center, 0, 0, 0);
+          min-height: 20%;
+          border-bottom: 0.2rem groove rgba($colorDarkerGrey, 0.5);
+          &__secondary-title-container {
+            @include SizeAndPositioning(relative, 20%, 100%, flex, row, nowrap, space-between, center, 0, 0, 0);
+            min-height: 20%;
+            padding: 0 3rem;
+          }
+        }
+        &__item-container {
+          @include SizeAndPositioning(relative, 60%, 100%, flex, column, nowrap, flex-start, center, 0, 0, 0);
+          overflow-y: auto;
+          &__row {
+            @include SizeAndPositioning(relative, 4rem, 75%, flex, row, nowrap, space-between, center, 0, 0, 0);
+            min-height: 4rem;
+            padding: 0 2rem;
+            .receipt-row__transaction-details-section {
+              @include SizeAndPositioning(relative, 100%, 50%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+              &__name {
+                @include SizeAndPositioning(relative, 100%, 50%, flex, row, nowrap, flex-start, center, 0, 0, 0);
+              }
+            }
+          }
+        }
+        &__footer {
+          @include SizeAndPositioning(relative, 10%, 80%, flex, row, nowrap, space-between, center, 0, 0, 0);
+          min-height: 10%;
+          padding: 0 5rem;
+          border-top: 0.2rem groove rgba($colorDarkerGrey, 0.5);
+        }
+      }
+    }
+  }
 }

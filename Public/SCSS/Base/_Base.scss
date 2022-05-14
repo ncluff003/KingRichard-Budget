@@ -116,3 +116,30 @@ body {
     }
   }
 }
+
+.raised {
+  transform: translate(0, -1.6rem);
+  & ~ label {
+    transform: translate(1rem, -1.6rem);
+  }
+}
+
+.lowered {
+  transform: translate(0, 1.5rem);
+  & + label {
+    top: 50%;
+    transform: translate(0, 0);
+    -moz-transform: translateY(0);
+  }
+}
+
+.quarters {
+  height: 35%;
+  & + .form__section--early-income-view {
+    height: 30%;
+    .form__section--early-income-view__income-view,
+    .form__section--early-income-view__income-view--purple {
+      width: 25%;
+    }
+  }
+}

@@ -1,34 +1,63 @@
-form.form--transaction.r__form--transaction(method="POST" action=`/users/${data.user.id}/budgets/${data.budget.id}`) 
-  section.form__row.r__form__row
-    //- section.form__section--enter-income.r__form__section--enter-income
-    section.form__section--medium.r__form__section--medium
-      input.form__input--enter-income.r__form__input--enter-income#incomeDate(type="date")
-      label.form__label--enter-income.r__form__label--enter-income(for="incomeDate") Date Received
-    section.form__section--medium.r__form__section--medium
-      input.form__input--enter-income.r__form__input--enter-income#receivedFrom(type="text" placeholder="Received From" name="receivedFrom")
-      label.form__label--enter-income.r__form__label--enter-income(for="receivedFrom") Received From
-    section.form__section--medium.r__form__section--medium
-      if data.user.latterDaySaint
+form.form--transaction.r__form--transaction(method="POST" action=`/users/${data.user.id}/budgets/${data.budget.id}`)
+  if data.user.isLatterDaySaint
+    section.form__row.r__form__row.quarters
+      //- section.form__section--enter-income.r__form__section--enter-income
+      section.form__section--medium.r__form__section--medium
+        input.form__input--enter-income.r__form__input--enter-income#incomeDate(type="date")
+        label.form__label--enter-income.r__form__label--enter-income(for="incomeDate") Date Received
+      section.form__section--medium.r__form__section--medium
+        input.form__input--enter-income.r__form__input--enter-income#receivedFrom(type="text" placeholder="Received From" name="receivedFrom")
+        label.form__label--enter-income.r__form__label--enter-income(for="receivedFrom") Received From
+      section.form__section--medium.r__form__section--medium
         label.form__label--enter-income.r__form__label--enter-income 
           p.form__label--enter-income__text.r__form__label--enter-income__text Tithed?
           .form-input--tithing.r__form-input--tithing 
             .form-input--tithing__switch.r__form-input--tithing__switch 
             p.form-input--tithing__text-no.r__form-input--tithing__text-no NO
             p.form-input--tithing__text-yes.r__form-input--tithing__text-yes YES
-  section.form__row.r__form__row
-    section.form__section--medium.r__form__section--medium
-      input.form__input--enter-income.r__form__input--enter-income#grossPay(type="number" min="0" placeholder="$0.00")
-      label.form__label--enter-income.r__form__label--enter-income(for="grossPay") Gross Pay
-    section.form__section--medium.r__form__section--medium
-      input.form__input--enter-income.r__form__input--enter-income#netPay(type="number" min="0" placeholder="$0.00")
-      label.form__label--enter-income.r__form__label--enter-income(for="netPay") Net Pay
-  section.form__section--early-income-view.r__form__section--early-income-view 
-    section.form__section--early-income-view__income-view.r__form__section--early-income-view__income-view
-      h3.form__section--early-income-view__income-view__header.r__form__section--early-income-view__income-view__header Investment Account
-      p.form__section--early-income-view__income-view__amount.r__form__section--early-income-view__income-view__amount= `$0.00`
-    section.form__section--early-income-view__income-view.r__form__section--early-income-view__income-view
-      h3.form__section--early-income-view__income-view__header.r__form__section--early-income-view__income-view__header Savings Account
-      p.form__section--early-income-view__income-view__amount.r__form__section--early-income-view__income-view__amount= `$0.00`
-    section.form__section--early-income-view__income-view--purple.r__form__section--early-income-view__income-view--purple
-      h3.form__section--early-income-view__income-view--purple__header.r__form__section--early-income-view__income-view--purple__header Total Un-Allocated
-      p.form__section--early-income-view__income-view--purple__amount.r__form__section--early-income-view__income-view--purple__amount= `$0.00`
+    section.form__row.r__form__row.quarters
+      section.form__section--medium.r__form__section--medium
+        input.form__input--enter-income.r__form__input--enter-income#grossPay(type="number" min="0" placeholder="$0.00")
+        label.form__label--enter-income.r__form__label--enter-income(for="grossPay") Gross Pay
+      section.form__section--medium.r__form__section--medium
+        input.form__input--enter-income.r__form__input--enter-income#netPay(type="number" min="0" placeholder="$0.00")
+        label.form__label--enter-income.r__form__label--enter-income(for="netPay") Net Pay
+    section.form__section--early-income-view.r__form__section--early-income-view 
+      section.form__section--early-income-view__income-view.r__form__section--early-income-view__income-view
+        h3.form__section--early-income-view__income-view__header.r__form__section--early-income-view__income-view__header Investment Account
+        p.form__section--early-income-view__income-view__amount.r__form__section--early-income-view__income-view__amount= `$0.00`
+      section.form__section--early-income-view__income-view.r__form__section--early-income-view__income-view
+        h3.form__section--early-income-view__income-view__header.r__form__section--early-income-view__income-view__header Savings Account
+        p.form__section--early-income-view__income-view__amount.r__form__section--early-income-view__income-view__amount= `$0.00`
+      section.form__section--early-income-view__income-view.r__form__section--early-income-view__income-view
+        h3.form__section--early-income-view__income-view__header.r__form__section--early-income-view__income-view__header Tithing Account
+        p.form__section--early-income-view__income-view__amount.r__form__section--early-income-view__income-view__amount= `$0.00`
+      section.form__section--early-income-view__income-view--purple.r__form__section--early-income-view__income-view--purple
+        h3.form__section--early-income-view__income-view--purple__header.r__form__section--early-income-view__income-view--purple__header Total Un-Allocated
+        p.form__section--early-income-view__income-view--purple__amount.r__form__section--early-income-view__income-view--purple__amount= `$0.00`
+  else      
+    section.form__row.r__form__row
+      //- section.form__section--enter-income.r__form__section--enter-income
+      section.form__section--medium.r__form__section--medium
+        input.form__input--enter-income.r__form__input--enter-income#incomeDate(type="date")
+        label.form__label--enter-income.r__form__label--enter-income(for="incomeDate") Date Received
+      section.form__section--medium.r__form__section--medium
+        input.form__input--enter-income.r__form__input--enter-income#receivedFrom(type="text" placeholder="Received From" name="receivedFrom")
+        label.form__label--enter-income.r__form__label--enter-income(for="receivedFrom") Received From
+    section.form__row.r__form__row
+      section.form__section--medium.r__form__section--medium
+        input.form__input--enter-income.r__form__input--enter-income#grossPay(type="number" min="0" placeholder="$0.00")
+        label.form__label--enter-income.r__form__label--enter-income(for="grossPay") Gross Pay
+      section.form__section--medium.r__form__section--medium
+        input.form__input--enter-income.r__form__input--enter-income#netPay(type="number" min="0" placeholder="$0.00")
+        label.form__label--enter-income.r__form__label--enter-income(for="netPay") Net Pay
+    section.form__section--early-income-view.r__form__section--early-income-view 
+      section.form__section--early-income-view__income-view.r__form__section--early-income-view__income-view
+        h3.form__section--early-income-view__income-view__header.r__form__section--early-income-view__income-view__header Investment Account
+        p.form__section--early-income-view__income-view__amount.r__form__section--early-income-view__income-view__amount= `$0.00`
+      section.form__section--early-income-view__income-view.r__form__section--early-income-view__income-view
+        h3.form__section--early-income-view__income-view__header.r__form__section--early-income-view__income-view__header Savings Account
+        p.form__section--early-income-view__income-view__amount.r__form__section--early-income-view__income-view__amount= `$0.00`
+      section.form__section--early-income-view__income-view--purple.r__form__section--early-income-view__income-view--purple
+        h3.form__section--early-income-view__income-view--purple__header.r__form__section--early-income-view__income-view--purple__header Total Un-Allocated
+        p.form__section--early-income-view__income-view--purple__amount.r__form__section--early-income-view__income-view--purple__amount= `$0.00`

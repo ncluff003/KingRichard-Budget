@@ -199,13 +199,13 @@
       @include SizeAndPositioning(relative, 85%, 100%, flex, row, nowrap, center, center, 0, 0, 0);
       &--transaction {
         @extend .container--small__content;
-        height: 55%;
+        height: 70%;
         // padding-bottom: 2rem;
       }
     }
     &__transaction-total {
-      @include SizeAndPositioning(relative, 30%, 100%, flex, column, nowrap, space-around, center, 0, 0, 0);
-      min-height: 20%;
+      @include SizeAndPositioning(relative, 15%, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
+      min-height: 15%;
       background-color: $primaryColor;
       border-bottom-left-radius: 0.4rem;
       border-bottom-right-radius: 0.4rem;
@@ -401,6 +401,30 @@
         left: 0;
       }
     }
+    &__transaction-title-container {
+      @include SizeAndPositioning(relative, 5rem, 100%, flex, row, nowrap, space-evenly, center, 0, 0, 0);
+      padding: 0.2rem 0;
+      &__transaction-title {
+        @include SizeAndPositioning(relative, 100%, 10%, flex, row, nowrap, center, center, 0, 0, 0);
+        background-color: $primaryColor;
+        padding: 0 2rem;
+        margin: 0 0.2rem;
+        &:nth-of-type(1) {
+          margin: 0 0.2rem 0 0;
+        }
+        &:nth-of-type(6) {
+          width: 50%;
+          margin: 0 0 0 0.2rem;
+          justify-content: flex-start;
+        }
+      }
+    }
+
+    .recent-transaction-display {
+      @include SizeAndPositioning(relative, calc(100% - 10% - 5rem), 100%, flex, column, nowrap, flex-start, center, 0, 0, 0);
+      overflow-y: auto;
+    }
+
     &__category-container {
       @include SizeAndPositioning(relative, 47rem, 100%, flex, row, nowrap, center, center, 0, 0, 0);
       padding: 1.5rem;
