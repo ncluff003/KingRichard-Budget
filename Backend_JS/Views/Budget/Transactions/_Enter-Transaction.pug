@@ -31,11 +31,8 @@ form.form--transaction.r__form--transaction(method="POST" action=`/users/${data.
             option.form__select--monthly-transaction__option.r__form__select--monthly-transaction__option.closed= subCategory.title
         //- option Electric -- If the number of letters are 9, or a certain length of this container, this will need to be 'lowered'; | [ 8.69rem ] is the magic width.
     section.form__section--select.r__form__section--select
-      - const expenseTypes = [`Expense`, `Bill`, `Subscription`]
       label.form__label--select.r__form__label--select Transaction Type
       select.form__select--accounts.r__form__select--accounts#transactionType
-        each expenseType in expenseTypes 
-          option.category-selection.r__category-selection(value=`${expenseType}`)= `${expenseType}`
     section.form__section--select.r__form__section--select
       - const savingsTerms = [`Once`,`Weekly`, `Bi-Weekly`, `Bi-Monthly`, `Monthly`, `Quarterly`, `Bi-Annually`, `Annually`]
       label.form__label--select.r__form__label--select Timing
@@ -49,12 +46,6 @@ form.form--transaction.r__form--transaction(method="POST" action=`/users/${data.
     section.form__section--select.r__form__section--select
       label.form__label--select.r__form__label--select Item | Expense | Goal
       select.form__select--accounts.r__form__select--accounts#savingsGoals
-        each transaction in data.budget.transactions.plannedTransactions
-          - let savingsTransaction = false;
-          - if (transaction.account === `Savings Fund`) savingsTransaction = true; 
-          if savingsTransaction
-            option= `${transaction.name}`
-        option Snickers Barrrrr
     section.form__section--transaction-option.r__form__section--transaction-option
       input.form__input--small-thinner.r__form__input--small-thinner#transactionName(type="text" placeholder="Name")
       label.form__label--small-thinner__transaction.r__form__label--small-thinner__transaction(for="transactionName") Transaction Name
@@ -75,17 +66,6 @@ form.form--transaction.r__form--transaction(method="POST" action=`/users/${data.
         p.secondary-title.r__secondary-title Transaction Details
         p.secondary-title.r__secondary-title Total
     section.receipt-item-container.r__receipt-item-container
-      section.receipt-item-container__row.r__receipt-item-container__row 
-        section.transaction-item-details.r__transaction-item-details
-          p.transaction-item-details__detail.r__transaction-item-details__detail PAC Auto Finance
-          p.transaction-item-details__detail.r__transaction-item-details__detail Car Payment
-        section.transaction-item-cost.r__transaction-item-cost
-          p.transaction-item-cost__cost.r__transaction-item-cost__cost= `${money.format(398.50)}`
-      section.receipt-item-container__row.r__receipt-item-container__row 
-        section.transaction-item-details.r__transaction-item-details
-          p.transaction-item-details__detail.r__transaction-item-details__detail PAC Auto Finance
-        section.transaction-item-cost.r__transaction-item-cost
-          p.transaction-item-cost__cost.r__transaction-item-cost__cost= `${money.format(398.50)}`
 
     //- footer.receipt-footer.r__receipt-footer
     //-   p.footer-title.r__footer-title Total

@@ -12706,7 +12706,23 @@ var getDashboardAccountTotals = function getDashboardAccountTotals(budget) {
   calculateTotal("Net Value", budget); // budget-container__dashboard__container--extra-small__content__account-total
 };
 
-var showTransactionOptions = function showTransactionOptions(optionText, transactionOptionArrays, transactionOptions) {
+var showTransactionOptions = function showTransactionOptions(budget, placeholderBudget, user, optionText, transactionOptionArrays, transactionOptions) {
+  var transactionTypeSelect = document.getElementById('transactionType');
+  var transactionItemSelect = document.getElementById('savingsGoals');
+  var transactionLenderSelect = document.getElementById('lender');
+
+  (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(transactionTypeSelect.childNodes).forEach(function (child) {
+    child.remove();
+  });
+
+  (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(transactionItemSelect.childNodes).forEach(function (child) {
+    child.remove();
+  });
+
+  (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(transactionLenderSelect.childNodes).forEach(function (child) {
+    child.remove();
+  });
+
   transactionOptionArrays.forEach(function (array) {
     array.forEach(function (arrayItem) {
       arrayItem.classList.remove('open');
@@ -12737,6 +12753,21 @@ var showTransactionOptions = function showTransactionOptions(optionText, transac
 
     if (optionText === "Savings Fund") {
       option.classList.remove('raised');
+
+      if (transactionItemSelect.childNodes.length === 0) {
+        budget.transactions.plannedTransactions.forEach(function (transaction, i) {
+          if (transaction.account === "Savings Fund") {
+            var _option = document.createElement('option');
+
+            _option.classList.add('form__select--option');
+
+            _option.classList.add('r__form__select--option');
+
+            _option.textContent = transaction.name;
+            insertElement(transactionItemSelect, _option);
+          }
+        });
+      }
     }
 
     if (optionText === "Expense Fund") {
@@ -12750,10 +12781,54 @@ var showTransactionOptions = function showTransactionOptions(optionText, transac
           option.classList.add('raised');
         }
       }
+
+      var expenseTypes = ["Bill", "Subscription", "Other"];
+
+      if (transactionTypeSelect.childNodes.length === 0) {
+        expenseTypes.forEach(function (expense, i) {
+          var option = document.createElement('option');
+          option.classList.add('form__select--option');
+          option.classList.add('r__form__select--option');
+          option.textContent = expense;
+          insertElement(transactionTypeSelect, option);
+        });
+      }
+
+      if (transactionItemSelect.childNodes.length === 0) {
+        budget.transactions.plannedTransactions.forEach(function (transaction, i) {
+          if (transaction.account === "Expense Fund") {
+            var _option2 = document.createElement('option');
+
+            _option2.classList.add('form__select--option');
+
+            _option2.classList.add('r__form__select--option');
+
+            _option2.textContent = transaction.name;
+            insertElement(transactionItemSelect, _option2);
+          }
+        });
+      }
+
+      console.log(transactionTypeSelect);
     }
 
     if (optionText === "Surplus") {
       option.classList.remove('raised');
+
+      if (transactionItemSelect.childNodes.length === 0) {
+        budget.transactions.plannedTransactions.forEach(function (transaction, i) {
+          if (transaction.account === "Surplus") {
+            var _option3 = document.createElement('option');
+
+            _option3.classList.add('form__select--option');
+
+            _option3.classList.add('r__form__select--option');
+
+            _option3.textContent = transaction.name;
+            insertElement(transactionItemSelect, _option3);
+          }
+        });
+      }
     }
 
     if (optionText === "Investment") {
@@ -12762,9 +12837,23 @@ var showTransactionOptions = function showTransactionOptions(optionText, transac
       if (i === 1) {
         option.classList.add('lowered');
       }
+
+      var investmentTypes = ["Stock", "Real Estate", "Timeshare", "Other"];
+
+      if (transactionTypeSelect.childNodes.length === 0) {
+        investmentTypes.forEach(function (investment, i) {
+          var option = document.createElement('option');
+          option.classList.add('form__select--option');
+          option.classList.add('r__form__select--option');
+          option.textContent = investment;
+          insertElement(transactionTypeSelect, option);
+        });
+      }
     }
 
     if (optionText === "Debt") {
+      option.classList.remove('lowered');
+
       if (i === 2) {
         option.classList.remove('raised');
         console.log(transactionOptions[i - 1].getBoundingClientRect().width);
@@ -12772,6 +12861,27 @@ var showTransactionOptions = function showTransactionOptions(optionText, transac
         if (transactionOptions[i - 1].getBoundingClientRect().width > 115) {
           option.classList.add('raised');
         }
+      }
+
+      if (transactionItemSelect.childNodes.length === 0) {
+        budget.transactions.plannedTransactions.forEach(function (transaction, i) {
+          if (transaction.account === "Debt") {
+            var _option4 = document.createElement('option');
+
+            var lenderOption = document.createElement('option');
+
+            _option4.classList.add('form__select--option');
+
+            _option4.classList.add('r__form__select--option');
+
+            lenderOption.classList.add('form__select--option');
+            lenderOption.classList.add('r__form__select--option');
+            _option4.textContent = transaction.name;
+            lenderOption.textContent = transaction.lender;
+            insertElement(transactionItemSelect, _option4);
+            insertElement(transactionLenderSelect, lenderOption);
+          }
+        });
       }
     }
 
@@ -12798,11 +12908,12 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
   var dashboard = document.querySelector('.budget-dashboard');
 
   if (dashboard) {
-    var money = new Intl.NumberFormat('en-US', {
+    var _money = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
       minimumFractionDigits: 2
     });
+
     var headerSubmitButtons = document.querySelectorAll('.button--small-container-header');
     var incomeInputs = document.querySelectorAll('.form__input--enter-income'); // MUSTDO: Separate income into investment, savings, and un-allocated after every keystroke into net pay.
 
@@ -12824,31 +12935,31 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
     var tithed = false;
     netIncomeInput.addEventListener('keyup', function (e) {
       e.preventDefault();
-      incomePreviewAmounts[0].textContent = money.format(netIncomeInput.value * investmentPercentage);
-      incomePreviewAmounts[1].textContent = money.format(netIncomeInput.value * savingsPercentage);
+      incomePreviewAmounts[0].textContent = _money.format(netIncomeInput.value * investmentPercentage);
+      incomePreviewAmounts[1].textContent = _money.format(netIncomeInput.value * savingsPercentage);
 
       if (user.latterDaySaint === true) {
-        incomePreviewAmounts[2].textContent = money.format(0);
+        incomePreviewAmounts[2].textContent = _money.format(0);
 
         if (budget.accounts.tithing.tithingSetting === "Gross") {
-          incomePreviewAmounts[2].textContent = money.format(grossIncomeInput.value * 0.1);
+          incomePreviewAmounts[2].textContent = _money.format(grossIncomeInput.value * 0.1);
         }
 
         if (budget.accounts.tithing.tithingSetting === "Net") {
-          incomePreviewAmounts[2].textContent = money.format(netIncomeInput.value * 0.1);
+          incomePreviewAmounts[2].textContent = _money.format(netIncomeInput.value * 0.1);
         }
 
         if (budget.accounts.tithing.tithingSetting !== "Surplus") {
-          incomePreviewAmounts[3].textContent = money.format(netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1]) - Number(incomePreviewAmounts[2].textContent.split('$')[1]));
+          incomePreviewAmounts[3].textContent = _money.format(netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1]) - Number(incomePreviewAmounts[2].textContent.split('$')[1]));
         }
 
         if (budget.accounts.tithing.tithingSetting === "Surplus") {
-          incomePreviewAmounts[2].textContent = money.format(netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1]));
+          incomePreviewAmounts[2].textContent = _money.format(netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1]));
         }
       }
 
       if (user.latterDaySaint === false) {
-        incomePreviewAmounts[2].textContent = money.format(netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1]));
+        incomePreviewAmounts[2].textContent = _money.format(netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1]));
       }
     });
     var tithedSwitch = document.querySelector('.form__input--tithing');
@@ -13012,19 +13123,27 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
       incomeFromInput.value = '';
       grossIncomeInput.value = '';
       netIncomeInput.value = '';
-      incomePreviewAmounts[0].textContent = money.format(0);
-      incomePreviewAmounts[1].textContent = money.format(0);
-      incomePreviewAmounts[2].textContent = money.format(0);
+      incomePreviewAmounts[0].textContent = _money.format(0);
+      incomePreviewAmounts[1].textContent = _money.format(0);
+      incomePreviewAmounts[2].textContent = _money.format(0);
     });
   } // ** TOP PRIORITY ** When it is possible, record the income as a deposit transaction in the recent transactions page.
-  ////////////////////////////////////////////
-  // INITIALIZE TRANSACTION OPTIONS
 
+
+  var money = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+  }); ////////////////////////////////////////////
+  // INITIALIZE TRANSACTION OPTIONS
 
   var transactionSelects = document.querySelectorAll('.form__section--select');
   var transactionOptions = document.querySelectorAll('.form__section--transaction-option');
   var transactionButtons = document.querySelectorAll('.button--transaction-button');
   var transactionCreationContainer = document.querySelector('.form__section--transaction-item-creation');
+  var transactionCost = document.querySelector('.container--small__transaction-total__amount');
+  var transactionHeaderInputs = document.querySelectorAll('.form__input--small-thinner');
+  var transactionHeaderInputsTwo = document.querySelectorAll('.form__input--small-thinner__wide');
   console.log(transactionSelects, transactionOptions, transactionButtons, transactionCreationContainer);
   var accountSelection = transactionSelects[0]; //////////////////////////////////////////
   // UNIVERSAL TRANSACTION OPTIONS
@@ -13072,42 +13191,142 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
   }
 
   if (accountSelection) {
+    var selectedAccount;
+
     (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(accountSelection.firstChild.nextSibling.children).forEach(function (option) {
       option.addEventListener('click', function (e) {
         e.preventDefault();
 
         if (option.textContent === "Monthly Budget") {
-          showTransactionOptions(option.textContent, allTransactionOptions, monthlyBudgetTransactionOptions);
+          showTransactionOptions(budget, placeholderBudget, user, option.textContent, allTransactionOptions, monthlyBudgetTransactionOptions);
+          selectedAccount = option.textContent;
         }
 
         if (option.textContent === "Emergency Fund") {
-          showTransactionOptions(option.textContent, allTransactionOptions, emergencyFundTransactionsOptions);
+          showTransactionOptions(budget, placeholderBudget, user, option.textContent, allTransactionOptions, emergencyFundTransactionsOptions);
+          selectedAccount = option.textContent;
         }
 
         if (option.textContent === "Savings Fund") {
-          showTransactionOptions(option.textContent, allTransactionOptions, savingsFundTransactionOptions);
+          showTransactionOptions(budget, placeholderBudget, user, option.textContent, allTransactionOptions, savingsFundTransactionOptions);
+          selectedAccount = option.textContent;
         }
 
         if (option.textContent === "Expense Fund") {
-          showTransactionOptions(option.textContent, allTransactionOptions, expenseFundTransactionOptions);
+          showTransactionOptions(budget, placeholderBudget, user, option.textContent, allTransactionOptions, expenseFundTransactionOptions);
+          selectedAccount = option.textContent;
         }
 
         if (option.textContent === "Surplus") {
-          showTransactionOptions(option.textContent, allTransactionOptions, surplusTransactionOptions);
+          showTransactionOptions(budget, placeholderBudget, user, option.textContent, allTransactionOptions, surplusTransactionOptions);
+          selectedAccount = option.textContent;
         }
 
         if (option.textContent === "Investment") {
-          showTransactionOptions(option.textContent, allTransactionOptions, investmentTransactionOptions);
+          showTransactionOptions(budget, placeholderBudget, user, option.textContent, allTransactionOptions, investmentTransactionOptions);
+          selectedAccount = option.textContent;
         }
 
         if (option.textContent === "Debt") {
-          showTransactionOptions(option.textContent, allTransactionOptions, debtTransactionOptions);
+          showTransactionOptions(budget, placeholderBudget, user, option.textContent, allTransactionOptions, debtTransactionOptions);
+          selectedAccount = option.textContent;
         }
 
         if (option.textContent === "Tithing") {
-          showTransactionOptions(option.textContent, allTransactionOptions, tithingTransactionsOptions);
+          showTransactionOptions(budget, placeholderBudget, user, option.textContent, allTransactionOptions, tithingTransactionsOptions);
+          selectedAccount = option.textContent;
         }
       });
+    });
+
+    var receiptItemContainer = document.querySelector('.receipt-item-container');
+    transactionSaveButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      console.log("Saving...");
+      console.log(transactionHeaderInputs, transactionHeaderInputsTwo);
+
+      if (selectedAccount !== "Investment") {
+        var transaction = new _Transaction__WEBPACK_IMPORTED_MODULE_10__.Transaction({
+          date: transactionHeaderInputs[0].value,
+          type: "Withdrawal",
+          location: transactionHeaderInputsTwo[0].value
+        });
+        console.log(transaction);
+        var receiptRow = document.createElement('section');
+        receiptRow.classList.add('receipt-item-container__row');
+        receiptRow.classList.add('r__receipt-item-container__row');
+        insertElement(receiptItemContainer, receiptRow);
+        var transactionDetails = document.createElement('section');
+        transactionDetails.classList.add('transaction-item-details');
+        transactionDetails.classList.add('r__transaction-item-details');
+        insertElement(receiptRow, transactionDetails);
+        var transactionCostDetails = document.createElement('section');
+        transactionCostDetails.classList.add('transaction-item-cost');
+        transactionCostDetails.classList.add('r__transaction-item-cost');
+        insertElement(receiptRow, transactionCostDetails);
+        var detailCount = 1;
+        var detailStart = 0;
+        console.log(selectedAccount);
+
+        if (selectedAccount === "Monthly Budget" || selectedAccount === "Debt") {
+          detailCount = 2;
+          console.log(detailCount);
+        }
+
+        console.log(detailCount);
+
+        while (detailStart < detailCount) {
+          var receiptDetail = document.createElement('p');
+          receiptDetail.classList.add('transaction-item-details__detail');
+          receiptDetail.classList.add('r__transaction-item-details__detail');
+          console.log(mainCategorySelect.firstChild.nextSibling.textContent);
+
+          if (selectedAccount === "Monthly Budget") {
+            if (detailStart === 0) {
+              receiptDetail.textContent = mainCategorySelect.firstChild.nextSibling.value;
+            }
+
+            if (detailStart === 1) {
+              receiptDetail.textContent = subCategorySelect.firstChild.nextSibling.value;
+            }
+          }
+
+          insertElement(transactionDetails, receiptDetail);
+          detailStart++;
+        }
+
+        console.log(transactionAmount, transactionAmount.firstChild.value, (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(transactionAmount.firstChild.value), money.format(Number(transactionAmount.value)));
+        var receiptDetailCost = document.createElement('p');
+        receiptDetailCost.classList.add('transaction-item-cost__cost');
+        receiptDetailCost.classList.add('r__transaction-item-cost__cost');
+        receiptDetailCost.textContent = money.format(Number(transactionAmount.firstChild.value));
+        insertElement(transactionCostDetails, receiptDetailCost);
+        var removeTransactionItemIcon = document.createElement('i');
+        removeTransactionItemIcon.classList.add('fas');
+        removeTransactionItemIcon.classList.add('fa-trash-alt');
+        removeTransactionItemIcon.classList.add('remove-transaction');
+        removeTransactionItemIcon.classList.add('r__remove-transaction');
+        removeTransactionItemIcon.classList.add('closed');
+        insertElement(transactionCostDetails, removeTransactionItemIcon);
+        removeTransactionItemIcon.addEventListener('click', function (e) {
+          var removeTransactionIcons = document.querySelectorAll('.remove-transaction');
+
+          var index = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(removeTransactionIcons).indexOf(e.target);
+
+          var receiptTransactions = document.querySelectorAll('.receipt-item-container__row');
+          receiptTransactions[index].remove();
+        });
+        receiptRow.addEventListener('mouseover', function (e) {
+          e.preventDefault();
+          removeTransactionItemIcon.classList.toggle('closed');
+          removeTransactionItemIcon.classList.toggle('open');
+        });
+        receiptRow.addEventListener('mouseout', function (e) {
+          e.preventDefault();
+          removeTransactionItemIcon.classList.toggle('closed');
+          removeTransactionItemIcon.classList.toggle('open');
+        });
+      }
     });
   }
 };

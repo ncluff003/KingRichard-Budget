@@ -1680,7 +1680,23 @@ html {
       .receipt-item-container {
         &__row {
           font-size: 1.3rem;
+          &:hover {
+            color: $colorOffWhite;
+            .transaction-item-cost {
+              .remove-transaction {
+                color: rgba($colorOffWhite, 0.8);
+              }
+            }
+          }
           .transaction-item-details {
+          }
+          .transaction-item-cost {
+            .remove-transaction {
+              color: rgba($primaryColor, 0.8);
+              &:hover {
+                color: $colorOffWhite;
+              }
+            }
           }
         }
       }

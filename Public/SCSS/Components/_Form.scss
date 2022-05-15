@@ -312,9 +312,25 @@
           .transaction-item-cost {
             @extend .transaction-item-details;
             justify-content: flex-end;
+            .remove-transaction {
+              margin-left: 1rem;
+              &:hover {
+                cursor: pointer;
+              }
+            }
           }
           &:nth-of-type(2n) {
             background-color: $colorLightestGrey;
+          }
+          &:hover {
+            cursor: pointer;
+            background-color: $primaryColor;
+            transition: background-color 0.5s;
+            .transaction-item-cost {
+              .remove-transaction {
+                transition: color 0.5s;
+              }
+            }
           }
         }
       }

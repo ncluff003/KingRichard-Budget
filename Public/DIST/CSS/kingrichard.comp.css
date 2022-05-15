@@ -1271,6 +1271,18 @@ html {
 .form__section--transaction-receipt .receipt-item-container__row {
   font-size: 1.3rem;
 }
+.form__section--transaction-receipt .receipt-item-container__row:hover {
+  color: #fafafa;
+}
+.form__section--transaction-receipt .receipt-item-container__row:hover .transaction-item-cost .remove-transaction {
+  color: rgba(250, 250, 250, 0.8);
+}
+.form__section--transaction-receipt .receipt-item-container__row .transaction-item-cost .remove-transaction {
+  color: rgba(130, 42, 186, 0.8);
+}
+.form__section--transaction-receipt .receipt-item-container__row .transaction-item-cost .remove-transaction:hover {
+  color: #fafafa;
+}
 .form__section--debt, .form__section--debt-paid {
   color: #822aba;
   font-size: 1.6rem;
@@ -34411,8 +34423,22 @@ html {
 .form__section--transaction-receipt .receipt-item-container__row .transaction-item-cost {
   justify-content: flex-end;
 }
+.form__section--transaction-receipt .receipt-item-container__row .transaction-item-cost .remove-transaction {
+  margin-left: 1rem;
+}
+.form__section--transaction-receipt .receipt-item-container__row .transaction-item-cost .remove-transaction:hover {
+  cursor: pointer;
+}
 .form__section--transaction-receipt .receipt-item-container__row:nth-of-type(2n) {
   background-color: #dddddd;
+}
+.form__section--transaction-receipt .receipt-item-container__row:hover {
+  cursor: pointer;
+  background-color: #822aba;
+  transition: background-color 0.5s;
+}
+.form__section--transaction-receipt .receipt-item-container__row:hover .transaction-item-cost .remove-transaction {
+  transition: color 0.5s;
 }
 .form__section--transaction-receipt .receipt-footer {
   justify-content: space-around;
