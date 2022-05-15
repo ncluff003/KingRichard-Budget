@@ -4365,6 +4365,7 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
     debtTransactionOptions,
     tithingTransactionsOptions,
   ];
+  let transaction;
   if (addTransactionItemButton) {
     addTransactionItemButton.addEventListener('click', (e) => {
       e.preventDefault();
@@ -4373,7 +4374,8 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
         return transactionCreationContainer.classList.toggle('closed');
       }
       if (transactionCreationContainer.classList.contains('closed')) {
-        return transactionCreationContainer.classList.toggle('open');
+        transactionCreationContainer.classList.toggle('open');
+        return (transaction = new Transaction.Transaction({ date: transactionHeaderInputs[0].value, location: transactionHeaderInputsTwo[0].value }));
       }
     });
   }
@@ -4425,7 +4427,8 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
       console.log(`Saving...`);
       console.log(transactionHeaderInputs, transactionHeaderInputsTwo);
       if (selectedAccount !== `Investment`) {
-        let transaction = new Transaction.Transaction({ date: transactionHeaderInputs[0].value, type: `Withdrawal`, location: transactionHeaderInputsTwo[0].value });
+        // let transaction = new Transaction.Transaction({ date: transactionHeaderInputs[0].value, type: `Withdrawal`, location: transactionHeaderInputsTwo[0].value });
+        transaction.transactionType = `Withdrawal`;
         console.log(transaction);
         const receiptRow = document.createElement('section');
         receiptRow.classList.add('receipt-item-container__row');
@@ -4488,6 +4491,7 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
           let index = [...removeTransactionIcons].indexOf(e.target);
           let receiptTransactions = document.querySelectorAll('.receipt-item-container__row');
           receiptTransactions[index].remove();
+          transaction.removeFromReceipt(index);
         });
 
         receiptRow.addEventListener('mouseover', (e) => {
@@ -4500,6 +4504,14 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
           removeTransactionItemIcon.classList.toggle('closed');
           removeTransactionItemIcon.classList.toggle('open');
         });
+
+        transaction.addToReceipt({
+          mainCategory: mainCategorySelect.firstChild.nextSibling.value,
+          subCategory: subCategorySelect.firstChild.nextSibling.value,
+          description: transactionDescription.firstChild.value,
+          amount: Number(transactionAmount.firstChild.value),
+        });
+        console.log(transaction, transaction.receipt);
       }
     });
   }

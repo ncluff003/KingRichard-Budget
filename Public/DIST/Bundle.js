@@ -13174,6 +13174,7 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
   var debtTransactionOptions = buildTransactionOptions([transactionTiming, transactionLender, transactionItem, transactionDescription, transactionAmount, transactionSaveButton]);
   var tithingTransactionsOptions = buildTransactionOptions([transactionAmount, transactionSaveButton]);
   var allTransactionOptions = [monthlyBudgetTransactionOptions, emergencyFundTransactionsOptions, savingsFundTransactionOptions, expenseFundTransactionOptions, surplusTransactionOptions, investmentTransactionOptions, debtTransactionOptions, tithingTransactionsOptions];
+  var transaction;
 
   if (addTransactionItemButton) {
     addTransactionItemButton.addEventListener('click', function (e) {
@@ -13185,7 +13186,11 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
       }
 
       if (transactionCreationContainer.classList.contains('closed')) {
-        return transactionCreationContainer.classList.toggle('open');
+        transactionCreationContainer.classList.toggle('open');
+        return transaction = new _Transaction__WEBPACK_IMPORTED_MODULE_10__.Transaction({
+          date: transactionHeaderInputs[0].value,
+          location: transactionHeaderInputsTwo[0].value
+        });
       }
     });
   }
@@ -13246,11 +13251,8 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
       console.log(transactionHeaderInputs, transactionHeaderInputsTwo);
 
       if (selectedAccount !== "Investment") {
-        var transaction = new _Transaction__WEBPACK_IMPORTED_MODULE_10__.Transaction({
-          date: transactionHeaderInputs[0].value,
-          type: "Withdrawal",
-          location: transactionHeaderInputsTwo[0].value
-        });
+        // let transaction = new Transaction.Transaction({ date: transactionHeaderInputs[0].value, type: `Withdrawal`, location: transactionHeaderInputsTwo[0].value });
+        transaction.transactionType = "Withdrawal";
         console.log(transaction);
         var receiptRow = document.createElement('section');
         receiptRow.classList.add('receipt-item-container__row');
@@ -13315,6 +13317,7 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
 
           var receiptTransactions = document.querySelectorAll('.receipt-item-container__row');
           receiptTransactions[index].remove();
+          transaction.removeFromReceipt(index);
         });
         receiptRow.addEventListener('mouseover', function (e) {
           e.preventDefault();
@@ -13326,6 +13329,13 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
           removeTransactionItemIcon.classList.toggle('closed');
           removeTransactionItemIcon.classList.toggle('open');
         });
+        transaction.addToReceipt({
+          mainCategory: mainCategorySelect.firstChild.nextSibling.value,
+          subCategory: subCategorySelect.firstChild.nextSibling.value,
+          description: transactionDescription.firstChild.value,
+          amount: Number(transactionAmount.firstChild.value)
+        });
+        console.log(transaction, transaction.receipt);
       }
     });
   }
@@ -14015,8 +14025,8 @@ var Transaction = /*#__PURE__*/function () {
   function Transaction(options) {
     (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, Transaction);
 
-    this.transactionDate = new Date(new Date(options.date).setHours(new Date(options.date).getHours() + new Date().getTimezoneOffset() / 60));
-    this.transactionType = options.type;
+    this.transactionDate = new Date(new Date(options.date).setHours(new Date(options.date).getHours() + new Date().getTimezoneOffset() / 60)); // this.transactionType = options.type;
+
     this.location = options.location;
     this.receipt = [];
   }
@@ -14024,8 +14034,9 @@ var Transaction = /*#__PURE__*/function () {
   (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(Transaction, [{
     key: "addToReceipt",
     value: function addToReceipt(options) {
+      var receiptObject = {};
+
       if (this.transactionType === "Deposit") {
-        var receiptObject = {};
         receiptObject.account = options.account;
         receiptObject.grossAmount = options.grossAmount;
         receiptObject.netAmount = options.netAmount;
@@ -14039,6 +14050,27 @@ var Transaction = /*#__PURE__*/function () {
 
         this.receipt.push(receiptObject);
       }
+
+      if (this.transactionType === "Withdrawal") {
+        receiptObject.category = options.mainCategory;
+        receiptObject.subCategory = options.subCategory;
+        receiptObject.amount = options.amount;
+
+        if (options.description) {
+          receiptObject.description = options.description;
+        }
+      }
+
+      this.receipt.push(receiptObject);
+    }
+  }, {
+    key: "removeFromReceipt",
+    value: function removeFromReceipt(index) {
+      var _this = this;
+
+      this.receipt = this.receipt.filter(function (item, i) {
+        if (item !== _this.receipt[index]) return item;
+      });
     }
   }]);
 
