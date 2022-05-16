@@ -20,6 +20,7 @@ export class Transaction {
         }
       }
       if (options.accountSelected === `Investment Fund`) {
+        if (this.transactionType === `Withdrawal`) return;
         receiptObject.transactionType = options.transactionType;
         receiptObject.transactionName = options.transactionName;
         receiptObject.description = options.description;

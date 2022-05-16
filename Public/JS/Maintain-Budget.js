@@ -4315,6 +4315,7 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
 
   ////////////////////////////////////////////
   // INITIALIZE TRANSACTION OPTIONS
+  const smallContainerButtons = document.querySelectorAll('.button--small-container-header');
   const transactionSelects = document.querySelectorAll('.form__section--select');
   const transactionOptions = document.querySelectorAll('.form__section--transaction-option');
   const transactionButtons = document.querySelectorAll('.button--transaction-button');
@@ -4322,6 +4323,8 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
   const transactionCost = document.querySelector('.container--small__transaction-total__amount');
   const transactionHeaderInputs = document.querySelectorAll('.form__input--small-thinner');
   const transactionHeaderInputsTwo = document.querySelectorAll('.form__input--small-thinner__wide');
+  const transactionSubmitButton = smallContainerButtons[1];
+  console.log(smallContainerButtons);
   console.log(transactionSelects, transactionOptions, transactionButtons, transactionCreationContainer);
 
   const accountSelection = transactionSelects[0];
@@ -4380,7 +4383,7 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
       }
     });
   }
-  console.log([...accountSelection.firstChild.nextSibling.children]);
+
   if (accountSelection) {
     let selectedAccount;
     [...accountSelection.firstChild.nextSibling.children].forEach((option) => {
@@ -4595,7 +4598,11 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
           });
         }
       }
+      console.log(selectedAccount);
       if (selectedAccount === `Investment Fund`) {
+        console.log(selectedAccount);
+        if (transaction.transactionType) return;
+        console.log(selectedAccount);
         transaction.transactionType = `Deposit`;
 
         const receiptRow = document.createElement('section');
@@ -4679,6 +4686,72 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
         }
       }
       console.log(transaction, transaction.receipt);
+      const fullTransactionCost = document.querySelectorAll('.container--small__transaction-total__amount')[0];
+      let receiptCost = 0;
+      transaction.receipt.forEach((receiptItem, i) => {
+        return (receiptCost = receiptCost += receiptItem.amount);
+      });
+      console.log(receiptCost);
+      fullTransactionCost.textContent = money.format(receiptCost);
+    });
+    transactionSubmitButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      let updateObject = {
+        budgetId: budget._id,
+        userId: user._id,
+      };
+      placeholderBudget.transactions.recentTransactions.push(transaction);
+      // console.log(placeholderBudget);
+      updateObject.transactions = placeholderBudget.transactions;
+      console.log(updateObject);
+      updateObject.transactions.recentTransactions[updateObject.transactions.recentTransactions.length - 1].receipt.forEach((receiptItem, i) => {
+        console.log(receiptItem);
+        if (receiptItem.account === `Monthly Budget`) {
+          placeholderBudget.accounts.monthlyBudget.amount = placeholderBudget.accounts.monthlyBudget.amount - Number(receiptItem.amount);
+        }
+        if (receiptItem.account === `Emergency Fund`) {
+          placeholderBudget.accounts.emergencyFund.amount = placeholderBudget.accounts.emergencyFund.amount - Number(receiptItem.amount);
+        }
+        if (receiptItem.account === `Savings Fund`) {
+          placeholderBudget.accounts.savingsFund.amount = placeholderBudget.accounts.savingsFund.amount - Number(receiptItem.amount);
+        }
+        if (receiptItem.account === `Expense Fund`) {
+          placeholderBudget.accounts.expenseFund.amount = placeholderBudget.accounts.expenseFund.amount - Number(receiptItem.amount);
+        }
+        if (receiptItem.account === `Surplus`) {
+          placeholderBudget.accounts.surlus.amount = placeholderBudget.accounts.surplus.amount - Number(receiptItem.amount);
+        }
+        if (receiptItem.account === `Investment Fund`) {
+          if (!placeholderBudget.accounts.investmentFund.investedAmount) placeholderBudget.accounts.investmentFund.investedAmount = 0;
+          placeholderBudget.accounts.investmentFund.amount = placeholderBudget.accounts.investmentFund.amount - Number(receiptItem.amount);
+          placeholderBudget.accounts.investmentFund.investedAmount = placeholderBudget.accounts.investmentFund.investedAmount + Number(receiptItem.amount);
+          let investmentObject = {
+            investmentType: receiptItem.transactionType,
+            investmentName: receiptItem.transactionName,
+            investmentDescription: receiptItem.description,
+            initialInvestment: receiptItem.amount,
+            currentValue: receiptItem.amount,
+            settled: false,
+            valueDifference: 0,
+          };
+          placeholderBudget.investments.push(investmentObject);
+          updateObject.investments = placeholderBudget.investments;
+        }
+        if (receiptItem.account === `Debt`) {
+          placeholderBudget.accounts.debt.amount = placeholderBudget.accounts.debt.amount - Number(receiptItem.amount);
+          /* After reducing the amount that is allocated to the debt account, there needs to be a reduction of the debt amount through reducing the current amount owed for the debt that was selected.
+
+          To do that we need to:
+          1) Find the exact debt that is being paid.
+          2) From there, reduce it's amountOwed amount.
+
+          There is more steps to each of those, especially the first, but that is what needs to be done.
+          */
+        }
+      });
+      updateObject.accounts = placeholderBudget.accounts;
+      console.log(updateObject);
+      placeholderBudget._updateBudget(`Update`, `Enter Transaction`, { updateObject: updateObject }, `Dashboard`);
     });
   }
 };

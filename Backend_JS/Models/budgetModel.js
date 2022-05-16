@@ -85,6 +85,13 @@ const budgetSchema = new mongoose.Schema({
         type: Number,
         required: [true, `Every Budget Needs A Percentage Set`],
       },
+      /* 
+        Recently, I figured that with the transaction of an investment, the investment acount will need an amount for the allocated funds which have NOT been invested as well as having a value for the 'invested' allocated income.  This will not be reflected in the investment fund total on the page, but rather, it should be reflected in the database and the dashboard under under the bank total, and also affect something like the surplus algorithms.
+      */
+      investedAmount: {
+        type: Number,
+        default: 0,
+      },
       amount: {
         type: Number,
         default: 0,

@@ -267,6 +267,11 @@ export class Budget {
         Manage.updateMyBudget(options.updateObject, pageLink);
       }
 
+      if (update === `Enter Transaction`) {
+        console.log(`Entering...`, options);
+        Manage.updateMyBudget(options.updateObject, pageLink);
+      }
+
       console.log(`Updating...`);
     }
   }
