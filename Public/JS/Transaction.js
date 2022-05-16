@@ -20,10 +20,16 @@ export class Transaction {
       this.receipt.push(receiptObject);
     }
     if (this.transactionType === `Withdrawal`) {
-      receiptObject.category = options.mainCategory;
-      receiptObject.subCategory = options.subCategory;
-      receiptObject.amount = options.amount;
-      if (options.description) {
+      if ((options.accountSelected = `Monthly Budget`)) {
+        receiptObject.category = options.mainCategory;
+        receiptObject.subCategory = options.subCategory;
+        receiptObject.amount = options.amount;
+        if (options.description) {
+          receiptObject.description = options.description;
+        }
+      }
+      if (options.accountSelected === `Emergency Fund`) {
+        receiptObject.amount = options.amount;
         receiptObject.description = options.description;
       }
     }

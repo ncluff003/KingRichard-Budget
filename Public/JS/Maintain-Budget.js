@@ -4029,7 +4029,7 @@ const showTransactionOptions = (budget, placeholderBudget, user, optionText, tra
         });
       }
     }
-    if (optionText === `Investment`) {
+    if (optionText === `Investment Fund`) {
       option.classList.remove('raised');
       if (i === 1) {
         option.classList.add('lowered');
@@ -4405,7 +4405,7 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
           showTransactionOptions(budget, placeholderBudget, user, option.textContent, allTransactionOptions, surplusTransactionOptions);
           selectedAccount = option.textContent;
         }
-        if (option.textContent === `Investment`) {
+        if (option.textContent === `Investment Fund`) {
           showTransactionOptions(budget, placeholderBudget, user, option.textContent, allTransactionOptions, investmentTransactionOptions);
           selectedAccount = option.textContent;
         }
@@ -4467,6 +4467,29 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
               receiptDetail.textContent = subCategorySelect.firstChild.nextSibling.value;
             }
           }
+          if (selectedAccount === `Emergency Fund`) {
+            if (detailStart === 0) {
+              receiptDetail.textContent = transactionDescription.firstChild.value;
+            }
+          }
+          if (selectedAccount === `Savings Fund` || selectedAccount === `Expense Fund` || selectedAccount === `Surplus`) {
+            if (detailStart === 0) {
+              receiptDetail.textContent = transactionItem.firstChild.nextSibling.value;
+            }
+          }
+          if (selectedAccount === `Investment Fund`) {
+            if (detailStart === 0) {
+              receiptDetail.textContent = transactionName.firstChild.value;
+            }
+          }
+          if (selectedAccount === `Debt`) {
+            if (detailStart === 0) {
+              receiptDetail.textContent = transactionLender.firstChild.nextSibling.value;
+            }
+            if (detailStart === 1) {
+              receiptDetail.textContent = transactionItem.firstChild.nextSibling.value;
+            }
+          }
           insertElement(transactionDetails, receiptDetail);
           detailStart++;
         }
@@ -4504,13 +4527,22 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
           removeTransactionItemIcon.classList.toggle('closed');
           removeTransactionItemIcon.classList.toggle('open');
         });
-
-        transaction.addToReceipt({
-          mainCategory: mainCategorySelect.firstChild.nextSibling.value,
-          subCategory: subCategorySelect.firstChild.nextSibling.value,
-          description: transactionDescription.firstChild.value,
-          amount: Number(transactionAmount.firstChild.value),
-        });
+        if (selectedAccount === `Monthly Budget`) {
+          transaction.addToReceipt({
+            mainCategory: mainCategorySelect.firstChild.nextSibling.value,
+            subCategory: subCategorySelect.firstChild.nextSibling.value,
+            description: transactionDescription.firstChild.value,
+            amount: Number(transactionAmount.firstChild.value),
+            accountSelected: selectedAccount,
+          });
+        }
+        if (selectedAccount === `Emergency Fund`) {
+          transaction.addToReceipt({
+            description: transactionDescription.firstChild.value,
+            amount: Number(transactionAmount.firstChild.value),
+            accountSelected: selectedAccount,
+          });
+        }
         console.log(transaction, transaction.receipt);
       }
     });

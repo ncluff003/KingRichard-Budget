@@ -12,7 +12,7 @@ form.form--transaction.r__form--transaction(method="POST" action=`/users/${data.
       button.button--transaction-button.r__button--transaction-button(type="button") Add item
   section.form__section--transaction-item-creation.r__form__section--transaction-item-creation.closed
     section.form__section--select.r__form__section--select
-      - let accounts = [`Monthly Budget`,`Emergency Fund`,`Savings Fund`,`Expense Fund`,`Surplus`, `Investment`,`Debt`,`Tithing`]; 
+      - let accounts = [`Monthly Budget`,`Emergency Fund`,`Savings Fund`,`Expense Fund`,`Surplus`, `Investment Fund`,`Debt`,`Tithing`]; 
       - if (data.user.latterDaySaint === false) accounts = accounts.filter((a, i) => { if (a !== `Tithing`) return a});
         label.form__label--select.r__form__label--select Accounts
         select.form__select--accounts.r__form__select--accounts

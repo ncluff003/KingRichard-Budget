@@ -12831,7 +12831,7 @@ var showTransactionOptions = function showTransactionOptions(budget, placeholder
       }
     }
 
-    if (optionText === "Investment") {
+    if (optionText === "Investment Fund") {
       option.classList.remove('raised');
 
       if (i === 1) {
@@ -13227,7 +13227,7 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
           selectedAccount = option.textContent;
         }
 
-        if (option.textContent === "Investment") {
+        if (option.textContent === "Investment Fund") {
           showTransactionOptions(budget, placeholderBudget, user, option.textContent, allTransactionOptions, investmentTransactionOptions);
           selectedAccount = option.textContent;
         }
@@ -13293,6 +13293,34 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
             }
           }
 
+          if (selectedAccount === "Emergency Fund") {
+            if (detailStart === 0) {
+              receiptDetail.textContent = transactionDescription.firstChild.value;
+            }
+          }
+
+          if (selectedAccount === "Savings Fund" || selectedAccount === "Expense Fund" || selectedAccount === "Surplus") {
+            if (detailStart === 0) {
+              receiptDetail.textContent = transactionItem.firstChild.nextSibling.value;
+            }
+          }
+
+          if (selectedAccount === "Investment Fund") {
+            if (detailStart === 0) {
+              receiptDetail.textContent = transactionName.firstChild.value;
+            }
+          }
+
+          if (selectedAccount === "Debt") {
+            if (detailStart === 0) {
+              receiptDetail.textContent = transactionLender.firstChild.nextSibling.value;
+            }
+
+            if (detailStart === 1) {
+              receiptDetail.textContent = transactionItem.firstChild.nextSibling.value;
+            }
+          }
+
           insertElement(transactionDetails, receiptDetail);
           detailStart++;
         }
@@ -13329,12 +13357,25 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
           removeTransactionItemIcon.classList.toggle('closed');
           removeTransactionItemIcon.classList.toggle('open');
         });
-        transaction.addToReceipt({
-          mainCategory: mainCategorySelect.firstChild.nextSibling.value,
-          subCategory: subCategorySelect.firstChild.nextSibling.value,
-          description: transactionDescription.firstChild.value,
-          amount: Number(transactionAmount.firstChild.value)
-        });
+
+        if (selectedAccount === "Monthly Budget") {
+          transaction.addToReceipt({
+            mainCategory: mainCategorySelect.firstChild.nextSibling.value,
+            subCategory: subCategorySelect.firstChild.nextSibling.value,
+            description: transactionDescription.firstChild.value,
+            amount: Number(transactionAmount.firstChild.value),
+            accountSelected: selectedAccount
+          });
+        }
+
+        if (selectedAccount === "Emergency Fund") {
+          transaction.addToReceipt({
+            description: transactionDescription.firstChild.value,
+            amount: Number(transactionAmount.firstChild.value),
+            accountSelected: selectedAccount
+          });
+        }
+
         console.log(transaction, transaction.receipt);
       }
     });
@@ -14052,11 +14093,18 @@ var Transaction = /*#__PURE__*/function () {
       }
 
       if (this.transactionType === "Withdrawal") {
-        receiptObject.category = options.mainCategory;
-        receiptObject.subCategory = options.subCategory;
-        receiptObject.amount = options.amount;
+        if (options.accountSelected = "Monthly Budget") {
+          receiptObject.category = options.mainCategory;
+          receiptObject.subCategory = options.subCategory;
+          receiptObject.amount = options.amount;
 
-        if (options.description) {
+          if (options.description) {
+            receiptObject.description = options.description;
+          }
+        }
+
+        if (options.accountSelected === "Emergency Fund") {
+          receiptObject.amount = options.amount;
           receiptObject.description = options.description;
         }
       }
