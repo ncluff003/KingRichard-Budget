@@ -8,22 +8,32 @@ export class Transaction {
   addToReceipt(options) {
     let receiptObject = {};
     if (this.transactionType === `Deposit`) {
-      receiptObject.account = options.account;
-      receiptObject.grossAmount = options.grossAmount;
-      receiptObject.netAmount = options.netAmount;
-      receiptObject.amount = options.deposited;
-      if (options.user.latterDaySaint === true) {
-        if (options.budget.accounts.tithing.tithingSetting !== `Surplus`) {
-          receiptObject.tithed = options.tithed;
+      if (options.accountSelected === `Un-Allocated`) {
+        receiptObject.account = options.account;
+        receiptObject.grossAmount = options.grossAmount;
+        receiptObject.netAmount = options.netAmount;
+        receiptObject.amount = options.deposited;
+        if (options.user.latterDaySaint === true) {
+          if (options.budget.accounts.tithing.tithingSetting !== `Surplus`) {
+            receiptObject.tithed = options.tithed;
+          }
         }
       }
-      this.receipt.push(receiptObject);
+      if (options.accountSelected === `Investment Fund`) {
+        receiptObject.transactionType = options.transactionType;
+        receiptObject.transactionName = options.transactionName;
+        receiptObject.description = options.description;
+        receiptObject.amount = options.amount;
+        receiptObject.account = options.accountSelected;
+      }
+      return this.receipt.push(receiptObject);
     }
     if (this.transactionType === `Withdrawal`) {
-      if ((options.accountSelected = `Monthly Budget`)) {
+      if (options.accountSelected === `Monthly Budget`) {
         receiptObject.category = options.mainCategory;
         receiptObject.subCategory = options.subCategory;
         receiptObject.amount = options.amount;
+        receiptObject.account = options.accountSelected;
         if (options.description) {
           receiptObject.description = options.description;
         }
@@ -31,9 +41,40 @@ export class Transaction {
       if (options.accountSelected === `Emergency Fund`) {
         receiptObject.amount = options.amount;
         receiptObject.description = options.description;
+        receiptObject.account = options.accountSelected;
+      }
+      if (options.accountSelected === `Savings Fund`) {
+        receiptObject.timing = options.timing;
+        receiptObject.expenditure = options.expenditure;
+        receiptObject.amount = options.amount;
+        receiptObject.description = options.description;
+        receiptObject.account = options.accountSelected;
+      }
+      if (options.accountSelected === `Expense Fund`) {
+        receiptObject.transactionType = options.transactionType;
+        receiptObject.timing = options.timing;
+        receiptObject.expenditure = options.expenditure;
+        receiptObject.description = options.description;
+        receiptObject.amount = options.amount;
+        receiptObject.account = options.accountSelected;
+      }
+      if (options.accountSelected === `Surplus`) {
+        receiptObject.timing = options.timing;
+        receiptObject.expenditure = options.expenditure;
+        receiptObject.description = options.description;
+        receiptObject.amount = options.amount;
+        receiptObject.account = options.accountSelected;
+      }
+      if (options.accountSelected === `Debt`) {
+        receiptObject.timing = options.timing;
+        receiptObject.lender = options.lender;
+        receiptObject.expenditure = options.expenditure;
+        receiptObject.description = options.description;
+        receiptObject.amount = options.amount;
+        receiptObject.account = options.accountSelected;
       }
     }
-    this.receipt.push(receiptObject);
+    return this.receipt.push(receiptObject);
   }
   removeFromReceipt(index) {
     this.receipt = this.receipt.filter((item, i) => {

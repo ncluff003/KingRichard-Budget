@@ -271,6 +271,9 @@ const budgetSchema = new mongoose.Schema({
               type: Number,
               required: [true, `Every Transaction Had An Ammount.`],
             },
+            transactionName: {
+              type: String,
+            },
             description: {
               type: String,
             },

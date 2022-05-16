@@ -12996,6 +12996,7 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
           location: incomeFromInput.value
         });
         transaction.addToReceipt({
+          accountSelected: "Un-Allocated",
           account: "Un-Allocated",
           grossAmount: Number(grossIncomeInput.value),
           netAmount: Number(netIncomeInput.value),
@@ -13195,6 +13196,8 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
     });
   }
 
+  console.log((0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(accountSelection.firstChild.nextSibling.children));
+
   if (accountSelection) {
     var selectedAccount;
 
@@ -13202,44 +13205,52 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
       option.addEventListener('click', function (e) {
         e.preventDefault();
 
-        if (option.textContent === "Monthly Budget") {
-          showTransactionOptions(budget, placeholderBudget, user, option.textContent, allTransactionOptions, monthlyBudgetTransactionOptions);
-          selectedAccount = option.textContent;
+        if (option.value === "Monthly Budget") {
+          showTransactionOptions(budget, placeholderBudget, user, option.value, allTransactionOptions, monthlyBudgetTransactionOptions);
+          selectedAccount = option.value;
+          console.log(selectedAccount);
         }
 
-        if (option.textContent === "Emergency Fund") {
-          showTransactionOptions(budget, placeholderBudget, user, option.textContent, allTransactionOptions, emergencyFundTransactionsOptions);
-          selectedAccount = option.textContent;
+        if (option.value === "Emergency Fund") {
+          showTransactionOptions(budget, placeholderBudget, user, option.value, allTransactionOptions, emergencyFundTransactionsOptions);
+          selectedAccount = option.value;
+          console.log(selectedAccount);
         }
 
-        if (option.textContent === "Savings Fund") {
-          showTransactionOptions(budget, placeholderBudget, user, option.textContent, allTransactionOptions, savingsFundTransactionOptions);
-          selectedAccount = option.textContent;
+        if (option.value === "Savings Fund") {
+          showTransactionOptions(budget, placeholderBudget, user, option.value, allTransactionOptions, savingsFundTransactionOptions);
+          selectedAccount = option.value;
+          console.log(selectedAccount);
         }
 
-        if (option.textContent === "Expense Fund") {
-          showTransactionOptions(budget, placeholderBudget, user, option.textContent, allTransactionOptions, expenseFundTransactionOptions);
-          selectedAccount = option.textContent;
+        if (option.value === "Expense Fund") {
+          showTransactionOptions(budget, placeholderBudget, user, option.value, allTransactionOptions, expenseFundTransactionOptions);
+          selectedAccount = option.value;
+          console.log(selectedAccount);
         }
 
-        if (option.textContent === "Surplus") {
-          showTransactionOptions(budget, placeholderBudget, user, option.textContent, allTransactionOptions, surplusTransactionOptions);
-          selectedAccount = option.textContent;
+        if (option.value === "Surplus") {
+          showTransactionOptions(budget, placeholderBudget, user, option.value, allTransactionOptions, surplusTransactionOptions);
+          selectedAccount = option.value;
+          console.log(selectedAccount);
         }
 
-        if (option.textContent === "Investment Fund") {
-          showTransactionOptions(budget, placeholderBudget, user, option.textContent, allTransactionOptions, investmentTransactionOptions);
-          selectedAccount = option.textContent;
+        if (option.value === "Investment Fund") {
+          showTransactionOptions(budget, placeholderBudget, user, option.value, allTransactionOptions, investmentTransactionOptions);
+          selectedAccount = option.value;
+          console.log(selectedAccount);
         }
 
-        if (option.textContent === "Debt") {
-          showTransactionOptions(budget, placeholderBudget, user, option.textContent, allTransactionOptions, debtTransactionOptions);
-          selectedAccount = option.textContent;
+        if (option.value === "Debt") {
+          showTransactionOptions(budget, placeholderBudget, user, option.value, allTransactionOptions, debtTransactionOptions);
+          selectedAccount = option.value;
+          console.log(selectedAccount);
         }
 
-        if (option.textContent === "Tithing") {
-          showTransactionOptions(budget, placeholderBudget, user, option.textContent, allTransactionOptions, tithingTransactionsOptions);
-          selectedAccount = option.textContent;
+        if (option.value === "Tithing") {
+          showTransactionOptions(budget, placeholderBudget, user, option.value, allTransactionOptions, tithingTransactionsOptions);
+          selectedAccount = option.value;
+          console.log(selectedAccount);
         }
       });
     });
@@ -13249,8 +13260,9 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
       e.preventDefault();
       console.log("Saving...");
       console.log(transactionHeaderInputs, transactionHeaderInputsTwo);
+      console.log(selectedAccount);
 
-      if (selectedAccount !== "Investment") {
+      if (selectedAccount !== "Investment Fund") {
         // let transaction = new Transaction.Transaction({ date: transactionHeaderInputs[0].value, type: `Withdrawal`, location: transactionHeaderInputsTwo[0].value });
         transaction.transactionType = "Withdrawal";
         console.log(transaction);
@@ -13282,6 +13294,7 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
           receiptDetail.classList.add('transaction-item-details__detail');
           receiptDetail.classList.add('r__transaction-item-details__detail');
           console.log(mainCategorySelect.firstChild.nextSibling.textContent);
+          console.log(selectedAccount);
 
           if (selectedAccount === "Monthly Budget") {
             if (detailStart === 0) {
@@ -13357,6 +13370,7 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
           removeTransactionItemIcon.classList.toggle('closed');
           removeTransactionItemIcon.classList.toggle('open');
         });
+        console.log(selectedAccount);
 
         if (selectedAccount === "Monthly Budget") {
           transaction.addToReceipt({
@@ -13376,8 +13390,165 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
           });
         }
 
-        console.log(transaction, transaction.receipt);
+        if (selectedAccount === "Savings Fund") {
+          console.log(selectedAccount);
+          transaction.addToReceipt({
+            timing: transactionTiming.firstChild.nextSibling.value,
+            expenditure: transactionItem.firstChild.nextSibling.value,
+            description: transactionDescription.firstChild.value,
+            amount: Number(transactionAmount.firstChild.value),
+            accountSelected: selectedAccount
+          });
+        }
+
+        if (selectedAccount === "Expense Fund") {
+          transaction.addToReceipt({
+            transactionType: transactionType.firstChild.nextSibling.value,
+            timing: transactionTiming.firstChild.nextSibling.value,
+            expenditure: transactionItem.firstChild.nextSibling.value,
+            description: transactionDescription.firstChild.value,
+            amount: Number(transactionAmount.firstChild.value),
+            accountSelected: selectedAccount
+          });
+        }
+
+        if (selectedAccount === "Surplus") {
+          transaction.addToReceipt({
+            timing: transactionTiming.firstChild.nextSibling.value,
+            expenditure: transactionItem.firstChild.nextSibling.value,
+            description: transactionDescription.firstChild.value,
+            amount: Number(transactionAmount.firstChild.value),
+            accountSelected: selectedAccount
+          });
+        }
+
+        if (selectedAccount === "Debt") {
+          transaction.addToReceipt({
+            timing: transactionTiming.firstChild.nextSibling.value,
+            lender: transactionLender.firstChild.nextSibling.value,
+            expenditure: transactionItem.firstChild.nextSibling.value,
+            description: transactionDescription.firstChild.value,
+            amount: Number(transactionAmount.firstChild.value),
+            accountSelected: selectedAccount
+          });
+        }
       }
+
+      if (selectedAccount === "Investment Fund") {
+        transaction.transactionType = "Deposit";
+
+        var _receiptRow = document.createElement('section');
+
+        _receiptRow.classList.add('receipt-item-container__row');
+
+        _receiptRow.classList.add('r__receipt-item-container__row');
+
+        insertElement(receiptItemContainer, _receiptRow);
+
+        var _transactionDetails = document.createElement('section');
+
+        _transactionDetails.classList.add('transaction-item-details');
+
+        _transactionDetails.classList.add('r__transaction-item-details');
+
+        insertElement(_receiptRow, _transactionDetails);
+
+        var _transactionCostDetails = document.createElement('section');
+
+        _transactionCostDetails.classList.add('transaction-item-cost');
+
+        _transactionCostDetails.classList.add('r__transaction-item-cost');
+
+        insertElement(_receiptRow, _transactionCostDetails);
+        var _detailCount = 1;
+        var _detailStart = 0;
+
+        while (_detailStart < _detailCount) {
+          var _receiptDetail = document.createElement('p');
+
+          _receiptDetail.classList.add('transaction-item-details__detail');
+
+          _receiptDetail.classList.add('r__transaction-item-details__detail');
+
+          console.log(mainCategorySelect.firstChild.nextSibling.textContent);
+          console.log(selectedAccount);
+
+          if (selectedAccount === "Investment Fund") {
+            if (_detailStart === 0) {
+              _receiptDetail.textContent = transactionName.firstChild.value;
+            }
+          }
+
+          insertElement(_transactionDetails, _receiptDetail);
+          _detailStart++;
+        }
+
+        console.log(transactionAmount, transactionAmount.firstChild.value, (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(transactionAmount.firstChild.value), money.format(Number(transactionAmount.value)));
+
+        var _receiptDetailCost = document.createElement('p');
+
+        _receiptDetailCost.classList.add('transaction-item-cost__cost');
+
+        _receiptDetailCost.classList.add('r__transaction-item-cost__cost');
+
+        _receiptDetailCost.textContent = money.format(Number(transactionAmount.firstChild.value));
+        insertElement(_transactionCostDetails, _receiptDetailCost);
+
+        var _removeTransactionItemIcon = document.createElement('i');
+
+        _removeTransactionItemIcon.classList.add('fas');
+
+        _removeTransactionItemIcon.classList.add('fa-trash-alt');
+
+        _removeTransactionItemIcon.classList.add('remove-transaction');
+
+        _removeTransactionItemIcon.classList.add('r__remove-transaction');
+
+        _removeTransactionItemIcon.classList.add('closed');
+
+        insertElement(_transactionCostDetails, _removeTransactionItemIcon);
+
+        _removeTransactionItemIcon.addEventListener('click', function (e) {
+          var removeTransactionIcons = document.querySelectorAll('.remove-transaction');
+
+          var index = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(removeTransactionIcons).indexOf(e.target);
+
+          var receiptTransactions = document.querySelectorAll('.receipt-item-container__row');
+          receiptTransactions[index].remove();
+          transaction.removeFromReceipt(index);
+        });
+
+        _receiptRow.addEventListener('mouseover', function (e) {
+          e.preventDefault();
+
+          _removeTransactionItemIcon.classList.toggle('closed');
+
+          _removeTransactionItemIcon.classList.toggle('open');
+        });
+
+        _receiptRow.addEventListener('mouseout', function (e) {
+          e.preventDefault();
+
+          _removeTransactionItemIcon.classList.toggle('closed');
+
+          _removeTransactionItemIcon.classList.toggle('open');
+        });
+
+        console.log(selectedAccount);
+
+        if (selectedAccount === "Investment Fund") {
+          transaction.addToReceipt({
+            user: user,
+            transactionType: transactionType.firstChild.nextSibling.value,
+            transactionName: transactionName.firstChild.value,
+            description: transactionDescription.firstChild.value,
+            amount: Number(transactionAmount.firstChild.value),
+            accountSelected: selectedAccount
+          });
+        }
+      }
+
+      console.log(transaction, transaction.receipt);
     });
   }
 };
@@ -14078,25 +14249,36 @@ var Transaction = /*#__PURE__*/function () {
       var receiptObject = {};
 
       if (this.transactionType === "Deposit") {
-        receiptObject.account = options.account;
-        receiptObject.grossAmount = options.grossAmount;
-        receiptObject.netAmount = options.netAmount;
-        receiptObject.amount = options.deposited;
+        if (options.accountSelected === "Un-Allocated") {
+          receiptObject.account = options.account;
+          receiptObject.grossAmount = options.grossAmount;
+          receiptObject.netAmount = options.netAmount;
+          receiptObject.amount = options.deposited;
 
-        if (options.user.latterDaySaint === true) {
-          if (options.budget.accounts.tithing.tithingSetting !== "Surplus") {
-            receiptObject.tithed = options.tithed;
+          if (options.user.latterDaySaint === true) {
+            if (options.budget.accounts.tithing.tithingSetting !== "Surplus") {
+              receiptObject.tithed = options.tithed;
+            }
           }
         }
 
-        this.receipt.push(receiptObject);
+        if (options.accountSelected === "Investment Fund") {
+          receiptObject.transactionType = options.transactionType;
+          receiptObject.transactionName = options.transactionName;
+          receiptObject.description = options.description;
+          receiptObject.amount = options.amount;
+          receiptObject.account = options.accountSelected;
+        }
+
+        return this.receipt.push(receiptObject);
       }
 
       if (this.transactionType === "Withdrawal") {
-        if (options.accountSelected = "Monthly Budget") {
+        if (options.accountSelected === "Monthly Budget") {
           receiptObject.category = options.mainCategory;
           receiptObject.subCategory = options.subCategory;
           receiptObject.amount = options.amount;
+          receiptObject.account = options.accountSelected;
 
           if (options.description) {
             receiptObject.description = options.description;
@@ -14106,10 +14288,45 @@ var Transaction = /*#__PURE__*/function () {
         if (options.accountSelected === "Emergency Fund") {
           receiptObject.amount = options.amount;
           receiptObject.description = options.description;
+          receiptObject.account = options.accountSelected;
+        }
+
+        if (options.accountSelected === "Savings Fund") {
+          receiptObject.timing = options.timing;
+          receiptObject.expenditure = options.expenditure;
+          receiptObject.amount = options.amount;
+          receiptObject.description = options.description;
+          receiptObject.account = options.accountSelected;
+        }
+
+        if (options.accountSelected === "Expense Fund") {
+          receiptObject.transactionType = options.transactionType;
+          receiptObject.timing = options.timing;
+          receiptObject.expenditure = options.expenditure;
+          receiptObject.description = options.description;
+          receiptObject.amount = options.amount;
+          receiptObject.account = options.accountSelected;
+        }
+
+        if (options.accountSelected === "Surplus") {
+          receiptObject.timing = options.timing;
+          receiptObject.expenditure = options.expenditure;
+          receiptObject.description = options.description;
+          receiptObject.amount = options.amount;
+          receiptObject.account = options.accountSelected;
+        }
+
+        if (options.accountSelected === "Debt") {
+          receiptObject.timing = options.timing;
+          receiptObject.lender = options.lender;
+          receiptObject.expenditure = options.expenditure;
+          receiptObject.description = options.description;
+          receiptObject.amount = options.amount;
+          receiptObject.account = options.accountSelected;
         }
       }
 
-      this.receipt.push(receiptObject);
+      return this.receipt.push(receiptObject);
     }
   }, {
     key: "removeFromReceipt",
