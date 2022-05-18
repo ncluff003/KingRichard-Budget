@@ -12,17 +12,35 @@ const _closeTheForm = (index, page, pageElement, form) => {
   }
 };
 
+// const _closeTheCreationForm = (index, form) => {
+//   form[index].classList.toggle('closed');
+//   form[index].classList.toggle('open');
+// }
+
 //////////////////////////////
 // Watch Form Closing Buttons
 export const _watchFormClosers = (pageElement, page, form) => {
   const formClosers = document.querySelectorAll('.form-closure-icon');
+  const budgetCreationFormClosers = document.querySelectorAll('.form-closure-icon--budget-creation');
+  console.log(formClosers);
   page = 0;
-  formClosers.forEach((fc, i) => {
-    fc.addEventListener('click', (e) => {
-      e.preventDefault();
-      _closeTheForm(i, page, pageElement, form);
+  if (formClosers[0]) {
+    formClosers.forEach((fc, i) => {
+      fc.addEventListener('click', (e) => {
+        e.preventDefault();
+        _closeTheForm(i, page, pageElement, form);
+      });
     });
-  });
+  }
+  // const budgetCreationForms = document.querySelectorAll('.form--full-width');
+  // if (budgetCreationFormClosers[0]) {
+  //   budgetCreationFormClosers.forEach((bfc, i) => {
+  //     bfc.addEventListener('click', (e) => {
+  //       e.preventDefault();
+  //       _closeTheForm(i, page, pageElement, form);
+  //     });
+  //   });
+  // }
 };
 
 const getLoggedIn = () => {

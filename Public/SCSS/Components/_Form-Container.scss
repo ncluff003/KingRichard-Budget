@@ -7,7 +7,8 @@
   @include SizeAndPositioning(relative, 100%, 100vw, flex, row, nowrap, center, center, 0, 0, 0);
   background-color: rgba($colorOffWhite, 0.95);
   z-index: 1;
-  .form-closure-icon {
+  .form-closure-icon,
+  .form-closure-icon--budget-creation {
     @include SizeAndPositioning(absolute, 2rem, 2rem, flex, row, nowrap, center, center, 0, 0, 0);
     top: 5rem;
     right: 6rem;

@@ -119,6 +119,14 @@ const budgetSchema = new mongoose.Schema({
   },
   mainCategories: [
     {
+      createdAt: {
+        type: Date,
+        default: new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60)),
+      },
+      lastUpdated: {
+        type: Date,
+        default: new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60)),
+      },
       icon: {
         type: String,
         required: [true, `Every Main Category Needs An Icon`],
@@ -129,6 +137,14 @@ const budgetSchema = new mongoose.Schema({
       },
       subCategories: [
         {
+          createdAt: {
+            type: Date,
+            default: new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60)),
+          },
+          lastUpdated: {
+            type: Date,
+            default: new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60)),
+          },
           title: {
             type: String,
             required: [true, `Every Sub Category Needs A Title`],
@@ -170,19 +186,22 @@ const budgetSchema = new mongoose.Schema({
   transactions: {
     plannedTransactions: [
       {
+        // Thinking through the timing of the sub-categories to build transaction plans for them.
         date: {
-          type: Date,
+          type: Date, // This should be the last time the sub-categories were last updated.  So..., this will require a model update.
           required: [true, `Every Transaction Must Have A Date`],
         },
         type: {
           type: String,
-          enum: [`Deposit`, `Withdrawal`],
+          enum: [`Deposit`, `Withdrawal`], // Monthly Budget planned transactions will ALWAYS be a withdrawal.
           required: [true, `Every Transaction Is Either A Deposit Or Withdrawal`],
         },
         lender: {
           type: String,
         },
         location: {
+          // I either just make the location ALWAYS be online or home, or I figure something else out.  I probably could add a feature to the transaction planner to `edit` the location.
+          // I will do the first thought for now, while the other one will come in the future.
           type: String,
           required: [true, `Every Transaction Happened Somewhere.`],
         },

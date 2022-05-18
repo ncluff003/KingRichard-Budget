@@ -1624,7 +1624,8 @@ html {
 .form {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
   &-closure-icon,
-  &-closure-icon__alt {
+  &-closure-icon__alt,
+  &-closure-icon--budget-creation {
     font-size: 4rem;
     color: rgba($primaryColor, 0.5);
     &:hover {

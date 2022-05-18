@@ -3060,6 +3060,22 @@ const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
   const updateCategoryButton = document.querySelectorAll('.button--large__thin')[0];
   updateCategoryButton.addEventListener('click', (e) => {
     e.preventDefault();
+    console.log(placeholderBudget);
+    placeholderBudget.mainCategories.forEach((mc, i) => {
+      console.log(mc);
+      if (!mc.createdAt) {
+        mc.createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+      }
+      if (!mc.lastUpdated) {
+        mc.lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+      }
+      mc.subCategories.forEach((sc, i) => {
+        if (!sc.createdAt) {
+          sc.createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+        }
+        sc.lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+      });
+    });
     placeholderBudget._updateBudget(
       `Update`,
       `Manage Categories`,
@@ -3237,10 +3253,19 @@ const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
             let amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
             let percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
             let timingOptions = bmc.subCategories[i].timingOptions;
+            let createdAt = bmc.subCategories[i].createdAt;
+            console.log(createdAt);
+            if (!bmc.subCategories[i].createdAt) {
+              createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+            }
+            console.log(createdAt);
+            let lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
 
             temporaryObject.subCategories.push(
               Object.fromEntries([
                 [`title`, title],
+                [`createdAt`, createdAt],
+                [`lastUpdated`, lastUpdated],
                 [`goalAmount`, goalAmount],
                 [`amountSpent`, amountSpent],
                 [`amountRemaining`, amountRemaining],
@@ -3248,6 +3273,7 @@ const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
                 [`timingOptions`, timingOptions],
               ])
             );
+            console.log(temporaryObject);
             if (temporaryObject.subCategories.length === tempArray.length) {
               mainCategoryIndex++;
               if (temporaryObject === undefined) return;
@@ -3275,10 +3301,19 @@ const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
             let amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
             let percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
             let timingOptions = budget.mainCategories[mainCategoryIndex].subCategories[i].timingOptions;
+            let createdAt = budget.mainCategories[mainCategoryIndex].subCategories[i].createdAt;
+            console.log(createdAt);
+            if (!budget.mainCategories[mainCategoryIndex].subCategories[i].createdAt) {
+              createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+            }
+            console.log(createdAt);
+            let lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
 
             updateObject.mainCategories[mainCategoryIndex].subCategories.push(
               Object.fromEntries([
                 [`title`, title],
+                [`createdAt`, createdAt],
+                [`lastUpdated`, lastUpdated],
                 [`goalAmount`, goalAmount],
                 [`amountSpent`, amountSpent],
                 [`amountRemaining`, amountRemaining],
@@ -3639,7 +3674,6 @@ const selectDayAndShowTransactions = (event) => {
     transaction.classList.remove('open');
     transaction.classList.add('closed');
     let date = new Date(transaction.firstChild.nextSibling.firstChild.textContent);
-    console.log(date);
     if (date.getFullYear() !== Number(splitMonthHeader[2])) return;
     if (months[date.getMonth()] !== splitMonthHeader[0]) return;
     if (date.getDate() === Number(selectedDay.textContent)) {
@@ -3675,9 +3709,11 @@ const displayUpcomingTransactions = (container, transactions) => {
     }
     upcomingBill.classList.add('upcoming-bills__bill');
     upcomingBill.classList.add('r__upcoming-bills__bill');
+    upcomingBill.dataset.transaction = i;
     if (transaction.timingOptions.paymentCycle === `Bi-Annual` || transaction.timingOptions.paymentCycle === `Bi-Monthly`) {
       upcomingBillTwo.classList.add('upcoming-bills__bill');
       upcomingBillTwo.classList.add('r__upcoming-bills__bill');
+      upcomingBillTwo.dataset.transaction = i;
     }
     let billSections = 5;
     let billSectionStart = 0;
@@ -3810,7 +3846,7 @@ const displayUpcomingTransactions = (container, transactions) => {
 };
 
 // SETTING UP BILL / TRANSACTION CALENDAR
-const _setupBillCalendar = (budget) => {
+const _setupBillCalendar = (budget, placeholderBudget, user) => {
   const calendar = Calendar.myCalendar;
   let currentMonth = calendar.getMonth();
   let currentMonthIndex = calendar.getMonthIndex();
@@ -3866,14 +3902,72 @@ const _setupBillCalendar = (budget) => {
     }
   });
   _watchDaySelection();
+
+  const paymentChecks = document.querySelectorAll('.upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
+  paymentChecks.forEach((check, i) => {
+    check.addEventListener('click', (e) => {
+      let upcomingBill = document.querySelectorAll('.upcoming-bills__bill')[i];
+      let accountType = upcomingBill.firstChild.firstChild.textContent;
+      let transactionDate = upcomingBill.firstChild.nextSibling.firstChild.textContent;
+      // let transactionDate = new Date(upcomingBill.firstChild.nextSibling.firstChild.textContent);
+      let transactionLocation = placeholderBudget.transactions.plannedTransactions[i].location;
+      let transactionAmount = upcomingBill.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1];
+      let transactionBill = new Transaction.Transaction({ date: transactionDate, location: transactionLocation });
+      let currentBill = placeholderBudget.transactions.plannedTransactions[i];
+
+      if (accountType === `Expense Fund`) {
+        transactionBill.transactionType = `Withdrawal`;
+        transactionBill.addToReceipt({
+          accountSelected: accountType,
+          transactionType: currentBill.subAccount,
+          timing: currentBill.timingOptions.paymentCycle,
+          expenditure: currentBill.name,
+          description: currentBill.name,
+          amount: Number(transactionAmount),
+        });
+      }
+      if (accountType === `Surplus`) {
+        transactionBill.transactionType = `Withdrawal`;
+        transactionBill.addToReceipt({
+          accountSelected: accountType,
+          timing: currentBill.timingOptions.paymentCycle,
+          expenditure: currentBill.name,
+          description: currentBill.name,
+          amount: Number(transactionAmount),
+        });
+      }
+      if (accountType === `Savings Fund`) {
+        transactionBill.transactionType = `Withdrawal`;
+        transactionBill.addToReceipt({
+          accountSelected: accountType,
+          timing: currentBill.timingOptions.paymentCycle,
+          expenditure: currentBill.name,
+          description: currentBill.name,
+          amount: Number(transactionAmount),
+        });
+      }
+      if (accountType === `Debt`) {
+        transactionBill.transactionType = `Withdrawal`;
+        transactionBill.addToReceipt({
+          accountSelected: accountType,
+          lender: currentBill.lender,
+          timing: currentBill.timingOptions.paymentCycle,
+          expenditure: currentBill.name,
+          description: currentBill.name,
+          amount: Number(transactionAmount),
+        });
+      }
+      console.log(currentBill, transactionBill);
+    });
+  });
 };
 
 const calculateTotal = (accountType, budget) => {
-  const accountSections = document.querySelectorAll('.budget-container__dashboard__container--extra-small__content__account-total');
+  const accountSections = document.querySelectorAll('.container--extra-small__content__account-total');
   const budgetAccounts = budget.accounts;
   let amountOfDebt;
   let budgetAccountTotals = [];
-  Object.entries(budgetAccounts).forEach((account) => {
+  Object.entries(budgetAccounts).forEach((account, i) => {
     return budgetAccountTotals.push(account[1].amount);
   });
   Object.entries(budgetAccounts).forEach((account) => {
@@ -4093,6 +4187,7 @@ const toggleClass = (element, className) => {
 const _watchForTransactions = (budget, placeholderBudget, user) => {
   const dashboard = document.querySelector('.budget-dashboard');
   if (dashboard) {
+    console.log(placeholderBudget);
     const money = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
@@ -4434,325 +4529,346 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
 
     const receiptItemContainer = document.querySelector('.receipt-item-container');
 
-    transactionSaveButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      console.log(`Saving...`);
-      console.log(transactionHeaderInputs, transactionHeaderInputsTwo);
-      console.log(selectedAccount);
-      if (selectedAccount !== `Investment Fund`) {
-        // let transaction = new Transaction.Transaction({ date: transactionHeaderInputs[0].value, type: `Withdrawal`, location: transactionHeaderInputsTwo[0].value });
-        transaction.transactionType = `Withdrawal`;
-        console.log(transaction);
-        const receiptRow = document.createElement('section');
-        receiptRow.classList.add('receipt-item-container__row');
-        receiptRow.classList.add('r__receipt-item-container__row');
-        insertElement(receiptItemContainer, receiptRow);
-
-        const transactionDetails = document.createElement('section');
-        transactionDetails.classList.add('transaction-item-details');
-        transactionDetails.classList.add('r__transaction-item-details');
-
-        insertElement(receiptRow, transactionDetails);
-
-        const transactionCostDetails = document.createElement('section');
-        transactionCostDetails.classList.add('transaction-item-cost');
-        transactionCostDetails.classList.add('r__transaction-item-cost');
-        insertElement(receiptRow, transactionCostDetails);
-
-        let detailCount = 1;
-        let detailStart = 0;
+    if (transactionSaveButton) {
+      transactionSaveButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log(`Saving...`);
+        console.log(transactionHeaderInputs, transactionHeaderInputsTwo);
         console.log(selectedAccount);
-        if (selectedAccount === `Monthly Budget` || selectedAccount === `Debt`) {
-          detailCount = 2;
+        if (selectedAccount !== `Investment Fund`) {
+          // let transaction = new Transaction.Transaction({ date: transactionHeaderInputs[0].value, type: `Withdrawal`, location: transactionHeaderInputsTwo[0].value });
+          transaction.transactionType = `Withdrawal`;
+          console.log(transaction);
+          const receiptRow = document.createElement('section');
+          receiptRow.classList.add('receipt-item-container__row');
+          receiptRow.classList.add('r__receipt-item-container__row');
+          insertElement(receiptItemContainer, receiptRow);
+
+          const transactionDetails = document.createElement('section');
+          transactionDetails.classList.add('transaction-item-details');
+          transactionDetails.classList.add('r__transaction-item-details');
+
+          insertElement(receiptRow, transactionDetails);
+
+          const transactionCostDetails = document.createElement('section');
+          transactionCostDetails.classList.add('transaction-item-cost');
+          transactionCostDetails.classList.add('r__transaction-item-cost');
+          insertElement(receiptRow, transactionCostDetails);
+
+          let detailCount = 1;
+          let detailStart = 0;
+          console.log(selectedAccount);
+          if (selectedAccount === `Monthly Budget` || selectedAccount === `Debt`) {
+            detailCount = 2;
+            console.log(detailCount);
+          }
           console.log(detailCount);
-        }
-        console.log(detailCount);
-        while (detailStart < detailCount) {
-          let receiptDetail = document.createElement('p');
-          receiptDetail.classList.add('transaction-item-details__detail');
-          receiptDetail.classList.add('r__transaction-item-details__detail');
-          console.log(mainCategorySelect.firstChild.nextSibling.textContent);
+          while (detailStart < detailCount) {
+            let receiptDetail = document.createElement('p');
+            receiptDetail.classList.add('transaction-item-details__detail');
+            receiptDetail.classList.add('r__transaction-item-details__detail');
+            console.log(mainCategorySelect.firstChild.nextSibling.textContent);
+            console.log(selectedAccount);
+            if (selectedAccount === `Monthly Budget`) {
+              if (detailStart === 0) {
+                receiptDetail.textContent = mainCategorySelect.firstChild.nextSibling.value;
+              }
+              if (detailStart === 1) {
+                receiptDetail.textContent = subCategorySelect.firstChild.nextSibling.value;
+              }
+            }
+            if (selectedAccount === `Emergency Fund`) {
+              if (detailStart === 0) {
+                receiptDetail.textContent = transactionDescription.firstChild.value;
+              }
+            }
+            if (selectedAccount === `Savings Fund` || selectedAccount === `Expense Fund` || selectedAccount === `Surplus`) {
+              if (detailStart === 0) {
+                receiptDetail.textContent = transactionItem.firstChild.nextSibling.value;
+              }
+            }
+            if (selectedAccount === `Investment Fund`) {
+              if (detailStart === 0) {
+                receiptDetail.textContent = transactionName.firstChild.value;
+              }
+            }
+            if (selectedAccount === `Debt`) {
+              if (detailStart === 0) {
+                receiptDetail.textContent = transactionLender.firstChild.nextSibling.value;
+              }
+              if (detailStart === 1) {
+                receiptDetail.textContent = transactionItem.firstChild.nextSibling.value;
+              }
+            }
+            insertElement(transactionDetails, receiptDetail);
+            detailStart++;
+          }
+
+          console.log(transactionAmount, transactionAmount.firstChild.value, typeof transactionAmount.firstChild.value, money.format(Number(transactionAmount.value)));
+          const receiptDetailCost = document.createElement('p');
+          receiptDetailCost.classList.add('transaction-item-cost__cost');
+          receiptDetailCost.classList.add('r__transaction-item-cost__cost');
+          receiptDetailCost.textContent = money.format(Number(transactionAmount.firstChild.value));
+          insertElement(transactionCostDetails, receiptDetailCost);
+
+          const removeTransactionItemIcon = document.createElement('i');
+          removeTransactionItemIcon.classList.add('fas');
+          removeTransactionItemIcon.classList.add('fa-trash-alt');
+          removeTransactionItemIcon.classList.add('remove-transaction');
+          removeTransactionItemIcon.classList.add('r__remove-transaction');
+          removeTransactionItemIcon.classList.add('closed');
+          insertElement(transactionCostDetails, removeTransactionItemIcon);
+
+          removeTransactionItemIcon.addEventListener('click', (e) => {
+            let removeTransactionIcons = document.querySelectorAll('.remove-transaction');
+            let index = [...removeTransactionIcons].indexOf(e.target);
+            let receiptTransactions = document.querySelectorAll('.receipt-item-container__row');
+            receiptTransactions[index].remove();
+            transaction.removeFromReceipt(index);
+          });
+
+          receiptRow.addEventListener('mouseover', (e) => {
+            e.preventDefault();
+            removeTransactionItemIcon.classList.toggle('closed');
+            removeTransactionItemIcon.classList.toggle('open');
+          });
+          receiptRow.addEventListener('mouseout', (e) => {
+            e.preventDefault();
+            removeTransactionItemIcon.classList.toggle('closed');
+            removeTransactionItemIcon.classList.toggle('open');
+          });
           console.log(selectedAccount);
           if (selectedAccount === `Monthly Budget`) {
-            if (detailStart === 0) {
-              receiptDetail.textContent = mainCategorySelect.firstChild.nextSibling.value;
-            }
-            if (detailStart === 1) {
-              receiptDetail.textContent = subCategorySelect.firstChild.nextSibling.value;
-            }
+            transaction.addToReceipt({
+              mainCategory: mainCategorySelect.firstChild.nextSibling.value,
+              subCategory: subCategorySelect.firstChild.nextSibling.value,
+              description: transactionDescription.firstChild.value,
+              amount: Number(transactionAmount.firstChild.value),
+              accountSelected: selectedAccount,
+            });
           }
           if (selectedAccount === `Emergency Fund`) {
-            if (detailStart === 0) {
-              receiptDetail.textContent = transactionDescription.firstChild.value;
-            }
+            transaction.addToReceipt({
+              description: transactionDescription.firstChild.value,
+              amount: Number(transactionAmount.firstChild.value),
+              accountSelected: selectedAccount,
+            });
           }
-          if (selectedAccount === `Savings Fund` || selectedAccount === `Expense Fund` || selectedAccount === `Surplus`) {
-            if (detailStart === 0) {
-              receiptDetail.textContent = transactionItem.firstChild.nextSibling.value;
-            }
+          if (selectedAccount === `Savings Fund`) {
+            console.log(selectedAccount);
+            transaction.addToReceipt({
+              timing: transactionTiming.firstChild.nextSibling.value,
+              expenditure: transactionItem.firstChild.nextSibling.value,
+              description: transactionDescription.firstChild.value,
+              amount: Number(transactionAmount.firstChild.value),
+              accountSelected: selectedAccount,
+            });
           }
-          if (selectedAccount === `Investment Fund`) {
-            if (detailStart === 0) {
-              receiptDetail.textContent = transactionName.firstChild.value;
-            }
+          if (selectedAccount === `Expense Fund`) {
+            transaction.addToReceipt({
+              transactionType: transactionType.firstChild.nextSibling.value,
+              timing: transactionTiming.firstChild.nextSibling.value,
+              expenditure: transactionItem.firstChild.nextSibling.value,
+              description: transactionDescription.firstChild.value,
+              amount: Number(transactionAmount.firstChild.value),
+              accountSelected: selectedAccount,
+            });
+          }
+          if (selectedAccount === `Surplus`) {
+            transaction.addToReceipt({
+              timing: transactionTiming.firstChild.nextSibling.value,
+              expenditure: transactionItem.firstChild.nextSibling.value,
+              description: transactionDescription.firstChild.value,
+              amount: Number(transactionAmount.firstChild.value),
+              accountSelected: selectedAccount,
+            });
           }
           if (selectedAccount === `Debt`) {
-            if (detailStart === 0) {
-              receiptDetail.textContent = transactionLender.firstChild.nextSibling.value;
-            }
-            if (detailStart === 1) {
-              receiptDetail.textContent = transactionItem.firstChild.nextSibling.value;
-            }
+            transaction.addToReceipt({
+              timing: transactionTiming.firstChild.nextSibling.value,
+              lender: transactionLender.firstChild.nextSibling.value,
+              expenditure: transactionItem.firstChild.nextSibling.value,
+              description: transactionDescription.firstChild.value,
+              amount: Number(transactionAmount.firstChild.value),
+              accountSelected: selectedAccount,
+            });
           }
-          insertElement(transactionDetails, receiptDetail);
-          detailStart++;
         }
-
-        console.log(transactionAmount, transactionAmount.firstChild.value, typeof transactionAmount.firstChild.value, money.format(Number(transactionAmount.value)));
-        const receiptDetailCost = document.createElement('p');
-        receiptDetailCost.classList.add('transaction-item-cost__cost');
-        receiptDetailCost.classList.add('r__transaction-item-cost__cost');
-        receiptDetailCost.textContent = money.format(Number(transactionAmount.firstChild.value));
-        insertElement(transactionCostDetails, receiptDetailCost);
-
-        const removeTransactionItemIcon = document.createElement('i');
-        removeTransactionItemIcon.classList.add('fas');
-        removeTransactionItemIcon.classList.add('fa-trash-alt');
-        removeTransactionItemIcon.classList.add('remove-transaction');
-        removeTransactionItemIcon.classList.add('r__remove-transaction');
-        removeTransactionItemIcon.classList.add('closed');
-        insertElement(transactionCostDetails, removeTransactionItemIcon);
-
-        removeTransactionItemIcon.addEventListener('click', (e) => {
-          let removeTransactionIcons = document.querySelectorAll('.remove-transaction');
-          let index = [...removeTransactionIcons].indexOf(e.target);
-          let receiptTransactions = document.querySelectorAll('.receipt-item-container__row');
-          receiptTransactions[index].remove();
-          transaction.removeFromReceipt(index);
-        });
-
-        receiptRow.addEventListener('mouseover', (e) => {
-          e.preventDefault();
-          removeTransactionItemIcon.classList.toggle('closed');
-          removeTransactionItemIcon.classList.toggle('open');
-        });
-        receiptRow.addEventListener('mouseout', (e) => {
-          e.preventDefault();
-          removeTransactionItemIcon.classList.toggle('closed');
-          removeTransactionItemIcon.classList.toggle('open');
-        });
         console.log(selectedAccount);
-        if (selectedAccount === `Monthly Budget`) {
-          transaction.addToReceipt({
-            mainCategory: mainCategorySelect.firstChild.nextSibling.value,
-            subCategory: subCategorySelect.firstChild.nextSibling.value,
-            description: transactionDescription.firstChild.value,
-            amount: Number(transactionAmount.firstChild.value),
-            accountSelected: selectedAccount,
-          });
-        }
-        if (selectedAccount === `Emergency Fund`) {
-          transaction.addToReceipt({
-            description: transactionDescription.firstChild.value,
-            amount: Number(transactionAmount.firstChild.value),
-            accountSelected: selectedAccount,
-          });
-        }
-        if (selectedAccount === `Savings Fund`) {
-          console.log(selectedAccount);
-          transaction.addToReceipt({
-            timing: transactionTiming.firstChild.nextSibling.value,
-            expenditure: transactionItem.firstChild.nextSibling.value,
-            description: transactionDescription.firstChild.value,
-            amount: Number(transactionAmount.firstChild.value),
-            accountSelected: selectedAccount,
-          });
-        }
-        if (selectedAccount === `Expense Fund`) {
-          transaction.addToReceipt({
-            transactionType: transactionType.firstChild.nextSibling.value,
-            timing: transactionTiming.firstChild.nextSibling.value,
-            expenditure: transactionItem.firstChild.nextSibling.value,
-            description: transactionDescription.firstChild.value,
-            amount: Number(transactionAmount.firstChild.value),
-            accountSelected: selectedAccount,
-          });
-        }
-        if (selectedAccount === `Surplus`) {
-          transaction.addToReceipt({
-            timing: transactionTiming.firstChild.nextSibling.value,
-            expenditure: transactionItem.firstChild.nextSibling.value,
-            description: transactionDescription.firstChild.value,
-            amount: Number(transactionAmount.firstChild.value),
-            accountSelected: selectedAccount,
-          });
-        }
-        if (selectedAccount === `Debt`) {
-          transaction.addToReceipt({
-            timing: transactionTiming.firstChild.nextSibling.value,
-            lender: transactionLender.firstChild.nextSibling.value,
-            expenditure: transactionItem.firstChild.nextSibling.value,
-            description: transactionDescription.firstChild.value,
-            amount: Number(transactionAmount.firstChild.value),
-            accountSelected: selectedAccount,
-          });
-        }
-      }
-      console.log(selectedAccount);
-      if (selectedAccount === `Investment Fund`) {
-        console.log(selectedAccount);
-        if (transaction.transactionType) return;
-        console.log(selectedAccount);
-        transaction.transactionType = `Deposit`;
-
-        const receiptRow = document.createElement('section');
-        receiptRow.classList.add('receipt-item-container__row');
-        receiptRow.classList.add('r__receipt-item-container__row');
-        insertElement(receiptItemContainer, receiptRow);
-
-        const transactionDetails = document.createElement('section');
-        transactionDetails.classList.add('transaction-item-details');
-        transactionDetails.classList.add('r__transaction-item-details');
-
-        insertElement(receiptRow, transactionDetails);
-
-        const transactionCostDetails = document.createElement('section');
-        transactionCostDetails.classList.add('transaction-item-cost');
-        transactionCostDetails.classList.add('r__transaction-item-cost');
-        insertElement(receiptRow, transactionCostDetails);
-
-        let detailCount = 1;
-        let detailStart = 0;
-
-        while (detailStart < detailCount) {
-          let receiptDetail = document.createElement('p');
-          receiptDetail.classList.add('transaction-item-details__detail');
-          receiptDetail.classList.add('r__transaction-item-details__detail');
-          console.log(mainCategorySelect.firstChild.nextSibling.textContent);
-          console.log(selectedAccount);
-          if (selectedAccount === `Investment Fund`) {
-            if (detailStart === 0) {
-              receiptDetail.textContent = transactionName.firstChild.value;
-            }
-          }
-          insertElement(transactionDetails, receiptDetail);
-          detailStart++;
-        }
-
-        console.log(transactionAmount, transactionAmount.firstChild.value, typeof transactionAmount.firstChild.value, money.format(Number(transactionAmount.value)));
-        const receiptDetailCost = document.createElement('p');
-        receiptDetailCost.classList.add('transaction-item-cost__cost');
-        receiptDetailCost.classList.add('r__transaction-item-cost__cost');
-        receiptDetailCost.textContent = money.format(Number(transactionAmount.firstChild.value));
-        insertElement(transactionCostDetails, receiptDetailCost);
-
-        const removeTransactionItemIcon = document.createElement('i');
-        removeTransactionItemIcon.classList.add('fas');
-        removeTransactionItemIcon.classList.add('fa-trash-alt');
-        removeTransactionItemIcon.classList.add('remove-transaction');
-        removeTransactionItemIcon.classList.add('r__remove-transaction');
-        removeTransactionItemIcon.classList.add('closed');
-        insertElement(transactionCostDetails, removeTransactionItemIcon);
-
-        removeTransactionItemIcon.addEventListener('click', (e) => {
-          let removeTransactionIcons = document.querySelectorAll('.remove-transaction');
-          let index = [...removeTransactionIcons].indexOf(e.target);
-          let receiptTransactions = document.querySelectorAll('.receipt-item-container__row');
-          receiptTransactions[index].remove();
-          transaction.removeFromReceipt(index);
-        });
-
-        receiptRow.addEventListener('mouseover', (e) => {
-          e.preventDefault();
-          removeTransactionItemIcon.classList.toggle('closed');
-          removeTransactionItemIcon.classList.toggle('open');
-        });
-        receiptRow.addEventListener('mouseout', (e) => {
-          e.preventDefault();
-          removeTransactionItemIcon.classList.toggle('closed');
-          removeTransactionItemIcon.classList.toggle('open');
-        });
-        console.log(selectedAccount);
-
         if (selectedAccount === `Investment Fund`) {
-          transaction.addToReceipt({
-            user: user,
-            transactionType: transactionType.firstChild.nextSibling.value,
-            transactionName: transactionName.firstChild.value,
-            description: transactionDescription.firstChild.value,
-            amount: Number(transactionAmount.firstChild.value),
-            accountSelected: selectedAccount,
+          console.log(selectedAccount);
+          if (transaction.transactionType) return;
+          console.log(selectedAccount);
+          transaction.transactionType = `Deposit`;
+
+          const receiptRow = document.createElement('section');
+          receiptRow.classList.add('receipt-item-container__row');
+          receiptRow.classList.add('r__receipt-item-container__row');
+          insertElement(receiptItemContainer, receiptRow);
+
+          const transactionDetails = document.createElement('section');
+          transactionDetails.classList.add('transaction-item-details');
+          transactionDetails.classList.add('r__transaction-item-details');
+
+          insertElement(receiptRow, transactionDetails);
+
+          const transactionCostDetails = document.createElement('section');
+          transactionCostDetails.classList.add('transaction-item-cost');
+          transactionCostDetails.classList.add('r__transaction-item-cost');
+          insertElement(receiptRow, transactionCostDetails);
+
+          let detailCount = 1;
+          let detailStart = 0;
+
+          while (detailStart < detailCount) {
+            let receiptDetail = document.createElement('p');
+            receiptDetail.classList.add('transaction-item-details__detail');
+            receiptDetail.classList.add('r__transaction-item-details__detail');
+            console.log(mainCategorySelect.firstChild.nextSibling.textContent);
+            console.log(selectedAccount);
+            if (selectedAccount === `Investment Fund`) {
+              if (detailStart === 0) {
+                receiptDetail.textContent = transactionName.firstChild.value;
+              }
+            }
+            insertElement(transactionDetails, receiptDetail);
+            detailStart++;
+          }
+
+          console.log(transactionAmount, transactionAmount.firstChild.value, typeof transactionAmount.firstChild.value, money.format(Number(transactionAmount.value)));
+          const receiptDetailCost = document.createElement('p');
+          receiptDetailCost.classList.add('transaction-item-cost__cost');
+          receiptDetailCost.classList.add('r__transaction-item-cost__cost');
+          receiptDetailCost.textContent = money.format(Number(transactionAmount.firstChild.value));
+          insertElement(transactionCostDetails, receiptDetailCost);
+
+          const removeTransactionItemIcon = document.createElement('i');
+          removeTransactionItemIcon.classList.add('fas');
+          removeTransactionItemIcon.classList.add('fa-trash-alt');
+          removeTransactionItemIcon.classList.add('remove-transaction');
+          removeTransactionItemIcon.classList.add('r__remove-transaction');
+          removeTransactionItemIcon.classList.add('closed');
+          insertElement(transactionCostDetails, removeTransactionItemIcon);
+
+          removeTransactionItemIcon.addEventListener('click', (e) => {
+            let removeTransactionIcons = document.querySelectorAll('.remove-transaction');
+            let index = [...removeTransactionIcons].indexOf(e.target);
+            let receiptTransactions = document.querySelectorAll('.receipt-item-container__row');
+            receiptTransactions[index].remove();
+            transaction.removeFromReceipt(index);
           });
-        }
-      }
-      console.log(transaction, transaction.receipt);
-      const fullTransactionCost = document.querySelectorAll('.container--small__transaction-total__amount')[0];
-      let receiptCost = 0;
-      transaction.receipt.forEach((receiptItem, i) => {
-        return (receiptCost = receiptCost += receiptItem.amount);
-      });
-      console.log(receiptCost);
-      fullTransactionCost.textContent = money.format(receiptCost);
-    });
-    transactionSubmitButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      let updateObject = {
-        budgetId: budget._id,
-        userId: user._id,
-      };
-      placeholderBudget.transactions.recentTransactions.push(transaction);
-      // console.log(placeholderBudget);
-      updateObject.transactions = placeholderBudget.transactions;
-      console.log(updateObject);
-      updateObject.transactions.recentTransactions[updateObject.transactions.recentTransactions.length - 1].receipt.forEach((receiptItem, i) => {
-        console.log(receiptItem);
-        if (receiptItem.account === `Monthly Budget`) {
-          placeholderBudget.accounts.monthlyBudget.amount = placeholderBudget.accounts.monthlyBudget.amount - Number(receiptItem.amount);
-        }
-        if (receiptItem.account === `Emergency Fund`) {
-          placeholderBudget.accounts.emergencyFund.amount = placeholderBudget.accounts.emergencyFund.amount - Number(receiptItem.amount);
-        }
-        if (receiptItem.account === `Savings Fund`) {
-          placeholderBudget.accounts.savingsFund.amount = placeholderBudget.accounts.savingsFund.amount - Number(receiptItem.amount);
-        }
-        if (receiptItem.account === `Expense Fund`) {
-          placeholderBudget.accounts.expenseFund.amount = placeholderBudget.accounts.expenseFund.amount - Number(receiptItem.amount);
-        }
-        if (receiptItem.account === `Surplus`) {
-          placeholderBudget.accounts.surlus.amount = placeholderBudget.accounts.surplus.amount - Number(receiptItem.amount);
-        }
-        if (receiptItem.account === `Investment Fund`) {
-          if (!placeholderBudget.accounts.investmentFund.investedAmount) placeholderBudget.accounts.investmentFund.investedAmount = 0;
-          placeholderBudget.accounts.investmentFund.amount = placeholderBudget.accounts.investmentFund.amount - Number(receiptItem.amount);
-          placeholderBudget.accounts.investmentFund.investedAmount = placeholderBudget.accounts.investmentFund.investedAmount + Number(receiptItem.amount);
-          let investmentObject = {
-            investmentType: receiptItem.transactionType,
-            investmentName: receiptItem.transactionName,
-            investmentDescription: receiptItem.description,
-            initialInvestment: receiptItem.amount,
-            currentValue: receiptItem.amount,
-            settled: false,
-            valueDifference: 0,
-          };
-          placeholderBudget.investments.push(investmentObject);
-          updateObject.investments = placeholderBudget.investments;
-        }
-        if (receiptItem.account === `Debt`) {
-          placeholderBudget.accounts.debt.amount = placeholderBudget.accounts.debt.amount - Number(receiptItem.amount);
-          /* After reducing the amount that is allocated to the debt account, there needs to be a reduction of the debt amount through reducing the current amount owed for the debt that was selected.
 
-          To do that we need to:
-          1) Find the exact debt that is being paid.
-          2) From there, reduce it's amountOwed amount.
+          receiptRow.addEventListener('mouseover', (e) => {
+            e.preventDefault();
+            removeTransactionItemIcon.classList.toggle('closed');
+            removeTransactionItemIcon.classList.toggle('open');
+          });
+          receiptRow.addEventListener('mouseout', (e) => {
+            e.preventDefault();
+            removeTransactionItemIcon.classList.toggle('closed');
+            removeTransactionItemIcon.classList.toggle('open');
+          });
+          console.log(selectedAccount);
 
-          There is more steps to each of those, especially the first, but that is what needs to be done.
-          */
+          if (selectedAccount === `Investment Fund`) {
+            transaction.addToReceipt({
+              user: user,
+              transactionType: transactionType.firstChild.nextSibling.value,
+              transactionName: transactionName.firstChild.value,
+              description: transactionDescription.firstChild.value,
+              amount: Number(transactionAmount.firstChild.value),
+              accountSelected: selectedAccount,
+            });
+          }
         }
+        console.log(transaction, transaction.receipt);
+        const fullTransactionCost = document.querySelectorAll('.container--small__transaction-total__amount')[0];
+        let receiptCost = 0;
+        transaction.receipt.forEach((receiptItem, i) => {
+          return (receiptCost = receiptCost += receiptItem.amount);
+        });
+        console.log(receiptCost);
+        fullTransactionCost.textContent = money.format(receiptCost);
       });
-      updateObject.accounts = placeholderBudget.accounts;
-      console.log(updateObject);
-      placeholderBudget._updateBudget(`Update`, `Enter Transaction`, { updateObject: updateObject }, `Dashboard`);
-    });
+    }
+    if (transactionSubmitButton) {
+      transactionSubmitButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        let updateObject = {
+          budgetId: budget._id,
+          userId: user._id,
+        };
+        placeholderBudget.transactions.recentTransactions.push(transaction);
+        // console.log(placeholderBudget);
+        updateObject.transactions = placeholderBudget.transactions;
+        console.log(updateObject);
+        updateObject.transactions.recentTransactions[updateObject.transactions.recentTransactions.length - 1].receipt.forEach((receiptItem, i) => {
+          console.log(receiptItem);
+          if (receiptItem.account === `Monthly Budget`) {
+            placeholderBudget.accounts.monthlyBudget.amount = placeholderBudget.accounts.monthlyBudget.amount - Number(receiptItem.amount);
+            placeholderBudget.mainCategories.forEach((category, i) => {
+              if (receiptItem.category === category.title) {
+                let index = i;
+                console.log(receiptItem.category);
+                category.subCategories.forEach((subCategory, i) => {
+                  if (receiptItem.subCategory === subCategory.title) {
+                    console.log(receiptItem.subCategory);
+                    subCategory.amountSpent += receiptItem.amount;
+                    subCategory.amountRemaining = subCategory.goalAmount - subCategory.amountSpent;
+                    subCategory.percentageSpent = Number((subCategory.amountSpent / subCategory.goalAmount) * 100);
+                  }
+                });
+              }
+            });
+            updateObject.mainCategories = placeholderBudget.mainCategories;
+          }
+          if (receiptItem.account === `Emergency Fund`) {
+            placeholderBudget.accounts.emergencyFund.amount = placeholderBudget.accounts.emergencyFund.amount - Number(receiptItem.amount);
+          }
+          if (receiptItem.account === `Savings Fund`) {
+            placeholderBudget.accounts.savingsFund.amount = placeholderBudget.accounts.savingsFund.amount - Number(receiptItem.amount);
+          }
+          if (receiptItem.account === `Expense Fund`) {
+            placeholderBudget.accounts.expenseFund.amount = placeholderBudget.accounts.expenseFund.amount - Number(receiptItem.amount);
+          }
+          if (receiptItem.account === `Surplus`) {
+            placeholderBudget.accounts.surlus.amount = placeholderBudget.accounts.surplus.amount - Number(receiptItem.amount);
+          }
+          if (receiptItem.account === `Investment Fund`) {
+            if (!placeholderBudget.accounts.investmentFund.investedAmount) placeholderBudget.accounts.investmentFund.investedAmount = 0;
+            placeholderBudget.accounts.investmentFund.amount = placeholderBudget.accounts.investmentFund.amount - Number(receiptItem.amount);
+            placeholderBudget.accounts.investmentFund.investedAmount = placeholderBudget.accounts.investmentFund.investedAmount + Number(receiptItem.amount);
+            let investmentObject = {
+              investmentType: receiptItem.transactionType,
+              investmentName: receiptItem.transactionName,
+              investmentDescription: receiptItem.description,
+              initialInvestment: receiptItem.amount,
+              currentValue: receiptItem.amount,
+              settled: false,
+              valueDifference: 0,
+            };
+            placeholderBudget.investments.push(investmentObject);
+            updateObject.investments = placeholderBudget.investments;
+          }
+          if (receiptItem.account === `Debt`) {
+            placeholderBudget.accounts.debt.amount = placeholderBudget.accounts.debt.amount - Number(receiptItem.amount);
+            /* After reducing the amount that is allocated to the debt account, there needs to be a reduction of the debt amount through reducing the current amount owed for the debt that was selected.
+  
+            To do that we need to:
+            1) Find the exact debt that is being paid.
+            2) From there, reduce it's amountOwed amount.
+  
+            There is more steps to each of those, especially the first, but that is what needs to be done.
+            */
+          }
+        });
+        updateObject.accounts = placeholderBudget.accounts;
+        console.log(updateObject);
+        placeholderBudget._updateBudget(`Update`, `Enter Transaction`, { updateObject: updateObject }, `Dashboard`);
+        const fullTransactionCost = document.querySelectorAll('.container--small__transaction-total__amount')[0];
+        fullTransactionCost.textContent = money.format(0);
+      });
+    }
   }
 };
 
@@ -4836,7 +4952,7 @@ const setupDashboard = (user, budget, placeholderBudget) => {
 
   ////////////////////////////////////////////
   // SETUP BILL CALENDAR
-  _setupBillCalendar(budget);
+  _setupBillCalendar(budget, placeholderBudget, user);
   ////////////////////////////////////////////
   // SETUP BILL CURRENT MONTH
   _setupCurrentMonth(budget);

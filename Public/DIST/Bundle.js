@@ -4690,20 +4690,17 @@ var _watchSubSectionButtons = function _watchSubSectionButtons() {
 }; //////////////////////////////////////////////////
 // ALL ABOUT WATCHING COMMUNICATION PREFERENCES
 
-var _changeCommPreference = function _changeCommPreference() {
-  if (commPreference === "Email") {
-    return commPreference = "Text";
-  } else {
-    return commPreference = "Email";
-  }
+var _changeCommPreference = function _changeCommPreference(communicationSwitch, commPreference) {
+  return communicationSwitch.classList.contains('form__input--comms--text-preferred') ? commPreference = "Text" : commPreference = "Email";
 };
 
-var _watchCommPreference = function _watchCommPreference(communicationSwitch) {
+var _watchCommPreference = function _watchCommPreference(communicationSwitch, commPreference) {
   if (communicationSwitch) {
     communicationSwitch.addEventListener('click', function (e) {
-      communicationSwitch.classList.toggle('switch--comms--text-preferred');
-
-      _changeCommPreference();
+      communicationSwitch.classList.toggle('form__input--comms--text-preferred');
+      communicationSwitch.classList.toggle('form__input--comms');
+      commPreference = _changeCommPreference(communicationSwitch, commPreference);
+      console.log(commPreference);
     });
   }
 }; ////////////////////////////////////////////
@@ -4711,24 +4708,27 @@ var _watchCommPreference = function _watchCommPreference(communicationSwitch) {
 
 var _watchLatterDaySaintSwitch = function _watchLatterDaySaintSwitch(ldsSwitch) {
   ldsSwitch.addEventListener('click', function (e) {
-    ldsSwitch.classList.toggle('switch--latter-day-saint--switched');
-    ldsSwitch.classList.toggle('r__switch--latter-day-saint--switched');
+    e.preventDefault();
+    ldsSwitch.classList.toggle('r__form__input--latter-day-saint--switched');
   });
 };
 
 var _showProfileForm = function _showProfileForm(forms, index) {
   forms.forEach(function (form) {
-    form.style.display = 'none';
+    form.classList.add("closed");
+    form.classList.remove("open");
   });
-  forms[index].style.display = 'flex';
+  forms[index].classList.toggle('closed');
+  forms[index].classList.toggle('open');
 };
 var _watchUserProfileButtons = function _watchUserProfileButtons(communicationPreference) {
   var userProfileForms = document.querySelectorAll('.form--full-width');
+  console.log(userProfileForms);
   var userProfileHeader = document.querySelector('.user-profile-section__header__text');
   var userProfileContainer = document.querySelector('.user-profile-section');
   var userProfileContainerClose = document.querySelector('.user-profile-closure-icon');
   var userProfileButtons = document.querySelectorAll('.navigation--side-screen__section--account-links__link-container__link--link');
-  var latterDaySaintSwitch = document.querySelector('.switch--latter-day-saint');
+  var latterDaySaintSwitch = document.querySelector('.form__input--latter-day-saint');
 
   if (userProfileButtons[0]) {
     userProfileButtons.forEach(function (pb, i) {
@@ -4878,8 +4878,7 @@ var checkLoginStatus = function checkLoginStatus(login, checkElement) {
 
 var _watchForLogin = /*#__PURE__*/function () {
   var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee3(login) {
-    var status, _commPreference, commSwitch, formattedNumber, userInfo, user;
-
+    var status, commPreference, commSwitch, formattedNumber, userInfo, user;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
@@ -4892,7 +4891,7 @@ var _watchForLogin = /*#__PURE__*/function () {
               break;
             }
 
-            commSwitch = document.querySelector('.switch--comms');
+            commSwitch = document.getElementById('commSwitch');
             _context3.next = 6;
             return _Update_User__WEBPACK_IMPORTED_MODULE_3__.getSomePersonals();
 
@@ -4904,10 +4903,10 @@ var _watchForLogin = /*#__PURE__*/function () {
             _watchForProfilePictureChange(user); // WATCHING USER PROFILE NAVIGATION BUTTONS
 
 
-            _watchUserProfileButtons(_commPreference); // WATCHING COMMUNICATION PREFERENCES
+            _watchUserProfileButtons(commPreference); // WATCHING COMMUNICATION PREFERENCES
 
 
-            _watchCommPreference(commSwitch); // WATCHING URSER PROFILE FORM BUTTONS
+            _watchCommPreference(commSwitch, commPreference); // WATCHING URSER PROFILE FORM BUTTONS
 
 
             _watchSubSectionButtons();
@@ -4968,20 +4967,38 @@ var _closeTheForm = function _closeTheForm(index, page, pageElement, form) {
   if (pageElement) {
     pageElement.textContent = "Page ".concat(page + 1, " / 4");
   }
-}; //////////////////////////////
+}; // const _closeTheCreationForm = (index, form) => {
+//   form[index].classList.toggle('closed');
+//   form[index].classList.toggle('open');
+// }
+//////////////////////////////
 // Watch Form Closing Buttons
 
 
 var _watchFormClosers = function _watchFormClosers(pageElement, page, form) {
   var formClosers = document.querySelectorAll('.form-closure-icon');
+  var budgetCreationFormClosers = document.querySelectorAll('.form-closure-icon--budget-creation');
+  console.log(formClosers);
   page = 0;
-  formClosers.forEach(function (fc, i) {
-    fc.addEventListener('click', function (e) {
-      e.preventDefault();
 
-      _closeTheForm(i, page, pageElement, form);
+  if (formClosers[0]) {
+    formClosers.forEach(function (fc, i) {
+      fc.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        _closeTheForm(i, page, pageElement, form);
+      });
     });
-  });
+  } // const budgetCreationForms = document.querySelectorAll('.form--full-width');
+  // if (budgetCreationFormClosers[0]) {
+  //   budgetCreationFormClosers.forEach((bfc, i) => {
+  //     bfc.addEventListener('click', (e) => {
+  //       e.preventDefault();
+  //       _closeTheForm(i, page, pageElement, form);
+  //     });
+  //   });
+  // }
+
 };
 
 var getLoggedIn = function getLoggedIn() {
@@ -7202,7 +7219,7 @@ var _watchTIthingOptions = function _watchTIthingOptions(budget) {
 
 var _watchCreationFormCloser = function _watchCreationFormCloser(form, budget) {
   // GLITCH: Budget creation form page is NOT resetting when the form is closed.
-  var formCloser = document.querySelectorAll(".form-closure-icon")[0];
+  var formCloser = document.querySelectorAll(".form-closure-icon--budget-creation")[0];
 
   if (formCloser) {
     formCloser.addEventListener('click', function (e) {
@@ -7213,20 +7230,29 @@ var _watchCreationFormCloser = function _watchCreationFormCloser(form, budget) {
   }
 };
 
-var _watchCreationFormOpener = function _watchCreationFormOpener(form, button, budget) {
+var _watchCreationFormOpener = function _watchCreationFormOpener(form, button, budget, budgetForm) {
   if (button) {
     button.addEventListener("click", function (e) {
       form.classList.toggle("closed");
       form.classList.toggle("open");
+
+      if (budgetForm.classList.contains('closed')) {
+        budgetForm.classList.toggle("closed");
+        budgetForm.classList.toggle("open");
+      }
+
       return budget;
     });
   }
 };
 
 var _setupBudgetCreation = function _setupBudgetCreation(form, button, budget) {
+  var forms = document.querySelectorAll('.form--full-width');
+  var budgetCreationForm = forms[4];
+
   _watchCreationFormCloser(form, budget);
 
-  _watchCreationFormOpener(form, button, budget);
+  _watchCreationFormOpener(form, button, budget, budgetCreationForm);
 };
 
 var _watchForBudgetCreation = /*#__PURE__*/function () {
@@ -7529,6 +7555,12 @@ var Budget = /*#__PURE__*/function () {
         if (update === "Surplus") {
           this.mainCategories[options.mainIndex].subCategories[options.subIndex].surplus = !this.mainCategories[options.mainIndex].subCategories[options.subIndex].surplus;
           console.log(this.mainCategories[options.mainIndex].subCategories[options.subIndex]);
+
+          if (!this.mainCategories[options.mainIndex].subCategories[options.subIndex].createAt) {
+            this.mainCategories[options.mainIndex].subCategories[options.subIndex].createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+          }
+
+          this.mainCategories[options.mainIndex].subCategories[options.subIndex].lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
         }
 
         if (update === "Finalizing Sub-Categories") {
@@ -7660,6 +7692,12 @@ var Budget = /*#__PURE__*/function () {
           this.accounts.investmentFund.investmentPercentage = Number(options.percentage);
           this.accounts.investmentFund.investmentGoal = Number(options.goal);
           this.accounts.investmentFund.amount = Number(options.amount);
+
+          if (isNaN(Number(options.investedAmount))) {
+            options.investedAmount = 0;
+          }
+
+          this.accounts.investmentFund.investedAmount = Number(options.investedAmount);
         }
 
         if (update === "Debt") {
@@ -7846,6 +7884,7 @@ var Budget = /*#__PURE__*/function () {
         this._updateAccounts("Creation", "Investment", {
           goal: budget.accounts.investmentFund.investmentGoal,
           percentage: budget.accounts.investmentFund.investmentPercentage,
+          investedAmount: budget.accounts.investmentFund.investedAmount,
           amount: budget.accounts.investmentFund.amount
         });
 
@@ -7867,6 +7906,8 @@ var Budget = /*#__PURE__*/function () {
           mc.subCategories.forEach(function (sc) {
             subCategories.push({
               title: sc.title,
+              createdAt: sc.createdAt,
+              lastUpdated: sc.lastUpdated,
               timingOptions: sc.timingOptions,
               goalAmount: sc.goalAmount,
               amountSpent: sc.amountSpent,
@@ -7879,6 +7920,8 @@ var Budget = /*#__PURE__*/function () {
           _this2.mainCategories.push({
             icon: mc.icon,
             title: mc.title,
+            createdAt: mc.createAt,
+            lastUpdated: mc.lastUpdated,
             subCategories: subCategories
           });
         });
@@ -11792,6 +11835,26 @@ var _watchForBudgetCategoryUpdates = function _watchForBudgetCategoryUpdates(bud
   var updateCategoryButton = document.querySelectorAll('.button--large__thin')[0];
   updateCategoryButton.addEventListener('click', function (e) {
     e.preventDefault();
+    console.log(placeholderBudget);
+    placeholderBudget.mainCategories.forEach(function (mc, i) {
+      console.log(mc);
+
+      if (!mc.createdAt) {
+        mc.createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+      }
+
+      if (!mc.lastUpdated) {
+        mc.lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+      }
+
+      mc.subCategories.forEach(function (sc, i) {
+        if (!sc.createdAt) {
+          sc.createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+        }
+
+        sc.lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+      });
+    });
 
     placeholderBudget._updateBudget("Update", "Manage Categories", {
       updateObject: {
@@ -11975,7 +12038,17 @@ var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placehold
             var amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
             var percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
             var timingOptions = bmc.subCategories[i].timingOptions;
-            temporaryObject.subCategories.push(Object.fromEntries([["title", title], ["goalAmount", goalAmount], ["amountSpent", amountSpent], ["amountRemaining", amountRemaining], ["percentageSpent", percentageSpent], ["timingOptions", timingOptions]]));
+            var createdAt = bmc.subCategories[i].createdAt;
+            console.log(createdAt);
+
+            if (!bmc.subCategories[i].createdAt) {
+              createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+            }
+
+            console.log(createdAt);
+            var lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+            temporaryObject.subCategories.push(Object.fromEntries([["title", title], ["createdAt", createdAt], ["lastUpdated", lastUpdated], ["goalAmount", goalAmount], ["amountSpent", amountSpent], ["amountRemaining", amountRemaining], ["percentageSpent", percentageSpent], ["timingOptions", timingOptions]]));
+            console.log(temporaryObject);
 
             if (temporaryObject.subCategories.length === tempArray.length) {
               mainCategoryIndex++;
@@ -12004,7 +12077,16 @@ var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placehold
             var amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
             var percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
             var timingOptions = budget.mainCategories[mainCategoryIndex].subCategories[i].timingOptions;
-            updateObject.mainCategories[mainCategoryIndex].subCategories.push(Object.fromEntries([["title", title], ["goalAmount", goalAmount], ["amountSpent", amountSpent], ["amountRemaining", amountRemaining], ["percentageSpent", percentageSpent], ["timingOptions", timingOptions]]));
+            var createdAt = budget.mainCategories[mainCategoryIndex].subCategories[i].createdAt;
+            console.log(createdAt);
+
+            if (!budget.mainCategories[mainCategoryIndex].subCategories[i].createdAt) {
+              createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+            }
+
+            console.log(createdAt);
+            var lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+            updateObject.mainCategories[mainCategoryIndex].subCategories.push(Object.fromEntries([["title", title], ["createdAt", createdAt], ["lastUpdated", lastUpdated], ["goalAmount", goalAmount], ["amountSpent", amountSpent], ["amountRemaining", amountRemaining], ["percentageSpent", percentageSpent], ["timingOptions", timingOptions]]));
 
             if (updateObject.mainCategories[mainCategoryIndex].subCategories.length === tempArray.length) {
               mainCategoryIndex++;
@@ -12365,7 +12447,6 @@ var selectDayAndShowTransactions = function selectDayAndShowTransactions(event) 
     transaction.classList.remove('open');
     transaction.classList.add('closed');
     var date = new Date(transaction.firstChild.nextSibling.firstChild.textContent);
-    console.log(date);
     if (date.getFullYear() !== Number(splitMonthHeader[2])) return;
     if (months[date.getMonth()] !== splitMonthHeader[0]) return;
 
@@ -12404,10 +12485,12 @@ var displayUpcomingTransactions = function displayUpcomingTransactions(container
 
     upcomingBill.classList.add('upcoming-bills__bill');
     upcomingBill.classList.add('r__upcoming-bills__bill');
+    upcomingBill.dataset.transaction = i;
 
     if (transaction.timingOptions.paymentCycle === "Bi-Annual" || transaction.timingOptions.paymentCycle === "Bi-Monthly") {
       upcomingBillTwo.classList.add('upcoming-bills__bill');
       upcomingBillTwo.classList.add('r__upcoming-bills__bill');
+      upcomingBillTwo.dataset.transaction = i;
     }
 
     var billSections = 5;
@@ -12588,7 +12671,7 @@ var displayUpcomingTransactions = function displayUpcomingTransactions(container
 }; // SETTING UP BILL / TRANSACTION CALENDAR
 
 
-var _setupBillCalendar = function _setupBillCalendar(budget) {
+var _setupBillCalendar = function _setupBillCalendar(budget, placeholderBudget, user) {
   var calendar = _FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_5__.myCalendar;
   var currentMonth = calendar.getMonth();
   var currentMonthIndex = calendar.getMonthIndex();
@@ -12644,14 +12727,79 @@ var _setupBillCalendar = function _setupBillCalendar(budget) {
   });
 
   _watchDaySelection();
+
+  var paymentChecks = document.querySelectorAll('.upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
+  paymentChecks.forEach(function (check, i) {
+    check.addEventListener('click', function (e) {
+      var upcomingBill = document.querySelectorAll('.upcoming-bills__bill')[i];
+      var accountType = upcomingBill.firstChild.firstChild.textContent;
+      var transactionDate = upcomingBill.firstChild.nextSibling.firstChild.textContent; // let transactionDate = new Date(upcomingBill.firstChild.nextSibling.firstChild.textContent);
+
+      var transactionLocation = placeholderBudget.transactions.plannedTransactions[i].location;
+      var transactionAmount = upcomingBill.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1];
+      var transactionBill = new _Transaction__WEBPACK_IMPORTED_MODULE_10__.Transaction({
+        date: transactionDate,
+        location: transactionLocation
+      });
+      var currentBill = placeholderBudget.transactions.plannedTransactions[i];
+
+      if (accountType === "Expense Fund") {
+        transactionBill.transactionType = "Withdrawal";
+        transactionBill.addToReceipt({
+          accountSelected: accountType,
+          transactionType: currentBill.subAccount,
+          timing: currentBill.timingOptions.paymentCycle,
+          expenditure: currentBill.name,
+          description: currentBill.name,
+          amount: Number(transactionAmount)
+        });
+      }
+
+      if (accountType === "Surplus") {
+        transactionBill.transactionType = "Withdrawal";
+        transactionBill.addToReceipt({
+          accountSelected: accountType,
+          timing: currentBill.timingOptions.paymentCycle,
+          expenditure: currentBill.name,
+          description: currentBill.name,
+          amount: Number(transactionAmount)
+        });
+      }
+
+      if (accountType === "Savings Fund") {
+        transactionBill.transactionType = "Withdrawal";
+        transactionBill.addToReceipt({
+          accountSelected: accountType,
+          timing: currentBill.timingOptions.paymentCycle,
+          expenditure: currentBill.name,
+          description: currentBill.name,
+          amount: Number(transactionAmount)
+        });
+      }
+
+      if (accountType === "Debt") {
+        transactionBill.transactionType = "Withdrawal";
+        transactionBill.addToReceipt({
+          accountSelected: accountType,
+          lender: currentBill.lender,
+          timing: currentBill.timingOptions.paymentCycle,
+          expenditure: currentBill.name,
+          description: currentBill.name,
+          amount: Number(transactionAmount)
+        });
+      }
+
+      console.log(currentBill, transactionBill);
+    });
+  });
 };
 
 var calculateTotal = function calculateTotal(accountType, budget) {
-  var accountSections = document.querySelectorAll('.budget-container__dashboard__container--extra-small__content__account-total');
+  var accountSections = document.querySelectorAll('.container--extra-small__content__account-total');
   var budgetAccounts = budget.accounts;
   var amountOfDebt;
   var budgetAccountTotals = [];
-  Object.entries(budgetAccounts).forEach(function (account) {
+  Object.entries(budgetAccounts).forEach(function (account, i) {
     return budgetAccountTotals.push(account[1].amount);
   });
   Object.entries(budgetAccounts).forEach(function (account) {
@@ -12913,6 +13061,8 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
   var dashboard = document.querySelector('.budget-dashboard');
 
   if (dashboard) {
+    console.log(placeholderBudget);
+
     var _money = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
@@ -13262,379 +13412,403 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
     });
 
     var receiptItemContainer = document.querySelector('.receipt-item-container');
-    transactionSaveButton.addEventListener('click', function (e) {
-      e.preventDefault();
-      console.log("Saving...");
-      console.log(transactionHeaderInputs, transactionHeaderInputsTwo);
-      console.log(selectedAccount);
 
-      if (selectedAccount !== "Investment Fund") {
-        // let transaction = new Transaction.Transaction({ date: transactionHeaderInputs[0].value, type: `Withdrawal`, location: transactionHeaderInputsTwo[0].value });
-        transaction.transactionType = "Withdrawal";
-        console.log(transaction);
-        var receiptRow = document.createElement('section');
-        receiptRow.classList.add('receipt-item-container__row');
-        receiptRow.classList.add('r__receipt-item-container__row');
-        insertElement(receiptItemContainer, receiptRow);
-        var transactionDetails = document.createElement('section');
-        transactionDetails.classList.add('transaction-item-details');
-        transactionDetails.classList.add('r__transaction-item-details');
-        insertElement(receiptRow, transactionDetails);
-        var transactionCostDetails = document.createElement('section');
-        transactionCostDetails.classList.add('transaction-item-cost');
-        transactionCostDetails.classList.add('r__transaction-item-cost');
-        insertElement(receiptRow, transactionCostDetails);
-        var detailCount = 1;
-        var detailStart = 0;
+    if (transactionSaveButton) {
+      transactionSaveButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        console.log("Saving...");
+        console.log(transactionHeaderInputs, transactionHeaderInputsTwo);
         console.log(selectedAccount);
 
-        if (selectedAccount === "Monthly Budget" || selectedAccount === "Debt") {
-          detailCount = 2;
+        if (selectedAccount !== "Investment Fund") {
+          // let transaction = new Transaction.Transaction({ date: transactionHeaderInputs[0].value, type: `Withdrawal`, location: transactionHeaderInputsTwo[0].value });
+          transaction.transactionType = "Withdrawal";
+          console.log(transaction);
+          var receiptRow = document.createElement('section');
+          receiptRow.classList.add('receipt-item-container__row');
+          receiptRow.classList.add('r__receipt-item-container__row');
+          insertElement(receiptItemContainer, receiptRow);
+          var transactionDetails = document.createElement('section');
+          transactionDetails.classList.add('transaction-item-details');
+          transactionDetails.classList.add('r__transaction-item-details');
+          insertElement(receiptRow, transactionDetails);
+          var transactionCostDetails = document.createElement('section');
+          transactionCostDetails.classList.add('transaction-item-cost');
+          transactionCostDetails.classList.add('r__transaction-item-cost');
+          insertElement(receiptRow, transactionCostDetails);
+          var detailCount = 1;
+          var detailStart = 0;
+          console.log(selectedAccount);
+
+          if (selectedAccount === "Monthly Budget" || selectedAccount === "Debt") {
+            detailCount = 2;
+            console.log(detailCount);
+          }
+
           console.log(detailCount);
-        }
 
-        console.log(detailCount);
+          while (detailStart < detailCount) {
+            var receiptDetail = document.createElement('p');
+            receiptDetail.classList.add('transaction-item-details__detail');
+            receiptDetail.classList.add('r__transaction-item-details__detail');
+            console.log(mainCategorySelect.firstChild.nextSibling.textContent);
+            console.log(selectedAccount);
 
-        while (detailStart < detailCount) {
-          var receiptDetail = document.createElement('p');
-          receiptDetail.classList.add('transaction-item-details__detail');
-          receiptDetail.classList.add('r__transaction-item-details__detail');
-          console.log(mainCategorySelect.firstChild.nextSibling.textContent);
+            if (selectedAccount === "Monthly Budget") {
+              if (detailStart === 0) {
+                receiptDetail.textContent = mainCategorySelect.firstChild.nextSibling.value;
+              }
+
+              if (detailStart === 1) {
+                receiptDetail.textContent = subCategorySelect.firstChild.nextSibling.value;
+              }
+            }
+
+            if (selectedAccount === "Emergency Fund") {
+              if (detailStart === 0) {
+                receiptDetail.textContent = transactionDescription.firstChild.value;
+              }
+            }
+
+            if (selectedAccount === "Savings Fund" || selectedAccount === "Expense Fund" || selectedAccount === "Surplus") {
+              if (detailStart === 0) {
+                receiptDetail.textContent = transactionItem.firstChild.nextSibling.value;
+              }
+            }
+
+            if (selectedAccount === "Investment Fund") {
+              if (detailStart === 0) {
+                receiptDetail.textContent = transactionName.firstChild.value;
+              }
+            }
+
+            if (selectedAccount === "Debt") {
+              if (detailStart === 0) {
+                receiptDetail.textContent = transactionLender.firstChild.nextSibling.value;
+              }
+
+              if (detailStart === 1) {
+                receiptDetail.textContent = transactionItem.firstChild.nextSibling.value;
+              }
+            }
+
+            insertElement(transactionDetails, receiptDetail);
+            detailStart++;
+          }
+
+          console.log(transactionAmount, transactionAmount.firstChild.value, (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(transactionAmount.firstChild.value), money.format(Number(transactionAmount.value)));
+          var receiptDetailCost = document.createElement('p');
+          receiptDetailCost.classList.add('transaction-item-cost__cost');
+          receiptDetailCost.classList.add('r__transaction-item-cost__cost');
+          receiptDetailCost.textContent = money.format(Number(transactionAmount.firstChild.value));
+          insertElement(transactionCostDetails, receiptDetailCost);
+          var removeTransactionItemIcon = document.createElement('i');
+          removeTransactionItemIcon.classList.add('fas');
+          removeTransactionItemIcon.classList.add('fa-trash-alt');
+          removeTransactionItemIcon.classList.add('remove-transaction');
+          removeTransactionItemIcon.classList.add('r__remove-transaction');
+          removeTransactionItemIcon.classList.add('closed');
+          insertElement(transactionCostDetails, removeTransactionItemIcon);
+          removeTransactionItemIcon.addEventListener('click', function (e) {
+            var removeTransactionIcons = document.querySelectorAll('.remove-transaction');
+
+            var index = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(removeTransactionIcons).indexOf(e.target);
+
+            var receiptTransactions = document.querySelectorAll('.receipt-item-container__row');
+            receiptTransactions[index].remove();
+            transaction.removeFromReceipt(index);
+          });
+          receiptRow.addEventListener('mouseover', function (e) {
+            e.preventDefault();
+            removeTransactionItemIcon.classList.toggle('closed');
+            removeTransactionItemIcon.classList.toggle('open');
+          });
+          receiptRow.addEventListener('mouseout', function (e) {
+            e.preventDefault();
+            removeTransactionItemIcon.classList.toggle('closed');
+            removeTransactionItemIcon.classList.toggle('open');
+          });
           console.log(selectedAccount);
 
           if (selectedAccount === "Monthly Budget") {
-            if (detailStart === 0) {
-              receiptDetail.textContent = mainCategorySelect.firstChild.nextSibling.value;
-            }
-
-            if (detailStart === 1) {
-              receiptDetail.textContent = subCategorySelect.firstChild.nextSibling.value;
-            }
+            transaction.addToReceipt({
+              mainCategory: mainCategorySelect.firstChild.nextSibling.value,
+              subCategory: subCategorySelect.firstChild.nextSibling.value,
+              description: transactionDescription.firstChild.value,
+              amount: Number(transactionAmount.firstChild.value),
+              accountSelected: selectedAccount
+            });
           }
 
           if (selectedAccount === "Emergency Fund") {
-            if (detailStart === 0) {
-              receiptDetail.textContent = transactionDescription.firstChild.value;
-            }
+            transaction.addToReceipt({
+              description: transactionDescription.firstChild.value,
+              amount: Number(transactionAmount.firstChild.value),
+              accountSelected: selectedAccount
+            });
           }
 
-          if (selectedAccount === "Savings Fund" || selectedAccount === "Expense Fund" || selectedAccount === "Surplus") {
-            if (detailStart === 0) {
-              receiptDetail.textContent = transactionItem.firstChild.nextSibling.value;
-            }
+          if (selectedAccount === "Savings Fund") {
+            console.log(selectedAccount);
+            transaction.addToReceipt({
+              timing: transactionTiming.firstChild.nextSibling.value,
+              expenditure: transactionItem.firstChild.nextSibling.value,
+              description: transactionDescription.firstChild.value,
+              amount: Number(transactionAmount.firstChild.value),
+              accountSelected: selectedAccount
+            });
           }
 
-          if (selectedAccount === "Investment Fund") {
-            if (detailStart === 0) {
-              receiptDetail.textContent = transactionName.firstChild.value;
-            }
+          if (selectedAccount === "Expense Fund") {
+            transaction.addToReceipt({
+              transactionType: transactionType.firstChild.nextSibling.value,
+              timing: transactionTiming.firstChild.nextSibling.value,
+              expenditure: transactionItem.firstChild.nextSibling.value,
+              description: transactionDescription.firstChild.value,
+              amount: Number(transactionAmount.firstChild.value),
+              accountSelected: selectedAccount
+            });
+          }
+
+          if (selectedAccount === "Surplus") {
+            transaction.addToReceipt({
+              timing: transactionTiming.firstChild.nextSibling.value,
+              expenditure: transactionItem.firstChild.nextSibling.value,
+              description: transactionDescription.firstChild.value,
+              amount: Number(transactionAmount.firstChild.value),
+              accountSelected: selectedAccount
+            });
           }
 
           if (selectedAccount === "Debt") {
-            if (detailStart === 0) {
-              receiptDetail.textContent = transactionLender.firstChild.nextSibling.value;
-            }
-
-            if (detailStart === 1) {
-              receiptDetail.textContent = transactionItem.firstChild.nextSibling.value;
-            }
+            transaction.addToReceipt({
+              timing: transactionTiming.firstChild.nextSibling.value,
+              lender: transactionLender.firstChild.nextSibling.value,
+              expenditure: transactionItem.firstChild.nextSibling.value,
+              description: transactionDescription.firstChild.value,
+              amount: Number(transactionAmount.firstChild.value),
+              accountSelected: selectedAccount
+            });
           }
-
-          insertElement(transactionDetails, receiptDetail);
-          detailStart++;
         }
-
-        console.log(transactionAmount, transactionAmount.firstChild.value, (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(transactionAmount.firstChild.value), money.format(Number(transactionAmount.value)));
-        var receiptDetailCost = document.createElement('p');
-        receiptDetailCost.classList.add('transaction-item-cost__cost');
-        receiptDetailCost.classList.add('r__transaction-item-cost__cost');
-        receiptDetailCost.textContent = money.format(Number(transactionAmount.firstChild.value));
-        insertElement(transactionCostDetails, receiptDetailCost);
-        var removeTransactionItemIcon = document.createElement('i');
-        removeTransactionItemIcon.classList.add('fas');
-        removeTransactionItemIcon.classList.add('fa-trash-alt');
-        removeTransactionItemIcon.classList.add('remove-transaction');
-        removeTransactionItemIcon.classList.add('r__remove-transaction');
-        removeTransactionItemIcon.classList.add('closed');
-        insertElement(transactionCostDetails, removeTransactionItemIcon);
-        removeTransactionItemIcon.addEventListener('click', function (e) {
-          var removeTransactionIcons = document.querySelectorAll('.remove-transaction');
-
-          var index = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(removeTransactionIcons).indexOf(e.target);
-
-          var receiptTransactions = document.querySelectorAll('.receipt-item-container__row');
-          receiptTransactions[index].remove();
-          transaction.removeFromReceipt(index);
-        });
-        receiptRow.addEventListener('mouseover', function (e) {
-          e.preventDefault();
-          removeTransactionItemIcon.classList.toggle('closed');
-          removeTransactionItemIcon.classList.toggle('open');
-        });
-        receiptRow.addEventListener('mouseout', function (e) {
-          e.preventDefault();
-          removeTransactionItemIcon.classList.toggle('closed');
-          removeTransactionItemIcon.classList.toggle('open');
-        });
-        console.log(selectedAccount);
-
-        if (selectedAccount === "Monthly Budget") {
-          transaction.addToReceipt({
-            mainCategory: mainCategorySelect.firstChild.nextSibling.value,
-            subCategory: subCategorySelect.firstChild.nextSibling.value,
-            description: transactionDescription.firstChild.value,
-            amount: Number(transactionAmount.firstChild.value),
-            accountSelected: selectedAccount
-          });
-        }
-
-        if (selectedAccount === "Emergency Fund") {
-          transaction.addToReceipt({
-            description: transactionDescription.firstChild.value,
-            amount: Number(transactionAmount.firstChild.value),
-            accountSelected: selectedAccount
-          });
-        }
-
-        if (selectedAccount === "Savings Fund") {
-          console.log(selectedAccount);
-          transaction.addToReceipt({
-            timing: transactionTiming.firstChild.nextSibling.value,
-            expenditure: transactionItem.firstChild.nextSibling.value,
-            description: transactionDescription.firstChild.value,
-            amount: Number(transactionAmount.firstChild.value),
-            accountSelected: selectedAccount
-          });
-        }
-
-        if (selectedAccount === "Expense Fund") {
-          transaction.addToReceipt({
-            transactionType: transactionType.firstChild.nextSibling.value,
-            timing: transactionTiming.firstChild.nextSibling.value,
-            expenditure: transactionItem.firstChild.nextSibling.value,
-            description: transactionDescription.firstChild.value,
-            amount: Number(transactionAmount.firstChild.value),
-            accountSelected: selectedAccount
-          });
-        }
-
-        if (selectedAccount === "Surplus") {
-          transaction.addToReceipt({
-            timing: transactionTiming.firstChild.nextSibling.value,
-            expenditure: transactionItem.firstChild.nextSibling.value,
-            description: transactionDescription.firstChild.value,
-            amount: Number(transactionAmount.firstChild.value),
-            accountSelected: selectedAccount
-          });
-        }
-
-        if (selectedAccount === "Debt") {
-          transaction.addToReceipt({
-            timing: transactionTiming.firstChild.nextSibling.value,
-            lender: transactionLender.firstChild.nextSibling.value,
-            expenditure: transactionItem.firstChild.nextSibling.value,
-            description: transactionDescription.firstChild.value,
-            amount: Number(transactionAmount.firstChild.value),
-            accountSelected: selectedAccount
-          });
-        }
-      }
-
-      console.log(selectedAccount);
-
-      if (selectedAccount === "Investment Fund") {
-        console.log(selectedAccount);
-        if (transaction.transactionType) return;
-        console.log(selectedAccount);
-        transaction.transactionType = "Deposit";
-
-        var _receiptRow = document.createElement('section');
-
-        _receiptRow.classList.add('receipt-item-container__row');
-
-        _receiptRow.classList.add('r__receipt-item-container__row');
-
-        insertElement(receiptItemContainer, _receiptRow);
-
-        var _transactionDetails = document.createElement('section');
-
-        _transactionDetails.classList.add('transaction-item-details');
-
-        _transactionDetails.classList.add('r__transaction-item-details');
-
-        insertElement(_receiptRow, _transactionDetails);
-
-        var _transactionCostDetails = document.createElement('section');
-
-        _transactionCostDetails.classList.add('transaction-item-cost');
-
-        _transactionCostDetails.classList.add('r__transaction-item-cost');
-
-        insertElement(_receiptRow, _transactionCostDetails);
-        var _detailCount = 1;
-        var _detailStart = 0;
-
-        while (_detailStart < _detailCount) {
-          var _receiptDetail = document.createElement('p');
-
-          _receiptDetail.classList.add('transaction-item-details__detail');
-
-          _receiptDetail.classList.add('r__transaction-item-details__detail');
-
-          console.log(mainCategorySelect.firstChild.nextSibling.textContent);
-          console.log(selectedAccount);
-
-          if (selectedAccount === "Investment Fund") {
-            if (_detailStart === 0) {
-              _receiptDetail.textContent = transactionName.firstChild.value;
-            }
-          }
-
-          insertElement(_transactionDetails, _receiptDetail);
-          _detailStart++;
-        }
-
-        console.log(transactionAmount, transactionAmount.firstChild.value, (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(transactionAmount.firstChild.value), money.format(Number(transactionAmount.value)));
-
-        var _receiptDetailCost = document.createElement('p');
-
-        _receiptDetailCost.classList.add('transaction-item-cost__cost');
-
-        _receiptDetailCost.classList.add('r__transaction-item-cost__cost');
-
-        _receiptDetailCost.textContent = money.format(Number(transactionAmount.firstChild.value));
-        insertElement(_transactionCostDetails, _receiptDetailCost);
-
-        var _removeTransactionItemIcon = document.createElement('i');
-
-        _removeTransactionItemIcon.classList.add('fas');
-
-        _removeTransactionItemIcon.classList.add('fa-trash-alt');
-
-        _removeTransactionItemIcon.classList.add('remove-transaction');
-
-        _removeTransactionItemIcon.classList.add('r__remove-transaction');
-
-        _removeTransactionItemIcon.classList.add('closed');
-
-        insertElement(_transactionCostDetails, _removeTransactionItemIcon);
-
-        _removeTransactionItemIcon.addEventListener('click', function (e) {
-          var removeTransactionIcons = document.querySelectorAll('.remove-transaction');
-
-          var index = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(removeTransactionIcons).indexOf(e.target);
-
-          var receiptTransactions = document.querySelectorAll('.receipt-item-container__row');
-          receiptTransactions[index].remove();
-          transaction.removeFromReceipt(index);
-        });
-
-        _receiptRow.addEventListener('mouseover', function (e) {
-          e.preventDefault();
-
-          _removeTransactionItemIcon.classList.toggle('closed');
-
-          _removeTransactionItemIcon.classList.toggle('open');
-        });
-
-        _receiptRow.addEventListener('mouseout', function (e) {
-          e.preventDefault();
-
-          _removeTransactionItemIcon.classList.toggle('closed');
-
-          _removeTransactionItemIcon.classList.toggle('open');
-        });
 
         console.log(selectedAccount);
 
         if (selectedAccount === "Investment Fund") {
-          transaction.addToReceipt({
-            user: user,
-            transactionType: transactionType.firstChild.nextSibling.value,
-            transactionName: transactionName.firstChild.value,
-            description: transactionDescription.firstChild.value,
-            amount: Number(transactionAmount.firstChild.value),
-            accountSelected: selectedAccount
+          console.log(selectedAccount);
+          if (transaction.transactionType) return;
+          console.log(selectedAccount);
+          transaction.transactionType = "Deposit";
+
+          var _receiptRow = document.createElement('section');
+
+          _receiptRow.classList.add('receipt-item-container__row');
+
+          _receiptRow.classList.add('r__receipt-item-container__row');
+
+          insertElement(receiptItemContainer, _receiptRow);
+
+          var _transactionDetails = document.createElement('section');
+
+          _transactionDetails.classList.add('transaction-item-details');
+
+          _transactionDetails.classList.add('r__transaction-item-details');
+
+          insertElement(_receiptRow, _transactionDetails);
+
+          var _transactionCostDetails = document.createElement('section');
+
+          _transactionCostDetails.classList.add('transaction-item-cost');
+
+          _transactionCostDetails.classList.add('r__transaction-item-cost');
+
+          insertElement(_receiptRow, _transactionCostDetails);
+          var _detailCount = 1;
+          var _detailStart = 0;
+
+          while (_detailStart < _detailCount) {
+            var _receiptDetail = document.createElement('p');
+
+            _receiptDetail.classList.add('transaction-item-details__detail');
+
+            _receiptDetail.classList.add('r__transaction-item-details__detail');
+
+            console.log(mainCategorySelect.firstChild.nextSibling.textContent);
+            console.log(selectedAccount);
+
+            if (selectedAccount === "Investment Fund") {
+              if (_detailStart === 0) {
+                _receiptDetail.textContent = transactionName.firstChild.value;
+              }
+            }
+
+            insertElement(_transactionDetails, _receiptDetail);
+            _detailStart++;
+          }
+
+          console.log(transactionAmount, transactionAmount.firstChild.value, (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(transactionAmount.firstChild.value), money.format(Number(transactionAmount.value)));
+
+          var _receiptDetailCost = document.createElement('p');
+
+          _receiptDetailCost.classList.add('transaction-item-cost__cost');
+
+          _receiptDetailCost.classList.add('r__transaction-item-cost__cost');
+
+          _receiptDetailCost.textContent = money.format(Number(transactionAmount.firstChild.value));
+          insertElement(_transactionCostDetails, _receiptDetailCost);
+
+          var _removeTransactionItemIcon = document.createElement('i');
+
+          _removeTransactionItemIcon.classList.add('fas');
+
+          _removeTransactionItemIcon.classList.add('fa-trash-alt');
+
+          _removeTransactionItemIcon.classList.add('remove-transaction');
+
+          _removeTransactionItemIcon.classList.add('r__remove-transaction');
+
+          _removeTransactionItemIcon.classList.add('closed');
+
+          insertElement(_transactionCostDetails, _removeTransactionItemIcon);
+
+          _removeTransactionItemIcon.addEventListener('click', function (e) {
+            var removeTransactionIcons = document.querySelectorAll('.remove-transaction');
+
+            var index = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(removeTransactionIcons).indexOf(e.target);
+
+            var receiptTransactions = document.querySelectorAll('.receipt-item-container__row');
+            receiptTransactions[index].remove();
+            transaction.removeFromReceipt(index);
           });
-        }
-      }
 
-      console.log(transaction, transaction.receipt);
-      var fullTransactionCost = document.querySelectorAll('.container--small__transaction-total__amount')[0];
-      var receiptCost = 0;
-      transaction.receipt.forEach(function (receiptItem, i) {
-        return receiptCost = receiptCost += receiptItem.amount;
+          _receiptRow.addEventListener('mouseover', function (e) {
+            e.preventDefault();
+
+            _removeTransactionItemIcon.classList.toggle('closed');
+
+            _removeTransactionItemIcon.classList.toggle('open');
+          });
+
+          _receiptRow.addEventListener('mouseout', function (e) {
+            e.preventDefault();
+
+            _removeTransactionItemIcon.classList.toggle('closed');
+
+            _removeTransactionItemIcon.classList.toggle('open');
+          });
+
+          console.log(selectedAccount);
+
+          if (selectedAccount === "Investment Fund") {
+            transaction.addToReceipt({
+              user: user,
+              transactionType: transactionType.firstChild.nextSibling.value,
+              transactionName: transactionName.firstChild.value,
+              description: transactionDescription.firstChild.value,
+              amount: Number(transactionAmount.firstChild.value),
+              accountSelected: selectedAccount
+            });
+          }
+        }
+
+        console.log(transaction, transaction.receipt);
+        var fullTransactionCost = document.querySelectorAll('.container--small__transaction-total__amount')[0];
+        var receiptCost = 0;
+        transaction.receipt.forEach(function (receiptItem, i) {
+          return receiptCost = receiptCost += receiptItem.amount;
+        });
+        console.log(receiptCost);
+        fullTransactionCost.textContent = money.format(receiptCost);
       });
-      console.log(receiptCost);
-      fullTransactionCost.textContent = money.format(receiptCost);
-    });
-    transactionSubmitButton.addEventListener('click', function (e) {
-      e.preventDefault();
-      var updateObject = {
-        budgetId: budget._id,
-        userId: user._id
-      };
-      placeholderBudget.transactions.recentTransactions.push(transaction); // console.log(placeholderBudget);
+    }
 
-      updateObject.transactions = placeholderBudget.transactions;
-      console.log(updateObject);
-      updateObject.transactions.recentTransactions[updateObject.transactions.recentTransactions.length - 1].receipt.forEach(function (receiptItem, i) {
-        console.log(receiptItem);
+    if (transactionSubmitButton) {
+      transactionSubmitButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        var updateObject = {
+          budgetId: budget._id,
+          userId: user._id
+        };
+        placeholderBudget.transactions.recentTransactions.push(transaction); // console.log(placeholderBudget);
 
-        if (receiptItem.account === "Monthly Budget") {
-          placeholderBudget.accounts.monthlyBudget.amount = placeholderBudget.accounts.monthlyBudget.amount - Number(receiptItem.amount);
-        }
+        updateObject.transactions = placeholderBudget.transactions;
+        console.log(updateObject);
+        updateObject.transactions.recentTransactions[updateObject.transactions.recentTransactions.length - 1].receipt.forEach(function (receiptItem, i) {
+          console.log(receiptItem);
 
-        if (receiptItem.account === "Emergency Fund") {
-          placeholderBudget.accounts.emergencyFund.amount = placeholderBudget.accounts.emergencyFund.amount - Number(receiptItem.amount);
-        }
+          if (receiptItem.account === "Monthly Budget") {
+            placeholderBudget.accounts.monthlyBudget.amount = placeholderBudget.accounts.monthlyBudget.amount - Number(receiptItem.amount);
+            placeholderBudget.mainCategories.forEach(function (category, i) {
+              if (receiptItem.category === category.title) {
+                var index = i;
+                console.log(receiptItem.category);
+                category.subCategories.forEach(function (subCategory, i) {
+                  if (receiptItem.subCategory === subCategory.title) {
+                    console.log(receiptItem.subCategory);
+                    subCategory.amountSpent += receiptItem.amount;
+                    subCategory.amountRemaining = subCategory.goalAmount - subCategory.amountSpent;
+                    subCategory.percentageSpent = Number(subCategory.amountSpent / subCategory.goalAmount * 100);
+                  }
+                });
+              }
+            });
+            updateObject.mainCategories = placeholderBudget.mainCategories;
+          }
 
-        if (receiptItem.account === "Savings Fund") {
-          placeholderBudget.accounts.savingsFund.amount = placeholderBudget.accounts.savingsFund.amount - Number(receiptItem.amount);
-        }
+          if (receiptItem.account === "Emergency Fund") {
+            placeholderBudget.accounts.emergencyFund.amount = placeholderBudget.accounts.emergencyFund.amount - Number(receiptItem.amount);
+          }
 
-        if (receiptItem.account === "Expense Fund") {
-          placeholderBudget.accounts.expenseFund.amount = placeholderBudget.accounts.expenseFund.amount - Number(receiptItem.amount);
-        }
+          if (receiptItem.account === "Savings Fund") {
+            placeholderBudget.accounts.savingsFund.amount = placeholderBudget.accounts.savingsFund.amount - Number(receiptItem.amount);
+          }
 
-        if (receiptItem.account === "Surplus") {
-          placeholderBudget.accounts.surlus.amount = placeholderBudget.accounts.surplus.amount - Number(receiptItem.amount);
-        }
+          if (receiptItem.account === "Expense Fund") {
+            placeholderBudget.accounts.expenseFund.amount = placeholderBudget.accounts.expenseFund.amount - Number(receiptItem.amount);
+          }
 
-        if (receiptItem.account === "Investment Fund") {
-          if (!placeholderBudget.accounts.investmentFund.investedAmount) placeholderBudget.accounts.investmentFund.investedAmount = 0;
-          placeholderBudget.accounts.investmentFund.amount = placeholderBudget.accounts.investmentFund.amount - Number(receiptItem.amount);
-          placeholderBudget.accounts.investmentFund.investedAmount = placeholderBudget.accounts.investmentFund.investedAmount + Number(receiptItem.amount);
-          var investmentObject = {
-            investmentType: receiptItem.transactionType,
-            investmentName: receiptItem.transactionName,
-            investmentDescription: receiptItem.description,
-            initialInvestment: receiptItem.amount,
-            currentValue: receiptItem.amount,
-            settled: false,
-            valueDifference: 0
-          };
-          placeholderBudget.investments.push(investmentObject);
-          updateObject.investments = placeholderBudget.investments;
-        }
+          if (receiptItem.account === "Surplus") {
+            placeholderBudget.accounts.surlus.amount = placeholderBudget.accounts.surplus.amount - Number(receiptItem.amount);
+          }
 
-        if (receiptItem.account === "Debt") {
-          placeholderBudget.accounts.debt.amount = placeholderBudget.accounts.debt.amount - Number(receiptItem.amount);
-          /* After reducing the amount that is allocated to the debt account, there needs to be a reduction of the debt amount through reducing the current amount owed for the debt that was selected.
-           To do that we need to:
-          1) Find the exact debt that is being paid.
-          2) From there, reduce it's amountOwed amount.
-           There is more steps to each of those, especially the first, but that is what needs to be done.
-          */
-        }
+          if (receiptItem.account === "Investment Fund") {
+            if (!placeholderBudget.accounts.investmentFund.investedAmount) placeholderBudget.accounts.investmentFund.investedAmount = 0;
+            placeholderBudget.accounts.investmentFund.amount = placeholderBudget.accounts.investmentFund.amount - Number(receiptItem.amount);
+            placeholderBudget.accounts.investmentFund.investedAmount = placeholderBudget.accounts.investmentFund.investedAmount + Number(receiptItem.amount);
+            var investmentObject = {
+              investmentType: receiptItem.transactionType,
+              investmentName: receiptItem.transactionName,
+              investmentDescription: receiptItem.description,
+              initialInvestment: receiptItem.amount,
+              currentValue: receiptItem.amount,
+              settled: false,
+              valueDifference: 0
+            };
+            placeholderBudget.investments.push(investmentObject);
+            updateObject.investments = placeholderBudget.investments;
+          }
+
+          if (receiptItem.account === "Debt") {
+            placeholderBudget.accounts.debt.amount = placeholderBudget.accounts.debt.amount - Number(receiptItem.amount);
+            /* After reducing the amount that is allocated to the debt account, there needs to be a reduction of the debt amount through reducing the current amount owed for the debt that was selected.
+               To do that we need to:
+            1) Find the exact debt that is being paid.
+            2) From there, reduce it's amountOwed amount.
+               There is more steps to each of those, especially the first, but that is what needs to be done.
+            */
+          }
+        });
+        updateObject.accounts = placeholderBudget.accounts;
+        console.log(updateObject);
+
+        placeholderBudget._updateBudget("Update", "Enter Transaction", {
+          updateObject: updateObject
+        }, "Dashboard");
+
+        var fullTransactionCost = document.querySelectorAll('.container--small__transaction-total__amount')[0];
+        fullTransactionCost.textContent = money.format(0);
       });
-      updateObject.accounts = placeholderBudget.accounts;
-      console.log(updateObject);
-
-      placeholderBudget._updateBudget("Update", "Enter Transaction", {
-        updateObject: updateObject
-      }, "Dashboard");
-    });
+    }
   }
 };
 
@@ -13721,7 +13895,7 @@ var setupDashboard = function setupDashboard(user, budget, placeholderBudget) {
   getDashboardAccountTotals(budget); ////////////////////////////////////////////
   // SETUP BILL CALENDAR
 
-  _setupBillCalendar(budget); ////////////////////////////////////////////
+  _setupBillCalendar(budget, placeholderBudget, user); ////////////////////////////////////////////
   // SETUP BILL CURRENT MONTH
 
 
@@ -14809,8 +14983,9 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
             userProfileFormButtons = document.querySelectorAll('.user-profile-form__button');
             userProfileSubSectionFormButtons = document.querySelectorAll('.user-profile-form__section__sub-section__button');
             transparentButtons = document.querySelectorAll('.button--small-transparent');
-            latterDaySaintSwitch = document.querySelector('.switch--latter-day-saint');
+            latterDaySaintSwitch = document.querySelector('.form__input--latter-day-saint');
             communicationSwitch = document.getElementById('commSwitch');
+            console.log(transparentButtons);
             transparentButtons.forEach(function (b, i) {
               b.addEventListener('click', /*#__PURE__*/function () {
                 var _ref9 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee8(e) {
@@ -14829,11 +15004,7 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
                           firstname = document.getElementById('firstname').value;
                           lastname = document.getElementById('lastname').value;
                           username = document.getElementById('username').value;
-
-                          if (latterDaySaintSwitch.classList.contains('switch--latter-day-saint--switched')) {
-                            latterDaySaint = true;
-                          }
-
+                          latterDaySaintSwitch.classList.contains('form__input--latter-day-saint--switched') ? latterDaySaint = true : latterDaySaint = false;
                           _context8.next = 8;
                           return updateMe({
                             firstname: firstname,
@@ -14852,7 +15023,7 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
                             break;
                           }
 
-                          communicationSwitch.classList.contains('switch--comms--text-preferred') ? commPreference = "Text" : commPreference = "Email";
+                          communicationSwitch.classList.contains('form__input--comms--text-preferred') ? commPreference = "Text" : commPreference = "Email";
                           console.log(commPreference);
                           newEmail = document.getElementById('newEmail').value;
                           newEmailConfirmed = document.getElementById('newEmailConfirmed').value;
@@ -14929,7 +15100,7 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
                 };
               }());
             });
-            transparentButtons[4].addEventListener('click', /*#__PURE__*/function () {
+            transparentButtons[3].addEventListener('click', /*#__PURE__*/function () {
               var _ref10 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee9(e) {
                 var currentPassword, newPassword, newPasswordConfirmed, updateUserInfo;
                 return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee9$(_context9) {
@@ -14941,13 +15112,14 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
                         currentPassword = document.getElementById('currentPassword').value;
                         newPassword = document.getElementById('newPassword').value;
                         newPasswordConfirmed = document.getElementById('newPasswordConfirmed').value;
-                        _context9.next = 7;
+                        console.log(currentPassword, newPassword, newPasswordConfirmed);
+                        _context9.next = 8;
                         return updateMyPassword(currentPassword, newPassword, newPasswordConfirmed, user._id);
 
-                      case 7:
+                      case 8:
                         updateUserInfo = _context9.sent;
 
-                      case 8:
+                      case 9:
                       case "end":
                         return _context9.stop();
                     }
@@ -14960,7 +15132,7 @@ var _watchForProfileUpdates = /*#__PURE__*/function () {
               };
             }());
 
-          case 7:
+          case 8:
           case "end":
             return _context10.stop();
         }

@@ -56,6 +56,10 @@ export class Budget {
       if (update === `Surplus`) {
         this.mainCategories[options.mainIndex].subCategories[options.subIndex].surplus = !this.mainCategories[options.mainIndex].subCategories[options.subIndex].surplus;
         console.log(this.mainCategories[options.mainIndex].subCategories[options.subIndex]);
+        if (!this.mainCategories[options.mainIndex].subCategories[options.subIndex].createAt) {
+          this.mainCategories[options.mainIndex].subCategories[options.subIndex].createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+        }
+        this.mainCategories[options.mainIndex].subCategories[options.subIndex].lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
       }
 
       if (update === `Finalizing Sub-Categories`) {
@@ -155,6 +159,10 @@ export class Budget {
         this.accounts.investmentFund.investmentPercentage = Number(options.percentage);
         this.accounts.investmentFund.investmentGoal = Number(options.goal);
         this.accounts.investmentFund.amount = Number(options.amount);
+        if (isNaN(Number(options.investedAmount))) {
+          options.investedAmount = 0;
+        }
+        this.accounts.investmentFund.investedAmount = Number(options.investedAmount);
       }
       if (update === `Debt`) {
         this.accounts.debt.amount = Number(options.amount);
@@ -312,6 +320,7 @@ export class Budget {
       this._updateAccounts(`Creation`, `Investment`, {
         goal: budget.accounts.investmentFund.investmentGoal,
         percentage: budget.accounts.investmentFund.investmentPercentage,
+        investedAmount: budget.accounts.investmentFund.investedAmount,
         amount: budget.accounts.investmentFund.amount,
       });
       this._updateAccounts(`Creation`, `Expense Fund`, { amount: budget.accounts.expenseFund.amount });
@@ -322,6 +331,8 @@ export class Budget {
         mc.subCategories.forEach((sc) => {
           subCategories.push({
             title: sc.title,
+            createdAt: sc.createdAt,
+            lastUpdated: sc.lastUpdated,
             timingOptions: sc.timingOptions,
             goalAmount: sc.goalAmount,
             amountSpent: sc.amountSpent,
@@ -330,7 +341,7 @@ export class Budget {
             surplus: sc.surplus,
           });
         });
-        this.mainCategories.push({ icon: mc.icon, title: mc.title, subCategories: subCategories });
+        this.mainCategories.push({ icon: mc.icon, title: mc.title, createdAt: mc.createAt, lastUpdated: mc.lastUpdated, subCategories: subCategories });
       });
       this.transactions = budget.transactions;
       this.investments = budget.investments;

@@ -177,10 +177,11 @@ export const _watchForProfileUpdates = async (user) => {
   const userProfileFormButtons = document.querySelectorAll('.user-profile-form__button');
   const userProfileSubSectionFormButtons = document.querySelectorAll('.user-profile-form__section__sub-section__button');
   const transparentButtons = document.querySelectorAll('.button--small-transparent');
-  const latterDaySaintSwitch = document.querySelector('.switch--latter-day-saint');
+  const latterDaySaintSwitch = document.querySelector('.form__input--latter-day-saint');
   let communicationSwitch = document.getElementById('commSwitch');
   let commPreference;
   let latterDaySaint;
+  console.log(transparentButtons);
   transparentButtons.forEach((b, i) => {
     b.addEventListener('click', async (e) => {
       e.preventDefault();
@@ -188,9 +189,7 @@ export const _watchForProfileUpdates = async (user) => {
         const firstname = document.getElementById('firstname').value;
         const lastname = document.getElementById('lastname').value;
         const username = document.getElementById('username').value;
-        if (latterDaySaintSwitch.classList.contains('switch--latter-day-saint--switched')) {
-          latterDaySaint = true;
-        }
+        latterDaySaintSwitch.classList.contains('form__input--latter-day-saint--switched') ? (latterDaySaint = true) : (latterDaySaint = false);
         const updatedUserInfo = await updateMe({
           firstname: firstname,
           lastname: lastname,
@@ -200,7 +199,7 @@ export const _watchForProfileUpdates = async (user) => {
         });
       }
       if (i === 1) {
-        communicationSwitch.classList.contains('switch--comms--text-preferred') ? (commPreference = `Text`) : (commPreference = `Email`);
+        communicationSwitch.classList.contains('form__input--comms--text-preferred') ? (commPreference = `Text`) : (commPreference = `Email`);
         console.log(commPreference);
         let newEmail = document.getElementById('newEmail').value;
         let newEmailConfirmed = document.getElementById('newEmailConfirmed').value;
@@ -242,12 +241,13 @@ export const _watchForProfileUpdates = async (user) => {
       }
     });
   });
-  transparentButtons[4].addEventListener('click', async (e) => {
+  transparentButtons[3].addEventListener('click', async (e) => {
     e.preventDefault();
     console.log(userProfileSubSectionFormButtons);
     const currentPassword = document.getElementById('currentPassword').value;
     const newPassword = document.getElementById('newPassword').value;
     const newPasswordConfirmed = document.getElementById('newPasswordConfirmed').value;
+    console.log(currentPassword, newPassword, newPasswordConfirmed);
     const updateUserInfo = await updateMyPassword(currentPassword, newPassword, newPasswordConfirmed, user._id);
   });
 };

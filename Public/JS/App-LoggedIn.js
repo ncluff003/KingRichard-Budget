@@ -98,19 +98,17 @@ export const _watchSubSectionButtons = () => {
 
 //////////////////////////////////////////////////
 // ALL ABOUT WATCHING COMMUNICATION PREFERENCES
-const _changeCommPreference = () => {
-  if (commPreference === `Email`) {
-    return (commPreference = `Text`);
-  } else {
-    return (commPreference = `Email`);
-  }
+const _changeCommPreference = (communicationSwitch, commPreference) => {
+  return communicationSwitch.classList.contains('form__input--comms--text-preferred') ? (commPreference = `Text`) : (commPreference = `Email`);
 };
 
-export const _watchCommPreference = (communicationSwitch) => {
+export const _watchCommPreference = (communicationSwitch, commPreference) => {
   if (communicationSwitch) {
     communicationSwitch.addEventListener('click', (e) => {
-      communicationSwitch.classList.toggle('switch--comms--text-preferred');
-      _changeCommPreference();
+      communicationSwitch.classList.toggle('form__input--comms--text-preferred');
+      communicationSwitch.classList.toggle('form__input--comms');
+      commPreference = _changeCommPreference(communicationSwitch, commPreference);
+      console.log(commPreference);
     });
   }
 };
@@ -120,25 +118,28 @@ export const _watchCommPreference = (communicationSwitch) => {
 
 const _watchLatterDaySaintSwitch = (ldsSwitch) => {
   ldsSwitch.addEventListener('click', (e) => {
-    ldsSwitch.classList.toggle('switch--latter-day-saint--switched');
-    ldsSwitch.classList.toggle('r__switch--latter-day-saint--switched');
+    e.preventDefault();
+    ldsSwitch.classList.toggle('r__form__input--latter-day-saint--switched');
   });
 };
 
 export const _showProfileForm = (forms, index) => {
   forms.forEach((form) => {
-    form.style.display = 'none';
+    form.classList.add(`closed`);
+    form.classList.remove(`open`);
   });
-  forms[index].style.display = 'flex';
+  forms[index].classList.toggle('closed');
+  forms[index].classList.toggle('open');
 };
 
 export const _watchUserProfileButtons = (communicationPreference) => {
   const userProfileForms = document.querySelectorAll('.form--full-width');
+  console.log(userProfileForms);
   const userProfileHeader = document.querySelector('.user-profile-section__header__text');
   const userProfileContainer = document.querySelector('.user-profile-section');
   const userProfileContainerClose = document.querySelector('.user-profile-closure-icon');
   const userProfileButtons = document.querySelectorAll('.navigation--side-screen__section--account-links__link-container__link--link');
-  const latterDaySaintSwitch = document.querySelector('.switch--latter-day-saint');
+  const latterDaySaintSwitch = document.querySelector('.form__input--latter-day-saint');
   if (userProfileButtons[0]) {
     userProfileButtons.forEach((pb, i) => {
       pb.addEventListener('click', async (e) => {
@@ -263,7 +264,7 @@ export const _watchForLogin = async (login) => {
   status === true ? console.log(`Logged In`) : console.log(`Logged Out`);
   if (status === true) {
     let commPreference;
-    const commSwitch = document.querySelector('.switch--comms');
+    const commSwitch = document.getElementById('commSwitch');
     let formattedNumber;
     ///////////////////////////////////////
     // GET USER
@@ -275,7 +276,7 @@ export const _watchForLogin = async (login) => {
     // WATCHING USER PROFILE NAVIGATION BUTTONS
     _watchUserProfileButtons(commPreference);
     // WATCHING COMMUNICATION PREFERENCES
-    _watchCommPreference(commSwitch);
+    _watchCommPreference(commSwitch, commPreference);
     // WATCHING URSER PROFILE FORM BUTTONS
     _watchSubSectionButtons();
     _watchPasswordSubSectionButtons();

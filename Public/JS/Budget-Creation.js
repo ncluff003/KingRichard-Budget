@@ -1154,7 +1154,7 @@ const _watchTIthingOptions = (budget) => {
 const _watchCreationFormCloser = (form, budget) => {
   // GLITCH: Budget creation form page is NOT resetting when the form is closed.
 
-  const formCloser = document.querySelectorAll(`.form-closure-icon`)[0];
+  const formCloser = document.querySelectorAll(`.form-closure-icon--budget-creation`)[0];
   if (formCloser) {
     formCloser.addEventListener('click', (e) => {
       form.classList.toggle(`closed`);
@@ -1164,19 +1164,25 @@ const _watchCreationFormCloser = (form, budget) => {
   }
 };
 
-const _watchCreationFormOpener = (form, button, budget) => {
+const _watchCreationFormOpener = (form, button, budget, budgetForm) => {
   if (button) {
     button.addEventListener(`click`, (e) => {
       form.classList.toggle(`closed`);
       form.classList.toggle(`open`);
+      if (budgetForm.classList.contains('closed')) {
+        budgetForm.classList.toggle(`closed`);
+        budgetForm.classList.toggle(`open`);
+      }
       return budget;
     });
   }
 };
 
 const _setupBudgetCreation = (form, button, budget) => {
+  const forms = document.querySelectorAll('.form--full-width');
+  const budgetCreationForm = forms[4];
   _watchCreationFormCloser(form, budget);
-  _watchCreationFormOpener(form, button, budget);
+  _watchCreationFormOpener(form, button, budget, budgetCreationForm);
 };
 
 export const _watchForBudgetCreation = async () => {

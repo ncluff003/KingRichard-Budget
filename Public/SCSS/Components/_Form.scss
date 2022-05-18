@@ -1462,6 +1462,7 @@
         cursor: pointer;
       }
       &--switched {
+        @extend .form__input--latter-day-saint;
         border: 0.3rem solid $secondaryColorDark;
         background-color: $secondaryColorLight;
         padding: 0.25rem;

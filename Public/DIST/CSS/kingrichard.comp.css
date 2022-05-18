@@ -1229,11 +1229,11 @@ html {
 .form, .form--extra-small, .form--extra-small__budget-name-display, .form__path-preview {
   font-family: MADE Tommy Soft, Verdana, sans-serif;
 }
-.form-closure-icon, .form-closure-icon__alt {
+.form-closure-icon, .form-closure-icon__alt, .form-closure-icon--budget-creation {
   font-size: 4rem;
   color: rgba(130, 42, 186, 0.5);
 }
-.form-closure-icon:hover, .form-closure-icon__alt:hover {
+.form-closure-icon:hover, .form-closure-icon__alt:hover, .form-closure-icon--budget-creation:hover {
   color: #822aba;
 }
 .form__path-preview {
@@ -35586,7 +35586,7 @@ html {
 .form__input--comms:hover, .form__input--comms--text-preferred:hover {
   cursor: pointer;
 }
-.form__input--latter-day-saint {
+.form__input--latter-day-saint, .form__input--latter-day-saint--switched {
   position: relative;
   height: 95%;
   width: 100%;
@@ -35629,7 +35629,7 @@ html {
   align-items: center;
   transform: rotate(0) translate(0, 0);
 }
-.form__input--latter-day-saint:hover {
+.form__input--latter-day-saint:hover, .form__input--latter-day-saint--switched:hover {
   cursor: pointer;
 }
 .form__input--latter-day-saint--switched {
@@ -37596,7 +37596,9 @@ html {
   background-color: rgba(250, 250, 250, 0.95);
   z-index: 1;
 }
-.form-container .form-closure-icon, .form-container--full-width .form-closure-icon {
+.form-container .form-closure-icon, .form-container--full-width .form-closure-icon,
+.form-container .form-closure-icon--budget-creation,
+.form-container--full-width .form-closure-icon--budget-creation {
   position: absolute;
   height: 2rem;
   width: 2rem;
@@ -37610,7 +37612,9 @@ html {
   right: 6rem;
   z-index: 10;
 }
-.form-container .form-closure-icon:hover, .form-container--full-width .form-closure-icon:hover {
+.form-container .form-closure-icon:hover, .form-container--full-width .form-closure-icon:hover,
+.form-container .form-closure-icon--budget-creation:hover,
+.form-container--full-width .form-closure-icon--budget-creation:hover {
   cursor: pointer;
   transition: color 0.5s;
 }
