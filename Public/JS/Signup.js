@@ -1,5 +1,6 @@
 import axios from 'axios';
 import qs from 'qs';
+import * as Person from './Person';
 
 //////////////////////
 // USER SIGN UP
@@ -42,8 +43,8 @@ export const signup = async (firstname, lastname, username, latterDaySaint, emai
 
 //////////////////////////////
 // SIGN UP FORM FUNCTIONALITY
-
 const _submitSignup = (person) => {
+  console.log(person.latterDaySaint);
   signup(person.firstname, person.lastname, person.username, person.latterDaySaint, person.email, person.emailConfirmed, person.password, person.passwordConfirmed);
 };
 
@@ -62,22 +63,23 @@ export const _nextPage = (pageNumber, pages, pageElement, person) => {
   pageElement.textContent = `Page ${pageNumber + 1} / 4`;
 };
 
-// Change Latter Day Saint Status
-const _changeLatterDaySaintStatus = (valueOne, valueTwo, visibilityClass, switchClass, person) => {
+// Toggling the Latter Day Saint Switch
+const _changeLatterDaySaintStatus = (valueOne, valueTwo, visibilityClassOne, visibilityClassTwo, switchClass) => {
   valueOne.classList.toggle(switchClass);
-  valueTwo.forEach((value) => value.classList.toggle('closed'));
-  // isLatterDaySaint = !isLatterDaySaint;
-  person.latterDaySaint = !person.latterDaySaint;
-  console.log(person.latterDaySaint);
+  valueTwo.forEach((value) => {
+    value.classList.toggle(visibilityClassOne);
+    value.classList.toggle(visibilityClassTwo);
+  });
 };
 
 // Watching The Latter Day Saint Switch
-export const _watchTheLatterDaySaintSwitch = (person) => {
+export const _watchTheLatterDaySaintSwitch = () => {
   const latterDaySaint = document.querySelector('.form__input--latter-day-saint');
   const latterDaySaintValues = document.querySelectorAll('.form__input--latter-day-saint__text');
   if (latterDaySaint) {
     latterDaySaint.addEventListener('click', (e) => {
-      _changeLatterDaySaintStatus(latterDaySaint, latterDaySaintValues, 'closed', 'form__input--latter-day-saint--switched', person);
+      e.preventDefault();
+      _changeLatterDaySaintStatus(latterDaySaint, latterDaySaintValues, 'closed', 'open', 'form__input--latter-day-saint--switched');
     });
   }
 };
@@ -87,6 +89,8 @@ export const _watchFormSubmitButton = (page, pages, pageElement, person) => {
   const formButtons = document.querySelectorAll('.button--small');
   console.log(formButtons);
   const signupFormSubmit = formButtons[1];
+  const latterDaySaintSwitch = document.querySelector('.form__input--latter-day-saint');
+  _watchTheLatterDaySaintSwitch(person);
   if (signupFormSubmit) {
     signupFormSubmit.addEventListener('click', (e) => {
       e.preventDefault();
@@ -94,40 +98,27 @@ export const _watchFormSubmitButton = (page, pages, pageElement, person) => {
       if (page + 1 === 2) {
         const firstname = document.getElementById('firstname').value;
         const lastname = document.getElementById('lastname').value;
-        person.firstname = firstname;
-        person.lastname = lastname;
+        person._updateFirstName(firstname);
+        person._updateLastName(lastname);
       }
       if (page + 1 === 3) {
         const username = document.getElementById('username').value;
-        person.username = username;
+        person._updateUsername(username);
+        if (latterDaySaintSwitch.classList.contains('form__input--latter-day-saint--switched')) {
+          person._updateLatterDaySaintStatus();
+        }
       }
       if (page + 1 === 4) {
         const email = document.getElementById('email').value;
         const emailConfirmed = document.getElementById('emailConfirmed').value;
-        person.email = email;
-        person.emailConfirmed = emailConfirmed;
-        console.log(person);
+        person._updateEmail(email);
+        person._updateEmailConfirmed(emailConfirmed);
       }
       if (page + 1 === 5) {
         const password = document.getElementById('password').value;
         const passwordConfirmed = document.getElementById('passwordConfirmed').value;
-        person.password = password;
-        person.passwordConfirmed = passwordConfirmed;
-
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // CREATING A WAY TO GET THE LATTER DAY SAINT INFO IN WHILE STILL BEING ABLE TO LOG IN RIGHT AFTER SIGNING UP.
-
-        const forms = document.querySelectorAll('.form');
-        console.log(forms);
-        const signupForm = forms[1];
-        signupFormSubmit.setAttribute(`type`, `submit`);
-        const latterDaySaint = document.createElement(`input`);
-        latterDaySaint.value = person.latterDaySaint;
-        latterDaySaint.setAttribute(`id`, `latterDaySaint`);
-        latterDaySaint.setAttribute(`name`, `latterDaySaint`);
-        signupForm.insertAdjacentElement(`beforeend`, latterDaySaint);
-        latterDaySaint.style.visibility = `hidden`;
-        // signupForm.submit();
+        person._updatePassword(password);
+        person._updatePasswordConfirmed(passwordConfirmed);
       }
       _nextPage(page, pages, pageElement, person);
     });

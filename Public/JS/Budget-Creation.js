@@ -1,8 +1,6 @@
 import * as Categories from './Budget-Categories';
-import * as Updating from './Update-User';
 import * as Budgeting from './Maintain-Budget';
 import * as Budget from './Budget';
-import * as Base from './Base-Forms';
 
 export const _watchEmergencyGoalSettings = (budget, setting) => {
   const emergencySettingLabels = document.querySelectorAll('.emergency-checkbox-label');
@@ -58,22 +56,6 @@ const _finishUpdatingSubCategories = (budget, goals) => {
   });
   return;
 };
-
-const checkUser = async () => {
-  const userInfo = await Updating.getSomePersonals();
-  const user = userInfo.data.data.user;
-  return user;
-};
-
-const getUserInformation = async () => {
-  const userInfo = await Updating.getSomePersonals();
-  const user = userInfo.data.data.user;
-  const lastname = user.lastname;
-  return user, lastname;
-};
-
-// const userInfo = await Updating.getSomePersonals();
-// const user = userInfo.data.data.user;
 
 const getOverallBudget = (subCategories, overall) => {
   let arrayOfTotals = [];
@@ -1084,14 +1066,10 @@ const getBudgetName = (budget) => {
   return budget;
 };
 
-const _checktLatterDaySaintStatus = (user) => {
-  return user.latterDaySaint;
-};
-
 ///////////////////////////////////////
 // SETTING UP MAIN CATEGORY CREATION
-const setupMainCategoryCreation = (icon, budget) => {
-  Categories._watchCreateCategoryButton(icon, budget);
+const setupMainCategoryCreation = (icon, budget, person) => {
+  Categories._watchCreateCategoryButton(icon, budget, person);
 };
 
 /////////////////////////////////
@@ -1185,7 +1163,7 @@ const _setupBudgetCreation = (form, button, budget) => {
   _watchCreationFormOpener(form, button, budget, budgetCreationForm);
 };
 
-export const _watchForBudgetCreation = async () => {
+export const _watchForBudgetCreation = async (person) => {
   const forms = document.querySelectorAll('.form-container--full-width');
   const budgetCreationForm = forms[0];
   const budgetCreationFormOpenButton = document.querySelector('.budget-card-container__card--create');
@@ -1212,12 +1190,12 @@ export const _watchForBudgetCreation = async () => {
 
   /////////////////////////////
   // GET USER
-  const userInfo = await Updating.getSomePersonals();
+  const userInfo = await person._getPersonData();
   const user = userInfo.data.data.user;
 
   //////////////////////////////////////
   // CHECK IF USER IS A LATTER DAY SAINT
-  let latterDaySaintStatus = _checktLatterDaySaintStatus(user);
+  let latterDaySaintStatus = person._getLatterDaySaintStatus();
 
   if (budgetContinueButton) {
     budgetContinueButton.addEventListener('click', (e) => {
@@ -1237,7 +1215,7 @@ export const _watchForBudgetCreation = async () => {
       // IF NOT LATTER DAY SAINT
       if (currentPage + 1 === 2 && latterDaySaintStatus === false) {
         // From here, there is a need to check the function names to make sure they make sense as to what they are actually doing.  If not, they WILL be renamed accordingly.
-        setupMainCategoryCreation(icon, budget);
+        setupMainCategoryCreation(icon, budget, person);
       }
       if (currentPage + 1 === 3 && latterDaySaintStatus === false) {
         setupSubCategoryCreation(budget, subCategoryIndex);
@@ -1288,7 +1266,7 @@ export const _watchForBudgetCreation = async () => {
       }
       if (currentPage + 1 === 3 && latterDaySaintStatus === true) {
         // From here, there is a need to check the function names to make sure they make sense as to what they are actually doing.  If not, they WILL be renamed accordingly.
-        setupMainCategoryCreation(icon, budget);
+        setupMainCategoryCreation(icon, budget, person);
       }
       if (currentPage + 1 === 4 && latterDaySaintStatus === true) {
         setupSubCategoryCreation(budget, subCategoryIndex);
@@ -1333,5 +1311,5 @@ export const _watchForBudgetCreation = async () => {
   }
   // WATCHING YOUR BUDGET AFTER YOU LOGIN OR CREATE YOUR BUDGET
   const budgetNavButton = document.querySelector('.budget-container__navigation-button-container__button');
-  Budgeting._watchBudget();
+  Budgeting._watchBudget(person);
 };

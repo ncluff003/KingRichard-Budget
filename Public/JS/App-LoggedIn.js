@@ -1,17 +1,9 @@
-import { getSomePersonals, updateMe, updateMyPassword, deactivateMe, deleteMe } from './Update-User';
-import { logout } from './Login';
-import * as Categories from './Budget-Categories';
 import * as Budget from './Budget-Creation';
 import * as Budgeting from './Maintain-Budget';
-import * as Update from './Update-User';
 import * as Manage from './Manage-Budget';
+import * as Person from './Person';
 
 let latterDaySaint = false;
-
-// const _getUserInfo = () => {
-//   getSomePersonals();
-//   latterDaySaint = user.latterDaySaint;
-// };
 
 const enterBudget = async (budgetId, user) => {
   await Manage.getMyBudget(budgetId, user);
@@ -25,6 +17,83 @@ const _watchBudgetSelection = (user) => {
       const id = clicked.closest('.budget-card-container__card').dataset.budgetid;
       enterBudget(id, user);
     });
+  });
+};
+
+const _watchForProfileUpdates = async (user, person) => {
+  const userProfileFormButtons = document.querySelectorAll('.user-profile-form__button');
+  const userProfileSubSectionFormButtons = document.querySelectorAll('.user-profile-form__section__sub-section__button');
+  const transparentButtons = document.querySelectorAll('.button--small-transparent');
+  const latterDaySaintSwitch = document.querySelector('.form__input--latter-day-saint');
+  let communicationSwitch = document.getElementById('commSwitch');
+  let commPreference;
+  let latterDaySaint;
+  console.log(transparentButtons);
+  transparentButtons.forEach((b, i) => {
+    b.addEventListener('click', async (e) => {
+      e.preventDefault();
+      if (i === 0) {
+        const firstname = document.getElementById('firstname').value;
+        const lastname = document.getElementById('lastname').value;
+        const username = document.getElementById('username').value;
+        latterDaySaintSwitch.classList.contains('form__input--latter-day-saint--switched') ? (latterDaySaint = true) : (latterDaySaint = false);
+        const updatedUserInfo = await person._updatePerson({
+          firstname: firstname,
+          lastname: lastname,
+          username: username,
+          latterDaySaint: latterDaySaint,
+          id: user._id,
+        });
+      }
+      if (i === 1) {
+        communicationSwitch.classList.contains('form__input--comms--text-preferred') ? (commPreference = `Text`) : (commPreference = `Email`);
+        console.log(commPreference);
+        let newEmail = document.getElementById('newEmail').value;
+        let newEmailConfirmed = document.getElementById('newEmailConfirmed').value;
+        if (newEmail === '') {
+          newEmail = document.getElementById('email').value;
+        }
+        if (newEmailConfirmed === '') {
+          newEmailConfirmed = document.getElementById('email').value;
+        }
+
+        let newPhoneNumber = document.getElementById('newPhoneNumber').value;
+        let newPhoneNumberConfirmed = document.getElementById('newPhoneNumberConfirmed').value;
+        if (newPhoneNumber === '') {
+          newPhoneNumber = document.getElementById('phoneNumber').value;
+        }
+        if (newPhoneNumberConfirmed === '') {
+          newPhoneNumberConfirmed = document.getElementById('phoneNumber').value;
+        }
+        const updateUserInfo = await person._updatePerson({
+          email: newEmail,
+          emailConfirmed: newEmailConfirmed,
+          phoneNumber: newPhoneNumber,
+          phoneNumberConfirmed: newPhoneNumberConfirmed,
+          communicationPreference: commPreference,
+          id: user._id,
+        });
+      }
+
+      if (i === 5) {
+        await person._logMeOut(user._id);
+      }
+
+      if (i === 6) {
+        await person._deactivateMe(user._id);
+      }
+
+      if (i === 7) {
+        await person._deleteMe(user._id);
+      }
+    });
+  });
+  transparentButtons[3].addEventListener('click', async (e) => {
+    e.preventDefault();
+    const currentPassword = document.getElementById('currentPassword').value;
+    const newPassword = document.getElementById('newPassword').value;
+    const newPasswordConfirmed = document.getElementById('newPasswordConfirmed').value;
+    const updateUserInfo = await person._updatePersonPassword(currentPassword, newPassword, newPasswordConfirmed, user._id);
   });
 };
 
@@ -132,7 +201,7 @@ export const _showProfileForm = (forms, index) => {
   forms[index].classList.toggle('open');
 };
 
-export const _watchUserProfileButtons = (communicationPreference) => {
+export const _watchUserProfileButtons = (communicationPreference, person) => {
   const userProfileForms = document.querySelectorAll('.form--full-width');
   console.log(userProfileForms);
   const userProfileHeader = document.querySelector('.user-profile-section__header__text');
@@ -166,7 +235,7 @@ export const _watchUserProfileButtons = (communicationPreference) => {
           });
           /////////////////////////////////
           // GET COMMUNICATION PREFERENCE
-          const userInfo = await Update.getSomePersonals();
+          const userInfo = await person._getPersonData();
           const user = userInfo.data.data.user;
           communicationPreference = user.communicationPreference;
         }
@@ -203,7 +272,7 @@ const openPhotoUpdateModal = (modal) => {
   modal.classList.toggle('open');
 };
 
-const _watchForProfilePictureChange = (user) => {
+const _watchForProfilePictureChange = (user, person) => {
   console.log('Watching...');
   const startUpdatingPhotoButton = document.querySelectorAll('.button--extra-small')[0];
   const photoUpdateModal = document.querySelector('.modal--update-photo');
@@ -247,7 +316,7 @@ const _watchForProfilePictureChange = (user) => {
     form.append('photo', document.getElementById('photo').files[0]);
     console.log(form.data);
 
-    Update.updateUserPhoto(form);
+    person._updatePhoto(form);
     Budgeting.reloadPage();
   });
 };
@@ -268,13 +337,16 @@ export const _watchForLogin = async (login) => {
     let formattedNumber;
     ///////////////////////////////////////
     // GET USER
-    const userInfo = await Update.getSomePersonals();
+    const placeholderUser = new Person.Person(``, ``, ``, ``, ``, ``, ``, ``);
+    const userInfo = await placeholderUser._getPersonData();
     const user = userInfo.data.data.user;
+    placeholderUser._createPlaceholderUser(user, placeholderUser);
+    console.log(placeholderUser);
     /////////////////////////////////////////////////
     // START BY WATCHING FOR PROFILE PICTURE CHANGE
-    _watchForProfilePictureChange(user);
+    _watchForProfilePictureChange(user, placeholderUser);
     // WATCHING USER PROFILE NAVIGATION BUTTONS
-    _watchUserProfileButtons(commPreference);
+    _watchUserProfileButtons(commPreference, placeholderUser);
     // WATCHING COMMUNICATION PREFERENCES
     _watchCommPreference(commSwitch, commPreference);
     // WATCHING URSER PROFILE FORM BUTTONS
@@ -283,10 +355,10 @@ export const _watchForLogin = async (login) => {
     // WATCH FOR PHONE NUMBER UPDATES
     _watchPhoneNumberInputs(formattedNumber);
     // WATCH FOR USER PROFILE UPDATES
-    Update._watchForProfileUpdates(user);
+    _watchForProfileUpdates(user, placeholderUser);
     // WATCHING FOR BUDGET SELECTION
     _watchBudgetSelection(user);
     // WATCHING FOR CREATION OF BUDGETS
-    Budget._watchForBudgetCreation();
+    Budget._watchForBudgetCreation(placeholderUser);
   }
 };

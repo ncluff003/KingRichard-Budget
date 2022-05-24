@@ -1,4 +1,3 @@
-import * as Updating from './Update-User';
 import * as Calendar from './FrontEnd-Calendar';
 import * as Budgeting from './Manage-Budget';
 import * as Budget from './Budget';
@@ -3028,7 +3027,10 @@ const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
       const subArray = subCategoriesArray.filter((sc, i) => {
         return Number(sc.dataset.category) === index; // This is the Main Category's Index.
       });
+
+      // THIS IS WHERE IT WOULD BE GOOD TO HAVE THE INDIVIDUAL BUTTONS CAUSE ANOTHER UPDATE
       placeholderBudget._updateSubCategory(`Creation`, `Surplus`, { mainIndex: categoryNumber, subIndex: subArray.indexOf(clicked.closest('.sub-category')) });
+      console.log(placeholderBudget);
     });
     const surplusCategoryTrashIcon = surplusSwitch.parentElement.nextSibling;
 
@@ -3073,7 +3075,9 @@ const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
         if (!sc.createdAt) {
           sc.createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
         }
-        sc.lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+        if (sc.updated === true) {
+          sc.lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+        }
       });
     });
     placeholderBudget._updateBudget(
@@ -4938,6 +4942,8 @@ const buildTransactionOptions = (options) => {
 };
 
 const setupDashboard = (user, budget, placeholderBudget) => {
+  console.log(user);
+  // THE LOGGED USER ABOVE SHOWED THAT THE DATE THE PASSWORD WAS CHANGED IS STILL SHOWING. THAT NEEDS TO BE CHANGED.
   ////////////////////////////////////////////
   // WATCH THE BUDGET NAVIGATION
   _watchBudgetNavigation();
@@ -4958,11 +4964,11 @@ const setupDashboard = (user, budget, placeholderBudget) => {
   _setupCurrentMonth(budget);
 };
 
-export const _watchBudget = async () => {
+export const _watchBudget = async (person) => {
   console.log(`WATCHING YOUR BUDGET`);
   /////////////////////////////
   // GET USER
-  const userInfo = await Updating.getSomePersonals();
+  const userInfo = await person._getPersonData();
   const user = userInfo.data.data.user;
 
   ////////////////////////////////////////////

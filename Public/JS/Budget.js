@@ -60,6 +60,7 @@ export class Budget {
           this.mainCategories[options.mainIndex].subCategories[options.subIndex].createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
         }
         this.mainCategories[options.mainIndex].subCategories[options.subIndex].lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+        this.mainCategories[options.mainIndex].subCategories[options.subIndex].updated = true;
       }
 
       if (update === `Finalizing Sub-Categories`) {

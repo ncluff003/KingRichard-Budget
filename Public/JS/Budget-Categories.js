@@ -1,4 +1,3 @@
-import * as Update from './Update-User';
 import * as Maintain from './Maintain-Budget';
 ////////////////////////////////
 // ICONS FOR MAIN CATEGORIES
@@ -1281,13 +1280,13 @@ export const _verifySubCategory = (budget, index) => {
 
 ////////////////////////////////////////
 // MAIN CATEGORY DELETION PROCESS
-const removeMainCategory = async (e, budget) => {
+const removeMainCategory = async (e, budget, person) => {
   const budgetPages = document.querySelectorAll('.form__page--centered');
   console.log(budgetPages, budgetPages[2].classList);
   let title = e.target.closest('section').firstChild.nextElementSibling.textContent;
   /////////////////////////////
   // CHECK USER
-  const userInfo = await Update.getSomePersonals();
+  const userInfo = await person._getPersonData();
   const user = userInfo.data.data.user;
   if (user.latterDaySaint === true) {
     if (budgetPages[2].classList.contains(`closed`)) return;
@@ -1303,7 +1302,7 @@ const removeMainCategory = async (e, budget) => {
 
 ////////////////////////////////////////
 // MAIN CATEGORY CREATION PROCESS
-const createMainCategory = (element, budget, filteredArray) => {
+const createMainCategory = (element, budget, filteredArray, person) => {
   let mainCategoryTitle = document.querySelector('.form__input--main-category-title').value;
   mainCategoryTitle = mainCategoryTitle.split(' ').map(_capitalize).join(' ');
   // budget.mainCategories.push(new MainCategory({ icon: `${element}`, title: mainCategoryTitle }));
@@ -1339,7 +1338,7 @@ const createMainCategory = (element, budget, filteredArray) => {
     if (deleteButton) {
       deleteButton.addEventListener('click', (e) => {
         e.preventDefault();
-        removeMainCategory(e, budget, filteredArray);
+        removeMainCategory(e, budget, filteredArray, person);
       });
     }
   }
@@ -1356,29 +1355,16 @@ const createMainCategory = (element, budget, filteredArray) => {
     iconImage.classList.add('main-category__alt__icon');
     const iconsText = document.createElement('p');
     iconsText.classList.add('main-category__alt__text');
-    // const deleteButton = document.createElement('button');
-    // const deleteIcon = document.createElement('i');
-    // deleteIcon.classList.add('fas');
-    // deleteIcon.classList.add('fa-times');
-    // deleteButton.classList.add('main-category__delete');
-    // deleteButton.insertAdjacentElement('beforeend', deleteIcon);
+
     iconsText.textContent = mainCategoryTitle;
     mainCategory.insertAdjacentElement('beforeend', iconImage);
     mainCategory.insertAdjacentElement('beforeend', iconsText);
-    // if (mainCategoryContainerTwo) {
-    //   mainCategory.insertAdjacentElement('beforeend', deleteButton);
-    // }
+
     mainCategoryContainerTwo.insertAdjacentElement('beforeend', mainCategory);
     const mainCategoryLength = document.querySelectorAll('.main-category').length;
     if (mainCategoryLength === 3) {
       document.querySelectorAll('.main-category')[2].style.borderTopRightRadius = `0.9rem`;
     }
-    // if (deleteButton) {
-    //   deleteButton.addEventListener('click', (e) => {
-    //     e.preventDefault();
-    //     removeMainCategory(e, budget, filteredArray);
-    //   });
-    // }
     console.log(budget);
     const mainCategories = document.querySelectorAll('.main-category__alt');
     mainCategory.dataset.category = `${mainCategories.length - 1}`;
@@ -1390,7 +1376,7 @@ const createMainCategory = (element, budget, filteredArray) => {
 ////////////////////////////////////////
 // CREATE MAIN CATEGORY
 
-export const _verifyMainCategory = (icon, iconList, budget) => {
+export const _verifyMainCategory = (icon, iconList, budget, person) => {
   let mainCategoryTitle = document.querySelector('.form__input--main-category-title').value.toLowerCase();
   const filtered = budget.mainCategories.filter((mc) => {
     if (mc.title.toLowerCase() === mainCategoryTitle) {
@@ -1398,7 +1384,7 @@ export const _verifyMainCategory = (icon, iconList, budget) => {
     }
   });
   if (filtered.length >= 1) return;
-  createMainCategory(icon, budget, filtered);
+  createMainCategory(icon, budget, filtered, person);
 
   iconList.forEach((icon) => {
     icon.classList.remove('icon-container--clicked');
@@ -1407,21 +1393,21 @@ export const _verifyMainCategory = (icon, iconList, budget) => {
 
 ////////////////////////////////////////
 // FIND CLICKED ICON
-const _findClickedIcon = (iconList, budget) => {
+const _findClickedIcon = (iconList, budget, person) => {
   iconList.forEach((icon) => {
     if (icon.classList.contains('icon-container--clicked')) {
-      _verifyMainCategory(icon.firstChild.classList[1], iconList, budget);
+      _verifyMainCategory(icon.firstChild.classList[1], iconList, budget, person);
     }
   });
 };
 
-const _setupCategoryCreation = (budget) => {
+const _setupCategoryCreation = (budget, person) => {
   const createMainCategoryButton = document.querySelectorAll('.button--small-create-main-category')[0];
   const iconContainers = document.querySelectorAll('.icon-container');
   if (createMainCategoryButton) {
     createMainCategoryButton.addEventListener('click', (e) => {
       e.preventDefault();
-      _findClickedIcon(iconContainers, budget);
+      _findClickedIcon(iconContainers, budget, person);
       closeCategoryCreation();
     });
   }
@@ -1545,7 +1531,7 @@ const openCategoryCreation = () => {
   _hideCreatedIcons();
 };
 
-export const _watchCreateCategoryButton = (icon, budget) => {
+export const _watchCreateCategoryButton = (icon, budget, person) => {
   const createCategoryButton = document.querySelector('.button--medium-square');
   createCategories(icon);
   if (createCategoryButton) {
@@ -1561,7 +1547,7 @@ export const _watchCreateCategoryButton = (icon, budget) => {
       closeCategoryCreation();
     });
   }
-  _setupCategoryCreation(budget);
+  _setupCategoryCreation(budget, person);
 };
 
 ////////////////////////////////////////

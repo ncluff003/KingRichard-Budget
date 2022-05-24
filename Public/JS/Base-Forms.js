@@ -1,5 +1,7 @@
 import * as Login from './Login';
 import * as Signup from './Signup';
+import * as Password from './Reset-Password';
+import * as Person from './Person';
 
 //////////////////////////////
 // Actually Close The Form
@@ -11,11 +13,6 @@ const _closeTheForm = (index, page, pageElement, form) => {
     pageElement.textContent = `Page ${page + 1} / 4`;
   }
 };
-
-// const _closeTheCreationForm = (index, form) => {
-//   form[index].classList.toggle('closed');
-//   form[index].classList.toggle('open');
-// }
 
 //////////////////////////////
 // Watch Form Closing Buttons
@@ -32,15 +29,6 @@ export const _watchFormClosers = (pageElement, page, form) => {
       });
     });
   }
-  // const budgetCreationForms = document.querySelectorAll('.form--full-width');
-  // if (budgetCreationFormClosers[0]) {
-  //   budgetCreationFormClosers.forEach((bfc, i) => {
-  //     bfc.addEventListener('click', (e) => {
-  //       e.preventDefault();
-  //       _closeTheForm(i, page, pageElement, form);
-  //     });
-  //   });
-  // }
 };
 
 const getLoggedIn = () => {
@@ -52,6 +40,20 @@ const getLoggedIn = () => {
   loginSubmit.removeEventListener('click', getLoggedIn);
   console.log(`Listener Stopped.`);
   Login.login(loginUsername, loginPassword);
+};
+
+////////////////////////////////////
+// Watch Button To Reset Password
+export const _watchPasswordResetButton = () => {
+  const resetPasswordButton = document.querySelector('.reset-password-form__section__button');
+  if (resetPasswordButton) {
+    resetPasswordButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      const newPassword = document.getElementById('newPassword').value;
+      const newPasswordConfirmed = document.getElementById('newPasswordConfirmed').value;
+      Password.updatePassword(newPassword, newPasswordConfirmed);
+    });
+  }
 };
 
 export const _watchEntranceButtons = (person, form, formPage) => {
