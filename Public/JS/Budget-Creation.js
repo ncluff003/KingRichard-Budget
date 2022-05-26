@@ -36,7 +36,7 @@ export const _watchEmergencyGoalSettings = (budget, setting) => {
       }
       if (budget) {
         // budget.accounts.emergencyFund.emergencyGoalMeasurement = setting;
-        budget._updateAccounts(`Creation`, `Emergency Measurement`, { setting: setting });
+        budget._updateEmergencyMeasurement({ setting: setting });
       }
       console.log(budget);
       return setting;
@@ -361,7 +361,7 @@ export const insertTiming = (target, inputValues, timing, timingButtons, budget,
 
     ///////////////////////
     // SET TIMING OPTIONS
-    budget._updateSubCategory(`Creation`, `Timing`, {
+    budget._updateSubCategoryTiming({
       index: mainIndex,
       subCategoryIndex: subCategoryIndex,
       paymentCycle: timing,
@@ -422,7 +422,7 @@ export const insertTiming = (target, inputValues, timing, timingButtons, budget,
     ///////////////////////
     // SET TIMING OPTIONS
 
-    budget._updateSubCategory(`Creation`, `Timing`, {
+    budget._updateSubCategoryTiming({
       index: mainIndex,
       subCategoryIndex: subCategoryIndex,
       paymentCycle: timing,
@@ -484,7 +484,7 @@ export const insertTiming = (target, inputValues, timing, timingButtons, budget,
     ///////////////////////
     // SET TIMING OPTIONS
 
-    budget._updateSubCategory(`Creation`, `Timing`, {
+    budget._updateSubCategoryTiming({
       index: mainIndex,
       subCategoryIndex: subCategoryIndex,
       paymentCycle: timing,
@@ -541,7 +541,7 @@ export const insertTiming = (target, inputValues, timing, timingButtons, budget,
     ///////////////////////
     // SET TIMING OPTIONS
 
-    budget._updateSubCategory(`Creation`, `Timing`, {
+    budget._updateSubCategoryTiming({
       index: mainIndex,
       subCategoryIndex: subCategoryIndex,
       paymentCycle: timing,
@@ -1054,7 +1054,9 @@ const _watchForSubCategoryKeyboardInput = () => {
 const goToPage = (page, createBudgetPages) => {
   createBudgetPages.forEach((bp) => {
     bp.classList.add('closed');
+    bp.classList.remove('open');
     if (createBudgetPages[page]) createBudgetPages[page].classList.remove('closed');
+    if (createBudgetPages[page]) createBudgetPages[page].classList.add('open');
   });
 };
 
@@ -1062,7 +1064,7 @@ const goToPage = (page, createBudgetPages) => {
 // SET BUDGET NAME
 const getBudgetName = (budget) => {
   const budgetName = document.getElementById('budgetName').value;
-  budget._addName(budgetName);
+  budget._updateBudgetName(budgetName);
   return budget;
 };
 
@@ -1129,22 +1131,39 @@ const _watchTIthingOptions = (budget) => {
   }
 };
 
-const _watchCreationFormCloser = (form, budget) => {
-  // GLITCH: Budget creation form page is NOT resetting when the form is closed.
+const _watchCreationFormCloser = (pages, page, form, budget) => {
+  // ADJUST: Budget now resets, but somehow, I feel there is a better way of handling the form altogether.
 
   const formCloser = document.querySelectorAll(`.form-closure-icon--budget-creation`)[0];
   if (formCloser) {
     formCloser.addEventListener('click', (e) => {
+      pages.forEach((page) => {
+        if (page.classList.contains('open')) {
+          page.classList.add(`reset`);
+        }
+      });
+      console.log(page);
+      setupPage(page, pages, pages.length, budget);
       form.classList.toggle(`closed`);
       form.classList.toggle(`open`);
       budget = undefined;
+      pages.forEach((page) => {
+        page.classList.add('closed');
+        page.classList.remove('open');
+      });
     });
   }
 };
 
-const _watchCreationFormOpener = (form, button, budget, budgetForm) => {
+const _watchCreationFormOpener = (pages, form, button, budget, budgetForm) => {
   if (button) {
     button.addEventListener(`click`, (e) => {
+      pages.forEach((page) => {
+        page.classList.add('closed');
+        page.classList.remove('open');
+      });
+      pages[0].classList.add('open');
+      pages[0].classList.remove('closed');
       form.classList.toggle(`closed`);
       form.classList.toggle(`open`);
       if (budgetForm.classList.contains('closed')) {
@@ -1156,11 +1175,11 @@ const _watchCreationFormOpener = (form, button, budget, budgetForm) => {
   }
 };
 
-const _setupBudgetCreation = (form, button, budget) => {
+const _setupBudgetCreation = (pages, page, form, button, budget) => {
   const forms = document.querySelectorAll('.form--full-width');
   const budgetCreationForm = forms[4];
-  _watchCreationFormCloser(form, budget);
-  _watchCreationFormOpener(form, button, budget, budgetCreationForm);
+  _watchCreationFormCloser(pages, page, form, budget);
+  _watchCreationFormOpener(pages, form, button, budget, budgetCreationForm);
 };
 
 export const _watchForBudgetCreation = async (person) => {
@@ -1169,13 +1188,14 @@ export const _watchForBudgetCreation = async (person) => {
   const budgetCreationFormOpenButton = document.querySelector('.budget-card-container__card--create');
   let budget;
   budget = Budget.startToCreate();
-  _setupBudgetCreation(budgetCreationForm, budgetCreationFormOpenButton, budget);
+  const pages = document.querySelectorAll('.form__page--centered.r__form__page--centered');
+  let currentPage = 0;
+  let resetForm = false;
+  _setupBudgetCreation(pages, currentPage, budgetCreationForm, budgetCreationFormOpenButton, budget);
   ////////////////////////////
   // INITIALIZE KEY VARIABLES
-  const budgetCreationFormPages = document.querySelectorAll('.budget-creation-form__page');
-  const pages = document.querySelectorAll('.form__page--centered.r__form__page--centered');
+  // const budgetCreationFormPages = document.querySelectorAll('.budget-creation-form__page');
   const budgetCreationFormPagesNumber = pages.length;
-  let currentPage = 0;
   let emergencyGoalSetting, clicked, selectedTiming;
   const buttons = document.querySelectorAll('.button--small');
   const budgetContinueButton = buttons[0];
@@ -1184,7 +1204,6 @@ export const _watchForBudgetCreation = async (person) => {
   setPageCount(currentPage, budgetCreationFormPagesNumber);
   ////////////////////////////////////////////////
   // INITIALIZE KEY VARIABLES INSIDE FUNCTION SCOPE
-  let budgetName;
   let subCategoryIndex = 0;
   let icon;
 
@@ -1200,12 +1219,23 @@ export const _watchForBudgetCreation = async (person) => {
   if (budgetContinueButton) {
     budgetContinueButton.addEventListener('click', (e) => {
       e.preventDefault();
+      if (pages[currentPage].classList.contains('reset')) {
+        pages[currentPage].classList.remove('reset');
+        currentPage = 0;
+      }
       currentPage++;
+      console.log(budget);
+
+      // BUDGET IS SIMILAR TO PLACEHOLDERBUDGET IN THE WATCH BUDGET FUNCTION.
+      // It will have the same budget class methods attached to it.
       //////////////////////////////
       // ASSIGN BUDGET INFORMATION
+
       /////////////////////
       // BUDGET NAME
-      getBudgetName(budget);
+      let budgetName = document.getElementById('budgetName').value;
+
+      budget._updateBudgetName(budgetName);
 
       ////////////////////////////////
       // SETUP BUDGET CREATION FORM
@@ -1213,99 +1243,106 @@ export const _watchForBudgetCreation = async (person) => {
 
       /////////////////////////////
       // IF NOT LATTER DAY SAINT
-      if (currentPage + 1 === 2 && latterDaySaintStatus === false) {
-        // From here, there is a need to check the function names to make sure they make sense as to what they are actually doing.  If not, they WILL be renamed accordingly.
-        setupMainCategoryCreation(icon, budget, person);
-      }
-      if (currentPage + 1 === 3 && latterDaySaintStatus === false) {
-        setupSubCategoryCreation(budget, subCategoryIndex);
-      }
-      if (currentPage + 1 === 4 && latterDaySaintStatus === false) {
-        setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
-      }
-      if (currentPage + 1 === 5 && latterDaySaintStatus === false) {
-        const individualPayments = document.querySelectorAll('.individual-payment');
-        budget._updateSubCategory(`Creation`, `Finalizing Sub-Categories`, { goals: individualPayments });
-        _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
-      }
-      if (currentPage + 1 === 6 && latterDaySaintStatus === false) {
-        if (budget.accounts.emergencyFund.emergencyGoalMeasurement === `Length Of Time`) {
-          budget._updateAccounts(`Creation`, `Emergency Goal`, {
-            goal: Number(document.querySelector('#timingNumber').value),
-            goalTiming: document.querySelector('.form__select').value,
+      if (latterDaySaintStatus === false) {
+        if (currentPage + 1 === 2) {
+          setupMainCategoryCreation(icon, budget, person);
+        }
+        if (currentPage + 1 === 3) {
+          setupSubCategoryCreation(budget, subCategoryIndex);
+        }
+        if (currentPage + 1 === 4) {
+          setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
+        }
+        if (currentPage + 1 === 5) {
+          const individualPayments = document.querySelectorAll('.individual-payment');
+          budget._finalizeSubCategoryCreation({ goals: individualPayments });
+          _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
+        }
+        if (currentPage + 1 === 6) {
+          if (budget.accounts.emergencyFund.emergencyGoalMeasurement === `Length Of Time`) {
+            budget._updateEmergencyGoal({
+              goal: Number(document.querySelector('#timingNumber').value),
+              goalTiming: document.querySelector('.form__select').value,
+            });
+          }
+          if (budget.accounts.emergencyFund.emergencyGoalMeasurement === `Total Amount`) {
+            budget._updateEmergencyGoal({ goal: Number(document.querySelector('#emergencyGoal').value) });
+          }
+          document.querySelector('#savingsPercentGoal').focus();
+        }
+        if (currentPage + 1 === 7) {
+          budget._updateSavingsFund({
+            percentage: Number(document.querySelector('#savingsPercentGoal').value) / 100,
+            goal: Number(document.querySelector('#savingsGoal').value),
+            amount: 0,
           });
+          document.querySelector('#investmentPercentGoal').focus();
         }
-        if (budget.accounts.emergencyFund.emergencyGoalMeasurement === `Total Amount`) {
-          budget._updateAccounts(`Creation`, `Emergency Goal`, { goal: Number(document.querySelector('#emergencyGoal').value) });
+        if (currentPage + 1 === 8) {
+          budget._updateInvestmentFund({
+            percentage: Number(document.querySelector('#investmentPercentGoal').value) / 100,
+            goal: Number(document.querySelector('#investmentGoal').value),
+            amount: 0,
+          });
+          budget._submit(budget, user);
         }
-        document.querySelector('#savingsPercentGoal').focus();
       }
-      if (currentPage + 1 === 7 && latterDaySaintStatus === false) {
-        budget._updateAccounts(`Creation`, `Savings`, {
-          percentage: Number(document.querySelector('#savingsPercentGoal').value) / 100,
-          goal: Number(document.querySelector('#savingsGoal').value),
-          amount: 0,
-        });
-        document.querySelector('#investmentPercentGoal').focus();
-      }
-      if (currentPage + 1 === 8 && latterDaySaintStatus === false) {
-        budget._updateAccounts(`Creation`, `Investment`, {
-          percentage: Number(document.querySelector('#investmentPercentGoal').value) / 100,
-          goal: Number(document.querySelector('#investmentGoal').value),
-          amount: 0,
-        });
-        budget._submit(budget, user);
-      }
+      // if (currentPage + 1 === 2) {
+      // From here, there is a need to check the function names to make sure they make sense as to what they are actually doing.  If not, they WILL be renamed accordingly.
+      //   setupMainCategoryCreation(icon, budget, person);
+      // }
 
       /////////////////////////////
       // IF LATTER DAY SAINT
-      if (currentPage + 1 === 2 && latterDaySaintStatus === true) {
-        console.log(`Tithing Options`);
-        budget._addTithingAccount(user);
-        _watchTIthingOptions(budget);
-      }
-      if (currentPage + 1 === 3 && latterDaySaintStatus === true) {
-        // From here, there is a need to check the function names to make sure they make sense as to what they are actually doing.  If not, they WILL be renamed accordingly.
-        setupMainCategoryCreation(icon, budget, person);
-      }
-      if (currentPage + 1 === 4 && latterDaySaintStatus === true) {
-        setupSubCategoryCreation(budget, subCategoryIndex);
-      }
-      if (currentPage + 1 === 5 && latterDaySaintStatus === true) {
-        setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
-      }
-      if (currentPage + 1 === 6 && latterDaySaintStatus === true) {
-        const individualPayments = document.querySelectorAll('.individual-payment');
-        budget._updateSubCategory(`Creation`, `Finalizing Sub-Categories`, { goals: individualPayments });
-        _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
-      }
-      if (currentPage + 1 === 7 && latterDaySaintStatus === true) {
-        if (budget.accounts.emergencyFund.emergencyGoalMeasurement === `Length Of Time`) {
-          budget._updateAccounts(`Creation`, `Emergency Goal`, {
-            goal: Number(document.querySelector('#timingNumber').value),
-            goalTiming: document.querySelector('.budget-creation-form__page__section__select').value,
+      if (latterDaySaintStatus === true) {
+        if (currentPage + 1 === 2) {
+          console.log(`Tithing Options`);
+          budget._addTithingAccount(user);
+          _watchTIthingOptions(budget);
+        }
+        if (currentPage + 1 === 3) {
+          // From here, there is a need to check the function names to make sure they make sense as to what they are actually doing.  If not, they WILL be renamed accordingly.
+          setupMainCategoryCreation(icon, budget, person);
+        }
+        if (currentPage + 1 === 4) {
+          setupSubCategoryCreation(budget, subCategoryIndex);
+        }
+        if (currentPage + 1 === 5) {
+          setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
+        }
+        if (currentPage + 1 === 6) {
+          const individualPayments = document.querySelectorAll('.individual-payment');
+          budget._finalizeSubCategoryCreation({ goals: individualPayments });
+          _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
+        }
+        if (currentPage + 1 === 7) {
+          if (budget.accounts.emergencyFund.emergencyGoalMeasurement === `Length Of Time`) {
+            budget._updateEmergencyGoal({
+              goal: Number(document.querySelector('#timingNumber').value),
+              goalTiming: document.querySelector('.budget-creation-form__page__section__select').value,
+            });
+          }
+          if (budget.accounts.emergencyFund.emergencyGoalMeasurement === `Total Amount`) {
+            budget._updateEmergencyGoal({ goal: Number(document.querySelector('#emergencyGoal').value) });
+          }
+          document.querySelector('#savingsPercentGoal').focus();
+        }
+        if (currentPage + 1 === 8) {
+          budget._updateSavingsFund({
+            percentage: Number(document.querySelector('#savingsPercentGoal').value) / 100,
+            goal: Number(document.querySelector('#savingsGoal').value),
+            amount: 0,
           });
+          document.querySelector('#investmentPercentGoal').focus();
         }
-        if (budget.accounts.emergencyFund.emergencyGoalMeasurement === `Total Amount`) {
-          budget._updateAccounts(`Creation`, `Emergency Goal`, { goal: Number(document.querySelector('#emergencyGoal').value) });
+        if (currentPage + 1 === 9) {
+          budget._updateInvestmentFund({
+            percentage: Number(document.querySelector('#investmentPercentGoal').value) / 100,
+            goal: Number(document.querySelector('#investmentGoal').value),
+            amount: 0,
+          });
+          budget._submit(budget, user);
         }
-        document.querySelector('#savingsPercentGoal').focus();
-      }
-      if (currentPage + 1 === 8 && latterDaySaintStatus === true) {
-        budget._updateAccounts(`Creation`, `Savings`, {
-          percentage: Number(document.querySelector('#savingsPercentGoal').value) / 100,
-          goal: Number(document.querySelector('#savingsGoal').value),
-          amount: 0,
-        });
-        document.querySelector('#investmentPercentGoal').focus();
-      }
-      if (currentPage + 1 === 9 && latterDaySaintStatus === true) {
-        budget._updateAccounts(`Creation`, `Investment`, {
-          percentage: Number(document.querySelector('#investmentPercentGoal').value) / 100,
-          goal: Number(document.querySelector('#investmentGoal').value),
-          amount: 0,
-        });
-        budget._submit(budget, user);
       }
     });
   }

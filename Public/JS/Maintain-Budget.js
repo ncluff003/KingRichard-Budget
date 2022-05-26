@@ -4,6 +4,7 @@ import * as Budget from './Budget';
 import * as Edit from './Budget-Creation';
 import * as Categories from './Budget-Categories';
 import * as Transaction from './Transaction';
+import * as Person from './Person';
 
 // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
@@ -4278,6 +4279,7 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
           unAllocatedAmount = budget.accounts.unAllocated.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1].split(',').join(''));
         }
         transaction = new Transaction.Transaction({ date: incomeDateInput.value, type: `Deposit`, location: incomeFromInput.value });
+        console.log(transaction);
         transaction.addToReceipt({
           accountSelected: `Un-Allocated`,
           account: `Un-Allocated`,
@@ -4386,9 +4388,7 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
         };
       }
 
-      placeholderBudget._updateBudget(
-        `Update`,
-        `Enter Income`,
+      placeholderBudget._enterIncome(
         {
           updateObject: updateObject,
         },
@@ -4964,12 +4964,14 @@ const setupDashboard = (user, budget, placeholderBudget) => {
   _setupCurrentMonth(budget);
 };
 
-export const _watchBudget = async (person) => {
+export const _watchBudget = async () => {
   console.log(`WATCHING YOUR BUDGET`);
   /////////////////////////////
   // GET USER
+  let person = new Person.Person(``, ``, ``, ``, ``, ``, ``, ``);
   const userInfo = await person._getPersonData();
   const user = userInfo.data.data.user;
+  let placeholderUser = await person._getPersonData();
 
   ////////////////////////////////////////////
   // GET BUDGET INFORMATION

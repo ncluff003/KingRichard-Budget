@@ -14,97 +14,19 @@ export class Budget {
     this.mainCategories = [];
   }
 
-  _addName(name) {
-    return (this.name = name);
-  }
-
-  _addMainCategory(icon, title) {
-    // This is how main categories are added as objects with an icon and title.
-    this.mainCategories.push(new Categories.MainCategory({ icon: icon, title: title }));
-  }
-
-  _updateMainCategory() {
-    console.log(`Main Category`);
-  }
-
-  _deleteMainCategory(title) {
-    this.mainCategories = this.mainCategories.filter((mc, i) => mc.title !== title);
-    console.log(`SUCCESSFUL DELETION`);
-  }
-
-  _addSubCategory(index, title) {
-    this.mainCategories[index].subCategories.push(new Categories.SubCategory({ title: title }));
-    console.log(this.mainCategories[index].subCategories);
-  }
-
-  _updateSubCategory(mode, update, options) {
-    if (mode === `Creation`) {
-      if (update === `Timing`) {
-        console.log(options.index, options.subCategoryIndex);
-        /*
-          GLITCH : In the place of setting timings for both the Budget Creation and Editing Category Goals, the main category titles and icons are both placed and cycled differently.
-            With creation, it just removes the class that the main category has for the icon, and adds the next or previous one.  It does the same thing for the titles.  In editing, it displays all 3, while making the main one as display: flex.  The method works on creation, so I likely
-            will adjust the edit category goals one for that purpose, with making sure that it does NOT negatively affect other things.
-        */
-        this.mainCategories[options.index].subCategories[options.subCategoryIndex].timingOptions.paymentCycle = options.paymentCycle;
-        this.mainCategories[options.index].subCategories[options.subCategoryIndex].timingOptions.paymentSchedule = options.paymentSchedule;
-        this.mainCategories[options.index].subCategories[options.subCategoryIndex].timingOptions.dueDates = [
-          this.mainCategories[options.index].subCategories[options.subCategoryIndex].timingOptions.paymentSchedule[0],
-        ];
-      }
-
-      if (update === `Surplus`) {
-        this.mainCategories[options.mainIndex].subCategories[options.subIndex].surplus = !this.mainCategories[options.mainIndex].subCategories[options.subIndex].surplus;
-        console.log(this.mainCategories[options.mainIndex].subCategories[options.subIndex]);
-        if (!this.mainCategories[options.mainIndex].subCategories[options.subIndex].createAt) {
-          this.mainCategories[options.mainIndex].subCategories[options.subIndex].createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
-        }
-        this.mainCategories[options.mainIndex].subCategories[options.subIndex].lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
-        this.mainCategories[options.mainIndex].subCategories[options.subIndex].updated = true;
-      }
-
-      if (update === `Finalizing Sub-Categories`) {
-        let index = 0;
-        this.mainCategories.forEach((mc, i) => {
-          mc.subCategories.forEach((sc, i) => {
-            if (Number(options.goals[index].value) === undefined || typeof Number(options.goals[index].value) !== `number`) options.goals[index].value = Number(0);
-            sc.goalAmount = Number(options.goals[index].value);
-            sc.amountSpent = 0;
-            sc.amountRemaining = Number(sc.goalAmount - sc.amountSpent);
-            sc.percentageSpent = Number(sc.amountSpent / sc.goalAmount);
-            if (isNaN(sc.percentageSpent)) sc.percentageSpent = 0;
-            index++;
-          });
-        });
-      }
+  async getBudget(id, user) {
+    try {
+      const response = await axios({
+        method: `GET`,
+        url: `/App/Users/${user._id}/Budgets/${id}/Dashboard`,
+      });
+      document.open(`text/html`).write(response.data);
+      window.location.assign(`/App/Users/${user._id}/Budgets/${id}/Dashboard`);
+      console.log(response);
+      Budget._watchBudget();
+    } catch (error) {
+      console.log(error);
     }
-    if (mode === `Updating`) {
-      console.log(`Updating Sub-Category...`);
-    }
-
-    /*
-      This is where updating the goals SHOULD BE.
-
-        TO SOME DEGREE, THIS IS HOW THE UPDATING SUB CATEGORIES SHOULD BE.
-         _finishUpdatingSubCategory(goal) {
-        let categoryGoal = goal;
-        if (categoryGoal === undefined || typeof categoryGoal !== `number`) categoryGoal = 0;
-        this.goalAmount = categoryGoal;
-        this.amountSpent = 0;
-        this.amountRemaining = this.goalAmount - this.amountSpent;
-        this.percentageSpent = this.amountSpent / this.goalAmount;
-        if (isNaN(this.percentageSpent)) this.percentageSpent = 0;
-
-    */
-  }
-
-  _deleteSubCategory(mainIndex, subIndex) {
-    this.mainCategories[mainIndex].subCategories = this.mainCategories[mainIndex].subCategories.filter((sc) => {
-      return sc !== this.mainCategories[mainIndex].subCategories[subIndex];
-    });
-    // this.mainCategories[mainIndex]._deleteSubCategory(subIndex);
-    console.log(this.mainCategories[mainIndex].subCategories);
-    console.log(`SUCCESSFUL DELETION`);
   }
 
   _addAccounts() {
@@ -122,54 +44,138 @@ export class Budget {
     if (user.latterDaySaint === true) this.accounts.tithing = { amount: 0 };
   }
 
-  _updateAccounts(mode, update, options) {
-    if (mode === `Creation`) {
-      if (update === `Tithing Setting`) {
-        this.accounts.tithing.tithingSetting = options.setting;
-        this.accounts.tithing.amount = Number(options.amount);
-      }
-      if (update === `Emergency Measurement`) {
-        this.accounts.emergencyFund.emergencyGoalMeasurement = options.setting;
-      }
-      if (update === `Emergency Goal`) {
-        if (this.accounts.emergencyFund.emergencyGoalMeasurement === `Length Of Time`) {
-          this.accounts.emergencyFund.emergencyFundGoal = options.goal;
-          this.accounts.emergencyFund.emergencyFundGoalTiming = options.goalTiming;
-          this.accounts.emergencyFund.amount = options.amount;
-        }
-        if (this.accounts.emergencyFund.emergencyGoalMeasurement === `Total Amount`) {
-          this.accounts.emergencyFund.emergencyFundGoal = options.goal;
-          this.accounts.emergencyFund.amount = options.amount;
-        }
-      }
-      if (update === `Expense Fund`) {
-        this.accounts.expenseFund.amount = Number(options.amount);
-      }
-      if (update === `Surplus`) {
-        this.accounts.surplus.amount = Number(options.amount);
-      }
-      if (update === `Monthly Budget`) {
-        this.accounts.monthlyBudget.amount = Number(options.amount);
-      }
-      if (update === `Savings`) {
-        this.accounts.savingsFund.savingsPercentage = Number(options.percentage);
-        this.accounts.savingsFund.savingsGoal = Number(options.goal);
-        this.accounts.savingsFund.amount = Number(options.amount);
-      }
-      if (update === `Investment`) {
-        this.accounts.investmentFund.investmentPercentage = Number(options.percentage);
-        this.accounts.investmentFund.investmentGoal = Number(options.goal);
-        this.accounts.investmentFund.amount = Number(options.amount);
-        if (isNaN(Number(options.investedAmount))) {
-          options.investedAmount = 0;
-        }
-        this.accounts.investmentFund.investedAmount = Number(options.investedAmount);
-      }
-      if (update === `Debt`) {
-        this.accounts.debt.amount = Number(options.amount);
-        this.accounts.debt.debtAmount = Number(options.debtAmount);
-      }
+  _addBudgetTransactions() {
+    this.transactions = [];
+  }
+
+  _addBudgetInvestments() {
+    this.investments = [];
+  }
+
+  _addBudgetDebts() {
+    this.debts = [];
+  }
+
+  _updateBudgetName(name) {
+    return (this.name = name);
+  }
+
+  _addMainCategory(icon, title) {
+    // This is how main categories are added as objects with an icon and title.
+    this.mainCategories.push(new Categories.MainCategory({ icon: icon, title: title }));
+  }
+
+  _updateMainCategory() {
+    console.log(`Main Category`);
+  }
+
+  _removeMainCategory(title) {
+    this.mainCategories = this.mainCategories.filter((mc, i) => mc.title !== title);
+    console.log(`SUCCESSFUL DELETION`);
+  }
+
+  _addSubCategory(index, title) {
+    this.mainCategories[index].subCategories.push(new Categories.SubCategory({ title: title }));
+    console.log(this.mainCategories[index].subCategories);
+  }
+
+  _deleteSubCategory(mainIndex, subIndex) {
+    this.mainCategories[mainIndex].subCategories = this.mainCategories[mainIndex].subCategories.filter((sc) => {
+      return sc !== this.mainCategories[mainIndex].subCategories[subIndex];
+    });
+    console.log(`SUCCESSFUL DELETION`);
+  }
+
+  _makeSurplusSubCategory(options) {
+    this.mainCategories[options.mainIndex].subCategories[options.subIndex].surplus = !this.mainCategories[options.mainIndex].subCategories[options.subIndex].surplus;
+    console.log(this.mainCategories[options.mainIndex].subCategories[options.subIndex]);
+    if (!this.mainCategories[options.mainIndex].subCategories[options.subIndex].createAt) {
+      this.mainCategories[options.mainIndex].subCategories[options.subIndex].createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
     }
+    this.mainCategories[options.mainIndex].subCategories[options.subIndex].lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+    this.mainCategories[options.mainIndex].subCategories[options.subIndex].updated = true;
+  }
+
+  _updateSubCategoryTiming(options) {
+    this.mainCategories[options.index].subCategories[options.subCategoryIndex].timingOptions.paymentCycle = options.paymentCycle;
+    this.mainCategories[options.index].subCategories[options.subCategoryIndex].timingOptions.paymentSchedule = options.paymentSchedule;
+    this.mainCategories[options.index].subCategories[options.subCategoryIndex].timingOptions.dueDates = [
+      this.mainCategories[options.index].subCategories[options.subCategoryIndex].timingOptions.paymentSchedule[0],
+    ];
+  }
+
+  _finalizeSubCategoryCreation(options) {
+    let index = 0;
+    this.mainCategories.forEach((mc, i) => {
+      mc.subCategories.forEach((sc, i) => {
+        if (Number(options.goals[index].value) === undefined || typeof Number(options.goals[index].value) !== `number`) options.goals[index].value = Number(0);
+        sc.goalAmount = Number(options.goals[index].value);
+        sc.amountSpent = 0;
+        sc.amountRemaining = Number(sc.goalAmount - sc.amountSpent);
+        sc.percentageSpent = Number(sc.amountSpent / sc.goalAmount);
+        if (isNaN(sc.percentageSpent)) sc.percentageSpent = 0;
+        index++;
+      });
+    });
+  }
+
+  _updateEmergencyMeasurement(options) {
+    this.accounts.emergencyFund.emergencyGoalMeasurement = options.setting;
+  }
+
+  _updateEmergencyGoal(options) {
+    if (this.accounts.emergencyFund.emergencyGoalMeasurement === `Length Of Time`) {
+      this.accounts.emergencyFund.emergencyFundGoal = options.goal;
+      this.accounts.emergencyFund.emergencyFundGoalTiming = options.goalTiming;
+      this.accounts.emergencyFund.amount = options.amount;
+    }
+    if (this.accounts.emergencyFund.emergencyGoalMeasurement === `Total Amount`) {
+      this.accounts.emergencyFund.emergencyFundGoal = options.goal;
+      this.accounts.emergencyFund.amount = options.amount;
+    }
+  }
+
+  _updateSavingsFund(options) {
+    this.accounts.savingsFund.savingsPercentage = Number(options.percentage);
+    this.accounts.savingsFund.savingsGoal = Number(options.goal);
+    this.accounts.savingsFund.amount = Number(options.amount);
+  }
+
+  _updateInvestmentFund(options) {
+    this.accounts.investmentFund.investmentPercentage = Number(options.percentage);
+    this.accounts.investmentFund.investmentGoal = Number(options.goal);
+    this.accounts.investmentFund.amount = Number(options.amount);
+    if (isNaN(Number(options.investedAmount))) {
+      options.investedAmount = 0;
+    }
+    this.accounts.investmentFund.investedAmount = Number(options.investedAmount);
+  }
+
+  _updateTithingAccount(options) {
+    this.accounts.tithing.tithingSetting = options.setting;
+    this.accounts.tithing.amount = Number(options.amount);
+  }
+
+  _updateExpenseFund(options) {
+    this.accounts.expenseFund.amount = Number(options.amount);
+  }
+
+  _updateSurplus(options) {
+    this.accounts.surplus.amount = Number(options.amount);
+  }
+
+  _updateMonthlyBudgetAccount(options) {
+    this.accounts.monthlyBudget.amount = Number(options.amount);
+  }
+
+  _updateDebtAccount(options) {
+    this.accounts.debt.amount = Number(options.amount);
+    this.accounts.debt.debtAmount = Number(options.debtAmount);
+  }
+
+  _enterIncome(options, pageLink) {
+    console.log(`Entering Income...`, options);
+    Manage.updateMyBudget(options.updateObject, pageLink);
   }
 
   _updateBudget(mode, update, options, pageLink) {
@@ -297,36 +303,36 @@ export class Budget {
   _buildPlaceHolderBudget(budget, user) {
     if (budget) {
       this._addTithingAccount(user);
-      this._addName(budget.name);
+      this._updateBudgetName(budget.name);
       if (user.latterDaySaint === true) {
-        this._updateAccounts(`Creation`, `Tithing Setting`, { setting: budget.accounts.tithing.tithingSetting, amount: budget.accounts.tithing.amount });
+        this._updateTithingAccount({ setting: budget.accounts.tithing.tithingSetting, amount: budget.accounts.tithing.amount });
       }
-      this._updateAccounts(`Creation`, `Emergency Measurement`, { setting: budget.accounts.emergencyFund.emergencyGoalMeasurement });
+      this._updateEmergencyMeasurement({ setting: budget.accounts.emergencyFund.emergencyGoalMeasurement });
       if (this.accounts.emergencyFund.emergencyGoalMeasurement === `Length Of Time`) {
-        this._updateAccounts(`Creation`, `Emergency Goal`, {
+        this._updateEmergencyGoal({
           goal: budget.accounts.emergencyFund.emergencyFundGoal,
           goalTiming: budget.accounts.emergencyFund.emergencyFundGoalTiming,
           amount: budget.accounts.emergencyFund.amount,
         });
       }
       if (this.accounts.emergencyFund.emergencyGoalMeasurement === `Total Amount`) {
-        this._updateAccounts(`Creation`, `Emergency Goal`, { goal: budget.accounts.emergencyFund.emergencyFundGoal, amount: budget.accounts.emergencyFund.amount });
+        this._updateEmergencyGoal({ goal: budget.accounts.emergencyFund.emergencyFundGoal, amount: budget.accounts.emergencyFund.amount });
       }
-      this._updateAccounts(`Creation`, `Monthly Budget`, { amount: budget.accounts.monthlyBudget.amount });
-      this._updateAccounts(`Creation`, `Savings`, {
+      this._updateMonthlyBudgetAccount({ amount: budget.accounts.monthlyBudget.amount });
+      this._updateSavingsFund({
         goal: budget.accounts.savingsFund.savingsGoal,
         percentage: budget.accounts.savingsFund.savingsPercentage,
         amount: budget.accounts.savingsFund.amount,
       });
-      this._updateAccounts(`Creation`, `Investment`, {
+      this._updateInvestmentFund({
         goal: budget.accounts.investmentFund.investmentGoal,
         percentage: budget.accounts.investmentFund.investmentPercentage,
         investedAmount: budget.accounts.investmentFund.investedAmount,
         amount: budget.accounts.investmentFund.amount,
       });
-      this._updateAccounts(`Creation`, `Expense Fund`, { amount: budget.accounts.expenseFund.amount });
-      this._updateAccounts(`Creation`, `Surplus`, { amount: budget.accounts.surplus.amount });
-      this._updateAccounts(`Creation`, `Debt`, { amount: budget.accounts.debt.amount, debtAmount: budget.accounts.debt.debtAmount });
+      this._updateExpenseFund({ amount: budget.accounts.expenseFund.amount });
+      this._updateSurplus({ amount: budget.accounts.surplus.amount });
+      this._updateDebtAccount({ amount: budget.accounts.debt.amount, debtAmount: budget.accounts.debt.debtAmount });
       budget.mainCategories.forEach((mc) => {
         let subCategories = [];
         mc.subCategories.forEach((sc) => {
@@ -347,7 +353,6 @@ export class Budget {
       this.transactions = budget.transactions;
       this.investments = budget.investments;
       this.debts = budget.debts;
-      console.log(budget);
     }
   }
 }
@@ -355,5 +360,8 @@ export class Budget {
 export const startToCreate = () => {
   const budget = new Budget();
   budget._addAccounts();
+  budget._addBudgetTransactions();
+  budget._addBudgetInvestments();
+  budget._addBudgetDebts();
   return budget;
 };

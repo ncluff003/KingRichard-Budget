@@ -1,4 +1,6 @@
 import * as Maintain from './Maintain-Budget';
+import * as Person from './Person';
+import * as Utility from './Utility';
 ////////////////////////////////
 // ICONS FOR MAIN CATEGORIES
 export const icons = [
@@ -1000,16 +1002,6 @@ export class SubCategory extends Category {
   _makeSurplus() {
     this.surplus = !this.surplus;
   }
-
-  _finishUpdatingSubCategory(goal) {
-    let categoryGoal = goal;
-    if (categoryGoal === undefined || typeof categoryGoal !== `number`) categoryGoal = 0;
-    this.goalAmount = categoryGoal;
-    this.amountSpent = 0;
-    this.amountRemaining = this.goalAmount - this.amountSpent;
-    this.percentageSpent = this.amountSpent / this.goalAmount;
-    if (isNaN(this.percentageSpent)) this.percentageSpent = 0;
-  }
 }
 
 ////////////////////////////////////////
@@ -1096,7 +1088,7 @@ export const createSubCategory = (budget, index) => {
       const categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
       const categoryTitle = subCategoryTitleElement.textContent;
 
-      budget._updateSubCategory(`Creation`, `Surplus`, { mainIndex: categoryNumber, subIndex: subArray.indexOf(clicked.closest('.sub-category')) });
+      budget._makeSurplusSubCategory({ mainIndex: categoryNumber, subIndex: subArray.indexOf(clicked.closest('.sub-category')) });
     });
 
     const surplusCategoryTrashIcon = document.createElement('i');
@@ -1171,7 +1163,7 @@ export const createSubCategory = (budget, index) => {
       const categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
       const categoryTitle = subCategoryTitleElement.textContent;
 
-      budget._updateSubCategory(`Creation`, `Surplus`, { mainIndex: categoryNumber, subIndex: subArray.indexOf(clicked.closest('.sub-category')) });
+      budget._makeSurplusSubCategory({ mainIndex: categoryNumber, subIndex: subArray.indexOf(clicked.closest('.sub-category')) });
     });
 
     const surplusCategoryTrashIcon = document.createElement('i');
@@ -1280,7 +1272,7 @@ export const _verifySubCategory = (budget, index) => {
 
 ////////////////////////////////////////
 // MAIN CATEGORY DELETION PROCESS
-const removeMainCategory = async (e, budget, person) => {
+const removeMainCategory = async (e, budget, filteredArray, person) => {
   const budgetPages = document.querySelectorAll('.form__page--centered');
   console.log(budgetPages, budgetPages[2].classList);
   let title = e.target.closest('section').firstChild.nextElementSibling.textContent;
@@ -1294,7 +1286,7 @@ const removeMainCategory = async (e, budget, person) => {
   if (user.latterDaySaint === false) {
     if (!budgetPages[2].classList.contains(`closed`)) return;
   }
-  budget._deleteMainCategory(title);
+  budget._removeMainCategory(title);
   e.target.closest('section').remove();
   console.log(`DELETED`);
   return budget.mainCategories;
@@ -1336,9 +1328,9 @@ const createMainCategory = (element, budget, filteredArray, person) => {
       document.querySelectorAll('.main-category')[2].style.borderTopRightRadius = `0.9rem`;
     }
     if (deleteButton) {
-      deleteButton.addEventListener('click', (e) => {
+      deleteButton.addEventListener('click', async (e) => {
         e.preventDefault();
-        removeMainCategory(e, budget, filteredArray, person);
+        await removeMainCategory(e, budget, filteredArray, person);
       });
     }
   }

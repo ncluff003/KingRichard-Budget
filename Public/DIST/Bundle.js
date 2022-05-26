@@ -4556,10 +4556,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Budget_Creation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Budget-Creation */ "./Public/JS/Budget-Creation.js");
-/* harmony import */ var _Maintain_Budget__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Maintain-Budget */ "./Public/JS/Maintain-Budget.js");
-/* harmony import */ var _Manage_Budget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Manage-Budget */ "./Public/JS/Manage-Budget.js");
-/* harmony import */ var _Person__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Person */ "./Public/JS/Person.js");
+/* harmony import */ var _Budget__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Budget */ "./Public/JS/Budget.js");
+/* harmony import */ var _Maintain_Budget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Maintain-Budget */ "./Public/JS/Maintain-Budget.js");
+/* harmony import */ var _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Manage-Budget */ "./Public/JS/Manage-Budget.js");
+/* harmony import */ var _Person__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Person */ "./Public/JS/Person.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
 
 
 
@@ -4569,14 +4571,14 @@ __webpack_require__.r(__webpack_exports__);
 
 var latterDaySaint = false;
 
-var enterBudget = /*#__PURE__*/function () {
+var getBudget = /*#__PURE__*/function () {
   var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee(budgetId, user) {
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return _Manage_Budget__WEBPACK_IMPORTED_MODULE_5__.getMyBudget(budgetId, user);
+            return _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.renderBudget(budgetId, user);
 
           case 2:
           case "end":
@@ -4586,7 +4588,7 @@ var enterBudget = /*#__PURE__*/function () {
     }, _callee);
   }));
 
-  return function enterBudget(_x, _x2) {
+  return function getBudget(_x, _x2) {
     return _ref.apply(this, arguments);
   };
 }();
@@ -4597,7 +4599,7 @@ var _watchBudgetSelection = function _watchBudgetSelection(user) {
     bc.addEventListener('click', function (e) {
       var clicked = e.target;
       var id = clicked.closest('.budget-card-container__card').dataset.budgetid;
-      enterBudget(id, user);
+      getBudget(id, user);
     });
   });
 };
@@ -5028,7 +5030,7 @@ var _watchForProfilePictureChange = function _watchForProfilePictureChange(user,
 
     person._updatePhoto(form);
 
-    _Maintain_Budget__WEBPACK_IMPORTED_MODULE_4__.reloadPage();
+    _Maintain_Budget__WEBPACK_IMPORTED_MODULE_5__.reloadPage();
   });
 };
 
@@ -5058,7 +5060,7 @@ var _watchForLogin = /*#__PURE__*/function () {
             commSwitch = document.getElementById('commSwitch');
             ///////////////////////////////////////
             // GET USER
-            placeholderUser = new _Person__WEBPACK_IMPORTED_MODULE_6__.Person("", "", "", "", "", "", "", "");
+            placeholderUser = new _Person__WEBPACK_IMPORTED_MODULE_7__.Person("", "", "", "", "", "", "", "");
             _context6.next = 7;
             return placeholderUser._getPersonData();
 
@@ -5252,18 +5254,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
-/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/esm/inherits.js");
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js");
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js");
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _Maintain_Budget__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Maintain-Budget */ "./Public/JS/Maintain-Budget.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/esm/inherits.js");
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _Maintain_Budget__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Maintain-Budget */ "./Public/JS/Maintain-Budget.js");
+/* harmony import */ var _Person__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Person */ "./Public/JS/Person.js");
+/* harmony import */ var _Utility__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Utility */ "./Public/JS/Utility.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
-
 
 
 
@@ -5276,11 +5278,13 @@ __webpack_require__.r(__webpack_exports__);
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3__["default"])(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__["default"])(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5__["default"])(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__["default"])(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+
 
  ////////////////////////////////
 // ICONS FOR MAIN CATEGORIES
@@ -5288,8 +5292,8 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 var icons = ["address-book", "address-card", "adjust", "air-freshener", "align-center", "align-justify", "align-left", "align-right", "allergies", "ambulance", "american-sign-language-interpreting", "anchor", "angle-double-down", "angle-double-left", "angle-double-right", "angle-double-up", "angle-down", "angle-left", "angle-right", "angle-up", "angry", "ankh", "apple-alt", "archive", "archway", "arrow-alt-circle-down", "arrow-alt-circle-left", "arrow-alt-circle-right", "arrow-alt-circle-up", "arrow-down", "arrow-left", "arrow-right", "arrows-alt", "arrows-alt-h", "arrows-alt-v", "arrow-up", "assistive-listening-systems", "asterisk", "at", "atlas", "atom", "baby-carriage", "backspace", "backward", "bacon", "bahai", "balance-scale", "balance-scale-left", "balance-scale-right", "ban", "band-aid", "barcode", "bars", "baseball-ball", "basketball-ball", "bath", "battery-empty", "battery-full", "battery-half", "battery-quarter", "battery-three-quarters", "bed", "beer", "bell", "bell-slash", "bezier-curve", "bible", "bicycle", "biking", "binoculars", "biohazard", "birthday-cake", "blender", "blender-phone", "blind", "blog", "bold", "bolt", "bomb", "bone", "bong", "book", "book-dead", "bookmark", "book-medical", "book-open", "book-reader", "border-all", "border-none", "border-style", "bowling-ball", "box", "boxes", "box-open", "braille", "brain", "bread-slice", "briefcase", "briefcase-medical", "broadcast-tower", "broom", "brush", "bug", "building", "bullhorn", "bullseye", "burn", "bus", "bus-alt", "business-time", "calculator", "calendar", "calendar-alt", "calendar-check", "calendar-day", "calendar-minus", "calendar-plus", "calendar-times", "calendar-week", "camera", "camera-retro", "campground", "candy-cane", "cannabis", "capsules", "car", "car-alt", "caravan", "car-battery", "car-crash", "caret-down", "caret-left", "caret-right", "caret-square-down", "caret-square-left", "caret-square-right", "caret-square-up", "caret-up", "carrot", "car-side", "cart-arrow-down", "cart-plus", "cash-register", "cat", "certificate", "chair", "chalkboard", "chalkboard-teacher", "charging-station", "chart-area", "chart-bar", "chart-line", "chart-pie", "check", "check-circle", "check-double", "check-square", "cheese", "chess", "chess-bishop", "chess-board", "chess-king", "chess-knight", "chess-pawn", "chess-queen", "chess-rook", "chevron-circle-down", "chevron-circle-left", "chevron-circle-right", "chevron-circle-up", "chevron-down", "chevron-left", "chevron-right", "chevron-up", "child", "church", "circle", "circle-notch", "city", "clinic-medical", "clipboard", "clipboard-check", "clipboard-list", "clock", "clone", "closed-captioning", "cloud", "cloud-download-alt", "cloud-meatball", "cloud-moon", "cloud-moon-rain", "cloud-rain", "cloud-showers-heavy", "cloud-sun", "cloud-sun-rain", "cocktail", "code", "code-branch", "coffee", "cog", "cogs", "coins", "columns", "comment", "comment-alt", "comment-dollar", "comment-dots", "comment-medical", "comments", "comments-dollar", "comment-slash", "compact-disc", "compress", "compress-alt", "compress-arrows-alt", "concierge-bell", "cookie", "cookie-bite", "copy", "copyright", "couch", "credit-card", "crop", "crop-alt", "cross", "crosshairs", "crow", "crown", "crutch", "cube", "cubes", "cut", "database", "deaf", "democrat", "desktop", "dharmachakra", "diagnoses", "dice", "dice-d6", "dice-d20", "dice-five", "dice-four", "dice-one", "dice-six", "dice-three", "dice-two", "digital-tachograph", "directions", "divide", "dizzy", "dna", "dog", "dollar-sign", "dolly", "dolly-flatbed", "donate", "door-closed", "door-open", "dot-circle", "dove", "download", "drafting-compass", "dragon", "draw-polygon", "drum", "drum-steelpan", "drumstick-bite", "dumbbell", "dumpster", "dumpster-fire", "dungeon", "edit", "egg", "eject", "ellipsis-h", "ellipsis-v", "envelope", "envelope-open", "envelope-open-text", "envelope-square", "equals", "eraser", "ethernet", "euro-sign", "exchange-alt", "exclamation", "exclamation-circle", "exclamation-triangle", "expand", "expand-alt", "expand-arrows-alt", "external-link-alt", "external-link-square-alt", "eye", "eye-dropper", "eye-slash", "fan", "fast-backward", "fast-forward", "fax", "feather", "feather-alt", "female", "fighter-jet", "file", "file-alt", "file-archive", "file-audio", "file-code", "file-contract", "file-csv", "file-download", "file-excel", "file-export", "file-image", "file-import", "file-invoice", "file-invoice-dollar", "file-medical", "file-medical-alt", "file-pdf", "file-powerpoint", "file-prescription", "file-signature", "file-upload", "file-video", "file-word", "fill", "fill-drip", "film", "filter", "fingerprint", "fire", "fire-alt", "fire-extinguisher", "first-aid", "fish", "fist-raised", "flag", "flag-checkered", "flag-usa", "flask", "flushed", "folder", "folder-minus", "folder-open", "folder-plus", "font", "football-ball", "forward", "frog", "frown", "frown-open", "funnel-dollar", "futbol", "gamepad", "gas-pump", "gavel", "gem", "genderless", "ghost", "gift", "gifts", "glass-cheers", "glasses", "glass-martini", "glass-martini-alt", "glass-whiskey", "globe", "globe-africa", "globe-americas", "globe-asia", "globe-europe", "golf-ball", "gopuram", "graduation-cap", "greater-than", "greater-than-equal", "grimace", "grin", "grin-alt", "grin-beam", "grin-beam-sweat", "grin-hearts", "grin-squint", "grin-squint-tears", "grin-stars", "grin-tears", "grin-tongue", "grin-tongue-squint", "grin-tongue-wink", "grin-wink", "grip-horizontal", "grip-lines", "grip-lines-vertical", "grip-vertical", "guitar", "hamburger", "hammer", "hamsa", "hand-holding", "hand-holding-heart", "hand-holding-usd", "hand-lizard", "hand-middle-finger", "hand-paper", "hand-peace", "hand-point-down", "hand-pointer", "hand-point-left", "hand-point-right", "hand-point-up", "hand-rock", "hands", "hand-scissors", "handshake", "hands-helping", "hand-spock", "hanukiah", "hard-hat", "hashtag", "hat-cowboy", "hat-cowboy-side", "hat-wizard", "hdd", "heading", "headphones", "headphones-alt", "headset", "heart", "heartbeat", "heart-broken", "helicopter", "highlighter", "hiking", "hippo", "history", "hockey-puck", "holly-berry", "home", "horse", "horse-head", "hospital", "hospital-alt", "hospital-symbol", "hotdog", "hotel", "hot-tub", "hourglass", "hourglass-end", "hourglass-half", "hourglass-start", "house-damage", "hryvnia", "h-square", "ice-cream", "icicles", "icons", "i-cursor", "id-badge", "id-card", "id-card-alt", "igloo", "image", "images", "inbox", "indent", "industry", "infinity", "info", "info-circle", "italic", "jedi", "joint", "journal-whills", "kaaba", "key", "keyboard", "khanda", "kiss", "kiss-beam", "kiss-wink-heart", "kiwi-bird", "landmark", "language", "laptop", "laptop-code", "laptop-medical", "laugh", "laugh-beam", "laugh-squint", "laugh-wink", "layer-group", "leaf", "lemon", "less-than", "less-than-equal", "level-down-alt", "level-up-alt", "life-ring", "lightbulb", "link", "lira-sign", "list", "list-alt", "list-ol", "list-ul", "location-arrow", "lock", "lock-open", "long-arrow-alt-down", "long-arrow-alt-left", "long-arrow-alt-right", "long-arrow-alt-up", "low-vision", "luggage-cart", "magic", "magnet", "mail-bulk", "male", "map", "map-marked", "map-marked-alt", "map-marker", "map-marker-alt", "map-pin", "map-signs", "marker", "mars", "mars-double", "mars-stroke", "mars-stroke-h", "mars-stroke-v", "mask", "medal", "medkit", "meh", "meh-blank", "meh-rolling-eyes", "memory", "menorah", "mercury", "meteor", "microchip", "microphone", "microphone-alt", "microphone-alt-slash", "microphone-slash", "microscope", "minus", "minus-circle", "minus-square", "mitten", "mobile", "mobile-alt", "money-bill", "money-bill-alt", "money-bill-wave", "money-bill-wave-alt", "money-check", "money-check-alt", "monument", "moon", "mortar-pestle", "mosque", "motorcycle", "mountain", "mouse", "mouse-pointer", "mug-hot", "music", "network-wired", "neuter", "newspaper", "not-equal", "notes-medical", "object-group", "object-ungroup", "oil-can", "om", "otter", "outdent", "pager", "paint-brush", "paint-roller", "palette", "pallet", "paperclip", "paper-plane", "parachute-box", "paragraph", "parking", "passport", "pastafarianism", "paste", "pause", "pause-circle", "paw", "peace", "pen", "pen-alt", "pencil-alt", "pencil-ruler", "pen-fancy", "pen-nib", "pen-square", "people-carry", "pepper-hot", "percent", "percentage", "person-booth", "phone", "phone-alt", "phone-slash", "phone-square", "phone-square-alt", "phone-volume", "photo-video", "piggy-bank", "pills", "pizza-slice", "place-of-worship", "plane", "plane-arrival", "plane-departure", "play", "play-circle", "plug", "plus", "plus-circle", "plus-square", "podcast", "poll", "poll-h", "poo", "poop", "poo-storm", "portrait", "pound-sign", "power-off", "pray", "praying-hands", "prescription", "prescription-bottle", "prescription-bottle-alt", "print", "procedures", "project-diagram", "puzzle-piece", "qrcode", "question", "question-circle", "quidditch", "quote-left", "quote-right", "quran", "radiation", "radiation-alt", "rainbow", "random", "receipt", "record-vinyl", "recycle", "redo", "redo-alt", "registered", "remove-format", "reply", "reply-all", "republican", "restroom", "retweet", "ribbon", "ring", "road", "robot", "rocket", "route", "rss", "rss-square", "ruble-sign", "ruler", "ruler-combined", "ruler-horizontal", "ruler-vertical", "running", "rupee-sign", "sad-cry", "sad-tear", "satellite", "satellite-dish", "save", "school", "screwdriver", "scroll", "sd-card", "search", "search-dollar", "search-location", "search-minus", "search-plus", "seedling", "server", "shapes", "share", "share-alt", "share-alt-square", "share-square", "shekel-sign", "shield-alt", "ship", "shipping-fast", "shoe-prints", "shopping-bag", "shopping-basket", "shopping-cart", "shower", "shuttle-van", "sign", "signal", "signature", "sign-in-alt", "sign-language", "sign-out-alt", "sim-card", "sitemap", "skating", "skiing", "skiing-nordic", "skull", "skull-crossbones", "slash", "sleigh", "sliders-h", "smile", "smile-beam", "smile-wink", "smog", "smoking", "smoking-ban", "sms", "snowboarding", "snowflake", "snowman", "snowplow", "socks", "solar-panel", "sort", "sort-alpha-down", "sort-alpha-down-alt", "sort-alpha-up", "sort-alpha-up-alt", "sort-amount-down", "sort-amount-down-alt", "sort-amount-up", "sort-amount-up-alt", "sort-down", "sort-numeric-down", "sort-numeric-down-alt", "sort-numeric-up", "sort-numeric-up-alt", "sort-up", "spa", "space-shuttle", "spell-check", "spider", "spinner", "splotch", "spray-can", "square", "square-full", "square-root-alt", "stamp", "star", "star-and-crescent", "star-half", "star-half-alt", "star-of-david", "star-of-life", "step-backward", "step-forward", "stethoscope", "sticky-note", "stop", "stop-circle", "stopwatch", "store", "store-alt", "stream", "street-view", "strikethrough", "stroopwafel", "subscript", "subway", "suitcase", "suitcase-rolling", "sun", "superscript", "surprise", "swatchbook", "swimmer", "swimming-pool", "synagogue", "sync", "sync-alt", "syringe", "table", "tablet", "tablet-alt", "table-tennis", "tablets", "tachometer-alt", "tag", "tags", "tape", "tasks", "taxi", "teeth", "teeth-open", "temperature-high", "temperature-low", "tenge", "terminal", "text-height", "text-width", "th", "theater-masks", "thermometer", "thermometer-empty", "thermometer-full", "thermometer-half", "thermometer-quarter", "thermometer-three-quarters", "th-large", "th-list", "thumbs-down", "thumbs-up", "thumbtack", "ticket-alt", "times", "times-circle", "tint", "tint-slash", "tired", "toggle-off", "toggle-on", "toilet", "toilet-paper", "toolbox", "tools", "tooth", "torah", "torii-gate", "tractor", "trademark", "traffic-light", "trailer", "train", "tram", "transgender", "transgender-alt", "trash", "trash-alt", "trash-restore", "trash-restore-alt", "tree", "trophy", "truck", "truck-loading", "truck-monster", "truck-moving", "truck-pickup", "tshirt", "tty", "tv", "umbrella", "umbrella-beach", "underline", "undo", "undo-alt", "universal-access", "university", "unlink", "unlock", "unlock-alt", "upload", "user", "user-alt", "user-alt-slash", "user-astronaut", "user-check", "user-circle", "user-clock", "user-cog", "user-edit", "user-friends", "user-graduate", "user-injured", "user-lock", "user-md", "user-minus", "user-ninja", "user-nurse", "user-plus", "users", "users-cog", "user-secret", "user-shield", "user-slash", "user-tag", "user-tie", "user-times", "utensils", "utensil-spoon", "vector-square", "venus", "venus-double", "venus-mars", "vial", "vials", "video", "video-slash", "vihara", "voicemail", "volleyball-ball", "volume-down", "volume-mute", "volume-off", "volume-up", "vote-yea", "vr-cardboard", "walking", "wallet", "warehouse", "water", "wave-square", "weight", "weight-hanging", "wheelchair", "wifi", "wind", "window-close", "window-maximize", "window-minimize", "window-restore", "wine-bottle", "wine-glass", "wine-glass-alt", "won-sign", "wrench", "x-ray", "yen-sign", "yin-yang"]; ////////////////////////////////////////
 // CATEGORY -- PARENT CLASS
 
-var Category = /*#__PURE__*/(0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_7__["default"])(function Category(options) {
-  (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_8__["default"])(this, Category);
+var Category = /*#__PURE__*/(0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_6__["default"])(function Category(options) {
+  (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_7__["default"])(this, Category);
 
   this.icon = options.icon;
   this.title = options.title;
@@ -5298,14 +5302,14 @@ var Category = /*#__PURE__*/(0,_babel_runtime_helpers_createClass__WEBPACK_IMPOR
 
 
 var MainCategory = /*#__PURE__*/function (_Category) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__["default"])(MainCategory, _Category);
+  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__["default"])(MainCategory, _Category);
 
   var _super = _createSuper(MainCategory);
 
   function MainCategory(options) {
     var _this;
 
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_8__["default"])(this, MainCategory);
+    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_7__["default"])(this, MainCategory);
 
     var superOpts = _objectSpread({}, options);
 
@@ -5314,7 +5318,7 @@ var MainCategory = /*#__PURE__*/function (_Category) {
     return _this;
   }
 
-  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_7__["default"])(MainCategory, [{
+  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_6__["default"])(MainCategory, [{
     key: "_deleteSubCategory",
     value: function _deleteSubCategory(index) {
       var _this2 = this;
@@ -5330,14 +5334,14 @@ var MainCategory = /*#__PURE__*/function (_Category) {
 // SUB CATEGORY -- CHILD CLASS
 
 var SubCategory = /*#__PURE__*/function (_Category2) {
-  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__["default"])(SubCategory, _Category2);
+  (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__["default"])(SubCategory, _Category2);
 
   var _super2 = _createSuper(SubCategory);
 
   function SubCategory(options) {
     var _this3;
 
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_8__["default"])(this, SubCategory);
+    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_7__["default"])(this, SubCategory);
 
     var superOpts = _objectSpread({}, options);
 
@@ -5351,21 +5355,10 @@ var SubCategory = /*#__PURE__*/function (_Category2) {
     return _this3;
   }
 
-  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_7__["default"])(SubCategory, [{
+  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_6__["default"])(SubCategory, [{
     key: "_makeSurplus",
     value: function _makeSurplus() {
       this.surplus = !this.surplus;
-    }
-  }, {
-    key: "_finishUpdatingSubCategory",
-    value: function _finishUpdatingSubCategory(goal) {
-      var categoryGoal = goal;
-      if (categoryGoal === undefined || (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_2__["default"])(categoryGoal) !== "number") categoryGoal = 0;
-      this.goalAmount = categoryGoal;
-      this.amountSpent = 0;
-      this.amountRemaining = this.goalAmount - this.amountSpent;
-      this.percentageSpent = this.amountSpent / this.goalAmount;
-      if (isNaN(this.percentageSpent)) this.percentageSpent = 0;
     }
   }]);
 
@@ -5447,7 +5440,7 @@ var createSubCategory = function createSubCategory(budget, index) {
       var categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
       var categoryTitle = subCategoryTitleElement.textContent;
 
-      budget._updateSubCategory("Creation", "Surplus", {
+      budget._makeSurplusSubCategory({
         mainIndex: categoryNumber,
         subIndex: subArray.indexOf(clicked.closest('.sub-category'))
       });
@@ -5530,7 +5523,7 @@ var createSubCategory = function createSubCategory(budget, index) {
       var categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
       var categoryTitle = subCategoryTitleElement.textContent;
 
-      budget._updateSubCategory("Creation", "Surplus", {
+      budget._makeSurplusSubCategory({
         mainIndex: categoryNumber,
         subIndex: subArray.indexOf(clicked.closest('.sub-category'))
       });
@@ -5644,9 +5637,9 @@ var _verifySubCategory = function _verifySubCategory(budget, index) {
 // MAIN CATEGORY DELETION PROCESS
 
 var removeMainCategory = /*#__PURE__*/function () {
-  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_9___default().mark(function _callee(e, budget, person) {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8___default().mark(function _callee(e, budget, filteredArray, person) {
     var budgetPages, title, userInfo, user;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_9___default().wrap(function _callee$(_context) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
@@ -5688,7 +5681,7 @@ var removeMainCategory = /*#__PURE__*/function () {
             return _context.abrupt("return");
 
           case 13:
-            budget._deleteMainCategory(title);
+            budget._removeMainCategory(title);
 
             e.target.closest('section').remove();
             console.log("DELETED");
@@ -5702,7 +5695,7 @@ var removeMainCategory = /*#__PURE__*/function () {
     }, _callee);
   }));
 
-  return function removeMainCategory(_x, _x2, _x3) {
+  return function removeMainCategory(_x, _x2, _x3, _x4) {
     return _ref.apply(this, arguments);
   };
 }(); ////////////////////////////////////////
@@ -5749,10 +5742,28 @@ var createMainCategory = function createMainCategory(element, budget, filteredAr
     }
 
     if (deleteButton) {
-      deleteButton.addEventListener('click', function (e) {
-        e.preventDefault();
-        removeMainCategory(e, budget, filteredArray, person);
-      });
+      deleteButton.addEventListener('click', /*#__PURE__*/function () {
+        var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8___default().mark(function _callee2(e) {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8___default().wrap(function _callee2$(_context2) {
+            while (1) {
+              switch (_context2.prev = _context2.next) {
+                case 0:
+                  e.preventDefault();
+                  _context2.next = 3;
+                  return removeMainCategory(e, budget, filteredArray, person);
+
+                case 3:
+                case "end":
+                  return _context2.stop();
+              }
+            }
+          }, _callee2);
+        }));
+
+        return function (_x5) {
+          return _ref2.apply(this, arguments);
+        };
+      }());
     }
   }
 
@@ -5796,7 +5807,7 @@ var createMainCategory = function createMainCategory(element, budget, filteredAr
     var mainCategories = document.querySelectorAll('.main-category__alt');
     _mainCategory.dataset.category = "".concat(mainCategories.length - 1);
 
-    _Maintain_Budget__WEBPACK_IMPORTED_MODULE_10__._watchForMainCategorySelection();
+    _Maintain_Budget__WEBPACK_IMPORTED_MODULE_9__._watchForMainCategorySelection();
   }
 }; ////////////////////////////////////////
 // CREATE MAIN CATEGORY
@@ -6094,7 +6105,7 @@ var _watchEmergencyGoalSettings = function _watchEmergencyGoalSettings(budget, s
 
       if (budget) {
         // budget.accounts.emergencyFund.emergencyGoalMeasurement = setting;
-        budget._updateAccounts("Creation", "Emergency Measurement", {
+        budget._updateEmergencyMeasurement({
           setting: setting
         });
       }
@@ -6440,7 +6451,7 @@ var insertTiming = function insertTiming(target, inputValues, timing, timingButt
     }); ///////////////////////
     // SET TIMING OPTIONS
 
-    budget._updateSubCategory("Creation", "Timing", {
+    budget._updateSubCategoryTiming({
       index: mainIndex,
       subCategoryIndex: subCategoryIndex,
       paymentCycle: timing,
@@ -6493,7 +6504,7 @@ var insertTiming = function insertTiming(target, inputValues, timing, timingButt
     }); ///////////////////////
     // SET TIMING OPTIONS
 
-    budget._updateSubCategory("Creation", "Timing", {
+    budget._updateSubCategoryTiming({
       index: mainIndex,
       subCategoryIndex: subCategoryIndex,
       paymentCycle: timing,
@@ -6550,7 +6561,7 @@ var insertTiming = function insertTiming(target, inputValues, timing, timingButt
     }); ///////////////////////
     // SET TIMING OPTIONS
 
-    budget._updateSubCategory("Creation", "Timing", {
+    budget._updateSubCategoryTiming({
       index: mainIndex,
       subCategoryIndex: subCategoryIndex,
       paymentCycle: timing,
@@ -6602,7 +6613,7 @@ var insertTiming = function insertTiming(target, inputValues, timing, timingButt
     }); ///////////////////////
     // SET TIMING OPTIONS
 
-    budget._updateSubCategory("Creation", "Timing", {
+    budget._updateSubCategoryTiming({
       index: mainIndex,
       subCategoryIndex: subCategoryIndex,
       paymentCycle: timing,
@@ -7124,7 +7135,9 @@ var _watchForSubCategoryKeyboardInput = function _watchForSubCategoryKeyboardInp
 var goToPage = function goToPage(page, createBudgetPages) {
   createBudgetPages.forEach(function (bp) {
     bp.classList.add('closed');
+    bp.classList.remove('open');
     if (createBudgetPages[page]) createBudgetPages[page].classList.remove('closed');
+    if (createBudgetPages[page]) createBudgetPages[page].classList.add('open');
   });
 }; /////////////////////////////////
 // SET BUDGET NAME
@@ -7133,7 +7146,7 @@ var goToPage = function goToPage(page, createBudgetPages) {
 var getBudgetName = function getBudgetName(budget) {
   var budgetName = document.getElementById('budgetName').value;
 
-  budget._addName(budgetName);
+  budget._updateBudgetName(budgetName);
 
   return budget;
 }; ///////////////////////////////////////
@@ -7221,22 +7234,39 @@ var _watchTIthingOptions = function _watchTIthingOptions(budget) {
   }
 };
 
-var _watchCreationFormCloser = function _watchCreationFormCloser(form, budget) {
-  // GLITCH: Budget creation form page is NOT resetting when the form is closed.
+var _watchCreationFormCloser = function _watchCreationFormCloser(pages, page, form, budget) {
+  // ADJUST: Budget now resets, but somehow, I feel there is a better way of handling the form altogether.
   var formCloser = document.querySelectorAll(".form-closure-icon--budget-creation")[0];
 
   if (formCloser) {
     formCloser.addEventListener('click', function (e) {
+      pages.forEach(function (page) {
+        if (page.classList.contains('open')) {
+          page.classList.add("reset");
+        }
+      });
+      console.log(page);
+      setupPage(page, pages, pages.length, budget);
       form.classList.toggle("closed");
       form.classList.toggle("open");
       budget = undefined;
+      pages.forEach(function (page) {
+        page.classList.add('closed');
+        page.classList.remove('open');
+      });
     });
   }
 };
 
-var _watchCreationFormOpener = function _watchCreationFormOpener(form, button, budget, budgetForm) {
+var _watchCreationFormOpener = function _watchCreationFormOpener(pages, form, button, budget, budgetForm) {
   if (button) {
     button.addEventListener("click", function (e) {
+      pages.forEach(function (page) {
+        page.classList.add('closed');
+        page.classList.remove('open');
+      });
+      pages[0].classList.add('open');
+      pages[0].classList.remove('closed');
       form.classList.toggle("closed");
       form.classList.toggle("open");
 
@@ -7250,18 +7280,18 @@ var _watchCreationFormOpener = function _watchCreationFormOpener(form, button, b
   }
 };
 
-var _setupBudgetCreation = function _setupBudgetCreation(form, button, budget) {
+var _setupBudgetCreation = function _setupBudgetCreation(pages, page, form, button, budget) {
   var forms = document.querySelectorAll('.form--full-width');
   var budgetCreationForm = forms[4];
 
-  _watchCreationFormCloser(form, budget);
+  _watchCreationFormCloser(pages, page, form, budget);
 
-  _watchCreationFormOpener(form, button, budget, budgetCreationForm);
+  _watchCreationFormOpener(pages, form, button, budget, budgetCreationForm);
 };
 
 var _watchForBudgetCreation = /*#__PURE__*/function () {
   var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee(person) {
-    var forms, budgetCreationForm, budgetCreationFormOpenButton, budget, budgetCreationFormPages, pages, budgetCreationFormPagesNumber, currentPage, emergencyGoalSetting, clicked, selectedTiming, buttons, budgetContinueButton, budgetName, subCategoryIndex, icon, userInfo, user, latterDaySaintStatus, budgetNavButton;
+    var forms, budgetCreationForm, budgetCreationFormOpenButton, budget, pages, currentPage, resetForm, budgetCreationFormPagesNumber, emergencyGoalSetting, clicked, selectedTiming, buttons, budgetContinueButton, subCategoryIndex, icon, userInfo, user, latterDaySaintStatus, budgetNavButton;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -7270,15 +7300,16 @@ var _watchForBudgetCreation = /*#__PURE__*/function () {
             budgetCreationForm = forms[0];
             budgetCreationFormOpenButton = document.querySelector('.budget-card-container__card--create');
             budget = _Budget__WEBPACK_IMPORTED_MODULE_5__.startToCreate();
-
-            _setupBudgetCreation(budgetCreationForm, budgetCreationFormOpenButton, budget); ////////////////////////////
-            // INITIALIZE KEY VARIABLES
-
-
-            budgetCreationFormPages = document.querySelectorAll('.budget-creation-form__page');
             pages = document.querySelectorAll('.form__page--centered.r__form__page--centered');
-            budgetCreationFormPagesNumber = pages.length;
             currentPage = 0;
+            resetForm = false;
+
+            _setupBudgetCreation(pages, currentPage, budgetCreationForm, budgetCreationFormOpenButton, budget); ////////////////////////////
+            // INITIALIZE KEY VARIABLES
+            // const budgetCreationFormPages = document.querySelectorAll('.budget-creation-form__page');
+
+
+            budgetCreationFormPagesNumber = pages.length;
             buttons = document.querySelectorAll('.button--small');
             budgetContinueButton = buttons[0]; //////////////////////////////////////////////////////////////
             // SET APPROPRIATE PAGE NUMBER DEPENDING ON USER INFORMATION
@@ -7300,145 +7331,164 @@ var _watchForBudgetCreation = /*#__PURE__*/function () {
             if (budgetContinueButton) {
               budgetContinueButton.addEventListener('click', function (e) {
                 e.preventDefault();
-                currentPage++; //////////////////////////////
+
+                if (pages[currentPage].classList.contains('reset')) {
+                  pages[currentPage].classList.remove('reset');
+                  currentPage = 0;
+                }
+
+                currentPage++;
+                console.log(budget); // BUDGET IS SIMILAR TO PLACEHOLDERBUDGET IN THE WATCH BUDGET FUNCTION.
+                // It will have the same budget class methods attached to it.
+                //////////////////////////////
                 // ASSIGN BUDGET INFORMATION
                 /////////////////////
                 // BUDGET NAME
 
-                getBudgetName(budget); ////////////////////////////////
+                var budgetName = document.getElementById('budgetName').value;
+
+                budget._updateBudgetName(budgetName); ////////////////////////////////
                 // SETUP BUDGET CREATION FORM
+
 
                 setupPage(currentPage, pages, budgetCreationFormPagesNumber, budget); /////////////////////////////
                 // IF NOT LATTER DAY SAINT
 
-                if (currentPage + 1 === 2 && latterDaySaintStatus === false) {
-                  // From here, there is a need to check the function names to make sure they make sense as to what they are actually doing.  If not, they WILL be renamed accordingly.
-                  setupMainCategoryCreation(icon, budget, person);
-                }
-
-                if (currentPage + 1 === 3 && latterDaySaintStatus === false) {
-                  setupSubCategoryCreation(budget, subCategoryIndex);
-                }
-
-                if (currentPage + 1 === 4 && latterDaySaintStatus === false) {
-                  setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
-                }
-
-                if (currentPage + 1 === 5 && latterDaySaintStatus === false) {
-                  var individualPayments = document.querySelectorAll('.individual-payment');
-
-                  budget._updateSubCategory("Creation", "Finalizing Sub-Categories", {
-                    goals: individualPayments
-                  });
-
-                  _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
-                }
-
-                if (currentPage + 1 === 6 && latterDaySaintStatus === false) {
-                  if (budget.accounts.emergencyFund.emergencyGoalMeasurement === "Length Of Time") {
-                    budget._updateAccounts("Creation", "Emergency Goal", {
-                      goal: Number(document.querySelector('#timingNumber').value),
-                      goalTiming: document.querySelector('.form__select').value
-                    });
+                if (latterDaySaintStatus === false) {
+                  if (currentPage + 1 === 2) {
+                    setupMainCategoryCreation(icon, budget, person);
                   }
 
-                  if (budget.accounts.emergencyFund.emergencyGoalMeasurement === "Total Amount") {
-                    budget._updateAccounts("Creation", "Emergency Goal", {
-                      goal: Number(document.querySelector('#emergencyGoal').value)
-                    });
+                  if (currentPage + 1 === 3) {
+                    setupSubCategoryCreation(budget, subCategoryIndex);
                   }
 
-                  document.querySelector('#savingsPercentGoal').focus();
-                }
+                  if (currentPage + 1 === 4) {
+                    setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
+                  }
 
-                if (currentPage + 1 === 7 && latterDaySaintStatus === false) {
-                  budget._updateAccounts("Creation", "Savings", {
-                    percentage: Number(document.querySelector('#savingsPercentGoal').value) / 100,
-                    goal: Number(document.querySelector('#savingsGoal').value),
-                    amount: 0
-                  });
+                  if (currentPage + 1 === 5) {
+                    var individualPayments = document.querySelectorAll('.individual-payment');
 
-                  document.querySelector('#investmentPercentGoal').focus();
-                }
+                    budget._finalizeSubCategoryCreation({
+                      goals: individualPayments
+                    });
 
-                if (currentPage + 1 === 8 && latterDaySaintStatus === false) {
-                  budget._updateAccounts("Creation", "Investment", {
-                    percentage: Number(document.querySelector('#investmentPercentGoal').value) / 100,
-                    goal: Number(document.querySelector('#investmentGoal').value),
-                    amount: 0
-                  });
+                    _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
+                  }
 
-                  budget._submit(budget, user);
-                } /////////////////////////////
+                  if (currentPage + 1 === 6) {
+                    if (budget.accounts.emergencyFund.emergencyGoalMeasurement === "Length Of Time") {
+                      budget._updateEmergencyGoal({
+                        goal: Number(document.querySelector('#timingNumber').value),
+                        goalTiming: document.querySelector('.form__select').value
+                      });
+                    }
+
+                    if (budget.accounts.emergencyFund.emergencyGoalMeasurement === "Total Amount") {
+                      budget._updateEmergencyGoal({
+                        goal: Number(document.querySelector('#emergencyGoal').value)
+                      });
+                    }
+
+                    document.querySelector('#savingsPercentGoal').focus();
+                  }
+
+                  if (currentPage + 1 === 7) {
+                    budget._updateSavingsFund({
+                      percentage: Number(document.querySelector('#savingsPercentGoal').value) / 100,
+                      goal: Number(document.querySelector('#savingsGoal').value),
+                      amount: 0
+                    });
+
+                    document.querySelector('#investmentPercentGoal').focus();
+                  }
+
+                  if (currentPage + 1 === 8) {
+                    budget._updateInvestmentFund({
+                      percentage: Number(document.querySelector('#investmentPercentGoal').value) / 100,
+                      goal: Number(document.querySelector('#investmentGoal').value),
+                      amount: 0
+                    });
+
+                    budget._submit(budget, user);
+                  }
+                } // if (currentPage + 1 === 2) {
+                // From here, there is a need to check the function names to make sure they make sense as to what they are actually doing.  If not, they WILL be renamed accordingly.
+                //   setupMainCategoryCreation(icon, budget, person);
+                // }
+                /////////////////////////////
                 // IF LATTER DAY SAINT
 
 
-                if (currentPage + 1 === 2 && latterDaySaintStatus === true) {
-                  console.log("Tithing Options");
+                if (latterDaySaintStatus === true) {
+                  if (currentPage + 1 === 2) {
+                    console.log("Tithing Options");
 
-                  budget._addTithingAccount(user);
+                    budget._addTithingAccount(user);
 
-                  _watchTIthingOptions(budget);
-                }
-
-                if (currentPage + 1 === 3 && latterDaySaintStatus === true) {
-                  // From here, there is a need to check the function names to make sure they make sense as to what they are actually doing.  If not, they WILL be renamed accordingly.
-                  setupMainCategoryCreation(icon, budget, person);
-                }
-
-                if (currentPage + 1 === 4 && latterDaySaintStatus === true) {
-                  setupSubCategoryCreation(budget, subCategoryIndex);
-                }
-
-                if (currentPage + 1 === 5 && latterDaySaintStatus === true) {
-                  setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
-                }
-
-                if (currentPage + 1 === 6 && latterDaySaintStatus === true) {
-                  var _individualPayments = document.querySelectorAll('.individual-payment');
-
-                  budget._updateSubCategory("Creation", "Finalizing Sub-Categories", {
-                    goals: _individualPayments
-                  });
-
-                  _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
-                }
-
-                if (currentPage + 1 === 7 && latterDaySaintStatus === true) {
-                  if (budget.accounts.emergencyFund.emergencyGoalMeasurement === "Length Of Time") {
-                    budget._updateAccounts("Creation", "Emergency Goal", {
-                      goal: Number(document.querySelector('#timingNumber').value),
-                      goalTiming: document.querySelector('.budget-creation-form__page__section__select').value
-                    });
+                    _watchTIthingOptions(budget);
                   }
 
-                  if (budget.accounts.emergencyFund.emergencyGoalMeasurement === "Total Amount") {
-                    budget._updateAccounts("Creation", "Emergency Goal", {
-                      goal: Number(document.querySelector('#emergencyGoal').value)
-                    });
+                  if (currentPage + 1 === 3) {
+                    // From here, there is a need to check the function names to make sure they make sense as to what they are actually doing.  If not, they WILL be renamed accordingly.
+                    setupMainCategoryCreation(icon, budget, person);
                   }
 
-                  document.querySelector('#savingsPercentGoal').focus();
-                }
+                  if (currentPage + 1 === 4) {
+                    setupSubCategoryCreation(budget, subCategoryIndex);
+                  }
 
-                if (currentPage + 1 === 8 && latterDaySaintStatus === true) {
-                  budget._updateAccounts("Creation", "Savings", {
-                    percentage: Number(document.querySelector('#savingsPercentGoal').value) / 100,
-                    goal: Number(document.querySelector('#savingsGoal').value),
-                    amount: 0
-                  });
+                  if (currentPage + 1 === 5) {
+                    setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
+                  }
 
-                  document.querySelector('#investmentPercentGoal').focus();
-                }
+                  if (currentPage + 1 === 6) {
+                    var _individualPayments = document.querySelectorAll('.individual-payment');
 
-                if (currentPage + 1 === 9 && latterDaySaintStatus === true) {
-                  budget._updateAccounts("Creation", "Investment", {
-                    percentage: Number(document.querySelector('#investmentPercentGoal').value) / 100,
-                    goal: Number(document.querySelector('#investmentGoal').value),
-                    amount: 0
-                  });
+                    budget._finalizeSubCategoryCreation({
+                      goals: _individualPayments
+                    });
 
-                  budget._submit(budget, user);
+                    _watchEmergencyGoalSettings(budget, emergencyGoalSetting);
+                  }
+
+                  if (currentPage + 1 === 7) {
+                    if (budget.accounts.emergencyFund.emergencyGoalMeasurement === "Length Of Time") {
+                      budget._updateEmergencyGoal({
+                        goal: Number(document.querySelector('#timingNumber').value),
+                        goalTiming: document.querySelector('.budget-creation-form__page__section__select').value
+                      });
+                    }
+
+                    if (budget.accounts.emergencyFund.emergencyGoalMeasurement === "Total Amount") {
+                      budget._updateEmergencyGoal({
+                        goal: Number(document.querySelector('#emergencyGoal').value)
+                      });
+                    }
+
+                    document.querySelector('#savingsPercentGoal').focus();
+                  }
+
+                  if (currentPage + 1 === 8) {
+                    budget._updateSavingsFund({
+                      percentage: Number(document.querySelector('#savingsPercentGoal').value) / 100,
+                      goal: Number(document.querySelector('#savingsGoal').value),
+                      amount: 0
+                    });
+
+                    document.querySelector('#investmentPercentGoal').focus();
+                  }
+
+                  if (currentPage + 1 === 9) {
+                    budget._updateInvestmentFund({
+                      percentage: Number(document.querySelector('#investmentPercentGoal').value) / 100,
+                      goal: Number(document.querySelector('#investmentGoal').value),
+                      amount: 0
+                    });
+
+                    budget._submit(budget, user);
+                  }
                 }
               });
             } // WATCHING YOUR BUDGET AFTER YOU LOGIN OR CREATE YOUR BUDGET
@@ -7476,12 +7526,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "startToCreate": () => (/* binding */ startToCreate)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
-/* harmony import */ var _Create_Budget__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Create-Budget */ "./Public/JS/Create-Budget.js");
-/* harmony import */ var _Manage_Budget__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Manage-Budget */ "./Public/JS/Manage-Budget.js");
-/* harmony import */ var _Maintain_Budget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Maintain-Budget */ "./Public/JS/Maintain-Budget.js");
-/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _Create_Budget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Create-Budget */ "./Public/JS/Create-Budget.js");
+/* harmony import */ var _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Manage-Budget */ "./Public/JS/Manage-Budget.js");
+/* harmony import */ var _Maintain_Budget__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Maintain-Budget */ "./Public/JS/Maintain-Budget.js");
+/* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
 
@@ -7491,130 +7544,69 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Account = /*#__PURE__*/(0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(function Account(options) {
-  (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__["default"])(this, Account);
+
+
+var Account = /*#__PURE__*/(0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__["default"])(function Account(options) {
+  (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__["default"])(this, Account);
 
   this.amount = options.amount;
 });
 
 var Budget = /*#__PURE__*/function () {
   function Budget() {
-    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__["default"])(this, Budget);
+    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_3__["default"])(this, Budget);
 
     this.name = '';
     this.accounts = {};
     this.mainCategories = [];
   }
 
-  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(Budget, [{
-    key: "_addName",
-    value: function _addName(name) {
-      return this.name = name;
-    }
-  }, {
-    key: "_addMainCategory",
-    value: function _addMainCategory(icon, title) {
-      // This is how main categories are added as objects with an icon and title.
-      this.mainCategories.push(new _Budget_Categories__WEBPACK_IMPORTED_MODULE_6__.MainCategory({
-        icon: icon,
-        title: title
-      }));
-    }
-  }, {
-    key: "_updateMainCategory",
-    value: function _updateMainCategory() {
-      console.log("Main Category");
-    }
-  }, {
-    key: "_deleteMainCategory",
-    value: function _deleteMainCategory(title) {
-      this.mainCategories = this.mainCategories.filter(function (mc, i) {
-        return mc.title !== title;
-      });
-      console.log("SUCCESSFUL DELETION");
-    }
-  }, {
-    key: "_addSubCategory",
-    value: function _addSubCategory(index, title) {
-      this.mainCategories[index].subCategories.push(new _Budget_Categories__WEBPACK_IMPORTED_MODULE_6__.SubCategory({
-        title: title
-      }));
-      console.log(this.mainCategories[index].subCategories);
-    }
-  }, {
-    key: "_updateSubCategory",
-    value: function _updateSubCategory(mode, update, options) {
-      if (mode === "Creation") {
-        if (update === "Timing") {
-          console.log(options.index, options.subCategoryIndex);
-          /*
-            GLITCH : In the place of setting timings for both the Budget Creation and Editing Category Goals, the main category titles and icons are both placed and cycled differently.
-              With creation, it just removes the class that the main category has for the icon, and adds the next or previous one.  It does the same thing for the titles.  In editing, it displays all 3, while making the main one as display: flex.  The method works on creation, so I likely
-              will adjust the edit category goals one for that purpose, with making sure that it does NOT negatively affect other things.
-          */
+  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__["default"])(Budget, [{
+    key: "getBudget",
+    value: function () {
+      var _getBudget = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default().mark(function _callee(id, user) {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return axios({
+                  method: "GET",
+                  url: "/App/Users/".concat(user._id, "/Budgets/").concat(id, "/Dashboard")
+                });
 
-          this.mainCategories[options.index].subCategories[options.subCategoryIndex].timingOptions.paymentCycle = options.paymentCycle;
-          this.mainCategories[options.index].subCategories[options.subCategoryIndex].timingOptions.paymentSchedule = options.paymentSchedule;
-          this.mainCategories[options.index].subCategories[options.subCategoryIndex].timingOptions.dueDates = [this.mainCategories[options.index].subCategories[options.subCategoryIndex].timingOptions.paymentSchedule[0]];
-        }
+              case 3:
+                response = _context.sent;
+                document.open("text/html").write(response.data);
+                window.location.assign("/App/Users/".concat(user._id, "/Budgets/").concat(id, "/Dashboard"));
+                console.log(response);
 
-        if (update === "Surplus") {
-          this.mainCategories[options.mainIndex].subCategories[options.subIndex].surplus = !this.mainCategories[options.mainIndex].subCategories[options.subIndex].surplus;
-          console.log(this.mainCategories[options.mainIndex].subCategories[options.subIndex]);
+                Budget._watchBudget();
 
-          if (!this.mainCategories[options.mainIndex].subCategories[options.subIndex].createAt) {
-            this.mainCategories[options.mainIndex].subCategories[options.subIndex].createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+                _context.next = 13;
+                break;
+
+              case 10:
+                _context.prev = 10;
+                _context.t0 = _context["catch"](0);
+                console.log(_context.t0);
+
+              case 13:
+              case "end":
+                return _context.stop();
+            }
           }
+        }, _callee, null, [[0, 10]]);
+      }));
 
-          this.mainCategories[options.mainIndex].subCategories[options.subIndex].lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
-          this.mainCategories[options.mainIndex].subCategories[options.subIndex].updated = true;
-        }
-
-        if (update === "Finalizing Sub-Categories") {
-          var index = 0;
-          this.mainCategories.forEach(function (mc, i) {
-            mc.subCategories.forEach(function (sc, i) {
-              if (Number(options.goals[index].value) === undefined || (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__["default"])(Number(options.goals[index].value)) !== "number") options.goals[index].value = Number(0);
-              sc.goalAmount = Number(options.goals[index].value);
-              sc.amountSpent = 0;
-              sc.amountRemaining = Number(sc.goalAmount - sc.amountSpent);
-              sc.percentageSpent = Number(sc.amountSpent / sc.goalAmount);
-              if (isNaN(sc.percentageSpent)) sc.percentageSpent = 0;
-              index++;
-            });
-          });
-        }
+      function getBudget(_x, _x2) {
+        return _getBudget.apply(this, arguments);
       }
 
-      if (mode === "Updating") {
-        console.log("Updating Sub-Category...");
-      }
-      /*
-        This is where updating the goals SHOULD BE.
-           TO SOME DEGREE, THIS IS HOW THE UPDATING SUB CATEGORIES SHOULD BE.
-           _finishUpdatingSubCategory(goal) {
-          let categoryGoal = goal;
-          if (categoryGoal === undefined || typeof categoryGoal !== `number`) categoryGoal = 0;
-          this.goalAmount = categoryGoal;
-          this.amountSpent = 0;
-          this.amountRemaining = this.goalAmount - this.amountSpent;
-          this.percentageSpent = this.amountSpent / this.goalAmount;
-          if (isNaN(this.percentageSpent)) this.percentageSpent = 0;
-       */
-
-    }
-  }, {
-    key: "_deleteSubCategory",
-    value: function _deleteSubCategory(mainIndex, subIndex) {
-      var _this = this;
-
-      this.mainCategories[mainIndex].subCategories = this.mainCategories[mainIndex].subCategories.filter(function (sc) {
-        return sc !== _this.mainCategories[mainIndex].subCategories[subIndex];
-      }); // this.mainCategories[mainIndex]._deleteSubCategory(subIndex);
-
-      console.log(this.mainCategories[mainIndex].subCategories);
-      console.log("SUCCESSFUL DELETION");
-    }
+      return getBudget;
+    }()
   }, {
     key: "_addAccounts",
     value: function _addAccounts() {
@@ -7652,66 +7644,172 @@ var Budget = /*#__PURE__*/function () {
       };
     }
   }, {
-    key: "_updateAccounts",
-    value: function _updateAccounts(mode, update, options) {
-      if (mode === "Creation") {
-        if (update === "Tithing Setting") {
-          this.accounts.tithing.tithingSetting = options.setting;
-          this.accounts.tithing.amount = Number(options.amount);
-        }
+    key: "_addBudgetTransactions",
+    value: function _addBudgetTransactions() {
+      this.transactions = [];
+    }
+  }, {
+    key: "_addBudgetInvestments",
+    value: function _addBudgetInvestments() {
+      this.investments = [];
+    }
+  }, {
+    key: "_addBudgetDebts",
+    value: function _addBudgetDebts() {
+      this.debts = [];
+    }
+  }, {
+    key: "_updateBudgetName",
+    value: function _updateBudgetName(name) {
+      return this.name = name;
+    }
+  }, {
+    key: "_addMainCategory",
+    value: function _addMainCategory(icon, title) {
+      // This is how main categories are added as objects with an icon and title.
+      this.mainCategories.push(new _Budget_Categories__WEBPACK_IMPORTED_MODULE_8__.MainCategory({
+        icon: icon,
+        title: title
+      }));
+    }
+  }, {
+    key: "_updateMainCategory",
+    value: function _updateMainCategory() {
+      console.log("Main Category");
+    }
+  }, {
+    key: "_removeMainCategory",
+    value: function _removeMainCategory(title) {
+      this.mainCategories = this.mainCategories.filter(function (mc, i) {
+        return mc.title !== title;
+      });
+      console.log("SUCCESSFUL DELETION");
+    }
+  }, {
+    key: "_addSubCategory",
+    value: function _addSubCategory(index, title) {
+      this.mainCategories[index].subCategories.push(new _Budget_Categories__WEBPACK_IMPORTED_MODULE_8__.SubCategory({
+        title: title
+      }));
+      console.log(this.mainCategories[index].subCategories);
+    }
+  }, {
+    key: "_deleteSubCategory",
+    value: function _deleteSubCategory(mainIndex, subIndex) {
+      var _this = this;
 
-        if (update === "Emergency Measurement") {
-          this.accounts.emergencyFund.emergencyGoalMeasurement = options.setting;
-        }
+      this.mainCategories[mainIndex].subCategories = this.mainCategories[mainIndex].subCategories.filter(function (sc) {
+        return sc !== _this.mainCategories[mainIndex].subCategories[subIndex];
+      });
+      console.log("SUCCESSFUL DELETION");
+    }
+  }, {
+    key: "_makeSurplusSubCategory",
+    value: function _makeSurplusSubCategory(options) {
+      this.mainCategories[options.mainIndex].subCategories[options.subIndex].surplus = !this.mainCategories[options.mainIndex].subCategories[options.subIndex].surplus;
+      console.log(this.mainCategories[options.mainIndex].subCategories[options.subIndex]);
 
-        if (update === "Emergency Goal") {
-          if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Length Of Time") {
-            this.accounts.emergencyFund.emergencyFundGoal = options.goal;
-            this.accounts.emergencyFund.emergencyFundGoalTiming = options.goalTiming;
-            this.accounts.emergencyFund.amount = options.amount;
-          }
-
-          if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Total Amount") {
-            this.accounts.emergencyFund.emergencyFundGoal = options.goal;
-            this.accounts.emergencyFund.amount = options.amount;
-          }
-        }
-
-        if (update === "Expense Fund") {
-          this.accounts.expenseFund.amount = Number(options.amount);
-        }
-
-        if (update === "Surplus") {
-          this.accounts.surplus.amount = Number(options.amount);
-        }
-
-        if (update === "Monthly Budget") {
-          this.accounts.monthlyBudget.amount = Number(options.amount);
-        }
-
-        if (update === "Savings") {
-          this.accounts.savingsFund.savingsPercentage = Number(options.percentage);
-          this.accounts.savingsFund.savingsGoal = Number(options.goal);
-          this.accounts.savingsFund.amount = Number(options.amount);
-        }
-
-        if (update === "Investment") {
-          this.accounts.investmentFund.investmentPercentage = Number(options.percentage);
-          this.accounts.investmentFund.investmentGoal = Number(options.goal);
-          this.accounts.investmentFund.amount = Number(options.amount);
-
-          if (isNaN(Number(options.investedAmount))) {
-            options.investedAmount = 0;
-          }
-
-          this.accounts.investmentFund.investedAmount = Number(options.investedAmount);
-        }
-
-        if (update === "Debt") {
-          this.accounts.debt.amount = Number(options.amount);
-          this.accounts.debt.debtAmount = Number(options.debtAmount);
-        }
+      if (!this.mainCategories[options.mainIndex].subCategories[options.subIndex].createAt) {
+        this.mainCategories[options.mainIndex].subCategories[options.subIndex].createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
       }
+
+      this.mainCategories[options.mainIndex].subCategories[options.subIndex].lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+      this.mainCategories[options.mainIndex].subCategories[options.subIndex].updated = true;
+    }
+  }, {
+    key: "_updateSubCategoryTiming",
+    value: function _updateSubCategoryTiming(options) {
+      this.mainCategories[options.index].subCategories[options.subCategoryIndex].timingOptions.paymentCycle = options.paymentCycle;
+      this.mainCategories[options.index].subCategories[options.subCategoryIndex].timingOptions.paymentSchedule = options.paymentSchedule;
+      this.mainCategories[options.index].subCategories[options.subCategoryIndex].timingOptions.dueDates = [this.mainCategories[options.index].subCategories[options.subCategoryIndex].timingOptions.paymentSchedule[0]];
+    }
+  }, {
+    key: "_finalizeSubCategoryCreation",
+    value: function _finalizeSubCategoryCreation(options) {
+      var index = 0;
+      this.mainCategories.forEach(function (mc, i) {
+        mc.subCategories.forEach(function (sc, i) {
+          if (Number(options.goals[index].value) === undefined || (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__["default"])(Number(options.goals[index].value)) !== "number") options.goals[index].value = Number(0);
+          sc.goalAmount = Number(options.goals[index].value);
+          sc.amountSpent = 0;
+          sc.amountRemaining = Number(sc.goalAmount - sc.amountSpent);
+          sc.percentageSpent = Number(sc.amountSpent / sc.goalAmount);
+          if (isNaN(sc.percentageSpent)) sc.percentageSpent = 0;
+          index++;
+        });
+      });
+    }
+  }, {
+    key: "_updateEmergencyMeasurement",
+    value: function _updateEmergencyMeasurement(options) {
+      this.accounts.emergencyFund.emergencyGoalMeasurement = options.setting;
+    }
+  }, {
+    key: "_updateEmergencyGoal",
+    value: function _updateEmergencyGoal(options) {
+      if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Length Of Time") {
+        this.accounts.emergencyFund.emergencyFundGoal = options.goal;
+        this.accounts.emergencyFund.emergencyFundGoalTiming = options.goalTiming;
+        this.accounts.emergencyFund.amount = options.amount;
+      }
+
+      if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Total Amount") {
+        this.accounts.emergencyFund.emergencyFundGoal = options.goal;
+        this.accounts.emergencyFund.amount = options.amount;
+      }
+    }
+  }, {
+    key: "_updateSavingsFund",
+    value: function _updateSavingsFund(options) {
+      this.accounts.savingsFund.savingsPercentage = Number(options.percentage);
+      this.accounts.savingsFund.savingsGoal = Number(options.goal);
+      this.accounts.savingsFund.amount = Number(options.amount);
+    }
+  }, {
+    key: "_updateInvestmentFund",
+    value: function _updateInvestmentFund(options) {
+      this.accounts.investmentFund.investmentPercentage = Number(options.percentage);
+      this.accounts.investmentFund.investmentGoal = Number(options.goal);
+      this.accounts.investmentFund.amount = Number(options.amount);
+
+      if (isNaN(Number(options.investedAmount))) {
+        options.investedAmount = 0;
+      }
+
+      this.accounts.investmentFund.investedAmount = Number(options.investedAmount);
+    }
+  }, {
+    key: "_updateTithingAccount",
+    value: function _updateTithingAccount(options) {
+      this.accounts.tithing.tithingSetting = options.setting;
+      this.accounts.tithing.amount = Number(options.amount);
+    }
+  }, {
+    key: "_updateExpenseFund",
+    value: function _updateExpenseFund(options) {
+      this.accounts.expenseFund.amount = Number(options.amount);
+    }
+  }, {
+    key: "_updateSurplus",
+    value: function _updateSurplus(options) {
+      this.accounts.surplus.amount = Number(options.amount);
+    }
+  }, {
+    key: "_updateMonthlyBudgetAccount",
+    value: function _updateMonthlyBudgetAccount(options) {
+      this.accounts.monthlyBudget.amount = Number(options.amount);
+    }
+  }, {
+    key: "_updateDebtAccount",
+    value: function _updateDebtAccount(options) {
+      this.accounts.debt.amount = Number(options.amount);
+      this.accounts.debt.debtAmount = Number(options.debtAmount);
+    }
+  }, {
+    key: "_enterIncome",
+    value: function _enterIncome(options, pageLink) {
+      console.log("Entering Income...", options);
+      _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(options.updateObject, pageLink);
     }
   }, {
     key: "_updateBudget",
@@ -7751,7 +7849,7 @@ var Budget = /*#__PURE__*/function () {
           }
 
           console.log(updateObject);
-          _Manage_Budget__WEBPACK_IMPORTED_MODULE_4__.updateMyBudget(updateObject, pageLink);
+          _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(updateObject, pageLink);
         }
 
         if (update === "Edit Category Goals") {
@@ -7759,33 +7857,33 @@ var Budget = /*#__PURE__*/function () {
           console.log("Updating Category Goals..."); // GLITCH : For some reason, ONLY the last Main Category had been pushed through.  So, the previous two had been erased completely.
 
           console.log(updateObject.mainCategories);
-          _Manage_Budget__WEBPACK_IMPORTED_MODULE_4__.updateMyBudget(options.updateObject, pageLink);
+          _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(options.updateObject, pageLink);
         }
 
         if (update === "Manage Categories") {
           console.log("Updating Categories...");
           console.log(options, options.updateObject);
-          _Manage_Budget__WEBPACK_IMPORTED_MODULE_4__.updateMyBudget(options.updateObject, pageLink);
+          _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(options.updateObject, pageLink);
         }
 
         if (update === "Enter Income") {
           console.log("Entering Income...", options);
-          _Manage_Budget__WEBPACK_IMPORTED_MODULE_4__.updateMyBudget(options.updateObject, pageLink);
+          _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(options.updateObject, pageLink);
         }
 
         if (update === "Allocate Income") {
           console.log("Allocating...");
-          _Manage_Budget__WEBPACK_IMPORTED_MODULE_4__.updateMyBudget(options.updateObject, pageLink);
+          _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(options.updateObject, pageLink);
         }
 
         if (update === "Transaction Planner") {
           console.log("Planning...", options);
-          _Manage_Budget__WEBPACK_IMPORTED_MODULE_4__.updateMyBudget(options.updateObject, pageLink);
+          _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(options.updateObject, pageLink);
         }
 
         if (update === "Apply Money") {
           console.log("Applying...", options);
-          _Manage_Budget__WEBPACK_IMPORTED_MODULE_4__.updateMyBudget(options.updateObject, pageLink);
+          _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(options.updateObject, pageLink);
         }
 
         if (update === "Add Investment") {
@@ -7805,27 +7903,27 @@ var Budget = /*#__PURE__*/function () {
             currentValue: Number(currentValue),
             valueDifference: valueDifference
           });
-          _Manage_Budget__WEBPACK_IMPORTED_MODULE_4__.updateMyBudget(options.updateObject, pageLink);
+          _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(options.updateObject, pageLink);
         }
 
         if (update === "Update Investment") {
           console.log("Updating...", options);
-          _Manage_Budget__WEBPACK_IMPORTED_MODULE_4__.updateMyBudget(options.updateObject, pageLink);
+          _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(options.updateObject, pageLink);
         }
 
         if (update === "Settle Investment") {
           console.log("Settling...", options);
-          _Manage_Budget__WEBPACK_IMPORTED_MODULE_4__.updateMyBudget(options.updateObject, pageLink);
+          _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(options.updateObject, pageLink);
         }
 
         if (update === "Add Debt") {
           console.log("Adding Debt...", options);
-          _Manage_Budget__WEBPACK_IMPORTED_MODULE_4__.updateMyBudget(options.updateObject, pageLink);
+          _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(options.updateObject, pageLink);
         }
 
         if (update === "Enter Transaction") {
           console.log("Entering...", options);
-          _Manage_Budget__WEBPACK_IMPORTED_MODULE_4__.updateMyBudget(options.updateObject, pageLink);
+          _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(options.updateObject, pageLink);
         }
 
         console.log("Updating...");
@@ -7840,7 +7938,7 @@ var Budget = /*#__PURE__*/function () {
   }, {
     key: "_submit",
     value: function _submit(budget, user) {
-      _Create_Budget__WEBPACK_IMPORTED_MODULE_3__.createBudget(budget, user);
+      _Create_Budget__WEBPACK_IMPORTED_MODULE_5__.createBudget(budget, user);
     }
   }, {
     key: "_buildPlaceHolderBudget",
@@ -7850,21 +7948,21 @@ var Budget = /*#__PURE__*/function () {
       if (budget) {
         this._addTithingAccount(user);
 
-        this._addName(budget.name);
+        this._updateBudgetName(budget.name);
 
         if (user.latterDaySaint === true) {
-          this._updateAccounts("Creation", "Tithing Setting", {
+          this._updateTithingAccount({
             setting: budget.accounts.tithing.tithingSetting,
             amount: budget.accounts.tithing.amount
           });
         }
 
-        this._updateAccounts("Creation", "Emergency Measurement", {
+        this._updateEmergencyMeasurement({
           setting: budget.accounts.emergencyFund.emergencyGoalMeasurement
         });
 
         if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Length Of Time") {
-          this._updateAccounts("Creation", "Emergency Goal", {
+          this._updateEmergencyGoal({
             goal: budget.accounts.emergencyFund.emergencyFundGoal,
             goalTiming: budget.accounts.emergencyFund.emergencyFundGoalTiming,
             amount: budget.accounts.emergencyFund.amount
@@ -7872,38 +7970,38 @@ var Budget = /*#__PURE__*/function () {
         }
 
         if (this.accounts.emergencyFund.emergencyGoalMeasurement === "Total Amount") {
-          this._updateAccounts("Creation", "Emergency Goal", {
+          this._updateEmergencyGoal({
             goal: budget.accounts.emergencyFund.emergencyFundGoal,
             amount: budget.accounts.emergencyFund.amount
           });
         }
 
-        this._updateAccounts("Creation", "Monthly Budget", {
+        this._updateMonthlyBudgetAccount({
           amount: budget.accounts.monthlyBudget.amount
         });
 
-        this._updateAccounts("Creation", "Savings", {
+        this._updateSavingsFund({
           goal: budget.accounts.savingsFund.savingsGoal,
           percentage: budget.accounts.savingsFund.savingsPercentage,
           amount: budget.accounts.savingsFund.amount
         });
 
-        this._updateAccounts("Creation", "Investment", {
+        this._updateInvestmentFund({
           goal: budget.accounts.investmentFund.investmentGoal,
           percentage: budget.accounts.investmentFund.investmentPercentage,
           investedAmount: budget.accounts.investmentFund.investedAmount,
           amount: budget.accounts.investmentFund.amount
         });
 
-        this._updateAccounts("Creation", "Expense Fund", {
+        this._updateExpenseFund({
           amount: budget.accounts.expenseFund.amount
         });
 
-        this._updateAccounts("Creation", "Surplus", {
+        this._updateSurplus({
           amount: budget.accounts.surplus.amount
         });
 
-        this._updateAccounts("Creation", "Debt", {
+        this._updateDebtAccount({
           amount: budget.accounts.debt.amount,
           debtAmount: budget.accounts.debt.debtAmount
         });
@@ -7935,7 +8033,6 @@ var Budget = /*#__PURE__*/function () {
         this.transactions = budget.transactions;
         this.investments = budget.investments;
         this.debts = budget.debts;
-        console.log(budget);
       }
     }
   }]);
@@ -7946,6 +8043,12 @@ var startToCreate = function startToCreate() {
   var budget = new Budget();
 
   budget._addAccounts();
+
+  budget._addBudgetTransactions();
+
+  budget._addBudgetInvestments();
+
+  budget._addBudgetDebts();
 
   return budget;
 };
@@ -8453,7 +8556,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Budget_Creation__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Budget-Creation */ "./Public/JS/Budget-Creation.js");
 /* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
 /* harmony import */ var _Transaction__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Transaction */ "./Public/JS/Transaction.js");
+/* harmony import */ var _Person__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Person */ "./Public/JS/Person.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
 
 
 
@@ -13159,6 +13264,7 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
           type: "Deposit",
           location: incomeFromInput.value
         });
+        console.log(transaction);
         transaction.addToReceipt({
           accountSelected: "Un-Allocated",
           account: "Un-Allocated",
@@ -13280,7 +13386,7 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
         };
       }
 
-      placeholderBudget._updateBudget("Update", "Enter Income", {
+      placeholderBudget._enterIncome({
         updateObject: updateObject
       }, "Enter-Income");
 
@@ -13914,8 +14020,8 @@ var setupDashboard = function setupDashboard(user, budget, placeholderBudget) {
 };
 
 var _watchBudget = /*#__PURE__*/function () {
-  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee(person) {
-    var userInfo, user, currentBudget, budget;
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee() {
+    var person, userInfo, user, placeholderUser, currentBudget, budget;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -13923,14 +14029,18 @@ var _watchBudget = /*#__PURE__*/function () {
             console.log("WATCHING YOUR BUDGET"); /////////////////////////////
             // GET USER
 
-            _context.next = 3;
+            person = new _Person__WEBPACK_IMPORTED_MODULE_10__.Person("", "", "", "", "", "", "", "");
+            _context.next = 4;
             return person._getPersonData();
 
-          case 3:
+          case 4:
             userInfo = _context.sent;
-            user = userInfo.data.data.user; ////////////////////////////////////////////
-            // GET BUDGET INFORMATION
+            user = userInfo.data.data.user;
+            _context.next = 8;
+            return person._getPersonData();
 
+          case 8:
+            placeholderUser = _context.sent;
             user.budgets.forEach(function (b) {
               if (b._id === window.location.pathname.split('/')[5]) currentBudget = b;
             });
@@ -13941,13 +14051,13 @@ var _watchBudget = /*#__PURE__*/function () {
             console.log(budget);
 
             if (currentBudget) {
-              _context.next = 11;
+              _context.next = 15;
               break;
             }
 
             return _context.abrupt("return");
 
-          case 11:
+          case 15:
             ////////////////////////////////////////////
             // WATCH BUDGET MANAGEMENT PAGE
             setupDashboard(user, currentBudget, budget); ////////////////////////////////////////////
@@ -13983,7 +14093,7 @@ var _watchBudget = /*#__PURE__*/function () {
 
             _watchRecentTransactions(currentBudget, budget, user);
 
-          case 20:
+          case 24:
           case "end":
             return _context.stop();
         }
@@ -13991,7 +14101,7 @@ var _watchBudget = /*#__PURE__*/function () {
     }, _callee);
   }));
 
-  return function _watchBudget(_x) {
+  return function _watchBudget() {
     return _ref.apply(this, arguments);
   };
 }();
@@ -14009,7 +14119,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "deleteMyBudget": () => (/* binding */ deleteMyBudget),
 /* harmony export */   "exitBudget": () => (/* binding */ exitBudget),
-/* harmony export */   "getMyBudget": () => (/* binding */ getMyBudget),
+/* harmony export */   "renderBudget": () => (/* binding */ renderBudget),
 /* harmony export */   "updateMyBudget": () => (/* binding */ updateMyBudget)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
@@ -14033,7 +14143,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 
 
-var getMyBudget = /*#__PURE__*/function () {
+var renderBudget = /*#__PURE__*/function () {
   var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee(id, user) {
     var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee$(_context) {
@@ -14071,7 +14181,7 @@ var getMyBudget = /*#__PURE__*/function () {
     }, _callee, null, [[0, 10]]);
   }));
 
-  return function getMyBudget(_x, _x2) {
+  return function renderBudget(_x, _x2) {
     return _ref.apply(this, arguments);
   };
 }();
@@ -14929,13 +15039,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
+/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
 
 var Transaction = /*#__PURE__*/function () {
   function Transaction(options) {
     (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, Transaction);
 
-    this.transactionDate = new Date(new Date(options.date).setHours(new Date(options.date).getHours() + new Date().getTimezoneOffset() / 60)); // this.transactionType = options.type;
+    this.transactionDate = new Date(new Date(options.date).setHours(new Date(options.date).getHours() + new Date().getTimezoneOffset() / 60));
+
+    if (!this.transactionType) {
+      this.transactionType = options.type;
+    }
 
     this.location = options.location;
     this.receipt = [];
@@ -14947,6 +15062,8 @@ var Transaction = /*#__PURE__*/function () {
       var receiptObject = {};
 
       if (this.transactionType === "Deposit") {
+        console.log(this);
+
         if (options.accountSelected === "Un-Allocated") {
           receiptObject.account = options.account;
           receiptObject.grossAmount = options.grossAmount;
@@ -15040,6 +15157,34 @@ var Transaction = /*#__PURE__*/function () {
 
   return Transaction;
 }();
+
+/***/ }),
+
+/***/ "./Public/JS/Utility.js":
+/*!******************************!*\
+  !*** ./Public/JS/Utility.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "_capitalize": () => (/* binding */ _capitalize),
+/* harmony export */   "insertElement": () => (/* binding */ insertElement),
+/* harmony export */   "replaceClassName": () => (/* binding */ replaceClassName)
+/* harmony export */ });
+var insertElement = function insertElement(position, container, element) {
+  if (container) {
+    container.insertAdjacentElement(position, element);
+  }
+};
+var replaceClassName = function replaceClassName(element, classReplaced, replacementClass) {
+  element.classList.remove(classReplaced);
+  element.classList.add(replacementClass);
+};
+var _capitalize = function _capitalize(string) {
+  return "".concat(string.charAt(0).toUpperCase()).concat(string.slice(1));
+};
 
 /***/ }),
 

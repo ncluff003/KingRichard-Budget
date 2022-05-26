@@ -2,7 +2,7 @@ import axios from 'axios';
 import qs from 'qs';
 import * as Budget from './Maintain-Budget';
 
-export const getMyBudget = async (id, user) => {
+export const renderBudget = async (id, user) => {
   try {
     const response = await axios({
       method: `GET`,

@@ -1,13 +1,16 @@
 export class Transaction {
   constructor(options) {
     this.transactionDate = new Date(new Date(options.date).setHours(new Date(options.date).getHours() + new Date().getTimezoneOffset() / 60));
-    // this.transactionType = options.type;
+    if (!this.transactionType) {
+      this.transactionType = options.type;
+    }
     this.location = options.location;
     this.receipt = [];
   }
   addToReceipt(options) {
     let receiptObject = {};
     if (this.transactionType === `Deposit`) {
+      console.log(this);
       if (options.accountSelected === `Un-Allocated`) {
         receiptObject.account = options.account;
         receiptObject.grossAmount = options.grossAmount;

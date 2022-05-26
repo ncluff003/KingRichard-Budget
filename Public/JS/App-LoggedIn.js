@@ -1,12 +1,13 @@
-import * as Budget from './Budget-Creation';
+import * as Create from './Budget-Creation';
+import * as Budget from './Budget';
 import * as Budgeting from './Maintain-Budget';
 import * as Manage from './Manage-Budget';
 import * as Person from './Person';
 
 let latterDaySaint = false;
 
-const enterBudget = async (budgetId, user) => {
-  await Manage.getMyBudget(budgetId, user);
+const getBudget = async (budgetId, user) => {
+  await Manage.renderBudget(budgetId, user);
 };
 
 const _watchBudgetSelection = (user) => {
@@ -15,7 +16,7 @@ const _watchBudgetSelection = (user) => {
     bc.addEventListener('click', (e) => {
       const clicked = e.target;
       const id = clicked.closest('.budget-card-container__card').dataset.budgetid;
-      enterBudget(id, user);
+      getBudget(id, user);
     });
   });
 };
@@ -359,6 +360,6 @@ export const _watchForLogin = async (login) => {
     // WATCHING FOR BUDGET SELECTION
     _watchBudgetSelection(user);
     // WATCHING FOR CREATION OF BUDGETS
-    Budget._watchForBudgetCreation(placeholderUser);
+    Create._watchForBudgetCreation(placeholderUser);
   }
 };
