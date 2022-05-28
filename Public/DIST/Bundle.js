@@ -8637,6 +8637,14 @@ var payDebtOff = function payDebtOff(budget, placeholderBudget, user, debt, paid
 
   updateObject.debts[budget.debts.indexOf(debt)].status = "Paid Off";
   updateObject.debts[budget.debts.indexOf(debt)].datePaid = new Date();
+  var amountOfDebt = 0;
+  budget.debts.forEach(function (debt) {
+    if (debt.status !== "Paid Off") {
+      amountOfDebt += debt.amountOwed;
+    }
+  });
+  budget.accounts.debt.debtAmount = Number(amountOfDebt);
+  updateObject.accounts = budget.accounts;
 
   placeholderBudget._updateBudget({
     updateObject: updateObject
@@ -8837,6 +8845,14 @@ var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, us
       }
 
       updateObject.debts.push(debtObject);
+      var amountOfDebt = 0;
+      budget.debts.forEach(function (debt) {
+        if (debt.status !== "Paid Off") {
+          amountOfDebt += debt.amountOwed;
+        }
+      });
+      budget.accounts.debt.debtAmount = Number(amountOfDebt);
+      updateObject.accounts = budget.accounts;
       console.log(updateObject);
 
       placeholderBudget._updateBudget({
@@ -12746,18 +12762,21 @@ var _setupBillCalendar = function _setupBillCalendar(budget, placeholderBudget, 
   console.log(upcomingTransactions);
   var currentDay = document.querySelector('.bill-calendar__days__single-day--current-day');
   var monthHeader = document.querySelector('.bill-calendar__header__title');
-  var splitMonthHeader = monthHeader.textContent.split(' ');
-  upcomingTransactions.forEach(function (transaction, i) {
-    transaction.classList.add('closed');
-    var date = new Date(transaction.firstChild.nextSibling.firstChild.textContent);
 
-    if (date.getDate() === Number(currentDay.textContent) && months[date.getMonth()] === splitMonthHeader[0] && date.getFullYear() === Number(splitMonthHeader[2])) {
-      transaction.classList.remove('closed');
-      transaction.classList.add('open');
-    }
-  });
+  if (monthHeader) {
+    var splitMonthHeader = monthHeader.textContent.split(' ');
+    upcomingTransactions.forEach(function (transaction, i) {
+      transaction.classList.add('closed');
+      var date = new Date(transaction.firstChild.nextSibling.firstChild.textContent);
 
-  _watchDaySelection();
+      if (date.getDate() === Number(currentDay.textContent) && months[date.getMonth()] === splitMonthHeader[0] && date.getFullYear() === Number(splitMonthHeader[2])) {
+        transaction.classList.remove('closed');
+        transaction.classList.add('open');
+      }
+    });
+
+    _watchDaySelection();
+  }
 
   var paymentChecks = document.querySelectorAll('.upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
   paymentChecks.forEach(function (check, i) {
@@ -12833,16 +12852,27 @@ var _setupBillCalendar = function _setupBillCalendar(budget, placeholderBudget, 
   });
 };
 
-var calculateTotal = function calculateTotal(accountType, budget) {
+var calculateTotal = function calculateTotal(accountType, budget, debtAccount) {
   var accountSections = document.querySelectorAll('.container--extra-small__content__account-total');
   var budgetAccounts = budget.accounts;
-  var amountOfDebt;
+  var amountOfDebt = 0;
+  if (debtAccount) console.log(debtAccount, budgetAccounts);
   var budgetAccountTotals = [];
   Object.entries(budgetAccounts).forEach(function (account, i) {
     return budgetAccountTotals.push(account[1].amount);
   });
   Object.entries(budgetAccounts).forEach(function (account) {
-    if (account[0] === "debt") amountOfDebt = account[1].debtAmount;
+    if (account[0] === "debt") {
+      if (debtAccount) {
+        debtAccount.forEach(function (debt, i) {
+          if (debt.status !== "Paid Off") {
+            amountOfDebt += debt.amountOwed;
+          }
+        });
+      } // amountOfDebt = account[1].debtAmount;
+
+    }
+
     return amountOfDebt;
   }); // Set Money Format
 
@@ -12864,38 +12894,46 @@ var calculateTotal = function calculateTotal(accountType, budget) {
     }
 
     if (accountType === "Debt") {
-      var debtAccount = accountSections[1]; // amountOfDebt += 200;
+      var _debtAccount = accountSections[1]; // amountOfDebt += 200;
 
       var debt = money.format(amountOfDebt);
 
-      if (debtAccount) {
-        amountOfDebt === 0 ? debtAccount.textContent = debt : debtAccount.textContent = "-".concat(debt);
+      if (_debtAccount) {
+        amountOfDebt === 0 ? _debtAccount.textContent = debt : _debtAccount.textContent = "-".concat(debt);
       }
     }
 
     if (accountType === "Net Value") {
-      var _initialDeposit = 0;
-      var _budgetAccountTotals = [];
-      Object.entries(budgetAccounts).forEach(function (account) {
-        if (account[0] === "debt") amountOfDebt = account[1].debtAmount;
-        return amountOfDebt;
-      });
+      var _initialDeposit = 0; // let budgetAccountTotals = [];
+      // Object.entries(budgetAccounts).forEach((account) => {
+      //   if (account[0] === `debt`) {
+      //     if (debtAccount) {
+      //       debtAccount.forEach((debt, i) => {
+      //         if (debt.status !== `Paid Off`) {
+      //           amountOfDebt += debt.amountOwed;
+      //         }
+      //       });
+      //     }
+      //   }
+      //   return amountOfDebt;
+      // });
 
-      var _bankVaultTotal = _budgetAccountTotals.reduce(function (previous, current) {
+      var _bankVaultTotal = budgetAccountTotals.reduce(function (previous, current) {
         return previous + current;
       }, _initialDeposit);
 
       var netValueAccount = accountSections[2];
       var netValue = money.format(_bankVaultTotal - amountOfDebt);
+      console.log(netValue, _bankVaultTotal, amountOfDebt);
       if (netValueAccount) netValueAccount.textContent = netValue;
     }
   }
 };
 
-var getDashboardAccountTotals = function getDashboardAccountTotals(budget) {
+var getDashboardAccountTotals = function getDashboardAccountTotals(budget, placeholderBudget, user) {
   calculateTotal("Bank Account", budget);
-  calculateTotal("Debt", budget);
-  calculateTotal("Net Value", budget); // budget-container__dashboard__container--extra-small__content__account-total
+  calculateTotal("Debt", budget, budget.debts);
+  calculateTotal("Net Value", budget, budget.debts); // budget-container__dashboard__container--extra-small__content__account-total
 };
 
 var showTransactionOptions = function showTransactionOptions(budget, placeholderBudget, user, optionText, transactionOptionArrays, transactionOptions) {
@@ -14070,7 +14108,7 @@ var setupDashboard = function setupDashboard(user, budget, placeholderBudget) {
   // GET BANK ACCOUNT TOTAL
 
 
-  getDashboardAccountTotals(budget); ////////////////////////////////////////////
+  getDashboardAccountTotals(budget, placeholderBudget, user); ////////////////////////////////////////////
   // SETUP BILL CALENDAR
 
   _setupBillCalendar(budget, placeholderBudget, user); ////////////////////////////////////////////

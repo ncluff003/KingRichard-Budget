@@ -72,7 +72,6 @@ block Budget-Content
                 select.form__select--accounts.r__form__select--accounts.closed
                   each debt in data.budget.debts 
                     option.form__select__option.r__form__select__option= `${debt.lender}`
-                  option PAC Auto Finance
               section.form__section--transaction-plan.r__form__section--transaction-plan.closed 
                 input.form__input--small-short.r__form__input--small-short#transactionAmount(type="number" placeholder="$0.00")
                 label.form__label--medium__alt-4.r__form__label--medium__alt-4(for="transactionAmount") Amount

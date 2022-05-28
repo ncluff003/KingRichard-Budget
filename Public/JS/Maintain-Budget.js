@@ -161,6 +161,14 @@ const payDebtOff = (budget, placeholderBudget, user, debt, paidSections, section
   }
   updateObject.debts[budget.debts.indexOf(debt)].status = `Paid Off`;
   updateObject.debts[budget.debts.indexOf(debt)].datePaid = new Date();
+  let amountOfDebt = 0;
+  budget.debts.forEach((debt) => {
+    if (debt.status !== `Paid Off`) {
+      amountOfDebt += debt.amountOwed;
+    }
+  });
+  budget.accounts.debt.debtAmount = Number(amountOfDebt);
+  updateObject.accounts = budget.accounts;
   placeholderBudget._updateBudget({ updateObject: updateObject }, `Debt-Manager`);
 };
 
@@ -331,6 +339,14 @@ const _watchDebtManager = (budget, placeholderBudget, user) => {
         sectionStart++;
       }
       updateObject.debts.push(debtObject);
+      let amountOfDebt = 0;
+      budget.debts.forEach((debt) => {
+        if (debt.status !== `Paid Off`) {
+          amountOfDebt += debt.amountOwed;
+        }
+      });
+      budget.accounts.debt.debtAmount = Number(amountOfDebt);
+      updateObject.accounts = budget.accounts;
       console.log(updateObject);
       placeholderBudget._updateBudget({ updateObject: updateObject }, `Debt-Manager`);
       reloadPage();
@@ -3933,16 +3949,18 @@ const _setupBillCalendar = (budget, placeholderBudget, user) => {
   console.log(upcomingTransactions);
   let currentDay = document.querySelector('.bill-calendar__days__single-day--current-day');
   const monthHeader = document.querySelector('.bill-calendar__header__title');
-  const splitMonthHeader = monthHeader.textContent.split(' ');
-  upcomingTransactions.forEach((transaction, i) => {
-    transaction.classList.add('closed');
-    let date = new Date(transaction.firstChild.nextSibling.firstChild.textContent);
-    if (date.getDate() === Number(currentDay.textContent) && months[date.getMonth()] === splitMonthHeader[0] && date.getFullYear() === Number(splitMonthHeader[2])) {
-      transaction.classList.remove('closed');
-      transaction.classList.add('open');
-    }
-  });
-  _watchDaySelection();
+  if (monthHeader) {
+    const splitMonthHeader = monthHeader.textContent.split(' ');
+    upcomingTransactions.forEach((transaction, i) => {
+      transaction.classList.add('closed');
+      let date = new Date(transaction.firstChild.nextSibling.firstChild.textContent);
+      if (date.getDate() === Number(currentDay.textContent) && months[date.getMonth()] === splitMonthHeader[0] && date.getFullYear() === Number(splitMonthHeader[2])) {
+        transaction.classList.remove('closed');
+        transaction.classList.add('open');
+      }
+    });
+    _watchDaySelection();
+  }
 
   const paymentChecks = document.querySelectorAll('.upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
   paymentChecks.forEach((check, i) => {
@@ -4011,16 +4029,26 @@ const _setupBillCalendar = (budget, placeholderBudget, user) => {
   });
 };
 
-const calculateTotal = (accountType, budget) => {
+const calculateTotal = (accountType, budget, debtAccount) => {
   const accountSections = document.querySelectorAll('.container--extra-small__content__account-total');
   const budgetAccounts = budget.accounts;
-  let amountOfDebt;
+  let amountOfDebt = 0;
+  if (debtAccount) console.log(debtAccount, budgetAccounts);
   let budgetAccountTotals = [];
   Object.entries(budgetAccounts).forEach((account, i) => {
     return budgetAccountTotals.push(account[1].amount);
   });
   Object.entries(budgetAccounts).forEach((account) => {
-    if (account[0] === `debt`) amountOfDebt = account[1].debtAmount;
+    if (account[0] === `debt`) {
+      if (debtAccount) {
+        debtAccount.forEach((debt, i) => {
+          if (debt.status !== `Paid Off`) {
+            amountOfDebt += debt.amountOwed;
+          }
+        });
+      }
+      // amountOfDebt = account[1].debtAmount;
+    }
     return amountOfDebt;
   });
 
@@ -4052,23 +4080,32 @@ const calculateTotal = (accountType, budget) => {
 
     if (accountType === `Net Value`) {
       let initialDeposit = 0;
-      let budgetAccountTotals = [];
-      Object.entries(budgetAccounts).forEach((account) => {
-        if (account[0] === `debt`) amountOfDebt = account[1].debtAmount;
-        return amountOfDebt;
-      });
+      // let budgetAccountTotals = [];
+      // Object.entries(budgetAccounts).forEach((account) => {
+      //   if (account[0] === `debt`) {
+      //     if (debtAccount) {
+      //       debtAccount.forEach((debt, i) => {
+      //         if (debt.status !== `Paid Off`) {
+      //           amountOfDebt += debt.amountOwed;
+      //         }
+      //       });
+      //     }
+      //   }
+      //   return amountOfDebt;
+      // });
       const bankVaultTotal = budgetAccountTotals.reduce((previous, current) => previous + current, initialDeposit);
       const netValueAccount = accountSections[2];
       let netValue = money.format(bankVaultTotal - amountOfDebt);
+      console.log(netValue, bankVaultTotal, amountOfDebt);
       if (netValueAccount) netValueAccount.textContent = netValue;
     }
   }
 };
 
-const getDashboardAccountTotals = (budget) => {
+const getDashboardAccountTotals = (budget, placeholderBudget, user) => {
   calculateTotal(`Bank Account`, budget);
-  calculateTotal(`Debt`, budget);
-  calculateTotal(`Net Value`, budget);
+  calculateTotal(`Debt`, budget, budget.debts);
+  calculateTotal(`Net Value`, budget, budget.debts);
 
   // budget-container__dashboard__container--extra-small__content__account-total
 };
@@ -5119,7 +5156,7 @@ const setupDashboard = (user, budget, placeholderBudget) => {
 
   ////////////////////////////////////////////
   // GET BANK ACCOUNT TOTAL
-  getDashboardAccountTotals(budget);
+  getDashboardAccountTotals(budget, placeholderBudget, user);
 
   ////////////////////////////////////////////
   // SETUP BILL CALENDAR
