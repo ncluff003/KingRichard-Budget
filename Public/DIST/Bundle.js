@@ -12741,14 +12741,17 @@ var _setupBillCalendar = function _setupBillCalendar(budget, placeholderBudget, 
 
   var upcomingBillsContainer = document.querySelector('.upcoming-bills');
   displayUpcomingTransactions(upcomingBillsContainer, budget.transactions.plannedTransactions);
+  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   var upcomingTransactions = document.querySelectorAll('.upcoming-bills__bill');
   console.log(upcomingTransactions);
   var currentDay = document.querySelector('.bill-calendar__days__single-day--current-day');
+  var monthHeader = document.querySelector('.bill-calendar__header__title');
+  var splitMonthHeader = monthHeader.textContent.split(' ');
   upcomingTransactions.forEach(function (transaction, i) {
     transaction.classList.add('closed');
     var date = new Date(transaction.firstChild.nextSibling.firstChild.textContent);
 
-    if (date.getDate() === Number(currentDay.textContent)) {
+    if (date.getDate() === Number(currentDay.textContent) && months[date.getMonth()] === splitMonthHeader[0] && date.getFullYear() === Number(splitMonthHeader[2])) {
       transaction.classList.remove('closed');
       transaction.classList.add('open');
     }
@@ -13952,6 +13955,8 @@ var createMonthlyBudgetTransactionPlans = function createMonthlyBudgetTransactio
                     console.log(plan.timingOptions.dueDates);
 
                     if (sc.goalAmount !== plan.amount) {
+                      found = true;
+                      console.log("Found |", "".concat(plan.account, " |"), "".concat(plan.subAccount, " |"), "".concat(plan.name, " |"), "".concat(plan.timingOptions.dueDates, " | ").concat(i));
                       return plan.amount = sc.goalAmount;
                     }
 

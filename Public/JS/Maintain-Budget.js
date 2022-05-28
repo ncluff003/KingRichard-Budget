@@ -3928,13 +3928,16 @@ const _setupBillCalendar = (budget, placeholderBudget, user) => {
   const upcomingBillsContainer = document.querySelector('.upcoming-bills');
   displayUpcomingTransactions(upcomingBillsContainer, budget.transactions.plannedTransactions);
 
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const upcomingTransactions = document.querySelectorAll('.upcoming-bills__bill');
   console.log(upcomingTransactions);
   let currentDay = document.querySelector('.bill-calendar__days__single-day--current-day');
+  const monthHeader = document.querySelector('.bill-calendar__header__title');
+  const splitMonthHeader = monthHeader.textContent.split(' ');
   upcomingTransactions.forEach((transaction, i) => {
     transaction.classList.add('closed');
     let date = new Date(transaction.firstChild.nextSibling.firstChild.textContent);
-    if (date.getDate() === Number(currentDay.textContent)) {
+    if (date.getDate() === Number(currentDay.textContent) && months[date.getMonth()] === splitMonthHeader[0] && date.getFullYear() === Number(splitMonthHeader[2])) {
       transaction.classList.remove('closed');
       transaction.classList.add('open');
     }
@@ -5010,6 +5013,8 @@ const createMonthlyBudgetTransactionPlans = (budget, placeholderBudget, user) =>
                     console.log(plan);
                     console.log(plan.timingOptions.dueDates);
                     if (sc.goalAmount !== plan.amount) {
+                      found = true;
+                      console.log(`Found |`, `${plan.account} |`, `${plan.subAccount} |`, `${plan.name} |`, `${plan.timingOptions.dueDates} | ${i}`);
                       return (plan.amount = sc.goalAmount);
                     }
                     found = true;
