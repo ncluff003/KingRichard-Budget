@@ -161,7 +161,7 @@ const payDebtOff = (budget, placeholderBudget, user, debt, paidSections, section
   }
   updateObject.debts[budget.debts.indexOf(debt)].status = `Paid Off`;
   updateObject.debts[budget.debts.indexOf(debt)].datePaid = new Date();
-  placeholderBudget._updateBudget(`Update`, `Add Debt`, { updateObject: updateObject }, `Debt-Manager`);
+  placeholderBudget._updateBudget({ updateObject: updateObject }, `Debt-Manager`);
 };
 
 const _watchDebtManager = (budget, placeholderBudget, user) => {
@@ -332,7 +332,7 @@ const _watchDebtManager = (budget, placeholderBudget, user) => {
       }
       updateObject.debts.push(debtObject);
       console.log(updateObject);
-      placeholderBudget._updateBudget(`Update`, `Add Debt`, { updateObject: updateObject }, `Debt-Manager`);
+      placeholderBudget._updateBudget({ updateObject: updateObject }, `Debt-Manager`);
       reloadPage();
     });
 
@@ -537,7 +537,7 @@ const settleInvestment = (investments, index, dataIndex, budget, placeholderBudg
 
   budget.investments[dataIndex].settled = !budget.investments[dataIndex].settled;
   console.log(budget.investments[index].settled);
-  placeholderBudget._updateBudget(`Update`, `Settle Investment`, { updateObject: { budgetId: budget._id, userId: user._id, investments: budget.investments } }, `Investment-Planner`);
+  placeholderBudget._updateBudget({ updateObject: { budgetId: budget._id, userId: user._id, investments: budget.investments } }, `Investment-Planner`);
   investments[index].remove();
   window.location.reload();
 };
@@ -558,7 +558,7 @@ const watchInvestmentValueConfirmationButtons = (event, index, secondaryIndex, b
   investments[secondaryIndex].valueDifference = Number(investments[secondaryIndex].currentValue - investments[secondaryIndex].initialInvestment);
   updateCurrentValueInput[index].setAttribute(`readonly`, true);
   console.log(investments[secondaryIndex]);
-  placeholderBudget._updateBudget('Update', `Update Investment`, { updateObject: { budgetId: budget._id, userId: user._id, investments: investments } }, `Investment-Planner`);
+  placeholderBudget._updateBudget({ updateObject: { budgetId: budget._id, userId: user._id, investments: investments } }, `Investment-Planner`);
 };
 
 const _watchForCurrentValueUpdate = (event, index, secondaryIndex, budget, placeholderBudget, user) => {
@@ -589,7 +589,7 @@ const closeInvestmentCreation = (event) => {
   replaceClassName(addInvestmentButton, `closed`, `open`);
 };
 
-const addInvestment = (options) => {
+const renderNewInvestment = (options) => {
   console.log(options);
   const money = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -829,7 +829,7 @@ const _watchInvestmentPlanner = (budget, placeholderBudget, user) => {
     const createInvestmentButton = document.querySelector('.button--extra-extra-small__alt');
     createInvestmentButton.addEventListener('click', (e) => {
       e.preventDefault();
-      addInvestment({
+      renderNewInvestment({
         type: investmentType.value,
         name: investmentName.value,
         description: investmentDescription.value,
@@ -838,9 +838,25 @@ const _watchInvestmentPlanner = (budget, placeholderBudget, user) => {
         placeholderBudget: placeholderBudget,
         user: user,
       });
+      let updateObject = {
+        investments: [],
+      };
+      let currentValue = initialInvestment.value;
+      let valueDifference = Number(currentValue - initialInvestment.value);
+      if (isNaN(valueDifference)) valueDifference = 0;
+
+      console.log(placeholderBudget.investments);
+      placeholderBudget.investments.push({
+        investmentType: investmentType.value,
+        investmentName: investmentName.value,
+        investmentDescription: investmentDescription.value,
+        initialInvestment: Number(initialInvestment.value),
+        currentValue: Number(currentValue),
+        valueDifference: valueDifference,
+      });
+      console.log(placeholderBudget.investments);
+
       placeholderBudget._updateBudget(
-        `Update`,
-        `Add Investment`,
         {
           updateObject: {
             budgetId: budget._id,
@@ -1366,7 +1382,7 @@ const finalizeTransactionPlan = (budget, placeholderBudget, user, selects, small
   }
 
   updateObject.transactions.plannedTransactions.push(plannedTransaction);
-  placeholderBudget._updateBudget(`Update`, `Transaction Planner`, { updateObject: updateObject }, `Transaction-Planner`);
+  placeholderBudget._updateBudget({ updateObject: updateObject }, `Transaction-Planner`);
 };
 
 const buildTransactionPlan = (budget, placeholderBudget, user, number, numberOfSections, plan, classType) => {
@@ -2110,7 +2126,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
                 recentTransactions: budget.transactions.recentTransactions,
                 plannedTransactions: transactionPlans,
               };
-              placeholderBudget._updateBudget(`Update`, `Apply Money`, { updateObject: updateObject }, `Transaction-Planner`);
+              placeholderBudget._updateBudget({ updateObject: updateObject }, `Transaction-Planner`);
               updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user);
             });
             insertElement(transactionPlanPart, transactionPlanPartHeader);
@@ -2262,7 +2278,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
                 recentTransactions: budget.transactions.recentTransactions,
                 plannedTransactions: transactionPlans,
               };
-              placeholderBudget._updateBudget(`Update`, `Apply Money`, { updateObject: updateObject }, `Transaction-Planner`);
+              placeholderBudget._updateBudget({ updateObject: updateObject }, `Transaction-Planner`);
               updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user);
             });
             insertElement(transactionPlanPart, transactionPlanPartHeader);
@@ -2437,7 +2453,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
                 recentTransactions: budget.transactions.recentTransactions,
                 plannedTransactions: transactionPlans,
               };
-              placeholderBudget._updateBudget(`Update`, `Apply Money`, { updateObject: updateObject }, `Transaction-Planner`);
+              placeholderBudget._updateBudget({ updateObject: updateObject }, `Transaction-Planner`);
               updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user);
             });
             insertElement(transactionPlanPart, transactionPlanPartHeader);
@@ -2597,7 +2613,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
                 recentTransactions: budget.transactions.recentTransactions,
                 plannedTransactions: transactionPlans,
               };
-              placeholderBudget._updateBudget(`Update`, `Apply Money`, { updateObject: updateObject }, `Transaction-Planner`);
+              placeholderBudget._updateBudget({ updateObject: updateObject }, `Transaction-Planner`);
               updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user);
             });
             insertElement(transactionPlanPart, transactionPlanPartHeader);
@@ -2897,7 +2913,7 @@ const _watchIncomeAllocation = (budget, placeholderBudget, user) => {
         },
       };
 
-      placeholderBudget._updateBudget(`Update`, `Allocate Income`, { updateObject: updateObject }, `Allocate-Income`);
+      placeholderBudget._updateBudget({ updateObject: updateObject }, `Allocate-Income`);
 
       allocationInputs.forEach((ai) => {
         ai.value = '';
@@ -3082,8 +3098,6 @@ const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
       });
     });
     placeholderBudget._updateBudget(
-      `Update`,
-      `Manage Categories`,
       {
         updateObject: {
           budgetMainCategories: budget.mainCategories,
@@ -3339,8 +3353,6 @@ const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
         });
 
         placeholderBudget._updateBudget(
-          `Update`,
-          `Edit Category Goals`,
           {
             budgetId: budget._id,
             budgetMainCategories: budget.mainCategories,
@@ -3439,56 +3451,67 @@ const compileBudgetManagementUpdates = (emergencySetting, currentTithingSetting,
   const investmentFund = getInvestmentFund(budget);
   const emergencyFund = getEmergencyFund(budget, emergencySetting);
   let tithing;
+  let updateObject = {};
   if (user.latterDaySaint === true) {
     tithing = getTithing(budget, user, currentTithingSetting);
     let name = placeholderBudget._addName(budgetName);
-    placeholderBudget._updateBudget(
-      `Update`,
-      `Budget Management`,
-      {
-        budgetId: budget._id,
-        userId: user._id,
-        user: user,
-        name: name,
-        unAllocatedAmount: placeholderBudget.accounts.unAllocated.amount,
-        monthlyBudgetAmount: placeholderBudget.accounts.monthlyBudget.amount,
-        emergencyFund: emergencyFund,
-        savingsFund: savingsFund,
-        expenseFundAmount: placeholderBudget.accounts.expenseFund.amount,
-        surplusAmount: placeholderBudget.accounts.surplus.amount,
-        investmentFund: investmentFund,
-        debtAmount: placeholderBudget.accounts.debt.amount,
-        debtTotal: Number(placeholderBudget.accounts.debt.debtAmount),
-        tithing: tithing,
-        updateObject: {},
+
+    updateObject.budgetId = budget._Id;
+    updateObject.userId = user._Id;
+    updateObject.name = name;
+    updateObject.accounts = {
+      unAllocated: {
+        amount: placeholderBudget.accounts.unAllocated.amount,
       },
-      `Budget-Management`
-    );
+      monthlyBudget: {
+        amount: placeholderBudget.accounts.monthlyBudget.amount,
+      },
+      emergencyFund: emergencyFund,
+      savingsFund: savingsFund,
+      expenseFund: {
+        amount: placeholderBudget.accounts.expenseFund.amount,
+      },
+      surplus: {
+        amount: placeholderBudget.accounts.surplus.amount,
+      },
+      investmentFund: investmentFund,
+      debt: {
+        amount: placeholderBudget.accounts.debt.amount,
+        debtAmount: Number(placeholderBudget.accounts.debt.debtAmount),
+      },
+      tithing: tithing,
+    };
+
+    placeholderBudget._updateBudget({ updateObject: updateObject }, `Budget-Management`);
   }
 
   if (user.latterDaySaint === false) {
     let name = placeholderBudget._addName(budgetName);
-    placeholderBudget._updateBudget(
-      `Update`,
-      `Budget Management`,
-      {
-        budgetId: budget._id,
-        userId: user._id,
-        user: user,
-        name: name,
-        unAllocatedAmount: placeholderBudget.accounts.unAllocated.amount,
-        monthlyBudgetAmount: placeholderBudget.accounts.monthlyBudget.amount,
-        emergencyFund: emergencyFund,
-        savingsFund: savingsFund,
-        expenseFundamount: placeholderBudget.accounts.expenseFund.amount,
-        surplusAmount: placeholderBudget.accounts.surplus.amount,
-        investmentFund: investmentFund,
-        debtAmount: placeholderBudget.accounts.debt.amount,
-        debtTotal: Number(placeholderBudget.accounts.debt.debtAmount),
-        updateObject: {},
+    updateObject.budgetId = budget._Id;
+    updateObject.userId = user._Id;
+    updateObject.name = name;
+    updateObject.accounts = {
+      unAllocated: {
+        amount: placeholderBudget.accounts.unAllocated.amount,
       },
-      `Budget-Management`
-    );
+      monthlyBudget: {
+        amount: placeholderBudget.accounts.monthlyBudget.amount,
+      },
+      emergencyFund: emergencyFund,
+      savingsFund: savingsFund,
+      expenseFund: {
+        amount: placeholderBudget.accounts.expenseFund.amount,
+      },
+      surplus: {
+        amount: placeholderBudget.accounts.surplus.amount,
+      },
+      investmentFund: investmentFund,
+      debt: {
+        amount: placeholderBudget.accounts.debt.amount,
+        debtAmount: Number(placeholderBudget.accounts.debt.debtAmount),
+      },
+    };
+    placeholderBudget._updateBudget({ updateObject: updateObject }, `Budget-Management`);
   }
 };
 
@@ -3706,146 +3729,156 @@ const displayUpcomingTransactions = (container, transactions) => {
   });
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   transactions.forEach((transaction, i) => {
-    // CREATE THE BILL CONTAINER
-    const upcomingBill = document.createElement('section');
-    let upcomingBillTwo;
-    if (transaction.timingOptions.paymentCycle === `Bi-Annual` || transaction.timingOptions.paymentCycle === `Bi-Monthly`) {
-      upcomingBillTwo = document.createElement('section');
-    }
-    upcomingBill.classList.add('upcoming-bills__bill');
-    upcomingBill.classList.add('r__upcoming-bills__bill');
-    upcomingBill.dataset.transaction = i;
-    if (transaction.timingOptions.paymentCycle === `Bi-Annual` || transaction.timingOptions.paymentCycle === `Bi-Monthly`) {
-      upcomingBillTwo.classList.add('upcoming-bills__bill');
-      upcomingBillTwo.classList.add('r__upcoming-bills__bill');
-      upcomingBillTwo.dataset.transaction = i;
-    }
-    let billSections = 5;
-    let billSectionStart = 0;
-    // START CREATING THE BILL'S SECTIONS AND FILLING THEM
-    if (transaction.timingOptions.paymentCycle !== `Bi-Annual` && transaction.timingOptions.paymentCycle !== `Bi-Monthly`) {
-      while (billSectionStart < billSections) {
-        const billSection = document.createElement('section');
-        billSection.classList.add('upcoming-bills__bill__bill-item');
-        billSection.classList.add('r__upcoming-bills__bill__bill-item');
-        insertElement(upcomingBill, billSection);
+    /*
+    This needs to be different.  Based off of the payment cycle, what really needs to happen is to go through the transaction's payment schedule and go through the process of creating the upcoming transactions of those transactions.
 
-        if (billSectionStart === 0) {
-          const billAccount = document.createElement('p');
-          billAccount.classList.add('upcoming-bills__bill__bill-item__text');
-          billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
-          billAccount.textContent = transaction.account;
-          insertElement(billSection, billAccount);
-        }
-        if (billSectionStart === 1) {
-          const billAccount = document.createElement('p');
-          billAccount.classList.add('upcoming-bills__bill__bill-item__text');
-          billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
-          billAccount.textContent = `${new Date(transaction.timingOptions.dueDates[0]).getDate()} ${months[new Date(transaction.timingOptions.dueDates[0]).getMonth()]} ${new Date(
-            transaction.timingOptions.dueDates[0]
-          ).getFullYear()}`;
-          insertElement(billSection, billAccount);
-        }
-        if (billSectionStart === 2) {
-          const billAccount = document.createElement('p');
-          billAccount.classList.add('upcoming-bills__bill__bill-item__text');
-          billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
-          billAccount.textContent = transaction.lender;
-          if (!transaction.lender) {
-            billAccount.textContent = transaction.location;
-          }
-          insertElement(billSection, billAccount);
-        }
-        if (billSectionStart === 3) {
-          const billAccount = document.createElement('p');
-          billAccount.classList.add('upcoming-bills__bill__bill-item__text');
-          billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
-          billAccount.textContent = money.format(transaction.amount);
-          insertElement(billSection, billAccount);
-        }
-        if (billSectionStart === 4) {
-          const paidOrNot = document.createElement('section');
-          paidOrNot.classList.add('upcoming-bills__bill__bill-item__checkbox-container');
-          paidOrNot.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container');
-          const paidOrNotInput = document.createElement('input');
-          paidOrNotInput.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
-          paidOrNotInput.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
-          paidOrNotInput.id = `paymentCheck`;
-          paidOrNotInput.type = `checkbox`;
-          const paidOrNotLabel = document.createElement('label');
-          paidOrNotLabel.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-label');
-          paidOrNotLabel.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-label');
-          paidOrNotLabel.textContent = `Payment Made`;
-          paidOrNotLabel.for = `paymentCheck`;
-          insertElement(paidOrNot, paidOrNotInput);
-          insertElement(paidOrNot, paidOrNotLabel);
-          insertElement(billSection, paidOrNot);
-        }
-        billSectionStart++;
-      }
-      insertElement(container, upcomingBill);
-    }
-    if (transaction.timingOptions.paymentCycle === `Bi-Annual` || transaction.timingOptions.paymentCycle === `Bi-Monthly`) {
-      while (billSectionStart < billSections) {
-        const billSection = document.createElement('section');
-        billSection.classList.add('upcoming-bills__bill__bill-item');
-        billSection.classList.add('r__upcoming-bills__bill__bill-item');
-        insertElement(upcomingBillTwo, billSection);
+    For those which are not bi-annual or bi-monthly it is straightforward.  For those that are, however, it requires another step of going through the each secondary array of dates and THEN creating the upcoming transactions with those.
+    
+    */
 
-        if (billSectionStart === 0) {
-          const billAccount = document.createElement('p');
-          billAccount.classList.add('upcoming-bills__bill__bill-item__text');
-          billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
-          billAccount.textContent = transaction.account;
-          insertElement(billSection, billAccount);
-        }
-        if (billSectionStart === 1) {
-          const billAccount = document.createElement('p');
-          billAccount.classList.add('upcoming-bills__bill__bill-item__text');
-          billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
-          billAccount.textContent = `${new Date(transaction.timingOptions.dueDates[1]).getDate()} ${months[new Date(transaction.timingOptions.dueDates[1]).getMonth()]} ${new Date(
-            transaction.timingOptions.dueDates[1]
-          ).getFullYear()}`;
-          insertElement(billSection, billAccount);
-        }
-        if (billSectionStart === 2) {
-          const billAccount = document.createElement('p');
-          billAccount.classList.add('upcoming-bills__bill__bill-item__text');
-          billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
-          billAccount.textContent = transaction.lender;
-          if (!transaction.lender) {
-            billAccount.textContent = transaction.location;
+    if (transaction.timingOptions.paymentCycle !== `Bi-Annual` || transaction.timingOptions.paymentCycle !== `Bi-Monthly`) {
+      let index = i;
+      transaction.timingOptions.paymentSchedule.forEach((date, i) => {
+        const upcomingBill = document.createElement('section');
+        upcomingBill.classList.add('upcoming-bills__bill');
+        upcomingBill.classList.add('r__upcoming-bills__bill');
+        upcomingBill.dataset.transaction = index;
+
+        let billSections = 5;
+        let billSectionStart = 0;
+        while (billSectionStart < billSections) {
+          const billSection = document.createElement('section');
+          billSection.classList.add('upcoming-bills__bill__bill-item');
+          billSection.classList.add('r__upcoming-bills__bill__bill-item');
+          insertElement(upcomingBill, billSection);
+
+          if (billSectionStart === 0) {
+            const billAccount = document.createElement('p');
+            billAccount.classList.add('upcoming-bills__bill__bill-item__text');
+            billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
+            billAccount.textContent = transaction.account;
+            insertElement(billSection, billAccount);
           }
-          insertElement(billSection, billAccount);
+          if (billSectionStart === 1) {
+            const billAccount = document.createElement('p');
+            billAccount.classList.add('upcoming-bills__bill__bill-item__text');
+            billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
+            billAccount.textContent = `${new Date(date).getDate()} ${months[new Date(date).getMonth()]} ${new Date(date).getFullYear()}`;
+            insertElement(billSection, billAccount);
+          }
+          if (billSectionStart === 2) {
+            const billAccount = document.createElement('p');
+            billAccount.classList.add('upcoming-bills__bill__bill-item__text');
+            billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
+            billAccount.textContent = transaction.lender;
+            if (!transaction.lender) {
+              billAccount.textContent = transaction.location;
+            }
+            insertElement(billSection, billAccount);
+          }
+          if (billSectionStart === 3) {
+            const billAccount = document.createElement('p');
+            billAccount.classList.add('upcoming-bills__bill__bill-item__text');
+            billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
+            billAccount.textContent = money.format(transaction.amount);
+            insertElement(billSection, billAccount);
+          }
+          if (billSectionStart === 4) {
+            const paidOrNot = document.createElement('section');
+            paidOrNot.classList.add('upcoming-bills__bill__bill-item__checkbox-container');
+            paidOrNot.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container');
+            const paidOrNotInput = document.createElement('input');
+            paidOrNotInput.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
+            paidOrNotInput.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
+            paidOrNotInput.id = `paymentCheck`;
+            paidOrNotInput.type = `checkbox`;
+            const paidOrNotLabel = document.createElement('label');
+            paidOrNotLabel.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-label');
+            paidOrNotLabel.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-label');
+            paidOrNotLabel.textContent = `Payment Made`;
+            paidOrNotLabel.for = `paymentCheck`;
+            insertElement(paidOrNot, paidOrNotInput);
+            insertElement(paidOrNot, paidOrNotLabel);
+            insertElement(billSection, paidOrNot);
+          }
+          billSectionStart++;
         }
-        if (billSectionStart === 3) {
-          const billAccount = document.createElement('p');
-          billAccount.classList.add('upcoming-bills__bill__bill-item__text');
-          billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
-          billAccount.textContent = money.format(transaction.amount);
-          insertElement(billSection, billAccount);
-        }
-        if (billSectionStart === 4) {
-          const paidOrNot = document.createElement('section');
-          paidOrNot.classList.add('upcoming-bills__bill__bill-item__checkbox-container');
-          paidOrNot.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container');
-          const paidOrNotInput = document.createElement('input');
-          paidOrNotInput.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
-          paidOrNotInput.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
-          paidOrNotInput.id = `paymentCheck`;
-          paidOrNotInput.type = `checkbox`;
-          const paidOrNotLabel = document.createElement('label');
-          paidOrNotLabel.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-label');
-          paidOrNotLabel.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-label');
-          paidOrNotLabel.textContent = `Payment Made`;
-          paidOrNotLabel.for = `paymentCheck`;
-          insertElement(paidOrNot, paidOrNotInput);
-          insertElement(paidOrNot, paidOrNotLabel);
-          insertElement(billSection, paidOrNot);
-        }
-        billSectionStart++;
-      }
-      insertElement(container, upcomingBillTwo);
+        insertElement(container, upcomingBill);
+      });
+    }
+
+    if (transaction.timingOptions.paymentCycle === `Bi-Annual` || transaction.timingOptions.paymentCycle === `Bi-Monthly`) {
+      let index = i;
+      transaction.timingOptions.paymentSchedule.forEach((array, i) => {
+        // let dateIndex = index;
+        array.forEach((date, i) => {
+          const upcomingBill = document.createElement('section');
+          upcomingBill.classList.add('upcoming-bills__bill');
+          upcomingBill.classList.add('r__upcoming-bills__bill');
+          upcomingBill.dataset.transaction = index;
+
+          let billSections = 5;
+          let billSectionStart = 0;
+          while (billSectionStart < billSections) {
+            const billSection = document.createElement('section');
+            billSection.classList.add('upcoming-bills__bill__bill-item');
+            billSection.classList.add('r__upcoming-bills__bill__bill-item');
+            insertElement(upcomingBill, billSection);
+
+            if (billSectionStart === 0) {
+              const billAccount = document.createElement('p');
+              billAccount.classList.add('upcoming-bills__bill__bill-item__text');
+              billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
+              billAccount.textContent = transaction.account;
+              insertElement(billSection, billAccount);
+            }
+            if (billSectionStart === 1) {
+              const billAccount = document.createElement('p');
+              billAccount.classList.add('upcoming-bills__bill__bill-item__text');
+              billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
+              billAccount.textContent = `${new Date(date).getDate()} ${months[new Date(date).getMonth()]} ${new Date(date).getFullYear()}`;
+              insertElement(billSection, billAccount);
+            }
+            if (billSectionStart === 2) {
+              const billAccount = document.createElement('p');
+              billAccount.classList.add('upcoming-bills__bill__bill-item__text');
+              billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
+              billAccount.textContent = transaction.lender;
+              if (!transaction.lender) {
+                billAccount.textContent = transaction.location;
+              }
+              insertElement(billSection, billAccount);
+            }
+            if (billSectionStart === 3) {
+              const billAccount = document.createElement('p');
+              billAccount.classList.add('upcoming-bills__bill__bill-item__text');
+              billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
+              billAccount.textContent = money.format(transaction.amount);
+              insertElement(billSection, billAccount);
+            }
+            if (billSectionStart === 4) {
+              const paidOrNot = document.createElement('section');
+              paidOrNot.classList.add('upcoming-bills__bill__bill-item__checkbox-container');
+              paidOrNot.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container');
+              const paidOrNotInput = document.createElement('input');
+              paidOrNotInput.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
+              paidOrNotInput.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
+              paidOrNotInput.id = `paymentCheck`;
+              paidOrNotInput.type = `checkbox`;
+              const paidOrNotLabel = document.createElement('label');
+              paidOrNotLabel.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-label');
+              paidOrNotLabel.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-label');
+              paidOrNotLabel.textContent = `Payment Made`;
+              paidOrNotLabel.for = `paymentCheck`;
+              insertElement(paidOrNot, paidOrNotInput);
+              insertElement(paidOrNot, paidOrNotLabel);
+              insertElement(billSection, paidOrNot);
+            }
+            billSectionStart++;
+          }
+          insertElement(container, upcomingBill);
+        });
+      });
     }
   });
 };
@@ -3911,14 +3944,22 @@ const _setupBillCalendar = (budget, placeholderBudget, user) => {
   const paymentChecks = document.querySelectorAll('.upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
   paymentChecks.forEach((check, i) => {
     check.addEventListener('click', (e) => {
+      let upcomingBills = [...document.querySelectorAll('.upcoming-bills__bill')];
+      console.log(check.closest('.upcoming-bills__bill'));
+      let transactionIndex = Number(check.closest('.upcoming-bills__bill').dataset.transaction);
+      // let numberIndex = Number(transactionIndex.dataset.transaction);
+      // console.log(numberIndex);
       let upcomingBill = document.querySelectorAll('.upcoming-bills__bill')[i];
+      console.log(upcomingBill);
       let accountType = upcomingBill.firstChild.firstChild.textContent;
       let transactionDate = upcomingBill.firstChild.nextSibling.firstChild.textContent;
       // let transactionDate = new Date(upcomingBill.firstChild.nextSibling.firstChild.textContent);
-      let transactionLocation = placeholderBudget.transactions.plannedTransactions[i].location;
+
+      // THE INDEX JUST UNDERNEATH WILL NEED TO CHANGE TO THE INDEX OF THE ACTUAL UPCOMING BILL, SO WE'LL NEED THE DATASET OF THE BILL HERE.
+      let transactionLocation = placeholderBudget.transactions.plannedTransactions[transactionIndex].location;
       let transactionAmount = upcomingBill.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1];
       let transactionBill = new Transaction.Transaction({ date: transactionDate, location: transactionLocation });
-      let currentBill = placeholderBudget.transactions.plannedTransactions[i];
+      let currentBill = placeholderBudget.transactions.plannedTransactions[transactionIndex];
 
       if (accountType === `Expense Fund`) {
         transactionBill.transactionType = `Withdrawal`;
@@ -4388,7 +4429,7 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
         };
       }
 
-      placeholderBudget._enterIncome(
+      placeholderBudget._updateBudget(
         {
           updateObject: updateObject,
         },
@@ -4868,7 +4909,7 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
         });
         updateObject.accounts = placeholderBudget.accounts;
         console.log(updateObject);
-        placeholderBudget._updateBudget(`Update`, `Enter Transaction`, { updateObject: updateObject }, `Dashboard`);
+        placeholderBudget._updateBudget({ updateObject: updateObject }, `Dashboard`);
         const fullTransactionCost = document.querySelectorAll('.container--small__transaction-total__amount')[0];
         fullTransactionCost.textContent = money.format(0);
       });
@@ -4941,12 +4982,131 @@ const buildTransactionOptions = (options) => {
   return transactionOptions;
 };
 
+const createMonthlyBudgetTransactionPlans = (budget, placeholderBudget, user) => {
+  console.log(placeholderBudget.transactions.plannedTransactions, budget.transactions.plannedTransactions);
+  let updateObject = { budgetId: budget._id, userId: user._id };
+  console.log(updateObject);
+  placeholderBudget.mainCategories.forEach((mc, i) => {
+    mc.subCategories.forEach((sc, i) => {
+      if (sc.timingOptions.paymentSchedule) {
+        let index = i;
+        sc.timingOptions.paymentSchedule.forEach((date, i) => {
+          let found = false;
+          console.log(date, date.length);
+          if (typeof date === `object` && date.length > 1) {
+            date.forEach((date) => {
+              console.log(new Date(date), new Date(date).toISOString());
+            });
+          }
+          placeholderBudget.transactions.plannedTransactions.forEach((plan, i) => {
+            // console.log(plan);
+            if (plan.account === `Monthly Budget` && plan.subAccount === mc.title && plan.name === sc.title) {
+              if (date.length > 1 && typeof date === `object`) {
+                console.log(`Dates...`);
+                date.forEach((newDate) => {
+                  console.log(new Date(newDate).toISOString());
+
+                  if (plan.timingOptions.dueDates.includes(new Date(newDate).toISOString())) {
+                    console.log(plan);
+                    console.log(plan.timingOptions.dueDates);
+                    if (sc.goalAmount !== plan.amount) {
+                      return (plan.amount = sc.goalAmount);
+                    }
+                    found = true;
+                    return console.log(`Found |`, `${plan.account} |`, `${plan.subAccount} |`, `${plan.name} |`, `${plan.timingOptions.dueDates} | ${i}`);
+                  }
+                });
+              }
+              if (date.length === 24) {
+                if (plan.timingOptions.dueDates.includes(new Date(date).toISOString())) {
+                  console.log(plan);
+                  console.log(plan.timingOptions.dueDates);
+                  if (sc.goalAmount !== plan.amount) {
+                    return (plan.amount = sc.goalAmount);
+                  }
+                  found = true;
+                  return console.log(`Found |`, `${plan.account} |`, `${plan.subAccount} |`, `${plan.name} |`, `${plan.timingOptions.dueDates} | ${i}`);
+                }
+              }
+            }
+            if (plan.account !== `Monthly Budget` || plan.subAccount !== mc.title || plan.name !== sc.title) {
+              if (!plan.timingOptions.dueDates.includes(date)) {
+                console.log(`Not Found`, `${plan.account} |`, `${plan.subAccount} |`, `${plan.name} |`, `${plan.timingOptions.dueDates} | ${i}`);
+              }
+            }
+          });
+          if (found === false && date.length === 24) {
+            let transactionPlan = {};
+            transactionPlan.date = sc.lastUpdated;
+            transactionPlan.type = `Withdrawal`;
+            transactionPlan.location = `Unknown`;
+            transactionPlan.account = `Monthly Budget`;
+            transactionPlan.subAccount = mc.title;
+            transactionPlan.category = mc.title;
+            transactionPlan.subCategory = sc.title;
+            transactionPlan.name = sc.title;
+            transactionPlan.amount = sc.goalAmount;
+            transactionPlan.need = `Need`;
+            transactionPlan.timingOptions = {
+              dueDates: [new Date(date)],
+              paymentSchedule: [new Date(date)],
+              paymentCycle: `Once`,
+            };
+            transactionPlan.amountSaved = 0;
+            transactionPlan.paid = false;
+            transactionPlan.paidStatus = `Unpaid`;
+            placeholderBudget.transactions.plannedTransactions.push(transactionPlan);
+            // updateObject.transactions = placeholderBudget.transsactions;
+            // placeholderBudget._updateBudget({updateObject: updateObject}, `Transaction-Planner`);
+            console.log(sc, transactionPlan);
+          }
+          if (found === false && date.length === 2) {
+            date.forEach((date) => {
+              let transactionPlan = {};
+              transactionPlan.date = sc.lastUpdated;
+              transactionPlan.type = `Withdrawal`;
+              transactionPlan.location = `Unknown`;
+              transactionPlan.account = `Monthly Budget`;
+              transactionPlan.subAccount = mc.title;
+              transactionPlan.category = mc.title;
+              transactionPlan.subCategory = sc.title;
+              transactionPlan.name = sc.title;
+              transactionPlan.amount = sc.goalAmount;
+              transactionPlan.need = `Need`;
+              transactionPlan.timingOptions = {
+                dueDates: [new Date(date)],
+                paymentSchedule: [new Date(date)],
+                paymentCycle: `Once`,
+              };
+              transactionPlan.amountSaved = 0;
+              transactionPlan.paid = false;
+              transactionPlan.paidStatus = `Unpaid`;
+              placeholderBudget.transactions.plannedTransactions.push(transactionPlan);
+              // updateObject.transactions = placeholderBudget.transsactions;
+              // placeholderBudget._updateBudget({updateObject: updateObject}, `Transaction-Planner`);
+              console.log(sc, transactionPlan);
+            });
+          }
+        });
+      }
+    });
+  });
+  console.log(placeholderBudget.transactions);
+  updateObject.transactions = placeholderBudget.transactions;
+  console.log(updateObject);
+  placeholderBudget._updateBudget({ updateObject: updateObject }, `Transaction-Planner`);
+};
+
 const setupDashboard = (user, budget, placeholderBudget) => {
   console.log(user);
   // THE LOGGED USER ABOVE SHOWED THAT THE DATE THE PASSWORD WAS CHANGED IS STILL SHOWING. THAT NEEDS TO BE CHANGED.
   ////////////////////////////////////////////
   // WATCH THE BUDGET NAVIGATION
   _watchBudgetNavigation();
+
+  ////////////////////////////////////////////
+  // CREATE TRANSACTION PLANS
+  createMonthlyBudgetTransactionPlans(budget, placeholderBudget, user);
 
   ////////////////////////////////////////////
   // WATCH FOR ACCOUNT SELECTION

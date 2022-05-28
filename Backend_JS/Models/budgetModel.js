@@ -207,13 +207,19 @@ const budgetSchema = new mongoose.Schema({
         },
         account: {
           type: String,
-          enum: [`Expense Fund`, `Savings Fund`, `Debt`, `Surplus`],
+          // enum: [`Expense Fund`, `Savings Fund`, `Debt`, `Surplus`],
           required: [true, `Every Transaction Must Come From An Account`], // Goes To Account
         },
         subAccount: {
           type: String,
-          enum: [`Bill`, `Debt`, `Subscription`, `Other`, `Loan`, `Credit Card`, `Taxes`, `Expense`, `Discretionary`, `Food`, `Vacations`, `Tuition`],
+          // enum: [`Bill`, `Debt`, `Subscription`, `Other`, `Loan`, `Credit Card`, `Taxes`, `Expense`, `Discretionary`, `Food`, `Vacations`, `Tuition`],
           required: [true, `Every Transaction Needs A Type Given.`], // Goes To Expenditure In Recent Transactions
+        },
+        category: {
+          type: String,
+        },
+        subCategory: {
+          type: String,
         },
         amount: {
           type: Number,
@@ -227,7 +233,7 @@ const budgetSchema = new mongoose.Schema({
         timingOptions: {
           paymentCycle: {
             type: String,
-            enum: [`Once`, `Weekly`, `Bi-Weekly`, `Bi-Monthly`, `Monthly`, `Quarterly`, `Bi-Annually`, `Annually`],
+            enum: [`Once`, `Weekly`, `Bi-Weekly`, `Bi-Monthly`, `Monthly`, `Quarterly`, `Bi-Annual`, `Annual`],
           },
           dueDates: [],
           paymentSchedule: {

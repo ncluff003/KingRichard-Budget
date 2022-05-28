@@ -7806,128 +7806,10 @@ var Budget = /*#__PURE__*/function () {
       this.accounts.debt.debtAmount = Number(options.debtAmount);
     }
   }, {
-    key: "_enterIncome",
-    value: function _enterIncome(options, pageLink) {
-      console.log("Entering Income...", options);
-      _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(options.updateObject, pageLink);
-    }
-  }, {
     key: "_updateBudget",
-    value: function _updateBudget(mode, update, options, pageLink) {
-      if (mode === "Update") {
-        var updateObject = options.updateObject;
-
-        if (update === "Budget Management") {
-          console.log(options.user);
-          updateObject.budgetId = options.budgetId;
-          updateObject.userId = options.userId;
-          updateObject.name = options.name;
-          updateObject.accounts = {
-            unAllocated: {
-              amount: options.unAllocatedAmount
-            },
-            monthlyBudget: {
-              amount: options.monthlyBudgetAmount
-            },
-            emergencyFund: options.emergencyFund,
-            savingsFund: options.savingsFund,
-            expenseFund: {
-              amount: options.expenseFundAmount
-            },
-            surplus: {
-              amount: options.surplusAmount
-            },
-            investmentFund: options.investmentFund,
-            debt: {
-              amount: options.debtAmount,
-              debtAmount: options.debtTotal
-            }
-          };
-
-          if (options.user.latterDaySaint === true) {
-            updateObject.accounts.tithing = options.tithing;
-          }
-
-          console.log(updateObject);
-          _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(updateObject, pageLink);
-        }
-
-        if (update === "Edit Category Goals") {
-          console.log(options.updateObject);
-          console.log("Updating Category Goals..."); // GLITCH : For some reason, ONLY the last Main Category had been pushed through.  So, the previous two had been erased completely.
-
-          console.log(updateObject.mainCategories);
-          _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(options.updateObject, pageLink);
-        }
-
-        if (update === "Manage Categories") {
-          console.log("Updating Categories...");
-          console.log(options, options.updateObject);
-          _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(options.updateObject, pageLink);
-        }
-
-        if (update === "Enter Income") {
-          console.log("Entering Income...", options);
-          _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(options.updateObject, pageLink);
-        }
-
-        if (update === "Allocate Income") {
-          console.log("Allocating...");
-          _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(options.updateObject, pageLink);
-        }
-
-        if (update === "Transaction Planner") {
-          console.log("Planning...", options);
-          _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(options.updateObject, pageLink);
-        }
-
-        if (update === "Apply Money") {
-          console.log("Applying...", options);
-          _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(options.updateObject, pageLink);
-        }
-
-        if (update === "Add Investment") {
-          console.log("Investing...", options, options.investments);
-          var investmentType = document.querySelector('.form__select--accounts-short');
-          var investmentName = document.getElementById('investmentName');
-          var investmentDescription = document.getElementById('investmentDescription');
-          var initialInvestment = document.getElementById('initialInvestment');
-          var currentValue = initialInvestment.value;
-          var valueDifference = Number(currentValue - initialInvestment.value);
-          if (isNaN(valueDifference)) valueDifference = 0;
-          options.updateObject.investments.push({
-            investmentType: investmentType.value,
-            investmentName: investmentName.value,
-            investmentDescription: investmentDescription.value,
-            initialInvestment: Number(initialInvestment.value),
-            currentValue: Number(currentValue),
-            valueDifference: valueDifference
-          });
-          _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(options.updateObject, pageLink);
-        }
-
-        if (update === "Update Investment") {
-          console.log("Updating...", options);
-          _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(options.updateObject, pageLink);
-        }
-
-        if (update === "Settle Investment") {
-          console.log("Settling...", options);
-          _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(options.updateObject, pageLink);
-        }
-
-        if (update === "Add Debt") {
-          console.log("Adding Debt...", options);
-          _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(options.updateObject, pageLink);
-        }
-
-        if (update === "Enter Transaction") {
-          console.log("Entering...", options);
-          _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(options.updateObject, pageLink);
-        }
-
-        console.log("Updating...");
-      }
+    value: function _updateBudget(options, pageLink) {
+      console.log(options);
+      _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.updateMyBudget(options.updateObject, pageLink);
     }
   }, {
     key: "_setInvestmentGoal",
@@ -8756,7 +8638,7 @@ var payDebtOff = function payDebtOff(budget, placeholderBudget, user, debt, paid
   updateObject.debts[budget.debts.indexOf(debt)].status = "Paid Off";
   updateObject.debts[budget.debts.indexOf(debt)].datePaid = new Date();
 
-  placeholderBudget._updateBudget("Update", "Add Debt", {
+  placeholderBudget._updateBudget({
     updateObject: updateObject
   }, "Debt-Manager");
 };
@@ -8957,7 +8839,7 @@ var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, us
       updateObject.debts.push(debtObject);
       console.log(updateObject);
 
-      placeholderBudget._updateBudget("Update", "Add Debt", {
+      placeholderBudget._updateBudget({
         updateObject: updateObject
       }, "Debt-Manager");
 
@@ -9174,7 +9056,7 @@ var settleInvestment = function settleInvestment(investments, index, dataIndex, 
   budget.investments[dataIndex].settled = !budget.investments[dataIndex].settled;
   console.log(budget.investments[index].settled);
 
-  placeholderBudget._updateBudget("Update", "Settle Investment", {
+  placeholderBudget._updateBudget({
     updateObject: {
       budgetId: budget._id,
       userId: user._id,
@@ -9203,7 +9085,7 @@ var watchInvestmentValueConfirmationButtons = function watchInvestmentValueConfi
   updateCurrentValueInput[index].setAttribute("readonly", true);
   console.log(investments[secondaryIndex]);
 
-  placeholderBudget._updateBudget('Update', "Update Investment", {
+  placeholderBudget._updateBudget({
     updateObject: {
       budgetId: budget._id,
       userId: user._id,
@@ -9244,7 +9126,7 @@ var closeInvestmentCreation = function closeInvestmentCreation(event) {
   replaceClassName(addInvestmentButton, "closed", "open");
 };
 
-var addInvestment = function addInvestment(options) {
+var renderNewInvestment = function renderNewInvestment(options) {
   console.log(options);
   var money = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -9439,7 +9321,7 @@ var _watchInvestmentPlanner = function _watchInvestmentPlanner(budget, placehold
     var createInvestmentButton = document.querySelector('.button--extra-extra-small__alt');
     createInvestmentButton.addEventListener('click', function (e) {
       e.preventDefault();
-      addInvestment({
+      renderNewInvestment({
         type: investmentType.value,
         name: investmentName.value,
         description: investmentDescription.value,
@@ -9448,8 +9330,24 @@ var _watchInvestmentPlanner = function _watchInvestmentPlanner(budget, placehold
         placeholderBudget: placeholderBudget,
         user: user
       });
+      var updateObject = {
+        investments: []
+      };
+      var currentValue = initialInvestment.value;
+      var valueDifference = Number(currentValue - initialInvestment.value);
+      if (isNaN(valueDifference)) valueDifference = 0;
+      console.log(placeholderBudget.investments);
+      placeholderBudget.investments.push({
+        investmentType: investmentType.value,
+        investmentName: investmentName.value,
+        investmentDescription: investmentDescription.value,
+        initialInvestment: Number(initialInvestment.value),
+        currentValue: Number(currentValue),
+        valueDifference: valueDifference
+      });
+      console.log(placeholderBudget.investments);
 
-      placeholderBudget._updateBudget("Update", "Add Investment", {
+      placeholderBudget._updateBudget({
         updateObject: {
           budgetId: budget._id,
           userId: user._id,
@@ -10040,7 +9938,7 @@ var finalizeTransactionPlan = function finalizeTransactionPlan(budget, placehold
 
   updateObject.transactions.plannedTransactions.push(plannedTransaction);
 
-  placeholderBudget._updateBudget("Update", "Transaction Planner", {
+  placeholderBudget._updateBudget({
     updateObject: updateObject
   }, "Transaction-Planner");
 };
@@ -10891,7 +10789,7 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
                   plannedTransactions: transactionPlans
                 };
 
-                placeholderBudget._updateBudget("Update", "Apply Money", {
+                placeholderBudget._updateBudget({
                   updateObject: updateObject
                 }, "Transaction-Planner");
 
@@ -11072,7 +10970,7 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
                   plannedTransactions: transactionPlans
                 };
 
-                placeholderBudget._updateBudget("Update", "Apply Money", {
+                placeholderBudget._updateBudget({
                   updateObject: updateObject
                 }, "Transaction-Planner");
 
@@ -11287,7 +11185,7 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
                   plannedTransactions: transactionPlans
                 };
 
-                placeholderBudget._updateBudget("Update", "Apply Money", {
+                placeholderBudget._updateBudget({
                   updateObject: updateObject
                 }, "Transaction-Planner");
 
@@ -11484,7 +11382,7 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
                   plannedTransactions: transactionPlans
                 };
 
-                placeholderBudget._updateBudget("Update", "Apply Money", {
+                placeholderBudget._updateBudget({
                   updateObject: updateObject
                 }, "Transaction-Planner");
 
@@ -11773,7 +11671,7 @@ var _watchIncomeAllocation = function _watchIncomeAllocation(budget, placeholder
         }
       };
 
-      placeholderBudget._updateBudget("Update", "Allocate Income", {
+      placeholderBudget._updateBudget({
         updateObject: updateObject
       }, "Allocate-Income");
 
@@ -11970,7 +11868,7 @@ var _watchForBudgetCategoryUpdates = function _watchForBudgetCategoryUpdates(bud
       });
     });
 
-    placeholderBudget._updateBudget("Update", "Manage Categories", {
+    placeholderBudget._updateBudget({
       updateObject: {
         budgetMainCategories: budget.mainCategories,
         budgetId: budget._id,
@@ -12215,7 +12113,7 @@ var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placehold
           });
         });
 
-        placeholderBudget._updateBudget("Update", "Edit Category Goals", {
+        placeholderBudget._updateBudget({
           budgetId: budget._id,
           budgetMainCategories: budget.mainCategories,
           userId: user._id,
@@ -12313,49 +12211,74 @@ var compileBudgetManagementUpdates = function compileBudgetManagementUpdates(eme
   var investmentFund = getInvestmentFund(budget);
   var emergencyFund = getEmergencyFund(budget, emergencySetting);
   var tithing;
+  var updateObject = {};
 
   if (user.latterDaySaint === true) {
     tithing = getTithing(budget, user, currentTithingSetting);
 
     var name = placeholderBudget._addName(budgetName);
 
-    placeholderBudget._updateBudget("Update", "Budget Management", {
-      budgetId: budget._id,
-      userId: user._id,
-      user: user,
-      name: name,
-      unAllocatedAmount: placeholderBudget.accounts.unAllocated.amount,
-      monthlyBudgetAmount: placeholderBudget.accounts.monthlyBudget.amount,
+    updateObject.budgetId = budget._Id;
+    updateObject.userId = user._Id;
+    updateObject.name = name;
+    updateObject.accounts = {
+      unAllocated: {
+        amount: placeholderBudget.accounts.unAllocated.amount
+      },
+      monthlyBudget: {
+        amount: placeholderBudget.accounts.monthlyBudget.amount
+      },
       emergencyFund: emergencyFund,
       savingsFund: savingsFund,
-      expenseFundAmount: placeholderBudget.accounts.expenseFund.amount,
-      surplusAmount: placeholderBudget.accounts.surplus.amount,
+      expenseFund: {
+        amount: placeholderBudget.accounts.expenseFund.amount
+      },
+      surplus: {
+        amount: placeholderBudget.accounts.surplus.amount
+      },
       investmentFund: investmentFund,
-      debtAmount: placeholderBudget.accounts.debt.amount,
-      debtTotal: Number(placeholderBudget.accounts.debt.debtAmount),
-      tithing: tithing,
-      updateObject: {}
+      debt: {
+        amount: placeholderBudget.accounts.debt.amount,
+        debtAmount: Number(placeholderBudget.accounts.debt.debtAmount)
+      },
+      tithing: tithing
+    };
+
+    placeholderBudget._updateBudget({
+      updateObject: updateObject
     }, "Budget-Management");
   }
 
   if (user.latterDaySaint === false) {
     var _name = placeholderBudget._addName(budgetName);
 
-    placeholderBudget._updateBudget("Update", "Budget Management", {
-      budgetId: budget._id,
-      userId: user._id,
-      user: user,
-      name: _name,
-      unAllocatedAmount: placeholderBudget.accounts.unAllocated.amount,
-      monthlyBudgetAmount: placeholderBudget.accounts.monthlyBudget.amount,
+    updateObject.budgetId = budget._Id;
+    updateObject.userId = user._Id;
+    updateObject.name = _name;
+    updateObject.accounts = {
+      unAllocated: {
+        amount: placeholderBudget.accounts.unAllocated.amount
+      },
+      monthlyBudget: {
+        amount: placeholderBudget.accounts.monthlyBudget.amount
+      },
       emergencyFund: emergencyFund,
       savingsFund: savingsFund,
-      expenseFundamount: placeholderBudget.accounts.expenseFund.amount,
-      surplusAmount: placeholderBudget.accounts.surplus.amount,
+      expenseFund: {
+        amount: placeholderBudget.accounts.expenseFund.amount
+      },
+      surplus: {
+        amount: placeholderBudget.accounts.surplus.amount
+      },
       investmentFund: investmentFund,
-      debtAmount: placeholderBudget.accounts.debt.amount,
-      debtTotal: Number(placeholderBudget.accounts.debt.debtAmount),
-      updateObject: {}
+      debt: {
+        amount: placeholderBudget.accounts.debt.amount,
+        debtAmount: Number(placeholderBudget.accounts.debt.debtAmount)
+      }
+    };
+
+    placeholderBudget._updateBudget({
+      updateObject: updateObject
     }, "Budget-Management");
   }
 };
@@ -12589,197 +12512,188 @@ var displayUpcomingTransactions = function displayUpcomingTransactions(container
   });
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   transactions.forEach(function (transaction, i) {
-    // CREATE THE BILL CONTAINER
-    var upcomingBill = document.createElement('section');
-    var upcomingBillTwo;
+    /*
+    This needs to be different.  Based off of the payment cycle, what really needs to happen is to go through the transaction's payment schedule and go through the process of creating the upcoming transactions of those transactions.
+     For those which are not bi-annual or bi-monthly it is straightforward.  For those that are, however, it requires another step of going through the each secondary array of dates and THEN creating the upcoming transactions with those.
+    
+    */
+    if (transaction.timingOptions.paymentCycle !== "Bi-Annual" || transaction.timingOptions.paymentCycle !== "Bi-Monthly") {
+      var index = i;
+      transaction.timingOptions.paymentSchedule.forEach(function (date, i) {
+        var upcomingBill = document.createElement('section');
+        upcomingBill.classList.add('upcoming-bills__bill');
+        upcomingBill.classList.add('r__upcoming-bills__bill');
+        upcomingBill.dataset.transaction = index;
+        var billSections = 5;
+        var billSectionStart = 0;
 
-    if (transaction.timingOptions.paymentCycle === "Bi-Annual" || transaction.timingOptions.paymentCycle === "Bi-Monthly") {
-      upcomingBillTwo = document.createElement('section');
-    }
+        while (billSectionStart < billSections) {
+          var billSection = document.createElement('section');
+          billSection.classList.add('upcoming-bills__bill__bill-item');
+          billSection.classList.add('r__upcoming-bills__bill__bill-item');
+          insertElement(upcomingBill, billSection);
 
-    upcomingBill.classList.add('upcoming-bills__bill');
-    upcomingBill.classList.add('r__upcoming-bills__bill');
-    upcomingBill.dataset.transaction = i;
-
-    if (transaction.timingOptions.paymentCycle === "Bi-Annual" || transaction.timingOptions.paymentCycle === "Bi-Monthly") {
-      upcomingBillTwo.classList.add('upcoming-bills__bill');
-      upcomingBillTwo.classList.add('r__upcoming-bills__bill');
-      upcomingBillTwo.dataset.transaction = i;
-    }
-
-    var billSections = 5;
-    var billSectionStart = 0; // START CREATING THE BILL'S SECTIONS AND FILLING THEM
-
-    if (transaction.timingOptions.paymentCycle !== "Bi-Annual" && transaction.timingOptions.paymentCycle !== "Bi-Monthly") {
-      while (billSectionStart < billSections) {
-        var billSection = document.createElement('section');
-        billSection.classList.add('upcoming-bills__bill__bill-item');
-        billSection.classList.add('r__upcoming-bills__bill__bill-item');
-        insertElement(upcomingBill, billSection);
-
-        if (billSectionStart === 0) {
-          var billAccount = document.createElement('p');
-          billAccount.classList.add('upcoming-bills__bill__bill-item__text');
-          billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
-          billAccount.textContent = transaction.account;
-          insertElement(billSection, billAccount);
-        }
-
-        if (billSectionStart === 1) {
-          var _billAccount = document.createElement('p');
-
-          _billAccount.classList.add('upcoming-bills__bill__bill-item__text');
-
-          _billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
-
-          _billAccount.textContent = "".concat(new Date(transaction.timingOptions.dueDates[0]).getDate(), " ").concat(months[new Date(transaction.timingOptions.dueDates[0]).getMonth()], " ").concat(new Date(transaction.timingOptions.dueDates[0]).getFullYear());
-          insertElement(billSection, _billAccount);
-        }
-
-        if (billSectionStart === 2) {
-          var _billAccount2 = document.createElement('p');
-
-          _billAccount2.classList.add('upcoming-bills__bill__bill-item__text');
-
-          _billAccount2.classList.add('r__upcoming-bills__bill__bill-item__text');
-
-          _billAccount2.textContent = transaction.lender;
-
-          if (!transaction.lender) {
-            _billAccount2.textContent = transaction.location;
+          if (billSectionStart === 0) {
+            var billAccount = document.createElement('p');
+            billAccount.classList.add('upcoming-bills__bill__bill-item__text');
+            billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
+            billAccount.textContent = transaction.account;
+            insertElement(billSection, billAccount);
           }
 
-          insertElement(billSection, _billAccount2);
+          if (billSectionStart === 1) {
+            var _billAccount = document.createElement('p');
+
+            _billAccount.classList.add('upcoming-bills__bill__bill-item__text');
+
+            _billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
+
+            _billAccount.textContent = "".concat(new Date(date).getDate(), " ").concat(months[new Date(date).getMonth()], " ").concat(new Date(date).getFullYear());
+            insertElement(billSection, _billAccount);
+          }
+
+          if (billSectionStart === 2) {
+            var _billAccount2 = document.createElement('p');
+
+            _billAccount2.classList.add('upcoming-bills__bill__bill-item__text');
+
+            _billAccount2.classList.add('r__upcoming-bills__bill__bill-item__text');
+
+            _billAccount2.textContent = transaction.lender;
+
+            if (!transaction.lender) {
+              _billAccount2.textContent = transaction.location;
+            }
+
+            insertElement(billSection, _billAccount2);
+          }
+
+          if (billSectionStart === 3) {
+            var _billAccount3 = document.createElement('p');
+
+            _billAccount3.classList.add('upcoming-bills__bill__bill-item__text');
+
+            _billAccount3.classList.add('r__upcoming-bills__bill__bill-item__text');
+
+            _billAccount3.textContent = money.format(transaction.amount);
+            insertElement(billSection, _billAccount3);
+          }
+
+          if (billSectionStart === 4) {
+            var paidOrNot = document.createElement('section');
+            paidOrNot.classList.add('upcoming-bills__bill__bill-item__checkbox-container');
+            paidOrNot.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container');
+            var paidOrNotInput = document.createElement('input');
+            paidOrNotInput.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
+            paidOrNotInput.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
+            paidOrNotInput.id = "paymentCheck";
+            paidOrNotInput.type = "checkbox";
+            var paidOrNotLabel = document.createElement('label');
+            paidOrNotLabel.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-label');
+            paidOrNotLabel.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-label');
+            paidOrNotLabel.textContent = "Payment Made";
+            paidOrNotLabel.for = "paymentCheck";
+            insertElement(paidOrNot, paidOrNotInput);
+            insertElement(paidOrNot, paidOrNotLabel);
+            insertElement(billSection, paidOrNot);
+          }
+
+          billSectionStart++;
         }
 
-        if (billSectionStart === 3) {
-          var _billAccount3 = document.createElement('p');
-
-          _billAccount3.classList.add('upcoming-bills__bill__bill-item__text');
-
-          _billAccount3.classList.add('r__upcoming-bills__bill__bill-item__text');
-
-          _billAccount3.textContent = money.format(transaction.amount);
-          insertElement(billSection, _billAccount3);
-        }
-
-        if (billSectionStart === 4) {
-          var paidOrNot = document.createElement('section');
-          paidOrNot.classList.add('upcoming-bills__bill__bill-item__checkbox-container');
-          paidOrNot.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container');
-          var paidOrNotInput = document.createElement('input');
-          paidOrNotInput.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
-          paidOrNotInput.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
-          paidOrNotInput.id = "paymentCheck";
-          paidOrNotInput.type = "checkbox";
-          var paidOrNotLabel = document.createElement('label');
-          paidOrNotLabel.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-label');
-          paidOrNotLabel.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-label');
-          paidOrNotLabel.textContent = "Payment Made";
-          paidOrNotLabel.for = "paymentCheck";
-          insertElement(paidOrNot, paidOrNotInput);
-          insertElement(paidOrNot, paidOrNotLabel);
-          insertElement(billSection, paidOrNot);
-        }
-
-        billSectionStart++;
-      }
-
-      insertElement(container, upcomingBill);
+        insertElement(container, upcomingBill);
+      });
     }
 
     if (transaction.timingOptions.paymentCycle === "Bi-Annual" || transaction.timingOptions.paymentCycle === "Bi-Monthly") {
-      while (billSectionStart < billSections) {
-        var _billSection = document.createElement('section');
+      var _index = i;
+      transaction.timingOptions.paymentSchedule.forEach(function (array, i) {
+        // let dateIndex = index;
+        array.forEach(function (date, i) {
+          var upcomingBill = document.createElement('section');
+          upcomingBill.classList.add('upcoming-bills__bill');
+          upcomingBill.classList.add('r__upcoming-bills__bill');
+          upcomingBill.dataset.transaction = _index;
+          var billSections = 5;
+          var billSectionStart = 0;
 
-        _billSection.classList.add('upcoming-bills__bill__bill-item');
+          while (billSectionStart < billSections) {
+            var billSection = document.createElement('section');
+            billSection.classList.add('upcoming-bills__bill__bill-item');
+            billSection.classList.add('r__upcoming-bills__bill__bill-item');
+            insertElement(upcomingBill, billSection);
 
-        _billSection.classList.add('r__upcoming-bills__bill__bill-item');
+            if (billSectionStart === 0) {
+              var billAccount = document.createElement('p');
+              billAccount.classList.add('upcoming-bills__bill__bill-item__text');
+              billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
+              billAccount.textContent = transaction.account;
+              insertElement(billSection, billAccount);
+            }
 
-        insertElement(upcomingBillTwo, _billSection);
+            if (billSectionStart === 1) {
+              var _billAccount4 = document.createElement('p');
 
-        if (billSectionStart === 0) {
-          var _billAccount4 = document.createElement('p');
+              _billAccount4.classList.add('upcoming-bills__bill__bill-item__text');
 
-          _billAccount4.classList.add('upcoming-bills__bill__bill-item__text');
+              _billAccount4.classList.add('r__upcoming-bills__bill__bill-item__text');
 
-          _billAccount4.classList.add('r__upcoming-bills__bill__bill-item__text');
+              _billAccount4.textContent = "".concat(new Date(date).getDate(), " ").concat(months[new Date(date).getMonth()], " ").concat(new Date(date).getFullYear());
+              insertElement(billSection, _billAccount4);
+            }
 
-          _billAccount4.textContent = transaction.account;
-          insertElement(_billSection, _billAccount4);
-        }
+            if (billSectionStart === 2) {
+              var _billAccount5 = document.createElement('p');
 
-        if (billSectionStart === 1) {
-          var _billAccount5 = document.createElement('p');
+              _billAccount5.classList.add('upcoming-bills__bill__bill-item__text');
 
-          _billAccount5.classList.add('upcoming-bills__bill__bill-item__text');
+              _billAccount5.classList.add('r__upcoming-bills__bill__bill-item__text');
 
-          _billAccount5.classList.add('r__upcoming-bills__bill__bill-item__text');
+              _billAccount5.textContent = transaction.lender;
 
-          _billAccount5.textContent = "".concat(new Date(transaction.timingOptions.dueDates[1]).getDate(), " ").concat(months[new Date(transaction.timingOptions.dueDates[1]).getMonth()], " ").concat(new Date(transaction.timingOptions.dueDates[1]).getFullYear());
-          insertElement(_billSection, _billAccount5);
-        }
+              if (!transaction.lender) {
+                _billAccount5.textContent = transaction.location;
+              }
 
-        if (billSectionStart === 2) {
-          var _billAccount6 = document.createElement('p');
+              insertElement(billSection, _billAccount5);
+            }
 
-          _billAccount6.classList.add('upcoming-bills__bill__bill-item__text');
+            if (billSectionStart === 3) {
+              var _billAccount6 = document.createElement('p');
 
-          _billAccount6.classList.add('r__upcoming-bills__bill__bill-item__text');
+              _billAccount6.classList.add('upcoming-bills__bill__bill-item__text');
 
-          _billAccount6.textContent = transaction.lender;
+              _billAccount6.classList.add('r__upcoming-bills__bill__bill-item__text');
 
-          if (!transaction.lender) {
-            _billAccount6.textContent = transaction.location;
+              _billAccount6.textContent = money.format(transaction.amount);
+              insertElement(billSection, _billAccount6);
+            }
+
+            if (billSectionStart === 4) {
+              var paidOrNot = document.createElement('section');
+              paidOrNot.classList.add('upcoming-bills__bill__bill-item__checkbox-container');
+              paidOrNot.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container');
+              var paidOrNotInput = document.createElement('input');
+              paidOrNotInput.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
+              paidOrNotInput.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
+              paidOrNotInput.id = "paymentCheck";
+              paidOrNotInput.type = "checkbox";
+              var paidOrNotLabel = document.createElement('label');
+              paidOrNotLabel.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-label');
+              paidOrNotLabel.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-label');
+              paidOrNotLabel.textContent = "Payment Made";
+              paidOrNotLabel.for = "paymentCheck";
+              insertElement(paidOrNot, paidOrNotInput);
+              insertElement(paidOrNot, paidOrNotLabel);
+              insertElement(billSection, paidOrNot);
+            }
+
+            billSectionStart++;
           }
 
-          insertElement(_billSection, _billAccount6);
-        }
-
-        if (billSectionStart === 3) {
-          var _billAccount7 = document.createElement('p');
-
-          _billAccount7.classList.add('upcoming-bills__bill__bill-item__text');
-
-          _billAccount7.classList.add('r__upcoming-bills__bill__bill-item__text');
-
-          _billAccount7.textContent = money.format(transaction.amount);
-          insertElement(_billSection, _billAccount7);
-        }
-
-        if (billSectionStart === 4) {
-          var _paidOrNot = document.createElement('section');
-
-          _paidOrNot.classList.add('upcoming-bills__bill__bill-item__checkbox-container');
-
-          _paidOrNot.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container');
-
-          var _paidOrNotInput = document.createElement('input');
-
-          _paidOrNotInput.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
-
-          _paidOrNotInput.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
-
-          _paidOrNotInput.id = "paymentCheck";
-          _paidOrNotInput.type = "checkbox";
-
-          var _paidOrNotLabel = document.createElement('label');
-
-          _paidOrNotLabel.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-label');
-
-          _paidOrNotLabel.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-label');
-
-          _paidOrNotLabel.textContent = "Payment Made";
-          _paidOrNotLabel.for = "paymentCheck";
-          insertElement(_paidOrNot, _paidOrNotInput);
-          insertElement(_paidOrNot, _paidOrNotLabel);
-          insertElement(_billSection, _paidOrNot);
-        }
-
-        billSectionStart++;
-      }
-
-      insertElement(container, upcomingBillTwo);
+          insertElement(container, upcomingBill);
+        });
+      });
     }
   });
 }; // SETTING UP BILL / TRANSACTION CALENDAR
@@ -12845,17 +12759,25 @@ var _setupBillCalendar = function _setupBillCalendar(budget, placeholderBudget, 
   var paymentChecks = document.querySelectorAll('.upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
   paymentChecks.forEach(function (check, i) {
     check.addEventListener('click', function (e) {
+      var upcomingBills = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(document.querySelectorAll('.upcoming-bills__bill'));
+
+      console.log(check.closest('.upcoming-bills__bill'));
+      var transactionIndex = Number(check.closest('.upcoming-bills__bill').dataset.transaction); // let numberIndex = Number(transactionIndex.dataset.transaction);
+      // console.log(numberIndex);
+
       var upcomingBill = document.querySelectorAll('.upcoming-bills__bill')[i];
+      console.log(upcomingBill);
       var accountType = upcomingBill.firstChild.firstChild.textContent;
       var transactionDate = upcomingBill.firstChild.nextSibling.firstChild.textContent; // let transactionDate = new Date(upcomingBill.firstChild.nextSibling.firstChild.textContent);
+      // THE INDEX JUST UNDERNEATH WILL NEED TO CHANGE TO THE INDEX OF THE ACTUAL UPCOMING BILL, SO WE'LL NEED THE DATASET OF THE BILL HERE.
 
-      var transactionLocation = placeholderBudget.transactions.plannedTransactions[i].location;
+      var transactionLocation = placeholderBudget.transactions.plannedTransactions[transactionIndex].location;
       var transactionAmount = upcomingBill.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1];
       var transactionBill = new _Transaction__WEBPACK_IMPORTED_MODULE_9__.Transaction({
         date: transactionDate,
         location: transactionLocation
       });
-      var currentBill = placeholderBudget.transactions.plannedTransactions[i];
+      var currentBill = placeholderBudget.transactions.plannedTransactions[transactionIndex];
 
       if (accountType === "Expense Fund") {
         transactionBill.transactionType = "Withdrawal";
@@ -13386,7 +13308,7 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
         };
       }
 
-      placeholderBudget._enterIncome({
+      placeholderBudget._updateBudget({
         updateObject: updateObject
       }, "Enter-Income");
 
@@ -13916,7 +13838,7 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
         updateObject.accounts = placeholderBudget.accounts;
         console.log(updateObject);
 
-        placeholderBudget._updateBudget("Update", "Enter Transaction", {
+        placeholderBudget._updateBudget({
           updateObject: updateObject
         }, "Dashboard");
 
@@ -13996,14 +13918,148 @@ var buildTransactionOptions = function buildTransactionOptions(options) {
   return transactionOptions;
 };
 
+var createMonthlyBudgetTransactionPlans = function createMonthlyBudgetTransactionPlans(budget, placeholderBudget, user) {
+  console.log(placeholderBudget.transactions.plannedTransactions, budget.transactions.plannedTransactions);
+  var updateObject = {
+    budgetId: budget._id,
+    userId: user._id
+  };
+  console.log(updateObject);
+  placeholderBudget.mainCategories.forEach(function (mc, i) {
+    mc.subCategories.forEach(function (sc, i) {
+      if (sc.timingOptions.paymentSchedule) {
+        var index = i;
+        sc.timingOptions.paymentSchedule.forEach(function (date, i) {
+          var found = false;
+          console.log(date, date.length);
+
+          if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(date) === "object" && date.length > 1) {
+            date.forEach(function (date) {
+              console.log(new Date(date), new Date(date).toISOString());
+            });
+          }
+
+          placeholderBudget.transactions.plannedTransactions.forEach(function (plan, i) {
+            // console.log(plan);
+            if (plan.account === "Monthly Budget" && plan.subAccount === mc.title && plan.name === sc.title) {
+              if (date.length > 1 && (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(date) === "object") {
+                console.log("Dates...");
+                date.forEach(function (newDate) {
+                  console.log(new Date(newDate).toISOString());
+
+                  if (plan.timingOptions.dueDates.includes(new Date(newDate).toISOString())) {
+                    console.log(plan);
+                    console.log(plan.timingOptions.dueDates);
+
+                    if (sc.goalAmount !== plan.amount) {
+                      return plan.amount = sc.goalAmount;
+                    }
+
+                    found = true;
+                    return console.log("Found |", "".concat(plan.account, " |"), "".concat(plan.subAccount, " |"), "".concat(plan.name, " |"), "".concat(plan.timingOptions.dueDates, " | ").concat(i));
+                  }
+                });
+              }
+
+              if (date.length === 24) {
+                if (plan.timingOptions.dueDates.includes(new Date(date).toISOString())) {
+                  console.log(plan);
+                  console.log(plan.timingOptions.dueDates);
+
+                  if (sc.goalAmount !== plan.amount) {
+                    return plan.amount = sc.goalAmount;
+                  }
+
+                  found = true;
+                  return console.log("Found |", "".concat(plan.account, " |"), "".concat(plan.subAccount, " |"), "".concat(plan.name, " |"), "".concat(plan.timingOptions.dueDates, " | ").concat(i));
+                }
+              }
+            }
+
+            if (plan.account !== "Monthly Budget" || plan.subAccount !== mc.title || plan.name !== sc.title) {
+              if (!plan.timingOptions.dueDates.includes(date)) {
+                console.log("Not Found", "".concat(plan.account, " |"), "".concat(plan.subAccount, " |"), "".concat(plan.name, " |"), "".concat(plan.timingOptions.dueDates, " | ").concat(i));
+              }
+            }
+          });
+
+          if (found === false && date.length === 24) {
+            var transactionPlan = {};
+            transactionPlan.date = sc.lastUpdated;
+            transactionPlan.type = "Withdrawal";
+            transactionPlan.location = "Unknown";
+            transactionPlan.account = "Monthly Budget";
+            transactionPlan.subAccount = mc.title;
+            transactionPlan.category = mc.title;
+            transactionPlan.subCategory = sc.title;
+            transactionPlan.name = sc.title;
+            transactionPlan.amount = sc.goalAmount;
+            transactionPlan.need = "Need";
+            transactionPlan.timingOptions = {
+              dueDates: [new Date(date)],
+              paymentSchedule: [new Date(date)],
+              paymentCycle: "Once"
+            };
+            transactionPlan.amountSaved = 0;
+            transactionPlan.paid = false;
+            transactionPlan.paidStatus = "Unpaid";
+            placeholderBudget.transactions.plannedTransactions.push(transactionPlan); // updateObject.transactions = placeholderBudget.transsactions;
+            // placeholderBudget._updateBudget({updateObject: updateObject}, `Transaction-Planner`);
+
+            console.log(sc, transactionPlan);
+          }
+
+          if (found === false && date.length === 2) {
+            date.forEach(function (date) {
+              var transactionPlan = {};
+              transactionPlan.date = sc.lastUpdated;
+              transactionPlan.type = "Withdrawal";
+              transactionPlan.location = "Unknown";
+              transactionPlan.account = "Monthly Budget";
+              transactionPlan.subAccount = mc.title;
+              transactionPlan.category = mc.title;
+              transactionPlan.subCategory = sc.title;
+              transactionPlan.name = sc.title;
+              transactionPlan.amount = sc.goalAmount;
+              transactionPlan.need = "Need";
+              transactionPlan.timingOptions = {
+                dueDates: [new Date(date)],
+                paymentSchedule: [new Date(date)],
+                paymentCycle: "Once"
+              };
+              transactionPlan.amountSaved = 0;
+              transactionPlan.paid = false;
+              transactionPlan.paidStatus = "Unpaid";
+              placeholderBudget.transactions.plannedTransactions.push(transactionPlan); // updateObject.transactions = placeholderBudget.transsactions;
+              // placeholderBudget._updateBudget({updateObject: updateObject}, `Transaction-Planner`);
+
+              console.log(sc, transactionPlan);
+            });
+          }
+        });
+      }
+    });
+  });
+  console.log(placeholderBudget.transactions);
+  updateObject.transactions = placeholderBudget.transactions;
+  console.log(updateObject);
+
+  placeholderBudget._updateBudget({
+    updateObject: updateObject
+  }, "Transaction-Planner");
+};
+
 var setupDashboard = function setupDashboard(user, budget, placeholderBudget) {
   console.log(user); // THE LOGGED USER ABOVE SHOWED THAT THE DATE THE PASSWORD WAS CHANGED IS STILL SHOWING. THAT NEEDS TO BE CHANGED.
   ////////////////////////////////////////////
   // WATCH THE BUDGET NAVIGATION
 
   _watchBudgetNavigation(); ////////////////////////////////////////////
-  // WATCH FOR ACCOUNT SELECTION
+  // CREATE TRANSACTION PLANS
 
+
+  createMonthlyBudgetTransactionPlans(budget, placeholderBudget, user); ////////////////////////////////////////////
+  // WATCH FOR ACCOUNT SELECTION
 
   _watchForTransactions(budget, placeholderBudget, user); ////////////////////////////////////////////
   // GET BANK ACCOUNT TOTAL

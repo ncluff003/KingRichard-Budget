@@ -49188,8 +49188,8 @@ html {
   width: 100%;
   display: flex;
   flex-direction: column;
-  flex-wrap: flex-start;
-  justify-content: center;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
   align-items: center;
   transform: rotate(0) translate(0, 0);
   padding: 0 0.3rem;

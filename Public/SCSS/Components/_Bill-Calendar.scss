@@ -82,7 +82,7 @@
     }
   }
   .upcoming-bills {
-    @include SizeAndPositioning(relative, min-content, 100%, flex, column, flex-start, center, center, 0, 0, 0);
+    @include SizeAndPositioning(relative, min-content, 100%, flex, column, nowrap, flex-start, center, 0, 0, 0);
     padding: 0 0.3rem;
     overflow-y: auto;
     &__bill {
