@@ -21,6 +21,10 @@ const showElement = (element) => {
   element.classList.toggle('open');
 };
 
+const _watchAccountManagement = (budget, placeholderBudget, user) => {
+  console.log(`Managing...`);
+};
+
 const processReceipt = (transaction, button) => {
   const viewReceiptButtons = [...document.querySelectorAll('.button--extra-extra-small__view-receipt')];
   const viewReceiptButtonIndex = viewReceiptButtons.indexOf(button);
@@ -203,9 +207,11 @@ const _watchRecentTransactions = (budget, placeholderBudget, user) => {
     placeholderBudget.transactions.recentTransactions.forEach((transaction, i) => {
       showRecentTransaction(budget, placeholderBudget, user, transaction);
     });
-    receiptModalClosureIcon.addEventListener('click', (e) => {
-      showElement(receiptModal);
-    });
+    if (receiptModalClosureIcon) {
+      receiptModalClosureIcon.addEventListener('click', (e) => {
+        showElement(receiptModal);
+      });
+    }
     if (viewReceiptButton) {
       viewReceiptButton.addEventListener('click', (e) => {
         showElement(receiptModal);
@@ -5277,12 +5283,6 @@ const createMonthlyBudgetTransactionPlans = (budget, placeholderBudget, user) =>
         // LOOPING THROUGH SUB CATEGORY PAYMENT SCHEDULE
         sc.timingOptions.paymentSchedule.forEach((date, i) => {
           let found = false;
-          console.log(date, date.length);
-          if (typeof date === `object` && date.length > 1) {
-            date.forEach((date) => {
-              console.log(new Date(date), new Date(date).toISOString());
-            });
-          }
           // LOOP THROUGH PLANNED TRANSACTIONS FOR EACH DATE IN PAYMENT SCHEDULE
           placeholderBudget.transactions.plannedTransactions.forEach((plan, i) => {
             // console.log(plan);
@@ -5290,28 +5290,20 @@ const createMonthlyBudgetTransactionPlans = (budget, placeholderBudget, user) =>
             if (plan.account === `Monthly Budget` && plan.subAccount === mc.title && plan.name === sc.title) {
               // THEN, CHECK IF THE PAYMENT SCHEDULE ITEM IS AN ARRAY OF 2 DATES OR 1.
               if (date.length > 1 && typeof date === `object`) {
-                console.log(`Dates...`);
                 date.forEach((newDate) => {
-                  console.log(new Date(newDate).toISOString());
-
                   if (plan.timingOptions.dueDates.includes(new Date(newDate).toISOString())) {
-                    console.log(plan);
-                    console.log(plan.timingOptions.dueDates);
                     if (sc.goalAmount !== plan.amount) {
                       found = true;
-                      console.log(`Found |`, `${plan.account} |`, `${plan.subAccount} |`, `${plan.name} |`, `${plan.timingOptions.dueDates} | ${i}`);
                       return (plan.amount = sc.goalAmount);
                     }
                     found = true;
-                    return console.log(`Found |`, `${plan.account} |`, `${plan.subAccount} |`, `${plan.name} |`, `${plan.timingOptions.dueDates} | ${i}`);
+                    return;
                   }
                 });
               }
               // IF PAYMENT SCHEDULE DATE IS ONE ITEM
               if (date.length === 24) {
                 if (plan.timingOptions.dueDates.includes(new Date(date).toISOString())) {
-                  console.log(plan);
-                  console.log(plan.timingOptions.dueDates);
                   if (sc.goalAmount !== plan.amount) {
                     return (plan.amount = sc.goalAmount);
                   }
@@ -5453,6 +5445,9 @@ export const _watchBudget = async () => {
   // WATCH FOR INCOME ALLOCATION
   _watchDebtManager(currentBudget, budget, user);
   ////////////////////////////////////////////
-  // WATCH FOR INCOME ALLOCATION
+  // WATCH RECENT TRANSACTIONS
   _watchRecentTransactions(currentBudget, budget, user);
+  ////////////////////////////////////////////
+  // WATCH ACCOUNT MANAGEMENT
+  _watchAccountManagement(currentBudget, budget, user);
 };

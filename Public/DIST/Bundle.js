@@ -8466,6 +8466,10 @@ var showElement = function showElement(element) {
   element.classList.toggle('open');
 };
 
+var _watchAccountManagement = function _watchAccountManagement(budget, placeholderBudget, user) {
+  console.log("Managing...");
+};
+
 var processReceipt = function processReceipt(transaction, button) {
   var viewReceiptButtons = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(document.querySelectorAll('.button--extra-extra-small__view-receipt'));
 
@@ -8687,9 +8691,12 @@ var _watchRecentTransactions = function _watchRecentTransactions(budget, placeho
     placeholderBudget.transactions.recentTransactions.forEach(function (transaction, i) {
       showRecentTransaction(budget, placeholderBudget, user, transaction);
     });
-    receiptModalClosureIcon.addEventListener('click', function (e) {
-      showElement(receiptModal);
-    });
+
+    if (receiptModalClosureIcon) {
+      receiptModalClosureIcon.addEventListener('click', function (e) {
+        showElement(receiptModal);
+      });
+    }
 
     if (viewReceiptButton) {
       viewReceiptButton.addEventListener('click', function (e) {
@@ -14247,15 +14254,7 @@ var createMonthlyBudgetTransactionPlans = function createMonthlyBudgetTransactio
         var index = i; // LOOPING THROUGH SUB CATEGORY PAYMENT SCHEDULE
 
         sc.timingOptions.paymentSchedule.forEach(function (date, i) {
-          var found = false;
-          console.log(date, date.length);
-
-          if ((0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(date) === "object" && date.length > 1) {
-            date.forEach(function (date) {
-              console.log(new Date(date), new Date(date).toISOString());
-            });
-          } // LOOP THROUGH PLANNED TRANSACTIONS FOR EACH DATE IN PAYMENT SCHEDULE
-
+          var found = false; // LOOP THROUGH PLANNED TRANSACTIONS FOR EACH DATE IN PAYMENT SCHEDULE
 
           placeholderBudget.transactions.plannedTransactions.forEach(function (plan, i) {
             // console.log(plan);
@@ -14263,22 +14262,15 @@ var createMonthlyBudgetTransactionPlans = function createMonthlyBudgetTransactio
             if (plan.account === "Monthly Budget" && plan.subAccount === mc.title && plan.name === sc.title) {
               // THEN, CHECK IF THE PAYMENT SCHEDULE ITEM IS AN ARRAY OF 2 DATES OR 1.
               if (date.length > 1 && (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(date) === "object") {
-                console.log("Dates...");
                 date.forEach(function (newDate) {
-                  console.log(new Date(newDate).toISOString());
-
                   if (plan.timingOptions.dueDates.includes(new Date(newDate).toISOString())) {
-                    console.log(plan);
-                    console.log(plan.timingOptions.dueDates);
-
                     if (sc.goalAmount !== plan.amount) {
                       found = true;
-                      console.log("Found |", "".concat(plan.account, " |"), "".concat(plan.subAccount, " |"), "".concat(plan.name, " |"), "".concat(plan.timingOptions.dueDates, " | ").concat(i));
                       return plan.amount = sc.goalAmount;
                     }
 
                     found = true;
-                    return console.log("Found |", "".concat(plan.account, " |"), "".concat(plan.subAccount, " |"), "".concat(plan.name, " |"), "".concat(plan.timingOptions.dueDates, " | ").concat(i));
+                    return;
                   }
                 });
               } // IF PAYMENT SCHEDULE DATE IS ONE ITEM
@@ -14286,9 +14278,6 @@ var createMonthlyBudgetTransactionPlans = function createMonthlyBudgetTransactio
 
               if (date.length === 24) {
                 if (plan.timingOptions.dueDates.includes(new Date(date).toISOString())) {
-                  console.log(plan);
-                  console.log(plan.timingOptions.dueDates);
-
                   if (sc.goalAmount !== plan.amount) {
                     return plan.amount = sc.goalAmount;
                   }
@@ -14457,12 +14446,16 @@ var _watchBudget = /*#__PURE__*/function () {
 
 
             _watchDebtManager(currentBudget, budget, user); ////////////////////////////////////////////
-            // WATCH FOR INCOME ALLOCATION
+            // WATCH RECENT TRANSACTIONS
 
 
-            _watchRecentTransactions(currentBudget, budget, user);
+            _watchRecentTransactions(currentBudget, budget, user); ////////////////////////////////////////////
+            // WATCH ACCOUNT MANAGEMENT
 
-          case 24:
+
+            _watchAccountManagement(currentBudget, budget, user);
+
+          case 25:
           case "end":
             return _context.stop();
         }
