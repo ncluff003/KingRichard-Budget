@@ -5,6 +5,7 @@ import * as Edit from './Budget-Creation';
 import * as Categories from './Budget-Categories';
 import * as Transaction from './Transaction';
 import * as Person from './Person';
+import * as Utility from './Utility';
 
 // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
@@ -20,11 +21,94 @@ const showElement = (element) => {
   element.classList.toggle('open');
 };
 
+const processReceipt = (transaction, button) => {
+  const viewReceiptButtons = [...document.querySelectorAll('.button--extra-extra-small__view-receipt')];
+  const viewReceiptButtonIndex = viewReceiptButtons.indexOf(button);
+  const receiptLocation = document.querySelector('.modal--receipt__digital-receipt__container__header__title');
+  receiptLocation.textContent = `${Utility._capitalize(transaction.location)}`;
+
+  const receiptItemContainer = document.querySelector('.modal--receipt__digital-receipt__container__item-container');
+  // receiptItemContainer.innerHTML = '';
+  while (receiptItemContainer.firstChild) {
+    receiptItemContainer.removeChild(receiptItemContainer.firstChild);
+  }
+  const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
+  let receiptTotal = 0;
+  transaction.receipt.forEach((receiptItem, i) => {
+    const receiptRow = document.createElement('section');
+    receiptRow.classList.add('modal--receipt__digital-receipt__container__item-container__row');
+    receiptRow.classList.add('r__modal--receipt__digital-receipt__container__item-container__row');
+    insertElement(receiptItemContainer, receiptRow);
+
+    const receiptDetailsSection = document.createElement('section');
+    receiptDetailsSection.classList.add('receipt-row__transaction-details-section');
+    receiptDetailsSection.classList.add('r__receipt-row__transaction-details-section');
+    insertElement(receiptRow, receiptDetailsSection);
+
+    const receiptCostSection = document.createElement('section');
+    receiptCostSection.classList.add('receipt-row__transaction-cost-section');
+    receiptCostSection.classList.add('r__receipt-row__transaction-cost-section');
+    insertElement(receiptRow, receiptCostSection);
+
+    if (receiptItem.account === `Debt`) {
+      const receiptItemDetail = document.createElement('p');
+      receiptItemDetail.classList.add('receipt-row__transaction-details-section__name');
+      receiptItemDetail.classList.add('r__receipt-row__transaction-details-section__name');
+      const receiptItemDetailTwo = document.createElement('p');
+      receiptItemDetailTwo.classList.add('receipt-row__transaction-details-section__name');
+      receiptItemDetailTwo.classList.add('r__receipt-row__transaction-details-section__name');
+      receiptItemDetail.textContent = `Unknown`;
+      if (receiptItem.lender) {
+        receiptItemDetail.textContent = `${receiptItem.lender}`;
+      }
+      receiptItemDetailTwo.textContent = `Unknown`;
+      if (receiptItem.description) {
+        receiptItemDetailTwo.textContent = `${receiptItem.description}`;
+      }
+      insertElement(receiptDetailsSection, receiptItemDetail);
+      insertElement(receiptDetailsSection, receiptItemDetailTwo);
+
+      const receiptCostDetail = document.createElement('p');
+      receiptCostDetail.classList.add('receipt-row__cost-section__cost');
+      receiptCostDetail.classList.add('r__receipt-row__cost-section__cost');
+      receiptCostDetail.textContent = money.format(receiptItem.amount);
+      insertElement(receiptCostSection, receiptCostDetail);
+    }
+    if (receiptItem.account !== `Debt`) {
+      const receiptItemDetail = document.createElement('p');
+      receiptItemDetail.classList.add('receipt-row__transaction-details-section__name');
+      receiptItemDetail.classList.add('r__receipt-row__transaction-details-section__name');
+      receiptItemDetail.textContent = Utility._capitalize(`paycheck`);
+      if (receiptItem.description) {
+        receiptItemDetail.textContent = Utility._capitalize(receiptItem.description);
+      }
+      insertElement(receiptDetailsSection, receiptItemDetail);
+
+      const receiptCostDetail = document.createElement('p');
+      receiptCostDetail.classList.add('receipt-row__cost-section__cost');
+      receiptCostDetail.classList.add('r__receipt-row__cost-section__cost');
+      receiptCostDetail.textContent = money.format(receiptItem.amount);
+      insertElement(receiptCostSection, receiptCostDetail);
+    }
+    receiptTotal += receiptItem.amount;
+  });
+  const receiptFooterTexts = document.querySelectorAll('.footer-title');
+  const receiptTotalAmount = receiptFooterTexts[1];
+  receiptTotalAmount.textContent = money.format(receiptTotal);
+};
+
+const getReceiptTotal = (transaction) => {
+  let total = 0;
+  transaction.receipt.forEach((receiptItem) => {
+    total += receiptItem.amount;
+  });
+  return total;
+};
+
 const showRecentTransaction = (budget, placeholderBudget, user, transaction) => {
+  const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const receiptModal = document.querySelector('.modal--receipt');
-  console.log(`Showing...`);
-  console.log(transaction);
   const recentTransactionDisplay = document.querySelector('.recent-transaction-display');
   const recentTransaction = document.createElement('section');
   recentTransaction.classList.add('recent-transaction');
@@ -52,7 +136,7 @@ const showRecentTransaction = (budget, placeholderBudget, user, transaction) => 
       insertElement(viewReceiptButton, viewReceiptButtonText);
       insertElement(recentTransactionSection, viewReceiptButton);
       viewReceiptButton.addEventListener('click', (e) => {
-        console.log(viewReceiptButton);
+        processReceipt(transaction, viewReceiptButton);
         showElement(receiptModal);
       });
     }
@@ -72,6 +156,38 @@ const showRecentTransaction = (budget, placeholderBudget, user, transaction) => 
       ).getFullYear()}`;
       insertElement(recentTransactionSection, transactionTypeText);
     }
+    if (sectionStart === 3) {
+      let transactionTypeText = document.createElement('p');
+      transactionTypeText.classList.add('recent-transaction__section__text');
+      transactionTypeText.classList.add('r__recent-transaction__section__text');
+      transactionTypeText.textContent = `${transaction.location}`;
+      insertElement(recentTransactionSection, transactionTypeText);
+    }
+    if (sectionStart === 4) {
+      let transactionTypeText = document.createElement('p');
+      transactionTypeText.classList.add('recent-transaction__section__text');
+      transactionTypeText.classList.add('r__recent-transaction__section__text');
+      transactionTypeText.textContent = `${transaction.receipt[0].account}`;
+      insertElement(recentTransactionSection, transactionTypeText);
+    }
+    if (sectionStart === 5) {
+      let receiptHeaders = Object.keys(transaction.receipt[0]);
+      let receiptValues = Object.values(transaction.receipt[0]);
+      let transactionSectionPart = document.createElement('section');
+      transactionSectionPart.classList.add('recent-transaction__section__part');
+      transactionSectionPart.classList.add('r__recent-transaction__section__part');
+      insertElement(recentTransactionSection, transactionSectionPart);
+      let transactionSectionPartHeader = document.createElement('p');
+      let transactionSectionPartText = document.createElement('p');
+      transactionSectionPartHeader.classList.add(`recent-transaction__section__part__header`);
+      transactionSectionPartHeader.classList.add(`r__recent-transaction__section__part__header`);
+      transactionSectionPartHeader.textContent = `Receipt Total`;
+      transactionSectionPartText.classList.add(`recent-transaction__section__part__text`);
+      transactionSectionPartText.classList.add(`r__recent-transaction__section__part__text`);
+      transactionSectionPartText.textContent = money.format(getReceiptTotal(transaction));
+      insertElement(transactionSectionPart, transactionSectionPartHeader);
+      insertElement(transactionSectionPart, transactionSectionPartText);
+    }
     insertElement(recentTransaction, recentTransactionSection);
     sectionStart++;
   }
@@ -83,23 +199,22 @@ const _watchRecentTransactions = (budget, placeholderBudget, user) => {
   const receiptModal = document.querySelector('.modal--receipt');
   const receiptModalClosureIcon = document.querySelector('.modal--receipt__closure-icon');
   const viewReceiptButton = document.querySelector('.button--extra-extra-small__view-receipt');
-  if (viewReceiptButton) {
-    viewReceiptButton.addEventListener('click', (e) => {
-      console.log(viewReceiptButton);
-      showElement(receiptModal);
+  if (placeholderBudget.transactions.recentTransactions.length > 0) {
+    placeholderBudget.transactions.recentTransactions.forEach((transaction, i) => {
+      showRecentTransaction(budget, placeholderBudget, user, transaction);
     });
     receiptModalClosureIcon.addEventListener('click', (e) => {
       showElement(receiptModal);
     });
-
-    placeholderBudget.transactions.recentTransactions.forEach((transaction, i) => {
-      showRecentTransaction(budget, placeholderBudget, user, transaction);
-    });
+    if (viewReceiptButton) {
+      viewReceiptButton.addEventListener('click', (e) => {
+        showElement(receiptModal);
+      });
+    }
   }
 };
 
 const payDebtOff = (budget, placeholderBudget, user, debt, paidSections, sectionStart) => {
-  console.log(`Paying Off...`, debt);
   const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   sectionStart = 0;
@@ -130,7 +245,6 @@ const payDebtOff = (budget, placeholderBudget, user, debt, paidSections, section
     debtSection.classList.add('form__section--debt-paid');
     debtSection.classList.add('r__form__section--debt-paid');
     insertElement(paidDebt, debtSection);
-    console.log(debtDisplay, sectionStart);
     if (sectionStart === 0) {
       const sectionHeader = document.createElement('p');
       sectionHeader.classList.add('debt--paid-title');
@@ -237,7 +351,6 @@ const payDebtOff = (budget, placeholderBudget, user, debt, paidSections, section
 const _watchDebtManager = (budget, placeholderBudget, user) => {
   console.log(`Watching Your Debts...`);
   const debtDisplay = document.querySelectorAll('.debt-display--paid');
-  console.log(debtDisplay);
   const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const addDebtButton = document.getElementById('addDebtButton');
@@ -256,7 +369,6 @@ const _watchDebtManager = (budget, placeholderBudget, user) => {
   if (addDebtButton) {
     addDebtButton.addEventListener('click', (e) => {
       e.preventDefault();
-      console.log(debtLender.value, Number(debtAmount.value), debtTypes.value);
       const debtDisplay = document.querySelector('.debt-display');
       const debt = document.createElement('section');
       let debtObject = {};
@@ -409,7 +521,6 @@ const _watchDebtManager = (budget, placeholderBudget, user) => {
       });
       budget.accounts.debt.debtAmount = Number(amountOfDebt);
       updateObject.accounts = budget.accounts;
-      console.log(updateObject);
       placeholderBudget._updateBudget({ updateObject: updateObject }, `Debt-Manager`);
       reloadPage();
     });
@@ -425,15 +536,11 @@ const _watchDebtManager = (budget, placeholderBudget, user) => {
         debts[i].remove();
       });
     });
-    console.log(debtPayOffButtons);
   }
 };
 
 const settleInvestment = (investments, index, dataIndex, budget, placeholderBudget, user) => {
-  console.log(investments, index);
-
   const investmentContainers = document.querySelectorAll('.investment-container');
-  console.log(investmentContainers);
 
   const settledInvestmentShellContainer = document.createElement('section');
   settledInvestmentShellContainer.classList.add('container--extra-small__margin-left-and-right');
@@ -509,7 +616,6 @@ const settleInvestment = (investments, index, dataIndex, budget, placeholderBudg
     const settledValueContainerText = document.createElement('p');
     settledValueContainerText.classList.add('investment-value-information--settled__text');
     settledValueContainerText.classList.add('r__investment-value-information--settled__text');
-    console.log(investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild.nextSibling, investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild);
 
     if (budget.investments[dataIndex].valueDifference < 0) {
       settledValueContainerText.textContent = `Lost ${Number(budget.investments[dataIndex].initialInvestment - budget.investments[dataIndex].currentValue)}`;
@@ -525,13 +631,11 @@ const settleInvestment = (investments, index, dataIndex, budget, placeholderBudg
     }
 
     const investmentInitialValue = Number(investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild.firstChild.nextSibling.textContent.split('$')[1]);
-    console.log(investmentInitialValue);
 
     insertElement(settledInvestmentValueContainer, settledValueContainerText);
   }
 
   if (!investments[index].firstChild.firstChild) {
-    console.log(investments[index].firstChild.nextSibling.firstChild);
     if (investments[index].firstChild.nextSibling.firstChild.classList.contains(`fa-chart-line`)) {
       investmentHeaderIcon.classList.add(`fa-chart-line`);
     }
@@ -576,7 +680,7 @@ const settleInvestment = (investments, index, dataIndex, budget, placeholderBudg
     const investmentDescriptionText = document.createElement('p');
     investmentDescriptionText.classList.add('investment-description__text');
     investmentDescriptionText.classList.add('r__investment-description__text');
-    console.log(investments[index].firstChild.nextSibling.nextSibling.firstChild.firstChild.textContent);
+
     investmentDescriptionText.textContent = investments[index].firstChild.nextSibling.nextSibling.firstChild.firstChild.textContent;
 
     insertElement(investmentDescription, investmentDescriptionText);
@@ -590,7 +694,6 @@ const settleInvestment = (investments, index, dataIndex, budget, placeholderBudg
     const settledValueContainerText = document.createElement('p');
     settledValueContainerText.classList.add('investment-value-information--settled__text');
     settledValueContainerText.classList.add('r__investment-value-information--settled__text');
-    console.log(investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild.nextSibling, investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild);
 
     if (budget.investments[index - 1].valueDifference < 0) {
       settledValueContainerText.textContent = `Lost ${Number(budget.investments[index - 1].initialInvestment - budget.investments[index - 1].currentValue)}`;
@@ -606,55 +709,42 @@ const settleInvestment = (investments, index, dataIndex, budget, placeholderBudg
     }
 
     const investmentInitialValue = Number(investments[index].firstChild.nextSibling.nextSibling.firstChild.nextSibling.firstChild.firstChild.nextSibling.textContent.split('$')[1]);
-    console.log(investmentInitialValue);
 
     insertElement(settledInvestmentValueContainer, settledValueContainerText);
   }
 
-  console.log(index, index - 1);
-
   budget.investments[dataIndex].settled = !budget.investments[dataIndex].settled;
-  console.log(budget.investments[index].settled);
   placeholderBudget._updateBudget({ updateObject: { budgetId: budget._id, userId: user._id, investments: budget.investments } }, `Investment-Planner`);
   investments[index].remove();
   window.location.reload();
 };
 
 const watchInvestmentValueConfirmationButtons = (event, index, secondaryIndex, budget, placeholderBudget, user) => {
-  // const e = event;
-  // e.preventDefault();
   const confirmInvestmentValueButtons = document.querySelectorAll('.button--confirm-value');
-  // const clicked = e.target.closest('.button--confirm-value');
-  // let index = [...confirmInvestmentValueButtons].indexOf(clicked);
-  console.log(index);
   let investments = budget.investments;
-  console.log(investments[index]);
   confirmInvestmentValueButtons[index].removeEventListener('click', watchInvestmentValueConfirmationButtons);
   const updateCurrentValueInput = document.querySelectorAll('.form__input--investment');
-  console.log(Number(updateCurrentValueInput[index].value));
+
   investments[secondaryIndex].currentValue = Number(updateCurrentValueInput[index].value);
   investments[secondaryIndex].valueDifference = Number(investments[secondaryIndex].currentValue - investments[secondaryIndex].initialInvestment);
   updateCurrentValueInput[index].setAttribute(`readonly`, true);
-  console.log(investments[secondaryIndex]);
+
   placeholderBudget._updateBudget({ updateObject: { budgetId: budget._id, userId: user._id, investments: investments } }, `Investment-Planner`);
 };
 
 const _watchForCurrentValueUpdate = (event, index, secondaryIndex, budget, placeholderBudget, user) => {
   const updateCurrentValueInput = document.querySelectorAll('.form__input--investment');
-  console.log(index);
+
   if (updateCurrentValueInput[index].readOnly === true) {
     updateCurrentValueInput[index].removeAttribute(`readonly`);
-    console.log(updateCurrentValueInput[index].readOnly);
+
     const confirmInvestmentValueButtons = document.querySelectorAll('.button--confirm-value');
-    console.log(confirmInvestmentValueButtons[index]);
+
     return confirmInvestmentValueButtons[index].addEventListener('click', watchInvestmentValueConfirmationButtons.bind(null, event, index, secondaryIndex, budget, placeholderBudget, user));
   }
-  console.log(updateCurrentValueInput[index].readOnly);
   if (updateCurrentValueInput[index].readOnly === '' || updateCurrentValueInput[index].readOnly === false) {
     return updateCurrentValueInput[index].setAttribute(`readonly`, true);
   }
-  console.log(`I want to update.`);
-  console.log(index);
 };
 
 const closeInvestmentCreation = (event) => {
@@ -668,7 +758,6 @@ const closeInvestmentCreation = (event) => {
 };
 
 const renderNewInvestment = (options) => {
-  console.log(options);
   const money = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -676,21 +765,19 @@ const renderNewInvestment = (options) => {
   });
   const investmentContainers = document.querySelectorAll('.container--extra-small__margin-left-and-right');
   const investmentAccountPreview = investmentContainers[0];
-  console.log(investmentContainers);
+
   const investmentShellContainer = document.createElement('section');
   investmentShellContainer.classList.add('container--extra-small__margin-left-and-right');
   investmentShellContainer.classList.add('r__container--extra-small__margin-left-and-right');
 
   investmentShellContainer.dataset.investment = options.budget.investments.length;
-  console.log(investmentShellContainer.dataset.investment);
 
   investmentAccountPreview.insertAdjacentElement('afterend', investmentShellContainer);
   const investmentHeader = document.createElement('section');
   investmentHeader.classList.add('container--extra-small__margin-left-and-right__header');
   investmentHeader.classList.add('r__container--extra-small__margin-left-and-right__header');
   insertElement(investmentShellContainer, investmentHeader);
-  // Set Appropriate Icons For Investment Type
-  // In order: Stock, Real Estate, Timeshare, Other
+
   const investmentTypeIcons = [`arrow-trend-up`, `sign-hanging`, `calendar-clock`, `asterisk`];
   const investmentHeaderIcon = document.createElement('i');
   investmentHeaderIcon.classList.add(`fas`);
@@ -858,37 +945,10 @@ const renderNewInvestment = (options) => {
 
   insertElement(investmentValueInformationContainerHalfTwo, investmentUpdateValueTextLink);
 
-  // window.location.reload();
-
-  // GLITCH: RIGHT NOW, WHAT HAPPENS IS THAT UNLESS THE USER REFRESHES THE BROWSER, THEY CANNOT UPDATE THE NEWEST OR NEWLY CREATED INVESTMENTS.
-  // Right now, I am forcing the reload of the page to solve the issue for now.  However, I would like to not have to do that.
-
-  // if (openUpdateCurrentValueButtons[0]) {
-  //   openUpdateCurrentValueButtons.forEach((button, i) => {
-  //     if (i === openUpdateCurrentValueButtons.length - 1) {
-  //       let index = i;
-  //       let boundListener = _watchForCurrentValueUpdate.bind(null, event, index, options.budget, options.placeholderBudget, options.user);
-  //       button.removeEventListener('click', boundListener);
-  //       const openUpdateCurrentValueButtons = document.querySelectorAll('.investment-value-information__half__update-text');
-  //     }
-  //   });
-  //   openUpdateCurrentValueButtons.forEach((button, i) => {
-  //     let index = i;
-  //     if (i === openUpdateCurrentValueButtons.length - 1) {
-  //       let boundListener = _watchForCurrentValueUpdate.bind(null, event, index, options.budget, options.placeholderBudget, options.user);
-  //       console.log(button, openUpdateCurrentValueButtons);
-  //       button.addEventListener('click', boundListener);
-  //     }
-  //   });
-  // }
+  reloadPage();
 };
 
 const _watchInvestmentPlanner = (budget, placeholderBudget, user) => {
-  // const longFormSections = document.querySelectorAll('.form__section--long');
-  // if (longFormSections[0] && longFormSections[0].classList.contains('closed')) {
-  //   console.log(longFormSections[0]);
-  // replaceClassName(longFormSections[0], `closed`, `open`);
-
   const addInvestmentButton = document.querySelector('.container--extra-small__margin-left-and-right__content-icon');
   const closeInvestmentCreationButton = document.querySelector('.button--borderless-narrow__investment');
   const addInvestmentForm = document.querySelector('.form--extra-small__column');
@@ -923,7 +983,6 @@ const _watchInvestmentPlanner = (budget, placeholderBudget, user) => {
       let valueDifference = Number(currentValue - initialInvestment.value);
       if (isNaN(valueDifference)) valueDifference = 0;
 
-      console.log(placeholderBudget.investments);
       placeholderBudget.investments.push({
         investmentType: investmentType.value,
         investmentName: investmentName.value,
@@ -932,7 +991,6 @@ const _watchInvestmentPlanner = (budget, placeholderBudget, user) => {
         currentValue: Number(currentValue),
         valueDifference: valueDifference,
       });
-      console.log(placeholderBudget.investments);
 
       placeholderBudget._updateBudget(
         {
@@ -955,20 +1013,18 @@ const _watchInvestmentPlanner = (budget, placeholderBudget, user) => {
       e.preventDefault();
       let clicked = e.target;
       const currentInvestmentIndex = [...investmentContainers].indexOf(clicked.closest('.container--extra-small__margin-left-and-right'));
-      console.log(currentInvestmentIndex, investmentContainers[currentInvestmentIndex].dataset.investment);
+
       settleInvestment(investmentContainers, currentInvestmentIndex, Number(investmentContainers[currentInvestmentIndex].dataset.investment), budget, placeholderBudget, user);
     });
   });
-  console.log(investmentValueInformationContainers, investmentContainers);
 
   const openUpdateCurrentValueButtons = document.querySelectorAll('.investment-value-information__half__update-text');
   if (openUpdateCurrentValueButtons[0]) {
     openUpdateCurrentValueButtons.forEach((button, i) => {
       let index = Number(openUpdateCurrentValueButtons[i].closest('.container--extra-small__margin-left-and-right').dataset.investment);
       let boundListener = _watchForCurrentValueUpdate.bind(null, event, i, index, budget, placeholderBudget, user);
-      // button.removeEventListener(`click`, boundListener);
+
       button.addEventListener('click', boundListener);
-      // addEventListener('click', myPrettyHandler.bind(null, event, arg1, ... ));
     });
   }
 };
@@ -1212,7 +1268,6 @@ const getPaymentSchedule = (paymentArray, paymentCycle, dates) => {
   let payments;
   let paymentStart = 0;
   console.log(`Scheduling Payments...`);
-  console.log(paymentCycle, dates);
   if (paymentCycle === `Once`) {
     paymentArray.push(dates[0]);
     return paymentArray;
@@ -1394,7 +1449,6 @@ const replaceClassName = (element, classReplaced, replacementClass) => {
 };
 
 const finalizeTransactionPlan = (budget, placeholderBudget, user, selects, smallInputs, mediumInputs) => {
-  console.log(budget, user);
   let updateObject = {
     budgetId: budget._id,
     userId: user._id,
@@ -1403,9 +1457,6 @@ const finalizeTransactionPlan = (budget, placeholderBudget, user, selects, small
   updateObject.transactions = {};
   updateObject.transactions.recentTransactions = budget.transactions.recentTransactions;
   updateObject.transactions.plannedTransactions = budget.transactions.plannedTransactions;
-  console.log(selects[0].value);
-
-  // The ones before the conditional should be the ones which ALL transaction plans should have.
 
   plannedTransaction.date = new Date();
   plannedTransaction.type = `Withdrawal`;
@@ -1421,7 +1472,6 @@ const finalizeTransactionPlan = (budget, placeholderBudget, user, selects, small
     plannedTransaction.timingOptions.dueDates = [];
     plannedTransaction.timingOptions.dueDates.push(getDatabaseDueDate(mediumInputs[0].value));
     plannedTransaction.timingOptions.dueDates.push(getDatabaseDueDate(mediumInputs[1].value));
-    console.log(`2 Payments..`);
   }
   plannedTransaction.timingOptions.paymentSchedule = [];
   // After the due dates, it is setting the payment schedule using the selected payment cycle.
@@ -1431,10 +1481,9 @@ const finalizeTransactionPlan = (budget, placeholderBudget, user, selects, small
   plannedTransaction.paid = false;
   plannedTransaction.paidStatus = `Unpaid`;
 
-  console.log(selects);
   if (selects[0].value === `Expense Fund`) {
     plannedTransaction.subAccount = selects[1].value;
-    console.log(smallInputs[2].closest('.form__section--transaction-plan').nextSibling.nextSibling.nextSibling.firstChild.firstChild.nextSibling.nextSibling);
+
     const surplusSwitch = smallInputs[2].closest('.form__section--transaction-plan').nextSibling.nextSibling.nextSibling.firstChild.firstChild.nextSibling.nextSibling;
     plannedTransaction.need = `Need`;
     if (surplusSwitch.classList.contains('surplus-container__switch--switched')) {
@@ -1531,10 +1580,8 @@ const buildTransactionPlan = (budget, placeholderBudget, user, number, numberOfS
       if (number === 2) {
         // INSERT DOM ELEMENTS INTO FIRST PART
         transactionPlanPartHeaderText.textContent = `Transaction Type`;
-        console.log(transactionPlanSelects[0].value);
-        console.log(transactionPlanSelects[1], transactionPlanSelects[1].value);
+
         if (transactionPlanSelects[0].value === `Expense Fund`) {
-          console.log(transactionPlanSelects[1], transactionPlanSelects[1].value);
           transactionPlanPartText.textContent = `${transactionPlanSelects[1].value}`;
         }
         if (transactionPlanSelects[0].value === `Savings Fund`) {
@@ -2051,7 +2098,6 @@ const updateTransactionPlanningAccountDisplays = (budget, placeholderBudget, use
 };
 
 const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
-  console.log(`These are existing.`);
   const transactionPlanCreation = document.querySelector('.transaction-plan-creation');
   const transactionPlans = [];
   let numberOfSections;
@@ -2059,10 +2105,6 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
     transactionPlans.push(transaction);
     transactionPlans.sort((a, b) => new Date(a.date) - new Date(b.date));
   });
-  console.log(
-    transactionPlans
-    // transactionPlans.sort((a, b) => new Date(b.date) - new Date(a.date))
-  );
   const money = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -2191,11 +2233,9 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
             transactionPlanInput.min = 0;
             transactionPlanInput.placeholder = '$0.00';
             transactionPlanButton.addEventListener('click', (e) => {
-              console.log(transactionPlanInput.value, typeof transactionPlanInput.value);
-              console.log(transactionPlanButton.parentElement.previousSibling);
               transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
               transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
-              console.log(transaction.amountSaved);
+
               let updateObject = {
                 budgetId: budget._id,
                 userId: user._id,
@@ -2343,11 +2383,8 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
             transactionPlanInput.min = 0;
             transactionPlanInput.placeholder = '$0.00';
             transactionPlanButton.addEventListener('click', (e) => {
-              console.log(transactionPlanInput.value, typeof transactionPlanInput.value);
-              console.log(transactionPlanButton.parentElement.previousSibling);
               transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
               transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
-              console.log(transaction.amountSaved, transactionPlans);
               let updateObject = {
                 budgetId: budget._id,
                 userId: user._id,
@@ -2518,11 +2555,9 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
             transactionPlanInput.min = 0;
             transactionPlanInput.placeholder = '$0.00';
             transactionPlanButton.addEventListener('click', (e) => {
-              console.log(transactionPlanInput.value, typeof transactionPlanInput.value);
-              console.log(transactionPlanButton.parentElement.previousSibling);
               transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
               transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
-              console.log(transaction.amountSaved);
+
               let updateObject = {
                 budgetId: budget._id,
                 userId: user._id,
@@ -2678,11 +2713,9 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
             transactionPlanInput.min = 0;
             transactionPlanInput.placeholder = '$0.00';
             transactionPlanButton.addEventListener('click', (e) => {
-              console.log(transactionPlanInput.value, typeof transactionPlanInput.value);
-              console.log(transactionPlanButton.parentElement.previousSibling);
               transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
               transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
-              console.log(transaction.amountSaved);
+
               let updateObject = {
                 budgetId: budget._id,
                 userId: user._id,
@@ -3125,7 +3158,6 @@ const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
 
       // THIS IS WHERE IT WOULD BE GOOD TO HAVE THE INDIVIDUAL BUTTONS CAUSE ANOTHER UPDATE
       placeholderBudget._updateSubCategory(`Creation`, `Surplus`, { mainIndex: categoryNumber, subIndex: subArray.indexOf(clicked.closest('.sub-category')) });
-      console.log(placeholderBudget);
     });
     const surplusCategoryTrashIcon = surplusSwitch.parentElement.nextSibling;
 
@@ -3157,9 +3189,8 @@ const _watchForBudgetCategoryUpdates = (budget, placeholderBudget, user) => {
   const updateCategoryButton = document.querySelectorAll('.button--large__thin')[0];
   updateCategoryButton.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log(placeholderBudget);
+
     placeholderBudget.mainCategories.forEach((mc, i) => {
-      console.log(mc);
       if (!mc.createdAt) {
         mc.createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
       }
@@ -3351,11 +3382,11 @@ const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
             let percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
             let timingOptions = bmc.subCategories[i].timingOptions;
             let createdAt = bmc.subCategories[i].createdAt;
-            console.log(createdAt);
+
             if (!bmc.subCategories[i].createdAt) {
               createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
             }
-            console.log(createdAt);
+
             let lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
 
             temporaryObject.subCategories.push(
@@ -3370,7 +3401,7 @@ const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
                 [`timingOptions`, timingOptions],
               ])
             );
-            console.log(temporaryObject);
+
             if (temporaryObject.subCategories.length === tempArray.length) {
               mainCategoryIndex++;
               if (temporaryObject === undefined) return;
@@ -3399,11 +3430,11 @@ const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
             let percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
             let timingOptions = budget.mainCategories[mainCategoryIndex].subCategories[i].timingOptions;
             let createdAt = budget.mainCategories[mainCategoryIndex].subCategories[i].createdAt;
-            console.log(createdAt);
+
             if (!budget.mainCategories[mainCategoryIndex].subCategories[i].createdAt) {
               createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
             }
-            console.log(createdAt);
+
             let lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
 
             updateObject.mainCategories[mainCategoryIndex].subCategories.push(
@@ -3774,8 +3805,7 @@ const selectDayAndShowTransactions = (event) => {
   const monthHeader = document.querySelector('.bill-calendar__header__title');
   const splitMonthHeader = monthHeader.textContent.split(' ');
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  console.log(monthHeader.textContent.split(' '));
-  console.log(Number(selectedDay.textContent));
+
   upcomingTransactions.forEach((transaction, i) => {
     transaction.classList.remove('open');
     transaction.classList.add('closed');
@@ -4008,7 +4038,7 @@ const _setupBillCalendar = (budget, placeholderBudget, user) => {
 
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const upcomingTransactions = document.querySelectorAll('.upcoming-bills__bill');
-  console.log(upcomingTransactions);
+
   let currentDay = document.querySelector('.bill-calendar__days__single-day--current-day');
   const monthHeader = document.querySelector('.bill-calendar__header__title');
   if (monthHeader) {
@@ -4028,15 +4058,13 @@ const _setupBillCalendar = (budget, placeholderBudget, user) => {
   paymentChecks.forEach((check, i) => {
     check.addEventListener('click', (e) => {
       let upcomingBills = [...document.querySelectorAll('.upcoming-bills__bill')];
-      console.log(check.closest('.upcoming-bills__bill'));
+
       let transactionIndex = Number(check.closest('.upcoming-bills__bill').dataset.transaction);
-      // let numberIndex = Number(transactionIndex.dataset.transaction);
-      // console.log(numberIndex);
+
       let upcomingBill = document.querySelectorAll('.upcoming-bills__bill')[i];
-      console.log(upcomingBill);
+
       let accountType = upcomingBill.firstChild.firstChild.textContent;
       let transactionDate = upcomingBill.firstChild.nextSibling.firstChild.textContent;
-      // let transactionDate = new Date(upcomingBill.firstChild.nextSibling.firstChild.textContent);
 
       // THE INDEX JUST UNDERNEATH WILL NEED TO CHANGE TO THE INDEX OF THE ACTUAL UPCOMING BILL, SO WE'LL NEED THE DATASET OF THE BILL HERE.
       let transactionLocation = placeholderBudget.transactions.plannedTransactions[transactionIndex].location;

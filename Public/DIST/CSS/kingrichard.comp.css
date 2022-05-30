@@ -830,7 +830,7 @@ html {
   font-size: 1.2rem;
 }
 .recent-transaction__section__part__header {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   text-decoration: underline;
 }
 
@@ -50334,7 +50334,7 @@ html {
 .recent-transaction__section__part {
   position: relative;
   height: 100%;
-  width: 20%;
+  width: 16.6666666667%;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -50353,9 +50353,9 @@ html {
 .recent-transaction__section:nth-of-type(6) {
   width: 50%;
   margin: 0 0 0 0.2rem;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   align-items: flex-start;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 /*

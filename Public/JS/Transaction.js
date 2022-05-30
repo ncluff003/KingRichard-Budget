@@ -16,6 +16,10 @@ export class Transaction {
         receiptObject.grossAmount = options.grossAmount;
         receiptObject.netAmount = options.netAmount;
         receiptObject.amount = options.deposited;
+        receiptObject.description = `Paycheck`;
+        if (options.description) {
+          receiptObject.description = options.description;
+        }
         if (options.user.latterDaySaint === true) {
           if (options.budget.accounts.tithing.tithingSetting !== `Surplus`) {
             receiptObject.tithed = options.tithed;

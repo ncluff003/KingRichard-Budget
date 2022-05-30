@@ -8439,7 +8439,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
 /* harmony import */ var _Transaction__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Transaction */ "./Public/JS/Transaction.js");
 /* harmony import */ var _Person__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Person */ "./Public/JS/Person.js");
+/* harmony import */ var _Utility__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Utility */ "./Public/JS/Utility.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
 
 
 
@@ -8464,11 +8466,114 @@ var showElement = function showElement(element) {
   element.classList.toggle('open');
 };
 
+var processReceipt = function processReceipt(transaction, button) {
+  var viewReceiptButtons = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(document.querySelectorAll('.button--extra-extra-small__view-receipt'));
+
+  var viewReceiptButtonIndex = viewReceiptButtons.indexOf(button);
+  var receiptLocation = document.querySelector('.modal--receipt__digital-receipt__container__header__title');
+  receiptLocation.textContent = "".concat(_Utility__WEBPACK_IMPORTED_MODULE_11__._capitalize(transaction.location));
+  var receiptItemContainer = document.querySelector('.modal--receipt__digital-receipt__container__item-container'); // receiptItemContainer.innerHTML = '';
+
+  while (receiptItemContainer.firstChild) {
+    receiptItemContainer.removeChild(receiptItemContainer.firstChild);
+  }
+
+  var money = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+  });
+  var receiptTotal = 0;
+  transaction.receipt.forEach(function (receiptItem, i) {
+    var receiptRow = document.createElement('section');
+    receiptRow.classList.add('modal--receipt__digital-receipt__container__item-container__row');
+    receiptRow.classList.add('r__modal--receipt__digital-receipt__container__item-container__row');
+    insertElement(receiptItemContainer, receiptRow);
+    var receiptDetailsSection = document.createElement('section');
+    receiptDetailsSection.classList.add('receipt-row__transaction-details-section');
+    receiptDetailsSection.classList.add('r__receipt-row__transaction-details-section');
+    insertElement(receiptRow, receiptDetailsSection);
+    var receiptCostSection = document.createElement('section');
+    receiptCostSection.classList.add('receipt-row__transaction-cost-section');
+    receiptCostSection.classList.add('r__receipt-row__transaction-cost-section');
+    insertElement(receiptRow, receiptCostSection);
+
+    if (receiptItem.account === "Debt") {
+      var receiptItemDetail = document.createElement('p');
+      receiptItemDetail.classList.add('receipt-row__transaction-details-section__name');
+      receiptItemDetail.classList.add('r__receipt-row__transaction-details-section__name');
+      var receiptItemDetailTwo = document.createElement('p');
+      receiptItemDetailTwo.classList.add('receipt-row__transaction-details-section__name');
+      receiptItemDetailTwo.classList.add('r__receipt-row__transaction-details-section__name');
+      receiptItemDetail.textContent = "Unknown";
+
+      if (receiptItem.lender) {
+        receiptItemDetail.textContent = "".concat(receiptItem.lender);
+      }
+
+      receiptItemDetailTwo.textContent = "Unknown";
+
+      if (receiptItem.description) {
+        receiptItemDetailTwo.textContent = "".concat(receiptItem.description);
+      }
+
+      insertElement(receiptDetailsSection, receiptItemDetail);
+      insertElement(receiptDetailsSection, receiptItemDetailTwo);
+      var receiptCostDetail = document.createElement('p');
+      receiptCostDetail.classList.add('receipt-row__cost-section__cost');
+      receiptCostDetail.classList.add('r__receipt-row__cost-section__cost');
+      receiptCostDetail.textContent = money.format(receiptItem.amount);
+      insertElement(receiptCostSection, receiptCostDetail);
+    }
+
+    if (receiptItem.account !== "Debt") {
+      var _receiptItemDetail = document.createElement('p');
+
+      _receiptItemDetail.classList.add('receipt-row__transaction-details-section__name');
+
+      _receiptItemDetail.classList.add('r__receipt-row__transaction-details-section__name');
+
+      _receiptItemDetail.textContent = _Utility__WEBPACK_IMPORTED_MODULE_11__._capitalize("paycheck");
+
+      if (receiptItem.description) {
+        _receiptItemDetail.textContent = _Utility__WEBPACK_IMPORTED_MODULE_11__._capitalize(receiptItem.description);
+      }
+
+      insertElement(receiptDetailsSection, _receiptItemDetail);
+
+      var _receiptCostDetail = document.createElement('p');
+
+      _receiptCostDetail.classList.add('receipt-row__cost-section__cost');
+
+      _receiptCostDetail.classList.add('r__receipt-row__cost-section__cost');
+
+      _receiptCostDetail.textContent = money.format(receiptItem.amount);
+      insertElement(receiptCostSection, _receiptCostDetail);
+    }
+
+    receiptTotal += receiptItem.amount;
+  });
+  var receiptFooterTexts = document.querySelectorAll('.footer-title');
+  var receiptTotalAmount = receiptFooterTexts[1];
+  receiptTotalAmount.textContent = money.format(receiptTotal);
+};
+
+var getReceiptTotal = function getReceiptTotal(transaction) {
+  var total = 0;
+  transaction.receipt.forEach(function (receiptItem) {
+    total += receiptItem.amount;
+  });
+  return total;
+};
+
 var showRecentTransaction = function showRecentTransaction(budget, placeholderBudget, user, transaction) {
+  var money = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+  });
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   var receiptModal = document.querySelector('.modal--receipt');
-  console.log("Showing...");
-  console.log(transaction);
   var recentTransactionDisplay = document.querySelector('.recent-transaction-display');
   var recentTransaction = document.createElement('section');
   recentTransaction.classList.add('recent-transaction');
@@ -8499,7 +8604,7 @@ var showRecentTransaction = function showRecentTransaction(budget, placeholderBu
         insertElement(viewReceiptButton, viewReceiptButtonText);
         insertElement(recentTransactionSection, viewReceiptButton);
         viewReceiptButton.addEventListener('click', function (e) {
-          console.log(viewReceiptButton);
+          processReceipt(transaction, viewReceiptButton);
           showElement(receiptModal);
         });
       })();
@@ -8524,6 +8629,47 @@ var showRecentTransaction = function showRecentTransaction(budget, placeholderBu
       insertElement(recentTransactionSection, _transactionTypeText);
     }
 
+    if (sectionStart === 3) {
+      var _transactionTypeText2 = document.createElement('p');
+
+      _transactionTypeText2.classList.add('recent-transaction__section__text');
+
+      _transactionTypeText2.classList.add('r__recent-transaction__section__text');
+
+      _transactionTypeText2.textContent = "".concat(transaction.location);
+      insertElement(recentTransactionSection, _transactionTypeText2);
+    }
+
+    if (sectionStart === 4) {
+      var _transactionTypeText3 = document.createElement('p');
+
+      _transactionTypeText3.classList.add('recent-transaction__section__text');
+
+      _transactionTypeText3.classList.add('r__recent-transaction__section__text');
+
+      _transactionTypeText3.textContent = "".concat(transaction.receipt[0].account);
+      insertElement(recentTransactionSection, _transactionTypeText3);
+    }
+
+    if (sectionStart === 5) {
+      var receiptHeaders = Object.keys(transaction.receipt[0]);
+      var receiptValues = Object.values(transaction.receipt[0]);
+      var transactionSectionPart = document.createElement('section');
+      transactionSectionPart.classList.add('recent-transaction__section__part');
+      transactionSectionPart.classList.add('r__recent-transaction__section__part');
+      insertElement(recentTransactionSection, transactionSectionPart);
+      var transactionSectionPartHeader = document.createElement('p');
+      var transactionSectionPartText = document.createElement('p');
+      transactionSectionPartHeader.classList.add("recent-transaction__section__part__header");
+      transactionSectionPartHeader.classList.add("r__recent-transaction__section__part__header");
+      transactionSectionPartHeader.textContent = "Receipt Total";
+      transactionSectionPartText.classList.add("recent-transaction__section__part__text");
+      transactionSectionPartText.classList.add("r__recent-transaction__section__part__text");
+      transactionSectionPartText.textContent = money.format(getReceiptTotal(transaction));
+      insertElement(transactionSectionPart, transactionSectionPartHeader);
+      insertElement(transactionSectionPart, transactionSectionPartText);
+    }
+
     insertElement(recentTransaction, recentTransactionSection);
     sectionStart++;
   }
@@ -8537,22 +8683,23 @@ var _watchRecentTransactions = function _watchRecentTransactions(budget, placeho
   var receiptModalClosureIcon = document.querySelector('.modal--receipt__closure-icon');
   var viewReceiptButton = document.querySelector('.button--extra-extra-small__view-receipt');
 
-  if (viewReceiptButton) {
-    viewReceiptButton.addEventListener('click', function (e) {
-      console.log(viewReceiptButton);
-      showElement(receiptModal);
+  if (placeholderBudget.transactions.recentTransactions.length > 0) {
+    placeholderBudget.transactions.recentTransactions.forEach(function (transaction, i) {
+      showRecentTransaction(budget, placeholderBudget, user, transaction);
     });
     receiptModalClosureIcon.addEventListener('click', function (e) {
       showElement(receiptModal);
     });
-    placeholderBudget.transactions.recentTransactions.forEach(function (transaction, i) {
-      showRecentTransaction(budget, placeholderBudget, user, transaction);
-    });
+
+    if (viewReceiptButton) {
+      viewReceiptButton.addEventListener('click', function (e) {
+        showElement(receiptModal);
+      });
+    }
   }
 };
 
 var payDebtOff = function payDebtOff(budget, placeholderBudget, user, debt, paidSections, sectionStart) {
-  console.log("Paying Off...", debt);
   var money = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -8587,7 +8734,6 @@ var payDebtOff = function payDebtOff(budget, placeholderBudget, user, debt, paid
     debtSection.classList.add('form__section--debt-paid');
     debtSection.classList.add('r__form__section--debt-paid');
     insertElement(paidDebt, debtSection);
-    console.log(debtDisplay, sectionStart);
 
     if (sectionStart === 0) {
       var sectionHeader = document.createElement('p');
@@ -8724,7 +8870,6 @@ var payDebtOff = function payDebtOff(budget, placeholderBudget, user, debt, paid
 var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, user) {
   console.log("Watching Your Debts...");
   var debtDisplay = document.querySelectorAll('.debt-display--paid');
-  console.log(debtDisplay);
   var money = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -8746,7 +8891,6 @@ var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, us
   if (addDebtButton) {
     addDebtButton.addEventListener('click', function (e) {
       e.preventDefault();
-      console.log(debtLender.value, Number(debtAmount.value), debtTypes.value);
       var debtDisplay = document.querySelector('.debt-display');
       var debt = document.createElement('section');
       var debtObject = {};
@@ -8923,7 +9067,6 @@ var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, us
       });
       budget.accounts.debt.debtAmount = Number(amountOfDebt);
       updateObject.accounts = budget.accounts;
-      console.log(updateObject);
 
       placeholderBudget._updateBudget({
         updateObject: updateObject
@@ -8945,14 +9088,11 @@ var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, us
         _debts[i].remove();
       });
     });
-    console.log(debtPayOffButtons);
   }
 };
 
 var settleInvestment = function settleInvestment(investments, index, dataIndex, budget, placeholderBudget, user) {
-  console.log(investments, index);
   var investmentContainers = document.querySelectorAll('.investment-container');
-  console.log(investmentContainers);
   var settledInvestmentShellContainer = document.createElement('section');
   settledInvestmentShellContainer.classList.add('container--extra-small__margin-left-and-right');
   settledInvestmentShellContainer.classList.add('r__container--extra-small__margin-left-and-right');
@@ -9015,7 +9155,6 @@ var settleInvestment = function settleInvestment(investments, index, dataIndex, 
     var settledValueContainerText = document.createElement('p');
     settledValueContainerText.classList.add('investment-value-information--settled__text');
     settledValueContainerText.classList.add('r__investment-value-information--settled__text');
-    console.log(investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild.nextSibling, investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild);
 
     if (budget.investments[dataIndex].valueDifference < 0) {
       settledValueContainerText.textContent = "Lost ".concat(Number(budget.investments[dataIndex].initialInvestment - budget.investments[dataIndex].currentValue));
@@ -9033,13 +9172,10 @@ var settleInvestment = function settleInvestment(investments, index, dataIndex, 
     }
 
     var investmentInitialValue = Number(investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild.firstChild.nextSibling.textContent.split('$')[1]);
-    console.log(investmentInitialValue);
     insertElement(settledInvestmentValueContainer, settledValueContainerText);
   }
 
   if (!investments[index].firstChild.firstChild) {
-    console.log(investments[index].firstChild.nextSibling.firstChild);
-
     if (investments[index].firstChild.nextSibling.firstChild.classList.contains("fa-chart-line")) {
       investmentHeaderIcon.classList.add("fa-chart-line");
     }
@@ -9097,7 +9233,6 @@ var settleInvestment = function settleInvestment(investments, index, dataIndex, 
 
     _investmentDescriptionText.classList.add('r__investment-description__text');
 
-    console.log(investments[index].firstChild.nextSibling.nextSibling.firstChild.firstChild.textContent);
     _investmentDescriptionText.textContent = investments[index].firstChild.nextSibling.nextSibling.firstChild.firstChild.textContent;
     insertElement(_investmentDescription, _investmentDescriptionText);
 
@@ -9114,8 +9249,6 @@ var settleInvestment = function settleInvestment(investments, index, dataIndex, 
     _settledValueContainerText.classList.add('investment-value-information--settled__text');
 
     _settledValueContainerText.classList.add('r__investment-value-information--settled__text');
-
-    console.log(investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild.nextSibling, investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild);
 
     if (budget.investments[index - 1].valueDifference < 0) {
       _settledValueContainerText.textContent = "Lost ".concat(Number(budget.investments[index - 1].initialInvestment - budget.investments[index - 1].currentValue));
@@ -9134,13 +9267,10 @@ var settleInvestment = function settleInvestment(investments, index, dataIndex, 
 
     var _investmentInitialValue = Number(investments[index].firstChild.nextSibling.nextSibling.firstChild.nextSibling.firstChild.firstChild.nextSibling.textContent.split('$')[1]);
 
-    console.log(_investmentInitialValue);
     insertElement(_settledInvestmentValueContainer, _settledValueContainerText);
   }
 
-  console.log(index, index - 1);
   budget.investments[dataIndex].settled = !budget.investments[dataIndex].settled;
-  console.log(budget.investments[index].settled);
 
   placeholderBudget._updateBudget({
     updateObject: {
@@ -9155,21 +9285,13 @@ var settleInvestment = function settleInvestment(investments, index, dataIndex, 
 };
 
 var watchInvestmentValueConfirmationButtons = function watchInvestmentValueConfirmationButtons(event, index, secondaryIndex, budget, placeholderBudget, user) {
-  // const e = event;
-  // e.preventDefault();
-  var confirmInvestmentValueButtons = document.querySelectorAll('.button--confirm-value'); // const clicked = e.target.closest('.button--confirm-value');
-  // let index = [...confirmInvestmentValueButtons].indexOf(clicked);
-
-  console.log(index);
+  var confirmInvestmentValueButtons = document.querySelectorAll('.button--confirm-value');
   var investments = budget.investments;
-  console.log(investments[index]);
   confirmInvestmentValueButtons[index].removeEventListener('click', watchInvestmentValueConfirmationButtons);
   var updateCurrentValueInput = document.querySelectorAll('.form__input--investment');
-  console.log(Number(updateCurrentValueInput[index].value));
   investments[secondaryIndex].currentValue = Number(updateCurrentValueInput[index].value);
   investments[secondaryIndex].valueDifference = Number(investments[secondaryIndex].currentValue - investments[secondaryIndex].initialInvestment);
   updateCurrentValueInput[index].setAttribute("readonly", true);
-  console.log(investments[secondaryIndex]);
 
   placeholderBudget._updateBudget({
     updateObject: {
@@ -9182,24 +9304,16 @@ var watchInvestmentValueConfirmationButtons = function watchInvestmentValueConfi
 
 var _watchForCurrentValueUpdate = function _watchForCurrentValueUpdate(event, index, secondaryIndex, budget, placeholderBudget, user) {
   var updateCurrentValueInput = document.querySelectorAll('.form__input--investment');
-  console.log(index);
 
   if (updateCurrentValueInput[index].readOnly === true) {
     updateCurrentValueInput[index].removeAttribute("readonly");
-    console.log(updateCurrentValueInput[index].readOnly);
     var confirmInvestmentValueButtons = document.querySelectorAll('.button--confirm-value');
-    console.log(confirmInvestmentValueButtons[index]);
     return confirmInvestmentValueButtons[index].addEventListener('click', watchInvestmentValueConfirmationButtons.bind(null, event, index, secondaryIndex, budget, placeholderBudget, user));
   }
-
-  console.log(updateCurrentValueInput[index].readOnly);
 
   if (updateCurrentValueInput[index].readOnly === '' || updateCurrentValueInput[index].readOnly === false) {
     return updateCurrentValueInput[index].setAttribute("readonly", true);
   }
-
-  console.log("I want to update.");
-  console.log(index);
 };
 
 var closeInvestmentCreation = function closeInvestmentCreation(event) {
@@ -9213,7 +9327,6 @@ var closeInvestmentCreation = function closeInvestmentCreation(event) {
 };
 
 var renderNewInvestment = function renderNewInvestment(options) {
-  console.log(options);
   var money = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -9221,19 +9334,15 @@ var renderNewInvestment = function renderNewInvestment(options) {
   });
   var investmentContainers = document.querySelectorAll('.container--extra-small__margin-left-and-right');
   var investmentAccountPreview = investmentContainers[0];
-  console.log(investmentContainers);
   var investmentShellContainer = document.createElement('section');
   investmentShellContainer.classList.add('container--extra-small__margin-left-and-right');
   investmentShellContainer.classList.add('r__container--extra-small__margin-left-and-right');
   investmentShellContainer.dataset.investment = options.budget.investments.length;
-  console.log(investmentShellContainer.dataset.investment);
   investmentAccountPreview.insertAdjacentElement('afterend', investmentShellContainer);
   var investmentHeader = document.createElement('section');
   investmentHeader.classList.add('container--extra-small__margin-left-and-right__header');
   investmentHeader.classList.add('r__container--extra-small__margin-left-and-right__header');
-  insertElement(investmentShellContainer, investmentHeader); // Set Appropriate Icons For Investment Type
-  // In order: Stock, Real Estate, Timeshare, Other
-
+  insertElement(investmentShellContainer, investmentHeader);
   var investmentTypeIcons = ["arrow-trend-up", "sign-hanging", "calendar-clock", "asterisk"];
   var investmentHeaderIcon = document.createElement('i');
   investmentHeaderIcon.classList.add("fas");
@@ -9360,34 +9469,11 @@ var renderNewInvestment = function renderNewInvestment(options) {
   investmentUpdateValueTextLink.classList.add('investment-value-information__half__update-text');
   investmentUpdateValueTextLink.classList.add('r__investment-value-information__half__update-text');
   investmentUpdateValueTextLink.textContent = "Update Value";
-  insertElement(investmentValueInformationContainerHalfTwo, investmentUpdateValueTextLink); // window.location.reload();
-  // GLITCH: RIGHT NOW, WHAT HAPPENS IS THAT UNLESS THE USER REFRESHES THE BROWSER, THEY CANNOT UPDATE THE NEWEST OR NEWLY CREATED INVESTMENTS.
-  // Right now, I am forcing the reload of the page to solve the issue for now.  However, I would like to not have to do that.
-  // if (openUpdateCurrentValueButtons[0]) {
-  //   openUpdateCurrentValueButtons.forEach((button, i) => {
-  //     if (i === openUpdateCurrentValueButtons.length - 1) {
-  //       let index = i;
-  //       let boundListener = _watchForCurrentValueUpdate.bind(null, event, index, options.budget, options.placeholderBudget, options.user);
-  //       button.removeEventListener('click', boundListener);
-  //       const openUpdateCurrentValueButtons = document.querySelectorAll('.investment-value-information__half__update-text');
-  //     }
-  //   });
-  //   openUpdateCurrentValueButtons.forEach((button, i) => {
-  //     let index = i;
-  //     if (i === openUpdateCurrentValueButtons.length - 1) {
-  //       let boundListener = _watchForCurrentValueUpdate.bind(null, event, index, options.budget, options.placeholderBudget, options.user);
-  //       console.log(button, openUpdateCurrentValueButtons);
-  //       button.addEventListener('click', boundListener);
-  //     }
-  //   });
-  // }
+  insertElement(investmentValueInformationContainerHalfTwo, investmentUpdateValueTextLink);
+  reloadPage();
 };
 
 var _watchInvestmentPlanner = function _watchInvestmentPlanner(budget, placeholderBudget, user) {
-  // const longFormSections = document.querySelectorAll('.form__section--long');
-  // if (longFormSections[0] && longFormSections[0].classList.contains('closed')) {
-  //   console.log(longFormSections[0]);
-  // replaceClassName(longFormSections[0], `closed`, `open`);
   var addInvestmentButton = document.querySelector('.container--extra-small__margin-left-and-right__content-icon');
   var closeInvestmentCreationButton = document.querySelector('.button--borderless-narrow__investment');
   var addInvestmentForm = document.querySelector('.form--extra-small__column');
@@ -9422,7 +9508,6 @@ var _watchInvestmentPlanner = function _watchInvestmentPlanner(budget, placehold
       var currentValue = initialInvestment.value;
       var valueDifference = Number(currentValue - initialInvestment.value);
       if (isNaN(valueDifference)) valueDifference = 0;
-      console.log(placeholderBudget.investments);
       placeholderBudget.investments.push({
         investmentType: investmentType.value,
         investmentName: investmentName.value,
@@ -9431,7 +9516,6 @@ var _watchInvestmentPlanner = function _watchInvestmentPlanner(budget, placehold
         currentValue: Number(currentValue),
         valueDifference: valueDifference
       });
-      console.log(placeholderBudget.investments);
 
       placeholderBudget._updateBudget({
         updateObject: {
@@ -9453,21 +9537,18 @@ var _watchInvestmentPlanner = function _watchInvestmentPlanner(budget, placehold
 
       var currentInvestmentIndex = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(investmentContainers).indexOf(clicked.closest('.container--extra-small__margin-left-and-right'));
 
-      console.log(currentInvestmentIndex, investmentContainers[currentInvestmentIndex].dataset.investment);
       settleInvestment(investmentContainers, currentInvestmentIndex, Number(investmentContainers[currentInvestmentIndex].dataset.investment), budget, placeholderBudget, user);
     });
   });
-  console.log(investmentValueInformationContainers, investmentContainers);
   var openUpdateCurrentValueButtons = document.querySelectorAll('.investment-value-information__half__update-text');
 
   if (openUpdateCurrentValueButtons[0]) {
     openUpdateCurrentValueButtons.forEach(function (button, i) {
       var index = Number(openUpdateCurrentValueButtons[i].closest('.container--extra-small__margin-left-and-right').dataset.investment);
 
-      var boundListener = _watchForCurrentValueUpdate.bind(null, event, i, index, budget, placeholderBudget, user); // button.removeEventListener(`click`, boundListener);
+      var boundListener = _watchForCurrentValueUpdate.bind(null, event, i, index, budget, placeholderBudget, user);
 
-
-      button.addEventListener('click', boundListener); // addEventListener('click', myPrettyHandler.bind(null, event, arg1, ... ));
+      button.addEventListener('click', boundListener);
     });
   }
 };
@@ -9714,7 +9795,6 @@ var getPaymentSchedule = function getPaymentSchedule(paymentArray, paymentCycle,
   var payments;
   var paymentStart = 0;
   console.log("Scheduling Payments...");
-  console.log(paymentCycle, dates);
 
   if (paymentCycle === "Once") {
     paymentArray.push(dates[0]);
@@ -9953,7 +10033,6 @@ var replaceClassName = function replaceClassName(element, classReplaced, replace
 };
 
 var finalizeTransactionPlan = function finalizeTransactionPlan(budget, placeholderBudget, user, selects, smallInputs, mediumInputs) {
-  console.log(budget, user);
   var updateObject = {
     budgetId: budget._id,
     userId: user._id
@@ -9962,8 +10041,6 @@ var finalizeTransactionPlan = function finalizeTransactionPlan(budget, placehold
   updateObject.transactions = {};
   updateObject.transactions.recentTransactions = budget.transactions.recentTransactions;
   updateObject.transactions.plannedTransactions = budget.transactions.plannedTransactions;
-  console.log(selects[0].value); // The ones before the conditional should be the ones which ALL transaction plans should have.
-
   plannedTransaction.date = new Date();
   plannedTransaction.type = "Withdrawal";
   plannedTransaction.location = smallInputs[0].value;
@@ -9978,7 +10055,6 @@ var finalizeTransactionPlan = function finalizeTransactionPlan(budget, placehold
     plannedTransaction.timingOptions.dueDates = [];
     plannedTransaction.timingOptions.dueDates.push(getDatabaseDueDate(mediumInputs[0].value));
     plannedTransaction.timingOptions.dueDates.push(getDatabaseDueDate(mediumInputs[1].value));
-    console.log("2 Payments..");
   }
 
   plannedTransaction.timingOptions.paymentSchedule = []; // After the due dates, it is setting the payment schedule using the selected payment cycle.
@@ -9988,11 +10064,9 @@ var finalizeTransactionPlan = function finalizeTransactionPlan(budget, placehold
   plannedTransaction.amountSaved = 0;
   plannedTransaction.paid = false;
   plannedTransaction.paidStatus = "Unpaid";
-  console.log(selects);
 
   if (selects[0].value === "Expense Fund") {
     plannedTransaction.subAccount = selects[1].value;
-    console.log(smallInputs[2].closest('.form__section--transaction-plan').nextSibling.nextSibling.nextSibling.firstChild.firstChild.nextSibling.nextSibling);
     var surplusSwitch = smallInputs[2].closest('.form__section--transaction-plan').nextSibling.nextSibling.nextSibling.firstChild.firstChild.nextSibling.nextSibling;
     plannedTransaction.need = "Need";
 
@@ -10099,11 +10173,8 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
       if (number === 2) {
         // INSERT DOM ELEMENTS INTO FIRST PART
         transactionPlanPartHeaderText.textContent = "Transaction Type";
-        console.log(transactionPlanSelects[0].value);
-        console.log(transactionPlanSelects[1], transactionPlanSelects[1].value);
 
         if (transactionPlanSelects[0].value === "Expense Fund") {
-          console.log(transactionPlanSelects[1], transactionPlanSelects[1].value);
           transactionPlanPartText.textContent = "".concat(transactionPlanSelects[1].value);
         }
 
@@ -10710,7 +10781,6 @@ var updateTransactionPlanningAccountDisplays = function updateTransactionPlannin
 };
 
 var displayExistingTransactionPlans = function displayExistingTransactionPlans(budget, placeholderBudget, user) {
-  console.log("These are existing.");
   var transactionPlanCreation = document.querySelector('.transaction-plan-creation');
   var transactionPlans = [];
   var numberOfSections;
@@ -10720,8 +10790,6 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
       return new Date(a.date) - new Date(b.date);
     });
   });
-  console.log(transactionPlans // transactionPlans.sort((a, b) => new Date(b.date) - new Date(a.date))
-  );
   var money = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -10861,11 +10929,8 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
               transactionPlanInput.min = 0;
               transactionPlanInput.placeholder = '$0.00';
               transactionPlanButton.addEventListener('click', function (e) {
-                console.log(transactionPlanInput.value, (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(transactionPlanInput.value));
-                console.log(transactionPlanButton.parentElement.previousSibling);
                 transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
                 transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
-                console.log(transaction.amountSaved);
                 var updateObject = {
                   budgetId: budget._id,
                   userId: user._id
@@ -11042,11 +11107,8 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
               transactionPlanInput.min = 0;
               transactionPlanInput.placeholder = '$0.00';
               transactionPlanButton.addEventListener('click', function (e) {
-                console.log(transactionPlanInput.value, (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(transactionPlanInput.value));
-                console.log(transactionPlanButton.parentElement.previousSibling);
                 transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
                 transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
-                console.log(transaction.amountSaved, transactionPlans);
                 var updateObject = {
                   budgetId: budget._id,
                   userId: user._id
@@ -11257,11 +11319,8 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
               transactionPlanInput.min = 0;
               transactionPlanInput.placeholder = '$0.00';
               transactionPlanButton.addEventListener('click', function (e) {
-                console.log(transactionPlanInput.value, (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(transactionPlanInput.value));
-                console.log(transactionPlanButton.parentElement.previousSibling);
                 transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
                 transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
-                console.log(transaction.amountSaved);
                 var updateObject = {
                   budgetId: budget._id,
                   userId: user._id
@@ -11454,11 +11513,8 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
               transactionPlanInput.min = 0;
               transactionPlanInput.placeholder = '$0.00';
               transactionPlanButton.addEventListener('click', function (e) {
-                console.log(transactionPlanInput.value, (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(transactionPlanInput.value));
-                console.log(transactionPlanButton.parentElement.previousSibling);
                 transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
                 transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
-                console.log(transaction.amountSaved);
                 var updateObject = {
                   budgetId: budget._id,
                   userId: user._id
@@ -11902,8 +11958,6 @@ var _watchForBudgetCategoryUpdates = function _watchForBudgetCategoryUpdates(bud
         mainIndex: categoryNumber,
         subIndex: subArray.indexOf(clicked.closest('.sub-category'))
       });
-
-      console.log(placeholderBudget);
     });
     var surplusCategoryTrashIcon = surplusSwitch.parentElement.nextSibling;
     surplusCategoryTrashIcon.addEventListener('click', function (e) {
@@ -11931,10 +11985,7 @@ var _watchForBudgetCategoryUpdates = function _watchForBudgetCategoryUpdates(bud
   var updateCategoryButton = document.querySelectorAll('.button--large__thin')[0];
   updateCategoryButton.addEventListener('click', function (e) {
     e.preventDefault();
-    console.log(placeholderBudget);
     placeholderBudget.mainCategories.forEach(function (mc, i) {
-      console.log(mc);
-
       if (!mc.createdAt) {
         mc.createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
       }
@@ -12137,16 +12188,13 @@ var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placehold
             var percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
             var timingOptions = bmc.subCategories[i].timingOptions;
             var createdAt = bmc.subCategories[i].createdAt;
-            console.log(createdAt);
 
             if (!bmc.subCategories[i].createdAt) {
               createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
             }
 
-            console.log(createdAt);
             var lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
             temporaryObject.subCategories.push(Object.fromEntries([["title", title], ["createdAt", createdAt], ["lastUpdated", lastUpdated], ["goalAmount", goalAmount], ["amountSpent", amountSpent], ["amountRemaining", amountRemaining], ["percentageSpent", percentageSpent], ["timingOptions", timingOptions]]));
-            console.log(temporaryObject);
 
             if (temporaryObject.subCategories.length === tempArray.length) {
               mainCategoryIndex++;
@@ -12176,13 +12224,11 @@ var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placehold
             var percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
             var timingOptions = budget.mainCategories[mainCategoryIndex].subCategories[i].timingOptions;
             var createdAt = budget.mainCategories[mainCategoryIndex].subCategories[i].createdAt;
-            console.log(createdAt);
 
             if (!budget.mainCategories[mainCategoryIndex].subCategories[i].createdAt) {
               createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
             }
 
-            console.log(createdAt);
             var lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
             updateObject.mainCategories[mainCategoryIndex].subCategories.push(Object.fromEntries([["title", title], ["createdAt", createdAt], ["lastUpdated", lastUpdated], ["goalAmount", goalAmount], ["amountSpent", amountSpent], ["amountRemaining", amountRemaining], ["percentageSpent", percentageSpent], ["timingOptions", timingOptions]]));
 
@@ -12564,8 +12610,6 @@ var selectDayAndShowTransactions = function selectDayAndShowTransactions(event) 
   var monthHeader = document.querySelector('.bill-calendar__header__title');
   var splitMonthHeader = monthHeader.textContent.split(' ');
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  console.log(monthHeader.textContent.split(' '));
-  console.log(Number(selectedDay.textContent));
   upcomingTransactions.forEach(function (transaction, i) {
     transaction.classList.remove('open');
     transaction.classList.add('closed');
@@ -12829,7 +12873,6 @@ var _setupBillCalendar = function _setupBillCalendar(budget, placeholderBudget, 
   displayUpcomingTransactions(upcomingBillsContainer, budget.transactions.plannedTransactions);
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   var upcomingTransactions = document.querySelectorAll('.upcoming-bills__bill');
-  console.log(upcomingTransactions);
   var currentDay = document.querySelector('.bill-calendar__days__single-day--current-day');
   var monthHeader = document.querySelector('.bill-calendar__header__title');
 
@@ -12853,15 +12896,10 @@ var _setupBillCalendar = function _setupBillCalendar(budget, placeholderBudget, 
     check.addEventListener('click', function (e) {
       var upcomingBills = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(document.querySelectorAll('.upcoming-bills__bill'));
 
-      console.log(check.closest('.upcoming-bills__bill'));
-      var transactionIndex = Number(check.closest('.upcoming-bills__bill').dataset.transaction); // let numberIndex = Number(transactionIndex.dataset.transaction);
-      // console.log(numberIndex);
-
+      var transactionIndex = Number(check.closest('.upcoming-bills__bill').dataset.transaction);
       var upcomingBill = document.querySelectorAll('.upcoming-bills__bill')[i];
-      console.log(upcomingBill);
       var accountType = upcomingBill.firstChild.firstChild.textContent;
-      var transactionDate = upcomingBill.firstChild.nextSibling.firstChild.textContent; // let transactionDate = new Date(upcomingBill.firstChild.nextSibling.firstChild.textContent);
-      // THE INDEX JUST UNDERNEATH WILL NEED TO CHANGE TO THE INDEX OF THE ACTUAL UPCOMING BILL, SO WE'LL NEED THE DATASET OF THE BILL HERE.
+      var transactionDate = upcomingBill.firstChild.nextSibling.firstChild.textContent; // THE INDEX JUST UNDERNEATH WILL NEED TO CHANGE TO THE INDEX OF THE ACTUAL UPCOMING BILL, SO WE'LL NEED THE DATASET OF THE BILL HERE.
 
       var transactionLocation = placeholderBudget.transactions.plannedTransactions[transactionIndex].location;
       var transactionAmount = upcomingBill.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1];
@@ -15400,6 +15438,11 @@ var Transaction = /*#__PURE__*/function () {
           receiptObject.grossAmount = options.grossAmount;
           receiptObject.netAmount = options.netAmount;
           receiptObject.amount = options.deposited;
+          receiptObject.description = "Paycheck";
+
+          if (options.description) {
+            receiptObject.description = options.description;
+          }
 
           if (options.user.latterDaySaint === true) {
             if (options.budget.accounts.tithing.tithingSetting !== "Surplus") {
