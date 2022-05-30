@@ -285,7 +285,7 @@ const budgetSchema = new mongoose.Schema({
             },
             timing: {
               type: String,
-              enum: [`Once`, `Weekly`, `Bi-Weekly`, `Bi-Monthly`, `Monthly`, `Quarterly`, `Bi-Annually`, `Annually`],
+              enum: [`Once`, `Weekly`, `Bi-Weekly`, `Bi-Monthly`, `Monthly`, `Quarterly`, `Bi-Annual`, `Annual`],
             },
             expenditure: {
               type: String,

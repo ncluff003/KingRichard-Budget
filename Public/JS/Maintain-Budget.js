@@ -20,6 +20,64 @@ const showElement = (element) => {
   element.classList.toggle('open');
 };
 
+const showRecentTransaction = (budget, placeholderBudget, user, transaction) => {
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const receiptModal = document.querySelector('.modal--receipt');
+  console.log(`Showing...`);
+  console.log(transaction);
+  const recentTransactionDisplay = document.querySelector('.recent-transaction-display');
+  const recentTransaction = document.createElement('section');
+  recentTransaction.classList.add('recent-transaction');
+  recentTransaction.classList.add('r__recent-transaction');
+  let numberOfSections = 6;
+  let sectionStart = 0;
+  while (sectionStart < numberOfSections) {
+    let recentTransactionSection = document.createElement('section');
+    recentTransactionSection.classList.add(`recent-transaction__section`);
+    recentTransactionSection.classList.add(`r__recent-transaction__section`);
+    if (sectionStart === 0) {
+      let viewReceiptButton = document.createElement('button');
+      viewReceiptButton.classList.add('button--extra-extra-small__view-receipt');
+      viewReceiptButton.classList.add('r__button--extra-extra-small__view-receipt');
+      let viewReceiptButtonIcon = document.createElement('i');
+      viewReceiptButtonIcon.classList.add('fas');
+      viewReceiptButtonIcon.classList.add('fa-receipt');
+      viewReceiptButtonIcon.classList.add('button--extra-extra-small__view-receipt__icon');
+      viewReceiptButtonIcon.classList.add('r__button--extra-extra-small__view-receipt__icon');
+      let viewReceiptButtonText = document.createElement('p');
+      viewReceiptButtonText.classList.add('button--extra-extra-small__view-receipt__text');
+      viewReceiptButtonText.classList.add('r__button--extra-extra-small__view-receipt__text');
+      viewReceiptButtonText.textContent = `View Full Transaction`;
+      insertElement(viewReceiptButton, viewReceiptButtonIcon);
+      insertElement(viewReceiptButton, viewReceiptButtonText);
+      insertElement(recentTransactionSection, viewReceiptButton);
+      viewReceiptButton.addEventListener('click', (e) => {
+        console.log(viewReceiptButton);
+        showElement(receiptModal);
+      });
+    }
+    if (sectionStart === 1) {
+      let transactionTypeText = document.createElement('p');
+      transactionTypeText.classList.add('recent-transaction__section__text');
+      transactionTypeText.classList.add('r__recent-transaction__section__text');
+      transactionTypeText.textContent = `${transaction.transactionType}`;
+      insertElement(recentTransactionSection, transactionTypeText);
+    }
+    if (sectionStart === 2) {
+      let transactionTypeText = document.createElement('p');
+      transactionTypeText.classList.add('recent-transaction__section__text');
+      transactionTypeText.classList.add('r__recent-transaction__section__text');
+      transactionTypeText.textContent = `${new Date(transaction.transactionDate).getDate()} ${months[new Date(transaction.transactionDate).getMonth()]} ${new Date(
+        transaction.transactionDate
+      ).getFullYear()}`;
+      insertElement(recentTransactionSection, transactionTypeText);
+    }
+    insertElement(recentTransaction, recentTransactionSection);
+    sectionStart++;
+  }
+  insertElement(recentTransactionDisplay, recentTransaction);
+};
+
 const _watchRecentTransactions = (budget, placeholderBudget, user) => {
   console.log(`Listing Transactions`);
   const receiptModal = document.querySelector('.modal--receipt');
@@ -32,6 +90,10 @@ const _watchRecentTransactions = (budget, placeholderBudget, user) => {
     });
     receiptModalClosureIcon.addEventListener('click', (e) => {
       showElement(receiptModal);
+    });
+
+    placeholderBudget.transactions.recentTransactions.forEach((transaction, i) => {
+      showRecentTransaction(budget, placeholderBudget, user, transaction);
     });
   }
 };
@@ -3982,6 +4044,16 @@ const _setupBillCalendar = (budget, placeholderBudget, user) => {
       let transactionBill = new Transaction.Transaction({ date: transactionDate, location: transactionLocation });
       let currentBill = placeholderBudget.transactions.plannedTransactions[transactionIndex];
 
+      if (accountType === `Monthly Budget`) {
+        transactionBill.transactionType = `Withdrawal`;
+        transactionBill.addToReceipt({
+          accountSelected: accountType,
+          mainCategory: currentBill.category,
+          subCategory: currentBill.subCategory,
+          description: currentBill.name,
+          amount: Number(transactionAmount),
+        });
+      }
       if (accountType === `Expense Fund`) {
         transactionBill.transactionType = `Withdrawal`;
         transactionBill.addToReceipt({
@@ -4024,7 +4096,135 @@ const _setupBillCalendar = (budget, placeholderBudget, user) => {
           amount: Number(transactionAmount),
         });
       }
+      console.log(
+        transactionDate,
+        new Date(transactionDate).toISOString(),
+        new Date(new Date(transactionDate).setHours(0, 0, 0, 0)),
+        currentBill.timingOptions.paymentSchedule[0]
+        // new Date(new Date(currentBill.timingOptions.paymentSchedule[0]).setHours(0, 0, 0, 0))
+      );
+      if (currentBill.timingOptions.paymentCycle !== `Bi-Monthly` && currentBill.timingOptions.paymentCycle !== `Bi-Annual`) {
+        // LOOP THROUGH MAIN CATEGORIES
+        placeholderBudget.mainCategories.forEach((mc, i) => {
+          // IF MAIN CATEGORY MATCHES THE CURRENT BILL CATEGORY, LOOP THROUGH ITS SUBCATEGORIES
+          if (mc.title === currentBill.category) {
+            mc.subCategories.forEach((sc, i) => {
+              if (sc.title === currentBill.name) {
+                // IF SUB CATEGORY MATCHES CURRENT BILL SUB CATEGORY NAME, DOUBLE CHECK PAYMENT CYCLE.
+                if (sc.timingOptions.paymentCycle !== `Bi-Monthly` && sc.timingOptions.paymentCycle !== `Bi-Annual`) {
+                  sc.timingOptions.paymentSchedule = sc.timingOptions.paymentSchedule.filter((date) => {
+                    return new Date(new Date(date).setHours(0, 0, 0, 0)).toISOString() !== new Date(new Date(transactionDate).setHours(0, 0, 0, 0)).toISOString();
+                  });
+                }
+                if (sc.timingOptions.paymentCycle === `Bi-Monthly` && sc.timingOptions.paymentCycle === `Bi-Annual`) {
+                  sc.timingOptions.paymentSchedule.forEach((dateArray, i) => {
+                    sc.timingOptions.paymentSchedule[i] = dateArray.filter((date) => {
+                      return new Date(new Date(date).setHours(0, 0, 0, 0)).toISOString() !== new Date(new Date(transactionDate).setHours(0, 0, 0, 0)).toISOString();
+                    });
+                  });
+                }
+                console.log(sc);
+                console.log(sc.timingOptions.paymentSchedule);
+              }
+            });
+          }
+        });
+        currentBill.timingOptions.paymentSchedule = currentBill.timingOptions.paymentSchedule.filter((date) => {
+          console.log(new Date(new Date(date).setHours(0, 0, 0, 0)));
+          return new Date(new Date(date).setHours(0, 0, 0, 0)).toISOString() !== new Date(new Date(transactionDate).setHours(0, 0, 0, 0)).toISOString();
+        });
+      }
+      if (currentBill.timingOptions.paymentCycle === `Bi-Monthly` || currentBill.timingOptions.paymentCycle === `Bi-Annual`) {
+        currentBill.timingOptions.paymentSchedule.forEach((dateArray, i) => {
+          currentBill.timingOptions.paymentSchedule[i] = dateArray.filter((date) => {
+            return new Date(new Date(date).setHours(0, 0, 0, 0)).toISOString() !== new Date(new Date(transactionDate).setHours(0, 0, 0, 0)).toISOString();
+          });
+        });
+      }
+      if (currentBill.timingOptions.paymentCycle !== `Bi-Monthly` && currentBill.timingOptions.paymentCycle !== `Bi-Annual`) {
+        if (currentBill.timingOptions.paymentSchedule.length === 0) {
+          currentBill.paid = !currentBill.paid;
+          currentBill.paidStatus = `Paid`;
+          placeholderBudget.transactions.plannedTransactions = placeholderBudget.transactions.plannedTransactions.filter((transaction) => {
+            return transaction !== currentBill;
+          });
+        }
+        if (currentBill.timingOptions.paymentSchedule.length > 0) {
+          currentBill.paidStatus = `Partially Paid`;
+        }
+      }
+      if (currentBill.timingOptions.paymentCycle === `Bi-Monthly` || currentBill.timingOptions.paymentCycle === `Bi-Annual`) {
+        currentBill.timingOptions.paymentSchedule = currentBill.timingOptions.paymentSchedule.filter((array) => {
+          return array.length > 0;
+        });
+        if (currentBill.timingOptions.paymentSchedule.length === 0) {
+          currentBill.paid = !currentBill.paid;
+          currentBill.paidStatus = `Paid`;
+        }
+        if (currentBill.timingOptions.paymentSchedule.length > 0) {
+          currentBill.paidStatus = `Partially Paid`;
+        }
+      }
       console.log(currentBill, transactionBill);
+      placeholderBudget.transactions.recentTransactions.push(transactionBill);
+      console.log(placeholderBudget);
+
+      let updateObject = {
+        budgetId: budget._id,
+        userId: user._id,
+      };
+      updateObject.transactions = placeholderBudget.transactions;
+      updateObject.transactions.recentTransactions[updateObject.transactions.recentTransactions.length - 1].receipt.forEach((receiptItem, i) => {
+        if (receiptItem.account === `Monthly Budget`) {
+          placeholderBudget.accounts.monthlyBudget.amount = placeholderBudget.accounts.monthlyBudget.amount - Number(receiptItem.amount);
+          placeholderBudget.mainCategories.forEach((category, i) => {
+            if (receiptItem.category === category.title) {
+              let index = i;
+              console.log(receiptItem.category);
+              category.subCategories.forEach((subCategory, i) => {
+                if (receiptItem.subCategory === subCategory.title) {
+                  console.log(receiptItem.subCategory);
+                  subCategory.amountSpent += receiptItem.amount;
+                  subCategory.amountRemaining = subCategory.goalAmount - subCategory.amountSpent;
+                  subCategory.percentageSpent = Number((subCategory.amountSpent / subCategory.goalAmount) * 100);
+                }
+              });
+            }
+          });
+          updateObject.mainCategories = placeholderBudget.mainCategories;
+        }
+        if (receiptItem.account === `Emergency Fund`) {
+          placeholderBudget.accounts.emergencyFund.amount = placeholderBudget.accounts.emergencyFund.amount - Number(receiptItem.amount);
+        }
+        if (receiptItem.account === `Savings Fund`) {
+          placeholderBudget.accounts.savingsFund.amount = placeholderBudget.accounts.savingsFund.amount - Number(receiptItem.amount);
+        }
+        if (receiptItem.account === `Expense Fund`) {
+          placeholderBudget.accounts.expenseFund.amount = placeholderBudget.accounts.expenseFund.amount - Number(receiptItem.amount);
+        }
+        if (receiptItem.account === `Surplus`) {
+          placeholderBudget.accounts.surlus.amount = placeholderBudget.accounts.surplus.amount - Number(receiptItem.amount);
+        }
+        if (receiptItem.account === `Debt`) {
+          placeholderBudget.accounts.debt.amount = placeholderBudget.accounts.debt.amount - Number(receiptItem.amount);
+          /* After reducing the amount that is allocated to the debt account, there needs to be a reduction of the debt amount through reducing the current amount owed for the debt that was selected.
+
+          To do that we need to:
+          1) Find the exact debt that is being paid.
+          2) From there, reduce it's amountOwed amount.
+
+          There is more steps to each of those, especially the first, but that is what needs to be done.
+          */
+        }
+      });
+      upcomingBill.remove();
+      updateObject.accounts = placeholderBudget.accounts;
+      console.log(updateObject);
+      placeholderBudget._updateBudget({ updateObject: updateObject }, `Dashboard`);
+      reloadPage();
+      // setTimeout(() => {
+      //   window.location.reload();
+      // }, 5000);
     });
   });
 };
@@ -4137,6 +4337,22 @@ const showTransactionOptions = (budget, placeholderBudget, user, optionText, tra
     if (optionText === `Monthly Budget`) {
       console.log(optionText);
       option.classList.remove('lowered');
+      if (i === 0) {
+        console.log(option.firstChild.nextSibling.childNodes);
+        option.firstChild.nextSibling.childNodes.forEach((child, i) => {
+          child.addEventListener('click', (e) => {
+            e.preventDefault();
+            option.nextSibling.firstChild.nextSibling.childNodes.forEach((subChild, i) => {
+              subChild.classList.add('closed');
+              subChild.classList.remove('open');
+              if (subChild.dataset.category === child.dataset.category) {
+                subChild.classList.add('open');
+                subChild.classList.remove('closed');
+              }
+            });
+          });
+        });
+      }
       if (i === 2) {
         option.classList.remove('lowered');
         if (transactionOptions[i - 1].getBoundingClientRect().width < 115) {
@@ -5030,6 +5246,7 @@ const createMonthlyBudgetTransactionPlans = (budget, placeholderBudget, user) =>
     mc.subCategories.forEach((sc, i) => {
       if (sc.timingOptions.paymentSchedule) {
         let index = i;
+        // LOOPING THROUGH SUB CATEGORY PAYMENT SCHEDULE
         sc.timingOptions.paymentSchedule.forEach((date, i) => {
           let found = false;
           console.log(date, date.length);
@@ -5038,9 +5255,12 @@ const createMonthlyBudgetTransactionPlans = (budget, placeholderBudget, user) =>
               console.log(new Date(date), new Date(date).toISOString());
             });
           }
+          // LOOP THROUGH PLANNED TRANSACTIONS FOR EACH DATE IN PAYMENT SCHEDULE
           placeholderBudget.transactions.plannedTransactions.forEach((plan, i) => {
             // console.log(plan);
+            // CHECKING IF THE PLAN IS A MONTHLY BUDGET ONE, AND THAT IT CONTAINS THE MAIN CATEGORY AND SUB CATEGORY
             if (plan.account === `Monthly Budget` && plan.subAccount === mc.title && plan.name === sc.title) {
+              // THEN, CHECK IF THE PAYMENT SCHEDULE ITEM IS AN ARRAY OF 2 DATES OR 1.
               if (date.length > 1 && typeof date === `object`) {
                 console.log(`Dates...`);
                 date.forEach((newDate) => {
@@ -5059,6 +5279,7 @@ const createMonthlyBudgetTransactionPlans = (budget, placeholderBudget, user) =>
                   }
                 });
               }
+              // IF PAYMENT SCHEDULE DATE IS ONE ITEM
               if (date.length === 24) {
                 if (plan.timingOptions.dueDates.includes(new Date(date).toISOString())) {
                   console.log(plan);
@@ -5067,14 +5288,11 @@ const createMonthlyBudgetTransactionPlans = (budget, placeholderBudget, user) =>
                     return (plan.amount = sc.goalAmount);
                   }
                   found = true;
-                  return console.log(`Found |`, `${plan.account} |`, `${plan.subAccount} |`, `${plan.name} |`, `${plan.timingOptions.dueDates} | ${i}`);
+                  return;
                 }
               }
             }
             if (plan.account !== `Monthly Budget` || plan.subAccount !== mc.title || plan.name !== sc.title) {
-              if (!plan.timingOptions.dueDates.includes(date)) {
-                console.log(`Not Found`, `${plan.account} |`, `${plan.subAccount} |`, `${plan.name} |`, `${plan.timingOptions.dueDates} | ${i}`);
-              }
             }
           });
           if (found === false && date.length === 24) {
@@ -5100,7 +5318,6 @@ const createMonthlyBudgetTransactionPlans = (budget, placeholderBudget, user) =>
             placeholderBudget.transactions.plannedTransactions.push(transactionPlan);
             // updateObject.transactions = placeholderBudget.transsactions;
             // placeholderBudget._updateBudget({updateObject: updateObject}, `Transaction-Planner`);
-            console.log(sc, transactionPlan);
           }
           if (found === false && date.length === 2) {
             date.forEach((date) => {
@@ -5126,16 +5343,13 @@ const createMonthlyBudgetTransactionPlans = (budget, placeholderBudget, user) =>
               placeholderBudget.transactions.plannedTransactions.push(transactionPlan);
               // updateObject.transactions = placeholderBudget.transsactions;
               // placeholderBudget._updateBudget({updateObject: updateObject}, `Transaction-Planner`);
-              console.log(sc, transactionPlan);
             });
           }
         });
       }
     });
   });
-  console.log(placeholderBudget.transactions);
   updateObject.transactions = placeholderBudget.transactions;
-  console.log(updateObject);
   placeholderBudget._updateBudget({ updateObject: updateObject }, `Transaction-Planner`);
 };
 

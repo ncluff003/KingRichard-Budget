@@ -21,14 +21,14 @@ form.form--transaction.r__form--transaction(method="POST" action=`/users/${data.
     section.form__section--select.r__form__section--select
       label.form__label--select.r__form__label--select Category
       select.form__select--accounts.r__form__select--accounts#mainCategory
-        each category in data.budget.mainCategories 
-          option.category-selection.r__category-selection(value=`${category.title}`)= `${category.title}`
+        each category, index in data.budget.mainCategories 
+          option.category-selection.r__category-selection(value=`${category.title}` data-category=`${index}`)= `${category.title}`
     section.form__section--select.r__form__section--select
       label.form__label--select.r__form__label--select Sub Category
       select.form__select--accounts.r__form__select--accounts#subCategory
-        each category in data.budget.mainCategories
+        each category, mainIndex in data.budget.mainCategories
           each subCategory in category.subCategories
-            option.form__select--monthly-transaction__option.r__form__select--monthly-transaction__option.closed= subCategory.title
+            option.form__select--monthly-transaction__option.r__form__select--monthly-transaction__option.closed(data-category=`${mainIndex}`)= subCategory.title
         //- option Electric -- If the number of letters are 9, or a certain length of this container, this will need to be 'lowered'; | [ 8.69rem ] is the magic width.
     section.form__section--select.r__form__section--select
       label.form__label--select.r__form__label--select Transaction Type

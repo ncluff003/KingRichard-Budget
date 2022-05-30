@@ -8464,6 +8464,73 @@ var showElement = function showElement(element) {
   element.classList.toggle('open');
 };
 
+var showRecentTransaction = function showRecentTransaction(budget, placeholderBudget, user, transaction) {
+  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  var receiptModal = document.querySelector('.modal--receipt');
+  console.log("Showing...");
+  console.log(transaction);
+  var recentTransactionDisplay = document.querySelector('.recent-transaction-display');
+  var recentTransaction = document.createElement('section');
+  recentTransaction.classList.add('recent-transaction');
+  recentTransaction.classList.add('r__recent-transaction');
+  var numberOfSections = 6;
+  var sectionStart = 0;
+
+  while (sectionStart < numberOfSections) {
+    var recentTransactionSection = document.createElement('section');
+    recentTransactionSection.classList.add("recent-transaction__section");
+    recentTransactionSection.classList.add("r__recent-transaction__section");
+
+    if (sectionStart === 0) {
+      (function () {
+        var viewReceiptButton = document.createElement('button');
+        viewReceiptButton.classList.add('button--extra-extra-small__view-receipt');
+        viewReceiptButton.classList.add('r__button--extra-extra-small__view-receipt');
+        var viewReceiptButtonIcon = document.createElement('i');
+        viewReceiptButtonIcon.classList.add('fas');
+        viewReceiptButtonIcon.classList.add('fa-receipt');
+        viewReceiptButtonIcon.classList.add('button--extra-extra-small__view-receipt__icon');
+        viewReceiptButtonIcon.classList.add('r__button--extra-extra-small__view-receipt__icon');
+        var viewReceiptButtonText = document.createElement('p');
+        viewReceiptButtonText.classList.add('button--extra-extra-small__view-receipt__text');
+        viewReceiptButtonText.classList.add('r__button--extra-extra-small__view-receipt__text');
+        viewReceiptButtonText.textContent = "View Full Transaction";
+        insertElement(viewReceiptButton, viewReceiptButtonIcon);
+        insertElement(viewReceiptButton, viewReceiptButtonText);
+        insertElement(recentTransactionSection, viewReceiptButton);
+        viewReceiptButton.addEventListener('click', function (e) {
+          console.log(viewReceiptButton);
+          showElement(receiptModal);
+        });
+      })();
+    }
+
+    if (sectionStart === 1) {
+      var transactionTypeText = document.createElement('p');
+      transactionTypeText.classList.add('recent-transaction__section__text');
+      transactionTypeText.classList.add('r__recent-transaction__section__text');
+      transactionTypeText.textContent = "".concat(transaction.transactionType);
+      insertElement(recentTransactionSection, transactionTypeText);
+    }
+
+    if (sectionStart === 2) {
+      var _transactionTypeText = document.createElement('p');
+
+      _transactionTypeText.classList.add('recent-transaction__section__text');
+
+      _transactionTypeText.classList.add('r__recent-transaction__section__text');
+
+      _transactionTypeText.textContent = "".concat(new Date(transaction.transactionDate).getDate(), " ").concat(months[new Date(transaction.transactionDate).getMonth()], " ").concat(new Date(transaction.transactionDate).getFullYear());
+      insertElement(recentTransactionSection, _transactionTypeText);
+    }
+
+    insertElement(recentTransaction, recentTransactionSection);
+    sectionStart++;
+  }
+
+  insertElement(recentTransactionDisplay, recentTransaction);
+};
+
 var _watchRecentTransactions = function _watchRecentTransactions(budget, placeholderBudget, user) {
   console.log("Listing Transactions");
   var receiptModal = document.querySelector('.modal--receipt');
@@ -8477,6 +8544,9 @@ var _watchRecentTransactions = function _watchRecentTransactions(budget, placeho
     });
     receiptModalClosureIcon.addEventListener('click', function (e) {
       showElement(receiptModal);
+    });
+    placeholderBudget.transactions.recentTransactions.forEach(function (transaction, i) {
+      showRecentTransaction(budget, placeholderBudget, user, transaction);
     });
   }
 };
@@ -12801,6 +12871,17 @@ var _setupBillCalendar = function _setupBillCalendar(budget, placeholderBudget, 
       });
       var currentBill = placeholderBudget.transactions.plannedTransactions[transactionIndex];
 
+      if (accountType === "Monthly Budget") {
+        transactionBill.transactionType = "Withdrawal";
+        transactionBill.addToReceipt({
+          accountSelected: accountType,
+          mainCategory: currentBill.category,
+          subCategory: currentBill.subCategory,
+          description: currentBill.name,
+          amount: Number(transactionAmount)
+        });
+      }
+
       if (accountType === "Expense Fund") {
         transactionBill.transactionType = "Withdrawal";
         transactionBill.addToReceipt({
@@ -12847,7 +12928,145 @@ var _setupBillCalendar = function _setupBillCalendar(budget, placeholderBudget, 
         });
       }
 
+      console.log(transactionDate, new Date(transactionDate).toISOString(), new Date(new Date(transactionDate).setHours(0, 0, 0, 0)), currentBill.timingOptions.paymentSchedule[0] // new Date(new Date(currentBill.timingOptions.paymentSchedule[0]).setHours(0, 0, 0, 0))
+      );
+
+      if (currentBill.timingOptions.paymentCycle !== "Bi-Monthly" && currentBill.timingOptions.paymentCycle !== "Bi-Annual") {
+        // LOOP THROUGH MAIN CATEGORIES
+        placeholderBudget.mainCategories.forEach(function (mc, i) {
+          // IF MAIN CATEGORY MATCHES THE CURRENT BILL CATEGORY, LOOP THROUGH ITS SUBCATEGORIES
+          if (mc.title === currentBill.category) {
+            mc.subCategories.forEach(function (sc, i) {
+              if (sc.title === currentBill.name) {
+                // IF SUB CATEGORY MATCHES CURRENT BILL SUB CATEGORY NAME, DOUBLE CHECK PAYMENT CYCLE.
+                if (sc.timingOptions.paymentCycle !== "Bi-Monthly" && sc.timingOptions.paymentCycle !== "Bi-Annual") {
+                  sc.timingOptions.paymentSchedule = sc.timingOptions.paymentSchedule.filter(function (date) {
+                    return new Date(new Date(date).setHours(0, 0, 0, 0)).toISOString() !== new Date(new Date(transactionDate).setHours(0, 0, 0, 0)).toISOString();
+                  });
+                }
+
+                if (sc.timingOptions.paymentCycle === "Bi-Monthly" && sc.timingOptions.paymentCycle === "Bi-Annual") {
+                  sc.timingOptions.paymentSchedule.forEach(function (dateArray, i) {
+                    sc.timingOptions.paymentSchedule[i] = dateArray.filter(function (date) {
+                      return new Date(new Date(date).setHours(0, 0, 0, 0)).toISOString() !== new Date(new Date(transactionDate).setHours(0, 0, 0, 0)).toISOString();
+                    });
+                  });
+                }
+
+                console.log(sc);
+                console.log(sc.timingOptions.paymentSchedule);
+              }
+            });
+          }
+        });
+        currentBill.timingOptions.paymentSchedule = currentBill.timingOptions.paymentSchedule.filter(function (date) {
+          console.log(new Date(new Date(date).setHours(0, 0, 0, 0)));
+          return new Date(new Date(date).setHours(0, 0, 0, 0)).toISOString() !== new Date(new Date(transactionDate).setHours(0, 0, 0, 0)).toISOString();
+        });
+      }
+
+      if (currentBill.timingOptions.paymentCycle === "Bi-Monthly" || currentBill.timingOptions.paymentCycle === "Bi-Annual") {
+        currentBill.timingOptions.paymentSchedule.forEach(function (dateArray, i) {
+          currentBill.timingOptions.paymentSchedule[i] = dateArray.filter(function (date) {
+            return new Date(new Date(date).setHours(0, 0, 0, 0)).toISOString() !== new Date(new Date(transactionDate).setHours(0, 0, 0, 0)).toISOString();
+          });
+        });
+      }
+
+      if (currentBill.timingOptions.paymentCycle !== "Bi-Monthly" && currentBill.timingOptions.paymentCycle !== "Bi-Annual") {
+        if (currentBill.timingOptions.paymentSchedule.length === 0) {
+          currentBill.paid = !currentBill.paid;
+          currentBill.paidStatus = "Paid";
+          placeholderBudget.transactions.plannedTransactions = placeholderBudget.transactions.plannedTransactions.filter(function (transaction) {
+            return transaction !== currentBill;
+          });
+        }
+
+        if (currentBill.timingOptions.paymentSchedule.length > 0) {
+          currentBill.paidStatus = "Partially Paid";
+        }
+      }
+
+      if (currentBill.timingOptions.paymentCycle === "Bi-Monthly" || currentBill.timingOptions.paymentCycle === "Bi-Annual") {
+        currentBill.timingOptions.paymentSchedule = currentBill.timingOptions.paymentSchedule.filter(function (array) {
+          return array.length > 0;
+        });
+
+        if (currentBill.timingOptions.paymentSchedule.length === 0) {
+          currentBill.paid = !currentBill.paid;
+          currentBill.paidStatus = "Paid";
+        }
+
+        if (currentBill.timingOptions.paymentSchedule.length > 0) {
+          currentBill.paidStatus = "Partially Paid";
+        }
+      }
+
       console.log(currentBill, transactionBill);
+      placeholderBudget.transactions.recentTransactions.push(transactionBill);
+      console.log(placeholderBudget);
+      var updateObject = {
+        budgetId: budget._id,
+        userId: user._id
+      };
+      updateObject.transactions = placeholderBudget.transactions;
+      updateObject.transactions.recentTransactions[updateObject.transactions.recentTransactions.length - 1].receipt.forEach(function (receiptItem, i) {
+        if (receiptItem.account === "Monthly Budget") {
+          placeholderBudget.accounts.monthlyBudget.amount = placeholderBudget.accounts.monthlyBudget.amount - Number(receiptItem.amount);
+          placeholderBudget.mainCategories.forEach(function (category, i) {
+            if (receiptItem.category === category.title) {
+              var index = i;
+              console.log(receiptItem.category);
+              category.subCategories.forEach(function (subCategory, i) {
+                if (receiptItem.subCategory === subCategory.title) {
+                  console.log(receiptItem.subCategory);
+                  subCategory.amountSpent += receiptItem.amount;
+                  subCategory.amountRemaining = subCategory.goalAmount - subCategory.amountSpent;
+                  subCategory.percentageSpent = Number(subCategory.amountSpent / subCategory.goalAmount * 100);
+                }
+              });
+            }
+          });
+          updateObject.mainCategories = placeholderBudget.mainCategories;
+        }
+
+        if (receiptItem.account === "Emergency Fund") {
+          placeholderBudget.accounts.emergencyFund.amount = placeholderBudget.accounts.emergencyFund.amount - Number(receiptItem.amount);
+        }
+
+        if (receiptItem.account === "Savings Fund") {
+          placeholderBudget.accounts.savingsFund.amount = placeholderBudget.accounts.savingsFund.amount - Number(receiptItem.amount);
+        }
+
+        if (receiptItem.account === "Expense Fund") {
+          placeholderBudget.accounts.expenseFund.amount = placeholderBudget.accounts.expenseFund.amount - Number(receiptItem.amount);
+        }
+
+        if (receiptItem.account === "Surplus") {
+          placeholderBudget.accounts.surlus.amount = placeholderBudget.accounts.surplus.amount - Number(receiptItem.amount);
+        }
+
+        if (receiptItem.account === "Debt") {
+          placeholderBudget.accounts.debt.amount = placeholderBudget.accounts.debt.amount - Number(receiptItem.amount);
+          /* After reducing the amount that is allocated to the debt account, there needs to be a reduction of the debt amount through reducing the current amount owed for the debt that was selected.
+           To do that we need to:
+          1) Find the exact debt that is being paid.
+          2) From there, reduce it's amountOwed amount.
+           There is more steps to each of those, especially the first, but that is what needs to be done.
+          */
+        }
+      });
+      upcomingBill.remove();
+      updateObject.accounts = placeholderBudget.accounts;
+      console.log(updateObject);
+
+      placeholderBudget._updateBudget({
+        updateObject: updateObject
+      }, "Dashboard");
+
+      reloadPage(); // setTimeout(() => {
+      //   window.location.reload();
+      // }, 5000);
     });
   });
 };
@@ -12967,6 +13186,24 @@ var showTransactionOptions = function showTransactionOptions(budget, placeholder
     if (optionText === "Monthly Budget") {
       console.log(optionText);
       option.classList.remove('lowered');
+
+      if (i === 0) {
+        console.log(option.firstChild.nextSibling.childNodes);
+        option.firstChild.nextSibling.childNodes.forEach(function (child, i) {
+          child.addEventListener('click', function (e) {
+            e.preventDefault();
+            option.nextSibling.firstChild.nextSibling.childNodes.forEach(function (subChild, i) {
+              subChild.classList.add('closed');
+              subChild.classList.remove('open');
+
+              if (subChild.dataset.category === child.dataset.category) {
+                subChild.classList.add('open');
+                subChild.classList.remove('closed');
+              }
+            });
+          });
+        });
+      }
 
       if (i === 2) {
         option.classList.remove('lowered');
@@ -13969,7 +14206,8 @@ var createMonthlyBudgetTransactionPlans = function createMonthlyBudgetTransactio
   placeholderBudget.mainCategories.forEach(function (mc, i) {
     mc.subCategories.forEach(function (sc, i) {
       if (sc.timingOptions.paymentSchedule) {
-        var index = i;
+        var index = i; // LOOPING THROUGH SUB CATEGORY PAYMENT SCHEDULE
+
         sc.timingOptions.paymentSchedule.forEach(function (date, i) {
           var found = false;
           console.log(date, date.length);
@@ -13978,11 +14216,14 @@ var createMonthlyBudgetTransactionPlans = function createMonthlyBudgetTransactio
             date.forEach(function (date) {
               console.log(new Date(date), new Date(date).toISOString());
             });
-          }
+          } // LOOP THROUGH PLANNED TRANSACTIONS FOR EACH DATE IN PAYMENT SCHEDULE
+
 
           placeholderBudget.transactions.plannedTransactions.forEach(function (plan, i) {
             // console.log(plan);
+            // CHECKING IF THE PLAN IS A MONTHLY BUDGET ONE, AND THAT IT CONTAINS THE MAIN CATEGORY AND SUB CATEGORY
             if (plan.account === "Monthly Budget" && plan.subAccount === mc.title && plan.name === sc.title) {
+              // THEN, CHECK IF THE PAYMENT SCHEDULE ITEM IS AN ARRAY OF 2 DATES OR 1.
               if (date.length > 1 && (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(date) === "object") {
                 console.log("Dates...");
                 date.forEach(function (newDate) {
@@ -14002,7 +14243,8 @@ var createMonthlyBudgetTransactionPlans = function createMonthlyBudgetTransactio
                     return console.log("Found |", "".concat(plan.account, " |"), "".concat(plan.subAccount, " |"), "".concat(plan.name, " |"), "".concat(plan.timingOptions.dueDates, " | ").concat(i));
                   }
                 });
-              }
+              } // IF PAYMENT SCHEDULE DATE IS ONE ITEM
+
 
               if (date.length === 24) {
                 if (plan.timingOptions.dueDates.includes(new Date(date).toISOString())) {
@@ -14014,16 +14256,12 @@ var createMonthlyBudgetTransactionPlans = function createMonthlyBudgetTransactio
                   }
 
                   found = true;
-                  return console.log("Found |", "".concat(plan.account, " |"), "".concat(plan.subAccount, " |"), "".concat(plan.name, " |"), "".concat(plan.timingOptions.dueDates, " | ").concat(i));
+                  return;
                 }
               }
             }
 
-            if (plan.account !== "Monthly Budget" || plan.subAccount !== mc.title || plan.name !== sc.title) {
-              if (!plan.timingOptions.dueDates.includes(date)) {
-                console.log("Not Found", "".concat(plan.account, " |"), "".concat(plan.subAccount, " |"), "".concat(plan.name, " |"), "".concat(plan.timingOptions.dueDates, " | ").concat(i));
-              }
-            }
+            if (plan.account !== "Monthly Budget" || plan.subAccount !== mc.title || plan.name !== sc.title) {}
           });
 
           if (found === false && date.length === 24) {
@@ -14048,8 +14286,6 @@ var createMonthlyBudgetTransactionPlans = function createMonthlyBudgetTransactio
             transactionPlan.paidStatus = "Unpaid";
             placeholderBudget.transactions.plannedTransactions.push(transactionPlan); // updateObject.transactions = placeholderBudget.transsactions;
             // placeholderBudget._updateBudget({updateObject: updateObject}, `Transaction-Planner`);
-
-            console.log(sc, transactionPlan);
           }
 
           if (found === false && date.length === 2) {
@@ -14075,17 +14311,13 @@ var createMonthlyBudgetTransactionPlans = function createMonthlyBudgetTransactio
               transactionPlan.paidStatus = "Unpaid";
               placeholderBudget.transactions.plannedTransactions.push(transactionPlan); // updateObject.transactions = placeholderBudget.transsactions;
               // placeholderBudget._updateBudget({updateObject: updateObject}, `Transaction-Planner`);
-
-              console.log(sc, transactionPlan);
             });
           }
         });
       }
     });
   });
-  console.log(placeholderBudget.transactions);
   updateObject.transactions = placeholderBudget.transactions;
-  console.log(updateObject);
 
   placeholderBudget._updateBudget({
     updateObject: updateObject
