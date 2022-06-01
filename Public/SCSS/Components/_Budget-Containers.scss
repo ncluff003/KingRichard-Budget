@@ -146,7 +146,8 @@
       &__content {
         @extend .container--extra-small__content;
         justify-content: space-evenly;
-        &__account-total {
+        &__account-total,
+        &__account-total__alt {
           transform: translate(0, -2rem);
         }
         &__applied-container {

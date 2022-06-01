@@ -4,6 +4,7 @@
   "description": "budgeting like royalty",
   "main": "index.js",
   "scripts": {
+    "Debug": "ndb Backend_JS/Server.js",
     "BundleJS": "webpack --config ./../KingRichard-Budget/webpack.config.js --mode production",
     "CompileSass": "sass ./Public/SCSS:./Public/DIST/CSS Public/SCSS/Main/main.scss:./Public/DIST/CSS/kingrichard.comp.css --style=expanded --embed-sources",
     "PrefixCSS": "postcss --use=autoprefixer -b \"last 20 versions\" ./Public/DIST/CSS/kingrichard.comp.css -o ./Public/DIST/CSS/kingrichard.prefix.css",

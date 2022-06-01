@@ -5,20 +5,20 @@ form.form--full-width.r__form--full-width
     button.button--borderless.r__button--borderless.button--borderless-narrow.r__button--borderless-narrow(type="button") New Email Address
   section.form__section--sub-section.r__form__section--sub-section.closed
     input.form__input--dark-extra-small.r__form__input--dark-extra-small#newEmail(type="email" name="newEmail" placeholder="New Email")
-    label.form__label--extra-small.r__form__label--extra-small#newEmailLabell(for="newEmail") New Email Address
+    label.form__label--extra-small.r__form__label--extra-small#newEmailLabel(for="newEmail") New Email Address
   section.form__section--sub-section.r__form__section--sub-section.closed
     input.form__input--dark-extra-small.r__form__input--dark-extra-small#newEmailConfirmed(type="email" name="newEmailConfirmed" placeholder="New Email")
-    label.form__label--extra-small.r__form__label--extra-small#newEmailConfirmedLabell(for="newEmailConfirmed") Confirm New Email Address
+    label.form__label--extra-small.r__form__label--extra-small#newEmailConfirmedLabel(for="newEmailConfirmed") Confirm New Email Address
   section.form__section.r__form__section 
     input.form__input--dark-small.r__form__input--dark-small#phoneNumber(type="tel" name="phoneNumber" placeholder="Phone Number" value=`${data.user.phoneNumber}` readonly="true")
     label.form__label--small.r__form__label--small#phoneNumberLabel(for="phoneNumber") Phone Number
     button.button--borderless.r__button--borderless.button--borderless-narrow.r__button--borderless-narrow(type="button") New Phone Number
   section.form__section--sub-section.r__form__section--sub-section.closed
     input.form__input--dark-extra-small.r__form__input--dark-extra-small#newPhoneNumber(type="tel" name="newPhoneNumber" placeholder="New Phone Number")
-    label.form__label--extra-small.r__form__label--extra-small#newPhoneNumberLabell(for="newPhoneNumber") New Phone Number
+    label.form__label--extra-small.r__form__label--extra-small#newPhoneNumberLabel(for="newPhoneNumber") New Phone Number
   section.form__section--sub-section.r__form__section--sub-section.closed
     input.form__input--dark-extra-small.r__form__input--dark-extra-small#newPhoneNumberConfirmed(type="tel" name="newPhoneNumberConfirmed" placeholder="New Phone Number")
-    label.form__label--extra-small.r__form__label--extra-small#newPhoneNumberConfirmedLabell(for="newPhoneNumberConfirmed") Confirm New Phone Number
+    label.form__label--extra-small.r__form__label--extra-small#newPhoneNumberConfirmedLabel(for="newPhoneNumberConfirmed") Confirm New Phone Number
   section.form__section--switch.r__form__section--switch 
     label.form__label--comms.r__form__label--comms(for="commPreference") Communication Preference
     - let commPreference = data.user.communicationPreference;

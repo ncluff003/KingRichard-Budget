@@ -17,7 +17,6 @@ import * as Person from './Person';
       isLoggedIn = false;
       console.log(`App Has Started!`);
       let domSignupFormPageNumber = document.querySelector('.form__page-number');
-      const formButtons = document.querySelectorAll('.buttons');
       const newPerson = new Person.Person(``, ``, ``, ``, ``, ``, ``, ``);
       // WATCH THE ENTRANCE BUTTONS
       Form._watchEntranceButtons(newPerson, forms, signupFormPage);

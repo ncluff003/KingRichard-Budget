@@ -29,6 +29,7 @@ const budgetRouter = require(`./../Routes/budgetRoutes`);
 
 // BEFORE LOGGING IN
 router.route(`/Signup`).post(authController.validateSignup, authController.signup);
+// I may be able to remove this `Login` route altogether.
 router.route(`/Login`).post(authController.login);
 router.route(`/ForgotPassword`).post(authController.forgotPassword, appController.renderApp);
 router.route(`/ResetPassword/:token`).get(authController.renderPasswordReset).patch(authController.resetPassword);
@@ -37,8 +38,8 @@ router.route(`/ResetPassword/:token`).get(authController.renderPasswordReset).pa
 router.route(`/:id`).get(authController.login).post(authController.login);
 router.route('/:id/Me').get(authController.protect, userController.getMe);
 router.route(`/:id/Logout`).get(authController.logout);
-router.route(`/:id/UpdateMyPassword`).post(authController.protect, authController.updateMyPassword);
-router.route(`/:id/UpdateMe`).patch(authController.protect, userController.uploadUserPhoto, userController.resizeUserPhoto, userController.updateMe);
+router.route(`/:id/UpdateMyPassword`).post(authController.protect, authController.valudateUserPasswordUpdate, authController.updateMyPassword);
+router.route(`/:id/UpdateMe`).patch(authController.protect, userController.uploadUserPhoto, userController.resizeUserPhoto, authController.validateUserUpdate, userController.updateMe);
 router.route(`/:id/DeactivateMe`).delete(authController.protect, userController.deactivateMe);
 router.route(`/:id/DeleteMe`).delete(authController.protect, userController.deleteMe);
 

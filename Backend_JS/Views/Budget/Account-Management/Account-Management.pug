@@ -8,35 +8,79 @@ block Budget-Content
       section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
         i.fas.fa-piggy-bank.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
         p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text Bank Account
+      section.container--extra-small__margin-left-and-right__content.r__container--extra-small__margin-left-and-right__content
+        - const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 })
+        - let budgetAccountTotals = []
+        - const budgetAccounts = data.budget.accounts
+        - Object.entries(budgetAccounts).forEach((account, i) => { return budgetAccountTotals.push(account[1].amount) })
+        - const bankVaultTotal = budgetAccountTotals.reduce((previous, current) => previous + current, initialDeposit)
+        - let bankAccount = money.format(bankVaultTotal)
+        p.container--extra-small__content__account-total.r__container--extra-small__content__account-total=`${bankAccount}`
     section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right
       section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
         i.fas.fa-calendar.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
         p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text Monthly Budget
+      section.container--extra-small__margin-left-and-right__content.r__container--extra-small__margin-left-and-right__content
+        p.container--extra-small__content__account-total__alt.r__container--extra-small__content__account-total__alt=`${money.format(data.budget.accounts.monthlyBudget.amount)}`
     section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right
       section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
         i.fas.fa-house-chimney-crack.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
         p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text Emergency Fund
+      section.container--extra-small__margin-left-and-right__content.r__container--extra-small__margin-left-and-right__content
+        p.container--extra-small__content__account-total__alt.r__container--extra-small__content__account-total__alt=`${money.format(data.budget.accounts.emergencyFund.amount)}`
     section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right
       section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
         i.fas.fa-money-bill-alt.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
         p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text Savings Fund
+      section.container--extra-small__margin-left-and-right__content.r__container--extra-small__margin-left-and-right__content
+        p.container--extra-small__content__account-total__alt.r__container--extra-small__content__account-total__alt=`${money.format(data.budget.accounts.savingsFund.amount)}`
     section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right
       section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
         i.fas.fa-file-invoice-dollar.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
         p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text Expense Fund
+      section.container--extra-small__margin-left-and-right__content.r__container--extra-small__margin-left-and-right__content
+        p.container--extra-small__content__account-total__alt.r__container--extra-small__content__account-total__alt=`${money.format(data.budget.accounts.expenseFund.amount)}`
     section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right
       section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
         i.fas.fa-dollar-sign.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
         p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text Surplus
+      section.container--extra-small__margin-left-and-right__content.r__container--extra-small__margin-left-and-right__content
+        p.container--extra-small__content__account-total__alt.r__container--extra-small__content__account-total__alt=`${money.format(data.budget.accounts.surplus.amount)}`
     section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right
       section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
         i.fas.fa-chart-line.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
         p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text Investment Fund
-    section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right
-      section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
-        i.fas.fa-circle-dollar-to-slot.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
-        p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text Tithing Owed
+      section.container--extra-small__margin-left-and-right__content.r__container--extra-small__margin-left-and-right__content
+        p.container--extra-small__content__account-total__alt.r__container--extra-small__content__account-total__alt=`${money.format(data.budget.accounts.investmentFund.amount)}`
+    if data.user.latterDaySaint
+      section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right
+        section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
+          i.fas.fa-circle-dollar-to-slot.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
+          p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text Tithing Owed
+        section.container--extra-small__margin-left-and-right__content.r__container--extra-small__margin-left-and-right__content
+          p.container--extra-small__content__account-total__alt.r__container--extra-small__content__account-total__alt=`${money.format(data.budget.accounts.tithing.amount)}`
     section.container--extra-small__margin-left-and-right.r__container--extra-small__margin-left-and-right
       section.container--extra-small__margin-left-and-right__header.r__container--extra-small__margin-left-and-right__header
         i.fas.fa-comments-dollar.container--extra-small__margin-left-and-right__header__icon.r__container--extra-small__margin-left-and-right__header__icon
         p.container--extra-small__margin-left-and-right__header__text.r__container--extra-small__margin-left-and-right__header__text Transfer Funds
+      section.container--extra-small__margin-left-and-right__content.r__container--extra-small__margin-left-and-right__content
+        form.form--extra-small__column.r__form--extra-small__column
+          section.form__row--thirds__account-transfer.r__form__row--thirds__account-transfer
+            - let accounts = [`Monthly Budget`,`Emergency Fund`,`Savings Fund`,`Expense Fund`,`Surplus`,`Investment Fund`]
+            - if (data.budget.latterDaySaint) accounts.push(`Tithing`)
+              label.form__label--select__account-transfer.r__form__label--select__account-transfer Transfer From
+              select.form__select--accounts.r__form__select--accounts
+                each account in accounts 
+                  option.form__select__option.r__form__select__option(value= `${account}`)= `${account}`
+          section.form__row--thirds__account-transfer.r__form__row--thirds__account-transfer
+            label.form__label--select__account-transfer.r__form__label--select__account-transfer Transfer To
+            select.form__select--accounts.r__form__select--accounts
+              each account in accounts 
+                option.form__select__option.r__form__select__option(value= `${account}`)= `${account}`
+          section.form__row--thirds__account-transfer__alt.r__form__row--thirds__account-transfer__alt
+            section.form__section--account-transfer-half.r__form__section--account-transfer-half
+              input.form__input--small-thinner.r__form__input--small-thinner#transferAmount(type="number" placeholder=`$0.00`)
+              label.form__label--small-thinner__wider-alt.r__form__label--small-thinner__wider-alt(for=`transferAmount`) Amount
+            section.form__section--account-transfer-half.r__form__section--account-transfer-half
+              button.button--extra-extra-small__wider.r__button--extra-extra-small__wider Transfer
+

@@ -12,6 +12,11 @@ const cookierParser = require('cookie-parser');
 const compression = require('compression');
 
 ////////////////////////////////////////////
+//  My Modules
+const AppError = require('./Utilities/appError');
+const GlobalErrorHandler = require('./Controllers/errorController');
+
+////////////////////////////////////////////
 //  Third Party Module Instances
 const App = express();
 
@@ -46,21 +51,23 @@ const appRouter = require(`./Routes/appRoutes`);
 App.use(`/App`, appRouter);
 
 ////////////////////////////////////////////
-//  My Modules
-
-////////////////////////////////////////////
 //  Exported Controllers
 
 ////////////////////////////////////////////
 //  App Global Error Handling Middleware
 
 App.all(`*`, (request, response, next) => {
-  response.status(404).json({
-    status: `Failed`,
-    message: `Failed to find ${request.originalUrl}`,
-  });
-  next();
+  // response.status(404).json({
+  //   status: `Failed`,
+  //   message: `Failed to find ${request.originalUrl} on this server!`,
+  // });
+  // let error = new Error(`Failed to find ${request.originalUrl} on this server!`);
+  // error.status = `Failed`;
+  // error.statusCode = 404;
+  next(new AppError(`Failed to find ${request.originalUrl} on this server!`, 404));
 });
+
+App.use(GlobalErrorHandler);
 
 ////////////////////////////////////////////
 //  Exporting App

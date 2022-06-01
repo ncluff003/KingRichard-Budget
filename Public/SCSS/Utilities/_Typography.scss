@@ -8,6 +8,10 @@ html {
   font-variant-ligatures: none;
 }
 
+.text-centered {
+  text-align: center;
+}
+
 // LANDING LOGO AND SLOGAN
 .logo-container {
   .logo-text {
@@ -265,6 +269,9 @@ html {
       font-size: 1.2rem;
     }
     &__wide {
+      @extend .button--extra-extra-small;
+    }
+    &__wider {
       @extend .button--extra-extra-small;
     }
     &__alt {
@@ -2024,6 +2031,9 @@ html {
     &--select {
       @extend .form__label;
       font-size: 1.26rem;
+      &__account-transfer {
+        @extend .form__label--select;
+      }
       &__transaction {
         @extend .form__label--select;
       }
@@ -2066,6 +2076,9 @@ html {
         }
         &__wider {
           @extend .form__label--small-thinner;
+          &-alt {
+            @extend .form__label--small-thinner__wider;
+          }
         }
       }
 
@@ -2357,4 +2370,19 @@ html {
       }
     }
   }
+}
+
+.postitive {
+  &-centered {
+    @extend .text-centered;
+    color: $secondaryColor;
+  }
+  color: $secondaryColor;
+}
+.negative {
+  &-centered {
+    @extend .text-centered;
+    color: $colorError;
+  }
+  color: $colorError;
 }

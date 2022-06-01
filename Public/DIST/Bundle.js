@@ -5138,7 +5138,6 @@ __webpack_require__.r(__webpack_exports__);
 // Actually Close The Form
 
 var _closeTheForm = function _closeTheForm(index, page, pageElement, form) {
-  console.log(index);
   form[index].classList.toggle('closed');
   form[index].classList.toggle('open');
 
@@ -5173,7 +5172,6 @@ var getLoggedIn = function getLoggedIn() {
   var buttons = document.querySelectorAll('.button');
   var loginSubmit = buttons[2];
   loginSubmit.removeEventListener('click', getLoggedIn);
-  console.log("Listener Stopped.");
   _Login__WEBPACK_IMPORTED_MODULE_0__.login(loginUsername, loginPassword);
 }; ////////////////////////////////////
 // Watch Button To Reset Password
@@ -5214,7 +5212,6 @@ var _watchEntranceButtons = function _watchEntranceButtons(person, form, formPag
 
           if (loginSubmit) {
             loginSubmit.addEventListener('click', getLoggedIn);
-            console.log("Listener Started.");
           }
         } //////////////////////////////////////////////////////////////
         // SETUP THE SIGNUP FORM IF IT IS THE SELECTED FORM
@@ -8292,14 +8289,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
 /* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Utility__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Utility */ "./Public/JS/Utility.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
 
 
 
 
 var login = /*#__PURE__*/function () {
   var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(username, password) {
-    var options, response1, user, _options, response2;
+    var options, response1, user, _options, response2, loginFormHeader;
 
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
       while (1) {
@@ -8309,7 +8308,8 @@ var login = /*#__PURE__*/function () {
             options = {
               username: username,
               password: password
-            };
+            }; // FIRST SEARCH FOR THE USER
+
             _context.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_2___default()({
               method: "POST",
@@ -8320,48 +8320,51 @@ var login = /*#__PURE__*/function () {
           case 4:
             response1 = _context.sent;
 
-            if (!(response1.statusText === 'OK')) {
-              _context.next = 13;
+            if (!(response1.data.status === 'Success')) {
+              _context.next = 12;
               break;
             }
 
             user = response1.data.data.user;
-            console.log(user);
             _options = {
               username: username,
               password: password,
               id: user._id
-            };
-            _context.next = 11;
+            }; // LOG IN
+
+            _context.next = 10;
             return axios__WEBPACK_IMPORTED_MODULE_2___default()({
               method: "POST",
               url: "/App/Users/".concat(user._id),
               data: qs__WEBPACK_IMPORTED_MODULE_3___default().stringify(_options)
             });
 
-          case 11:
+          case 10:
             response2 = _context.sent;
 
             if (response2.statusText === 'OK') {
-              document.open("text/html").write(response2.data);
+              document.open("text/html").write(response2.data); // RE-ASSIGN URL ADDRESS
+
               window.location.assign("/App/Users/".concat(user._id));
             }
 
-          case 13:
-            _context.next = 18;
+          case 12:
+            _context.next = 19;
             break;
 
-          case 15:
-            _context.prev = 15;
+          case 14:
+            _context.prev = 14;
             _context.t0 = _context["catch"](0);
+            loginFormHeader = document.querySelector('.form__header__title');
+            _Utility__WEBPACK_IMPORTED_MODULE_4__.showError(loginFormHeader, "".concat(_context.t0.response.data.message), "Login", "negative-centered", 5000);
             console.log(_context.t0);
 
-          case 18:
+          case 19:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 15]]);
+    }, _callee, null, [[0, 14]]);
   }));
 
   return function login(_x, _x2) {
@@ -8384,26 +8387,25 @@ var logout = /*#__PURE__*/function () {
 
           case 3:
             response = _context2.sent;
-            console.log(response);
 
             if (response.data.status === 'Success') {
               window.location.assign("/App");
             }
 
-            _context2.next = 11;
+            _context2.next = 10;
             break;
 
-          case 8:
-            _context2.prev = 8;
+          case 7:
+            _context2.prev = 7;
             _context2.t0 = _context2["catch"](0);
             console.log(_context2.t0);
 
-          case 11:
+          case 10:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 8]]);
+    }, _callee2, null, [[0, 7]]);
   }));
 
   return function logout(_x3) {
@@ -8466,8 +8468,112 @@ var showElement = function showElement(element) {
   element.classList.toggle('open');
 };
 
+var transfer = function transfer(account1, account2, amount) {
+  account1.amount = account1.amount - Number(amount);
+  account2.amount = account2.amount + Number(amount);
+};
+
 var _watchAccountManagement = function _watchAccountManagement(budget, placeholderBudget, user) {
   console.log("Managing...");
+  var accountSelect = document.querySelectorAll('.form__select--accounts');
+  var transferFrom = accountSelect[0];
+  var transferTo = accountSelect[1];
+  var transferAmount = document.getElementById('transferAmount');
+  var transferButton = document.querySelector('.button--extra-extra-small__wider');
+  console.log(transferFrom, transferTo);
+  transferFrom.childNodes.forEach(function (child) {
+    child.addEventListener('click', function (e) {
+      e.preventDefault();
+      console.log(child.value);
+    });
+  });
+  transferTo.childNodes.forEach(function (child) {
+    child.addEventListener('click', function (e) {
+      e.preventDefault();
+      console.log(child.value);
+    });
+  });
+  transferButton.addEventListener('click', function (e) {
+    e.preventDefault();
+    console.log(transferFrom.value, transferTo.value, Number(transferAmount.value));
+    var to, from;
+
+    switch (transferFrom.value) {
+      case "Monthly Budget":
+        from = "monthlyBudget";
+        break;
+
+      case "Emergency Fund":
+        from = "emergencyFund";
+        break;
+
+      case "Savings Fund":
+        from = "savingsFund";
+        break;
+
+      case "Expense Fund":
+        from = "expenseFund";
+        break;
+
+      case "Surplus":
+        from = "surplus";
+        break;
+
+      case "Investment Fund":
+        from = "investmentFund";
+        break;
+
+      case "Tithing":
+        from = "tithing";
+        break;
+    }
+
+    switch (transferTo.value) {
+      case "Monthly Budget":
+        to = "monthlyBudget";
+        break;
+
+      case "Emergency Fund":
+        to = "emergencyFund";
+        break;
+
+      case "Savings Fund":
+        to = "savingsFund";
+        break;
+
+      case "Expense Fund":
+        to = "expenseFund";
+        break;
+
+      case "Surplus":
+        to = "surplus";
+        break;
+
+      case "Investment Fund":
+        to = "investmentFund";
+        break;
+
+      case "Tithing":
+        from = "tithing";
+        break;
+    }
+
+    var updateObject = {
+      budgetId: budget._id,
+      userId: user._id
+    };
+    console.log(placeholderBudget.accounts[from], placeholderBudget.accounts[to]);
+    transfer(placeholderBudget.accounts[from], placeholderBudget.accounts[to], transferAmount.value);
+    console.log(placeholderBudget.accounts[from], placeholderBudget.accounts[to]);
+    updateObject.accounts = placeholderBudget.accounts;
+
+    placeholderBudget._updateBudget({
+      updateObject: updateObject
+    }, "Account-Management");
+
+    reloadPage();
+    console.log(updateObject.accounts);
+  });
 };
 
 var processReceipt = function processReceipt(transaction, button) {
@@ -14706,6 +14812,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
 /* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Login */ "./Public/JS/Login.js");
+/* harmony import */ var _Utility__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Utility */ "./Public/JS/Utility.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
 
@@ -14715,6 +14822,7 @@ __webpack_require__.r(__webpack_exports__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
 
 
 
@@ -14977,35 +15085,67 @@ var Person = /*#__PURE__*/function () {
     key: "_updatePerson",
     value: function () {
       var _updatePerson2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default().mark(function _callee6(options) {
-        var response;
+        var response, message, firstnameLabel, lastnameLabel, usernameLabel, newEmailLabel, newEmailConfirmedLabel, newPhoneNumberLabel, newPhoneNumberConfirmedLabel;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default().wrap(function _callee6$(_context6) {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                _context6.prev = 0;
-                _context6.next = 3;
+                console.log(options);
+                _context6.prev = 1;
+                _context6.next = 4;
                 return axios__WEBPACK_IMPORTED_MODULE_5___default()({
                   method: "PATCH",
                   url: "/App/Users/".concat(options.id, "/UpdateMe"),
                   data: qs__WEBPACK_IMPORTED_MODULE_6___default().stringify(_objectSpread({}, options))
                 });
 
-              case 3:
+              case 4:
                 response = _context6.sent;
-                _context6.next = 9;
+                _context6.next = 16;
                 break;
 
-              case 6:
-                _context6.prev = 6;
-                _context6.t0 = _context6["catch"](0);
+              case 7:
+                _context6.prev = 7;
+                _context6.t0 = _context6["catch"](1);
+                message = _context6.t0.response.data.message;
+
+                if (message === "First name must be only letters.") {
+                  firstnameLabel = document.getElementById('firstnameLabel');
+                  _Utility__WEBPACK_IMPORTED_MODULE_8__.renderError(firstnameLabel, message, "First Name", "negative", 5000);
+                }
+
+                if (message === "Last name must be only letters.") {
+                  lastnameLabel = document.getElementById('lastnameLabel');
+                  _Utility__WEBPACK_IMPORTED_MODULE_8__.renderError(lastnameLabel, message, "Last Name", "negative", 5000);
+                }
+
+                if (message === "Username must start with a capital and contain letters and/or numbers..") {
+                  usernameLabel = document.getElementById('usernameLabel');
+                  _Utility__WEBPACK_IMPORTED_MODULE_8__.renderError(usernameLabel, message, "Username", "negative", 5000);
+                }
+
+                if (message === "Please provide a valid email address.") {
+                  newEmailLabel = document.getElementById('newEmailLabel');
+                  newEmailConfirmedLabel = document.getElementById('newEmailConfirmedLabel');
+                  _Utility__WEBPACK_IMPORTED_MODULE_8__.renderError(newEmailLabel, message, "New Email Address", "negative", 5000);
+                  _Utility__WEBPACK_IMPORTED_MODULE_8__.renderError(newEmailConfirmedLabel, message, "Confirm New Email Address", "negative", 5000);
+                }
+
+                if (message === "Please provide a valid phone number.") {
+                  newPhoneNumberLabel = document.getElementById('newPhoneNumberLabel');
+                  newPhoneNumberConfirmedLabel = document.getElementById('newPhoneNumberConfirmedLabel');
+                  _Utility__WEBPACK_IMPORTED_MODULE_8__.renderError(newPhoneNumberLabel, message, "New Phone Number", "negative", 5000);
+                  _Utility__WEBPACK_IMPORTED_MODULE_8__.renderError(newPhoneNumberConfirmedLabel, message, "Confirm New Phone Number", "negative", 5000);
+                }
+
                 console.log(_context6.t0);
 
-              case 9:
+              case 16:
               case "end":
                 return _context6.stop();
             }
           }
-        }, _callee6, null, [[0, 6]]);
+        }, _callee6, null, [[1, 7]]);
       }));
 
       function _updatePerson(_x5) {
@@ -15018,7 +15158,7 @@ var Person = /*#__PURE__*/function () {
     key: "_updatePersonPassword",
     value: function () {
       var _updatePersonPassword2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default().mark(function _callee7(currentPassword, newPassword, newPasswordConfirmed, id) {
-        var response;
+        var response, message, newPasswordLabel, newPasswordConfirmedLabel;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_4___default().wrap(function _callee7$(_context7) {
           while (1) {
             switch (_context7.prev = _context7.next) {
@@ -15044,15 +15184,24 @@ var Person = /*#__PURE__*/function () {
                   document.getElementById('newPasswordConfirmed').value = ""; // window.location.reload(true);
                 }
 
-                _context7.next = 10;
+                _context7.next = 12;
                 break;
 
               case 7:
                 _context7.prev = 7;
                 _context7.t0 = _context7["catch"](0);
+                message = _context7.t0.response.data.message;
+
+                if (message === "Passwords must contain at least 8 characters, amongst them being at least 1 capital letter, 1 lower case letter, 1 number, & 1 special symbol.  The special symbols may be the following: !, @, $, &, -, _, and &.") {
+                  newPasswordLabel = document.getElementById('newPasswordLabel');
+                  newPasswordConfirmedLabel = document.getElementById('newPasswordConfirmedLabel');
+                  _Utility__WEBPACK_IMPORTED_MODULE_8__.renderError(newPasswordLabel, message, "New Password", "negative", 5000);
+                  _Utility__WEBPACK_IMPORTED_MODULE_8__.renderError(newPasswordConfirmedLabel, message, "Confirm New Password", "negative", 5000);
+                }
+
                 console.log(_context7.t0);
 
-              case 10:
+              case 12:
               case "end":
                 return _context7.stop();
             }
@@ -15185,7 +15334,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
 /* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _Person__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Person */ "./Public/JS/Person.js");
+/* harmony import */ var _Utility__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Utility */ "./Public/JS/Utility.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
 
 
 
@@ -15195,7 +15346,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var signup = /*#__PURE__*/function () {
   var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(firstname, lastname, username, latterDaySaint, email, emailConfirmed, password, passwordConfirmed) {
-    var response1, user, response2;
+    var response1, user, response2, signupFormHeader;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -15246,15 +15397,17 @@ var signup = /*#__PURE__*/function () {
 
           case 10:
             console.log(response1);
-            _context.next = 16;
+            _context.next = 18;
             break;
 
           case 13:
             _context.prev = 13;
             _context.t0 = _context["catch"](0);
+            signupFormHeader = document.querySelectorAll('.form__header__title')[1];
+            _Utility__WEBPACK_IMPORTED_MODULE_5__.showError(signupFormHeader, "".concat(_context.t0.response.data.message), "Signup", "negative-centered", 5000);
             console.log(_context.t0);
 
-          case 16:
+          case 18:
           case "end":
             return _context.stop();
         }
@@ -15277,11 +15430,10 @@ var _submitSignup = function _submitSignup(person) {
 var _nextPage = function _nextPage(pageNumber, pages, pageElement, person) {
   if (pageNumber > 3) {
     return _submitSignup(person);
-  }
+  } // if (pageNumber > 3) {
+  //   const signupFormSubmit = document.querySelector('.signup-form__form-page__section__button');
+  // }
 
-  if (pageNumber > 3) {
-    var signupFormSubmit = document.querySelector('.signup-form__form-page__section__button');
-  }
 
   pages.forEach(function (p) {
     p.style.display = 'none';
@@ -15538,7 +15690,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "_capitalize": () => (/* binding */ _capitalize),
 /* harmony export */   "insertElement": () => (/* binding */ insertElement),
-/* harmony export */   "replaceClassName": () => (/* binding */ replaceClassName)
+/* harmony export */   "reloadPage": () => (/* binding */ reloadPage),
+/* harmony export */   "renderError": () => (/* binding */ renderError),
+/* harmony export */   "replaceClassName": () => (/* binding */ replaceClassName),
+/* harmony export */   "showError": () => (/* binding */ showError)
 /* harmony export */ });
 var insertElement = function insertElement(position, container, element) {
   if (container) {
@@ -15551,6 +15706,44 @@ var replaceClassName = function replaceClassName(element, classReplaced, replace
 };
 var _capitalize = function _capitalize(string) {
   return "".concat(string.charAt(0).toUpperCase()).concat(string.slice(1));
+};
+var reloadPage = function reloadPage() {
+  setTimeout(function () {
+    window.location.reload();
+  }, 2000);
+};
+var showError = function showError(element, errorMessage, elementText, className, timeLimit) {
+  element.textContent = errorMessage;
+  element.classList.add(className);
+  setTimeout(function () {
+    element.textContent = elementText;
+    element.classList.remove(className);
+    reloadPage();
+  }, timeLimit);
+};
+var renderError = function renderError(element, errorMessage, elementText, className, timeLimit) {
+  element.textContent = errorMessage;
+  element.classList.add(className);
+  var elementWidth = element.style.width;
+  var elementTransform = element.style.transform;
+  var elementFontSize = element.style.fontSize;
+  element.style.width = "max-content";
+
+  if (element.textContent === "Passwords must contain at least 8 characters, amongst them being at least 1 capital letter, 1 lower case letter, 1 number, & 1 special symbol.  The special symbols may be the following: !, @, $, &, -, _, and &.") {
+    element.style.transform = "translate(-40rem, -7rem)";
+    element.style.fontSize = "1.2rem";
+  }
+
+  setTimeout(function () {
+    element.textContent = elementText;
+    element.classList.remove(className);
+    element.style.width = "".concat(elementWidth);
+
+    if (elementText === "New Password" || elementText === "Confirm New Password") {
+      element.style.transform = elementTransform;
+      element.style.fontSize = elementFontSize;
+    }
+  }, timeLimit);
 };
 
 /***/ }),
@@ -23817,7 +24010,6 @@ __webpack_require__.r(__webpack_exports__);
         isLoggedIn = false;
         console.log("App Has Started!");
         var domSignupFormPageNumber = document.querySelector('.form__page-number');
-        var formButtons = document.querySelectorAll('.buttons');
         var newPerson = new _Person__WEBPACK_IMPORTED_MODULE_4__.Person("", "", "", "", "", "", "", ""); // WATCH THE ENTRANCE BUTTONS
 
         _Base_Forms__WEBPACK_IMPORTED_MODULE_2__._watchEntranceButtons(newPerson, forms, signupFormPage); // WATCH THE FORM CLOSING BUTTONS

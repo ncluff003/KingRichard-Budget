@@ -33,6 +33,7 @@ const Calendar = require(`./../Utilities/Calendar`);
 //  My Models
 const User = require(`./../Models/userModel`);
 const Budget = require('./../Models/budgetModel');
+const { default: isBoolean } = require('validator/lib/isBoolean');
 
 ////////////////////////////////////////////
 //  My Functions
@@ -149,6 +150,7 @@ exports.login = catchAsync(async (request, response, next) => {
     user.active = true;
     user.save({ validateBeforeSave: false });
   }
+
   createAndSendToken(user, 200, `render`, request, response, `loggedIn`, `King Richard | Home`, { calendar: Calendar });
 });
 
@@ -184,6 +186,64 @@ exports.validateSignup = catchAsync(async (request, response, next) => {
     );
   console.log(`Signup Successful.`);
   next();
+});
+
+// VALIDATING USER INPUT WHEN UPDATING
+exports.validateUserUpdate = catchAsync(async (request, response, next) => {
+  console.log(`Validating...`);
+  const userSnippet = request.body;
+  if (userSnippet.firstname) {
+    if (!Validate.isName(userSnippet.firstname)) return next(new AppError(`First name must be only letters.`, 400));
+  }
+  if (userSnippet.lastname) {
+    if (!Validate.isName(userSnippet.lastname)) return next(new AppError(`Last name must be only letters.`, 400));
+  }
+  if (userSnippet.username) {
+    if (!Validate.isUsername(userSnippet.username)) return next(new AppError(`Username must start with a capital and contain letters and/or numbers..`, 400));
+  }
+  if (userSnippet.latterDaySaint) {
+    if (userSnippet.latterDaySaint !== false && userSnippet.latterDaySaint !== true) {
+      return next(new AppError(`You are either a Latter Day Saint or you or not.  There is NO in between.`));
+    }
+  }
+  if (userSnippet.email) {
+    if (!Validate.isEmail(userSnippet.email)) return next(new AppError(`Please provide a valid email address.`, 400));
+  }
+  if (userSnippet.emailConfirmed) {
+    if (!Validate.isEmail(userSnippet.emailConfirmed)) return next(new AppError(`Please provide a valid email address.`, 400));
+  }
+  if (userSnippet.phoneNumber) {
+    if (!Validate.isPhoneNumber(userSnippet.phoneNumber)) return next(new AppError(`Please provide a valid phone number.`, 400));
+  }
+  if (userSnippet.phoneNumberConfirmed) {
+    if (!Validate.isPhoneNumber(userSnippet.phoneNumberConfirmed)) return next(new AppError(`Please provide a valid phone number.`, 400));
+  }
+  if (userSnippet.communicationPreference) {
+    if (userSnippet.communicationPreference !== `Text` && userSnippet.communicationPreference !== `Email`) {
+      return next(new AppError(`Please allow us to know your communication preference.`));
+    }
+  }
+  console.log(`Update Successfully Reviewed!`);
+  next();
+});
+
+exports.valudateUserPasswordUpdate = catchAsync(async (request, response, next) => {
+  const userSnippet = request.body;
+  console.log(`Validating...`);
+  if (!Validate.is_Eight_Character_One_Upper_Lower_Number_Special(userSnippet.password))
+    return next(
+      new AppError(
+        `Passwords must contain at least 8 characters, amongst them being at least 1 capital letter, 1 lower case letter, 1 number, & 1 special symbol.  The special symbols may be the following: !, @, $, &, -, _, and &.`,
+        400
+      )
+    );
+  if (!Validate.is_Eight_Character_One_Upper_Lower_Number_Special(userSnippet.passwordConfirmed))
+    return next(
+      new AppError(
+        `Passwords must contain at least 8 characters, amongst them being at least 1 capital letter, 1 lower case letter, 1 number, & 1 special symbol.  The special symbols may be the following: !, @, $, &, -, _, and &.`,
+        400
+      )
+    );
 });
 
 // SIGN UP VALIDATED USERS
@@ -272,10 +332,6 @@ exports.forgotPassword = catchAsync(async (request, response, next) => {
     const resetURL = `${request.protocol}://${request.get('host')}/App/Users/ResetPassword/${resetToken}`;
     await new sendEmail(user, resetURL).sendResetPassword();
 
-    // response.status(200).json({
-    //   status: `Success`,
-    //   message: `Token Sent To Email`,
-    // });
     response.status(200).render(`base`, {
       title: `King Richard`,
       errorMessage: '',

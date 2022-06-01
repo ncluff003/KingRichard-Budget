@@ -43,7 +43,7 @@ router.route(`/:id/Transaction-Planner`).get(authController.protect, budgetContr
 router.route(`/:id/Investment-Planner`).get(authController.protect, budgetController.getInvestmentPlanner).patch(authController.protect, budgetController.updateMyBudget);
 router.route(`/:id/Debt-Manager`).get(authController.protect, budgetController.getDebtManager).patch(authController.protect, budgetController.updateMyBudget);
 router.route(`/:id/Recent-Transactions`).get(authController.protect, budgetController.getRecentTransactions);
-router.route(`/:id/Account-Management`).get(authController.protect, budgetController.getAccountManagement);
+router.route(`/:id/Account-Management`).get(authController.protect, budgetController.getAccountManagement).patch(authController.protect, budgetController.updateMyBudget);
 router.route(`/:id/Invite-Users`).get(authController.protect, budgetController.getInviteUsers);
 
 ////////////////////////////////////////////

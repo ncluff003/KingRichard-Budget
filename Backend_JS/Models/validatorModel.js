@@ -38,6 +38,13 @@ class Validator {
   isValidEmailSubject(subject) {
     return /^[^`,@,^,&,+,=,<,>,{,},[,\],;,]*^[^`,@,^,&,+,=,<,>,{,},[,\],;,]+$/.test(subject);
   }
+  isPhoneNumber(phoneNumber) {
+    let numberSplit = phoneNumber.split(' ');
+    let areacodeSplit = numberSplit[0].split('');
+    let areacode = [areacodeSplit[1], areacodeSplit[2], areacodeSplit[3]].join('');
+    let number = [areacode, numberSplit[1], numberSplit[3]].join('');
+    return /^[0-9]{10}$/.test(number);
+  }
   isCompany(companyName) {
     return /^[^?!*,#,%,*,+,=]*^[^?!*,#,%,*,+,=]*$/.test(companyName);
   }

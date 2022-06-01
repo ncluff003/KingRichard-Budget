@@ -1,6 +1,7 @@
 import axios from 'axios';
 import qs from 'qs';
 import * as Person from './Person';
+import * as Utility from './Utility';
 
 //////////////////////
 // USER SIGN UP
@@ -37,6 +38,8 @@ export const signup = async (firstname, lastname, username, latterDaySaint, emai
     }
     console.log(response1);
   } catch (error) {
+    const signupFormHeader = document.querySelectorAll('.form__header__title')[1];
+    Utility.showError(signupFormHeader, `${error.response.data.message}`, `Signup`, `negative-centered`, 5000);
     console.log(error);
   }
 };
@@ -53,9 +56,9 @@ export const _nextPage = (pageNumber, pages, pageElement, person) => {
   if (pageNumber > 3) {
     return _submitSignup(person);
   }
-  if (pageNumber > 3) {
-    const signupFormSubmit = document.querySelector('.signup-form__form-page__section__button');
-  }
+  // if (pageNumber > 3) {
+  //   const signupFormSubmit = document.querySelector('.signup-form__form-page__section__button');
+  // }
   pages.forEach((p) => {
     p.style.display = 'none';
   });

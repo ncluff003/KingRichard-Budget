@@ -582,6 +582,11 @@
         margin-bottom: 0.5rem;
       }
     }
+    &__wider {
+      @extend .button--extra-extra-small__wide;
+      width: 10rem;
+      transform: translate(0rem, 0.25rem);
+    }
   }
 
   &--extra-small {

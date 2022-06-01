@@ -1,6 +1,7 @@
 import axios from 'axios';
 import qs from 'qs';
 import { logout } from './Login';
+import * as Utility from './Utility';
 
 export class Person {
   constructor(options) {
@@ -104,6 +105,7 @@ export class Person {
   }
 
   async _updatePerson(options) {
+    console.log(options);
     try {
       const response = await axios({
         method: `PATCH`,
@@ -113,6 +115,31 @@ export class Person {
         }),
       });
     } catch (error) {
+      let message = error.response.data.message;
+      if (message === `First name must be only letters.`) {
+        let firstnameLabel = document.getElementById('firstnameLabel');
+        Utility.renderError(firstnameLabel, message, `First Name`, `negative`, 5000);
+      }
+      if (message === `Last name must be only letters.`) {
+        let lastnameLabel = document.getElementById('lastnameLabel');
+        Utility.renderError(lastnameLabel, message, `Last Name`, `negative`, 5000);
+      }
+      if (message === `Username must start with a capital and contain letters and/or numbers..`) {
+        let usernameLabel = document.getElementById('usernameLabel');
+        Utility.renderError(usernameLabel, message, `Username`, `negative`, 5000);
+      }
+      if (message === `Please provide a valid email address.`) {
+        let newEmailLabel = document.getElementById('newEmailLabel');
+        let newEmailConfirmedLabel = document.getElementById('newEmailConfirmedLabel');
+        Utility.renderError(newEmailLabel, message, `New Email Address`, `negative`, 5000);
+        Utility.renderError(newEmailConfirmedLabel, message, `Confirm New Email Address`, `negative`, 5000);
+      }
+      if (message === `Please provide a valid phone number.`) {
+        let newPhoneNumberLabel = document.getElementById('newPhoneNumberLabel');
+        let newPhoneNumberConfirmedLabel = document.getElementById('newPhoneNumberConfirmedLabel');
+        Utility.renderError(newPhoneNumberLabel, message, `New Phone Number`, `negative`, 5000);
+        Utility.renderError(newPhoneNumberConfirmedLabel, message, `Confirm New Phone Number`, `negative`, 5000);
+      }
       console.log(error);
     }
   }
@@ -135,6 +162,16 @@ export class Person {
         // window.location.reload(true);
       }
     } catch (error) {
+      let message = error.response.data.message;
+      if (
+        message ===
+        `Passwords must contain at least 8 characters, amongst them being at least 1 capital letter, 1 lower case letter, 1 number, & 1 special symbol.  The special symbols may be the following: !, @, $, &, -, _, and &.`
+      ) {
+        let newPasswordLabel = document.getElementById('newPasswordLabel');
+        let newPasswordConfirmedLabel = document.getElementById('newPasswordConfirmedLabel');
+        Utility.renderError(newPasswordLabel, message, `New Password`, `negative`, 5000);
+        Utility.renderError(newPasswordConfirmedLabel, message, `Confirm New Password`, `negative`, 5000);
+      }
       console.log(error);
     }
   }
