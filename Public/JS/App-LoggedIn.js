@@ -3,8 +3,19 @@ import * as Budget from './Budget';
 import * as Budgeting from './Maintain-Budget';
 import * as Manage from './Manage-Budget';
 import * as Person from './Person';
+import * as Utility from './Utility';
 
 let latterDaySaint = false;
+
+export const _watchForResetFromErrors = () => {
+  const returnButton = document.querySelector('.button--return');
+  if (returnButton) {
+    returnButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      Utility.reloadPage();
+    });
+  }
+};
 
 const getBudget = async (budgetId, user) => {
   await Manage.renderBudget(budgetId, user);
@@ -361,5 +372,7 @@ export const _watchForLogin = async (login) => {
     _watchBudgetSelection(user);
     // WATCHING FOR CREATION OF BUDGETS
     Create._watchForBudgetCreation(placeholderUser);
+    // WATCH FOR RESET FROM ERRORS
+    _watchForResetFromErrors();
   }
 };

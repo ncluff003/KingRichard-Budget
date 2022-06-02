@@ -1,6 +1,8 @@
 import * as Categories from './Budget-Categories';
 import * as Budgeting from './Maintain-Budget';
 import * as Budget from './Budget';
+import * as Utility from './Utility';
+import * as Validate from './Validate';
 
 export const _watchEmergencyGoalSettings = (budget, setting) => {
   const emergencySettingLabels = document.querySelectorAll('.emergency-checkbox-label');
@@ -1224,7 +1226,6 @@ export const _watchForBudgetCreation = async (person) => {
         currentPage = 0;
       }
       currentPage++;
-      console.log(budget);
 
       // BUDGET IS SIMILAR TO PLACEHOLDERBUDGET IN THE WATCH BUDGET FUNCTION.
       // It will have the same budget class methods attached to it.
@@ -1234,6 +1235,12 @@ export const _watchForBudgetCreation = async (person) => {
       /////////////////////
       // BUDGET NAME
       let budgetName = document.getElementById('budgetName').value;
+
+      const budgetNameLabel = document.querySelectorAll('.form__label--small-budget');
+      if (!Validate.Validate.isBudgetName(budgetName)) {
+        currentPage = 0;
+        return Utility.renderError(budgetNameLabel[0], `Invalid Budget Name`, `What will be the name of your budget?`, `negative`, 2500);
+      }
 
       budget._updateBudgetName(budgetName);
 

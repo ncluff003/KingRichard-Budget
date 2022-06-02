@@ -14,7 +14,7 @@ const compression = require('compression');
 ////////////////////////////////////////////
 //  My Modules
 const AppError = require('./Utilities/appError');
-const GlobalErrorHandler = require('./Controllers/errorController');
+const errorController = require('./Controllers/errorController');
 
 ////////////////////////////////////////////
 //  Third Party Module Instances
@@ -67,7 +67,7 @@ App.all(`*`, (request, response, next) => {
   next(new AppError(`Failed to find ${request.originalUrl} on this server!`, 404));
 });
 
-App.use(GlobalErrorHandler);
+App.use(errorController.GlobalErrorHandler);
 
 ////////////////////////////////////////////
 //  Exporting App

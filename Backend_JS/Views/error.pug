@@ -1,0 +1,48 @@
+extends base
+  
+block App-Content 
+  section.master-grid-container.r__master-grid-container
+    section.modal--update-photo.r__modal--update-photo.closed
+      i.fas.fa-window-close.form-closure-icon__alt.r__form-closure-icon__alt
+      form.form--update-photo.r__form--update-photo
+        section.form__preview-photo-container.r__form__preview-photo-container 
+          section.form__preview-photo-container__picture-frame.r__form__preview-photo-container__picture-frame
+            img.form__preview-photo-container__picture-frame__image.r__form__preview-photo-container__picture-frame__image(src=``)
+        input.form__input--photo-upload.r__form__input--photo-upload#photo(type='file' accept='image/*' name='photo')
+        section.form__row--update-photo.r__form__row--update-photo
+          label.form__label--photo-upload.r__form__label--photo-upload(for='photo') 
+            i.fas.fa-camera.form__label--photo-upload__icon.r__form__label--photo-upload__icon
+            p.form__label--photo-upload__text.r__form__label--photo-upload__text Choose Photo
+          section.form__path-preview.r__form__path-preview 
+            p.form__path-preview__text.r__form__path-preview__text 
+          button.button--update-photo.r__button--update-photo
+            i.fas.fa-camera.button--update-photo__icon.r__button--update-photo__icon
+            p.button--update-photo__text.r__button--update-photo__text Save And Update Photo
+    section.application-flex-container.r__application-flex-container.column_1-24.row_1-18 
+      nav.navigation--side-screen.r__navigation--side-screen
+        section.navigation--side-screen__section--user-information.r__navigation--side-screen__section--user-information
+          section.navigation--side-screen__section--user-information__profile-picture-container.r__navigation--side-screen__section--user-information__profile-picture-container 
+            img.navigation--side-screen__section--user-information__profile-picture-container__picture.r__navigation--side-screen__section--user-information__profile-picture-container__picture(src=`/DIST/CSS/Images/Users/${data.user.photo}`)
+          button.button.r__button.button--extra-small.r__button--extra-small
+            i.fas.fa-camera.button--extra-small--icon.r__button--extra-small--icon
+            p.button--extra-small--text.r__button--extra-small--text Update Photo
+          p.navigation--side-screen__section--user-information__username.r__navigation--side-screen__section--user-information__username= `${data.user.firstname} ${data.user.lastname}`
+        section.navigation--side-screen__section--account-links.r__navigation--side-screen__section--account-links 
+          ul.navigation--side-screen__section--account-links__link-container.r__navigation--side-screen__section--account-links__link-container
+            li.navigation--side-screen__section--account-links__link-container__link.r__navigation--side-screen__section--account-links__link-container__link
+              button.navigation--side-screen__section--account-links__link-container__link--link.r__navigation--side-screen__section--account-links__link-container__link--link(href="#") Personal Information 
+            li.navigation--side-screen__section--account-links__link-container__link.r__navigation--side-screen__section--account-links__link-container__link
+              button.navigation--side-screen__section--account-links__link-container__link--link.r__navigation--side-screen__section--account-links__link-container__link--link(href="#") Communications
+            li.navigation--side-screen__section--account-links__link-container__link.r__navigation--side-screen__section--account-links__link-container__link
+              button.navigation--side-screen__section--account-links__link-container__link--link.r__navigation--side-screen__section--account-links__link-container__link--link(href="#") Password Management
+            li.navigation--side-screen__section--account-links__link-container__link.r__navigation--side-screen__section--account-links__link-container__link
+              button.navigation--side-screen__section--account-links__link-container__link--link.r__navigation--side-screen__section--account-links__link-container__link--link(href="#") Account Management
+        section.navigation--side-screen__section--application-logo.r__navigation--side-screen__section--application-logo    
+          img.navigation--side-screen__section--application-logo__logo.r__navigation--side-screen__section--application-logo__logo(src="/KingRichard-Logo-White.svg")
+          p.navigation--side-screen__section--application-logo__text.r__navigation--side-screen__section--application-logo__text King Richard              
+      section.application-viewport.r__application-viewport
+        img.application-logo.r__application-logo(src="/KingRichard-Logo.svg")
+        p.application-name.r__application-name King Richard 
+        section.application-display.r__application-display
+          include _User-Profile
+          include _Error-Message.pug

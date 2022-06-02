@@ -165,6 +165,24 @@ const createAndSendToken = (user, statusCode, method, request, response, templat
   const calendar = Calendar;
   const token = signToken(user.id);
   if (method === `json`) {
+    if (optionalData.error) {
+      if (optionalData.budget) {
+        request.budget = optionalData.budget;
+      }
+      if (optionalData.calendar) {
+        request.calendar = optionalData.calendar;
+      }
+      if (optionalData.error) {
+        request.error = optionalData.error;
+      }
+      return response.status(statusCode).json({
+        status: `${status}`,
+        message: `${message}`,
+        data: {
+          ...optionalData,
+        },
+      });
+    }
     return response.status(statusCode).json({
       status: `${status}`,
       message: `${message}`,
@@ -214,6 +232,7 @@ exports.createBudget = catchAsync(async (request, response, next) => {
     name: budget.name,
     createdAt: new Date(),
     lastUpdated: new Date(),
+    currentMonth: budget.currentMonth,
     associatedUsers: user.id,
     budgetAdmins: user.id,
     accounts: budget.accounts,

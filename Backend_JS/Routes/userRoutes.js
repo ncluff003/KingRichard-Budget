@@ -23,6 +23,7 @@ const authController = require(`./../Controllers/authController`);
 const userController = require(`./../Controllers/userController`);
 const budgetController = require(`./../Controllers/budgetController`);
 const budgetRouter = require(`./../Routes/budgetRoutes`);
+const errorRouter = require(`./../Routes/errorRoutes`);
 
 ////////////////////////////////////////////
 //  Routing Middleware
@@ -45,6 +46,7 @@ router.route(`/:id/DeleteMe`).delete(authController.protect, userController.dele
 
 // RE-ROUTE TO BUDGET ROUTER WHEN INSIDE ONE OF YOUR BUDGETS
 router.use(`/:id/Budgets`, budgetRouter);
+router.use(`/:id/Error`, errorRouter);
 
 // router.route(`/budgets`).post(authController.protect, budgetController.createBudget).get(authController.protect, budgetController.getBudget);
 // router.route(`/budgets/:id`).get(authController.protect, budgetController.getBudget);

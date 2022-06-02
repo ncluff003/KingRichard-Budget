@@ -4546,6 +4546,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "_showProfileForm": () => (/* binding */ _showProfileForm),
 /* harmony export */   "_watchCommPreference": () => (/* binding */ _watchCommPreference),
 /* harmony export */   "_watchForLogin": () => (/* binding */ _watchForLogin),
+/* harmony export */   "_watchForResetFromErrors": () => (/* binding */ _watchForResetFromErrors),
 /* harmony export */   "_watchPasswordSubSectionButtons": () => (/* binding */ _watchPasswordSubSectionButtons),
 /* harmony export */   "_watchPhoneNumberInputs": () => (/* binding */ _watchPhoneNumberInputs),
 /* harmony export */   "_watchSubSectionButtons": () => (/* binding */ _watchSubSectionButtons),
@@ -4560,6 +4561,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Maintain_Budget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Maintain-Budget */ "./Public/JS/Maintain-Budget.js");
 /* harmony import */ var _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Manage-Budget */ "./Public/JS/Manage-Budget.js");
 /* harmony import */ var _Person__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Person */ "./Public/JS/Person.js");
+/* harmony import */ var _Utility__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Utility */ "./Public/JS/Utility.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
 
@@ -4569,7 +4571,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var latterDaySaint = false;
+var _watchForResetFromErrors = function _watchForResetFromErrors() {
+  var returnButton = document.querySelector('.button--return');
+
+  if (returnButton) {
+    returnButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      _Utility__WEBPACK_IMPORTED_MODULE_8__.reloadPage();
+    });
+  }
+};
 
 var getBudget = /*#__PURE__*/function () {
   var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee(budgetId, user) {
@@ -5053,7 +5066,7 @@ var _watchForLogin = /*#__PURE__*/function () {
             status === true ? console.log("Logged In") : console.log("Logged Out");
 
             if (!(status === true)) {
-              _context6.next = 20;
+              _context6.next = 21;
               break;
             }
 
@@ -5096,9 +5109,12 @@ var _watchForLogin = /*#__PURE__*/function () {
             _watchBudgetSelection(user); // WATCHING FOR CREATION OF BUDGETS
 
 
-            _Budget_Creation__WEBPACK_IMPORTED_MODULE_3__._watchForBudgetCreation(placeholderUser);
+            _Budget_Creation__WEBPACK_IMPORTED_MODULE_3__._watchForBudgetCreation(placeholderUser); // WATCH FOR RESET FROM ERRORS
 
-          case 20:
+
+            _watchForResetFromErrors();
+
+          case 21:
           case "end":
             return _context6.stop();
         }
@@ -6053,7 +6069,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
 /* harmony import */ var _Maintain_Budget__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Maintain-Budget */ "./Public/JS/Maintain-Budget.js");
 /* harmony import */ var _Budget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Budget */ "./Public/JS/Budget.js");
+/* harmony import */ var _Utility__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Utility */ "./Public/JS/Utility.js");
+/* harmony import */ var _Validate__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Validate */ "./Public/JS/Validate.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
+
 
 
 
@@ -7334,8 +7354,7 @@ var _watchForBudgetCreation = /*#__PURE__*/function () {
                   currentPage = 0;
                 }
 
-                currentPage++;
-                console.log(budget); // BUDGET IS SIMILAR TO PLACEHOLDERBUDGET IN THE WATCH BUDGET FUNCTION.
+                currentPage++; // BUDGET IS SIMILAR TO PLACEHOLDERBUDGET IN THE WATCH BUDGET FUNCTION.
                 // It will have the same budget class methods attached to it.
                 //////////////////////////////
                 // ASSIGN BUDGET INFORMATION
@@ -7343,6 +7362,12 @@ var _watchForBudgetCreation = /*#__PURE__*/function () {
                 // BUDGET NAME
 
                 var budgetName = document.getElementById('budgetName').value;
+                var budgetNameLabel = document.querySelectorAll('.form__label--small-budget');
+
+                if (!_Validate__WEBPACK_IMPORTED_MODULE_7__.Validate.isBudgetName(budgetName)) {
+                  currentPage = 0;
+                  return _Utility__WEBPACK_IMPORTED_MODULE_6__.renderError(budgetNameLabel[0], "Invalid Budget Name", "What will be the name of your budget?", "negative", 2500);
+                }
 
                 budget._updateBudgetName(budgetName); ////////////////////////////////
                 // SETUP BUDGET CREATION FORM
@@ -7953,11 +7978,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Budget_Creation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Budget-Creation */ "./Public/JS/Budget-Creation.js");
 /* harmony import */ var _Maintain_Budget__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Maintain-Budget */ "./Public/JS/Maintain-Budget.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _App_LoggedIn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./App-LoggedIn */ "./Public/JS/App-LoggedIn.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_6__);
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
 
 
 
@@ -7976,10 +8003,10 @@ var createBudget = /*#__PURE__*/function () {
             console.log(user);
             _context.prev = 1;
             _context.next = 4;
-            return axios__WEBPACK_IMPORTED_MODULE_4___default()({
+            return axios__WEBPACK_IMPORTED_MODULE_5___default()({
               method: "POST",
               url: "/App/Users/".concat(user._id, "/Budgets"),
-              data: qs__WEBPACK_IMPORTED_MODULE_5___default().stringify({
+              data: qs__WEBPACK_IMPORTED_MODULE_6___default().stringify({
                 budget: budget
               })
             });
@@ -7995,7 +8022,7 @@ var createBudget = /*#__PURE__*/function () {
             console.log("Budget Created");
             console.log("Retrieving Budget...");
             _context.next = 10;
-            return axios__WEBPACK_IMPORTED_MODULE_4___default()({
+            return axios__WEBPACK_IMPORTED_MODULE_5___default()({
               method: "GET",
               url: "/App/Users/".concat(user._id, "/Budgets/RetrieveBudget/")
             });
@@ -8010,10 +8037,10 @@ var createBudget = /*#__PURE__*/function () {
 
             budgetId = response2.data.data.budget._id;
             _context.next = 15;
-            return axios__WEBPACK_IMPORTED_MODULE_4___default()({
+            return axios__WEBPACK_IMPORTED_MODULE_5___default()({
               method: "GET",
               url: "/App/Users/".concat(user._id, "/Budgets/").concat(budgetId, "/Dashboard"),
-              data: qs__WEBPACK_IMPORTED_MODULE_5___default().stringify({
+              data: qs__WEBPACK_IMPORTED_MODULE_6___default().stringify({
                 budget: budget
               })
             });
@@ -15790,6 +15817,94 @@ var renderError = function renderError(element, errorMessage, elementText, class
     }
   }, timeLimit);
 };
+
+/***/ }),
+
+/***/ "./Public/JS/Validate.js":
+/*!*******************************!*\
+  !*** ./Public/JS/Validate.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Validate": () => (/* binding */ Validate)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
+
+
+
+////////////////////////////////////////////
+//  Core Modules
+////////////////////////////////////////////
+//  Third Party Modules
+////////////////////////////////////////////
+//  Third Party Module Instances
+////////////////////////////////////////////
+//  Third Party Config Files
+////////////////////////////////////////////
+//  Third Party Middleware
+////////////////////////////////////////////
+//  My Middleware
+////////////////////////////////////////////
+//  Routing Middleward
+////////////////////////////////////////////
+//  My Modules
+/////////////////////////////////////////
+//  Validator Model
+var Validator = /*#__PURE__*/function () {
+  function Validator() {
+    (0,_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, Validator);
+  }
+
+  (0,_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(Validator, [{
+    key: "isName",
+    value: function isName(name) {
+      return /^[A-Za-z]+$/.test(name);
+    }
+  }, {
+    key: "isUsername",
+    value: function isUsername(username) {
+      return /^[A-Z][A-Za-z0-9]*$/.test(username);
+    }
+  }, {
+    key: "isEmail",
+    value: function isEmail(email) {
+      return /[^@]+@[^@]+[\.]+(com|net|org|io|edu|(co.uk)|me|tech|money)+$/.test(email.toLowerCase());
+    }
+  }, {
+    key: "isValidEmailSubject",
+    value: function isValidEmailSubject(subject) {
+      return /^[^`,@,^,&,+,=,<,>,{,},[,\],;,]*^[^`,@,^,&,+,=,<,>,{,},[,\],;,]+$/.test(subject);
+    }
+  }, {
+    key: "isCompany",
+    value: function isCompany(companyName) {
+      return /^[^?!*,#,%,*,+,=]*^[^?!*,#,%,*,+,=]*$/.test(companyName);
+    }
+  }, {
+    key: "isCompanyPosition",
+    value: function isCompanyPosition(position) {
+      return /^[^<,>,|,\[,\],?,!,`,~,!,@,#,$,%,^,&,*,+,=,;]*^[^<,>,|,\[,\],?,!,`,~,!,@,#,$,%,^,&,*,+,=,;]*$/.test(position);
+    }
+  }, {
+    key: "is_Eight_Character_One_Upper_Lower_Number_Special",
+    value: function is_Eight_Character_One_Upper_Lower_Number_Special(password) {
+      return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%&\-\_])[A-Za-z\d@$!%&\-\_&]{8,}$/.test(password);
+    }
+  }, {
+    key: "isBudgetName",
+    value: function isBudgetName(name) {
+      return /[A-Za-z\ \'\-\.\`\_\(\)\!0-9][^*\+]+$/.test(name);
+    }
+  }]);
+
+  return Validator;
+}();
+
+var Validate = new Validator();
 
 /***/ }),
 

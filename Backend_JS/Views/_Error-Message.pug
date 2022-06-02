@@ -1,0 +1,11 @@
+section.error-container.r__error-container.column_1-20.row_1-16
+  header.error-header.r__error-header 
+    p.error-header__status-code.r__error-header__status-code= `${data.error.statusCode}`
+    p.error-header__error-text.r__error-header__error-text Error 
+  section.error-message-container.r__error-message-container 
+    i.fas.fa-circle-exclamation.error-message__icon.r__error-message__icon
+    p.error-message.r__error-message=`${data.error.message}`
+  section.return-button-container.r__return-button-container 
+    button.button--return.r__button--return 
+      i.fas.fa-rotate-left.button--return__icon.r__button--return__icon 
+      p.button--return__text.r__button--return__text Go Back

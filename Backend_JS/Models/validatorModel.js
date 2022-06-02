@@ -54,6 +54,9 @@ class Validator {
   is_Eight_Character_One_Upper_Lower_Number_Special(password) {
     return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%&\-\_])[A-Za-z\d@$!%&\-\_&]{8,}$/.test(password);
   }
+  isBudgetName(name) {
+    return /[A-Za-z\ \'\-\.\`\_\(\)\!0-9][^*\+]+$/.test(name);
+  }
 }
 const Validate = new Validator();
 module.exports = Validate;

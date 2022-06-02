@@ -42,12 +42,13 @@ class Validator {
     return /^[^?!*,#,%,*,+,=]*^[^?!*,#,%,*,+,=]*$/.test(companyName);
   }
   isCompanyPosition(position) {
-    return /^[^<,>,|,\[,\],?,!,`,~,!,@,#,$,%,^,&,*,+,=,;]*^[^<,>,|,\[,\],?,!,`,~,!,@,#,$,%,^,&,*,+,=,;]*$/.test(
-      position,
-    );
+    return /^[^<,>,|,\[,\],?,!,`,~,!,@,#,$,%,^,&,*,+,=,;]*^[^<,>,|,\[,\],?,!,`,~,!,@,#,$,%,^,&,*,+,=,;]*$/.test(position);
   }
   is_Eight_Character_One_Upper_Lower_Number_Special(password) {
     return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%&\-\_])[A-Za-z\d@$!%&\-\_&]{8,}$/.test(password);
+  }
+  isBudgetName(name) {
+    return /[A-Za-z\ \'\-\.\`\_\(\)\!0-9][^*\+]+$/.test(name);
   }
 }
 export const Validate = new Validator();
