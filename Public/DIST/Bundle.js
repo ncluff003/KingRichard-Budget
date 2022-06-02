@@ -7532,7 +7532,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Manage_Budget__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Manage-Budget */ "./Public/JS/Manage-Budget.js");
 /* harmony import */ var _Maintain_Budget__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Maintain-Budget */ "./Public/JS/Maintain-Budget.js");
 /* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Categories.js");
+/* harmony import */ var _FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./FrontEnd-Calendar */ "./Public/JS/FrontEnd-Calendar.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
 
 
 
@@ -7817,6 +7819,7 @@ var Budget = /*#__PURE__*/function () {
   }, {
     key: "_submit",
     value: function _submit(budget, user) {
+      budget.currentMonth = _FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_9__.myCalendar.getMonth();
       _Create_Budget__WEBPACK_IMPORTED_MODULE_5__.createBudget(budget, user);
     }
   }, {
@@ -8480,100 +8483,108 @@ var _watchAccountManagement = function _watchAccountManagement(budget, placehold
   var transferTo = accountSelect[1];
   var transferAmount = document.getElementById('transferAmount');
   var transferButton = document.querySelector('.button--extra-extra-small__wider');
-  console.log(transferFrom, transferTo);
-  transferFrom.childNodes.forEach(function (child) {
-    child.addEventListener('click', function (e) {
-      e.preventDefault();
-      console.log(child.value);
+
+  if (transferFrom) {
+    transferFrom.childNodes.forEach(function (child) {
+      child.addEventListener('click', function (e) {
+        e.preventDefault();
+        console.log(child.value);
+      });
     });
-  });
-  transferTo.childNodes.forEach(function (child) {
-    child.addEventListener('click', function (e) {
-      e.preventDefault();
-      console.log(child.value);
+  }
+
+  if (transferTo) {
+    transferTo.childNodes.forEach(function (child) {
+      child.addEventListener('click', function (e) {
+        e.preventDefault();
+        console.log(child.value);
+      });
     });
-  });
-  transferButton.addEventListener('click', function (e) {
-    e.preventDefault();
-    console.log(transferFrom.value, transferTo.value, Number(transferAmount.value));
-    var to, from;
+  }
 
-    switch (transferFrom.value) {
-      case "Monthly Budget":
-        from = "monthlyBudget";
-        break;
+  if (transferButton) {
+    transferButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      console.log(transferFrom.value, transferTo.value, Number(transferAmount.value));
+      var to, from;
 
-      case "Emergency Fund":
-        from = "emergencyFund";
-        break;
+      switch (transferFrom.value) {
+        case "Monthly Budget":
+          from = "monthlyBudget";
+          break;
 
-      case "Savings Fund":
-        from = "savingsFund";
-        break;
+        case "Emergency Fund":
+          from = "emergencyFund";
+          break;
 
-      case "Expense Fund":
-        from = "expenseFund";
-        break;
+        case "Savings Fund":
+          from = "savingsFund";
+          break;
 
-      case "Surplus":
-        from = "surplus";
-        break;
+        case "Expense Fund":
+          from = "expenseFund";
+          break;
 
-      case "Investment Fund":
-        from = "investmentFund";
-        break;
+        case "Surplus":
+          from = "surplus";
+          break;
 
-      case "Tithing":
-        from = "tithing";
-        break;
-    }
+        case "Investment Fund":
+          from = "investmentFund";
+          break;
 
-    switch (transferTo.value) {
-      case "Monthly Budget":
-        to = "monthlyBudget";
-        break;
+        case "Tithing":
+          from = "tithing";
+          break;
+      }
 
-      case "Emergency Fund":
-        to = "emergencyFund";
-        break;
+      switch (transferTo.value) {
+        case "Monthly Budget":
+          to = "monthlyBudget";
+          break;
 
-      case "Savings Fund":
-        to = "savingsFund";
-        break;
+        case "Emergency Fund":
+          to = "emergencyFund";
+          break;
 
-      case "Expense Fund":
-        to = "expenseFund";
-        break;
+        case "Savings Fund":
+          to = "savingsFund";
+          break;
 
-      case "Surplus":
-        to = "surplus";
-        break;
+        case "Expense Fund":
+          to = "expenseFund";
+          break;
 
-      case "Investment Fund":
-        to = "investmentFund";
-        break;
+        case "Surplus":
+          to = "surplus";
+          break;
 
-      case "Tithing":
-        from = "tithing";
-        break;
-    }
+        case "Investment Fund":
+          to = "investmentFund";
+          break;
 
-    var updateObject = {
-      budgetId: budget._id,
-      userId: user._id
-    };
-    console.log(placeholderBudget.accounts[from], placeholderBudget.accounts[to]);
-    transfer(placeholderBudget.accounts[from], placeholderBudget.accounts[to], transferAmount.value);
-    console.log(placeholderBudget.accounts[from], placeholderBudget.accounts[to]);
-    updateObject.accounts = placeholderBudget.accounts;
+        case "Tithing":
+          from = "tithing";
+          break;
+      }
 
-    placeholderBudget._updateBudget({
-      updateObject: updateObject
-    }, "Account-Management");
+      var updateObject = {
+        budgetId: budget._id,
+        userId: user._id
+      };
+      console.log(placeholderBudget.accounts[from], placeholderBudget.accounts[to]);
+      transfer(placeholderBudget.accounts[from], placeholderBudget.accounts[to], transferAmount.value);
+      console.log(placeholderBudget.accounts[from], placeholderBudget.accounts[to]);
+      updateObject.accounts = placeholderBudget.accounts;
 
-    reloadPage();
-    console.log(updateObject.accounts);
-  });
+      placeholderBudget._updateBudget({
+        updateObject: updateObject
+      }, "Account-Management");
+
+      reloadPage();
+      console.log(updateObject.accounts);
+    });
+  }
 };
 
 var processReceipt = function processReceipt(transaction, button) {
@@ -12684,12 +12695,46 @@ var cycleMainCategories = function cycleMainCategories(direction, index, subCats
   }
 };
 
-var _setupCurrentMonth = function _setupCurrentMonth(budget) {
+var _setupCurrentMonth = function _setupCurrentMonth(budget, placeholderBudget, user) {
   var categoryIcon = document.querySelector('.main-category-display__category-display__icon');
   var categoryTitle = document.querySelector('.main-category-display__category-display__title');
   var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
   var leftButton = document.querySelector('.left');
   var rightButton = document.querySelector('.right');
+  var currentMonth = _FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_4__.myCalendar.getMonth();
+
+  if (currentMonth !== budget.currentMonth) {
+    placeholderBudget.previousMonth = placeholderBudget.currentMonth;
+    placeholderBudget.currentMonth = currentMonth;
+    placeholderBudget.mainCategories.forEach(function (mc) {
+      mc.lastUpdated = new Date();
+      mc.subCategories.forEach(function (sc) {
+        sc.lastUpdated = new Date();
+        sc.amountSpent = 0;
+        sc.amountRemaining = Number(sc.goalAmount - sc.amountSpent);
+        sc.percentageSpent = Number(sc.amountSpent / sc.goalAmount);
+
+        if (isNaN(sc.percentageSpent)) {
+          sc.percentageSpent = 0;
+        }
+      });
+    });
+    var updateObject = {
+      budgetId: budget._id,
+      userId: user._id,
+      currentMonth: currentMonth,
+      previousMonth: placeholderBudget.previousMonth,
+      mainCategories: placeholderBudget.mainCategories
+    };
+
+    placeholderBudget._updateBudget({
+      updateObject: updateObject
+    }, "Dashboard");
+
+    _Utility__WEBPACK_IMPORTED_MODULE_11__.reloadPage();
+    console.log(placeholderBudget.currentMonth, budget.currentMonth);
+  }
+
   var categoryIndex = 0;
   subCategories.forEach(function (sc, i) {
     sc.classList.add('closed');
@@ -14480,7 +14525,7 @@ var setupDashboard = function setupDashboard(user, budget, placeholderBudget) {
   // SETUP BILL CURRENT MONTH
 
 
-  _setupCurrentMonth(budget);
+  _setupCurrentMonth(budget, placeholderBudget, user);
 };
 
 var _watchBudget = /*#__PURE__*/function () {

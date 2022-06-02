@@ -11,6 +11,12 @@ const budgetSchema = new mongoose.Schema({
   },
   createdAt: Date,
   lastUpdated: Date,
+  currentMonth: {
+    type: String,
+  },
+  previousMonth: {
+    type: String,
+  },
   associatedUsers: [],
   budgetAdmins: [],
   coverPhoto: {

@@ -33,83 +33,88 @@ const _watchAccountManagement = (budget, placeholderBudget, user) => {
   const transferTo = accountSelect[1];
   const transferAmount = document.getElementById('transferAmount');
   const transferButton = document.querySelector('.button--extra-extra-small__wider');
-  console.log(transferFrom, transferTo);
-  transferFrom.childNodes.forEach((child) => {
-    child.addEventListener('click', (e) => {
-      e.preventDefault();
-      console.log(child.value);
+  if (transferFrom) {
+    transferFrom.childNodes.forEach((child) => {
+      child.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log(child.value);
+      });
     });
-  });
-  transferTo.childNodes.forEach((child) => {
-    child.addEventListener('click', (e) => {
-      e.preventDefault();
-      console.log(child.value);
+  }
+  if (transferTo) {
+    transferTo.childNodes.forEach((child) => {
+      child.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log(child.value);
+      });
     });
-  });
-  transferButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    console.log(transferFrom.value, transferTo.value, Number(transferAmount.value));
-    let to, from;
-    switch (transferFrom.value) {
-      case `Monthly Budget`:
-        from = `monthlyBudget`;
-        break;
-      case `Emergency Fund`:
-        from = `emergencyFund`;
-        break;
-      case `Savings Fund`:
-        from = `savingsFund`;
-        break;
-      case `Expense Fund`:
-        from = `expenseFund`;
-        break;
-      case `Surplus`:
-        from = `surplus`;
-        break;
-      case `Investment Fund`:
-        from = `investmentFund`;
-        break;
-      case `Tithing`:
-        from = `tithing`;
-        break;
-    }
-    switch (transferTo.value) {
-      case `Monthly Budget`:
-        to = `monthlyBudget`;
-        break;
-      case `Emergency Fund`:
-        to = `emergencyFund`;
-        break;
-      case `Savings Fund`:
-        to = `savingsFund`;
-        break;
-      case `Expense Fund`:
-        to = `expenseFund`;
-        break;
-      case `Surplus`:
-        to = `surplus`;
-        break;
-      case `Investment Fund`:
-        to = `investmentFund`;
-        break;
-      case `Tithing`:
-        from = `tithing`;
-        break;
-    }
-    let updateObject = {
-      budgetId: budget._id,
-      userId: user._id,
-    };
+  }
+  if (transferButton) {
+    transferButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      console.log(transferFrom.value, transferTo.value, Number(transferAmount.value));
+      let to, from;
+      switch (transferFrom.value) {
+        case `Monthly Budget`:
+          from = `monthlyBudget`;
+          break;
+        case `Emergency Fund`:
+          from = `emergencyFund`;
+          break;
+        case `Savings Fund`:
+          from = `savingsFund`;
+          break;
+        case `Expense Fund`:
+          from = `expenseFund`;
+          break;
+        case `Surplus`:
+          from = `surplus`;
+          break;
+        case `Investment Fund`:
+          from = `investmentFund`;
+          break;
+        case `Tithing`:
+          from = `tithing`;
+          break;
+      }
+      switch (transferTo.value) {
+        case `Monthly Budget`:
+          to = `monthlyBudget`;
+          break;
+        case `Emergency Fund`:
+          to = `emergencyFund`;
+          break;
+        case `Savings Fund`:
+          to = `savingsFund`;
+          break;
+        case `Expense Fund`:
+          to = `expenseFund`;
+          break;
+        case `Surplus`:
+          to = `surplus`;
+          break;
+        case `Investment Fund`:
+          to = `investmentFund`;
+          break;
+        case `Tithing`:
+          from = `tithing`;
+          break;
+      }
+      let updateObject = {
+        budgetId: budget._id,
+        userId: user._id,
+      };
 
-    console.log(placeholderBudget.accounts[from], placeholderBudget.accounts[to]);
-    transfer(placeholderBudget.accounts[from], placeholderBudget.accounts[to], transferAmount.value);
-    console.log(placeholderBudget.accounts[from], placeholderBudget.accounts[to]);
-    updateObject.accounts = placeholderBudget.accounts;
-    placeholderBudget._updateBudget({ updateObject: updateObject }, `Account-Management`);
-    reloadPage();
+      console.log(placeholderBudget.accounts[from], placeholderBudget.accounts[to]);
+      transfer(placeholderBudget.accounts[from], placeholderBudget.accounts[to], transferAmount.value);
+      console.log(placeholderBudget.accounts[from], placeholderBudget.accounts[to]);
+      updateObject.accounts = placeholderBudget.accounts;
+      placeholderBudget._updateBudget({ updateObject: updateObject }, `Account-Management`);
+      reloadPage();
 
-    console.log(updateObject.accounts);
-  });
+      console.log(updateObject.accounts);
+    });
+  }
 };
 
 const processReceipt = (transaction, button) => {
@@ -3861,12 +3866,39 @@ const cycleMainCategories = (direction, index, subCats, budget) => {
   }
 };
 
-const _setupCurrentMonth = (budget) => {
+const _setupCurrentMonth = (budget, placeholderBudget, user) => {
   const categoryIcon = document.querySelector('.main-category-display__category-display__icon');
   const categoryTitle = document.querySelector('.main-category-display__category-display__title');
   const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
   const leftButton = document.querySelector('.left');
   const rightButton = document.querySelector('.right');
+  let currentMonth = Calendar.myCalendar.getMonth();
+  if (currentMonth !== budget.currentMonth) {
+    placeholderBudget.previousMonth = placeholderBudget.currentMonth;
+    placeholderBudget.currentMonth = currentMonth;
+    placeholderBudget.mainCategories.forEach((mc) => {
+      mc.lastUpdated = new Date();
+      mc.subCategories.forEach((sc) => {
+        sc.lastUpdated = new Date();
+        sc.amountSpent = 0;
+        sc.amountRemaining = Number(sc.goalAmount - sc.amountSpent);
+        sc.percentageSpent = Number(sc.amountSpent / sc.goalAmount);
+        if (isNaN(sc.percentageSpent)) {
+          sc.percentageSpent = 0;
+        }
+      });
+    });
+    let updateObject = {
+      budgetId: budget._id,
+      userId: user._id,
+      currentMonth: currentMonth,
+      previousMonth: placeholderBudget.previousMonth,
+      mainCategories: placeholderBudget.mainCategories,
+    };
+    placeholderBudget._updateBudget({ updateObject: updateObject }, `Dashboard`);
+    Utility.reloadPage();
+    console.log(placeholderBudget.currentMonth, budget.currentMonth);
+  }
   let categoryIndex = 0;
   subCategories.forEach((sc, i) => {
     sc.classList.add('closed');
@@ -5484,7 +5516,7 @@ const setupDashboard = (user, budget, placeholderBudget) => {
   _setupBillCalendar(budget, placeholderBudget, user);
   ////////////////////////////////////////////
   // SETUP BILL CURRENT MONTH
-  _setupCurrentMonth(budget);
+  _setupCurrentMonth(budget, placeholderBudget, user);
 };
 
 export const _watchBudget = async () => {

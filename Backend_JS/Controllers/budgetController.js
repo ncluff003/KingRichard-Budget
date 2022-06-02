@@ -243,7 +243,7 @@ exports.updateMyBudget = catchAsync(async (request, response, next) => {
     return next(new AppError(`This route is not for password updates.  Please use /updateMyPassword route.`, 400));
   }
   // UPDATE BUDGET DOCUMENT
-  const filteredBody = filterObj(request.body, [`name`, `accounts`, `mainCategories`, `transactions`, `investments`, `debts`]);
+  const filteredBody = filterObj(request.body, [`name`, `currentMonth`, `previousMonth`, `accounts`, `mainCategories`, `transactions`, `investments`, `debts`]);
   console.log(`--------------------------------------------`);
   console.log(`Budget`);
   console.log(`--------------------------------------------`);

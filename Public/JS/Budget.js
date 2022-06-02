@@ -2,6 +2,7 @@ import * as Budgets from './Create-Budget';
 import * as Manage from './Manage-Budget';
 import * as Maintain from './Maintain-Budget';
 import * as Categories from './Budget-Categories';
+import * as Calendar from './FrontEnd-Calendar';
 class Account {
   constructor(options) {
     this.amount = options.amount;
@@ -184,6 +185,7 @@ export class Budget {
   }
 
   _submit(budget, user) {
+    budget.currentMonth = Calendar.myCalendar.getMonth();
     Budgets.createBudget(budget, user);
   }
 
