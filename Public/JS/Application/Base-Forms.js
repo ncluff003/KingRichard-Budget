@@ -1,7 +1,6 @@
 import * as Login from './Login';
 import * as Signup from './Signup';
 import * as Password from './Reset-Password';
-import * as Person from '../Classes/Person';
 
 //////////////////////////////
 // Actually Close The Form

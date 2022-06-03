@@ -1,6 +1,4 @@
-import * as Maintain from '../Budget/Maintain-Budget';
-import * as Person from '../Classes/Person';
-import * as Utility from '../Application/Utility';
+import * as Manage from '../Budget/_Manage-Categories';
 ////////////////////////////////
 // ICONS FOR MAIN CATEGORIES
 export const icons = [
@@ -1361,7 +1359,7 @@ const createMainCategory = (element, budget, filteredArray, person) => {
     const mainCategories = document.querySelectorAll('.main-category__alt');
     mainCategory.dataset.category = `${mainCategories.length - 1}`;
 
-    Maintain._watchForMainCategorySelection();
+    Manage._watchForMainCategorySelection();
   }
 };
 

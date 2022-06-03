@@ -4,6 +4,17 @@ export const insertElement = (position, container, element) => {
   }
 };
 
+export const pushIntoArray = (arrayFiller, array) => {
+  arrayFiller.forEach((af) => {
+    array.push(af);
+  });
+  return array;
+};
+
+export const toggleClass = (element, className) => {
+  return element.classList.toggle(className);
+};
+
 export const showElement = (element) => {
   element.classList.toggle('closed');
   element.classList.toggle('open');

@@ -1,11 +1,7 @@
 import * as Create from '../Budget-Creation/Budget-Creation';
-import * as Budget from '../Classes/Budget';
-import * as Budgeting from '../Budget/Maintain-Budget';
 import * as Manage from '../Budget/Manage-Budget';
 import * as Person from '../Classes/Person';
 import * as Utility from './Utility';
-
-let latterDaySaint = false;
 
 export const _watchForResetFromErrors = () => {
   const returnButton = document.querySelector('.button--return');

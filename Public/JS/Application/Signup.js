@@ -1,6 +1,5 @@
 import axios from 'axios';
 import qs from 'qs';
-import * as Person from '../Classes/Person';
 import * as Utility from './Utility';
 
 //////////////////////

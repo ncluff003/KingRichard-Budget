@@ -1,6 +1,4 @@
-import * as Budget from '../Budget-Creation/Budget-Creation';
-import * as Budgeting from '../Budget/Maintain-Budget';
-import * as App from './App-LoggedIn';
+import * as Watch from '../Budget/Watch-Budget';
 import axios from 'axios';
 import qs from 'qs';
 
@@ -34,7 +32,7 @@ export const createBudget = async (budget, user) => {
         });
         document.open(`text/html`).write(response3.data);
         window.location.assign(`/App/Users/${user._id}/Budgets/${budgetId}/Dashboard`);
-        Budgeting._watchBudget();
+        Watch._watchBudget();
       }
     }
   } catch (error) {

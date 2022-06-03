@@ -4557,11 +4557,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Budget_Creation_Budget_Creation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Budget-Creation/Budget-Creation */ "./Public/JS/Budget-Creation/Budget-Creation.js");
-/* harmony import */ var _Classes_Budget__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Classes/Budget */ "./Public/JS/Classes/Budget.js");
-/* harmony import */ var _Budget_Maintain_Budget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Budget/Maintain-Budget */ "./Public/JS/Budget/Maintain-Budget.js");
-/* harmony import */ var _Budget_Manage_Budget__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Budget/Manage-Budget */ "./Public/JS/Budget/Manage-Budget.js");
-/* harmony import */ var _Classes_Person__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Classes/Person */ "./Public/JS/Classes/Person.js");
-/* harmony import */ var _Utility__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Utility */ "./Public/JS/Application/Utility.js");
+/* harmony import */ var _Budget_Manage_Budget__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Budget/Manage-Budget */ "./Public/JS/Budget/Manage-Budget.js");
+/* harmony import */ var _Classes_Person__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Classes/Person */ "./Public/JS/Classes/Person.js");
+/* harmony import */ var _Utility__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Utility */ "./Public/JS/Application/Utility.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
 
@@ -4570,16 +4568,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-var latterDaySaint = false;
 var _watchForResetFromErrors = function _watchForResetFromErrors() {
   var returnButton = document.querySelector('.button--return');
 
   if (returnButton) {
     returnButton.addEventListener('click', function (e) {
       e.preventDefault();
-      _Utility__WEBPACK_IMPORTED_MODULE_8__.reloadPage();
+      _Utility__WEBPACK_IMPORTED_MODULE_6__.reloadPage();
     });
   }
 };
@@ -4591,7 +4586,7 @@ var getBudget = /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return _Budget_Manage_Budget__WEBPACK_IMPORTED_MODULE_6__.renderBudget(budgetId, user);
+            return _Budget_Manage_Budget__WEBPACK_IMPORTED_MODULE_4__.renderBudget(budgetId, user);
 
           case 2:
           case "end":
@@ -5037,7 +5032,7 @@ var _watchForProfilePictureChange = function _watchForProfilePictureChange(user,
 
     person._updatePhoto(form);
 
-    _Utility__WEBPACK_IMPORTED_MODULE_8__.reloadPage();
+    _Utility__WEBPACK_IMPORTED_MODULE_6__.reloadPage();
   });
 };
 
@@ -5067,7 +5062,7 @@ var _watchForLogin = /*#__PURE__*/function () {
             commSwitch = document.getElementById('commSwitch');
             ///////////////////////////////////////
             // GET USER
-            placeholderUser = new _Classes_Person__WEBPACK_IMPORTED_MODULE_7__.Person("", "", "", "", "", "", "", "");
+            placeholderUser = new _Classes_Person__WEBPACK_IMPORTED_MODULE_5__.Person("", "", "", "", "", "", "", "");
             _context6.next = 7;
             return placeholderUser._getPersonData();
 
@@ -5138,9 +5133,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Login */ "./Public/JS/Application/Login.js");
 /* harmony import */ var _Signup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Signup */ "./Public/JS/Application/Signup.js");
 /* harmony import */ var _Reset_Password__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Reset-Password */ "./Public/JS/Application/Reset-Password.js");
-/* harmony import */ var _Classes_Person__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Classes/Person */ "./Public/JS/Classes/Person.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
-
 
 
  //////////////////////////////
@@ -5252,16 +5245,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Budget_Creation_Budget_Creation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Budget-Creation/Budget-Creation */ "./Public/JS/Budget-Creation/Budget-Creation.js");
-/* harmony import */ var _Budget_Maintain_Budget__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Budget/Maintain-Budget */ "./Public/JS/Budget/Maintain-Budget.js");
-/* harmony import */ var _App_LoggedIn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./App-LoggedIn */ "./Public/JS/Application/App-LoggedIn.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _Budget_Watch_Budget__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Budget/Watch-Budget */ "./Public/JS/Budget/Watch-Budget.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_4__);
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
-
-
 
 
 
@@ -5279,10 +5268,10 @@ var createBudget = /*#__PURE__*/function () {
             console.log(user);
             _context.prev = 1;
             _context.next = 4;
-            return axios__WEBPACK_IMPORTED_MODULE_5___default()({
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "POST",
               url: "/App/Users/".concat(user._id, "/Budgets"),
-              data: qs__WEBPACK_IMPORTED_MODULE_6___default().stringify({
+              data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify({
                 budget: budget
               })
             });
@@ -5298,7 +5287,7 @@ var createBudget = /*#__PURE__*/function () {
             console.log("Budget Created");
             console.log("Retrieving Budget...");
             _context.next = 10;
-            return axios__WEBPACK_IMPORTED_MODULE_5___default()({
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "GET",
               url: "/App/Users/".concat(user._id, "/Budgets/RetrieveBudget/")
             });
@@ -5313,10 +5302,10 @@ var createBudget = /*#__PURE__*/function () {
 
             budgetId = response2.data.data.budget._id;
             _context.next = 15;
-            return axios__WEBPACK_IMPORTED_MODULE_5___default()({
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
               method: "GET",
               url: "/App/Users/".concat(user._id, "/Budgets/").concat(budgetId, "/Dashboard"),
-              data: qs__WEBPACK_IMPORTED_MODULE_6___default().stringify({
+              data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify({
                 budget: budget
               })
             });
@@ -5326,7 +5315,7 @@ var createBudget = /*#__PURE__*/function () {
             document.open("text/html").write(response3.data);
             window.location.assign("/App/Users/".concat(user._id, "/Budgets/").concat(budgetId, "/Dashboard"));
 
-            _Budget_Maintain_Budget__WEBPACK_IMPORTED_MODULE_3__._watchBudget();
+            _Budget_Watch_Budget__WEBPACK_IMPORTED_MODULE_2__._watchBudget();
 
           case 19:
             _context.next = 24;
@@ -5590,10 +5579,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
 /* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _Classes_Person__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Classes/Person */ "./Public/JS/Classes/Person.js");
-/* harmony import */ var _Utility__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Utility */ "./Public/JS/Application/Utility.js");
+/* harmony import */ var _Utility__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Utility */ "./Public/JS/Application/Utility.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
-
 
 
 
@@ -5661,7 +5648,7 @@ var signup = /*#__PURE__*/function () {
             _context.prev = 13;
             _context.t0 = _context["catch"](0);
             signupFormHeader = document.querySelectorAll('.form__header__title')[1];
-            _Utility__WEBPACK_IMPORTED_MODULE_5__.showError(signupFormHeader, "".concat(_context.t0.response.data.message), "Signup", "negative-centered", 5000);
+            _Utility__WEBPACK_IMPORTED_MODULE_4__.showError(signupFormHeader, "".concat(_context.t0.response.data.message), "Signup", "negative-centered", 5000);
             console.log(_context.t0);
 
           case 18:
@@ -5808,16 +5795,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "_capitalize": () => (/* binding */ _capitalize),
 /* harmony export */   "insertElement": () => (/* binding */ insertElement),
+/* harmony export */   "pushIntoArray": () => (/* binding */ pushIntoArray),
 /* harmony export */   "reloadPage": () => (/* binding */ reloadPage),
 /* harmony export */   "renderError": () => (/* binding */ renderError),
 /* harmony export */   "replaceClassName": () => (/* binding */ replaceClassName),
 /* harmony export */   "showElement": () => (/* binding */ showElement),
-/* harmony export */   "showError": () => (/* binding */ showError)
+/* harmony export */   "showError": () => (/* binding */ showError),
+/* harmony export */   "toggleClass": () => (/* binding */ toggleClass)
 /* harmony export */ });
 var insertElement = function insertElement(position, container, element) {
   if (container) {
     container.insertAdjacentElement(position, element);
   }
+};
+var pushIntoArray = function pushIntoArray(arrayFiller, array) {
+  arrayFiller.forEach(function (af) {
+    array.push(af);
+  });
+  return array;
+};
+var toggleClass = function toggleClass(element, className) {
+  return element.classList.toggle(className);
 };
 var showElement = function showElement(element) {
   element.classList.toggle('closed');
@@ -5900,9 +5898,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _Budget_Maintain_Budget__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../Budget/Maintain-Budget */ "./Public/JS/Budget/Maintain-Budget.js");
-/* harmony import */ var _Classes_Person__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../Classes/Person */ "./Public/JS/Classes/Person.js");
-/* harmony import */ var _Application_Utility__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../Application/Utility */ "./Public/JS/Application/Utility.js");
+/* harmony import */ var _Budget_Manage_Categories__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../Budget/_Manage-Categories */ "./Public/JS/Budget/_Manage-Categories.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
 
@@ -5921,8 +5917,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__["default"])(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-
 
  ////////////////////////////////
 // ICONS FOR MAIN CATEGORIES
@@ -6445,7 +6439,7 @@ var createMainCategory = function createMainCategory(element, budget, filteredAr
     var mainCategories = document.querySelectorAll('.main-category__alt');
     _mainCategory.dataset.category = "".concat(mainCategories.length - 1);
 
-    _Budget_Maintain_Budget__WEBPACK_IMPORTED_MODULE_9__._watchForMainCategorySelection();
+    _Budget_Manage_Categories__WEBPACK_IMPORTED_MODULE_9__._watchForMainCategorySelection();
   }
 }; ////////////////////////////////////////
 // CREATE MAIN CATEGORY
@@ -6692,7 +6686,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Budget_Categories__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Budget-Categories */ "./Public/JS/Budget-Creation/Budget-Categories.js");
-/* harmony import */ var _Budget_Maintain_Budget__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Budget/Maintain-Budget */ "./Public/JS/Budget/Maintain-Budget.js");
+/* harmony import */ var _Budget_Watch_Budget__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Budget/Watch-Budget */ "./Public/JS/Budget/Watch-Budget.js");
 /* harmony import */ var _Classes_Budget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Classes/Budget */ "./Public/JS/Classes/Budget.js");
 /* harmony import */ var _Application_Utility__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Application/Utility */ "./Public/JS/Application/Utility.js");
 /* harmony import */ var _Classes_Validate__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Classes/Validate */ "./Public/JS/Classes/Validate.js");
@@ -7781,16 +7775,6 @@ var goToPage = function goToPage(page, createBudgetPages) {
     if (createBudgetPages[page]) createBudgetPages[page].classList.remove('closed');
     if (createBudgetPages[page]) createBudgetPages[page].classList.add('open');
   });
-}; /////////////////////////////////
-// SET BUDGET NAME
-
-
-var getBudgetName = function getBudgetName(budget) {
-  var budgetName = document.getElementById('budgetName').value;
-
-  budget._updateBudgetName(budgetName);
-
-  return budget;
 }; ///////////////////////////////////////
 // SETTING UP MAIN CATEGORY CREATION
 
@@ -8143,7 +8127,7 @@ var _watchForBudgetCreation = /*#__PURE__*/function () {
 
             budgetNavButton = document.querySelector('.budget-container__navigation-button-container__button');
 
-            _Budget_Maintain_Budget__WEBPACK_IMPORTED_MODULE_4__._watchBudget(person);
+            _Budget_Watch_Budget__WEBPACK_IMPORTED_MODULE_4__._watchBudget(person);
 
           case 21:
           case "end":
@@ -8210,34 +8194,244 @@ var _watchBudgetNavigation = function _watchBudgetNavigation() {
 
 /***/ }),
 
-/***/ "./Public/JS/Budget/Maintain-Budget.js":
-/*!*********************************************!*\
-  !*** ./Public/JS/Budget/Maintain-Budget.js ***!
-  \*********************************************/
+/***/ "./Public/JS/Budget/Manage-Budget.js":
+/*!*******************************************!*\
+  !*** ./Public/JS/Budget/Manage-Budget.js ***!
+  \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "_watchBudget": () => (/* binding */ _watchBudget),
-/* harmony export */   "_watchForMainCategorySelection": () => (/* binding */ _watchForMainCategorySelection),
-/* harmony export */   "fillSubCategoryArray": () => (/* binding */ fillSubCategoryArray)
+/* harmony export */   "deleteMyBudget": () => (/* binding */ deleteMyBudget),
+/* harmony export */   "exitBudget": () => (/* binding */ exitBudget),
+/* harmony export */   "renderBudget": () => (/* binding */ renderBudget),
+/* harmony export */   "updateMyBudget": () => (/* binding */ updateMyBudget)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _Watch_Budget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Watch-Budget */ "./Public/JS/Budget/Watch-Budget.js");
+/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+
+
+
+
+var renderBudget = /*#__PURE__*/function () {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee(id, user) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
+              method: "GET",
+              url: "/App/Users/".concat(user._id, "/Budgets/").concat(id, "/Dashboard")
+            });
+
+          case 3:
+            response = _context.sent;
+            document.open("text/html").write(response.data);
+            window.location.assign("/App/Users/".concat(user._id, "/Budgets/").concat(id, "/Dashboard"));
+            console.log(response);
+
+            _Watch_Budget__WEBPACK_IMPORTED_MODULE_5__._watchBudget();
+
+            _context.next = 13;
+            break;
+
+          case 10:
+            _context.prev = 10;
+            _context.t0 = _context["catch"](0);
+            console.log(_context.t0);
+
+          case 13:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 10]]);
+  }));
+
+  return function renderBudget(_x, _x2) {
+    return _ref.apply(this, arguments);
+  };
+}();
+var updateMyBudget = /*#__PURE__*/function () {
+  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee2(options, pageLink) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
+              method: "PATCH",
+              url: "/App/Users/".concat(options.userId, "/Budgets/").concat(options.budgetId, "/").concat(pageLink),
+              data: qs__WEBPACK_IMPORTED_MODULE_4___default().parse(_objectSpread({}, options))
+            });
+
+          case 3:
+            response = _context2.sent;
+
+            if (response.statusText === 'OK') {
+              console.log("It is OKAY!!!"); // Check if first name is not undefined or empty.
+
+              !options.firstname === undefined && !options.firstname === '' ? document.getElementById('firstname').value = options.value : document.getElementById('firstname').value = document.getElementById('firstname').value; // Check if last name is not undefined or empty.
+
+              !options.lastname === undefined && !options.lastname === '' ? document.getElementById('lastname').value = options.value : document.getElementById('lastname').value = document.getElementById('lastname').value; // Check if username is not undefined or empty.
+
+              !options.username === undefined && !options.username === '' ? document.getElementById('username').value = options.value : document.getElementById('username').value = document.getElementById('username').value; // Check if email is not undefined or empty.
+
+              !options.email === undefined && !options.email === '' ? document.getElementById('email').value = options.value : document.getElementById('email').value = document.getElementById('email').value; // Check if email is not undefined or empty.
+
+              !options.emailConfirmed === undefined && !options.emailConfirmed === '' ? document.getElementById('email').value = options.value : document.getElementById('email').value = document.getElementById('email').value;
+              document.getElementById('email').value = options.email;
+              document.getElementById('newEmail').value = '';
+              document.getElementById('newEmailConfirmed').value = ''; // Check if phone number is not undefined or empty.
+
+              !options.phoneNumber === undefined && !options.phoneNumber === '' ? document.getElementById('phoneNumber').value = options.value : document.getElementById('phoneNumber').value = document.getElementById('phoneNumber').value; // Check if phone number is not undefined or empty.
+
+              !options.phoneNumberConfirmed === undefined && !options.phoneNumberConfirmed === '' ? document.getElementById('phoneNumber').value = options.value : document.getElementById('phoneNumber').value = document.getElementById('phoneNumber').value; // Check if confirmed phone number is not undefined or empty.
+
+              document.getElementById('phoneNumber').value = options.phoneNumber;
+              document.getElementById('newPhoneNumber').value = '';
+              document.getElementById('newPhoneNumberConfirmed').value = '';
+            }
+
+            _context2.next = 10;
+            break;
+
+          case 7:
+            _context2.prev = 7;
+            _context2.t0 = _context2["catch"](0);
+            console.log(_context2.t0);
+
+          case 10:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 7]]);
+  }));
+
+  return function updateMyBudget(_x3, _x4) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+var exitBudget = /*#__PURE__*/function () {
+  var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee3(id) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            try {
+              window.location.assign("/App/Users/".concat(id));
+            } catch (error) {
+              console.log(error);
+            }
+
+          case 1:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3);
+  }));
+
+  return function exitBudget(_x5) {
+    return _ref3.apply(this, arguments);
+  };
+}();
+var deleteMyBudget = /*#__PURE__*/function () {
+  var _ref4 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee4(id, userId) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            _context4.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
+              method: "DELETE",
+              url: "/App/Users/".concat(userId, "/Budgets/").concat(id, "/Budget-Management"),
+              data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify({
+                id: id
+              })
+            });
+
+          case 3:
+            response = _context4.sent;
+            console.log(response);
+
+            if (response.statusText === 'No Content') {
+              window.location.assign("/App/Users/".concat(userId));
+            }
+
+            _context4.next = 11;
+            break;
+
+          case 8:
+            _context4.prev = 8;
+            _context4.t0 = _context4["catch"](0);
+            console.log(_context4.t0);
+
+          case 11:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[0, 8]]);
+  }));
+
+  return function deleteMyBudget(_x6, _x7) {
+    return _ref4.apply(this, arguments);
+  };
+}();
+
+/***/ }),
+
+/***/ "./Public/JS/Budget/Watch-Budget.js":
+/*!******************************************!*\
+  !*** ./Public/JS/Budget/Watch-Budget.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "_watchBudget": () => (/* binding */ _watchBudget)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
-/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _Classes_FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Classes/FrontEnd-Calendar */ "./Public/JS/Classes/FrontEnd-Calendar.js");
-/* harmony import */ var _Manage_Budget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Manage-Budget */ "./Public/JS/Budget/Manage-Budget.js");
-/* harmony import */ var _Classes_Budget__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Classes/Budget */ "./Public/JS/Classes/Budget.js");
-/* harmony import */ var _Budget_Creation_Budget_Creation__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Budget-Creation/Budget-Creation */ "./Public/JS/Budget-Creation/Budget-Creation.js");
-/* harmony import */ var _Budget_Creation_Budget_Categories__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Budget-Creation/Budget-Categories */ "./Public/JS/Budget-Creation/Budget-Categories.js");
-/* harmony import */ var _Classes_Transaction__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../Classes/Transaction */ "./Public/JS/Classes/Transaction.js");
-/* harmony import */ var _Classes_Person__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../Classes/Person */ "./Public/JS/Classes/Person.js");
-/* harmony import */ var _Application_Utility__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./../Application/Utility */ "./Public/JS/Application/Utility.js");
-/* harmony import */ var _Budget_Navigation__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Budget-Navigation */ "./Public/JS/Budget/Budget-Navigation.js");
-/* harmony import */ var _Account_Management__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./_Account-Management */ "./Public/JS/Budget/_Account-Management.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Classes_Budget__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Classes/Budget */ "./Public/JS/Classes/Budget.js");
+/* harmony import */ var _Classes_Person__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Classes/Person */ "./Public/JS/Classes/Person.js");
+/* harmony import */ var _Account_Management__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./_Account-Management */ "./Public/JS/Budget/_Account-Management.js");
+/* harmony import */ var _Dashboard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./_Dashboard */ "./Public/JS/Budget/_Dashboard.js");
+/* harmony import */ var _Budget_Management__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./_Budget-Management */ "./Public/JS/Budget/_Budget-Management.js");
+/* harmony import */ var _Edit_Category_Goals__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./_Edit-Category-Goals */ "./Public/JS/Budget/_Edit-Category-Goals.js");
+/* harmony import */ var _Manage_Categories__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./_Manage-Categories */ "./Public/JS/Budget/_Manage-Categories.js");
+/* harmony import */ var _Income_Allocation__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./_Income-Allocation */ "./Public/JS/Budget/_Income-Allocation.js");
+/* harmony import */ var _Transaction_Planner__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./_Transaction-Planner */ "./Public/JS/Budget/_Transaction-Planner.js");
+/* harmony import */ var _Investment_Planner__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./_Investment-Planner */ "./Public/JS/Budget/_Investment-Planner.js");
+/* harmony import */ var _Debt_Manager__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./_Debt-Manager */ "./Public/JS/Budget/_Debt-Manager.js");
+/* harmony import */ var _Recent_Transactions__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./_Recent-Transactions */ "./Public/JS/Budget/_Recent-Transactions.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
 
@@ -8252,243 +8446,2339 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // Class of the 'days' on the Calendar.
-// bill-calendar-container__calendar-container__calendar__days__single-day
 
-var processReceipt = function processReceipt(transaction, button) {
-  var viewReceiptButtons = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(document.querySelectorAll('.button--extra-extra-small__view-receipt'));
+var _watchBudget = /*#__PURE__*/function () {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
+    var person, userInfo, user, placeholderUser, currentBudget, budget;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            console.log("WATCHING YOUR BUDGET"); /////////////////////////////
+            // GET USER
 
-  var viewReceiptButtonIndex = viewReceiptButtons.indexOf(button);
-  var receiptLocation = document.querySelector('.modal--receipt__digital-receipt__container__header__title');
-  receiptLocation.textContent = "".concat(_Application_Utility__WEBPACK_IMPORTED_MODULE_11__._capitalize(transaction.location));
-  var receiptItemContainer = document.querySelector('.modal--receipt__digital-receipt__container__item-container'); // receiptItemContainer.innerHTML = '';
+            person = new _Classes_Person__WEBPACK_IMPORTED_MODULE_3__.Person("", "", "", "", "", "", "", "");
+            _context.next = 4;
+            return person._getPersonData();
 
-  while (receiptItemContainer.firstChild) {
-    receiptItemContainer.removeChild(receiptItemContainer.firstChild);
+          case 4:
+            userInfo = _context.sent;
+            user = userInfo.data.data.user;
+            _context.next = 8;
+            return person._getPersonData();
+
+          case 8:
+            placeholderUser = _context.sent;
+            user.budgets.forEach(function (b) {
+              if (b._id === window.location.pathname.split('/')[5]) currentBudget = b;
+            });
+            budget = _Classes_Budget__WEBPACK_IMPORTED_MODULE_2__.startToCreate();
+
+            budget._buildPlaceHolderBudget(currentBudget, user);
+
+            if (currentBudget) {
+              _context.next = 14;
+              break;
+            }
+
+            return _context.abrupt("return");
+
+          case 14:
+            ////////////////////////////////////////////
+            // SETTING UP THE BUDGET DASHBOARD
+            _Dashboard__WEBPACK_IMPORTED_MODULE_5__.setupBudgetDashboard(user, currentBudget, budget); ////////////////////////////////////////////
+            // WATCH BUDGET MANAGEMENT PAGE
+
+            _Budget_Management__WEBPACK_IMPORTED_MODULE_6__._setupBudgetManagement(currentBudget, budget, user); ////////////////////////////////////////////
+            // WATCH EDIT CATEGORY GOALS PAGE
+
+
+            _Edit_Category_Goals__WEBPACK_IMPORTED_MODULE_7__._watchEditCategoryGoals(currentBudget, budget, user); ////////////////////////////////////////////
+            // WATCH MANAGE CATEGORIES PAGE
+
+
+            _Manage_Categories__WEBPACK_IMPORTED_MODULE_8__._watchManageCategories(currentBudget, budget, user); ////////////////////////////////////////////
+            // WATCH FOR INCOME ALLOCATION
+
+
+            _Income_Allocation__WEBPACK_IMPORTED_MODULE_9__._watchIncomeAllocation(currentBudget, budget, user); ////////////////////////////////////////////
+            // WATCH FOR INCOME ALLOCATION
+
+
+            _Transaction_Planner__WEBPACK_IMPORTED_MODULE_10__._watchTransactionPlanner(currentBudget, budget, user); ////////////////////////////////////////////
+            // WATCH FOR INCOME ALLOCATION
+
+
+            _Investment_Planner__WEBPACK_IMPORTED_MODULE_11__._watchInvestmentPlanner(currentBudget, budget, user); ////////////////////////////////////////////
+            // WATCH FOR INCOME ALLOCATION
+
+
+            _Debt_Manager__WEBPACK_IMPORTED_MODULE_12__._watchDebtManager(currentBudget, budget, user); ////////////////////////////////////////////
+            // WATCH RECENT TRANSACTIONS
+
+
+            _Recent_Transactions__WEBPACK_IMPORTED_MODULE_13__._watchRecentTransactions(currentBudget, budget, user); ////////////////////////////////////////////
+            // WATCH ACCOUNT MANAGEMENT
+
+
+            _Account_Management__WEBPACK_IMPORTED_MODULE_4__._watchAccountManagement(currentBudget, budget, user);
+
+          case 24:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function _watchBudget() {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+/***/ }),
+
+/***/ "./Public/JS/Budget/_Account-Management.js":
+/*!*************************************************!*\
+  !*** ./Public/JS/Budget/_Account-Management.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "_watchAccountManagement": () => (/* binding */ _watchAccountManagement)
+/* harmony export */ });
+/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+var _watchAccountManagement = function _watchAccountManagement(budget, placeholderBudget, user) {
+  var accountSelect = document.querySelectorAll('.form__select--accounts');
+  var transferFrom = accountSelect[0];
+  var transferTo = accountSelect[1];
+  var transferAmount = document.getElementById('transferAmount');
+  var transferButton = document.querySelector('.button--extra-extra-small__wider');
+
+  if (transferFrom) {
+    transferFrom.childNodes.forEach(function (child) {
+      child.addEventListener('click', function (e) {
+        e.preventDefault();
+        console.log(child.value);
+      });
+    });
   }
 
-  var money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2
-  });
-  var receiptTotal = 0;
-  transaction.receipt.forEach(function (receiptItem, i) {
-    var receiptRow = document.createElement('section');
-    receiptRow.classList.add('modal--receipt__digital-receipt__container__item-container__row');
-    receiptRow.classList.add('r__modal--receipt__digital-receipt__container__item-container__row');
-    insertElement(receiptItemContainer, receiptRow);
-    var receiptDetailsSection = document.createElement('section');
-    receiptDetailsSection.classList.add('receipt-row__transaction-details-section');
-    receiptDetailsSection.classList.add('r__receipt-row__transaction-details-section');
-    insertElement(receiptRow, receiptDetailsSection);
-    var receiptCostSection = document.createElement('section');
-    receiptCostSection.classList.add('receipt-row__transaction-cost-section');
-    receiptCostSection.classList.add('r__receipt-row__transaction-cost-section');
-    insertElement(receiptRow, receiptCostSection);
+  if (transferTo) {
+    transferTo.childNodes.forEach(function (child) {
+      child.addEventListener('click', function (e) {
+        e.preventDefault();
+        console.log(child.value);
+      });
+    });
+  }
 
-    if (receiptItem.account === "Debt") {
-      var receiptItemDetail = document.createElement('p');
-      receiptItemDetail.classList.add('receipt-row__transaction-details-section__name');
-      receiptItemDetail.classList.add('r__receipt-row__transaction-details-section__name');
-      var receiptItemDetailTwo = document.createElement('p');
-      receiptItemDetailTwo.classList.add('receipt-row__transaction-details-section__name');
-      receiptItemDetailTwo.classList.add('r__receipt-row__transaction-details-section__name');
-      receiptItemDetail.textContent = "Unknown";
+  if (transferButton) {
+    transferButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      var to, from;
 
-      if (receiptItem.lender) {
-        receiptItemDetail.textContent = "".concat(receiptItem.lender);
+      switch (transferFrom.value) {
+        case "Monthly Budget":
+          from = "monthlyBudget";
+          break;
+
+        case "Emergency Fund":
+          from = "emergencyFund";
+          break;
+
+        case "Savings Fund":
+          from = "savingsFund";
+          break;
+
+        case "Expense Fund":
+          from = "expenseFund";
+          break;
+
+        case "Surplus":
+          from = "surplus";
+          break;
+
+        case "Investment Fund":
+          from = "investmentFund";
+          break;
+
+        case "Tithing":
+          from = "tithing";
+          break;
       }
 
-      receiptItemDetailTwo.textContent = "Unknown";
+      switch (transferTo.value) {
+        case "Monthly Budget":
+          to = "monthlyBudget";
+          break;
 
-      if (receiptItem.description) {
-        receiptItemDetailTwo.textContent = "".concat(receiptItem.description);
+        case "Emergency Fund":
+          to = "emergencyFund";
+          break;
+
+        case "Savings Fund":
+          to = "savingsFund";
+          break;
+
+        case "Expense Fund":
+          to = "expenseFund";
+          break;
+
+        case "Surplus":
+          to = "surplus";
+          break;
+
+        case "Investment Fund":
+          to = "investmentFund";
+          break;
+
+        case "Tithing":
+          from = "tithing";
+          break;
       }
 
-      insertElement(receiptDetailsSection, receiptItemDetail);
-      insertElement(receiptDetailsSection, receiptItemDetailTwo);
-      var receiptCostDetail = document.createElement('p');
-      receiptCostDetail.classList.add('receipt-row__cost-section__cost');
-      receiptCostDetail.classList.add('r__receipt-row__cost-section__cost');
-      receiptCostDetail.textContent = money.format(receiptItem.amount);
-      insertElement(receiptCostSection, receiptCostDetail);
-    }
+      var updateObject = {
+        budgetId: budget._id,
+        userId: user._id
+      };
 
-    if (receiptItem.account !== "Debt") {
-      var _receiptItemDetail = document.createElement('p');
+      placeholderBudget._accountTransfer(placeholderBudget.accounts[from], placeholderBudget.accounts[to], transferAmount.value);
 
-      _receiptItemDetail.classList.add('receipt-row__transaction-details-section__name');
+      updateObject.accounts = placeholderBudget.accounts;
 
-      _receiptItemDetail.classList.add('r__receipt-row__transaction-details-section__name');
+      placeholderBudget._updateBudget({
+        updateObject: updateObject
+      }, "Account-Management");
 
-      _receiptItemDetail.textContent = _Application_Utility__WEBPACK_IMPORTED_MODULE_11__._capitalize("paycheck");
-
-      if (receiptItem.description) {
-        _receiptItemDetail.textContent = _Application_Utility__WEBPACK_IMPORTED_MODULE_11__._capitalize(receiptItem.description);
-      }
-
-      insertElement(receiptDetailsSection, _receiptItemDetail);
-
-      var _receiptCostDetail = document.createElement('p');
-
-      _receiptCostDetail.classList.add('receipt-row__cost-section__cost');
-
-      _receiptCostDetail.classList.add('r__receipt-row__cost-section__cost');
-
-      _receiptCostDetail.textContent = money.format(receiptItem.amount);
-      insertElement(receiptCostSection, _receiptCostDetail);
-    }
-
-    receiptTotal += receiptItem.amount;
-  });
-  var receiptFooterTexts = document.querySelectorAll('.footer-title');
-  var receiptTotalAmount = receiptFooterTexts[1];
-  receiptTotalAmount.textContent = money.format(receiptTotal);
+      Utility.reloadPage();
+    });
+  }
 };
 
-var getReceiptTotal = function getReceiptTotal(transaction) {
-  var total = 0;
-  transaction.receipt.forEach(function (receiptItem) {
-    total += receiptItem.amount;
-  });
-  return total;
+/***/ }),
+
+/***/ "./Public/JS/Budget/_Budget-Management.js":
+/*!************************************************!*\
+  !*** ./Public/JS/Budget/_Budget-Management.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "_setupBudgetManagement": () => (/* binding */ _setupBudgetManagement)
+/* harmony export */ });
+/* harmony import */ var _Manage_Budget__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Manage-Budget */ "./Public/JS/Budget/Manage-Budget.js");
+
+
+var getTithing = function getTithing(budget, user, currentTithingSetting) {
+  var tithingSetting;
+  var tithing = {};
+
+  if (tithingSetting === undefined || tithingSetting !== '' || tithingSetting === null) {
+    tithingSetting = currentTithingSetting;
+  }
+
+  tithing.tithingSetting = currentTithingSetting;
+  tithing.amount = budget.accounts.tithing.amount;
+  return tithing;
 };
 
-var showRecentTransaction = function showRecentTransaction(budget, placeholderBudget, user, transaction) {
+var getEmergencyFund = function getEmergencyFund(budget, emergencySetting) {
+  var emergencyFundGoal, emergencyFundGoalTiming;
+  var emergencyFund = {};
+  emergencyFund.emergencyGoalMeasurement = emergencySetting;
+
+  if (emergencySetting === "Length Of Time") {
+    emergencyFundGoal = Number(document.querySelector('.form__input--half-left').value);
+    emergencyFundGoalTiming = document.querySelector('.form__select--half-right').value;
+    if (emergencyFundGoal === '' || emergencyFundGoal === undefined || emergencyFundGoal === null) emergencyFundGoal = budget.accounts.emergencyFund.emergencyFundGoal;
+    if (emergencyFundGoalTiming === '' || emergencyFundGoalTiming === undefined || emergencyFundGoalTiming === null) emergencyFundGoalTiming = budget.accounts.emergencyFund.emergencyFundGoalTiming;
+    emergencyFund.emergencyGoalMeasurement = emergencySetting;
+    emergencyFund.emergencyFundGoal = emergencyFundGoal;
+    emergencyFund.emergencyFundGoalTiming = emergencyFundGoalTiming;
+    emergencyFund.amount = budget.accounts.emergencyFund.amount;
+    return emergencyFund;
+  }
+
+  if (emergencySetting === "Total Amount") {
+    emergencyFund.emergencyFundGoal = Number(document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__input').value);
+  }
+
+  return emergencyFund;
+};
+
+var getInvestmentFund = function getInvestmentFund(budget) {
+  var budgetInputs = document.querySelectorAll('.form__input--small-thin');
+  var investmentFund = {};
+  var investmentGoal = Number(budgetInputs[0].value);
+  var investmentPercentage = Number(budgetInputs[1].value);
+  if (investmentGoal === '' || investmentGoal === undefined || investmentGoal === null) investmentGoal = budget.accounts.investmentFund.investmentGoal;
+  if (investmentPercentage === '' || investmentPercentage === undefined || investmentPercentage === null) investmentPercentage = budget.accounts.investmentFund.investmentPercentage;
+  investmentFund.investmentGoal = investmentGoal;
+  investmentFund.investmentPercentage = investmentPercentage / 100;
+  investmentFund.amount = budget.accounts.investmentFund.amount;
+  return investmentFund;
+};
+
+var getSavingsFund = function getSavingsFund(budget) {
+  var budgetInputs = document.querySelectorAll('.form__input--small-thin');
+  var savingsFund = {};
+  var savingsGoal = Number(budgetInputs[0].value);
+  var savingsPercentage = Number(budgetInputs[1].value);
+  if (savingsGoal === '' || savingsGoal === undefined || savingsGoal === null) savingsGoal = budget.accounts.savingsFund.savingsGoal;
+  if (savingsPercentage === '' || savingsPercentage === undefined || savingsPercentage === null) savingsPercentage = budget.accounts.savingsFund.savingsPercentage;
+  savingsFund.savingsGoal = savingsGoal;
+  savingsFund.savingsPercentage = savingsPercentage / 100;
+  savingsFund.amount = budget.accounts.savingsFund.amount;
+  return savingsFund;
+};
+
+var getBudgetName = function getBudgetName(budget) {
+  var budgetInputs = document.querySelectorAll('.form__input--small-thin__placeholder-shown');
+  var budgetName = budgetInputs[0].value;
+  if (budgetName === '') budgetName = budget.name;
+  return budgetName;
+};
+
+var compileBudgetManagementUpdates = function compileBudgetManagementUpdates(emergencySetting, currentTithingSetting, budget, placeholderBudget, user) {
+  /*
+    Quick note here...,
+     Building the update object outside of a method is alright, however, how this really should go down is to update the placeholder budget first.
+     Then, after the place holder budget is updated within the limits of the current page, there should be an object that is built based off of what CAN be updated on that page.
+    For the Budget Management Page, that would be the budget's name and the budget's accounts.  So, sending an object with THAT information would be most beneficial.
+    Another and final example for now would be the edit category goals page be fore changing the timing, goals, etc... on the placeholder budget and sending the whole main categories array
+    to the update functionality in the backend to update that budget that way.
+   */
+  // GET BUDGET NAME
+  var budgetName = getBudgetName(budget); // The methods below are returning the objects of these accounts.  They are NOT returning the values themselves.
+
+  var savingsFund = getSavingsFund(budget);
+  var investmentFund = getInvestmentFund(budget);
+  var emergencyFund = getEmergencyFund(budget, emergencySetting);
+  var tithing;
+  var updateObject = {};
+
+  if (user.latterDaySaint === true) {
+    tithing = getTithing(budget, user, currentTithingSetting);
+
+    var name = placeholderBudget._addName(budgetName);
+
+    updateObject.budgetId = budget._Id;
+    updateObject.userId = user._Id;
+    updateObject.name = name;
+    updateObject.accounts = {
+      unAllocated: {
+        amount: placeholderBudget.accounts.unAllocated.amount
+      },
+      monthlyBudget: {
+        amount: placeholderBudget.accounts.monthlyBudget.amount
+      },
+      emergencyFund: emergencyFund,
+      savingsFund: savingsFund,
+      expenseFund: {
+        amount: placeholderBudget.accounts.expenseFund.amount
+      },
+      surplus: {
+        amount: placeholderBudget.accounts.surplus.amount
+      },
+      investmentFund: investmentFund,
+      debt: {
+        amount: placeholderBudget.accounts.debt.amount,
+        debtAmount: Number(placeholderBudget.accounts.debt.debtAmount)
+      },
+      tithing: tithing
+    };
+
+    placeholderBudget._updateBudget({
+      updateObject: updateObject
+    }, "Budget-Management");
+  }
+
+  if (user.latterDaySaint === false) {
+    var _name = placeholderBudget._addName(budgetName);
+
+    updateObject.budgetId = budget._Id;
+    updateObject.userId = user._Id;
+    updateObject.name = _name;
+    updateObject.accounts = {
+      unAllocated: {
+        amount: placeholderBudget.accounts.unAllocated.amount
+      },
+      monthlyBudget: {
+        amount: placeholderBudget.accounts.monthlyBudget.amount
+      },
+      emergencyFund: emergencyFund,
+      savingsFund: savingsFund,
+      expenseFund: {
+        amount: placeholderBudget.accounts.expenseFund.amount
+      },
+      surplus: {
+        amount: placeholderBudget.accounts.surplus.amount
+      },
+      investmentFund: investmentFund,
+      debt: {
+        amount: placeholderBudget.accounts.debt.amount,
+        debtAmount: Number(placeholderBudget.accounts.debt.debtAmount)
+      }
+    };
+
+    placeholderBudget._updateBudget({
+      updateObject: updateObject
+    }, "Budget-Management");
+  }
+};
+
+var changeEmergencyInput = function changeEmergencyInput(array, setting) {
+  if (setting === "Length Of Time") {
+    array.forEach(function (eSetting) {
+      eSetting.classList.remove('closed');
+      eSetting.classList.remove('open');
+    });
+    array[0].classList.add('open');
+    array[1].classList.add('closed');
+  }
+
+  if (setting === "Total Amount") {
+    array.forEach(function (eSetting) {
+      eSetting.classList.remove('closed');
+      eSetting.classList.remove('open');
+    });
+    array[1].classList.add('open');
+    array[0].classList.add('closed');
+  }
+};
+
+var watchForBudgetDeletion = function watchForBudgetDeletion() {
+  var budgetDeleteButton = document.querySelectorAll(".button--extra-extra-small__wide")[1];
+  var budgetId = window.location.pathname.split('/')[5];
+  var userId = window.location.pathname.split('/')[3];
+  budgetDeleteButton.addEventListener('click', function (e) {
+    e.preventDefault();
+    _Manage_Budget__WEBPACK_IMPORTED_MODULE_0__.deleteMyBudget(budgetId, userId);
+  });
+};
+
+var watchForBudgetExit = function watchForBudgetExit() {
+  var submitButtons = document.querySelectorAll(".button--extra-extra-small__wide");
+  var exitButton = document.querySelectorAll(".button--extra-extra-small__wide")[0];
+  var userId = window.location.pathname.split('/')[3];
+  exitButton.addEventListener('click', function (e) {
+    e.preventDefault();
+    _Manage_Budget__WEBPACK_IMPORTED_MODULE_0__.exitBudget(userId);
+  });
+};
+
+var _setupBudgetManagement = function _setupBudgetManagement(budget, placeholderBudget, user) {
+  var budgetNameDisplay = document.querySelector('.form--extra-small__budget-name-display');
+  var budgetNameInput = document.querySelectorAll('.form__input--small-thin__placeholder-shown')[0];
+
+  if (window.location.pathname.split('/')[6] === "Budget-Management") {
+    var invisibleCheckboxes = document.querySelectorAll('.form__input--invisible-checkbox');
+
+    if (budgetNameInput) {
+      budgetNameInput.addEventListener('keyup', function (e) {
+        e.preventDefault();
+        budgetNameDisplay.textContent = budgetNameInput.value;
+      });
+    }
+
+    var emergencyFundSettings = document.querySelectorAll('.form__label--checkbox-container');
+    var emergencySetting;
+    var emergencySelectionContainer = document.querySelector('.form__section--small-thin');
+    var smallThinInputs = document.querySelectorAll('.form__input--small-thin');
+    var emergencyTotalInput = document.querySelectorAll('.form__input--small-thin__placeholder-shown')[1];
+    var emergencySettings = [emergencySelectionContainer, emergencyTotalInput];
+    emergencySettings.forEach(function (eSetting) {
+      return eSetting.classList.remove('visible');
+    });
+
+    if (budget.accounts.emergencyFund.emergencyGoalMeasurement === "Length Of Time") {
+      emergencySettings.forEach(function (es) {
+        es.classList.add('closed');
+        es.classList.remove('open');
+      });
+      emergencySettings[0].classList.remove('closed');
+      emergencySettings[0].classList.add('open');
+    }
+
+    if (budget.accounts.emergencyFund.emergencyGoalMeasurement === "Total Amount") {
+      emergencySettings.forEach(function (es) {
+        es.classList.add('closed');
+        es.classList.remove('open');
+      });
+      emergencySettings[1].classList.remove('closed');
+      emergencySettings[1].classList.add('open');
+    }
+
+    emergencyFundSettings.forEach(function (setting) {
+      setting.classList.remove('checked');
+      if (setting.textContent === budget.accounts.emergencyFund.emergencyGoalMeasurement) setting.classList.toggle('checked');
+      emergencySetting = budget.accounts.emergencyFund.emergencyGoalMeasurement;
+      setting.addEventListener('click', function (e) {
+        e.preventDefault();
+        emergencyFundSettings.forEach(function (es) {
+          return es.classList.remove('checked');
+        });
+        setting.classList.toggle('checked');
+        emergencySetting = setting.textContent;
+        changeEmergencyInput(emergencySettings, emergencySetting, budget);
+      });
+    });
+    var tithingCheckboxes = [invisibleCheckboxes[2], invisibleCheckboxes[3], invisibleCheckboxes[4]];
+    var currentTithingSetting;
+    var budgetManagementSubmitButtons = document.querySelectorAll('.button--extra-extra-small');
+    var wideBudgetManagementSubmitButtons = document.querySelectorAll('.button--extra-extra-small__wide');
+    var budgetNameSubmit = budgetManagementSubmitButtons[0];
+    var savingsGoalSubmit = budgetManagementSubmitButtons[1];
+    var investmentGoalSubmit = budgetManagementSubmitButtons[2];
+    var emergencyGoalSubmit = budgetManagementSubmitButtons[3];
+    var tithingSettingSubmit = budgetManagementSubmitButtons[4];
+    var updateSubmitButtons = [budgetNameSubmit, savingsGoalSubmit, investmentGoalSubmit, emergencyGoalSubmit];
+
+    if (user.latterDaySaint === true) {
+      updateSubmitButtons.push(tithingSettingSubmit);
+    }
+
+    updateSubmitButtons.forEach(function (ub) {
+      ub.addEventListener('click', function (e) {
+        e.preventDefault();
+        compileBudgetManagementUpdates(emergencySetting, currentTithingSetting, budget, placeholderBudget, user);
+      });
+    });
+    watchForBudgetExit();
+    watchForBudgetDeletion();
+    if (!budget.accounts.tithing) return;
+
+    if (budget.accounts.tithing.tithingSetting) {
+      var tithingSettings = document.querySelectorAll('.form__label--small-thin__taller--thirds__tithing');
+
+      var _tithingCheckboxes = document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox');
+
+      tithingSettings.forEach(function (ts) {
+        ts.classList.remove('selected');
+        if (budget.accounts.tithing.tithingSetting === "Gross") tithingSettings[0].classList.add('selected');
+        if (budget.accounts.tithing.tithingSetting === "Net") tithingSettings[1].classList.add('selected');
+        if (budget.accounts.tithing.tithingSetting === "Surplus") tithingSettings[2].classList.add('selected');
+      });
+      tithingSettings.forEach(function (ts) {
+        if (ts.classList.contains('selected')) currentTithingSetting = ts.textContent;
+      });
+      tithingSettings.forEach(function (ts) {
+        ts.addEventListener('click', function (e) {
+          e.preventDefault();
+          tithingSettings.forEach(function (setting) {
+            return setting.classList.remove('selected');
+          });
+          ts.classList.add('selected');
+          currentTithingSetting = ts.textContent;
+        });
+      });
+    }
+  }
+};
+
+/***/ }),
+
+/***/ "./Public/JS/Budget/_Dashboard.js":
+/*!****************************************!*\
+  !*** ./Public/JS/Budget/_Dashboard.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "setupBudgetDashboard": () => (/* binding */ setupBudgetDashboard)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
+/* harmony import */ var _Application_Utility__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../Application/Utility */ "./Public/JS/Application/Utility.js");
+/* harmony import */ var _Classes_FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../Classes/FrontEnd-Calendar */ "./Public/JS/Classes/FrontEnd-Calendar.js");
+/* harmony import */ var _Classes_Transaction__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../Classes/Transaction */ "./Public/JS/Classes/Transaction.js");
+/* harmony import */ var _Budget_Navigation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Budget-Navigation */ "./Public/JS/Budget/Budget-Navigation.js");
+/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
+
+
+
+
+
+
+var showTransactionOptions = function showTransactionOptions(budget, placeholderBudget, user, optionText, transactionOptionArrays, transactionOptions) {
+  var transactionTypeSelect = document.getElementById('transactionType');
+  var transactionItemSelect = document.getElementById('savingsGoals');
+  var transactionLenderSelect = document.getElementById('lender');
+
+  (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(transactionTypeSelect.childNodes).forEach(function (child) {
+    child.remove();
+  });
+
+  (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(transactionItemSelect.childNodes).forEach(function (child) {
+    child.remove();
+  });
+
+  (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(transactionLenderSelect.childNodes).forEach(function (child) {
+    child.remove();
+  });
+
+  transactionOptionArrays.forEach(function (array) {
+    array.forEach(function (arrayItem) {
+      arrayItem.classList.remove('open');
+      arrayItem.classList.add('closed');
+      arrayItem.firstChild.classList.remove('lowered');
+    });
+  });
+  transactionOptions.forEach(function (option, i) {
+    option.classList.remove('closed');
+    option.classList.add('open');
+
+    if (optionText === "Monthly Budget") {
+      console.log(optionText);
+      option.classList.remove('lowered');
+
+      if (i === 0) {
+        console.log(option.firstChild.nextSibling.childNodes);
+        option.firstChild.nextSibling.childNodes.forEach(function (child, i) {
+          child.addEventListener('click', function (e) {
+            e.preventDefault();
+            option.nextSibling.firstChild.nextSibling.childNodes.forEach(function (subChild, i) {
+              subChild.classList.add('closed');
+              subChild.classList.remove('open');
+
+              if (subChild.dataset.category === child.dataset.category) {
+                subChild.classList.add('open');
+                subChild.classList.remove('closed');
+              }
+            });
+          });
+        });
+      }
+
+      if (i === 2) {
+        option.classList.remove('lowered');
+
+        if (transactionOptions[i - 1].getBoundingClientRect().width < 115) {
+          option.classList.add('lowered');
+        }
+      }
+    }
+
+    if (optionText === "Emergency Fund") {
+      option.classList.add('lowered');
+    }
+
+    if (optionText === "Savings Fund") {
+      option.classList.remove('raised');
+
+      if (transactionItemSelect.childNodes.length === 0) {
+        budget.transactions.plannedTransactions.forEach(function (transaction, i) {
+          if (transaction.account === "Savings Fund") {
+            var _option = document.createElement('option');
+
+            _option.classList.add('form__select--option');
+
+            _option.classList.add('r__form__select--option');
+
+            _option.textContent = transaction.name;
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", transactionItemSelect, _option);
+          }
+        });
+      }
+    }
+
+    if (optionText === "Expense Fund") {
+      option.classList.remove('lowered');
+
+      if (i === 2) {
+        console.log(option.firstChild.nextSibling.getBoundingClientRect().width);
+        option.classList.remove('raised');
+
+        if (option.firstChild.nextSibling.getBoundingClientRect().width > 133.5) {
+          option.classList.add('raised');
+        }
+      }
+
+      var expenseTypes = ["Bill", "Subscription", "Other"];
+
+      if (transactionTypeSelect.childNodes.length === 0) {
+        expenseTypes.forEach(function (expense, i) {
+          var option = document.createElement('option');
+          option.classList.add('form__select--option');
+          option.classList.add('r__form__select--option');
+          option.textContent = expense;
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", transactionTypeSelect, option);
+        });
+      }
+
+      if (transactionItemSelect.childNodes.length === 0) {
+        budget.transactions.plannedTransactions.forEach(function (transaction, i) {
+          if (transaction.account === "Expense Fund") {
+            var _option2 = document.createElement('option');
+
+            _option2.classList.add('form__select--option');
+
+            _option2.classList.add('r__form__select--option');
+
+            _option2.textContent = transaction.name;
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", transactionItemSelect, _option2);
+          }
+        });
+      }
+
+      console.log(transactionTypeSelect);
+    }
+
+    if (optionText === "Surplus") {
+      option.classList.remove('raised');
+
+      if (transactionItemSelect.childNodes.length === 0) {
+        budget.transactions.plannedTransactions.forEach(function (transaction, i) {
+          if (transaction.account === "Surplus") {
+            var _option3 = document.createElement('option');
+
+            _option3.classList.add('form__select--option');
+
+            _option3.classList.add('r__form__select--option');
+
+            _option3.textContent = transaction.name;
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", transactionItemSelect, _option3);
+          }
+        });
+      }
+    }
+
+    if (optionText === "Investment Fund") {
+      option.classList.remove('raised');
+
+      if (i === 1) {
+        option.classList.add('lowered');
+      }
+
+      var investmentTypes = ["Stock", "Real Estate", "Timeshare", "Other"];
+
+      if (transactionTypeSelect.childNodes.length === 0) {
+        investmentTypes.forEach(function (investment, i) {
+          var option = document.createElement('option');
+          option.classList.add('form__select--option');
+          option.classList.add('r__form__select--option');
+          option.textContent = investment;
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", transactionTypeSelect, option);
+        });
+      }
+    }
+
+    if (optionText === "Debt") {
+      option.classList.remove('lowered');
+
+      if (i === 2) {
+        option.classList.remove('raised');
+        console.log(transactionOptions[i - 1].getBoundingClientRect().width);
+
+        if (transactionOptions[i - 1].getBoundingClientRect().width > 115) {
+          option.classList.add('raised');
+        }
+      }
+
+      if (transactionItemSelect.childNodes.length === 0) {
+        budget.transactions.plannedTransactions.forEach(function (transaction, i) {
+          if (transaction.account === "Debt") {
+            var _option4 = document.createElement('option');
+
+            var lenderOption = document.createElement('option');
+
+            _option4.classList.add('form__select--option');
+
+            _option4.classList.add('r__form__select--option');
+
+            lenderOption.classList.add('form__select--option');
+            lenderOption.classList.add('r__form__select--option');
+            _option4.textContent = transaction.name;
+            lenderOption.textContent = transaction.lender;
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", transactionItemSelect, _option4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", transactionLenderSelect, lenderOption);
+          }
+        });
+      }
+    }
+
+    if (optionText === "Tithing") {
+      option.classList.add('lowered');
+    }
+  });
+};
+
+var cycleMainCategories = function cycleMainCategories(direction, index, subCats, budget) {
+  var categoryIcon = document.querySelector('.main-category-display__category-display__icon');
+  var categoryTitle = document.querySelector('.main-category-display__category-display__title');
+
+  if (direction === "left") {
+    categoryIcon.classList.remove(categoryIcon.classList[2]);
+    categoryIcon.classList.add("".concat(budget.mainCategories[index].icon));
+    categoryTitle.textContent = budget.mainCategories[index].title;
+    subCats.forEach(function (sc) {
+      sc.classList.add('closed');
+      if (Number(sc.dataset.subcategory) === index) sc.classList.remove('closed');
+      if (Number(sc.dataset.subcategory) === index) sc.classList.add('open');
+    });
+  }
+
+  if (direction === "right") {
+    categoryIcon.classList.remove(categoryIcon.classList[2]);
+    categoryIcon.classList.add("".concat(budget.mainCategories[index].icon));
+    categoryTitle.textContent = budget.mainCategories[index].title;
+    subCats.forEach(function (sc) {
+      sc.classList.add('closed');
+      if (Number(sc.dataset.subcategory) === index) sc.classList.remove('closed');
+      if (Number(sc.dataset.subcategory) === index) sc.classList.add('open');
+    });
+  }
+};
+
+var _setupCurrentMonth = function _setupCurrentMonth(budget, placeholderBudget, user) {
+  var categoryIcon = document.querySelector('.main-category-display__category-display__icon');
+  var categoryTitle = document.querySelector('.main-category-display__category-display__title');
+  var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
+  var leftButton = document.querySelector('.left');
+  var rightButton = document.querySelector('.right');
+  var currentMonth = _Classes_FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_3__.myCalendar.getMonth();
+
+  if (currentMonth !== budget.currentMonth) {
+    placeholderBudget.previousMonth = placeholderBudget.currentMonth;
+    placeholderBudget.currentMonth = currentMonth;
+    placeholderBudget.mainCategories.forEach(function (mc) {
+      mc.lastUpdated = new Date();
+      mc.subCategories.forEach(function (sc) {
+        sc.lastUpdated = new Date();
+        sc.amountSpent = 0;
+        sc.amountRemaining = Number(sc.goalAmount - sc.amountSpent);
+        sc.percentageSpent = Number(sc.amountSpent / sc.goalAmount);
+
+        if (isNaN(sc.percentageSpent)) {
+          sc.percentageSpent = 0;
+        }
+      });
+    });
+    var updateObject = {
+      budgetId: budget._id,
+      userId: user._id,
+      currentMonth: currentMonth,
+      previousMonth: placeholderBudget.previousMonth,
+      mainCategories: placeholderBudget.mainCategories
+    };
+
+    placeholderBudget._updateBudget({
+      updateObject: updateObject
+    }, "Dashboard");
+
+    _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.reloadPage();
+  }
+
+  var categoryIndex = 0;
+  subCategories.forEach(function (sc, i) {
+    sc.classList.add('closed');
+    if (Number(sc.dataset.subcategory) === 0) sc.classList.remove('closed');
+    if (Number(sc.dataset.subcategory) === 0) sc.classList.add('open');
+  });
+
+  if (leftButton) {
+    leftButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      categoryIndex--;
+      if (categoryIndex <= 0) categoryIndex = 0;
+      cycleMainCategories('left', categoryIndex, subCategories, budget);
+    });
+  }
+
+  if (rightButton) {
+    rightButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      categoryIndex++;
+      if (categoryIndex >= budget.mainCategories.length - 1) categoryIndex = budget.mainCategories.length - 1;
+      cycleMainCategories('right', categoryIndex, subCategories, budget);
+    });
+  }
+}; // DISPLAY UPCOMING TRANSACTIONS -- NEED TO DO THIS HERE INSTEAD OF PUG FOR THE REASON OF THE TRANSACTIONS THAT HAVE TWO DUE DATES.
+
+
+var displayUpcomingTransactions = function displayUpcomingTransactions(container, transactions) {
   var money = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
     minimumFractionDigits: 2
   });
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  var receiptModal = document.querySelector('.modal--receipt');
-  var recentTransactionDisplay = document.querySelector('.recent-transaction-display');
-  var recentTransaction = document.createElement('section');
-  recentTransaction.classList.add('recent-transaction');
-  recentTransaction.classList.add('r__recent-transaction');
-  var numberOfSections = 6;
-  var sectionStart = 0;
+  transactions.forEach(function (transaction, i) {
+    if (transaction.timingOptions.paymentCycle !== "Bi-Annual" || transaction.timingOptions.paymentCycle !== "Bi-Monthly") {
+      var index = i;
+      transaction.timingOptions.paymentSchedule.forEach(function (date, i) {
+        var upcomingBill = document.createElement('section');
+        upcomingBill.classList.add('upcoming-bills__bill');
+        upcomingBill.classList.add('r__upcoming-bills__bill');
+        upcomingBill.dataset.transaction = index;
+        var billSections = 5;
+        var billSectionStart = 0;
 
-  while (sectionStart < numberOfSections) {
-    var recentTransactionSection = document.createElement('section');
-    recentTransactionSection.classList.add("recent-transaction__section");
-    recentTransactionSection.classList.add("r__recent-transaction__section");
+        while (billSectionStart < billSections) {
+          var billSection = document.createElement('section');
+          billSection.classList.add('upcoming-bills__bill__bill-item');
+          billSection.classList.add('r__upcoming-bills__bill__bill-item');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", upcomingBill, billSection);
 
-    if (sectionStart === 0) {
-      (function () {
-        var viewReceiptButton = document.createElement('button');
-        viewReceiptButton.classList.add('button--extra-extra-small__view-receipt');
-        viewReceiptButton.classList.add('r__button--extra-extra-small__view-receipt');
-        var viewReceiptButtonIcon = document.createElement('i');
-        viewReceiptButtonIcon.classList.add('fas');
-        viewReceiptButtonIcon.classList.add('fa-receipt');
-        viewReceiptButtonIcon.classList.add('button--extra-extra-small__view-receipt__icon');
-        viewReceiptButtonIcon.classList.add('r__button--extra-extra-small__view-receipt__icon');
-        var viewReceiptButtonText = document.createElement('p');
-        viewReceiptButtonText.classList.add('button--extra-extra-small__view-receipt__text');
-        viewReceiptButtonText.classList.add('r__button--extra-extra-small__view-receipt__text');
-        viewReceiptButtonText.textContent = "View Full Transaction";
-        insertElement(viewReceiptButton, viewReceiptButtonIcon);
-        insertElement(viewReceiptButton, viewReceiptButtonText);
-        insertElement(recentTransactionSection, viewReceiptButton);
-        viewReceiptButton.addEventListener('click', function (e) {
-          processReceipt(transaction, viewReceiptButton);
-          _Application_Utility__WEBPACK_IMPORTED_MODULE_11__.showElement(receiptModal);
+          if (billSectionStart === 0) {
+            var billAccount = document.createElement('p');
+            billAccount.classList.add('upcoming-bills__bill__bill-item__text');
+            billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
+            billAccount.textContent = transaction.account;
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", billSection, billAccount);
+          }
+
+          if (billSectionStart === 1) {
+            var _billAccount = document.createElement('p');
+
+            _billAccount.classList.add('upcoming-bills__bill__bill-item__text');
+
+            _billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
+
+            _billAccount.textContent = "".concat(new Date(date).getDate(), " ").concat(months[new Date(date).getMonth()], " ").concat(new Date(date).getFullYear());
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", billSection, _billAccount);
+          }
+
+          if (billSectionStart === 2) {
+            var _billAccount2 = document.createElement('p');
+
+            _billAccount2.classList.add('upcoming-bills__bill__bill-item__text');
+
+            _billAccount2.classList.add('r__upcoming-bills__bill__bill-item__text');
+
+            _billAccount2.textContent = transaction.lender;
+
+            if (!transaction.lender) {
+              _billAccount2.textContent = transaction.location;
+            }
+
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", billSection, _billAccount2);
+          }
+
+          if (billSectionStart === 3) {
+            var _billAccount3 = document.createElement('p');
+
+            _billAccount3.classList.add('upcoming-bills__bill__bill-item__text');
+
+            _billAccount3.classList.add('r__upcoming-bills__bill__bill-item__text');
+
+            _billAccount3.textContent = money.format(transaction.amount);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", billSection, _billAccount3);
+          }
+
+          if (billSectionStart === 4) {
+            var paidOrNot = document.createElement('section');
+            paidOrNot.classList.add('upcoming-bills__bill__bill-item__checkbox-container');
+            paidOrNot.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container');
+            var paidOrNotInput = document.createElement('input');
+            paidOrNotInput.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
+            paidOrNotInput.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
+            paidOrNotInput.id = "paymentCheck";
+            paidOrNotInput.type = "checkbox";
+            var paidOrNotLabel = document.createElement('label');
+            paidOrNotLabel.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-label');
+            paidOrNotLabel.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-label');
+            paidOrNotLabel.textContent = "Payment Made";
+            paidOrNotLabel.for = "paymentCheck";
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", paidOrNot, paidOrNotInput);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", paidOrNot, paidOrNotLabel);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", billSection, paidOrNot);
+          }
+
+          billSectionStart++;
+        }
+
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", container, upcomingBill);
+      });
+    }
+
+    if (transaction.timingOptions.paymentCycle === "Bi-Annual" || transaction.timingOptions.paymentCycle === "Bi-Monthly") {
+      var _index = i;
+      transaction.timingOptions.paymentSchedule.forEach(function (array, i) {
+        // let dateIndex = index;
+        array.forEach(function (date, i) {
+          var upcomingBill = document.createElement('section');
+          upcomingBill.classList.add('upcoming-bills__bill');
+          upcomingBill.classList.add('r__upcoming-bills__bill');
+          upcomingBill.dataset.transaction = _index;
+          var billSections = 5;
+          var billSectionStart = 0;
+
+          while (billSectionStart < billSections) {
+            var billSection = document.createElement('section');
+            billSection.classList.add('upcoming-bills__bill__bill-item');
+            billSection.classList.add('r__upcoming-bills__bill__bill-item');
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", upcomingBill, billSection);
+
+            if (billSectionStart === 0) {
+              var billAccount = document.createElement('p');
+              billAccount.classList.add('upcoming-bills__bill__bill-item__text');
+              billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
+              billAccount.textContent = transaction.account;
+              _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", billSection, billAccount);
+            }
+
+            if (billSectionStart === 1) {
+              var _billAccount4 = document.createElement('p');
+
+              _billAccount4.classList.add('upcoming-bills__bill__bill-item__text');
+
+              _billAccount4.classList.add('r__upcoming-bills__bill__bill-item__text');
+
+              _billAccount4.textContent = "".concat(new Date(date).getDate(), " ").concat(months[new Date(date).getMonth()], " ").concat(new Date(date).getFullYear());
+              _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", billSection, _billAccount4);
+            }
+
+            if (billSectionStart === 2) {
+              var _billAccount5 = document.createElement('p');
+
+              _billAccount5.classList.add('upcoming-bills__bill__bill-item__text');
+
+              _billAccount5.classList.add('r__upcoming-bills__bill__bill-item__text');
+
+              _billAccount5.textContent = transaction.lender;
+
+              if (!transaction.lender) {
+                _billAccount5.textContent = transaction.location;
+              }
+
+              _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", billSection, _billAccount5);
+            }
+
+            if (billSectionStart === 3) {
+              var _billAccount6 = document.createElement('p');
+
+              _billAccount6.classList.add('upcoming-bills__bill__bill-item__text');
+
+              _billAccount6.classList.add('r__upcoming-bills__bill__bill-item__text');
+
+              _billAccount6.textContent = money.format(transaction.amount);
+              _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", billSection, _billAccount6);
+            }
+
+            if (billSectionStart === 4) {
+              var paidOrNot = document.createElement('section');
+              paidOrNot.classList.add('upcoming-bills__bill__bill-item__checkbox-container');
+              paidOrNot.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container');
+              var paidOrNotInput = document.createElement('input');
+              paidOrNotInput.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
+              paidOrNotInput.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
+              paidOrNotInput.id = "paymentCheck";
+              paidOrNotInput.type = "checkbox";
+              var paidOrNotLabel = document.createElement('label');
+              paidOrNotLabel.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-label');
+              paidOrNotLabel.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-label');
+              paidOrNotLabel.textContent = "Payment Made";
+              paidOrNotLabel.for = "paymentCheck";
+              _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", paidOrNot, paidOrNotInput);
+              _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", paidOrNot, paidOrNotLabel);
+              _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", billSection, paidOrNot);
+            }
+
+            billSectionStart++;
+          }
+
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", container, upcomingBill);
         });
-      })();
+      });
     }
-
-    if (sectionStart === 1) {
-      var transactionTypeText = document.createElement('p');
-      transactionTypeText.classList.add('recent-transaction__section__text');
-      transactionTypeText.classList.add('r__recent-transaction__section__text');
-      transactionTypeText.textContent = "".concat(transaction.transactionType);
-      insertElement(recentTransactionSection, transactionTypeText);
-    }
-
-    if (sectionStart === 2) {
-      var _transactionTypeText = document.createElement('p');
-
-      _transactionTypeText.classList.add('recent-transaction__section__text');
-
-      _transactionTypeText.classList.add('r__recent-transaction__section__text');
-
-      _transactionTypeText.textContent = "".concat(new Date(transaction.transactionDate).getDate(), " ").concat(months[new Date(transaction.transactionDate).getMonth()], " ").concat(new Date(transaction.transactionDate).getFullYear());
-      insertElement(recentTransactionSection, _transactionTypeText);
-    }
-
-    if (sectionStart === 3) {
-      var _transactionTypeText2 = document.createElement('p');
-
-      _transactionTypeText2.classList.add('recent-transaction__section__text');
-
-      _transactionTypeText2.classList.add('r__recent-transaction__section__text');
-
-      _transactionTypeText2.textContent = "".concat(transaction.location);
-      insertElement(recentTransactionSection, _transactionTypeText2);
-    }
-
-    if (sectionStart === 4) {
-      var _transactionTypeText3 = document.createElement('p');
-
-      _transactionTypeText3.classList.add('recent-transaction__section__text');
-
-      _transactionTypeText3.classList.add('r__recent-transaction__section__text');
-
-      _transactionTypeText3.textContent = "".concat(transaction.receipt[0].account);
-      insertElement(recentTransactionSection, _transactionTypeText3);
-    }
-
-    if (sectionStart === 5) {
-      var receiptHeaders = Object.keys(transaction.receipt[0]);
-      var receiptValues = Object.values(transaction.receipt[0]);
-      var transactionSectionPart = document.createElement('section');
-      transactionSectionPart.classList.add('recent-transaction__section__part');
-      transactionSectionPart.classList.add('r__recent-transaction__section__part');
-      insertElement(recentTransactionSection, transactionSectionPart);
-      var transactionSectionPartHeader = document.createElement('p');
-      var transactionSectionPartText = document.createElement('p');
-      transactionSectionPartHeader.classList.add("recent-transaction__section__part__header");
-      transactionSectionPartHeader.classList.add("r__recent-transaction__section__part__header");
-      transactionSectionPartHeader.textContent = "Receipt Total";
-      transactionSectionPartText.classList.add("recent-transaction__section__part__text");
-      transactionSectionPartText.classList.add("r__recent-transaction__section__part__text");
-      transactionSectionPartText.textContent = money.format(getReceiptTotal(transaction));
-      insertElement(transactionSectionPart, transactionSectionPartHeader);
-      insertElement(transactionSectionPart, transactionSectionPartText);
-    }
-
-    insertElement(recentTransaction, recentTransactionSection);
-    sectionStart++;
-  }
-
-  insertElement(recentTransactionDisplay, recentTransaction);
+  });
 };
 
-var _watchRecentTransactions = function _watchRecentTransactions(budget, placeholderBudget, user) {
-  var receiptModal = document.querySelector('.modal--receipt');
-  var receiptModalClosureIcon = document.querySelector('.modal--receipt__closure-icon');
-  var viewReceiptButton = document.querySelector('.button--extra-extra-small__view-receipt');
+var selectDayAndShowTransactions = function selectDayAndShowTransactions(event) {
+  var upcomingTransactions = document.querySelectorAll('.upcoming-bills__bill');
+  var e = event;
+  var selectedDay = e.target;
+  var monthHeader = document.querySelector('.bill-calendar__header__title');
+  var splitMonthHeader = monthHeader.textContent.split(' ');
+  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  upcomingTransactions.forEach(function (transaction, i) {
+    transaction.classList.remove('open');
+    transaction.classList.add('closed');
+    var date = new Date(transaction.firstChild.nextSibling.firstChild.textContent);
+    if (date.getFullYear() !== Number(splitMonthHeader[2])) return;
+    if (months[date.getMonth()] !== splitMonthHeader[0]) return;
 
-  if (placeholderBudget.transactions.recentTransactions.length > 0) {
-    placeholderBudget.transactions.recentTransactions.forEach(function (transaction, i) {
-      showRecentTransaction(budget, placeholderBudget, user, transaction);
+    if (date.getDate() === Number(selectedDay.textContent)) {
+      transaction.classList.remove('closed');
+      transaction.classList.add('open');
+    }
+  });
+}; // WATCH FOR CALENDAR DAY SELECTION FOR TO DISPLAY CORRECT TRANSACTIONS
+
+
+var _watchDaySelection = function _watchDaySelection() {
+  var calendarDays = document.querySelectorAll('.bill-calendar__days__single-day');
+  calendarDays.forEach(function (day, i) {
+    day.addEventListener('click', selectDayAndShowTransactions);
+  });
+}; // SETTING UP BILL / TRANSACTION CALENDAR
+
+
+var _setupBillCalendar = function _setupBillCalendar(budget, placeholderBudget, user) {
+  var calendar = _Classes_FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_3__.myCalendar;
+  var currentMonth = calendar.getMonth();
+  var currentMonthIndex = calendar.getMonthIndex();
+  var currentYear = calendar.getYear();
+  calendar.makeCalendar(currentMonthIndex, currentMonth, currentYear, '.bill-calendar__days__single-day', // NEEDS PERIOD FOR .querySelectorAll
+  'bill-calendar__days__single-day--current-day', // CLASS IS ONLY BEING ADDED via .classList.add
+  'un-used-day' // CLASS IS ONLY BEING ADDED via .classList.add
+  );
+  var monthLeft = document.querySelector('.month-left');
+  var monthRight = document.querySelector('.month-right');
+
+  if (monthLeft) {
+    monthLeft.addEventListener('click', function (e) {
+      e.preventDefault();
+      currentMonthIndex--;
+
+      if (currentMonthIndex === -1) {
+        currentMonthIndex = 11;
+        currentYear--;
+      }
+
+      calendar.goBackAMonth(currentMonthIndex, currentYear, '.bill-calendar__days__single-day', 'bill-calendar__days__single-day--current-day', 'un-used-day');
+    });
+  }
+
+  if (monthRight) {
+    monthRight.addEventListener('click', function (e) {
+      e.preventDefault();
+      currentMonthIndex++;
+
+      if (currentMonthIndex === 12) {
+        currentMonthIndex = 0;
+        currentYear++;
+      }
+
+      calendar.goForwardAMonth(currentMonthIndex, currentYear, '.bill-calendar__days__single-day', 'bill-calendar__days__single-day--current-day', 'un-used-day');
+    });
+  }
+
+  var upcomingBillsContainer = document.querySelector('.upcoming-bills');
+  displayUpcomingTransactions(upcomingBillsContainer, budget.transactions.plannedTransactions);
+  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  var upcomingTransactions = document.querySelectorAll('.upcoming-bills__bill');
+  var currentDay = document.querySelector('.bill-calendar__days__single-day--current-day');
+  var monthHeader = document.querySelector('.bill-calendar__header__title');
+
+  if (monthHeader) {
+    var splitMonthHeader = monthHeader.textContent.split(' ');
+    upcomingTransactions.forEach(function (transaction, i) {
+      transaction.classList.add('closed');
+      var date = new Date(transaction.firstChild.nextSibling.firstChild.textContent);
+
+      if (date.getDate() === Number(currentDay.textContent) && months[date.getMonth()] === splitMonthHeader[0] && date.getFullYear() === Number(splitMonthHeader[2])) {
+        transaction.classList.remove('closed');
+        transaction.classList.add('open');
+      }
     });
 
-    if (receiptModalClosureIcon) {
-      receiptModalClosureIcon.addEventListener('click', function (e) {
-        _Application_Utility__WEBPACK_IMPORTED_MODULE_11__.showElement(receiptModal);
+    _watchDaySelection();
+  }
+
+  var paymentChecks = document.querySelectorAll('.upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
+  paymentChecks.forEach(function (check, i) {
+    check.addEventListener('click', function (e) {
+      var upcomingBills = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(document.querySelectorAll('.upcoming-bills__bill'));
+
+      var transactionIndex = Number(check.closest('.upcoming-bills__bill').dataset.transaction);
+      var upcomingBill = document.querySelectorAll('.upcoming-bills__bill')[i];
+      var accountType = upcomingBill.firstChild.firstChild.textContent;
+      var transactionDate = upcomingBill.firstChild.nextSibling.firstChild.textContent; // THE INDEX JUST UNDERNEATH WILL NEED TO CHANGE TO THE INDEX OF THE ACTUAL UPCOMING BILL, SO WE'LL NEED THE DATASET OF THE BILL HERE.
+
+      var transactionLocation = placeholderBudget.transactions.plannedTransactions[transactionIndex].location;
+      var transactionAmount = upcomingBill.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1];
+      var transactionBill = new _Classes_Transaction__WEBPACK_IMPORTED_MODULE_4__.Transaction({
+        date: transactionDate,
+        location: transactionLocation
+      });
+      var currentBill = placeholderBudget.transactions.plannedTransactions[transactionIndex];
+
+      if (accountType === "Monthly Budget") {
+        transactionBill.transactionType = "Withdrawal";
+        transactionBill.addToReceipt({
+          accountSelected: accountType,
+          mainCategory: currentBill.category,
+          subCategory: currentBill.subCategory,
+          description: currentBill.name,
+          amount: Number(transactionAmount)
+        });
+      }
+
+      if (accountType === "Expense Fund") {
+        transactionBill.transactionType = "Withdrawal";
+        transactionBill.addToReceipt({
+          accountSelected: accountType,
+          transactionType: currentBill.subAccount,
+          timing: currentBill.timingOptions.paymentCycle,
+          expenditure: currentBill.name,
+          description: currentBill.name,
+          amount: Number(transactionAmount)
+        });
+      }
+
+      if (accountType === "Surplus") {
+        transactionBill.transactionType = "Withdrawal";
+        transactionBill.addToReceipt({
+          accountSelected: accountType,
+          timing: currentBill.timingOptions.paymentCycle,
+          expenditure: currentBill.name,
+          description: currentBill.name,
+          amount: Number(transactionAmount)
+        });
+      }
+
+      if (accountType === "Savings Fund") {
+        transactionBill.transactionType = "Withdrawal";
+        transactionBill.addToReceipt({
+          accountSelected: accountType,
+          timing: currentBill.timingOptions.paymentCycle,
+          expenditure: currentBill.name,
+          description: currentBill.name,
+          amount: Number(transactionAmount)
+        });
+      }
+
+      if (accountType === "Debt") {
+        transactionBill.transactionType = "Withdrawal";
+        transactionBill.addToReceipt({
+          accountSelected: accountType,
+          lender: currentBill.lender,
+          timing: currentBill.timingOptions.paymentCycle,
+          expenditure: currentBill.name,
+          description: currentBill.name,
+          amount: Number(transactionAmount)
+        });
+      }
+
+      console.log(transactionDate, new Date(transactionDate).toISOString(), new Date(new Date(transactionDate).setHours(0, 0, 0, 0)), currentBill.timingOptions.paymentSchedule[0] // new Date(new Date(currentBill.timingOptions.paymentSchedule[0]).setHours(0, 0, 0, 0))
+      );
+
+      if (currentBill.timingOptions.paymentCycle !== "Bi-Monthly" && currentBill.timingOptions.paymentCycle !== "Bi-Annual") {
+        // LOOP THROUGH MAIN CATEGORIES
+        placeholderBudget.mainCategories.forEach(function (mc, i) {
+          // IF MAIN CATEGORY MATCHES THE CURRENT BILL CATEGORY, LOOP THROUGH ITS SUBCATEGORIES
+          if (mc.title === currentBill.category) {
+            mc.subCategories.forEach(function (sc, i) {
+              if (sc.title === currentBill.name) {
+                // IF SUB CATEGORY MATCHES CURRENT BILL SUB CATEGORY NAME, DOUBLE CHECK PAYMENT CYCLE.
+                if (sc.timingOptions.paymentCycle !== "Bi-Monthly" && sc.timingOptions.paymentCycle !== "Bi-Annual") {
+                  sc.timingOptions.paymentSchedule = sc.timingOptions.paymentSchedule.filter(function (date) {
+                    return new Date(new Date(date).setHours(0, 0, 0, 0)).toISOString() !== new Date(new Date(transactionDate).setHours(0, 0, 0, 0)).toISOString();
+                  });
+                }
+
+                if (sc.timingOptions.paymentCycle === "Bi-Monthly" && sc.timingOptions.paymentCycle === "Bi-Annual") {
+                  sc.timingOptions.paymentSchedule.forEach(function (dateArray, i) {
+                    sc.timingOptions.paymentSchedule[i] = dateArray.filter(function (date) {
+                      return new Date(new Date(date).setHours(0, 0, 0, 0)).toISOString() !== new Date(new Date(transactionDate).setHours(0, 0, 0, 0)).toISOString();
+                    });
+                  });
+                }
+
+                console.log(sc);
+                console.log(sc.timingOptions.paymentSchedule);
+              }
+            });
+          }
+        });
+        currentBill.timingOptions.paymentSchedule = currentBill.timingOptions.paymentSchedule.filter(function (date) {
+          console.log(new Date(new Date(date).setHours(0, 0, 0, 0)));
+          return new Date(new Date(date).setHours(0, 0, 0, 0)).toISOString() !== new Date(new Date(transactionDate).setHours(0, 0, 0, 0)).toISOString();
+        });
+      }
+
+      if (currentBill.timingOptions.paymentCycle === "Bi-Monthly" || currentBill.timingOptions.paymentCycle === "Bi-Annual") {
+        currentBill.timingOptions.paymentSchedule.forEach(function (dateArray, i) {
+          currentBill.timingOptions.paymentSchedule[i] = dateArray.filter(function (date) {
+            return new Date(new Date(date).setHours(0, 0, 0, 0)).toISOString() !== new Date(new Date(transactionDate).setHours(0, 0, 0, 0)).toISOString();
+          });
+        });
+      }
+
+      if (currentBill.timingOptions.paymentCycle !== "Bi-Monthly" && currentBill.timingOptions.paymentCycle !== "Bi-Annual") {
+        if (currentBill.timingOptions.paymentSchedule.length === 0) {
+          currentBill.paid = !currentBill.paid;
+          currentBill.paidStatus = "Paid";
+          placeholderBudget.transactions.plannedTransactions = placeholderBudget.transactions.plannedTransactions.filter(function (transaction) {
+            return transaction !== currentBill;
+          });
+        }
+
+        if (currentBill.timingOptions.paymentSchedule.length > 0) {
+          currentBill.paidStatus = "Partially Paid";
+        }
+      }
+
+      if (currentBill.timingOptions.paymentCycle === "Bi-Monthly" || currentBill.timingOptions.paymentCycle === "Bi-Annual") {
+        currentBill.timingOptions.paymentSchedule = currentBill.timingOptions.paymentSchedule.filter(function (array) {
+          return array.length > 0;
+        });
+
+        if (currentBill.timingOptions.paymentSchedule.length === 0) {
+          currentBill.paid = !currentBill.paid;
+          currentBill.paidStatus = "Paid";
+        }
+
+        if (currentBill.timingOptions.paymentSchedule.length > 0) {
+          currentBill.paidStatus = "Partially Paid";
+        }
+      }
+
+      console.log(currentBill, transactionBill);
+      placeholderBudget.transactions.recentTransactions.push(transactionBill);
+      console.log(placeholderBudget);
+      var updateObject = {
+        budgetId: budget._id,
+        userId: user._id
+      };
+      updateObject.transactions = placeholderBudget.transactions;
+      updateObject.transactions.recentTransactions[updateObject.transactions.recentTransactions.length - 1].receipt.forEach(function (receiptItem, i) {
+        if (receiptItem.account === "Monthly Budget") {
+          placeholderBudget.accounts.monthlyBudget.amount = placeholderBudget.accounts.monthlyBudget.amount - Number(receiptItem.amount);
+          placeholderBudget.mainCategories.forEach(function (category, i) {
+            if (receiptItem.category === category.title) {
+              var index = i;
+              console.log(receiptItem.category);
+              category.subCategories.forEach(function (subCategory, i) {
+                if (receiptItem.subCategory === subCategory.title) {
+                  console.log(receiptItem.subCategory);
+                  subCategory.amountSpent += receiptItem.amount;
+                  subCategory.amountRemaining = subCategory.goalAmount - subCategory.amountSpent;
+                  subCategory.percentageSpent = Number(subCategory.amountSpent / subCategory.goalAmount * 100);
+                }
+              });
+            }
+          });
+          updateObject.mainCategories = placeholderBudget.mainCategories;
+        }
+
+        if (receiptItem.account === "Emergency Fund") {
+          placeholderBudget.accounts.emergencyFund.amount = placeholderBudget.accounts.emergencyFund.amount - Number(receiptItem.amount);
+        }
+
+        if (receiptItem.account === "Savings Fund") {
+          placeholderBudget.accounts.savingsFund.amount = placeholderBudget.accounts.savingsFund.amount - Number(receiptItem.amount);
+        }
+
+        if (receiptItem.account === "Expense Fund") {
+          placeholderBudget.accounts.expenseFund.amount = placeholderBudget.accounts.expenseFund.amount - Number(receiptItem.amount);
+        }
+
+        if (receiptItem.account === "Surplus") {
+          placeholderBudget.accounts.surlus.amount = placeholderBudget.accounts.surplus.amount - Number(receiptItem.amount);
+        }
+
+        if (receiptItem.account === "Debt") {
+          placeholderBudget.accounts.debt.amount = placeholderBudget.accounts.debt.amount - Number(receiptItem.amount);
+          /* After reducing the amount that is allocated to the debt account, there needs to be a reduction of the debt amount through reducing the current amount owed for the debt that was selected.
+           To do that we need to:
+          1) Find the exact debt that is being paid.
+          2) From there, reduce it's amountOwed amount.
+           There is more steps to each of those, especially the first, but that is what needs to be done.
+          */
+        }
+      });
+      upcomingBill.remove();
+      updateObject.accounts = placeholderBudget.accounts;
+
+      placeholderBudget._updateBudget({
+        updateObject: updateObject
+      }, "Dashboard");
+
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.reloadPage();
+    });
+  });
+};
+
+var calculateTotal = function calculateTotal(accountType, budget, debtAccount) {
+  var accountSections = document.querySelectorAll('.container--extra-small__content__account-total');
+  var budgetAccounts = budget.accounts;
+  var amountOfDebt = 0;
+  var budgetAccountTotals = [];
+  Object.entries(budgetAccounts).forEach(function (account, i) {
+    return budgetAccountTotals.push(account[1].amount);
+  });
+  Object.entries(budgetAccounts).forEach(function (account) {
+    if (account[0] === "debt") {
+      if (debtAccount) {
+        debtAccount.forEach(function (debt, i) {
+          if (debt.status !== "Paid Off") {
+            amountOfDebt += debt.amountOwed;
+          }
+        });
+      } // amountOfDebt = account[1].debtAmount;
+
+    }
+
+    return amountOfDebt;
+  }); // Set Money Format
+
+  var money = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+  });
+
+  if (budget) {
+    if (accountType === "Bank Account") {
+      var initialDeposit = 0;
+      var bankVaultTotal = budgetAccountTotals.reduce(function (previous, current) {
+        return previous + current;
+      }, initialDeposit);
+      var bankAccountSection = accountSections[0];
+      var bankAccount = money.format(bankVaultTotal);
+      if (bankAccountSection) bankAccountSection.textContent = "".concat(bankAccount);
+    }
+
+    if (accountType === "Debt") {
+      var _debtAccount = accountSections[1]; // amountOfDebt += 200;
+
+      var debt = money.format(amountOfDebt);
+
+      if (_debtAccount) {
+        amountOfDebt === 0 ? _debtAccount.textContent = debt : _debtAccount.textContent = "-".concat(debt);
+      }
+    }
+
+    if (accountType === "Net Value") {
+      var _initialDeposit = 0;
+
+      var _bankVaultTotal = budgetAccountTotals.reduce(function (previous, current) {
+        return previous + current;
+      }, _initialDeposit);
+
+      var netValueAccount = accountSections[2];
+      var netValue = money.format(_bankVaultTotal - amountOfDebt);
+      if (netValueAccount) netValueAccount.textContent = netValue;
+    }
+  }
+};
+
+var getDashboardAccountTotals = function getDashboardAccountTotals(budget, placeholderBudget, user) {
+  calculateTotal("Bank Account", budget);
+  calculateTotal("Debt", budget, budget.debts);
+  calculateTotal("Net Value", budget, budget.debts);
+};
+
+var buildTransactionOptions = function buildTransactionOptions(options) {
+  var transactionOptions = [];
+  options.forEach(function (option, i) {
+    if (option) {
+      option.classList.add('closed');
+      transactionOptions.push(option);
+    }
+  });
+  return transactionOptions;
+};
+
+var resetTransactionOptions = function resetTransactionOptions(allOptions) {
+  allOptions.forEach(function (option) {
+    option.forEach(function (optionItem) {
+      optionItem.classList.remove('open');
+      optionItem.classList.add('closed');
+    });
+  });
+};
+
+var _watchForTransactions = function _watchForTransactions(budget, placeholderBudget, user) {
+  var dashboard = document.querySelector('.budget-dashboard');
+
+  if (dashboard) {
+    console.log(placeholderBudget); // MUSTDO: CREATE A UTILITY OBJECT THAT HOLDS THINGS LIKE THIS MONEY FORMATTER.
+    // MUSTDO: PUT THE MONEY FORMATTER INTO ITS OWN FUNCTION WITH THE CURRENT OPTIONS AS THE DEFAULT, AND OTHER OPTIONS USING THE PERSON'S LOCATION.
+
+    var _money = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2
+    });
+
+    var headerSubmitButtons = document.querySelectorAll('.button--small-container-header');
+    var incomeInputs = document.querySelectorAll('.form__input--enter-income'); // MUSTDO: Separate income into investment, savings, and un-allocated after every keystroke into net pay.
+
+    var incomeDateInput = incomeInputs[0];
+    var incomeFromInput = incomeInputs[1];
+    var grossIncomeInput = incomeInputs[2];
+    var netIncomeInput = incomeInputs[3];
+    var tithingInput;
+
+    if (user.isLatterDaySaint === true) {
+      tithingInput = incomeInputs[3];
+      netIncomeInput = incomeInputs[4];
+    }
+
+    var investmentPercentage = budget.accounts.investmentFund.investmentPercentage;
+    var savingsPercentage = budget.accounts.savingsFund.savingsPercentage;
+    var incomePreviewAmounts = [].concat((0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(document.querySelectorAll('.form__section--early-income-view__income-view__amount')), [document.querySelector('.form__section--early-income-view__income-view--purple__amount')]);
+    var tithed = false;
+    netIncomeInput.addEventListener('keyup', function (e) {
+      e.preventDefault();
+      incomePreviewAmounts[0].textContent = _money.format(netIncomeInput.value * investmentPercentage);
+      incomePreviewAmounts[1].textContent = _money.format(netIncomeInput.value * savingsPercentage);
+
+      if (user.latterDaySaint === true) {
+        incomePreviewAmounts[2].textContent = _money.format(0);
+
+        if (budget.accounts.tithing.tithingSetting === "Gross") {
+          incomePreviewAmounts[2].textContent = _money.format(grossIncomeInput.value * 0.1);
+        }
+
+        if (budget.accounts.tithing.tithingSetting === "Net") {
+          incomePreviewAmounts[2].textContent = _money.format(netIncomeInput.value * 0.1);
+        }
+
+        if (budget.accounts.tithing.tithingSetting !== "Surplus") {
+          incomePreviewAmounts[3].textContent = _money.format(netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1]) - Number(incomePreviewAmounts[2].textContent.split('$')[1]));
+        }
+
+        if (budget.accounts.tithing.tithingSetting === "Surplus") {
+          incomePreviewAmounts[2].textContent = _money.format(netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1]));
+        }
+      }
+
+      if (user.latterDaySaint === false) {
+        incomePreviewAmounts[2].textContent = _money.format(netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1]));
+      }
+    });
+    var tithedSwitch = document.querySelector('.form__input--tithing');
+
+    if (tithedSwitch) {
+      tithedSwitch.addEventListener('click', function (e) {
+        e.preventDefault();
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.toggleClass(tithedSwitch, "form__input--tithing");
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.toggleClass(tithedSwitch, "form__input--tithing--tithed");
+        tithed = !tithed;
+      });
+    } // ENTERING INCOME
+
+
+    headerSubmitButtons[0].addEventListener('click', function (e) {
+      var updateObject, transaction, netAmount;
+      var unAllocatedAmount = budget.accounts.unAllocated.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1]);
+      var savingsAmount = budget.accounts.savingsFund.amount + Number(incomePreviewAmounts[1].textContent.split('$')[1]);
+      var investmentAmount = budget.accounts.investmentFund.amount + Number(incomePreviewAmounts[0].textContent.split('$')[1]);
+
+      if (user.latterDaySaint === false) {
+        netAmount = Number(incomePreviewAmounts[2].textContent.split('$')[1]);
+        console.log(incomePreviewAmounts[2].textContent.split('$')[1]);
+
+        if (incomePreviewAmounts[2].textContent.split('$')[1].includes(',')) {
+          netAmount = Number(incomePreviewAmounts[2].textContent.split('$')[1].split(',').join(''));
+          unAllocatedAmount = budget.accounts.unAllocated.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1].split(',').join(''));
+        }
+
+        transaction = new _Classes_Transaction__WEBPACK_IMPORTED_MODULE_4__.Transaction({
+          date: incomeDateInput.value,
+          type: "Deposit",
+          location: incomeFromInput.value
+        });
+        console.log(transaction);
+        transaction.addToReceipt({
+          accountSelected: "Un-Allocated",
+          account: "Un-Allocated",
+          grossAmount: Number(grossIncomeInput.value),
+          netAmount: Number(netIncomeInput.value),
+          deposited: Number(netAmount),
+          user: user,
+          budget: budget
+        });
+        placeholderBudget.transactions.recentTransactions.push(transaction);
+        updateObject = {
+          budgetId: budget._id,
+          userId: user._id,
+          user: user,
+          accounts: {
+            unAllocated: {
+              amount: unAllocatedAmount
+            },
+            monthlyBudget: placeholderBudget.accounts.monthlyBudget,
+            emergencyFund: placeholderBudget.accounts.emergencyFund,
+            savingsFund: {
+              savingsGoal: placeholderBudget.accounts.savingsFund.savingsGoal,
+              savingsPercentage: placeholderBudget.accounts.savingsFund.savingsPercentage,
+              amount: savingsAmount
+            },
+            expenseFund: placeholderBudget.accounts.expenseFund,
+            surplus: placeholderBudget.accounts.surplus,
+            investmentFund: {
+              investmentGoal: placeholderBudget.accounts.investmentFund.investmentGoal,
+              investmentPercentage: placeholderBudget.accounts.investmentFund.investmentPercentage,
+              amount: investmentAmount
+            },
+            debt: placeholderBudget.accounts.debt
+          },
+          transactions: placeholderBudget.transactions
+        };
+      }
+
+      if (user.latterDaySaint === true) {
+        transaction = new _Classes_Transaction__WEBPACK_IMPORTED_MODULE_4__.Transaction({
+          date: new Date(incomeDateInput.value),
+          type: "Deposit",
+          location: incomeFromInput.value
+        }); // This may not be the final place for this.  Only because if I make it so that the tithing account only shows up when a Latter Day Saint has Gross or Net calculated tithing.
+
+        if (budget.accounts.tithing.tithingSetting !== "Surplus") {
+          netAmount = Number(incomePreviewAmounts[3].textContent.split('$')[1]);
+          console.log(incomePreviewAmounts[2].textContent.split('$')[1]);
+
+          if (incomePreviewAmounts[3].textContent.split('$')[1].includes(',')) {
+            netAmount = Number(incomePreviewAmounts[3].textContent.split('$')[1].split(',').join(''));
+            unAllocatedAmount = budget.accounts.unAllocated.amount + Number(incomePreviewAmounts[3].textContent.split('$')[1].split(',').join(''));
+          }
+
+          transaction.addToReceipt({
+            account: "Un-Allocated",
+            grossAmount: Number(grossIncomeInput.value),
+            netAmount: Number(netIncomeInput.value),
+            deposited: Number(netAmount),
+            tithed: tithed,
+            user: user,
+            budget: budget
+          });
+          var tithingAmount = budget.accounts.tithing.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1]);
+
+          if (Number(incomePreviewAmounts[2].textContent.split('$')[1].contains(','))) {
+            tithingAmount = budget.accounts.tithing.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1]).split(',').join('');
+          }
+
+          placeholderBudget.accounts.tithing.amount = Number(tithingAmount);
+        }
+
+        if (budget.accounts.tithing.tithingSetting === "Surplus") {
+          netAmount = Number(incomePreviewAmounts[2].textContent.split('$')[1]);
+          console.log(incomePreviewAmounts[2].textContent.split('$')[1]);
+
+          if (incomePreviewAmounts[2].textContent.split('$')[1].includes(',')) {
+            netAmount = Number(incomePreviewAmounts[2].textContent.split('$')[1].split(',').join(''));
+            unAllocatedAmount = budget.accounts.unAllocated.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1].split(',').join(''));
+          }
+
+          transaction.addToReceipt({
+            account: "Un-Allocated",
+            grossAmount: Number(grossIncomeInput.value),
+            netAmount: Number(netIncomeInput.value),
+            deposited: Number(netAmount),
+            user: user,
+            budget: budget
+          });
+        }
+
+        placeholderBudget.transactions.recentTransactions.push(transaction);
+        updateObject = {
+          budgetId: budget._id,
+          userId: user._id,
+          user: user,
+          accounts: {
+            unAllocated: {
+              amount: unAllocatedAmount
+            },
+            monthlyBudget: placeholderBudget.accounts.monthlyBudget,
+            emergencyFund: placeholderBudget.accounts.emergencyFund,
+            savingsFund: {
+              savingsGoal: placeholderBudget.accounts.savingsFund.savingsGoal,
+              savingsPercentage: placeholderBudget.accounts.savingsFund.savingsPercentage,
+              amount: savingsAmount
+            },
+            expenseFund: placeholderBudget.accounts.expenseFund,
+            surplus: placeholderBudget.accounts.surplus,
+            investmentFund: {
+              investmentGoal: placeholderBudget.accounts.investmentFund.investmentGoal,
+              investmentPercentage: placeholderBudget.accounts.investmentFund.investmentPercentage,
+              amount: investmentAmount
+            },
+            debt: placeholderBudget.accounts.debt,
+            tithing: placeholderBudget.accounts.tithing
+          },
+          transactions: placeholderBudget.transactions
+        };
+      }
+
+      placeholderBudget._updateBudget({
+        updateObject: updateObject
+      }, "Enter-Income");
+
+      incomeDateInput.value = '';
+      incomeFromInput.value = '';
+      grossIncomeInput.value = '';
+      netIncomeInput.value = '';
+      incomePreviewAmounts[0].textContent = _money.format(0);
+      incomePreviewAmounts[1].textContent = _money.format(0);
+      incomePreviewAmounts[2].textContent = _money.format(0);
+    });
+  } // ** TOP PRIORITY ** When it is possible, record the income as a deposit transaction in the recent transactions page.
+
+
+  var money = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+  }); ////////////////////////////////////////////
+  // INITIALIZE TRANSACTION OPTIONS
+
+  var smallContainerButtons = document.querySelectorAll('.button--small-container-header');
+  var transactionSelects = document.querySelectorAll('.form__section--select');
+  var transactionOptions = document.querySelectorAll('.form__section--transaction-option');
+  var transactionButtons = document.querySelectorAll('.button--transaction-button');
+  var transactionCreationContainer = document.querySelector('.form__section--transaction-item-creation');
+  var transactionCost = document.querySelector('.container--small__transaction-total__amount');
+  var transactionHeaderInputs = document.querySelectorAll('.form__input--small-thinner');
+  var transactionHeaderInputsTwo = document.querySelectorAll('.form__input--small-thinner__wide');
+  var transactionSubmitButton = smallContainerButtons[1];
+  var accountSelection = transactionSelects[0]; //////////////////////////////////////////
+  // UNIVERSAL TRANSACTION OPTIONS
+
+  var addTransactionItemButton = transactionButtons[0];
+  var transactionDescription = transactionOptions[1];
+  var transactionAmount = transactionOptions[2];
+  var transactionName = transactionOptions[0];
+  var transactionType = transactionSelects[3];
+  var transactionTiming = transactionSelects[4];
+  var transactionItem = transactionSelects[6];
+  var transactionSaveButton = transactionButtons[1]; //////////////////////////////////////////
+  // MONTHLY BUDGET TRANSACTION OPTIONS
+
+  var mainCategorySelect = transactionSelects[1];
+  var subCategorySelect = transactionSelects[2]; //////////////////////////////////////////
+  // DEBT TRANSACTION OPTIONS
+
+  var transactionLender = transactionSelects[5]; //////////////////////////////////////////
+  // BUILD TRANSACTION OPTIONS
+
+  var monthlyBudgetTransactionOptions = buildTransactionOptions([mainCategorySelect, subCategorySelect, transactionDescription, transactionAmount, transactionSaveButton]);
+  var emergencyFundTransactionsOptions = buildTransactionOptions([transactionDescription, transactionAmount, transactionSaveButton]);
+  var savingsFundTransactionOptions = buildTransactionOptions([transactionTiming, transactionItem, transactionDescription, transactionAmount, transactionSaveButton]);
+  var expenseFundTransactionOptions = buildTransactionOptions([transactionType, transactionTiming, transactionItem, transactionDescription, transactionAmount, transactionSaveButton]);
+  var surplusTransactionOptions = buildTransactionOptions([transactionTiming, transactionItem, transactionDescription, transactionAmount, transactionSaveButton]);
+  var investmentTransactionOptions = buildTransactionOptions([transactionType, transactionName, transactionDescription, transactionAmount, transactionSaveButton]);
+  var debtTransactionOptions = buildTransactionOptions([transactionTiming, transactionLender, transactionItem, transactionDescription, transactionAmount, transactionSaveButton]);
+  var tithingTransactionsOptions = buildTransactionOptions([transactionAmount, transactionSaveButton]);
+  var allTransactionOptions = [monthlyBudgetTransactionOptions, emergencyFundTransactionsOptions, savingsFundTransactionOptions, expenseFundTransactionOptions, surplusTransactionOptions, investmentTransactionOptions, debtTransactionOptions, tithingTransactionsOptions];
+  var transaction;
+
+  if (addTransactionItemButton) {
+    addTransactionItemButton.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      if (transactionCreationContainer.classList.contains('open')) {
+        resetTransactionOptions(allTransactionOptions);
+        return transactionCreationContainer.classList.toggle('closed');
+      }
+
+      if (transactionCreationContainer.classList.contains('closed')) {
+        transactionCreationContainer.classList.toggle('open');
+        return transaction = new _Classes_Transaction__WEBPACK_IMPORTED_MODULE_4__.Transaction({
+          date: transactionHeaderInputs[0].value,
+          location: transactionHeaderInputsTwo[0].value
+        });
+      }
+    });
+  }
+
+  if (accountSelection) {
+    var selectedAccount;
+
+    (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(accountSelection.firstChild.nextSibling.children).forEach(function (option) {
+      option.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        if (option.value === "Monthly Budget") {
+          showTransactionOptions(budget, placeholderBudget, user, option.value, allTransactionOptions, monthlyBudgetTransactionOptions);
+          selectedAccount = option.value;
+          console.log(selectedAccount);
+        }
+
+        if (option.value === "Emergency Fund") {
+          showTransactionOptions(budget, placeholderBudget, user, option.value, allTransactionOptions, emergencyFundTransactionsOptions);
+          selectedAccount = option.value;
+          console.log(selectedAccount);
+        }
+
+        if (option.value === "Savings Fund") {
+          showTransactionOptions(budget, placeholderBudget, user, option.value, allTransactionOptions, savingsFundTransactionOptions);
+          selectedAccount = option.value;
+          console.log(selectedAccount);
+        }
+
+        if (option.value === "Expense Fund") {
+          showTransactionOptions(budget, placeholderBudget, user, option.value, allTransactionOptions, expenseFundTransactionOptions);
+          selectedAccount = option.value;
+          console.log(selectedAccount);
+        }
+
+        if (option.value === "Surplus") {
+          showTransactionOptions(budget, placeholderBudget, user, option.value, allTransactionOptions, surplusTransactionOptions);
+          selectedAccount = option.value;
+          console.log(selectedAccount);
+        }
+
+        if (option.value === "Investment Fund") {
+          showTransactionOptions(budget, placeholderBudget, user, option.value, allTransactionOptions, investmentTransactionOptions);
+          selectedAccount = option.value;
+          console.log(selectedAccount);
+        }
+
+        if (option.value === "Debt") {
+          showTransactionOptions(budget, placeholderBudget, user, option.value, allTransactionOptions, debtTransactionOptions);
+          selectedAccount = option.value;
+          console.log(selectedAccount);
+        }
+
+        if (option.value === "Tithing") {
+          showTransactionOptions(budget, placeholderBudget, user, option.value, allTransactionOptions, tithingTransactionsOptions);
+          selectedAccount = option.value;
+          console.log(selectedAccount);
+        }
+      });
+    });
+
+    var receiptItemContainer = document.querySelector('.receipt-item-container');
+
+    if (transactionSaveButton) {
+      transactionSaveButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        console.log("Saving...");
+
+        if (selectedAccount !== "Investment Fund") {
+          transaction.transactionType = "Withdrawal";
+          var receiptRow = document.createElement('section');
+          receiptRow.classList.add('receipt-item-container__row');
+          receiptRow.classList.add('r__receipt-item-container__row');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement(receiptItemContainer, receiptRow);
+          var transactionDetails = document.createElement('section');
+          transactionDetails.classList.add('transaction-item-details');
+          transactionDetails.classList.add('r__transaction-item-details');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement(receiptRow, transactionDetails);
+          var transactionCostDetails = document.createElement('section');
+          transactionCostDetails.classList.add('transaction-item-cost');
+          transactionCostDetails.classList.add('r__transaction-item-cost');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement(receiptRow, transactionCostDetails);
+          var detailCount = 1;
+          var detailStart = 0;
+          console.log(selectedAccount);
+
+          if (selectedAccount === "Monthly Budget" || selectedAccount === "Debt") {
+            detailCount = 2;
+            console.log(detailCount);
+          }
+
+          while (detailStart < detailCount) {
+            var receiptDetail = document.createElement('p');
+            receiptDetail.classList.add('transaction-item-details__detail');
+            receiptDetail.classList.add('r__transaction-item-details__detail');
+            console.log(mainCategorySelect.firstChild.nextSibling.textContent);
+            console.log(selectedAccount);
+
+            if (selectedAccount === "Monthly Budget") {
+              if (detailStart === 0) {
+                receiptDetail.textContent = mainCategorySelect.firstChild.nextSibling.value;
+              }
+
+              if (detailStart === 1) {
+                receiptDetail.textContent = subCategorySelect.firstChild.nextSibling.value;
+              }
+            }
+
+            if (selectedAccount === "Emergency Fund") {
+              if (detailStart === 0) {
+                receiptDetail.textContent = transactionDescription.firstChild.value;
+              }
+            }
+
+            if (selectedAccount === "Savings Fund" || selectedAccount === "Expense Fund" || selectedAccount === "Surplus") {
+              if (detailStart === 0) {
+                receiptDetail.textContent = transactionItem.firstChild.nextSibling.value;
+              }
+            }
+
+            if (selectedAccount === "Investment Fund") {
+              if (detailStart === 0) {
+                receiptDetail.textContent = transactionName.firstChild.value;
+              }
+            }
+
+            if (selectedAccount === "Debt") {
+              if (detailStart === 0) {
+                receiptDetail.textContent = transactionLender.firstChild.nextSibling.value;
+              }
+
+              if (detailStart === 1) {
+                receiptDetail.textContent = transactionItem.firstChild.nextSibling.value;
+              }
+            }
+
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement(transactionDetails, receiptDetail);
+            detailStart++;
+          }
+
+          console.log(transactionAmount, transactionAmount.firstChild.value, (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__["default"])(transactionAmount.firstChild.value), money.format(Number(transactionAmount.value)));
+          var receiptDetailCost = document.createElement('p');
+          receiptDetailCost.classList.add('transaction-item-cost__cost');
+          receiptDetailCost.classList.add('r__transaction-item-cost__cost');
+          receiptDetailCost.textContent = money.format(Number(transactionAmount.firstChild.value));
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement(transactionCostDetails, receiptDetailCost);
+          var removeTransactionItemIcon = document.createElement('i');
+          removeTransactionItemIcon.classList.add('fas');
+          removeTransactionItemIcon.classList.add('fa-trash-alt');
+          removeTransactionItemIcon.classList.add('remove-transaction');
+          removeTransactionItemIcon.classList.add('r__remove-transaction');
+          removeTransactionItemIcon.classList.add('closed');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement(transactionCostDetails, removeTransactionItemIcon);
+          removeTransactionItemIcon.addEventListener('click', function (e) {
+            var removeTransactionIcons = document.querySelectorAll('.remove-transaction');
+
+            var index = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(removeTransactionIcons).indexOf(e.target);
+
+            var receiptTransactions = document.querySelectorAll('.receipt-item-container__row');
+            receiptTransactions[index].remove();
+            transaction.removeFromReceipt(index);
+          });
+          receiptRow.addEventListener('mouseover', function (e) {
+            e.preventDefault();
+            removeTransactionItemIcon.classList.toggle('closed');
+            removeTransactionItemIcon.classList.toggle('open');
+          });
+          receiptRow.addEventListener('mouseout', function (e) {
+            e.preventDefault();
+            removeTransactionItemIcon.classList.toggle('closed');
+            removeTransactionItemIcon.classList.toggle('open');
+          });
+          console.log(selectedAccount);
+
+          if (selectedAccount === "Monthly Budget") {
+            transaction.addToReceipt({
+              mainCategory: mainCategorySelect.firstChild.nextSibling.value,
+              subCategory: subCategorySelect.firstChild.nextSibling.value,
+              description: transactionDescription.firstChild.value,
+              amount: Number(transactionAmount.firstChild.value),
+              accountSelected: selectedAccount
+            });
+          }
+
+          if (selectedAccount === "Emergency Fund") {
+            transaction.addToReceipt({
+              description: transactionDescription.firstChild.value,
+              amount: Number(transactionAmount.firstChild.value),
+              accountSelected: selectedAccount
+            });
+          }
+
+          if (selectedAccount === "Savings Fund") {
+            console.log(selectedAccount);
+            transaction.addToReceipt({
+              timing: transactionTiming.firstChild.nextSibling.value,
+              expenditure: transactionItem.firstChild.nextSibling.value,
+              description: transactionDescription.firstChild.value,
+              amount: Number(transactionAmount.firstChild.value),
+              accountSelected: selectedAccount
+            });
+          }
+
+          if (selectedAccount === "Expense Fund") {
+            transaction.addToReceipt({
+              transactionType: transactionType.firstChild.nextSibling.value,
+              timing: transactionTiming.firstChild.nextSibling.value,
+              expenditure: transactionItem.firstChild.nextSibling.value,
+              description: transactionDescription.firstChild.value,
+              amount: Number(transactionAmount.firstChild.value),
+              accountSelected: selectedAccount
+            });
+          }
+
+          if (selectedAccount === "Surplus") {
+            transaction.addToReceipt({
+              timing: transactionTiming.firstChild.nextSibling.value,
+              expenditure: transactionItem.firstChild.nextSibling.value,
+              description: transactionDescription.firstChild.value,
+              amount: Number(transactionAmount.firstChild.value),
+              accountSelected: selectedAccount
+            });
+          }
+
+          if (selectedAccount === "Debt") {
+            transaction.addToReceipt({
+              timing: transactionTiming.firstChild.nextSibling.value,
+              lender: transactionLender.firstChild.nextSibling.value,
+              expenditure: transactionItem.firstChild.nextSibling.value,
+              description: transactionDescription.firstChild.value,
+              amount: Number(transactionAmount.firstChild.value),
+              accountSelected: selectedAccount
+            });
+          }
+        }
+
+        console.log(selectedAccount);
+
+        if (selectedAccount === "Investment Fund") {
+          console.log(selectedAccount);
+          if (transaction.transactionType) return;
+          console.log(selectedAccount);
+          transaction.transactionType = "Deposit";
+
+          var _receiptRow = document.createElement('section');
+
+          _receiptRow.classList.add('receipt-item-container__row');
+
+          _receiptRow.classList.add('r__receipt-item-container__row');
+
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement(receiptItemContainer, _receiptRow);
+
+          var _transactionDetails = document.createElement('section');
+
+          _transactionDetails.classList.add('transaction-item-details');
+
+          _transactionDetails.classList.add('r__transaction-item-details');
+
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement(_receiptRow, _transactionDetails);
+
+          var _transactionCostDetails = document.createElement('section');
+
+          _transactionCostDetails.classList.add('transaction-item-cost');
+
+          _transactionCostDetails.classList.add('r__transaction-item-cost');
+
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement(_receiptRow, _transactionCostDetails);
+          var _detailCount = 1;
+          var _detailStart = 0;
+
+          while (_detailStart < _detailCount) {
+            var _receiptDetail = document.createElement('p');
+
+            _receiptDetail.classList.add('transaction-item-details__detail');
+
+            _receiptDetail.classList.add('r__transaction-item-details__detail');
+
+            console.log(mainCategorySelect.firstChild.nextSibling.textContent);
+            console.log(selectedAccount);
+
+            if (selectedAccount === "Investment Fund") {
+              if (_detailStart === 0) {
+                _receiptDetail.textContent = transactionName.firstChild.value;
+              }
+            }
+
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement(_transactionDetails, _receiptDetail);
+            _detailStart++;
+          }
+
+          console.log(transactionAmount, transactionAmount.firstChild.value, (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__["default"])(transactionAmount.firstChild.value), money.format(Number(transactionAmount.value)));
+
+          var _receiptDetailCost = document.createElement('p');
+
+          _receiptDetailCost.classList.add('transaction-item-cost__cost');
+
+          _receiptDetailCost.classList.add('r__transaction-item-cost__cost');
+
+          _receiptDetailCost.textContent = money.format(Number(transactionAmount.firstChild.value));
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement(_transactionCostDetails, _receiptDetailCost);
+
+          var _removeTransactionItemIcon = document.createElement('i');
+
+          _removeTransactionItemIcon.classList.add('fas');
+
+          _removeTransactionItemIcon.classList.add('fa-trash-alt');
+
+          _removeTransactionItemIcon.classList.add('remove-transaction');
+
+          _removeTransactionItemIcon.classList.add('r__remove-transaction');
+
+          _removeTransactionItemIcon.classList.add('closed');
+
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement(_transactionCostDetails, _removeTransactionItemIcon);
+
+          _removeTransactionItemIcon.addEventListener('click', function (e) {
+            var removeTransactionIcons = document.querySelectorAll('.remove-transaction');
+
+            var index = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(removeTransactionIcons).indexOf(e.target);
+
+            var receiptTransactions = document.querySelectorAll('.receipt-item-container__row');
+            receiptTransactions[index].remove();
+            transaction.removeFromReceipt(index);
+          });
+
+          _receiptRow.addEventListener('mouseover', function (e) {
+            e.preventDefault();
+
+            _removeTransactionItemIcon.classList.toggle('closed');
+
+            _removeTransactionItemIcon.classList.toggle('open');
+          });
+
+          _receiptRow.addEventListener('mouseout', function (e) {
+            e.preventDefault();
+
+            _removeTransactionItemIcon.classList.toggle('closed');
+
+            _removeTransactionItemIcon.classList.toggle('open');
+          });
+
+          console.log(selectedAccount);
+
+          if (selectedAccount === "Investment Fund") {
+            transaction.addToReceipt({
+              user: user,
+              transactionType: transactionType.firstChild.nextSibling.value,
+              transactionName: transactionName.firstChild.value,
+              description: transactionDescription.firstChild.value,
+              amount: Number(transactionAmount.firstChild.value),
+              accountSelected: selectedAccount
+            });
+          }
+        }
+
+        console.log(transaction, transaction.receipt);
+        var fullTransactionCost = document.querySelectorAll('.container--small__transaction-total__amount')[0];
+        var receiptCost = 0;
+        transaction.receipt.forEach(function (receiptItem, i) {
+          return receiptCost = receiptCost += receiptItem.amount;
+        });
+        console.log(receiptCost);
+        fullTransactionCost.textContent = money.format(receiptCost);
       });
     }
 
-    if (viewReceiptButton) {
-      viewReceiptButton.addEventListener('click', function (e) {
-        _Application_Utility__WEBPACK_IMPORTED_MODULE_11__.showElement(receiptModal);
+    if (transactionSubmitButton) {
+      transactionSubmitButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        var updateObject = {
+          budgetId: budget._id,
+          userId: user._id
+        };
+        placeholderBudget.transactions.recentTransactions.push(transaction);
+        updateObject.transactions = placeholderBudget.transactions;
+        console.log(updateObject);
+        updateObject.transactions.recentTransactions[updateObject.transactions.recentTransactions.length - 1].receipt.forEach(function (receiptItem, i) {
+          console.log(receiptItem);
+
+          if (receiptItem.account === "Monthly Budget") {
+            placeholderBudget.accounts.monthlyBudget.amount = placeholderBudget.accounts.monthlyBudget.amount - Number(receiptItem.amount);
+            placeholderBudget.mainCategories.forEach(function (category, i) {
+              if (receiptItem.category === category.title) {
+                var index = i;
+                console.log(receiptItem.category);
+                category.subCategories.forEach(function (subCategory, i) {
+                  if (receiptItem.subCategory === subCategory.title) {
+                    console.log(receiptItem.subCategory);
+                    subCategory.amountSpent += receiptItem.amount;
+                    subCategory.amountRemaining = subCategory.goalAmount - subCategory.amountSpent;
+                    subCategory.percentageSpent = Number(subCategory.amountSpent / subCategory.goalAmount * 100);
+                  }
+                });
+              }
+            });
+            updateObject.mainCategories = placeholderBudget.mainCategories;
+          }
+
+          if (receiptItem.account === "Emergency Fund") {
+            placeholderBudget.accounts.emergencyFund.amount = placeholderBudget.accounts.emergencyFund.amount - Number(receiptItem.amount);
+          }
+
+          if (receiptItem.account === "Savings Fund") {
+            placeholderBudget.accounts.savingsFund.amount = placeholderBudget.accounts.savingsFund.amount - Number(receiptItem.amount);
+          }
+
+          if (receiptItem.account === "Expense Fund") {
+            placeholderBudget.accounts.expenseFund.amount = placeholderBudget.accounts.expenseFund.amount - Number(receiptItem.amount);
+          }
+
+          if (receiptItem.account === "Surplus") {
+            placeholderBudget.accounts.surlus.amount = placeholderBudget.accounts.surplus.amount - Number(receiptItem.amount);
+          }
+
+          if (receiptItem.account === "Investment Fund") {
+            if (!placeholderBudget.accounts.investmentFund.investedAmount) placeholderBudget.accounts.investmentFund.investedAmount = 0;
+            placeholderBudget.accounts.investmentFund.amount = placeholderBudget.accounts.investmentFund.amount - Number(receiptItem.amount);
+            placeholderBudget.accounts.investmentFund.investedAmount = placeholderBudget.accounts.investmentFund.investedAmount + Number(receiptItem.amount);
+            var investmentObject = {
+              investmentType: receiptItem.transactionType,
+              investmentName: receiptItem.transactionName,
+              investmentDescription: receiptItem.description,
+              initialInvestment: receiptItem.amount,
+              currentValue: receiptItem.amount,
+              settled: false,
+              valueDifference: 0
+            };
+            placeholderBudget.investments.push(investmentObject);
+            updateObject.investments = placeholderBudget.investments;
+          }
+
+          if (receiptItem.account === "Debt") {
+            placeholderBudget.accounts.debt.amount = placeholderBudget.accounts.debt.amount - Number(receiptItem.amount);
+            /* After reducing the amount that is allocated to the debt account, there needs to be a reduction of the debt amount through reducing the current amount owed for the debt that was selected.
+               To do that we need to:
+            1) Find the exact debt that is being paid.
+            2) From there, reduce it's amountOwed amount.
+               There is more steps to each of those, especially the first, but that is what needs to be done.
+            */
+          }
+        });
+        updateObject.accounts = placeholderBudget.accounts;
+
+        placeholderBudget._updateBudget({
+          updateObject: updateObject
+        }, "Dashboard");
+
+        var fullTransactionCost = document.querySelectorAll('.container--small__transaction-total__amount')[0];
+        fullTransactionCost.textContent = money.format(0);
       });
     }
   }
 };
+
+var createMonthlyBudgetTransactionPlans = function createMonthlyBudgetTransactionPlans(budget, placeholderBudget, user) {
+  var updateObject = {
+    budgetId: budget._id,
+    userId: user._id
+  };
+  placeholderBudget.mainCategories.forEach(function (mc, i) {
+    mc.subCategories.forEach(function (sc, i) {
+      if (sc.timingOptions.paymentSchedule) {
+        var index = i; // LOOPING THROUGH SUB CATEGORY PAYMENT SCHEDULE
+
+        sc.timingOptions.paymentSchedule.forEach(function (date, i) {
+          var found = false; // LOOP THROUGH PLANNED TRANSACTIONS FOR EACH DATE IN PAYMENT SCHEDULE
+
+          placeholderBudget.transactions.plannedTransactions.forEach(function (plan, i) {
+            // console.log(plan);
+            // CHECKING IF THE PLAN IS A MONTHLY BUDGET ONE, AND THAT IT CONTAINS THE MAIN CATEGORY AND SUB CATEGORY
+            if (plan.account === "Monthly Budget" && plan.subAccount === mc.title && plan.name === sc.title) {
+              // THEN, CHECK IF THE PAYMENT SCHEDULE ITEM IS AN ARRAY OF 2 DATES OR 1.
+              if (date.length > 1 && (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__["default"])(date) === "object") {
+                date.forEach(function (newDate) {
+                  if (plan.timingOptions.dueDates.includes(new Date(newDate).toISOString())) {
+                    if (sc.goalAmount !== plan.amount) {
+                      found = true;
+                      return plan.amount = sc.goalAmount;
+                    }
+
+                    found = true;
+                    return;
+                  }
+                });
+              } // IF PAYMENT SCHEDULE DATE IS ONE ITEM
+
+
+              if (date.length === 24) {
+                if (plan.timingOptions.dueDates.includes(new Date(date).toISOString())) {
+                  if (sc.goalAmount !== plan.amount) {
+                    return plan.amount = sc.goalAmount;
+                  }
+
+                  found = true;
+                  return;
+                }
+              }
+            }
+          });
+
+          if (found === false && date.length === 24) {
+            var transactionPlan = {};
+            transactionPlan.date = sc.lastUpdated;
+            transactionPlan.type = "Withdrawal";
+            transactionPlan.location = "Unknown";
+            transactionPlan.account = "Monthly Budget";
+            transactionPlan.subAccount = mc.title;
+            transactionPlan.category = mc.title;
+            transactionPlan.subCategory = sc.title;
+            transactionPlan.name = sc.title;
+            transactionPlan.amount = sc.goalAmount;
+            transactionPlan.need = "Need";
+            transactionPlan.timingOptions = {
+              dueDates: [new Date(date)],
+              paymentSchedule: [new Date(date)],
+              paymentCycle: "Once"
+            };
+            transactionPlan.amountSaved = 0;
+            transactionPlan.paid = false;
+            transactionPlan.paidStatus = "Unpaid";
+            placeholderBudget.transactions.plannedTransactions.push(transactionPlan);
+          }
+
+          if (found === false && date.length === 2) {
+            date.forEach(function (date) {
+              var transactionPlan = {};
+              transactionPlan.date = sc.lastUpdated;
+              transactionPlan.type = "Withdrawal";
+              transactionPlan.location = "Unknown";
+              transactionPlan.account = "Monthly Budget";
+              transactionPlan.subAccount = mc.title;
+              transactionPlan.category = mc.title;
+              transactionPlan.subCategory = sc.title;
+              transactionPlan.name = sc.title;
+              transactionPlan.amount = sc.goalAmount;
+              transactionPlan.need = "Need";
+              transactionPlan.timingOptions = {
+                dueDates: [new Date(date)],
+                paymentSchedule: [new Date(date)],
+                paymentCycle: "Once"
+              };
+              transactionPlan.amountSaved = 0;
+              transactionPlan.paid = false;
+              transactionPlan.paidStatus = "Unpaid";
+              placeholderBudget.transactions.plannedTransactions.push(transactionPlan);
+            });
+          }
+        });
+      }
+    });
+  });
+  updateObject.transactions = placeholderBudget.transactions;
+
+  placeholderBudget._updateBudget({
+    updateObject: updateObject
+  }, "Transaction-Planner");
+};
+
+var setupBudgetDashboard = function setupBudgetDashboard(user, budget, placeholderBudget) {
+  // THE LOGGED USER ABOVE SHOWED THAT THE DATE THE PASSWORD WAS CHANGED IS STILL SHOWING. THAT NEEDS TO BE CHANGED.
+  ////////////////////////////////////////////
+  // WATCH THE BUDGET NAVIGATION
+  _Budget_Navigation__WEBPACK_IMPORTED_MODULE_5__._watchBudgetNavigation(); ////////////////////////////////////////////
+  // CREATE TRANSACTION PLANS
+
+
+  createMonthlyBudgetTransactionPlans(budget, placeholderBudget, user); ////////////////////////////////////////////
+  // WATCH FOR ACCOUNT SELECTION
+
+  _watchForTransactions(budget, placeholderBudget, user); ////////////////////////////////////////////
+  // GET BANK ACCOUNT TOTAL
+
+
+  getDashboardAccountTotals(budget, placeholderBudget, user); ////////////////////////////////////////////
+  // SETUP BILL CALENDAR
+
+  _setupBillCalendar(budget, placeholderBudget, user); ////////////////////////////////////////////
+  // SETUP BILL CURRENT MONTH
+
+
+  _setupCurrentMonth(budget, placeholderBudget, user);
+};
+
+/***/ }),
+
+/***/ "./Public/JS/Budget/_Debt-Manager.js":
+/*!*******************************************!*\
+  !*** ./Public/JS/Budget/_Debt-Manager.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "_watchDebtManager": () => (/* binding */ _watchDebtManager)
+/* harmony export */ });
+/* harmony import */ var _Application_Utility__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../Application/Utility */ "./Public/JS/Application/Utility.js");
+
 
 var payDebtOff = function payDebtOff(budget, placeholderBudget, user, debt, paidSections, sectionStart) {
   var money = new Intl.NumberFormat('en-US', {
@@ -8524,7 +10814,7 @@ var payDebtOff = function payDebtOff(budget, placeholderBudget, user, debt, paid
     var debtSection = document.createElement('section');
     debtSection.classList.add('form__section--debt-paid');
     debtSection.classList.add('r__form__section--debt-paid');
-    insertElement(paidDebt, debtSection);
+    _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", paidDebt, debtSection);
 
     if (sectionStart === 0) {
       var sectionHeader = document.createElement('p');
@@ -8535,8 +10825,8 @@ var payDebtOff = function payDebtOff(budget, placeholderBudget, user, debt, paid
       sectionContent.classList.add('debt--paid-text');
       sectionContent.classList.add('r__debt--paid-text');
       sectionContent.textContent = "".concat(new Date(debt.date).getDate(), " ").concat(months[new Date(debt.date).getMonth()], " ").concat(new Date(debt.date).getFullYear());
-      insertElement(debtSection, sectionHeader);
-      insertElement(debtSection, sectionContent);
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, sectionHeader);
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, sectionContent);
     }
 
     if (sectionStart === 1) {
@@ -8555,8 +10845,8 @@ var payDebtOff = function payDebtOff(budget, placeholderBudget, user, debt, paid
       _sectionContent.classList.add('r__debt--paid-text');
 
       _sectionContent.textContent = debt.lender;
-      insertElement(debtSection, _sectionHeader);
-      insertElement(debtSection, _sectionContent);
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionHeader);
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionContent);
     }
 
     if (sectionStart === 2) {
@@ -8575,8 +10865,8 @@ var payDebtOff = function payDebtOff(budget, placeholderBudget, user, debt, paid
       _sectionContent2.classList.add('r__debt--paid-text');
 
       _sectionContent2.textContent = debt.debtType;
-      insertElement(debtSection, _sectionHeader2);
-      insertElement(debtSection, _sectionContent2);
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionHeader2);
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionContent2);
     }
 
     if (sectionStart === 3) {
@@ -8595,8 +10885,8 @@ var payDebtOff = function payDebtOff(budget, placeholderBudget, user, debt, paid
       _sectionContent3.classList.add('r__debt--paid-text');
 
       _sectionContent3.textContent = money.format(Number(debt.initialDebt));
-      insertElement(debtSection, _sectionHeader3);
-      insertElement(debtSection, _sectionContent3);
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionHeader3);
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionContent3);
     }
 
     if (sectionStart === 4) {
@@ -8615,8 +10905,8 @@ var payDebtOff = function payDebtOff(budget, placeholderBudget, user, debt, paid
       _sectionContent4.classList.add('r__debt--paid-text');
 
       _sectionContent4.textContent = money.format(Number(debt.amountOwed));
-      insertElement(debtSection, _sectionHeader4);
-      insertElement(debtSection, _sectionContent4);
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionHeader4);
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionContent4);
     }
 
     if (sectionStart === 5) {
@@ -8635,8 +10925,8 @@ var payDebtOff = function payDebtOff(budget, placeholderBudget, user, debt, paid
       _sectionContent5.classList.add('r__debt--paid-text');
 
       _sectionContent5.textContent = "".concat(debt.status);
-      insertElement(debtSection, _sectionHeader5);
-      insertElement(debtSection, _sectionContent5);
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionHeader5);
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionContent5);
     }
 
     sectionStart++;
@@ -8703,7 +10993,7 @@ var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, us
         var debtSection = document.createElement('section');
         debtSection.classList.add('form__section--debt');
         debtSection.classList.add('r__form__section--debt');
-        insertElement(debt, debtSection);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debt, debtSection);
 
         if (sectionStart === 0) {
           var sectionHeader = document.createElement('p');
@@ -8715,8 +11005,8 @@ var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, us
           sectionContent.classList.add('r__debt-text');
           sectionContent.textContent = "".concat(new Date().getDate(), " ").concat(months[new Date().getMonth()], " ").concat(new Date().getFullYear());
           debtObject.date = new Date();
-          insertElement(debtSection, sectionHeader);
-          insertElement(debtSection, sectionContent);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, sectionHeader);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, sectionContent);
         }
 
         if (sectionStart === 1) {
@@ -8736,8 +11026,8 @@ var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, us
 
           _sectionContent6.textContent = debtLender.value;
           debtObject.lender = debtLender.value;
-          insertElement(debtSection, _sectionHeader6);
-          insertElement(debtSection, _sectionContent6);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionHeader6);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionContent6);
         }
 
         if (sectionStart === 2) {
@@ -8757,8 +11047,8 @@ var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, us
 
           _sectionContent7.textContent = debtTypes.value;
           debtObject.debtType = debtTypes.value;
-          insertElement(debtSection, _sectionHeader7);
-          insertElement(debtSection, _sectionContent7);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionHeader7);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionContent7);
         }
 
         if (sectionStart === 3) {
@@ -8778,8 +11068,8 @@ var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, us
 
           _sectionContent8.textContent = money.format(Number(debtAmount.value));
           debtObject.initialDebt = Number(debtAmount.value);
-          insertElement(debtSection, _sectionHeader8);
-          insertElement(debtSection, _sectionContent8);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionHeader8);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionContent8);
         }
 
         if (sectionStart === 4) {
@@ -8799,8 +11089,8 @@ var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, us
 
           _sectionContent9.textContent = money.format(Number(debtAmount.value));
           debtObject.amountOwed = debtObject.initialDebt;
-          insertElement(debtSection, _sectionHeader9);
-          insertElement(debtSection, _sectionContent9);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionHeader9);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionContent9);
         }
 
         if (sectionStart === 5) {
@@ -8820,8 +11110,8 @@ var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, us
 
           _sectionContent10.textContent = "Unpaid";
           debtObject.status = "Unpaid";
-          insertElement(debtSection, _sectionHeader10);
-          insertElement(debtSection, _sectionContent10);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionHeader10);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionContent10);
         }
 
         if (sectionStart === 6) {
@@ -8837,9 +11127,9 @@ var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, us
           paidOffButtonText.classList.add('button--extra-extra-small__transaction-plan__text');
           paidOffButtonText.classList.add('r__button--extra-extra-small__transaction-plan__text');
           paidOffButtonText.textContent = "Paid Off";
-          insertElement(paidOffButton, paidOffButtonIcon);
-          insertElement(paidOffButton, paidOffButtonText);
-          insertElement(debtSection, paidOffButton); // paidOffButton.addEventListener('click', (e) => {
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", paidOffButton, paidOffButtonIcon);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", paidOffButton, paidOffButtonText);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, paidOffButton); // paidOffButton.addEventListener('click', (e) => {
           //   e.preventDefault();
           //   payDebtOff(budget, placeholderBudget, user, debtObject, numberOfPaidSections, sectionStart);
           // });
@@ -8862,7 +11152,7 @@ var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, us
         updateObject: updateObject
       }, "Debt-Manager");
 
-      _Application_Utility__WEBPACK_IMPORTED_MODULE_11__.reloadPage();
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.reloadPage();
     });
     var debtPayOffButtons = document.querySelectorAll('.button--extra-extra-small__debt-transaction-plan');
 
@@ -8881,198 +11171,466 @@ var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, us
   }
 };
 
-var settleInvestment = function settleInvestment(investments, index, dataIndex, budget, placeholderBudget, user) {
-  var investmentContainers = document.querySelectorAll('.investment-container');
-  var settledInvestmentShellContainer = document.createElement('section');
-  settledInvestmentShellContainer.classList.add('container--extra-small__margin-left-and-right');
-  settledInvestmentShellContainer.classList.add('r__container--extra-small__margin-left-and-right');
-  insertElement(investmentContainers[1], settledInvestmentShellContainer);
-  var settledInvestmentContainerHeader = document.createElement('section');
-  settledInvestmentContainerHeader.classList.add('container--extra-small__margin-left-and-right__header');
-  settledInvestmentContainerHeader.classList.add('r__container--extra-small__margin-left-and-right__header');
-  insertElement(settledInvestmentShellContainer, settledInvestmentContainerHeader);
-  var investmentTypeIcons = ["arrow-trend-up", "sign-hanging", "calendar-clock", "asterisk"];
-  var investmentHeaderIcon = document.createElement('i');
-  investmentHeaderIcon.classList.add("fas");
-  investmentHeaderIcon.classList.add('container--extra-small__margin-left-and-right__header__icon');
-  investmentHeaderIcon.classList.add('r__container--extra-small__margin-left-and-right__header__icon');
+/***/ }),
 
-  if (investments[index].firstChild.firstChild) {
-    if (investments[index].firstChild.firstChild.classList.contains("fa-chart-line")) {
-      investmentHeaderIcon.classList.add("fa-chart-line");
-    }
+/***/ "./Public/JS/Budget/_Edit-Category-Goals.js":
+/*!**************************************************!*\
+  !*** ./Public/JS/Budget/_Edit-Category-Goals.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-    if (investments[index].firstChild.firstChild.classList.contains('fa-sign-hanging')) {
-      investmentHeaderIcon.classList.add("fa-sign-hanging");
-    }
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "_watchEditCategoryGoals": () => (/* binding */ _watchEditCategoryGoals)
+/* harmony export */ });
+/* harmony import */ var _Budget_Creation_Budget_Creation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Budget-Creation/Budget-Creation */ "./Public/JS/Budget-Creation/Budget-Creation.js");
 
-    if (investments[index].firstChild.firstChild.classList.contains('fa-clock')) {
-      investmentHeaderIcon.classList.add("fa-clock");
-    }
 
-    if (investments[index].firstChild.firstChild.classList.contains('fa-asterisk')) {
-      investmentHeaderIcon.classList.add("fa-asterisk");
-    }
-
-    insertElement(settledInvestmentContainerHeader, investmentHeaderIcon);
-    var investmentHeaderText = document.createElement('p');
-    investmentHeaderText.classList.add('container--extra-small__margin-left-and-right__header__text');
-    investmentHeaderText.classList.add('r__container--extra-small__margin-left-and-right__header__text');
-    investmentHeaderText.textContent = investments[index].firstChild.firstChild.nextSibling.textContent;
-    insertElement(settledInvestmentContainerHeader, investmentHeaderText); // CREATE INVESTMENT CONTENT
-
-    var investmentContent = document.createElement('section');
-    investmentContent.classList.add('container--extra-small__margin-left-and-right__content__column');
-    investmentContent.classList.add('r__container--extra-small__margin-left-and-right__content__column');
-    insertElement(settledInvestmentShellContainer, investmentContent); // CREATE INVESTMENT EXPLANATORY CONTENT
-
-    var investmentExplanationSection = document.createElement('section');
-    investmentExplanationSection.classList.add('investment-explanatory-information');
-    investmentExplanationSection.classList.add('r__investment-explanatory-information');
-    insertElement(investmentContent, investmentExplanationSection);
-    var investmentDescription = document.createElement('section');
-    investmentDescription.classList.add('investment-description');
-    investmentDescription.classList.add('r__investment-description');
-    insertElement(investmentExplanationSection, investmentDescription);
-    var investmentDescriptionText = document.createElement('p');
-    investmentDescriptionText.classList.add('investment-description__text');
-    investmentDescriptionText.classList.add('r__investment-description__text');
-    investmentDescriptionText.textContent = investments[index].firstChild.nextSibling.firstChild.firstChild.firstChild.textContent;
-    var settledInvestmentValueContainer = document.createElement('section');
-    settledInvestmentValueContainer.classList.add('investment-value-information--settled');
-    settledInvestmentValueContainer.classList.add('r__investment-value-information--settled');
-    insertElement(investmentContent, settledInvestmentValueContainer);
-    var settledValueContainerText = document.createElement('p');
-    settledValueContainerText.classList.add('investment-value-information--settled__text');
-    settledValueContainerText.classList.add('r__investment-value-information--settled__text');
-
-    if (budget.investments[dataIndex].valueDifference < 0) {
-      settledValueContainerText.textContent = "Lost ".concat(Number(budget.investments[dataIndex].initialInvestment - budget.investments[dataIndex].currentValue));
-      settledInvestmentShellContainer.classList.add('negative-investment');
-    }
-
-    if (budget.investments[dataIndex].valueDifference === 0) {
-      settledValueContainerText.textContent = "Broke Even";
-      settledInvestmentShellContainer.classList.add('neutral-investment');
-    }
-
-    if (budget.investments[dataIndex].valueDifference > 0) {
-      settledValueContainerText.textContent = "Gained ".concat(Number(budget.investments[dataIndex].currentValue - budget.investments[dataIndex].initialInvestment));
-      settledInvestmentShellContainer.classList.add('positive-investment');
-    }
-
-    var investmentInitialValue = Number(investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild.firstChild.nextSibling.textContent.split('$')[1]);
-    insertElement(settledInvestmentValueContainer, settledValueContainerText);
-  }
-
-  if (!investments[index].firstChild.firstChild) {
-    if (investments[index].firstChild.nextSibling.firstChild.classList.contains("fa-chart-line")) {
-      investmentHeaderIcon.classList.add("fa-chart-line");
-    }
-
-    if (investments[index].firstChild.nextSibling.firstChild.classList.contains('fa-sign-hanging')) {
-      investmentHeaderIcon.classList.add("fa-sign-hanging");
-    }
-
-    if (investments[index].firstChild.nextSibling.firstChild.classList.contains('fa-clock')) {
-      investmentHeaderIcon.classList.add("fa-clock");
-    }
-
-    if (investments[index].firstChild.nextSibling.firstChild.classList.contains('fa-asterisk')) {
-      investmentHeaderIcon.classList.add("fa-asterisk");
-    }
-
-    insertElement(settledInvestmentContainerHeader, investmentHeaderIcon);
-
-    var _investmentHeaderText = document.createElement('p');
-
-    _investmentHeaderText.classList.add('container--extra-small__margin-left-and-right__header__text');
-
-    _investmentHeaderText.classList.add('r__container--extra-small__margin-left-and-right__header__text');
-
-    _investmentHeaderText.textContent = investments[index].firstChild.nextSibling.firstChild.nextSibling.textContent;
-    insertElement(settledInvestmentContainerHeader, _investmentHeaderText); // CREATE INVESTMENT CONTENT
-
-    var _investmentContent = document.createElement('section');
-
-    _investmentContent.classList.add('container--extra-small__margin-left-and-right__content__column');
-
-    _investmentContent.classList.add('r__container--extra-small__margin-left-and-right__content__column');
-
-    insertElement(settledInvestmentShellContainer, _investmentContent); // CREATE INVESTMENT EXPLANATORY CONTENT
-
-    var _investmentExplanationSection = document.createElement('section');
-
-    _investmentExplanationSection.classList.add('investment-explanatory-information');
-
-    _investmentExplanationSection.classList.add('r__investment-explanatory-information');
-
-    insertElement(_investmentContent, _investmentExplanationSection);
-
-    var _investmentDescription = document.createElement('section');
-
-    _investmentDescription.classList.add('investment-description');
-
-    _investmentDescription.classList.add('r__investment-description');
-
-    insertElement(_investmentExplanationSection, _investmentDescription);
-
-    var _investmentDescriptionText = document.createElement('p');
-
-    _investmentDescriptionText.classList.add('investment-description__text');
-
-    _investmentDescriptionText.classList.add('r__investment-description__text');
-
-    _investmentDescriptionText.textContent = investments[index].firstChild.nextSibling.nextSibling.firstChild.firstChild.textContent;
-    insertElement(_investmentDescription, _investmentDescriptionText);
-
-    var _settledInvestmentValueContainer = document.createElement('section');
-
-    _settledInvestmentValueContainer.classList.add('investment-value-information--settled');
-
-    _settledInvestmentValueContainer.classList.add('r__investment-value-information--settled');
-
-    insertElement(_investmentContent, _settledInvestmentValueContainer);
-
-    var _settledValueContainerText = document.createElement('p');
-
-    _settledValueContainerText.classList.add('investment-value-information--settled__text');
-
-    _settledValueContainerText.classList.add('r__investment-value-information--settled__text');
-
-    if (budget.investments[index - 1].valueDifference < 0) {
-      _settledValueContainerText.textContent = "Lost ".concat(Number(budget.investments[index - 1].initialInvestment - budget.investments[index - 1].currentValue));
-      settledInvestmentShellContainer.classList.add('negative-investment');
-    }
-
-    if (budget.investments[index - 1].valueDifference === 0) {
-      _settledValueContainerText.textContent = "Broke Even";
-      settledInvestmentShellContainer.classList.add('neutral-investment');
-    }
-
-    if (budget.investments[index - 1].valueDifference > 0) {
-      _settledValueContainerText.textContent = "Gained ".concat(Number(budget.investments[index - 1].currentValue - budget.investments[index - 1].initialInvestment));
-      settledInvestmentShellContainer.classList.add('positive-investment');
-    }
-
-    var _investmentInitialValue = Number(investments[index].firstChild.nextSibling.nextSibling.firstChild.nextSibling.firstChild.firstChild.nextSibling.textContent.split('$')[1]);
-
-    insertElement(_settledInvestmentValueContainer, _settledValueContainerText);
-  }
-
-  budget.investments[dataIndex].settled = !budget.investments[dataIndex].settled;
-
-  placeholderBudget._updateBudget({
-    updateObject: {
-      budgetId: budget._id,
-      userId: user._id,
-      investments: budget.investments
-    }
-  }, "Investment-Planner");
-
-  investments[index].remove();
-  window.location.reload();
+var getSinglePercentageSpent = function getSinglePercentageSpent(spent, total) {
+  var percentage = (spent / total).toFixed(2);
+  if (isNaN(percentage)) percentage = 0.0.toFixed(2);
+  return percentage;
 };
+
+var getOverallPercentageSpent = function getOverallPercentageSpent(total, part) {
+  var percent = (part / total).toFixed(2);
+  if (percent === NaN) percent = 0;
+  return percent;
+};
+
+var getOverallSpent = function getOverallSpent(subCategories, overall) {
+  var arrayOfTotals = [];
+  subCategories.forEach(function (sc, i) {
+    var subCategoryTotal = Number(sc.firstChild.nextSibling.nextSibling.firstChild.textContent);
+    sc.firstChild.nextSibling.nextSibling.firstChild.textContent === "$".concat(sc.firstChild.nextSibling.nextSibling.firstChild.textContent.split('$')[1]) ? subCategoryTotal = Number(sc.firstChild.nextSibling.nextSibling.firstChild.textContent.split('$')[1]) : subCategoryTotal = 0;
+    arrayOfTotals.push(subCategoryTotal);
+  });
+  var initialValue = 0;
+  overall = arrayOfTotals.reduce(function (previous, current) {
+    return Number(previous) + Number(current);
+  }, initialValue);
+  return overall;
+};
+
+var getOverallBudget = function getOverallBudget(subCategories, overall) {
+  var arrayOfTotals = [];
+  subCategories.forEach(function (sc, i) {
+    var subCategoryTotal = sc.firstChild.nextSibling.nextSibling.firstChild.value;
+    arrayOfTotals.push(subCategoryTotal);
+  });
+  var initialValue = 0;
+  overall = arrayOfTotals.reduce(function (previous, current) {
+    return Number(previous) + Number(current);
+  }, initialValue);
+  return overall;
+};
+
+var getSubCategoryTiming = function getSubCategoryTiming(budget, category) {
+  var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  var wording;
+
+  if (category.timingOptions.paymentCycle === "Weekly") {
+    var day = days[new Date("".concat(category.timingOptions.dueDates[0])).getDay()];
+    wording = "Due every ".concat(day, " of the month.");
+    return wording;
+  }
+
+  if (category.timingOptions.paymentCycle === "Bi-Weekly") {
+    var date = new Date("".concat(category.timingOptions.dueDates[0]));
+
+    var _day = date.getDate();
+
+    var endDigit = Number(date.getDate().toString().split('')[date.getDate().toString().length - 1]);
+    var dayEnding;
+    dayEnding = Edit.calculateDayEnding(endDigit, dayEnding, date);
+    wording = "Due ".concat(days[date.getDay()], ", the ").concat(_day).concat(dayEnding, " of ").concat(months[date.getMonth()], ".");
+    return wording;
+  }
+
+  if (category.timingOptions.paymentCycle === "Bi-Monthly") {
+    var dayOne, dayTwo, _dayEnding, dayEndingTwo;
+
+    category.timingOptions.dueDates[0].forEach(function (dd, i) {
+      if (i === 0) {
+        dayOne = new Date("".concat(dd));
+      }
+
+      if (i === 1) {
+        dayTwo = new Date("".concat(dd));
+      }
+    });
+
+    var _endDigit = Number(dayOne.getDate().toString().split('')[dayOne.getDate().toString().length - 1]);
+
+    var endDigitTwo = Number(dayTwo.getDate().toString().split('')[dayTwo.getDate().toString().length - 1]);
+    _dayEnding = Edit.calculateDayEnding(_endDigit, _dayEnding, dayOne.getDate());
+    dayEndingTwo = Edit.calculateDayEnding(_endDigit, dayEndingTwo, dayTwo.getDate());
+    wording = "Due the ".concat(dayOne.getDate()).concat(_dayEnding, " & ").concat(dayTwo.getDate()).concat(dayEndingTwo, ", of ").concat(months[dayOne.getMonth()]);
+    return wording;
+  }
+
+  if (category.timingOptions.paymentCycle === "Monthly") {
+    var _date = new Date("".concat(category.timingOptions.dueDates[0]));
+
+    var _day2 = _date.getDate();
+
+    var _endDigit2 = Number(_date.getDate().toString().split('')[_date.getDate().toString().length - 1]);
+
+    var _dayEnding2;
+
+    _dayEnding2 = Edit.calculateDayEnding(_endDigit2, _dayEnding2, _date);
+    wording = "Due ".concat(days[_date.getDay()], ", the ").concat(_day2).concat(_dayEnding2, " of ").concat(months[_date.getMonth()], ".");
+    return wording;
+  }
+};
+
+var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placeholderBudget, user) {
+  var editCategoryGoalsContainer = document.querySelectorAll('.container--large')[0];
+
+  if (editCategoryGoalsContainer) {
+    var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
+    var timingFunctionContainer = document.querySelector('.timing-container');
+    var editCategoryGoalsSubmit = document.querySelector('.button--large__thin'); // On load, retrieve the proper timings and dates for the correct sub-categories.
+
+    var mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
+    var allCategories = [];
+    placeholderBudget.mainCategories.forEach(function (mct, i) {
+      budget.mainCategories[i].subCategories.forEach(function (sc, i) {
+        allCategories.push(sc);
+      });
+    });
+    allCategories.forEach(function (c, i) {
+      if (c.timingOptions.paymentCycle) {
+        var timing = getSubCategoryTiming(budget, c);
+
+        if (subCategories[i]) {
+          if (subCategories[i].firstChild.nextSibling.firstChild.nextSibling) subCategories[i].firstChild.nextSibling.firstChild.nextSibling.textContent = timing;
+        }
+      }
+    });
+    _Budget_Creation_Budget_Creation__WEBPACK_IMPORTED_MODULE_0__.setupTimingFunctionContainer(timingFunctionContainer);
+    var clickedItem, selectedTiming;
+    var subCategoryIndex = 0;
+    _Budget_Creation_Budget_Creation__WEBPACK_IMPORTED_MODULE_0__.watchForSettingTiming(placeholderBudget, subCategoryIndex, clickedItem, selectedTiming, "Full Budget");
+    var money = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2
+    });
+    var individualPayments = document.querySelectorAll('.individual-payment');
+    var overallBudget = document.querySelectorAll('.budget-single-goal-summary__amount');
+    individualPayments.forEach(function (ip, i) {
+      var overallSpent = overallBudget[1];
+      var overallRemaining = overallBudget[2];
+      var overallPercentageSpent = overallBudget[3];
+      var total = getOverallBudget(subCategories, overallBudget[0]);
+      var part = getOverallSpent(subCategories, overallSpent);
+
+      if (total - part < 0) {
+        overallRemaining.classList.add('negative');
+        overallRemaining.classList.remove('positive');
+      }
+
+      if (total - part === 0) {
+        overallRemaining.classList.remove('positive');
+        overallRemaining.classList.remove('negative');
+      }
+
+      if (total - part > 0) {
+        overallRemaining.classList.add('positive');
+        overallRemaining.classList.remove('negative');
+      }
+
+      var remainingValue = ip.closest('section').nextSibling.nextSibling.firstChild;
+
+      if (Number(remainingValue.textContent.split('$')[1]) > 0) {
+        remainingValue.classList.add('positive');
+        remainingValue.classList.remove('negative');
+      }
+
+      if (Number(remainingValue.textContent.split('$')[1]) === 0) {
+        remainingValue.classList.remove('positive');
+        remainingValue.classList.remove('negative');
+      }
+
+      if (Number(remainingValue.textContent.split('$')[1]) < 0) {
+        remainingValue.classList.remove('positive');
+        remainingValue.classList.add('negative');
+      }
+
+      ip.addEventListener('keyup', function (e) {
+        e.preventDefault();
+        var spent = ip.closest('section').nextSibling.firstChild;
+        var remaining = ip.closest('section').nextSibling.nextSibling.firstChild;
+        var percentageSpent = ip.closest('section').nextSibling.nextSibling.nextSibling.firstChild;
+        var total = getOverallBudget(subCategories, overallBudget[0]);
+        var part = getOverallSpent(subCategories, overallSpent);
+        var percentage = getOverallPercentageSpent(total, part);
+        overallBudget[0].textContent = money.format(getOverallBudget(subCategories, overallBudget[0]));
+        overallSpent.textContent = money.format(part);
+        overallRemaining.textContent = money.format(total - part);
+        overallPercentageSpent.textContent = "".concat(percentage, "%");
+        spent.textContent = money.format(spent.textContent.split('$')[1]);
+        remaining.textContent = money.format(ip.value - Number(spent.textContent.split('$')[1]));
+
+        if (total - part < 0) {
+          overallRemaining.classList.add('negative');
+          overallRemaining.classList.remove('positive');
+        }
+
+        if (total - part === 0) {
+          overallRemaining.classList.remove('positive');
+          overallRemaining.classList.remove('negative');
+        }
+
+        if (total - part > 0) {
+          overallRemaining.classList.add('positive');
+          overallRemaining.classList.remove('negative');
+        }
+
+        if (!Number(remaining.textContent.startsWith('-'))) {
+          remaining.classList.add('positive');
+          remaining.classList.remove('negative');
+        }
+
+        if (Number(remaining.textContent.split('$')[1]) === 0) {
+          remaining.classList.remove('positive');
+          remaining.classList.remove('negative');
+        }
+
+        if (Number(remaining.textContent.startsWith('-'))) {
+          remaining.classList.remove('positive');
+          remaining.classList.add('negative');
+        }
+
+        percentageSpent.textContent = "".concat(getSinglePercentageSpent(Number(spent.textContent.split('$')[1]), ip.value), "%");
+      });
+      ip.addEventListener('blur', function (e) {
+        e.preventDefault();
+        ip.value = Number(ip.value).toFixed(2);
+      });
+    });
+
+    if (editCategoryGoalsSubmit) {
+      editCategoryGoalsSubmit.addEventListener('click', function (e) {
+        e.preventDefault();
+        var updateObject = {};
+        updateObject.budgetId = budget._id;
+        updateObject.userId = user._id;
+        updateObject.mainCategories = [];
+        var mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
+        var mainCategoryIndex = 0;
+        var subCategoryIndex = 0;
+        var emptyArray = [];
+        var temporaryObject;
+        budget.mainCategories.forEach(function (bmc, i) {
+          temporaryObject = Object.fromEntries([["title", placeholderBudget.mainCategories[i].title], ["icon", placeholderBudget.mainCategories[i].icon], ["subCategories", emptyArray]]);
+          updateObject.mainCategories[i] = temporaryObject;
+          var tempArray = Array.from(document.querySelectorAll(".sub-category-display__sub-category[data-subcategory=\"".concat(i, "\"]")));
+          var mainCategoryIndex = i;
+          tempArray.forEach(function (temp, i) {
+            var title = temp.firstChild.nextSibling.firstChild.textContent;
+            var goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
+            var amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+            var amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+            var percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
+            var timingOptions = bmc.subCategories[i].timingOptions;
+            var createdAt = bmc.subCategories[i].createdAt;
+
+            if (!bmc.subCategories[i].createdAt) {
+              createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+            }
+
+            var lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+            temporaryObject.subCategories.push(Object.fromEntries([["title", title], ["createdAt", createdAt], ["lastUpdated", lastUpdated], ["goalAmount", goalAmount], ["amountSpent", amountSpent], ["amountRemaining", amountRemaining], ["percentageSpent", percentageSpent], ["timingOptions", timingOptions]]));
+
+            if (temporaryObject.subCategories.length === tempArray.length) {
+              mainCategoryIndex++;
+              if (temporaryObject === undefined) return;
+              temporaryObject.subCategories = [];
+              return mainCategoryIndex;
+            }
+
+            if (i === tempArray.length) {
+              mainCategoryIndex++;
+            }
+          });
+
+          if (updateObject.mainCategories.length === budget.mainCategories.length) {
+            return mainCategoryIndex = 0;
+          }
+        });
+        updateObject.mainCategories.forEach(function (mc, i) {
+          var mainCategoryIndex = i;
+          var tempArray = Array.from(document.querySelectorAll(".sub-category-display__sub-category[data-subcategory=\"".concat(i, "\"]")));
+          tempArray.forEach(function (temp, i) {
+            var title = temp.firstChild.nextSibling.firstChild.textContent;
+            var goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
+            var amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+            var amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
+            var percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
+            var timingOptions = budget.mainCategories[mainCategoryIndex].subCategories[i].timingOptions;
+            var createdAt = budget.mainCategories[mainCategoryIndex].subCategories[i].createdAt;
+
+            if (!budget.mainCategories[mainCategoryIndex].subCategories[i].createdAt) {
+              createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+            }
+
+            var lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+            updateObject.mainCategories[mainCategoryIndex].subCategories.push(Object.fromEntries([["title", title], ["createdAt", createdAt], ["lastUpdated", lastUpdated], ["goalAmount", goalAmount], ["amountSpent", amountSpent], ["amountRemaining", amountRemaining], ["percentageSpent", percentageSpent], ["timingOptions", timingOptions]]));
+
+            if (updateObject.mainCategories[mainCategoryIndex].subCategories.length === tempArray.length) {
+              mainCategoryIndex++;
+              if (updateObject.mainCategories[mainCategoryIndex] === undefined) return;
+              updateObject.mainCategories[mainCategoryIndex].subCategories = [];
+              return mainCategoryIndex;
+            }
+
+            if (i === tempArray.length) {
+              mainCategoryIndex++;
+            }
+          });
+        });
+
+        placeholderBudget._updateBudget({
+          budgetId: budget._id,
+          budgetMainCategories: budget.mainCategories,
+          userId: user._id,
+          user: user,
+          updateObject: updateObject
+        }, "Edit-Category-Goals");
+      });
+    }
+  }
+};
+
+/***/ }),
+
+/***/ "./Public/JS/Budget/_Income-Allocation.js":
+/*!************************************************!*\
+  !*** ./Public/JS/Budget/_Income-Allocation.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "_watchIncomeAllocation": () => (/* binding */ _watchIncomeAllocation)
+/* harmony export */ });
+/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+var _watchIncomeAllocation = function _watchIncomeAllocation(budget, placeholderBudget, user) {
+  var incomeAllocationContainer = document.querySelector('.container--allocate-income');
+  var unAllocatedTotal = document.querySelector('.un-allocated-account-total');
+  var money = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+  });
+
+  if (incomeAllocationContainer) {
+    console.log("Allocating...");
+    unAllocatedTotal.textContent = money.format(unAllocatedTotal.textContent);
+    var allocateIncomeButton = document.querySelector('.button--small-purple');
+    allocateIncomeButton.addEventListener('click', function (e) {
+      e.preventDefault(); // INITIALIZE NEEDED VARIABLES
+
+      var unAllocatedAmount = Number(unAllocatedTotal.textContent.split('$')[1].split(',').join(''));
+      var totalAllocationAmount = 0; // SELECT INPUTS FOR INCOME ALLOCATION
+
+      var allocationInputs = document.querySelectorAll('.form__input'); // GET TOTAL AMOUNT OF ALL INPUTS
+
+      allocationInputs.forEach(function (ai, i) {
+        // ADD VALUE TO CURRENT TOTAL
+        totalAllocationAmount += Number(ai.value);
+      }); // DOUBLE CHECK TO MAKE SURE ALLOCATED AMOUNT DOES NOT EXCEED UN-ALLOCATED INCOME
+
+      totalAllocationAmount <= unAllocatedAmount ? unAllocatedTotal.textContent = money.format(unAllocatedAmount - totalAllocationAmount) : alert("You do not have all that money! Please lower one of your accounts amounts!"); // INITIALIZE SEPARATE ACCOUNTS ALLOCATED TOTALS
+
+      var monthlyBudgetAllocation, emergencyFundAllocation, savingsFundAllocation, expenseFundAllocation, debtAllocation, investmentFundAllocation; // GET EACH SEPARATE ACCOUNTS ALLOCATED INCOME
+
+      monthlyBudgetAllocation = allocationInputs[0].value;
+      emergencyFundAllocation = allocationInputs[1].value;
+      savingsFundAllocation = allocationInputs[2].value;
+      expenseFundAllocation = allocationInputs[3].value;
+      debtAllocation = allocationInputs[4].value;
+      investmentFundAllocation = allocationInputs[5].value; // DOUBLE CHECK IF IT IS A NUMBER
+
+      if (isNaN(monthlyBudgetAllocation)) monthlyBudgetAllocation = 0;
+      if (isNaN(emergencyFundAllocation)) emergencyFundAllocation = 0;
+      if (isNaN(savingsFundAllocation)) savingsFundAllocation = 0;
+      if (isNaN(expenseFundAllocation)) expenseFundAllocation = 0;
+      if (isNaN(debtAllocation)) debtAllocation = 0;
+      if (isNaN(investmentFundAllocation)) investmentFundAllocation = 0;
+      var updateObject = {
+        budgetId: budget._id,
+        userId: user._id,
+        user: user,
+        accounts: {
+          unAllocated: {
+            amount: Number(unAllocatedTotal.textContent.split('$')[1].split(',').join(''))
+          },
+          monthlyBudget: {
+            amount: Number(monthlyBudgetAllocation) + budget.accounts.monthlyBudget.amount
+          },
+          emergencyFund: {
+            emergencyFundGoal: placeholderBudget.accounts.emergencyFund.emergencyFundGoal,
+            emergencyGoalMeasurement: placeholderBudget.accounts.emergencyFund.emergencyGoalMeasurement,
+            emergencyFundGoalTiming: placeholderBudget.accounts.emergencyFund.emergencyFundGoalTiming,
+            amount: Number(emergencyFundAllocation) + budget.accounts.emergencyFund.amount
+          },
+          savingsFund: {
+            savingsGoal: placeholderBudget.accounts.savingsFund.savingsGoal,
+            savingsPercentage: placeholderBudget.accounts.savingsFund.savingsPercentage,
+            amount: Number(savingsFundAllocation) + budget.accounts.savingsFund.amount
+          },
+          expenseFund: {
+            amount: Number(expenseFundAllocation) + budget.accounts.expenseFund.amount
+          },
+          surplus: {
+            amount: placeholderBudget.accounts.surplus.amount
+          },
+          investmentFund: {
+            investmentGoal: placeholderBudget.accounts.investmentFund.investmentGoal,
+            investmentPercentage: placeholderBudget.accounts.investmentFund.investmentPercentage,
+            amount: Number(investmentFundAllocation) + budget.accounts.investmentFund.amount
+          },
+          debt: {
+            debtAmount: placeholderBudget.accounts.debt.debtAmount,
+            amount: Number(debtAllocation) + budget.accounts.debt.amount
+          }
+        }
+      };
+
+      placeholderBudget._updateBudget({
+        updateObject: updateObject
+      }, "Allocate-Income");
+
+      allocationInputs.forEach(function (ai) {
+        ai.value = '';
+      });
+    });
+  }
+};
+
+/***/ }),
+
+/***/ "./Public/JS/Budget/_Investment-Planner.js":
+/*!*************************************************!*\
+  !*** ./Public/JS/Budget/_Investment-Planner.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "_watchInvestmentPlanner": () => (/* binding */ _watchInvestmentPlanner)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
+/* harmony import */ var _Application_Utility__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../Application/Utility */ "./Public/JS/Application/Utility.js");
+
+
 
 var watchInvestmentValueConfirmationButtons = function watchInvestmentValueConfirmationButtons(event, index, secondaryIndex, budget, placeholderBudget, user) {
   var confirmInvestmentValueButtons = document.querySelectorAll('.button--confirm-value');
@@ -9106,14 +11664,197 @@ var _watchForCurrentValueUpdate = function _watchForCurrentValueUpdate(event, in
   }
 };
 
-var closeInvestmentCreation = function closeInvestmentCreation(event) {
-  var closeInvestmentCreationButton = document.querySelector('.button--borderless-narrow__investment');
-  var addInvestmentButton = document.querySelector('.container--extra-small__margin-left-and-right__content-icon');
-  var addInvestmentForm = document.querySelector('.form--extra-small__column');
-  closeInvestmentCreationButton.removeEventListener("click", closeInvestmentCreation);
-  replaceClassName(closeInvestmentCreationButton, "open", "closed");
-  replaceClassName(addInvestmentForm, "open", "closed");
-  replaceClassName(addInvestmentButton, "closed", "open");
+var settleInvestment = function settleInvestment(investments, index, dataIndex, budget, placeholderBudget, user) {
+  var investmentContainers = document.querySelectorAll('.investment-container');
+  var settledInvestmentShellContainer = document.createElement('section');
+  settledInvestmentShellContainer.classList.add('container--extra-small__margin-left-and-right');
+  settledInvestmentShellContainer.classList.add('r__container--extra-small__margin-left-and-right');
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentContainers[1], settledInvestmentShellContainer);
+  var settledInvestmentContainerHeader = document.createElement('section');
+  settledInvestmentContainerHeader.classList.add('container--extra-small__margin-left-and-right__header');
+  settledInvestmentContainerHeader.classList.add('r__container--extra-small__margin-left-and-right__header');
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", settledInvestmentShellContainer, settledInvestmentContainerHeader);
+  var investmentTypeIcons = ["arrow-trend-up", "sign-hanging", "calendar-clock", "asterisk"];
+  var investmentHeaderIcon = document.createElement('i');
+  investmentHeaderIcon.classList.add("fas");
+  investmentHeaderIcon.classList.add('container--extra-small__margin-left-and-right__header__icon');
+  investmentHeaderIcon.classList.add('r__container--extra-small__margin-left-and-right__header__icon');
+
+  if (investments[index].firstChild.firstChild) {
+    if (investments[index].firstChild.firstChild.classList.contains("fa-chart-line")) {
+      investmentHeaderIcon.classList.add("fa-chart-line");
+    }
+
+    if (investments[index].firstChild.firstChild.classList.contains('fa-sign-hanging')) {
+      investmentHeaderIcon.classList.add("fa-sign-hanging");
+    }
+
+    if (investments[index].firstChild.firstChild.classList.contains('fa-clock')) {
+      investmentHeaderIcon.classList.add("fa-clock");
+    }
+
+    if (investments[index].firstChild.firstChild.classList.contains('fa-asterisk')) {
+      investmentHeaderIcon.classList.add("fa-asterisk");
+    }
+
+    _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", settledInvestmentContainerHeader, investmentHeaderIcon);
+    var investmentHeaderText = document.createElement('p');
+    investmentHeaderText.classList.add('container--extra-small__margin-left-and-right__header__text');
+    investmentHeaderText.classList.add('r__container--extra-small__margin-left-and-right__header__text');
+    investmentHeaderText.textContent = investments[index].firstChild.firstChild.nextSibling.textContent;
+    _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", settledInvestmentContainerHeader, investmentHeaderText); // CREATE INVESTMENT CONTENT
+
+    var investmentContent = document.createElement('section');
+    investmentContent.classList.add('container--extra-small__margin-left-and-right__content__column');
+    investmentContent.classList.add('r__container--extra-small__margin-left-and-right__content__column');
+    _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", settledInvestmentShellContainer, investmentContent); // CREATE INVESTMENT EXPLANATORY CONTENT
+
+    var investmentExplanationSection = document.createElement('section');
+    investmentExplanationSection.classList.add('investment-explanatory-information');
+    investmentExplanationSection.classList.add('r__investment-explanatory-information');
+    _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentContent, investmentExplanationSection);
+    var investmentDescription = document.createElement('section');
+    investmentDescription.classList.add('investment-description');
+    investmentDescription.classList.add('r__investment-description');
+    _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentExplanationSection, investmentDescription);
+    var investmentDescriptionText = document.createElement('p');
+    investmentDescriptionText.classList.add('investment-description__text');
+    investmentDescriptionText.classList.add('r__investment-description__text');
+    investmentDescriptionText.textContent = investments[index].firstChild.nextSibling.firstChild.firstChild.firstChild.textContent;
+    var settledInvestmentValueContainer = document.createElement('section');
+    settledInvestmentValueContainer.classList.add('investment-value-information--settled');
+    settledInvestmentValueContainer.classList.add('r__investment-value-information--settled');
+    _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentContent, settledInvestmentValueContainer);
+    var settledValueContainerText = document.createElement('p');
+    settledValueContainerText.classList.add('investment-value-information--settled__text');
+    settledValueContainerText.classList.add('r__investment-value-information--settled__text');
+
+    if (budget.investments[dataIndex].valueDifference < 0) {
+      settledValueContainerText.textContent = "Lost ".concat(Number(budget.investments[dataIndex].initialInvestment - budget.investments[dataIndex].currentValue));
+      settledInvestmentShellContainer.classList.add('negative-investment');
+    }
+
+    if (budget.investments[dataIndex].valueDifference === 0) {
+      settledValueContainerText.textContent = "Broke Even";
+      settledInvestmentShellContainer.classList.add('neutral-investment');
+    }
+
+    if (budget.investments[dataIndex].valueDifference > 0) {
+      settledValueContainerText.textContent = "Gained ".concat(Number(budget.investments[dataIndex].currentValue - budget.investments[dataIndex].initialInvestment));
+      settledInvestmentShellContainer.classList.add('positive-investment');
+    }
+
+    var investmentInitialValue = Number(investments[index].firstChild.nextSibling.firstChild.nextSibling.firstChild.firstChild.nextSibling.textContent.split('$')[1]);
+    _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", settledInvestmentValueContainer, settledValueContainerText);
+  }
+
+  if (!investments[index].firstChild.firstChild) {
+    if (investments[index].firstChild.nextSibling.firstChild.classList.contains("fa-chart-line")) {
+      investmentHeaderIcon.classList.add("fa-chart-line");
+    }
+
+    if (investments[index].firstChild.nextSibling.firstChild.classList.contains('fa-sign-hanging')) {
+      investmentHeaderIcon.classList.add("fa-sign-hanging");
+    }
+
+    if (investments[index].firstChild.nextSibling.firstChild.classList.contains('fa-clock')) {
+      investmentHeaderIcon.classList.add("fa-clock");
+    }
+
+    if (investments[index].firstChild.nextSibling.firstChild.classList.contains('fa-asterisk')) {
+      investmentHeaderIcon.classList.add("fa-asterisk");
+    }
+
+    _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", settledInvestmentContainerHeader, investmentHeaderIcon);
+
+    var _investmentHeaderText = document.createElement('p');
+
+    _investmentHeaderText.classList.add('container--extra-small__margin-left-and-right__header__text');
+
+    _investmentHeaderText.classList.add('r__container--extra-small__margin-left-and-right__header__text');
+
+    _investmentHeaderText.textContent = investments[index].firstChild.nextSibling.firstChild.nextSibling.textContent;
+    _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", settledInvestmentContainerHeader, _investmentHeaderText); // CREATE INVESTMENT CONTENT
+
+    var _investmentContent = document.createElement('section');
+
+    _investmentContent.classList.add('container--extra-small__margin-left-and-right__content__column');
+
+    _investmentContent.classList.add('r__container--extra-small__margin-left-and-right__content__column');
+
+    _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", settledInvestmentShellContainer, _investmentContent); // CREATE INVESTMENT EXPLANATORY CONTENT
+
+    var _investmentExplanationSection = document.createElement('section');
+
+    _investmentExplanationSection.classList.add('investment-explanatory-information');
+
+    _investmentExplanationSection.classList.add('r__investment-explanatory-information');
+
+    _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", _investmentContent, _investmentExplanationSection);
+
+    var _investmentDescription = document.createElement('section');
+
+    _investmentDescription.classList.add('investment-description');
+
+    _investmentDescription.classList.add('r__investment-description');
+
+    _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", _investmentExplanationSection, _investmentDescription);
+
+    var _investmentDescriptionText = document.createElement('p');
+
+    _investmentDescriptionText.classList.add('investment-description__text');
+
+    _investmentDescriptionText.classList.add('r__investment-description__text');
+
+    _investmentDescriptionText.textContent = investments[index].firstChild.nextSibling.nextSibling.firstChild.firstChild.textContent;
+    _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", _investmentDescription, _investmentDescriptionText);
+
+    var _settledInvestmentValueContainer = document.createElement('section');
+
+    _settledInvestmentValueContainer.classList.add('investment-value-information--settled');
+
+    _settledInvestmentValueContainer.classList.add('r__investment-value-information--settled');
+
+    _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", _investmentContent, _settledInvestmentValueContainer);
+
+    var _settledValueContainerText = document.createElement('p');
+
+    _settledValueContainerText.classList.add('investment-value-information--settled__text');
+
+    _settledValueContainerText.classList.add('r__investment-value-information--settled__text');
+
+    if (budget.investments[index - 1].valueDifference < 0) {
+      _settledValueContainerText.textContent = "Lost ".concat(Number(budget.investments[index - 1].initialInvestment - budget.investments[index - 1].currentValue));
+      settledInvestmentShellContainer.classList.add('negative-investment');
+    }
+
+    if (budget.investments[index - 1].valueDifference === 0) {
+      _settledValueContainerText.textContent = "Broke Even";
+      settledInvestmentShellContainer.classList.add('neutral-investment');
+    }
+
+    if (budget.investments[index - 1].valueDifference > 0) {
+      _settledValueContainerText.textContent = "Gained ".concat(Number(budget.investments[index - 1].currentValue - budget.investments[index - 1].initialInvestment));
+      settledInvestmentShellContainer.classList.add('positive-investment');
+    }
+
+    var _investmentInitialValue = Number(investments[index].firstChild.nextSibling.nextSibling.firstChild.nextSibling.firstChild.firstChild.nextSibling.textContent.split('$')[1]);
+
+    _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", _settledInvestmentValueContainer, _settledValueContainerText);
+  }
+
+  budget.investments[dataIndex].settled = !budget.investments[dataIndex].settled;
+
+  placeholderBudget._updateBudget({
+    updateObject: {
+      budgetId: budget._id,
+      userId: user._id,
+      investments: budget.investments
+    }
+  }, "Investment-Planner");
+
+  investments[index].remove();
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.reloadPage();
 };
 
 var renderNewInvestment = function renderNewInvestment(options) {
@@ -9132,7 +11873,7 @@ var renderNewInvestment = function renderNewInvestment(options) {
   var investmentHeader = document.createElement('section');
   investmentHeader.classList.add('container--extra-small__margin-left-and-right__header');
   investmentHeader.classList.add('r__container--extra-small__margin-left-and-right__header');
-  insertElement(investmentShellContainer, investmentHeader);
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentShellContainer, investmentHeader);
   var investmentTypeIcons = ["arrow-trend-up", "sign-hanging", "calendar-clock", "asterisk"];
   var investmentHeaderIcon = document.createElement('i');
   investmentHeaderIcon.classList.add("fas");
@@ -9155,44 +11896,44 @@ var renderNewInvestment = function renderNewInvestment(options) {
     investmentHeaderIcon.classList.add("fa-asterisk");
   }
 
-  insertElement(investmentHeader, investmentHeaderIcon);
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentHeader, investmentHeaderIcon);
   var investmentHeaderText = document.createElement('p');
   investmentHeaderText.classList.add('container--extra-small__margin-left-and-right__header__text');
   investmentHeaderText.classList.add('r__container--extra-small__margin-left-and-right__header__text');
   investmentHeaderText.textContent = options.name;
-  insertElement(investmentHeader, investmentHeaderText);
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentHeader, investmentHeaderText);
   var investmentHeaderType = document.createElement('p');
   investmentHeaderType.classList.add('container--extra-small__margin-left-and-right__header__investment-type');
   investmentHeaderType.classList.add('r__container--extra-small__margin-left-and-right__header__investment-type');
   investmentHeaderType.textContent = options.type;
-  insertElement(investmentHeader, investmentHeaderType); // CREATE INVESTMENT CONTENT
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentHeader, investmentHeaderType); // CREATE INVESTMENT CONTENT
 
   var investmentContent = document.createElement('section');
   investmentContent.classList.add('container--extra-small__margin-left-and-right__content__column');
   investmentContent.classList.add('r__container--extra-small__margin-left-and-right__content__column');
-  insertElement(investmentShellContainer, investmentContent); // CREATE INVESTMENT EXPLANATORY CONTENT
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentShellContainer, investmentContent); // CREATE INVESTMENT EXPLANATORY CONTENT
 
   var investmentExplanationSection = document.createElement('section');
   investmentExplanationSection.classList.add('investment-explanatory-information');
   investmentExplanationSection.classList.add('r__investment-explanatory-information');
-  insertElement(investmentContent, investmentExplanationSection);
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentContent, investmentExplanationSection);
   var investmentDescription = document.createElement('section');
   investmentDescription.classList.add('investment-description');
   investmentDescription.classList.add('r__investment-description');
-  insertElement(investmentExplanationSection, investmentDescription);
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentExplanationSection, investmentDescription);
   var investmentDescriptionText = document.createElement('p');
   investmentDescriptionText.classList.add('investment-description__text');
   investmentDescriptionText.classList.add('r__investment-description__text');
   investmentDescriptionText.textContent = options.description;
-  insertElement(investmentDescription, investmentDescriptionText);
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentDescription, investmentDescriptionText);
   var investmentSettleContainer = document.createElement('section');
   investmentSettleContainer.classList.add('investment-settle-container');
   investmentSettleContainer.classList.add('r__investment-settle-container');
-  insertElement(investmentExplanationSection, investmentSettleContainer);
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentExplanationSection, investmentSettleContainer);
   var investmentSettleButton = document.createElement('button');
   investmentSettleButton.classList.add('button--settle');
   investmentSettleButton.classList.add('r__button--settle');
-  insertElement(investmentSettleContainer, investmentSettleButton);
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentSettleContainer, investmentSettleButton);
   var investmentSettleButtonText = document.createElement('p');
   investmentSettleButtonText.classList.add('button--settle__text');
   investmentSettleButtonText.classList.add('r__button--settle__text');
@@ -9202,23 +11943,23 @@ var renderNewInvestment = function renderNewInvestment(options) {
     var clicked = e.target;
     var investmentShellContainers = document.querySelectorAll('.container--extra-small__margin-left-and-right');
 
-    var currentInvestmentIndex = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(investmentShellContainers).indexOf(clicked.closest('.container--extra-small__margin-left-and-right'));
+    var currentInvestmentIndex = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(investmentShellContainers).indexOf(clicked.closest('.container--extra-small__margin-left-and-right'));
 
     settleInvestment(investmentShellContainers, currentInvestmentIndex, Number(investmentShellContainers[currentInvestmentIndex].dataset.investment), options.budget, options.placeholderBudget, options.user);
   });
-  insertElement(investmentSettleButton, investmentSettleButtonText);
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentSettleButton, investmentSettleButtonText);
   var investmentValueInformationContainer = document.createElement('section');
   investmentValueInformationContainer.classList.add('investment-value-information');
   investmentValueInformationContainer.classList.add('r__investment-value-information');
-  insertElement(investmentContent, investmentValueInformationContainer);
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentContent, investmentValueInformationContainer);
   var investmentValueInformationContainerHalfOne = document.createElement('section');
   var investmentValueInformationContainerHalfTwo = document.createElement('section');
   investmentValueInformationContainerHalfOne.classList.add('investment-value-information__half');
   investmentValueInformationContainerHalfOne.classList.add('r__investment-value-information__half');
   investmentValueInformationContainerHalfTwo.classList.add('investment-value-information__half');
   investmentValueInformationContainerHalfTwo.classList.add('r__investment-value-information__half');
-  insertElement(investmentValueInformationContainer, investmentValueInformationContainerHalfOne);
-  insertElement(investmentValueInformationContainer, investmentValueInformationContainerHalfTwo);
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentValueInformationContainer, investmentValueInformationContainerHalfOne);
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentValueInformationContainer, investmentValueInformationContainerHalfTwo);
   var investmentValueInformationContainerHalfOneHeader = document.createElement('p');
   var investmentValueInformationContainerHalfTwoHeader = document.createElement('p');
   investmentValueInformationContainerHalfOneHeader.classList.add('investment-value-information__half__header');
@@ -9227,24 +11968,24 @@ var renderNewInvestment = function renderNewInvestment(options) {
   investmentValueInformationContainerHalfTwoHeader.classList.add('r__investment-value-information__half__header');
   investmentValueInformationContainerHalfOneHeader.textContent = "Initial Investment";
   investmentValueInformationContainerHalfTwoHeader.textContent = "Current Value";
-  insertElement(investmentValueInformationContainerHalfOne, investmentValueInformationContainerHalfOneHeader);
-  insertElement(investmentValueInformationContainerHalfTwo, investmentValueInformationContainerHalfTwoHeader);
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentValueInformationContainerHalfOne, investmentValueInformationContainerHalfOneHeader);
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentValueInformationContainerHalfTwo, investmentValueInformationContainerHalfTwoHeader);
   var investmentValueInformationContainerHalfOneText = document.createElement('p');
   investmentValueInformationContainerHalfOneText.classList.add('investment-value-information__half__text');
   investmentValueInformationContainerHalfOneText.classList.add('r__investment-value-information__half__text');
   investmentValueInformationContainerHalfOneText.textContent = money.format(options.initialInvestment);
-  insertElement(investmentValueInformationContainerHalfOne, investmentValueInformationContainerHalfOneText);
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentValueInformationContainerHalfOne, investmentValueInformationContainerHalfOneText);
   var investmentInputContainer = document.createElement('section');
   investmentInputContainer.classList.add('investment-input-container');
   investmentInputContainer.classList.add('r__investment-input-container');
-  insertElement(investmentValueInformationContainerHalfTwo, investmentInputContainer);
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentValueInformationContainerHalfTwo, investmentInputContainer);
   var investmentInput = document.createElement('input');
   investmentInput.classList.add('form__input--investment');
   investmentInput.classList.add('r__form__input--investment');
   investmentInput.type = "number";
   investmentInput.placeholder = "Enter New Value";
   investmentInput.readOnly = true;
-  insertElement(investmentInputContainer, investmentInput);
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentInputContainer, investmentInput);
   var investmentValueConfirmationButton = document.createElement('button');
   investmentValueConfirmationButton.classList.add('button--confirm-value');
   investmentValueConfirmationButton.classList.add('r__button--confirm-value');
@@ -9253,14 +11994,24 @@ var renderNewInvestment = function renderNewInvestment(options) {
   investmentValueConfirmationButtonIcon.classList.add('fa-check');
   investmentValueConfirmationButtonIcon.classList.add('button--confirm-value__icon');
   investmentValueConfirmationButtonIcon.classList.add('r__button--confirm-value__icon');
-  insertElement(investmentValueConfirmationButton, investmentValueConfirmationButtonIcon);
-  insertElement(investmentInputContainer, investmentValueConfirmationButton);
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentValueConfirmationButton, investmentValueConfirmationButtonIcon);
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentInputContainer, investmentValueConfirmationButton);
   var investmentUpdateValueTextLink = document.createElement('p');
   investmentUpdateValueTextLink.classList.add('investment-value-information__half__update-text');
   investmentUpdateValueTextLink.classList.add('r__investment-value-information__half__update-text');
   investmentUpdateValueTextLink.textContent = "Update Value";
-  insertElement(investmentValueInformationContainerHalfTwo, investmentUpdateValueTextLink);
-  _Application_Utility__WEBPACK_IMPORTED_MODULE_11__.reloadPage();
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentValueInformationContainerHalfTwo, investmentUpdateValueTextLink);
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.reloadPage();
+};
+
+var closeInvestmentCreation = function closeInvestmentCreation(event) {
+  var closeInvestmentCreationButton = document.querySelector('.button--borderless-narrow__investment');
+  var addInvestmentButton = document.querySelector('.container--extra-small__margin-left-and-right__content-icon');
+  var addInvestmentForm = document.querySelector('.form--extra-small__column');
+  closeInvestmentCreationButton.removeEventListener("click", closeInvestmentCreation);
+  replaceClassName(closeInvestmentCreationButton, "open", "closed");
+  replaceClassName(addInvestmentForm, "open", "closed");
+  replaceClassName(addInvestmentButton, "closed", "open");
 };
 
 var _watchInvestmentPlanner = function _watchInvestmentPlanner(budget, placeholderBudget, user) {
@@ -9272,8 +12023,8 @@ var _watchInvestmentPlanner = function _watchInvestmentPlanner(budget, placehold
     addInvestmentButton.addEventListener('click', function (e) {
       closeInvestmentCreationButton.classList.toggle('open');
       closeInvestmentCreationButton.classList.toggle('closed');
-      replaceClassName(addInvestmentForm, "closed", "open");
-      replaceClassName(addInvestmentButton, "open", "closed");
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.replaceClassName(addInvestmentForm, "closed", "open");
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.replaceClassName(addInvestmentButton, "open", "closed");
       closeInvestmentCreationButton.addEventListener('click', closeInvestmentCreation);
     });
     var investmentType = document.querySelector('.form__select--accounts-short');
@@ -9325,7 +12076,7 @@ var _watchInvestmentPlanner = function _watchInvestmentPlanner(budget, placehold
       e.preventDefault();
       var clicked = e.target;
 
-      var currentInvestmentIndex = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(investmentContainers).indexOf(clicked.closest('.container--extra-small__margin-left-and-right'));
+      var currentInvestmentIndex = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(investmentContainers).indexOf(clicked.closest('.container--extra-small__margin-left-and-right'));
 
       settleInvestment(investmentContainers, currentInvestmentIndex, Number(investmentContainers[currentInvestmentIndex].dataset.investment), budget, placeholderBudget, user);
     });
@@ -9341,6 +12092,219 @@ var _watchInvestmentPlanner = function _watchInvestmentPlanner(budget, placehold
       button.addEventListener('click', boundListener);
     });
   }
+};
+
+/***/ }),
+
+/***/ "./Public/JS/Budget/_Manage-Categories.js":
+/*!************************************************!*\
+  !*** ./Public/JS/Budget/_Manage-Categories.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "_watchForMainCategorySelection": () => (/* binding */ _watchForMainCategorySelection),
+/* harmony export */   "_watchManageCategories": () => (/* binding */ _watchManageCategories)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
+/* harmony import */ var _Budget_Creation_Budget_Categories__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../Budget-Creation/Budget-Categories */ "./Public/JS/Budget-Creation/Budget-Categories.js");
+/* harmony import */ var _Budget_Creation_Budget_Creation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Budget-Creation/Budget-Creation */ "./Public/JS/Budget-Creation/Budget-Creation.js");
+
+
+
+
+var _watchForBudgetCategoryUpdates = function _watchForBudgetCategoryUpdates(budget, placeholderBudget, user) {
+  var mainCategoryDeleteButton = document.querySelector('.button--medium-main-category-deletion');
+  var categoryIcon = document.querySelector('.main-category-display__category-information__icon');
+  var categoryTitle = document.querySelector('.main-category-display__category-information__text');
+  var categoryIndex, index;
+  var budgetMainCategoryLength = placeholderBudget.mainCategories.length;
+  var subCategories = document.querySelectorAll('.sub-category');
+  mainCategoryDeleteButton.addEventListener('click', function (e) {
+    e.preventDefault();
+    categoryIcon.classList.remove(categoryIcon.classList[3]);
+    var mainCategories = document.querySelectorAll('.main-category__alt');
+    placeholderBudget.mainCategories.forEach(function (mc) {
+      if (mc.title === categoryTitle.textContent) {
+        categoryIndex = placeholderBudget.mainCategories.indexOf(mc);
+        mainCategories[categoryIndex].remove();
+        placeholderBudget.mainCategories = placeholderBudget.mainCategories.filter(function (category) {
+          if (category.title !== mc.title) return category;
+        });
+      }
+    });
+    mainCategories = document.querySelectorAll('.main-category__alt');
+    mainCategories.forEach(function (mc, i) {
+      mc.dataset.category = i;
+    });
+
+    if (categoryIndex === 0) {
+      subCategories.forEach(function (sc) {
+        if (Number(sc.dataset.category) === categoryIndex) {
+          sc.remove();
+        }
+
+        if (sc.dataset.category > categoryIndex) {
+          sc.dataset.category = sc.dataset.category - 1;
+        }
+      }); // CODE BELOW COULD BE PUT INTO A FUNCTION TO FOLLOW D.R.Y. PRINCIPLE.
+
+      if (placeholderBudget.mainCategories[categoryIndex]) {
+        categoryIcon.classList.add(placeholderBudget.mainCategories[categoryIndex].icon);
+        categoryTitle.textContent = placeholderBudget.mainCategories[categoryIndex].title;
+      }
+
+      subCategories.forEach(function (sc, i) {
+        sc.classList.add('closed');
+        sc.classList.remove('open');
+
+        if (sc.dataset.category === "".concat(categoryIndex)) {
+          sc.classList.remove('closed');
+          sc.classList.add('open');
+        }
+      });
+      budgetMainCategoryLength = budgetMainCategoryLength - 1;
+    }
+
+    if (categoryIndex > 0 && categoryIndex < placeholderBudget.mainCategories.length) {
+      subCategories.forEach(function (sc) {
+        if (Number(sc.dataset.category) === categoryIndex) {
+          sc.remove();
+        }
+
+        if (sc.dataset.category > categoryIndex) {
+          sc.dataset.category = sc.dataset.category - 1;
+        }
+      });
+      categoryIndex--;
+      categoryIcon.classList.add(placeholderBudget.mainCategories[categoryIndex].icon);
+      categoryTitle.textContent = placeholderBudget.mainCategories[categoryIndex].title;
+      subCategories.forEach(function (sc, i) {
+        sc.classList.add('closed');
+        sc.classList.remove('open');
+
+        if (sc.dataset.category === "".concat(categoryIndex)) {
+          sc.classList.remove('closed');
+          sc.classList.add('open');
+        }
+      });
+      budgetMainCategoryLength = budgetMainCategoryLength - 1;
+    }
+
+    if (categoryIndex === budgetMainCategoryLength - 1) {
+      subCategories.forEach(function (sc) {
+        if (Number(sc.dataset.category) === categoryIndex) {
+          sc.remove();
+        }
+      });
+
+      if (placeholderBudget.mainCategories.length === 0) {
+        categoryTitle.textContent = "";
+      }
+
+      categoryIndex--;
+
+      if (placeholderBudget.mainCategories[categoryIndex]) {
+        categoryIcon.classList.add(placeholderBudget.mainCategories[categoryIndex].icon);
+        categoryTitle.textContent = placeholderBudget.mainCategories[categoryIndex].title;
+      }
+
+      subCategories.forEach(function (sc, i) {
+        sc.classList.add('closed');
+        sc.classList.remove('open');
+
+        if (sc.dataset.category === "".concat(categoryIndex)) {
+          sc.classList.remove('closed');
+          sc.classList.add('open');
+        }
+      });
+      budgetMainCategoryLength = budgetMainCategoryLength - 1;
+    }
+  }); // ADJUST: WE NEED TO MAKE SURE IT IS POSSIBLE FOR THE EXISTING SUB CATEGORIES TO BE REMOVED AS WELL AS MADE INTO SURPLUS AS WELL, IF NEEDED.
+
+  subCategories.forEach(function (sc, i) {
+    var surplusSwitch = sc.firstChild.nextSibling.firstChild.nextSibling.firstChild.nextSibling;
+    surplusSwitch.addEventListener('click', function (e) {
+      e.preventDefault(); // GET TARGET OF CLICK
+
+      var clicked = e.target;
+      surplusSwitch.classList.toggle('sub-category-controller__surplus-container__switch__alt--switched');
+      surplusSwitch.firstChild.firstChild.classList.toggle('fa-times');
+      surplusSwitch.firstChild.firstChild.classList.toggle('fa-check');
+      var categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
+      placeholderBudget.mainCategories.forEach(function (mc, i) {
+        if (mc.title === categoryTitle.textContent) index = i;
+      });
+
+      var subCategoriesArray = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(document.querySelectorAll('.sub-category'));
+
+      var subArray = subCategoriesArray.filter(function (sc, i) {
+        return Number(sc.dataset.category) === index; // This is the Main Category's Index.
+      }); // THIS IS WHERE IT WOULD BE GOOD TO HAVE THE INDIVIDUAL BUTTONS CAUSE ANOTHER UPDATE
+
+      placeholderBudget._updateSubCategory("Creation", "Surplus", {
+        mainIndex: categoryNumber,
+        subIndex: subArray.indexOf(clicked.closest('.sub-category'))
+      });
+    });
+    var surplusCategoryTrashIcon = surplusSwitch.parentElement.nextSibling;
+    surplusCategoryTrashIcon.addEventListener('click', function (e) {
+      e.preventDefault();
+      var clicked = e.target;
+      var selectedSubCategory = clicked.closest('.sub-category');
+      placeholderBudget.mainCategories.forEach(function (mc, i) {
+        if (mc.title === categoryTitle.textContent) index = i;
+      }); /////////////////////////////
+      // DELETE SUB CATEGORY
+
+      var subCategoriesArray = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(document.querySelectorAll('.sub-category'));
+
+      var subArray = subCategoriesArray.filter(function (sc, i) {
+        return Number(sc.dataset.category) === index;
+      });
+      var categoryNumber = Number(clicked.closest('.sub-category').dataset.category); /////////////////////////////
+      // REMOVE DOM ELEMENT
+
+      selectedSubCategory.remove();
+
+      placeholderBudget._deleteSubCategory(categoryNumber, subArray.indexOf(selectedSubCategory));
+    });
+  });
+  var updateCategoryButton = document.querySelectorAll('.button--large__thin')[0];
+  updateCategoryButton.addEventListener('click', function (e) {
+    e.preventDefault();
+    placeholderBudget.mainCategories.forEach(function (mc, i) {
+      if (!mc.createdAt) {
+        mc.createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+      }
+
+      if (!mc.lastUpdated) {
+        mc.lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+      }
+
+      mc.subCategories.forEach(function (sc, i) {
+        if (!sc.createdAt) {
+          sc.createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+        }
+
+        if (sc.updated === true) {
+          sc.lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
+        }
+      });
+    });
+
+    placeholderBudget._updateBudget({
+      updateObject: {
+        budgetMainCategories: budget.mainCategories,
+        budgetId: budget._id,
+        userId: user._id,
+        user: user,
+        mainCategories: placeholderBudget.mainCategories
+      }
+    }, "Manage-Categories");
+  });
 };
 
 var _watchCategoryForSelection = function _watchCategoryForSelection() {
@@ -9379,202 +12343,294 @@ var _watchForMainCategorySelection = function _watchForMainCategorySelection() {
     mc.addEventListener('click', _watchCategoryForSelection);
   });
 };
+var _watchManageCategories = function _watchManageCategories(budget, placeholderBudget, user) {
+  var mediumContainers = document.querySelectorAll('.container--medium');
+  var manageCategoryContainer = mediumContainers[0];
+  var icon, index;
+  var subCategoryIndex = 0;
 
-var watchForBudgetDeletion = function watchForBudgetDeletion() {
-  var budgetDeleteButton = document.querySelectorAll(".button--extra-extra-small__wide")[1];
-  var budgetId = window.location.pathname.split('/')[5];
-  var userId = window.location.pathname.split('/')[3];
-  budgetDeleteButton.addEventListener('click', function (e) {
-    e.preventDefault();
-    _Manage_Budget__WEBPACK_IMPORTED_MODULE_5__.deleteMyBudget(budgetId, userId);
+  if (manageCategoryContainer) {
+    _Budget_Creation_Budget_Categories__WEBPACK_IMPORTED_MODULE_1__.createCategories(icon, index);
+
+    _Budget_Creation_Budget_Categories__WEBPACK_IMPORTED_MODULE_1__._watchCreateCategoryButton(icon, placeholderBudget);
+
+    _Budget_Creation_Budget_Creation__WEBPACK_IMPORTED_MODULE_2__.setupSubCategoryCreation(placeholderBudget, subCategoryIndex);
+
+    _watchForMainCategorySelection(budget, placeholderBudget, user);
+
+    _watchForBudgetCategoryUpdates(budget, placeholderBudget, user);
+  }
+};
+
+/***/ }),
+
+/***/ "./Public/JS/Budget/_Recent-Transactions.js":
+/*!**************************************************!*\
+  !*** ./Public/JS/Budget/_Recent-Transactions.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "_watchRecentTransactions": () => (/* binding */ _watchRecentTransactions)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
+/* harmony import */ var _Application_Utility__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../Application/Utility */ "./Public/JS/Application/Utility.js");
+
+
+
+var getReceiptTotal = function getReceiptTotal(transaction) {
+  var total = 0;
+  transaction.receipt.forEach(function (receiptItem) {
+    total += receiptItem.amount;
   });
+  return total;
 };
 
-var watchForBudgetExit = function watchForBudgetExit() {
-  var submitButtons = document.querySelectorAll(".button--extra-extra-small__wide");
-  var exitButton = document.querySelectorAll(".button--extra-extra-small__wide")[0];
-  var userId = window.location.pathname.split('/')[3];
-  exitButton.addEventListener('click', function (e) {
-    e.preventDefault();
-    _Manage_Budget__WEBPACK_IMPORTED_MODULE_5__.exitBudget(userId);
-  });
-};
+var processReceipt = function processReceipt(transaction, button) {
+  var viewReceiptButtons = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(document.querySelectorAll('.button--extra-extra-small__view-receipt'));
 
-var setMainCategoryTitle = function setMainCategoryTitle(mainCategory, title) {
-  return mainCategory.title = title;
-};
+  var viewReceiptButtonIndex = viewReceiptButtons.indexOf(button);
+  var receiptLocation = document.querySelector('.modal--receipt__digital-receipt__container__header__title');
+  receiptLocation.textContent = "".concat(_Application_Utility__WEBPACK_IMPORTED_MODULE_1__._capitalize(transaction.location));
+  var receiptItemContainer = document.querySelector('.modal--receipt__digital-receipt__container__item-container'); // receiptItemContainer.innerHTML = '';
 
-var fillSubCategoryArray = function fillSubCategoryArray(updateObject, index) {
-  var mainCategoryIndex = index;
-  var tempArray = Array.from(document.querySelectorAll(".sub-category-display__sub-category[data-subcategory=\"".concat(index, "\"]")));
-  tempArray.forEach(function (temp, i) {
-    var title = temp.firstChild.nextSibling.firstChild.textContent;
-    var goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
-    var amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
-    var amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
-    var percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
-    updateObject.mainCategories[index].subCategories.push(Object.fromEntries([["title", title], ["goalAmount", goalAmount], ["amountSpent", amountSpent], ["amountRemaining", amountRemaining], ["percentageSpent", percentageSpent]]));
-    if (updateObject.mainCategories[mainCategoryIndex] === undefined) return;
-
-    if (updateObject.mainCategories[mainCategoryIndex].subCategories.length === tempArray.length) {
-      mainCategoryIndex++;
-      updateObject.mainCategories[mainCategoryIndex].subCategories = [];
-      return mainCategoryIndex;
-    }
-
-    if (index === tempArray.length) {
-      mainCategoryIndex++;
-    }
-  });
-};
-
-var buildUpdateObject = function buildUpdateObject(budget, user, customObject, budgetName, customProperties, objects) {
-  var budgetUpdateObject = {
-    budgetId: budget._id,
-    userId: user._id
-  };
-
-  if (customObject === "Accounts") {
-    budgetUpdateObject.name = budgetName;
-    budgetUpdateObject.accounts = {};
-    customProperties.forEach(function (c, i) {
-      budgetUpdateObject.accounts[c] = objects[i];
-    });
+  while (receiptItemContainer.firstChild) {
+    receiptItemContainer.removeChild(receiptItemContainer.firstChild);
   }
 
-  if (customObject === "Main Categories") {
-    // budget.mainCategories would be the Custom Properties
-    var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
-    var mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
-    var mainCategoryObject = {};
-    var subCategoryObject = {};
-    var emptyArray = [];
-    budgetUpdateObject.mainCategories = [];
-    var mainCategoryIndex = 0;
-    var subCategoryIndex = 0;
-    var entries = [];
-    var subCategoriesSplitArray = [];
-    var subCategorySubArray = []; // EVERYTHING DONE IN THIS 'FOREACH' IS DONE 3 TIMES!!!
+  var money = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+  });
+  var receiptTotal = 0;
+  transaction.receipt.forEach(function (receiptItem, i) {
+    var receiptRow = document.createElement('section');
+    receiptRow.classList.add('modal--receipt__digital-receipt__container__item-container__row');
+    receiptRow.classList.add('r__modal--receipt__digital-receipt__container__item-container__row');
+    _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", receiptItemContainer, receiptRow);
+    var receiptDetailsSection = document.createElement('section');
+    receiptDetailsSection.classList.add('receipt-row__transaction-details-section');
+    receiptDetailsSection.classList.add('r__receipt-row__transaction-details-section');
+    _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", receiptRow, receiptDetailsSection);
+    var receiptCostSection = document.createElement('section');
+    receiptCostSection.classList.add('receipt-row__transaction-cost-section');
+    receiptCostSection.classList.add('r__receipt-row__transaction-cost-section');
+    _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", receiptRow, receiptCostSection);
 
-    customProperties.forEach(function (cp, i) {
-      budgetUpdateObject.mainCategories.push(Object.fromEntries([["title", mainCategoryTitles[i].textContent], ["subCategories", emptyArray]]));
+    if (receiptItem.account === "Debt") {
+      var receiptItemDetail = document.createElement('p');
+      receiptItemDetail.classList.add('receipt-row__transaction-details-section__name');
+      receiptItemDetail.classList.add('r__receipt-row__transaction-details-section__name');
+      var receiptItemDetailTwo = document.createElement('p');
+      receiptItemDetailTwo.classList.add('receipt-row__transaction-details-section__name');
+      receiptItemDetailTwo.classList.add('r__receipt-row__transaction-details-section__name');
+      receiptItemDetail.textContent = "Unknown";
 
-      if (budgetUpdateObject.mainCategories.length === customProperties.length) {
-        return mainCategoryIndex = 0;
+      if (receiptItem.lender) {
+        receiptItemDetail.textContent = "".concat(receiptItem.lender);
       }
-    });
-    budgetUpdateObject.mainCategories.forEach(function (mc, i) {
-      fillSubCategoryArray(budgetUpdateObject, i);
-    });
-  }
 
-  return budgetUpdateObject;
+      receiptItemDetailTwo.textContent = "Unknown";
+
+      if (receiptItem.description) {
+        receiptItemDetailTwo.textContent = "".concat(receiptItem.description);
+      }
+
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", receiptDetailsSection, receiptItemDetail);
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", receiptDetailsSection, receiptItemDetailTwo);
+      var receiptCostDetail = document.createElement('p');
+      receiptCostDetail.classList.add('receipt-row__cost-section__cost');
+      receiptCostDetail.classList.add('r__receipt-row__cost-section__cost');
+      receiptCostDetail.textContent = money.format(receiptItem.amount);
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", receiptCostSection, receiptCostDetail);
+    }
+
+    if (receiptItem.account !== "Debt") {
+      var _receiptItemDetail = document.createElement('p');
+
+      _receiptItemDetail.classList.add('receipt-row__transaction-details-section__name');
+
+      _receiptItemDetail.classList.add('r__receipt-row__transaction-details-section__name');
+
+      _receiptItemDetail.textContent = _Application_Utility__WEBPACK_IMPORTED_MODULE_1__._capitalize("paycheck");
+
+      if (receiptItem.description) {
+        _receiptItemDetail.textContent = _Application_Utility__WEBPACK_IMPORTED_MODULE_1__._capitalize(receiptItem.description);
+      }
+
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", receiptDetailsSection, _receiptItemDetail);
+
+      var _receiptCostDetail = document.createElement('p');
+
+      _receiptCostDetail.classList.add('receipt-row__cost-section__cost');
+
+      _receiptCostDetail.classList.add('r__receipt-row__cost-section__cost');
+
+      _receiptCostDetail.textContent = money.format(receiptItem.amount);
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", receiptCostSection, _receiptCostDetail);
+    }
+
+    receiptTotal += receiptItem.amount;
+  });
+  var receiptFooterTexts = document.querySelectorAll('.footer-title');
+  var receiptTotalAmount = receiptFooterTexts[1];
+  receiptTotalAmount.textContent = money.format(receiptTotal);
 };
 
-var getSubCategoryTiming = function getSubCategoryTiming(budget, category) {
-  var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+var showRecentTransaction = function showRecentTransaction(budget, placeholderBudget, user, transaction) {
+  var money = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+  });
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  var wording;
+  var receiptModal = document.querySelector('.modal--receipt');
+  var recentTransactionDisplay = document.querySelector('.recent-transaction-display');
+  var recentTransaction = document.createElement('section');
+  recentTransaction.classList.add('recent-transaction');
+  recentTransaction.classList.add('r__recent-transaction');
+  var numberOfSections = 6;
+  var sectionStart = 0;
 
-  if (category.timingOptions.paymentCycle === "Weekly") {
-    var day = days[new Date("".concat(category.timingOptions.dueDates[0])).getDay()];
-    wording = "Due every ".concat(day, " of the month.");
-    return wording;
+  while (sectionStart < numberOfSections) {
+    var recentTransactionSection = document.createElement('section');
+    recentTransactionSection.classList.add("recent-transaction__section");
+    recentTransactionSection.classList.add("r__recent-transaction__section");
+
+    if (sectionStart === 0) {
+      (function () {
+        var viewReceiptButton = document.createElement('button');
+        viewReceiptButton.classList.add('button--extra-extra-small__view-receipt');
+        viewReceiptButton.classList.add('r__button--extra-extra-small__view-receipt');
+        var viewReceiptButtonIcon = document.createElement('i');
+        viewReceiptButtonIcon.classList.add('fas');
+        viewReceiptButtonIcon.classList.add('fa-receipt');
+        viewReceiptButtonIcon.classList.add('button--extra-extra-small__view-receipt__icon');
+        viewReceiptButtonIcon.classList.add('r__button--extra-extra-small__view-receipt__icon');
+        var viewReceiptButtonText = document.createElement('p');
+        viewReceiptButtonText.classList.add('button--extra-extra-small__view-receipt__text');
+        viewReceiptButtonText.classList.add('r__button--extra-extra-small__view-receipt__text');
+        viewReceiptButtonText.textContent = "View Full Transaction";
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", viewReceiptButton, viewReceiptButtonIcon);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", viewReceiptButton, viewReceiptButtonText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", recentTransactionSection, viewReceiptButton);
+        viewReceiptButton.addEventListener('click', function (e) {
+          processReceipt(transaction, viewReceiptButton);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.showElement(receiptModal);
+        });
+      })();
+    }
+
+    if (sectionStart === 1) {
+      var transactionTypeText = document.createElement('p');
+      transactionTypeText.classList.add('recent-transaction__section__text');
+      transactionTypeText.classList.add('r__recent-transaction__section__text');
+      transactionTypeText.textContent = "".concat(transaction.transactionType);
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", recentTransactionSection, transactionTypeText);
+    }
+
+    if (sectionStart === 2) {
+      var _transactionTypeText = document.createElement('p');
+
+      _transactionTypeText.classList.add('recent-transaction__section__text');
+
+      _transactionTypeText.classList.add('r__recent-transaction__section__text');
+
+      _transactionTypeText.textContent = "".concat(new Date(transaction.transactionDate).getDate(), " ").concat(months[new Date(transaction.transactionDate).getMonth()], " ").concat(new Date(transaction.transactionDate).getFullYear());
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", recentTransactionSection, _transactionTypeText);
+    }
+
+    if (sectionStart === 3) {
+      var _transactionTypeText2 = document.createElement('p');
+
+      _transactionTypeText2.classList.add('recent-transaction__section__text');
+
+      _transactionTypeText2.classList.add('r__recent-transaction__section__text');
+
+      _transactionTypeText2.textContent = "".concat(transaction.location);
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", recentTransactionSection, _transactionTypeText2);
+    }
+
+    if (sectionStart === 4) {
+      var _transactionTypeText3 = document.createElement('p');
+
+      _transactionTypeText3.classList.add('recent-transaction__section__text');
+
+      _transactionTypeText3.classList.add('r__recent-transaction__section__text');
+
+      _transactionTypeText3.textContent = "".concat(transaction.receipt[0].account);
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", recentTransactionSection, _transactionTypeText3);
+    }
+
+    if (sectionStart === 5) {
+      var receiptHeaders = Object.keys(transaction.receipt[0]);
+      var receiptValues = Object.values(transaction.receipt[0]);
+      var transactionSectionPart = document.createElement('section');
+      transactionSectionPart.classList.add('recent-transaction__section__part');
+      transactionSectionPart.classList.add('r__recent-transaction__section__part');
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", recentTransactionSection, transactionSectionPart);
+      var transactionSectionPartHeader = document.createElement('p');
+      var transactionSectionPartText = document.createElement('p');
+      transactionSectionPartHeader.classList.add("recent-transaction__section__part__header");
+      transactionSectionPartHeader.classList.add("r__recent-transaction__section__part__header");
+      transactionSectionPartHeader.textContent = "Receipt Total";
+      transactionSectionPartText.classList.add("recent-transaction__section__part__text");
+      transactionSectionPartText.classList.add("r__recent-transaction__section__part__text");
+      transactionSectionPartText.textContent = money.format(getReceiptTotal(transaction));
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", transactionSectionPart, transactionSectionPartHeader);
+      _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", transactionSectionPart, transactionSectionPartText);
+    }
+
+    _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", recentTransaction, recentTransactionSection);
+    sectionStart++;
   }
 
-  if (category.timingOptions.paymentCycle === "Bi-Weekly") {
-    var date = new Date("".concat(category.timingOptions.dueDates[0]));
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", recentTransactionDisplay, recentTransaction);
+};
 
-    var _day = date.getDate();
+var _watchRecentTransactions = function _watchRecentTransactions(budget, placeholderBudget, user) {
+  var receiptModal = document.querySelector('.modal--receipt');
+  var receiptModalClosureIcon = document.querySelector('.modal--receipt__closure-icon');
+  var viewReceiptButton = document.querySelector('.button--extra-extra-small__view-receipt');
 
-    var endDigit = Number(date.getDate().toString().split('')[date.getDate().toString().length - 1]);
-    var dayEnding;
-    dayEnding = _Budget_Creation_Budget_Creation__WEBPACK_IMPORTED_MODULE_7__.calculateDayEnding(endDigit, dayEnding, date);
-    wording = "Due ".concat(days[date.getDay()], ", the ").concat(_day).concat(dayEnding, " of ").concat(months[date.getMonth()], ".");
-    return wording;
-  }
-
-  if (category.timingOptions.paymentCycle === "Bi-Monthly") {
-    var dayOne, dayTwo, _dayEnding, dayEndingTwo;
-
-    category.timingOptions.dueDates[0].forEach(function (dd, i) {
-      if (i === 0) {
-        dayOne = new Date("".concat(dd));
-      }
-
-      if (i === 1) {
-        dayTwo = new Date("".concat(dd));
-      }
+  if (placeholderBudget.transactions.recentTransactions.length > 0) {
+    placeholderBudget.transactions.recentTransactions.forEach(function (transaction, i) {
+      showRecentTransaction(budget, placeholderBudget, user, transaction);
     });
 
-    var _endDigit = Number(dayOne.getDate().toString().split('')[dayOne.getDate().toString().length - 1]);
+    if (receiptModalClosureIcon) {
+      receiptModalClosureIcon.addEventListener('click', function (e) {
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.showElement(receiptModal);
+      });
+    }
 
-    var endDigitTwo = Number(dayTwo.getDate().toString().split('')[dayTwo.getDate().toString().length - 1]);
-    _dayEnding = _Budget_Creation_Budget_Creation__WEBPACK_IMPORTED_MODULE_7__.calculateDayEnding(_endDigit, _dayEnding, dayOne.getDate());
-    dayEndingTwo = _Budget_Creation_Budget_Creation__WEBPACK_IMPORTED_MODULE_7__.calculateDayEnding(_endDigit, dayEndingTwo, dayTwo.getDate());
-    wording = "Due the ".concat(dayOne.getDate()).concat(_dayEnding, " & ").concat(dayTwo.getDate()).concat(dayEndingTwo, ", of ").concat(months[dayOne.getMonth()]);
-    return wording;
-  }
-
-  if (category.timingOptions.paymentCycle === "Monthly") {
-    var _date = new Date("".concat(category.timingOptions.dueDates[0]));
-
-    var _day2 = _date.getDate();
-
-    var _endDigit2 = Number(_date.getDate().toString().split('')[_date.getDate().toString().length - 1]);
-
-    var _dayEnding2;
-
-    _dayEnding2 = _Budget_Creation_Budget_Creation__WEBPACK_IMPORTED_MODULE_7__.calculateDayEnding(_endDigit2, _dayEnding2, _date);
-    wording = "Due ".concat(days[_date.getDay()], ", the ").concat(_day2).concat(_dayEnding2, " of ").concat(months[_date.getMonth()], ".");
-    return wording;
+    if (viewReceiptButton) {
+      viewReceiptButton.addEventListener('click', function (e) {
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.showElement(receiptModal);
+      });
+    }
   }
 };
 
-var getSinglePercentageSpent = function getSinglePercentageSpent(spent, total) {
-  var percentage = (spent / total).toFixed(2);
-  if (isNaN(percentage)) percentage = 0.0.toFixed(2);
-  return percentage;
-};
+/***/ }),
 
-var getOverallPercentageSpent = function getOverallPercentageSpent(total, part) {
-  var percent = (part / total).toFixed(2);
-  if (percent === NaN) percent = 0;
-  return percent;
-};
+/***/ "./Public/JS/Budget/_Transaction-Planner.js":
+/*!**************************************************!*\
+  !*** ./Public/JS/Budget/_Transaction-Planner.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-var getOverallSpent = function getOverallSpent(subCategories, overall) {
-  var arrayOfTotals = [];
-  subCategories.forEach(function (sc, i) {
-    var subCategoryTotal = Number(sc.firstChild.nextSibling.nextSibling.firstChild.textContent);
-    sc.firstChild.nextSibling.nextSibling.firstChild.textContent === "$".concat(sc.firstChild.nextSibling.nextSibling.firstChild.textContent.split('$')[1]) ? subCategoryTotal = Number(sc.firstChild.nextSibling.nextSibling.firstChild.textContent.split('$')[1]) : subCategoryTotal = 0;
-    arrayOfTotals.push(subCategoryTotal);
-  });
-  var initialValue = 0;
-  overall = arrayOfTotals.reduce(function (previous, current) {
-    return Number(previous) + Number(current);
-  }, initialValue);
-  return overall;
-};
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "_watchTransactionPlanner": () => (/* binding */ _watchTransactionPlanner)
+/* harmony export */ });
+/* harmony import */ var _Application_Utility__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../Application/Utility */ "./Public/JS/Application/Utility.js");
+/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
-var getOverallBudget = function getOverallBudget(subCategories, overall) {
-  var arrayOfTotals = [];
-  subCategories.forEach(function (sc, i) {
-    var subCategoryTotal = sc.firstChild.nextSibling.nextSibling.firstChild.value;
-    arrayOfTotals.push(subCategoryTotal);
-  });
-  var initialValue = 0;
-  overall = arrayOfTotals.reduce(function (previous, current) {
-    return Number(previous) + Number(current);
-  }, initialValue);
-  return overall;
-};
-
-var insertElement = function insertElement(container, element) {
-  if (container) {
-    container.insertAdjacentElement('beforeend', element);
-  }
-};
 
 var displayTransaction = function displayTransaction(container, plan) {
   container.insertAdjacentElement('beforebegin', plan);
@@ -9800,28 +12856,6 @@ var getDatabaseDueDate = function getDatabaseDueDate(date) {
   return new Date(new Date(date).setHours(new Date(date).getHours() + new Date().getTimezoneOffset() / 60));
 };
 
-var getDueDate = function getDueDate(date) {
-  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  var selectedDate = new Date(date);
-  var currentTimezoneOffset = selectedDate.getTimezoneOffset() / 60;
-  return "".concat(new Date(selectedDate.setHours(selectedDate.getHours() + new Date().getTimezoneOffset() / 60)).getDate(), " ").concat(months[new Date(date).getMonth()], " ").concat(new Date(date).getFullYear());
-};
-
-var getTransactionPlanDate = function getTransactionPlanDate(date) {
-  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  return "".concat(new Date(date).getDate(), " ").concat(months[new Date(date).getMonth()], " ").concat(new Date(date).getFullYear());
-};
-
-var getCurrentDate = function getCurrentDate() {
-  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  return "".concat(new Date().getDate(), " ").concat(months[new Date().getMonth()], " ").concat(new Date().getFullYear());
-};
-
-var replaceClassName = function replaceClassName(element, classReplaced, replacementClass) {
-  element.classList.remove(classReplaced);
-  element.classList.add(replacementClass);
-};
-
 var finalizeTransactionPlan = function finalizeTransactionPlan(budget, placeholderBudget, user, selects, smallInputs, mediumInputs) {
   var updateObject = {
     budgetId: budget._id,
@@ -9893,6 +12927,18 @@ var finalizeTransactionPlan = function finalizeTransactionPlan(budget, placehold
   }, "Transaction-Planner");
 };
 
+var getCurrentDate = function getCurrentDate() {
+  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  return "".concat(new Date().getDate(), " ").concat(months[new Date().getMonth()], " ").concat(new Date().getFullYear());
+};
+
+var getDueDate = function getDueDate(date) {
+  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  var selectedDate = new Date(date);
+  var currentTimezoneOffset = selectedDate.getTimezoneOffset() / 60;
+  return "".concat(new Date(selectedDate.setHours(selectedDate.getHours() + new Date().getTimezoneOffset() / 60)).getDate(), " ").concat(months[new Date(date).getMonth()], " ").concat(new Date(date).getFullYear());
+};
+
 var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudget, user, number, numberOfSections, plan, classType) {
   var transactionPlanSelects = document.querySelectorAll('.form__select--accounts');
   var smallShortTransactionPlanInputs = document.querySelectorAll('.form__input--small-short');
@@ -9941,23 +12987,23 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
       transactionPlanPartText.textContent = getCurrentDate();
       var transactionPlanPart = document.createElement('section');
       transactionPlanPart.classList.add("transaction-plan__part");
-      if (numberOfSections === 13) replaceClassName(transactionPlanPart, 'transaction-plan__part', 'transaction-plan__double__part');
+      if (numberOfSections === 13) _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(transactionPlanPart, 'transaction-plan__part', 'transaction-plan__double__part');
       plan.insertAdjacentElement('beforeend', transactionPlanPart);
 
       if (number === 0) {
         // INSERT DOM ELEMENTS INTO FIRST PART
-        insertElement(transactionPlanPart, transactionPlanPartHeader);
-        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
-        insertElement(transactionPlanPart, transactionPlanPartText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement(transactionPlanPart, transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement(transactionPlanPart, transactionPlanPartText);
       }
 
       if (number === 1) {
         // INSERT DOM ELEMENTS INTO FIRST PART
         transactionPlanPartHeaderText.textContent = "Account";
         transactionPlanPartText.textContent = "".concat(transactionPlanSelects[0].value);
-        insertElement(transactionPlanPart, transactionPlanPartHeader);
-        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
-        insertElement(transactionPlanPart, transactionPlanPartText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartText);
       }
 
       if (number === 2) {
@@ -9976,45 +13022,45 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
           transactionPlanPartText.textContent = "".concat(transactionPlanSelects[4].value);
         }
 
-        insertElement(transactionPlanPart, transactionPlanPartHeader);
-        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
-        insertElement(transactionPlanPart, transactionPlanPartText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartText);
       }
 
       if (number === 3) {
         // INSERT DOM ELEMENTS INTO FIRST PART
         transactionPlanPartHeaderText.textContent = "Transaction Name";
         transactionPlanPartText.textContent = "".concat(smallShortTransactionPlanInputs[1].value);
-        insertElement(transactionPlanPart, transactionPlanPartHeader);
-        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
-        insertElement(transactionPlanPart, transactionPlanPartText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartText);
       }
 
       if (number === 4) {
         // INSERT DOM ELEMENTS INTO FIRST PART
         transactionPlanPartHeaderText.textContent = "Location";
         transactionPlanPartText.textContent = "".concat(smallShortTransactionPlanInputs[0].value);
-        insertElement(transactionPlanPart, transactionPlanPartHeader);
-        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
-        insertElement(transactionPlanPart, transactionPlanPartText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartText);
       }
 
       if (number === 5) {
         // INSERT DOM ELEMENTS INTO FIRST PART
         transactionPlanPartHeaderText.textContent = "Amount";
         transactionPlanPartText.textContent = "".concat(money.format(Number(smallShortTransactionPlanInputs[2].value)));
-        insertElement(transactionPlanPart, transactionPlanPartHeader);
-        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
-        insertElement(transactionPlanPart, transactionPlanPartText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartText);
       }
 
       if (number === 6) {
         // INSERT DOM ELEMENTS INTO FIRST PART
         transactionPlanPartHeaderText.textContent = "Due Date One";
         transactionPlanPartText.textContent = getDueDate(altMediumTransactionPlanInputs[0].value);
-        insertElement(transactionPlanPart, transactionPlanPartHeader);
-        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
-        insertElement(transactionPlanPart, transactionPlanPartText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartText);
       }
 
       if (number === 7) {
@@ -10029,15 +13075,15 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
         transactionPlanPartText.textContent = "".concat(transactionPlanSelects[5].value);
 
         if (altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
-          replaceClassName(transactionPlanPartHeader, "transaction-plan__part__header", 'transaction-plan__double__part__header');
-          replaceClassName(transactionPlanPartHeader, "r__transaction-plan__part__header", 'r__transaction-plan__double__part__header');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(transactionPlanPartHeader, "transaction-plan__part__header", 'transaction-plan__double__part__header');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(transactionPlanPartHeader, "r__transaction-plan__part__header", 'r__transaction-plan__double__part__header');
           transactionPlanPartHeaderText.textContent = "Due Date Two";
           transactionPlanPartText.textContent = getDueDate(altMediumTransactionPlanInputs[1].value);
         }
 
-        insertElement(transactionPlanPart, transactionPlanPartHeader);
-        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
-        insertElement(transactionPlanPart, transactionPlanPartText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartText);
       }
 
       if (number === 8) {
@@ -10046,21 +13092,21 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
         transactionPlanPartText.textContent = money.format(0);
 
         if (altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
-          replaceClassName(transactionPlanPartHeader, "transaction-plan__part__header", 'transaction-plan__double__part__header');
-          replaceClassName(transactionPlanPartHeader, "r__transaction-plan__part__header", 'r__transaction-plan__double__part__header');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(transactionPlanPartHeader, "transaction-plan__part__header", 'transaction-plan__double__part__header');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(transactionPlanPartHeader, "r__transaction-plan__part__header", 'r__transaction-plan__double__part__header');
           transactionPlanPartHeaderText.textContent = "Timing";
           transactionPlanPartText.textContent = "".concat(transactionPlanSelects[5].value);
         }
 
-        insertElement(transactionPlanPart, transactionPlanPartHeader);
-        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
-        insertElement(transactionPlanPart, transactionPlanPartText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartText);
       }
 
       if (number === 9) {
         // INSERT DOM ELEMENTS INTO FIRST PART
-        insertElement(transactionPlanPart, transactionPlanPartHeader);
-        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
 
         if (!altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
           transactionPlanPartHeaderText.textContent = "Apply Money";
@@ -10074,23 +13120,23 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
           transactionPlanInput.type = 'number';
           transactionPlanInput.min = 0;
           transactionPlanInput.placeholder = '$0.00';
-          insertElement(transactionPlanPart, transactionPlanInput);
-          insertElement(transactionPlanPart, transactionPlanButton);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanInput);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanButton);
         }
 
         if (altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
-          replaceClassName(transactionPlanPartHeader, "transaction-plan__part__header", 'transaction-plan__double__part__header');
-          replaceClassName(transactionPlanPartHeader, "r__transaction-plan__part__header", 'r__transaction-plan__double__part__header');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(transactionPlanPartHeader, "transaction-plan__part__header", 'transaction-plan__double__part__header');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(transactionPlanPartHeader, "r__transaction-plan__part__header", 'r__transaction-plan__double__part__header');
           transactionPlanPartHeaderText.textContent = "Amount Saved";
           transactionPlanPartText.textContent = money.format(0);
-          insertElement(transactionPlanPart, transactionPlanPartText);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartText);
         }
       }
 
       if (number === 10) {
         // INSERT DOM ELEMENTS INTO FIRST PART
-        insertElement(transactionPlanPart, transactionPlanPartHeader);
-        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
 
         if (!altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
           transactionPlanPartHeaderText.textContent = "Paid In Full?";
@@ -10103,12 +13149,12 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
 
           _transactionPlanButton.classList.add('r__button--extra-extra-small__transaction-plan-small');
 
-          insertElement(transactionPlanPart, _transactionPlanButton);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, _transactionPlanButton);
         }
 
         if (altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
-          replaceClassName(transactionPlanPartHeader, "transaction-plan__part__header", 'transaction-plan__double__part__header');
-          replaceClassName(transactionPlanPartHeader, "r__transaction-plan__part__header", 'r__transaction-plan__double__part__header');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(transactionPlanPartHeader, "transaction-plan__part__header", 'transaction-plan__double__part__header');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(transactionPlanPartHeader, "r__transaction-plan__part__header", 'r__transaction-plan__double__part__header');
           transactionPlanPartHeaderText.textContent = "Apply Money";
 
           var _transactionPlanInput = document.createElement('input');
@@ -10128,25 +13174,25 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
           _transactionPlanInput.type = 'number';
           _transactionPlanInput.min = 0;
           _transactionPlanInput.placeholder = '$0.00';
-          insertElement(transactionPlanPart, _transactionPlanInput);
-          insertElement(transactionPlanPart, _transactionPlanButton2);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, _transactionPlanInput);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, _transactionPlanButton2);
         }
       }
 
       if (number === 11) {
         // INSERT DOM ELEMENTS INTO FIRST PART
-        insertElement(transactionPlanPart, transactionPlanPartHeader);
-        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
 
         if (!altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
           transactionPlanPartHeaderText.textContent = "Status";
           transactionPlanPartText.textContent = "Unpaid";
-          insertElement(transactionPlanPart, transactionPlanPartText);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartText);
         }
 
         if (altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
-          replaceClassName(transactionPlanPartHeader, "transaction-plan__part__header", 'transaction-plan__double__part__header');
-          replaceClassName(transactionPlanPartHeader, "r__transaction-plan__part__header", 'r__transaction-plan__double__part__header');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(transactionPlanPartHeader, "transaction-plan__part__header", 'transaction-plan__double__part__header');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(transactionPlanPartHeader, "r__transaction-plan__part__header", 'r__transaction-plan__double__part__header');
           transactionPlanPartHeaderText.textContent = "Paid In Full?";
 
           var _transactionPlanButton3 = document.createElement('button');
@@ -10157,21 +13203,21 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
 
           _transactionPlanButton3.classList.add('r__button--extra-extra-small__transaction-plan-small');
 
-          insertElement(transactionPlanPart, _transactionPlanButton3);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, _transactionPlanButton3);
         }
       }
 
       if (number === 12) {
         // INSERT DOM ELEMENTS INTO FIRST PART
-        insertElement(transactionPlanPart, transactionPlanPartHeader);
-        insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
 
         if (altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
-          replaceClassName(transactionPlanPartHeader, "transaction-plan__part__header", 'transaction-plan__double__part__header');
-          replaceClassName(transactionPlanPartHeader, "r__transaction-plan__part__header", 'r__transaction-plan__double__part__header');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(transactionPlanPartHeader, "transaction-plan__part__header", 'transaction-plan__double__part__header');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(transactionPlanPartHeader, "r__transaction-plan__part__header", 'r__transaction-plan__double__part__header');
           transactionPlanPartHeaderText.textContent = "Status";
           transactionPlanPartText.textContent = "Unpaid";
-          insertElement(transactionPlanPart, transactionPlanPartText);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartText);
         }
       }
 
@@ -10209,77 +13255,77 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
 
       _transactionPlanPart.classList.add("transaction-plan__alt__part");
 
-      if (numberOfSections === 14) replaceClassName(_transactionPlanPart, 'transaction-plan__alt__part', 'transaction-plan__alt-double__part');
+      if (numberOfSections === 14) _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(_transactionPlanPart, 'transaction-plan__alt__part', 'transaction-plan__alt-double__part');
       plan.insertAdjacentElement('beforeend', _transactionPlanPart);
 
       if (number === 0) {
         // INSERT DOM ELEMENTS INTO FIRST PART
-        insertElement(_transactionPlanPart, _transactionPlanPartHeader);
-        insertElement(_transactionPlanPartHeader, _transactionPlanPartHeaderText);
-        insertElement(_transactionPlanPart, _transactionPlanPartText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader, _transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartText);
       }
 
       if (number === 1) {
         // INSERT DOM ELEMENTS INTO FIRST PART
         _transactionPlanPartHeaderText.textContent = "Account";
         _transactionPlanPartText.textContent = "".concat(transactionPlanSelects[0].value);
-        insertElement(_transactionPlanPart, _transactionPlanPartHeader);
-        insertElement(_transactionPlanPartHeader, _transactionPlanPartHeaderText);
-        insertElement(_transactionPlanPart, _transactionPlanPartText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader, _transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartText);
       }
 
       if (number === 2) {
         // INSERT DOM ELEMENTS INTO FIRST PART
         _transactionPlanPartHeaderText.textContent = "Transaction Type";
         _transactionPlanPartText.textContent = "".concat(transactionPlanSelects[3].value);
-        insertElement(_transactionPlanPart, _transactionPlanPartHeader);
-        insertElement(_transactionPlanPartHeader, _transactionPlanPartHeaderText);
-        insertElement(_transactionPlanPart, _transactionPlanPartText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader, _transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartText);
       }
 
       if (number === 3) {
         // INSERT DOM ELEMENTS INTO FIRST PART
         _transactionPlanPartHeaderText.textContent = "Lender";
         _transactionPlanPartText.textContent = "".concat(transactionPlanSelects[6].value);
-        insertElement(_transactionPlanPart, _transactionPlanPartHeader);
-        insertElement(_transactionPlanPartHeader, _transactionPlanPartHeaderText);
-        insertElement(_transactionPlanPart, _transactionPlanPartText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader, _transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartText);
       }
 
       if (number === 4) {
         // INSERT DOM ELEMENTS INTO FIRST PART
         _transactionPlanPartHeaderText.textContent = "Transaction Name";
         _transactionPlanPartText.textContent = "".concat(smallShortTransactionPlanInputs[1].value);
-        insertElement(_transactionPlanPart, _transactionPlanPartHeader);
-        insertElement(_transactionPlanPartHeader, _transactionPlanPartHeaderText);
-        insertElement(_transactionPlanPart, _transactionPlanPartText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader, _transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartText);
       }
 
       if (number === 5) {
         // INSERT DOM ELEMENTS INTO FIRST PART
         _transactionPlanPartHeaderText.textContent = "Location";
         _transactionPlanPartText.textContent = "".concat(smallShortTransactionPlanInputs[0].value);
-        insertElement(_transactionPlanPart, _transactionPlanPartHeader);
-        insertElement(_transactionPlanPartHeader, _transactionPlanPartHeaderText);
-        insertElement(_transactionPlanPart, _transactionPlanPartText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader, _transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartText);
       }
 
       if (number === 6) {
         // INSERT DOM ELEMENTS INTO FIRST PART
         _transactionPlanPartHeaderText.textContent = "Amount";
         _transactionPlanPartText.textContent = "".concat(money.format(Number(smallShortTransactionPlanInputs[2].value)));
-        insertElement(_transactionPlanPart, _transactionPlanPartHeader);
-        insertElement(_transactionPlanPartHeader, _transactionPlanPartHeaderText);
-        insertElement(_transactionPlanPart, _transactionPlanPartText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader, _transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartText);
       }
 
       if (number === 7) {
         // INSERT DOM ELEMENTS INTO FIRST PART
         _transactionPlanPartHeaderText.textContent = "Due Date One";
         _transactionPlanPartText.textContent = getDueDate(altMediumTransactionPlanInputs[0].value);
-        insertElement(_transactionPlanPart, _transactionPlanPartHeader);
-        insertElement(_transactionPlanPartHeader, _transactionPlanPartHeaderText);
-        insertElement(_transactionPlanPart, _transactionPlanPartText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader, _transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartText);
       }
 
       if (number === 8) {
@@ -10294,15 +13340,15 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
         _transactionPlanPartText.textContent = "".concat(transactionPlanSelects[5].value);
 
         if (altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
-          replaceClassName(_transactionPlanPartHeader, "transaction-plan__alt__part__header", 'transaction-plan__alt-double__part__header');
-          replaceClassName(_transactionPlanPartHeader, "r__transaction-plan__alt__part__header", 'r__transaction-plan__alt-double__part__header');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(_transactionPlanPartHeader, "transaction-plan__alt__part__header", 'transaction-plan__alt-double__part__header');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(_transactionPlanPartHeader, "r__transaction-plan__alt__part__header", 'r__transaction-plan__alt-double__part__header');
           _transactionPlanPartHeaderText.textContent = "Due Date Two";
           _transactionPlanPartText.textContent = getDueDate(altMediumTransactionPlanInputs[1].value);
         }
 
-        insertElement(_transactionPlanPart, _transactionPlanPartHeader);
-        insertElement(_transactionPlanPartHeader, _transactionPlanPartHeaderText);
-        insertElement(_transactionPlanPart, _transactionPlanPartText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader, _transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartText);
       }
 
       if (number === 9) {
@@ -10311,21 +13357,21 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
         _transactionPlanPartText.textContent = money.format(0);
 
         if (altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
-          replaceClassName(_transactionPlanPartHeader, "transaction-plan__alt__part__header", 'transaction-plan__alt-double__part__header');
-          replaceClassName(_transactionPlanPartHeader, "r__transaction-plan__alt__part__header", 'r__transaction-plan__alt-double__part__header');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(_transactionPlanPartHeader, "transaction-plan__alt__part__header", 'transaction-plan__alt-double__part__header');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(_transactionPlanPartHeader, "r__transaction-plan__alt__part__header", 'r__transaction-plan__alt-double__part__header');
           _transactionPlanPartHeaderText.textContent = "Timing";
           _transactionPlanPartText.textContent = "".concat(transactionPlanSelects[5].value);
         }
 
-        insertElement(_transactionPlanPart, _transactionPlanPartHeader);
-        insertElement(_transactionPlanPartHeader, _transactionPlanPartHeaderText);
-        insertElement(_transactionPlanPart, _transactionPlanPartText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader, _transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartText);
       }
 
       if (number === 10) {
         // INSERT DOM ELEMENTS INTO FIRST PART
-        insertElement(_transactionPlanPart, _transactionPlanPartHeader);
-        insertElement(_transactionPlanPartHeader, _transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader, _transactionPlanPartHeaderText);
 
         if (!altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
           _transactionPlanPartHeaderText.textContent = "Apply Money";
@@ -10347,23 +13393,23 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
           _transactionPlanInput2.type = 'number';
           _transactionPlanInput2.min = 0;
           _transactionPlanInput2.placeholder = '$0.00';
-          insertElement(_transactionPlanPart, _transactionPlanInput2);
-          insertElement(_transactionPlanPart, _transactionPlanButton4);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanInput2);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanButton4);
         }
 
         if (altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
-          replaceClassName(_transactionPlanPartHeader, "transaction-plan__alt__part__header", 'transaction-plan__alt-double__part__header');
-          replaceClassName(_transactionPlanPartHeader, "r__transaction-plan__alt__part__header", 'r__transaction-plan__alt-double__part__header');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(_transactionPlanPartHeader, "transaction-plan__alt__part__header", 'transaction-plan__alt-double__part__header');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(_transactionPlanPartHeader, "r__transaction-plan__alt__part__header", 'r__transaction-plan__alt-double__part__header');
           _transactionPlanPartHeaderText.textContent = "Amount Saved";
           _transactionPlanPartText.textContent = money.format(0);
-          insertElement(_transactionPlanPart, _transactionPlanPartText);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartText);
         }
       }
 
       if (number === 11) {
         // INSERT DOM ELEMENTS INTO FIRST PART
-        insertElement(_transactionPlanPart, _transactionPlanPartHeader);
-        insertElement(_transactionPlanPartHeader, _transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader, _transactionPlanPartHeaderText);
 
         if (!altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
           _transactionPlanPartHeaderText.textContent = "Paid In Full?";
@@ -10376,12 +13422,12 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
 
           _transactionPlanButton5.classList.add('r__button--extra-extra-small__transaction-plan-small');
 
-          insertElement(_transactionPlanPart, _transactionPlanButton5);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanButton5);
         }
 
         if (altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
-          replaceClassName(_transactionPlanPartHeader, "transaction-plan__alt__part__header", 'transaction-plan__alt-double__part__header');
-          replaceClassName(_transactionPlanPartHeader, "r__transaction-plan__alt__part__header", 'r__transaction-plan__alt-double__part__header');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(_transactionPlanPartHeader, "transaction-plan__alt__part__header", 'transaction-plan__alt-double__part__header');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(_transactionPlanPartHeader, "r__transaction-plan__alt__part__header", 'r__transaction-plan__alt-double__part__header');
           _transactionPlanPartHeaderText.textContent = "Apply Money";
 
           var _transactionPlanInput3 = document.createElement('input');
@@ -10401,25 +13447,25 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
           _transactionPlanInput3.type = 'number';
           _transactionPlanInput3.min = 0;
           _transactionPlanInput3.placeholder = '$0.00';
-          insertElement(_transactionPlanPart, _transactionPlanInput3);
-          insertElement(_transactionPlanPart, _transactionPlanButton6);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanInput3);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanButton6);
         }
       }
 
       if (number === 12) {
         // INSERT DOM ELEMENTS INTO FIRST PART
-        insertElement(_transactionPlanPart, _transactionPlanPartHeader);
-        insertElement(_transactionPlanPartHeader, _transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader, _transactionPlanPartHeaderText);
 
         if (!altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
           _transactionPlanPartHeaderText.textContent = "Status";
           _transactionPlanPartText.textContent = "Unpaid";
-          insertElement(_transactionPlanPart, _transactionPlanPartText);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartText);
         }
 
         if (altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
-          replaceClassName(_transactionPlanPartHeader, "transaction-plan__alt__part__header", 'transaction-plan__alt-double__part__header');
-          replaceClassName(_transactionPlanPartHeader, "r__transaction-plan__alt__part__header", 'r__transaction-plan__alt-double__part__header');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(_transactionPlanPartHeader, "transaction-plan__alt__part__header", 'transaction-plan__alt-double__part__header');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(_transactionPlanPartHeader, "r__transaction-plan__alt__part__header", 'r__transaction-plan__alt-double__part__header');
           _transactionPlanPartHeaderText.textContent = "Paid In Full?";
 
           var _transactionPlanButton7 = document.createElement('button');
@@ -10430,21 +13476,21 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
 
           _transactionPlanButton7.classList.add('r__button--extra-extra-small__transaction-plan-small');
 
-          insertElement(_transactionPlanPart, _transactionPlanButton7);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanButton7);
         }
       }
 
       if (number === 13) {
         // INSERT DOM ELEMENTS INTO FIRST PART
-        insertElement(_transactionPlanPart, _transactionPlanPartHeader);
-        insertElement(_transactionPlanPartHeader, _transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader, _transactionPlanPartHeaderText);
 
         if (altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
-          replaceClassName(_transactionPlanPartHeader, "transaction-plan__alt__part__header", 'transaction-plan__alt-double__part__header');
-          replaceClassName(_transactionPlanPartHeader, "r__transaction-plan__alt__part__header", 'r__transaction-plan__alt-double__part__header');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(_transactionPlanPartHeader, "transaction-plan__alt__part__header", 'transaction-plan__alt-double__part__header');
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(_transactionPlanPartHeader, "r__transaction-plan__alt__part__header", 'r__transaction-plan__alt-double__part__header');
           _transactionPlanPartHeaderText.textContent = "Status";
           _transactionPlanPartText.textContent = "Unpaid";
-          insertElement(_transactionPlanPart, _transactionPlanPartText);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartText);
         }
       }
 
@@ -10570,6 +13616,11 @@ var updateTransactionPlanningAccountDisplays = function updateTransactionPlannin
   unAppliedMoney[3].textContent = money.format(budget.accounts.surplus.amount - surplusAppliedTotal);
 };
 
+var getTransactionPlanDate = function getTransactionPlanDate(date) {
+  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  return "".concat(new Date(date).getDate(), " ").concat(months[new Date(date).getMonth()], " ").concat(new Date(date).getFullYear());
+};
+
 var displayExistingTransactionPlans = function displayExistingTransactionPlans(budget, placeholderBudget, user) {
   var transactionPlanCreation = document.querySelector('.transaction-plan-creation');
   var transactionPlans = [];
@@ -10618,90 +13669,90 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
 
           if (sectionStart === 0) {
             // INSERT DOM ELEMENTS INTO FIRST PART
-            insertElement(transactionPlanPart, transactionPlanPartHeader);
-            insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
-            insertElement(transactionPlanPart, transactionPlanPartText);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartText);
           }
 
           if (sectionStart === 1) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             transactionPlanPartHeaderText.textContent = "Account";
             transactionPlanPartText.textContent = "".concat(transaction.account);
-            insertElement(transactionPlanPart, transactionPlanPartHeader);
-            insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
-            insertElement(transactionPlanPart, transactionPlanPartText);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartText);
           }
 
           if (sectionStart === 2) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             transactionPlanPartHeaderText.textContent = "Transaction Type";
             transactionPlanPartText.textContent = "".concat(transaction.subAccount);
-            insertElement(transactionPlanPart, transactionPlanPartHeader);
-            insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
-            insertElement(transactionPlanPart, transactionPlanPartText);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartText);
           }
 
           if (sectionStart === 3) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             transactionPlanPartHeaderText.textContent = "Transaction Name";
             transactionPlanPartText.textContent = "".concat(transaction.name);
-            insertElement(transactionPlanPart, transactionPlanPartHeader);
-            insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
-            insertElement(transactionPlanPart, transactionPlanPartText);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartText);
           }
 
           if (sectionStart === 4) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             transactionPlanPartHeaderText.textContent = "Location";
             transactionPlanPartText.textContent = "".concat(transaction.location);
-            insertElement(transactionPlanPart, transactionPlanPartHeader);
-            insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
-            insertElement(transactionPlanPart, transactionPlanPartText);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartText);
           }
 
           if (sectionStart === 5) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             transactionPlanPartHeaderText.textContent = "Amount";
             transactionPlanPartText.textContent = money.format(transaction.amount);
-            insertElement(transactionPlanPart, transactionPlanPartHeader);
-            insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
-            insertElement(transactionPlanPart, transactionPlanPartText);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartText);
           }
 
           if (sectionStart === 6) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             transactionPlanPartHeaderText.textContent = "Due Date One";
             transactionPlanPartText.textContent = "".concat(getTransactionPlanDate(transaction.timingOptions.dueDates[0]));
-            insertElement(transactionPlanPart, transactionPlanPartHeader);
-            insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
-            insertElement(transactionPlanPart, transactionPlanPartText);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartText);
           }
 
           if (sectionStart === 7) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             transactionPlanPartHeaderText.textContent = "Due Date Two";
             transactionPlanPartText.textContent = "".concat(getTransactionPlanDate(transaction.timingOptions.dueDates[1]));
-            insertElement(transactionPlanPart, transactionPlanPartHeader);
-            insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
-            insertElement(transactionPlanPart, transactionPlanPartText);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartText);
           }
 
           if (sectionStart === 8) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             transactionPlanPartHeaderText.textContent = "Timing";
             transactionPlanPartText.textContent = "".concat(transaction.timingOptions.paymentCycle);
-            insertElement(transactionPlanPart, transactionPlanPartHeader);
-            insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
-            insertElement(transactionPlanPart, transactionPlanPartText);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartText);
           }
 
           if (sectionStart === 9) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             transactionPlanPartHeaderText.textContent = "Amount Saved";
             transactionPlanPartText.textContent = money.format(transaction.amountSaved);
-            insertElement(transactionPlanPart, transactionPlanPartHeader);
-            insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
-            insertElement(transactionPlanPart, transactionPlanPartText);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartText);
           }
 
           if (sectionStart === 10) {
@@ -10736,10 +13787,10 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
 
                 updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user);
               });
-              insertElement(transactionPlanPart, transactionPlanPartHeader);
-              insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
-              insertElement(transactionPlanPart, transactionPlanInput);
-              insertElement(transactionPlanPart, transactionPlanButton);
+              _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
+              _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
+              _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanInput);
+              _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanButton);
             })();
           }
 
@@ -10749,18 +13800,18 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
             transactionPlanButton.textContent = "Paid";
             transactionPlanButton.classList.add('button--extra-extra-small__transaction-plan-small');
             transactionPlanButton.classList.add('r__button--extra-extra-small__transaction-plan-small');
-            insertElement(transactionPlanPart, transactionPlanPartHeader);
-            insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
-            insertElement(transactionPlanPart, transactionPlanButton);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanButton);
           }
 
           if (sectionStart === 12) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             transactionPlanPartHeaderText.textContent = "Status";
             transactionPlanPartText.textContent = "".concat(transaction.paidStatus);
-            insertElement(transactionPlanPart, transactionPlanPartHeader);
-            insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
-            insertElement(transactionPlanPart, transactionPlanPartText);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartText);
           }
 
           sectionStart++;
@@ -10805,81 +13856,81 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
 
           if (sectionStart === 0) {
             // INSERT DOM ELEMENTS INTO FIRST PART
-            insertElement(_transactionPlanPart2, _transactionPlanPartHeader2);
-            insertElement(_transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
-            insertElement(_transactionPlanPart2, _transactionPlanPartText2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartHeader2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartText2);
           }
 
           if (sectionStart === 1) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText2.textContent = "Account";
             _transactionPlanPartText2.textContent = "".concat(transaction.account);
-            insertElement(_transactionPlanPart2, _transactionPlanPartHeader2);
-            insertElement(_transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
-            insertElement(_transactionPlanPart2, _transactionPlanPartText2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartHeader2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartText2);
           }
 
           if (sectionStart === 2) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText2.textContent = "Transaction Type";
             _transactionPlanPartText2.textContent = "".concat(transaction.subAccount);
-            insertElement(_transactionPlanPart2, _transactionPlanPartHeader2);
-            insertElement(_transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
-            insertElement(_transactionPlanPart2, _transactionPlanPartText2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartHeader2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartText2);
           }
 
           if (sectionStart === 3) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText2.textContent = "Transaction Name";
             _transactionPlanPartText2.textContent = "".concat(transaction.name);
-            insertElement(_transactionPlanPart2, _transactionPlanPartHeader2);
-            insertElement(_transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
-            insertElement(_transactionPlanPart2, _transactionPlanPartText2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartHeader2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartText2);
           }
 
           if (sectionStart === 4) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText2.textContent = "Location";
             _transactionPlanPartText2.textContent = "".concat(transaction.location);
-            insertElement(_transactionPlanPart2, _transactionPlanPartHeader2);
-            insertElement(_transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
-            insertElement(_transactionPlanPart2, _transactionPlanPartText2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartHeader2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartText2);
           }
 
           if (sectionStart === 5) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText2.textContent = "Amount";
             _transactionPlanPartText2.textContent = money.format(transaction.amount);
-            insertElement(_transactionPlanPart2, _transactionPlanPartHeader2);
-            insertElement(_transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
-            insertElement(_transactionPlanPart2, _transactionPlanPartText2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartHeader2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartText2);
           }
 
           if (sectionStart === 6) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText2.textContent = "Due Date One";
             _transactionPlanPartText2.textContent = "".concat(getTransactionPlanDate(transaction.timingOptions.dueDates[0]));
-            insertElement(_transactionPlanPart2, _transactionPlanPartHeader2);
-            insertElement(_transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
-            insertElement(_transactionPlanPart2, _transactionPlanPartText2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartHeader2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartText2);
           }
 
           if (sectionStart === 7) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText2.textContent = "Timing";
             _transactionPlanPartText2.textContent = "".concat(transaction.timingOptions.paymentCycle);
-            insertElement(_transactionPlanPart2, _transactionPlanPartHeader2);
-            insertElement(_transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
-            insertElement(_transactionPlanPart2, _transactionPlanPartText2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartHeader2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartText2);
           }
 
           if (sectionStart === 8) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText2.textContent = "Amount Saved";
             _transactionPlanPartText2.textContent = money.format(transaction.amountSaved);
-            insertElement(_transactionPlanPart2, _transactionPlanPartHeader2);
-            insertElement(_transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
-            insertElement(_transactionPlanPart2, _transactionPlanPartText2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartHeader2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartText2);
           }
 
           if (sectionStart === 9) {
@@ -10914,10 +13965,10 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
 
                 updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user);
               });
-              insertElement(_transactionPlanPart2, _transactionPlanPartHeader2);
-              insertElement(_transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
-              insertElement(_transactionPlanPart2, transactionPlanInput);
-              insertElement(_transactionPlanPart2, transactionPlanButton);
+              _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartHeader2);
+              _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
+              _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, transactionPlanInput);
+              _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, transactionPlanButton);
             })();
           }
 
@@ -10932,18 +13983,18 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
 
             _transactionPlanButton8.classList.add('r__button--extra-extra-small__transaction-plan-small');
 
-            insertElement(_transactionPlanPart2, _transactionPlanPartHeader2);
-            insertElement(_transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
-            insertElement(_transactionPlanPart2, _transactionPlanButton8);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartHeader2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanButton8);
           }
 
           if (sectionStart === 11) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText2.textContent = "Status";
             _transactionPlanPartText2.textContent = "".concat(transaction.paidStatus);
-            insertElement(_transactionPlanPart2, _transactionPlanPartHeader2);
-            insertElement(_transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
-            insertElement(_transactionPlanPart2, _transactionPlanPartText2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartHeader2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartText2);
           }
 
           sectionStart++;
@@ -10999,99 +14050,99 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
 
           if (sectionStart === 0) {
             // INSERT DOM ELEMENTS INTO FIRST PART
-            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
-            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
-            insertElement(_transactionPlanPart3, _transactionPlanPartText3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartHeader3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartText3);
           }
 
           if (sectionStart === 1) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText3.textContent = "Account";
             _transactionPlanPartText3.textContent = "".concat(transaction.account);
-            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
-            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
-            insertElement(_transactionPlanPart3, _transactionPlanPartText3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartHeader3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartText3);
           }
 
           if (sectionStart === 2) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText3.textContent = "Transaction Type";
             _transactionPlanPartText3.textContent = "".concat(transaction.subAccount);
-            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
-            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
-            insertElement(_transactionPlanPart3, _transactionPlanPartText3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartHeader3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartText3);
           }
 
           if (sectionStart === 3) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText3.textContent = "Lender";
             _transactionPlanPartText3.textContent = "".concat(transaction.lender);
-            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
-            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
-            insertElement(_transactionPlanPart3, _transactionPlanPartText3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartHeader3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartText3);
           }
 
           if (sectionStart === 4) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText3.textContent = "Transaction Name";
             _transactionPlanPartText3.textContent = "".concat(transaction.name);
-            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
-            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
-            insertElement(_transactionPlanPart3, _transactionPlanPartText3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartHeader3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartText3);
           }
 
           if (sectionStart === 5) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText3.textContent = "Location";
             _transactionPlanPartText3.textContent = "".concat(transaction.location);
-            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
-            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
-            insertElement(_transactionPlanPart3, _transactionPlanPartText3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartHeader3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartText3);
           }
 
           if (sectionStart === 6) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText3.textContent = "Amount";
             _transactionPlanPartText3.textContent = money.format(transaction.amount);
-            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
-            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
-            insertElement(_transactionPlanPart3, _transactionPlanPartText3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartHeader3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartText3);
           }
 
           if (sectionStart === 7) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText3.textContent = "Due Date One";
             _transactionPlanPartText3.textContent = "".concat(getTransactionPlanDate(transaction.timingOptions.dueDates[0]));
-            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
-            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
-            insertElement(_transactionPlanPart3, _transactionPlanPartText3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartHeader3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartText3);
           }
 
           if (sectionStart === 8) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText3.textContent = "Due Date Two";
             _transactionPlanPartText3.textContent = "".concat(getTransactionPlanDate(transaction.timingOptions.dueDates[1]));
-            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
-            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
-            insertElement(_transactionPlanPart3, _transactionPlanPartText3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartHeader3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartText3);
           }
 
           if (sectionStart === 9) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText3.textContent = "Timing";
             _transactionPlanPartText3.textContent = "".concat(transaction.timingOptions.paymentCycle);
-            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
-            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
-            insertElement(_transactionPlanPart3, _transactionPlanPartText3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartHeader3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartText3);
           }
 
           if (sectionStart === 10) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText3.textContent = "Amount Saved";
             _transactionPlanPartText3.textContent = money.format(transaction.amountSaved);
-            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
-            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
-            insertElement(_transactionPlanPart3, _transactionPlanPartText3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartHeader3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartText3);
           }
 
           if (sectionStart === 11) {
@@ -11126,10 +14177,10 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
 
                 updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user);
               });
-              insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
-              insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
-              insertElement(_transactionPlanPart3, transactionPlanInput);
-              insertElement(_transactionPlanPart3, transactionPlanButton);
+              _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartHeader3);
+              _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+              _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, transactionPlanInput);
+              _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, transactionPlanButton);
             })();
           }
 
@@ -11144,18 +14195,18 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
 
             _transactionPlanButton9.classList.add('r__button--extra-extra-small__transaction-plan-small');
 
-            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
-            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
-            insertElement(_transactionPlanPart3, _transactionPlanButton9);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartHeader3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanButton9);
           }
 
           if (sectionStart === 13) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText3.textContent = "Status";
             _transactionPlanPartText3.textContent = "".concat(transaction.paidStatus);
-            insertElement(_transactionPlanPart3, _transactionPlanPartHeader3);
-            insertElement(_transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
-            insertElement(_transactionPlanPart3, _transactionPlanPartText3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartHeader3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartText3);
           }
 
           sectionStart++;
@@ -11202,90 +14253,90 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
 
           if (sectionStart === 0) {
             // INSERT DOM ELEMENTS INTO FIRST PART
-            insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
-            insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
-            insertElement(_transactionPlanPart4, _transactionPlanPartText4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartHeader4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartText4);
           }
 
           if (sectionStart === 1) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText4.textContent = "Account";
             _transactionPlanPartText4.textContent = "".concat(transaction.account);
-            insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
-            insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
-            insertElement(_transactionPlanPart4, _transactionPlanPartText4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartHeader4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartText4);
           }
 
           if (sectionStart === 2) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText4.textContent = "Transaction Type";
             _transactionPlanPartText4.textContent = "".concat(transaction.subAccount);
-            insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
-            insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
-            insertElement(_transactionPlanPart4, _transactionPlanPartText4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartHeader4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartText4);
           }
 
           if (sectionStart === 3) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText4.textContent = "Lender";
             _transactionPlanPartText4.textContent = "".concat(transaction.lender);
-            insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
-            insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
-            insertElement(_transactionPlanPart4, _transactionPlanPartText4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartHeader4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartText4);
           }
 
           if (sectionStart === 4) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText4.textContent = "Transaction Name";
             _transactionPlanPartText4.textContent = "".concat(transaction.name);
-            insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
-            insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
-            insertElement(_transactionPlanPart4, _transactionPlanPartText4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartHeader4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartText4);
           }
 
           if (sectionStart === 5) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText4.textContent = "Location";
             _transactionPlanPartText4.textContent = "".concat(transaction.location);
-            insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
-            insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
-            insertElement(_transactionPlanPart4, _transactionPlanPartText4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartHeader4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartText4);
           }
 
           if (sectionStart === 6) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText4.textContent = "Amount";
             _transactionPlanPartText4.textContent = money.format(transaction.amount);
-            insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
-            insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
-            insertElement(_transactionPlanPart4, _transactionPlanPartText4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartHeader4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartText4);
           }
 
           if (sectionStart === 7) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText4.textContent = "Due Date One";
             _transactionPlanPartText4.textContent = "".concat(getTransactionPlanDate(transaction.timingOptions.dueDates[0]));
-            insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
-            insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
-            insertElement(_transactionPlanPart4, _transactionPlanPartText4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartHeader4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartText4);
           }
 
           if (sectionStart === 8) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText4.textContent = "Timing";
             _transactionPlanPartText4.textContent = "".concat(transaction.timingOptions.paymentCycle);
-            insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
-            insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
-            insertElement(_transactionPlanPart4, _transactionPlanPartText4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartHeader4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartText4);
           }
 
           if (sectionStart === 9) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText4.textContent = "Amount Saved";
             _transactionPlanPartText4.textContent = money.format(transaction.amountSaved);
-            insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
-            insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
-            insertElement(_transactionPlanPart4, _transactionPlanPartText4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartHeader4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartText4);
           }
 
           if (sectionStart === 10) {
@@ -11320,10 +14371,10 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
 
                 updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user);
               });
-              insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
-              insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
-              insertElement(_transactionPlanPart4, transactionPlanInput);
-              insertElement(_transactionPlanPart4, transactionPlanButton);
+              _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartHeader4);
+              _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
+              _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, transactionPlanInput);
+              _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, transactionPlanButton);
             })();
           }
 
@@ -11338,18 +14389,18 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
 
             _transactionPlanButton10.classList.add('r__button--extra-extra-small__transaction-plan-small');
 
-            insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
-            insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
-            insertElement(_transactionPlanPart4, _transactionPlanButton10);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartHeader4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanButton10);
           }
 
           if (sectionStart === 12) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText4.textContent = "Status";
             _transactionPlanPartText4.textContent = "".concat(transaction.paidStatus);
-            insertElement(_transactionPlanPart4, _transactionPlanPartHeader4);
-            insertElement(_transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
-            insertElement(_transactionPlanPart4, _transactionPlanPartText4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartHeader4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartText4);
           }
 
           sectionStart++;
@@ -11379,12 +14430,12 @@ var setupTransactionPlanning = function setupTransactionPlanning(budget, placeho
   displayExistingTransactionPlans(budget, placeholderBudget, user);
   var submitPlanButton = document.querySelector('.button--extra-extra-small__transaction-plan');
   commonTransactionOptionsArray.forEach(function (array) {
-    pushIntoArray([transactionPlanSections[4], formSelectSections[2], transactionPlanSections[0], transactionPlanSections[1], transactionPlanSections[2], transactionPlanSections[3], transactionPlanSections[6], formSelectSections[1], accountSelectionContainers[5]], array);
+    _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.pushIntoArray([transactionPlanSections[4], formSelectSections[2], transactionPlanSections[0], transactionPlanSections[1], transactionPlanSections[2], transactionPlanSections[3], transactionPlanSections[6], formSelectSections[1], accountSelectionContainers[5]], array);
   });
-  pushIntoArray([accountSelectionContainers[1], transactionPlanSections[5]], expenseTransactionOptionsArray);
-  pushIntoArray([accountSelectionContainers[2], transactionPlanSections[5]], savingsTransactionOptionsArray);
-  pushIntoArray([accountSelectionContainers[3], formSelectSections[3], accountSelectionContainers[6]], debtTransactionOptionsArray);
-  pushIntoArray([accountSelectionContainers[4]], surplusTransactionOptionsArray);
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.pushIntoArray([accountSelectionContainers[1], transactionPlanSections[5]], expenseTransactionOptionsArray);
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.pushIntoArray([accountSelectionContainers[2], transactionPlanSections[5]], savingsTransactionOptionsArray);
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.pushIntoArray([accountSelectionContainers[3], formSelectSections[3], accountSelectionContainers[6]], debtTransactionOptionsArray);
+  _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.pushIntoArray([accountSelectionContainers[4]], surplusTransactionOptionsArray);
   transactionPlanAccountOptions.forEach(function (ao) {
     if (ao) {
       ao.addEventListener('click', function (e) {
@@ -11519,3025 +14570,6 @@ var _watchTransactionPlanner = function _watchTransactionPlanner(budget, placeho
   if (currentDate) currentDate.value = new Date();
 };
 
-var _watchIncomeAllocation = function _watchIncomeAllocation(budget, placeholderBudget, user) {
-  var incomeAllocationContainer = document.querySelector('.container--allocate-income');
-  var unAllocatedTotal = document.querySelector('.un-allocated-account-total');
-  var money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2
-  });
-
-  if (incomeAllocationContainer) {
-    console.log("Allocating...");
-    unAllocatedTotal.textContent = money.format(unAllocatedTotal.textContent);
-    var allocateIncomeButton = document.querySelector('.button--small-purple');
-    allocateIncomeButton.addEventListener('click', function (e) {
-      e.preventDefault(); // INITIALIZE NEEDED VARIABLES
-
-      var unAllocatedAmount = Number(unAllocatedTotal.textContent.split('$')[1].split(',').join(''));
-      var totalAllocationAmount = 0; // SELECT INPUTS FOR INCOME ALLOCATION
-
-      var allocationInputs = document.querySelectorAll('.form__input'); // GET TOTAL AMOUNT OF ALL INPUTS
-
-      allocationInputs.forEach(function (ai, i) {
-        // ADD VALUE TO CURRENT TOTAL
-        totalAllocationAmount += Number(ai.value);
-      }); // DOUBLE CHECK TO MAKE SURE ALLOCATED AMOUNT DOES NOT EXCEED UN-ALLOCATED INCOME
-
-      totalAllocationAmount <= unAllocatedAmount ? unAllocatedTotal.textContent = money.format(unAllocatedAmount - totalAllocationAmount) : alert("You do not have all that money! Please lower one of your accounts amounts!"); // INITIALIZE SEPARATE ACCOUNTS ALLOCATED TOTALS
-
-      var monthlyBudgetAllocation, emergencyFundAllocation, savingsFundAllocation, expenseFundAllocation, debtAllocation, investmentFundAllocation; // GET EACH SEPARATE ACCOUNTS ALLOCATED INCOME
-
-      monthlyBudgetAllocation = allocationInputs[0].value;
-      emergencyFundAllocation = allocationInputs[1].value;
-      savingsFundAllocation = allocationInputs[2].value;
-      expenseFundAllocation = allocationInputs[3].value;
-      debtAllocation = allocationInputs[4].value;
-      investmentFundAllocation = allocationInputs[5].value; // DOUBLE CHECK IF IT IS A NUMBER
-
-      if (isNaN(monthlyBudgetAllocation)) monthlyBudgetAllocation = 0;
-      if (isNaN(emergencyFundAllocation)) emergencyFundAllocation = 0;
-      if (isNaN(savingsFundAllocation)) savingsFundAllocation = 0;
-      if (isNaN(expenseFundAllocation)) expenseFundAllocation = 0;
-      if (isNaN(debtAllocation)) debtAllocation = 0;
-      if (isNaN(investmentFundAllocation)) investmentFundAllocation = 0;
-      var updateObject = {
-        budgetId: budget._id,
-        userId: user._id,
-        user: user,
-        accounts: {
-          unAllocated: {
-            amount: Number(unAllocatedTotal.textContent.split('$')[1].split(',').join(''))
-          },
-          monthlyBudget: {
-            amount: Number(monthlyBudgetAllocation) + budget.accounts.monthlyBudget.amount
-          },
-          emergencyFund: {
-            emergencyFundGoal: placeholderBudget.accounts.emergencyFund.emergencyFundGoal,
-            emergencyGoalMeasurement: placeholderBudget.accounts.emergencyFund.emergencyGoalMeasurement,
-            emergencyFundGoalTiming: placeholderBudget.accounts.emergencyFund.emergencyFundGoalTiming,
-            amount: Number(emergencyFundAllocation) + budget.accounts.emergencyFund.amount
-          },
-          savingsFund: {
-            savingsGoal: placeholderBudget.accounts.savingsFund.savingsGoal,
-            savingsPercentage: placeholderBudget.accounts.savingsFund.savingsPercentage,
-            amount: Number(savingsFundAllocation) + budget.accounts.savingsFund.amount
-          },
-          expenseFund: {
-            amount: Number(expenseFundAllocation) + budget.accounts.expenseFund.amount
-          },
-          surplus: {
-            amount: placeholderBudget.accounts.surplus.amount
-          },
-          investmentFund: {
-            investmentGoal: placeholderBudget.accounts.investmentFund.investmentGoal,
-            investmentPercentage: placeholderBudget.accounts.investmentFund.investmentPercentage,
-            amount: Number(investmentFundAllocation) + budget.accounts.investmentFund.amount
-          },
-          debt: {
-            debtAmount: placeholderBudget.accounts.debt.debtAmount,
-            amount: Number(debtAllocation) + budget.accounts.debt.amount
-          }
-        }
-      };
-
-      placeholderBudget._updateBudget({
-        updateObject: updateObject
-      }, "Allocate-Income");
-
-      allocationInputs.forEach(function (ai) {
-        ai.value = '';
-      });
-    });
-  }
-};
-
-var _watchForBudgetCategoryUpdates = function _watchForBudgetCategoryUpdates(budget, placeholderBudget, user) {
-  var mainCategoryDeleteButton = document.querySelector('.button--medium-main-category-deletion');
-  var categoryIcon = document.querySelector('.main-category-display__category-information__icon');
-  var categoryTitle = document.querySelector('.main-category-display__category-information__text');
-  var categoryIndex, index;
-  var budgetMainCategoryLength = placeholderBudget.mainCategories.length;
-  var subCategories = document.querySelectorAll('.sub-category');
-  mainCategoryDeleteButton.addEventListener('click', function (e) {
-    e.preventDefault();
-    categoryIcon.classList.remove(categoryIcon.classList[3]);
-    var mainCategories = document.querySelectorAll('.main-category__alt');
-    placeholderBudget.mainCategories.forEach(function (mc) {
-      if (mc.title === categoryTitle.textContent) {
-        categoryIndex = placeholderBudget.mainCategories.indexOf(mc);
-        mainCategories[categoryIndex].remove();
-        placeholderBudget.mainCategories = placeholderBudget.mainCategories.filter(function (category) {
-          if (category.title !== mc.title) return category;
-        });
-      }
-    });
-    mainCategories = document.querySelectorAll('.main-category__alt');
-    mainCategories.forEach(function (mc, i) {
-      mc.dataset.category = i;
-    });
-
-    if (categoryIndex === 0) {
-      // GLITCH: CLICKING THE MAIN CATEGORIES ON THE LEFT MAKES ALL SUB CATEGORIES GO WONKY.
-      subCategories.forEach(function (sc) {
-        if (Number(sc.dataset.category) === categoryIndex) {
-          sc.remove();
-        }
-
-        if (sc.dataset.category > categoryIndex) {
-          sc.dataset.category = sc.dataset.category - 1;
-        }
-      }); // CODE BELOW COULD BE PUT INTO A FUNCTION TO FOLLOW D.R.Y. PRINCIPLE.
-
-      if (placeholderBudget.mainCategories[categoryIndex]) {
-        categoryIcon.classList.add(placeholderBudget.mainCategories[categoryIndex].icon);
-        categoryTitle.textContent = placeholderBudget.mainCategories[categoryIndex].title;
-      }
-
-      subCategories.forEach(function (sc, i) {
-        sc.classList.add('closed');
-        sc.classList.remove('open');
-
-        if (sc.dataset.category === "".concat(categoryIndex)) {
-          sc.classList.remove('closed');
-          sc.classList.add('open');
-        }
-      });
-      budgetMainCategoryLength = budgetMainCategoryLength - 1;
-    }
-
-    if (categoryIndex > 0 && categoryIndex < placeholderBudget.mainCategories.length) {
-      subCategories.forEach(function (sc) {
-        if (Number(sc.dataset.category) === categoryIndex) {
-          sc.remove();
-        }
-
-        if (sc.dataset.category > categoryIndex) {
-          sc.dataset.category = sc.dataset.category - 1;
-        }
-      });
-      categoryIndex--;
-      categoryIcon.classList.add(placeholderBudget.mainCategories[categoryIndex].icon);
-      categoryTitle.textContent = placeholderBudget.mainCategories[categoryIndex].title;
-      subCategories.forEach(function (sc, i) {
-        sc.classList.add('closed');
-        sc.classList.remove('open');
-
-        if (sc.dataset.category === "".concat(categoryIndex)) {
-          sc.classList.remove('closed');
-          sc.classList.add('open');
-        }
-      });
-      budgetMainCategoryLength = budgetMainCategoryLength - 1;
-    }
-
-    if (categoryIndex === budgetMainCategoryLength - 1) {
-      subCategories.forEach(function (sc) {
-        if (Number(sc.dataset.category) === categoryIndex) {
-          sc.remove();
-        }
-      });
-
-      if (placeholderBudget.mainCategories.length === 0) {
-        categoryTitle.textContent = "";
-      }
-
-      categoryIndex--;
-
-      if (placeholderBudget.mainCategories[categoryIndex]) {
-        categoryIcon.classList.add(placeholderBudget.mainCategories[categoryIndex].icon);
-        categoryTitle.textContent = placeholderBudget.mainCategories[categoryIndex].title;
-      }
-
-      subCategories.forEach(function (sc, i) {
-        sc.classList.add('closed');
-        sc.classList.remove('open');
-
-        if (sc.dataset.category === "".concat(categoryIndex)) {
-          sc.classList.remove('closed');
-          sc.classList.add('open');
-        }
-      });
-      budgetMainCategoryLength = budgetMainCategoryLength - 1;
-    }
-  }); // ADJUST: WE NEED TO MAKE SURE IT IS POSSIBLE FOR THE EXISTING SUB CATEGORIES TO BE REMOVED AS WELL AS MADE INTO SURPLUS AS WELL, IF NEEDED.
-
-  subCategories.forEach(function (sc, i) {
-    var surplusSwitch = sc.firstChild.nextSibling.firstChild.nextSibling.firstChild.nextSibling;
-    surplusSwitch.addEventListener('click', function (e) {
-      e.preventDefault(); // GET TARGET OF CLICK
-
-      var clicked = e.target;
-      surplusSwitch.classList.toggle('sub-category-controller__surplus-container__switch__alt--switched');
-      surplusSwitch.firstChild.firstChild.classList.toggle('fa-times');
-      surplusSwitch.firstChild.firstChild.classList.toggle('fa-check');
-      var categoryNumber = Number(clicked.closest('.sub-category').dataset.category);
-      placeholderBudget.mainCategories.forEach(function (mc, i) {
-        if (mc.title === categoryTitle.textContent) index = i;
-      });
-
-      var subCategoriesArray = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(document.querySelectorAll('.sub-category'));
-
-      var subArray = subCategoriesArray.filter(function (sc, i) {
-        return Number(sc.dataset.category) === index; // This is the Main Category's Index.
-      }); // THIS IS WHERE IT WOULD BE GOOD TO HAVE THE INDIVIDUAL BUTTONS CAUSE ANOTHER UPDATE
-
-      placeholderBudget._updateSubCategory("Creation", "Surplus", {
-        mainIndex: categoryNumber,
-        subIndex: subArray.indexOf(clicked.closest('.sub-category'))
-      });
-    });
-    var surplusCategoryTrashIcon = surplusSwitch.parentElement.nextSibling;
-    surplusCategoryTrashIcon.addEventListener('click', function (e) {
-      e.preventDefault();
-      var clicked = e.target;
-      var selectedSubCategory = clicked.closest('.sub-category');
-      placeholderBudget.mainCategories.forEach(function (mc, i) {
-        if (mc.title === categoryTitle.textContent) index = i;
-      }); /////////////////////////////
-      // DELETE SUB CATEGORY
-
-      var subCategoriesArray = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(document.querySelectorAll('.sub-category'));
-
-      var subArray = subCategoriesArray.filter(function (sc, i) {
-        return Number(sc.dataset.category) === index;
-      });
-      var categoryNumber = Number(clicked.closest('.sub-category').dataset.category); /////////////////////////////
-      // REMOVE DOM ELEMENT
-
-      selectedSubCategory.remove();
-
-      placeholderBudget._deleteSubCategory(categoryNumber, subArray.indexOf(selectedSubCategory));
-    });
-  });
-  var updateCategoryButton = document.querySelectorAll('.button--large__thin')[0];
-  updateCategoryButton.addEventListener('click', function (e) {
-    e.preventDefault();
-    placeholderBudget.mainCategories.forEach(function (mc, i) {
-      if (!mc.createdAt) {
-        mc.createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
-      }
-
-      if (!mc.lastUpdated) {
-        mc.lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
-      }
-
-      mc.subCategories.forEach(function (sc, i) {
-        if (!sc.createdAt) {
-          sc.createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
-        }
-
-        if (sc.updated === true) {
-          sc.lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
-        }
-      });
-    });
-
-    placeholderBudget._updateBudget({
-      updateObject: {
-        budgetMainCategories: budget.mainCategories,
-        budgetId: budget._id,
-        userId: user._id,
-        user: user,
-        mainCategories: placeholderBudget.mainCategories
-      }
-    }, "Manage-Categories");
-  });
-};
-
-var _watchManageCategories = function _watchManageCategories(budget, placeholderBudget, user) {
-  var mediumContainers = document.querySelectorAll('.container--medium');
-  var manageCategoryContainer = mediumContainers[0];
-  var icon, index;
-  var subCategoryIndex = 0;
-
-  if (manageCategoryContainer) {
-    _Budget_Creation_Budget_Categories__WEBPACK_IMPORTED_MODULE_8__.createCategories(icon, index);
-
-    _Budget_Creation_Budget_Categories__WEBPACK_IMPORTED_MODULE_8__._watchCreateCategoryButton(icon, placeholderBudget);
-
-    _Budget_Creation_Budget_Creation__WEBPACK_IMPORTED_MODULE_7__.setupSubCategoryCreation(placeholderBudget, subCategoryIndex);
-
-    _watchForMainCategorySelection(budget, placeholderBudget, user);
-
-    _watchForBudgetCategoryUpdates(budget, placeholderBudget, user);
-  }
-};
-
-var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placeholderBudget, user) {
-  var editCategoryGoalsContainer = document.querySelectorAll('.container--large')[0];
-
-  if (editCategoryGoalsContainer) {
-    var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
-    var timingFunctionContainer = document.querySelector('.timing-container');
-    var editCategoryGoalsSubmit = document.querySelector('.button--large__thin'); // On load, retrieve the proper timings and dates for the correct sub-categories.
-
-    var mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
-    var allCategories = [];
-    placeholderBudget.mainCategories.forEach(function (mct, i) {
-      budget.mainCategories[i].subCategories.forEach(function (sc, i) {
-        allCategories.push(sc);
-      });
-    });
-    allCategories.forEach(function (c, i) {
-      if (c.timingOptions.paymentCycle) {
-        var timing = getSubCategoryTiming(budget, c);
-
-        if (subCategories[i]) {
-          if (subCategories[i].firstChild.nextSibling.firstChild.nextSibling) subCategories[i].firstChild.nextSibling.firstChild.nextSibling.textContent = timing;
-        }
-      }
-    });
-    _Budget_Creation_Budget_Creation__WEBPACK_IMPORTED_MODULE_7__.setupTimingFunctionContainer(timingFunctionContainer);
-    var clickedItem, selectedTiming;
-    var subCategoryIndex = 0;
-    _Budget_Creation_Budget_Creation__WEBPACK_IMPORTED_MODULE_7__.watchForSettingTiming(placeholderBudget, subCategoryIndex, clickedItem, selectedTiming, "Full Budget");
-    var money = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 2
-    });
-    var individualPayments = document.querySelectorAll('.individual-payment');
-    var overallBudget = document.querySelectorAll('.budget-single-goal-summary__amount');
-    individualPayments.forEach(function (ip, i) {
-      var overallSpent = overallBudget[1];
-      var overallRemaining = overallBudget[2];
-      var overallPercentageSpent = overallBudget[3];
-      var total = getOverallBudget(subCategories, overallBudget[0]);
-      var part = getOverallSpent(subCategories, overallSpent);
-
-      if (total - part < 0) {
-        overallRemaining.classList.add('negative');
-        overallRemaining.classList.remove('positive');
-      }
-
-      if (total - part === 0) {
-        overallRemaining.classList.remove('positive');
-        overallRemaining.classList.remove('negative');
-      }
-
-      if (total - part > 0) {
-        overallRemaining.classList.add('positive');
-        overallRemaining.classList.remove('negative');
-      }
-
-      var remainingValue = ip.closest('section').nextSibling.nextSibling.firstChild;
-
-      if (Number(remainingValue.textContent.split('$')[1]) > 0) {
-        remainingValue.classList.add('positive');
-        remainingValue.classList.remove('negative');
-      }
-
-      if (Number(remainingValue.textContent.split('$')[1]) === 0) {
-        remainingValue.classList.remove('positive');
-        remainingValue.classList.remove('negative');
-      }
-
-      if (Number(remainingValue.textContent.split('$')[1]) < 0) {
-        remainingValue.classList.remove('positive');
-        remainingValue.classList.add('negative');
-      }
-
-      ip.addEventListener('keyup', function (e) {
-        e.preventDefault();
-        var spent = ip.closest('section').nextSibling.firstChild;
-        var remaining = ip.closest('section').nextSibling.nextSibling.firstChild;
-        var percentageSpent = ip.closest('section').nextSibling.nextSibling.nextSibling.firstChild;
-        var total = getOverallBudget(subCategories, overallBudget[0]);
-        var part = getOverallSpent(subCategories, overallSpent);
-        var percentage = getOverallPercentageSpent(total, part);
-        overallBudget[0].textContent = money.format(getOverallBudget(subCategories, overallBudget[0]));
-        overallSpent.textContent = money.format(part);
-        overallRemaining.textContent = money.format(total - part);
-        overallPercentageSpent.textContent = "".concat(percentage, "%");
-        spent.textContent = money.format(spent.textContent.split('$')[1]);
-        remaining.textContent = money.format(ip.value - Number(spent.textContent.split('$')[1]));
-
-        if (total - part < 0) {
-          overallRemaining.classList.add('negative');
-          overallRemaining.classList.remove('positive');
-        }
-
-        if (total - part === 0) {
-          overallRemaining.classList.remove('positive');
-          overallRemaining.classList.remove('negative');
-        }
-
-        if (total - part > 0) {
-          overallRemaining.classList.add('positive');
-          overallRemaining.classList.remove('negative');
-        }
-
-        if (!Number(remaining.textContent.startsWith('-'))) {
-          remaining.classList.add('positive');
-          remaining.classList.remove('negative');
-        }
-
-        if (Number(remaining.textContent.split('$')[1]) === 0) {
-          remaining.classList.remove('positive');
-          remaining.classList.remove('negative');
-        }
-
-        if (Number(remaining.textContent.startsWith('-'))) {
-          remaining.classList.remove('positive');
-          remaining.classList.add('negative');
-        }
-
-        percentageSpent.textContent = "".concat(getSinglePercentageSpent(Number(spent.textContent.split('$')[1]), ip.value), "%");
-      });
-      ip.addEventListener('blur', function (e) {
-        e.preventDefault();
-        ip.value = Number(ip.value).toFixed(2);
-      });
-    });
-
-    if (editCategoryGoalsSubmit) {
-      editCategoryGoalsSubmit.addEventListener('click', function (e) {
-        e.preventDefault();
-        var updateObject = {};
-        updateObject.budgetId = budget._id;
-        updateObject.userId = user._id;
-        updateObject.mainCategories = [];
-        var mainCategoryTitles = document.querySelectorAll('.main-category-display__category-display__title');
-        var mainCategoryIndex = 0;
-        var subCategoryIndex = 0;
-        var emptyArray = [];
-        var temporaryObject;
-        budget.mainCategories.forEach(function (bmc, i) {
-          temporaryObject = Object.fromEntries([["title", placeholderBudget.mainCategories[i].title], ["icon", placeholderBudget.mainCategories[i].icon], ["subCategories", emptyArray]]);
-          updateObject.mainCategories[i] = temporaryObject;
-          var tempArray = Array.from(document.querySelectorAll(".sub-category-display__sub-category[data-subcategory=\"".concat(i, "\"]")));
-          var mainCategoryIndex = i;
-          tempArray.forEach(function (temp, i) {
-            var title = temp.firstChild.nextSibling.firstChild.textContent;
-            var goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
-            var amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
-            var amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
-            var percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
-            var timingOptions = bmc.subCategories[i].timingOptions;
-            var createdAt = bmc.subCategories[i].createdAt;
-
-            if (!bmc.subCategories[i].createdAt) {
-              createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
-            }
-
-            var lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
-            temporaryObject.subCategories.push(Object.fromEntries([["title", title], ["createdAt", createdAt], ["lastUpdated", lastUpdated], ["goalAmount", goalAmount], ["amountSpent", amountSpent], ["amountRemaining", amountRemaining], ["percentageSpent", percentageSpent], ["timingOptions", timingOptions]]));
-
-            if (temporaryObject.subCategories.length === tempArray.length) {
-              mainCategoryIndex++;
-              if (temporaryObject === undefined) return;
-              temporaryObject.subCategories = [];
-              return mainCategoryIndex;
-            }
-
-            if (i === tempArray.length) {
-              mainCategoryIndex++;
-            }
-          });
-
-          if (updateObject.mainCategories.length === budget.mainCategories.length) {
-            return mainCategoryIndex = 0;
-          }
-        });
-        updateObject.mainCategories.forEach(function (mc, i) {
-          // Maintain.fillSubCategoryArray(updateObject, i);
-          var mainCategoryIndex = i;
-          var tempArray = Array.from(document.querySelectorAll(".sub-category-display__sub-category[data-subcategory=\"".concat(i, "\"]")));
-          tempArray.forEach(function (temp, i) {
-            var title = temp.firstChild.nextSibling.firstChild.textContent;
-            var goalAmount = Number(temp.firstChild.nextSibling.nextSibling.firstChild.value);
-            var amountSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
-            var amountRemaining = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1]);
-            var percentageSpent = Number(temp.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('%')[0]);
-            var timingOptions = budget.mainCategories[mainCategoryIndex].subCategories[i].timingOptions;
-            var createdAt = budget.mainCategories[mainCategoryIndex].subCategories[i].createdAt;
-
-            if (!budget.mainCategories[mainCategoryIndex].subCategories[i].createdAt) {
-              createdAt = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
-            }
-
-            var lastUpdated = new Date(new Date().setHours(new Date().getHours() + new Date().getTimezoneOffset() / 60));
-            updateObject.mainCategories[mainCategoryIndex].subCategories.push(Object.fromEntries([["title", title], ["createdAt", createdAt], ["lastUpdated", lastUpdated], ["goalAmount", goalAmount], ["amountSpent", amountSpent], ["amountRemaining", amountRemaining], ["percentageSpent", percentageSpent], ["timingOptions", timingOptions]]));
-
-            if (updateObject.mainCategories[mainCategoryIndex].subCategories.length === tempArray.length) {
-              mainCategoryIndex++;
-              if (updateObject.mainCategories[mainCategoryIndex] === undefined) return;
-              updateObject.mainCategories[mainCategoryIndex].subCategories = [];
-              return mainCategoryIndex;
-            }
-
-            if (i === tempArray.length) {
-              mainCategoryIndex++;
-            }
-          });
-        });
-
-        placeholderBudget._updateBudget({
-          budgetId: budget._id,
-          budgetMainCategories: budget.mainCategories,
-          userId: user._id,
-          user: user,
-          updateObject: updateObject
-        }, "Edit-Category-Goals");
-      });
-    }
-  }
-};
-
-var getTithing = function getTithing(budget, user, currentTithingSetting) {
-  var tithingSetting;
-  var tithing = {};
-
-  if (tithingSetting === undefined || tithingSetting !== '' || tithingSetting === null) {
-    tithingSetting = currentTithingSetting;
-  }
-
-  tithing.tithingSetting = currentTithingSetting;
-  tithing.amount = budget.accounts.tithing.amount;
-  return tithing;
-};
-
-var getEmergencyFund = function getEmergencyFund(budget, emergencySetting) {
-  var emergencyFundGoal, emergencyFundGoalTiming;
-  var emergencyFund = {};
-  emergencyFund.emergencyGoalMeasurement = emergencySetting;
-
-  if (emergencySetting === "Length Of Time") {
-    emergencyFundGoal = Number(document.querySelector('.form__input--half-left').value);
-    emergencyFundGoalTiming = document.querySelector('.form__select--half-right').value;
-    if (emergencyFundGoal === '' || emergencyFundGoal === undefined || emergencyFundGoal === null) emergencyFundGoal = budget.accounts.emergencyFund.emergencyFundGoal;
-    if (emergencyFundGoalTiming === '' || emergencyFundGoalTiming === undefined || emergencyFundGoalTiming === null) emergencyFundGoalTiming = budget.accounts.emergencyFund.emergencyFundGoalTiming;
-    emergencyFund.emergencyGoalMeasurement = emergencySetting;
-    emergencyFund.emergencyFundGoal = emergencyFundGoal;
-    emergencyFund.emergencyFundGoalTiming = emergencyFundGoalTiming;
-    emergencyFund.amount = budget.accounts.emergencyFund.amount;
-    return emergencyFund;
-  }
-
-  if (emergencySetting === "Total Amount") {
-    emergencyFund.emergencyFundGoal = Number(document.querySelector('.budget-container__budget-management-container--extra-small__budget-emergency-goal-form__input').value);
-  }
-
-  return emergencyFund;
-};
-
-var getInvestmentFund = function getInvestmentFund(budget) {
-  var budgetInputs = document.querySelectorAll('.form__input--small-thin');
-  var investmentFund = {};
-  var investmentGoal = Number(budgetInputs[0].value);
-  var investmentPercentage = Number(budgetInputs[1].value);
-  if (investmentGoal === '' || investmentGoal === undefined || investmentGoal === null) investmentGoal = budget.accounts.investmentFund.investmentGoal;
-  if (investmentPercentage === '' || investmentPercentage === undefined || investmentPercentage === null) investmentPercentage = budget.accounts.investmentFund.investmentPercentage;
-  investmentFund.investmentGoal = investmentGoal;
-  investmentFund.investmentPercentage = investmentPercentage / 100;
-  investmentFund.amount = budget.accounts.investmentFund.amount;
-  return investmentFund;
-};
-
-var getSavingsFund = function getSavingsFund(budget) {
-  var budgetInputs = document.querySelectorAll('.form__input--small-thin');
-  var savingsFund = {};
-  var savingsGoal = Number(budgetInputs[0].value);
-  var savingsPercentage = Number(budgetInputs[1].value);
-  if (savingsGoal === '' || savingsGoal === undefined || savingsGoal === null) savingsGoal = budget.accounts.savingsFund.savingsGoal;
-  if (savingsPercentage === '' || savingsPercentage === undefined || savingsPercentage === null) savingsPercentage = budget.accounts.savingsFund.savingsPercentage;
-  savingsFund.savingsGoal = savingsGoal;
-  savingsFund.savingsPercentage = savingsPercentage / 100;
-  savingsFund.amount = budget.accounts.savingsFund.amount;
-  return savingsFund;
-};
-
-var getBudgetName = function getBudgetName(budget) {
-  var budgetInputs = document.querySelectorAll('.form__input--small-thin__placeholder-shown');
-  var budgetName = budgetInputs[0].value;
-  if (budgetName === '') budgetName = budget.name;
-  return budgetName;
-};
-
-var compileBudgetManagementUpdates = function compileBudgetManagementUpdates(emergencySetting, currentTithingSetting, budget, placeholderBudget, user) {
-  /*
-    Quick note here...,
-     Building the update object outside of a method is alright, however, how this really should go down is to update the placeholder budget first.
-     Then, after the place holder budget is updated within the limits of the current page, there should be an object that is built based off of what CAN be updated on that page.
-    For the Budget Management Page, that would be the budget's name and the budget's accounts.  So, sending an object with THAT information would be most beneficial.
-    Another and final example for now would be the edit category goals page be fore changing the timing, goals, etc... on the placeholder budget and sending the whole main categories array
-    to the update functionality in the backend to update that budget that way.
-   */
-  // GET BUDGET NAME
-  var budgetName = getBudgetName(budget); // The methods below are returning the objects of these accounts.  They are NOT returning the values themselves.
-
-  var savingsFund = getSavingsFund(budget);
-  var investmentFund = getInvestmentFund(budget);
-  var emergencyFund = getEmergencyFund(budget, emergencySetting);
-  var tithing;
-  var updateObject = {};
-
-  if (user.latterDaySaint === true) {
-    tithing = getTithing(budget, user, currentTithingSetting);
-
-    var name = placeholderBudget._addName(budgetName);
-
-    updateObject.budgetId = budget._Id;
-    updateObject.userId = user._Id;
-    updateObject.name = name;
-    updateObject.accounts = {
-      unAllocated: {
-        amount: placeholderBudget.accounts.unAllocated.amount
-      },
-      monthlyBudget: {
-        amount: placeholderBudget.accounts.monthlyBudget.amount
-      },
-      emergencyFund: emergencyFund,
-      savingsFund: savingsFund,
-      expenseFund: {
-        amount: placeholderBudget.accounts.expenseFund.amount
-      },
-      surplus: {
-        amount: placeholderBudget.accounts.surplus.amount
-      },
-      investmentFund: investmentFund,
-      debt: {
-        amount: placeholderBudget.accounts.debt.amount,
-        debtAmount: Number(placeholderBudget.accounts.debt.debtAmount)
-      },
-      tithing: tithing
-    };
-
-    placeholderBudget._updateBudget({
-      updateObject: updateObject
-    }, "Budget-Management");
-  }
-
-  if (user.latterDaySaint === false) {
-    var _name = placeholderBudget._addName(budgetName);
-
-    updateObject.budgetId = budget._Id;
-    updateObject.userId = user._Id;
-    updateObject.name = _name;
-    updateObject.accounts = {
-      unAllocated: {
-        amount: placeholderBudget.accounts.unAllocated.amount
-      },
-      monthlyBudget: {
-        amount: placeholderBudget.accounts.monthlyBudget.amount
-      },
-      emergencyFund: emergencyFund,
-      savingsFund: savingsFund,
-      expenseFund: {
-        amount: placeholderBudget.accounts.expenseFund.amount
-      },
-      surplus: {
-        amount: placeholderBudget.accounts.surplus.amount
-      },
-      investmentFund: investmentFund,
-      debt: {
-        amount: placeholderBudget.accounts.debt.amount,
-        debtAmount: Number(placeholderBudget.accounts.debt.debtAmount)
-      }
-    };
-
-    placeholderBudget._updateBudget({
-      updateObject: updateObject
-    }, "Budget-Management");
-  }
-};
-
-var changeEmergencyInput = function changeEmergencyInput(array, setting) {
-  if (setting === "Length Of Time") {
-    array.forEach(function (eSetting) {
-      eSetting.classList.remove('closed');
-      eSetting.classList.remove('open');
-    });
-    array[0].classList.add('open');
-    array[1].classList.add('closed');
-  }
-
-  if (setting === "Total Amount") {
-    array.forEach(function (eSetting) {
-      eSetting.classList.remove('closed');
-      eSetting.classList.remove('open');
-    });
-    array[1].classList.add('open');
-    array[0].classList.add('closed');
-  }
-};
-
-var _setupBudgetManagement = function _setupBudgetManagement(budget, placeholderBudget, user) {
-  var budgetNameDisplay = document.querySelector('.form--extra-small__budget-name-display');
-  var budgetNameInput = document.querySelectorAll('.form__input--small-thin__placeholder-shown')[0];
-
-  if (window.location.pathname.split('/')[6] === "Budget-Management") {
-    var invisibleCheckboxes = document.querySelectorAll('.form__input--invisible-checkbox');
-
-    if (budgetNameInput) {
-      budgetNameInput.addEventListener('keyup', function (e) {
-        e.preventDefault();
-        budgetNameDisplay.textContent = budgetNameInput.value;
-      });
-    }
-
-    var emergencyFundSettings = document.querySelectorAll('.form__label--checkbox-container');
-    var emergencySetting;
-    var emergencySelectionContainer = document.querySelector('.form__section--small-thin');
-    var smallThinInputs = document.querySelectorAll('.form__input--small-thin');
-    var emergencyTotalInput = document.querySelectorAll('.form__input--small-thin__placeholder-shown')[1];
-    var emergencySettings = [emergencySelectionContainer, emergencyTotalInput];
-    emergencySettings.forEach(function (eSetting) {
-      return eSetting.classList.remove('visible');
-    });
-
-    if (budget.accounts.emergencyFund.emergencyGoalMeasurement === "Length Of Time") {
-      emergencySettings.forEach(function (es) {
-        es.classList.add('closed');
-        es.classList.remove('open');
-      });
-      emergencySettings[0].classList.remove('closed');
-      emergencySettings[0].classList.add('open');
-    }
-
-    if (budget.accounts.emergencyFund.emergencyGoalMeasurement === "Total Amount") {
-      emergencySettings.forEach(function (es) {
-        es.classList.add('closed');
-        es.classList.remove('open');
-      });
-      emergencySettings[1].classList.remove('closed');
-      emergencySettings[1].classList.add('open');
-    }
-
-    emergencyFundSettings.forEach(function (setting) {
-      setting.classList.remove('checked');
-      if (setting.textContent === budget.accounts.emergencyFund.emergencyGoalMeasurement) setting.classList.toggle('checked');
-      emergencySetting = budget.accounts.emergencyFund.emergencyGoalMeasurement;
-      setting.addEventListener('click', function (e) {
-        e.preventDefault();
-        emergencyFundSettings.forEach(function (es) {
-          return es.classList.remove('checked');
-        });
-        setting.classList.toggle('checked');
-        emergencySetting = setting.textContent;
-        changeEmergencyInput(emergencySettings, emergencySetting, budget);
-      });
-    });
-    var tithingCheckboxes = [invisibleCheckboxes[2], invisibleCheckboxes[3], invisibleCheckboxes[4]];
-    var currentTithingSetting;
-    var budgetManagementSubmitButtons = document.querySelectorAll('.button--extra-extra-small');
-    var wideBudgetManagementSubmitButtons = document.querySelectorAll('.button--extra-extra-small__wide');
-    var budgetNameSubmit = budgetManagementSubmitButtons[0];
-    var savingsGoalSubmit = budgetManagementSubmitButtons[1];
-    var investmentGoalSubmit = budgetManagementSubmitButtons[2];
-    var emergencyGoalSubmit = budgetManagementSubmitButtons[3];
-    var tithingSettingSubmit = budgetManagementSubmitButtons[4];
-    var updateSubmitButtons = [budgetNameSubmit, savingsGoalSubmit, investmentGoalSubmit, emergencyGoalSubmit];
-
-    if (user.latterDaySaint === true) {
-      updateSubmitButtons.push(tithingSettingSubmit);
-    }
-
-    updateSubmitButtons.forEach(function (ub) {
-      ub.addEventListener('click', function (e) {
-        e.preventDefault();
-        compileBudgetManagementUpdates(emergencySetting, currentTithingSetting, budget, placeholderBudget, user);
-      });
-    });
-    watchForBudgetExit();
-    watchForBudgetDeletion();
-    if (!budget.accounts.tithing) return;
-
-    if (budget.accounts.tithing.tithingSetting) {
-      var tithingSettings = document.querySelectorAll('.form__label--small-thin__taller--thirds__tithing');
-
-      var _tithingCheckboxes = document.querySelectorAll('.budget-container__budget-management-container--extra-small__budget-tithing-setting-form__setting-container__label-container__input--checkbox');
-
-      tithingSettings.forEach(function (ts) {
-        ts.classList.remove('selected');
-        if (budget.accounts.tithing.tithingSetting === "Gross") tithingSettings[0].classList.add('selected');
-        if (budget.accounts.tithing.tithingSetting === "Net") tithingSettings[1].classList.add('selected');
-        if (budget.accounts.tithing.tithingSetting === "Surplus") tithingSettings[2].classList.add('selected');
-      });
-      tithingSettings.forEach(function (ts) {
-        if (ts.classList.contains('selected')) currentTithingSetting = ts.textContent;
-      });
-      tithingSettings.forEach(function (ts) {
-        ts.addEventListener('click', function (e) {
-          e.preventDefault();
-          tithingSettings.forEach(function (setting) {
-            return setting.classList.remove('selected');
-          });
-          ts.classList.add('selected');
-          currentTithingSetting = ts.textContent;
-        });
-      });
-    }
-  }
-};
-
-var cycleMainCategories = function cycleMainCategories(direction, index, subCats, budget) {
-  var categoryIcon = document.querySelector('.main-category-display__category-display__icon');
-  var categoryTitle = document.querySelector('.main-category-display__category-display__title');
-
-  if (direction === "left") {
-    categoryIcon.classList.remove(categoryIcon.classList[2]);
-    categoryIcon.classList.add("".concat(budget.mainCategories[index].icon));
-    categoryTitle.textContent = budget.mainCategories[index].title;
-    subCats.forEach(function (sc) {
-      sc.classList.add('closed');
-      if (Number(sc.dataset.subcategory) === index) sc.classList.remove('closed');
-      if (Number(sc.dataset.subcategory) === index) sc.classList.add('open');
-    });
-  }
-
-  if (direction === "right") {
-    categoryIcon.classList.remove(categoryIcon.classList[2]);
-    categoryIcon.classList.add("".concat(budget.mainCategories[index].icon));
-    categoryTitle.textContent = budget.mainCategories[index].title;
-    subCats.forEach(function (sc) {
-      sc.classList.add('closed');
-      if (Number(sc.dataset.subcategory) === index) sc.classList.remove('closed');
-      if (Number(sc.dataset.subcategory) === index) sc.classList.add('open');
-    });
-  }
-};
-
-var _setupCurrentMonth = function _setupCurrentMonth(budget, placeholderBudget, user) {
-  var categoryIcon = document.querySelector('.main-category-display__category-display__icon');
-  var categoryTitle = document.querySelector('.main-category-display__category-display__title');
-  var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
-  var leftButton = document.querySelector('.left');
-  var rightButton = document.querySelector('.right');
-  var currentMonth = _Classes_FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_4__.myCalendar.getMonth();
-
-  if (currentMonth !== budget.currentMonth) {
-    placeholderBudget.previousMonth = placeholderBudget.currentMonth;
-    placeholderBudget.currentMonth = currentMonth;
-    placeholderBudget.mainCategories.forEach(function (mc) {
-      mc.lastUpdated = new Date();
-      mc.subCategories.forEach(function (sc) {
-        sc.lastUpdated = new Date();
-        sc.amountSpent = 0;
-        sc.amountRemaining = Number(sc.goalAmount - sc.amountSpent);
-        sc.percentageSpent = Number(sc.amountSpent / sc.goalAmount);
-
-        if (isNaN(sc.percentageSpent)) {
-          sc.percentageSpent = 0;
-        }
-      });
-    });
-    var updateObject = {
-      budgetId: budget._id,
-      userId: user._id,
-      currentMonth: currentMonth,
-      previousMonth: placeholderBudget.previousMonth,
-      mainCategories: placeholderBudget.mainCategories
-    };
-
-    placeholderBudget._updateBudget({
-      updateObject: updateObject
-    }, "Dashboard");
-
-    _Application_Utility__WEBPACK_IMPORTED_MODULE_11__.reloadPage();
-  }
-
-  var categoryIndex = 0;
-  subCategories.forEach(function (sc, i) {
-    sc.classList.add('closed');
-    if (Number(sc.dataset.subcategory) === 0) sc.classList.remove('closed');
-    if (Number(sc.dataset.subcategory) === 0) sc.classList.add('open');
-  });
-
-  if (leftButton) {
-    leftButton.addEventListener('click', function (e) {
-      e.preventDefault();
-      categoryIndex--;
-      if (categoryIndex <= 0) categoryIndex = 0;
-      cycleMainCategories('left', categoryIndex, subCategories, budget);
-    });
-  }
-
-  if (rightButton) {
-    rightButton.addEventListener('click', function (e) {
-      e.preventDefault();
-      categoryIndex++;
-      if (categoryIndex >= budget.mainCategories.length - 1) categoryIndex = budget.mainCategories.length - 1;
-      cycleMainCategories('right', categoryIndex, subCategories, budget);
-    });
-  }
-};
-
-var selectDayAndShowTransactions = function selectDayAndShowTransactions(event) {
-  var upcomingTransactions = document.querySelectorAll('.upcoming-bills__bill');
-  var e = event;
-  var selectedDay = e.target;
-  var monthHeader = document.querySelector('.bill-calendar__header__title');
-  var splitMonthHeader = monthHeader.textContent.split(' ');
-  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  upcomingTransactions.forEach(function (transaction, i) {
-    transaction.classList.remove('open');
-    transaction.classList.add('closed');
-    var date = new Date(transaction.firstChild.nextSibling.firstChild.textContent);
-    if (date.getFullYear() !== Number(splitMonthHeader[2])) return;
-    if (months[date.getMonth()] !== splitMonthHeader[0]) return;
-
-    if (date.getDate() === Number(selectedDay.textContent)) {
-      transaction.classList.remove('closed');
-      transaction.classList.add('open');
-    }
-  });
-}; // WATCH FOR CALENDAR DAY SELECTION FOR TO DISPLAY CORRECT TRANSACTIONS
-
-
-var _watchDaySelection = function _watchDaySelection() {
-  var calendarDays = document.querySelectorAll('.bill-calendar__days__single-day');
-  calendarDays.forEach(function (day, i) {
-    day.addEventListener('click', selectDayAndShowTransactions);
-  });
-}; // DISPLAY UPCOMING TRANSACTIONS -- NEED TO DO THIS HERE INSTEAD OF PUG FOR THE REASON OF THE TRANSACTIONS THAT HAVE TWO DUE DATES.
-
-
-var displayUpcomingTransactions = function displayUpcomingTransactions(container, transactions) {
-  var money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2
-  });
-  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  transactions.forEach(function (transaction, i) {
-    if (transaction.timingOptions.paymentCycle !== "Bi-Annual" || transaction.timingOptions.paymentCycle !== "Bi-Monthly") {
-      var index = i;
-      transaction.timingOptions.paymentSchedule.forEach(function (date, i) {
-        var upcomingBill = document.createElement('section');
-        upcomingBill.classList.add('upcoming-bills__bill');
-        upcomingBill.classList.add('r__upcoming-bills__bill');
-        upcomingBill.dataset.transaction = index;
-        var billSections = 5;
-        var billSectionStart = 0;
-
-        while (billSectionStart < billSections) {
-          var billSection = document.createElement('section');
-          billSection.classList.add('upcoming-bills__bill__bill-item');
-          billSection.classList.add('r__upcoming-bills__bill__bill-item');
-          insertElement(upcomingBill, billSection);
-
-          if (billSectionStart === 0) {
-            var billAccount = document.createElement('p');
-            billAccount.classList.add('upcoming-bills__bill__bill-item__text');
-            billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
-            billAccount.textContent = transaction.account;
-            insertElement(billSection, billAccount);
-          }
-
-          if (billSectionStart === 1) {
-            var _billAccount = document.createElement('p');
-
-            _billAccount.classList.add('upcoming-bills__bill__bill-item__text');
-
-            _billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
-
-            _billAccount.textContent = "".concat(new Date(date).getDate(), " ").concat(months[new Date(date).getMonth()], " ").concat(new Date(date).getFullYear());
-            insertElement(billSection, _billAccount);
-          }
-
-          if (billSectionStart === 2) {
-            var _billAccount2 = document.createElement('p');
-
-            _billAccount2.classList.add('upcoming-bills__bill__bill-item__text');
-
-            _billAccount2.classList.add('r__upcoming-bills__bill__bill-item__text');
-
-            _billAccount2.textContent = transaction.lender;
-
-            if (!transaction.lender) {
-              _billAccount2.textContent = transaction.location;
-            }
-
-            insertElement(billSection, _billAccount2);
-          }
-
-          if (billSectionStart === 3) {
-            var _billAccount3 = document.createElement('p');
-
-            _billAccount3.classList.add('upcoming-bills__bill__bill-item__text');
-
-            _billAccount3.classList.add('r__upcoming-bills__bill__bill-item__text');
-
-            _billAccount3.textContent = money.format(transaction.amount);
-            insertElement(billSection, _billAccount3);
-          }
-
-          if (billSectionStart === 4) {
-            var paidOrNot = document.createElement('section');
-            paidOrNot.classList.add('upcoming-bills__bill__bill-item__checkbox-container');
-            paidOrNot.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container');
-            var paidOrNotInput = document.createElement('input');
-            paidOrNotInput.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
-            paidOrNotInput.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
-            paidOrNotInput.id = "paymentCheck";
-            paidOrNotInput.type = "checkbox";
-            var paidOrNotLabel = document.createElement('label');
-            paidOrNotLabel.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-label');
-            paidOrNotLabel.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-label');
-            paidOrNotLabel.textContent = "Payment Made";
-            paidOrNotLabel.for = "paymentCheck";
-            insertElement(paidOrNot, paidOrNotInput);
-            insertElement(paidOrNot, paidOrNotLabel);
-            insertElement(billSection, paidOrNot);
-          }
-
-          billSectionStart++;
-        }
-
-        insertElement(container, upcomingBill);
-      });
-    }
-
-    if (transaction.timingOptions.paymentCycle === "Bi-Annual" || transaction.timingOptions.paymentCycle === "Bi-Monthly") {
-      var _index = i;
-      transaction.timingOptions.paymentSchedule.forEach(function (array, i) {
-        // let dateIndex = index;
-        array.forEach(function (date, i) {
-          var upcomingBill = document.createElement('section');
-          upcomingBill.classList.add('upcoming-bills__bill');
-          upcomingBill.classList.add('r__upcoming-bills__bill');
-          upcomingBill.dataset.transaction = _index;
-          var billSections = 5;
-          var billSectionStart = 0;
-
-          while (billSectionStart < billSections) {
-            var billSection = document.createElement('section');
-            billSection.classList.add('upcoming-bills__bill__bill-item');
-            billSection.classList.add('r__upcoming-bills__bill__bill-item');
-            insertElement(upcomingBill, billSection);
-
-            if (billSectionStart === 0) {
-              var billAccount = document.createElement('p');
-              billAccount.classList.add('upcoming-bills__bill__bill-item__text');
-              billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
-              billAccount.textContent = transaction.account;
-              insertElement(billSection, billAccount);
-            }
-
-            if (billSectionStart === 1) {
-              var _billAccount4 = document.createElement('p');
-
-              _billAccount4.classList.add('upcoming-bills__bill__bill-item__text');
-
-              _billAccount4.classList.add('r__upcoming-bills__bill__bill-item__text');
-
-              _billAccount4.textContent = "".concat(new Date(date).getDate(), " ").concat(months[new Date(date).getMonth()], " ").concat(new Date(date).getFullYear());
-              insertElement(billSection, _billAccount4);
-            }
-
-            if (billSectionStart === 2) {
-              var _billAccount5 = document.createElement('p');
-
-              _billAccount5.classList.add('upcoming-bills__bill__bill-item__text');
-
-              _billAccount5.classList.add('r__upcoming-bills__bill__bill-item__text');
-
-              _billAccount5.textContent = transaction.lender;
-
-              if (!transaction.lender) {
-                _billAccount5.textContent = transaction.location;
-              }
-
-              insertElement(billSection, _billAccount5);
-            }
-
-            if (billSectionStart === 3) {
-              var _billAccount6 = document.createElement('p');
-
-              _billAccount6.classList.add('upcoming-bills__bill__bill-item__text');
-
-              _billAccount6.classList.add('r__upcoming-bills__bill__bill-item__text');
-
-              _billAccount6.textContent = money.format(transaction.amount);
-              insertElement(billSection, _billAccount6);
-            }
-
-            if (billSectionStart === 4) {
-              var paidOrNot = document.createElement('section');
-              paidOrNot.classList.add('upcoming-bills__bill__bill-item__checkbox-container');
-              paidOrNot.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container');
-              var paidOrNotInput = document.createElement('input');
-              paidOrNotInput.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
-              paidOrNotInput.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
-              paidOrNotInput.id = "paymentCheck";
-              paidOrNotInput.type = "checkbox";
-              var paidOrNotLabel = document.createElement('label');
-              paidOrNotLabel.classList.add('upcoming-bills__bill__bill-item__checkbox-container__payment-label');
-              paidOrNotLabel.classList.add('r__upcoming-bills__bill__bill-item__checkbox-container__payment-label');
-              paidOrNotLabel.textContent = "Payment Made";
-              paidOrNotLabel.for = "paymentCheck";
-              insertElement(paidOrNot, paidOrNotInput);
-              insertElement(paidOrNot, paidOrNotLabel);
-              insertElement(billSection, paidOrNot);
-            }
-
-            billSectionStart++;
-          }
-
-          insertElement(container, upcomingBill);
-        });
-      });
-    }
-  });
-}; // SETTING UP BILL / TRANSACTION CALENDAR
-
-
-var _setupBillCalendar = function _setupBillCalendar(budget, placeholderBudget, user) {
-  var calendar = _Classes_FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_4__.myCalendar;
-  var currentMonth = calendar.getMonth();
-  var currentMonthIndex = calendar.getMonthIndex();
-  var currentYear = calendar.getYear();
-  calendar.makeCalendar(currentMonthIndex, currentMonth, currentYear, '.bill-calendar__days__single-day', // NEEDS PERIOD FOR .querySelectorAll
-  'bill-calendar__days__single-day--current-day', // CLASS IS ONLY BEING ADDED via .classList.add
-  'un-used-day' // CLASS IS ONLY BEING ADDED via .classList.add
-  );
-  var monthLeft = document.querySelector('.month-left');
-  var monthRight = document.querySelector('.month-right');
-
-  if (monthLeft) {
-    monthLeft.addEventListener('click', function (e) {
-      e.preventDefault();
-      currentMonthIndex--;
-
-      if (currentMonthIndex === -1) {
-        currentMonthIndex = 11;
-        currentYear--;
-      }
-
-      calendar.goBackAMonth(currentMonthIndex, currentYear, '.bill-calendar__days__single-day', 'bill-calendar__days__single-day--current-day', 'un-used-day');
-    });
-  }
-
-  if (monthRight) {
-    monthRight.addEventListener('click', function (e) {
-      e.preventDefault();
-      currentMonthIndex++;
-
-      if (currentMonthIndex === 12) {
-        currentMonthIndex = 0;
-        currentYear++;
-      }
-
-      calendar.goForwardAMonth(currentMonthIndex, currentYear, '.bill-calendar__days__single-day', 'bill-calendar__days__single-day--current-day', 'un-used-day');
-    });
-  }
-
-  var upcomingBillsContainer = document.querySelector('.upcoming-bills');
-  displayUpcomingTransactions(upcomingBillsContainer, budget.transactions.plannedTransactions);
-  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  var upcomingTransactions = document.querySelectorAll('.upcoming-bills__bill');
-  var currentDay = document.querySelector('.bill-calendar__days__single-day--current-day');
-  var monthHeader = document.querySelector('.bill-calendar__header__title');
-
-  if (monthHeader) {
-    var splitMonthHeader = monthHeader.textContent.split(' ');
-    upcomingTransactions.forEach(function (transaction, i) {
-      transaction.classList.add('closed');
-      var date = new Date(transaction.firstChild.nextSibling.firstChild.textContent);
-
-      if (date.getDate() === Number(currentDay.textContent) && months[date.getMonth()] === splitMonthHeader[0] && date.getFullYear() === Number(splitMonthHeader[2])) {
-        transaction.classList.remove('closed');
-        transaction.classList.add('open');
-      }
-    });
-
-    _watchDaySelection();
-  }
-
-  var paymentChecks = document.querySelectorAll('.upcoming-bills__bill__bill-item__checkbox-container__payment-checkbox');
-  paymentChecks.forEach(function (check, i) {
-    check.addEventListener('click', function (e) {
-      var upcomingBills = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(document.querySelectorAll('.upcoming-bills__bill'));
-
-      var transactionIndex = Number(check.closest('.upcoming-bills__bill').dataset.transaction);
-      var upcomingBill = document.querySelectorAll('.upcoming-bills__bill')[i];
-      var accountType = upcomingBill.firstChild.firstChild.textContent;
-      var transactionDate = upcomingBill.firstChild.nextSibling.firstChild.textContent; // THE INDEX JUST UNDERNEATH WILL NEED TO CHANGE TO THE INDEX OF THE ACTUAL UPCOMING BILL, SO WE'LL NEED THE DATASET OF THE BILL HERE.
-
-      var transactionLocation = placeholderBudget.transactions.plannedTransactions[transactionIndex].location;
-      var transactionAmount = upcomingBill.firstChild.nextSibling.nextSibling.nextSibling.firstChild.textContent.split('$')[1];
-      var transactionBill = new _Classes_Transaction__WEBPACK_IMPORTED_MODULE_9__.Transaction({
-        date: transactionDate,
-        location: transactionLocation
-      });
-      var currentBill = placeholderBudget.transactions.plannedTransactions[transactionIndex];
-
-      if (accountType === "Monthly Budget") {
-        transactionBill.transactionType = "Withdrawal";
-        transactionBill.addToReceipt({
-          accountSelected: accountType,
-          mainCategory: currentBill.category,
-          subCategory: currentBill.subCategory,
-          description: currentBill.name,
-          amount: Number(transactionAmount)
-        });
-      }
-
-      if (accountType === "Expense Fund") {
-        transactionBill.transactionType = "Withdrawal";
-        transactionBill.addToReceipt({
-          accountSelected: accountType,
-          transactionType: currentBill.subAccount,
-          timing: currentBill.timingOptions.paymentCycle,
-          expenditure: currentBill.name,
-          description: currentBill.name,
-          amount: Number(transactionAmount)
-        });
-      }
-
-      if (accountType === "Surplus") {
-        transactionBill.transactionType = "Withdrawal";
-        transactionBill.addToReceipt({
-          accountSelected: accountType,
-          timing: currentBill.timingOptions.paymentCycle,
-          expenditure: currentBill.name,
-          description: currentBill.name,
-          amount: Number(transactionAmount)
-        });
-      }
-
-      if (accountType === "Savings Fund") {
-        transactionBill.transactionType = "Withdrawal";
-        transactionBill.addToReceipt({
-          accountSelected: accountType,
-          timing: currentBill.timingOptions.paymentCycle,
-          expenditure: currentBill.name,
-          description: currentBill.name,
-          amount: Number(transactionAmount)
-        });
-      }
-
-      if (accountType === "Debt") {
-        transactionBill.transactionType = "Withdrawal";
-        transactionBill.addToReceipt({
-          accountSelected: accountType,
-          lender: currentBill.lender,
-          timing: currentBill.timingOptions.paymentCycle,
-          expenditure: currentBill.name,
-          description: currentBill.name,
-          amount: Number(transactionAmount)
-        });
-      }
-
-      console.log(transactionDate, new Date(transactionDate).toISOString(), new Date(new Date(transactionDate).setHours(0, 0, 0, 0)), currentBill.timingOptions.paymentSchedule[0] // new Date(new Date(currentBill.timingOptions.paymentSchedule[0]).setHours(0, 0, 0, 0))
-      );
-
-      if (currentBill.timingOptions.paymentCycle !== "Bi-Monthly" && currentBill.timingOptions.paymentCycle !== "Bi-Annual") {
-        // LOOP THROUGH MAIN CATEGORIES
-        placeholderBudget.mainCategories.forEach(function (mc, i) {
-          // IF MAIN CATEGORY MATCHES THE CURRENT BILL CATEGORY, LOOP THROUGH ITS SUBCATEGORIES
-          if (mc.title === currentBill.category) {
-            mc.subCategories.forEach(function (sc, i) {
-              if (sc.title === currentBill.name) {
-                // IF SUB CATEGORY MATCHES CURRENT BILL SUB CATEGORY NAME, DOUBLE CHECK PAYMENT CYCLE.
-                if (sc.timingOptions.paymentCycle !== "Bi-Monthly" && sc.timingOptions.paymentCycle !== "Bi-Annual") {
-                  sc.timingOptions.paymentSchedule = sc.timingOptions.paymentSchedule.filter(function (date) {
-                    return new Date(new Date(date).setHours(0, 0, 0, 0)).toISOString() !== new Date(new Date(transactionDate).setHours(0, 0, 0, 0)).toISOString();
-                  });
-                }
-
-                if (sc.timingOptions.paymentCycle === "Bi-Monthly" && sc.timingOptions.paymentCycle === "Bi-Annual") {
-                  sc.timingOptions.paymentSchedule.forEach(function (dateArray, i) {
-                    sc.timingOptions.paymentSchedule[i] = dateArray.filter(function (date) {
-                      return new Date(new Date(date).setHours(0, 0, 0, 0)).toISOString() !== new Date(new Date(transactionDate).setHours(0, 0, 0, 0)).toISOString();
-                    });
-                  });
-                }
-
-                console.log(sc);
-                console.log(sc.timingOptions.paymentSchedule);
-              }
-            });
-          }
-        });
-        currentBill.timingOptions.paymentSchedule = currentBill.timingOptions.paymentSchedule.filter(function (date) {
-          console.log(new Date(new Date(date).setHours(0, 0, 0, 0)));
-          return new Date(new Date(date).setHours(0, 0, 0, 0)).toISOString() !== new Date(new Date(transactionDate).setHours(0, 0, 0, 0)).toISOString();
-        });
-      }
-
-      if (currentBill.timingOptions.paymentCycle === "Bi-Monthly" || currentBill.timingOptions.paymentCycle === "Bi-Annual") {
-        currentBill.timingOptions.paymentSchedule.forEach(function (dateArray, i) {
-          currentBill.timingOptions.paymentSchedule[i] = dateArray.filter(function (date) {
-            return new Date(new Date(date).setHours(0, 0, 0, 0)).toISOString() !== new Date(new Date(transactionDate).setHours(0, 0, 0, 0)).toISOString();
-          });
-        });
-      }
-
-      if (currentBill.timingOptions.paymentCycle !== "Bi-Monthly" && currentBill.timingOptions.paymentCycle !== "Bi-Annual") {
-        if (currentBill.timingOptions.paymentSchedule.length === 0) {
-          currentBill.paid = !currentBill.paid;
-          currentBill.paidStatus = "Paid";
-          placeholderBudget.transactions.plannedTransactions = placeholderBudget.transactions.plannedTransactions.filter(function (transaction) {
-            return transaction !== currentBill;
-          });
-        }
-
-        if (currentBill.timingOptions.paymentSchedule.length > 0) {
-          currentBill.paidStatus = "Partially Paid";
-        }
-      }
-
-      if (currentBill.timingOptions.paymentCycle === "Bi-Monthly" || currentBill.timingOptions.paymentCycle === "Bi-Annual") {
-        currentBill.timingOptions.paymentSchedule = currentBill.timingOptions.paymentSchedule.filter(function (array) {
-          return array.length > 0;
-        });
-
-        if (currentBill.timingOptions.paymentSchedule.length === 0) {
-          currentBill.paid = !currentBill.paid;
-          currentBill.paidStatus = "Paid";
-        }
-
-        if (currentBill.timingOptions.paymentSchedule.length > 0) {
-          currentBill.paidStatus = "Partially Paid";
-        }
-      }
-
-      console.log(currentBill, transactionBill);
-      placeholderBudget.transactions.recentTransactions.push(transactionBill);
-      console.log(placeholderBudget);
-      var updateObject = {
-        budgetId: budget._id,
-        userId: user._id
-      };
-      updateObject.transactions = placeholderBudget.transactions;
-      updateObject.transactions.recentTransactions[updateObject.transactions.recentTransactions.length - 1].receipt.forEach(function (receiptItem, i) {
-        if (receiptItem.account === "Monthly Budget") {
-          placeholderBudget.accounts.monthlyBudget.amount = placeholderBudget.accounts.monthlyBudget.amount - Number(receiptItem.amount);
-          placeholderBudget.mainCategories.forEach(function (category, i) {
-            if (receiptItem.category === category.title) {
-              var index = i;
-              console.log(receiptItem.category);
-              category.subCategories.forEach(function (subCategory, i) {
-                if (receiptItem.subCategory === subCategory.title) {
-                  console.log(receiptItem.subCategory);
-                  subCategory.amountSpent += receiptItem.amount;
-                  subCategory.amountRemaining = subCategory.goalAmount - subCategory.amountSpent;
-                  subCategory.percentageSpent = Number(subCategory.amountSpent / subCategory.goalAmount * 100);
-                }
-              });
-            }
-          });
-          updateObject.mainCategories = placeholderBudget.mainCategories;
-        }
-
-        if (receiptItem.account === "Emergency Fund") {
-          placeholderBudget.accounts.emergencyFund.amount = placeholderBudget.accounts.emergencyFund.amount - Number(receiptItem.amount);
-        }
-
-        if (receiptItem.account === "Savings Fund") {
-          placeholderBudget.accounts.savingsFund.amount = placeholderBudget.accounts.savingsFund.amount - Number(receiptItem.amount);
-        }
-
-        if (receiptItem.account === "Expense Fund") {
-          placeholderBudget.accounts.expenseFund.amount = placeholderBudget.accounts.expenseFund.amount - Number(receiptItem.amount);
-        }
-
-        if (receiptItem.account === "Surplus") {
-          placeholderBudget.accounts.surlus.amount = placeholderBudget.accounts.surplus.amount - Number(receiptItem.amount);
-        }
-
-        if (receiptItem.account === "Debt") {
-          placeholderBudget.accounts.debt.amount = placeholderBudget.accounts.debt.amount - Number(receiptItem.amount);
-          /* After reducing the amount that is allocated to the debt account, there needs to be a reduction of the debt amount through reducing the current amount owed for the debt that was selected.
-           To do that we need to:
-          1) Find the exact debt that is being paid.
-          2) From there, reduce it's amountOwed amount.
-           There is more steps to each of those, especially the first, but that is what needs to be done.
-          */
-        }
-      });
-      upcomingBill.remove();
-      updateObject.accounts = placeholderBudget.accounts;
-
-      placeholderBudget._updateBudget({
-        updateObject: updateObject
-      }, "Dashboard");
-
-      _Application_Utility__WEBPACK_IMPORTED_MODULE_11__.reloadPage(); // setTimeout(() => {
-      //   window.location.reload();
-      // }, 5000);
-    });
-  });
-};
-
-var calculateTotal = function calculateTotal(accountType, budget, debtAccount) {
-  var accountSections = document.querySelectorAll('.container--extra-small__content__account-total');
-  var budgetAccounts = budget.accounts;
-  var amountOfDebt = 0;
-  var budgetAccountTotals = [];
-  Object.entries(budgetAccounts).forEach(function (account, i) {
-    return budgetAccountTotals.push(account[1].amount);
-  });
-  Object.entries(budgetAccounts).forEach(function (account) {
-    if (account[0] === "debt") {
-      if (debtAccount) {
-        debtAccount.forEach(function (debt, i) {
-          if (debt.status !== "Paid Off") {
-            amountOfDebt += debt.amountOwed;
-          }
-        });
-      } // amountOfDebt = account[1].debtAmount;
-
-    }
-
-    return amountOfDebt;
-  }); // Set Money Format
-
-  var money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2
-  });
-
-  if (budget) {
-    if (accountType === "Bank Account") {
-      var initialDeposit = 0;
-      var bankVaultTotal = budgetAccountTotals.reduce(function (previous, current) {
-        return previous + current;
-      }, initialDeposit);
-      var bankAccountSection = accountSections[0];
-      var bankAccount = money.format(bankVaultTotal);
-      if (bankAccountSection) bankAccountSection.textContent = "".concat(bankAccount);
-    }
-
-    if (accountType === "Debt") {
-      var _debtAccount = accountSections[1]; // amountOfDebt += 200;
-
-      var debt = money.format(amountOfDebt);
-
-      if (_debtAccount) {
-        amountOfDebt === 0 ? _debtAccount.textContent = debt : _debtAccount.textContent = "-".concat(debt);
-      }
-    }
-
-    if (accountType === "Net Value") {
-      var _initialDeposit = 0;
-
-      var _bankVaultTotal = budgetAccountTotals.reduce(function (previous, current) {
-        return previous + current;
-      }, _initialDeposit);
-
-      var netValueAccount = accountSections[2];
-      var netValue = money.format(_bankVaultTotal - amountOfDebt);
-      if (netValueAccount) netValueAccount.textContent = netValue;
-    }
-  }
-};
-
-var getDashboardAccountTotals = function getDashboardAccountTotals(budget, placeholderBudget, user) {
-  calculateTotal("Bank Account", budget);
-  calculateTotal("Debt", budget, budget.debts);
-  calculateTotal("Net Value", budget, budget.debts); // budget-container__dashboard__container--extra-small__content__account-total
-};
-
-var showTransactionOptions = function showTransactionOptions(budget, placeholderBudget, user, optionText, transactionOptionArrays, transactionOptions) {
-  var transactionTypeSelect = document.getElementById('transactionType');
-  var transactionItemSelect = document.getElementById('savingsGoals');
-  var transactionLenderSelect = document.getElementById('lender');
-
-  (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(transactionTypeSelect.childNodes).forEach(function (child) {
-    child.remove();
-  });
-
-  (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(transactionItemSelect.childNodes).forEach(function (child) {
-    child.remove();
-  });
-
-  (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(transactionLenderSelect.childNodes).forEach(function (child) {
-    child.remove();
-  });
-
-  transactionOptionArrays.forEach(function (array) {
-    array.forEach(function (arrayItem) {
-      arrayItem.classList.remove('open');
-      arrayItem.classList.add('closed');
-      arrayItem.firstChild.classList.remove('lowered');
-    });
-  });
-  transactionOptions.forEach(function (option, i) {
-    option.classList.remove('closed');
-    option.classList.add('open');
-
-    if (optionText === "Monthly Budget") {
-      console.log(optionText);
-      option.classList.remove('lowered');
-
-      if (i === 0) {
-        console.log(option.firstChild.nextSibling.childNodes);
-        option.firstChild.nextSibling.childNodes.forEach(function (child, i) {
-          child.addEventListener('click', function (e) {
-            e.preventDefault();
-            option.nextSibling.firstChild.nextSibling.childNodes.forEach(function (subChild, i) {
-              subChild.classList.add('closed');
-              subChild.classList.remove('open');
-
-              if (subChild.dataset.category === child.dataset.category) {
-                subChild.classList.add('open');
-                subChild.classList.remove('closed');
-              }
-            });
-          });
-        });
-      }
-
-      if (i === 2) {
-        option.classList.remove('lowered');
-
-        if (transactionOptions[i - 1].getBoundingClientRect().width < 115) {
-          option.classList.add('lowered');
-        }
-      }
-    }
-
-    if (optionText === "Emergency Fund") {
-      option.classList.add('lowered');
-    }
-
-    if (optionText === "Savings Fund") {
-      option.classList.remove('raised');
-
-      if (transactionItemSelect.childNodes.length === 0) {
-        budget.transactions.plannedTransactions.forEach(function (transaction, i) {
-          if (transaction.account === "Savings Fund") {
-            var _option = document.createElement('option');
-
-            _option.classList.add('form__select--option');
-
-            _option.classList.add('r__form__select--option');
-
-            _option.textContent = transaction.name;
-            insertElement(transactionItemSelect, _option);
-          }
-        });
-      }
-    }
-
-    if (optionText === "Expense Fund") {
-      option.classList.remove('lowered');
-
-      if (i === 2) {
-        console.log(option.firstChild.nextSibling.getBoundingClientRect().width);
-        option.classList.remove('raised');
-
-        if (option.firstChild.nextSibling.getBoundingClientRect().width > 133.5) {
-          option.classList.add('raised');
-        }
-      }
-
-      var expenseTypes = ["Bill", "Subscription", "Other"];
-
-      if (transactionTypeSelect.childNodes.length === 0) {
-        expenseTypes.forEach(function (expense, i) {
-          var option = document.createElement('option');
-          option.classList.add('form__select--option');
-          option.classList.add('r__form__select--option');
-          option.textContent = expense;
-          insertElement(transactionTypeSelect, option);
-        });
-      }
-
-      if (transactionItemSelect.childNodes.length === 0) {
-        budget.transactions.plannedTransactions.forEach(function (transaction, i) {
-          if (transaction.account === "Expense Fund") {
-            var _option2 = document.createElement('option');
-
-            _option2.classList.add('form__select--option');
-
-            _option2.classList.add('r__form__select--option');
-
-            _option2.textContent = transaction.name;
-            insertElement(transactionItemSelect, _option2);
-          }
-        });
-      }
-
-      console.log(transactionTypeSelect);
-    }
-
-    if (optionText === "Surplus") {
-      option.classList.remove('raised');
-
-      if (transactionItemSelect.childNodes.length === 0) {
-        budget.transactions.plannedTransactions.forEach(function (transaction, i) {
-          if (transaction.account === "Surplus") {
-            var _option3 = document.createElement('option');
-
-            _option3.classList.add('form__select--option');
-
-            _option3.classList.add('r__form__select--option');
-
-            _option3.textContent = transaction.name;
-            insertElement(transactionItemSelect, _option3);
-          }
-        });
-      }
-    }
-
-    if (optionText === "Investment Fund") {
-      option.classList.remove('raised');
-
-      if (i === 1) {
-        option.classList.add('lowered');
-      }
-
-      var investmentTypes = ["Stock", "Real Estate", "Timeshare", "Other"];
-
-      if (transactionTypeSelect.childNodes.length === 0) {
-        investmentTypes.forEach(function (investment, i) {
-          var option = document.createElement('option');
-          option.classList.add('form__select--option');
-          option.classList.add('r__form__select--option');
-          option.textContent = investment;
-          insertElement(transactionTypeSelect, option);
-        });
-      }
-    }
-
-    if (optionText === "Debt") {
-      option.classList.remove('lowered');
-
-      if (i === 2) {
-        option.classList.remove('raised');
-        console.log(transactionOptions[i - 1].getBoundingClientRect().width);
-
-        if (transactionOptions[i - 1].getBoundingClientRect().width > 115) {
-          option.classList.add('raised');
-        }
-      }
-
-      if (transactionItemSelect.childNodes.length === 0) {
-        budget.transactions.plannedTransactions.forEach(function (transaction, i) {
-          if (transaction.account === "Debt") {
-            var _option4 = document.createElement('option');
-
-            var lenderOption = document.createElement('option');
-
-            _option4.classList.add('form__select--option');
-
-            _option4.classList.add('r__form__select--option');
-
-            lenderOption.classList.add('form__select--option');
-            lenderOption.classList.add('r__form__select--option');
-            _option4.textContent = transaction.name;
-            lenderOption.textContent = transaction.lender;
-            insertElement(transactionItemSelect, _option4);
-            insertElement(transactionLenderSelect, lenderOption);
-          }
-        });
-      }
-    }
-
-    if (optionText === "Tithing") {
-      option.classList.add('lowered');
-    }
-  });
-};
-
-var resetTransactionOptions = function resetTransactionOptions(allOptions) {
-  allOptions.forEach(function (option) {
-    option.forEach(function (optionItem) {
-      optionItem.classList.remove('open');
-      optionItem.classList.add('closed');
-    });
-  });
-};
-
-var toggleClass = function toggleClass(element, className) {
-  return element.classList.toggle(className);
-};
-
-var _watchForTransactions = function _watchForTransactions(budget, placeholderBudget, user) {
-  var dashboard = document.querySelector('.budget-dashboard');
-
-  if (dashboard) {
-    console.log(placeholderBudget);
-
-    var _money = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 2
-    });
-
-    var headerSubmitButtons = document.querySelectorAll('.button--small-container-header');
-    var incomeInputs = document.querySelectorAll('.form__input--enter-income'); // MUSTDO: Separate income into investment, savings, and un-allocated after every keystroke into net pay.
-
-    var incomeDateInput = incomeInputs[0];
-    var incomeFromInput = incomeInputs[1];
-    var grossIncomeInput = incomeInputs[2];
-    var netIncomeInput = incomeInputs[3];
-    var tithingInput;
-
-    if (user.isLatterDaySaint === true) {
-      tithingInput = incomeInputs[3];
-      netIncomeInput = incomeInputs[4];
-    }
-
-    var investmentPercentage = budget.accounts.investmentFund.investmentPercentage;
-    var savingsPercentage = budget.accounts.savingsFund.savingsPercentage;
-    var incomePreviewAmounts = [].concat((0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(document.querySelectorAll('.form__section--early-income-view__income-view__amount')), [document.querySelector('.form__section--early-income-view__income-view--purple__amount')]);
-    var tithed = false;
-    netIncomeInput.addEventListener('keyup', function (e) {
-      e.preventDefault();
-      incomePreviewAmounts[0].textContent = _money.format(netIncomeInput.value * investmentPercentage);
-      incomePreviewAmounts[1].textContent = _money.format(netIncomeInput.value * savingsPercentage);
-
-      if (user.latterDaySaint === true) {
-        incomePreviewAmounts[2].textContent = _money.format(0);
-
-        if (budget.accounts.tithing.tithingSetting === "Gross") {
-          incomePreviewAmounts[2].textContent = _money.format(grossIncomeInput.value * 0.1);
-        }
-
-        if (budget.accounts.tithing.tithingSetting === "Net") {
-          incomePreviewAmounts[2].textContent = _money.format(netIncomeInput.value * 0.1);
-        }
-
-        if (budget.accounts.tithing.tithingSetting !== "Surplus") {
-          incomePreviewAmounts[3].textContent = _money.format(netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1]) - Number(incomePreviewAmounts[2].textContent.split('$')[1]));
-        }
-
-        if (budget.accounts.tithing.tithingSetting === "Surplus") {
-          incomePreviewAmounts[2].textContent = _money.format(netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1]));
-        }
-      }
-
-      if (user.latterDaySaint === false) {
-        incomePreviewAmounts[2].textContent = _money.format(netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1]));
-      }
-    });
-    var tithedSwitch = document.querySelector('.form__input--tithing');
-
-    if (tithedSwitch) {
-      tithedSwitch.addEventListener('click', function (e) {
-        e.preventDefault();
-        toggleClass(tithedSwitch, "form__input--tithing");
-        toggleClass(tithedSwitch, "form__input--tithing--tithed");
-        tithed = !tithed;
-        console.log(tithed);
-      });
-    } // ENTERING INCOME
-
-
-    headerSubmitButtons[0].addEventListener('click', function (e) {
-      var updateObject, transaction, netAmount;
-      var unAllocatedAmount = budget.accounts.unAllocated.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1]);
-      var savingsAmount = budget.accounts.savingsFund.amount + Number(incomePreviewAmounts[1].textContent.split('$')[1]);
-      var investmentAmount = budget.accounts.investmentFund.amount + Number(incomePreviewAmounts[0].textContent.split('$')[1]);
-
-      if (user.latterDaySaint === false) {
-        netAmount = Number(incomePreviewAmounts[2].textContent.split('$')[1]);
-        console.log(incomePreviewAmounts[2].textContent.split('$')[1]);
-
-        if (incomePreviewAmounts[2].textContent.split('$')[1].includes(',')) {
-          netAmount = Number(incomePreviewAmounts[2].textContent.split('$')[1].split(',').join(''));
-          unAllocatedAmount = budget.accounts.unAllocated.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1].split(',').join(''));
-        }
-
-        transaction = new _Classes_Transaction__WEBPACK_IMPORTED_MODULE_9__.Transaction({
-          date: incomeDateInput.value,
-          type: "Deposit",
-          location: incomeFromInput.value
-        });
-        console.log(transaction);
-        transaction.addToReceipt({
-          accountSelected: "Un-Allocated",
-          account: "Un-Allocated",
-          grossAmount: Number(grossIncomeInput.value),
-          netAmount: Number(netIncomeInput.value),
-          deposited: Number(netAmount),
-          user: user,
-          budget: budget
-        });
-        placeholderBudget.transactions.recentTransactions.push(transaction);
-        updateObject = {
-          budgetId: budget._id,
-          userId: user._id,
-          user: user,
-          accounts: {
-            unAllocated: {
-              amount: unAllocatedAmount
-            },
-            monthlyBudget: placeholderBudget.accounts.monthlyBudget,
-            emergencyFund: placeholderBudget.accounts.emergencyFund,
-            savingsFund: {
-              savingsGoal: placeholderBudget.accounts.savingsFund.savingsGoal,
-              savingsPercentage: placeholderBudget.accounts.savingsFund.savingsPercentage,
-              amount: savingsAmount
-            },
-            expenseFund: placeholderBudget.accounts.expenseFund,
-            surplus: placeholderBudget.accounts.surplus,
-            investmentFund: {
-              investmentGoal: placeholderBudget.accounts.investmentFund.investmentGoal,
-              investmentPercentage: placeholderBudget.accounts.investmentFund.investmentPercentage,
-              amount: investmentAmount
-            },
-            debt: placeholderBudget.accounts.debt
-          },
-          transactions: placeholderBudget.transactions
-        };
-      }
-
-      if (user.latterDaySaint === true) {
-        transaction = new _Classes_Transaction__WEBPACK_IMPORTED_MODULE_9__.Transaction({
-          date: new Date(incomeDateInput.value),
-          type: "Deposit",
-          location: incomeFromInput.value
-        }); // This may not be the final place for this.  Only because if I make it so that the tithing account only shows up when a Latter Day Saint has Gross or Net calculated tithing.
-
-        if (budget.accounts.tithing.tithingSetting !== "Surplus") {
-          netAmount = Number(incomePreviewAmounts[3].textContent.split('$')[1]);
-          console.log(incomePreviewAmounts[2].textContent.split('$')[1]);
-
-          if (incomePreviewAmounts[3].textContent.split('$')[1].includes(',')) {
-            netAmount = Number(incomePreviewAmounts[3].textContent.split('$')[1].split(',').join(''));
-            unAllocatedAmount = budget.accounts.unAllocated.amount + Number(incomePreviewAmounts[3].textContent.split('$')[1].split(',').join(''));
-          }
-
-          transaction.addToReceipt({
-            account: "Un-Allocated",
-            grossAmount: Number(grossIncomeInput.value),
-            netAmount: Number(netIncomeInput.value),
-            deposited: Number(netAmount),
-            tithed: tithed,
-            user: user,
-            budget: budget
-          });
-          var tithingAmount = budget.accounts.tithing.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1]);
-
-          if (Number(incomePreviewAmounts[2].textContent.split('$')[1].contains(','))) {
-            tithingAmount = budget.accounts.tithing.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1]).split(',').join('');
-          }
-
-          placeholderBudget.accounts.tithing.amount = Number(tithingAmount);
-        }
-
-        if (budget.accounts.tithing.tithingSetting === "Surplus") {
-          netAmount = Number(incomePreviewAmounts[2].textContent.split('$')[1]);
-          console.log(incomePreviewAmounts[2].textContent.split('$')[1]);
-
-          if (incomePreviewAmounts[2].textContent.split('$')[1].includes(',')) {
-            netAmount = Number(incomePreviewAmounts[2].textContent.split('$')[1].split(',').join(''));
-            unAllocatedAmount = budget.accounts.unAllocated.amount + Number(incomePreviewAmounts[2].textContent.split('$')[1].split(',').join(''));
-          }
-
-          transaction.addToReceipt({
-            account: "Un-Allocated",
-            grossAmount: Number(grossIncomeInput.value),
-            netAmount: Number(netIncomeInput.value),
-            deposited: Number(netAmount),
-            user: user,
-            budget: budget
-          });
-        }
-
-        placeholderBudget.transactions.recentTransactions.push(transaction);
-        updateObject = {
-          budgetId: budget._id,
-          userId: user._id,
-          user: user,
-          accounts: {
-            unAllocated: {
-              amount: unAllocatedAmount
-            },
-            monthlyBudget: placeholderBudget.accounts.monthlyBudget,
-            emergencyFund: placeholderBudget.accounts.emergencyFund,
-            savingsFund: {
-              savingsGoal: placeholderBudget.accounts.savingsFund.savingsGoal,
-              savingsPercentage: placeholderBudget.accounts.savingsFund.savingsPercentage,
-              amount: savingsAmount
-            },
-            expenseFund: placeholderBudget.accounts.expenseFund,
-            surplus: placeholderBudget.accounts.surplus,
-            investmentFund: {
-              investmentGoal: placeholderBudget.accounts.investmentFund.investmentGoal,
-              investmentPercentage: placeholderBudget.accounts.investmentFund.investmentPercentage,
-              amount: investmentAmount
-            },
-            debt: placeholderBudget.accounts.debt,
-            tithing: placeholderBudget.accounts.tithing
-          },
-          transactions: placeholderBudget.transactions
-        };
-      }
-
-      placeholderBudget._updateBudget({
-        updateObject: updateObject
-      }, "Enter-Income");
-
-      incomeDateInput.value = '';
-      incomeFromInput.value = '';
-      grossIncomeInput.value = '';
-      netIncomeInput.value = '';
-      incomePreviewAmounts[0].textContent = _money.format(0);
-      incomePreviewAmounts[1].textContent = _money.format(0);
-      incomePreviewAmounts[2].textContent = _money.format(0);
-    });
-  } // ** TOP PRIORITY ** When it is possible, record the income as a deposit transaction in the recent transactions page.
-
-
-  var money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2
-  }); ////////////////////////////////////////////
-  // INITIALIZE TRANSACTION OPTIONS
-
-  var smallContainerButtons = document.querySelectorAll('.button--small-container-header');
-  var transactionSelects = document.querySelectorAll('.form__section--select');
-  var transactionOptions = document.querySelectorAll('.form__section--transaction-option');
-  var transactionButtons = document.querySelectorAll('.button--transaction-button');
-  var transactionCreationContainer = document.querySelector('.form__section--transaction-item-creation');
-  var transactionCost = document.querySelector('.container--small__transaction-total__amount');
-  var transactionHeaderInputs = document.querySelectorAll('.form__input--small-thinner');
-  var transactionHeaderInputsTwo = document.querySelectorAll('.form__input--small-thinner__wide');
-  var transactionSubmitButton = smallContainerButtons[1];
-  var accountSelection = transactionSelects[0]; //////////////////////////////////////////
-  // UNIVERSAL TRANSACTION OPTIONS
-
-  var addTransactionItemButton = transactionButtons[0];
-  var transactionDescription = transactionOptions[1];
-  var transactionAmount = transactionOptions[2];
-  var transactionName = transactionOptions[0];
-  var transactionType = transactionSelects[3];
-  var transactionTiming = transactionSelects[4];
-  var transactionItem = transactionSelects[6];
-  var transactionSaveButton = transactionButtons[1]; //////////////////////////////////////////
-  // MONTHLY BUDGET TRANSACTION OPTIONS
-
-  var mainCategorySelect = transactionSelects[1];
-  var subCategorySelect = transactionSelects[2]; //////////////////////////////////////////
-  // DEBT TRANSACTION OPTIONS
-
-  var transactionLender = transactionSelects[5]; //////////////////////////////////////////
-  // BUILD TRANSACTION OPTIONS
-
-  var monthlyBudgetTransactionOptions = buildTransactionOptions([mainCategorySelect, subCategorySelect, transactionDescription, transactionAmount, transactionSaveButton]);
-  var emergencyFundTransactionsOptions = buildTransactionOptions([transactionDescription, transactionAmount, transactionSaveButton]);
-  var savingsFundTransactionOptions = buildTransactionOptions([transactionTiming, transactionItem, transactionDescription, transactionAmount, transactionSaveButton]);
-  var expenseFundTransactionOptions = buildTransactionOptions([transactionType, transactionTiming, transactionItem, transactionDescription, transactionAmount, transactionSaveButton]);
-  var surplusTransactionOptions = buildTransactionOptions([transactionTiming, transactionItem, transactionDescription, transactionAmount, transactionSaveButton]);
-  var investmentTransactionOptions = buildTransactionOptions([transactionType, transactionName, transactionDescription, transactionAmount, transactionSaveButton]);
-  var debtTransactionOptions = buildTransactionOptions([transactionTiming, transactionLender, transactionItem, transactionDescription, transactionAmount, transactionSaveButton]);
-  var tithingTransactionsOptions = buildTransactionOptions([transactionAmount, transactionSaveButton]);
-  var allTransactionOptions = [monthlyBudgetTransactionOptions, emergencyFundTransactionsOptions, savingsFundTransactionOptions, expenseFundTransactionOptions, surplusTransactionOptions, investmentTransactionOptions, debtTransactionOptions, tithingTransactionsOptions];
-  var transaction;
-
-  if (addTransactionItemButton) {
-    addTransactionItemButton.addEventListener('click', function (e) {
-      e.preventDefault();
-
-      if (transactionCreationContainer.classList.contains('open')) {
-        resetTransactionOptions(allTransactionOptions);
-        return transactionCreationContainer.classList.toggle('closed');
-      }
-
-      if (transactionCreationContainer.classList.contains('closed')) {
-        transactionCreationContainer.classList.toggle('open');
-        return transaction = new _Classes_Transaction__WEBPACK_IMPORTED_MODULE_9__.Transaction({
-          date: transactionHeaderInputs[0].value,
-          location: transactionHeaderInputsTwo[0].value
-        });
-      }
-    });
-  }
-
-  if (accountSelection) {
-    var selectedAccount;
-
-    (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(accountSelection.firstChild.nextSibling.children).forEach(function (option) {
-      option.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        if (option.value === "Monthly Budget") {
-          showTransactionOptions(budget, placeholderBudget, user, option.value, allTransactionOptions, monthlyBudgetTransactionOptions);
-          selectedAccount = option.value;
-          console.log(selectedAccount);
-        }
-
-        if (option.value === "Emergency Fund") {
-          showTransactionOptions(budget, placeholderBudget, user, option.value, allTransactionOptions, emergencyFundTransactionsOptions);
-          selectedAccount = option.value;
-          console.log(selectedAccount);
-        }
-
-        if (option.value === "Savings Fund") {
-          showTransactionOptions(budget, placeholderBudget, user, option.value, allTransactionOptions, savingsFundTransactionOptions);
-          selectedAccount = option.value;
-          console.log(selectedAccount);
-        }
-
-        if (option.value === "Expense Fund") {
-          showTransactionOptions(budget, placeholderBudget, user, option.value, allTransactionOptions, expenseFundTransactionOptions);
-          selectedAccount = option.value;
-          console.log(selectedAccount);
-        }
-
-        if (option.value === "Surplus") {
-          showTransactionOptions(budget, placeholderBudget, user, option.value, allTransactionOptions, surplusTransactionOptions);
-          selectedAccount = option.value;
-          console.log(selectedAccount);
-        }
-
-        if (option.value === "Investment Fund") {
-          showTransactionOptions(budget, placeholderBudget, user, option.value, allTransactionOptions, investmentTransactionOptions);
-          selectedAccount = option.value;
-          console.log(selectedAccount);
-        }
-
-        if (option.value === "Debt") {
-          showTransactionOptions(budget, placeholderBudget, user, option.value, allTransactionOptions, debtTransactionOptions);
-          selectedAccount = option.value;
-          console.log(selectedAccount);
-        }
-
-        if (option.value === "Tithing") {
-          showTransactionOptions(budget, placeholderBudget, user, option.value, allTransactionOptions, tithingTransactionsOptions);
-          selectedAccount = option.value;
-          console.log(selectedAccount);
-        }
-      });
-    });
-
-    var receiptItemContainer = document.querySelector('.receipt-item-container');
-
-    if (transactionSaveButton) {
-      transactionSaveButton.addEventListener('click', function (e) {
-        e.preventDefault();
-        console.log("Saving...");
-        console.log(transactionHeaderInputs, transactionHeaderInputsTwo);
-        console.log(selectedAccount);
-
-        if (selectedAccount !== "Investment Fund") {
-          // let transaction = new Transaction.Transaction({ date: transactionHeaderInputs[0].value, type: `Withdrawal`, location: transactionHeaderInputsTwo[0].value });
-          transaction.transactionType = "Withdrawal";
-          console.log(transaction);
-          var receiptRow = document.createElement('section');
-          receiptRow.classList.add('receipt-item-container__row');
-          receiptRow.classList.add('r__receipt-item-container__row');
-          insertElement(receiptItemContainer, receiptRow);
-          var transactionDetails = document.createElement('section');
-          transactionDetails.classList.add('transaction-item-details');
-          transactionDetails.classList.add('r__transaction-item-details');
-          insertElement(receiptRow, transactionDetails);
-          var transactionCostDetails = document.createElement('section');
-          transactionCostDetails.classList.add('transaction-item-cost');
-          transactionCostDetails.classList.add('r__transaction-item-cost');
-          insertElement(receiptRow, transactionCostDetails);
-          var detailCount = 1;
-          var detailStart = 0;
-          console.log(selectedAccount);
-
-          if (selectedAccount === "Monthly Budget" || selectedAccount === "Debt") {
-            detailCount = 2;
-            console.log(detailCount);
-          }
-
-          console.log(detailCount);
-
-          while (detailStart < detailCount) {
-            var receiptDetail = document.createElement('p');
-            receiptDetail.classList.add('transaction-item-details__detail');
-            receiptDetail.classList.add('r__transaction-item-details__detail');
-            console.log(mainCategorySelect.firstChild.nextSibling.textContent);
-            console.log(selectedAccount);
-
-            if (selectedAccount === "Monthly Budget") {
-              if (detailStart === 0) {
-                receiptDetail.textContent = mainCategorySelect.firstChild.nextSibling.value;
-              }
-
-              if (detailStart === 1) {
-                receiptDetail.textContent = subCategorySelect.firstChild.nextSibling.value;
-              }
-            }
-
-            if (selectedAccount === "Emergency Fund") {
-              if (detailStart === 0) {
-                receiptDetail.textContent = transactionDescription.firstChild.value;
-              }
-            }
-
-            if (selectedAccount === "Savings Fund" || selectedAccount === "Expense Fund" || selectedAccount === "Surplus") {
-              if (detailStart === 0) {
-                receiptDetail.textContent = transactionItem.firstChild.nextSibling.value;
-              }
-            }
-
-            if (selectedAccount === "Investment Fund") {
-              if (detailStart === 0) {
-                receiptDetail.textContent = transactionName.firstChild.value;
-              }
-            }
-
-            if (selectedAccount === "Debt") {
-              if (detailStart === 0) {
-                receiptDetail.textContent = transactionLender.firstChild.nextSibling.value;
-              }
-
-              if (detailStart === 1) {
-                receiptDetail.textContent = transactionItem.firstChild.nextSibling.value;
-              }
-            }
-
-            insertElement(transactionDetails, receiptDetail);
-            detailStart++;
-          }
-
-          console.log(transactionAmount, transactionAmount.firstChild.value, (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(transactionAmount.firstChild.value), money.format(Number(transactionAmount.value)));
-          var receiptDetailCost = document.createElement('p');
-          receiptDetailCost.classList.add('transaction-item-cost__cost');
-          receiptDetailCost.classList.add('r__transaction-item-cost__cost');
-          receiptDetailCost.textContent = money.format(Number(transactionAmount.firstChild.value));
-          insertElement(transactionCostDetails, receiptDetailCost);
-          var removeTransactionItemIcon = document.createElement('i');
-          removeTransactionItemIcon.classList.add('fas');
-          removeTransactionItemIcon.classList.add('fa-trash-alt');
-          removeTransactionItemIcon.classList.add('remove-transaction');
-          removeTransactionItemIcon.classList.add('r__remove-transaction');
-          removeTransactionItemIcon.classList.add('closed');
-          insertElement(transactionCostDetails, removeTransactionItemIcon);
-          removeTransactionItemIcon.addEventListener('click', function (e) {
-            var removeTransactionIcons = document.querySelectorAll('.remove-transaction');
-
-            var index = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(removeTransactionIcons).indexOf(e.target);
-
-            var receiptTransactions = document.querySelectorAll('.receipt-item-container__row');
-            receiptTransactions[index].remove();
-            transaction.removeFromReceipt(index);
-          });
-          receiptRow.addEventListener('mouseover', function (e) {
-            e.preventDefault();
-            removeTransactionItemIcon.classList.toggle('closed');
-            removeTransactionItemIcon.classList.toggle('open');
-          });
-          receiptRow.addEventListener('mouseout', function (e) {
-            e.preventDefault();
-            removeTransactionItemIcon.classList.toggle('closed');
-            removeTransactionItemIcon.classList.toggle('open');
-          });
-          console.log(selectedAccount);
-
-          if (selectedAccount === "Monthly Budget") {
-            transaction.addToReceipt({
-              mainCategory: mainCategorySelect.firstChild.nextSibling.value,
-              subCategory: subCategorySelect.firstChild.nextSibling.value,
-              description: transactionDescription.firstChild.value,
-              amount: Number(transactionAmount.firstChild.value),
-              accountSelected: selectedAccount
-            });
-          }
-
-          if (selectedAccount === "Emergency Fund") {
-            transaction.addToReceipt({
-              description: transactionDescription.firstChild.value,
-              amount: Number(transactionAmount.firstChild.value),
-              accountSelected: selectedAccount
-            });
-          }
-
-          if (selectedAccount === "Savings Fund") {
-            console.log(selectedAccount);
-            transaction.addToReceipt({
-              timing: transactionTiming.firstChild.nextSibling.value,
-              expenditure: transactionItem.firstChild.nextSibling.value,
-              description: transactionDescription.firstChild.value,
-              amount: Number(transactionAmount.firstChild.value),
-              accountSelected: selectedAccount
-            });
-          }
-
-          if (selectedAccount === "Expense Fund") {
-            transaction.addToReceipt({
-              transactionType: transactionType.firstChild.nextSibling.value,
-              timing: transactionTiming.firstChild.nextSibling.value,
-              expenditure: transactionItem.firstChild.nextSibling.value,
-              description: transactionDescription.firstChild.value,
-              amount: Number(transactionAmount.firstChild.value),
-              accountSelected: selectedAccount
-            });
-          }
-
-          if (selectedAccount === "Surplus") {
-            transaction.addToReceipt({
-              timing: transactionTiming.firstChild.nextSibling.value,
-              expenditure: transactionItem.firstChild.nextSibling.value,
-              description: transactionDescription.firstChild.value,
-              amount: Number(transactionAmount.firstChild.value),
-              accountSelected: selectedAccount
-            });
-          }
-
-          if (selectedAccount === "Debt") {
-            transaction.addToReceipt({
-              timing: transactionTiming.firstChild.nextSibling.value,
-              lender: transactionLender.firstChild.nextSibling.value,
-              expenditure: transactionItem.firstChild.nextSibling.value,
-              description: transactionDescription.firstChild.value,
-              amount: Number(transactionAmount.firstChild.value),
-              accountSelected: selectedAccount
-            });
-          }
-        }
-
-        console.log(selectedAccount);
-
-        if (selectedAccount === "Investment Fund") {
-          console.log(selectedAccount);
-          if (transaction.transactionType) return;
-          console.log(selectedAccount);
-          transaction.transactionType = "Deposit";
-
-          var _receiptRow = document.createElement('section');
-
-          _receiptRow.classList.add('receipt-item-container__row');
-
-          _receiptRow.classList.add('r__receipt-item-container__row');
-
-          insertElement(receiptItemContainer, _receiptRow);
-
-          var _transactionDetails = document.createElement('section');
-
-          _transactionDetails.classList.add('transaction-item-details');
-
-          _transactionDetails.classList.add('r__transaction-item-details');
-
-          insertElement(_receiptRow, _transactionDetails);
-
-          var _transactionCostDetails = document.createElement('section');
-
-          _transactionCostDetails.classList.add('transaction-item-cost');
-
-          _transactionCostDetails.classList.add('r__transaction-item-cost');
-
-          insertElement(_receiptRow, _transactionCostDetails);
-          var _detailCount = 1;
-          var _detailStart = 0;
-
-          while (_detailStart < _detailCount) {
-            var _receiptDetail = document.createElement('p');
-
-            _receiptDetail.classList.add('transaction-item-details__detail');
-
-            _receiptDetail.classList.add('r__transaction-item-details__detail');
-
-            console.log(mainCategorySelect.firstChild.nextSibling.textContent);
-            console.log(selectedAccount);
-
-            if (selectedAccount === "Investment Fund") {
-              if (_detailStart === 0) {
-                _receiptDetail.textContent = transactionName.firstChild.value;
-              }
-            }
-
-            insertElement(_transactionDetails, _receiptDetail);
-            _detailStart++;
-          }
-
-          console.log(transactionAmount, transactionAmount.firstChild.value, (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(transactionAmount.firstChild.value), money.format(Number(transactionAmount.value)));
-
-          var _receiptDetailCost = document.createElement('p');
-
-          _receiptDetailCost.classList.add('transaction-item-cost__cost');
-
-          _receiptDetailCost.classList.add('r__transaction-item-cost__cost');
-
-          _receiptDetailCost.textContent = money.format(Number(transactionAmount.firstChild.value));
-          insertElement(_transactionCostDetails, _receiptDetailCost);
-
-          var _removeTransactionItemIcon = document.createElement('i');
-
-          _removeTransactionItemIcon.classList.add('fas');
-
-          _removeTransactionItemIcon.classList.add('fa-trash-alt');
-
-          _removeTransactionItemIcon.classList.add('remove-transaction');
-
-          _removeTransactionItemIcon.classList.add('r__remove-transaction');
-
-          _removeTransactionItemIcon.classList.add('closed');
-
-          insertElement(_transactionCostDetails, _removeTransactionItemIcon);
-
-          _removeTransactionItemIcon.addEventListener('click', function (e) {
-            var removeTransactionIcons = document.querySelectorAll('.remove-transaction');
-
-            var index = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_2__["default"])(removeTransactionIcons).indexOf(e.target);
-
-            var receiptTransactions = document.querySelectorAll('.receipt-item-container__row');
-            receiptTransactions[index].remove();
-            transaction.removeFromReceipt(index);
-          });
-
-          _receiptRow.addEventListener('mouseover', function (e) {
-            e.preventDefault();
-
-            _removeTransactionItemIcon.classList.toggle('closed');
-
-            _removeTransactionItemIcon.classList.toggle('open');
-          });
-
-          _receiptRow.addEventListener('mouseout', function (e) {
-            e.preventDefault();
-
-            _removeTransactionItemIcon.classList.toggle('closed');
-
-            _removeTransactionItemIcon.classList.toggle('open');
-          });
-
-          console.log(selectedAccount);
-
-          if (selectedAccount === "Investment Fund") {
-            transaction.addToReceipt({
-              user: user,
-              transactionType: transactionType.firstChild.nextSibling.value,
-              transactionName: transactionName.firstChild.value,
-              description: transactionDescription.firstChild.value,
-              amount: Number(transactionAmount.firstChild.value),
-              accountSelected: selectedAccount
-            });
-          }
-        }
-
-        console.log(transaction, transaction.receipt);
-        var fullTransactionCost = document.querySelectorAll('.container--small__transaction-total__amount')[0];
-        var receiptCost = 0;
-        transaction.receipt.forEach(function (receiptItem, i) {
-          return receiptCost = receiptCost += receiptItem.amount;
-        });
-        console.log(receiptCost);
-        fullTransactionCost.textContent = money.format(receiptCost);
-      });
-    }
-
-    if (transactionSubmitButton) {
-      transactionSubmitButton.addEventListener('click', function (e) {
-        e.preventDefault();
-        var updateObject = {
-          budgetId: budget._id,
-          userId: user._id
-        };
-        placeholderBudget.transactions.recentTransactions.push(transaction); // console.log(placeholderBudget);
-
-        updateObject.transactions = placeholderBudget.transactions;
-        console.log(updateObject);
-        updateObject.transactions.recentTransactions[updateObject.transactions.recentTransactions.length - 1].receipt.forEach(function (receiptItem, i) {
-          console.log(receiptItem);
-
-          if (receiptItem.account === "Monthly Budget") {
-            placeholderBudget.accounts.monthlyBudget.amount = placeholderBudget.accounts.monthlyBudget.amount - Number(receiptItem.amount);
-            placeholderBudget.mainCategories.forEach(function (category, i) {
-              if (receiptItem.category === category.title) {
-                var index = i;
-                console.log(receiptItem.category);
-                category.subCategories.forEach(function (subCategory, i) {
-                  if (receiptItem.subCategory === subCategory.title) {
-                    console.log(receiptItem.subCategory);
-                    subCategory.amountSpent += receiptItem.amount;
-                    subCategory.amountRemaining = subCategory.goalAmount - subCategory.amountSpent;
-                    subCategory.percentageSpent = Number(subCategory.amountSpent / subCategory.goalAmount * 100);
-                  }
-                });
-              }
-            });
-            updateObject.mainCategories = placeholderBudget.mainCategories;
-          }
-
-          if (receiptItem.account === "Emergency Fund") {
-            placeholderBudget.accounts.emergencyFund.amount = placeholderBudget.accounts.emergencyFund.amount - Number(receiptItem.amount);
-          }
-
-          if (receiptItem.account === "Savings Fund") {
-            placeholderBudget.accounts.savingsFund.amount = placeholderBudget.accounts.savingsFund.amount - Number(receiptItem.amount);
-          }
-
-          if (receiptItem.account === "Expense Fund") {
-            placeholderBudget.accounts.expenseFund.amount = placeholderBudget.accounts.expenseFund.amount - Number(receiptItem.amount);
-          }
-
-          if (receiptItem.account === "Surplus") {
-            placeholderBudget.accounts.surlus.amount = placeholderBudget.accounts.surplus.amount - Number(receiptItem.amount);
-          }
-
-          if (receiptItem.account === "Investment Fund") {
-            if (!placeholderBudget.accounts.investmentFund.investedAmount) placeholderBudget.accounts.investmentFund.investedAmount = 0;
-            placeholderBudget.accounts.investmentFund.amount = placeholderBudget.accounts.investmentFund.amount - Number(receiptItem.amount);
-            placeholderBudget.accounts.investmentFund.investedAmount = placeholderBudget.accounts.investmentFund.investedAmount + Number(receiptItem.amount);
-            var investmentObject = {
-              investmentType: receiptItem.transactionType,
-              investmentName: receiptItem.transactionName,
-              investmentDescription: receiptItem.description,
-              initialInvestment: receiptItem.amount,
-              currentValue: receiptItem.amount,
-              settled: false,
-              valueDifference: 0
-            };
-            placeholderBudget.investments.push(investmentObject);
-            updateObject.investments = placeholderBudget.investments;
-          }
-
-          if (receiptItem.account === "Debt") {
-            placeholderBudget.accounts.debt.amount = placeholderBudget.accounts.debt.amount - Number(receiptItem.amount);
-            /* After reducing the amount that is allocated to the debt account, there needs to be a reduction of the debt amount through reducing the current amount owed for the debt that was selected.
-               To do that we need to:
-            1) Find the exact debt that is being paid.
-            2) From there, reduce it's amountOwed amount.
-               There is more steps to each of those, especially the first, but that is what needs to be done.
-            */
-          }
-        });
-        updateObject.accounts = placeholderBudget.accounts;
-
-        placeholderBudget._updateBudget({
-          updateObject: updateObject
-        }, "Dashboard");
-
-        var fullTransactionCost = document.querySelectorAll('.container--small__transaction-total__amount')[0];
-        fullTransactionCost.textContent = money.format(0);
-      });
-    }
-  }
-};
-
-var finalTransactionArrayPush = function finalTransactionArrayPush(finalArray, arrays) {
-  arrays.forEach(function (a) {
-    finalArray.push(a);
-  });
-};
-
-var pushIntoArray = function pushIntoArray(arrayFiller, array) {
-  arrayFiller.forEach(function (af) {
-    array.push(af);
-  });
-  return array;
-};
-
-var buildTransactionOptions = function buildTransactionOptions(options) {
-  var transactionOptions = [];
-  options.forEach(function (option, i) {
-    if (option) {
-      option.classList.add('closed');
-      transactionOptions.push(option);
-    }
-  });
-  return transactionOptions;
-};
-
-var createMonthlyBudgetTransactionPlans = function createMonthlyBudgetTransactionPlans(budget, placeholderBudget, user) {
-  var updateObject = {
-    budgetId: budget._id,
-    userId: user._id
-  };
-  placeholderBudget.mainCategories.forEach(function (mc, i) {
-    mc.subCategories.forEach(function (sc, i) {
-      if (sc.timingOptions.paymentSchedule) {
-        var index = i; // LOOPING THROUGH SUB CATEGORY PAYMENT SCHEDULE
-
-        sc.timingOptions.paymentSchedule.forEach(function (date, i) {
-          var found = false; // LOOP THROUGH PLANNED TRANSACTIONS FOR EACH DATE IN PAYMENT SCHEDULE
-
-          placeholderBudget.transactions.plannedTransactions.forEach(function (plan, i) {
-            // console.log(plan);
-            // CHECKING IF THE PLAN IS A MONTHLY BUDGET ONE, AND THAT IT CONTAINS THE MAIN CATEGORY AND SUB CATEGORY
-            if (plan.account === "Monthly Budget" && plan.subAccount === mc.title && plan.name === sc.title) {
-              // THEN, CHECK IF THE PAYMENT SCHEDULE ITEM IS AN ARRAY OF 2 DATES OR 1.
-              if (date.length > 1 && (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__["default"])(date) === "object") {
-                date.forEach(function (newDate) {
-                  if (plan.timingOptions.dueDates.includes(new Date(newDate).toISOString())) {
-                    if (sc.goalAmount !== plan.amount) {
-                      found = true;
-                      return plan.amount = sc.goalAmount;
-                    }
-
-                    found = true;
-                    return;
-                  }
-                });
-              } // IF PAYMENT SCHEDULE DATE IS ONE ITEM
-
-
-              if (date.length === 24) {
-                if (plan.timingOptions.dueDates.includes(new Date(date).toISOString())) {
-                  if (sc.goalAmount !== plan.amount) {
-                    return plan.amount = sc.goalAmount;
-                  }
-
-                  found = true;
-                  return;
-                }
-              }
-            }
-          });
-
-          if (found === false && date.length === 24) {
-            var transactionPlan = {};
-            transactionPlan.date = sc.lastUpdated;
-            transactionPlan.type = "Withdrawal";
-            transactionPlan.location = "Unknown";
-            transactionPlan.account = "Monthly Budget";
-            transactionPlan.subAccount = mc.title;
-            transactionPlan.category = mc.title;
-            transactionPlan.subCategory = sc.title;
-            transactionPlan.name = sc.title;
-            transactionPlan.amount = sc.goalAmount;
-            transactionPlan.need = "Need";
-            transactionPlan.timingOptions = {
-              dueDates: [new Date(date)],
-              paymentSchedule: [new Date(date)],
-              paymentCycle: "Once"
-            };
-            transactionPlan.amountSaved = 0;
-            transactionPlan.paid = false;
-            transactionPlan.paidStatus = "Unpaid";
-            placeholderBudget.transactions.plannedTransactions.push(transactionPlan);
-          }
-
-          if (found === false && date.length === 2) {
-            date.forEach(function (date) {
-              var transactionPlan = {};
-              transactionPlan.date = sc.lastUpdated;
-              transactionPlan.type = "Withdrawal";
-              transactionPlan.location = "Unknown";
-              transactionPlan.account = "Monthly Budget";
-              transactionPlan.subAccount = mc.title;
-              transactionPlan.category = mc.title;
-              transactionPlan.subCategory = sc.title;
-              transactionPlan.name = sc.title;
-              transactionPlan.amount = sc.goalAmount;
-              transactionPlan.need = "Need";
-              transactionPlan.timingOptions = {
-                dueDates: [new Date(date)],
-                paymentSchedule: [new Date(date)],
-                paymentCycle: "Once"
-              };
-              transactionPlan.amountSaved = 0;
-              transactionPlan.paid = false;
-              transactionPlan.paidStatus = "Unpaid";
-              placeholderBudget.transactions.plannedTransactions.push(transactionPlan);
-            });
-          }
-        });
-      }
-    });
-  });
-  updateObject.transactions = placeholderBudget.transactions;
-
-  placeholderBudget._updateBudget({
-    updateObject: updateObject
-  }, "Transaction-Planner");
-};
-
-var setupDashboard = function setupDashboard(user, budget, placeholderBudget) {
-  // THE LOGGED USER ABOVE SHOWED THAT THE DATE THE PASSWORD WAS CHANGED IS STILL SHOWING. THAT NEEDS TO BE CHANGED.
-  ////////////////////////////////////////////
-  // WATCH THE BUDGET NAVIGATION
-  _Budget_Navigation__WEBPACK_IMPORTED_MODULE_12__._watchBudgetNavigation(); ////////////////////////////////////////////
-  // CREATE TRANSACTION PLANS
-
-
-  createMonthlyBudgetTransactionPlans(budget, placeholderBudget, user); ////////////////////////////////////////////
-  // WATCH FOR ACCOUNT SELECTION
-
-  _watchForTransactions(budget, placeholderBudget, user); ////////////////////////////////////////////
-  // GET BANK ACCOUNT TOTAL
-
-
-  getDashboardAccountTotals(budget, placeholderBudget, user); ////////////////////////////////////////////
-  // SETUP BILL CALENDAR
-
-  _setupBillCalendar(budget, placeholderBudget, user); ////////////////////////////////////////////
-  // SETUP BILL CURRENT MONTH
-
-
-  _setupCurrentMonth(budget, placeholderBudget, user);
-};
-
-var _watchBudget = /*#__PURE__*/function () {
-  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee() {
-    var person, userInfo, user, placeholderUser, currentBudget, budget;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            console.log("WATCHING YOUR BUDGET"); /////////////////////////////
-            // GET USER
-
-            person = new _Classes_Person__WEBPACK_IMPORTED_MODULE_10__.Person("", "", "", "", "", "", "", "");
-            _context.next = 4;
-            return person._getPersonData();
-
-          case 4:
-            userInfo = _context.sent;
-            user = userInfo.data.data.user;
-            _context.next = 8;
-            return person._getPersonData();
-
-          case 8:
-            placeholderUser = _context.sent;
-            user.budgets.forEach(function (b) {
-              if (b._id === window.location.pathname.split('/')[5]) currentBudget = b;
-            });
-            budget = _Classes_Budget__WEBPACK_IMPORTED_MODULE_6__.startToCreate();
-
-            budget._buildPlaceHolderBudget(currentBudget, user);
-
-            if (currentBudget) {
-              _context.next = 14;
-              break;
-            }
-
-            return _context.abrupt("return");
-
-          case 14:
-            ////////////////////////////////////////////
-            // WATCH BUDGET MANAGEMENT PAGE
-            setupDashboard(user, currentBudget, budget); ////////////////////////////////////////////
-            // WATCH BUDGET MANAGEMENT PAGE
-
-            _setupBudgetManagement(currentBudget, budget, user); ////////////////////////////////////////////
-            // WATCH EDIT CATEGORY GOALS PAGE
-
-
-            _watchEditCategoryGoals(currentBudget, budget, user); ////////////////////////////////////////////
-            // WATCH MANAGE CATEGORIES PAGE
-
-
-            _watchManageCategories(currentBudget, budget, user); ////////////////////////////////////////////
-            // WATCH FOR INCOME ALLOCATION
-
-
-            _watchIncomeAllocation(currentBudget, budget, user); ////////////////////////////////////////////
-            // WATCH FOR INCOME ALLOCATION
-
-
-            _watchTransactionPlanner(currentBudget, budget, user); ////////////////////////////////////////////
-            // WATCH FOR INCOME ALLOCATION
-
-
-            _watchInvestmentPlanner(currentBudget, budget, user); ////////////////////////////////////////////
-            // WATCH FOR INCOME ALLOCATION
-
-
-            _watchDebtManager(currentBudget, budget, user); ////////////////////////////////////////////
-            // WATCH RECENT TRANSACTIONS
-
-
-            _watchRecentTransactions(currentBudget, budget, user); ////////////////////////////////////////////
-            // WATCH ACCOUNT MANAGEMENT
-
-
-            _Account_Management__WEBPACK_IMPORTED_MODULE_13__._watchAccountManagement(currentBudget, budget, user);
-
-          case 24:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-
-  return function _watchBudget() {
-    return _ref.apply(this, arguments);
-  };
-}();
-
-/***/ }),
-
-/***/ "./Public/JS/Budget/Manage-Budget.js":
-/*!*******************************************!*\
-  !*** ./Public/JS/Budget/Manage-Budget.js ***!
-  \*******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "deleteMyBudget": () => (/* binding */ deleteMyBudget),
-/* harmony export */   "exitBudget": () => (/* binding */ exitBudget),
-/* harmony export */   "renderBudget": () => (/* binding */ renderBudget),
-/* harmony export */   "updateMyBudget": () => (/* binding */ updateMyBudget)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _Maintain_Budget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Maintain-Budget */ "./Public/JS/Budget/Maintain-Budget.js");
-/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
-
-
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-
-
-
-
-var renderBudget = /*#__PURE__*/function () {
-  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee(id, user) {
-    var response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            _context.prev = 0;
-            _context.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
-              method: "GET",
-              url: "/App/Users/".concat(user._id, "/Budgets/").concat(id, "/Dashboard")
-            });
-
-          case 3:
-            response = _context.sent;
-            document.open("text/html").write(response.data);
-            window.location.assign("/App/Users/".concat(user._id, "/Budgets/").concat(id, "/Dashboard"));
-            console.log(response);
-
-            _Maintain_Budget__WEBPACK_IMPORTED_MODULE_5__._watchBudget();
-
-            _context.next = 13;
-            break;
-
-          case 10:
-            _context.prev = 10;
-            _context.t0 = _context["catch"](0);
-            console.log(_context.t0);
-
-          case 13:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee, null, [[0, 10]]);
-  }));
-
-  return function renderBudget(_x, _x2) {
-    return _ref.apply(this, arguments);
-  };
-}();
-var updateMyBudget = /*#__PURE__*/function () {
-  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee2(options, pageLink) {
-    var response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            _context2.prev = 0;
-            _context2.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
-              method: "PATCH",
-              url: "/App/Users/".concat(options.userId, "/Budgets/").concat(options.budgetId, "/").concat(pageLink),
-              data: qs__WEBPACK_IMPORTED_MODULE_4___default().parse(_objectSpread({}, options))
-            });
-
-          case 3:
-            response = _context2.sent;
-
-            if (response.statusText === 'OK') {
-              console.log("It is OKAY!!!"); // Check if first name is not undefined or empty.
-
-              !options.firstname === undefined && !options.firstname === '' ? document.getElementById('firstname').value = options.value : document.getElementById('firstname').value = document.getElementById('firstname').value; // Check if last name is not undefined or empty.
-
-              !options.lastname === undefined && !options.lastname === '' ? document.getElementById('lastname').value = options.value : document.getElementById('lastname').value = document.getElementById('lastname').value; // Check if username is not undefined or empty.
-
-              !options.username === undefined && !options.username === '' ? document.getElementById('username').value = options.value : document.getElementById('username').value = document.getElementById('username').value; // Check if email is not undefined or empty.
-
-              !options.email === undefined && !options.email === '' ? document.getElementById('email').value = options.value : document.getElementById('email').value = document.getElementById('email').value; // Check if email is not undefined or empty.
-
-              !options.emailConfirmed === undefined && !options.emailConfirmed === '' ? document.getElementById('email').value = options.value : document.getElementById('email').value = document.getElementById('email').value;
-              document.getElementById('email').value = options.email;
-              document.getElementById('newEmail').value = '';
-              document.getElementById('newEmailConfirmed').value = ''; // Check if phone number is not undefined or empty.
-
-              !options.phoneNumber === undefined && !options.phoneNumber === '' ? document.getElementById('phoneNumber').value = options.value : document.getElementById('phoneNumber').value = document.getElementById('phoneNumber').value; // Check if phone number is not undefined or empty.
-
-              !options.phoneNumberConfirmed === undefined && !options.phoneNumberConfirmed === '' ? document.getElementById('phoneNumber').value = options.value : document.getElementById('phoneNumber').value = document.getElementById('phoneNumber').value; // Check if confirmed phone number is not undefined or empty.
-
-              document.getElementById('phoneNumber').value = options.phoneNumber;
-              document.getElementById('newPhoneNumber').value = '';
-              document.getElementById('newPhoneNumberConfirmed').value = '';
-            }
-
-            _context2.next = 10;
-            break;
-
-          case 7:
-            _context2.prev = 7;
-            _context2.t0 = _context2["catch"](0);
-            console.log(_context2.t0);
-
-          case 10:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, _callee2, null, [[0, 7]]);
-  }));
-
-  return function updateMyBudget(_x3, _x4) {
-    return _ref2.apply(this, arguments);
-  };
-}();
-var exitBudget = /*#__PURE__*/function () {
-  var _ref3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee3(id) {
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee3$(_context3) {
-      while (1) {
-        switch (_context3.prev = _context3.next) {
-          case 0:
-            try {
-              window.location.assign("/App/Users/".concat(id));
-            } catch (error) {
-              console.log(error);
-            }
-
-          case 1:
-          case "end":
-            return _context3.stop();
-        }
-      }
-    }, _callee3);
-  }));
-
-  return function exitBudget(_x5) {
-    return _ref3.apply(this, arguments);
-  };
-}();
-var deleteMyBudget = /*#__PURE__*/function () {
-  var _ref4 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee4(id, userId) {
-    var response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee4$(_context4) {
-      while (1) {
-        switch (_context4.prev = _context4.next) {
-          case 0:
-            _context4.prev = 0;
-            _context4.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_3___default()({
-              method: "DELETE",
-              url: "/App/Users/".concat(userId, "/Budgets/").concat(id, "/Budget-Management"),
-              data: qs__WEBPACK_IMPORTED_MODULE_4___default().stringify({
-                id: id
-              })
-            });
-
-          case 3:
-            response = _context4.sent;
-            console.log(response);
-
-            if (response.statusText === 'No Content') {
-              window.location.assign("/App/Users/".concat(userId));
-            }
-
-            _context4.next = 11;
-            break;
-
-          case 8:
-            _context4.prev = 8;
-            _context4.t0 = _context4["catch"](0);
-            console.log(_context4.t0);
-
-          case 11:
-          case "end":
-            return _context4.stop();
-        }
-      }
-    }, _callee4, null, [[0, 8]]);
-  }));
-
-  return function deleteMyBudget(_x6, _x7) {
-    return _ref4.apply(this, arguments);
-  };
-}();
-
-/***/ }),
-
-/***/ "./Public/JS/Budget/_Account-Management.js":
-/*!*************************************************!*\
-  !*** ./Public/JS/Budget/_Account-Management.js ***!
-  \*************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "_watchAccountManagement": () => (/* binding */ _watchAccountManagement)
-/* harmony export */ });
-/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
-var _watchAccountManagement = function _watchAccountManagement(budget, placeholderBudget, user) {
-  var accountSelect = document.querySelectorAll('.form__select--accounts');
-  var transferFrom = accountSelect[0];
-  var transferTo = accountSelect[1];
-  var transferAmount = document.getElementById('transferAmount');
-  var transferButton = document.querySelector('.button--extra-extra-small__wider');
-
-  if (transferFrom) {
-    transferFrom.childNodes.forEach(function (child) {
-      child.addEventListener('click', function (e) {
-        e.preventDefault();
-        console.log(child.value);
-      });
-    });
-  }
-
-  if (transferTo) {
-    transferTo.childNodes.forEach(function (child) {
-      child.addEventListener('click', function (e) {
-        e.preventDefault();
-        console.log(child.value);
-      });
-    });
-  }
-
-  if (transferButton) {
-    transferButton.addEventListener('click', function (e) {
-      e.preventDefault();
-      var to, from;
-
-      switch (transferFrom.value) {
-        case "Monthly Budget":
-          from = "monthlyBudget";
-          break;
-
-        case "Emergency Fund":
-          from = "emergencyFund";
-          break;
-
-        case "Savings Fund":
-          from = "savingsFund";
-          break;
-
-        case "Expense Fund":
-          from = "expenseFund";
-          break;
-
-        case "Surplus":
-          from = "surplus";
-          break;
-
-        case "Investment Fund":
-          from = "investmentFund";
-          break;
-
-        case "Tithing":
-          from = "tithing";
-          break;
-      }
-
-      switch (transferTo.value) {
-        case "Monthly Budget":
-          to = "monthlyBudget";
-          break;
-
-        case "Emergency Fund":
-          to = "emergencyFund";
-          break;
-
-        case "Savings Fund":
-          to = "savingsFund";
-          break;
-
-        case "Expense Fund":
-          to = "expenseFund";
-          break;
-
-        case "Surplus":
-          to = "surplus";
-          break;
-
-        case "Investment Fund":
-          to = "investmentFund";
-          break;
-
-        case "Tithing":
-          from = "tithing";
-          break;
-      }
-
-      var updateObject = {
-        budgetId: budget._id,
-        userId: user._id
-      };
-
-      placeholderBudget._accountTransfer(placeholderBudget.accounts[from], placeholderBudget.accounts[to], transferAmount.value);
-
-      updateObject.accounts = placeholderBudget.accounts;
-
-      placeholderBudget._updateBudget({
-        updateObject: updateObject
-      }, "Account-Management");
-
-      Utility.reloadPage();
-    });
-  }
-};
-
 /***/ }),
 
 /***/ "./Public/JS/Classes/Budget.js":
@@ -14561,11 +14593,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _Application_Create_Budget__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Application/Create-Budget */ "./Public/JS/Application/Create-Budget.js");
 /* harmony import */ var _Budget_Manage_Budget__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Budget/Manage-Budget */ "./Public/JS/Budget/Manage-Budget.js");
-/* harmony import */ var _Budget_Maintain_Budget__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Budget/Maintain-Budget */ "./Public/JS/Budget/Maintain-Budget.js");
-/* harmony import */ var _Budget_Creation_Budget_Categories__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../Budget-Creation/Budget-Categories */ "./Public/JS/Budget-Creation/Budget-Categories.js");
-/* harmony import */ var _FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./FrontEnd-Calendar */ "./Public/JS/Classes/FrontEnd-Calendar.js");
+/* harmony import */ var _Budget_Creation_Budget_Categories__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Budget-Creation/Budget-Categories */ "./Public/JS/Budget-Creation/Budget-Categories.js");
+/* harmony import */ var _FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./FrontEnd-Calendar */ "./Public/JS/Classes/FrontEnd-Calendar.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
-
 
 
 
@@ -14703,7 +14733,7 @@ var Budget = /*#__PURE__*/function () {
     key: "_addMainCategory",
     value: function _addMainCategory(icon, title) {
       // This is how main categories are added as objects with an icon and title.
-      this.mainCategories.push(new _Budget_Creation_Budget_Categories__WEBPACK_IMPORTED_MODULE_9__.MainCategory({
+      this.mainCategories.push(new _Budget_Creation_Budget_Categories__WEBPACK_IMPORTED_MODULE_8__.MainCategory({
         icon: icon,
         title: title
       }));
@@ -14724,7 +14754,7 @@ var Budget = /*#__PURE__*/function () {
   }, {
     key: "_addSubCategory",
     value: function _addSubCategory(index, title) {
-      this.mainCategories[index].subCategories.push(new _Budget_Creation_Budget_Categories__WEBPACK_IMPORTED_MODULE_9__.SubCategory({
+      this.mainCategories[index].subCategories.push(new _Budget_Creation_Budget_Categories__WEBPACK_IMPORTED_MODULE_8__.SubCategory({
         title: title
       }));
       console.log(this.mainCategories[index].subCategories);
@@ -14878,7 +14908,7 @@ var Budget = /*#__PURE__*/function () {
   }, {
     key: "_submit",
     value: function _submit(budget, user) {
-      budget.currentMonth = _FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_10__.myCalendar.getMonth();
+      budget.currentMonth = _FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_9__.myCalendar.getMonth();
       _Application_Create_Budget__WEBPACK_IMPORTED_MODULE_6__.createBudget(budget, user);
     }
   }, {

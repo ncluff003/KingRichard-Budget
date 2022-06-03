@@ -1,5 +1,5 @@
 import * as Categories from './Budget-Categories';
-import * as Budgeting from '../Budget/Maintain-Budget';
+import * as Watch from '../Budget/Watch-Budget';
 import * as Budget from '../Classes/Budget';
 import * as Utility from '../Application/Utility';
 import * as Validate from '../Classes/Validate';
@@ -1062,14 +1062,6 @@ const goToPage = (page, createBudgetPages) => {
   });
 };
 
-/////////////////////////////////
-// SET BUDGET NAME
-const getBudgetName = (budget) => {
-  const budgetName = document.getElementById('budgetName').value;
-  budget._updateBudgetName(budgetName);
-  return budget;
-};
-
 ///////////////////////////////////////
 // SETTING UP MAIN CATEGORY CREATION
 const setupMainCategoryCreation = (icon, budget, person) => {
@@ -1355,5 +1347,5 @@ export const _watchForBudgetCreation = async (person) => {
   }
   // WATCHING YOUR BUDGET AFTER YOU LOGIN OR CREATE YOUR BUDGET
   const budgetNavButton = document.querySelector('.budget-container__navigation-button-container__button');
-  Budgeting._watchBudget(person);
+  Watch._watchBudget(person);
 };
