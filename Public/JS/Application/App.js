@@ -1,6 +1,6 @@
 import * as Form from './Base-Forms';
 import * as AppLoggedIn from './App-LoggedIn';
-import * as Person from './Person';
+import * as Person from '../Classes/Person';
 
 ///////////////////////////////////////////////
 // APP

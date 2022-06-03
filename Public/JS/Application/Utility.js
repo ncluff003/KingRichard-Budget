@@ -4,6 +4,11 @@ export const insertElement = (position, container, element) => {
   }
 };
 
+export const showElement = (element) => {
+  element.classList.toggle('closed');
+  element.classList.toggle('open');
+};
+
 export const replaceClassName = (element, classReplaced, replacementClass) => {
   element.classList.remove(classReplaced);
   element.classList.add(replacementClass);

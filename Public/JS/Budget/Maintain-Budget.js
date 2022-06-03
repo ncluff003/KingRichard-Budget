@@ -1,121 +1,16 @@
-import * as Calendar from './FrontEnd-Calendar';
+import * as Calendar from '../Classes/FrontEnd-Calendar';
 import * as Budgeting from './Manage-Budget';
-import * as Budget from './Budget';
-import * as Edit from './Budget-Creation';
-import * as Categories from './Budget-Categories';
-import * as Transaction from './Transaction';
-import * as Person from './Person';
-import * as Utility from './Utility';
+import * as Budget from '../Classes/Budget';
+import * as Edit from '../Budget-Creation/Budget-Creation';
+import * as Categories from '../Budget-Creation/Budget-Categories';
+import * as Transaction from '../Classes/Transaction';
+import * as Person from '../Classes/Person';
+import * as Utility from './../Application/Utility';
+import * as Navigation from './Budget-Navigation';
+import * as Account from './_Account-Management';
 
 // Class of the 'days' on the Calendar.
 // bill-calendar-container__calendar-container__calendar__days__single-day
-
-export const reloadPage = () => {
-  setTimeout(() => {
-    window.location.reload();
-  }, 2000);
-};
-
-const showElement = (element) => {
-  element.classList.toggle('closed');
-  element.classList.toggle('open');
-};
-
-const transfer = (account1, account2, amount) => {
-  account1.amount = account1.amount - Number(amount);
-  account2.amount = account2.amount + Number(amount);
-};
-
-const _watchAccountManagement = (budget, placeholderBudget, user) => {
-  console.log(`Managing...`);
-  const accountSelect = document.querySelectorAll('.form__select--accounts');
-  const transferFrom = accountSelect[0];
-  const transferTo = accountSelect[1];
-  const transferAmount = document.getElementById('transferAmount');
-  const transferButton = document.querySelector('.button--extra-extra-small__wider');
-  if (transferFrom) {
-    transferFrom.childNodes.forEach((child) => {
-      child.addEventListener('click', (e) => {
-        e.preventDefault();
-        console.log(child.value);
-      });
-    });
-  }
-  if (transferTo) {
-    transferTo.childNodes.forEach((child) => {
-      child.addEventListener('click', (e) => {
-        e.preventDefault();
-        console.log(child.value);
-      });
-    });
-  }
-  if (transferButton) {
-    transferButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      console.log(transferFrom.value, transferTo.value, Number(transferAmount.value));
-      let to, from;
-      switch (transferFrom.value) {
-        case `Monthly Budget`:
-          from = `monthlyBudget`;
-          break;
-        case `Emergency Fund`:
-          from = `emergencyFund`;
-          break;
-        case `Savings Fund`:
-          from = `savingsFund`;
-          break;
-        case `Expense Fund`:
-          from = `expenseFund`;
-          break;
-        case `Surplus`:
-          from = `surplus`;
-          break;
-        case `Investment Fund`:
-          from = `investmentFund`;
-          break;
-        case `Tithing`:
-          from = `tithing`;
-          break;
-      }
-      switch (transferTo.value) {
-        case `Monthly Budget`:
-          to = `monthlyBudget`;
-          break;
-        case `Emergency Fund`:
-          to = `emergencyFund`;
-          break;
-        case `Savings Fund`:
-          to = `savingsFund`;
-          break;
-        case `Expense Fund`:
-          to = `expenseFund`;
-          break;
-        case `Surplus`:
-          to = `surplus`;
-          break;
-        case `Investment Fund`:
-          to = `investmentFund`;
-          break;
-        case `Tithing`:
-          from = `tithing`;
-          break;
-      }
-      let updateObject = {
-        budgetId: budget._id,
-        userId: user._id,
-      };
-
-      console.log(placeholderBudget.accounts[from], placeholderBudget.accounts[to]);
-      transfer(placeholderBudget.accounts[from], placeholderBudget.accounts[to], transferAmount.value);
-      console.log(placeholderBudget.accounts[from], placeholderBudget.accounts[to]);
-      updateObject.accounts = placeholderBudget.accounts;
-      placeholderBudget._updateBudget({ updateObject: updateObject }, `Account-Management`);
-      reloadPage();
-
-      console.log(updateObject.accounts);
-    });
-  }
-};
 
 const processReceipt = (transaction, button) => {
   const viewReceiptButtons = [...document.querySelectorAll('.button--extra-extra-small__view-receipt')];
@@ -233,7 +128,7 @@ const showRecentTransaction = (budget, placeholderBudget, user, transaction) => 
       insertElement(recentTransactionSection, viewReceiptButton);
       viewReceiptButton.addEventListener('click', (e) => {
         processReceipt(transaction, viewReceiptButton);
-        showElement(receiptModal);
+        Utility.showElement(receiptModal);
       });
     }
     if (sectionStart === 1) {
@@ -291,7 +186,6 @@ const showRecentTransaction = (budget, placeholderBudget, user, transaction) => 
 };
 
 const _watchRecentTransactions = (budget, placeholderBudget, user) => {
-  console.log(`Listing Transactions`);
   const receiptModal = document.querySelector('.modal--receipt');
   const receiptModalClosureIcon = document.querySelector('.modal--receipt__closure-icon');
   const viewReceiptButton = document.querySelector('.button--extra-extra-small__view-receipt');
@@ -301,12 +195,12 @@ const _watchRecentTransactions = (budget, placeholderBudget, user) => {
     });
     if (receiptModalClosureIcon) {
       receiptModalClosureIcon.addEventListener('click', (e) => {
-        showElement(receiptModal);
+        Utility.showElement(receiptModal);
       });
     }
     if (viewReceiptButton) {
       viewReceiptButton.addEventListener('click', (e) => {
-        showElement(receiptModal);
+        Utility.showElement(receiptModal);
       });
     }
   }
@@ -447,7 +341,6 @@ const payDebtOff = (budget, placeholderBudget, user, debt, paidSections, section
 };
 
 const _watchDebtManager = (budget, placeholderBudget, user) => {
-  console.log(`Watching Your Debts...`);
   const debtDisplay = document.querySelectorAll('.debt-display--paid');
   const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -620,7 +513,7 @@ const _watchDebtManager = (budget, placeholderBudget, user) => {
       budget.accounts.debt.debtAmount = Number(amountOfDebt);
       updateObject.accounts = budget.accounts;
       placeholderBudget._updateBudget({ updateObject: updateObject }, `Debt-Manager`);
-      reloadPage();
+      Utility.reloadPage();
     });
 
     const debtPayOffButtons = document.querySelectorAll('.button--extra-extra-small__debt-transaction-plan');
@@ -1043,7 +936,7 @@ const renderNewInvestment = (options) => {
 
   insertElement(investmentValueInformationContainerHalfTwo, investmentUpdateValueTextLink);
 
-  reloadPage();
+  Utility.reloadPage();
 };
 
 const _watchInvestmentPlanner = (budget, placeholderBudget, user) => {
@@ -3012,8 +2905,6 @@ const startPlanning = (budget, placeholderBudget, user) => {
 };
 
 const _watchTransactionPlanner = (budget, placeholderBudget, user) => {
-  console.log(`Planning...`);
-
   const borderlessButtons = document.querySelectorAll('.button--borderless');
   const startPlanningButton = borderlessButtons[2];
 
@@ -3897,7 +3788,6 @@ const _setupCurrentMonth = (budget, placeholderBudget, user) => {
     };
     placeholderBudget._updateBudget({ updateObject: updateObject }, `Dashboard`);
     Utility.reloadPage();
-    console.log(placeholderBudget.currentMonth, budget.currentMonth);
   }
   let categoryIndex = 0;
   subCategories.forEach((sc, i) => {
@@ -3954,7 +3844,6 @@ const _watchDaySelection = () => {
 
 // DISPLAY UPCOMING TRANSACTIONS -- NEED TO DO THIS HERE INSTEAD OF PUG FOR THE REASON OF THE TRANSACTIONS THAT HAVE TWO DUE DATES.
 const displayUpcomingTransactions = (container, transactions) => {
-  console.log(`Transactions...`);
   const money = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -3962,13 +3851,6 @@ const displayUpcomingTransactions = (container, transactions) => {
   });
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   transactions.forEach((transaction, i) => {
-    /*
-    This needs to be different.  Based off of the payment cycle, what really needs to happen is to go through the transaction's payment schedule and go through the process of creating the upcoming transactions of those transactions.
-
-    For those which are not bi-annual or bi-monthly it is straightforward.  For those that are, however, it requires another step of going through the each secondary array of dates and THEN creating the upcoming transactions with those.
-    
-    */
-
     if (transaction.timingOptions.paymentCycle !== `Bi-Annual` || transaction.timingOptions.paymentCycle !== `Bi-Monthly`) {
       let index = i;
       transaction.timingOptions.paymentSchedule.forEach((date, i) => {
@@ -4372,9 +4254,8 @@ const _setupBillCalendar = (budget, placeholderBudget, user) => {
       });
       upcomingBill.remove();
       updateObject.accounts = placeholderBudget.accounts;
-      console.log(updateObject);
       placeholderBudget._updateBudget({ updateObject: updateObject }, `Dashboard`);
-      reloadPage();
+      Utility.reloadPage();
       // setTimeout(() => {
       //   window.location.reload();
       // }, 5000);
@@ -4386,7 +4267,6 @@ const calculateTotal = (accountType, budget, debtAccount) => {
   const accountSections = document.querySelectorAll('.container--extra-small__content__account-total');
   const budgetAccounts = budget.accounts;
   let amountOfDebt = 0;
-  if (debtAccount) console.log(debtAccount, budgetAccounts);
   let budgetAccountTotals = [];
   Object.entries(budgetAccounts).forEach((account, i) => {
     return budgetAccountTotals.push(account[1].amount);
@@ -4433,23 +4313,9 @@ const calculateTotal = (accountType, budget, debtAccount) => {
 
     if (accountType === `Net Value`) {
       let initialDeposit = 0;
-      // let budgetAccountTotals = [];
-      // Object.entries(budgetAccounts).forEach((account) => {
-      //   if (account[0] === `debt`) {
-      //     if (debtAccount) {
-      //       debtAccount.forEach((debt, i) => {
-      //         if (debt.status !== `Paid Off`) {
-      //           amountOfDebt += debt.amountOwed;
-      //         }
-      //       });
-      //     }
-      //   }
-      //   return amountOfDebt;
-      // });
       const bankVaultTotal = budgetAccountTotals.reduce((previous, current) => previous + current, initialDeposit);
       const netValueAccount = accountSections[2];
       let netValue = money.format(bankVaultTotal - amountOfDebt);
-      console.log(netValue, bankVaultTotal, amountOfDebt);
       if (netValueAccount) netValueAccount.textContent = netValue;
     }
   }
@@ -4667,7 +4533,6 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
       ...document.querySelectorAll('.form__section--early-income-view__income-view__amount'),
       document.querySelector('.form__section--early-income-view__income-view--purple__amount'),
     ];
-    console.log(incomePreviewAmounts);
     let tithed = false;
 
     netIncomeInput.addEventListener('keyup', (e) => {
@@ -4873,8 +4738,6 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
   const transactionHeaderInputs = document.querySelectorAll('.form__input--small-thinner');
   const transactionHeaderInputsTwo = document.querySelectorAll('.form__input--small-thinner__wide');
   const transactionSubmitButton = smallContainerButtons[1];
-  console.log(smallContainerButtons);
-  console.log(transactionSelects, transactionOptions, transactionButtons, transactionCreationContainer);
 
   const accountSelection = transactionSelects[0];
   //////////////////////////////////////////
@@ -5317,53 +5180,11 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
           }
         });
         updateObject.accounts = placeholderBudget.accounts;
-        console.log(updateObject);
         placeholderBudget._updateBudget({ updateObject: updateObject }, `Dashboard`);
         const fullTransactionCost = document.querySelectorAll('.container--small__transaction-total__amount')[0];
         fullTransactionCost.textContent = money.format(0);
       });
     }
-  }
-};
-
-const _watchBudgetNavigation = () => {
-  const budgetNavButton = document.querySelector('.button--budget-navigation');
-  const budgetNavigation = document.querySelector('.navigation');
-  const linkButtons = document.querySelectorAll('.navigation__link-list__list-item__link-button');
-
-  if (budgetNavButton) {
-    budgetNavButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      budgetNavButton.classList.toggle('button--budget-navigation--clicked');
-      budgetNavigation.classList.toggle('closed');
-      budgetNavigation.classList.toggle('open-navigation');
-      if (!budgetNavButton.classList.contains('budget-navigation--visible')) linkButtons.forEach((lb) => lb.closest('li').nextSibling.classList.add('closed'));
-    });
-  }
-  if (linkButtons) {
-    linkButtons.forEach((lb) => {
-      lb.addEventListener('click', (e) => {
-        e.preventDefault();
-        const clicked = e.target.closest('li');
-        const siblingLinkContainer = clicked.nextSibling;
-        linkButtons.forEach((lb) => {
-          // if (lb.closest('li').nextSibling.classList.contains('open')) {
-          //   lb.closest('li').nextSibling.classList.add('closed');
-          //   lb.closest('li').nextSibling.classList.remove('open');
-          // }
-          // if (lb.closest('li').nextSibling.classList.contains('closed')) {
-          //   lb.closest('li').nextSibling.classList.add('closed');
-          //   lb.closest('li').nextSibling.classList.remove('open');
-          // }
-          lb.closest('li').nextSibling.classList.add('closed');
-          lb.closest('li').nextSibling.classList.remove('open');
-        });
-        if (!siblingLinkContainer.classList.contains('open')) {
-          siblingLinkContainer.classList.toggle('closed');
-          siblingLinkContainer.classList.toggle('open');
-        }
-      });
-    });
   }
 };
 
@@ -5392,9 +5213,7 @@ const buildTransactionOptions = (options) => {
 };
 
 const createMonthlyBudgetTransactionPlans = (budget, placeholderBudget, user) => {
-  console.log(placeholderBudget.transactions.plannedTransactions, budget.transactions.plannedTransactions);
   let updateObject = { budgetId: budget._id, userId: user._id };
-  console.log(updateObject);
   placeholderBudget.mainCategories.forEach((mc, i) => {
     mc.subCategories.forEach((sc, i) => {
       if (sc.timingOptions.paymentSchedule) {
@@ -5431,8 +5250,6 @@ const createMonthlyBudgetTransactionPlans = (budget, placeholderBudget, user) =>
                 }
               }
             }
-            if (plan.account !== `Monthly Budget` || plan.subAccount !== mc.title || plan.name !== sc.title) {
-            }
           });
           if (found === false && date.length === 24) {
             let transactionPlan = {};
@@ -5455,8 +5272,6 @@ const createMonthlyBudgetTransactionPlans = (budget, placeholderBudget, user) =>
             transactionPlan.paid = false;
             transactionPlan.paidStatus = `Unpaid`;
             placeholderBudget.transactions.plannedTransactions.push(transactionPlan);
-            // updateObject.transactions = placeholderBudget.transsactions;
-            // placeholderBudget._updateBudget({updateObject: updateObject}, `Transaction-Planner`);
           }
           if (found === false && date.length === 2) {
             date.forEach((date) => {
@@ -5480,8 +5295,6 @@ const createMonthlyBudgetTransactionPlans = (budget, placeholderBudget, user) =>
               transactionPlan.paid = false;
               transactionPlan.paidStatus = `Unpaid`;
               placeholderBudget.transactions.plannedTransactions.push(transactionPlan);
-              // updateObject.transactions = placeholderBudget.transsactions;
-              // placeholderBudget._updateBudget({updateObject: updateObject}, `Transaction-Planner`);
             });
           }
         });
@@ -5493,11 +5306,10 @@ const createMonthlyBudgetTransactionPlans = (budget, placeholderBudget, user) =>
 };
 
 const setupDashboard = (user, budget, placeholderBudget) => {
-  console.log(user);
   // THE LOGGED USER ABOVE SHOWED THAT THE DATE THE PASSWORD WAS CHANGED IS STILL SHOWING. THAT NEEDS TO BE CHANGED.
   ////////////////////////////////////////////
   // WATCH THE BUDGET NAVIGATION
-  _watchBudgetNavigation();
+  Navigation._watchBudgetNavigation();
 
   ////////////////////////////////////////////
   // CREATE TRANSACTION PLANS
@@ -5536,7 +5348,6 @@ export const _watchBudget = async () => {
   });
   let budget = Budget.startToCreate();
   budget._buildPlaceHolderBudget(currentBudget, user);
-  console.log(budget);
 
   if (!currentBudget) return;
   ////////////////////////////////////////////
@@ -5568,5 +5379,5 @@ export const _watchBudget = async () => {
   _watchRecentTransactions(currentBudget, budget, user);
   ////////////////////////////////////////////
   // WATCH ACCOUNT MANAGEMENT
-  _watchAccountManagement(currentBudget, budget, user);
+  Account._watchAccountManagement(currentBudget, budget, user);
 };

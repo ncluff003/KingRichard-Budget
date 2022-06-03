@@ -1,7 +1,7 @@
 import axios from 'axios';
 import qs from 'qs';
-import { logout } from './Login';
-import * as Utility from './Utility';
+import { logout } from './../Application/Login';
+import * as Utility from './../Application/Utility';
 
 export class Person {
   constructor(options) {

@@ -1,5 +1,3 @@
-import * as Budgets from './Retrieve-Budgets';
-
 export const createBudgetCard = (budgetName, createdAt, lastUpdated, administrators, coverPhoto) => {
   // CREATE BASE CARD ELEMENTS
   const budgetCardContainer = document.querySelector('.budget-card-container');

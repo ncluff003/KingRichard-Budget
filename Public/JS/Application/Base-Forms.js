@@ -1,7 +1,7 @@
 import * as Login from './Login';
 import * as Signup from './Signup';
 import * as Password from './Reset-Password';
-import * as Person from './Person';
+import * as Person from '../Classes/Person';
 
 //////////////////////////////
 // Actually Close The Form
@@ -18,7 +18,6 @@ const _closeTheForm = (index, page, pageElement, form) => {
 export const _watchFormClosers = (pageElement, page, form) => {
   const formClosers = document.querySelectorAll('.form-closure-icon');
   const budgetCreationFormClosers = document.querySelectorAll('.form-closure-icon--budget-creation');
-  console.log(formClosers);
   page = 0;
   if (formClosers[0]) {
     formClosers.forEach((fc, i) => {

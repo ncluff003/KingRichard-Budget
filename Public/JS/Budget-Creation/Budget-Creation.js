@@ -1,8 +1,8 @@
 import * as Categories from './Budget-Categories';
-import * as Budgeting from './Maintain-Budget';
-import * as Budget from './Budget';
-import * as Utility from './Utility';
-import * as Validate from './Validate';
+import * as Budgeting from '../Budget/Maintain-Budget';
+import * as Budget from '../Classes/Budget';
+import * as Utility from '../Application/Utility';
+import * as Validate from '../Classes/Validate';
 
 export const _watchEmergencyGoalSettings = (budget, setting) => {
   const emergencySettingLabels = document.querySelectorAll('.emergency-checkbox-label');

@@ -223,9 +223,7 @@ const getCurrentInfo = async (request, response, next) => {
 // const budget = await Budget.findById(budgetID);
 
 exports.createBudget = catchAsync(async (request, response, next) => {
-  console.log(request.params);
   const budgetBody = request.body;
-  console.log(budgetBody);
   let budget = budgetBody.budget;
   const user = await User.findById(request.user.id);
   budget = await Budget.create({

@@ -1,7 +1,7 @@
-import * as Budgets from './Create-Budget';
-import * as Manage from './Manage-Budget';
-import * as Maintain from './Maintain-Budget';
-import * as Categories from './Budget-Categories';
+import * as Budgets from '../Application/Create-Budget';
+import * as Manage from '../Budget/Manage-Budget';
+import * as Maintain from '../Budget/Maintain-Budget';
+import * as Categories from '../Budget-Creation/Budget-Categories';
 import * as Calendar from './FrontEnd-Calendar';
 class Account {
   constructor(options) {
@@ -44,6 +44,11 @@ export class Budget {
   _addTithingAccount(user) {
     if (user.latterDaySaint === true) this.accounts.tithing = { amount: 0 };
   }
+
+  _accountTransfer = (account1, account2, amount) => {
+    account1.amount = account1.amount - Number(amount);
+    account2.amount = account2.amount + Number(amount);
+  };
 
   _addBudgetTransactions() {
     this.transactions = [];
@@ -129,10 +134,16 @@ export class Budget {
       this.accounts.emergencyFund.emergencyFundGoal = options.goal;
       this.accounts.emergencyFund.emergencyFundGoalTiming = options.goalTiming;
       this.accounts.emergencyFund.amount = options.amount;
+      if (isNaN(Number(options.goal))) {
+        this.accounts.emergencyFund.emergencyFundGoal = 0;
+      }
     }
     if (this.accounts.emergencyFund.emergencyGoalMeasurement === `Total Amount`) {
       this.accounts.emergencyFund.emergencyFundGoal = options.goal;
       this.accounts.emergencyFund.amount = options.amount;
+      if (isNaN(Number(options.goal))) {
+        this.accounts.emergencyFund.emergencyFundGoal = 0;
+      }
     }
   }
 
@@ -140,16 +151,28 @@ export class Budget {
     this.accounts.savingsFund.savingsPercentage = Number(options.percentage);
     this.accounts.savingsFund.savingsGoal = Number(options.goal);
     this.accounts.savingsFund.amount = Number(options.amount);
+    if (isNaN(Number(options.percentage))) {
+      this.accounts.savingsFund.savingsPercentage = 0;
+    }
+    if (isNaN(Number(options.goal))) {
+      this.accounts.savingsFund.savingsGoal = 0;
+    }
   }
 
   _updateInvestmentFund(options) {
     this.accounts.investmentFund.investmentPercentage = Number(options.percentage);
     this.accounts.investmentFund.investmentGoal = Number(options.goal);
     this.accounts.investmentFund.amount = Number(options.amount);
+    this.accounts.investmentFund.investedAmount = Number(options.investedAmount);
     if (isNaN(Number(options.investedAmount))) {
       options.investedAmount = 0;
     }
-    this.accounts.investmentFund.investedAmount = Number(options.investedAmount);
+    if (isNaN(Number(options.investmentPercentage))) {
+      options.investmentPercentage = 0;
+    }
+    if (isNaN(Number(options.investmentGoal))) {
+      options.investmentGoal = 0;
+    }
   }
 
   _updateTithingAccount(options) {
@@ -175,7 +198,6 @@ export class Budget {
   }
 
   _updateBudget(options, pageLink) {
-    console.log(options);
     Manage.updateMyBudget(options.updateObject, pageLink);
   }
 

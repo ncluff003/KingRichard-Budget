@@ -1,6 +1,6 @@
-import * as Maintain from './Maintain-Budget';
-import * as Person from './Person';
-import * as Utility from './Utility';
+import * as Maintain from '../Budget/Maintain-Budget';
+import * as Person from '../Classes/Person';
+import * as Utility from '../Application/Utility';
 ////////////////////////////////
 // ICONS FOR MAIN CATEGORIES
 export const icons = [

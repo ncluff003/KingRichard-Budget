@@ -1,8 +1,8 @@
-import * as Create from './Budget-Creation';
-import * as Budget from './Budget';
-import * as Budgeting from './Maintain-Budget';
-import * as Manage from './Manage-Budget';
-import * as Person from './Person';
+import * as Create from '../Budget-Creation/Budget-Creation';
+import * as Budget from '../Classes/Budget';
+import * as Budgeting from '../Budget/Maintain-Budget';
+import * as Manage from '../Budget/Manage-Budget';
+import * as Person from '../Classes/Person';
 import * as Utility from './Utility';
 
 let latterDaySaint = false;
@@ -40,7 +40,6 @@ const _watchForProfileUpdates = async (user, person) => {
   let communicationSwitch = document.getElementById('commSwitch');
   let commPreference;
   let latterDaySaint;
-  console.log(transparentButtons);
   transparentButtons.forEach((b, i) => {
     b.addEventListener('click', async (e) => {
       e.preventDefault();
@@ -215,7 +214,6 @@ export const _showProfileForm = (forms, index) => {
 
 export const _watchUserProfileButtons = (communicationPreference, person) => {
   const userProfileForms = document.querySelectorAll('.form--full-width');
-  console.log(userProfileForms);
   const userProfileHeader = document.querySelector('.user-profile-section__header__text');
   const userProfileContainer = document.querySelector('.user-profile-section');
   const userProfileContainerClose = document.querySelector('.user-profile-closure-icon');
@@ -285,12 +283,10 @@ const openPhotoUpdateModal = (modal) => {
 };
 
 const _watchForProfilePictureChange = (user, person) => {
-  console.log('Watching...');
   const startUpdatingPhotoButton = document.querySelectorAll('.button--extra-small')[0];
   const photoUpdateModal = document.querySelector('.modal--update-photo');
   startUpdatingPhotoButton.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log(startUpdatingPhotoButton);
     openPhotoUpdateModal(photoUpdateModal);
   });
 
@@ -313,12 +309,9 @@ const _watchForProfilePictureChange = (user, person) => {
 
   photoInput.onchange = (e) => {
     const [file] = e.target.files;
-    console.log(file);
     reader.readAsDataURL(file);
     previewPath.textContent = file.name;
   };
-
-  console.log(photoInput.value);
 
   const saveProfilePictureButton = document.querySelector('.button--update-photo');
   saveProfilePictureButton.addEventListener('click', (e) => {
@@ -329,7 +322,7 @@ const _watchForProfilePictureChange = (user, person) => {
     console.log(form.data);
 
     person._updatePhoto(form);
-    Budgeting.reloadPage();
+    Utility.reloadPage();
   });
 };
 
@@ -353,7 +346,6 @@ export const _watchForLogin = async (login) => {
     const userInfo = await placeholderUser._getPersonData();
     const user = userInfo.data.data.user;
     placeholderUser._createPlaceholderUser(user, placeholderUser);
-    console.log(placeholderUser);
     /////////////////////////////////////////////////
     // START BY WATCHING FOR PROFILE PICTURE CHANGE
     _watchForProfilePictureChange(user, placeholderUser);
