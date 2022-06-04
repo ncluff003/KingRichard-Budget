@@ -192,7 +192,7 @@ const cycleMainCategories = (direction, index, subCats, budget) => {
   }
 };
 
-const _setupCurrentMonth = (budget, placeholderBudget, user) => {
+const _setupCurrentMonth = (budget, placeholderBudget, user, utility) => {
   const categoryIcon = document.querySelector('.main-category-display__category-display__icon');
   const categoryTitle = document.querySelector('.main-category-display__category-display__title');
   const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
@@ -249,12 +249,7 @@ const _setupCurrentMonth = (budget, placeholderBudget, user) => {
 };
 
 // DISPLAY UPCOMING TRANSACTIONS -- NEED TO DO THIS HERE INSTEAD OF PUG FOR THE REASON OF THE TRANSACTIONS THAT HAVE TWO DUE DATES.
-const displayUpcomingTransactions = (container, transactions) => {
-  const money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2,
-  });
+const displayUpcomingTransactions = (container, transactions, utility) => {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   transactions.forEach((transaction, i) => {
     if (transaction.timingOptions.paymentCycle !== `Bi-Annual` || transaction.timingOptions.paymentCycle !== `Bi-Monthly`) {
@@ -301,7 +296,7 @@ const displayUpcomingTransactions = (container, transactions) => {
             const billAccount = document.createElement('p');
             billAccount.classList.add('upcoming-bills__bill__bill-item__text');
             billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
-            billAccount.textContent = money.format(transaction.amount);
+            billAccount.textContent = utility.money.format(transaction.amount);
             Utility.insertElement(`beforeend`, billSection, billAccount);
           }
           if (billSectionStart === 4) {
@@ -374,7 +369,7 @@ const displayUpcomingTransactions = (container, transactions) => {
               const billAccount = document.createElement('p');
               billAccount.classList.add('upcoming-bills__bill__bill-item__text');
               billAccount.classList.add('r__upcoming-bills__bill__bill-item__text');
-              billAccount.textContent = money.format(transaction.amount);
+              billAccount.textContent = utility.money.format(transaction.amount);
               Utility.insertElement(`beforeend`, billSection, billAccount);
             }
             if (billSectionStart === 4) {
@@ -434,7 +429,7 @@ const _watchDaySelection = () => {
 };
 
 // SETTING UP BILL / TRANSACTION CALENDAR
-const _setupBillCalendar = (budget, placeholderBudget, user) => {
+const _setupBillCalendar = (budget, placeholderBudget, user, utility) => {
   const calendar = Calendar.myCalendar;
   let currentMonth = calendar.getMonth();
   let currentMonthIndex = calendar.getMonthIndex();
@@ -476,7 +471,7 @@ const _setupBillCalendar = (budget, placeholderBudget, user) => {
   }
 
   const upcomingBillsContainer = document.querySelector('.upcoming-bills');
-  displayUpcomingTransactions(upcomingBillsContainer, budget.transactions.plannedTransactions);
+  displayUpcomingTransactions(upcomingBillsContainer, budget.transactions.plannedTransactions, utility);
 
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const upcomingTransactions = document.querySelectorAll('.upcoming-bills__bill');
@@ -695,7 +690,7 @@ const _setupBillCalendar = (budget, placeholderBudget, user) => {
   });
 };
 
-const calculateTotal = (accountType, budget, debtAccount) => {
+const calculateTotal = (accountType, budget, utility, debtAccount) => {
   const accountSections = document.querySelectorAll('.container--extra-small__content__account-total');
   const budgetAccounts = budget.accounts;
   let amountOfDebt = 0;
@@ -717,26 +712,19 @@ const calculateTotal = (accountType, budget, debtAccount) => {
     return amountOfDebt;
   });
 
-  // Set Money Format
-  const money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2,
-  });
-
   if (budget) {
     if (accountType === `Bank Account`) {
       let initialDeposit = 0;
       const bankVaultTotal = budgetAccountTotals.reduce((previous, current) => previous + current, initialDeposit);
       const bankAccountSection = accountSections[0];
-      let bankAccount = money.format(bankVaultTotal);
+      let bankAccount = utility.money.format(bankVaultTotal);
       if (bankAccountSection) bankAccountSection.textContent = `${bankAccount}`;
     }
 
     if (accountType === `Debt`) {
       const debtAccount = accountSections[1];
       // amountOfDebt += 200;
-      let debt = money.format(amountOfDebt);
+      let debt = utility.money.format(amountOfDebt);
 
       if (debtAccount) {
         amountOfDebt === 0 ? (debtAccount.textContent = debt) : (debtAccount.textContent = `-${debt}`);
@@ -747,16 +735,16 @@ const calculateTotal = (accountType, budget, debtAccount) => {
       let initialDeposit = 0;
       const bankVaultTotal = budgetAccountTotals.reduce((previous, current) => previous + current, initialDeposit);
       const netValueAccount = accountSections[2];
-      let netValue = money.format(bankVaultTotal - amountOfDebt);
+      let netValue = utility.money.format(bankVaultTotal - amountOfDebt);
       if (netValueAccount) netValueAccount.textContent = netValue;
     }
   }
 };
 
-const getDashboardAccountTotals = (budget, placeholderBudget, user) => {
-  calculateTotal(`Bank Account`, budget);
-  calculateTotal(`Debt`, budget, budget.debts);
-  calculateTotal(`Net Value`, budget, budget.debts);
+const getDashboardAccountTotals = (budget, placeholderBudget, user, utility) => {
+  calculateTotal(`Bank Account`, budget, utility);
+  calculateTotal(`Debt`, budget, utility, budget.debts);
+  calculateTotal(`Net Value`, budget, utility, budget.debts);
 };
 
 const buildTransactionOptions = (options) => {
@@ -779,18 +767,18 @@ const resetTransactionOptions = (allOptions) => {
   });
 };
 
-const _watchForTransactions = (budget, placeholderBudget, user) => {
+const _watchForTransactions = (budget, placeholderBudget, user, utility) => {
   const dashboard = document.querySelector('.budget-dashboard');
   if (dashboard) {
     console.log(placeholderBudget);
 
+    const transactionTotal = document.querySelector('.container--small__transaction-total__amount');
+    transactionTotal.textContent = utility.money.format(0);
+    console.log(transactionTotal);
+
     // MUSTDO: CREATE A UTILITY OBJECT THAT HOLDS THINGS LIKE THIS MONEY FORMATTER.
     // MUSTDO: PUT THE MONEY FORMATTER INTO ITS OWN FUNCTION WITH THE CURRENT OPTIONS AS THE DEFAULT, AND OTHER OPTIONS USING THE PERSON'S LOCATION.
-    const money = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 2,
-    });
+
     const headerSubmitButtons = document.querySelectorAll('.button--small-container-header');
     const incomeInputs = document.querySelectorAll('.form__input--enter-income');
     // MUSTDO: Separate income into investment, savings, and un-allocated after every keystroke into net pay.
@@ -812,20 +800,24 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
     ];
     let tithed = false;
 
+    incomePreviewAmounts.forEach((amount) => {
+      amount.textContent = utility.money.format(Number(amount.textContent.split(utility.currencySymbol)[1]));
+    });
+
     netIncomeInput.addEventListener('keyup', (e) => {
       e.preventDefault();
-      incomePreviewAmounts[0].textContent = money.format(netIncomeInput.value * investmentPercentage);
-      incomePreviewAmounts[1].textContent = money.format(netIncomeInput.value * savingsPercentage);
+      incomePreviewAmounts[0].textContent = utility.money.format(netIncomeInput.value * investmentPercentage);
+      incomePreviewAmounts[1].textContent = utility.money.format(netIncomeInput.value * savingsPercentage);
       if (user.latterDaySaint === true) {
-        incomePreviewAmounts[2].textContent = money.format(0);
+        incomePreviewAmounts[2].textContent = utility.money.format(0);
         if (budget.accounts.tithing.tithingSetting === `Gross`) {
-          incomePreviewAmounts[2].textContent = money.format(grossIncomeInput.value * 0.1);
+          incomePreviewAmounts[2].textContent = utility.money.format(grossIncomeInput.value * 0.1);
         }
         if (budget.accounts.tithing.tithingSetting === `Net`) {
-          incomePreviewAmounts[2].textContent = money.format(netIncomeInput.value * 0.1);
+          incomePreviewAmounts[2].textContent = utility.money.format(netIncomeInput.value * 0.1);
         }
         if (budget.accounts.tithing.tithingSetting !== `Surplus`) {
-          incomePreviewAmounts[3].textContent = money.format(
+          incomePreviewAmounts[3].textContent = utility.money.format(
             netIncomeInput.value -
               Number(incomePreviewAmounts[0].textContent.split('$')[1]) -
               Number(incomePreviewAmounts[1].textContent.split('$')[1]) -
@@ -833,13 +825,13 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
           );
         }
         if (budget.accounts.tithing.tithingSetting === `Surplus`) {
-          incomePreviewAmounts[2].textContent = money.format(
+          incomePreviewAmounts[2].textContent = utility.money.format(
             netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1])
           );
         }
       }
       if (user.latterDaySaint === false) {
-        incomePreviewAmounts[2].textContent = money.format(
+        incomePreviewAmounts[2].textContent = utility.money.format(
           netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1])
         );
       }
@@ -989,19 +981,11 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
       incomeFromInput.value = '';
       grossIncomeInput.value = '';
       netIncomeInput.value = '';
-      incomePreviewAmounts[0].textContent = money.format(0);
-      incomePreviewAmounts[1].textContent = money.format(0);
-      incomePreviewAmounts[2].textContent = money.format(0);
+      incomePreviewAmounts[0].textContent = utility.money.format(0);
+      incomePreviewAmounts[1].textContent = utility.money.format(0);
+      incomePreviewAmounts[2].textContent = utility.money.format(0);
     });
   }
-
-  // ** TOP PRIORITY ** When it is possible, record the income as a deposit transaction in the recent transactions page.
-
-  const money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2,
-  });
 
   ////////////////////////////////////////////
   // INITIALIZE TRANSACTION OPTIONS
@@ -1131,18 +1115,18 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
           const receiptRow = document.createElement('section');
           receiptRow.classList.add('receipt-item-container__row');
           receiptRow.classList.add('r__receipt-item-container__row');
-          Utility.insertElement(receiptItemContainer, receiptRow);
+          Utility.insertElement('beforeend', receiptItemContainer, receiptRow);
 
           const transactionDetails = document.createElement('section');
           transactionDetails.classList.add('transaction-item-details');
           transactionDetails.classList.add('r__transaction-item-details');
 
-          Utility.insertElement(receiptRow, transactionDetails);
+          Utility.insertElement('beforeend', receiptRow, transactionDetails);
 
           const transactionCostDetails = document.createElement('section');
           transactionCostDetails.classList.add('transaction-item-cost');
           transactionCostDetails.classList.add('r__transaction-item-cost');
-          Utility.insertElement(receiptRow, transactionCostDetails);
+          Utility.insertElement('beforeend', receiptRow, transactionCostDetails);
 
           let detailCount = 1;
           let detailStart = 0;
@@ -1188,16 +1172,15 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
                 receiptDetail.textContent = transactionItem.firstChild.nextSibling.value;
               }
             }
-            Utility.insertElement(transactionDetails, receiptDetail);
+            Utility.insertElement('beforeend', transactionDetails, receiptDetail);
             detailStart++;
           }
 
-          console.log(transactionAmount, transactionAmount.firstChild.value, typeof transactionAmount.firstChild.value, money.format(Number(transactionAmount.value)));
           const receiptDetailCost = document.createElement('p');
           receiptDetailCost.classList.add('transaction-item-cost__cost');
           receiptDetailCost.classList.add('r__transaction-item-cost__cost');
-          receiptDetailCost.textContent = money.format(Number(transactionAmount.firstChild.value));
-          Utility.insertElement(transactionCostDetails, receiptDetailCost);
+          receiptDetailCost.textContent = utility.money.format(Number(transactionAmount.firstChild.value));
+          Utility.insertElement('beforeend', transactionCostDetails, receiptDetailCost);
 
           const removeTransactionItemIcon = document.createElement('i');
           removeTransactionItemIcon.classList.add('fas');
@@ -1205,7 +1188,7 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
           removeTransactionItemIcon.classList.add('remove-transaction');
           removeTransactionItemIcon.classList.add('r__remove-transaction');
           removeTransactionItemIcon.classList.add('closed');
-          Utility.insertElement(transactionCostDetails, removeTransactionItemIcon);
+          Utility.insertElement('beforeend', transactionCostDetails, removeTransactionItemIcon);
 
           removeTransactionItemIcon.addEventListener('click', (e) => {
             let removeTransactionIcons = document.querySelectorAll('.remove-transaction');
@@ -1292,18 +1275,18 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
           const receiptRow = document.createElement('section');
           receiptRow.classList.add('receipt-item-container__row');
           receiptRow.classList.add('r__receipt-item-container__row');
-          Utility.insertElement(receiptItemContainer, receiptRow);
+          Utility.insertElement('beforeend', receiptItemContainer, receiptRow);
 
           const transactionDetails = document.createElement('section');
           transactionDetails.classList.add('transaction-item-details');
           transactionDetails.classList.add('r__transaction-item-details');
 
-          Utility.insertElement(receiptRow, transactionDetails);
+          Utility.insertElement('beforeend', receiptRow, transactionDetails);
 
           const transactionCostDetails = document.createElement('section');
           transactionCostDetails.classList.add('transaction-item-cost');
           transactionCostDetails.classList.add('r__transaction-item-cost');
-          Utility.insertElement(receiptRow, transactionCostDetails);
+          Utility.insertElement('beforeend', receiptRow, transactionCostDetails);
 
           let detailCount = 1;
           let detailStart = 0;
@@ -1319,16 +1302,14 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
                 receiptDetail.textContent = transactionName.firstChild.value;
               }
             }
-            Utility.insertElement(transactionDetails, receiptDetail);
+            Utility.insertElement('beforeend', transactionDetails, receiptDetail);
             detailStart++;
           }
-
-          console.log(transactionAmount, transactionAmount.firstChild.value, typeof transactionAmount.firstChild.value, money.format(Number(transactionAmount.value)));
           const receiptDetailCost = document.createElement('p');
           receiptDetailCost.classList.add('transaction-item-cost__cost');
           receiptDetailCost.classList.add('r__transaction-item-cost__cost');
-          receiptDetailCost.textContent = money.format(Number(transactionAmount.firstChild.value));
-          Utility.insertElement(transactionCostDetails, receiptDetailCost);
+          receiptDetailCost.textContent = utility.money.format(Number(transactionAmount.firstChild.value));
+          Utility.insertElement('beforeend', transactionCostDetails, receiptDetailCost);
 
           const removeTransactionItemIcon = document.createElement('i');
           removeTransactionItemIcon.classList.add('fas');
@@ -1336,7 +1317,7 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
           removeTransactionItemIcon.classList.add('remove-transaction');
           removeTransactionItemIcon.classList.add('r__remove-transaction');
           removeTransactionItemIcon.classList.add('closed');
-          Utility.insertElement(transactionCostDetails, removeTransactionItemIcon);
+          Utility.insertElement('beforeend', transactionCostDetails, removeTransactionItemIcon);
 
           removeTransactionItemIcon.addEventListener('click', (e) => {
             let removeTransactionIcons = document.querySelectorAll('.remove-transaction');
@@ -1376,7 +1357,7 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
           return (receiptCost = receiptCost += receiptItem.amount);
         });
         console.log(receiptCost);
-        fullTransactionCost.textContent = money.format(receiptCost);
+        fullTransactionCost.textContent = utility.money.format(receiptCost);
       });
     }
     if (transactionSubmitButton) {
@@ -1452,7 +1433,7 @@ const _watchForTransactions = (budget, placeholderBudget, user) => {
         updateObject.accounts = placeholderBudget.accounts;
         placeholderBudget._updateBudget({ updateObject: updateObject }, `Dashboard`);
         const fullTransactionCost = document.querySelectorAll('.container--small__transaction-total__amount')[0];
-        fullTransactionCost.textContent = money.format(0);
+        fullTransactionCost.textContent = utility.money.format(0);
       });
     }
   }
@@ -1551,7 +1532,7 @@ const createMonthlyBudgetTransactionPlans = (budget, placeholderBudget, user) =>
   placeholderBudget._updateBudget({ updateObject: updateObject }, `Transaction-Planner`);
 };
 
-export const setupBudgetDashboard = (user, budget, placeholderBudget) => {
+export const setupBudgetDashboard = (user, budget, placeholderBudget, utility) => {
   // THE LOGGED USER ABOVE SHOWED THAT THE DATE THE PASSWORD WAS CHANGED IS STILL SHOWING. THAT NEEDS TO BE CHANGED.
   ////////////////////////////////////////////
   // WATCH THE BUDGET NAVIGATION
@@ -1563,16 +1544,16 @@ export const setupBudgetDashboard = (user, budget, placeholderBudget) => {
 
   ////////////////////////////////////////////
   // WATCH FOR ACCOUNT SELECTION
-  _watchForTransactions(budget, placeholderBudget, user);
+  _watchForTransactions(budget, placeholderBudget, user, utility);
 
   ////////////////////////////////////////////
   // GET BANK ACCOUNT TOTAL
-  getDashboardAccountTotals(budget, placeholderBudget, user);
+  getDashboardAccountTotals(budget, placeholderBudget, user, utility);
 
   ////////////////////////////////////////////
   // SETUP BILL CALENDAR
-  _setupBillCalendar(budget, placeholderBudget, user);
+  _setupBillCalendar(budget, placeholderBudget, user, utility);
   ////////////////////////////////////////////
   // SETUP BILL CURRENT MONTH
-  _setupCurrentMonth(budget, placeholderBudget, user);
+  _setupCurrentMonth(budget, placeholderBudget, user, utility);
 };

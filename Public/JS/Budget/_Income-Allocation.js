@@ -1,14 +1,9 @@
-export const _watchIncomeAllocation = (budget, placeholderBudget, user) => {
+export const _watchIncomeAllocation = (budget, placeholderBudget, user, utility) => {
   const incomeAllocationContainer = document.querySelector('.container--allocate-income');
   const unAllocatedTotal = document.querySelector('.un-allocated-account-total');
-  const money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2,
-  });
   if (incomeAllocationContainer) {
     console.log(`Allocating...`);
-    unAllocatedTotal.textContent = money.format(unAllocatedTotal.textContent);
+    unAllocatedTotal.textContent = utility.money.format(unAllocatedTotal.textContent);
     const allocateIncomeButton = document.querySelector('.button--small-purple');
     allocateIncomeButton.addEventListener('click', (e) => {
       e.preventDefault();
@@ -26,7 +21,7 @@ export const _watchIncomeAllocation = (budget, placeholderBudget, user) => {
 
       // DOUBLE CHECK TO MAKE SURE ALLOCATED AMOUNT DOES NOT EXCEED UN-ALLOCATED INCOME
       totalAllocationAmount <= unAllocatedAmount
-        ? (unAllocatedTotal.textContent = money.format(unAllocatedAmount - totalAllocationAmount))
+        ? (unAllocatedTotal.textContent = utility.money.format(unAllocatedAmount - totalAllocationAmount))
         : alert(`You do not have all that money! Please lower one of your accounts amounts!`);
 
       // INITIALIZE SEPARATE ACCOUNTS ALLOCATED TOTALS

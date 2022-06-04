@@ -11,9 +11,23 @@ const jwt = require(`jsonwebtoken`);
 ////////////////////////////////////////////
 //  Third Party Middleware
 const crypto = require('crypto');
+const axios = require('axios');
 
 ////////////////////////////////////////////
 //  Third Party Config Files
+
+////////////////////////////////////////////
+//  Third Party API Configs
+
+// SAVING THE INFO BELOW IF I NEED HELP WITH APIs FOR THIS BUDGET APP.
+// const baseURL = `https://restcountries.com/v2/all`;
+// let options = {
+//   method: `GET`,
+//   url: baseURL,
+//   headers: {
+//     'Content-Type': 'application/json',
+//   },
+// };
 
 ////////////////////////////////////////////
 //  My Middleware

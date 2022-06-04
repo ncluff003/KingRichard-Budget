@@ -51,7 +51,7 @@ const getSubCategoryTiming = (budget, category) => {
     let day = date.getDate();
     let endDigit = Number(date.getDate().toString().split('')[date.getDate().toString().length - 1]);
     let dayEnding;
-    dayEnding = Edit.calculateDayEnding(endDigit, dayEnding, date);
+    dayEnding = Creation.calculateDayEnding(endDigit, dayEnding, date);
     wording = `Due ${days[date.getDay()]}, the ${day}${dayEnding} of ${months[date.getMonth()]}.`;
     return wording;
   }
@@ -67,8 +67,8 @@ const getSubCategoryTiming = (budget, category) => {
     });
     let endDigit = Number(dayOne.getDate().toString().split('')[dayOne.getDate().toString().length - 1]);
     let endDigitTwo = Number(dayTwo.getDate().toString().split('')[dayTwo.getDate().toString().length - 1]);
-    dayEnding = Edit.calculateDayEnding(endDigit, dayEnding, dayOne.getDate());
-    dayEndingTwo = Edit.calculateDayEnding(endDigit, dayEndingTwo, dayTwo.getDate());
+    dayEnding = Creation.calculateDayEnding(endDigit, dayEnding, dayOne.getDate());
+    dayEndingTwo = Creation.calculateDayEnding(endDigit, dayEndingTwo, dayTwo.getDate());
     wording = `Due the ${dayOne.getDate()}${dayEnding} & ${dayTwo.getDate()}${dayEndingTwo}, of ${months[dayOne.getMonth()]}`;
     return wording;
   }
@@ -77,13 +77,13 @@ const getSubCategoryTiming = (budget, category) => {
     let day = date.getDate();
     let endDigit = Number(date.getDate().toString().split('')[date.getDate().toString().length - 1]);
     let dayEnding;
-    dayEnding = Edit.calculateDayEnding(endDigit, dayEnding, date);
+    dayEnding = Creation.calculateDayEnding(endDigit, dayEnding, date);
     wording = `Due ${days[date.getDay()]}, the ${day}${dayEnding} of ${months[date.getMonth()]}.`;
     return wording;
   }
 };
 
-export const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
+export const _watchEditCategoryGoals = (budget, placeholderBudget, user, utility) => {
   const editCategoryGoalsContainer = document.querySelectorAll('.container--large')[0];
   if (editCategoryGoalsContainer) {
     const subCategories = document.querySelectorAll('.sub-category-display__sub-category');
@@ -113,11 +113,6 @@ export const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
     let subCategoryIndex = 0;
     Creation.watchForSettingTiming(placeholderBudget, subCategoryIndex, clickedItem, selectedTiming, `Full Budget`);
 
-    const money = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 2,
-    });
     const individualPayments = document.querySelectorAll('.individual-payment');
     const overallBudget = document.querySelectorAll('.budget-single-goal-summary__amount');
     individualPayments.forEach((ip, i) => {
@@ -159,12 +154,12 @@ export const _watchEditCategoryGoals = (budget, placeholderBudget, user) => {
         let total = getOverallBudget(subCategories, overallBudget[0]);
         let part = getOverallSpent(subCategories, overallSpent);
         let percentage = getOverallPercentageSpent(total, part);
-        overallBudget[0].textContent = money.format(getOverallBudget(subCategories, overallBudget[0]));
-        overallSpent.textContent = money.format(part);
-        overallRemaining.textContent = money.format(total - part);
+        overallBudget[0].textContent = utility.money.format(getOverallBudget(subCategories, overallBudget[0]));
+        overallSpent.textContent = utility.money.format(part);
+        overallRemaining.textContent = utility.money.format(total - part);
         overallPercentageSpent.textContent = `${percentage}%`;
-        spent.textContent = money.format(spent.textContent.split('$')[1]);
-        remaining.textContent = money.format(ip.value - Number(spent.textContent.split('$')[1]));
+        spent.textContent = utility.money.format(spent.textContent.split('$')[1]);
+        remaining.textContent = utility.money.format(ip.value - Number(spent.textContent.split('$')[1]));
         if (total - part < 0) {
           overallRemaining.classList.add('negative');
           overallRemaining.classList.remove('positive');

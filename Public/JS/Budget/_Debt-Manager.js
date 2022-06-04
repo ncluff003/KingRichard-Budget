@@ -1,7 +1,6 @@
 import * as Utility from './../Application/Utility';
 
-const payDebtOff = (budget, placeholderBudget, user, debt, paidSections, sectionStart) => {
-  const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
+const payDebtOff = (budget, placeholderBudget, user, debt, paidSections, sectionStart, utility) => {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   sectionStart = 0;
   paidSections = 6;
@@ -84,7 +83,7 @@ const payDebtOff = (budget, placeholderBudget, user, debt, paidSections, section
       const sectionContent = document.createElement('p');
       sectionContent.classList.add('debt--paid-text');
       sectionContent.classList.add('r__debt--paid-text');
-      sectionContent.textContent = money.format(Number(debt.initialDebt));
+      sectionContent.textContent = utility.money.format(Number(debt.initialDebt));
 
       Utility.insertElement(`beforeend`, debtSection, sectionHeader);
       Utility.insertElement(`beforeend`, debtSection, sectionContent);
@@ -99,7 +98,7 @@ const payDebtOff = (budget, placeholderBudget, user, debt, paidSections, section
       const sectionContent = document.createElement('p');
       sectionContent.classList.add('debt--paid-text');
       sectionContent.classList.add('r__debt--paid-text');
-      sectionContent.textContent = money.format(Number(debt.amountOwed));
+      sectionContent.textContent = utility.money.format(Number(debt.amountOwed));
 
       Utility.insertElement(`beforeend`, debtSection, sectionHeader);
       Utility.insertElement(`beforeend`, debtSection, sectionContent);
@@ -134,9 +133,8 @@ const payDebtOff = (budget, placeholderBudget, user, debt, paidSections, section
   placeholderBudget._updateBudget({ updateObject: updateObject }, `Debt-Manager`);
 };
 
-export const _watchDebtManager = (budget, placeholderBudget, user) => {
+export const _watchDebtManager = (budget, placeholderBudget, user, utility) => {
   const debtDisplay = document.querySelectorAll('.debt-display--paid');
-  const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const addDebtButton = document.getElementById('addDebtButton');
   const debtLender = document.getElementById('debtLender');
@@ -231,7 +229,7 @@ export const _watchDebtManager = (budget, placeholderBudget, user) => {
           const sectionContent = document.createElement('p');
           sectionContent.classList.add('debt-text');
           sectionContent.classList.add('r__debt-text');
-          sectionContent.textContent = money.format(Number(debtAmount.value));
+          sectionContent.textContent = utility.money.format(Number(debtAmount.value));
           debtObject.initialDebt = Number(debtAmount.value);
 
           Utility.insertElement(`beforeend`, debtSection, sectionHeader);
@@ -247,7 +245,7 @@ export const _watchDebtManager = (budget, placeholderBudget, user) => {
           const sectionContent = document.createElement('p');
           sectionContent.classList.add('debt-text');
           sectionContent.classList.add('r__debt-text');
-          sectionContent.textContent = money.format(Number(debtAmount.value));
+          sectionContent.textContent = utility.money.format(Number(debtAmount.value));
           debtObject.amountOwed = debtObject.initialDebt;
 
           Utility.insertElement(`beforeend`, debtSection, sectionHeader);
@@ -317,7 +315,7 @@ export const _watchDebtManager = (budget, placeholderBudget, user) => {
         e.preventDefault();
         numberOfPaidSections = 6;
         sectionStart = 0;
-        payDebtOff(budget, placeholderBudget, user, budget.debts[debts[i].dataset.debt], numberOfPaidSections, sectionStart);
+        payDebtOff(budget, placeholderBudget, user, budget.debts[debts[i].dataset.debt], numberOfPaidSections, sectionStart, utility);
         debts[i].remove();
       });
     });

@@ -243,15 +243,10 @@ const getDueDate = (date) => {
   return `${new Date(selectedDate.setHours(selectedDate.getHours() + new Date().getTimezoneOffset() / 60)).getDate()} ${months[new Date(date).getMonth()]} ${new Date(date).getFullYear()}`;
 };
 
-const buildTransactionPlan = (budget, placeholderBudget, user, number, numberOfSections, plan, classType) => {
+const buildTransactionPlan = (budget, placeholderBudget, user, number, numberOfSections, plan, classType, utility) => {
   const transactionPlanSelects = document.querySelectorAll('.form__select--accounts');
   const smallShortTransactionPlanInputs = document.querySelectorAll('.form__input--small-short');
   const altMediumTransactionPlanInputs = document.querySelectorAll('.form__input--medium__alt');
-  const money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2,
-  });
 
   let expenseAppliedTotal = 0;
   let savingsAppliedTotal = 0;
@@ -344,7 +339,7 @@ const buildTransactionPlan = (budget, placeholderBudget, user, number, numberOfS
       if (number === 5) {
         // INSERT DOM ELEMENTS INTO FIRST PART
         transactionPlanPartHeaderText.textContent = `Amount`;
-        transactionPlanPartText.textContent = `${money.format(Number(smallShortTransactionPlanInputs[2].value))}`;
+        transactionPlanPartText.textContent = `${utility.money.format(Number(smallShortTransactionPlanInputs[2].value))}`;
         Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartHeader);
         Utility.insertElement(`beforeend`, transactionPlanPartHeader, transactionPlanPartHeaderText);
         Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartText);
@@ -358,13 +353,6 @@ const buildTransactionPlan = (budget, placeholderBudget, user, number, numberOfS
         Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartText);
       }
       if (number === 7) {
-        // transactionPlanPartHeader.classList.add('transaction-plan__alt__part__header');
-        // transactionPlanPartHeader.classList.add('r__transaction-plan__alt__part__header');
-        // transactionPlanPartHeaderText.classList.add('transaction-plan__alt__part__header__text');
-        // transactionPlanPartHeaderText.classList.add('r__transaction-plan__alt__part__header__text');
-        // transactionPlanPartText.classList.add('transaction-plan__alt__part__text');
-        // transactionPlanPartText.classList.add('r__transaction-plan__alt__part__text');
-
         // INSERT DOM ELEMENTS INTO FIRST PART
         transactionPlanPartHeaderText.textContent = `Timing`;
         transactionPlanPartText.textContent = `${transactionPlanSelects[5].value}`;
@@ -382,7 +370,7 @@ const buildTransactionPlan = (budget, placeholderBudget, user, number, numberOfS
       if (number === 8) {
         // INSERT DOM ELEMENTS INTO FIRST PART
         transactionPlanPartHeaderText.textContent = `Amount Saved`;
-        transactionPlanPartText.textContent = money.format(0);
+        transactionPlanPartText.textContent = utility.money.format(0);
 
         if (altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
           Utility.replaceClassName(transactionPlanPartHeader, `transaction-plan__part__header`, 'transaction-plan__double__part__header');
@@ -418,7 +406,7 @@ const buildTransactionPlan = (budget, placeholderBudget, user, number, numberOfS
           Utility.replaceClassName(transactionPlanPartHeader, `transaction-plan__part__header`, 'transaction-plan__double__part__header');
           Utility.replaceClassName(transactionPlanPartHeader, `r__transaction-plan__part__header`, 'r__transaction-plan__double__part__header');
           transactionPlanPartHeaderText.textContent = `Amount Saved`;
-          transactionPlanPartText.textContent = money.format(0);
+          transactionPlanPartText.textContent = utility.money.format(0);
           Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartText);
         }
       }
@@ -566,7 +554,7 @@ const buildTransactionPlan = (budget, placeholderBudget, user, number, numberOfS
       if (number === 6) {
         // INSERT DOM ELEMENTS INTO FIRST PART
         transactionPlanPartHeaderText.textContent = `Amount`;
-        transactionPlanPartText.textContent = `${money.format(Number(smallShortTransactionPlanInputs[2].value))}`;
+        transactionPlanPartText.textContent = `${utility.money.format(Number(smallShortTransactionPlanInputs[2].value))}`;
         Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartHeader);
         Utility.insertElement(`beforeend`, transactionPlanPartHeader, transactionPlanPartHeaderText);
         Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartText);
@@ -604,7 +592,7 @@ const buildTransactionPlan = (budget, placeholderBudget, user, number, numberOfS
       if (number === 9) {
         // INSERT DOM ELEMENTS INTO FIRST PART
         transactionPlanPartHeaderText.textContent = `Amount Saved`;
-        transactionPlanPartText.textContent = money.format(0);
+        transactionPlanPartText.textContent = utility.money.format(0);
 
         if (altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
           Utility.replaceClassName(transactionPlanPartHeader, `transaction-plan__alt__part__header`, 'transaction-plan__alt-double__part__header');
@@ -640,7 +628,7 @@ const buildTransactionPlan = (budget, placeholderBudget, user, number, numberOfS
           Utility.replaceClassName(transactionPlanPartHeader, `transaction-plan__alt__part__header`, 'transaction-plan__alt-double__part__header');
           Utility.replaceClassName(transactionPlanPartHeader, `r__transaction-plan__alt__part__header`, 'r__transaction-plan__alt-double__part__header');
           transactionPlanPartHeaderText.textContent = `Amount Saved`;
-          transactionPlanPartText.textContent = money.format(0);
+          transactionPlanPartText.textContent = utility.money.format(0);
           Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartText);
         }
       }
@@ -717,7 +705,7 @@ const buildTransactionPlan = (budget, placeholderBudget, user, number, numberOfS
   finalizeTransactionPlan(budget, placeholderBudget, user, transactionPlanSelects, smallShortTransactionPlanInputs, altMediumTransactionPlanInputs);
 };
 
-const createPlannedTransaction = (accountSelect, budget, placeholderBudget, user, creationContainer) => {
+const createPlannedTransaction = (accountSelect, budget, placeholderBudget, user, creationContainer, utility) => {
   console.log(`Creating Plan...`);
   const transactionDisplay = document.querySelector('.transaction-plan-display');
   const transactionPlanSelects = document.querySelectorAll('.form__select--accounts');
@@ -728,7 +716,7 @@ const createPlannedTransaction = (accountSelect, budget, placeholderBudget, user
     numSections = 12;
     if (transactionPlanSelects[5].value === `Bi-Monthly` || transactionPlanSelects[5].value === `Bi-Annual`) numSections = 13;
 
-    buildTransactionPlan(budget, placeholderBudget, user, sectionStart, numSections, transactionPlan, `original`);
+    buildTransactionPlan(budget, placeholderBudget, user, sectionStart, numSections, transactionPlan, `original`, utility);
     numSections === 13 ? transactionPlan.classList.add('transaction-plan__double') : transactionPlan.classList.add('transaction-plan');
     numSections === 13 ? transactionPlan.classList.add('r__transaction-plan__double') : transactionPlan.classList.add('r__transaction-plan');
     displayTransaction(creationContainer, transactionPlan);
@@ -738,7 +726,7 @@ const createPlannedTransaction = (accountSelect, budget, placeholderBudget, user
     numSections = 13;
     if (transactionPlanSelects[5].value === `Bi-Monthly` || transactionPlanSelects[5].value === `Bi-Annual`) numSections = 14;
 
-    buildTransactionPlan(budget, placeholderBudget, user, sectionStart, numSections, altTransactionPlan, `alt`);
+    buildTransactionPlan(budget, placeholderBudget, user, sectionStart, numSections, altTransactionPlan, `alt`, utility);
     numSections === 14 ? altTransactionPlan.classList.add('transaction-plan__alt-double') : altTransactionPlan.classList.add('transaction-plan__alt');
     numSections === 14 ? altTransactionPlan.classList.add('r__transaction-plan__alt-double') : altTransactionPlan.classList.add('r__transaction-plan__alt');
     displayTransaction(creationContainer, altTransactionPlan);
@@ -786,15 +774,11 @@ const showTransactionPlanOptions = (array, allOptions) => {
   }
 };
 
-const updateTransactionPlanningAccountDisplays = (budget, placeholderBudget, user) => {
-  const money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2,
-  });
+const updateTransactionPlanningAccountDisplays = (budget, placeholderBudget, user, utility) => {
   console.log(`Updating...`);
   const appliedMoney = document.querySelectorAll('.container--extra-small-evenly-spaced__content__applied-container__applied');
   const unAppliedMoney = document.querySelectorAll('.container--extra-small-evenly-spaced__content__un-applied-container__un-applied');
+  const accountTotals = document.querySelectorAll('.container--extra-small-evenly-spaced__content__account-total');
 
   let expenseAppliedTotal = 0;
   let savingsAppliedTotal = 0;
@@ -815,17 +799,23 @@ const updateTransactionPlanningAccountDisplays = (budget, placeholderBudget, use
     }
   });
 
+  // ACCOUNT TOTALS
+  accountTotals[0].textContent = utility.money.format(budget.accounts.expenseFund.amount);
+  accountTotals[1].textContent = utility.money.format(budget.accounts.savingsFund.amount);
+  accountTotals[2].textContent = utility.money.format(budget.accounts.debt.amount);
+  accountTotals[3].textContent = utility.money.format(budget.accounts.surplus.amount);
+
   // APPLIED TOTALS
-  appliedMoney[0].textContent = money.format(expenseAppliedTotal);
-  appliedMoney[1].textContent = money.format(savingsAppliedTotal);
-  appliedMoney[2].textContent = money.format(debtAppliedTotal);
-  appliedMoney[3].textContent = money.format(surplusAppliedTotal);
+  appliedMoney[0].textContent = utility.money.format(expenseAppliedTotal);
+  appliedMoney[1].textContent = utility.money.format(savingsAppliedTotal);
+  appliedMoney[2].textContent = utility.money.format(debtAppliedTotal);
+  appliedMoney[3].textContent = utility.money.format(surplusAppliedTotal);
 
   // UNAPPLIED TOTALS
-  unAppliedMoney[0].textContent = money.format(budget.accounts.expenseFund.amount - expenseAppliedTotal);
-  unAppliedMoney[1].textContent = money.format(budget.accounts.savingsFund.amount - savingsAppliedTotal);
-  unAppliedMoney[2].textContent = money.format(budget.accounts.debt.amount - debtAppliedTotal);
-  unAppliedMoney[3].textContent = money.format(budget.accounts.surplus.amount - surplusAppliedTotal);
+  unAppliedMoney[0].textContent = utility.money.format(budget.accounts.expenseFund.amount - expenseAppliedTotal);
+  unAppliedMoney[1].textContent = utility.money.format(budget.accounts.savingsFund.amount - savingsAppliedTotal);
+  unAppliedMoney[2].textContent = utility.money.format(budget.accounts.debt.amount - debtAppliedTotal);
+  unAppliedMoney[3].textContent = utility.money.format(budget.accounts.surplus.amount - surplusAppliedTotal);
 };
 
 const getTransactionPlanDate = (date) => {
@@ -833,18 +823,13 @@ const getTransactionPlanDate = (date) => {
   return `${new Date(date).getDate()} ${months[new Date(date).getMonth()]} ${new Date(date).getFullYear()}`;
 };
 
-const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
+const displayExistingTransactionPlans = (budget, placeholderBudget, user, utility) => {
   const transactionPlanCreation = document.querySelector('.transaction-plan-creation');
   const transactionPlans = [];
   let numberOfSections;
   budget.transactions.plannedTransactions.forEach((transaction, i) => {
     transactionPlans.push(transaction);
     transactionPlans.sort((a, b) => new Date(a.date) - new Date(b.date));
-  });
-  const money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2,
   });
 
   transactionPlans.forEach((transaction, i) => {
@@ -918,7 +903,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
           if (sectionStart === 5) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             transactionPlanPartHeaderText.textContent = `Amount`;
-            transactionPlanPartText.textContent = money.format(transaction.amount);
+            transactionPlanPartText.textContent = utility.money.format(transaction.amount);
             Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartHeader);
             Utility.insertElement(`beforeend`, transactionPlanPartHeader, transactionPlanPartHeaderText);
             Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartText);
@@ -950,7 +935,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
           if (sectionStart === 9) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             transactionPlanPartHeaderText.textContent = `Amount Saved`;
-            transactionPlanPartText.textContent = money.format(transaction.amountSaved);
+            transactionPlanPartText.textContent = utility.money.format(transaction.amountSaved);
             Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartHeader);
             Utility.insertElement(`beforeend`, transactionPlanPartHeader, transactionPlanPartHeaderText);
             Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartText);
@@ -969,7 +954,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
             transactionPlanInput.min = 0;
             transactionPlanInput.placeholder = '$0.00';
             transactionPlanButton.addEventListener('click', (e) => {
-              transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
+              transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = utility.money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
               transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
 
               let updateObject = {
@@ -981,7 +966,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
                 plannedTransactions: transactionPlans,
               };
               placeholderBudget._updateBudget({ updateObject: updateObject }, `Transaction-Planner`);
-              updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user);
+              updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user, utility);
             });
             Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartHeader);
             Utility.insertElement(`beforeend`, transactionPlanPartHeader, transactionPlanPartHeaderText);
@@ -1076,7 +1061,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
           if (sectionStart === 5) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             transactionPlanPartHeaderText.textContent = `Amount`;
-            transactionPlanPartText.textContent = money.format(transaction.amount);
+            transactionPlanPartText.textContent = utility.money.format(transaction.amount);
             Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartHeader);
             Utility.insertElement(`beforeend`, transactionPlanPartHeader, transactionPlanPartHeaderText);
             Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartText);
@@ -1100,7 +1085,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
           if (sectionStart === 8) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             transactionPlanPartHeaderText.textContent = `Amount Saved`;
-            transactionPlanPartText.textContent = money.format(transaction.amountSaved);
+            transactionPlanPartText.textContent = utility.money.format(transaction.amountSaved);
             Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartHeader);
             Utility.insertElement(`beforeend`, transactionPlanPartHeader, transactionPlanPartHeaderText);
             Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartText);
@@ -1119,7 +1104,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
             transactionPlanInput.min = 0;
             transactionPlanInput.placeholder = '$0.00';
             transactionPlanButton.addEventListener('click', (e) => {
-              transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
+              transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = utility.money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
               transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
               let updateObject = {
                 budgetId: budget._id,
@@ -1130,7 +1115,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
                 plannedTransactions: transactionPlans,
               };
               placeholderBudget._updateBudget({ updateObject: updateObject }, `Transaction-Planner`);
-              updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user);
+              updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user, utility);
             });
             Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartHeader);
             Utility.insertElement(`beforeend`, transactionPlanPartHeader, transactionPlanPartHeaderText);
@@ -1240,7 +1225,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
           if (sectionStart === 6) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             transactionPlanPartHeaderText.textContent = `Amount`;
-            transactionPlanPartText.textContent = money.format(transaction.amount);
+            transactionPlanPartText.textContent = utility.money.format(transaction.amount);
             Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartHeader);
             Utility.insertElement(`beforeend`, transactionPlanPartHeader, transactionPlanPartHeaderText);
             Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartText);
@@ -1272,7 +1257,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
           if (sectionStart === 10) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             transactionPlanPartHeaderText.textContent = `Amount Saved`;
-            transactionPlanPartText.textContent = money.format(transaction.amountSaved);
+            transactionPlanPartText.textContent = utility.money.format(transaction.amountSaved);
             Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartHeader);
             Utility.insertElement(`beforeend`, transactionPlanPartHeader, transactionPlanPartHeaderText);
             Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartText);
@@ -1291,7 +1276,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
             transactionPlanInput.min = 0;
             transactionPlanInput.placeholder = '$0.00';
             transactionPlanButton.addEventListener('click', (e) => {
-              transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
+              transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = utility.money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
               transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
 
               let updateObject = {
@@ -1303,7 +1288,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
                 plannedTransactions: transactionPlans,
               };
               placeholderBudget._updateBudget({ updateObject: updateObject }, `Transaction-Planner`);
-              updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user);
+              updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user, utility);
             });
             Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartHeader);
             Utility.insertElement(`beforeend`, transactionPlanPartHeader, transactionPlanPartHeaderText);
@@ -1406,7 +1391,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
           if (sectionStart === 6) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             transactionPlanPartHeaderText.textContent = `Amount`;
-            transactionPlanPartText.textContent = money.format(transaction.amount);
+            transactionPlanPartText.textContent = utility.money.format(transaction.amount);
             Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartHeader);
             Utility.insertElement(`beforeend`, transactionPlanPartHeader, transactionPlanPartHeaderText);
             Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartText);
@@ -1430,7 +1415,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
           if (sectionStart === 9) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             transactionPlanPartHeaderText.textContent = `Amount Saved`;
-            transactionPlanPartText.textContent = money.format(transaction.amountSaved);
+            transactionPlanPartText.textContent = utility.money.format(transaction.amountSaved);
             Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartHeader);
             Utility.insertElement(`beforeend`, transactionPlanPartHeader, transactionPlanPartHeaderText);
             Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartText);
@@ -1449,7 +1434,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
             transactionPlanInput.min = 0;
             transactionPlanInput.placeholder = '$0.00';
             transactionPlanButton.addEventListener('click', (e) => {
-              transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
+              transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = utility.money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
               transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
 
               let updateObject = {
@@ -1461,7 +1446,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
                 plannedTransactions: transactionPlans,
               };
               placeholderBudget._updateBudget({ updateObject: updateObject }, `Transaction-Planner`);
-              updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user);
+              updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user, utility);
             });
             Utility.insertElement(`beforeend`, transactionPlanPart, transactionPlanPartHeader);
             Utility.insertElement(`beforeend`, transactionPlanPartHeader, transactionPlanPartHeaderText);
@@ -1497,7 +1482,7 @@ const displayExistingTransactionPlans = (budget, placeholderBudget, user) => {
   });
 };
 
-const setupTransactionPlanning = (budget, placeholderBudget, user) => {
+const setupTransactionPlanning = (budget, placeholderBudget, user, utility) => {
   const transactionPlanCreationContainer = document.querySelector('.transaction-plan-creation');
   const transactionRows = document.querySelectorAll('.form__row--transaction');
 
@@ -1514,7 +1499,7 @@ const setupTransactionPlanning = (budget, placeholderBudget, user) => {
   const accountSelectionContainers = document.querySelectorAll('.form__select--accounts');
   const formSelectSections = document.querySelectorAll('.form__section--select');
 
-  displayExistingTransactionPlans(budget, placeholderBudget, user);
+  displayExistingTransactionPlans(budget, placeholderBudget, user, utility);
   const submitPlanButton = document.querySelector('.button--extra-extra-small__transaction-plan');
 
   commonTransactionOptionsArray.forEach((array) => {
@@ -1606,7 +1591,7 @@ const setupTransactionPlanning = (budget, placeholderBudget, user) => {
       }
       if (submitPlanButton) {
         submitPlanButton.addEventListener('click', (e) => {
-          createPlannedTransaction(accountSelectionContainers[0], budget, placeholderBudget, user, transactionPlanCreationContainer);
+          createPlannedTransaction(accountSelectionContainers[0], budget, placeholderBudget, user, transactionPlanCreationContainer, utility);
           surplusSwitch.classList.remove('surplus-container__switch--switched');
           surplusSwitchIcon.classList.add('fa-times');
           surplusSwitchIcon.classList.remove('fa-check');
@@ -1615,26 +1600,27 @@ const setupTransactionPlanning = (budget, placeholderBudget, user) => {
         });
       }
 
-      const money = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 2,
-      });
-
       const appliedMoney = document.querySelectorAll('.container--extra-small-evenly-spaced__content__applied-container__applied');
       const unAppliedMoney = document.querySelectorAll('.container--extra-small-evenly-spaced__content__un-applied-container__un-applied');
+      const accountTotals = document.querySelectorAll('.container--extra-small-evenly-spaced__content__account-total');
+
+      // ACCOUNT TOTALS
+      accountTotals[0].textContent = utility.money.format(budget.accounts.expenseFund.amount);
+      accountTotals[1].textContent = utility.money.format(budget.accounts.savingsFund.amount);
+      accountTotals[2].textContent = utility.money.format(budget.accounts.debt.amount);
+      accountTotals[3].textContent = utility.money.format(budget.accounts.surplus.amount);
 
       // APPLIED TOTALS
-      appliedMoney[0].textContent = money.format(expenseAppliedTotal);
-      appliedMoney[1].textContent = money.format(savingsAppliedTotal);
-      appliedMoney[2].textContent = money.format(debtAppliedTotal);
-      appliedMoney[3].textContent = money.format(surplusAppliedTotal);
+      appliedMoney[0].textContent = utility.money.format(expenseAppliedTotal);
+      appliedMoney[1].textContent = utility.money.format(savingsAppliedTotal);
+      appliedMoney[2].textContent = utility.money.format(debtAppliedTotal);
+      appliedMoney[3].textContent = utility.money.format(surplusAppliedTotal);
 
       // UNAPPLIED TOTALS
-      unAppliedMoney[0].textContent = money.format(budget.accounts.expenseFund.amount - expenseAppliedTotal);
-      unAppliedMoney[1].textContent = money.format(budget.accounts.savingsFund.amount - savingsAppliedTotal);
-      unAppliedMoney[2].textContent = money.format(budget.accounts.debt.amount - debtAppliedTotal);
-      unAppliedMoney[3].textContent = money.format(budget.accounts.surplus.amount - surplusAppliedTotal);
+      unAppliedMoney[0].textContent = utility.money.format(budget.accounts.expenseFund.amount - expenseAppliedTotal);
+      unAppliedMoney[1].textContent = utility.money.format(budget.accounts.savingsFund.amount - savingsAppliedTotal);
+      unAppliedMoney[2].textContent = utility.money.format(budget.accounts.debt.amount - debtAppliedTotal);
+      unAppliedMoney[3].textContent = utility.money.format(budget.accounts.surplus.amount - surplusAppliedTotal);
 
       // transaction-plan__part__text
     }
@@ -1649,7 +1635,7 @@ const startPlanning = (budget, placeholderBudget, user) => {
   transactionPlanSelects[5].value = transactionPlanSelects[5].firstChild.nextSibling.value;
 };
 
-export const _watchTransactionPlanner = (budget, placeholderBudget, user) => {
+export const _watchTransactionPlanner = (budget, placeholderBudget, user, utility) => {
   const borderlessButtons = document.querySelectorAll('.button--borderless');
   const startPlanningButton = borderlessButtons[2];
 
@@ -1661,7 +1647,7 @@ export const _watchTransactionPlanner = (budget, placeholderBudget, user) => {
     });
   }
 
-  setupTransactionPlanning(budget, placeholderBudget, user);
+  setupTransactionPlanning(budget, placeholderBudget, user, utility);
 
   const altMediumInputs = document.querySelectorAll('.form__input--medium__alt');
   const currentDate = altMediumInputs[0];

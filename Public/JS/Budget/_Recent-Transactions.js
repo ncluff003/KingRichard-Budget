@@ -8,7 +8,7 @@ const getReceiptTotal = (transaction) => {
   return total;
 };
 
-const processReceipt = (transaction, button) => {
+const processReceipt = (transaction, button, utility) => {
   const viewReceiptButtons = [...document.querySelectorAll('.button--extra-extra-small__view-receipt')];
   const viewReceiptButtonIndex = viewReceiptButtons.indexOf(button);
   const receiptLocation = document.querySelector('.modal--receipt__digital-receipt__container__header__title');
@@ -19,7 +19,6 @@ const processReceipt = (transaction, button) => {
   while (receiptItemContainer.firstChild) {
     receiptItemContainer.removeChild(receiptItemContainer.firstChild);
   }
-  const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
   let receiptTotal = 0;
   transaction.receipt.forEach((receiptItem, i) => {
     const receiptRow = document.createElement('section');
@@ -58,7 +57,7 @@ const processReceipt = (transaction, button) => {
       const receiptCostDetail = document.createElement('p');
       receiptCostDetail.classList.add('receipt-row__cost-section__cost');
       receiptCostDetail.classList.add('r__receipt-row__cost-section__cost');
-      receiptCostDetail.textContent = money.format(receiptItem.amount);
+      receiptCostDetail.textContent = utility.money.format(receiptItem.amount);
       Utility.insertElement(`beforeend`, receiptCostSection, receiptCostDetail);
     }
     if (receiptItem.account !== `Debt`) {
@@ -74,18 +73,17 @@ const processReceipt = (transaction, button) => {
       const receiptCostDetail = document.createElement('p');
       receiptCostDetail.classList.add('receipt-row__cost-section__cost');
       receiptCostDetail.classList.add('r__receipt-row__cost-section__cost');
-      receiptCostDetail.textContent = money.format(receiptItem.amount);
+      receiptCostDetail.textContent = utility.money.format(receiptItem.amount);
       Utility.insertElement(`beforeend`, receiptCostSection, receiptCostDetail);
     }
     receiptTotal += receiptItem.amount;
   });
   const receiptFooterTexts = document.querySelectorAll('.footer-title');
   const receiptTotalAmount = receiptFooterTexts[1];
-  receiptTotalAmount.textContent = money.format(receiptTotal);
+  receiptTotalAmount.textContent = utility.money.format(receiptTotal);
 };
 
-const showRecentTransaction = (budget, placeholderBudget, user, transaction) => {
-  const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
+const showRecentTransaction = (budget, placeholderBudget, user, transaction, utility) => {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const receiptModal = document.querySelector('.modal--receipt');
   const recentTransactionDisplay = document.querySelector('.recent-transaction-display');
@@ -115,7 +113,7 @@ const showRecentTransaction = (budget, placeholderBudget, user, transaction) => 
       Utility.insertElement(`beforeend`, viewReceiptButton, viewReceiptButtonText);
       Utility.insertElement(`beforeend`, recentTransactionSection, viewReceiptButton);
       viewReceiptButton.addEventListener('click', (e) => {
-        processReceipt(transaction, viewReceiptButton);
+        processReceipt(transaction, viewReceiptButton, utility);
         Utility.showElement(receiptModal);
       });
     }
@@ -163,7 +161,7 @@ const showRecentTransaction = (budget, placeholderBudget, user, transaction) => 
       transactionSectionPartHeader.textContent = `Receipt Total`;
       transactionSectionPartText.classList.add(`recent-transaction__section__part__text`);
       transactionSectionPartText.classList.add(`r__recent-transaction__section__part__text`);
-      transactionSectionPartText.textContent = money.format(getReceiptTotal(transaction));
+      transactionSectionPartText.textContent = utility.money.format(getReceiptTotal(transaction));
       Utility.insertElement(`beforeend`, transactionSectionPart, transactionSectionPartHeader);
       Utility.insertElement(`beforeend`, transactionSectionPart, transactionSectionPartText);
     }
@@ -173,13 +171,13 @@ const showRecentTransaction = (budget, placeholderBudget, user, transaction) => 
   Utility.insertElement(`beforeend`, recentTransactionDisplay, recentTransaction);
 };
 
-export const _watchRecentTransactions = (budget, placeholderBudget, user) => {
+export const _watchRecentTransactions = (budget, placeholderBudget, user, utility) => {
   const receiptModal = document.querySelector('.modal--receipt');
   const receiptModalClosureIcon = document.querySelector('.modal--receipt__closure-icon');
   const viewReceiptButton = document.querySelector('.button--extra-extra-small__view-receipt');
   if (placeholderBudget.transactions.recentTransactions.length > 0) {
     placeholderBudget.transactions.recentTransactions.forEach((transaction, i) => {
-      showRecentTransaction(budget, placeholderBudget, user, transaction);
+      showRecentTransaction(budget, placeholderBudget, user, transaction, utility);
     });
     if (receiptModalClosureIcon) {
       receiptModalClosureIcon.addEventListener('click', (e) => {

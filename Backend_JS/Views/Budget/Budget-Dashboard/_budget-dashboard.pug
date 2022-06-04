@@ -9,7 +9,6 @@ mixin dashboardAccountOverview(icon, text, accountTotal)
 +dashboardAccountOverview(`hand-holding-usd`, `Debt`, `$0`)
 +dashboardAccountOverview(`dollar-sign`, `Net Value`, `$0`)
 
-  - const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 })
   - const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 section.container--small.r__container--small
   header.container--small__header.r__container--small__header
@@ -29,7 +28,7 @@ section.container--small.r__container--small
     include ./../Transactions/_Enter-Transaction
   section.container--small__transaction-total.r__container--small__transaction-total 
     h3.container--small__transaction-total__heading.r__container--small__transaction-total__heading Total Spent: 
-    p.container--small__transaction-total__amount.r__container--small__transaction-total__amount= `${money.format(0)}`
+    p.container--small__transaction-total__amount.r__container--small__transaction-total__amount= `$0.00`
 include ./../_upcoming-bills
 include ./../_monthly-budget
 

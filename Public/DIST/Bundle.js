@@ -4556,11 +4556,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Budget_Creation_Budget_Creation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Budget-Creation/Budget-Creation */ "./Public/JS/Budget-Creation/Budget-Creation.js");
-/* harmony import */ var _Budget_Manage_Budget__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Budget/Manage-Budget */ "./Public/JS/Budget/Manage-Budget.js");
-/* harmony import */ var _Classes_Person__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Classes/Person */ "./Public/JS/Classes/Person.js");
-/* harmony import */ var _Utility__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Utility */ "./Public/JS/Application/Utility.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Budget_Creation_Budget_Creation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Budget-Creation/Budget-Creation */ "./Public/JS/Budget-Creation/Budget-Creation.js");
+/* harmony import */ var _Budget_Manage_Budget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Budget/Manage-Budget */ "./Public/JS/Budget/Manage-Budget.js");
+/* harmony import */ var _Classes_Person__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Classes/Person */ "./Public/JS/Classes/Person.js");
+/* harmony import */ var _Utility__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Utility */ "./Public/JS/Application/Utility.js");
+/* harmony import */ var _API_Calls__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./_API-Calls */ "./Public/JS/Application/_API-Calls.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
+
 
 
 
@@ -4574,7 +4579,7 @@ var _watchForResetFromErrors = function _watchForResetFromErrors() {
   if (returnButton) {
     returnButton.addEventListener('click', function (e) {
       e.preventDefault();
-      _Utility__WEBPACK_IMPORTED_MODULE_6__.reloadPage();
+      _Utility__WEBPACK_IMPORTED_MODULE_7__.reloadPage();
     });
   }
 };
@@ -4586,7 +4591,7 @@ var getBudget = /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return _Budget_Manage_Budget__WEBPACK_IMPORTED_MODULE_4__.renderBudget(budgetId, user);
+            return _Budget_Manage_Budget__WEBPACK_IMPORTED_MODULE_5__.renderBudget(budgetId, user);
 
           case 2:
           case "end":
@@ -5032,7 +5037,7 @@ var _watchForProfilePictureChange = function _watchForProfilePictureChange(user,
 
     person._updatePhoto(form);
 
-    _Utility__WEBPACK_IMPORTED_MODULE_6__.reloadPage();
+    _Utility__WEBPACK_IMPORTED_MODULE_7__.reloadPage();
   });
 };
 
@@ -5042,11 +5047,45 @@ var checkLoginStatus = function checkLoginStatus(login, checkElement) {
   if (appViewport) {
     return login = !login;
   }
-};
+}; // const getPosition = function () {
+//   return new Promise(function (resolve, reject) {
+//     // navigator.geolocation.getCurrentPosition(
+//     //   (position) => resolve(position), // EXACTLY THE SAME AS BELOW
+//     //   (err) => reject(err)
+//     // );
+//     navigator.geolocation.getCurrentPosition(resolve, reject);
+//   });
+// };
+// const whereAmI = async function () {
+//   try {
+//     // Geo-location
+//     const pos = await getPosition();
+//     const { latitude: lat, longitude: lng } = pos.coords;
+//     // Reverse Geo-coding
+//     const geoResponse = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+//     if (!geoResponse.ok) throw new Error(`Problem getting your location data.`);
+//     const dataGeo = await geoResponse.json();
+//     // Country Data
+//     const response = await fetch(`https://restcountries.eu/rest/v2/name/${dataGeo.country}`);
+//     if (!geoResponse.ok) throw new Error(`Problem getting your location.`);
+//     const data = await response.json();
+//     renderCountry(data[0]);
+//     countriesContainer.style.opacity = 1;
+//     return `You are in ${dataGeo.city[0]}${dataGeo.city.slice(1).toLowerCase()}, ${dataGeo.country}`;
+//   } catch (err) {
+//     console.error(err.message);
+//     renderError(`Something Went Horribly Wrong!!!`);
+//     throw err;
+//   }
+// };
+// function showPosition(position) {
+//   return position;
+// }
+
 
 var _watchForLogin = /*#__PURE__*/function () {
   var _ref6 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee6(login) {
-    var status, commPreference, commSwitch, formattedNumber, placeholderUser, userInfo, user;
+    var status, commPreference, commSwitch, formattedNumber, placeholderUser, userInfo, user, countryInfo, locale, utilityObject;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee6$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
@@ -5055,14 +5094,14 @@ var _watchForLogin = /*#__PURE__*/function () {
             status === true ? console.log("Logged In") : console.log("Logged Out");
 
             if (!(status === true)) {
-              _context6.next = 20;
+              _context6.next = 25;
               break;
             }
 
             commSwitch = document.getElementById('commSwitch');
             ///////////////////////////////////////
             // GET USER
-            placeholderUser = new _Classes_Person__WEBPACK_IMPORTED_MODULE_5__.Person("", "", "", "", "", "", "", "");
+            placeholderUser = new _Classes_Person__WEBPACK_IMPORTED_MODULE_6__.Person("", "", "", "", "", "", "", "");
             _context6.next = 7;
             return placeholderUser._getPersonData();
 
@@ -5070,9 +5109,23 @@ var _watchForLogin = /*#__PURE__*/function () {
             userInfo = _context6.sent;
             user = userInfo.data.data.user;
 
-            placeholderUser._createPlaceholderUser(user, placeholderUser); /////////////////////////////////////////////////
-            // START BY WATCHING FOR PROFILE PICTURE CHANGE
+            placeholderUser._createPlaceholderUser(user, placeholderUser);
 
+            _context6.next = 12;
+            return _API_Calls__WEBPACK_IMPORTED_MODULE_8__.getCountryInformation();
+
+          case 12:
+            countryInfo = _context6.sent;
+            locale = "".concat(countryInfo.languages[0].iso639_1, "-").concat(countryInfo.alpha2Code);
+            utilityObject = {
+              money: new Intl.NumberFormat(locale, {
+                style: "currency",
+                currency: countryInfo.currencies[0].code,
+                minimumFractionDigits: 2
+              })
+            }; // MUSTDO: Make it so that the money variable uses the language and correct currency type for the country of the user.
+            /////////////////////////////////////////////////
+            // START BY WATCHING FOR PROFILE PICTURE CHANGE
 
             _watchForProfilePictureChange(user, placeholderUser); // WATCHING USER PROFILE NAVIGATION BUTTONS
 
@@ -5097,12 +5150,12 @@ var _watchForLogin = /*#__PURE__*/function () {
             _watchBudgetSelection(user); // WATCHING FOR CREATION OF BUDGETS
 
 
-            _Budget_Creation_Budget_Creation__WEBPACK_IMPORTED_MODULE_3__._watchForBudgetCreation(placeholderUser); // WATCH FOR RESET FROM ERRORS
+            _Budget_Creation_Budget_Creation__WEBPACK_IMPORTED_MODULE_4__._watchForBudgetCreation(placeholderUser, utilityObject); // WATCH FOR RESET FROM ERRORS
 
 
             _watchForResetFromErrors();
 
-          case 20:
+          case 25:
           case "end":
             return _context6.stop();
         }
@@ -5794,6 +5847,7 @@ var _setupSignupForm = function _setupSignupForm(page, pages, person) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "_capitalize": () => (/* binding */ _capitalize),
+/* harmony export */   "buildObject": () => (/* binding */ buildObject),
 /* harmony export */   "insertElement": () => (/* binding */ insertElement),
 /* harmony export */   "pushIntoArray": () => (/* binding */ pushIntoArray),
 /* harmony export */   "reloadPage": () => (/* binding */ reloadPage),
@@ -5803,6 +5857,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "showError": () => (/* binding */ showError),
 /* harmony export */   "toggleClass": () => (/* binding */ toggleClass)
 /* harmony export */ });
+var buildObject = function buildObject(entriesArray) {
+  return Object.fromEntries(entriesArray);
+};
 var insertElement = function insertElement(position, container, element) {
   if (container) {
     container.insertAdjacentElement(position, element);
@@ -5866,6 +5923,98 @@ var renderError = function renderError(element, errorMessage, elementText, class
     }
   }, timeLimit);
 };
+
+/***/ }),
+
+/***/ "./Public/JS/Application/_API-Calls.js":
+/*!*********************************************!*\
+  !*** ./Public/JS/Application/_API-Calls.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getCountryInformation": () => (/* binding */ getCountryInformation)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
+
+
+
+var getWorldInformation = /*#__PURE__*/function () {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_2___default()({
+              method: "GET",
+              url: "https://restcountries.com/v2/all"
+            });
+
+          case 3:
+            response = _context.sent;
+            return _context.abrupt("return", response);
+
+          case 7:
+            _context.prev = 7;
+            _context.t0 = _context["catch"](0);
+            console.log(_context.t0);
+
+          case 10:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 7]]);
+  }));
+
+  return function getWorldInformation() {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+var getCountryInformation = /*#__PURE__*/function () {
+  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2() {
+    var worldInfo, language, myCountry;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.next = 2;
+            return getWorldInformation();
+
+          case 2:
+            worldInfo = _context2.sent;
+            console.log(worldInfo.data);
+            language = navigator.language;
+            myCountry = [];
+            myCountry = worldInfo.data.filter(function (country) {
+              return "".concat(country.languages[0].iso639_1, "-").concat(country.alpha2Code) === language;
+            });
+            return _context2.abrupt("return", myCountry[0]);
+
+          case 8:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+
+  return function getCountryInformation() {
+    return _ref2.apply(this, arguments);
+  };
+}();
 
 /***/ }),
 
@@ -6804,13 +6953,8 @@ var getSinglePercentageSpent = function getSinglePercentageSpent(spent, total) {
   return percentage;
 };
 
-var buildSubCategories = function buildSubCategories(categories, index, secondaryIndex, clickedItem) {
-  var timingFunctionContainer = document.querySelector('.timing-container');
-  var money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2
-  }); /////////////////////////////////////////
+var buildSubCategories = function buildSubCategories(categories, index, secondaryIndex, clickedItem, utility) {
+  var timingFunctionContainer = document.querySelector('.timing-container'); /////////////////////////////////////////
   // SELECT SUB CATEGORY DISPLAY
 
   var subCategoryDisplay = document.querySelector('.sub-category-display');
@@ -6872,12 +7016,12 @@ var buildSubCategories = function buildSubCategories(categories, index, secondar
         var total = getOverallBudget(subCategories, overallBudget[0]);
         var part = getOverallSpent(subCategories, overallSpent);
         var percentage = getOverallPercentageSpent(total, part);
-        overallBudget[0].textContent = money.format(getOverallBudget(subCategories, overallBudget[0]));
-        overallSpent.textContent = money.format(part);
-        overallRemaining.textContent = money.format(total - part);
+        overallBudget[0].textContent = utility.money.format(getOverallBudget(subCategories, overallBudget[0]));
+        overallSpent.textContent = utility.money.format(part);
+        overallRemaining.textContent = utility.money.format(total - part);
         overallPercentageSpent.textContent = "".concat(percentage, "%");
-        spent.textContent = money.format(0);
-        remaining.textContent = money.format(subCategoryInput.value - 0);
+        spent.textContent = utility.money.format(0);
+        remaining.textContent = utility.money.format(subCategoryInput.value - 0);
         percentageSpent.textContent = "".concat(getSinglePercentageSpent(Number(spent.textContent.split('$')[1]), subCategoryInput.value), "%");
       });
     }
@@ -7433,7 +7577,7 @@ var getTimingContainerHeight = function getTimingContainerHeight(categories, ind
   return 100 * categories[index].subCategories.length / 10;
 };
 
-var setupGoalSetting = function setupGoalSetting(budget, index, clickedItem, timing) {
+var setupGoalSetting = function setupGoalSetting(budget, index, clickedItem, timing, utility) {
   var leftButton = document.querySelector('.left');
   var rightButton = document.querySelector('.right');
   var mainCategoryIcon = document.querySelector('.main-category-display__category-display__icon');
@@ -7446,7 +7590,7 @@ var setupGoalSetting = function setupGoalSetting(budget, index, clickedItem, tim
     var dataIndex = i;
     c.subCategories.forEach(function (sc, i) {
       // This is NOT part of the methods of the class, so I will ignore this for now.
-      buildSubCategories(c.subCategories, i, dataIndex, clickedItem);
+      buildSubCategories(c.subCategories, i, dataIndex, clickedItem, utility);
     });
   });
   var subCategories = document.querySelectorAll('.sub-category--month-view');
@@ -7916,7 +8060,7 @@ var _setupBudgetCreation = function _setupBudgetCreation(pages, page, form, butt
 };
 
 var _watchForBudgetCreation = /*#__PURE__*/function () {
-  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee(person) {
+  var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee(person, utility) {
     var forms, budgetCreationForm, budgetCreationFormOpenButton, budget, pages, currentPage, resetForm, budgetCreationFormPagesNumber, emergencyGoalSetting, clicked, selectedTiming, buttons, budgetContinueButton, subCategoryIndex, icon, userInfo, user, latterDaySaintStatus, budgetNavButton;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee$(_context) {
       while (1) {
@@ -7995,7 +8139,7 @@ var _watchForBudgetCreation = /*#__PURE__*/function () {
                   }
 
                   if (currentPage + 1 === 4) {
-                    setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
+                    setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming, utility);
                   }
 
                   if (currentPage + 1 === 5) {
@@ -8071,7 +8215,7 @@ var _watchForBudgetCreation = /*#__PURE__*/function () {
                   }
 
                   if (currentPage + 1 === 5) {
-                    setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
+                    setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming, utility);
                   }
 
                   if (currentPage + 1 === 6) {
@@ -8127,7 +8271,7 @@ var _watchForBudgetCreation = /*#__PURE__*/function () {
 
             budgetNavButton = document.querySelector('.budget-container__navigation-button-container__button');
 
-            _Budget_Watch_Budget__WEBPACK_IMPORTED_MODULE_4__._watchBudget(person);
+            _Budget_Watch_Budget__WEBPACK_IMPORTED_MODULE_4__._watchBudget(person, utility);
 
           case 21:
           case "end":
@@ -8137,7 +8281,7 @@ var _watchForBudgetCreation = /*#__PURE__*/function () {
     }, _callee);
   }));
 
-  return function _watchForBudgetCreation(_x) {
+  return function _watchForBudgetCreation(_x, _x2) {
     return _ref.apply(this, arguments);
   };
 }();
@@ -8432,7 +8576,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Investment_Planner__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./_Investment-Planner */ "./Public/JS/Budget/_Investment-Planner.js");
 /* harmony import */ var _Debt_Manager__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./_Debt-Manager */ "./Public/JS/Budget/_Debt-Manager.js");
 /* harmony import */ var _Recent_Transactions__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./_Recent-Transactions */ "./Public/JS/Budget/_Recent-Transactions.js");
+/* harmony import */ var _Application_API_Calls__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./../Application/_API-Calls */ "./Public/JS/Application/_API-Calls.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
+
 
 
 
@@ -8449,7 +8595,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _watchBudget = /*#__PURE__*/function () {
   var _ref = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
-    var person, userInfo, user, placeholderUser, currentBudget, budget;
+    var person, userInfo, user, placeholderUser, countryInfo, locale, dateOptions, utilityObject, currentBudget, budget;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -8469,6 +8615,54 @@ var _watchBudget = /*#__PURE__*/function () {
 
           case 8:
             placeholderUser = _context.sent;
+            _context.next = 11;
+            return _Application_API_Calls__WEBPACK_IMPORTED_MODULE_14__.getCountryInformation();
+
+          case 11:
+            countryInfo = _context.sent;
+            locale = "".concat(countryInfo.languages[0].iso639_1, "-").concat(countryInfo.alpha2Code);
+            dateOptions = {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric'
+            }; // let utilityObject = {
+            //   money: new Intl.NumberFormat(`ar-SA`, {
+            //     style: `currency`,
+            //     currency: `SAR`,
+            //     minimumFractionDigits: 2,
+            //   }),
+            //   date: new Intl.DateTimeFormat(`ar-SA`, dateOptions),
+            // };
+
+            /*
+              Things that must be done with the user interface displaying correctly for the corresponding user.
+               MUSTDO: Income previews should immediately preview the `$0.00` with the user's numbers before income is entered.
+              MUSTDO: The Calendar should display with their language of the numbers and the date items. 
+              MUSTDO: Dates will need to correspond to the way they are displayed in users country.
+              MUSTDO: Current month values must be displayed in user's native language and format.
+              -- NOTE -- Dates will need to be not done right now until I can devote far more resources into updating the wholle budget's functions to accomodate for that.  That includes making the classes far more flexible than they are, which will take a lot of time.
+             */
+
+            utilityObject = {
+              money: new Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency: "USD",
+                minimumFractionDigits: 2
+              }),
+              date: new Intl.DateTimeFormat(locale, dateOptions),
+              currencySymbol: "$"
+            }; // let utilityObject = {
+            //   money: new Intl.NumberFormat(locale, {
+            //     style: `currency`,
+            //     currency: countryInfo.currencies[0].code,
+            //     minimumFractionDigits: 2,
+            //   }),
+            //   date: new Intl.DateTimeFormat(locale, dateOptions),
+            //   currencySymbol: countryInfo.currencies[0].symbol,
+            // };
+            ////////////////////////////////////////////
+            // GET BUDGET INFORMATION
+
             user.budgets.forEach(function (b) {
               if (b._id === window.location.pathname.split('/')[5]) currentBudget = b;
             });
@@ -8477,23 +8671,23 @@ var _watchBudget = /*#__PURE__*/function () {
             budget._buildPlaceHolderBudget(currentBudget, user);
 
             if (currentBudget) {
-              _context.next = 14;
+              _context.next = 20;
               break;
             }
 
             return _context.abrupt("return");
 
-          case 14:
+          case 20:
             ////////////////////////////////////////////
             // SETTING UP THE BUDGET DASHBOARD
-            _Dashboard__WEBPACK_IMPORTED_MODULE_5__.setupBudgetDashboard(user, currentBudget, budget); ////////////////////////////////////////////
+            _Dashboard__WEBPACK_IMPORTED_MODULE_5__.setupBudgetDashboard(user, currentBudget, budget, utilityObject); ////////////////////////////////////////////
             // WATCH BUDGET MANAGEMENT PAGE
 
             _Budget_Management__WEBPACK_IMPORTED_MODULE_6__._setupBudgetManagement(currentBudget, budget, user); ////////////////////////////////////////////
             // WATCH EDIT CATEGORY GOALS PAGE
 
 
-            _Edit_Category_Goals__WEBPACK_IMPORTED_MODULE_7__._watchEditCategoryGoals(currentBudget, budget, user); ////////////////////////////////////////////
+            _Edit_Category_Goals__WEBPACK_IMPORTED_MODULE_7__._watchEditCategoryGoals(currentBudget, budget, user, utilityObject); ////////////////////////////////////////////
             // WATCH MANAGE CATEGORIES PAGE
 
 
@@ -8501,29 +8695,29 @@ var _watchBudget = /*#__PURE__*/function () {
             // WATCH FOR INCOME ALLOCATION
 
 
-            _Income_Allocation__WEBPACK_IMPORTED_MODULE_9__._watchIncomeAllocation(currentBudget, budget, user); ////////////////////////////////////////////
+            _Income_Allocation__WEBPACK_IMPORTED_MODULE_9__._watchIncomeAllocation(currentBudget, budget, user, utilityObject); ////////////////////////////////////////////
             // WATCH FOR INCOME ALLOCATION
 
 
-            _Transaction_Planner__WEBPACK_IMPORTED_MODULE_10__._watchTransactionPlanner(currentBudget, budget, user); ////////////////////////////////////////////
+            _Transaction_Planner__WEBPACK_IMPORTED_MODULE_10__._watchTransactionPlanner(currentBudget, budget, user, utilityObject); ////////////////////////////////////////////
             // WATCH FOR INCOME ALLOCATION
 
 
-            _Investment_Planner__WEBPACK_IMPORTED_MODULE_11__._watchInvestmentPlanner(currentBudget, budget, user); ////////////////////////////////////////////
+            _Investment_Planner__WEBPACK_IMPORTED_MODULE_11__._watchInvestmentPlanner(currentBudget, budget, user, utilityObject); ////////////////////////////////////////////
             // WATCH FOR INCOME ALLOCATION
 
 
-            _Debt_Manager__WEBPACK_IMPORTED_MODULE_12__._watchDebtManager(currentBudget, budget, user); ////////////////////////////////////////////
+            _Debt_Manager__WEBPACK_IMPORTED_MODULE_12__._watchDebtManager(currentBudget, budget, user, utilityObject); ////////////////////////////////////////////
             // WATCH RECENT TRANSACTIONS
 
 
-            _Recent_Transactions__WEBPACK_IMPORTED_MODULE_13__._watchRecentTransactions(currentBudget, budget, user); ////////////////////////////////////////////
+            _Recent_Transactions__WEBPACK_IMPORTED_MODULE_13__._watchRecentTransactions(currentBudget, budget, user, utilityObject); ////////////////////////////////////////////
             // WATCH ACCOUNT MANAGEMENT
 
 
-            _Account_Management__WEBPACK_IMPORTED_MODULE_4__._watchAccountManagement(currentBudget, budget, user);
+            _Account_Management__WEBPACK_IMPORTED_MODULE_4__._watchAccountManagement(currentBudget, budget, user, utilityObject);
 
-          case 24:
+          case 30:
           case "end":
             return _context.stop();
         }
@@ -8550,12 +8744,57 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "_watchAccountManagement": () => (/* binding */ _watchAccountManagement)
 /* harmony export */ });
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
-var _watchAccountManagement = function _watchAccountManagement(budget, placeholderBudget, user) {
+var getBankAccountTotal = function getBankAccountTotal(accounts) {
+  var budgetAccountTotals = [];
+  Object.entries(accounts).forEach(function (account, i) {
+    return budgetAccountTotals.push(account[1].amount);
+  });
+  var initialDeposit = 0;
+  var bankVaultTotal = budgetAccountTotals.reduce(function (previous, current) {
+    return previous + current;
+  }, initialDeposit);
+  return bankVaultTotal;
+};
+
+var _watchAccountManagement = function _watchAccountManagement(budget, placeholderBudget, user, utility) {
   var accountSelect = document.querySelectorAll('.form__select--accounts');
   var transferFrom = accountSelect[0];
   var transferTo = accountSelect[1];
   var transferAmount = document.getElementById('transferAmount');
   var transferButton = document.querySelector('.button--extra-extra-small__wider');
+  var accountTotals = document.querySelectorAll('.container--extra-small__content__account-total__alt');
+  var bankAccountTotal = getBankAccountTotal(budget.accounts);
+  var bankAccount = document.querySelectorAll('.container--extra-small__content__account-total');
+  bankAccount.textContent = utility.money.format(bankAccountTotal);
+  accountTotals.forEach(function (total, i) {
+    if (i === 0) {
+      total.textContent = utility.money.format(placeholderBudget.accounts.monthlyBudget.amount);
+    }
+
+    if (i === 1) {
+      total.textContent = utility.money.format(placeholderBudget.accounts.emergencyFund.amount);
+    }
+
+    if (i === 2) {
+      total.textContent = utility.money.format(placeholderBudget.accounts.savingsFund.amount);
+    }
+
+    if (i === 3) {
+      total.textContent = utility.money.format(placeholderBudget.accounts.expenseFund.amount);
+    }
+
+    if (i === 4) {
+      total.textContent = utility.money.format(placeholderBudget.accounts.surplus.amount);
+    }
+
+    if (i === 5) {
+      total.textContent = utility.money.format(placeholderBudget.accounts.investmentFund.amount);
+    }
+
+    if (i === 6) {
+      total.textContent = utility.money.format(placeholderBudget.accounts.tithing.amount);
+    }
+  });
 
   if (transferFrom) {
     transferFrom.childNodes.forEach(function (child) {
@@ -9238,7 +9477,7 @@ var cycleMainCategories = function cycleMainCategories(direction, index, subCats
   }
 };
 
-var _setupCurrentMonth = function _setupCurrentMonth(budget, placeholderBudget, user) {
+var _setupCurrentMonth = function _setupCurrentMonth(budget, placeholderBudget, user, utility) {
   var categoryIcon = document.querySelector('.main-category-display__category-display__icon');
   var categoryTitle = document.querySelector('.main-category-display__category-display__title');
   var subCategories = document.querySelectorAll('.sub-category-display__sub-category');
@@ -9304,12 +9543,7 @@ var _setupCurrentMonth = function _setupCurrentMonth(budget, placeholderBudget, 
 }; // DISPLAY UPCOMING TRANSACTIONS -- NEED TO DO THIS HERE INSTEAD OF PUG FOR THE REASON OF THE TRANSACTIONS THAT HAVE TWO DUE DATES.
 
 
-var displayUpcomingTransactions = function displayUpcomingTransactions(container, transactions) {
-  var money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2
-  });
+var displayUpcomingTransactions = function displayUpcomingTransactions(container, transactions, utility) {
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   transactions.forEach(function (transaction, i) {
     if (transaction.timingOptions.paymentCycle !== "Bi-Annual" || transaction.timingOptions.paymentCycle !== "Bi-Monthly") {
@@ -9370,7 +9604,7 @@ var displayUpcomingTransactions = function displayUpcomingTransactions(container
 
             _billAccount3.classList.add('r__upcoming-bills__bill__bill-item__text');
 
-            _billAccount3.textContent = money.format(transaction.amount);
+            _billAccount3.textContent = utility.money.format(transaction.amount);
             _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", billSection, _billAccount3);
           }
 
@@ -9460,7 +9694,7 @@ var displayUpcomingTransactions = function displayUpcomingTransactions(container
 
               _billAccount6.classList.add('r__upcoming-bills__bill__bill-item__text');
 
-              _billAccount6.textContent = money.format(transaction.amount);
+              _billAccount6.textContent = utility.money.format(transaction.amount);
               _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", billSection, _billAccount6);
             }
 
@@ -9523,7 +9757,7 @@ var _watchDaySelection = function _watchDaySelection() {
 }; // SETTING UP BILL / TRANSACTION CALENDAR
 
 
-var _setupBillCalendar = function _setupBillCalendar(budget, placeholderBudget, user) {
+var _setupBillCalendar = function _setupBillCalendar(budget, placeholderBudget, user, utility) {
   var calendar = _Classes_FrontEnd_Calendar__WEBPACK_IMPORTED_MODULE_3__.myCalendar;
   var currentMonth = calendar.getMonth();
   var currentMonthIndex = calendar.getMonthIndex();
@@ -9564,7 +9798,7 @@ var _setupBillCalendar = function _setupBillCalendar(budget, placeholderBudget, 
   }
 
   var upcomingBillsContainer = document.querySelector('.upcoming-bills');
-  displayUpcomingTransactions(upcomingBillsContainer, budget.transactions.plannedTransactions);
+  displayUpcomingTransactions(upcomingBillsContainer, budget.transactions.plannedTransactions, utility);
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   var upcomingTransactions = document.querySelectorAll('.upcoming-bills__bill');
   var currentDay = document.querySelector('.bill-calendar__days__single-day--current-day');
@@ -9800,7 +10034,7 @@ var _setupBillCalendar = function _setupBillCalendar(budget, placeholderBudget, 
   });
 };
 
-var calculateTotal = function calculateTotal(accountType, budget, debtAccount) {
+var calculateTotal = function calculateTotal(accountType, budget, utility, debtAccount) {
   var accountSections = document.querySelectorAll('.container--extra-small__content__account-total');
   var budgetAccounts = budget.accounts;
   var amountOfDebt = 0;
@@ -9821,12 +10055,6 @@ var calculateTotal = function calculateTotal(accountType, budget, debtAccount) {
     }
 
     return amountOfDebt;
-  }); // Set Money Format
-
-  var money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2
   });
 
   if (budget) {
@@ -9836,14 +10064,14 @@ var calculateTotal = function calculateTotal(accountType, budget, debtAccount) {
         return previous + current;
       }, initialDeposit);
       var bankAccountSection = accountSections[0];
-      var bankAccount = money.format(bankVaultTotal);
+      var bankAccount = utility.money.format(bankVaultTotal);
       if (bankAccountSection) bankAccountSection.textContent = "".concat(bankAccount);
     }
 
     if (accountType === "Debt") {
       var _debtAccount = accountSections[1]; // amountOfDebt += 200;
 
-      var debt = money.format(amountOfDebt);
+      var debt = utility.money.format(amountOfDebt);
 
       if (_debtAccount) {
         amountOfDebt === 0 ? _debtAccount.textContent = debt : _debtAccount.textContent = "-".concat(debt);
@@ -9858,16 +10086,16 @@ var calculateTotal = function calculateTotal(accountType, budget, debtAccount) {
       }, _initialDeposit);
 
       var netValueAccount = accountSections[2];
-      var netValue = money.format(_bankVaultTotal - amountOfDebt);
+      var netValue = utility.money.format(_bankVaultTotal - amountOfDebt);
       if (netValueAccount) netValueAccount.textContent = netValue;
     }
   }
 };
 
-var getDashboardAccountTotals = function getDashboardAccountTotals(budget, placeholderBudget, user) {
-  calculateTotal("Bank Account", budget);
-  calculateTotal("Debt", budget, budget.debts);
-  calculateTotal("Net Value", budget, budget.debts);
+var getDashboardAccountTotals = function getDashboardAccountTotals(budget, placeholderBudget, user, utility) {
+  calculateTotal("Bank Account", budget, utility);
+  calculateTotal("Debt", budget, utility, budget.debts);
+  calculateTotal("Net Value", budget, utility, budget.debts);
 };
 
 var buildTransactionOptions = function buildTransactionOptions(options) {
@@ -9890,18 +10118,15 @@ var resetTransactionOptions = function resetTransactionOptions(allOptions) {
   });
 };
 
-var _watchForTransactions = function _watchForTransactions(budget, placeholderBudget, user) {
+var _watchForTransactions = function _watchForTransactions(budget, placeholderBudget, user, utility) {
   var dashboard = document.querySelector('.budget-dashboard');
 
   if (dashboard) {
-    console.log(placeholderBudget); // MUSTDO: CREATE A UTILITY OBJECT THAT HOLDS THINGS LIKE THIS MONEY FORMATTER.
+    console.log(placeholderBudget);
+    var transactionTotal = document.querySelector('.container--small__transaction-total__amount');
+    transactionTotal.textContent = utility.money.format(0);
+    console.log(transactionTotal); // MUSTDO: CREATE A UTILITY OBJECT THAT HOLDS THINGS LIKE THIS MONEY FORMATTER.
     // MUSTDO: PUT THE MONEY FORMATTER INTO ITS OWN FUNCTION WITH THE CURRENT OPTIONS AS THE DEFAULT, AND OTHER OPTIONS USING THE PERSON'S LOCATION.
-
-    var _money = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 2
-    });
 
     var headerSubmitButtons = document.querySelectorAll('.button--small-container-header');
     var incomeInputs = document.querySelectorAll('.form__input--enter-income'); // MUSTDO: Separate income into investment, savings, and un-allocated after every keystroke into net pay.
@@ -9921,33 +10146,36 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
     var savingsPercentage = budget.accounts.savingsFund.savingsPercentage;
     var incomePreviewAmounts = [].concat((0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(document.querySelectorAll('.form__section--early-income-view__income-view__amount')), [document.querySelector('.form__section--early-income-view__income-view--purple__amount')]);
     var tithed = false;
+    incomePreviewAmounts.forEach(function (amount) {
+      amount.textContent = utility.money.format(Number(amount.textContent.split(utility.currencySymbol)[1]));
+    });
     netIncomeInput.addEventListener('keyup', function (e) {
       e.preventDefault();
-      incomePreviewAmounts[0].textContent = _money.format(netIncomeInput.value * investmentPercentage);
-      incomePreviewAmounts[1].textContent = _money.format(netIncomeInput.value * savingsPercentage);
+      incomePreviewAmounts[0].textContent = utility.money.format(netIncomeInput.value * investmentPercentage);
+      incomePreviewAmounts[1].textContent = utility.money.format(netIncomeInput.value * savingsPercentage);
 
       if (user.latterDaySaint === true) {
-        incomePreviewAmounts[2].textContent = _money.format(0);
+        incomePreviewAmounts[2].textContent = utility.money.format(0);
 
         if (budget.accounts.tithing.tithingSetting === "Gross") {
-          incomePreviewAmounts[2].textContent = _money.format(grossIncomeInput.value * 0.1);
+          incomePreviewAmounts[2].textContent = utility.money.format(grossIncomeInput.value * 0.1);
         }
 
         if (budget.accounts.tithing.tithingSetting === "Net") {
-          incomePreviewAmounts[2].textContent = _money.format(netIncomeInput.value * 0.1);
+          incomePreviewAmounts[2].textContent = utility.money.format(netIncomeInput.value * 0.1);
         }
 
         if (budget.accounts.tithing.tithingSetting !== "Surplus") {
-          incomePreviewAmounts[3].textContent = _money.format(netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1]) - Number(incomePreviewAmounts[2].textContent.split('$')[1]));
+          incomePreviewAmounts[3].textContent = utility.money.format(netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1]) - Number(incomePreviewAmounts[2].textContent.split('$')[1]));
         }
 
         if (budget.accounts.tithing.tithingSetting === "Surplus") {
-          incomePreviewAmounts[2].textContent = _money.format(netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1]));
+          incomePreviewAmounts[2].textContent = utility.money.format(netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1]));
         }
       }
 
       if (user.latterDaySaint === false) {
-        incomePreviewAmounts[2].textContent = _money.format(netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1]));
+        incomePreviewAmounts[2].textContent = utility.money.format(netIncomeInput.value - Number(incomePreviewAmounts[0].textContent.split('$')[1]) - Number(incomePreviewAmounts[1].textContent.split('$')[1]));
       }
     });
     var tithedSwitch = document.querySelector('.form__input--tithing');
@@ -10112,19 +10340,13 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
       incomeFromInput.value = '';
       grossIncomeInput.value = '';
       netIncomeInput.value = '';
-      incomePreviewAmounts[0].textContent = _money.format(0);
-      incomePreviewAmounts[1].textContent = _money.format(0);
-      incomePreviewAmounts[2].textContent = _money.format(0);
+      incomePreviewAmounts[0].textContent = utility.money.format(0);
+      incomePreviewAmounts[1].textContent = utility.money.format(0);
+      incomePreviewAmounts[2].textContent = utility.money.format(0);
     });
-  } // ** TOP PRIORITY ** When it is possible, record the income as a deposit transaction in the recent transactions page.
-
-
-  var money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2
-  }); ////////////////////////////////////////////
+  } ////////////////////////////////////////////
   // INITIALIZE TRANSACTION OPTIONS
+
 
   var smallContainerButtons = document.querySelectorAll('.button--small-container-header');
   var transactionSelects = document.querySelectorAll('.form__section--select');
@@ -10254,15 +10476,15 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
           var receiptRow = document.createElement('section');
           receiptRow.classList.add('receipt-item-container__row');
           receiptRow.classList.add('r__receipt-item-container__row');
-          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement(receiptItemContainer, receiptRow);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement('beforeend', receiptItemContainer, receiptRow);
           var transactionDetails = document.createElement('section');
           transactionDetails.classList.add('transaction-item-details');
           transactionDetails.classList.add('r__transaction-item-details');
-          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement(receiptRow, transactionDetails);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement('beforeend', receiptRow, transactionDetails);
           var transactionCostDetails = document.createElement('section');
           transactionCostDetails.classList.add('transaction-item-cost');
           transactionCostDetails.classList.add('r__transaction-item-cost');
-          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement(receiptRow, transactionCostDetails);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement('beforeend', receiptRow, transactionCostDetails);
           var detailCount = 1;
           var detailStart = 0;
           console.log(selectedAccount);
@@ -10317,23 +10539,22 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
               }
             }
 
-            _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement(transactionDetails, receiptDetail);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement('beforeend', transactionDetails, receiptDetail);
             detailStart++;
           }
 
-          console.log(transactionAmount, transactionAmount.firstChild.value, (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__["default"])(transactionAmount.firstChild.value), money.format(Number(transactionAmount.value)));
           var receiptDetailCost = document.createElement('p');
           receiptDetailCost.classList.add('transaction-item-cost__cost');
           receiptDetailCost.classList.add('r__transaction-item-cost__cost');
-          receiptDetailCost.textContent = money.format(Number(transactionAmount.firstChild.value));
-          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement(transactionCostDetails, receiptDetailCost);
+          receiptDetailCost.textContent = utility.money.format(Number(transactionAmount.firstChild.value));
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement('beforeend', transactionCostDetails, receiptDetailCost);
           var removeTransactionItemIcon = document.createElement('i');
           removeTransactionItemIcon.classList.add('fas');
           removeTransactionItemIcon.classList.add('fa-trash-alt');
           removeTransactionItemIcon.classList.add('remove-transaction');
           removeTransactionItemIcon.classList.add('r__remove-transaction');
           removeTransactionItemIcon.classList.add('closed');
-          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement(transactionCostDetails, removeTransactionItemIcon);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement('beforeend', transactionCostDetails, removeTransactionItemIcon);
           removeTransactionItemIcon.addEventListener('click', function (e) {
             var removeTransactionIcons = document.querySelectorAll('.remove-transaction');
 
@@ -10431,7 +10652,7 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
 
           _receiptRow.classList.add('r__receipt-item-container__row');
 
-          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement(receiptItemContainer, _receiptRow);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement('beforeend', receiptItemContainer, _receiptRow);
 
           var _transactionDetails = document.createElement('section');
 
@@ -10439,7 +10660,7 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
 
           _transactionDetails.classList.add('r__transaction-item-details');
 
-          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement(_receiptRow, _transactionDetails);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement('beforeend', _receiptRow, _transactionDetails);
 
           var _transactionCostDetails = document.createElement('section');
 
@@ -10447,7 +10668,7 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
 
           _transactionCostDetails.classList.add('r__transaction-item-cost');
 
-          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement(_receiptRow, _transactionCostDetails);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement('beforeend', _receiptRow, _transactionCostDetails);
           var _detailCount = 1;
           var _detailStart = 0;
 
@@ -10467,11 +10688,9 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
               }
             }
 
-            _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement(_transactionDetails, _receiptDetail);
+            _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement('beforeend', _transactionDetails, _receiptDetail);
             _detailStart++;
           }
-
-          console.log(transactionAmount, transactionAmount.firstChild.value, (0,_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__["default"])(transactionAmount.firstChild.value), money.format(Number(transactionAmount.value)));
 
           var _receiptDetailCost = document.createElement('p');
 
@@ -10479,8 +10698,8 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
 
           _receiptDetailCost.classList.add('r__transaction-item-cost__cost');
 
-          _receiptDetailCost.textContent = money.format(Number(transactionAmount.firstChild.value));
-          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement(_transactionCostDetails, _receiptDetailCost);
+          _receiptDetailCost.textContent = utility.money.format(Number(transactionAmount.firstChild.value));
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement('beforeend', _transactionCostDetails, _receiptDetailCost);
 
           var _removeTransactionItemIcon = document.createElement('i');
 
@@ -10494,7 +10713,7 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
 
           _removeTransactionItemIcon.classList.add('closed');
 
-          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement(_transactionCostDetails, _removeTransactionItemIcon);
+          _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement('beforeend', _transactionCostDetails, _removeTransactionItemIcon);
 
           _removeTransactionItemIcon.addEventListener('click', function (e) {
             var removeTransactionIcons = document.querySelectorAll('.remove-transaction');
@@ -10543,7 +10762,7 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
           return receiptCost = receiptCost += receiptItem.amount;
         });
         console.log(receiptCost);
-        fullTransactionCost.textContent = money.format(receiptCost);
+        fullTransactionCost.textContent = utility.money.format(receiptCost);
       });
     }
 
@@ -10629,7 +10848,7 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
         }, "Dashboard");
 
         var fullTransactionCost = document.querySelectorAll('.container--small__transaction-total__amount')[0];
-        fullTransactionCost.textContent = money.format(0);
+        fullTransactionCost.textContent = utility.money.format(0);
       });
     }
   }
@@ -10739,7 +10958,7 @@ var createMonthlyBudgetTransactionPlans = function createMonthlyBudgetTransactio
   }, "Transaction-Planner");
 };
 
-var setupBudgetDashboard = function setupBudgetDashboard(user, budget, placeholderBudget) {
+var setupBudgetDashboard = function setupBudgetDashboard(user, budget, placeholderBudget, utility) {
   // THE LOGGED USER ABOVE SHOWED THAT THE DATE THE PASSWORD WAS CHANGED IS STILL SHOWING. THAT NEEDS TO BE CHANGED.
   ////////////////////////////////////////////
   // WATCH THE BUDGET NAVIGATION
@@ -10750,18 +10969,18 @@ var setupBudgetDashboard = function setupBudgetDashboard(user, budget, placehold
   createMonthlyBudgetTransactionPlans(budget, placeholderBudget, user); ////////////////////////////////////////////
   // WATCH FOR ACCOUNT SELECTION
 
-  _watchForTransactions(budget, placeholderBudget, user); ////////////////////////////////////////////
+  _watchForTransactions(budget, placeholderBudget, user, utility); ////////////////////////////////////////////
   // GET BANK ACCOUNT TOTAL
 
 
-  getDashboardAccountTotals(budget, placeholderBudget, user); ////////////////////////////////////////////
+  getDashboardAccountTotals(budget, placeholderBudget, user, utility); ////////////////////////////////////////////
   // SETUP BILL CALENDAR
 
-  _setupBillCalendar(budget, placeholderBudget, user); ////////////////////////////////////////////
+  _setupBillCalendar(budget, placeholderBudget, user, utility); ////////////////////////////////////////////
   // SETUP BILL CURRENT MONTH
 
 
-  _setupCurrentMonth(budget, placeholderBudget, user);
+  _setupCurrentMonth(budget, placeholderBudget, user, utility);
 };
 
 /***/ }),
@@ -10780,12 +10999,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Application_Utility__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../Application/Utility */ "./Public/JS/Application/Utility.js");
 
 
-var payDebtOff = function payDebtOff(budget, placeholderBudget, user, debt, paidSections, sectionStart) {
-  var money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2
-  });
+var payDebtOff = function payDebtOff(budget, placeholderBudget, user, debt, paidSections, sectionStart, utility) {
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   sectionStart = 0;
   paidSections = 6;
@@ -10884,7 +11098,7 @@ var payDebtOff = function payDebtOff(budget, placeholderBudget, user, debt, paid
 
       _sectionContent3.classList.add('r__debt--paid-text');
 
-      _sectionContent3.textContent = money.format(Number(debt.initialDebt));
+      _sectionContent3.textContent = utility.money.format(Number(debt.initialDebt));
       _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionHeader3);
       _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionContent3);
     }
@@ -10904,7 +11118,7 @@ var payDebtOff = function payDebtOff(budget, placeholderBudget, user, debt, paid
 
       _sectionContent4.classList.add('r__debt--paid-text');
 
-      _sectionContent4.textContent = money.format(Number(debt.amountOwed));
+      _sectionContent4.textContent = utility.money.format(Number(debt.amountOwed));
       _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionHeader4);
       _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionContent4);
     }
@@ -10948,13 +11162,8 @@ var payDebtOff = function payDebtOff(budget, placeholderBudget, user, debt, paid
   }, "Debt-Manager");
 };
 
-var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, user) {
+var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, user, utility) {
   var debtDisplay = document.querySelectorAll('.debt-display--paid');
-  var money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2
-  });
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   var addDebtButton = document.getElementById('addDebtButton');
   var debtLender = document.getElementById('debtLender');
@@ -11066,7 +11275,7 @@ var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, us
 
           _sectionContent8.classList.add('r__debt-text');
 
-          _sectionContent8.textContent = money.format(Number(debtAmount.value));
+          _sectionContent8.textContent = utility.money.format(Number(debtAmount.value));
           debtObject.initialDebt = Number(debtAmount.value);
           _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionHeader8);
           _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionContent8);
@@ -11087,7 +11296,7 @@ var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, us
 
           _sectionContent9.classList.add('r__debt-text');
 
-          _sectionContent9.textContent = money.format(Number(debtAmount.value));
+          _sectionContent9.textContent = utility.money.format(Number(debtAmount.value));
           debtObject.amountOwed = debtObject.initialDebt;
           _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionHeader9);
           _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", debtSection, _sectionContent9);
@@ -11163,7 +11372,7 @@ var _watchDebtManager = function _watchDebtManager(budget, placeholderBudget, us
         e.preventDefault();
         numberOfPaidSections = 6;
         sectionStart = 0;
-        payDebtOff(budget, placeholderBudget, user, budget.debts[_debts[i].dataset.debt], numberOfPaidSections, sectionStart);
+        payDebtOff(budget, placeholderBudget, user, budget.debts[_debts[i].dataset.debt], numberOfPaidSections, sectionStart, utility);
 
         _debts[i].remove();
       });
@@ -11244,7 +11453,7 @@ var getSubCategoryTiming = function getSubCategoryTiming(budget, category) {
 
     var endDigit = Number(date.getDate().toString().split('')[date.getDate().toString().length - 1]);
     var dayEnding;
-    dayEnding = Edit.calculateDayEnding(endDigit, dayEnding, date);
+    dayEnding = _Budget_Creation_Budget_Creation__WEBPACK_IMPORTED_MODULE_0__.calculateDayEnding(endDigit, dayEnding, date);
     wording = "Due ".concat(days[date.getDay()], ", the ").concat(_day).concat(dayEnding, " of ").concat(months[date.getMonth()], ".");
     return wording;
   }
@@ -11265,8 +11474,8 @@ var getSubCategoryTiming = function getSubCategoryTiming(budget, category) {
     var _endDigit = Number(dayOne.getDate().toString().split('')[dayOne.getDate().toString().length - 1]);
 
     var endDigitTwo = Number(dayTwo.getDate().toString().split('')[dayTwo.getDate().toString().length - 1]);
-    _dayEnding = Edit.calculateDayEnding(_endDigit, _dayEnding, dayOne.getDate());
-    dayEndingTwo = Edit.calculateDayEnding(_endDigit, dayEndingTwo, dayTwo.getDate());
+    _dayEnding = _Budget_Creation_Budget_Creation__WEBPACK_IMPORTED_MODULE_0__.calculateDayEnding(_endDigit, _dayEnding, dayOne.getDate());
+    dayEndingTwo = _Budget_Creation_Budget_Creation__WEBPACK_IMPORTED_MODULE_0__.calculateDayEnding(_endDigit, dayEndingTwo, dayTwo.getDate());
     wording = "Due the ".concat(dayOne.getDate()).concat(_dayEnding, " & ").concat(dayTwo.getDate()).concat(dayEndingTwo, ", of ").concat(months[dayOne.getMonth()]);
     return wording;
   }
@@ -11280,13 +11489,13 @@ var getSubCategoryTiming = function getSubCategoryTiming(budget, category) {
 
     var _dayEnding2;
 
-    _dayEnding2 = Edit.calculateDayEnding(_endDigit2, _dayEnding2, _date);
+    _dayEnding2 = _Budget_Creation_Budget_Creation__WEBPACK_IMPORTED_MODULE_0__.calculateDayEnding(_endDigit2, _dayEnding2, _date);
     wording = "Due ".concat(days[_date.getDay()], ", the ").concat(_day2).concat(_dayEnding2, " of ").concat(months[_date.getMonth()], ".");
     return wording;
   }
 };
 
-var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placeholderBudget, user) {
+var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placeholderBudget, user, utility) {
   var editCategoryGoalsContainer = document.querySelectorAll('.container--large')[0];
 
   if (editCategoryGoalsContainer) {
@@ -11314,11 +11523,6 @@ var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placehold
     var clickedItem, selectedTiming;
     var subCategoryIndex = 0;
     _Budget_Creation_Budget_Creation__WEBPACK_IMPORTED_MODULE_0__.watchForSettingTiming(placeholderBudget, subCategoryIndex, clickedItem, selectedTiming, "Full Budget");
-    var money = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 2
-    });
     var individualPayments = document.querySelectorAll('.individual-payment');
     var overallBudget = document.querySelectorAll('.budget-single-goal-summary__amount');
     individualPayments.forEach(function (ip, i) {
@@ -11368,12 +11572,12 @@ var _watchEditCategoryGoals = function _watchEditCategoryGoals(budget, placehold
         var total = getOverallBudget(subCategories, overallBudget[0]);
         var part = getOverallSpent(subCategories, overallSpent);
         var percentage = getOverallPercentageSpent(total, part);
-        overallBudget[0].textContent = money.format(getOverallBudget(subCategories, overallBudget[0]));
-        overallSpent.textContent = money.format(part);
-        overallRemaining.textContent = money.format(total - part);
+        overallBudget[0].textContent = utility.money.format(getOverallBudget(subCategories, overallBudget[0]));
+        overallSpent.textContent = utility.money.format(part);
+        overallRemaining.textContent = utility.money.format(total - part);
         overallPercentageSpent.textContent = "".concat(percentage, "%");
-        spent.textContent = money.format(spent.textContent.split('$')[1]);
-        remaining.textContent = money.format(ip.value - Number(spent.textContent.split('$')[1]));
+        spent.textContent = utility.money.format(spent.textContent.split('$')[1]);
+        remaining.textContent = utility.money.format(ip.value - Number(spent.textContent.split('$')[1]));
 
         if (total - part < 0) {
           overallRemaining.classList.add('negative');
@@ -11520,18 +11724,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "_watchIncomeAllocation": () => (/* binding */ _watchIncomeAllocation)
 /* harmony export */ });
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
-var _watchIncomeAllocation = function _watchIncomeAllocation(budget, placeholderBudget, user) {
+var _watchIncomeAllocation = function _watchIncomeAllocation(budget, placeholderBudget, user, utility) {
   var incomeAllocationContainer = document.querySelector('.container--allocate-income');
   var unAllocatedTotal = document.querySelector('.un-allocated-account-total');
-  var money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2
-  });
 
   if (incomeAllocationContainer) {
     console.log("Allocating...");
-    unAllocatedTotal.textContent = money.format(unAllocatedTotal.textContent);
+    unAllocatedTotal.textContent = utility.money.format(unAllocatedTotal.textContent);
     var allocateIncomeButton = document.querySelector('.button--small-purple');
     allocateIncomeButton.addEventListener('click', function (e) {
       e.preventDefault(); // INITIALIZE NEEDED VARIABLES
@@ -11546,7 +11745,7 @@ var _watchIncomeAllocation = function _watchIncomeAllocation(budget, placeholder
         totalAllocationAmount += Number(ai.value);
       }); // DOUBLE CHECK TO MAKE SURE ALLOCATED AMOUNT DOES NOT EXCEED UN-ALLOCATED INCOME
 
-      totalAllocationAmount <= unAllocatedAmount ? unAllocatedTotal.textContent = money.format(unAllocatedAmount - totalAllocationAmount) : alert("You do not have all that money! Please lower one of your accounts amounts!"); // INITIALIZE SEPARATE ACCOUNTS ALLOCATED TOTALS
+      totalAllocationAmount <= unAllocatedAmount ? unAllocatedTotal.textContent = utility.money.format(unAllocatedAmount - totalAllocationAmount) : alert("You do not have all that money! Please lower one of your accounts amounts!"); // INITIALIZE SEPARATE ACCOUNTS ALLOCATED TOTALS
 
       var monthlyBudgetAllocation, emergencyFundAllocation, savingsFundAllocation, expenseFundAllocation, debtAllocation, investmentFundAllocation; // GET EACH SEPARATE ACCOUNTS ALLOCATED INCOME
 
@@ -11857,12 +12056,7 @@ var settleInvestment = function settleInvestment(investments, index, dataIndex, 
   _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.reloadPage();
 };
 
-var renderNewInvestment = function renderNewInvestment(options) {
-  var money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2
-  });
+var renderNewInvestment = function renderNewInvestment(options, utility) {
   var investmentContainers = document.querySelectorAll('.container--extra-small__margin-left-and-right');
   var investmentAccountPreview = investmentContainers[0];
   var investmentShellContainer = document.createElement('section');
@@ -11973,7 +12167,7 @@ var renderNewInvestment = function renderNewInvestment(options) {
   var investmentValueInformationContainerHalfOneText = document.createElement('p');
   investmentValueInformationContainerHalfOneText.classList.add('investment-value-information__half__text');
   investmentValueInformationContainerHalfOneText.classList.add('r__investment-value-information__half__text');
-  investmentValueInformationContainerHalfOneText.textContent = money.format(options.initialInvestment);
+  investmentValueInformationContainerHalfOneText.textContent = utility.money.format(options.initialInvestment);
   _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", investmentValueInformationContainerHalfOne, investmentValueInformationContainerHalfOneText);
   var investmentInputContainer = document.createElement('section');
   investmentInputContainer.classList.add('investment-input-container');
@@ -12014,7 +12208,7 @@ var closeInvestmentCreation = function closeInvestmentCreation(event) {
   replaceClassName(addInvestmentButton, "closed", "open");
 };
 
-var _watchInvestmentPlanner = function _watchInvestmentPlanner(budget, placeholderBudget, user) {
+var _watchInvestmentPlanner = function _watchInvestmentPlanner(budget, placeholderBudget, user, utility) {
   var addInvestmentButton = document.querySelector('.container--extra-small__margin-left-and-right__content-icon');
   var closeInvestmentCreationButton = document.querySelector('.button--borderless-narrow__investment');
   var addInvestmentForm = document.querySelector('.form--extra-small__column');
@@ -12042,7 +12236,7 @@ var _watchInvestmentPlanner = function _watchInvestmentPlanner(budget, placehold
         budget: budget,
         placeholderBudget: placeholderBudget,
         user: user
-      });
+      }, utility);
       var updateObject = {
         investments: []
       };
@@ -12388,7 +12582,7 @@ var getReceiptTotal = function getReceiptTotal(transaction) {
   return total;
 };
 
-var processReceipt = function processReceipt(transaction, button) {
+var processReceipt = function processReceipt(transaction, button, utility) {
   var viewReceiptButtons = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(document.querySelectorAll('.button--extra-extra-small__view-receipt'));
 
   var viewReceiptButtonIndex = viewReceiptButtons.indexOf(button);
@@ -12400,11 +12594,6 @@ var processReceipt = function processReceipt(transaction, button) {
     receiptItemContainer.removeChild(receiptItemContainer.firstChild);
   }
 
-  var money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2
-  });
   var receiptTotal = 0;
   transaction.receipt.forEach(function (receiptItem, i) {
     var receiptRow = document.createElement('section');
@@ -12444,7 +12633,7 @@ var processReceipt = function processReceipt(transaction, button) {
       var receiptCostDetail = document.createElement('p');
       receiptCostDetail.classList.add('receipt-row__cost-section__cost');
       receiptCostDetail.classList.add('r__receipt-row__cost-section__cost');
-      receiptCostDetail.textContent = money.format(receiptItem.amount);
+      receiptCostDetail.textContent = utility.money.format(receiptItem.amount);
       _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", receiptCostSection, receiptCostDetail);
     }
 
@@ -12469,7 +12658,7 @@ var processReceipt = function processReceipt(transaction, button) {
 
       _receiptCostDetail.classList.add('r__receipt-row__cost-section__cost');
 
-      _receiptCostDetail.textContent = money.format(receiptItem.amount);
+      _receiptCostDetail.textContent = utility.money.format(receiptItem.amount);
       _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", receiptCostSection, _receiptCostDetail);
     }
 
@@ -12477,15 +12666,10 @@ var processReceipt = function processReceipt(transaction, button) {
   });
   var receiptFooterTexts = document.querySelectorAll('.footer-title');
   var receiptTotalAmount = receiptFooterTexts[1];
-  receiptTotalAmount.textContent = money.format(receiptTotal);
+  receiptTotalAmount.textContent = utility.money.format(receiptTotal);
 };
 
-var showRecentTransaction = function showRecentTransaction(budget, placeholderBudget, user, transaction) {
-  var money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2
-  });
+var showRecentTransaction = function showRecentTransaction(budget, placeholderBudget, user, transaction, utility) {
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   var receiptModal = document.querySelector('.modal--receipt');
   var recentTransactionDisplay = document.querySelector('.recent-transaction-display');
@@ -12518,7 +12702,7 @@ var showRecentTransaction = function showRecentTransaction(budget, placeholderBu
         _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", viewReceiptButton, viewReceiptButtonText);
         _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", recentTransactionSection, viewReceiptButton);
         viewReceiptButton.addEventListener('click', function (e) {
-          processReceipt(transaction, viewReceiptButton);
+          processReceipt(transaction, viewReceiptButton, utility);
           _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.showElement(receiptModal);
         });
       })();
@@ -12579,7 +12763,7 @@ var showRecentTransaction = function showRecentTransaction(budget, placeholderBu
       transactionSectionPartHeader.textContent = "Receipt Total";
       transactionSectionPartText.classList.add("recent-transaction__section__part__text");
       transactionSectionPartText.classList.add("r__recent-transaction__section__part__text");
-      transactionSectionPartText.textContent = money.format(getReceiptTotal(transaction));
+      transactionSectionPartText.textContent = utility.money.format(getReceiptTotal(transaction));
       _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", transactionSectionPart, transactionSectionPartHeader);
       _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", transactionSectionPart, transactionSectionPartText);
     }
@@ -12591,14 +12775,14 @@ var showRecentTransaction = function showRecentTransaction(budget, placeholderBu
   _Application_Utility__WEBPACK_IMPORTED_MODULE_1__.insertElement("beforeend", recentTransactionDisplay, recentTransaction);
 };
 
-var _watchRecentTransactions = function _watchRecentTransactions(budget, placeholderBudget, user) {
+var _watchRecentTransactions = function _watchRecentTransactions(budget, placeholderBudget, user, utility) {
   var receiptModal = document.querySelector('.modal--receipt');
   var receiptModalClosureIcon = document.querySelector('.modal--receipt__closure-icon');
   var viewReceiptButton = document.querySelector('.button--extra-extra-small__view-receipt');
 
   if (placeholderBudget.transactions.recentTransactions.length > 0) {
     placeholderBudget.transactions.recentTransactions.forEach(function (transaction, i) {
-      showRecentTransaction(budget, placeholderBudget, user, transaction);
+      showRecentTransaction(budget, placeholderBudget, user, transaction, utility);
     });
 
     if (receiptModalClosureIcon) {
@@ -12939,15 +13123,10 @@ var getDueDate = function getDueDate(date) {
   return "".concat(new Date(selectedDate.setHours(selectedDate.getHours() + new Date().getTimezoneOffset() / 60)).getDate(), " ").concat(months[new Date(date).getMonth()], " ").concat(new Date(date).getFullYear());
 };
 
-var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudget, user, number, numberOfSections, plan, classType) {
+var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudget, user, number, numberOfSections, plan, classType, utility) {
   var transactionPlanSelects = document.querySelectorAll('.form__select--accounts');
   var smallShortTransactionPlanInputs = document.querySelectorAll('.form__input--small-short');
   var altMediumTransactionPlanInputs = document.querySelectorAll('.form__input--medium__alt');
-  var money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2
-  });
   var expenseAppliedTotal = 0;
   var savingsAppliedTotal = 0;
   var debtAppliedTotal = 0;
@@ -13048,7 +13227,7 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
       if (number === 5) {
         // INSERT DOM ELEMENTS INTO FIRST PART
         transactionPlanPartHeaderText.textContent = "Amount";
-        transactionPlanPartText.textContent = "".concat(money.format(Number(smallShortTransactionPlanInputs[2].value)));
+        transactionPlanPartText.textContent = "".concat(utility.money.format(Number(smallShortTransactionPlanInputs[2].value)));
         _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
         _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
         _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartText);
@@ -13064,12 +13243,6 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
       }
 
       if (number === 7) {
-        // transactionPlanPartHeader.classList.add('transaction-plan__alt__part__header');
-        // transactionPlanPartHeader.classList.add('r__transaction-plan__alt__part__header');
-        // transactionPlanPartHeaderText.classList.add('transaction-plan__alt__part__header__text');
-        // transactionPlanPartHeaderText.classList.add('r__transaction-plan__alt__part__header__text');
-        // transactionPlanPartText.classList.add('transaction-plan__alt__part__text');
-        // transactionPlanPartText.classList.add('r__transaction-plan__alt__part__text');
         // INSERT DOM ELEMENTS INTO FIRST PART
         transactionPlanPartHeaderText.textContent = "Timing";
         transactionPlanPartText.textContent = "".concat(transactionPlanSelects[5].value);
@@ -13089,7 +13262,7 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
       if (number === 8) {
         // INSERT DOM ELEMENTS INTO FIRST PART
         transactionPlanPartHeaderText.textContent = "Amount Saved";
-        transactionPlanPartText.textContent = money.format(0);
+        transactionPlanPartText.textContent = utility.money.format(0);
 
         if (altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
           _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(transactionPlanPartHeader, "transaction-plan__part__header", 'transaction-plan__double__part__header');
@@ -13128,7 +13301,7 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
           _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(transactionPlanPartHeader, "transaction-plan__part__header", 'transaction-plan__double__part__header');
           _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(transactionPlanPartHeader, "r__transaction-plan__part__header", 'r__transaction-plan__double__part__header');
           transactionPlanPartHeaderText.textContent = "Amount Saved";
-          transactionPlanPartText.textContent = money.format(0);
+          transactionPlanPartText.textContent = utility.money.format(0);
           _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartText);
         }
       }
@@ -13313,7 +13486,7 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
       if (number === 6) {
         // INSERT DOM ELEMENTS INTO FIRST PART
         _transactionPlanPartHeaderText.textContent = "Amount";
-        _transactionPlanPartText.textContent = "".concat(money.format(Number(smallShortTransactionPlanInputs[2].value)));
+        _transactionPlanPartText.textContent = "".concat(utility.money.format(Number(smallShortTransactionPlanInputs[2].value)));
         _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartHeader);
         _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader, _transactionPlanPartHeaderText);
         _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartText);
@@ -13354,7 +13527,7 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
       if (number === 9) {
         // INSERT DOM ELEMENTS INTO FIRST PART
         _transactionPlanPartHeaderText.textContent = "Amount Saved";
-        _transactionPlanPartText.textContent = money.format(0);
+        _transactionPlanPartText.textContent = utility.money.format(0);
 
         if (altMediumTransactionPlanInputs[1].closest('.form__section--transaction-plan').classList.contains('open')) {
           _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(_transactionPlanPartHeader, "transaction-plan__alt__part__header", 'transaction-plan__alt-double__part__header');
@@ -13401,7 +13574,7 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
           _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(_transactionPlanPartHeader, "transaction-plan__alt__part__header", 'transaction-plan__alt-double__part__header');
           _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.replaceClassName(_transactionPlanPartHeader, "r__transaction-plan__alt__part__header", 'r__transaction-plan__alt-double__part__header');
           _transactionPlanPartHeaderText.textContent = "Amount Saved";
-          _transactionPlanPartText.textContent = money.format(0);
+          _transactionPlanPartText.textContent = utility.money.format(0);
           _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart, _transactionPlanPartText);
         }
       }
@@ -13501,7 +13674,7 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
   finalizeTransactionPlan(budget, placeholderBudget, user, transactionPlanSelects, smallShortTransactionPlanInputs, altMediumTransactionPlanInputs);
 };
 
-var createPlannedTransaction = function createPlannedTransaction(accountSelect, budget, placeholderBudget, user, creationContainer) {
+var createPlannedTransaction = function createPlannedTransaction(accountSelect, budget, placeholderBudget, user, creationContainer, utility) {
   console.log("Creating Plan...");
   var transactionDisplay = document.querySelector('.transaction-plan-display');
   var transactionPlanSelects = document.querySelectorAll('.form__select--accounts');
@@ -13512,7 +13685,7 @@ var createPlannedTransaction = function createPlannedTransaction(accountSelect, 
     var transactionPlan = document.createElement('section');
     numSections = 12;
     if (transactionPlanSelects[5].value === "Bi-Monthly" || transactionPlanSelects[5].value === "Bi-Annual") numSections = 13;
-    buildTransactionPlan(budget, placeholderBudget, user, sectionStart, numSections, transactionPlan, "original");
+    buildTransactionPlan(budget, placeholderBudget, user, sectionStart, numSections, transactionPlan, "original", utility);
     numSections === 13 ? transactionPlan.classList.add('transaction-plan__double') : transactionPlan.classList.add('transaction-plan');
     numSections === 13 ? transactionPlan.classList.add('r__transaction-plan__double') : transactionPlan.classList.add('r__transaction-plan');
     displayTransaction(creationContainer, transactionPlan);
@@ -13522,7 +13695,7 @@ var createPlannedTransaction = function createPlannedTransaction(accountSelect, 
     var altTransactionPlan = document.createElement('section');
     numSections = 13;
     if (transactionPlanSelects[5].value === "Bi-Monthly" || transactionPlanSelects[5].value === "Bi-Annual") numSections = 14;
-    buildTransactionPlan(budget, placeholderBudget, user, sectionStart, numSections, altTransactionPlan, "alt");
+    buildTransactionPlan(budget, placeholderBudget, user, sectionStart, numSections, altTransactionPlan, "alt", utility);
     numSections === 14 ? altTransactionPlan.classList.add('transaction-plan__alt-double') : altTransactionPlan.classList.add('transaction-plan__alt');
     numSections === 14 ? altTransactionPlan.classList.add('r__transaction-plan__alt-double') : altTransactionPlan.classList.add('r__transaction-plan__alt');
     displayTransaction(creationContainer, altTransactionPlan);
@@ -13574,15 +13747,11 @@ var showTransactionPlanOptions = function showTransactionPlanOptions(array, allO
   }
 };
 
-var updateTransactionPlanningAccountDisplays = function updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user) {
-  var money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2
-  });
+var updateTransactionPlanningAccountDisplays = function updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user, utility) {
   console.log("Updating...");
   var appliedMoney = document.querySelectorAll('.container--extra-small-evenly-spaced__content__applied-container__applied');
   var unAppliedMoney = document.querySelectorAll('.container--extra-small-evenly-spaced__content__un-applied-container__un-applied');
+  var accountTotals = document.querySelectorAll('.container--extra-small-evenly-spaced__content__account-total');
   var expenseAppliedTotal = 0;
   var savingsAppliedTotal = 0;
   var debtAppliedTotal = 0;
@@ -13603,17 +13772,22 @@ var updateTransactionPlanningAccountDisplays = function updateTransactionPlannin
     if (transaction.account === "Surplus") {
       surplusAppliedTotal += transaction.amountSaved;
     }
-  }); // APPLIED TOTALS
+  }); // ACCOUNT TOTALS
 
-  appliedMoney[0].textContent = money.format(expenseAppliedTotal);
-  appliedMoney[1].textContent = money.format(savingsAppliedTotal);
-  appliedMoney[2].textContent = money.format(debtAppliedTotal);
-  appliedMoney[3].textContent = money.format(surplusAppliedTotal); // UNAPPLIED TOTALS
+  accountTotals[0].textContent = utility.money.format(budget.accounts.expenseFund.amount);
+  accountTotals[1].textContent = utility.money.format(budget.accounts.savingsFund.amount);
+  accountTotals[2].textContent = utility.money.format(budget.accounts.debt.amount);
+  accountTotals[3].textContent = utility.money.format(budget.accounts.surplus.amount); // APPLIED TOTALS
 
-  unAppliedMoney[0].textContent = money.format(budget.accounts.expenseFund.amount - expenseAppliedTotal);
-  unAppliedMoney[1].textContent = money.format(budget.accounts.savingsFund.amount - savingsAppliedTotal);
-  unAppliedMoney[2].textContent = money.format(budget.accounts.debt.amount - debtAppliedTotal);
-  unAppliedMoney[3].textContent = money.format(budget.accounts.surplus.amount - surplusAppliedTotal);
+  appliedMoney[0].textContent = utility.money.format(expenseAppliedTotal);
+  appliedMoney[1].textContent = utility.money.format(savingsAppliedTotal);
+  appliedMoney[2].textContent = utility.money.format(debtAppliedTotal);
+  appliedMoney[3].textContent = utility.money.format(surplusAppliedTotal); // UNAPPLIED TOTALS
+
+  unAppliedMoney[0].textContent = utility.money.format(budget.accounts.expenseFund.amount - expenseAppliedTotal);
+  unAppliedMoney[1].textContent = utility.money.format(budget.accounts.savingsFund.amount - savingsAppliedTotal);
+  unAppliedMoney[2].textContent = utility.money.format(budget.accounts.debt.amount - debtAppliedTotal);
+  unAppliedMoney[3].textContent = utility.money.format(budget.accounts.surplus.amount - surplusAppliedTotal);
 };
 
 var getTransactionPlanDate = function getTransactionPlanDate(date) {
@@ -13621,7 +13795,7 @@ var getTransactionPlanDate = function getTransactionPlanDate(date) {
   return "".concat(new Date(date).getDate(), " ").concat(months[new Date(date).getMonth()], " ").concat(new Date(date).getFullYear());
 };
 
-var displayExistingTransactionPlans = function displayExistingTransactionPlans(budget, placeholderBudget, user) {
+var displayExistingTransactionPlans = function displayExistingTransactionPlans(budget, placeholderBudget, user, utility) {
   var transactionPlanCreation = document.querySelector('.transaction-plan-creation');
   var transactionPlans = [];
   var numberOfSections;
@@ -13630,11 +13804,6 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
     transactionPlans.sort(function (a, b) {
       return new Date(a.date) - new Date(b.date);
     });
-  });
-  var money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2
   });
   transactionPlans.forEach(function (transaction, i) {
     var sectionStart = 0;
@@ -13713,7 +13882,7 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
           if (sectionStart === 5) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             transactionPlanPartHeaderText.textContent = "Amount";
-            transactionPlanPartText.textContent = money.format(transaction.amount);
+            transactionPlanPartText.textContent = utility.money.format(transaction.amount);
             _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
             _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
             _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartText);
@@ -13749,7 +13918,7 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
           if (sectionStart === 9) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             transactionPlanPartHeaderText.textContent = "Amount Saved";
-            transactionPlanPartText.textContent = money.format(transaction.amountSaved);
+            transactionPlanPartText.textContent = utility.money.format(transaction.amountSaved);
             _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
             _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
             _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartText);
@@ -13770,7 +13939,7 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
               transactionPlanInput.min = 0;
               transactionPlanInput.placeholder = '$0.00';
               transactionPlanButton.addEventListener('click', function (e) {
-                transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
+                transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = utility.money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
                 transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
                 var updateObject = {
                   budgetId: budget._id,
@@ -13785,7 +13954,7 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
                   updateObject: updateObject
                 }, "Transaction-Planner");
 
-                updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user);
+                updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user, utility);
               });
               _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPart, transactionPlanPartHeader);
               _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", transactionPlanPartHeader, transactionPlanPartHeaderText);
@@ -13900,7 +14069,7 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
           if (sectionStart === 5) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText2.textContent = "Amount";
-            _transactionPlanPartText2.textContent = money.format(transaction.amount);
+            _transactionPlanPartText2.textContent = utility.money.format(transaction.amount);
             _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartHeader2);
             _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
             _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartText2);
@@ -13927,7 +14096,7 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
           if (sectionStart === 8) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText2.textContent = "Amount Saved";
-            _transactionPlanPartText2.textContent = money.format(transaction.amountSaved);
+            _transactionPlanPartText2.textContent = utility.money.format(transaction.amountSaved);
             _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartHeader2);
             _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
             _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartText2);
@@ -13948,7 +14117,7 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
               transactionPlanInput.min = 0;
               transactionPlanInput.placeholder = '$0.00';
               transactionPlanButton.addEventListener('click', function (e) {
-                transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
+                transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = utility.money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
                 transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
                 var updateObject = {
                   budgetId: budget._id,
@@ -13963,7 +14132,7 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
                   updateObject: updateObject
                 }, "Transaction-Planner");
 
-                updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user);
+                updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user, utility);
               });
               _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart2, _transactionPlanPartHeader2);
               _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader2, _transactionPlanPartHeaderText2);
@@ -14103,7 +14272,7 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
           if (sectionStart === 6) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText3.textContent = "Amount";
-            _transactionPlanPartText3.textContent = money.format(transaction.amount);
+            _transactionPlanPartText3.textContent = utility.money.format(transaction.amount);
             _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartHeader3);
             _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
             _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartText3);
@@ -14139,7 +14308,7 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
           if (sectionStart === 10) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText3.textContent = "Amount Saved";
-            _transactionPlanPartText3.textContent = money.format(transaction.amountSaved);
+            _transactionPlanPartText3.textContent = utility.money.format(transaction.amountSaved);
             _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartHeader3);
             _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
             _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartText3);
@@ -14160,7 +14329,7 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
               transactionPlanInput.min = 0;
               transactionPlanInput.placeholder = '$0.00';
               transactionPlanButton.addEventListener('click', function (e) {
-                transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
+                transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = utility.money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
                 transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
                 var updateObject = {
                   budgetId: budget._id,
@@ -14175,7 +14344,7 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
                   updateObject: updateObject
                 }, "Transaction-Planner");
 
-                updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user);
+                updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user, utility);
               });
               _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart3, _transactionPlanPartHeader3);
               _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader3, _transactionPlanPartHeaderText3);
@@ -14306,7 +14475,7 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
           if (sectionStart === 6) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText4.textContent = "Amount";
-            _transactionPlanPartText4.textContent = money.format(transaction.amount);
+            _transactionPlanPartText4.textContent = utility.money.format(transaction.amount);
             _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartHeader4);
             _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
             _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartText4);
@@ -14333,7 +14502,7 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
           if (sectionStart === 9) {
             // INSERT DOM ELEMENTS INTO FIRST PART
             _transactionPlanPartHeaderText4.textContent = "Amount Saved";
-            _transactionPlanPartText4.textContent = money.format(transaction.amountSaved);
+            _transactionPlanPartText4.textContent = utility.money.format(transaction.amountSaved);
             _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartHeader4);
             _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
             _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartText4);
@@ -14354,7 +14523,7 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
               transactionPlanInput.min = 0;
               transactionPlanInput.placeholder = '$0.00';
               transactionPlanButton.addEventListener('click', function (e) {
-                transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
+                transactionPlanButton.parentElement.previousSibling.firstChild.nextSibling.textContent = utility.money.format(Number(transactionPlanInput.value) + Number(transaction.amountSaved));
                 transaction.amountSaved = Number(transactionPlanInput.value) + Number(transaction.amountSaved);
                 var updateObject = {
                   budgetId: budget._id,
@@ -14369,7 +14538,7 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
                   updateObject: updateObject
                 }, "Transaction-Planner");
 
-                updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user);
+                updateTransactionPlanningAccountDisplays(budget, placeholderBudget, user, utility);
               });
               _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPart4, _transactionPlanPartHeader4);
               _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement("beforeend", _transactionPlanPartHeader4, _transactionPlanPartHeaderText4);
@@ -14414,7 +14583,7 @@ var displayExistingTransactionPlans = function displayExistingTransactionPlans(b
   });
 };
 
-var setupTransactionPlanning = function setupTransactionPlanning(budget, placeholderBudget, user) {
+var setupTransactionPlanning = function setupTransactionPlanning(budget, placeholderBudget, user, utility) {
   var transactionPlanCreationContainer = document.querySelector('.transaction-plan-creation');
   var transactionRows = document.querySelectorAll('.form__row--transaction');
   var expenseTransactionOptionsArray = [];
@@ -14427,7 +14596,7 @@ var setupTransactionPlanning = function setupTransactionPlanning(budget, placeho
   var transactionPlanSections = document.querySelectorAll('.form__section--transaction-plan');
   var accountSelectionContainers = document.querySelectorAll('.form__select--accounts');
   var formSelectSections = document.querySelectorAll('.form__section--select');
-  displayExistingTransactionPlans(budget, placeholderBudget, user);
+  displayExistingTransactionPlans(budget, placeholderBudget, user, utility);
   var submitPlanButton = document.querySelector('.button--extra-extra-small__transaction-plan');
   commonTransactionOptionsArray.forEach(function (array) {
     _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.pushIntoArray([transactionPlanSections[4], formSelectSections[2], transactionPlanSections[0], transactionPlanSections[1], transactionPlanSections[2], transactionPlanSections[3], transactionPlanSections[6], formSelectSections[1], accountSelectionContainers[5]], array);
@@ -14514,7 +14683,7 @@ var setupTransactionPlanning = function setupTransactionPlanning(budget, placeho
 
       if (submitPlanButton) {
         submitPlanButton.addEventListener('click', function (e) {
-          createPlannedTransaction(accountSelectionContainers[0], budget, placeholderBudget, user, transactionPlanCreationContainer);
+          createPlannedTransaction(accountSelectionContainers[0], budget, placeholderBudget, user, transactionPlanCreationContainer, utility);
           surplusSwitch.classList.remove('surplus-container__switch--switched');
           surplusSwitchIcon.classList.add('fa-times');
           surplusSwitchIcon.classList.remove('fa-check');
@@ -14523,23 +14692,24 @@ var setupTransactionPlanning = function setupTransactionPlanning(budget, placeho
         });
       }
 
-      var money = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 2
-      });
       var appliedMoney = document.querySelectorAll('.container--extra-small-evenly-spaced__content__applied-container__applied');
-      var unAppliedMoney = document.querySelectorAll('.container--extra-small-evenly-spaced__content__un-applied-container__un-applied'); // APPLIED TOTALS
+      var unAppliedMoney = document.querySelectorAll('.container--extra-small-evenly-spaced__content__un-applied-container__un-applied');
+      var accountTotals = document.querySelectorAll('.container--extra-small-evenly-spaced__content__account-total'); // ACCOUNT TOTALS
 
-      appliedMoney[0].textContent = money.format(expenseAppliedTotal);
-      appliedMoney[1].textContent = money.format(savingsAppliedTotal);
-      appliedMoney[2].textContent = money.format(debtAppliedTotal);
-      appliedMoney[3].textContent = money.format(surplusAppliedTotal); // UNAPPLIED TOTALS
+      accountTotals[0].textContent = utility.money.format(budget.accounts.expenseFund.amount);
+      accountTotals[1].textContent = utility.money.format(budget.accounts.savingsFund.amount);
+      accountTotals[2].textContent = utility.money.format(budget.accounts.debt.amount);
+      accountTotals[3].textContent = utility.money.format(budget.accounts.surplus.amount); // APPLIED TOTALS
 
-      unAppliedMoney[0].textContent = money.format(budget.accounts.expenseFund.amount - expenseAppliedTotal);
-      unAppliedMoney[1].textContent = money.format(budget.accounts.savingsFund.amount - savingsAppliedTotal);
-      unAppliedMoney[2].textContent = money.format(budget.accounts.debt.amount - debtAppliedTotal);
-      unAppliedMoney[3].textContent = money.format(budget.accounts.surplus.amount - surplusAppliedTotal); // transaction-plan__part__text
+      appliedMoney[0].textContent = utility.money.format(expenseAppliedTotal);
+      appliedMoney[1].textContent = utility.money.format(savingsAppliedTotal);
+      appliedMoney[2].textContent = utility.money.format(debtAppliedTotal);
+      appliedMoney[3].textContent = utility.money.format(surplusAppliedTotal); // UNAPPLIED TOTALS
+
+      unAppliedMoney[0].textContent = utility.money.format(budget.accounts.expenseFund.amount - expenseAppliedTotal);
+      unAppliedMoney[1].textContent = utility.money.format(budget.accounts.savingsFund.amount - savingsAppliedTotal);
+      unAppliedMoney[2].textContent = utility.money.format(budget.accounts.debt.amount - debtAppliedTotal);
+      unAppliedMoney[3].textContent = utility.money.format(budget.accounts.surplus.amount - surplusAppliedTotal); // transaction-plan__part__text
     }
   }
 };
@@ -14552,7 +14722,7 @@ var startPlanning = function startPlanning(budget, placeholderBudget, user) {
   transactionPlanSelects[5].value = transactionPlanSelects[5].firstChild.nextSibling.value;
 };
 
-var _watchTransactionPlanner = function _watchTransactionPlanner(budget, placeholderBudget, user) {
+var _watchTransactionPlanner = function _watchTransactionPlanner(budget, placeholderBudget, user, utility) {
   var borderlessButtons = document.querySelectorAll('.button--borderless');
   var startPlanningButton = borderlessButtons[2];
   var accountSelection = document.querySelectorAll('.form__select--accounts')[0];
@@ -14564,7 +14734,7 @@ var _watchTransactionPlanner = function _watchTransactionPlanner(budget, placeho
     });
   }
 
-  setupTransactionPlanning(budget, placeholderBudget, user);
+  setupTransactionPlanning(budget, placeholderBudget, user, utility);
   var altMediumInputs = document.querySelectorAll('.form__input--medium__alt');
   var currentDate = altMediumInputs[0];
   if (currentDate) currentDate.value = new Date();

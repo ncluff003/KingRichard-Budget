@@ -1,7 +1,9 @@
+import axios from 'axios';
 import * as Create from '../Budget-Creation/Budget-Creation';
 import * as Manage from '../Budget/Manage-Budget';
 import * as Person from '../Classes/Person';
 import * as Utility from './Utility';
+import * as API from './_API-Calls';
 
 export const _watchForResetFromErrors = () => {
   const returnButton = document.querySelector('.button--return');
@@ -329,6 +331,47 @@ const checkLoginStatus = (login, checkElement) => {
   }
 };
 
+// const getPosition = function () {
+//   return new Promise(function (resolve, reject) {
+//     // navigator.geolocation.getCurrentPosition(
+//     //   (position) => resolve(position), // EXACTLY THE SAME AS BELOW
+//     //   (err) => reject(err)
+//     // );
+//     navigator.geolocation.getCurrentPosition(resolve, reject);
+//   });
+// };
+
+// const whereAmI = async function () {
+//   try {
+//     // Geo-location
+//     const pos = await getPosition();
+//     const { latitude: lat, longitude: lng } = pos.coords;
+
+//     // Reverse Geo-coding
+//     const geoResponse = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+//     if (!geoResponse.ok) throw new Error(`Problem getting your location data.`);
+//     const dataGeo = await geoResponse.json();
+
+//     // Country Data
+//     const response = await fetch(`https://restcountries.eu/rest/v2/name/${dataGeo.country}`);
+//     if (!geoResponse.ok) throw new Error(`Problem getting your location.`);
+//     const data = await response.json();
+//     renderCountry(data[0]);
+//     countriesContainer.style.opacity = 1;
+
+//     return `You are in ${dataGeo.city[0]}${dataGeo.city.slice(1).toLowerCase()}, ${dataGeo.country}`;
+//   } catch (err) {
+//     console.error(err.message);
+//     renderError(`Something Went Horribly Wrong!!!`);
+
+//     throw err;
+//   }
+// };
+
+// function showPosition(position) {
+//   return position;
+// }
+
 export const _watchForLogin = async (login) => {
   const status = checkLoginStatus(login);
   status === true ? console.log(`Logged In`) : console.log(`Logged Out`);
@@ -342,6 +385,18 @@ export const _watchForLogin = async (login) => {
     const userInfo = await placeholderUser._getPersonData();
     const user = userInfo.data.data.user;
     placeholderUser._createPlaceholderUser(user, placeholderUser);
+
+    let countryInfo = await API.getCountryInformation();
+    let locale = `${countryInfo.languages[0].iso639_1}-${countryInfo.alpha2Code}`;
+
+    let utilityObject = {
+      money: new Intl.NumberFormat(locale, {
+        style: `currency`,
+        currency: countryInfo.currencies[0].code,
+        minimumFractionDigits: 2,
+      }),
+    };
+    // MUSTDO: Make it so that the money variable uses the language and correct currency type for the country of the user.
     /////////////////////////////////////////////////
     // START BY WATCHING FOR PROFILE PICTURE CHANGE
     _watchForProfilePictureChange(user, placeholderUser);
@@ -359,7 +414,7 @@ export const _watchForLogin = async (login) => {
     // WATCHING FOR BUDGET SELECTION
     _watchBudgetSelection(user);
     // WATCHING FOR CREATION OF BUDGETS
-    Create._watchForBudgetCreation(placeholderUser);
+    Create._watchForBudgetCreation(placeholderUser, utilityObject);
     // WATCH FOR RESET FROM ERRORS
     _watchForResetFromErrors();
   }

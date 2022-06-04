@@ -95,13 +95,8 @@ const getSinglePercentageSpent = (spent, total) => {
   return percentage;
 };
 
-const buildSubCategories = (categories, index, secondaryIndex, clickedItem) => {
+const buildSubCategories = (categories, index, secondaryIndex, clickedItem, utility) => {
   const timingFunctionContainer = document.querySelector('.timing-container');
-  const money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2,
-  });
   /////////////////////////////////////////
   // SELECT SUB CATEGORY DISPLAY
   const subCategoryDisplay = document.querySelector('.sub-category-display');
@@ -167,12 +162,12 @@ const buildSubCategories = (categories, index, secondaryIndex, clickedItem) => {
         let total = getOverallBudget(subCategories, overallBudget[0]);
         let part = getOverallSpent(subCategories, overallSpent);
         let percentage = getOverallPercentageSpent(total, part);
-        overallBudget[0].textContent = money.format(getOverallBudget(subCategories, overallBudget[0]));
-        overallSpent.textContent = money.format(part);
-        overallRemaining.textContent = money.format(total - part);
+        overallBudget[0].textContent = utility.money.format(getOverallBudget(subCategories, overallBudget[0]));
+        overallSpent.textContent = utility.money.format(part);
+        overallRemaining.textContent = utility.money.format(total - part);
         overallPercentageSpent.textContent = `${percentage}%`;
-        spent.textContent = money.format(0);
-        remaining.textContent = money.format(subCategoryInput.value - 0);
+        spent.textContent = utility.money.format(0);
+        remaining.textContent = utility.money.format(subCategoryInput.value - 0);
         percentageSpent.textContent = `${getSinglePercentageSpent(Number(spent.textContent.split('$')[1]), subCategoryInput.value)}%`;
       });
     }
@@ -738,7 +733,7 @@ const getTimingContainerHeight = (categories, index) => {
   return (100 * categories[index].subCategories.length) / 10;
 };
 
-export const setupGoalSetting = (budget, index, clickedItem, timing) => {
+export const setupGoalSetting = (budget, index, clickedItem, timing, utility) => {
   const leftButton = document.querySelector('.left');
   const rightButton = document.querySelector('.right');
   const mainCategoryIcon = document.querySelector('.main-category-display__category-display__icon');
@@ -752,7 +747,7 @@ export const setupGoalSetting = (budget, index, clickedItem, timing) => {
     let dataIndex = i;
     c.subCategories.forEach((sc, i) => {
       // This is NOT part of the methods of the class, so I will ignore this for now.
-      buildSubCategories(c.subCategories, i, dataIndex, clickedItem);
+      buildSubCategories(c.subCategories, i, dataIndex, clickedItem, utility);
     });
   });
   const subCategories = document.querySelectorAll('.sub-category--month-view');
@@ -1176,7 +1171,7 @@ const _setupBudgetCreation = (pages, page, form, button, budget) => {
   _watchCreationFormOpener(pages, form, button, budget, budgetCreationForm);
 };
 
-export const _watchForBudgetCreation = async (person) => {
+export const _watchForBudgetCreation = async (person, utility) => {
   const forms = document.querySelectorAll('.form-container--full-width');
   const budgetCreationForm = forms[0];
   const budgetCreationFormOpenButton = document.querySelector('.budget-card-container__card--create');
@@ -1250,7 +1245,7 @@ export const _watchForBudgetCreation = async (person) => {
           setupSubCategoryCreation(budget, subCategoryIndex);
         }
         if (currentPage + 1 === 4) {
-          setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
+          setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming, utility);
         }
         if (currentPage + 1 === 5) {
           const individualPayments = document.querySelectorAll('.individual-payment');
@@ -1307,7 +1302,7 @@ export const _watchForBudgetCreation = async (person) => {
           setupSubCategoryCreation(budget, subCategoryIndex);
         }
         if (currentPage + 1 === 5) {
-          setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming);
+          setupGoalSetting(budget, subCategoryIndex, clicked, selectedTiming, utility);
         }
         if (currentPage + 1 === 6) {
           const individualPayments = document.querySelectorAll('.individual-payment');
@@ -1347,5 +1342,5 @@ export const _watchForBudgetCreation = async (person) => {
   }
   // WATCHING YOUR BUDGET AFTER YOU LOGIN OR CREATE YOUR BUDGET
   const budgetNavButton = document.querySelector('.budget-container__navigation-button-container__button');
-  Watch._watchBudget(person);
+  Watch._watchBudget(person, utility);
 };

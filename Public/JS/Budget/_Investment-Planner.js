@@ -208,12 +208,7 @@ const settleInvestment = (investments, index, dataIndex, budget, placeholderBudg
   Utility.reloadPage();
 };
 
-const renderNewInvestment = (options) => {
-  const money = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2,
-  });
+const renderNewInvestment = (options, utility) => {
   const investmentContainers = document.querySelectorAll('.container--extra-small__margin-left-and-right');
   const investmentAccountPreview = investmentContainers[0];
 
@@ -357,7 +352,7 @@ const renderNewInvestment = (options) => {
   const investmentValueInformationContainerHalfOneText = document.createElement('p');
   investmentValueInformationContainerHalfOneText.classList.add('investment-value-information__half__text');
   investmentValueInformationContainerHalfOneText.classList.add('r__investment-value-information__half__text');
-  investmentValueInformationContainerHalfOneText.textContent = money.format(options.initialInvestment);
+  investmentValueInformationContainerHalfOneText.textContent = utility.money.format(options.initialInvestment);
 
   Utility.insertElement(`beforeend`, investmentValueInformationContainerHalfOne, investmentValueInformationContainerHalfOneText);
 
@@ -409,7 +404,7 @@ const closeInvestmentCreation = (event) => {
   replaceClassName(addInvestmentButton, `closed`, `open`);
 };
 
-export const _watchInvestmentPlanner = (budget, placeholderBudget, user) => {
+export const _watchInvestmentPlanner = (budget, placeholderBudget, user, utility) => {
   const addInvestmentButton = document.querySelector('.container--extra-small__margin-left-and-right__content-icon');
   const closeInvestmentCreationButton = document.querySelector('.button--borderless-narrow__investment');
   const addInvestmentForm = document.querySelector('.form--extra-small__column');
@@ -428,15 +423,18 @@ export const _watchInvestmentPlanner = (budget, placeholderBudget, user) => {
     const createInvestmentButton = document.querySelector('.button--extra-extra-small__alt');
     createInvestmentButton.addEventListener('click', (e) => {
       e.preventDefault();
-      renderNewInvestment({
-        type: investmentType.value,
-        name: investmentName.value,
-        description: investmentDescription.value,
-        initialInvestment: Number(initialInvestment.value),
-        budget: budget,
-        placeholderBudget: placeholderBudget,
-        user: user,
-      });
+      renderNewInvestment(
+        {
+          type: investmentType.value,
+          name: investmentName.value,
+          description: investmentDescription.value,
+          initialInvestment: Number(initialInvestment.value),
+          budget: budget,
+          placeholderBudget: placeholderBudget,
+          user: user,
+        },
+        utility
+      );
       let updateObject = {
         investments: [],
       };

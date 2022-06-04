@@ -1,3 +1,7 @@
+export const buildObject = (entriesArray) => {
+  return Object.fromEntries(entriesArray);
+};
+
 export const insertElement = (position, container, element) => {
   if (container) {
     container.insertAdjacentElement(position, element);
