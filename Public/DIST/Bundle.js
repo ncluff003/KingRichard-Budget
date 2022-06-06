@@ -5848,6 +5848,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "_capitalize": () => (/* binding */ _capitalize),
 /* harmony export */   "buildObject": () => (/* binding */ buildObject),
+/* harmony export */   "createAndRenderError": () => (/* binding */ createAndRenderError),
 /* harmony export */   "insertElement": () => (/* binding */ insertElement),
 /* harmony export */   "pushIntoArray": () => (/* binding */ pushIntoArray),
 /* harmony export */   "reloadPage": () => (/* binding */ reloadPage),
@@ -5857,6 +5858,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "showError": () => (/* binding */ showError),
 /* harmony export */   "toggleClass": () => (/* binding */ toggleClass)
 /* harmony export */ });
+/* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 var buildObject = function buildObject(entriesArray) {
   return Object.fromEntries(entriesArray);
 };
@@ -5889,6 +5891,45 @@ var reloadPage = function reloadPage() {
   setTimeout(function () {
     window.location.reload();
   }, 2000);
+};
+var createAndRenderError = function createAndRenderError(checkElement, relativeElement, position, createdElement, createdElementClassNameOne, createdElementClassNameTwo, errorMessage, timeLimit) {
+  var elementCreated = document.createElement(createdElement);
+  elementCreated.classList.add(createdElementClassNameOne);
+  elementCreated.classList.add(createdElementClassNameTwo);
+  console.log(checkElement.classList);
+  var splitMessage = errorMessage.split('. ');
+
+  if (splitMessage.includes("Every Transaction Must Have A Date") || splitMessage.includes("Every Transaction Happened Somewhere")) {
+    var addedElement;
+    splitMessage.forEach(function (text, i) {
+      if (i === 0) {
+        addedElement = document.createElement('header');
+        addedElement.classList.add("error-header");
+        addedElement.classList.add("r__error-header");
+        addedElement.textContent = text;
+      }
+
+      if (i > 0) {
+        addedElement = document.createElement('p');
+        addedElement.classList.add("error-text");
+        addedElement.classList.add("r__error-text");
+        addedElement.textContent = text;
+      }
+
+      console.log(addedElement);
+      insertElement("beforeend", elementCreated, addedElement);
+    });
+  }
+
+  if (relativeElement) {
+    insertElement(position, relativeElement, elementCreated);
+    setTimeout(function () {
+      elementCreated.textContent = '';
+    }, timeLimit / 1.125);
+    setTimeout(function () {
+      elementCreated.remove();
+    }, timeLimit);
+  }
 };
 var showError = function showError(element, errorMessage, elementText, className, timeLimit) {
   element.textContent = errorMessage;
@@ -8361,6 +8402,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
 /* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _Watch_Budget__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Watch-Budget */ "./Public/JS/Budget/Watch-Budget.js");
+/* harmony import */ var _Application_Utility__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../Application/Utility */ "./Public/JS/Application/Utility.js");
 /* provided dependency */ var console = __webpack_require__(/*! ./node_modules/console-browserify/index.js */ "./node_modules/console-browserify/index.js");
 
 
@@ -8368,6 +8410,7 @@ __webpack_require__.r(__webpack_exports__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
 
 
 
@@ -8417,7 +8460,7 @@ var renderBudget = /*#__PURE__*/function () {
 }();
 var updateMyBudget = /*#__PURE__*/function () {
   var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().mark(function _callee2(options, pageLink) {
-    var response;
+    var response, message, budgetDashboard, smallDashboardContainers, netValueContainer;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_2___default().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
@@ -8458,15 +8501,25 @@ var updateMyBudget = /*#__PURE__*/function () {
               document.getElementById('newPhoneNumberConfirmed').value = '';
             }
 
-            _context2.next = 10;
+            _context2.next = 14;
             break;
 
           case 7:
             _context2.prev = 7;
             _context2.t0 = _context2["catch"](0);
+            console.log(_context2.t0.response.data.message);
             console.log(_context2.t0);
+            message = _context2.t0.response.data.message;
+            budgetDashboard = document.querySelector('.budget-dashboard');
 
-          case 10:
+            if (budgetDashboard) {
+              console.log(message.split('. '));
+              smallDashboardContainers = document.querySelectorAll('.container--extra-small');
+              netValueContainer = smallDashboardContainers[2];
+              _Application_Utility__WEBPACK_IMPORTED_MODULE_6__.createAndRenderError(budgetDashboard, netValueContainer, "afterend", "section", "dashboard-error", "r__dashboard-error", message, 10000);
+            }
+
+          case 14:
           case "end":
             return _context2.stop();
         }
@@ -9247,6 +9300,50 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var displayExpenseItems = function displayExpenseItems(clickedElement, childrenNodes, nephewNodes, array, matchingText, budget, placeholderBudget, user, transactionType) {
+  budget.transactions.plannedTransactions.forEach(function (transaction, i) {
+    console.log(matchingText, transaction.account);
+
+    if (transaction.timingOptions.paymentCycle === clickedElement.value && transaction.account === matchingText) {
+      console.log(transaction);
+      array.push(transaction);
+    }
+  });
+  childrenNodes.forEach(function (child) {
+    _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.replaceClassName(child, "open", "closed");
+  });
+  childrenNodes.forEach(function (child, i) {
+    array.forEach(function (item) {
+      if (item.name === child.textContent && child.dataset.timing === item.timingOptions.paymentCycle) {
+        console.log(child.textContent);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.replaceClassName(child, "closed", "open");
+      }
+    });
+  });
+};
+
+var displayTransactionItems = function displayTransactionItems(clickedElement, childrenNodes, array, matchingText, budget, placeholderBudget, user, transactionType) {
+  budget.transactions.plannedTransactions.forEach(function (transaction, i) {
+    console.log(matchingText, transaction.account);
+
+    if (transaction.timingOptions.paymentCycle === clickedElement.value && transaction.account === matchingText) {
+      console.log(transaction);
+      array.push(transaction);
+    }
+  });
+  childrenNodes.forEach(function (child) {
+    _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.replaceClassName(child, "open", "closed");
+  });
+  childrenNodes.forEach(function (child, i) {
+    array.forEach(function (item) {
+      if (item.name === child.textContent && child.dataset.timing === item.timingOptions.paymentCycle) {
+        console.log(child.textContent);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.replaceClassName(child, "closed", "open");
+      }
+    });
+  });
+};
+
 var showTransactionOptions = function showTransactionOptions(budget, placeholderBudget, user, optionText, transactionOptionArrays, transactionOptions) {
   var transactionTypeSelect = document.getElementById('transactionType');
   var transactionItemSelect = document.getElementById('savingsGoals');
@@ -9323,8 +9420,25 @@ var showTransactionOptions = function showTransactionOptions(budget, placeholder
             _option.classList.add('r__form__select--option');
 
             _option.textContent = transaction.name;
+            _option.dataset.timing = transaction.timingOptions.paymentCycle;
             _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", transactionItemSelect, _option);
           }
+        });
+      }
+
+      if (i === 0) {
+        console.log(option.firstChild.nextSibling.childNodes);
+        option.firstChild.nextSibling.childNodes.forEach(function (child, i) {
+          child.addEventListener('click', function (e) {
+            e.preventDefault();
+            var matchingItems = [];
+            console.log(child.value);
+            var index = i;
+            var children = child.closest("#timing").closest('.form__section--select').nextSibling.nextSibling.firstChild.nextSibling.childNodes;
+            displayTransactionItems(child, children, matchingItems, optionText, budget, placeholderBudget, user);
+            console.log(matchingItems);
+            console.log(child.closest("#timing").closest('.form__section--select').nextSibling.nextSibling.firstChild.nextSibling.childNodes);
+          });
         });
       }
     }
@@ -9366,6 +9480,10 @@ var showTransactionOptions = function showTransactionOptions(budget, placeholder
             _Application_Utility__WEBPACK_IMPORTED_MODULE_2__.insertElement("beforeend", transactionItemSelect, _option2);
           }
         });
+      }
+
+      if (i === 0) {
+        console.log(option.firstChild.nextSibling.childNodes);
       }
 
       console.log(transactionTypeSelect);
@@ -10241,7 +10359,8 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
             investmentFund: {
               investmentGoal: placeholderBudget.accounts.investmentFund.investmentGoal,
               investmentPercentage: placeholderBudget.accounts.investmentFund.investmentPercentage,
-              amount: investmentAmount
+              amount: investmentAmount,
+              investedAmount: placeholderBudget.accounts.investmentFund.investedAmount
             },
             debt: placeholderBudget.accounts.debt
           },
@@ -10345,6 +10464,8 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
       incomePreviewAmounts[2].textContent = utility.money.format(0);
     });
   } ////////////////////////////////////////////
+  // ENTERING TRANSACTIONS
+  ////////////////////////////////////////////
   // INITIALIZE TRANSACTION OPTIONS
 
 
@@ -10781,6 +10902,12 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
 
           if (receiptItem.account === "Monthly Budget") {
             placeholderBudget.accounts.monthlyBudget.amount = placeholderBudget.accounts.monthlyBudget.amount - Number(receiptItem.amount);
+
+            if (placeholderBudget.accounts.monthlyBudget.amount < 0) {
+              placeholderBudget.accounts.monthlyBudget.amount = budget.accounts.monthlyBudget.amount;
+              return console.log("Error:  You don't have enough money for this transaction!");
+            }
+
             placeholderBudget.mainCategories.forEach(function (category, i) {
               if (receiptItem.category === category.title) {
                 var index = i;
@@ -10800,24 +10927,51 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
 
           if (receiptItem.account === "Emergency Fund") {
             placeholderBudget.accounts.emergencyFund.amount = placeholderBudget.accounts.emergencyFund.amount - Number(receiptItem.amount);
+
+            if (placeholderBudget.accounts.emergencyFund.amount < 0) {
+              placeholderBudget.accounts.emergencyFund.amount = budget.accounts.emergencyFund.amount;
+              return console.log("Error:  You don't have enough money for this transaction!");
+            }
           }
 
           if (receiptItem.account === "Savings Fund") {
             placeholderBudget.accounts.savingsFund.amount = placeholderBudget.accounts.savingsFund.amount - Number(receiptItem.amount);
+
+            if (placeholderBudget.accounts.savingsFund.amount < 0) {
+              placeholderBudget.accounts.savingsFund.amount = budget.accounts.savingsFund.amount;
+              return console.log("Error:  You don't have enough money for this transaction!");
+            }
           }
 
           if (receiptItem.account === "Expense Fund") {
             placeholderBudget.accounts.expenseFund.amount = placeholderBudget.accounts.expenseFund.amount - Number(receiptItem.amount);
+
+            if (placeholderBudget.accounts.expenseFund.amount < 0) {
+              placeholderBudget.accounts.expenseFund.amount = budget.accounts.expenseFund.amount;
+              return console.log("Error:  You don't have enough money for this transaction!");
+            }
           }
 
           if (receiptItem.account === "Surplus") {
             placeholderBudget.accounts.surlus.amount = placeholderBudget.accounts.surplus.amount - Number(receiptItem.amount);
+
+            if (placeholderBudget.accounts.surplus.amount < 0) {
+              placeholderBudget.accounts.surplus.amount = budget.accounts.surplus.amount;
+              return console.log("Error:  You don't have enough money for this transaction!");
+            }
           }
 
           if (receiptItem.account === "Investment Fund") {
             if (!placeholderBudget.accounts.investmentFund.investedAmount) placeholderBudget.accounts.investmentFund.investedAmount = 0;
             placeholderBudget.accounts.investmentFund.amount = placeholderBudget.accounts.investmentFund.amount - Number(receiptItem.amount);
             placeholderBudget.accounts.investmentFund.investedAmount = placeholderBudget.accounts.investmentFund.investedAmount + Number(receiptItem.amount);
+
+            if (placeholderBudget.accounts.investmentFund.amount < 0) {
+              placeholderBudget.accounts.investmentFund.amount = budget.accounts.investmentFund.amount;
+              placeholderBudget.accounts.investmentFund.investedAmount = budget.accounts.investmentFund.investedAmount;
+              return console.log("Error:  You don't have enough money for this transaction!");
+            }
+
             var investmentObject = {
               investmentType: receiptItem.transactionType,
               investmentName: receiptItem.transactionName,
@@ -10833,12 +10987,19 @@ var _watchForTransactions = function _watchForTransactions(budget, placeholderBu
 
           if (receiptItem.account === "Debt") {
             placeholderBudget.accounts.debt.amount = placeholderBudget.accounts.debt.amount - Number(receiptItem.amount);
+
+            if (placeholderBudget.accounts.debt.amount < 0) {
+              placeholderBudget.accounts.debt.amount = budget.accounts.debt.amount;
+              placeholderBudget.accounts.debt.debtAmount = budget.accounts.debt.debtAmount;
+              return console.log("Error:  You don't have enough money for this transaction!");
+            }
             /* After reducing the amount that is allocated to the debt account, there needs to be a reduction of the debt amount through reducing the current amount owed for the debt that was selected.
                To do that we need to:
             1) Find the exact debt that is being paid.
             2) From there, reduce it's amountOwed amount.
                There is more steps to each of those, especially the first, but that is what needs to be done.
             */
+
           }
         });
         updateObject.accounts = placeholderBudget.accounts;
@@ -13171,9 +13332,9 @@ var buildTransactionPlan = function buildTransactionPlan(budget, placeholderBudg
 
       if (number === 0) {
         // INSERT DOM ELEMENTS INTO FIRST PART
-        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement(transactionPlanPart, transactionPlanPartHeader);
-        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
-        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement(transactionPlanPart, transactionPlanPartText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement('beforeend', transactionPlanPart, transactionPlanPartHeader);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement('beforeend', transactionPlanPartHeader, transactionPlanPartHeaderText);
+        _Application_Utility__WEBPACK_IMPORTED_MODULE_0__.insertElement('beforeend', transactionPlanPart, transactionPlanPartText);
       }
 
       if (number === 1) {
@@ -15016,6 +15177,8 @@ var Budget = /*#__PURE__*/function () {
       if (isNaN(Number(options.goal))) {
         this.accounts.savingsFund.savingsGoal = 0;
       }
+
+      console.log(this);
     }
   }, {
     key: "_updateInvestmentFund",

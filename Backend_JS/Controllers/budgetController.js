@@ -288,7 +288,7 @@ exports.updateMyBudget = catchAsync(async (request, response, next) => {
   console.log(filteredBody);
   console.log(`--------------------------------------------`);
 
-  console.log(budget.id);
+  console.log(budget._id);
 
   let updatedBudget = await Budget.findByIdAndUpdate(budget.id, filteredBody, { new: true, runValidators: true });
   // // await budget.save();

@@ -3,6 +3,50 @@ import * as Calendar from './../Classes/FrontEnd-Calendar';
 import * as Transaction from './../Classes/Transaction';
 import * as Navigation from './Budget-Navigation';
 
+const displayExpenseItems = (clickedElement, childrenNodes, nephewNodes, array, matchingText, budget, placeholderBudget, user, transactionType) => {
+  budget.transactions.plannedTransactions.forEach((transaction, i) => {
+    console.log(matchingText, transaction.account);
+    if (transaction.timingOptions.paymentCycle === clickedElement.value && transaction.account === matchingText) {
+      console.log(transaction);
+      array.push(transaction);
+    }
+  });
+
+  childrenNodes.forEach((child) => {
+    Utility.replaceClassName(child, `open`, `closed`);
+  });
+  childrenNodes.forEach((child, i) => {
+    array.forEach((item) => {
+      if (item.name === child.textContent && child.dataset.timing === item.timingOptions.paymentCycle) {
+        console.log(child.textContent);
+        Utility.replaceClassName(child, `closed`, `open`);
+      }
+    });
+  });
+};
+
+const displayTransactionItems = (clickedElement, childrenNodes, array, matchingText, budget, placeholderBudget, user, transactionType) => {
+  budget.transactions.plannedTransactions.forEach((transaction, i) => {
+    console.log(matchingText, transaction.account);
+    if (transaction.timingOptions.paymentCycle === clickedElement.value && transaction.account === matchingText) {
+      console.log(transaction);
+      array.push(transaction);
+    }
+  });
+
+  childrenNodes.forEach((child) => {
+    Utility.replaceClassName(child, `open`, `closed`);
+  });
+  childrenNodes.forEach((child, i) => {
+    array.forEach((item) => {
+      if (item.name === child.textContent && child.dataset.timing === item.timingOptions.paymentCycle) {
+        console.log(child.textContent);
+        Utility.replaceClassName(child, `closed`, `open`);
+      }
+    });
+  });
+};
+
 const showTransactionOptions = (budget, placeholderBudget, user, optionText, transactionOptionArrays, transactionOptions) => {
   let transactionTypeSelect = document.getElementById('transactionType');
   let transactionItemSelect = document.getElementById('savingsGoals');
@@ -65,8 +109,24 @@ const showTransactionOptions = (budget, placeholderBudget, user, optionText, tra
             option.classList.add('form__select--option');
             option.classList.add('r__form__select--option');
             option.textContent = transaction.name;
+            option.dataset.timing = transaction.timingOptions.paymentCycle;
             Utility.insertElement(`beforeend`, transactionItemSelect, option);
           }
+        });
+      }
+      if (i === 0) {
+        console.log(option.firstChild.nextSibling.childNodes);
+        option.firstChild.nextSibling.childNodes.forEach((child, i) => {
+          child.addEventListener('click', (e) => {
+            e.preventDefault();
+            let matchingItems = [];
+            console.log(child.value);
+            let index = i;
+            let children = child.closest(`#timing`).closest('.form__section--select').nextSibling.nextSibling.firstChild.nextSibling.childNodes;
+            displayTransactionItems(child, children, matchingItems, optionText, budget, placeholderBudget, user);
+            console.log(matchingItems);
+            console.log(child.closest(`#timing`).closest('.form__section--select').nextSibling.nextSibling.firstChild.nextSibling.childNodes);
+          });
         });
       }
     }
@@ -100,6 +160,9 @@ const showTransactionOptions = (budget, placeholderBudget, user, optionText, tra
             Utility.insertElement(`beforeend`, transactionItemSelect, option);
           }
         });
+      }
+      if (i === 0) {
+        console.log(option.firstChild.nextSibling.childNodes);
       }
       console.log(transactionTypeSelect);
     }
@@ -894,6 +957,7 @@ const _watchForTransactions = (budget, placeholderBudget, user, utility) => {
               investmentGoal: placeholderBudget.accounts.investmentFund.investmentGoal,
               investmentPercentage: placeholderBudget.accounts.investmentFund.investmentPercentage,
               amount: investmentAmount,
+              investedAmount: placeholderBudget.accounts.investmentFund.investedAmount,
             },
             debt: placeholderBudget.accounts.debt,
           },
@@ -986,6 +1050,9 @@ const _watchForTransactions = (budget, placeholderBudget, user, utility) => {
       incomePreviewAmounts[2].textContent = utility.money.format(0);
     });
   }
+
+  ////////////////////////////////////////////
+  // ENTERING TRANSACTIONS
 
   ////////////////////////////////////////////
   // INITIALIZE TRANSACTION OPTIONS
@@ -1374,6 +1441,10 @@ const _watchForTransactions = (budget, placeholderBudget, user, utility) => {
           console.log(receiptItem);
           if (receiptItem.account === `Monthly Budget`) {
             placeholderBudget.accounts.monthlyBudget.amount = placeholderBudget.accounts.monthlyBudget.amount - Number(receiptItem.amount);
+            if (placeholderBudget.accounts.monthlyBudget.amount < 0) {
+              placeholderBudget.accounts.monthlyBudget.amount = budget.accounts.monthlyBudget.amount;
+              return console.log(`Error:  You don't have enough money for this transaction!`);
+            }
             placeholderBudget.mainCategories.forEach((category, i) => {
               if (receiptItem.category === category.title) {
                 let index = i;
@@ -1392,20 +1463,41 @@ const _watchForTransactions = (budget, placeholderBudget, user, utility) => {
           }
           if (receiptItem.account === `Emergency Fund`) {
             placeholderBudget.accounts.emergencyFund.amount = placeholderBudget.accounts.emergencyFund.amount - Number(receiptItem.amount);
+            if (placeholderBudget.accounts.emergencyFund.amount < 0) {
+              placeholderBudget.accounts.emergencyFund.amount = budget.accounts.emergencyFund.amount;
+              return console.log(`Error:  You don't have enough money for this transaction!`);
+            }
           }
           if (receiptItem.account === `Savings Fund`) {
             placeholderBudget.accounts.savingsFund.amount = placeholderBudget.accounts.savingsFund.amount - Number(receiptItem.amount);
+            if (placeholderBudget.accounts.savingsFund.amount < 0) {
+              placeholderBudget.accounts.savingsFund.amount = budget.accounts.savingsFund.amount;
+              return console.log(`Error:  You don't have enough money for this transaction!`);
+            }
           }
           if (receiptItem.account === `Expense Fund`) {
             placeholderBudget.accounts.expenseFund.amount = placeholderBudget.accounts.expenseFund.amount - Number(receiptItem.amount);
+            if (placeholderBudget.accounts.expenseFund.amount < 0) {
+              placeholderBudget.accounts.expenseFund.amount = budget.accounts.expenseFund.amount;
+              return console.log(`Error:  You don't have enough money for this transaction!`);
+            }
           }
           if (receiptItem.account === `Surplus`) {
             placeholderBudget.accounts.surlus.amount = placeholderBudget.accounts.surplus.amount - Number(receiptItem.amount);
+            if (placeholderBudget.accounts.surplus.amount < 0) {
+              placeholderBudget.accounts.surplus.amount = budget.accounts.surplus.amount;
+              return console.log(`Error:  You don't have enough money for this transaction!`);
+            }
           }
           if (receiptItem.account === `Investment Fund`) {
             if (!placeholderBudget.accounts.investmentFund.investedAmount) placeholderBudget.accounts.investmentFund.investedAmount = 0;
             placeholderBudget.accounts.investmentFund.amount = placeholderBudget.accounts.investmentFund.amount - Number(receiptItem.amount);
             placeholderBudget.accounts.investmentFund.investedAmount = placeholderBudget.accounts.investmentFund.investedAmount + Number(receiptItem.amount);
+            if (placeholderBudget.accounts.investmentFund.amount < 0) {
+              placeholderBudget.accounts.investmentFund.amount = budget.accounts.investmentFund.amount;
+              placeholderBudget.accounts.investmentFund.investedAmount = budget.accounts.investmentFund.investedAmount;
+              return console.log(`Error:  You don't have enough money for this transaction!`);
+            }
             let investmentObject = {
               investmentType: receiptItem.transactionType,
               investmentName: receiptItem.transactionName,
@@ -1420,6 +1512,11 @@ const _watchForTransactions = (budget, placeholderBudget, user, utility) => {
           }
           if (receiptItem.account === `Debt`) {
             placeholderBudget.accounts.debt.amount = placeholderBudget.accounts.debt.amount - Number(receiptItem.amount);
+            if (placeholderBudget.accounts.debt.amount < 0) {
+              placeholderBudget.accounts.debt.amount = budget.accounts.debt.amount;
+              placeholderBudget.accounts.debt.debtAmount = budget.accounts.debt.debtAmount;
+              return console.log(`Error:  You don't have enough money for this transaction!`);
+            }
             /* After reducing the amount that is allocated to the debt account, there needs to be a reduction of the debt amount through reducing the current amount owed for the debt that was selected.
   
             To do that we need to:

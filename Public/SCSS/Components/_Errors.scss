@@ -1,0 +1,14 @@
+@use '../../../Public/SCSS/Utilities/Mixins' as *;
+@use '../../../Public/SCSS/Utilities/Variables' as *;
+
+.dashboard-error {
+  @include SizeAndPositioning(relative, max-content, 100%, flex, column, nowrap, center, center, 0, 0, 0);
+  margin: 2rem 0 4rem 0;
+  .error-header,
+  .error-text {
+    @include SizeAndPositioning(relative, max-content, 100%, flex, row, nowrap, center, center, 0, 0, 0);
+  }
+  .error-header {
+    margin-bottom: 2rem;
+  }
+}

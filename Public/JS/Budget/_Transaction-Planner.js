@@ -291,9 +291,9 @@ const buildTransactionPlan = (budget, placeholderBudget, user, number, numberOfS
 
       if (number === 0) {
         // INSERT DOM ELEMENTS INTO FIRST PART
-        Utility.insertElement(transactionPlanPart, transactionPlanPartHeader);
-        Utility.insertElement(transactionPlanPartHeader, transactionPlanPartHeaderText);
-        Utility.insertElement(transactionPlanPart, transactionPlanPartText);
+        Utility.insertElement('beforeend', transactionPlanPart, transactionPlanPartHeader);
+        Utility.insertElement('beforeend', transactionPlanPartHeader, transactionPlanPartHeaderText);
+        Utility.insertElement('beforeend', transactionPlanPart, transactionPlanPartText);
       }
       if (number === 1) {
         // INSERT DOM ELEMENTS INTO FIRST PART

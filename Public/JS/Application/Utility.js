@@ -39,6 +39,42 @@ export const reloadPage = () => {
   }, 2000);
 };
 
+export const createAndRenderError = (checkElement, relativeElement, position, createdElement, createdElementClassNameOne, createdElementClassNameTwo, errorMessage, timeLimit) => {
+  let elementCreated = document.createElement(createdElement);
+  elementCreated.classList.add(createdElementClassNameOne);
+  elementCreated.classList.add(createdElementClassNameTwo);
+  console.log(checkElement.classList);
+  let splitMessage = errorMessage.split('. ');
+  if (splitMessage.includes(`Every Transaction Must Have A Date`) || splitMessage.includes(`Every Transaction Happened Somewhere`)) {
+    let addedElement;
+    splitMessage.forEach((text, i) => {
+      if (i === 0) {
+        addedElement = document.createElement('header');
+        addedElement.classList.add(`error-header`);
+        addedElement.classList.add(`r__error-header`);
+        addedElement.textContent = text;
+      }
+      if (i > 0) {
+        addedElement = document.createElement('p');
+        addedElement.classList.add(`error-text`);
+        addedElement.classList.add(`r__error-text`);
+        addedElement.textContent = text;
+      }
+      console.log(addedElement);
+      insertElement(`beforeend`, elementCreated, addedElement);
+    });
+  }
+  if (relativeElement) {
+    insertElement(position, relativeElement, elementCreated);
+    setTimeout(() => {
+      elementCreated.textContent = '';
+    }, timeLimit / 1.125);
+    setTimeout(() => {
+      elementCreated.remove();
+    }, timeLimit);
+  }
+};
+
 export const showError = (element, errorMessage, elementText, className, timeLimit) => {
   element.textContent = errorMessage;
   element.classList.add(className);

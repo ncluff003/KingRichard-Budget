@@ -156,6 +156,7 @@ export class Budget {
     if (isNaN(Number(options.goal))) {
       this.accounts.savingsFund.savingsGoal = 0;
     }
+    console.log(this);
   }
 
   _updateInvestmentFund(options) {

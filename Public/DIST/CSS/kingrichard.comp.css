@@ -1669,13 +1669,21 @@ html {
   color: #38d927;
 }
 
-.negative {
+.negative, .dashboard-error, .dashboard-error .error-text, .dashboard-error .error-header {
   color: #cf352e;
 }
 .negative-centered {
   color: #cf352e;
 }
 
+.dashboard-error, .dashboard-error .error-text, .dashboard-error .error-header {
+  font-size: 3rem;
+  text-align: center;
+}
+.dashboard-error .error-header {
+  font-size: 4rem;
+  text-decoration: underline;
+}
 .gridTV {
   display: grid;
   height: 100vh;
@@ -49986,6 +49994,34 @@ html {
   min-height: 10%;
   padding: 0 5rem;
   border-top: 0.2rem groove rgba(51, 51, 51, 0.5);
+}
+
+.dashboard-error {
+  position: relative;
+  height: max-content;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+  margin: 2rem 0 4rem 0;
+}
+.dashboard-error .error-header,
+.dashboard-error .error-text {
+  position: relative;
+  height: max-content;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0) translate(0, 0);
+}
+.dashboard-error .error-header {
+  margin-bottom: 2rem;
 }
 
 .logo-container {

@@ -2386,3 +2386,17 @@ html {
   }
   color: $colorError;
 }
+
+.dashboard-error {
+  @extend .negative;
+  font-size: 3rem;
+  text-align: center;
+  .error-header {
+    @extend .dashboard-error;
+    font-size: 4rem;
+    text-decoration: underline;
+  }
+  .error-text {
+    @extend .dashboard-error;
+  }
+}

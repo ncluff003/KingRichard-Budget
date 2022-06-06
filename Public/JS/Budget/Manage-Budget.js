@@ -1,6 +1,7 @@
 import axios from 'axios';
 import qs from 'qs';
 import * as Budget from './Watch-Budget';
+import * as Utility from './../Application/Utility';
 
 export const renderBudget = async (id, user) => {
   try {
@@ -74,7 +75,16 @@ export const updateMyBudget = async (options, pageLink) => {
       document.getElementById('newPhoneNumberConfirmed').value = '';
     }
   } catch (error) {
+    console.log(error.response.data.message);
     console.log(error);
+    let message = error.response.data.message;
+    let budgetDashboard = document.querySelector('.budget-dashboard');
+    if (budgetDashboard) {
+      console.log(message.split('. '));
+      let smallDashboardContainers = document.querySelectorAll('.container--extra-small');
+      let netValueContainer = smallDashboardContainers[2];
+      Utility.createAndRenderError(budgetDashboard, netValueContainer, `afterend`, `section`, `dashboard-error`, `r__dashboard-error`, message, 10000);
+    }
   }
 };
 

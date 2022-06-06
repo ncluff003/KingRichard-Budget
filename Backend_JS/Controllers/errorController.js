@@ -65,15 +65,6 @@ const createAndSendToken = (user, statusCode, method, request, response, templat
   }
 };
 
-exports.GlobalErrorHandler = (error, request, response, next) => {
-  error.statusCode = error.statusCode || 500;
-  error.status = error.status || `Error`;
-  response.status(error.statusCode).json({
-    status: error.status,
-    message: error.message,
-  });
-};
-
 exports.renderError = catchAsync(async (request, response, next) => {
   let budget = request.budget;
   console.log(request.calendar, request.user, budget, request.error);
@@ -84,3 +75,80 @@ exports.renderError = catchAsync(async (request, response, next) => {
     createAndSendToken(user, 400, `render`, request, response, `error`, `King Richard | Invalid Budget Name`, { budget: budget, calendar: Calendar, error: error }, 400, `Failure`);
   }
 });
+
+const handleValidationErrorDB = (error) => {
+  const errors = Object.values(error.errors).map((el) => el.message);
+  const message = `Invalid Input Data. ${errors.join('. ')}`;
+  return new AppError(message, 400);
+};
+
+const handleDuplicateFieldsDB = (error) => {
+  console.log(error);
+  // const value = error.errmsg.match(/(["'])(\\?.)*?\1)/)[0]; -- No Longer Needed.
+  const key = Object.keys(error.keyValue)[0];
+  const value = Object.values(error.keyValue)[0];
+  const message = `Duplicate Field Value In ${key}: Please use another value than ${value}.`;
+  return new AppError(message, 400);
+};
+
+const handleCastErrorDB = (error) => {
+  const message = `Invalid ${error.path}: ${error.value}.`;
+  return new AppError(message, 400);
+};
+
+const sendErrorDev = (error, response) => {
+  response.status(error.statusCode).json({
+    status: error.status,
+    message: error.message,
+    stack: error.stack,
+    error: error,
+  });
+};
+
+const sendError = (error, response) => {
+  if (error.isOperational) {
+    response.status(error.statusCode).json({
+      status: error.status,
+      message: error.message,
+    });
+  } else {
+    console.error(`Error 💥:`, error);
+    response.status(500).json({
+      status: `Error`,
+      message: `Something went very wrong`,
+    });
+  }
+};
+
+exports.GlobalErrorHandler = (error, request, response, next) => {
+  error.statusCode = error.statusCode || 500;
+  error.status = error.status || `Error`;
+
+  if (process.env.NODE_ENV === `development`) {
+    let errorCopy = { ...error };
+    console.log(errorCopy);
+    if (errorCopy.name === `CastError`) {
+      errorCopy = handleCastErrorDB(errorCopy);
+    }
+    if (errorCopy.code === 11000) {
+      errorCopy = handleDuplicateFieldsDB(errorCopy);
+    }
+    if (errorCopy._message === `User validation failed` || errorCopy._message === `Budget validation failed` || errorCopy._message === `Validation failed`) {
+      errorCopy = handleValidationErrorDB(errorCopy);
+    }
+    sendErrorDev(errorCopy, response);
+  } else if (process.env.NODE_ENV === `production`) {
+    let errorCopy = { ...error };
+    if (errorCopy.name === `CastError`) {
+      errorCopy = handleCastErrorDB(errorCopy);
+    }
+    if (errorCopy.code === 11000) {
+      errorCopy = handleDuplicateFieldsDB(errorCopy);
+    }
+    if (errorCopy._message === `User validation failed` || errorCopy._message === `Budget validation failed` || errorCopy._message === `Validation failed`) {
+      errorCopy = handleValidationErrorDB(errorCopy);
+    }
+
+    sendError(errorCopy, response);
+  }
+};

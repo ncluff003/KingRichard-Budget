@@ -59,7 +59,7 @@ const budgetSchema = new mongoose.Schema({
     savingsFund: {
       savingsGoal: {
         type: Number,
-        required: [true, `Every Budget Needs A Savings Fund Goal`],
+        required: [true, `Every Budget Needs A Savings Fund Goal.`],
       },
       savingsPercentage: {
         type: Number,
@@ -276,7 +276,7 @@ const budgetSchema = new mongoose.Schema({
         },
         location: {
           type: String,
-          required: [true, `Every Transaction Happened Somewhere.`],
+          required: [true, `Every Transaction Happened Somewhere`],
         },
         receipt: [
           {
@@ -381,7 +381,7 @@ const budgetSchema = new mongoose.Schema({
       },
       status: {
         type: String,
-        enum: [`Unpaid`, `Partially Paid`, `Paid Off`],
+        enum: [`Unpaid`, `Partial Payment`, `Paid Off`],
         default: `Unpaid`,
       },
       datePaid: {
